@@ -179,7 +179,7 @@
         },
         {
           "responseId": "en:lesson-03:session-12:i04:r2",
-          "text": "lock"
+          "text": "clack"
         },
         {
           "responseId": "en:lesson-03:session-12:i04:r3",
@@ -206,7 +206,7 @@
           },
           {
             "responseId": "en:lesson-03:session-12:i04:r2",
-            "targetText": "lock",
+            "targetText": "clack",
             "meaningByLocale": null
           },
           {
@@ -222,8 +222,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово сказ",
             "feedbackByLocale": {
-              "ru": "`lock` — «замок». Слово начинается с «л». В `clock` перед ним слышно ещё «к»: слушайте самое начало.",
-              "uk": "`lock` — «замок». Слово починається з «л». У `clock` перед ним чути ще «к»: слухайте самий початок."
+              "ru": "`clack` — «стук». В `clack` звучит /klæk/, а в `clock` — /klɒk~klɑːk/: главное различие в гласной, а конец /k/ общий.",
+              "uk": "`clack` — «стук». У `clack` звучить /klæk/, а в `clock` — /klɒk~klɑːk/: головна різниця в голосному, а кінець /k/ спільний."
             }
           },
           {
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — друг спрашивает, что стоит за стеклом; ответьте двумя словами «ваза»",
+      "prompt": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-12:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — друг спрашивает, что стоит за стеклом; ответьте двумя словами «ваза»",
+      "accessibilityLabel": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A vase.",
+        "targetPhrase": "It is a vase.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — друг спрашивает, что стоит за стеклом; ответьте двумя словами «ваза»",
-          "uk": "Складіть коротку назву — друг питає, що стоїть за склом; дайте відповідь двома англійськими словами, що означають «ваза»"
+          "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
+          "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "vase"
         ],
         "authoredDistractorTokens": [
@@ -277,8 +279,8 @@
             "correct": false,
             "testedDimension": "Соберите короткое название — друг спраши",
             "feedbackByLocale": {
-              "ru": "Первый звук в `vase` согласный. Название начинаем с `A`, поэтому плитка `An` остаётся лишней.",
-              "uk": "Перший звук у `vase` приголосний. Назву починаємо з `A`, тому плитка `An` лишається зайвою."
+              "ru": "После `It` нужна форма `is`, а перед одной вазой — `a`: `It is a vase`.",
+              "uk": "Після `It` потрібна форма `is`, а перед однією вазою — `a`: `It is a vase`."
             }
           }
         ]
@@ -457,13 +459,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг заметил рабочую одежду сотрудника у витрины; скажите «Это форма» (`uniform` — «форма»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг заметил рабочую одежду сотрудника у витрины; скажите «Это форма» (`uniform` — «форма»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -853,21 +855,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг не расслышал название круглого прибора; скажите «Это часы»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-12:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг не расслышал название круглого прибора; скажите «Это часы»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-12:i16:audio",
-          "transcript": "It is a clock."
+          "transcript": "Is it a clock?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is a clock.",
+        "targetPhrase": "Is it a clock?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,5 +935,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2fba5e8451b831c7ac871f88d8f05221f47977b59aa2bbb0ab5af45b7b398df6"
+  "learnerFingerprint": "ebe5758c24b3338c49b3d33415f718e67cacb9300e2d2e6068ff3453b461af3c"
 }

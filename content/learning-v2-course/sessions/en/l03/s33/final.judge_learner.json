@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+  "sourceSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "В обеих локалях ровно 17 заданий; task 12 показывает локализованные значения услышанной фразы.",
-    "У каждого выбора один правильный ответ, а feedback объясняет конкретную ловушку.",
-    "Финал проверяет shoes, socks, shirts и короткую просьбу с несколькими рубашками."
-  ]
+    "Стол ярмарки и группы вещей сразу объясняют plural near target и просьбу о shirts."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "c4a2562c862f3e8710d2f70795461b031e870d2218315cba603bffdbdaba1402",
+    "localeSha256": "68daf43aaa51547251c907b9f0b978c554103eb14816987ac38f05ea4674a94b",
+    "practiceAtomicSha256": "5ca4635acd21a363517cafdd5b23579d62078f74ecf2e09980d9b50d17544c43"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+  "exactUkSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+  "localeSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+  "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "84d2b650badf61cbf330ca39372e32c83ab8b10dcd472d0fe14802af3456547c",
+    "localeSha256": "e335b408cfbd36b4b5fe415446af0b57b36fde94e32fa858a5928e88f521aa8a",
+    "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+    "findings": []
+  },
+  "mustFix": [],
+  "localeHashes": {
+    "ru": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "uk": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_learner",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "exactRuSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "exactUkSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+    "localeSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+    "localeHashes": {
+      "ru": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+      "uk": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa"
+    },
+    "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+    "evidence": [
+      "Стол ярмарки и группы вещей сразу объясняют plural near target и просьбу о shirts."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

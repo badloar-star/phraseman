@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 24 — «Дорогу спрашивают вопросами»
+# Английский · Урок 2 · Занятие 24 — «Дорогу спрашивают вопросами»
 
-**Сцена сессии.** Вечер, Дублин. Спутник рядом устал, поезд через полчаса, а дорогу приходится добывать у прохожих — по одному вопросу за раз.
+**Сцена занятия.** Вечер, Дублин. Спутник рядом устал, поезд через полчаса, а дорогу приходится добывать у прохожих — по одному вопросу за раз.
 
-**Операция:** повторение — `Where is + место`, `Are you + слово`, ответ `it is + предлог места`
+**Как сказать:** повторение — `Where is + место`, `Are you + слово`, ответ `it is + предлог места`
 **Новые слова:** —
 **Возвращаются:** station, bridge, corner, near, behind, lost, tired, thirsty
 
@@ -56,86 +56,106 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — station**
-🔊 *station* → **station** · stand · stay
-- stand — *Это «стоять». Короче: в `station` два слога, в `stand` один.*
-- stay — *Это «остаться». Тоже один слог против двух у `station`.*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-24:i01; family: listen_choose -->
+Цель: `station`
+Варианты: `station` · `stand` · `stay`
 
 **2 · Вставьте слово — вы ищете здание с поездами**
-Where is the ___ ? → **station** · corner · bridge
-- corner — *«Угол». Про поезда там не знают.*
-- bridge — *«Мост». Через реку он вас проведёт, но поезда стоят не на нём.*
+<!-- interaction_id: en:lesson-02:session-24:i02; family: context_gap_grammar -->
+Цель: `Where is the ___ ?`
+Варианты: `station` · `corner` · `bridge`
 
 **3 · Соберите фразу — «где мост?»**
-Плитки: `the` `where` `bridge` `is` → **Where is the bridge?**
+<!-- interaction_id: en:lesson-02:session-24:i03; family: phrase_builder -->
+Цель: `Where is the bridge?`
 
 **4 · Различите звуки — какое из двух про угол?**
-🔊 Два слова подряд.
-*corner · corridor* → **corner**
-- corridor — *Это «коридор», три слога. В `corner` их два.*
+<!-- interaction_id: en:lesson-02:session-24:i04; family: sound_contrast -->
+Варианты: `corner` · `corridor`
 
 **5 · Вставьте слово — прохожий показывает на конец улицы, где она поворачивает**
-It is at the ___ . → **corner** · station · bridge
-- station — *Улица не поворачивает вокзалом. Место, где сходятся две улицы, — `corner`.*
-- bridge — *Мост идёт через реку, а тут просто поворот улицы.*
+<!-- interaction_id: en:lesson-02:session-24:i05; family: context_gap_grammar -->
+Цель: `It is at the ___ .`
+Варианты: `corner` · `station` · `bridge`
 
-**6 · Соедините пары (Speed Match, 4 пары)**
-station — вокзал · bridge — мост · corner — угол · lost — заблудился
+**6 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-24:i06; family: speed_match -->
+Пары: `station` — вокзал · `bridge` — мост · `corner` — угол · `lost` — заблудился
+Цель: `station · bridge · corner · lost`
 
-**7 · Послушайте и выберите — near**
-🔊 *near* → **near** · name · nine
-- name — *Гласная другая: в `name` она звучит как «эй».*
-- nine — *В `nine` гласная звучит как «ай». В `near` — тянется к «и».*
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-24:i07; family: listen_choose -->
+Цель: `near`
+Варианты: `near` · `name` · `nine`
 
 **8 · Вставьте слово — вокзал прямо перед вами, идти минуту**
-It is ___ . → **near** · behind · lost
-- behind — *«Позади» — а вокзал у вас перед глазами, не за спиной.*
-- lost — *Это про человека, а не про здание. Вокзал никуда не терялся.*
+<!-- interaction_id: en:lesson-02:session-24:i08; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `near` · `behind` · `lost`
 
 **9 · Послушайте и соберите — «он позади моста»**
-🔊 *It is behind the bridge.* Плитки: `behind` `it` `bridge` `is` `the` `near` → **It is behind the bridge.**
+<!-- interaction_id: en:lesson-02:session-24:i09; family: listen_build_dictation -->
+Цель: `It is behind the bridge.`
 
-**10 · Вставьте скрепку — маленькое `is` между словами**
-Where ___ the corner? → **is** · are · am
-- are — *Про одно место — `is`. `are` идёт с другими словами.*
-- am — *Это только про себя: `I am`. Про угол так не спрашивают.*
+**10 · Вставьте `is` — выберите слово для вопроса о месте**
+<!-- interaction_id: en:lesson-02:session-24:i10; family: context_gap_grammar -->
+Цель: `Where ___ the corner?`
+Варианты: `is` · `are` · `am`
 
 **11 · Различите звуки — какое из двух про усталость?**
-🔊 Два слова подряд.
-*tired · third* → **tired**
-- third — *Начинается с межзубного звука: язык между зубами. В `tired` первый звук — обычное «т».*
+<!-- interaction_id: en:lesson-02:session-24:i11; family: sound_contrast -->
+Варианты: `tired` · `third`
 
 **12 · Вставьте слово — спутник просит воды, третий раз за десять минут**
-Are you ___ ? → **thirsty** · tired · lost
-- tired — *«Устал». От усталости воду не просят.*
-- lost — *«Заблудился». Он рядом с вами и никуда не делся, ему просто пить хочется.*
+<!-- interaction_id: en:lesson-02:session-24:i12; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `thirsty` · `tired` · `lost`
 
 **13 · Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он**
-Плитки: `you` `tired` `are` `is` → **Are you tired?**
+<!-- interaction_id: en:lesson-02:session-24:i13; family: phrase_builder -->
+Цель: `Are you tired?`
 
-**14 · Соедините пары (Speed Match, 4 пары)**
-near — рядом · behind — позади · tired — устал · thirsty — хочет пить
+**14 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-24:i14; family: speed_match -->
+Пары: `near` — рядом · `behind` — позади · `tired` — устал · `thirsty` — хочет пить
+Цель: `near · behind · tired · thirsty`
 
 **15 · Соберите фразу — сцена требует ответа, а не вопроса**
-Вам сказали: вокзал рядом. Повторите это спутнику.
-Плитки: `near` `is` `it` `are` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-24:i15; family: phrase_builder -->
+Цель: `It is near.`
 
-**16 · Скажите вслух — два вопроса подряд**
-🎙 **Where is the station? Are you tired?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i16:s01; family: scripted_repeat_compare -->
+Цель: `Where is the station?`
 
-**17 · Финал сцены — четыре фразы подряд: вопрос, дорога и ответ**
-🎙 Вы у моста, спутник еле идёт. Спросите, не заблудился ли он, спросите про вокзал, скажите, что вокзал позади магазинов, и спросите, не хочет ли он пить.
-**Are you lost? Where is the station? It is behind the shops. Are you thirsty?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i16:s02; family: scripted_repeat_compare -->
+Цель: `Are you tired?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s01; family: scripted_repeat_compare -->
+Цель: `Are you lost?`
+
+**19 · Послушайте и соберите — вы уточняете у прохожего, где вокзал**
+<!-- interaction_id: en:lesson-02:session-24:i17:s02; family: listen_build_dictation -->
+Цель: `Where is the station?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s03; family: scripted_repeat_compare -->
+Цель: `It is behind the shops.`
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s04; family: scripted_repeat_compare -->
+Цель: `Are you thirsty?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contrast, 5=context_gap_grammar, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contrast, 5=context_gap_grammar, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ## Самопроверка
 
@@ -164,31 +184,13 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contras
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| station (доска 6) | из прошлых сессий | задания 1, 2 |
-| bridge (доска 6) | из прошлых сессий | задание 3 |
-| corner (доска 6) | из прошлых сессий | задания 4, 5 |
-| lost (доска 6) | из прошлых сессий | интро 1 |
-| near (доска 14) | из прошлых сессий | задания 7, 8 |
-| behind (доска 14) | из прошлых сессий | задание 9 |
-| tired (доска 14) | из прошлых сессий | задания 11, 13 |
-| thirsty (доска 14) | из прошлых сессий | задание 12 |
+| station (доска 6) | из прошлых занятий | задания 1, 2 |
+| bridge (доска 6) | из прошлых занятий | задание 3 |
+| corner (доска 6) | из прошлых занятий | задания 4, 5 |
+| lost (доска 6) | из прошлых занятий | интро 1 |
+| near (доска 14) | из прошлых занятий | задания 7, 8 |
+| behind (доска 14) | из прошлых занятий | задание 9 |
+| tired (доска 14) | из прошлых занятий | задания 11, 13 |
+| thirsty (доска 14) | из прошлых занятий | задание 12 |
 
 Доски 6 и 14 не имеют общих слов.
-
----
-
-🟡 **Стоит улучшить**
-- Задание 4 (`corner` / `corridor`): `corridor` ученик не проходил. Разбор его не учит, только отвергает — по правилу дистракторов это допустимо, но пара держится на числе слогов (третий по надёжности признак). Если судья звука забракует — заменить на `corner` / `cold` (различие в первом звуке, самый надёжный уровень).
-
-🧩 **Скрытые связи**
-- Сессия целиком стоит на словах уроков 21–23; строка «Новые слова» пустая — это checkpoint, так и задумано планом.
-- Доска 6 и доска 14 делят сессию пополам по наборам слов — при любой правке заданий 1–5 и 7–13 проверять, что отработка остаётся ДО своей доски.
-
----
-
-- Написал сессию-повторение: новых слов нет, вся она собирает вместе то, что человек учил три занятия подряд.
-- Сцена одна: вечер в чужом городе, надо довести уставшего спутника до вокзала, спрашивая дорогу у прохожих.
-- Три страницы объяснения: как спросить «ты заблудился?», как спросить «где вокзал?» и как понять ответ «это рядом / это позади магазинов».
-- Дальше 17 упражнений: сначала с подсказками, к концу — собрать фразы самому и проговорить вслух четыре фразы подряд.
-- Проверил три обязательные таблицы: каждое старое слово встречается минимум дважды и хотя бы раз как верный ответ, вопросы проверяют ровно то, что объяснено выше, а в досках на скорость нет слов, которые человек не отработал раньше.
-- Одно место отметил как спорное: пара слов на слух «угол / коридор» различается длиной, а не первым звуком — если проверяющий забракует, есть запасная пара.

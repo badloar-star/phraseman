@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-34:i01",
-    "correctText": "",
+    "correctText": "busy",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-34:i03",
-    "correctText": "",
+    "correctText": "nice",
     "correctResponseId": null
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-34:i06",
-    "correctText": "",
+    "correctText": "loud",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-34:i07",
-    "correctText": "",
+    "correctText": "funny",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-34:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-34:i11:p1=busy\nen:lesson-01:session-34:i11:p2=nice\nen:lesson-01:session-34:i11:p3=loud\nen:lesson-01:session-34:i11:p4=funny",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-34:i16",
-    "correctText": "They are nice. They are loud.",
+    "interactionId": "en:lesson-01:session-34:i16:s01",
+    "correctText": "They are nice.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-34:i17",
-    "correctText": "They are nice. They are funny. They are ready.",
+    "interactionId": "en:lesson-01:session-34:i16:s02",
+    "correctText": "They are loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-34:i17:s01",
+    "correctText": "They are nice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-34:i17:s02",
+    "correctText": "They are funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-34:i17:s03",
+    "correctText": "They are ready.",
     "correctResponseId": null
   }
 ]

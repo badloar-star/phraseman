@@ -189,13 +189,13 @@
       "purpose": "supported_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — на вопрос друга о сотруднице ответьте «Нет»: она занята другим посетителем (`free` — «свободна»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i04:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — на вопрос друга о сотруднице ответьте «Нет»: она занята другим посетителем (`free` — «свободна»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -778,13 +778,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — подходящий шлем найден и застёгнут; сообщите другу: «Я готов» (`ready` — «готов»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — подходящий шлем найден и застёгнут; сообщите другу: «Я готов» (`ready` — «готов»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -918,5 +918,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9f08d7912780bb73c149bf4db8d8df382f8c98dba09db2a39f99e7b3dc54fc28"
+  "learnerFingerprint": "ff215ee03974874945de4997f70bc1ac48eaea1761d47cda8017c1a5c202cd51"
 }

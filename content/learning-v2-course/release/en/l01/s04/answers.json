@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-04:i01",
-    "correctText": "",
+    "correctText": "early",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i03",
-    "correctText": "",
+    "correctText": "right",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i05",
-    "correctText": "",
+    "correctText": "wrong",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i07",
-    "correctText": "",
+    "correctText": "free",
     "correctResponseId": null
   },
   {
@@ -46,12 +46,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i10",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-04:i10:p1=early\nen:lesson-01:session-04:i10:p2=right\nen:lesson-01:session-04:i10:p3=wrong\nen:lesson-01:session-04:i10:p4=free",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i11",
-    "correctText": "I am early.",
+    "correctText": "I am sure.",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i14",
-    "correctText": "I am free.",
+    "correctText": "free",
     "correctResponseId": "en:lesson-01:session-04:i14:r1"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i17",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-04:i17:p1=busy\nen:lesson-01:session-04:i17:p2=alone\nen:lesson-01:session-04:i17:p3=tired\nen:lesson-01:session-04:i17:p4=sure",
     "correctResponseId": null
   },
   {
@@ -91,17 +91,37 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i19",
-    "correctText": "late",
+    "correctText": "happy",
     "correctResponseId": "en:lesson-01:session-04:i19:r1"
   },
   {
     "interactionId": "en:lesson-01:session-04:i20",
-    "correctText": "I am ready.",
+    "correctText": "I am right.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i21",
-    "correctText": "I am early. I am not tired. I am fine. I am ready. I am happy.",
+    "interactionId": "en:lesson-01:session-04:i21:s01",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-04:i21:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i21:s02",
+    "correctText": "en:lesson-01:session-04:i21:s02:p1=late\nen:lesson-01:session-04:i21:s02:p2=ready\nen:lesson-01:session-04:i21:s02:p3=fine\nen:lesson-01:session-04:i21:s02:p4=happy",
     "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i21:s03",
+    "correctText": "wrong",
+    "correctResponseId": "en:lesson-01:session-04:i21:s03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i21:s04",
+    "correctText": "I am free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i21:s05",
+    "correctText": "not",
+    "correctResponseId": "en:lesson-01:session-04:i21:s05:r1"
   }
 ]

@@ -1,0 +1,40 @@
+{
+  "session": "en/l04/s15",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T12:04:28.934Z",
+  "sourceSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactRuSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactUkSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "practiceAtomicSha256": "4ef34bdda3c59880e0d53f1b333b7ebe94ddbd390aae50a557095c134b1d0ff9",
+  "localeHashes": {
+    "ru": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+    "uk": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S15 quality/spec reviewers",
+  "role": "judge_reader",
+  "sourceReport": "fresh independent read-only seven-role textual review after canonical-repeat repair; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The three intro bodies are RU 211/276/244 and UK 212/279/231 characters, nonempty and within the enforced 320 maximum.",
+    "The explanation uses ordinary learner-facing language; Intro 3 explains the form directly as aren't = are not instead of relying on unexplained terminology (RU/UK:36).",
+    "Prompts remain concrete and readable from lexical recognition through guided positive/negative practice to the station final."
+  ],
+  "at": "2026-10-08T12:04:28.934Z",
+  "localeSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "preauthoringSha256": "4144f7b694438a4d536af3ca37b4241cd5b729bd5d2d5de43555567981de1b23",
+  "converged": true,
+  "needsHumanReview": false
+}

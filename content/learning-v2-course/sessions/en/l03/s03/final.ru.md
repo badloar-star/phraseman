@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 3 — «Каждой вещи своё место»
+# Английский · Урок 3 · Занятие 3 — «Каждой вещи своё место»
 
-**Сцена сессии.** Вы с братом решаете, как расставить вещи в квартире. Он предлагает места, а вы называете предметы и уточняете, о какой вещи идёт речь.
+**Сцена занятия.** Вы с братом решаете, как расставить вещи в квартире. Он предлагает места, а вы называете предметы и уточняете, о какой вещи идёт речь.
 
-**Операция:** тонкость `a + noun` в назывании: `It is a…` сообщает об одном предмете, на который мы указываем  
+**Как сказать:** тонкость `a + noun` в назывании: `It is a…` сообщает об одном предмете, на который мы указываем  
 **Новые слова:** stool, mirror, rug  
 **Возвращаются:** lamp, here
 
@@ -50,78 +50,85 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — stool**  
-> **stool** — «табурет». Сиденье на ножках, обычно без спинки.
+**1 · Карточка слова — stool**
+<!-- interaction_id: en:lesson-03:session-03:i01; family: listen_choose -->
+Цель: `stool`
 
-**2 · Послушайте и выберите — какое слово произнёс брат**  
-🔊 *stool* → **stool** · school · spool
-- school — *После первого «с» в `school` слышно «к», а в `stool` — «т». В записи `stool`.*
-- spool — *После первого «с» в `spool` слышно «п», а в `stool` — «т». Здесь звучит `stool`.*
+**2 · Послушайте и выберите — какое слово произнёс брат**
+<!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
+Цель: `stool`
+Варианты: `stool` · `school` · `spool`
 
-**3 · Карточка слова — mirror**  
-> **mirror** — «зеркало». В нём видно своё отражение.
+**3 · Карточка слова — mirror**
+<!-- interaction_id: en:lesson-03:session-03:i03; family: listen_choose -->
+Цель: `mirror`
 
-**4 · Послушайте и выберите — какое слово прозвучало в комнате**  
-🔊 *mirror* → **mirror** · minor · merry
-- minor — *В первом слоге `minor` слышно «ай», а в `mirror` гласный ближе к «и». В записи `mirror`.*
-- merry — *Первый гласный в `merry` ближе к «э», а в `mirror` — к «и». Здесь звучит `mirror`.*
+**4 · Послушайте и выберите — какое слово прозвучало в комнате**
+<!-- interaction_id: en:lesson-03:session-03:i04; family: listen_choose -->
+Цель: `mirror`
+Варианты: `mirror` · `minor` · `merry`
 
-**5 · Соберите короткое название — брат показывает на табурет; назовите предмет двумя словами**  
-Плитки: `stool` `A` `am` → **A stool.**  
-Лишняя плитка: `am`.
-- am — *В коротком названии после `a` сразу идёт предмет: `a stool`. Форма `am` здесь не нужна.*
+**5 · Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»**
+<!-- interaction_id: en:lesson-03:session-03:i05; family: phrase_builder -->
+Цель: `It is a stool.`
+Варианты: `am`
 
-**6 · Карточка слова — rug**  
-> **rug** — «коврик». Его кладут на пол; он закрывает отдельный участок.
+**6 · Карточка слова — rug**
+<!-- interaction_id: en:lesson-03:session-03:i06; family: listen_choose -->
+Цель: `rug`
 
-**7 · Послушайте и выберите — какое слово произнёс брат**  
-🔊 *rug* → **rug** · bug · mug
-- bug — *`bug` начинается со смыкания губ для `b`, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. В записи `rug`.*
-- mug — *`mug` начинается с носового `m` при сомкнутых губах, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. Здесь звучит `rug`.*
+**7 · Послушайте и выберите — какое слово произнёс брат**
+<!-- interaction_id: en:lesson-03:session-03:i07; family: listen_choose -->
+Цель: `rug`
+Варианты: `rug` · `bug` · `mug`
 
-**8 · Соберите фразу — брат показывает на предмет, который вы хотите повесить у двери; скажите «Это зеркало»**  
-Плитки: `mirror` `is` `a` `It` → **It is a mirror.**
+**8 · Соберите фразу — брат показывает на предмет, который вы хотите повесить у двери; скажите «Это зеркало»**
+<!-- interaction_id: en:lesson-03:session-03:i08; family: phrase_builder -->
+Цель: `It is a mirror.`
 
-**9 · Скажите вслух — брат спрашивает, что вы поставили рядом с креслом; назовите лампу (`lamp` — «лампа»)**  
-🎙️ **It is a lamp.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-03:i09; family: scripted_repeat_compare -->
+Цель: `It is a lamp.`
 
-**10 · Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой**  
-It ___ rug. → **is a** · is · a
-- is — *Получится `It is rug`: в названии одного предмета перед `rug` не хватает `a`.*
-- a — *Получится `It a rug`: название на месте, но после `It` нужно `is`.*
+**10 · Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой**
+<!-- interaction_id: en:lesson-03:session-03:i10; family: context_gap_grammar -->
+Цель: `It ___ rug.`
+Варианты: `is a` · `is` · `a`
 
-**11 · Послушайте и соберите — брат обращается к вам из соседней комнаты**  
-🔊 *Is it a rug?* Плитки: `rug` `it` `Is` `a` `mirror` → **Is it a rug?**  
-Лишняя плитка: `mirror`.
-- mirror — *В записи прозвучало `rug`, а не `mirror`: `Is it a rug?`.*
+**11 · Послушайте и соберите — брат обращается к вам из соседней комнаты**
+<!-- interaction_id: en:lesson-03:session-03:i11; family: listen_build_dictation -->
+Цель: `Is it a rug?`
+Варианты: `mirror`
 
-**12 · Соедините пары — вещи для комнаты (Speed Match, 4 пары)**  
-stool — табурет · mirror — зеркало · rug — коврик · lamp — лампа
+**12 · Соедините пары — вещи для комнаты**
+<!-- interaction_id: en:lesson-03:session-03:i12; family: speed_match -->
+Пары: `stool` — табурет · `mirror` — зеркало · `rug` — коврик · `lamp` — лампа
+Цель: `stool · mirror · rug · lamp`
 
-**13 · Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»**  
-It is ___ mirror. → **not a** · no a · a not
-- no a — *В этой фразе отрицание делаем через `not` после `is`: `It is not a mirror`.*
-- a not — *Между `a` и `mirror` здесь не ставим `not`. Нужный порядок: `not a mirror`.*
+**13 · Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»**
+<!-- interaction_id: en:lesson-03:session-03:i13; family: context_gap_grammar -->
+Цель: `It is ___ mirror.`
+Варианты: `not a` · `no a` · `a not`
 
-**14 · Соберите фразу — брат ищет зеркало; вы стоите рядом с ним и отвечаете «Оно здесь» (`here` — «здесь»)**  
-Плитки: `here` `It` `is` `a` → **It is here.**  
-Лишняя плитка: `a`.
-- a — *Сейчас вы сообщаете место, а не называете предмет. Перед `here` в этой фразе `a` не нужно: `It is here`.*
+**14 · Соберите фразу — брат ищет зеркало; вы стоите рядом с ним и отвечаете «Оно здесь» (`here` — «здесь»)**
+<!-- interaction_id: en:lesson-03:session-03:i14; family: phrase_builder -->
+Цель: `It is here.`
+Варианты: `a`
 
-**15 · Скажите вслух — вы входите в комнату, где брат расставляет вещи; уточните про табурет: «Он здесь?»**  
-🎙️ **Is it here?**
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-03:i15; family: scripted_repeat_compare -->
+Цель: `Is it here?`
 
-**16 · Скажите вслух — брат смотрит на свёрнутую вещь у двери; назовите коврик полной фразой**  
-🎙️ **It is a rug.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-03:i16; family: scripted_repeat_compare -->
+Цель: `It is a rug.`
 
-**17 · Соберите фразу — брат принял низкий столик за табурет; возразите, что это не табурет**  
-Плитки: `stool` `It` `not` `a` `is` `are` → **It is not a stool.**  
-Лишняя плитка: `are`.
-- are — *После `It` здесь нужна форма `is`. Получится `It is not a stool`.*
-
----
+**17 · Соберите фразу — брат принял низкий столик за табурет; возразите, что это не табурет**
+<!-- interaction_id: en:lesson-03:session-03:i17; family: phrase_builder -->
+Цель: `It is not a stool.`
+Варианты: `are`
 
 ## Для сборщика
 
@@ -130,7 +137,7 @@ stool — табурет — сиденье на ножках, обычно бе
 mirror — зеркало — в нём видно своё отражение  
 rug — коврик — его кладут на пол; он закрывает отдельный участок
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ## Самопроверка
 

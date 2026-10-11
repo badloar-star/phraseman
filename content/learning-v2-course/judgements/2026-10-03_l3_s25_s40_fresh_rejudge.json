@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": "learning_v2_fresh_rejudge_v1",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "reviewer": "economy-executor independent fresh rejudge",
+  "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+  "deterministicEvidence": {
+    "progressionGate": "PASS: npm run learning-v2:progression-gate",
+    "onePhraseAndLedger": "PASS: verify_all_single_phrase_sources.mjs; 167 sessions, 3246 interactions, 3246 preservation rows, 0 violations",
+    "atomicLocaleParity": "PASS: every reviewed session has equal RU/UK interaction count, identical ordered IDs/families, and nonempty answer for every RU interaction"
+  },
+  "sessions": {
+    "en/l03/s25": {
+      "sha256": {
+        "exactRu": "e8537b4600d956827fc93530dde3aa375066b870c6d36d7fd22eda478978663f",
+        "exactUk": "838626c4e577ce7b9943b546da97943cc6ae5fb667347cd70712cd4842e2091d",
+        "atomic": "992d35a3d7eeca2b33aab24510743b166c76e7f5e13cfdf816eff65a4462a1a4"
+      },
+      "planRow": "| 25 | новая | `this` для одного предмета рядом | phone, charger, cable | сдаём комплект в мастерскую электроники |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Стойка мастерской, три предмета и цель назвать их понятны до первого вопроса; intro targets This is a phone/charger/cable становятся отдельными practice и final interactions."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Точно вводит planned This is a + singular noun; все три новых слова получают word-first contacts и реальные contrasts is/a/plural."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Нет ложного правила: a привязано к одному исчисляемому предмету; сцена, дистракторы и ответы согласованы."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три интро продолжают одну стойку приёма и объясняют цель до ловушек."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Спокойный конкретный голос; «Мастер чинит технику, но фразу за вас не соберёт» уместно растёт из ситуации."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 25 | новая | `this` для одного предмета рядом | phone, charger, cable | сдаём комплект в мастерскую электроники | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "Украинская сцена, meanings и feedback естественны; 17/17 atomic interactions имеют ту же форму и порядок, без лишнего spatial meaning в listen choices."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s26": {
+      "sha256": {
+        "exactRu": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+        "exactUk": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810",
+        "atomic": "45dcdb2de2a8d6064708d4fdeb6332f7a7d1faf2f3094756834094b73046706e"
+      },
+      "planRow": "| 26 | новая | `that` для одного предмета дальше | picture, screen, speaker | проверяем сцену перед презентацией |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "У пульта, сцена вдали и задача назвать технику понятны сразу; три intro answers переходят в самостоятельные practice targets."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Точно вводит That is a + singular noun и контраст this/that по расстоянию с каждым плановым словом."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Дальняя сцена не приписывает английскому несуществующих свойств; ошибки диагностируют distance, is и article."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Все интро остаются в зале и сохраняют одну цель — назвать удалённую сценическую технику."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Фраза «достаёт до сцены без прогулки через весь зал» поддерживает смысл that, без приклеенной метафоры."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 26 | новая | `that` для одного предмета дальше | picture, screen, speaker | проверяем сцену перед презентацией | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK перевод различает поруч/вдалині без добавления смысла к listen choices; atomic parity 17/17."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s27": {
+      "sha256": {
+        "exactRu": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+        "exactUk": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8",
+        "atomic": "115c6f7edd98502718da438d52e07281ef1ef72ff3ace3090ad8b7db85edd141"
+      },
+      "planRow": "| 27 | применение | вопрос `Is this/that…?` | remote, button, switch | уточняем назначение техники |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Техник, близкие remote/button и дальний switch задают однозначную причину спросить о каждом предмете."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Question inversion Is this/that a…? объяснена до practice; distractors отделяют утверждение, missing a и wrong distance."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Нет двусмысленного ответа: расположение каждого контроллера задано, а неверные формы действительно неверны для цели."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три intro работают одной мастерской и не требуют угадывать, зачем нужен вопрос."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Голос конкретен; «одна маленькая кнопка иногда ведёт себя так, будто решает всё» — понятная уместная деталь слова."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 27 | применение | вопрос `Is this/that…?` | remote, button, switch | уточняем назначение техники | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK question and feedback preserve singular/distance distinction; atomic parity 19/19."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s28": {
+      "sha256": {
+        "exactRu": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+        "exactUk": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d",
+        "atomic": "b0544da6af1e6da701d4ca6c5c6eea7f1b98595fddef787380ec8c918d112efa"
+      },
+      "planRow": "| 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Касса, вход и выбор вещи дают ясную задачу сказать одну короткую просьбу."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "This/That …, please разбирается по расстоянию и реально отрабатывается через listen, build, gap и final."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Ни один выбор не требует скрытой информации; one-phrase atomic targets не склеивают просьбы."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Все три страницы сохраняют магазин и уход; польза фразы дана раньше contrast."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Деталь о чемодане на лестнице и рюкзаке с пакетами естественна и относится к словам."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK просьбы локализованы без потери вежливости; atomic parity 19/19."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s29": {
+      "sha256": {
+        "exactRu": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+        "exactUk": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d",
+        "atomic": "7f019ce86bba35a2df567188744791fed5febe0c5ac5e8d916a32f392c244b44"
+      },
+      "planRow": "| 29 | контраст | `this/that` указывает; `it` возвращается к уже названному | parcel, letter, stamp | разбираем почту у двери |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Посылка рядом, письмо дальше и марка на конверте объясняют зачем сначала назвать вещь, затем сказать it is."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Плановый contrast demonstrative→it показан через This/That is … затем It is heavy/wet/small; single interactions сохраняют обе части отдельно."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "It не объявлено указателем; target and feedback различают называние и возврат к уже названной вещи."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три интро и длинная split practice остаются на одной почтовой сцене, без потери цели."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Юмор слов конкретен: письмо «путешествует без зарядки», посылка тяжелеет в момент подъёма; это не ложное правило."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 29 | контраст | `this/that` указывает; `it` возвращается к уже названному | parcel, letter, stamp | разбираем почту у двери | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK сохраняет distinction назвати/повернутися до предмета; atomic parity 28/28."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s30": {
+      "sha256": {
+        "exactRu": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+        "exactUk": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8",
+        "atomic": "8877cf2c618a4dc0d3f71082dde8305af2d425a9b44f7e2a90e4178add47e67c"
+      },
+      "planRow": "| 30 | перенос | выбор одного предмета в отделе одежды | sweater, scarf, glove | показываем продавцу нужную вещь |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Расположение одежды и необходимость выбрать одну вещь понятны с открытия."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Перенос this/that requests в новый домен использует new sweater/scarf/glove и дистанцию как проверяемый смысл."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Дистракторы проверяют нужный предмет/расстояние, не делают грамматичные ответы ошибками без причины."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Все три intro остаются у продавца и ведут в final one-phrase selection."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Определения одежды разговорные и по делу, без офисного или случайного реквизита."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 30 | перенос | выбор одного предмета в отделе одежды | sweater, scarf, glove | показываем продавцу нужную вещь | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK названия одежды и просьбы нативны; atomic parity 19/19."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s31": {
+      "sha256": {
+        "exactRu": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+        "exactUk": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+        "atomic": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292"
+      },
+      "planRow": "| 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Костюмерная, три детали и необходимость быстро выбрать близкое/дальнее создают понятную задачу."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Лексическая session сохраняет ранее освоенную demonstrative operation и даёт самостоятельные однофразовые choices."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Новые nouns и distance cues не конфликтуют с target grammar."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три intro продолжают один выбор костюма и не возвращаются к абстрактной сцене."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Голос живой, но не театральный ради украшения; юмор связан с практическим выбором."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK лексика и формы просьбы сохраняют ту же учебную нагрузку; atomic parity 19/19."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s32": {
+      "sha256": {
+        "exactRu": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+        "exactUk": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a",
+        "atomic": "585c70360b6e8135b245ac2cc1e5e1990f9c7c5abddf140d69de98080c4221fe"
+      },
+      "planRow": "| 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Киоск и выбор подарка дают прозрачную цепочку назвать, спросить и попросить, но в отдельных interactions."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Checkpoint интегрирует statement/question/request, не добавляя незаявленную форму; каждый final segment атомарен."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три речевые цели имеют разные однозначные ситуации и не склеены в один ответ."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Вход в музейный киоск ясен, три intro подготавливают разные нужные действия."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Деталь, что открытка может прийти позже человека, относится к слову и не создаёт ложного объяснения."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK предлагает естественные значения и одинаковые 19 atomic interactions."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s33": {
+      "sha256": {
+        "exactRu": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+        "exactUk": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+        "atomic": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827"
+      },
+      "planRow": "| 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Стол ярмарки и группы вещей сразу объясняют plural near target и просьбу о shirts."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Точно вводит planned these/are/plural; singular contrast и requests диагностируют number and function."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Не смешивает группу с одним предметом; all targets obey one phrase per interaction."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три intro не теряют благотворительную сцену и поочерёдно готовят shoe/sock/shirt."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Определения пары shoe/sock поддерживают бытовую ясность без пустой образности."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK plural meanings and feedback preserve number; atomic parity 20/20."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s34": {
+      "sha256": {
+        "exactRu": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+        "exactUk": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a",
+        "atomic": "87de33f13849b7ded476debe812471b16813620036006403071d665b5255f2a7"
+      },
+      "planRow": "| 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Дальняя стена магазина и группы текстиля сразу определяют задачу назвать/попросить дальнюю вещь."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "those/are/plural is new planned operation; near/distant contrasts are explicit and assessed."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Число и расстояние в prompts согласованы с correct answers; no bundled targets."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Один магазин домашнего текстиля проходит через все три intro."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Определения blanket/sheet/duvet различают реальные предметы ясным языком."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK локаль не потеряла дальность/множественность; atomic parity 20/20."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s35": {
+      "sha256": {
+        "exactRu": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+        "exactUk": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84",
+        "atomic": "542eb831b12a3e4e97136757684b9242c4c3af78bc01a197a89e6f3b9d4aafbd"
+      },
+      "planRow": "| 35 | контраст | `this` против `these`: один или несколько | photo, album, frame | выбираем украшения для стены |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Фото, альбом и рамки на столе создают прямую причину различать один предмет и несколько."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "this/these contrast uses planned photo/album/frame and independently tests number before selection phrases."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Форма plural соответствует предметам; no misleading statement about photo/album semantics."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Wall-decoration workshop is stable across intros and all targets are prepared before practice."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Нейтральный живой голос и конкретный процесс выбора не выглядят как шаблонная мини-история."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 35 | контраст | `this` против `these`: один или несколько | photo, album, frame | выбираем украшения для стены | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK naturalizes photo/album/frame and preserves 22/22 interaction shape."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s36": {
+      "sha256": {
+        "exactRu": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+        "exactUk": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077",
+        "atomic": "532c3b033ff09e5997c035e78696d90ddf12515505d360b49576a1c7efa73328"
+      },
+      "planRow": "| 36 | голос/слух | различать `that/those` и число на слух | tree, flower, bicycle | смотрим товары через витрину |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Витрина, динамик и поиск одного/нескольких товаров по слуху создают понятную необходимость слушать."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Listening systematically distinguishes that/those and singular/plural with current three nouns, then carries forms into final."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Audio transcripts and targets are single exact phrases; no semantic additions in localized listening meanings."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Все три intro остаются у витрины и объясняют, что один или несколько объектов нужно найти на слух."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Практичные garden/walk товары удерживают спокойный, конкретный голос."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 36 | голос/слух | различать `that/those` и число на слух | tree, flower, bicycle | смотрим товары через витрину | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK localized meanings retain only audio meaning; atomic parity 20/20."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s37": {
+      "sha256": {
+        "exactRu": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+        "exactUk": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+        "atomic": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f"
+      },
+      "planRow": "| 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Схема корпусов и путь делают count+distance decision necessary rather than decorative."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "All four demonstrative/copula forms are contrasted with exact planned location nouns and clear count cues."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "No answer depends on unshown map details; each sentence has a single grammatical target."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Двор комплекса stays continuous from opening to final navigation targets."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Точные ориентиры служат смыслу урока и не превращены в театральную историю."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK orientations and plural forms are native; atomic parity 20/20."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s38": {
+      "sha256": {
+        "exactRu": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+        "exactUk": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+        "atomic": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5"
+      },
+      "planRow": "| 38 | перенос | `these/those` на рынке | apple, banana, orange | выбираем продукты с разных прилавков |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Три fruit groups at different stalls and a bag request make the demonstrative choice immediately actionable."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Market transfer tests these/those plural with new apple/banana/orange; listening options are sound-oriented and exact localized meanings."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Orange is taught as fruit, not color; distance and plural terms are consistently grounded."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Opening and all three intro pages retain the same market task and state why a phrase is needed."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Everyday shopping voice is concise; fruit descriptions are factual rather than AI-style decoration."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 38 | перенос | `these/those` на рынке | apple, banana, orange | выбираем продукты с разных прилавков | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK fruit meanings and requests preserve exact current audio meaning; atomic parity 20/20."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s39": {
+      "sha256": {
+        "exactRu": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+        "exactUk": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110",
+        "atomic": "e10cfc05071757f4a65b9a30ffee6966641221a5a2c9d4d37918f37f7b199790"
+      },
+      "planRow": "| 39 | слова | множественные предметы с меньшей опорой | grape, lemon, onion | продавец собирает заказ |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Упаковочный стол, готовая коробка и просьба добавить конкретные группы дают цель до формы."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Lexical session reuses demonstratives with reduced support and separate single-phrase targets for each fruit/vegetable group."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Grape/lemon/onion meanings, count and distance are internally consistent; no composite answer option."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "All intros remain at one pickup counter and progress name close group→name distant group→request onions."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Простая рыночная ситуация carries voice without stock filler or false claims."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 39 | слова | множественные предметы с меньшей опорой | grape, lemon, onion | продавец собирает заказ | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK «виноградина/цибулина» meanings are precise and interaction parity is 23/23."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    },
+    "en/l03/s40": {
+      "sha256": {
+        "exactRu": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+        "exactUk": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855",
+        "atomic": "7c148873f94af80e86f358112fae83955a472c4dfe95b483ef96fc422b737592"
+      },
+      "planRow": "| 40 | checkpoint | вся система четырёх указателей | barcode, seal, coupon | проверяем покупки перед уходом |",
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Контрольный стол, проверка перед выходом и расположение single/plural items дают понятный итоговый контекст."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Checkpoint requires this/that/these/those with is/are, including exact planned barcode/seal/coupon; each practice/final item is one phrase."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "«Много полос, но один штрихкод» корректно считает предмет, not marks; seal is explicitly defined as package security seal."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Three intros form one final entrance: near singular barcode, far singular seal, far plural coupons."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "Голос спокойный и конкретный; объяснения заменяют абстрактное правило реальными предметами."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "judge_progression": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact current curriculum row verified: | 40 | checkpoint | вся система четырёх указателей | barcode, seal, coupon | проверяем покупки перед уходом | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+          ],
+          "mustFix": [],
+          "blockers": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "UK meanings for штрихкод/пломба/купон are natural, and atomic interaction order/count is 26/26."
+          ],
+          "mustFix": [],
+          "blockers": []
+        }
+      }
+    }
+  },
+  "overallVerdict": "PASS",
+  "blocks": []
+}

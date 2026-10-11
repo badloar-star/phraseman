@@ -1,9 +1,9 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+  "sourceSha256": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
   "localeHashes": {
-    "ru": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
-    "uk": "46c730f2680592d16e6acf1b29b91c0468a43bfc82ba0eb5c3e239f113a6b0f7"
+    "ru": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+    "uk": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a"
   },
   "comparedThrough": "en/l03/s31",
   "curriculumExactMatch": true,
@@ -67,13 +67,61 @@
   "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "S01–S31 RU+UK scan has zero postcard/magnet/keyring hits.",
-    "The museum-kiosk gift scene is new.",
-    "All three intros lead to scored practice and a changed-position independent final.",
-    "Tasks 12 and 16 localize exact audio meaning without adding distance wording."
+    "Exact current curriculum row verified: | 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
   "deterministicGates": {
     "progression_quality_gate_from_25": "PASS",
     "check_new_words_session_32": "PASS: 56 sessions, 130 unique new words, no repeats"
+  },
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "947eb49a22ef6fdb5eefb55e800a679e4573087add7ed3e355cc48b248e425d4",
+    "localeSha256": "24c0a3db38b14d85c2897a4b7dbc14c079bb0af74aeb990ad5b3632511c7aad8",
+    "practiceAtomicSha256": "585c70360b6e8135b245ac2cc1e5e1990f9c7c5abddf140d69de98080c4221fe",
+    "findings": []
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "exactRuSha256": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+  "exactUkSha256": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a",
+  "localeSha256": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a",
+  "practiceAtomicSha256": "585c70360b6e8135b245ac2cc1e5e1990f9c7c5abddf140d69de98080c4221fe",
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+    "exactRuSha256": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+    "exactUkSha256": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a",
+    "localeSha256": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a",
+    "localeHashes": {
+      "ru": "a8a5894ac90dd8a4ad028feceeadd839ca380412600e6111a9b6402eb07eab6c",
+      "uk": "9569936349cf41a65282b7d039be1df439f1419cce759fb721be96e79b12c70a"
+    },
+    "practiceAtomicSha256": "585c70360b6e8135b245ac2cc1e5e1990f9c7c5abddf140d69de98080c4221fe",
+    "evidence": [
+      "Exact current curriculum row verified: | 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок |",
+    "grammarLexiconSituation": "Плановый checkpoint closes singular demonstratives with new postcard/magnet/keyring and new setting.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s31"
   }
 }

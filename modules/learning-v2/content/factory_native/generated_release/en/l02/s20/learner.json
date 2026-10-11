@@ -923,26 +923,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-20:i17",
+      "interactionId": "en:lesson-02:session-20:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд про вокзал и улицу",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-20:i17:audio"
+        "en:lesson-02:session-20:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд про вокзал и улицу",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-20:i17:audio",
-          "transcript": "Where is the station? Where is the street? The street is crowded."
+          "audioTargetId": "en:lesson-02:session-20:i17:s01:audio",
+          "transcript": "Where is the station?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the station? Where is the street? The street is crowded.",
+        "targetPhrase": "Where is the station?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i17:s02:audio",
+          "transcript": "Where is the street?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the street?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i17:s03:audio",
+          "transcript": "The street is crowded."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The street is crowded.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -956,11 +1022,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ffd7081f5fb6fde23637ef4b0d05c42296d34a3d1fa90dc96815790ee27ba12e"
+  "learnerFingerprint": "ec408793706882fd2d976b8f130fb0e32fa1dedb9a71cfcfc500877fb4477774"
 }

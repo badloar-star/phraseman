@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
-test('release preserves authored whole expression tiles in builders and dictation', (t) => {
+test('release refuses multi-sentence builders and dictation before writing any preview', (t) => {
   const parent = fs.realpathSync(os.tmpdir());
   const root = fs.mkdtempSync(path.join(parent, 'learning-chunks-'));
   t.after(() => {
@@ -16,7 +16,7 @@ test('release preserves authored whole expression tiles in builders and dictatio
   });
   const here = path.dirname(fileURLToPath(import.meta.url));
   fs.mkdirSync(path.join(root, 'pipeline'));
-  for (const name of ['build_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
+  for (const name of ['build_release.mjs', 'single_phrase_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs', 'write_mockup_file.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
   const dir = path.join(root, 'sessions/en/l02/s51');
   fs.mkdirSync(dir, { recursive: true });
   const intro = [1, 2, 3].map(n => `## Интро ${n}\n\n### Пример\n\nПояснение.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *Другая форма.*\n- ❌ am — *Про себя.*\n\n---`).join('\n\n');
@@ -29,11 +29,7 @@ test('release preserves authored whole expression tiles in builders and dictatio
   markdown = markdown.replace('3=phrase_builder', '3=phrase_builder, 4=phrase_builder');
   fs.writeFileSync(source, markdown);
   const result = spawnSync(process.execPath, [path.join(root, 'pipeline/build_release.mjs'), '--session', 'en/l02/s51', '--locales', 'ru', '--out', out], { encoding: 'utf8' });
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-  const learner = JSON.parse(fs.readFileSync(path.join(out, 'en/l02/s51/learner.json'), 'utf8'));
-  assert.deepEqual(learner.interactions[0].modePayload.orderedTokens, ['Excuse me.', 'Is', 'it', 'far']);
-  assert.deepEqual(learner.interactions[1].modePayload.orderedTokens, ['Excuse me.', 'Are', 'you', 'ready']);
-  assert.deepEqual(learner.interactions[2].modePayload.orderedTokens, ['This', 'is', 'fine']);
-  assert.deepEqual(learner.interactions[2].modePayload.authoredDistractorTokens, ['is fine now', 'his is']);
-  assert.deepEqual(learner.interactions[3].modePayload.authoredDistractorTokens, ['he']);
+  assert.notEqual(result.status, 0, result.stderr || result.stdout);
+  assert.match(`${result.stdout}\n${result.stderr}`, /single_phrase_source_hold:en:lesson-02:session-51:i01:targetPhrase/u);
+  assert.equal(fs.existsSync(path.join(out, 'en/l02/s51/learner.json')), false);
 });

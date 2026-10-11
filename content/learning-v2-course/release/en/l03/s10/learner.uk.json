@@ -60,7 +60,7 @@
         },
         {
           "responseId": "en:lesson-03:session-10:i02:r2",
-          "text": "metal"
+          "text": "cattle"
         },
         {
           "responseId": "en:lesson-03:session-10:i02:r3",
@@ -87,7 +87,7 @@
           },
           {
             "responseId": "en:lesson-03:session-10:i02:r2",
-            "targetText": "metal",
+            "targetText": "cattle",
             "meaningByLocale": null
           },
           {
@@ -101,16 +101,16 @@
           {
             "responseId": "en:lesson-03:session-10:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
-              "ru": "`metal` — «металл». Начало похоже, но первым звучит «м». В записи слышно «к»: `kettle`.",
-              "uk": "`metal` — «метал». Початок подібний, але першим звучить «м». У записі чути «к»: `kettle`."
+              "ru": "`cattle` — «крупный рогатый скот». Оба слова начинаются с «к», но `cattle` звучит как **cat-l**, а `kettle` — как **ket-l**. В записи звучит `kettle`.",
+              "uk": "`cattle` — «велика рогата худоба». Обидва слова починаються з «к», але `cattle` звучить як **cat-l**, а `kettle` — як **ket-l**. У записі звучить `kettle`."
             }
           },
           {
             "responseId": "en:lesson-03:session-10:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`settle` — «уладить». В начале слышно «с», а в `kettle` — «к». Дальше слова звучат похоже, поэтому слушайте начало.",
               "uk": "`settle` — «владнати». На початку чути «с», а в `kettle` — «к». Далі слова схожі на слух, тому слухайте початок."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-10:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`poster` — «плакат». В начале у него «п», а у `toaster` — «т». Остальная часть звучит похоже.",
               "uk": "`poster` — «плакат». На початку в ньому «п», а в `toaster` — «т». Решта слова звучить подібно."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-10:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`coaster` — «подставка под стакан». Сначала слышно «к», а в записи слово начинается с «т»: `toaster`.",
               "uk": "`coaster` — «підставка під склянку». Спершу чути «к», а в записі слово починається з «т»: `toaster`."
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома словами «чайник»",
+      "prompt": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-10:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома словами «чайник»",
+      "accessibilityLabel": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A kettle.",
+        "targetPhrase": "It is a kettle.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
-          "uk": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома словами «чайник»"
+          "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+          "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "kettle"
         ],
         "authoredDistractorTokens": [
@@ -275,10 +277,10 @@
           {
             "responseId": "en:lesson-03:session-10:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — продавец сп",
+            "testedDimension": "Складіть коротку назву — продавець питає",
             "feedbackByLocale": {
-              "ru": "Для короткого названия тоже выбираем по первому звуку: в `kettle` он согласный, поэтому нужно `A`.",
-              "uk": "Для короткої назви теж обираємо за першим звуком: у `kettle` він приголосний, тому потрібне `A`."
+              "ru": "После `It` нужна форма `is`, а перед одним чайником — `a`: `It is a kettle`.",
+              "uk": "Після `It` потрібна форма `is`, а перед одним чайником — `a`: `It is a kettle`."
             }
           }
         ]
@@ -383,7 +385,7 @@
           {
             "responseId": "en:lesson-03:session-10:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`vacuous` — «бессодержательный». Начало похоже, но в конце у него «с», а у `vacuum` — «м». Дослушайте слово.",
               "uk": "`vacuous` — «беззмістовний». Початок схожий, але наприкінці в ньому чути «с», а у `vacuum` — «м». Дослухайте слово до кінця."
@@ -392,7 +394,7 @@
           {
             "responseId": "en:lesson-03:session-10:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`volume` — «громкость». В середине у него слышно «л», а у `vacuum` — «к». Общее начало на «в» ещё не даёт ответа.",
               "uk": "`volume` — «гучність». Усередині чути «л», а у `vacuum` — «к». Спільний початок на «в» ще не дає відповіді."
@@ -449,12 +451,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — друг показывает на духо",
+        "testedDimension": "Вставте слово — друг показує на духовку ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показывает на духо",
+            "testedDimension": "Вставте слово — друг показує на духовку ",
             "feedbackByLocale": {
               "ru": "В `oven` первый звук гласный, поэтому перед этим названием выбираем `an`.",
               "uk": "У `oven` перший звук голосний, тому перед цією назвою обираємо `an`."
@@ -463,7 +465,7 @@
           {
             "responseId": "en:lesson-03:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показывает на духо",
+            "testedDimension": "Вставте слово — друг показує на духовку ",
             "feedbackByLocale": {
               "ru": "`is` уже стоит после `It`. Сейчас не хватает маленького слова перед `oven`: здесь это `an`.",
               "uk": "`is` уже стоїть після `It`. Зараз бракує маленького слова перед `oven`: тут це `an`."
@@ -518,12 +520,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг показывает на пыле",
+        "testedDimension": "Вставте слово — друг показує на пилосос;",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показывает на пыле",
+            "testedDimension": "Вставте слово — друг показує на пилосос;",
             "feedbackByLocale": {
               "ru": "Первый звук в `vacuum` согласный. Перед этим названием нужно `a`, как в `a kettle`.",
               "uk": "Перший звук у `vacuum` приголосний. Перед цією назвою потрібне `a`, як у `a kettle`."
@@ -532,7 +534,7 @@
           {
             "responseId": "en:lesson-03:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показывает на пыле",
+            "testedDimension": "Вставте слово — друг показує на пилосос;",
             "feedbackByLocale": {
               "ru": "`am` используется с `I`. Здесь уже есть начало `It is`, а дальше нужно название `a vacuum`.",
               "uk": "`am` уживаємо з `I`. Тут уже є початок `It is`, а далі потрібна назва `a vacuum`."
@@ -654,7 +656,7 @@
           {
             "responseId": "en:lesson-03:session-10:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — продавец говорит",
+            "testedDimension": "Послухайте й складіть — продавець говори",
             "feedbackByLocale": {
               "ru": "Перед `toaster` в записи звучит `a`: название начинается с согласного «т». Плитка `an` лишняя.",
               "uk": "Перед `toaster` у записі звучить `a`: назва починається з приголосного «т». Плитка `an` зайва."
@@ -709,12 +711,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+        "testedDimension": "Вставте слово — біля відділу стоїть кріс",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-10:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+            "testedDimension": "Вставте слово — біля відділу стоїть кріс",
             "feedbackByLocale": {
               "ru": "Первый звук в `armchair` гласный. Перед этим названием нужно `an`, хотя кресло, как и чайник, одно.",
               "uk": "Перший звук у `armchair` голосний. Перед цією назвою потрібне `an`, хоча крісло, як і чайник, одне."
@@ -723,7 +725,7 @@
           {
             "responseId": "en:lesson-03:session-10:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+            "testedDimension": "Вставте слово — біля відділу стоїть кріс",
             "feedbackByLocale": {
               "ru": "`am` не ставим перед названием кресла. После `It is` здесь идёт `an armchair`.",
               "uk": "`am` не ставимо перед назвою крісла. Після `It is` тут іде `an armchair`."
@@ -769,7 +771,7 @@
           {
             "responseId": "en:lesson-03:session-10:i13:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — друг заметил другой пр",
+            "testedDimension": "Складіть питання — друг помітив інший пр",
             "feedbackByLocale": {
               "ru": "Начните вопрос с `Is it`. Перед `kettle` оставьте `a`: первый звук названия согласный.",
               "uk": "Почніть питання з `Is it`. Перед `kettle` лишіть `a`: перший звук назви приголосний."
@@ -834,7 +836,7 @@
           {
             "responseId": "en:lesson-03:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал прода",
+            "testedDimension": "Послухайте й оберіть — що продавець сказ",
             "feedbackByLocale": {
               "ru": "В этом варианте после `is` сразу идёт `a`. В записи между ними слышно `not`: продавец отрицает название.",
               "uk": "У цьому варіанті після `is` одразу стоїть `a`. У записі між ними чути `not`: продавець заперечує назву."
@@ -843,7 +845,7 @@
           {
             "responseId": "en:lesson-03:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал прода",
+            "testedDimension": "Послухайте й оберіть — що продавець сказ",
             "feedbackByLocale": {
               "ru": "Начало совпадает, но в конце записи звучит `vacuum`, с «в» в начале. У `toaster` первым был бы звук «т».",
               "uk": "Початок збігається, але наприкінці запису звучить `vacuum`, з «в» на початку. У `toaster` першим був би звук «т»."
@@ -892,7 +894,7 @@
           {
             "responseId": "en:lesson-03:session-10:i15:r1",
             "correct": false,
-            "testedDimension": "Соберите отрицание — друг принял маленьк",
+            "testedDimension": "Складіть заперечення — друг прийняв мале",
             "feedbackByLocale": {
               "ru": "После `It is not` нужно `a toaster`: название начинается с согласного звука. Отрицание не требует замены `a` на `an`.",
               "uk": "Після `It is not` потрібне `a toaster`: назва починається з приголосного звуку. Заперечення не змінює `a` на `an`."
@@ -908,13 +910,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг помітив сидіння за стійкою продавця; уточніть «Це крісло?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-10:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг помітив сидіння за стійкою продавця; уточніть «Це крісло?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -971,7 +973,7 @@
           {
             "responseId": "en:lesson-03:session-10:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — продавец достал пылесос",
+            "testedDimension": "Складіть фразу — продавець дістав пилосо",
             "feedbackByLocale": {
               "ru": "Соберите начало `It is`, затем название `a vacuum`: оно начинается с согласного звука.",
               "uk": "Складіть початок `It is`, а потім назву `a vacuum`: вона починається з приголосного звуку."
@@ -988,5 +990,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34feb3c5942aef5b0f316fecd5c2129b88ff67e359e4adc925ebb52462886167"
+  "learnerFingerprint": "7388bd4e647c2e612b2d23f1244b520bb736daed470cb643675490beeb2c67c3"
 }

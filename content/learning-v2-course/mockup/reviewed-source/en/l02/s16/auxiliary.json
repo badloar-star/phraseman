@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro1:r2": {
+          "ru": "Так вы сообщаете: «он хочет пить». Вопрос начинают с `is`.",
+          "uk": "Так ви повідомляєте: «він хоче пити». Питання починають з `is`."
+        },
+        "en:lesson-02:session-16:intro1:r3": {
+          "ru": "`he` оторвали от `is`. Сначала `is he`, потом само слово.",
+          "uk": "`he` відірвали від `is`. Спершу `is he`, потім саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro2:r2": {
+          "ru": "`he` — про мужчину. Кафе — вещь, значит `it`.",
+          "uk": "`he` — про чоловіка. Кав'ярня — річ, отже `it`."
+        },
+        "en:lesson-02:session-16:intro2:r3": {
+          "ru": "Это сообщение: «тут людно». Вопрос начинают с `is`.",
+          "uk": "Це повідомлення: «тут людно». Питання починають з `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-16:intro3:r2": {
+          "ru": "Так снова получается вопрос. В ответе сначала `she`, потом `is`.",
+          "uk": "Так знову виходить питання. У відповіді спершу `she`, потім `is`."
+        },
+        "en:lesson-02:session-16:intro3:r3": {
+          "ru": "`not` в конец не ставят. Согласие короткое: `Yes, she is.`",
+          "uk": "`not` у кінець не ставлять. Згода коротка: `Yes, she is.`"
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "74c6e4543b926517487e4854d581f680011c2e51ed5dd564987f1cdd7f61396b"
+}

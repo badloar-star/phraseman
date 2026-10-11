@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "37cceb926df5118339be067fdd1c88141d73df838bcedba623aae6ce6d8fad9f",
+  "localeSha256": "46fa20d9c5eaad8111e52f04a05684fb83d2ee3abebe44d3c46c5a373a1bc4be",
+  "comparedThrough": "en/l03/s11",
+  "newWords": [
+    "vase",
+    "clock",
+    "radio"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 12 | голос/слух | различать `a` и `an` в живой фразе | vase, clock, radio | слушаем описание витрины |",
+  "curriculumEvidence": {
+    "grammar": "различение `a/an` в звучащей фразе и произнесение названия вместе с маленьким словом перед ним; знакомые утверждения, вопросы и отрицания",
+    "newWords": [
+      "vase",
+      "clock",
+      "radio"
+    ],
+    "situation": "Вы с другом слушаете продавца у витрины магазина для дома. Он называет выставленные предметы. Вы переспрашиваете, что находится за стеклом, и уточняете, сколько ждать сотрудника, который откроет витрину."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh second-repair RU/UK audit",
+    "Current distractors checked against curriculum allocation; no future-target collision"
+  ]
+}

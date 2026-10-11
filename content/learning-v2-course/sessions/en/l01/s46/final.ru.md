@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 46 — «Короткие формы в чате»
+# Английский · Урок 1 · Занятие 46 — «Короткие формы в чате»
 
-**Сцена сессии.** Чат с друзьями: вы пишете с телефона, отвечаете на ходу, и всё сжимается до коротких форм.
-**Операция:** короткие формы `I'm` / `he's` / `it's` / `they're` и `isn't` в переписке
+**Ситуация.** Чат с друзьями: вы пишете с телефона, отвечаете на ходу, и всё сжимается до коротких форм.
+**Сегодня.** Короткие формы `I'm` / `he's` / `it's` / `they're` и `isn't` в переписке.
 **Новые слова:** fun, boring, cool, weird
 **Возвращаются:** quiet, new, tired
 
@@ -60,74 +60,112 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — fun**
+<!-- interaction_id: en:lesson-01:session-46:i01; family: listen_choose -->
 > **fun** — «весело». Не про смех, а про то, от чего вечер прошёл незаметно.
 
-**2 · Послушайте и выберите — fun**
+🔊 *fun*
+
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-46:i02; family: listen_choose -->
 🔊 *fun* → **fun** · fan · phone
 - fan — *Это «вентилятор». В `fan` рот открыт шире, звук тянется дольше.*
 - phone — *Другое слово, «телефон». В `fun` гласная короткая, без призвука на конце.*
 
 **3 · Карточка слова — boring**
+<!-- interaction_id: en:lesson-01:session-46:i03; family: listen_choose -->
 > **boring** — «скучный». Про фильм, урок, разговор, после которых хочется в телефон.
 
-**4 · Послушайте и выберите — boring**
+🔊 *boring*
+
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-46:i04; family: listen_choose -->
 🔊 *boring* → **boring** · morning · born
 - morning — *Похоже по концу, но начинается с «м» и значит «утро».*
 - born — *Короткое, один кусок. В `boring` два: `bo-ring`. Слушайте, есть ли хвост после «р».*
 
 **5 · Соберите фразу — «это весело»**
+<!-- interaction_id: en:lesson-01:session-46:i05; family: phrase_builder -->
 Плитки: `It's` `fun` `is` → **It's fun.**
 - лишняя `is` — *`is` уже спрятано внутри `It's`. Второй раз оно не нужно.*
 
 **6 · Вставьте слово — вы трижды посмотрели на часы за первые полчаса лекции**
+<!-- interaction_id: en:lesson-01:session-46:i06; family: context_gap_grammar -->
 It's ___ . → **boring** · fun · new
 - fun — *«Весело» — но вы жалуетесь на лекцию, а не хвалите её.*
 - new — *`new` — «новый». Лекция может быть новой и при этом смертельно скучной.*
 
 **7 · Карточка слова — cool**
+<!-- interaction_id: en:lesson-01:session-46:i07; family: listen_choose -->
 > **cool** — «классный». Так в чате одобряют всё: план, фото, человека.
 
+🔊 *cool*
+
 **8 · Карточка слова — weird**
+<!-- interaction_id: en:lesson-01:session-46:i08; family: listen_choose -->
 > **weird** — «странный». Не страшный, а такой, что не понимаешь, зачем так делают.
 
-**9 · Послушайте и выберите — weird**
+🔊 *weird*
+
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-46:i09; family: listen_choose -->
 🔊 *weird* → **weird** · word · we
 - word — *Это «слово». Гласная в середине другая.*
 - we — *Это «мы», гласная там долгая и чистая. В `weird` гласная с призвуком и есть согласный на конце.*
 
 **10 · Соберите фразу — про соседей: «они странные»**
+<!-- interaction_id: en:lesson-01:session-46:i10; family: phrase_builder -->
 Плитки: `They're` `weird` `are` `He's` → **They're weird.**
 - `are` — *Уже внутри `They're`.*
 - `He's` — *Это про одного человека.*
 
 **11 · Вставьте короткую форму — вы пишете другу, что устали (`tired`)**
+<!-- interaction_id: en:lesson-01:session-46:i11; family: context_gap_grammar -->
 ___ tired. → **I'm** · Im · I'am
 - Im — *Потерялся значок. Он стоит на месте выпавшей `a` из `am`.*
 - I'am — *Значок ставят вместо выпавшей буквы. Здесь `a` никуда не делась, значит значок не нужен: либо `I am`, либо `I'm`.*
 
 **12 · Послушайте и соберите — «он классный»**
+<!-- interaction_id: en:lesson-01:session-46:i12; family: listen_build_dictation -->
 🔊 *He's cool.* Плитки: `He's` `cool` `They're` `weird` → **He's cool.**
 
-**13 · Соедините пары (Speed Match, 4 пары)**
+**13 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-46:i13; family: speed_match -->
 fun — весело · boring — скучный · cool — классный · weird — странный
 
 **14 · Вставьте слово — в чате обсуждают новенького, который весь день молчит (`quiet` — «тихий»)**
+<!-- interaction_id: en:lesson-01:session-46:i14; family: context_gap_grammar -->
 He's ___ . → **quiet** · funny · fun
 - funny — *`funny` — «смешной». Смешной человек как раз не молчит.*
 - fun — *`fun` — про занятие, а не про характер человека.*
 
 **15 · Соберите фразу — «сериал не скучный», `not` внутри слова**
+<!-- interaction_id: en:lesson-01:session-46:i15; family: phrase_builder -->
 Плитки: `It` `isn't` `boring` `not` → **It isn't boring.**
 - `not` — *Оно уже спрятано в `isn't`. Второй раз не нужно.*
 
 **16 · Вставьте слово — друг спрашивает про кафе, куда вы зашли впервые**
+<!-- interaction_id: en:lesson-01:session-46:i16; family: context_gap_grammar -->
 It's ___ . → **new** · tired · weird
 - tired — *`tired` — «устал», это про человека. Кафе не устаёт.*
 - weird — *«Странное» — можно, но друг спросил именно про то, что вы там раньше не были: `new`.*
 
-**17 · Скажите вслух — три сообщения подряд, как в чате**
-🎙 Друзья зовут в новое место. Ответьте: вы устали, но место классное и вечер обещает быть весёлым.
-**I'm tired. It's cool. It's fun.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s01; family: scripted_repeat_compare -->
+Друг зовёт вас в новое место, а вы устали. Ответьте ему.
+
+🎙 **I'm tired.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s02; family: scripted_repeat_compare -->
+Вы увидели новое место и хотите одобрить его в чате.
+
+🎙 **It's cool.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s03; family: scripted_repeat_compare -->
+Друг спрашивает после встречи, понравился ли вам вечер.
+
+🎙 **It's fun.**
 
 ---
 
@@ -139,7 +177,7 @@ boring — скучный — «скучный». Про фильм, урок, �
 cool — классный — «классный». Так в чате одобряют всё: план, фото, человека.
 weird — странный — «странный». Не страшный, а такой, что не понимаешь, зачем так делают.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=word_card, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 

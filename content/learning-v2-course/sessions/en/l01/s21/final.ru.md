@@ -1,19 +1,19 @@
-# Английский · Урок 1 · Сессия 21 — «Три скрепки: am, are, is»
+# Английский · Урок 1 · Занятие 21 — «am, are, is в простых фразах»
 
-**Сцена сессии.** Утро понедельника, крыльцо офиса. Вы стоите с коллегой, ждёте, пока откроют дверь, и она по очереди показывает глазами на тех, кто подходит: вон тот, вон та, а вот вы двое.
-**Операция:** контраст `am` / `are` / `is` — какая скрепка к какому слову
-**Новые слова:** short, thin, blond
+**Ситуация.** Утром у входа в офис Марина ждёт с вами открытия двери. Она показывает на людей, которые подходят: на одного мужчину, на одну женщину и на вас двоих.
+**Как сказать:** выбираем `am`, `are` или `is` перед словом о человеке.
+**Новые слова:** short, thin, blond, young
 **Возвращаются:** tall, new, quiet, tired, young
 
 ---
 
 ## Интро 1
 
-### Три скрепки, а не одна
+### Три формы глагола be
 
 `short` — «невысокий». Про рост человека.
 
-Между человеком и словом о нём по-английски всегда стоит скрепка. Но скрепка не одна: про себя — `am`, про собеседника — `are`, про третьего человека — `is`.
+В английской фразе о человеке после `I`, `you`, `he` или `she` нужна форма глагола `be`. Про себя говорят с `am`, с собеседником — с `are`, о другом человеке — с `is`.
 
 У нас в этом месте не стоит ничего. Здесь придётся каждый раз выбирать одну из трёх.
 
@@ -21,19 +21,19 @@
 
 - ✅ **He is short.**
 - ❌ He am short. — *`am` живёт только рядом с `I`. Про третьего человека — `is`.*
-- ❌ He short. — *Скрепку выбросили. По-русски она не нужна, по-английски без неё фразы нет.*
+- ❌ He short. — *В английской фразе здесь нужна форма `is`: без неё фраза неполная.*
 
 ---
 
 ## Интро 2
 
-### Скрепка меняется, слово — нет
+### Меняется форма be, а слово остаётся
 
 `thin` — «худой».
 
-Скрепок три, но само слово о человеке не трогают: `I am thin`, `You are thin`, `She is thin`. Меняется только серединка.
+Форм три, но слово о человеке не меняется: `I am thin`, `You are thin`, `She is thin`. Меняется только `am`, `are` или `is`.
 
-У нас «худой» подстраивается под каждого: «худая», «худые». Английское слово ленится: ни род, ни число его не трогают — всю работу делает скрепка.
+По-русски говорят «худой», «худая», «худые». В этих английских фразах слово `thin` остаётся одним и тем же; форму меняет только `be`.
 
 **Коллега кивает на девушку у машины: она худая. Скажите про неё.**
 
@@ -45,11 +45,11 @@
 
 ## Интро 3
 
-### Про себя — всегда am
+### О себе — всегда am
 
 `blond` — «светловолосый», про волосы. `young` — «молодой».
 
-О себе говорят только через `am`: `I am blond`, `I am young`. Скрепок три, но одна из них ваша личная: `am` нельзя одолжить даже лучшему другу — ему положено `are`.
+О себе говорят только с `am`: `I am blond`, `I am young`. С `I` нельзя поставить `is` или `are`.
 
 **Коллега спрашивает, вы ли самый молодой в команде. Вы — да. Скажите про себя.**
 
@@ -59,77 +59,112 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (20 заданий, поддержка убывает)
 
 **1 · Карточка слова — short**
+<!-- interaction_id: en:lesson-01:session-21:i01; family: listen_choose -->
 > **short** — «невысокий». Про рост человека.
 
-**2 · Послушайте и выберите — short**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
 🔊 *short* → **short** · shirt · sort
+- short — *В записи `short`: после `sh` слышно округлённое «о», не как в `shirt` и `sort`.*
 - shirt — *«Рубашка». В `short` губы округляются, звук как в «шорты». В `shirt` губы не округляются, звук глухой и долгий.*
 - sort — *`sort` начинается с «с», а `short` — с «ш». Разница только в первом звуке.*
 
 **3 · Карточка слова — thin**
+<!-- interaction_id: en:lesson-01:session-21:i03; family: listen_choose -->
 > **thin** — «худой». Начало слова — язык между зубами, звук шипит, а не свистит.
 
-**4 · Послушайте и выберите — thin**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-21:i04; family: listen_choose -->
 🔊 *thin* → **thin** · tin · then
+- thin — *В записи `thin`: язык между зубами, это не `tin` и не `then`.*
 - tin — *Начинается с чистого «т», а в `thin` язык между зубами.*
 - then — *Язык между зубами в обоих словах, но в `thin` звук глухой, а в `then` включается голос.*
 
 **5 · Соберите фразу — «он невысокий»**
+<!-- interaction_id: en:lesson-01:session-21:i05; family: phrase_builder -->
 Плитки: `is` `short` `He` `am` → **He is short.**
-*(плитка `am` лишняя: она бывает только рядом с `I`)*
+*`am` лишнее: с `He` ставят `is` — `He is short.`*
 
 **6 · Вставьте слово — про девушку у машины**
+<!-- interaction_id: en:lesson-01:session-21:i06; family: context_gap_grammar -->
 She ___ thin. → **is** · are · am
+- is — *После `She` нужна форма `is`: `She is thin.`*
 - are — *`are` уходит к `you`. Про неё — `is`.*
 - am — *`am` — только про себя.*
 
 **7 · Карточка слова — blond**
+<!-- interaction_id: en:lesson-01:session-21:i07; family: listen_choose -->
 > **blond** — «светловолосый». Про волосы, а не про цвет глаз или кожи.
 
 **8 · Карточка слова — young**
+<!-- interaction_id: en:lesson-01:session-21:i08; family: listen_choose -->
 > **young** — «молодой». Про возраст человека, а не про свежий хлеб или новую машину.
 
-**9 · Послушайте и выберите — young**
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-21:i09; family: listen_choose -->
 🔊 *young* → **young** · yellow · tongue
+- young — *В записи один слог `young`, не двухсложное `yellow` и не `tongue`.*
 - yellow — *Два слога и другое слово — «жёлтый».*
 - tongue — *Конец у слов одинаковый, слушайте начало: `tongue` — с «т», `young` — с «й».*
 
 **10 · Вставьте слово — вы говорите о себе**
+<!-- interaction_id: en:lesson-01:session-21:i10; family: context_gap_grammar -->
 I ___ young. → **am** · is · are
+- am — *С `I` ставят `am`: `I am young.`*
 - is — *`is` достаётся третьему человеку, не вам.*
 - are — *`are` — тому, с кем вы разговариваете. Себе — `am`.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-21:i11; family: speed_match -->
 short — невысокий · thin — худой · young — молодой · tall — высокий
 
 **12 · Соберите фразу — «ты светловолосый»**
+<!-- interaction_id: en:lesson-01:session-21:i12; family: phrase_builder -->
 Плитки: `blond` `are` `You` → **You are blond.**
 
 **13 · Карточка слова — quiet**
+<!-- interaction_id: en:lesson-01:session-21:i13; family: listen_choose -->
 > **quiet** — «тихий, молчаливый». Человек в комнате есть, а голоса его не слышно.
 
 **14 · Вставьте слово — коллега говорит, что новенький весь день молчит**
+<!-- interaction_id: en:lesson-01:session-21:i14; family: context_gap_grammar -->
 He is ___ . → **quiet** · loud · young
+- quiet — *Новенький весь день молчит, поэтому он `quiet`, не `loud` и не `young`.*
 - loud — *Это про того, кого слышно из соседней комнаты. `quiet` — наоборот.*
 - young — *Про возраст речи не было, речь про молчание.*
 
 **15 · Послушайте и соберите — «она молодая»**
+<!-- interaction_id: en:lesson-01:session-21:i15; family: listen_build_dictation -->
 🔊 *She is young.* Плитки: `young` `She` `is` `are` → **She is young.**
+*`are` лишнее: с `She` ставят `is` — `She is young.`*
 
 **16 · Соберите фразу — про себя, вы устали**
+<!-- interaction_id: en:lesson-01:session-21:i16; family: phrase_builder -->
 Плитки: `am` `tired` `I` `is` → **I am tired.**
-*(плитка `is` лишняя: рядом с `I` она не встаёт никогда)*
+*`is` лишнее: с `I` ставят `am` — `I am tired.`*
 
 **17 · Вставьте слово — коллега впервые в этой команде, вы обращаетесь к ней**
+<!-- interaction_id: en:lesson-01:session-21:i17; family: context_gap_grammar -->
 You ___ new. → **are** · is · am
+- are — *К человеку, с которым вы говорите, обращаются `You are new.`*
 - is — *`is` — когда говорите О ком-то. А вы говорите С ней.*
 - am — *`am` только у вас самих.*
 
-**18 · Скажите вслух — три человека подряд, три скрепки**
-🎙 **I am tired. You are new. He is quiet.** — послушайте, повторите, сравните.
+**18 · Скажите вслух — вы устали**
+<!-- interaction_id: en:lesson-01:session-21:i18:s01; family: scripted_repeat_compare -->
+🎙 **I am tired.** — послушайте, повторите, сравните.
+
+**19 · Соберите фразу — коллега впервые в команде**
+<!-- interaction_id: en:lesson-01:session-21:i18:s02; family: phrase_builder -->
+Плитки: `new` `are` `You` → **You are new.**
+
+**20 · Послушайте и соберите — «он тихий»**
+<!-- interaction_id: en:lesson-01:session-21:i18:s03; family: listen_build_dictation -->
+🔊 *He is quiet.* Плитки: `quiet` `He` `is` `are` → **He is quiet.**
+*`are` лишнее: с `He` ставят `is` — `He is quiet.`*
 
 ---
 
@@ -141,7 +176,7 @@ thin — худой — «худой». Начало слова — язык м�
 blond — светловолосый — «светловолосый». Про волосы, а не про цвет глаз или кожи.
 young — молодой — «молодой». Про возраст человека, а не про свежий хлеб или новую машину.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=word_card, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=phrase_builder, 13=word_card, 14=context_gap_grammar, 15=listen_build_dictation, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=phrase_builder, 13=listen_choose, 14=context_gap_grammar, 15=listen_build_dictation, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=phrase_builder, 20=listen_build_dictation
 
 ---
 

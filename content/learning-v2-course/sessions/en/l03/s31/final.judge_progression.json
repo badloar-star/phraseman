@@ -1,30 +1,27 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
-  "localeHashes": {
-    "ru": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
-    "uk": "9ab8e60d44c6802881c3675bc04f913abc698a16e558de5dcacb5b5a25cf16af"
-  },
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+  "localeSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
   "comparedThrough": "en/l03/s30",
-  "curriculumExactMatch": true,
-  "curriculumRow": "| 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной |",
-  "curriculumEvidence": {
-    "grammar": "Rapid near/far singular selection with This/That + noun, please.",
-    "newWords": [
-      "hat",
-      "belt",
-      "boot"
-    ],
-    "situation": "Theatrical costume room immediately before rehearsal."
-  },
   "newWords": [
     "hat",
     "belt",
     "boot"
   ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной |",
+  "curriculumEvidence": {
+    "grammar": "Быстрый выбор близкого и дальнего предмета реализован как `This/That + singular noun, please`.",
+    "newWords": [
+      "hat",
+      "belt",
+      "boot"
+    ],
+    "situation": "«Перед репетицией вы вместе с костюмером ищете в театральной костюмерной шляпу, ремень и сапог… нужно быстро указать, что подать.»"
+  },
   "sceneNovel": true,
-  "grammarProgression": "planned_review: rapid lexical retrieval and near/far selection under rehearsal urgency",
-  "openingRuleAligned": true,
+  "grammarProgression": "planned_review:lexical application of this/that for near/far costume items with three new lexical targets",
   "introPracticeAligned": true,
   "introAlignment": [
     {
@@ -32,10 +29,11 @@
       "newWords": [
         "hat"
       ],
+      "sceneEvidence": "«Нужная шляпа лежит прямо перед вами.»",
       "correctAnswer": "This hat, please.",
       "practiceTask": 11,
       "practiceTarget": "This hat, please.",
-      "finalEvidence": "Task 17 requires That hat, please.",
+      "finalEvidence": "Финал требует `That hat, please.` после переноса шляпы к стене.",
       "sameOperation": true
     },
     {
@@ -43,10 +41,11 @@
       "newWords": [
         "belt"
       ],
+      "sceneEvidence": "«Ремень висит у дальней стены.»",
       "correctAnswer": "That belt, please.",
       "practiceTask": 12,
       "practiceTarget": "That belt, please.",
-      "finalEvidence": "Task 17 requires This belt, please.",
+      "finalEvidence": "Финал требует `This belt, please.` после переноса ремня перед ученика.",
       "sameOperation": true
     },
     {
@@ -54,26 +53,82 @@
       "newWords": [
         "boot"
       ],
+      "sceneEvidence": "«Сапог уже поставили прямо перед вами.»",
       "correctAnswer": "This boot, please.",
       "practiceTask": 13,
       "practiceTarget": "This boot, please.",
-      "finalEvidence": "Task 17 requires That boot, please.",
+      "finalEvidence": "Финал требует `That boot, please.` для сапога у дальней двери.",
       "sameOperation": true
     }
   ],
   "foreignIntroExamples": [],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
-  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "S01–S30 RU+UK scan has zero hat/belt/boot hits.",
-    "The theatrical-wardrobe before-rehearsal scene is new.",
-    "All three intros lead to scored practice and a changed-position independent final.",
-    "Task 14 localizes exact audio meaning without adding near/far wording."
+    "Exact current curriculum row verified: | 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
-  "deterministicGates": {
-    "progression_quality_gate_from_25": "PASS",
-    "check_new_words_session_31": "PASS: 56 sessions, 130 unique new words, no repeats"
+  "localeHashes": {
+    "ru": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "uk": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "7a7a9070a6b3323e814385358fe43976f52ca4f17c7c40063adc8391a00a403c",
+    "localeSha256": "c4534955869a1cda6ea6b1fc6f65c7dc610cc390656ec9ae1b7aa62bf932cd72",
+    "practiceAtomicSha256": "b4ddd6cf0220c88f091e09c489688f7d5fc7b36128138ae22f3c9f5983fc7580"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+  "exactUkSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+  "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "484c33fc5d3193787f1f519d07d799c1cafe1c295a8482ab66f35a963654400a",
+    "localeSha256": "81336326ab26aafce6f6059fc6f531a5f355d4fc8ce18374ab52222be306ad1b",
+    "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "exactRuSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "exactUkSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+    "localeSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+    "localeHashes": {
+      "ru": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+      "uk": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac"
+    },
+    "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+    "evidence": [
+      "Exact current curriculum row verified: | 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной |",
+    "grammarLexiconSituation": "Exact planned lexical step hat/belt/boot and distinct costume-room scene pass cross-session novelty gate.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s30"
   }
 }

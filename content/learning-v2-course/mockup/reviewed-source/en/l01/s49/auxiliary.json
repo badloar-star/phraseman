@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro1:r2": {
+          "ru": "`is` уходит к кому-то третьему. Про себя — `am`.",
+          "uk": "`is` іде до когось третього. Про себе — `am`."
+        },
+        "en:lesson-01:session-49:intro1:r3": {
+          "ru": "После `I` не хватает `am`. По-английски нужно `I am tired`.",
+          "uk": "Після `I` бракує `am`. Англійською потрібно `I am tired`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro2:r2": {
+          "ru": "`are` ставят после `we`, `you` или `they`. После `everyone` нужно `is`.",
+          "uk": "`are` ставлять після `we`, `you` або `they`. Після `everyone` потрібно `is`."
+        },
+        "en:lesson-01:session-49:intro2:r3": {
+          "ru": "Между `everyone` и `kind` нужно `is`.",
+          "uk": "Між `everyone` і `kind` потрібно `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro3:r2": {
+          "ru": "`is` говорят об одном человеке или предмете. `people` — это несколько людей, поэтому нужно `are`.",
+          "uk": "`is` кажуть про одну людину або предмет. `people` — це кілька людей, тому потрібно `are`."
+        },
+        "en:lesson-01:session-49:intro3:r3": {
+          "ru": "`am` бывает только после `I`. Здесь речь о соседях.",
+          "uk": "`am` буває тільки після `I`. Тут ідеться про сусідів."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2d1622f04ab8baf250ef925b439e73bf36fc730ce804277b3648959749e5aee0"
+}

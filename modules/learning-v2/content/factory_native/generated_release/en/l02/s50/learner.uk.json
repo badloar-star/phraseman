@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-50:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос о себе. В записи сотрудник начинает с `Are you` и обращается к вам.",
               "uk": "Це запитання про себе. У записі працівник починає з `Are you` й звертається до вас."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-50:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это сообщение. На записи сначала `Are you`: сотрудник задаёт вопрос.",
               "uk": "Це повідомлення. Запис починається з `Are you`: працівник ставить запитання."
@@ -162,7 +162,7 @@
           {
             "responseId": "en:lesson-02:session-50:i03:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о мужчине. В записи звучит `she` — «она».",
               "uk": "Це запитання про чоловіка. У записі звучить `she` — «вона»."
@@ -171,7 +171,7 @@
           {
             "responseId": "en:lesson-02:session-50:i03:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о готовности. На записи последнее слово `free` — «свободна».",
               "uk": "Це запитання про готовність. Останнє слово в записі — `free`, «вільна»."
@@ -189,13 +189,13 @@
       "purpose": "supported_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — на запитання друга про працівницю дайте відповідь «Ні»: вона зайнята іншим відвідувачем (`free` — «вільна»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i04:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — на запитання друга про працівницю дайте відповідь «Ні»: вона зайнята іншим відвідувачем (`free` — «вільна»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -299,7 +299,7 @@
           {
             "responseId": "en:lesson-02:session-50:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "testedDimension": "Послухайте й виберіть — яка репліка прац",
             "feedbackByLocale": {
               "ru": "Это отрицательный ответ. На записи сотрудник подтверждает: `Yes, it is`.",
               "uk": "Це заперечна відповідь. У записі працівник підтверджує: `Yes, it is`."
@@ -308,7 +308,7 @@
           {
             "responseId": "en:lesson-02:session-50:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "testedDimension": "Послухайте й виберіть — яка репліка прац",
             "feedbackByLocale": {
               "ru": "Это ответ о мужчине. В записи звучит `it`: речь о парке.",
               "uk": "Це відповідь про чоловіка. У записі звучить `it`: ідеться про парк."
@@ -375,7 +375,7 @@
           {
             "responseId": "en:lesson-02:session-50:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о себе. В записи друг обращается к вам: `Are you`.",
               "uk": "Це запитання про себе. У записі друг звертається до вас: `Are you`."
@@ -384,7 +384,7 @@
           {
             "responseId": "en:lesson-02:session-50:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о готовности. На записи последнее слово `sure` — «уверен».",
               "uk": "Це запитання про готовність. Останнє слово в записі — `sure`, «впевнений»."
@@ -572,12 +572,12 @@
             "text": "sure"
           }
         ],
-        "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+        "testedDimension": "Вставте слово — поки працівник підбирає ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+            "testedDimension": "Вставте слово — поки працівник підбирає ",
             "feedbackByLocale": {
               "ru": "Это вопрос о том, свободен ли друг. Сейчас вы проверяете его готовность ехать: `ready`.",
               "uk": "Це запитання про те, чи вільний друг. Зараз ви перевіряєте його готовність їхати: `ready`."
@@ -586,7 +586,7 @@
           {
             "responseId": "en:lesson-02:session-50:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+            "testedDimension": "Вставте слово — поки працівник підбирає ",
             "feedbackByLocale": {
               "ru": "Это вопрос об уверенности. Вам нужно узнать, готов ли он: `Are you ready?`",
               "uk": "Це запитання про впевненість. Вам треба дізнатися, чи він готовий: `Are you ready?`"
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-50:i12:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это отрицательный ответ. На записи друг отвечает `Yes, I am`.",
               "uk": "Це заперечна відповідь. У записі друг відповідає `Yes, I am`."
@@ -660,7 +660,7 @@
           {
             "responseId": "en:lesson-02:session-50:i12:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это ответ о собеседнике. В записи друг говорит о себе: `I am`.",
               "uk": "Це відповідь про співрозмовника. У записі друг говорить про себе: `I am`."
@@ -748,12 +748,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+        "testedDimension": "Вставте слово — працівник сказав вам, що",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-50:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+            "testedDimension": "Вставте слово — працівник сказав вам, що",
             "feedbackByLocale": {
               "ru": "После `he` нужна форма `is`, а не `are`: `Yes, he is`.",
               "uk": "Після `he` потрібне `is`, а не `are`: `Yes, he is`."
@@ -762,7 +762,7 @@
           {
             "responseId": "en:lesson-02:session-50:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+            "testedDimension": "Вставте слово — працівник сказав вам, що",
             "feedbackByLocale": {
               "ru": "Форма `am` сочетается с `I`. Здесь речь о сотруднике, поэтому нужно `he is`.",
               "uk": "Форма `am` поєднується з `I`. Тут ідеться про працівника, тому потрібне `he is`."
@@ -778,13 +778,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — відповідний шолом знайшли й застебнули; повідомте другові: «Я готовий» (`ready` — «готовий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-50:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — відповідний шолом знайшли й застебнули; повідомте другові: «Я готовий» (`ready` — «готовий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -860,7 +860,7 @@
           {
             "responseId": "en:lesson-02:session-50:i16:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение. На записи сначала `Are you`: друг задаёт вопрос.",
               "uk": "Це повідомлення. Запис починається з `Are you`: друг ставить запитання."
@@ -869,7 +869,7 @@
           {
             "responseId": "en:lesson-02:session-50:i16:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос об уверенности вас обоих. В записи друг спрашивает именно вас: `Are you sure?`",
               "uk": "Це запитання про впевненість вас обох. У записі друг запитує саме вас: `Are you sure?`"
@@ -918,5 +918,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dce2170d1015161718e9199bfc4134ada5c4e63af3353f15e419334504ca9e0f"
+  "learnerFingerprint": "8d4b3190a83e9b36c29e646e0a7b9e67c67ce9c75770c3d1957f7cea4cc60573"
 }

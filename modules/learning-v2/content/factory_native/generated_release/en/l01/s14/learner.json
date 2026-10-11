@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — safe",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-14:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — warm",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -408,7 +408,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-14:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — dry",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -689,7 +689,7 @@
         "targetPhrase": "You are ready.",
         "localizedMeaning": {
           "ru": "Соберите фразу — турист кивнул и взял сумку; скажите, что он готов",
-          "uk": "Складіть фразу — турист кивнув і взяв сумку; скажіть, що він готовий"
+          "uk": "Складіть фразу — турист кивнув і взяв сумку, `not` тут зайвий"
         },
         "orderedTokens": [
           "You",
@@ -709,11 +709,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -948,26 +948,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-14:i18",
+      "interactionId": "en:lesson-01:session-14:i18:s01",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вокзал за углом, вы прощаетесь",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-14:i18:audio"
+        "en:lesson-01:session-14:i18:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вокзал за углом, вы прощаетесь",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-14:i18:audio",
-          "transcript": "You are safe. You are dry. You are warm. You are ready."
+          "audioTargetId": "en:lesson-01:session-14:i18:s01:audio",
+          "transcript": "You are safe."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You are safe. You are dry. You are warm. You are ready.",
+        "targetPhrase": "You are safe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:i18:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-14:i18:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-14:i18:s02:audio",
+          "transcript": "You are dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:i18:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-14:i18:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-14:i18:s03:audio",
+          "transcript": "You are warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:i18:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-14:i18:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-14:i18:s04:audio",
+          "transcript": "You are ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are ready.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -981,11 +1080,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a625d1d695a102aa172cfe748bbf2ed89124ebb44b7022e9d7f66f084fecbeb"
+  "learnerFingerprint": "31eb955f69314cc0462729ad941fef143796eed3acabe117bc43d6be5dde2746"
 }

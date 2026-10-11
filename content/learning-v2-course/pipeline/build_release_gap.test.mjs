@@ -13,14 +13,26 @@ test('gap at the beginning survives the real source to mockup build', () => {
   const root = fs.mkdtempSync(path.join(parent, 'learning-v2-gap-'));
   try {
     fs.mkdirSync(path.join(root, 'pipeline'));
-    for (const name of ['build_release.mjs', 'build_mockup.mjs', 'write_mockup_file.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) {
+    for (const name of ['build_release.mjs', 'single_phrase_release.mjs', 'build_mockup.mjs', 'write_mockup_file.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) {
       fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
     }
     const source = path.join(root, 'sessions/en/l02/s08');
     fs.mkdirSync(source, { recursive: true });
-    fs.copyFileSync(path.join(here, '../sessions/en/l02/s08/final.ru.md'), path.join(source, 'final.ru.md'));
-    const build = spawnSync(process.execPath, [path.join(root, 'pipeline/build_release.mjs'), '--session', 'en/l02/s08', '--locales', 'ru'], { encoding: 'utf8' });
+    const finalPath = path.join(source, 'final.ru.md');
+    fs.copyFileSync(path.join(here, '../sessions/en/l02/s08/final.ru.md'), finalPath);
+    fs.writeFileSync(
+      finalPath,
+      fs.readFileSync(finalPath, 'utf8')
+        .replace('- ✅ **Are you awake?**', '- ✅ **Are you awake now?**')
+        .replace('- ✅ **Yes, I am.**', '- ✅ **Yes, I am hungry today.**')
+        .replace('- ✅ **No, I am not.**', '- ✅ **No, I am not thirsty now.**'),
+      'utf8',
+    );
+    fs.copyFileSync(path.join(here, '../sessions/en/l02/s08/practice.atomic.json'), path.join(source, 'practice.atomic.json'));
+    const out = path.join(root, 'private-release');
+    const build = spawnSync(process.execPath, [path.join(root, 'pipeline/build_release.mjs'), '--session', 'en/l02/s08', '--locales', 'ru', '--out', out, '--migration-composite-source'], { encoding: 'utf8' });
     assert.equal(build.status, 0, build.stderr || build.stdout);
+    fs.cpSync(out, path.join(root, 'release'), { recursive: true });
     const child = JSON.parse(fs.readFileSync(path.join(root, 'release/en/l02/s08/learner.json'), 'utf8'));
     const gap = child.interactions.find(i => i.interactionId.endsWith(':i02'));
     assert.equal(gap.modePayload.gappedTargetPhrase, '___ you awake?');

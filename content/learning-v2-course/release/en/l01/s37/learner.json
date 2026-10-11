@@ -147,7 +147,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте — в комнате душно. Какое слово вы услышали?",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i03:r1",
@@ -166,7 +166,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-37:i03:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — hot",
+      "accessibilityLabel": "Послушайте — в комнате душно. Какое слово вы услышали?",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -223,17 +223,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ей холодно»",
+      "prompt": "Соберите фразу — коллега дрожит у открытого окна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ей холодно»",
+      "accessibilityLabel": "Соберите фразу — коллега дрожит у открытого окна",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is cold.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «ей холодно»",
-          "uk": "Складіть фразу — «їй холодно»"
+          "ru": "Соберите фразу — коллега дрожит у открытого окна",
+          "uk": "Складіть фразу — колега тремтить біля відчиненого вікна"
         },
         "orderedTokens": [
           "She",
@@ -320,11 +320,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -393,13 +393,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «они устали»",
+      "prompt": "Послушайте и соберите — после дороги ваши коллеги устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-37:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «они устали»",
+      "accessibilityLabel": "Послушайте и соберите — после дороги ваши коллеги устали",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -495,17 +495,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вам говорят «Cold?», а вам нормально",
+      "prompt": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вам говорят «Cold?», а вам нормально",
+      "accessibilityLabel": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am not cold.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вам говорят «Cold?», а вам нормально",
-          "uk": "Складіть фразу — вам кажуть «Cold?», а вам нормально"
+          "ru": "Соберите фразу — коллега Мира спрашивает: «Cold?», а вам нормально",
+          "uk": "Складіть фразу — колега Міра питає: «Cold?», а вам нормально"
         },
         "orderedTokens": [
           "I",
@@ -593,7 +593,7 @@
       "purpose": "retrieval_practice",
       "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Различите звуки — какое из двух про «жарко»?",
+      "prompt": "Различите звуки — суп горячий. Какое слово подходит?",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i11:r1",
@@ -609,7 +609,7 @@
         "en:lesson-01:session-37:i11:audioA",
         "en:lesson-01:session-37:i11:audioB"
       ],
-      "accessibilityLabel": "Различите звуки — какое из двух про «жарко»?",
+      "accessibilityLabel": "Различите звуки — суп горячий. Какое слово подходит?",
       "modePayload": {
         "family": "sound_contrast",
         "contrastA": "hot",
@@ -624,12 +624,12 @@
           "audioTargetId": "en:lesson-01:session-37:i11:audioB",
           "transcript": "hat"
         },
-        "testedPhoneticContrast": "Различите звуки — какое из двух про «жар",
+        "testedPhoneticContrast": "Различите звуки — суп горячий. Какое слово подходит?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-37:i11:r2",
             "correct": false,
-            "testedDimension": "Различите звуки — какое из двух про «жар",
+            "testedDimension": "Различите звуки — суп горячий. Какое слово подходит?",
             "feedbackByLocale": {
               "ru": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны.",
               "uk": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны."
@@ -769,26 +769,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:i15",
+      "interactionId": "en:lesson-01:session-37:i15:s01",
       "ordinal": 18,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — про соседку справа и про себя",
+      "prompt": "Скажите вслух — коллега мёрзнет у окна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-37:i15:audio"
+        "en:lesson-01:session-37:i15:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — про соседку справа и про себя",
+      "accessibilityLabel": "Скажите вслух — коллега мёрзнет у окна",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i15:audio",
-          "transcript": "She is cold. I am not cold."
+          "audioTargetId": "en:lesson-01:session-37:i15:s01:audio",
+          "transcript": "She is cold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is cold. I am not cold.",
+        "targetPhrase": "She is cold.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -802,26 +802,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-37:i16",
+      "interactionId": "en:lesson-01:session-37:i15:s02",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд про себя, про него и про жару",
+      "prompt": "Скажите вслух — на улице холодно, но вам не холодно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-37:i16:audio"
+        "en:lesson-01:session-37:i15:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд про себя, про него и про жару",
+      "accessibilityLabel": "Скажите вслух — на улице холодно, но вам не холодно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-37:i16:audio",
-          "transcript": "I am tired. He is tired. It is hot. We are happy."
+          "audioTargetId": "en:lesson-01:session-37:i15:s02:audio",
+          "transcript": "I am not cold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am tired. He is tired. It is hot. We are happy.",
+        "targetPhrase": "I am not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — после дороги вы устали",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — после дороги вы устали",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i16:s01:audio",
+          "transcript": "I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коллега весь обед трёт глаза от усталости",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коллега весь обед трёт глаза от усталости",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i16:s02:audio",
+          "transcript": "He is tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — суп только принесли, и он горячий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i16:s03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — суп только принесли, и он горячий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i16:s03:audio",
+          "transcript": "It is hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:i16:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вся команда довольна результатом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i16:s04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вся команда довольна результатом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-37:i16:s04:audio",
+          "transcript": "We are happy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are happy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -835,11 +967,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 16,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ca89d91985a06df39a94725d5581cedd9b4880672c5e9ef3d6400f5d41fba735"
+  "learnerFingerprint": "6240ffb7c3d26765c9ed544b23b85c78b236976fb375766af719a1067d85a8c7"
 }

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — curious",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-04:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — cheerful",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -609,11 +609,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -852,26 +852,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-04:i16",
+      "interactionId": "en:lesson-02:session-04:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — два вопроса подряд",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-04:i16:audio"
+        "en:lesson-02:session-04:i16:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — два вопроса подряд",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-04:i16:audio",
-          "transcript": "Are you awake? Are you thirsty?"
+          "audioTargetId": "en:lesson-02:session-04:i16:s01:audio",
+          "transcript": "Are you awake?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you awake? Are you thirsty?",
+        "targetPhrase": "Are you awake?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -885,26 +885,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-04:i17",
+      "interactionId": "en:lesson-02:session-04:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три вопроса подряд: не спит ли, не холодно ли, весёлый ли",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-04:i17:audio"
+        "en:lesson-02:session-04:i16:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три вопроса подряд: не спит ли, не холодно ли, весёлый ли",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-04:i17:audio",
-          "transcript": "Are you awake? Are you cold? Are you cheerful?"
+          "audioTargetId": "en:lesson-02:session-04:i16:s02:audio",
+          "transcript": "Are you thirsty?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you awake? Are you cold? Are you cheerful?",
+        "targetPhrase": "Are you thirsty?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:i17:s01:audio",
+          "transcript": "Are you awake?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you awake?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:i17:s02:audio",
+          "transcript": "Are you cold?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you cold?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-04:i17:s03:audio",
+          "transcript": "Are you cheerful?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you cheerful?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -918,11 +1017,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f2b1f4101995bdb88e5092c5b73cc1586904960fe28bcf41749d75c64801abca"
+  "learnerFingerprint": "23dd164e8905a00adb1c8e8b2d18aa9a9cc2ccdaca4d1529ae817c218a404f27"
 }

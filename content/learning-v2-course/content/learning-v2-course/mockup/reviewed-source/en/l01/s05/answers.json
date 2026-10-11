@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-05:i01",
+    "correctText": "hot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i02",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i03",
+    "correctText": "sick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i04",
+    "correctText": "I am hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i05",
+    "correctText": "lost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i06",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-01:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i07",
+    "correctText": "new",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i08",
+    "correctText": "sick",
+    "correctResponseId": "en:lesson-01:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i09",
+    "correctText": "I am new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i10",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-05:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i11",
+    "correctText": "en:lesson-01:session-05:i11:p1=hot\nen:lesson-01:session-05:i11:p2=sick\nen:lesson-01:session-05:i11:p3=lost\nen:lesson-01:session-05:i11:p4=new",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i12",
+    "correctText": "not",
+    "correctResponseId": "en:lesson-01:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i13",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i14",
+    "correctText": "I am not hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i15",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-05:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i16",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i17",
+    "correctText": "en:lesson-01:session-05:i17:p1=fine\nen:lesson-01:session-05:i17:p2=sure\nen:lesson-01:session-05:i17:p3=ready\nen:lesson-01:session-05:i17:p4=sorry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i18:s01",
+    "correctText": "I am sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i18:s02",
+    "correctText": "I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-05:i19",
+    "correctText": "en:lesson-01:session-05:i19:p1=I am hot.\nen:lesson-01:session-05:i19:p2=I am not sick.\nen:lesson-01:session-05:i19:p3=I am ready.\nen:lesson-01:session-05:i19:p4=I am not new.",
+    "correctResponseId": null
+  }
+]

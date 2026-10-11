@@ -810,13 +810,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — поднимите куртку и спросите гостей, чья она",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-35:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — поднимите куртку и спросите гостей, чья она",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -843,13 +843,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг упомянул мужчину, который мог оставить куртку; спросите, здесь ли он",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-35:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг упомянул мужчину, который мог оставить куртку; спросите, здесь ли он",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -907,5 +907,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "55c9e676d0cb089bde85b4b098cb18bbe3f80dd1952a523bbd49a9724984d0d2"
+  "learnerFingerprint": "de47ee9ab77a3999f4240d22024ebbbe48f0f3f84584504fc5c3425bbfd6340b"
 }

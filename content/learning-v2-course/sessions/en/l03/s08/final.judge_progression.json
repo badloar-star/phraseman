@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "09618ca70a8eb77ec7ae0c1a71630c415f25597deb686c2aa5979485ad1d76d2",
+  "localeSha256": "87d89f28cceba9e218c6e03d7ca81e18295383d4d4754616aaf1cf58021416fd",
+  "comparedThrough": "en/l03/s07",
+  "newWords": [
+    "shelf"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 8 | checkpoint | выбор `a + noun`, без новой грамматики | новое: shelf; возврат: слова главы | составляем список уже найденного |",
+  "curriculumEvidence": {
+    "grammar": "контрольное применение `a + noun` в знакомых утверждениях, вопросах и отрицаниях",
+    "newWords": [
+      "shelf"
+    ],
+    "situation": "Вы с другом составляете список вещей, которые нашли после переезда. Называете предметы, уточняете то, что ещё завёрнуто, и исправляете неточные записи в списке."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "planned_review:current-plan learning delta",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

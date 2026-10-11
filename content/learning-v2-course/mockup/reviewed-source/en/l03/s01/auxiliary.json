@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-01:intro1:r2": {
+          "ru": "Перед названием одного предмета пропало `a`: `It is a chair`.",
+          "uk": "Перед назвою одного предмета зникло `a`: `It is a chair`."
+        },
+        "en:lesson-03:session-01:intro1:r3": {
+          "ru": "После `It` нужно `is`: `It is a chair`.",
+          "uk": "Після `It` потрібне `is`: `It is a chair`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-01:intro2:r2": {
+          "ru": "Даже когда стол виден, перед названием одного предмета нужно `a`: `a table`.",
+          "uk": "Навіть коли стіл перед очима, перед назвою одного предмета потрібне `a`: `a table`."
+        },
+        "en:lesson-03:session-01:intro2:r3": {
+          "ru": "С `It` используется `is`, а не `am`: `It is a table`.",
+          "uk": "З `It` уживається `is`, а не `am`: `It is a table`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-01:intro3:r2": {
+          "ru": "Перед названием одного предмета пропало `a`: `It is a lamp`.",
+          "uk": "Перед назвою одного предмета зникло `a`: `It is a lamp`."
+        },
+        "en:lesson-03:session-01:intro3:r3": {
+          "ru": "С `It` нужно `is`: `It is a lamp`.",
+          "uk": "Після `It` потрібне `is`: `It is a lamp`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a52d41453b1c55de984d9213639c95f36f74f19facb34170aafc4e4d3d14926e"
+}

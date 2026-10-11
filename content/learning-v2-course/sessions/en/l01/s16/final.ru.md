@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 16 — «Пять слов о нём»
+# Английский · Урок 1 · Занятие 16 — «Поддержка Марка после рабочей недели»
 
-**Сцена сессии.** Пятница, курилка у чёрного хода. Коллега перебирает свою первую неделю и находит в ней одни промахи. Вы называете ему пять вещей, которые он о себе не замечает.
+**Ситуация.** В пятницу после работы Марк вспоминает первую неделю и видит только промахи. Вы говорите ему, что он сделал хорошо.
 
-**Операция:** повторение `You are` и `You are not`
+**Что вы освоите:** как сказать собеседнику `You are` и `You are not`
 **Новые слова:** —
 **Возвращаются:** kind, honest, brave, calm, tired, lucky, wrong, sad
 
@@ -19,7 +19,7 @@
 **Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый».**
 
 - ✅ **You are kind.**
-- ❌ You kind. — *Скрепка выпала. По-русски она не нужна, по-английски без `are` фраза разваливается.*
+- ❌ You kind. — *После `you` нужно `are`: без него английская фраза неполная.*
 - ❌ You is kind. — *`is` — не для `you`. Про собеседника всегда `are`.*
 
 ---
@@ -37,7 +37,7 @@
 **Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься».**
 
 - ✅ **You are not wrong.**
-- ❌ You not wrong. — *Скрепка выпала. Сначала `are`, потом `not`.*
+- ❌ You not wrong. — *Сначала `are`, затем `not`: `You are not wrong`.*
 - ❌ You are wrong not. — *`not` в конце не работает. Его место сразу за `are`.*
 
 ---
@@ -55,82 +55,96 @@
 **Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый».**
 
 - ✅ **You are brave.**
-- ❌ You brave. — *Слово верное, скрепки нет. Похвала без `are` звучит обрывком.*
+- ❌ You brave. — *После `you` нужно `are`: `You are brave`.*
 - ❌ You am brave. — *`am` живёт только рядом с `I`. Про него — `are`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
-**1 · Послушайте и выберите — kind**
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-16:i01; family: listen_choose -->
 🔊 *kind* → **kind** · kid · king
 - kid — *Короче на звук в конце. `kind` заканчивается на «нд».*
 - king — *Похоже, но конец другой: «нг», а не «нд».*
 
-**2 · Вставьте слово — коллега взял чужую смену, хотя его не просили**
+**2 · Вставьте слово — Артём взял чужую смену, хотя его не просили; скажите ему: «ты добрый»**
+<!-- interaction_id: en:lesson-01:session-16:i02; family: context_gap_grammar -->
 You are ___ . → **kind** · tired · wrong
 - tired — *«Устал» — может, и так, но вы говорите не про силы, а про то, что он помогал.*
 - wrong — *«Неправ» — это упрёк. Вы его хвалите.*
 
-**3 · Послушайте и выберите — honest**
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-16:i03; family: listen_choose -->
 🔊 *honest* → **honest** · hottest · honey
 - hottest — *Другое слово целиком. В `honest` первая буква не читается: «онест».*
 - honey — *Начало похоже, дальше расходится. `honest` — «онест».*
 
-**4 · Соберите фразу — коллега сам признался, что ошибся**
+**4 · Соберите фразу — Артём сам признался, что ошибся; скажите ему: «ты честный»**
+<!-- interaction_id: en:lesson-01:session-16:i04; family: phrase_builder -->
 Плитки: `honest` `are` `You` `is` → **You are honest.**
 
-**5 · Вставьте скрепку — «ты спокойный»**
+**5 · Вставьте слово — Артём спокойно ждёт ответа; скажите ему: «ты спокойный»**
+<!-- interaction_id: en:lesson-01:session-16:i05; family: context_gap_grammar -->
 You ___ calm. → **are** · am · is
 - am — *`am` бывает только с `I`. Про собеседника — `are`.*
-- is — *Чужая скрепка. С `you` всегда `are`.*
+- is — *После `you` нужно `are`.*
 
-**6 · Послушайте и соберите — «ты не устал»**
+**6 · Послушайте и соберите — Артём только пришёл на встречу; скажите ему: «ты не устал»**
+<!-- interaction_id: en:lesson-01:session-16:i06; family: listen_build_dictation -->
 🔊 *You are not tired.* Плитки: `not` `You` `tired` `are` → **You are not tired.**
 
-**7 · Соедините пары (Speed Match, 4 пары)**
+**7 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-16:i07; family: speed_match -->
 kind — добрый · honest — честный · calm — спокойный · tired — устал
 
-**8 · Вставьте слово — коллега винит себя, но виноват не он**
+**8 · Вставьте слово — Артём винит себя, но ошибка не его; скажите ему: «ты не ошибаешься»**
+<!-- interaction_id: en:lesson-01:session-16:i08; family: context_gap_grammar -->
 You are not ___ . → **wrong** · brave · lucky
 - brave — *«Ты не смелый» — обидно и не по делу. Речь о вине, а не о смелости.*
 - lucky — *«Ты не везучий» — тоже не утешение. Он говорит про ошибку.*
 
-**9 · Соберите фразу — коллега винит себя, но виноват не он**
+**9 · Соберите фразу — Артём винит себя, но ошибка не его; скажите ему: «ты не ошибаешься»**
+<!-- interaction_id: en:lesson-01:session-16:i09; family: phrase_builder -->
 Плитки: `wrong` `are` `not` `You` `am` → **You are not wrong.**
 
-**10 · Послушайте и выберите — brave**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-16:i10; family: listen_choose -->
 🔊 *brave* → **brave** · bread · grave
 - bread — *Начало то же, конец другой: «бред».*
 - grave — *Отличается первым звуком: «б», не «г».*
 
-**11 · Послушайте и выберите — sad**
-🔊 *sad* → **sad** · sat · said
-- sat — *Конец другой: «т», а не «д».*
-- said — *Звучит «сед», как в «шесть». `sad` — «сэд», рот шире.*
+**11 · Различите звуки — какое слово означает «грустный»?**
+<!-- interaction_id: en:lesson-01:session-16:i11; family: sound_contrast -->
+🔊 Два слова подряд.
+*sad · sat* → **sad**
+- sat — *sat — другое слово; здесь нужен ответ sad.*
 
-**12 · Вставьте слово — коллега боялся, но пошёл и сказал**
-You are ___ . → **brave** · calm · sad
-- calm — *«Спокойный» — он как раз нервничал. Вы хвалите за то, что пересилил страх.*
-- sad — *«Грустный» — не похвала и не про этот момент.*
+**12 · Соберите фразу — Артём боялся, но всё-таки сказал правду; скажите Артёму: «ты смелый»**
+<!-- interaction_id: en:lesson-01:session-16:i12; family: phrase_builder -->
+Плитки: `You` `are` `brave` `is` → **You are brave.**
 
-**13 · Послушайте и соберите — «ты везучий»**
+**13 · Послушайте и соберите — Артём нашёл единственный свободный билет; скажите ему: «тебе повезло»**
+<!-- interaction_id: en:lesson-01:session-16:i13; family: listen_build_dictation -->
 🔊 *You are lucky.* Плитки: `lucky` `You` `are` `not` → **You are lucky.**
 
-**14 · Вставьте слово — коллега извиняется, что зевает весь вечер**
-You are not ___ . → **tired** · honest · lucky
-- honest — *«Ты не честный» — тяжёлый упрёк на ровном месте. Он извиняется за зевоту.*
-- lucky — *«Ты не везучий» — про удачу тут речи нет.*
+**14 · Различите звуки — Артём зевает весь вечер; какое слово его описывает?**
+<!-- interaction_id: en:lesson-01:session-16:i14; family: sound_contrast -->
+🔊 Два слова подряд.
+*tired · tide* → **tired**
+- tide — *tide — другое слово; здесь нужен ответ tired.*
 
-**15 · Соедините пары (Speed Match, 4 пары)**
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-16:i15; family: speed_match -->
 brave — смелый · lucky — везучий · wrong — неправ · sad — грустный
 
-**16 · Скажите вслух — коллега мрачный, вы его подбадриваете**
-🎙 **You are not sad. You are lucky.** — послушайте, повторите, сравните.
+**16 · Послушайте и соберите — Артём улыбается и говорит, что просто задумался; скажите ему: «ты не грустный»**
+<!-- interaction_id: en:lesson-01:session-16:i16; family: listen_build_dictation -->
+🔊 *You are not sad.* Плитки: `You` `are` `not` `sad` `is` → **You are not sad.**
 
-**17 · Соберите фразу — коллега винит себя, но виноват не он**
-🎙 Коллега затушил сигарету и всё ещё ворчит на себя. Скажите ему пять вещей: он добрый, он честный, он смелый, он спокойный и он неправ насчёт себя.
-**You are kind. You are honest. You are brave. You are calm. You are not wrong.**
+**17 · Скажите вслух — Артём заметил, что у вас тяжёлая сумка, и сам донёс её до автобуса; скажите Артёму: «ты добрый»**
+<!-- interaction_id: en:lesson-01:session-16:i17; family: scripted_repeat_compare -->
+🎙 **You are kind.**
 
 ---
 
@@ -138,7 +152,7 @@ brave — смелый · lucky — везучий · wrong — неправ · 
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=speed_match, 8=context_gap_grammar, 9=phrase_builder, 10=listen_choose, 11=listen_choose, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=speed_match, 8=context_gap_grammar, 9=phrase_builder, 10=listen_choose, 11=sound_contrast, 12=phrase_builder, 13=listen_build_dictation, 14=sound_contrast, 15=speed_match, 16=listen_build_dictation, 17=scripted_repeat_compare
 
 ---
 

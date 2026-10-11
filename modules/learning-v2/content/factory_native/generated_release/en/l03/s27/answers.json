@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-27:i01",
-    "correctText": "",
+    "correctText": "remote",
+    "correctResponseId": "en:lesson-03:session-27:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i03",
+    "correctText": "button",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i05",
+    "correctText": "switch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-27:i02",
     "correctText": "remote",
-    "correctResponseId": "en:lesson-03:session-27:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-27:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,18 +25,13 @@
     "correctResponseId": "en:lesson-03:session-27:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-27:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-27:i06",
+    "correctText": "switch",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-27:i06",
-    "correctText": "switch",
-    "correctResponseId": "en:lesson-03:session-27:i06:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-27:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-27:i07:p1=remote\nen:lesson-03:session-27:i07:p2=button\nen:lesson-03:session-27:i07:p3=switch\nen:lesson-03:session-27:i07:p4=screen",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": "en:lesson-03:session-27:i16:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-27:i17",
-    "correctText": "Is this a remote? Is this a button? Is that a switch?",
+    "interactionId": "en:lesson-03:session-27:i17:s01",
+    "correctText": "Is this a remote?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i17:s02",
+    "correctText": "Is this a button?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i17:s03",
+    "correctText": "Is that a switch?",
     "correctResponseId": null
   }
 ]

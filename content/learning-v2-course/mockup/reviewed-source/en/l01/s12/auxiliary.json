@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-12:intro1:r2": {
+          "ru": "`am` не ходит дальше `I`. Для `you` — только `are`.",
+          "uk": "`am` не ходить далі за `I`. Для `you` — лише `are`."
+        },
+        "en:lesson-01:session-12:intro1:r3": {
+          "ru": "После `you` нужно `are`. По-русски мы говорим «ты спокойный» без связки, а по-английски она нужна.",
+          "uk": "Після `you` потрібне `are`. Українською зв'язки в цій фразі немає, а англійською вона потрібна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-12:intro2:r2": {
+          "ru": "Смелым был он, а не вы. Про человека напротив — `you are`.",
+          "uk": "Сміливим був він, а не ви. Про людину навпроти — `you are`."
+        },
+        "en:lesson-01:session-12:intro2:r3": {
+          "ru": "`not` ставят сразу после `are`. Но здесь он и не нужен — вы его хвалите.",
+          "uk": "`not` ставлять одразу після `are`. Але тут він і не потрібен — ви його хвалите."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-12:intro3:r2": {
+          "ru": "Честный — это когда сказал правду. Здесь он быстро придумал выход, а это `smart`.",
+          "uk": "Чесний — це коли сказав правду. Тут він швидко придумав вихід, а це `smart`."
+        },
+        "en:lesson-01:session-12:intro3:r3": {
+          "ru": "После `you` нужно `are`: You are smart.",
+          "uk": "Після `you` потрібне `are`: You are smart."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "368cc9f8b38f3eb406a48bd06686c42fd40511e1224bd7833ac4d0518653d5aa"
+}

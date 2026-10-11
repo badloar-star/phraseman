@@ -1,39 +1,42 @@
 {
-  "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
-  "reviewer": "/root/s14_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s14",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "4f7b701c77d5e3253fc2b8d4cf5aff1893ba3959bfaebd70e7adb0b446ecd85a",
+  "exactRuSha256": "4f7b701c77d5e3253fc2b8d4cf5aff1893ba3959bfaebd70e7adb0b446ecd85a",
+  "exactUkSha256": "ded50c4b39c545352c71ef7e24b84171a688b15517f95c328049227c539a5b77",
+  "practiceAtomicSha256": "70a57addb2d2172c56012295b0a1bf6320e0e0e700fe40a23f0bea72797b9e36",
+  "localeHashes": {
+    "ru": "4f7b701c77d5e3253fc2b8d4cf5aff1893ba3959bfaebd70e7adb0b446ecd85a",
+    "uk": "ded50c4b39c545352c71ef7e24b84171a688b15517f95c328049227c539a5b77"
+  },
   "pairwise": "equal",
-  "pairwise_reason": "Эталон ярче за счёт образов, а текущая сессия достигает того же редакторского уровня ясностью, точностью и одной естественной усмешкой о языке. Она лучше соблюдает актуальную структуру: прямой перевод открывает объяснение, а люди и действия появляются только в вопросах.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
-    "score": 5,
+    "score": 4,
     "evidence": [
-      "Короткий человеческий юмор прямо о языковой трудности.",
-      "Точное объяснение hour без терминов и лишнего украшательства."
+      "Current RU voice quote: «Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно.» The aside returns immediately to the full usable phrase."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно."
+      "«Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Одна сквозная сцена кафе сохраняется. Исправленные вопросы про яйцо и часы дают естественные поводы назвать предмет; все люди и действия остаются только в вопросах. Длины интро — 249, 217 и 259 знаков."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно.",
-    "Полная фраза здесь: `It is a sandwich` — «Это сэндвич».",
-    "Первая буква `h` в `hour` не звучит: слово начинается с гласного. Перед ним нужно `An`."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "AI-текст и бред проверены, массив пуст; естественный языковой юмор сохранён, а обе искусственные ситуации заменены правдоподобными."
+  "verdict_reason": "Current RU voice quote: «Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно.» The aside returns immediately to the full usable phrase."
 }

@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 40 — «Расскажи о своей команде»
+# Английский · Урок 1 · Занятие 40 — «Расскажите о своей команде»
 
-**Сцена сессии.** Обед с командой. За соседним столиком сидит человек из другого отдела и спрашивает, что вы за люди и как вам работается.
-**Операция:** повторение — `we are` / `they are` (+ `not`) рядом с `I am`, `you are`, `he is`, `she is`
+**Ситуация.** На обеде Ира знакомит вас и Олега с командой Мии за соседним столом. Мия спрашивает, какие вы коллеги и какие люди сидят у окна.
+**Сегодня.** Скажете о своей группе и о другой: `we are`, `they are`, `we are not`, `they are not`.
 **Новые слова:** —
 **Возвращаются:** friendly, loud, kind, new, funny, quiet, colleagues, mean
 
@@ -15,10 +15,10 @@
 
 По-русски слово о нас получает хвост — «дружелюбные», не «дружелюбный». По-английски хвоста нет: `friendly` одинаковое и для одного, и для десяти. Одна форма на всех — тут английский проще русского.
 
-**За соседним столиком спрашивают, что у вас за отдел. Скажите: мы дружелюбные.**
+**Мия спрашивает Иру и Олега, какая у вас команда. Скажите: «Мы дружелюбные».**
 
 - ✅ **We are friendly.**
-- ❌ We friendly. — *Скрепка выпала. По-русски «мы дружелюбные» держится само, по-английски между `we` и словом нужно `are`.*
+- ❌ We friendly. — *После `we` нужно `are`: `We are friendly.`*
 - ❌ We is friendly. — *`is` — про одного человека со стороны. Про «мы» — `are`.*
 
 ---
@@ -29,9 +29,9 @@
 
 `they` — «они»: людей несколько, и вы к ним не относитесь. Про свой стол — `we`, про тех, кто у окна, — `they`. `loud` — «шумные».
 
-Скрепка при этом не меняется: и `we are`, и `they are`. Выбор вроде бы есть, а выбирать не из чего — редкий случай, когда язык вас жалеет.
+После `we` и после `they` ставим `are`. Форма одинаковая, меняется только тот, о ком вы говорите.
 
-**Из другого отдела всё утро слышно смех. Расскажите про них.**
+**Ира показывает на команду Мии у окна: оттуда всё утро слышен смех. Скажите о них.**
 
 - ✅ **They are loud.**
 - ❌ They is loud. — *`is` — когда человек один. `they` — это несколько, значит `are`.*
@@ -45,87 +45,111 @@
 
 `kind` — «добрые». Чтобы сказать, что это не так, нужно `not`: `They are not kind.`
 
-По-русски «не» прилипает прямо к слову: «они не добрые» — и больше ничего не нужно. По-английски `not` сам по себе не висит — ему нужна опора `are`. Уберёте `are` — и отрицанию не за что держаться.
+В английском `not` стоит после `are`: `They are not kind.` Так мы говорим: «Они не добрые».
 
-**За столиком уверяют, что в соседнем отделе все добрые. Вы с ними работали и знаете, что это не так.**
+**Мия считает, что все у окна добрые. Ира работала с ними и знает, что это не так. Скажите о команде у окна.**
 
 - ✅ **They are not kind.**
 - ❌ They not are kind. — *`not` идёт после `are`, а не перед ним.*
-- ❌ They no kind. — *`no` — это «нет», отказ целиком. Отрицание внутри фразы — `not`, и держится оно за `are`.*
+- ❌ They no kind. — *В этой фразе нужно `not` после `are`: `They are not kind.`*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (20 заданий, подсказок становится меньше)
 
-**1 · Соедините пары (Speed Match, 4 пары)**
+**1 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-40:i01; family: speed_match -->
 friendly — дружелюбный · loud — шумный · kind — добрый · new — новый
 
-**2 · Вставьте скрепку — вы говорите за весь свой стол**
+**2 · Выберите форму после `we` — вы говорите за весь свой стол**
+<!-- interaction_id: en:lesson-01:session-40:i02; family: context_gap_grammar -->
 We ___ friendly. → **are** · is · am
 - is — *`is` про одного: `he is`, `she is`. Вас несколько.*
 - am — *`am` только про себя одного. «Мы» — это `are`.*
 
-**3 · Вставьте слово — из-за стены весь день гремит смех**
-They are ___ . → **loud** · quiet · new
-- quiet — *«Тихие» — прямо наоборот тому, что вы слышите.*
-- new — *«Новые» — это про то, давно ли человек в компании, а не про шум.*
+**3 · Соберите фразу — из-за стены весь день гремит смех**
+<!-- interaction_id: en:lesson-01:session-40:i03; family: phrase_builder -->
+Плитки: `They` `are` `loud` `is` → **They are loud.**
 
-**4 · Послушайте и выберите — kind**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-40:i04; family: listen_choose -->
 🔊 *kind* → **kind** · kid · king
 - kid — *«Кид», короткая гласная и без «н» на конце. И значит «ребёнок».*
 - king — *На конце «нг», а не «нд». И это «король».*
 
 **5 · Соберите фразу — за вашим столом все добрые**
+<!-- interaction_id: en:lesson-01:session-40:i05; family: phrase_builder -->
 Плитки: `are` `kind` `We` `is` → **We are kind.**
 
-**6 · Соберите фразу — за столиком спрашивают, давно ли вы тут работаете**
-Плитки: `new` `We` `are` `old` → **We are new.**
+**6 · Послушайте и соберите — ваша команда только вышла на эту работу**
+<!-- interaction_id: en:lesson-01:session-40:i06; family: listen_build_dictation -->
+🔊 *We are new.* Плитки: `new` `We` `are` → **We are new.**
 
 **7 · Вставьте слово — за вашим столом весь обед смеются**
+<!-- interaction_id: en:lesson-01:session-40:i07; family: context_gap_grammar -->
 We are ___ . → **funny** · quiet · late
 - quiet — *«Тихие» — а у вас за столом смех.*
 - late — *«Опаздываем» — это про часы, а не про то, какие вы.*
 
 **8 · Различите звуки — какое из двух про «добрый»?**
+<!-- interaction_id: en:lesson-01:session-40:i08; family: sound_contrast -->
 🔊 Два слова подряд.
 *kind · kid* → **kind**
 - kid — *Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».*
 
-**9 · Послушайте и выберите — mean**
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-40:i09; family: listen_choose -->
 🔊 *mean* → **mean** · man · main
 - man — *«Мэн» — это «мужчина», гласная короткая.*
 - main — *«Мэйн» — другая гласная. `mean` — «мин», долгое «и».*
 
 **10 · Вставьте слово — вы не согласны, что ваш отдел злой**
+<!-- interaction_id: en:lesson-01:session-40:i10; family: context_gap_grammar -->
 We are not ___ . → **mean** · kind · friendly
 - kind — *Получится «мы не добрые» — вы говорите обратное.*
 - friendly — *Тоже наоборот: вы как раз дружелюбные.*
 
 **11 · Соберите фразу — про соседний отдел: они не тихие**
+<!-- interaction_id: en:lesson-01:session-40:i11; family: phrase_builder -->
 Плитки: `not` `They` `quiet` `are` → **They are not quiet.**
 
-**12 · Вставьте скрепку — вы рассказываете про людей из другого отдела**
+**12 · Выберите форму после `they` — вы рассказываете про людей из другого отдела**
+<!-- interaction_id: en:lesson-01:session-40:i12; family: context_gap_grammar -->
 They ___ funny. → **are** · is · am
 - is — *Их там целый отдел — одним `is` не обойтись.*
 - am — *`am` — только про себя.*
 
-**13 · Вставьте слово — спрашивают, кто эти люди: вы видите их только в офисе**
-They are my ___ . → **colleagues** · friends · guests
-- friends — *«Друзья» — а это люди с работы.*
-- guests — *«Гости» — они не в гостях, они тут работают.*
+**13 · Соберите фразу — вы работаете с этими людьми в одном отделе**
+<!-- interaction_id: en:lesson-01:session-40:i13; family: phrase_builder -->
+Плитки: `They` `are` `my` `colleagues` `is` → **They are my colleagues.**
 
 **14 · Послушайте и соберите — «мы добрые»**
+<!-- interaction_id: en:lesson-01:session-40:i14; family: listen_build_dictation -->
 🔊 *We are kind.* Плитки: `are` `kind` `We` → **We are kind.**
 
-**15 · Соедините пары (Speed Match, 4 пары)**
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-40:i15; family: speed_match -->
 funny — смешной · quiet — тихий · colleagues — коллеги · mean — злой
 
 **16 · Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы**
+<!-- interaction_id: en:lesson-01:session-40:i16; family: phrase_builder -->
 Плитки: `We` `friendly` `are` `not` → **We are friendly.**
 
-**17 · Финал сцены — четыре фразы подряд про вас и про них**
-🎙 Человек за соседним столиком просит рассказать про вашу команду и про тех, кто сидит у окна. Скажите: мы новые, мы добрые, они шумные, но они не злые.
-**We are new. We are kind. They are loud. They are not mean.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-40:i17:s01; family: scripted_repeat_compare -->
+Мия спрашивает, давно ли вы с Олегом в команде. 🎙 **We are new.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-40:i17:s02; family: scripted_repeat_compare -->
+Ира просит сказать, какие вы с Олегом коллеги. 🎙 **We are kind.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-40:i17:s03; family: scripted_repeat_compare -->
+Ира показывает на людей у окна: они громко смеются. 🎙 **They are loud.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-40:i17:s04; family: scripted_repeat_compare -->
+Мия называет людей у окна злыми, а Ира не согласна. 🎙 **They are not mean.**
 
 ---
 
@@ -133,44 +157,7 @@ funny — смешной · quiet — тихий · colleagues — коллег�
 
 new_words: —
 
-modes: 1=speed_match, 2=context_gap_grammar, 3=context_gap_grammar, 4=listen_choose, 5=phrase_builder, 6=phrase_builder, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=context_gap_grammar, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=speed_match, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=listen_build_dictation, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| friendly | 1, 2, 10, 16 | 16 (сборка `We are friendly`) |
-| loud | 1, 3, 17 | 3 (выбор `loud`) |
-| kind | 1, 4, 5, 8, 10, 14, 17 | 4 (слух), 5 (сборка), 8 (звуки), 14 (диктант) |
-| new | 1, 3, 6, 17 | 6 (сборка `We are new`) |
-| funny | 7, 12, 15 | 7 (выбор `funny`), 12 (скрепка во фразе с `funny`) |
-| quiet | 3, 7, 11, 15 | 11 (сборка `They are not quiet`) |
-| colleagues | 13, 15 | 13 (выбор `colleagues`) |
-| mean | 9, 10, 15, 17 | 9 (слух), 10 (выбор `mean`), 17 (финал) |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | `We are friendly` | да — `we`, `are`, `friendly` разобраны в тексте |
-| Интро 2 | `They are loud` | да — `they`, `are`, `loud` разобраны в тексте |
-| Интро 3 | `They are not kind` | да — `kind`, `not`, `are` разобраны в тексте, формула показана на этой же фразе |
-
-**3. Доска пар**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| friendly (доска 1) | из прошлых сессий | интро 1 (объяснение + вопрос) |
-| loud (доска 1) | из прошлых сессий | интро 2 (объяснение + вопрос) |
-| kind (доска 1) | из прошлых сессий | интро 3 (объяснение + вопрос) |
-| new (доска 1) | из прошлых сессий | известно по курсу |
-| funny (доска 15) | из прошлых сессий | задания 7, 12 |
-| quiet (доска 15) | из прошлых сессий | задания 3, 7, 11 |
-| colleagues (доска 15) | из прошлых сессий | задание 13 |
-| mean (доска 15) | из прошлых сессий | задание 9 (слух) и задание 10 (выбор во фразе) |
-
----

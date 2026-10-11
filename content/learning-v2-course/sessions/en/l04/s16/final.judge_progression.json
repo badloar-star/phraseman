@@ -1,0 +1,96 @@
+{
+  "session": "en/l04/s16",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T12:23:41.696Z",
+  "sourceSha256": "7d72eb2158838ad3d232e0847bc6ee7fd0a388bc5c4d4692f272cd7a314ff080",
+  "exactRuSha256": "7d72eb2158838ad3d232e0847bc6ee7fd0a388bc5c4d4692f272cd7a314ff080",
+  "exactUkSha256": "fa6bac9f0161cd5a0c8357507aaec95a76d4eea504c76ccdb93648717bffc905",
+  "practiceAtomicSha256": "bff43a6f2841fa7bb1351d717a22f16987d5cc0d67a821385562aba12944de1a",
+  "localeHashes": {
+    "ru": "7d72eb2158838ad3d232e0847bc6ee7fd0a388bc5c4d4692f272cd7a314ff080",
+    "uk": "fa6bac9f0161cd5a0c8357507aaec95a76d4eea504c76ccdb93648717bffc905"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S16 quality/spec reviewers",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s11",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s15",
+  "newWords": [
+    "swimming pool"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "checkpoint: ask Is there…? and give the short answer in separate turns",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 16 | checkpoint | задать вопрос и дать короткий ответ в отдельных ходах | swimming pool | в досуговом центре уточняем, есть ли бассейн |",
+  "curriculumEvidence": {
+    "grammar": "The row requires a question and short answer in separate turns.",
+    "newWords": [
+      "swimming pool"
+    ],
+    "situation": "At a leisure centre, ask whether there is a swimming pool."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "swimming pool"
+      ],
+      "correctAnswer": "swimming pool",
+      "sceneEvidence": "The leisure centre introduces a swimming pool.",
+      "practiceTask": 1,
+      "practiceTarget": "swimming pool",
+      "finalEvidence": "The current final practices swimming pool.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "swimming pool"
+      ],
+      "correctAnswer": "Is there a swimming pool here?",
+      "sceneEvidence": "One pool is shown at the centre.",
+      "practiceTask": 8,
+      "practiceTarget": "Is there a swimming pool here?",
+      "finalEvidence": "The current final tests the question.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "swimming pool"
+      ],
+      "correctAnswer": "Yes, there is.",
+      "sceneEvidence": "The administrator confirms the pool exists.",
+      "practiceTask": 12,
+      "practiceTarget": "Yes, there is.",
+      "finalEvidence": "The current final tests the separate positive short answer.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Exact curriculum grammar, platform vocabulary, and station situation all occur in RU/UK/atomic.",
+    "The full-form i11 is a distinct guided interaction for the negative branch, while i06 is the distinct guided affirmative interaction and i12 remains the sole independent check; no authority requires a second independent check."
+  ],
+  "at": "2026-10-08T12:23:41.696Z",
+  "localeSha256": "fa6bac9f0161cd5a0c8357507aaec95a76d4eea504c76ccdb93648717bffc905",
+  "preauthoringSha256": "1e61bca",
+  "converged": true,
+  "needsHumanReview": false
+}

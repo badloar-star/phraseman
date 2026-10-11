@@ -951,13 +951,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — курьер ищет пакет со щётками; вы показываете на два стакана в открытом пакете: «Это не щётки»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-20:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — курьер ищет пакет со щётками; вы показываете на два стакана в открытом пакете: «Это не щётки»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1030,5 +1030,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3130ffde4e6ad730aa8cfefd00d28f3e8ef59b60e047db273b0c658e281eb6ff"
+  "learnerFingerprint": "3c4ee23a062b33ab50c5fc0c8447524d30407fd0b3db4b0e8c7f12a39550bcf8"
 }

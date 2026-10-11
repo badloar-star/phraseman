@@ -1,10 +1,22 @@
 {
   "session": "en/l02/s14",
-  "ru": 6,
-  "locales": null,
-  "at": "2026-09-06T22:50:13.544Z",
+  "sourceSha256": "443a240ce5ed9edb5ad8e694cd6b968e2ec9a0ba89e8c4abba1788ec71a17a4d",
+  "localeHashes": {
+    "ru": "443a240ce5ed9edb5ad8e694cd6b968e2ec9a0ba89e8c4abba1788ec71a17a4d",
+    "uk": "61cf5b00bc587fad604fc3234bfcce00db18518f9b28a8b8a3d7aeecb7f6838d"
+  },
   "converged": true,
   "needsHumanReview": false,
-  "judgedFinal": true,
-  "note": "финал пересужен: reader PASS во 2-м прогоне, learner/pedagogy PASS, nonsense REVISE без фактических ошибок"
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-10-03T16:04:31.622Z"
 }

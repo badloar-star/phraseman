@@ -1,1 +1,71 @@
-{"locales":{"uk":{"verdict":"PASS","sourceSha256":"0eea699aca0162c019b6b6e949d8d2a35c89472d053d60edc5164ee5a0e7e577","blockers":[],"must_fix":[],"evidence":["Украинский заголовок и сцена согласованы.","Формулировки називати його и вислів ... зрозумілий естественны.","Интро, 17 заданий, ответы и аудиозначения сохраняют полный паритет с RU."]}},"verdict":"PASS"}
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "tasks": 17,
+  "languagePurity": true,
+  "semanticParity": true,
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+      ]
+    }
+  },
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh current RU/UK comparison across all three intros, 17 tasks, answers, audio cues, options, feedback, and assembler blocks.",
+    "Natural Ukrainian preserves the shared-visible-door rationale for `the` and exact literal listening meanings.",
+    "No untranslated Russian residue or semantic additions found."
+  ],
+  "localeHashes": {
+    "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+  },
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "d27c1c33cf65880165ecba6fcd10af571578876ca455f2a1d5448f2103c94837",
+    "localeSha256": "9f406d391099d4d8094d5868c02217f5f3bc4c12c6b41df6d925a1c867e9cef3",
+    "practiceAtomicSha256": "58c70bb86b937862ff4cb0c86f9b957d1985c388459a6279c65fa39166250131",
+    "findings": []
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeHashes": {
+      "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+      "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+    },
+    "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+    "evidence": [
+      "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+    ]
+  }
+}

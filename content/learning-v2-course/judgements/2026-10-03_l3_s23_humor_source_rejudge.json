@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "learning_v2_independent_rejudge_v1",
+  "reviewer": "/root/s23_humor_source_rejudge",
+  "reviewedAt": "2026-10-03T21:42:39.4704933+01:00",
+  "scope": "Fresh source-only re-judgement of the current L3S23 masters and atomic practice after the learner-facing soon/spoon humour repair. Earlier receipts were not trusted.",
+  "sourceSha256": {
+    "finalRu": "50f50d3b9368d7a422a58d227e5e6166421f40ae9a073d62bf1173291a84ed7a",
+    "finalUk": "3decb9f174f8f272c648170470fd8108a7767a6705e1bb6d0a0ea2ecc11e6c3c",
+    "practiceAtomic": "f5447d84e372140a800b2d73d7775a239d67b48c8e586142ab6753dbba3283b3"
+  },
+  "interactionAudit": {
+    "ruCount": 17,
+    "ukCount": 17,
+    "answerCount": 17,
+    "oneAudioOrUtterancePerAction": true,
+    "feedbackLocaleParity": true,
+    "evidence": [
+      "All 17 interaction IDs were read in both locale arrays together with their answer records. Every listening or repeat action has exactly one audio target and one transcript; every builder, gap, matching, and repeat action asks for one word or one phrase only.",
+      "The two word-recognition choices for spoon/fork/cup, the three phrase builders, the five gaps, dictation, matching, and one repeat action all have answer contracts consistent with their visible prompts.",
+      "Every incorrect selectable response that needs corrective feedback contains both Russian and Ukrainian feedback explaining the tested singular/plural, article, auxiliary, or sound contrast."
+    ]
+  },
+  "roles": {
+    "judge_learner": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Each new item has a word card and recognition before its first productive phrase: spoon at i01/i02 before i05, fork at i03/i04 before i09, and cup at i07/i08 before i11/i12.",
+        "The three intros explicitly model the session's later usable forms: `It is a spoon.`, `Are they forks?`, and `They are cups.`; `bowl` is visibly marked as returning support rather than hidden vocabulary.",
+        "The final i17 asks for the already modelled one-phrase response `They are cups.` with a concrete count cue."
+      ]
+    },
+    "judge_pedagogy": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The session retrieves one-versus-many forms across statement, question, and negation without introducing a new grammar operation.",
+        "Families move from listening recognition to building, gaps, dictation, matching, repetition, and final retrieval; no interaction requires a compound answer.",
+        "Distractors diagnose a specific error: missing `a`, singular after `They are`, plural after `a`, or the wrong auxiliary for `they`."
+      ]
+    },
+    "judge_nonsense": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Unpacking kitchenware into a drawer, cupboard, and shelf gives the spoon, fork, cup, and returning bowl ordinary referents and coherent counts.",
+        "All 17 answers agree with the stated count and scene; no distractor becomes correct under the prompt's own facts.",
+        "The soon/spoon line makes a narrow sound-and-meaning contrast. It does not teach `soon` as a kitchen-item name or alter the lexical goal of the session."
+      ]
+    },
+    "judge_reader": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Prompts state what is in view, its count, and the requested response in beginner-facing language; i05, i09, i11, i15, and i17 each remain a single learner action.",
+        "The source contract has 17 RU and 17 UK records with matching IDs and 17 answer entries, so no action lacks an answer path.",
+        "The current soon explanation is clear: `soon` means a time ('скоро' / 'незабаром'), while `spoon` is the object being named."
+      ]
+    },
+    "judge_taste": {
+      "verdict": "PASS",
+      "pairwise": "better",
+      "pairwiseReason": "The current repair adds one short, concrete mnemonic exactly where learners might confuse soon with spoon. It is clearer and more memorable than a bare phonetic contrast, while staying inside the drawer-and-spoon scene.",
+      "voice": {
+        "score": 4,
+        "evidence": [
+          "The line speaks like a teacher's quick aside and immediately returns the learner to the word's function; it has no canned slogan, technical jargon, or detached gag."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "`soon` — «скоро»: это когда принесут ложку, а не как её назвать."
+        ],
+        "misfires": []
+      },
+      "ai_text_or_nonsense": [],
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The joke carries a precise pedagogical distinction: `soon` is temporal, while `spoon` names the utensil. The Russian sentence is grammatical, understandable, and immediately follows the spoon explanation.",
+        "Its Ukrainian counterpart preserves the same distinction without inventing a separate claim: `soon` — «незабаром»: це коли принесуть ложку, а не як її назвати."
+      ],
+      "best_lines": [
+        "`soon` — «скоро»: это когда принесут ложку, а не как её назвать."
+      ]
+    },
+    "locale_uk": {
+      "verdict": "PASS",
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "meaningAdditions": [],
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "RU and UK have the same 17 interaction IDs, activity families, input modes, English answer targets, distractor targets, and audio transcripts.",
+        "Ukrainian prompts, definitions, and corrective feedback are localized in Ukrainian; English appears only where it is the intended learning target.",
+        "The repaired soon/spoon mnemonic is faithfully localized and retains the same scope: it distinguishes a time word from the object name without adding vocabulary or grammar content."
+      ]
+    }
+  },
+  "blockers": [],
+  "mustFix": [],
+  "verdict": "PASS",
+  "verdictReason": "All six fresh role checks pass on the current exact RU, UK, and atomic-practice hashes. The repair is learner-facing, on-topic, faithful across locales, and preserves the one-action contract for all 17 interactions.",
+  "limitations": [
+    "This is a source and contract review. No generated audio was acoustically played; transcript-to-audio-target mappings were inspected.",
+    "This independent report does not publish a release or replace any required release-status transition."
+  ]
+}

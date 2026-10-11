@@ -924,13 +924,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — курьер спрашивает, что лежит в открытой упаковке; вы достали одну штору для окна, скажите «Это штора»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-21:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — курьер спрашивает, что лежит в открытой упаковке; вы достали одну штору для окна, скажите «Это штора»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1004,5 +1004,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "405fd178575142a04773db73e8828e6213dc29c759bb2b054d4e8aaf175a2227"
+  "learnerFingerprint": "09b84fb880518f4b7548e3f02b8142eebd3b8a7850228becb68717c6d330b45c"
 }

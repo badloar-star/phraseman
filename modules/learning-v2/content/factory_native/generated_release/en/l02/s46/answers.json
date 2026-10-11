@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-46:i01",
-    "correctText": "",
+    "correctText": "audible",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-46:i03",
-    "correctText": "",
+    "correctText": "clear",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-46:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-46:i10:p1=audible\nen:lesson-02:session-46:i10:p2=clear\nen:lesson-02:session-46:i10:p3=ready\nen:lesson-02:session-46:i10:p4=sure",
     "correctResponseId": null
   },
   {

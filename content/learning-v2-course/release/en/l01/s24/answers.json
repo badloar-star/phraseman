@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-24:i01",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-24:i01:p1=funny\nen:lesson-01:session-24:i01:p2=quiet\nen:lesson-01:session-24:i01:p3=hungry\nen:lesson-01:session-24:i01:p4=late",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-24:i14",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-24:i14:p1=tired\nen:lesson-01:session-24:i14:p2=kind\nen:lesson-01:session-24:i14:p3=he\nen:lesson-01:session-24:i14:p4=she",
     "correctResponseId": null
   },
   {
@@ -75,8 +75,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-24:i16",
-    "correctText": "He is funny. She is quiet. She is kind.",
+    "interactionId": "en:lesson-01:session-24:i16:s01",
+    "correctText": "He is funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i16:s02",
+    "correctText": "She is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-24:i16:s03",
+    "correctText": "She is kind.",
     "correctResponseId": null
   }
 ]

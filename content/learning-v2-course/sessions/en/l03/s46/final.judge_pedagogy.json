@@ -1,0 +1,65 @@
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_pedagogy",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s46",
+  "sourceSha256": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+  "exactRuSha256": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+  "exactUkSha256": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The post-purchase building supplies one unambiguous roof/lift/stairs referent and transfers `the` without future grammar."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "5ae61def4d87c8c49a3d981c45766b082a11ef76d61b51d7c15cb08b5af5047c",
+    "localeSha256": "4648da664c15342d26d109fbfe3b730cbc2d17b5cabd41c1c4c7182187d2ecf8",
+    "practiceAtomicSha256": "520b81670de3db386f3dec20d3f17af66ee7975706f2ac1aba57d2c78a2a2e88",
+    "findings": []
+  },
+  "localeSha256": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7",
+  "practiceAtomicSha256": "976bd3c502add0d1aeed6a93c56b6fc3dc57fa3876b7888e121a7f0b1839ac2f",
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+    "uk": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+    "exactRuSha256": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+    "exactUkSha256": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7",
+    "localeSha256": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7",
+    "localeHashes": {
+      "ru": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+      "uk": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7"
+    },
+    "practiceAtomicSha256": "976bd3c502add0d1aeed6a93c56b6fc3dc57fa3876b7888e121a7f0b1839ac2f",
+    "evidence": [
+      "The post-purchase building supplies one unambiguous roof/lift/stairs referent and transfers `the` without future grammar."
+    ]
+  }
+}

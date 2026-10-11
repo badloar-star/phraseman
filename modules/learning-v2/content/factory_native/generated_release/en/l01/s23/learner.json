@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-23:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — patient",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-23:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — grumpy",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -408,7 +408,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-23:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — proud",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -527,7 +527,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-23:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — gentle",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -584,11 +584,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -657,7 +657,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
+      "prompt": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i12:r1",
@@ -674,12 +674,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
+      "accessibilityLabel": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
-          "uk": "Вставте слово — про жінку кажуть, що вона з дітьми дуже лагідна"
+          "ru": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
+          "uk": "Вставте слово — колега Міра розповідає, що жінка дуже лагідна з дітьми"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -992,26 +992,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-23:i18",
+      "interactionId": "en:lesson-01:session-23:i18:s01",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — такси подъехало, вы коротко подводите итог",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-23:i18:audio"
+        "en:lesson-01:session-23:i18:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — такси подъехало, вы коротко подводите итог",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-23:i18:audio",
-          "transcript": "He is patient. She is gentle. He is not grumpy."
+          "audioTargetId": "en:lesson-01:session-23:i18:s01:audio",
+          "transcript": "He is patient."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is patient. She is gentle. He is not grumpy.",
+        "targetPhrase": "He is patient.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i18:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i18:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i18:s02:audio",
+          "transcript": "She is gentle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is gentle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i18:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i18:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i18:s03:audio",
+          "transcript": "He is not grumpy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is not grumpy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1025,11 +1091,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9290a8c0f5fe290eae88aa87e2e0542c58fc7a1d42f1c931315c0f03f5d436f2"
+  "learnerFingerprint": "3351245c1835973598b1db278f00bbf0b88290e39317a7b3fc4ae897656c410c"
 }

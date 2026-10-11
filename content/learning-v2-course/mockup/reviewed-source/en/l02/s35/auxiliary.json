@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro1:r2": {
+          "ru": "Это «Где это?». Куртку вы нашли; теперь хотите узнать, кому она принадлежит.",
+          "uk": "Це «Де це?». Куртку ви вже знайшли, а тепер хочете дізнатися, кому вона належить."
+        },
+        "en:lesson-02:session-35:intro1:r3": {
+          "ru": "Это «Что это?». Вы знаете, что перед вами куртка. Вопрос о её владельце — `Whose is it?`",
+          "uk": "Це «Що це?». Ви знаєте, що перед вами куртка. Питання про її власника — `Whose is it?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro2:r2": {
+          "ru": "В полном вопросе пропало `is`: нужно `Whose is it?`",
+          "uk": "У повному питанні зникло `is`: потрібно `Whose is it?`"
+        },
+        "en:lesson-02:session-35:intro2:r3": {
+          "ru": "В этом самостоятельном вопросе `is` идёт перед `it`: `Whose is it?`",
+          "uk": "У цьому самостійному питанні `is` стоїть перед `it`: `Whose is it?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-35:intro3:r2": {
+          "ru": "Русское «она» относится к куртке. По-английски в этом вопросе о куртке нужно `it`.",
+          "uk": "Українське «вона» стосується куртки. Англійською в цьому питанні про неживу річ потрібне `it`."
+        },
+        "en:lesson-02:session-35:intro3:r3": {
+          "ru": "Здесь вы спрашиваете о вещи. Для неё в нашем вопросе берём `it`, а не `he`.",
+          "uk": "Тут ви запитуєте про річ. Для неї в цьому питанні беремо `it`, а не `he`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d018dcc34c1caca9bbfe4bf06daa5bdf3f05c35b623e44630e1a127f490e1b76"
+}

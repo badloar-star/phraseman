@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Первый звук в `casket` — «к», а в `basket` — «б». В записи `basket`.",
               "uk": "Перший звук у `casket` — «к», а в `basket` — «б». У записі — `basket`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "При первом гласном в `basket` рот открыт шире, чем в `biscuit`. Здесь звучит `basket`.",
               "uk": "Під час першого голосного в `basket` рот відкривається ширше, ніж у `biscuit`. Тут звучить `basket`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-06:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В начале `brolly` губы смыкаются для `b`. В `trolley` язык ненадолго перекрывает воздух для `t`; затем слышен английский `r`. В записи — `trolley`.",
               "uk": "На початку `brolly` губи змикаються для `b`. У `trolley` язик ненадовго перекриває повітря для `t`; далі чути англійський `r`. У записі — `trolley`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-06:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "`folly` начинается с `f`: воздух проходит между нижней губой и верхними зубами. В `trolley` язык сначала ненадолго перекрывает воздух для `t`, затем слышен английский `r`. Здесь — `trolley`.",
               "uk": "`folly` починається з `f`: повітря проходить між нижньою губою та верхніми зубами. У `trolley` язик спершу ненадовго перекриває повітря для `t`, далі чути англійський `r`. Тут — `trolley`."
@@ -275,7 +275,7 @@
           {
             "responseId": "en:lesson-03:session-06:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — друг спраши",
+            "testedDimension": "Складіть коротку назву — друг запитує, щ",
             "feedbackByLocale": {
               "ru": "В коротком названии после `a` сразу идёт предмет: `a basket`. Форма `is` между ними не нужна.",
               "uk": "У короткій назві після `a` одразу йде предмет: `a basket`. `is` між ними не потрібне."
@@ -383,7 +383,7 @@
           {
             "responseId": "en:lesson-03:session-06:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `bag` первым слышно «б», а в `tag` — «т». В записи `tag`.",
               "uk": "У `bag` спершу чути «б», а в `tag` — «т». У записі — `tag`."
@@ -392,7 +392,7 @@
           {
             "responseId": "en:lesson-03:session-06:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "`rag` начинается с плавного английского `r`, без удара кончиком языка. `tag` — с короткого `t`, для которого язык ненадолго перекрывает воздух. Здесь — `tag`.",
               "uk": "`rag` починається з плавного англійського `r`, без удару кінчиком язика. `tag` — з короткого `t`, для якого язик ненадовго перекриває повітря. Тут — `tag`."
@@ -443,7 +443,7 @@
           {
             "responseId": "en:lesson-03:session-06:i08:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — друг говорит о п",
+            "testedDimension": "Послухайте й складіть — друг говорить пр",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `tag`, а не `basket`: `It is a tag`.",
               "uk": "У записі прозвучало `tag`, а не `basket`: `It is a tag`."
@@ -459,13 +459,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — друг показує на річ для вашого робочого столу; назвіть лампу (`lamp` — «лампа»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i09:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — друг показує на річ для вашого робочого столу; назвіть лампу (`lamp` — «лампа»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -604,12 +604,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+        "testedDimension": "Вставте слово — друг заглядає в обраний ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-06:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+            "testedDimension": "Вставте слово — друг заглядає в обраний ",
             "feedbackByLocale": {
               "ru": "Об этой корзине говорим `It is empty`. Форма `are` с `It` здесь не подходит.",
               "uk": "Про цей кошик кажемо `It is empty`. `are` з `It` тут не підходить."
@@ -618,7 +618,7 @@
           {
             "responseId": "en:lesson-03:session-06:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+            "testedDimension": "Вставте слово — друг заглядає в обраний ",
             "feedbackByLocale": {
               "ru": "Форма `am` относится к `I`. Здесь речь о корзине, поэтому нужно `It is empty`.",
               "uk": "`am` уживають з `I`. Тут ідеться про кошик, тому потрібно `It is empty`."
@@ -664,7 +664,7 @@
           {
             "responseId": "en:lesson-03:session-06:i12:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — в дальнем проходе вы з",
+            "testedDimension": "Складіть запитання — у дальньому проході",
             "feedbackByLocale": {
               "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a trolley?`.",
               "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a trolley?`."
@@ -719,12 +719,12 @@
             "text": "a not"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — друг принял короб",
+        "testedDimension": "Вставте частину фрази — друг прийняв кор",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-06:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — друг принял короб",
+            "testedDimension": "Вставте частину фрази — друг прийняв кор",
             "feedbackByLocale": {
               "ru": "В этой фразе отрицание передаёт `not` после `is`: `It is not a basket`.",
               "uk": "У цій фразі заперечення передає `not` після `is`: `It is not a basket`."
@@ -733,7 +733,7 @@
           {
             "responseId": "en:lesson-03:session-06:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — друг принял короб",
+            "testedDimension": "Вставте частину фрази — друг прийняв кор",
             "feedbackByLocale": {
               "ru": "Здесь `not` стоит перед названием `a basket`, а не внутри него: `It is not a basket`.",
               "uk": "Тут `not` стоїть перед назвою `a basket`, а не всередині неї: `It is not a basket`."
@@ -749,13 +749,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — ви хочете взяти візок біля друга; запитайте його «Він порожній?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — ви хочете взяти візок біля друга; запитайте його «Він порожній?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -812,7 +812,7 @@
           {
             "responseId": "en:lesson-03:session-06:i15:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — продавец спрашивает, чт",
+            "testedDimension": "Складіть фразу — продавець запитує, що в",
             "feedbackByLocale": {
               "ru": "Нужно назвать корзину. С `not` получилось бы «Это не корзина», а вы держите именно её.",
               "uk": "Треба назвати кошик. З `not` вийшло б «Це не кошик», а ви тримаєте саме його."
@@ -828,13 +828,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — друг запитує, що стоїть за великою коробкою біля каси; назвіть візок",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i16:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — друг запитує, що стоїть за великою коробкою біля каси; назвіть візок",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -892,7 +892,7 @@
           {
             "responseId": "en:lesson-03:session-06:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — у кассы друг принял чек",
+            "testedDimension": "Складіть фразу — біля каси друг прийняв ",
             "feedbackByLocale": {
               "ru": "После `It` нужна форма `is`. Дальше идут отрицание и название: `It is not a tag`.",
               "uk": "Після `It` потрібне `is`. Далі йдуть заперечення й назва: `It is not a tag`."
@@ -909,5 +909,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5003a890d1d12484ef2478ce7595df435727c22c72dea55ed5deb18a42095c4e"
+  "learnerFingerprint": "98c6a5b6992639ff52a8ca117948d46361fc41573e3a9c67aaa1ba2da11f34b6"
 }

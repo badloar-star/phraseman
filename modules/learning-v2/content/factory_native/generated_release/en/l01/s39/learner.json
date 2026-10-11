@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — early",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -302,7 +302,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-39:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — right",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -359,11 +359,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -843,26 +843,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-39:i17",
+      "interactionId": "en:lesson-01:session-39:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, голосом",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-39:i17:audio"
+        "en:lesson-01:session-39:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, голосом",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-39:i17:audio",
-          "transcript": "We are early. We are fine. We are sorry."
+          "audioTargetId": "en:lesson-01:session-39:i17:s01:audio",
+          "transcript": "We are early."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are early. We are fine. We are sorry.",
+        "targetPhrase": "We are early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i17:s02:audio",
+          "transcript": "We are fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-39:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-39:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-39:i17:s03:audio",
+          "transcript": "We are sorry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are sorry.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -876,11 +942,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c535409520cb61f01085af8f5a7eafc0a74be31df713281104d713592cd3214c"
+  "learnerFingerprint": "38b3da50ad7ac5461d7bc23337da9277b4e29cada8f1f71f5c1bc33b9bcfaead"
 }

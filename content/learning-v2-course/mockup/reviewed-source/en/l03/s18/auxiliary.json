@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro1:r2": {
+          "ru": "У остановки два автобуса. Для нескольких здесь нужна форма `buses` с добавленным `es`.",
+          "uk": "На зупинці два автобуси. Для кількох тут потрібна форма `buses` із доданим `es`."
+        },
+        "en:lesson-03:session-18:intro1:r3": {
+          "ru": "Название `buses` написано верно. Про два автобуса начинаем с `They are`, а не `They is`.",
+          "uk": "Назву `buses` написано правильно. Про два автобуси починаємо з `They are`, а не `They is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro2:r2": {
+          "ru": "Спрашиваем о нескольких предметах посуды. Нужно `dishes`, с добавленным `es`.",
+          "uk": "Питаємо про кілька предметів посуду. Потрібне `dishes`, із доданим `es`."
+        },
+        "en:lesson-03:session-18:intro2:r3": {
+          "ru": "Вопрос о нескольких предметах начинается с `Are they`. Название `dishes` уже на месте.",
+          "uk": "Питання про кілька предметів починається з `Are they`. Назва `dishes` уже правильна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-18:intro3:r2": {
+          "ru": "Так называются одни наручные часы. Здесь двое отдельных часов, поэтому нужно `watches`.",
+          "uk": "Так називають один наручний годинник. Тут два окремі годинники, тому потрібне `watches`."
+        },
+        "en:lesson-03:session-18:intro3:r3": {
+          "ru": "К `watch` для нескольких часов приписываем `es`, а не одну `s`: `watches`.",
+          "uk": "До `watch` для кількох годинників дописуємо `es`, а не одну `s`: `watches`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b59ecf6305d0ae49249d0ce2de3ff7af1bd9b658d47a832bcbae66c61c81a135"
+}

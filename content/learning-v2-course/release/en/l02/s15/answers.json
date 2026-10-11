@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-15:i01",
-    "correctText": "",
+    "correctText": "elegant",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i03",
-    "correctText": "",
+    "correctText": "plain",
     "correctResponseId": null
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i05",
-    "correctText": "",
+    "correctText": "handsome",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i06",
-    "correctText": "",
+    "correctText": "crowded",
     "correctResponseId": null
   },
   {
@@ -61,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-15:i13",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-15:i13:p1=elegant\nen:lesson-02:session-15:i13:p2=plain\nen:lesson-02:session-15:i13:p3=handsome\nen:lesson-02:session-15:i13:p4=crowded",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-15:i14",
-    "correctText": "",
+    "correctText": "noisy",
     "correctResponseId": null
   },
   {
@@ -95,8 +95,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-15:i20",
-    "correctText": "Is he elegant? Is it plain? The cafe is noisy.",
+    "interactionId": "en:lesson-02:session-15:i20:s01",
+    "correctText": "Is he elegant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i20:s02",
+    "correctText": "Is it plain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-15:i20:s03",
+    "correctText": "The cafe is noisy.",
     "correctResponseId": null
   }
 ]

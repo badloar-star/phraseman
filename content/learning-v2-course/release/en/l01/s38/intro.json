@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-01:session-38",
   "learningOutcomeByLocale": {
     "ru": "перенос — `we are` / `they are` вне офиса",
-    "uk": ""
+    "uk": "перенесення — `we are` / `they are` поза офісом"
   },
   "pages": [
     {
@@ -75,8 +75,8 @@
       "question": {
         "interactionId": "en:lesson-01:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Кто-то нервничает. Вокруг светло, людей полно. Успокойте всех.",
-          "uk": "Хтось нервує. Навколо світло, людей повно. Заспокойте всіх."
+          "ru": "Коллега Мира нервничает: команда свернула не туда, но вокруг светло и людей много. Успокойте всю группу.",
+          "uk": "Колега Міра нервує: команда звернула не туди, але довкола світло й багато людей. Заспокойте всю групу."
         },
         "choicesByLocale": {
           "ru": [
@@ -109,8 +109,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кто-то нервничает. Вокруг светло, людей полно. Успокойте всех.",
-          "uk": "Хтось нервує. Навколо світло, людей повно. Заспокойте всіх."
+          "ru": "Коллега Мира нервничает: команда свернула не туда, но вокруг светло и людей много. Успокойте всю группу.",
+          "uk": "Колега Міра нервує: команда звернула не туди, але довкола світло й багато людей. Заспокойте всю групу."
         }
       }
     },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cd20d91ec35dc59b0a21b9ae5619471db8a6cced04b254b38cb0586b1c881cdb"
+  "introFingerprint": "0e33a37d33a0bd35fea7dc3e4f04b29c6e71861d8f51c947f8525edce909ad32"
 }

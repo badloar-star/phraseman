@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 38 — «У разных прилавков»
+# Английский · Урок 3 · Занятие 38 — «У разных прилавков»
 
-**Сцена сессии.** Вы с другом пришли на утренний рынок со списком покупок; перед вами лежат яблоки, бананы — через проход, а апельсины — у дальнего углового прилавка. Нужно назвать две группы фруктов и точно показать продавцу, какие фрукты положить в пакет.
+**Сцена занятия.** Вы с другом пришли на утренний рынок со списком покупок; перед вами лежат яблоки, бананы — через проход, а апельсины — у дальнего углового прилавка. Нужно назвать две группы фруктов и точно показать продавцу, какие фрукты положить в пакет.
 
-**Операция:** переносить `these/those` в рыночную ситуацию: называть и выбирать несколько близких или дальних предметов
+**Как сказать:** переносить `these/those` в рыночную ситуацию: называть и выбирать несколько близких или дальних предметов
 **Новые слова:** apple, banana, orange
 **Для повторения:** these, those, are, flower
 
@@ -50,85 +50,96 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — apple**
-> **apple** — «яблоко». Круглый фрукт с тонкой кожурой и сердцевиной с семенами.
+**1 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-38:i01; family: listen_choose -->
+Цель: `apple`
+Варианты: `apple`
 
-**2 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *apple* → **apple** · ample · ankle · April
-Значения вариантов: apple — яблоко · ample — достаточный · ankle — лодыжка · April — апрель
-- ample — *В `ample` перед /p/ слышится /m/, а в `apple` после первого гласного сразу идёт /p/.*
-- ankle — *В середине `ankle` слышится сочетание /ŋk/, а в `apple` — /p/.*
-- April — *`April` начинается дифтонгом /eɪ/, а `apple` — кратким /æ/.*
+**2 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-38:i03; family: scripted_repeat_compare -->
+Цель: `banana`
 
-**3 · Карточка слова — banana**
-> **banana** — «банан». Длинный изогнутый фрукт с жёлтой кожурой.
+**3 · Послушайте и выберите фрукт — у дальнего прилавка**
+<!-- interaction_id: en:lesson-03:session-38:i05; family: listen_choose -->
+Цель: `orange`
+Варианты: `orange`
 
-**4 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *banana* → **banana** · bandana · banner · vanilla
-Значения вариантов: banana — банан · bandana — бандана · banner — баннер · vanilla — ваниль
-- bandana — *В середине `bandana` слышится /d/, которого нет в `banana`.*
-- banner — *`banner` заметно короче: в нём два слога, а в `banana` — три.*
-- vanilla — *`vanilla` начинается звуком /v/, а `banana` — /b/.*
+**4 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-38:i02; family: scripted_repeat_compare -->
+Цель: `apple`
 
-**5 · Карточка слова — orange**
-> **orange** — «апельсин». Круглый цитрусовый фрукт с оранжевой кожурой.
+**5 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-38:i04; family: listen_choose -->
+Цель: `banana`
+Варианты: `banana`
 
-**6 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *orange* → **orange** · arrange · origin · porridge
-Значения вариантов: orange — апельсин · arrange — расположить · origin — происхождение · porridge — каша
-- arrange — *В `arrange` ударный гласный — /eɪ/, а в `orange` такого звука нет.*
-- origin — *`origin` имеет три слога и заканчивается слогом /dʒɪn/, а `orange` — двумя слогами и звуком /dʒ/ в конце.*
-- porridge — *`porridge` начинается звуком /p/, а `orange` — гласным.*
+**6 · Произнесите слово — апельсины у дальнего прилавка**
+<!-- interaction_id: en:lesson-03:session-38:i06; family: scripted_repeat_compare -->
+Цель: `orange`
 
 **7 · Соедините слова со значениями — товары на рынке**
-apple — яблоко · banana — банан · orange — апельсин · flower — цветок
+<!-- interaction_id: en:lesson-03:session-38:i08; family: speed_match -->
+Пары: `apple` — яблоко · `banana` — банан · `orange` — апельсин · `flower` — цветок
+Цель: `apple · banana · orange · flower`
 
-**8 · Послушайте и выберите точное значение фразы о яблоках**
-🔊 *These are apples.* → **Это яблоки** · Это яблоко · Это бананы · Это апельсины
-- Это яблоко — *В записи слышны `these are` и `apples`: называют несколько яблок.*
-- Это бананы — *Названо `apples` — яблоки, а не `bananas` — бананы.*
-- Это апельсины — *Названо `apples`, а апельсины по-английски — `oranges`.*
+**8 · Послушайте и соберите фразу — бананы через проход**
+<!-- interaction_id: en:lesson-03:session-38:i10; family: listen_build_dictation -->
+Цель: `Those are bananas.`
 
-**9 · Вставьте указатель — несколько яблок лежат у дальнего прилавка**
-___ are apples. → **Those** · These · That · This
-- These — *`These are apples` подходит для яблок рядом. Эти яблоки дальше, поэтому нужно `Those`.*
-- That — *`That` относится к одному дальнему предмету и требует `is`. Здесь яблок несколько.*
-- This — *`This` относится к одному предмету рядом и требует `is`. Здесь яблок несколько и они дальше.*
+**9 · Произнесите фразу — цветы у вашего прилавка**
+<!-- interaction_id: en:lesson-03:session-38:i11; family: scripted_repeat_compare -->
+Цель: `These are flowers.`
 
-**10 · Соберите просьбу — вы выбираете яблоки перед вами**
-Плитки: `These` `apples` `please` `Those` `are` `apple` → **These apples, please.**
+**10 · Соберите описание — апельсины у дальнего прилавка**
+<!-- interaction_id: en:lesson-03:session-38:i07; family: phrase_builder -->
+Цель: `Those are oranges.`
 
-**11 · Послушайте и выберите точное значение фразы о бананах**
-🔊 *Those are bananas.* → **Это бананы** · Это банан · Это яблоки · Это апельсины
-- Это банан — *В записи слышны `those are` и `bananas`: называют несколько бананов.*
-- Это яблоки — *Названо `bananas` — бананы, а не `apples` — яблоки.*
-- Это апельсины — *Названо `bananas`, а апельсины по-английски — `oranges`.*
+**11 · Вставьте указатель — несколько яблок лежат у дальнего прилавка**
+<!-- interaction_id: en:lesson-03:session-38:i09; family: context_gap_grammar -->
+Цель: `___ are apples.`
+Варианты: `Those` · `These` · `That` · `This`
 
 **12 · Соберите описание — бананы теперь лежат перед вами**
-Плитки: `These` `are` `bananas` `Those` `is` `a` `banana` → **These are bananas.**
+<!-- interaction_id: en:lesson-03:session-38:i12; family: phrase_builder -->
+Цель: `These are bananas.`
 
 **13 · Послушайте и выберите точное значение просьбы**
-🔊 *Those oranges, please.* → **Те апельсины, пожалуйста** · Эти апельсины, пожалуйста · Те яблоки, пожалуйста · Это апельсины
-- Эти апельсины, пожалуйста — *В записи слышно `those`, а не `these`: выбирают дальнюю группу.*
-- Те яблоки, пожалуйста — *Названо `oranges` — апельсины, а не `apples` — яблоки.*
-- Это апельсины — *В записи нет `are`: это просьба выбрать апельсины, а не сообщение об их названии.*
+<!-- interaction_id: en:lesson-03:session-38:i13; family: listen_choose -->
+Цель: `Those oranges, please.`
+Варианты: `Те апельсины, пожалуйста` · `Эти апельсины, пожалуйста` · `Те яблоки, пожалуйста` · `Это апельсины`
 
 **14 · Соберите просьбу — апельсины находятся у вашего прилавка**
-Плитки: `These` `oranges` `please` `Those` `are` `orange` → **These oranges, please.**
+<!-- interaction_id: en:lesson-03:session-38:i14; family: phrase_builder -->
+Цель: `These oranges, please.`
 
-**15 · Скажите вслух — апельсины находятся у дальнего прилавка**
-🎙 **Those are oranges.** — произнесите фразу, затем послушайте образец и сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i15; family: scripted_repeat_compare -->
+Цель: `Those are oranges.`
 
-**16 · Послушайте и соберите два описания**
-🔊 *These are apples. Those are bananas.* Плитки: `These` `are` `apples` `Those` `bananas` `This` `is` `an` → **These are apples. Those are bananas.**
+**16 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i16:s01; family: listen_build_dictation -->
+Цель: `These are apples.`
 
-**17 · Финал — назовите группы у второго ряда и сделайте заказ**
-🎙 **Those are apples. These are bananas. These oranges, please.** — у второго ряда яблоки находятся дальше, бананы и апельсины — перед вами. Назовите две группы и попросите положить апельсины, затем послушайте образец и сравните.
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i16:s02; family: scripted_repeat_compare -->
+Цель: `Those are bananas.`
+
+**18 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i17:s01; family: phrase_builder -->
+Цель: `Those are apples.`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i17:s02; family: scripted_repeat_compare -->
+Цель: `These are bananas.`
+
+**20 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-38:i17:s03; family: listen_build_dictation -->
+Цель: `These oranges, please.`
 
 ## Для сборщика
 new_words: apple — яблоко — Круглый фрукт с тонкой кожурой и сердцевиной с семенами.
 new_words: banana — банан — Длинный изогнутый фрукт с жёлтой кожурой.
 new_words: orange — апельсин — Круглый цитрусовый фрукт с оранжевой кожурой.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation

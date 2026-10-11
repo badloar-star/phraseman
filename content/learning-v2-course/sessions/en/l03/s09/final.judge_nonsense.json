@@ -1,7 +1,17 @@
 {
-  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
-  "reviewer":"/root/s09_truth","verdict":"PASS","problems":[],
-  "reviewScope":"Full first-version BLOCK plus two actual delta reviews. Historical evidence in 2026-09-12_l03_s09_truth_initial.json and second_reviews.json.",
-  "verdict_reason":"Точный diff содержит только заявленные изменения. Заголовок фактов не добавляет. Intro3 корректно ограничивает утверждение текущей отрицательной конструкцией: not меняет полярность ответа, а an umbrella сохраняется; перевод полной фразы точен. Сокращённое определение oven остаётся истинным и достаточным. Предыдущие исправления armchair, a/an и archer сохранены.",
-  "actualAudioReviewed":false
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_nonsense",
+  "sourceSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactRuSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactUkSha256": "3bfe9ae141b060ee10831801b542ec84f6fc46903ca3f385f7326f7eca45c3f1",
+  "practiceAtomicSha256": "914ec75d6521ed4215c9716dcb81a202d8a17dc84d6b4fc0f873c2d36692ec4f",
+  "verdict": "PASS",
+  "evidence": [
+    "All present targets, audio transcripts, and selectable responses are language-pure atomic units.",
+    "RU/UK have 17/17 aligned current atomic interactions."
+  ],
+  "blockers": [],
+  "mustFix": []
 }

@@ -1,10 +1,14 @@
 {
   "session": "en/l03/s38",
-  "sourceSha256": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+  "sourceSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+  "exactRuSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+  "exactUkSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+  "localeSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
   "localeHashes": {
-    "ru": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
-    "uk": "25808936bd81a08fe162ecd7f0975513d84b9760cc928869f5c3a44e51f7a64c"
+    "ru": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+    "uk": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b"
   },
+  "practiceAtomicSha256": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5",
   "converged": true,
   "needsHumanReview": false,
   "brokenTasks": [],
@@ -18,5 +22,22 @@
     "judge_progression": "PASS",
     "locale_uk": "PASS"
   },
-  "at": "2026-09-19T23:41:30.858Z"
+  "at": "2026-10-03T23:52:13.8854878+01:00",
+  "derivedFromFreshBatchReview": {
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "exactRuSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+    "exactUkSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+    "practiceAtomicSha256": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5"
+  },
+  "verdict": "PASS",
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "blockedBy": null,
+  "staleBlockClearedAt": "2026-10-03T23:51:18.972Z"
 }

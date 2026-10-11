@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 21 — «Where чи what»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 21 — «Where чи what»
 
-**Сцена сесії.** Вокзал у Дубліні, ви шукаєте потрібну платформу і заразом касу. Слів на все не вистачає, хочеться спитати хоч якось — а питання виходить не те.
+**Сцена заняття.** Вокзал у Дубліні, ви шукаєте потрібну платформу і заразом касу. Слів на все бракує, і хочеться спитати хоч якось — а питання виходить не те.
 
-**Операція:** повторення `Where is` + місце (контраст із `What is`)
+**Як сказати:** повторення `Where is` + місце (контраст із `What is`)
 **Нові слова:** —
 **Повертаються:** station, street, shops, toilets, near, behind
 
@@ -12,7 +13,7 @@
 
 ### `where` питає про місце
 
-`where` — «де». Питає лише про одне: у якому місці щось є.
+`where` — «де». Питає лише про одне: у якому місці щось розташоване.
 
 `station` — «вокзал». `Where is the station?` — «де вокзал?» Одразу за `where` іде `is`, і тільки потім саме місце.
 
@@ -21,7 +22,7 @@
 **Ви біля виходу з метро і не знаєте, у який бік вокзал. Спитайте перехожого.**
 
 - ✅ **Where is the station?**
-- ❌ What is the station? — *Так ви спитали «що таке вокзал?» Перехожий почне пояснювати, що це будинок із поїздами.*
+- ❌ What is the station? — *Так ви спитали «що таке вокзал?» Перехожий почне пояснювати, що це будівля, де зупиняються поїзди.*
 - ❌ Where the station is? — *`is` стає одразу за `where`, а не в кінець.*
 
 ---
@@ -58,86 +59,99 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Вставте слово — вам потрібна дорога до вокзалу**
-___ is the station? → **Where** · What · Is
-- What — *Це «що таке вокзал?» Про місце питає `where`.*
-- Is — *З `is` виходить «це вокзал?» — питання про те саме, а не про дорогу.*
+<!-- interaction_id: en:lesson-02:session-21:i01; family: context_gap_grammar -->
+Ціль: `___ is the station?`
+Варіанти: `Where` · `What` · `Is`
 
-**2 · Вставте слово — на табло слово, якого ви не знаєте, і ви просите пояснити**
-___ is this? → **What** · Where · Are
-- Where — *Ви питаєте не «де», а «що це взагалі таке».*
-- Are — *Мова про одне слово на табло, отже `is`. І починати треба з `what`.*
+**2 · Складіть запитання — біля каси на табло незнайоме слово, і ви просите працівника пояснити його**
+<!-- interaction_id: en:lesson-02:session-21:i02; family: phrase_builder -->
+Ціль: `What is this?`
 
 **3 · Розрізніть звуки — яке з двох про «де»?**
-🔊 Два слова поспіль.
-*where · there* → **where**
-- there — *Це «там» — про місце, а не питання. І починається інакше, ніж `where`.*
+<!-- interaction_id: en:lesson-02:session-21:i03; family: sound_contrast -->
+Варіанти: `where` · `there`
 
 **4 · Складіть фразу — «де вокзал?»**
-Плитки: `station` `where` `the` `is` `what` → **Where is the station?**
-*(плитка `what` зайва: вам потрібна дорога, а не пояснення)*
+<!-- interaction_id: en:lesson-02:session-21:i04; family: phrase_builder -->
+Ціль: `Where is the station?`
 
 **5 · Вставте слово — крамниці десь далі коридором**
-Where ___ the shops? → **are** · is · am
-- is — *`shops` — не одна крамниця, а кілька. Для кількох — `are`.*
-- am — *`am` іде тільки з `I`. Про крамниці — `are`.*
+<!-- interaction_id: en:lesson-02:session-21:i05; family: context_gap_grammar -->
+Ціль: `Where ___ the shops?`
+Варіанти: `are` · `is` · `am`
 
 **6 · Розрізніть звуки — яке з двох про «вулицю»?**
-🔊 Два слова поспіль.
-*street · sweet* → **street**
-- sweet — *Це «солодкий», до вулиці стосунку не має.*
+<!-- interaction_id: en:lesson-02:session-21:i06; family: sound_contrast -->
+Варіанти: `street` · `sweet`
 
 **7 · Вставте слово — вулиця одна, і вам треба, де вона**
-Where ___ the street? → **is** · are · what
-- are — *Вулиця одна. Для одного предмета — `is`.*
-- what — *Тут потрібна скріпка, а `what` — питальне слово, початок у питання вже зайнятий.*
+<!-- interaction_id: en:lesson-02:session-21:i07; family: context_gap_grammar -->
+Ціль: `Where ___ the street?`
+Варіанти: `is` · `are` · `what`
 
 **8 · Складіть фразу — «де туалети?»**
-Плитки: `toilets` `are` `where` `the` → **Where are the toilets?**
+<!-- interaction_id: en:lesson-02:session-21:i08; family: phrase_builder -->
+Ціль: `Where are the toilets?`
 
-**9 · З'єднайте пари (Speed Match, 4 пари)**
-station — вокзал · street — вулиця · shops — крамниці · toilets — туалети
+**9 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-21:i09; family: speed_match -->
+Пари: `station` — вокзал · `street` — вулиця · `shops` — крамниці · `toilets` — туалети
+Ціль: `station · street · shops · toilets`
 
 **10 · Вставте слово — вокзал ховається за тим будинком**
-It is ___ the house. → **behind** · near · where
-- near — *Це «поруч». А будинок стоїть перед вокзалом і затуляє його — отже `behind`.*
-- where — *`where` питає. У відповіді воно не потрібне.*
+<!-- interaction_id: en:lesson-02:session-21:i10; family: context_gap_grammar -->
+Ціль: `It is ___ the house.`
+Варіанти: `behind` · `near` · `where`
 
-**11 · Вставте слово — іти дві хвилини, вокзал просто тут**
-It is ___ . → **near** · behind · what
-- behind — *Це «за», «позаду», і після нього треба сказати, за чим саме. Вам сказали, що йти близько, — це `near`.*
-- what — *`what` починає питання. Відповідь так не будують.*
+**11 · Складіть відповідь — працівник біля каси сказав, що до вокзалу йти дві хвилини**
+<!-- interaction_id: en:lesson-02:session-21:i11; family: phrase_builder -->
+Ціль: `It is near.`
 
 **12 · Послухайте і складіть — «де крамниці?»**
-🔊 *Where are the shops?* Плитки: `shops` `where` `the` `are` `is` → **Where are the shops?**
+<!-- interaction_id: en:lesson-02:session-21:i12; family: listen_build_dictation -->
+Ціль: `Where are the shops?`
 
-**13 · Складіть фразу — ви не зрозуміли незнайоме слово і просите пояснити**
-Плитки: `is` `what` `this` `where` → **What is this?**
-*(плитка `where` зайва: ви питаєте про суть, а не про місце)*
+**13 · Скажіть уголос — на платформі ви показуєте працівнику незнайоме слово на квитку**
+<!-- interaction_id: en:lesson-02:session-21:i13; family: scripted_repeat_compare -->
+Ціль: `What is this?`
 
 **14 · Вставте слово — ви біля входу, крамниці далі в кінці коридору**
-___ are the shops? → **Where** · What · Is
-- What — *Це «що таке крамниці?» Вам потрібен напрямок.*
-- Is — *Крамниць кілька, для них `are`. І питання про місце починають з `where`.*
+<!-- interaction_id: en:lesson-02:session-21:i14; family: context_gap_grammar -->
+Ціль: `___ are the shops?`
+Варіанти: `Where` · `What` · `Is`
 
-**15 · З'єднайте пари (Speed Match, 4 пари)**
-where — де · what — що · near — поруч · behind — за, позаду
+**15 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-21:i15; family: speed_match -->
+Пари: `where` — де · `what` — що · `near` — поруч · `behind` — за, позаду
+Ціль: `where · what · near · behind`
 
-**16 · Скажіть уголос — питаєте дорогу на вокзал і чуєте відповідь**
-🎙 **Where is the station? It is near.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i16:s01; family: scripted_repeat_compare -->
+Ціль: `Where is the station?`
 
-**17 · Фінал сцени — три питання поспіль, без підказок**
-🎙 Вам потрібні: вокзал, туалети, крамниці. Спитайте про кожне.
-**Where is the station? Where are the toilets? Where are the shops?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i16:s02; family: scripted_repeat_compare -->
+Ціль: `It is near.`
 
----
+**18 · Послухайте й складіть — біля схеми району ви питаєте перехожого, де вокзал**
+<!-- interaction_id: en:lesson-02:session-21:i17:s01; family: listen_build_dictation -->
+Ціль: `Where is the station?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Where are the toilets?`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i17:s03; family: scripted_repeat_compare -->
+Ціль: `Where are the shops?`
 
 ## Для сборщика
 
 new_words: —
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=sound_contrast, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=context_gap_grammar, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=phrase_builder, 3=sound_contrast, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=phrase_builder, 12=listen_build_dictation, 13=scripted_repeat_compare, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ## Самоперевірка
 
@@ -164,28 +178,11 @@ modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=sound_contrast, 4=phrase_
 
 | слово | картка | відпрацювання ДО дошки |
 |---|---|---|
-| station (дошка 9) | з минулих сесій | завдання 1, 4 |
-| street (дошка 9) | з минулих сесій | завдання 6, 7 |
-| shops (дошка 9) | з минулих сесій | завдання 5 |
-| toilets (дошка 9) | з минулих сесій | завдання 8 |
+| station (дошка 9) | з минулих занять | завдання 1, 4 |
+| street (дошка 9) | з минулих занять | завдання 6, 7 |
+| shops (дошка 9) | з минулих занять | завдання 5 |
+| toilets (дошка 9) | з минулих занять | завдання 8 |
 | where (дошка 15) | інтро 1 | завдання 1, 3, 4, 8, 12, 14 |
 | what (дошка 15) | інтро 1 | завдання 2, 13 |
-| near (дошка 15) | з минулих сесій | завдання 11 |
-| behind (дошка 15) | з минулих сесій | завдання 10 |
-
----
-
-🟡 **Стоит улучшить**
-- Пояснювальний текст залишився близьким до майстра: українець і росіянин тут спотикаються однаково (обидві мови обходяться без дієслова-зв'язки в теперішньому часі), тому окремої «своєї правди про свою мову» вигадувати не було чого — вигадка була б брехнею про рідну мову.
-- Пастка `Where the station is?` для українців так само природна, як для росіян (порядок слів вільний), тому заміна не потрібна.
-
-🧩 **Скрытые связи**
-- Блок «Для сборщика», номери, режими, англійські фрази та порядок завдань залишені байт у байт — збірник читає їх напряму.
-
----
-
-- Зробив українську версію сесії 21 — тільки її, як і просили.
-- Англійські слова, фрази, пастки, номери й порядок завдань не чіпав узагалі.
-- Переклав живою українською: «крамниці» замість кальки, «поруч», «позаду», «складіть фразу», «з'єднайте пари».
-- Пастки залишив ті самі — вони для українця такі ж природні, як для росіянина, вигадувати нові не було підстав.
-- Службові таблиці самоперевірки теж українською, нічого не пропущено.
+| near (дошка 15) | з минулих занять | завдання 11 |
+| behind (дошка 15) | з минулих занять | завдання 10 |

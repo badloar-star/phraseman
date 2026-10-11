@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
+      "prompt": "Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-01:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
+      "accessibilityLabel": "Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A chair.",
+        "targetPhrase": "It is a chair.",
         "localizedMeaning": {
-          "ru": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
-          "uk": "Складіть назву — друг запитує `What is it?`; ви дістали стілець"
+          "ru": "Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой",
+          "uk": "Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "chair"
         ],
         "authoredDistractorTokens": [
@@ -277,8 +279,8 @@
             "correct": false,
             "testedDimension": "Соберите название — друг спрашивает `Wha",
             "feedbackByLocale": {
-              "ru": "После `a` сразу называем предмет: `a chair`. Скрепка `am` здесь не нужна.",
-              "uk": "Після `a` одразу називаємо предмет: `a chair`. Слово-скріпка `am` тут не потрібне."
+              "ru": "После `It` здесь нужно `is`: полная фраза — `It is a chair`. Скрепка `am` относится к `I`.",
+              "uk": "Після `It` тут потрібне `is`: повна фраза — `It is a chair`. Слово-скріпка `am` уживається з `I`."
             }
           }
         ]
@@ -456,13 +458,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы показываете квартиру семье по видеосвязи; вас спрашивают, что это за место; скажите «Это квартира» (`flat` — «квартира»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы показываете квартиру семье по видеосвязи; вас спрашивают, что это за место; скажите «Это квартира» (`flat` — «квартира»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -778,13 +780,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг собирает лампу; спросите его «Она готова?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг собирает лампу; спросите его «Она готова?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -811,13 +813,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг поднял крышку следующей упаковки; назовите стол",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг поднял крышку следующей упаковки; назовите стол",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -892,5 +894,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "eb4cf95ff24db6e20852df8951e46bc9f249a6c8016e089865b88c6a6660bcd7"
+  "learnerFingerprint": "5ee6edb0bf2f052133a7a4bee15f04d3f0a5699ba61554b575e166116ebb731d"
 }

@@ -229,8 +229,12 @@ function nativeModePayload(
     referenceAudio: audioRef(raw.referenceAudio),
     slowReferenceAudio: audioRef(raw.slowReferenceAudio),
     hiddenTargetPhrase: String(raw.hiddenTargetPhrase),
-    orderedTokens: Object.freeze((raw.orderedTokens as unknown[]).map(String)),
-    authoredDistractorTokens: Object.freeze((raw.authoredDistractorTokens as unknown[]).map(String)),
+    orderedTokens: Object.freeze((Array.isArray(raw.orderedTokens) ? raw.orderedTokens : []).map(String)),
+    authoredDistractorTokens: Object.freeze((Array.isArray(raw.authoredDistractorTokens)
+      ? raw.authoredDistractorTokens
+      : Array.isArray(raw.distractorTokens)
+        ? raw.distractorTokens
+        : []).map(String)),
     slotFeedback: feedback,
   });
   if (family === "context_gap_grammar") return Object.freeze({
@@ -280,7 +284,10 @@ function shortMeaning(definition: string, word: string, lessonOrdinal: number, s
   // translation from a later phrase.
   if (word.toLocaleLowerCase("en") === "one" && lessonOrdinal === 2 && sessionOrdinal === 29)
     return definition.trim();
-  throw new Error("learning_v2_factory_native_word_translation_missing");
+  throw new Error(
+    `learning_v2_factory_native_word_translation_missing:l${String(lessonOrdinal).padStart(2, "0")}` +
+    `:s${String(sessionOrdinal).padStart(2, "0")}:${word}`,
+  );
 }
 
 function localizedWordMeaning(
@@ -499,7 +506,13 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
     }));
     const correctResponseId = answer.correctResponseId === null ? null : remapId(answer.correctResponseId, oldPrefix, courseSessionId);
     if (raw.inputMode === "ordered_tokens") {
-      const tileTexts = [...(rawMode.orderedTokens as unknown[]), ...(rawMode.authoredDistractorTokens as unknown[])].map(String);
+      const orderedTokens = Array.isArray(rawMode.orderedTokens) ? rawMode.orderedTokens : [];
+      const distractorTokens = Array.isArray(rawMode.authoredDistractorTokens)
+        ? rawMode.authoredDistractorTokens
+        : Array.isArray(rawMode.distractorTokens)
+          ? rawMode.distractorTokens
+          : [];
+      const tileTexts = [...orderedTokens, ...distractorTokens].map(String);
       responseOptions = Object.freeze(tileTexts.map((text, index) => Object.freeze({
         responseId: `${remapId(oldInteractionId, oldPrefix, courseSessionId)}:t${String(index + 1).padStart(2, "0")}`,
         text,

@@ -1,0 +1,41 @@
+{
+  "session": "en/l04/s18",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T13:51:45.792Z",
+  "sourceSha256": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+  "exactRuSha256": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+  "exactUkSha256": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20",
+  "practiceAtomicSha256": "caaffafb6bfe7bff92047a7947c3355cb311ac7a1d24201b37faac6f15490037",
+  "localeHashes": {
+    "ru": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+    "uk": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S18 quality/spec reviewers",
+  "localeSha256": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20",
+  "role": "locale_ru_uk",
+  "sourceReport": "fresh independent read-only full RU/UK/atomic parity review",
+  "locales": {
+    "ru": {
+      "verdict": "PASS"
+    },
+    "uk": {
+      "verdict": "PASS"
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "RU and UK learner-facing files and all nested atomic locale fields are structurally identical and semantically aligned on the exact current hashes."
+  ],
+  "at": "2026-10-08T13:51:45.792Z",
+  "preauthoringSha256": "ef706858133e03581000f9e99837817f4d3af95cb8dcdf80b273f103c312774f",
+  "converged": true,
+  "needsHumanReview": false
+}

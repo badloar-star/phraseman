@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-47:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "Это вопрос к собеседнику. В записи начало `Am I`: друг спрашивает о себе.",
               "uk": "Це запитання до співрозмовника. Запис починається з `Am I`: друг запитує про себе."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-47:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "Это вопрос о грубости. На записи последнее слово `polite` — «вежливый».",
               "uk": "Це запитання про грубість. Останнє слово в записі — `polite`, «ввічливий»."
@@ -124,12 +124,12 @@
             "text": "ready"
           }
         ],
-        "testedDimension": "Вставьте слово — попросите друга оценить",
+        "testedDimension": "Вставте слово — попросіть друга оцінити ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — попросите друга оценить",
+            "testedDimension": "Вставте слово — попросіть друга оцінити ",
             "feedbackByLocale": {
               "ru": "Это «грубый». Вы спрашиваете именно о вежливости, поэтому нужно `polite`.",
               "uk": "Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`."
@@ -138,7 +138,7 @@
           {
             "responseId": "en:lesson-02:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — попросите друга оценить",
+            "testedDimension": "Вставте слово — попросіть друга оцінити ",
             "feedbackByLocale": {
               "ru": "Это «готов». Здесь вопрос о вашей манере общения, а не о готовности.",
               "uk": "Це «готовий». Тут запитання про вашу манеру спілкування, а не про готовність."
@@ -231,7 +231,7 @@
           {
             "responseId": "en:lesson-02:session-47:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "testedDimension": "Послухайте й виберіть — яке запитання пр",
             "feedbackByLocale": {
               "ru": "Это вопрос только о себе. В записи начало `Are we` — «мы».",
               "uk": "Це запитання лише про себе. Запис починається з `Are we` — «ми»."
@@ -240,7 +240,7 @@
           {
             "responseId": "en:lesson-02:session-47:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "testedDimension": "Послухайте й виберіть — яке запитання пр",
             "feedbackByLocale": {
               "ru": "Это «Мы готовы?» На записи последнее слово `rude` — вопрос о грубости.",
               "uk": "Це «Ми готові?» Останнє слово в записі — `rude`: запитують про грубість."
@@ -297,12 +297,12 @@
             "text": "hungry"
           }
         ],
-        "testedDimension": "Вставьте слово — посетитель за соседним ",
+        "testedDimension": "Вставте слово — відвідувач за сусіднім с",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — посетитель за соседним ",
+            "testedDimension": "Вставте слово — відвідувач за сусіднім с",
             "feedbackByLocale": {
               "ru": "Это «вежливый». Оскорбительное обращение здесь описывает слово `rude`.",
               "uk": "Це «ввічливий». Образливе звертання тут описує слово `rude`."
@@ -311,7 +311,7 @@
           {
             "responseId": "en:lesson-02:session-47:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — посетитель за соседним ",
+            "testedDimension": "Вставте слово — відвідувач за сусіднім с",
             "feedbackByLocale": {
               "ru": "Это «голодный». Вы оцениваете обращение с официантом, а не причину недовольства.",
               "uk": "Це «голодний». Ви оцінюєте поводження з офіціантом, а не причину невдоволення."
@@ -395,12 +395,12 @@
             "text": "late"
           }
         ],
-        "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
+        "testedDimension": "Вставте слово — ви вибрали страву, й офі",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i07:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
+            "testedDimension": "Вставте слово — ви вибрали страву, й офі",
             "feedbackByLocale": {
               "ru": "Это «уверен». Сейчас вы сообщаете, что готовы сделать заказ: `ready`.",
               "uk": "Це «впевнений». Зараз ви повідомляєте, що готові зробити замовлення: `ready`."
@@ -409,7 +409,7 @@
           {
             "responseId": "en:lesson-02:session-47:i07:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы выбрали блюдо, и офи",
+            "testedDimension": "Вставте слово — ви вибрали страву, й офі",
             "feedbackByLocale": {
               "ru": "Это «опоздал» или «опаздываю». Вы говорите о готовности, поэтому нужно `I am ready`.",
               "uk": "Це «запізнився» або «запізнююся». Ви говорите про готовність, тому потрібне `I am ready`."
@@ -474,7 +474,7 @@
           {
             "responseId": "en:lesson-02:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что официант ска",
+            "testedDimension": "Послухайте й виберіть — що офіціант сказ",
             "feedbackByLocale": {
               "ru": "Слово `not` меняет оценку на отрицательную. На записи его нет.",
               "uk": "Слово `not` змінює оцінку на негативну. У записі його немає."
@@ -483,7 +483,7 @@
           {
             "responseId": "en:lesson-02:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что официант ска",
+            "testedDimension": "Послухайте й виберіть — що офіціант сказ",
             "feedbackByLocale": {
               "ru": "Это вопрос. На записи сначала `You are`: официант даёт оценку.",
               "uk": "Це запитання. Запис починається з `You are`: офіціант дає оцінку."
@@ -642,12 +642,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+        "testedDimension": "Вставте слово — ви хочете дізнатися думк",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-47:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Вставте слово — ви хочете дізнатися думк",
             "feedbackByLocale": {
               "ru": "Вопрос о себе здесь начинается с `Am I`.",
               "uk": "Запитання про себе тут починається з `Am I`."
@@ -656,7 +656,7 @@
           {
             "responseId": "en:lesson-02:session-47:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Вставте слово — ви хочете дізнатися думк",
             "feedbackByLocale": {
               "ru": "Сочетание `Are I` не подходит для этого вопроса. Скажите `Am I polite?`",
               "uk": "Сполучення `Are I` не підходить для цього запитання. Скажіть `Am I polite?`"
@@ -721,7 +721,7 @@
           {
             "responseId": "en:lesson-02:session-47:i12:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение. На записи сначала `Am I`: друг задаёт вопрос.",
               "uk": "Це повідомлення. Запис починається з `Am I`: друг ставить запитання."
@@ -730,7 +730,7 @@
           {
             "responseId": "en:lesson-02:session-47:i12:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о вас обоих. В записи друг говорит `I` и спрашивает о себе.",
               "uk": "Це запитання про вас обох. У записі друг говорить `I` і запитує про себе."
@@ -807,13 +807,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви обговорюєте з другом, як ваша компанія зазвичай розмовляє з офіціантами; запитайте, чи ви грубі",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви обговорюєте з другом, як ваша компанія зазвичай розмовляє з офіціантами; запитайте, чи ви грубі",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -840,13 +840,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви випадково зачепили офіціанта, який проходив повз; перепросіть (`sorry` — «вибачте»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви випадково зачепили офіціанта, який проходив повз; перепросіть (`sorry` — «вибачте»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -904,5 +904,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "06a43b377dae55d8d626b35bbbba91912381edb9be9a5b5db3aabecff9102e18"
+  "learnerFingerprint": "ff04659c41c00974c8fdac9e124baee721abe5146b804aee9f76ebaa592eb433"
 }

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-06:i01",
+    "correctText": "clinic",
+    "correctResponseId": "en:lesson-04:session-06:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i02",
+    "correctText": "clinic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i03",
+    "correctText": "clinic",
+    "correctResponseId": "en:lesson-04:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i04",
+    "correctText": "There is a clinic inside the building.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i05",
+    "correctText": "There is a clinic in the building near the library.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i07",
+    "correctText": "There is a clinic in the building near the pharmacy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i08",
+    "correctText": "p1=clinic\np2=building\np3=library\np4=bakery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i10",
+    "correctText": "There is a clinic in the building near the supermarket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i11",
+    "correctText": "There is a clinic inside the big building near the supermarket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-06:i12",
+    "correctText": "There is a clinic in this building.",
+    "correctResponseId": null
+  }
+]

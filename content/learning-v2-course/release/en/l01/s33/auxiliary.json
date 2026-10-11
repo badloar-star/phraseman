@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-33:intro1:r2": {
+          "ru": "`am` — только для `I`, для одного себя. Про «мы» — `are`.",
+          "uk": "`am` — тільки для `I`, для себе одного. Про «ми» — `are`."
+        },
+        "en:lesson-01:session-33:intro1:r3": {
+          "ru": "Скрепка выпала. По-русски «мы готовы» обходится без неё, по-английски — нет.",
+          "uk": "Скріпка випала. Українською «ми готові» обходиться без неї, англійською — ні."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-33:intro2:r2": {
+          "ru": "`is` — про одного: он, она, оно. Про нас — `are`.",
+          "uk": "`is` — про одного: він, вона, воно. Про нас — `are`."
+        },
+        "en:lesson-01:session-33:intro2:r3": {
+          "ru": "Слово о нас не отращивает `-s`. Оно одно на всех.",
+          "uk": "Слово про нас не відрощує `-s`. Воно одне на всіх."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-33:intro3:r2": {
+          "ru": "`are` не уезжает в конец. Её место сразу после `we`, перед словом о нас.",
+          "uk": "`are` не від'їжджає в кінець. Її місце одразу після `we`, перед словом про нас."
+        },
+        "en:lesson-01:session-33:intro3:r3": {
+          "ru": "`-s` тут лишнее. `together` не меняется никогда.",
+          "uk": "`-s` тут зайве. `together` не змінюється ніколи."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "62715decebf2eae9c3002c093eff05488d0843b4205d9cc821e9671b28955c1e"
+}

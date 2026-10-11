@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro1:r2": {
+          "ru": "После `he` нужно `is`: `He is shy`.",
+          "uk": "Після `he` потрібне `is`: `He is shy`."
+        },
+        "en:lesson-01:session-18:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про него — всегда `is`.",
+          "uk": "`am` живе тільки поруч із `I`. Про нього — завжди `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro2:r2": {
+          "ru": "`he` — про мужчину. Про женщину нужно `she`.",
+          "uk": "`he` — про чоловіка. Про жінку потрібно `she`."
+        },
+        "en:lesson-01:session-18:intro2:r3": {
+          "ru": "Без `is` фраза не стоит. Про неё — `she is`, всегда вместе.",
+          "uk": "Без `is` фраза не стоїть. Про неї — `she is`, завжди разом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-18:intro3:r2": {
+          "ru": "«Она умная» — про другое. Тут человек командует, а это `bossy`.",
+          "uk": "«Вона розумна» — це про інше. Тут людина командує, а це `bossy`."
+        },
+        "en:lesson-01:session-18:intro3:r3": {
+          "ru": "После `she` нужно `is`: `She is bossy`.",
+          "uk": "Після `she` потрібне `is`: `She is bossy`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6b7653d637a742c86c7c95d76b9d60c1f5ec6cc0777b972f40fce50fb0753ddc"
+}

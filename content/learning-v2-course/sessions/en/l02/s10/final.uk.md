@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 10 — «Is it…?» про місце й погоду
+# Англійська · Урок 2 · Заняття 10 — «Is it…?» про місце й погоду
 
-**Сцена сесії.** Кафе в центрі, вечір. За вікном вулиця, всередині гул голосів, і супутник раз у раз киває то на залу, то на двері — і питає, що ви про все це думаєте.
+**Сцена заняття.** Кафе в центрі, вечір. За вікном вулиця, всередині гул голосів, і супутник раз у раз киває то на залу, то на двері — і питає, що ви про все це думаєте.
 
-**Операція:** `Is it + слово` — запитання про річ, місце або погоду
+**Як сказати:** `Is it + слово` — запитання про річ, місце або погоду
 **Нові слова:** crowded, noisy
 **Повертаються:** cold, comfortable, ok
 
@@ -56,79 +56,96 @@
 
 ---
 
-## Практика (перші завдання)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — crowded**
-> **crowded** — «людно, повно людей». Столики зайняті, біля бару стоять, між стільцями боком.
+<!-- interaction_id: en:lesson-02:session-10:i01; family: listen_choose -->
+Ціль: `crowded`
 
-**2 · Послухайте й виберіть — crowded**
-🔊 *crowded* → **crowded** · cloudy · called
-- cloudy — *У `crowded` після «к» чути «р», у `cloudy` — «л».*
-- called — *«Подзвонив». Це про дію, а `crowded` — про місце.*
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-10:i02; family: listen_choose -->
+Ціль: `crowded`
+Варіанти: `crowded` · `cloudy` · `called`
 
 **3 · Картка слова — noisy**
-> **noisy** — «шумно». Місце, де доводиться підвищувати голос, щоб вас почули.
+<!-- interaction_id: en:lesson-02:session-10:i03; family: listen_choose -->
+Ціль: `noisy`
 
-**4 · Послухайте й виберіть — noisy**
-🔊 *noisy* → **noisy** · nose · nice
-- nose — *«Ніс». Початок спільний, але далі розходяться: у `noisy` чути «ой», у `nose` — «оу».*
-- nice — *«Приємний». Закінчується на «с», а `noisy` — на «зі».*
+**4 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-10:i04; family: listen_choose -->
+Ціль: `noisy`
+Варіанти: `noisy` · `nose` · `nice`
 
 **5 · Вставте слово — у залі не пройти між столиками**
-Is it ___ ? → **crowded** · cold · comfortable
-- cold — *«Холодно» — про температуру. Мова про кількість людей.*
-- comfortable — *«Зручно» — про стілець. Ви питаєте, скільки тут народу.*
+<!-- interaction_id: en:lesson-02:session-10:i05; family: context_gap_grammar -->
+Ціль: `Is it ___ ?`
+Варіанти: `crowded` · `cold` · `comfortable`
 
 **6 · Складіть фразу — «чи шумно тут?»**
-Плитки: `it` `noisy` `Is` `are` → **Is it noisy?**
+<!-- interaction_id: en:lesson-02:session-10:i06; family: phrase_builder -->
+Ціль: `Is it noisy?`
 
 **7 · Вставте слово — ви сіли, спина потонула в м'якому кріслі**
-It is ___ . → **comfortable** · noisy · crowded
-- noisy — *«Шумно» — про вуха, а ви про крісло.*
-- crowded — *«Людно» — про залу, а ви про своє місце.*
+<!-- interaction_id: en:lesson-02:session-10:i07; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `comfortable` · `noisy` · `crowded`
 
-**8 · Послухайте й виберіть — cold**
-🔊 *cold* → **cold** · gold · nice
-- gold — *«Золото». Різняться тільки першим звуком: «к» проти твердого «ґ», як у слові `ґанок`.*
-- nice — *«Приємний». Починається з «н», а `cold` — з «к».*
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-10:i08; family: listen_choose -->
+Ціль: `cold`
+Варіанти: `cold` · `gold` · `nice`
 
-**9 · З'єднайте пари (Speed Match, 4 пари)**
-crowded — людно · noisy — шумно · cold — холодно · comfortable — зручно
+**9 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-10:i09; family: speed_match -->
+Пари: `crowded` — людно · `noisy` — шумно · `cold` — холодно · `comfortable` — зручно
+Ціль: `crowded · noisy · cold · comfortable`
 
-**10 · Вставте скріпку — маленьке слово, що починає запитання**
-___ it noisy? → **Is** · Are · Am
-- Are — *Чужа скріпка: `are` ходить із `you` і `they`. З `it` — тільки `is`.*
-- Am — *`am` ходить із `I`, про себе. Про місце — `is it`.*
+**10 · Вставте слово — слово, що починає запитання**
+<!-- interaction_id: en:lesson-02:session-10:i10; family: context_gap_grammar -->
+Ціль: `___ it noisy?`
+Варіанти: `Is` · `Are` · `Am`
 
 **11 · Послухайте й складіть — «чи людно тут?»**
-🔊 *Is it crowded?* Плитки: `crowded` `Is` `it` `noisy` → **Is it crowded?**
+<!-- interaction_id: en:lesson-02:session-10:i11; family: listen_build_dictation -->
+Ціль: `Is it crowded?`
 
 **12 · Розрізніть звуки — яке з двох про «людно»?**
-🔊 Два слова поспіль.
-*crowded · cloudy* → **crowded**
-- cloudy — *Це «хмарно». Після «к» у `cloudy` чути «л», у `crowded` — «р».*
+<!-- interaction_id: en:lesson-02:session-10:i12; family: sound_contrast -->
+Варіанти: `crowded` · `cloudy`
 
 **13 · Вставте слово — ви зайшли з вулиці без куртки й одразу щулитесь**
-Is it ___ ? → **cold** · noisy · crowded
-- noisy — *«Шумно» — про гучність, а ви зіщулились від температури.*
-- crowded — *«Людно» — про кількість людей, а не про холод.*
+<!-- interaction_id: en:lesson-02:session-10:i13; family: context_gap_grammar -->
+Ціль: `Is it ___ ?`
+Варіанти: `cold` · `noisy` · `crowded`
 
 **14 · Складіть запитання — він пересів на інший стілець і все одно совається; запитайте, чи йому зручно**
-Плитки: `comfortable` `Is` `it` `am` → **Is it comfortable?**
+<!-- interaction_id: en:lesson-02:session-10:i14; family: phrase_builder -->
+Ціль: `Is it comfortable?`
 
 **15 · Вставте слово — супутник питає, як вам тут, і вас усе влаштовує**
-It is ___ . → **ok** · crowded · noisy
-- crowded — *«Людно» — це опис зали, а не ваша оцінка.*
-- noisy — *«Шумно» — скарга, а ви кажете, що все нормально.*
+<!-- interaction_id: en:lesson-02:session-10:i15; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `ok` · `crowded` · `noisy`
 
-**16 · Скажіть уголос — два запитання поспіль про цю залу**
-🎙 **Is it crowded? Is it noisy?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i16:s01; family: scripted_repeat_compare -->
+Ціль: `Is it crowded?`
 
-**17 · Фінал сцени — три фрази поспіль про цю залу**
-🎙 Супутник питає, як вам це місце. Скажіть: тут людно, тут шумно, але вам нормально.
-**It is crowded. It is noisy. It is ok.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i16:s02; family: scripted_repeat_compare -->
+Ціль: `Is it noisy?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s01; family: scripted_repeat_compare -->
+Ціль: `It is crowded.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s02; family: scripted_repeat_compare -->
+Ціль: `It is noisy.`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s03; family: scripted_repeat_compare -->
+Ціль: `It is ok.`
 
 ## Для сборщика
 
@@ -136,7 +153,7 @@ new_words:
 crowded — людно, повно людей — «людно, повно людей». Столики зайняті, біля бару стоять, між стільцями боком.
 noisy — шумно — «шумно». Місце, де доводиться підвищувати голос, щоб вас почули.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=context_gap_grammar, 11=listen_build_dictation, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=context_gap_grammar, 11=listen_build_dictation, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -164,19 +181,5 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 |---|---|---|
 | crowded | 1 | 2 (слух), 5 (вибір) |
 | noisy | 3 | 4 (слух), 6 (складання) |
-| cold | з минулих сесій | 8 (слух) |
+| cold | з минулих занять | 8 (слух) |
 | comfortable | 3 (картка), 7 | 7 (вибір) |
-
----
-
-🟡 **Стоит улучшить**
-- Перевод `crowded` в карточке и в «Для сборщика» теперь «людно, повно людей» — если в глоссарии курса для `uk` закреплён другой вариант, надо свериться, чтобы слово не расходилось между сессиями.
-
-🧩 **Скрытые связи**
-- Слово `noisy` теперь везде «шумно» — в интро, в карточке, в доске пар и в разборах ловушек заданий 7, 13, 15. Если это слово встретится в следующих сессиях `uk`, перевод должен остаться тем же.
-
-- Исправил все три замечания судьи.
-- Русский заголовок «Практика» перевёл на украинский.
-- Убрал слово «напхом» — оно само по себе в живой речи не встречается; теперь «людно, повно людей».
-- Слово `noisy` теперь везде переведено одинаково — «шумно», и в объяснениях, и в карточке, и в подсказках заданий.
-- Английские слова, фразы, ошибки и номера заданий не трогал.

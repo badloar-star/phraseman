@@ -47,157 +47,107 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i02",
+      "interactionId": "en:lesson-03:session-30:i03",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-30:i02:r1",
-          "text": "sweater"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i02:r2",
-          "text": "sweeter"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i02:r3",
-          "text": "sweeper"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i02:r4",
-          "text": "letter"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i02:audio",
-          "transcript": "sweater"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-30:i02:r1",
-            "targetText": "sweater",
-            "meaningByLocale": {
-              "ru": "свитер",
-              "uk": "светр"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i02:r2",
-            "targetText": "sweeter",
-            "meaningByLocale": {
-              "ru": "слаще",
-              "uk": "солодший"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i02:r3",
-            "targetText": "sweeper",
-            "meaningByLocale": {
-              "ru": "уборщик",
-              "uk": "прибиральник"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i02:r4",
-            "targetText": "letter",
-            "meaningByLocale": {
-              "ru": "письмо",
-              "uk": "лист"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-30:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `sweeter` первый гласный — долгий /iː/. В `sweater` звучит короткий /e/.",
-              "uk": "У `sweeter` перший голосний — довгий /iː/. У `sweater` звучить короткий /e/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`sweeper` тоже начинается долгим /iː/, а в `sweater` первый гласный короткий: /e/.",
-              "uk": "`sweeper` теж починається довгим /iː/, а в `sweater` перший голосний короткий: /e/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i02:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Конец похож, но `letter` начинается звуком `l`, а `sweater` — сочетанием `sw`.",
-              "uk": "Кінець схожий, але `letter` починається звуком `l`, а `sweater` — сполученням `sw`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-30:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — scarf",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i03:audio"
       ],
-      "accessibilityLabel": "Картка слова — scarf",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i03:audio",
           "transcript": "scarf"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-30:i03:r1",
-            "targetText": "scarf",
-            "meaningByLocale": {
-              "ru": "«шарф». Длинная полоса ткани, которую носят на шее для тепла.",
-              "uk": "«шарф». Довга смуга тканини, яку носять на шиї для тепла."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "scarf",
-          "definitionByLocale": {
-            "ru": "«шарф». Длинная полоса ткани, которую носят на шее для тепла.",
-            "uk": "«шарф». Довга смуга тканини, яку носять на шиї для тепла."
-          }
-        }
+        "targetPhrase": "scarf",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i05:audio",
+          "transcript": "glove"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "glove",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i02:audio",
+          "transcript": "sweater"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "sweater",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-30:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -271,7 +221,7 @@
           {
             "responseId": "en:lesson-03:session-30:i04:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
               "ru": "У `scarf` финальный звук — `f`; у `scar` финал — гласный или `r`, в зависимости от акцента.",
               "uk": "У `scarf` фінальний звук — `f`; у `scar` фінал — голосний або `r`, залежно від акценту."
@@ -280,7 +230,7 @@
           {
             "responseId": "en:lesson-03:session-30:i04:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
               "ru": "Оба слова начинаются /sk/. Дальше в `scale` звучит /eɪ/, а в `scarf` — /ɑː~ɑ/ и финальный `f`.",
               "uk": "Обидва слова починаються /sk/. Далі в `scale` звучить /eɪ/, а в `scarf` — /ɑː~ɑ/ і фінальний `f`."
@@ -289,7 +239,7 @@
           {
             "responseId": "en:lesson-03:session-30:i04:r4",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
               "ru": "`star` начинается сочетанием `st`, а в записи прозвучало начало `sc`.",
               "uk": "`star` починається сполученням `st`, а в записі прозвучав початок `sc`."
@@ -302,151 +252,35 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — glove",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-30:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — glove",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i05:audio",
-          "transcript": "glove"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-30:i05:r1",
-            "targetText": "glove",
-            "meaningByLocale": {
-              "ru": "«перчатка». Одежда для одной руки с отдельным местом для каждого пальца.",
-              "uk": "«рукавичка». Одяг для однієї руки з окремим місцем для кожного пальця."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "glove",
-          "definitionByLocale": {
-            "ru": "«перчатка». Одежда для одной руки с отдельным местом для каждого пальца.",
-            "uk": "«рукавичка». Одяг для однієї руки з окремим місцем для кожного пальця."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-03:session-30:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-30:i06:r1",
-          "text": "glove"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i06:r2",
-          "text": "love"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i06:r3",
-          "text": "glow"
-        },
-        {
-          "responseId": "en:lesson-03:session-30:i06:r4",
-          "text": "globe"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i06:audio",
           "transcript": "glove"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-30:i06:r1",
-            "targetText": "glove",
-            "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i06:r2",
-            "targetText": "love",
-            "meaningByLocale": {
-              "ru": "любовь",
-              "uk": "кохання"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i06:r3",
-            "targetText": "glow",
-            "meaningByLocale": {
-              "ru": "сияние",
-              "uk": "сяйво"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i06:r4",
-            "targetText": "globe",
-            "meaningByLocale": {
-              "ru": "глобус",
-              "uk": "глобус"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-30:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`love` начинается сразу звуком `l`, а в `glove` перед ним слышно `g`.",
-              "uk": "`love` починається одразу звуком `l`, а в `glove` перед ним чути `g`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `glow` звучит дифтонг /oʊ~əʊ/. В `glove` гласный короткий /ʌ/, а финальный звук — `v`.",
-              "uk": "У `glow` звучить дифтонг /oʊ~əʊ/. У `glove` голосний короткий /ʌ/, а фінальний звук — `v`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-30:i06:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Финальный звук в `globe` — `b`, а в записи у слова `glove` — `v`.",
-              "uk": "Фінальний звук у `globe` — `b`, а у слові `glove` в записі — `v`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "glove",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -504,9 +338,9 @@
           "bag"
         ],
         "rightColumn": [
-          "свитер",
+          "светр",
           "шарф",
-          "перчатка",
+          "рукавичка",
           "сумка"
         ],
         "pairingKey": "pair_id",
@@ -527,29 +361,32 @@
       "interactionId": "en:lesson-03:session-30:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поставте у відповідь ціле слово — тепла в’язана річ, яку надягають через голову",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поставте у відповідь ціле слово — тепла в’язана річ, яку надягають через голову",
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "sweater",
-        "localizedMeaning": {
-          "ru": "Поставьте в ответ целое слово — тёплая вязаная вещь через голову",
-          "uk": "Поставте у відповідь ціле слово — тепла в’язана річ, яку надягають через голову"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i08:audio",
+          "transcript": "sweater"
         },
-        "orderedTokens": [
-          "sweater"
-        ],
-        "authoredDistractorTokens": [
-          "sweeter",
-          "sweeper",
-          "letter"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "sweater",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -559,13 +396,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — довга тканина на шию",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — довга тканина на шию",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -590,32 +427,32 @@
       "interactionId": "en:lesson-03:session-30:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й поставте у відповідь ціле слово — річ на одну руку",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i10:audio"
       ],
-      "accessibilityLabel": "Послухайте й поставте у відповідь ціле слово — річ на одну руку",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i10:audio",
           "transcript": "glove"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "glove",
-        "orderedTokens": [
-          "glove"
-        ],
-        "authoredDistractorTokens": [
-          "love",
-          "glow",
-          "globe"
-        ],
-        "slotFeedback": []
+        "targetPhrase": "glove",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -654,32 +491,29 @@
       "interactionId": "en:lesson-03:session-30:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — шарф висить на дальній стіні",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-30:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — шарф висить на дальній стіні",
+      "accessibilityLabel": "Послухайте та складіть одну фразу",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-30:i12:audio",
           "transcript": "That scarf, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That scarf, please.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "hiddenTargetPhrase": "That scarf, please.",
+        "orderedTokens": [
+          "That",
+          "scarf,",
+          "please."
+        ],
+        "distractorTokens": []
       },
       "scriptedAlternate": null
     },
@@ -736,12 +570,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Вставте вказівне слово — рукавичка лежит",
+        "testedDimension": "Вставьте указатель — перчатка лежит прям",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i13:r2",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — рукавичка лежит",
+            "testedDimension": "Вставьте указатель — перчатка лежит прям",
             "feedbackByLocale": {
               "ru": "`that` указывает на вещь вдали. Перчатка перед вами, поэтому нужен `This`.",
               "uk": "`that` указує на річ вдалині. Рукавичка перед вами, тому потрібне `This`."
@@ -750,7 +584,7 @@
           {
             "responseId": "en:lesson-03:session-30:i13:r3",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — рукавичка лежит",
+            "testedDimension": "Вставьте указатель — перчатка лежит прям",
             "feedbackByLocale": {
               "ru": "`it glove` не образует просьбу. Перед названием выбранной вещи ставим `This`.",
               "uk": "`it glove` не утворює прохання. Перед назвою вибраної речі ставимо `This`."
@@ -759,7 +593,7 @@
           {
             "responseId": "en:lesson-03:session-30:i13:r4",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — рукавичка лежит",
+            "testedDimension": "Вставьте указатель — перчатка лежит прям",
             "feedbackByLocale": {
               "ru": "`Is glove` — сломанное начало вопроса. Здесь нужна короткая просьба `This glove, please`.",
               "uk": "`Is glove` — неправильний початок запитання. Тут потрібне коротке прохання `This glove, please`."
@@ -779,19 +613,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-30:i14:r1",
-          "text": "Той светр, будь ласка"
+          "text": "Тот свитер, пожалуйста"
         },
         {
           "responseId": "en:lesson-03:session-30:i14:r2",
-          "text": "Цей светр, будь ласка"
+          "text": "Этот свитер, пожалуйста"
         },
         {
           "responseId": "en:lesson-03:session-30:i14:r3",
-          "text": "Той шарф, будь ласка"
+          "text": "Тот шарф, пожалуйста"
         },
         {
           "responseId": "en:lesson-03:session-30:i14:r4",
-          "text": "Цей шарф, будь ласка"
+          "text": "Этот шарф, пожалуйста"
         }
       ],
       "mediaIds": [],
@@ -809,22 +643,22 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-30:i14:r1",
-            "targetText": "Той светр, будь ласка",
+            "targetText": "Тот свитер, пожалуйста",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r2",
-            "targetText": "Цей светр, будь ласка",
+            "targetText": "Этот свитер, пожалуйста",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r3",
-            "targetText": "Той шарф, будь ласка",
+            "targetText": "Тот шарф, пожалуйста",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-30:i14:r4",
-            "targetText": "Цей шарф, будь ласка",
+            "targetText": "Этот шарф, пожалуйста",
             "meaningByLocale": null
           }
         ],
@@ -833,7 +667,7 @@
           {
             "responseId": "en:lesson-03:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення про",
+            "testedDimension": "Послушайте и выберите точное значение пр",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `That`: выбирают дальний свитер, а не ближний.",
               "uk": "У записі прозвучало `That`: вибирають дальній светр, а не ближній."
@@ -842,7 +676,7 @@
           {
             "responseId": "en:lesson-03:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення про",
+            "testedDimension": "Послушайте и выберите точное значение пр",
             "feedbackByLocale": {
               "ru": "Расстояние совпало, но в записи назвали `sweater`, а не `scarf`.",
               "uk": "Відстань збігається, але в записі назвали `sweater`, а не `scarf`."
@@ -851,7 +685,7 @@
           {
             "responseId": "en:lesson-03:session-30:i14:r4",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення про",
+            "testedDimension": "Послушайте и выберите точное значение пр",
             "feedbackByLocale": {
               "ru": "Здесь отличаются оба ключевых слова: прозвучали `That sweater`, а не `This scarf`.",
               "uk": "Тут відрізняються обидва ключові слова: прозвучали `That sweater`, а не `This scarf`."
@@ -947,12 +781,12 @@
             "text": "Am"
           }
         ],
-        "testedDimension": "Вставте вказівне слово — шарф висить в і",
+        "testedDimension": "Вставьте указатель — шарф висит в другом",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-30:i16:r2",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — шарф висить в і",
+            "testedDimension": "Вставьте указатель — шарф висит в другом",
             "feedbackByLocale": {
               "ru": "`this` выбирает вещь рядом. Шарф находится в другом конце зала, поэтому нужен `That`.",
               "uk": "`this` вибирає річ поруч. Шарф в іншому кінці зали, тому потрібне `That`."
@@ -961,7 +795,7 @@
           {
             "responseId": "en:lesson-03:session-30:i16:r3",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — шарф висить в і",
+            "testedDimension": "Вставьте указатель — шарф висит в другом",
             "feedbackByLocale": {
               "ru": "`it scarf` не образует просьбу. Перед названием дальней вещи ставим `That`.",
               "uk": "`it scarf` не утворює прохання. Перед назвою далекої речі ставимо `That`."
@@ -970,7 +804,7 @@
           {
             "responseId": "en:lesson-03:session-30:i16:r4",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — шарф висить в і",
+            "testedDimension": "Вставьте указатель — шарф висит в другом",
             "feedbackByLocale": {
               "ru": "`am` используется с `I`, когда говорим о себе. Здесь выбираем дальний шарф словом `That`.",
               "uk": "`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо далекий шарф словом `That`."
@@ -981,26 +815,56 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-30:i17",
+      "interactionId": "en:lesson-03:session-30:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Фінал — продавець переставив три речі",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-30:i17:audio"
+        "en:lesson-03:session-30:i17:s01:audio"
       ],
-      "accessibilityLabel": "Фінал — продавець переставив три речі",
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i17:s01:audio",
+          "transcript": "That sweater, please."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That sweater, please.",
+        "orderedTokens": [
+          "That",
+          "sweater,",
+          "please."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-30:i17:audio",
-          "transcript": "That sweater, please. This scarf, please. That glove, please."
+          "audioTargetId": "en:lesson-03:session-30:i17:s02:audio",
+          "transcript": "This scarf, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That sweater, please. This scarf, please. That glove, please.",
+        "targetPhrase": "This scarf, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1012,13 +876,43 @@
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-30:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-30:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-30:i17:s03:audio",
+          "transcript": "That glove, please."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That glove, please.",
+        "orderedTokens": [
+          "That",
+          "glove,",
+          "please."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "59c64a12ce72d7ef4389dd18f935d821aa86ec77dce43c906da22ba7cc9337b4"
+  "learnerFingerprint": "11ab1c317167526c103bc3b16e6bf0a1488f1d9d6f999176bada36aa793c9b31"
 }

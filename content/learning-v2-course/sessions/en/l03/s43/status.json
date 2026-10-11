@@ -1,1 +1,31 @@
-{"session":"en/l03/s43","converged":true,"needsHumanReview":false,"brokenTasks":[],"buildProblems":[],"judges":{"judge_learner":"PASS","judge_pedagogy":"PASS","judge_nonsense":"PASS","judge_reader":"PASS","judge_taste":"PASS","judge_progression":"PASS","locale_uk":"PASS"},"at":"2026-09-19T19:45:00.000Z"}
+{
+  "session": "en/l03/s43",
+  "sourceSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+  "localeSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+  "localeHashes": {
+    "ru": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "uk": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee"
+  },
+  "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-10-04T00:10:00+01:00",
+  "derivedFromFreshBatchReview": {
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "reviewedAt": "2026-10-04T00:10:00+01:00"
+  }
+}

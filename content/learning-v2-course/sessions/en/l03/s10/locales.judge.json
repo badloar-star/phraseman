@@ -1,11 +1,27 @@
 {
-  "verdict":"PASS",
-  "reviewer":"/root/s10_uk_native",
-  "model":"gpt-5.6-sol","reasoningEffort":"medium",
-  "sourceSha256":"c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
-  "localeSha256":{"uk":"da325405d2565077fe92e22d94c1a1ccfaa6b2005563f4498466db06341d3476"},
-  "locales":{"uk":{"verdict":"PASS","problems":[],"introBodyCounts":[220,237,249],"evidence":["All3intros17tasks everyfeedback/card/new_words reviewed; English targets/options/order unchanged.","Native Ukrainian, no Russian carryover; two Ukrainian words vs four English words is accurate.","a/an facts accurate; all pronunciation contrasts agree with primary evidence.","Definitions factual and repeated identically in new_words; natural humour retained."]}},
-  "provenance":"Attests independently measured current da325 bytes only. Author-reported e0 hash was erroneous, explicitly withdrawn; not accepted as review evidence.",
-  "actualAudioReviewed":false,
-  "visualReviewed":false
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+  "exactRuSha256": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+  "exactUkSha256": "401fa51ee359f336bda948ddde2a5c7121efc69ea92cc42cdb42e535f42ac122",
+  "practiceAtomicSha256": "e54af6c5240b986db6319c057c77ec6dadf057eadc7468236b324d73671b0616",
+  "localeHashes": {
+    "ru": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+    "uk": "401fa51ee359f336bda948ddde2a5c7121efc69ea92cc42cdb42e535f42ac122"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
 }

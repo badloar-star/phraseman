@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 21 — «Where или what»
+# Английский · Урок 2 · Занятие 21 — «Where или what»
 
-**Сцена сессии.** Вокзал в Дублине, вы ищете нужную платформу и заодно кассу. Слов на всё не хватает, и хочется спросить хоть как-нибудь — а вопрос выходит не тот.
+**Сцена занятия.** Вокзал в Дублине, вы ищете нужную платформу и заодно кассу. Слов на всё не хватает, и хочется спросить хоть как-нибудь — а вопрос выходит не тот.
 
-**Операция:** повторение `Where is` + место (контраст со `What is`)
+**Как сказать:** повторение `Where is` + место (контраст со `What is`)
 **Новые слова:** —
 **Возвращаются:** station, street, shops, toilets, near, behind
 
@@ -58,86 +58,99 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Вставьте слово — вам нужна дорога до вокзала**
-___ is the station? → **Where** · What · Is
-- What — *Это «что такое вокзал?» Про место спрашивает `where`.*
-- Is — *С `is` получается «это вокзал?» — вопрос про то же самое, а не про дорогу.*
+<!-- interaction_id: en:lesson-02:session-21:i01; family: context_gap_grammar -->
+Цель: `___ is the station?`
+Варианты: `Where` · `What` · `Is`
 
-**2 · Вставьте слово — на табло слово, которого вы не знаете, и вы просите объяснить**
-___ is this? → **What** · Where · Are
-- Where — *Вы спрашиваете не «где», а «что это вообще такое».*
-- Are — *Речь про одно слово на табло, значит `is`. И начинать надо с `what`.*
+**2 · Соберите вопрос — у кассы на табло незнакомое слово, и вы просите сотрудника объяснить его**
+<!-- interaction_id: en:lesson-02:session-21:i02; family: phrase_builder -->
+Цель: `What is this?`
 
 **3 · Различите звуки — какое из двух про «где»?**
-🔊 Два слова подряд.
-*where · there* → **where**
-- there — *Это «там» — про место, а не вопрос. И начинается иначе, чем `where`.*
+<!-- interaction_id: en:lesson-02:session-21:i03; family: sound_contrast -->
+Варианты: `where` · `there`
 
 **4 · Соберите фразу — «где вокзал?»**
-Плитки: `station` `where` `the` `is` `what` → **Where is the station?**
-*(плитка `what` лишняя: вам нужна дорога, а не объяснение)*
+<!-- interaction_id: en:lesson-02:session-21:i04; family: phrase_builder -->
+Цель: `Where is the station?`
 
 **5 · Вставьте слово — магазины где-то дальше по коридору**
-Where ___ the shops? → **are** · is · am
-- is — *`shops` не один магазин, а несколько. Для нескольких — `are`.*
-- am — *`am` идёт только с `I`. Про магазины — `are`.*
+<!-- interaction_id: en:lesson-02:session-21:i05; family: context_gap_grammar -->
+Цель: `Where ___ the shops?`
+Варианты: `are` · `is` · `am`
 
 **6 · Различите звуки — какое из двух про «улицу»?**
-🔊 Два слова подряд.
-*street · sweet* → **street**
-- sweet — *Это «сладкий», к улице отношения не имеет.*
+<!-- interaction_id: en:lesson-02:session-21:i06; family: sound_contrast -->
+Варианты: `street` · `sweet`
 
 **7 · Вставьте слово — улица одна, и вам нужно, где она**
-Where ___ the street? → **is** · are · what
-- are — *Улица одна. Для одного предмета — `is`.*
-- what — *Здесь нужна скрепка, а `what` — вопросительное слово, начало у вопроса уже занято.*
+<!-- interaction_id: en:lesson-02:session-21:i07; family: context_gap_grammar -->
+Цель: `Where ___ the street?`
+Варианты: `is` · `are` · `what`
 
 **8 · Соберите фразу — «где туалеты?»**
-Плитки: `toilets` `are` `where` `the` → **Where are the toilets?**
+<!-- interaction_id: en:lesson-02:session-21:i08; family: phrase_builder -->
+Цель: `Where are the toilets?`
 
-**9 · Соедините пары (Speed Match, 4 пары)**
-station — вокзал · street — улица · shops — магазины · toilets — туалеты
+**9 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-21:i09; family: speed_match -->
+Пары: `station` — вокзал · `street` — улица · `shops` — магазины · `toilets` — туалеты
+Цель: `station · street · shops · toilets`
 
 **10 · Вставьте слово — вокзал прячется за тем домом**
-It is ___ the house. → **behind** · near · where
-- near — *Это «рядом». А дом стоит перед вокзалом и загораживает его — значит `behind`.*
-- where — *`where` спрашивает. В ответе оно не нужно.*
+<!-- interaction_id: en:lesson-02:session-21:i10; family: context_gap_grammar -->
+Цель: `It is ___ the house.`
+Варианты: `behind` · `near` · `where`
 
-**11 · Вставьте слово — идти две минуты, вокзал прямо тут**
-It is ___ . → **near** · behind · what
-- behind — *Это «за», «позади», и после него надо сказать, за чем именно. Вам сказали, что идти близко, — это `near`.*
-- what — *`what` начинает вопрос. Ответ так не строят.*
+**11 · Соберите ответ — сотрудник у кассы сказал, что до вокзала идти две минуты**
+<!-- interaction_id: en:lesson-02:session-21:i11; family: phrase_builder -->
+Цель: `It is near.`
 
 **12 · Послушайте и соберите — «где магазины?»**
-🔊 *Where are the shops?* Плитки: `shops` `where` `the` `are` `is` → **Where are the shops?**
+<!-- interaction_id: en:lesson-02:session-21:i12; family: listen_build_dictation -->
+Цель: `Where are the shops?`
 
-**13 · Соберите фразу — вы не поняли незнакомое слово и просите объяснить**
-Плитки: `is` `what` `this` `where` → **What is this?**
-*(плитка `where` лишняя: вы спрашиваете про суть, а не про место)*
+**13 · Скажите вслух — на платформе вы показываете сотруднику незнакомое слово на билете**
+<!-- interaction_id: en:lesson-02:session-21:i13; family: scripted_repeat_compare -->
+Цель: `What is this?`
 
-**14 · Вставьте слово — вы у входа, магазины дальше в конце коридора**
-___ are the shops? → **Where** · What · Is
-- What — *Это «что такое магазины?» Вам нужно направление.*
-- Is — *Магазинов несколько, для них `are`. И вопрос про место начинают с `where`.*
+**14 · Вставьте слово — вы знаете, что это касса, и спрашиваете, где она**
+<!-- interaction_id: en:lesson-02:session-21:i14; family: context_gap_grammar -->
+Цель: `___ is it?`
+Варианты: `Where` · `What` · `Is`
 
-**15 · Соедините пары (Speed Match, 4 пары)**
-where — где · what — что · near — рядом · behind — за, позади
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-21:i15; family: speed_match -->
+Пары: `where` — где · `what` — что · `near` — рядом · `behind` — за, позади
+Цель: `where · what · near · behind`
 
-**16 · Скажите вслух — спрашиваете дорогу на вокзал и слышите ответ**
-🎙 **Where is the station? It is near.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i16:s01; family: scripted_repeat_compare -->
+Цель: `Where is the station?`
 
-**17 · Финал сцены — три вопроса подряд: где вокзал, туалеты и магазины**
-🎙 Вам нужны: вокзал, туалеты, магазины. Спросите про каждое.
-**Where is the station? Where are the toilets? Where are the shops?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i16:s02; family: scripted_repeat_compare -->
+Цель: `It is near.`
 
----
+**18 · Послушайте и соберите — у схемы района вы спрашиваете прохожего, где вокзал**
+<!-- interaction_id: en:lesson-02:session-21:i17:s01; family: listen_build_dictation -->
+Цель: `Where is the station?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i17:s02; family: scripted_repeat_compare -->
+Цель: `Where are the toilets?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-21:i17:s03; family: scripted_repeat_compare -->
+Цель: `Where are the shops?`
 
 ## Для сборщика
 
 new_words: —
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=sound_contrast, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=context_gap_grammar, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=phrase_builder, 3=sound_contrast, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=phrase_builder, 12=listen_build_dictation, 13=scripted_repeat_compare, 14=context_gap_grammar, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ## Самопроверка
 
@@ -147,7 +160,7 @@ modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=sound_contrast, 4=phrase_
 |---|---|---|
 | station | 1, 4, 9, 16, 17 | 4 (сборка `Where is the station?`), 16, 17 |
 | street | 6, 7, 9 | 6 (верное слово в звуковой паре), 7 (фраза про улицу) |
-| shops | 5, 9, 12, 14, 17 | 12 (сборка `Where are the shops?`), 14, 17 |
+| shops | 5, 9, 12, 17 | 12 (сборка `Where are the shops?`), 17 |
 | toilets | 8, 9, 17 | 8 (сборка `Where are the toilets?`), 17 |
 | near | 10, 11, 15, 16 | 11 (верный ответ), 16 |
 | behind | 10, 11, 15 | 10 (верный ответ) |
@@ -164,13 +177,13 @@ modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=sound_contrast, 4=phrase_
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| station (доска 9) | из прошлых сессий | задания 1, 4 |
-| street (доска 9) | из прошлых сессий | задания 6, 7 |
-| shops (доска 9) | из прошлых сессий | задание 5 |
-| toilets (доска 9) | из прошлых сессий | задание 8 |
+| station (доска 9) | из прошлых занятий | задания 1, 4 |
+| street (доска 9) | из прошлых занятий | задания 6, 7 |
+| shops (доска 9) | из прошлых занятий | задание 5 |
+| toilets (доска 9) | из прошлых занятий | задание 8 |
 | where (доска 15) | интро 1 | задания 1, 3, 4, 8, 12, 14 |
 | what (доска 15) | интро 1 | задания 2, 13 |
-| near (доска 15) | из прошлых сессий | задание 11 |
-| behind (доска 15) | из прошлых сессий | задание 10 |
+| near (доска 15) | из прошлых занятий | задание 11 |
+| behind (доска 15) | из прошлых занятий | задание 10 |
 
 ---

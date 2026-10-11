@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-47:intro1:r2": {
+          "ru": "Пропал значок `'`. Он стоит там, где выпала буква `a` из `am`.",
+          "uk": "Зник значок `'`. Він стоїть там, де випала літера `a` з `am`."
+        },
+        "en:lesson-01:session-47:intro1:r3": {
+          "ru": "`am` уже спрятано внутри `I'm`. Второй раз оно не нужно.",
+          "uk": "`am` уже сховане всередині `I'm`. Другий раз воно не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-47:intro2:r2": {
+          "ru": "`tired` — «усталый». От зевоты видно другое: его тянет спать, это `sleepy`.",
+          "uk": "`tired` — «втомлений». Але позіхає він не від утоми — його тягне спати, а це `sleepy`."
+        },
+        "en:lesson-01:session-47:intro2:r3": {
+          "ru": "Пропало `is`. Либо `he is sleepy`, либо коротко `he's sleepy`.",
+          "uk": "Зникло `is`. Або `he is sleepy`, або коротко `he's sleepy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-47:intro3:r2": {
+          "ru": "При `they` стоит `are`, значит и отрицание с `aren't`.",
+          "uk": "При `they` стоїть `are`, отже і заперечення з `aren't`."
+        },
+        "en:lesson-01:session-47:intro3:r3": {
+          "ru": "`not` уже сидит внутри `aren't`. Второе лишнее.",
+          "uk": "`not` уже сидить усередині `aren't`. Друге зайве."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "599d26f7080b1620b1dda7b89adb5f6cebab07d2588c37ad9b524eea6d5dd460"
+}

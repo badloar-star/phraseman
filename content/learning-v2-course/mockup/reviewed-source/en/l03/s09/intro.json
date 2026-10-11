@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "выбор между `a` и `an`, когда называем, что за предмет перед нами: перед гласным звуком берём `an`; применение в знакомых утверждениях, вопросах и отрицаниях",
+    "uk": "вибір між `a` й `an`, коли називаємо предмет перед собою: перед голосним звуком беремо `an`; застосування у знайомих твердженнях, запитаннях і запереченнях"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как назвать кресло",
+        "uk": "Як назвати крісло"
+      },
+      "bodyByLocale": {
+        "ru": "`armchair` — «кресло». Называя, что за предмет перед нами, выбираем между `a` и `an` по первому звуку названия: здесь он гласный, значит, `an armchair`. Кресло одно, а выбирать приходится ещё и слово перед ним. Добавьте начало `It is` — «это»: `It is an armchair` — «Это кресло».",
+        "uk": "`armchair` — «крісло». Коли називаємо предмет перед собою, вибираємо між `a` й `an` за першим звуком назви: тут він голосний, тому `an armchair`. Крісло одне, а маленьке слово перед ним теж доведеться обрати. Додайте на початку `It is`: `It is an armchair` — «Це крісло»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у входа показывает на кресло. Назовите его полной фразой.",
+          "uk": "Друг біля входу показує на крісло. Назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r1",
+              "text": "It is an armchair."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r2",
+              "text": "It is a armchair."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r3",
+              "text": "It is armchair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r1",
+              "text": "It is an armchair."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r2",
+              "text": "It is a armchair."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro1:r3",
+              "text": "It is armchair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у входа показывает на кресло. Назовите его полной фразой.",
+          "uk": "Друг біля входу показує на крісло. Назвіть його повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить, что за техника",
+        "uk": "Уточнити, що за техніка"
+      },
+      "bodyByLocale": {
+        "ru": "`oven` — «духовка». Хотите уточнить, что перед вами? Начните с `Is it` — так «это» превращается в «это?». Затем назовите предмет: между `a` и `an` выбираем `an`, ведь первый звук в `oven` гласный. Получится `Is it an oven?` — «Это духовка?» Спрашиваем, а не утверждаем.",
+        "uk": "`oven` — «духовка». Хочете уточнити, що перед вами? Почніть з `Is it` — так «це» перетворюється на «це?». Потім назвіть предмет: між `a` й `an` вибираємо `an`, адже перший звук в `oven` голосний. Вийде `Is it an oven?` — «Це духовка?» Тут ми запитуємо, а не стверджуємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг заметил технику в соседнем ряду. Спросите «Это духовка?».",
+          "uk": "Друг помітив техніку в сусідньому ряду. Запитайте «Це духовка?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r1",
+              "text": "Is it an oven?"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r2",
+              "text": "Is it a oven?"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r3",
+              "text": "Is an oven?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r1",
+              "text": "Is it an oven?"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r2",
+              "text": "Is it a oven?"
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro2:r3",
+              "text": "Is an oven?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг заметил технику в соседнем ряду. Спросите «Это духовка?».",
+          "uk": "Друг помітив техніку в сусідньому ряду. Запитайте «Це духовка?»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отрицаем, но оставляем an",
+        "uk": "Заперечуємо, але залишаємо an"
+      },
+      "bodyByLocale": {
+        "ru": "`umbrella` — «зонт». Чтобы возразить «это не зонт», добавьте `not` после `It is`. Здесь `not` меняет ваш ответ, но к названию не прикасается: остаётся `an umbrella`, с `an` перед гласным звуком. Целиком получается `It is not an umbrella` — «Это не зонт».",
+        "uk": "`umbrella` — «парасоля». Щоб заперечити «це не парасоля», додайте `not` після `It is`. Тут `not` змінює вашу відповідь, але назви не торкається: залишається `an umbrella`, з `an` перед голосним звуком. Повністю виходить `It is not an umbrella` — «Це не парасоля»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг принял трость покупателя за зонт. Скажите полной фразой «Это не зонт».",
+          "uk": "Друг прийняв тростину покупця за парасолю. Скажіть повною фразою «Це не парасоля»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r1",
+              "text": "It is not an umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r2",
+              "text": "It is not a umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r3",
+              "text": "It not an umbrella."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r1",
+              "text": "It is not an umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r2",
+              "text": "It is not a umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-09:intro3:r3",
+              "text": "It not an umbrella."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг принял трость покупателя за зонт. Скажите полной фразой «Это не зонт».",
+          "uk": "Друг прийняв тростину покупця за парасолю. Скажіть повною фразою «Це не парасоля»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "529a1f3b4360d12e5d54ee1ded73b468b3ce6242f93dd927fd258b02ed0a8fbd"
+}

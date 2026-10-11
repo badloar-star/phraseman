@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-20:intro1:r2": {
+          "ru": "Это один стакан: `glass`, один слог. В названии нескольких, `glasses`, слышно два слога.",
+          "uk": "Це одна склянка: `glass`, один склад. У назві кількох, `glasses`, чути два склади."
+        },
+        "en:lesson-03:session-20:intro1:r3": {
+          "ru": "Для нескольких стаканов пишем `glasses`, с добавленным `es`. Дополнительный слог слышен и в произношении.",
+          "uk": "Для кількох склянок пишемо `glasses`, із доданим `es`. Додатковий склад чути і у вимові."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-20:intro2:r2": {
+          "ru": "Вопрос о нескольких предметах. Нужно `brushes`: название щёток звучит в два слога.",
+          "uk": "Це питання про кілька предметів. Потрібне `brushes`: назва щіток звучить у два склади."
+        },
+        "en:lesson-03:session-20:intro2:r3": {
+          "ru": "Про несколько предметов спрашиваем с началом `Are they`. Форма `brushes` здесь уже верная.",
+          "uk": "Про кілька предметів питаємо з початком `Are they`. Форма `brushes` тут уже правильна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-20:intro3:r2": {
+          "ru": "На террасе будут две скамейки. `bench` называет одну и звучит в один слог; `benches` — в два.",
+          "uk": "На терасі будуть дві лавки. `bench` називає одну й звучить в один склад; `benches` — у два."
+        },
+        "en:lesson-03:session-20:intro3:r3": {
+          "ru": "Название нескольких скамеек пишется `benches`, с `es`. В конце слышен дополнительный слог.",
+          "uk": "Назву кількох лавок пишемо `benches`, із `es`. Наприкінці чути додатковий склад."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8b31ef79514e2815c43cd4d701b061531c2324a4c60b23c6448b544b9528daa"
+}

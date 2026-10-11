@@ -1,13 +1,17 @@
 {
-  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
-  "artifactSha256": "135d0531325746ed9e8b3f3a6ffb5650afe8ccd086418597597ec26dad58ed1f",
-  "reviewer": "/root/l03_s07_blind",
-  "scope": "Fresh blind text walkthrough; shuffled options and tiles, no feedback or answer key, voice targets omitted. Transcript substitutes audio; actual audio not assessed. Reviewer separately confirmed source versus artifact hash.",
-  "introAnswers": [{"step":1,"answer":"It is a drawer."},{"step":2,"answer":"It is a cupboard."},{"step":3,"answer":"It is a wardrobe."}],
-  "practiceAnswers": [
-    {"step":1,"answer":"drawer"},{"step":2,"answer":"drawer"},{"step":3,"answer":"cupboard"},{"step":4,"answer":"cupboard"},{"step":5,"answer":"A drawer"},{"step":6,"answer":"wardrobe"},{"step":7,"answer":"wardrobe"},{"step":8,"answer":"It is a cupboard."},{"step":9,"answer":"It is a lamp."},
-    {"step":10,"answer":{"lamp":"лампа","cupboard":"кухонный шкаф","wardrobe":"шкаф для одежды","drawer":"выдвижной ящик"}},
-    {"step":11,"answer":"Is it open?"},{"step":12,"answer":"is","assembled":"It is closed."},{"step":13,"answer":"Is it closed?"},{"step":14,"answer":"It is not a wardrobe."},{"step":15,"answer":"It","assembled":"It is open."},{"step":16,"answer":"It is a wardrobe."},{"step":17,"answer":"Is it a drawer?"}
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_learner",
+  "sourceSha256": "05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31",
+  "exactRuSha256": "05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31",
+  "exactUkSha256": "ded1d9cbf081f526f9aa211e3dc6a52f467f56aad7695cbdf76278da053a1bc8",
+  "practiceAtomicSha256": "f69986ff25a9b7c98f830a4967444f28003a099f2bf0a5104b00348e0db63083",
+  "verdict": "PASS",
+  "evidence": [
+    "Unpacking supplies a clear reason to identify furniture by what it stores.",
+    "Exact intro answers assessed: It is a drawer. | It is a cupboard. | It is a wardrobe.."
   ],
-  "confusions": [], "learned_new": ["drawer","cupboard","wardrobe"], "felt_alive": true, "would_continue": true, "verdict": "PASS"
+  "blockers": [],
+  "mustFix": []
 }

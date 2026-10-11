@@ -1,13 +1,18 @@
 {
-  "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_taste",
+  "sourceSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactRuSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactUkSha256": "0ff3ee539f855bd8073ec5c7913984de6890e86a3d844ceddf23b9fb904c09d7",
+  "practiceAtomicSha256": "c74a9586a2cb3c24d31cee7ac4158a18d48a78fbe3c32a3beb61ed0d5f1ce06f",
   "pairwise": "equal",
-  "pairwise_reason": "Эталоны теплее и чаще дают запоминающиеся детали, но новая сессия точнее держит актуальную структуру: сначала объясняет язык, а сцену переносит в вопрос. Контраст названия и состояния изложен особенно ясно, а единственный юмористический ход возникает из ошибки с артиклем и не выглядит приклеенным.",
+  "pairwise_reason": "The short article cue grows from the exact construction and does not distract from the object-name task.",
   "voice": {
     "score": 4,
     "evidence": [
-      "«Сэкономили одну букву — получили целую ошибку.» — короткая живая формулировка одновременно объясняет и запоминает ошибку.",
-      "«Одно не заменяет другое.» — разговорная и точная развязка объяснения про `is` и `a`.",
-      "«Поэтому в названии `a lamp` есть `a`, а перед одним словом `ready` оно не нужно.» — ясный контраст без лишнего термина или метафоры."
+      "Сэкономили одну букву — получили целую ошибку."
     ]
   },
   "humor": {
@@ -18,28 +23,16 @@
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Распаковка квартиры последовательно создаёт причины назвать предмет, уточнить его и возразить; сцены находятся в вопросах, как требует актуальная структура."
-  },
-  "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
   "best_lines": [
-    "Сэкономили одну букву — получили целую ошибку.",
-    "Одно не заменяет другое.",
-    "Поэтому в названии `a lamp` есть `a`, а перед одним словом `ready` оно не нужно."
+    "Сэкономили одну букву — получили целую ошибку."
   ],
+  "ai_text_or_nonsense": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Текст чист от ИИ-бреда, воды и мёртвого языка, понятно объясняет конструкцию новичку и содержит естественный уместный юмористический ход.",
-  "freshReview20260919": {
-    "reviewedAt": "2026-09-19T17:35:00.3747473Z",
-    "exactRuSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
-    "exactUkSha256": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
-    "verdict": "PASS",
-    "evidence": "Voice remains 4/5; existing rule-grounded humor stays natural and no decorative joke was added.",
-    "mustFix": []
-  }
+  "evidence": [
+    "The short article cue grows from the exact construction and does not distract from the object-name task."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "verdict_reason": "The current text keeps a clear everyday teaching voice; the cited line supports the language point and no AI-like padding was found."
 }

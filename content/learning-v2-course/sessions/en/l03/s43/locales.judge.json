@@ -1,1 +1,80 @@
-{"sourceSha256":"8ec1385766625944a748c50a3174e34ac7d9633d889b04115da6a0b7b4e0081f","locales":{"uk":{"verdict":"PASS","sourceSha256":"921af042e5b9e745e6309a60ffa18bde0a93cb4ed002e1061d09d0b09376700b","blockers":[],"must_fix":[],"evidence":["Украинские интро и 17 заданий естественны и полностью соответствуют RU.","Нейтральное помічник говорить про журнали не раскрывает аудио заранее.","Аудиозначения точны и не добавляют отсутствующий контекст."]}},"verdict":"PASS"}
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "localeSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "tasks": 17,
+  "languagePurity": true,
+  "semanticParity": true,
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "i12 is a phrase_builder with targetPhrase and correctText `Newspapers are fine.` in both locales and no audio target. S43's plural/the chains, scene, vocabulary, one-phrase boundaries, canonical `без артикля` options and global preservation check pass."
+      ]
+    }
+  },
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh final RU/UK comparison after Intro 2 repair.",
+    "The Ukrainian Intro 2 is natural and preserves the concrete shared-magazine meaning and all feedback distinctions.",
+    "All English target tokens, task structure, options, answers, feedback, final voice key, and assembler blocks remain parallel; no residue or meaning additions."
+  ],
+  "localeHashes": {
+    "ru": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "uk": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "21f89bd30881071a086da7ef60c8b1f07029a6ba6b51fab6836bdf47dace598b",
+    "localeSha256": "72c0aa7175274eedefbee8a6f238d43bfea8bdd050b7793659f905f6239881a2",
+    "practiceAtomicSha256": "4a1624ffe6f2bcbcc84bd8a784d92fa5b289e7ffc6eec6e6db7c89a7deacb1b4"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+  "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "600ff4a92d4ca606834d429eecd549e0294e36828bb6b1744168070aaf538e86",
+    "localeSha256": "8f2ccc36f79e0470b02c9d3c6fb582fcc033e0cf47656d63f883464630f78f4e",
+    "practiceAtomicSha256": "0d053455b58d214081bcd85b5ad35ba9fa67c70bd5c56640fb2b4286f44f847b",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+    "localeSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+    "localeHashes": {
+      "ru": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+      "uk": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee"
+    },
+    "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+    "evidence": [
+      "i12 is a phrase_builder with targetPhrase and correctText `Newspapers are fine.` in both locales and no audio target. S43's plural/the chains, scene, vocabulary, one-phrase boundaries, canonical `без артикля` options and global preservation check pass."
+    ]
+  }
+}

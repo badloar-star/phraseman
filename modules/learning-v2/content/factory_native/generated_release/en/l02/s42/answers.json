@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-42:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-42:i09:p1=welcome\nen:lesson-02:session-42:i09:p2=here\nen:lesson-02:session-42:i09:p3=early\nen:lesson-02:session-42:i09:p4=late",
     "correctResponseId": null
   },
   {

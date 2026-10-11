@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-04:i01",
+    "correctText": "post office",
+    "correctResponseId": "en:lesson-04:session-04:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i02",
+    "correctText": "post office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i03",
+    "correctText": "office",
+    "correctResponseId": "en:lesson-04:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i04",
+    "correctText": "There is a post office here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i05",
+    "correctText": "There are libraries near the post office.",
+    "correctResponseId": "en:lesson-04:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i06",
+    "correctText": "There is a small post office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i07",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-04:session-04:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i08",
+    "correctText": "There are gardens behind the post office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i09",
+    "correctText": "There is a quiet post office near the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i10",
+    "correctText": "There are banks behind the post office.",
+    "correctResponseId": "en:lesson-04:session-04:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i11",
+    "correctText": "en:lesson-04:session-04:i11:p1=banks\nen:lesson-04:session-04:i11:p2=libraries\nen:lesson-04:session-04:i11:p3=gardens\nen:lesson-04:session-04:i11:p4=behind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i12",
+    "correctText": "There are libraries behind the post office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i13",
+    "correctText": "There is a small post office near the house.",
+    "correctResponseId": "en:lesson-04:session-04:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i14",
+    "correctText": "There are gardens near the post office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i15",
+    "correctText": "There is a new post office behind the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i16",
+    "correctText": "banks",
+    "correctResponseId": "en:lesson-04:session-04:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-04:i17",
+    "correctText": "There is a post office near the house.",
+    "correctResponseId": null
+  }
+]

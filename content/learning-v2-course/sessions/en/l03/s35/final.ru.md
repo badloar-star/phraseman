@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 35 — «Одна деталь или несколько»
+# Английский · Урок 3 · Занятие 35 — «Одна деталь или несколько»
 
-**Сцена сессии.** В мастерской оформления вы выбираете, что повесить на стену новой квартиры. На ближнем столе лежат фотографии и рамки, рядом открыт альбом с другими снимками; оформитель ждёт, какие предметы вы выберете для заказа.
+**Сцена занятия.** В мастерской оформления вы выбираете, что повесить на стену новой квартиры. На ближнем столе лежат фотографии и рамки, рядом открыт альбом с другими снимками, а на экране показан макет стены; оформитель ждёт, какие предметы вы выберете для заказа.
 
-**Операция:** контраст `this` / `these`: один предмет рядом или несколько
+**Как сказать:** контраст `this` / `these`: один предмет рядом или несколько
 **Новые слова:** photo, album, frame
 **Для повторения:** picture, screen, this, these, is, are, please
 
@@ -50,79 +50,106 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — photo**
-> **photo** — «фотография». Снимок, сделанный камерой или телефоном.
+**1 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-35:i01; family: listen_choose -->
+Цель: `photo`
+Варианты: `photo`
 
-**2 · Послушайте и выберите — какое слово назвал оформитель**
-🔊 *photo* → **photo** · motto · auto · phone
-Значения вариантов: photo — фотография · motto — девиз · auto — автомобиль · phone — телефон
-- motto — *Оба слова состоят из двух слогов, но `motto` начинается со звука /m/, а `photo` — со звука /f/.*
-- auto — *`auto` начинается с гласного звука, а в начале `photo` слышно /f/.*
-- phone — *`phone` состоит из одного слога и заканчивается после /n/. В `photo` слышно два слога.*
+**2 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-35:i03; family: scripted_repeat_compare -->
+Цель: `album`
 
-**3 · Карточка слова — album**
-> **album** — «альбом». Книга с плотными страницами для хранения фотографий.
+**3 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-35:i05; family: listen_choose -->
+Цель: `frame`
+Варианты: `frame` · `photo` · `album`
 
-**4 · Послушайте и выберите — какое слово назвал оформитель**
-🔊 *album* → **album** · elbow · alpha · atom
-Значения вариантов: album — альбом · elbow — локоть · alpha — альфа · atom — атом
-- elbow — *В `elbow` первый гласный звучит /e/, а `album` начинается с /æ/.*
-- alpha — *Начало похоже, но в середине `alpha` слышно /f/, а в `album` — /b/.*
-- atom — *`atom` начинается с /æt/; в `album` после первого гласного слышно /l/.*
+**4 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-35:i02; family: scripted_repeat_compare -->
+Цель: `photo`
 
-**5 · Карточка слова — frame**
-> **frame** — «рамка». Жёсткая окантовка, в которой фотографию вешают на стену или ставят на стол.
+**5 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-35:i04; family: listen_choose -->
+Цель: `album`
+Варианты: `album`
 
-**6 · Послушайте и выберите — какое слово назвал оформитель**
-🔊 *frame* → **frame** · flame · crane · game
-Значения вариантов: frame — рамка · flame — пламя · crane — кран · game — игра
-- flame — *После первого звука в `flame` слышно /l/, а в `frame` — /r/.*
-- crane — *`crane` начинается сочетанием /kr/, а `frame` — сочетанием /fr/.*
-- game — *`game` начинается со звука /g/, а перед тем же долгим гласным в `frame` слышно /fr/.*
+**6 · Различите слово — frame или flame**
+<!-- interaction_id: en:lesson-03:session-35:i06; family: sound_contrast -->
+Цель: `frame`
+Варианты: `frame` · `flame`
 
 **7 · Соедините слова со значениями — стол оформителя**
-photo — фотография · album — альбом · frame — рамка · screen — экран
+<!-- interaction_id: en:lesson-03:session-35:i08; family: speed_match -->
+Пары: `photo` — фотография · `album` — альбом · `frame` — рамка · `screen` — экран
+Цель: `photo · album · frame · screen`
 
-**8 · Соберите короткую просьбу — выберите одну фотографию со стола**
-Плитки: `This` `photo` `please` `These` `photos` `are` → **This photo, please.**
+**8 · Послушайте и соберите короткую просьбу об одном альбоме**
+<!-- interaction_id: en:lesson-03:session-35:i09; family: listen_build_dictation -->
+Цель: `This album, please.`
 
-**9 · Скажите вслух — несколько фотографий рядом**
-🎙 **photos** — послушайте, повторите и сравните.
+**9 · Произнесите короткую просьбу о нескольких рамках**
+<!-- interaction_id: en:lesson-03:session-35:i10; family: scripted_repeat_compare -->
+Цель: `These frames, please.`
 
-**10 · Послушайте и поставьте в ответ целое слово — несколько альбомов**
-🔊 *albums* Плитки: `albums` `album` `elbows` `frames` → **albums**
+**10 · Вставьте указатель — несколько рамок лежат перед вами**
+<!-- interaction_id: en:lesson-03:session-35:i07; family: context_gap_grammar -->
+Варианты: `These` · `This` · `Those` · `Are`
+Цель: `___ are frames.`
 
 **11 · Соберите утверждение — рядом лежит одна фотография**
-Плитки: `This` `is` `a` `photo` `These` `are` `photos` → **This is a photo.**
+<!-- interaction_id: en:lesson-03:session-35:i11; family: phrase_builder -->
+Цель: `This is a photo.`
 
 **12 · Послушайте и выберите точное значение фразы**
-🔊 *These are photos.* → **Это фотографии** · Это фотография · Это альбомы · Эти фотографии, пожалуйста
-- Это фотография — *Так называют один снимок. В записи `these are` и форма `photos` показывают несколько фотографий.*
-- Это альбомы — *Число совпадает, но в записи назвали `photos` — фотографии, а не альбомы.*
-- Эти фотографии, пожалуйста — *Это просьба выбрать снимки. В записи несколько фотографий просто называют.*
+<!-- interaction_id: en:lesson-03:session-35:i12; family: listen_choose -->
+Цель: `These are photos.`
+Варианты: `Это фотографии` · `Это фотография` · `Это альбомы` · `Эти фотографии, пожалуйста`
 
 **13 · Вставьте указатель — рядом лежат несколько альбомов**
-___ are albums. → **These** · This · Those · Is
-- This — *`this` относится к одному предмету и требует `is`. Здесь альбомов несколько.*
-- Those — *`those` показывает на несколько предметов вдали. Альбомы лежат рядом, поэтому нужно `these`.*
-- Is — *`Is are albums` не образует фразу. В начале нужен указатель `These`.*
+<!-- interaction_id: en:lesson-03:session-35:i13; family: context_gap_grammar -->
+Цель: `___ are albums.`
+Варианты: `These` · `This` · `Those` · `Is`
 
 **14 · Соберите утверждение — несколько рамок лежат перед вами**
-Плитки: `These` `are` `frames` `This` `is` `a` `frame` → **These are frames.**
+<!-- interaction_id: en:lesson-03:session-35:i14; family: phrase_builder -->
+Цель: `These are frames.`
 
-**15 · Скажите вслух — рядом лежит один альбом**
-🎙 **This is an album.** — произнесите фразу, затем послушайте образец и сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i15; family: scripted_repeat_compare -->
+Цель: `This is an album.`
 
 **16 · Соберите короткую просьбу — выберите несколько рамок рядом**
-Плитки: `These` `frames` `please` `This` `frame` `are` → **These frames, please.**
+<!-- interaction_id: en:lesson-03:session-35:i16; family: phrase_builder -->
+Цель: `These frames, please.`
 
-**17 · Финал — оформите заказ у второй стойки**
-🎙 **These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.** — у второй стойки лежат несколько фотографий, один альбом и несколько рамок. Сначала назовите фотографии, альбом и рамки, затем попросите одну фотографию, один альбом и несколько рамок; после ответа послушайте образец и сравните.
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s01; family: scripted_repeat_compare -->
+Цель: `These are photos.`
+
+**18 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s02; family: phrase_builder -->
+Цель: `This is an album.`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s03; family: scripted_repeat_compare -->
+Цель: `These are frames.`
+
+**20 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s04; family: phrase_builder -->
+Цель: `This photo, please.`
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s05; family: scripted_repeat_compare -->
+Цель: `This album, please.`
+
+**22 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-35:i17:s06; family: listen_build_dictation -->
+Цель: `These frames, please.`
 
 ## Для сборщика
 new_words: photo — фотография — Снимок, сделанный камерой или телефоном.
 new_words: album — альбом — Книга с плотными страницами для хранения фотографий.
 new_words: frame — рамка — Жёсткая окантовка, в которой фотографию вешают на стену или ставят на стол.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=context_gap_grammar, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=phrase_builder, 21=scripted_repeat_compare, 22=listen_build_dictation

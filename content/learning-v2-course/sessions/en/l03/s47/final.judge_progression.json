@@ -1,0 +1,124 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+  "localeSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+  "comparedThrough": "en/l03/s46",
+  "newWords": [
+    "screw",
+    "nail",
+    "hammer"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 47 | слова | артикли в новой бытовой задаче | screw, nail, hammer | покупаем детали для ремонта |",
+  "curriculumEvidence": {
+    "grammar": "Article transfer in a new repair-shopping task: a for first mention and the for an item already known to both speakers.",
+    "newWords": [
+      "screw",
+      "nail",
+      "hammer"
+    ],
+    "situation": "«В магазине крепежа вы выбираете детали для небольшого ремонта.»"
+  },
+  "sceneNovel": true,
+  "grammarProgression": "planned_transfer:articles in a new repair-shopping task",
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "screw"
+      ],
+      "sceneEvidence": "«Продавец впервые кладёт винт на прилавок.»",
+      "correctAnswer": "A screw is here.",
+      "practiceTask": 7,
+      "practiceTarget": "Here is a screw.",
+      "finalEvidence": "Final requires `Here is a screw.` for a first-mentioned screw.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "nail"
+      ],
+      "sceneEvidence": "«Продавец впервые показывает гвоздь.»",
+      "correctAnswer": "A nail is here.",
+      "practiceTask": 14,
+      "practiceTarget": "Here is a nail.",
+      "finalEvidence": "Final requires `Here is a nail.` for a first-mentioned nail.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "hammer"
+      ],
+      "sceneEvidence": "«Продавец впервые показывает молоток.»",
+      "correctAnswer": "A hammer is here.",
+      "practiceTask": 11,
+      "practiceTarget": "This is a hammer.",
+      "finalEvidence": "Final requires `The hammer is here.` for an already-chosen hammer, completing the first/known contrast.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Hardware-shop repair task gives a new situation and word-first article practice; no composite assessed phrase is present."
+  ],
+  "localeHashes": {
+    "ru": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "uk": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "c362182e83c4aa4917a955089143dfdfab99998e0c3801bf71dc2d308b0399c8",
+    "localeSha256": "b2ea9268635a80c8b6d189b4bf48afb73ff6ab9535e150f7b2a0384c5108bb58",
+    "practiceAtomicSha256": "9f50d224b46a7003adf22bd3d8bbfd89b164feba1415617e8bafd15de3ab7543"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+  "exactUkSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+  "practiceAtomicSha256": "c88a3bf6da7d0c1d0a1d98ee18db2a4df5dacbc48f66de34bdf7604a8ebe25ea",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "99ef42491f05a9fb17e50ba92fa4fbefd755f54d053fc231e6ac52047e462dd6",
+    "localeSha256": "51228eb217387925e1a6112244b2cafc061feeecc9404e916174a76de5192de2",
+    "practiceAtomicSha256": "db43c476b0712fa49955fabb7a474865fbb4bcb5e05ec9fdca791a480e8bc05b",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "exactRuSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "exactUkSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+    "localeSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+    "localeHashes": {
+      "ru": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+      "uk": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be"
+    },
+    "practiceAtomicSha256": "c88a3bf6da7d0c1d0a1d98ee18db2a4df5dacbc48f66de34bdf7604a8ebe25ea",
+    "evidence": [
+      "Hardware-shop repair task gives a new situation and word-first article practice; no composite assessed phrase is present."
+    ]
+  }
+}

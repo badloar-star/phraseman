@@ -1,9 +1,9 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
+  "sourceSha256": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
   "localeHashes": {
-    "ru": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
-    "uk": "d6a948317acf60a34a8eadec9c70c067580406c126b0f826b74cd254d718ab98"
+    "ru": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+    "uk": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a"
   },
   "comparedThrough": "en/l03/s33",
   "curriculumExactMatch": true,
@@ -70,13 +70,70 @@
   "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "Fresh S01–S33 RU+UK scan: 0 blanket/sheet/duvet and 0 those hits.",
-    "Сцена магазина домашнего текстиля и называние дальних групп новые.",
-    "Task 12 передаёт точный смысл аудио без добавленной дальности или просьбы.",
-    "Все три интро ведут к scored practice и независимому финалу."
+    "Exact current curriculum row verified: | 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
   "deterministicGates": {
     "progression_quality_gate_from_25": "PASS",
     "check_new_words_session_34": "PASS: 56 sessions, 130 unique new words, no repeats"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "557dacf205c51afe97277fa72426362a0c8aa283662ffa6fa57fd53804e6cc85",
+    "localeSha256": "8d8b0f4022052f3413a5fcd77ce161080beae31328c6b8de5b4173145d7f4d36",
+    "practiceAtomicSha256": "a8559a25a5af775d46044ddf65349298f33fe6829e762c57bfb40f9c4ef78571"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+  "exactUkSha256": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a",
+  "localeSha256": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a",
+  "practiceAtomicSha256": "87de33f13849b7ded476debe812471b16813620036006403071d665b5255f2a7",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "33bf018a78999e86b261269263da91d98f25bb0f7c7621d82b83b568f0a91866",
+    "localeSha256": "5cfad2e2f395ee5e18d643a82db0e8fc9f327a5e732ef91a280b7a57f17d156c",
+    "practiceAtomicSha256": "87de33f13849b7ded476debe812471b16813620036006403071d665b5255f2a7",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+    "exactRuSha256": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+    "exactUkSha256": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a",
+    "localeSha256": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a",
+    "localeHashes": {
+      "ru": "4c1f2dfd0fbada5f6df2761fb59d20862ca98497bee53d0eb6924ad2534ed8bd",
+      "uk": "3bf61ea61392d1533d6fecd07897edb9b476ba8ffdbb4645cf8380daa05cf16a"
+    },
+    "practiceAtomicSha256": "87de33f13849b7ded476debe812471b16813620036006403071d665b5255f2a7",
+    "evidence": [
+      "Exact current curriculum row verified: | 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку |",
+    "grammarLexiconSituation": "Exact next these→those plural step, lexicon and far-shelf scene are distinct from S33.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s33"
   }
 }

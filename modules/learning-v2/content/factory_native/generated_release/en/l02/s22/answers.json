@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-22:i01",
-    "correctText": "",
+    "correctText": "downstairs",
     "correctResponseId": null
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i04",
-    "correctText": "",
+    "correctText": "upstairs",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i07",
-    "correctText": "",
+    "correctText": "toilets",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-22:i10:p1=downstairs\nen:lesson-02:session-22:i10:p2=upstairs\nen:lesson-02:session-22:i10:p3=toilets\nen:lesson-02:session-22:i10:p4=near",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-22:i12",
-    "correctText": "",
+    "correctText": "shops",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-22:i17",
-    "correctText": "Where are the toilets? They are downstairs.",
+    "interactionId": "en:lesson-02:session-22:i17:s01",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i17:s02",
+    "correctText": "They are downstairs.",
     "correctResponseId": null
   }
 ]

@@ -837,13 +837,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — курьер спрашивает про металлические жетоны на столе; объясните, что это не монеты",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — курьер спрашивает про металлические жетоны на столе; объясните, что это не монеты",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -985,5 +985,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8bf4ef69973bf6643bcb481f5935bcd87bbeb3a959054ab7ab73ccebabf43659"
+  "learnerFingerprint": "e3626c0299e04c98adad7e0eca9620e4875c86e3b95b22ada58ebab8aa65b477"
 }

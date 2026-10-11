@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 11 — «You are not»
+# Английский · Урок 1 · Занятие 11 — «You are not»
 
-**Сцена сессии.** Кофе с коллегой. Она сегодня накрутила себя до предела: перепутала имя человека на встрече, потом решила, что всё испортила, и теперь сидит и молчит. Вы её успокаиваете — по-английски, и не одним словом «нет», а нормальными фразами.
+**Ситуация.** Вы встретились с Мирой за кофе. На встрече она перепутала имя клиента, решила, что всё испортила, и теперь молчит. Вы успокаиваете её короткими фразами по-английски.
 
-**Операция:** `You are not + слово о человеке`
+**Что вы освоите:** как сказать собеседнику, что он не такой, каким себя называет: `You are not + слово`
 **Новые слова:** crazy, lazy
 **Возвращаются:** alone, tired, sure, busy, wrong, kind
 
@@ -21,7 +21,7 @@
 **Коллега весь день на ногах, а говорит, что бездельничала. Возразите: «ты не ленивая».**
 
 - ✅ **You are not lazy.**
-- ❌ You not lazy. — *Скрепка `are` выпала. `not` её не заменяет, он встаёт после неё.*
+- ❌ You not lazy. — *После `you` нужно `are`. `not` его не заменяет: оно стоит после `are`.*
 - ❌ You are lazy not. — *`not` уехал в конец. Его место — сразу после `are`, перед словом.*
 
 ---
@@ -32,14 +32,14 @@
 
 `crazy` — «сумасшедший». В жизни это чаще не диагноз, а «у меня крыша едет».
 
-Успокоить человека: `You are not crazy`. Себя — `I am not crazy`. Меняется только скрепка.
+Успокоить человека: `You are not crazy`. О себе говорят: `I am not crazy`. После `you` ставят `are`, после `I` — `am`.
 
 Важно: «не» внутри фразы — это `not`, а не `no`. `no` работает в одиночку, как ответ на вопрос.
 
 **Подруга уверена, что сходит с ума из-за одной ошибки. Скажите ей: «ты не сумасшедшая».**
 
 - ✅ **You are not crazy.**
-- ❌ You no crazy. — *`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`. И скрепка потерялась.*
+- ❌ You no crazy. — *`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`; после `you` также нужно `are`.*
 - ❌ You are no crazy. — *Почти. Но после `are` идёт именно `not`; `no` живёт отдельно, одним словом.*
 
 ---
@@ -52,7 +52,7 @@
 
 `You are not wrong` — «ты не ошибаешься». Пригодится чаще, чем кажется.
 
-`kind` — «добрый». Полная противоположность, и обе с той же скрепкой `are`.
+`kind` — «добрый». Это другое слово, но после `you` с ним так же ставят `are`.
 
 **Коллега думает, что не так поняла задачу, а поняла верно. Скажите: «ты не ошибаешься».**
 
@@ -65,76 +65,93 @@
 ## Практика (18 заданий, поддержка убывает)
 
 **1 · Карточка слова — crazy**
+<!-- interaction_id: en:lesson-01:session-11:i01; family: listen_choose -->
 > **crazy** — «сумасшедший». Так говорят про себя в конце тяжёлого дня, и обычно преувеличивают.
 
-**2 · Послушайте и выберите — crazy**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-11:i02; family: listen_choose -->
 🔊 *crazy* → **crazy** · lazy · cozy
 - lazy — *Похоже на слух, но начинается с «л». `crazy` — с «кр».*
 - cozy — *«Уютный». В середине «з», без «р» в начале.*
 
 **3 · Карточка слова — lazy**
+<!-- interaction_id: en:lesson-01:session-11:i03; family: listen_choose -->
 > **lazy** — «ленивый». Тот, кто откладывает дело, потому что не хочется.
 
 **4 · Различите звуки — какое из двух про «ленивая»?**
+<!-- interaction_id: en:lesson-01:session-11:i04; family: sound_contrast -->
 🔊 Два слова подряд.
-*crazy · lazy* → **lazy**
+*lazy · crazy* → **lazy**
 - crazy — *Это «сумасшедшая», совсем про другое. Решает начало: crazy — «кр»,
   lazy — мягкое «л». Слушайте первый звук.*
 
 **5 · Соберите фразу — «ты не ленивая»**
+<!-- interaction_id: en:lesson-01:session-11:i05; family: phrase_builder -->
 Плитки: `not` `lazy` `are` `You` → **You are not lazy.**
 
 **6 · Карточка слова — wrong**
+<!-- interaction_id: en:lesson-01:session-11:i06; family: listen_choose -->
 > **wrong** — «неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.
 
-**7 · Послушайте и выберите — wrong**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-11:i07; family: listen_choose -->
 🔊 *wrong* → **wrong** · long · ring
 - long — *«Длинный». Отличается только первым звуком: `wrong` — «ронг», `long` — «лонг».*
 - ring — *Другая гласная: «ринг», а не «ронг».*
 
-**8 · Вставьте слово — она уверена, что ошиблась, но она права**
+**8 · Вставьте слово — Мира уверена, что ошиблась, но вы сверили её ответ: он верный**
+<!-- interaction_id: en:lesson-01:session-11:i08; family: context_gap_grammar -->
 You are not ___ . → **wrong** · busy · tired
 - busy — *«Занята» — про дела, а не про правоту.*
 - tired — *«Устала» — тоже не про то. Ошибаешься — `wrong`.*
 
 **9 · Карточка слова — kind**
+<!-- interaction_id: en:lesson-01:session-11:i09; family: listen_choose -->
 > **kind** — «добрый». Не «вежливый по работе», а по-человечески хороший.
 
-**10 · Послушайте и выберите — kind**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-11:i10; family: listen_choose -->
 🔊 *kind* → **kind** · kid · find
 - kid — *«Ребёнок». Короче: в `kind` в конце ещё «нд».*
 - find — *«Найти». Отличается первым звуком: «ф», а не «к».*
 
-**11 · Вставьте слово — вы спросили её про встречу, она знает точно**
+**11 · Вставьте слово — вы спросили Миру о времени встречи, и она проверила календарь**
+<!-- interaction_id: en:lesson-01:session-11:i11; family: context_gap_grammar -->
 She said: I am ___ . → **sure** · alone · wrong
 - alone — *«Одна» — про компанию, а не про уверенность.*
 - wrong — *«Ошибаюсь» — она как раз говорит обратное.*
 
-**12 · Соедините пары (Speed Match, 4 пары)**
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-11:i12; family: speed_match -->
 crazy — сумасшедший · lazy — ленивый · wrong — неправ · kind — добрый
 
-**13 · Вставьте скрепку — вы возражаете коллеге**
+**13 · Вставьте слово — Мира из-за одной ошибки называет себя «сумасшедшей», а вы её поддерживаете**
+<!-- interaction_id: en:lesson-01:session-11:i13; family: context_gap_grammar -->
 You ___ not crazy. → **are** · am · is
 - am — *`am` живёт только с `I` и никуда от него не уходит.*
 - is — *Не для `you`. Про человека напротив — `you are`.*
 
-**14 · Соберите фразу — она колеблется, а вы видите, что решение у неё есть**
+**14 · Соберите фразу — Мира сомневается в ответе, но вы проверили его по инструкции: ответ верный**
+<!-- interaction_id: en:lesson-01:session-11:i14; family: phrase_builder -->
 Плитки: `sure` `You` `are` `not` → **You are sure.**
 *(плитка `not` лишняя: вы её поддерживаете, а не спорите)*
 
-**15 · Послушайте и соберите — «ты не одна»**
+**15 · Послушайте и соберите — Мира осталась после встречи одна; скажите ей: «ты не одна»**
+<!-- interaction_id: en:lesson-01:session-11:i15; family: listen_build_dictation -->
 🔊 *You are not alone.* Плитки: `alone` `are` `not` `You` `no` → **You are not alone.**
 
-**16 · Соберите фразу — она отмахивается от вашего «спасибо»**
+**16 · Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её**
+<!-- interaction_id: en:lesson-01:session-11:i16; family: phrase_builder -->
 Скажите ей прямо. Плитки: `You` `are` `not` `kind` → **You are kind.**
 *(плитка `not` лишняя: сцена требует похвалы)*
 
-**17 · Соберите фразу — «ты не занята?»**
-Она хватается за телефон, но вы видите, что дел нет. Плитки: `busy` `You` `not` `are` → **You are not busy.**
+**17 · Послушайте и соберите — Лина спрашивает Миру, может ли та помочь с коробками. Мира свободна; скажите ей: «ты не занята»**
+<!-- interaction_id: en:lesson-01:session-11:i17; family: listen_build_dictation -->
+🔊 *You are not busy.* Плитки: `You` `are` `not` `busy` `is` → **You are not busy.**
 
-**18 · Финал сцены — четыре фразы подряд, вы её поддерживаете**
-🎙 Она говорит: «Я всё испортила, я ленивая, я одна с этим». Ответьте ей: не ошибаешься, не ленивая, не одна — и добавьте своё.
-**You are not wrong. You are not lazy. You are not alone. You are kind.**
+**18 · Скажите вслух — Лина сверила цифры Миры с таблицей: они верны. Мира сомневается; скажите ей, что она не ошибается**
+<!-- interaction_id: en:lesson-01:session-11:i18; family: scripted_repeat_compare -->
+🎙 Скажите: **You are not wrong.**
 
 ---
 
@@ -146,7 +163,7 @@ lazy — ленивый — «ленивый». Тот, кто откладыв�
 wrong — неправ — «неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.
 kind — добрый — «добрый». Не «вежливый по работе», а по-человечески хороший.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=sound_contrast, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=phrase_builder, 18=scripted_repeat_compare
-1=word_card, 2=listen_choose, 3=word_card, 4=sound_contrast, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=sound_contrast, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=listen_build_dictation, 18=scripted_repeat_compare
+1=word_card, 2=listen_choose, 3=word_card, 4=sound_contrast, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=listen_build_dictation, 18=scripted_repeat_compare
 
 ---

@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 39 — «До опівночі»
+# Англійська · Урок 2 · Заняття 39 — «До опівночі»
 
-**Сцена сесії.** Вечірка в сусідів наближається до опівночі. Ви шукаєте господаря, допомагаєте другові знайти знайому пару й з’ясовуєте, хто ще залишився.
+**Сцена заняття.** Вечірка в сусідів наближається до опівночі. Ви шукаєте господаря, допомагаєте другові знайти знайому пару й з’ясовуєте, хто ще залишився.
 
-**Операція:** повторення запитань про людей і місце; слова розділу в розмові на вечірці
+**Як сказати:** повторення запитань про людей і місце; слова розділу в розмові на вечірці
 **Нові слова:** couple, crowd
 **Повертаються:** host, guests, strangers
 
@@ -50,76 +50,82 @@
 
 ---
 
-## Практика (17 завдань, підтримка поступово зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — couple**
-> **couple** — «пара». Тут — двоє людей, які зустрічаються або одружені.
+<!-- interaction_id: en:lesson-02:session-39:i01; family: listen_choose -->
+Ціль: `couple`
 
 **2 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *couple* → **couple** · cuddle · cutter
-- cuddle — *Це «обіймати». Прослухайте ще раз середину: у `cuddle` там інший приголосний, а в записі звучить `couple`.*
-- cutter — *Це «різак». Прослухайте ще раз приголосний усередині: `cutter` звучить там інакше, а в записі звучить `couple`.*
+<!-- interaction_id: en:lesson-02:session-39:i02; family: listen_choose -->
+Ціль: `couple`
+Варіанти: `couple` · `cuddle` · `cutter`
 
 **3 · Картка слова — crowd**
-> **crowd** — «натовп». Багато людей, які зібралися в одному місці.
+<!-- interaction_id: en:lesson-02:session-39:i03; family: listen_choose -->
+Ціль: `crowd`
 
 **4 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *crowd* → **crowd** · cloud · proud
-- cloud — *Це «хмара». Прослухайте ще раз другий звук на початку: у `cloud` він інший, а в записі звучить `crowd`.*
-- proud — *Це «гордий». Прослухайте ще раз перший звук: `proud` починається інакше, а в записі звучить `crowd`.*
+<!-- interaction_id: en:lesson-02:session-39:i04; family: listen_choose -->
+Ціль: `crowd`
+Варіанти: `crowd` · `cloud` · `proud`
 
 **5 · Складіть фразу — ви хочете подякувати тому, хто влаштував вечірку; дізнайтеся, хто господар**
-*(`host` — «господар вечірки»)*
-Плитки: `host` `Who` `the` `is` → **Who is the host?**
+<!-- interaction_id: en:lesson-02:session-39:i05; family: phrase_builder -->
+Ціль: `Who is the host?`
 
 **6 · Вставте слово — друг указує на людину, яка приймає всіх у себе; скажіть: «Він господар вечірки»**
-He is the ___ . → **host** · guest · intern
-- guest — *Вийде «Він гість». Ця людина сама приймає гостей, тому потрібне `host`.*
-- intern — *Це «стажист». Ви називаєте його роль на вечірці, а не на роботі: `host`.*
+<!-- interaction_id: en:lesson-02:session-39:i06; family: context_gap_grammar -->
+Ціль: `He is the ___ .`
+Варіанти: `host` · `guest` · `intern`
 
 **7 · Послухайте й виберіть — що друг сказав про натовп біля будинку**
-🔊 *The crowd is outside.* → **The crowd is outside.** · The crowd is here. · The couple is outside.
-- The crowd is here. — *Тут останнє слово `here` означає «тут». На записі звучить `outside` — «надворі».*
-- The couple is outside. — *Це фраза про пару. На записі звучить `crowd` — натовп.*
+<!-- interaction_id: en:lesson-02:session-39:i07; family: listen_choose -->
+Ціль: `The crowd is outside.`
+Варіанти: `The crowd is outside.` · `The crowd is here.` · `The couple is outside.`
 
 **8 · Складіть фразу — друг шукає знайому пару; вони поруч із вами, повідомте про це**
-Плитки: `here` `couple` `The` `is` → **The couple is here.**
+<!-- interaction_id: en:lesson-02:session-39:i08; family: phrase_builder -->
+Ціль: `The couple is here.`
 
 **9 · Вставте слово — друг запитує, чи знайомі вам люди біля вікна; ви бачите їх уперше, скажіть: «Вони незнайомці»**
-*(`strangers` — «незнайомці»)*
-They are ___ . → **strangers** · friends · neighbours
-- friends — *Це «друзі». Ви бачите цих людей уперше, тому називаєте їх `strangers`.*
-- neighbours — *Це «сусіди». Ви не знаєте, хто ці люди й де вони живуть; тут потрібне `strangers`.*
+<!-- interaction_id: en:lesson-02:session-39:i09; family: context_gap_grammar -->
+Ціль: `They are ___ .`
+Варіанти: `strangers` · `friends` · `neighbours`
 
-**10 · З’єднайте пари — люди на вечірці (Speed Match, 4 пари)**
-couple — пара · crowd — натовп · host — господар вечірки · guests — гості
+**10 · З’єднайте пари — люди на вечірці**
+<!-- interaction_id: en:lesson-02:session-39:i10; family: speed_match -->
+Пари: `couple` — пара · `crowd` — натовп · `host` — господар вечірки · `guests` — гості
+Ціль: `couple · crowd · host · guests`
 
 **11 · Складіть фразу — господар просить з’ясувати, де зібрався натовп; запитайте про це друга**
-Плитки: `crowd` `Where` `the` `is` → **Where is the crowd?**
+<!-- interaction_id: en:lesson-02:session-39:i11; family: phrase_builder -->
+Ціль: `Where is the crowd?`
 
 **12 · Вставте слово — друг запитує, хто ці люди; господар запросив їх на вечірку, скажіть: «Вони гості»**
-*(`guests` — «гості»)*
-They are ___ . → **guests** · twins · managers
-- twins — *Це «близнюки». Ви повідомляєте, що цих людей запросили в гості, а не що вони народилися разом.*
-- managers — *Це «керівники». Їхня робота тут ні до чого: господар запросив їх як гостей — `guests`.*
+<!-- interaction_id: en:lesson-02:session-39:i12; family: context_gap_grammar -->
+Ціль: `They are ___ .`
+Варіанти: `guests` · `twins` · `managers`
 
 **13 · Послухайте й складіть — друг говорить про людей біля дверей**
-🔊 *Are they guests?* Плитки: `guests` `they` `Are` → **Are they guests?**
+<!-- interaction_id: en:lesson-02:session-39:i13; family: listen_build_dictation -->
+Ціль: `Are they guests?`
 
 **14 · Складіть фразу — господар збирається вас познайомити, але ви зі співрозмовником давно знайомі; скажіть: «Ми не незнайомці»**
-Плитки: `strangers` `not` `We` `are` → **We are not strangers.**
+<!-- interaction_id: en:lesson-02:session-39:i14; family: phrase_builder -->
+Ціль: `We are not strangers.`
 
-**15 · Скажіть уголос — друг прийняв людей біля виходу за незнайомців, але ви обоє з ними знайомі; виправте його: «Вони не незнайомці»**
-🎙 **They are not strangers.** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-39:i15; family: scripted_repeat_compare -->
+Ціль: `They are not strangers.`
 
-**16 · Скажіть уголос — знайома пара вийшла з кімнати, і ви хочете попрощатися; запитайте друга, де вона**
-🎙 **Where is the couple?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-39:i16; family: scripted_repeat_compare -->
+Ціль: `Where is the couple?`
 
 **17 · Складіть фразу — біля виходу стоять кілька незнайомих вам людей; дізнайтеся в господаря, хто вони**
-Плитки: `people` `Where` `these` `Who` `are` → **Who are these people?**
-*(плитка `Where` зайва: ви бачите людей і хочете дізнатися, хто вони)*
-
----
+<!-- interaction_id: en:lesson-02:session-39:i17; family: phrase_builder -->
+Ціль: `Who are these people?`
 
 ## Для сборщика
 
@@ -127,7 +133,7 @@ new_words:
 couple — пара — Тут — двоє людей, які зустрічаються або одружені.
 crowd — натовп — Багато людей, які зібралися в одному місці.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ---
 
@@ -159,8 +165,8 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | couple | 1 | 2, 8 |
 | crowd | 3 | 4, 7 |
-| host | урок 2, сесія 33 | 5, 6 |
-| guests | знайоме слово; повертається в уроці 2, сесіях 33–34 | слово з попередніх сесій |
+| host | урок 2, заняття 33 | 5, 6 |
+| guests | знайоме слово; повертається в уроці 2, заняттях 33–34 | слово з попередніх занять |
 
 **4. Нові слова**
 

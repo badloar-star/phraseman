@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro1:r2": {
+          "ru": "`the magazines` — это уже конкретные журналы. Здесь вы выбираете вид изданий вообще.",
+          "uk": "`the magazines` — це вже конкретні журнали. Тут ви обираєте вид видань узагалі."
+        },
+        "en:lesson-03:session-43:intro1:r3": {
+          "ru": "Перед несколькими журналами нельзя ставить `a`; здесь нужна форма `Magazines`.",
+          "uk": "Перед кількома журналами не можна ставити `a`; тут потрібна форма `Magazines`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro2:r2": {
+          "ru": "Без `the` фраза не указывает именно на эти уже отложенные журналы. Здесь нужна форма `The magazines`.",
+          "uk": "Без `the` фраза не вказує саме на ці вже відкладені журнали. Тут потрібна форма `The magazines`."
+        },
+        "en:lesson-03:session-43:intro2:r3": {
+          "ru": "Журналов несколько, поэтому `a` здесь не подходит.",
+          "uk": "Журналів кілька, тому `a` тут не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-43:intro3:r2": {
+          "ru": "`the newspapers` обозначает конкретную группу. Здесь вы выбираете газеты вообще.",
+          "uk": "`the newspapers` означає конкретну групу. Тут ви обираєте газети взагалі."
+        },
+        "en:lesson-03:session-43:intro3:r3": {
+          "ru": "Перед несколькими газетами не ставят `a`.",
+          "uk": "Перед кількома газетами не ставлять `a`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c842d2216d5edcd34e9f68818298f215c3bbfd9eb978fe041d8ffb545f4a9c9e"
+}

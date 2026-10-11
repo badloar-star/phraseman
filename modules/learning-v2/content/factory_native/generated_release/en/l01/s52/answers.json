@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-52:i01",
-    "correctText": "",
+    "correctText": "week",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i03",
-    "correctText": "",
+    "correctText": "day",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i05",
-    "correctText": "",
+    "correctText": "night",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i08",
-    "correctText": "",
+    "correctText": "morning",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-52:i10",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-52:i10:p1=week\nen:lesson-01:session-52:i10:p2=day\nen:lesson-01:session-52:i10:p3=night\nen:lesson-01:session-52:i10:p4=morning",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-52:i18",
-    "correctText": "The week is busy. The days are busy. The nights are quiet. I am tired in the morning.",
+    "interactionId": "en:lesson-01:session-52:i18:s01",
+    "correctText": "The week is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i18:s02",
+    "correctText": "The days are busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i18:s03",
+    "correctText": "The nights are quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i18:s04",
+    "correctText": "I am tired in the morning.",
     "correctResponseId": null
   }
 ]

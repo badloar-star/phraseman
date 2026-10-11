@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro1:r2": {
+          "ru": "Пропало `is`. Оно встаёт сразу за `where`: `Where is the station?`",
+          "uk": "Зникло `is`. Воно стає одразу за `where`: `Where is the station?`"
+        },
+        "en:lesson-02:session-17:intro1:r3": {
+          "ru": "`is` уехало в конец. Его место — сразу после `where`, до самого места.",
+          "uk": "`is` поїхало в кінець. Його місце — одразу після `where`, до самого місця."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro2:r2": {
+          "ru": "Потерялось `the`. Про ту самую улицу, которую вы ищете, говорят `the street`.",
+          "uk": "Загубилося `the`. Про ту саму вулицю, яку ви шукаєте, кажуть `the street`."
+        },
+        "en:lesson-02:session-17:intro2:r3": {
+          "ru": "Пропало `is`. `the` его не заменяет: сначала `Where is`, потом место.",
+          "uk": "Зникло `is`. `the` його не замінює: спершу `Where is`, потім місце."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-17:intro3:r2": {
+          "ru": "Пропало `am`. Между `I` и словом о себе оно стоит: `I am lost`.",
+          "uk": "Зникло `am`. Між `I` і словом про себе воно стоїть: `I am lost`."
+        },
+        "en:lesson-02:session-17:intro3:r3": {
+          "ru": "Это вопрос, а вы сообщаете о себе. Тут нужна точка, а не знак вопроса.",
+          "uk": "Це питання, а ви повідомляєте про себе. Тут потрібна крапка, а не знак питання."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3e04cbe3eac9c03eaaf9faecdcf59b6a331aca3693eff966bcbff8a6783bfcc7"
+}

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-51:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — there",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -233,7 +233,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-51:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — inside",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -380,7 +380,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-51:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — upstairs",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -575,11 +575,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -810,11 +810,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова, которые уже звучали (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова, которые уже звучали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова, которые уже звучали (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова, которые уже звучали",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -878,26 +878,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-51:i17",
+      "interactionId": "en:lesson-01:session-51:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — четыре ответа маме подряд",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-51:i17:audio"
+        "en:lesson-01:session-51:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — четыре ответа маме подряд",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-51:i17:audio",
-          "transcript": "I am home. He is upstairs. I am not alone. I am tired."
+          "audioTargetId": "en:lesson-01:session-51:i17:s01:audio",
+          "transcript": "I am home."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am home. He is upstairs. I am not alone. I am tired.",
+        "targetPhrase": "I am home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i17:s02:audio",
+          "transcript": "He is upstairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is upstairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i17:s03:audio",
+          "transcript": "I am not alone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not alone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i17:s04:audio",
+          "transcript": "I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -911,11 +1010,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "46eb8135dd4f58a4f85696d18da99221540e1da6ea8258c2331d89ae379b1653"
+  "learnerFingerprint": "261bc3f19242992f9f3acef89a35efd8be3cca88322332062db4dd6533c67f59"
 }

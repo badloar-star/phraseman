@@ -189,13 +189,13 @@
       "purpose": "supported_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин громче всех перекрикивает музыку; скажите, что он шумный",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i04:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин громче всех перекрикивает музыку; скажите, что он шумный",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -711,13 +711,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин отошёл, и вы ищете его; спросите друга, где хозяин",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i14:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин отошёл, и вы ищете его; спросите друга, где хозяин",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -744,13 +744,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг упомянул знакомого мужчину; уточните, здесь ли он",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-36:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг упомянул знакомого мужчину; уточните, здесь ли он",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -838,5 +838,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b587b67df202190c861b8de7f78978578feb44a515b216f43e713972d7369ef2"
+  "learnerFingerprint": "33f071898b693cc5372e6d88524983d97ccdeeee57ca323e32901f89ad52f5bb"
 }

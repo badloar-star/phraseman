@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 42 — «he's, she's, it's»
+# Английский · Урок 1 · Занятие 42 — «he's, she's, it's»
 
-**Сцена сессии.** Пятница, паб после работы. Гул, музыка, все говорят короткими рублеными репликами — и никто не выговаривает `he is` и `she is` целиком.
-**Операция:** сокращения `he's` / `she's` / `it's`
+**Ситуация.** В кафе Ира, Олег и Лина обсуждают нового руководителя, тихую коллегу и невкусный напиток. Вы отвечаете короткими английскими фразами.
+**Сегодня.** Скажете `he's`, `she's` и `it's`.
 **Новые слова:** great, awful, gone
 **Возвращаются:** here, late, funny, quiet
 
@@ -61,74 +61,95 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (19 заданий, подсказок становится меньше)
 
 **1 · Карточка слова — great**
+<!-- interaction_id: en:lesson-01:session-42:i01; family: listen_choose -->
 > **great** — «отлично, класс». Самая частая похвала в баре: и про человека, и про вечер, и про матч по телевизору.
 
-**2 · Послушайте и выберите — great**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
 🔊 *great* → **great** · grade · gate
 - grade — *На конце «д», а не «т». Слово другое — «оценка».*
 - gate — *Внутри нет «р». `gate` — «ворота».*
 
 **3 · Карточка слова — awful**
+<!-- interaction_id: en:lesson-01:session-42:i03; family: listen_choose -->
 > **awful** — «ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.
 
-**4 · Послушайте и выберите — awful**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-42:i04; family: listen_choose -->
 🔊 *awful* → **awful** · offer · awake
 - offer — *Другое слово и другой конец: `-er` против `-ful`.*
 - awake — *Начало похоже, дальше всё расходится: в `awful` нет «к».*
 
 **5 · Соберите фразу — «он отличный»**
+<!-- interaction_id: en:lesson-01:session-42:i05; family: phrase_builder -->
 Плитки: `He's` `great` `is` → **He's great.**
 
 **6 · Карточка слова — gone**
+<!-- interaction_id: en:lesson-01:session-42:i06; family: listen_choose -->
 > **gone** — «ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.
 
-**7 · Послушайте и выберите — gone**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-42:i07; family: listen_choose -->
 🔊 *gone* → **gone** · go · gun
 - go — *Только начало, без «н» на конце.*
 - gun — *Другая гласная и другое слово — «пистолет».*
 
 **8 · Вставьте слово — начальник в баре всем понравился**
+<!-- interaction_id: en:lesson-01:session-42:i08; family: context_gap_grammar -->
 He's ___ . → **great** · awful · gone
 - awful — *Это «ужасный» — ровно наоборот.*
 - gone — *«Ушёл». Он сидит с вами за столом.*
 
-**9 · Вставьте значок — «она тихая»**
-She___ quiet. → **'s** · s · is's
-- s — *Без значка это просто буква, приклеенная к слову.*
-- is's — *Или `she is`, или `she's`. Вместе — нет.*
+**9 · Послушайте и соберите — Лина читает сообщение: «Она тихая»**
+<!-- interaction_id: en:lesson-01:session-42:i09; family: listen_build_dictation -->
+🔊 *She's quiet.* Плитки: `She's` `quiet` `She` → **She's quiet.**
 
-**10 · Соедините пары (Speed Match, 4 пары)**
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
 great — отлично · awful — ужасный · gone — ушёл · quiet — тихая
 
 **11 · Послушайте и соберите — «оно ужасное»**
+<!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
 🔊 *It's awful.* Плитки: `awful` `It's` `great` `is` → **It's awful.**
 
 **12 · Вставьте слово — вы обернулись, а стул друга пустой**
+<!-- interaction_id: en:lesson-01:session-42:i12; family: context_gap_grammar -->
 He's ___ . → **gone** · here · late
 - here — *«Здесь». Как раз наоборот: его нет.*
 - late — *«Опоздал». Он не опоздал, он уже успел уйти.*
 
 **13 · Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко**
+<!-- interaction_id: en:lesson-01:session-42:i13; family: phrase_builder -->
 Плитки: `funny` `She's` `is` `quiet` → **She's funny.**
 *(`funny` — «смешная», `quiet` — «тихая»)*
 
 **14 · Послушайте и соберите — «он здесь»**
+<!-- interaction_id: en:lesson-01:session-42:i14; family: listen_build_dictation -->
 🔊 *He's here.* Плитки: `here` `He's` `gone` `is` → **He's here.**
 
 **15 · Вставьте слово — на улице ливень, вы забежали в паб**
+<!-- interaction_id: en:lesson-01:session-42:i15; family: context_gap_grammar -->
 It's ___ . → **awful** · quiet · great
 - quiet — *«Тихо». Про ливень так не скажешь.*
 - great — *«Отлично». Мокрым под дождём — вряд ли.*
 
-**16 · Соберите фразу — её всё нет, а начало было в семь; скажите коротко** (`late` — «опоздала»)
+**16 · Соберите фразу — её всё нет, а начало было в семь; скажите коротко**<!-- interaction_id: en:lesson-01:session-42:i16; family: phrase_builder --> (`late` — «опоздала»)
 Плитки: `late` `She's` `is` → **She's late.**
 
-**17 · Скажите вслух — вечер закончился**
-🎙 Друг спрашивает, как вам вечер и где все. Ответьте тремя фразами: вечер был отличный, начальник ушёл, а в пабе стало тихо.
-**It's great. He's gone. It's quiet.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-42:i17:s01; family: scripted_repeat_compare -->
+Ира спрашивает, как прошёл вечер. 🎙 **It's great.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-42:i17:s02; family: scripted_repeat_compare -->
+Олег смотрит на пустой стул руководителя. 🎙 **He's gone.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-42:i17:s03; family: scripted_repeat_compare -->
+Лина выключила музыку, и в кафе стало тихо. 🎙 **It's quiet.**
 
 ---
 
@@ -139,40 +160,5 @@ great — отлично, класс — «отлично, класс». Сам�
 awful — ужасный — «ужасный». Не «так себе», а прямо плохо: еда, погода, вечер.
 gone — ушёл — «ушёл, его больше нет». Был человек за столом — и нет человека. Или было пиво в кружке.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=context_gap_grammar, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=speed_match, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| here | 12 (ловушка), 14 (сборка) | 14 — `He's here.` |
-| late | 12 (ловушка), 16 (сборка) | 16 — `She's late.` |
-| funny | 13 (сборка) | 13 — `She's funny.` |
-| quiet | интро 2, 10 (доска), 13 (ловушка), 15 (ловушка), 17 (финал) | 17 — `It's quiet.` |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | `He's great` | да — `great` в первой строке, `he's great` в тексте |
-| Интро 2 | `She's quiet` | да — `quiet` в первой строке, `she's quiet` в тексте |
-| Интро 3 | `It's awful` | да — `awful` в первой строке, `it's awful` в тексте |
-
-**3. Доска пар (задание 10)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| great | 1 | 2 (слух), 5 (сборка), 8 (выбор) |
-| awful | 3 | 4 (слух), 8 (ловушка-выбор) |
-| gone | 6 | 7 (слух), 8 (ловушка-выбор) |
-| quiet | из прошлых сессий | интро 2, задание 9 (фраза `She's quiet`) |
-
----
-
-- Написал сессию 42 курса английского: три страницы объяснения про короткие формы «он/она/оно есть» и 17 упражнений.
-- Новых слов три: «отлично», «ужасный», «ушёл» — каждое сначала объясняется карточкой, потом слушается, потом идёт во фразу.
-- Место действия — пятничный паб, чтобы был повод говорить короткими репликами; люди появляются только в вопросах, а не в объяснениях.
-- Все старые слова из списка «возвращаются» переведены прямо на месте и хотя бы раз стоят правильным ответом, а не только ловушкой.
-- В конце приложил три таблицы самопроверки — они подтверждают, что каждое слово отработано и вопросы проверяют ровно то, что объяснено выше.

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-28:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — broken",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-28:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — open",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -339,7 +339,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-28:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — closed",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -527,7 +527,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-28:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — empty",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -617,11 +617,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1048,11 +1048,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова про вещи (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова про вещи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова про вещи (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова про вещи",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1116,26 +1116,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-28:i20",
+      "interactionId": "en:lesson-01:session-28:i20:s01",
       "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы звоните хозяину квартиры и перечисляете беды",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-28:i20:audio"
+        "en:lesson-01:session-28:i20:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы звоните хозяину квартиры и перечисляете беды",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-28:i20:audio",
-          "transcript": "It is broken. It is empty. It is cold."
+          "audioTargetId": "en:lesson-01:session-28:i20:s01:audio",
+          "transcript": "It is broken."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is broken. It is empty. It is cold.",
+        "targetPhrase": "It is broken.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1149,19 +1149,85 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-28:i21",
+      "interactionId": "en:lesson-01:session-28:i20:s02",
       "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i20:s02:audio",
+          "transcript": "It is empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i20:s03",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i20:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i20:s03:audio",
+          "transcript": "It is cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i21:s01",
+      "ordinal": 26,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
+      "prompt": "Соберите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is closed. It is small.",
+        "targetPhrase": "It is closed.",
         "localizedMeaning": {
           "ru": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
           "uk": "Фінал сцени — складіть дві фрази: крамниця зачинена, а квартира маленька"
@@ -1169,7 +1235,34 @@
         "orderedTokens": [
           "It",
           "is",
-          "closed.",
+          "closed."
+        ],
+        "authoredDistractorTokens": [
+          "new"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-28:i21:s02",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is small.",
+        "localizedMeaning": {
+          "ru": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
+          "uk": "Фінал сцени — складіть дві фрази: крамниця зачинена, а квартира маленька"
+        },
+        "orderedTokens": [
           "It",
           "is",
           "small"
@@ -1182,11 +1275,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 24,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "12dab4f3f8cf9a9f964d0eec8de8053e984bcb7e9580d3b3be13047ae846d8ef"
+  "learnerFingerprint": "65d80304266ad6d0e370358b21cd6410ce201452d70c621d4a53fb55db8709eb"
 }

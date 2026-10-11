@@ -1,0 +1,31 @@
+{
+  "session": "en/l03/s50",
+  "sourceSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+  "exactRuSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+  "exactUkSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+  "localeSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+  "localeHashes": {
+    "ru": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+    "uk": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288"
+  },
+  "practiceAtomicSha256": "9b30a416426b3d52a24f8dfbf7e09b94da11e2fa65fc30b83a9d82bcd2b3cbd9",
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-10-04T00:10:00+01:00",
+  "derivedFromFreshBatchReview": {
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "reviewedAt": "2026-10-04T00:10:00+01:00"
+  }
+}

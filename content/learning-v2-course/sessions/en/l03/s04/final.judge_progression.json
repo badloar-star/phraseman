@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "f86f9ad67d713feb61b79936855607762fa6160e78bb5cf1025faef213da0426",
+  "localeSha256": "30a60c8b7426034584297e309c12044d0f3956bb39f234d5647a82d52a88eb59",
+  "comparedThrough": "en/l03/s03",
+  "newWords": [
+    "key",
+    "door",
+    "window"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 4 | голос/слух | услышать `a` перед существительным | key, door, window | хозяин квартиры перечисляет мелочи |",
+  "curriculumEvidence": {
+    "grammar": "знакомое `a + noun` на слух и вслух; сохраняем `a` в названии внутри утверждения, вопроса и отрицания",
+    "newWords": [
+      "key",
+      "door",
+      "window"
+    ],
+    "situation": "Хозяин квартиры показывает, где что находится, и оставляет вам ключ. Вы слушаете его пояснения, называете вещи вслух и переспрашиваете, когда нужно уточнить."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

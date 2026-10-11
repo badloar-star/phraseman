@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-07:i01",
-    "correctText": "",
+    "correctText": "glad",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i03",
-    "correctText": "",
+    "correctText": "full",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i05",
-    "correctText": "",
+    "correctText": "scared",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i07",
-    "correctText": "",
+    "correctText": "bored",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i12",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-07:i12:p1=glad\nen:lesson-01:session-07:i12:p2=full\nen:lesson-01:session-07:i12:p3=scared\nen:lesson-01:session-07:i12:p4=bored",
     "correctResponseId": null
   },
   {
@@ -81,12 +81,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-07:i17",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-07:i17:p1=hungry\nen:lesson-01:session-07:i17:p2=tired\nen:lesson-01:session-07:i17:p3=done\nen:lesson-01:session-07:i17:p4=fine",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-07:i18",
-    "correctText": "I am tired. I am not lost. I am fine. I am glad.",
+    "interactionId": "en:lesson-01:session-07:i18:s01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-07:i18:s02",
+    "correctText": "I am not lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-07:i18:s03",
+    "correctText": "I am fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-07:i18:s04",
+    "correctText": "I am glad.",
     "correctResponseId": null
   }
 ]

@@ -1,52 +1,52 @@
 [
   {
     "interactionId": "en:lesson-03:session-42:i01",
-    "correctText": "",
+    "correctText": "handle",
+    "correctResponseId": "en:lesson-03:session-42:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i03",
+    "correctText": "lock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i05",
+    "correctText": "bell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i02",
-    "correctText": "locker",
-    "correctResponseId": "en:lesson-03:session-42:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-42:i03",
-    "correctText": "",
+    "correctText": "handle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i04",
-    "correctText": "keypad",
+    "correctText": "lock",
     "correctResponseId": "en:lesson-03:session-42:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-42:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-42:i06",
+    "correctText": "bell",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-42:i06",
-    "correctText": "compartment",
-    "correctResponseId": "en:lesson-03:session-42:i06:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-42:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-42:i07:p1=handle\nen:lesson-03:session-42:i07:p2=lock\nen:lesson-03:session-42:i07:p3=bell\nen:lesson-03:session-42:i07:p4=receipt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i08",
-    "correctText": "locker",
+    "correctText": "handle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i09",
-    "correctText": "keypad",
+    "correctText": "lock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i10",
-    "correctText": "compartment",
+    "correctText": "bell",
     "correctResponseId": null
   },
   {
@@ -56,17 +56,17 @@
   },
   {
     "interactionId": "en:lesson-03:session-42:i12",
-    "correctText": "Кодовая клавиатура тёмная",
+    "correctText": "Замок сломан",
     "correctResponseId": "en:lesson-03:session-42:i12:r1"
   },
   {
     "interactionId": "en:lesson-03:session-42:i13",
-    "correctText": "The locker is broken.",
+    "correctText": "The handle is stuck.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-42:i14",
-    "correctText": "The keypad is dark.",
+    "correctText": "The lock is broken.",
     "correctResponseId": null
   },
   {
@@ -76,12 +76,22 @@
   },
   {
     "interactionId": "en:lesson-03:session-42:i16",
-    "correctText": "The compartment is closed.",
+    "correctText": "The bell is silent.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-42:i17",
-    "correctText": "The locker is broken. The keypad is dark. The compartment is closed.",
+    "interactionId": "en:lesson-03:session-42:i17:s01",
+    "correctText": "The handle is stuck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i17:s02",
+    "correctText": "The lock is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i17:s03",
+    "correctText": "The bell is silent.",
     "correctResponseId": null
   }
 ]

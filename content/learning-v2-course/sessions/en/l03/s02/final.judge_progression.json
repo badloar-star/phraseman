@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "fc02bc34749ed96ee890e99119714b7ce5043c5e815b995b0070b80b8f3473e6",
+  "localeSha256": "641040cf08e0fed3b31713344b9525ca49c454242969ce6cc1a1ee97a978c5c8",
+  "comparedThrough": "en/l03/s01",
+  "newWords": [
+    "sofa",
+    "bed",
+    "desk"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 2 | применение | `It is a + noun` для называния предмета | sofa, bed, desk | называем крупную мебель |",
+  "curriculumEvidence": {
+    "grammar": "применение `It is a + noun`: называем крупную мебель",
+    "newWords": [
+      "sofa",
+      "bed",
+      "desk"
+    ],
+    "situation": "Вы обустраиваете квартиру. Вместе с сестрой снимаете чехлы с крупной мебели и разбираетесь, что куда поставить."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 30 — «Цю річ, будь ласка»
+# Англійська · Урок 3 · Заняття 30 — «Цю річ, будь ласка»
 
-**Сцена сесії.** У відділі одягу продавець допомагає вам вибрати одну річ. Светр лежить поруч на стійці, шарф висить біля дальньої стіни, а рукавичка — на ближній полиці; потрібно коротко показати продавцеві, яку річ ви берете.
+**Сцена заняття.** У відділі одягу продавець допомагає вам вибрати одну річ. Светр лежить поруч на стійці, шарф висить біля дальньої стіни, а рукавичка — на ближній полиці; потрібно коротко показати продавцеві, яку річ ви берете.
 
-**Операція:** `This/That + один предмет, please` — вибрати одну річ поруч або вдалині
+**Як сказати:** `This/That + один предмет, please` — вибрати одну річ поруч або вдалині
 **Нові слова:** sweater, scarf, glove
 **Для повторення:** bag, box, key, warm, small
 
@@ -56,83 +56,95 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — sweater**
-> **sweater** — «светр». Теплий в'язаний одяг із довгими рукавами, який надягають через голову.
+<!-- interaction_id: en:lesson-03:session-30:i01; family: listen_choose -->
+Ціль: `sweater`
 
-**2 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *sweater* → **sweater** · sweeter · sweeper · letter
-Значення варіантів: sweater — светр · sweeter — солодший · sweeper — прибиральник · letter — лист
-- sweeter — *У `sweeter` перший голосний — довгий /iː/. У `sweater` звучить короткий /e/.*
-- sweeper — *`sweeper` теж починається довгим /iː/, а в `sweater` перший голосний короткий: /e/.*
-- letter — *Кінець схожий, але `letter` починається звуком `l`, а `sweater` — сполученням `sw`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-30:i03; family: scripted_repeat_compare -->
+Ціль: `scarf`
 
-**3 · Картка слова — scarf**
-> **scarf** — «шарф». Довга смуга тканини, яку носять на шиї для тепла.
+**3 · Виберіть назву — на ближній полиці лежить рукавичка**
+<!-- interaction_id: en:lesson-03:session-30:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `glove` · `scarf` · `sweater`
 
-**4 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *scarf* → **scarf** · scar · scale · star
-Значення варіантів: scarf — шарф · scar — шрам · scale — шкала · star — зірка
-- scar — *У `scarf` фінальний звук — `f`; у `scar` фінал — голосний або `r`, залежно від акценту.*
-- scale — *Обидва слова починаються /sk/. Далі в `scale` звучить /eɪ/, а в `scarf` — /ɑː~ɑ/ і фінальний `f`.*
-- star — *`star` починається сполученням `st`, а в записі прозвучав початок `sc`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-30:i02; family: scripted_repeat_compare -->
+Ціль: `sweater`
 
-**5 · Картка слова — glove**
-> **glove** — «рукавичка». Одяг для однієї руки з окремим місцем для кожного пальця.
+**5 · Послухайте й виберіть — яке слово назвав продавець**
+<!-- interaction_id: en:lesson-03:session-30:i04; family: listen_choose -->
+Значення варіантів: `scarf` — шарф · `scar` — шрам · `scale` — шкала · `star` — зірка
+Ціль: `scarf`
+Варіанти: `scarf` · `scar` · `scale` · `star`
 
-**6 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *glove* → **glove** · love · glow · globe
-Значення варіантів: glove — рукавичка · love — кохання · glow — сяйво · globe — глобус
-- love — *`love` починається одразу звуком `l`, а в `glove` перед ним чути `g`.*
-- glow — *У `glow` звучить дифтонг /oʊ~əʊ/. У `glove` голосний короткий /ʌ/, а фінальний звук — `v`.*
-- globe — *Фінальний звук у `globe` — `b`, а у слові `glove` в записі — `v`.*
+**6 · Розрізніть слово — glove або love**
+<!-- interaction_id: en:lesson-03:session-30:i06; family: sound_contrast -->
+Ціль: `glove`
+Варіанти: `glove` · `love`
 
 **7 · З’єднайте слова зі значеннями — відділ одягу**
-sweater — светр · scarf — шарф · glove — рукавичка · bag — сумка
+<!-- interaction_id: en:lesson-03:session-30:i07; family: speed_match -->
+Пари: `sweater` — светр · `scarf` — шарф · `glove` — рукавичка · `bag` — сумка
+Ціль: `sweater · scarf · glove · bag`
 
-**8 · Поставте у відповідь ціле слово — тепла в’язана річ, яку надягають через голову**
-Плитки: `sweater` `sweeter` `sweeper` `letter` → **sweater**
+**8 · Виберіть форму — ця річ лежить тут**
+<!-- interaction_id: en:lesson-03:session-30:i08; family: context_gap_grammar -->
+Ціль: `This ___ here.`
+Варіанти: `is` · `are`
 
-**9 · Скажіть уголос — довга тканина на шию**
-🎙 **scarf** — послухайте, повторіть і порівняйте.
+**9 · Розрізніть слово — This або That**
+<!-- interaction_id: en:lesson-03:session-30:i09; family: sound_contrast -->
+Ціль: `This`
+Варіанти: `This` · `That`
 
-**10 · Послухайте й поставте у відповідь ціле слово — річ на одну руку**
-🔊 *glove* Плитки: `glove` `love` `glow` `globe` → **glove**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-30:i10; family: scripted_repeat_compare -->
+Ціль: `This glove, please.`
 
 **11 · Складіть прохання — светр лежить перед вами**
-Плитки: `This` `sweater` `please` `That` `a` → **This sweater, please.**
+<!-- interaction_id: en:lesson-03:session-30:i11; family: phrase_builder -->
+Ціль: `This sweater, please.`
 
-**12 · Скажіть уголос — шарф висить на дальній стіні**
-🎙 **That scarf, please.** — послухайте, повторіть і порівняйте.
+**12 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-30:i12; family: listen_build_dictation -->
+Ціль: `That scarf, please.`
 
 **13 · Вставте вказівне слово — рукавичка лежить просто перед вами**
-___ glove, please. → **This** · That · It · Is
-- That — *`that` указує на річ вдалині. Рукавичка перед вами, тому потрібне `This`.*
-- It — *`it glove` не утворює прохання. Перед назвою вибраної речі ставимо `This`.*
-- Is — *`Is glove` — неправильний початок запитання. Тут потрібне коротке прохання `This glove, please`.*
+<!-- interaction_id: en:lesson-03:session-30:i13; family: context_gap_grammar -->
+Ціль: `___ glove, please.`
+Варіанти: `This` · `That` · `It` · `Is`
 
 **14 · Послухайте й виберіть точне значення прохання**
-🔊 *That sweater, please.* → **Той светр, будь ласка** · Цей светр, будь ласка · Той шарф, будь ласка · Цей шарф, будь ласка
-- Цей светр, будь ласка — *У записі прозвучало `That`: вибирають дальній светр, а не ближній.*
-- Той шарф, будь ласка — *Відстань збігається, але в записі назвали `sweater`, а не `scarf`.*
-- Цей шарф, будь ласка — *Тут відрізняються обидва ключові слова: прозвучали `That sweater`, а не `This scarf`.*
+<!-- interaction_id: en:lesson-03:session-30:i14; family: listen_choose -->
+Ціль: `That sweater, please.`
+Варіанти: `Той светр, будь ласка` · `Цей светр, будь ласка` · `Той шарф, будь ласка` · `Цей шарф, будь ласка`
 
 **15 · Складіть прохання — рукавичка лежить на дальній полиці**
-Плитки: `That` `glove` `please` `This` `is` → **That glove, please.**
+<!-- interaction_id: en:lesson-03:session-30:i15; family: phrase_builder -->
+Ціль: `That glove, please.`
 
 **16 · Вставте вказівне слово — шарф висить в іншому кінці зали**
-___ scarf, please. → **That** · This · It · Am
-- This — *`this` вибирає річ поруч. Шарф в іншому кінці зали, тому потрібне `That`.*
-- It — *`it scarf` не утворює прохання. Перед назвою далекої речі ставимо `That`.*
-- Am — *`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо далекий шарф словом `That`.*
+<!-- interaction_id: en:lesson-03:session-30:i16; family: context_gap_grammar -->
+Ціль: `___ scarf, please.`
+Варіанти: `That` · `This` · `It` · `Am`
 
-**17 · Фінал — продавець переставив три речі**
-Светр тепер біля дальньої стіни, шарф лежить перед вами, а рукавичка — на дальній полиці. Попросіть усі три речі по черзі.
-🎙 **That sweater, please. This scarf, please. That glove, please.** — спочатку вимовте три прохання, потім послухайте зразок і порівняйте.
+**17 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-30:i17:s01; family: listen_build_dictation -->
+Ціль: `That sweater, please.`
 
-## Для збирача
-new_words: sweater — светр — Теплий в'язаний одяг із довгими рукавами, який надягають через голову.
-new_words: scarf — шарф — Довга смуга тканини, яку носять на шиї для тепла.
-new_words: glove — рукавичка — Одяг для однієї руки з окремим місцем для кожного пальця.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-30:i17:s02; family: scripted_repeat_compare -->
+Ціль: `This scarf, please.`
+
+**19 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-30:i17:s03; family: listen_build_dictation -->
+Ціль: `That glove, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation
+

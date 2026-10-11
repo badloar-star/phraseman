@@ -1,1 +1,17 @@
-{"sourceSha256":"96740f70090bc3e488826de4763ffeb9b9505e75904deae3785585f0efd4ac99","reviewer":"/root/s10_truth","model":"gpt-5.6-sol","reasoningEffort":"medium","problems":[],"verdict":"PASS","verdict_reason":"Проверены все английские и русские утверждения, выбор a/an по первому звуку, значения и определения, все разборы неверных ответов и три произносительных набора; фактических ошибок, ложных универсалий или внутренних противоречий нет, а качество реального аудио не оценивалось.","evidence":["vase UK /vɑːz/ US /veɪs/: truthful variation without assuming actual voice.","clock/lock/block onset contrasts valid in both varieties.","radio ends vowel, radial /l/, radiant /nt/; no identical third-vowel claim.","hour vowel onset an; uniform /j/ onset a.","Definitions and wrong-option meanings materially true; no English r=Cyrillic р identity."],"primarySources":["https://dictionary.cambridge.org/us/pronunciation/english/vase","https://dictionary.cambridge.org/us/pronunciation/english/voice","https://dictionary.cambridge.org/us/pronunciation/english/vice","https://dictionary.cambridge.org/us/pronunciation/english/clock","https://dictionary.cambridge.org/us/pronunciation/english/lock","https://dictionary.cambridge.org/us/pronunciation/english/block","https://dictionary.cambridge.org/pronunciation/english/radio","https://dictionary.cambridge.org/pronunciation/english/radial","https://dictionary.cambridge.org/us/pronunciation/english/radiant"],"actualAudioReviewed":false}
+{
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_nonsense",
+  "sourceSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactRuSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactUkSha256": "938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7",
+  "practiceAtomicSha256": "c93852a62708b8f668c4170b4e333b0c9c7bee3ba588094b061e8af51d45fcbb",
+  "verdict": "PASS",
+  "evidence": [
+    "Every visible option, audio target, and localized meaning is a single allowed unit.",
+    "RU/UK have 17/17 aligned current atomic interactions."
+  ],
+  "blockers": [],
+  "mustFix": []
+}

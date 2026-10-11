@@ -846,26 +846,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-22:i17",
+      "interactionId": "en:lesson-02:session-22:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — спросили и получили ответ",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-22:i17:audio"
+        "en:lesson-02:session-22:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — спросили и получили ответ",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-22:i17:audio",
-          "transcript": "Where are the toilets? They are downstairs."
+          "audioTargetId": "en:lesson-02:session-22:i17:s01:audio",
+          "transcript": "Where are the toilets?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are the toilets? They are downstairs.",
+        "targetPhrase": "Where are the toilets?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-22:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-22:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-22:i17:s02:audio",
+          "transcript": "They are downstairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are downstairs.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -879,11 +912,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d92dad016c94dce2bdc99ba3fa563f3be1ea8b435fb33ad1e990018cef52c40"
+  "learnerFingerprint": "c4f27cffe60d54aa03ff47a57d106990430501a3876308f6cc5a4d2bc5f5933e"
 }

@@ -1,0 +1,694 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите новое слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-18:i01:r1",
+          "text": "milk"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i01:r2",
+          "text": "berry"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i01:r3",
+          "text": "container"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i01:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-18:i01:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i01:r2",
+            "targetText": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i01:r3",
+            "targetText": "container",
+            "meaningByLocale": {
+              "ru": "контейнер",
+              "uk": "контейнер"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-18:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите новое слово",
+            "feedbackByLocale": {
+              "ru": "В записи названо молоко, а не ягода.",
+              "uk": "У записі названо молоко, а не ягоду."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите новое слово",
+            "feedbackByLocale": {
+              "ru": "В записи назван продукт, а не ёмкость.",
+              "uk": "У записі названо продукт, а не ємність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите новое слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i02:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "milk",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-18:i03:p1",
+            "target": "milk",
+            "meaningByLocale": {
+              "ru": "молоко",
+              "uk": "молоко"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-18:i03:p2",
+            "target": "berry",
+            "meaningByLocale": {
+              "ru": "ягода",
+              "uk": "ягода"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-18:i03:p3",
+            "target": "container",
+            "meaningByLocale": {
+              "ru": "контейнер",
+              "uk": "контейнер"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-18:i03:p4",
+            "target": "basket",
+            "meaningByLocale": {
+              "ru": "корзина",
+              "uk": "кошик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "milk",
+          "berry",
+          "container",
+          "basket"
+        ],
+        "rightColumn": [
+          "молоко",
+          "ягода",
+          "контейнер",
+          "корзина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сообщение о молоке в холодильнике",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-18:i04:r1",
+          "text": "There is some milk in the fridge."
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i04:r2",
+          "text": "There is milk in the fridge."
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i04:r3",
+          "text": "There are some containers in the fridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение о молоке в холодильнике",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i04:audio",
+          "transcript": "There is some milk in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-18:i04:r1",
+            "targetText": "There is some milk in the fridge.",
+            "meaningByLocale": {
+              "ru": "В холодильнике есть немного молока.",
+              "uk": "У холодильнику є трохи молока."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r2",
+            "targetText": "There is milk in the fridge.",
+            "meaningByLocale": {
+              "ru": "В холодильнике есть молоко.",
+              "uk": "У холодильнику є молоко."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r3",
+            "targetText": "There are some containers in the fridge.",
+            "meaningByLocale": {
+              "ru": "В холодильнике есть несколько контейнеров.",
+              "uk": "У холодильнику є кілька контейнерів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о молоке в холодильнике",
+            "feedbackByLocale": {
+              "ru": "В записи слышно ограниченное количество `some`, поэтому нужна полная фраза.",
+              "uk": "У записі чути обмежену кількість `some`, тому потрібна повна фраза."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте сообщение о молоке в холодильнике",
+            "feedbackByLocale": {
+              "ru": "В записи говорится о молоке, а не о контейнерах.",
+              "uk": "У записі йдеться про молоко, а не про контейнери."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение о молоке в контейнере",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение о молоке в контейнере",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some milk in the container.",
+        "localizedMeaning": {
+          "ru": "Соберите сообщение о молоке в контейнере",
+          "uk": "Складіть повідомлення про молоко в контейнері"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk",
+          "in",
+          "the",
+          "container"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "berries"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово количества",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-18:i06:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i06:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i06:r3",
+          "text": "this"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово количества",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе есть немного молока. Вставьте слово количества.",
+          "uk": "На столі є трохи молока. Вставте слово кількості."
+        },
+        "gappedTargetPhrase": "There is ___ milk on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i06:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i06:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i06:r3",
+            "text": "this"
+          }
+        ],
+        "testedDimension": "Выбор some перед неисчисляемым milk",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "some в утверждении",
+            "feedbackByLocale": {
+              "ru": "В этой утвердительной фразе ограниченное количество передаём через `some`.",
+              "uk": "У цьому стверджувальному реченні обмежену кількість передаємо через `some`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "some в утверждении",
+            "feedbackByLocale": {
+              "ru": "В пропуске нужно слово количества перед неисчисляемым `milk`.",
+              "uk": "У пропуску потрібне слово кількості перед незлічуваним `milk`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение о молоке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение о молоке",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i07:audio",
+          "transcript": "There is some milk behind the basket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is some milk behind the basket.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk",
+          "behind",
+          "the",
+          "basket"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "a"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите полное сообщение",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-18:i08:r1",
+          "text": "There is some milk near the berries."
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i08:r2",
+          "text": "There is milk near the berries."
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i08:r3",
+          "text": "There are some berries near the milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите полное сообщение",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i08:audio",
+          "transcript": "There is some milk near the berries."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-18:i08:r1",
+            "targetText": "There is some milk near the berries.",
+            "meaningByLocale": {
+              "ru": "Возле ягод есть немного молока.",
+              "uk": "Біля ягід є трохи молока."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r2",
+            "targetText": "There is milk near the berries.",
+            "meaningByLocale": {
+              "ru": "Возле ягод есть молоко.",
+              "uk": "Біля ягід є молоко."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r3",
+            "targetText": "There are some berries near the milk.",
+            "meaningByLocale": {
+              "ru": "Возле молока есть несколько ягод.",
+              "uk": "Біля молока є кілька ягід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите полное сообщение",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `some`: количество молока ограничено.",
+              "uk": "У записі чути `some`: кількість молока обмежена."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите полное сообщение",
+            "feedbackByLocale": {
+              "ru": "В записи говорится о молоке возле ягод, а не о ягодах возле молока.",
+              "uk": "У записі йдеться про молоко біля ягід, а не про ягоди біля молока."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение о молоке у контейнера",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение о молоке у контейнера",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some milk by the container.",
+        "localizedMeaning": {
+          "ru": "Соберите сообщение о молоке у контейнера",
+          "uk": "Складіть повідомлення про молоко біля контейнера"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk",
+          "by",
+          "the",
+          "container"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "berries"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение о молоке перед завтраком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение о молоке перед завтраком",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-18:i10:audio",
+          "transcript": "There is some milk by the breakfast basket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is some milk by the breakfast basket.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk",
+          "by",
+          "the",
+          "breakfast",
+          "basket"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "berries"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Финал A — выберите слово количества",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-18:i11:r1",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i11:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-04:session-18:i11:r3",
+          "text": "this"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал A — выберите слово количества",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В корзине есть немного молока. Вставьте слово количества.",
+          "uk": "У кошику є трохи молока. Вставте слово кількості."
+        },
+        "gappedTargetPhrase": "There is ___ milk in the basket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-18:i11:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r3",
+            "text": "this"
+          }
+        ],
+        "testedDimension": "Выбор some перед неисчисляемым milk",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "some в утверждении",
+            "feedbackByLocale": {
+              "ru": "В утвердительном сообщении этой сессии перед молоком нужно `some`.",
+              "uk": "У стверджувальному повідомленні цієї сесії перед молоком потрібно `some`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "some в утверждении",
+            "feedbackByLocale": {
+              "ru": "Здесь требуется слово количества, а не указатель.",
+              "uk": "Тут потрібне слово кількості, а не вказівник."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-18:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал B — сообщите о молоке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал B — сообщите о молоке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is some milk.",
+        "localizedMeaning": {
+          "ru": "Финал B — сообщите о молоке",
+          "uk": "Фінал B — повідомте про молоко"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "some",
+          "milk"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "berries",
+          "container"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ec2fb5e50f63b71044c64e7ea9b09c12c2ebe4216ef391017c9137f1794b5a8f"
+}

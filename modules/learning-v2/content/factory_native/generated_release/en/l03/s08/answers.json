@@ -6,12 +6,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i02",
-    "correctText": "It is a mirror.",
+    "correctText": "It is a shelf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i03",
-    "correctText": "Is it a chair?",
+    "correctText": "Is it a shelf?",
     "correctResponseId": null
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i07",
-    "correctText": "It is a key.",
+    "correctText": "It is a shelf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-08:i08",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-08:i08:p1=shelf\nen:lesson-03:session-08:i08:p2=mirror\nen:lesson-03:session-08:i08:p3=chair\nen:lesson-03:session-08:i08:p4=key",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i11",
-    "correctText": "It is not a lamp.",
+    "correctText": "It is not a shelf.",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i13",
-    "correctText": "It is not a stool.",
+    "correctText": "Is it a shelf?",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-08:i15",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-08:i15:p1=basket\nen:lesson-03:session-08:i15:p2=stool\nen:lesson-03:session-08:i15:p3=door\nen:lesson-03:session-08:i15:p4=tag",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-08:i17",
-    "correctText": "It is a door.",
+    "interactionId": "en:lesson-03:session-08:i17:s01",
+    "correctText": "It is a shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i17:s02",
+    "correctText": "Is it a shelf?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i17:s03",
+    "correctText": "It is not a shelf.",
     "correctResponseId": null
   }
 ]

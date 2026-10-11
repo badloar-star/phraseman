@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-13:i01",
-    "correctText": "",
+    "correctText": "young",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i03",
-    "correctText": "",
+    "correctText": "old",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i06",
-    "correctText": "",
+    "correctText": "strong",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i08",
-    "correctText": "",
+    "correctText": "tall",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-13:i11:p1=young\nen:lesson-01:session-13:i11:p2=old\nen:lesson-01:session-13:i11:p3=strong\nen:lesson-01:session-13:i11:p4=tall",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i14",
-    "correctText": "",
+    "correctText": "brave",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-13:i16",
-    "correctText": "",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-13:i18",
-    "correctText": "You are kind. You are brave. I am ready. I am strong.",
+    "interactionId": "en:lesson-01:session-13:i18:s01",
+    "correctText": "You are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i18:s02",
+    "correctText": "You are brave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i18:s03",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-13:i18:s04",
+    "correctText": "I am strong.",
     "correctResponseId": null
   }
 ]

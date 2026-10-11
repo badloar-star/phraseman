@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-03:intro1:r2": {
+          "ru": "`Banks` означает несколько банков, поэтому после `There` нужно `are`.",
+          "uk": "`Banks` означає кілька банків, тому після `There` потрібне `are`."
+        },
+        "en:lesson-04:session-03:intro1:r3": {
+          "ru": "Перед множественным `banks` артикль `a` не ставят.",
+          "uk": "Перед множиною `banks` артикль `a` не ставлять."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-03:intro2:r2": {
+          "ru": "Несколько `banks` требуют `There are`, а не `There is`.",
+          "uk": "Кілька `banks` потребують `There are`, а не `There is`."
+        },
+        "en:lesson-04:session-03:intro2:r3": {
+          "ru": "После `There are` здесь нужна форма множественного числа `banks`.",
+          "uk": "Після `There are` тут потрібна форма множини `banks`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-03:intro3:r2": {
+          "ru": "С множественным `banks` артикль `a` не нужен.",
+          "uk": "З множиною `banks` артикль `a` не потрібен."
+        },
+        "en:lesson-04:session-03:intro3:r3": {
+          "ru": "Условие говорит о нескольких банках: нужны `There are banks`.",
+          "uk": "Умова говорить про кілька банків: потрібні `There are banks`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "59ff1b9b55462c34855119aaa70693672a3044e904d8d1903e68da639a2179de"
+}

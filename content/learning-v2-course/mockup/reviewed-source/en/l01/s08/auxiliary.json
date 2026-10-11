@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro1:r2": {
+          "ru": "После I нужно `am`: о себе говорим `I am`.",
+          "uk": "Після I потрібне `am`: про себе кажемо `I am`."
+        },
+        "en:lesson-01:session-08:intro1:r3": {
+          "ru": "`not` в конце не живёт. Ему место сразу после `am`.",
+          "uk": "`not` у кінці не живе. Його місце одразу після `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro2:r2": {
+          "ru": "`not` работает только в паре с `am`. Один он ничего не отрицает.",
+          "uk": "`not` працює тільки в парі з `am`. Само по собі воно нічого не заперечує."
+        },
+        "en:lesson-01:session-08:intro2:r3": {
+          "ru": "Это русское «я не уверен» пролезло целиком. По-английски отрицание — `not`, и только после `am`.",
+          "uk": "`no` — це коротке «ні», ціла відмова: питали — і ви відмовили. А тут ви не відмовляєте, ви заперечуєте ознаку: не впевнений. Для цього є `not`, і ставлять його після `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-08:intro3:r2": {
+          "ru": "Правда наоборот. Вы закончили — а так вас оставят ещё на час.",
+          "uk": "Правда навпаки. Ви закінчили — а так вас залишать ще на годину."
+        },
+        "en:lesson-01:session-08:intro3:r3": {
+          "ru": "Пропал сам `I`. Англичане всегда называют, кто именно закончил.",
+          "uk": "Зник сам `I`. Англійці завжди називають, хто саме закінчив."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f23ee70cf6a796a9abcd678b503a3505204dda86141cb89b0ea796c5898e64a7"
+}

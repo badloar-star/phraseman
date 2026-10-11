@@ -792,13 +792,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обратитесь к двум похожим гостям и спросите, близнецы ли они",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-34:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обратитесь к двум похожим гостям и спросите, близнецы ли они",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -888,5 +888,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a921bf3427ae8f45553c1434378ed9d1ac02d05046a54d3d751d5e551446616f"
+  "learnerFingerprint": "e04762ae9228022498cb081d55fa2980777bddf6995894136c890e8fef48eba2"
 }

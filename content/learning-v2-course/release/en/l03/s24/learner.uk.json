@@ -9,63 +9,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте назву — кур’єр питає, що лежить окремо в конверті; назвіть один квиток на концерт «Це квиток»",
+      "prompt": "Вставте назву — кур’єр питає, що лежить окремо перед вами; назвіть один конверт із квитками «Це конверт» (`envelope` — «конверт»)",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i01:r1",
-          "text": "a ticket"
+          "text": "an envelope"
         },
         {
           "responseId": "en:lesson-03:session-24:i01:r2",
-          "text": "ticket"
+          "text": "envelope"
         },
         {
           "responseId": "en:lesson-03:session-24:i01:r3",
-          "text": "tickets"
+          "text": "envelopes"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте назву — кур’єр питає, що лежить окремо в конверті; назвіть один квиток на концерт «Це квиток»",
+      "accessibilityLabel": "Вставте назву — кур’єр питає, що лежить окремо перед вами; назвіть один конверт із квитками «Це конверт» (`envelope` — «конверт»)",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте название — курьер спрашивает, что лежит отдельно в конверте; назовите один билет на концерт «Это билет»",
-          "uk": "Вставте назву — кур’єр питає, що лежить окремо в конверті; назвіть один квиток на концерт «Це квиток»"
+          "ru": "Вставьте название — курьер спрашивает, что лежит отдельно перед вами; назовите один конверт с билетами «Это конверт» (`envelope` — «конверт»)",
+          "uk": "Вставте назву — кур’єр питає, що лежить окремо перед вами; назвіть один конверт із квитками «Це конверт» (`envelope` — «конверт»)"
         },
         "gappedTargetPhrase": "It is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-24:i01:r1",
-            "text": "a ticket"
+            "text": "an envelope"
           },
           {
             "responseId": "en:lesson-03:session-24:i01:r2",
-            "text": "ticket"
+            "text": "envelope"
           },
           {
             "responseId": "en:lesson-03:session-24:i01:r3",
-            "text": "tickets"
+            "text": "envelopes"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "testedDimension": "Вставте назву — кур’єр питає, що лежить ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i01:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що лежить ",
             "feedbackByLocale": {
-              "ru": "В этой фразе перед названием одного билета нужно `a`: `a ticket`.",
-              "uk": "У цій фразі перед назвою одного квитка потрібне `a`: `a ticket`."
+              "ru": "В этой фразе перед названием одного конверта нужно `an`: `an envelope`.",
+              "uk": "У цій фразі перед назвою одного конверта потрібне `an`: `an envelope`."
             }
           },
           {
             "responseId": "en:lesson-03:session-24:i01:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що лежить ",
             "feedbackByLocale": {
-              "ru": "`tickets` — «билеты», несколько. Здесь один: `a ticket`.",
-              "uk": "`tickets` — «квитки», їх кілька. Тут один: `a ticket`."
+              "ru": "`envelopes` — «конверты», их несколько. Здесь один: `an envelope`.",
+              "uk": "`envelopes` — «конверти», їх кілька. Тут один: `an envelope`."
             }
           }
         ]
@@ -78,47 +78,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — що сказав кур’єр",
+      "prompt": "Послухайте й оберіть — що запитав кур’єр",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i02:r1",
-          "text": "They are tickets."
+          "text": "Are they envelopes?"
         },
         {
           "responseId": "en:lesson-03:session-24:i02:r2",
-          "text": "It is a ticket."
+          "text": "They are envelopes."
         },
         {
           "responseId": "en:lesson-03:session-24:i02:r3",
-          "text": "Are they tickets?"
+          "text": "They are not envelopes."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-24:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — що сказав кур’єр",
+      "accessibilityLabel": "Послухайте й оберіть — що запитав кур’єр",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-24:i02:audio",
-          "transcript": "They are tickets."
+          "transcript": "Are they envelopes?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-24:i02:r1",
-            "targetText": "They are tickets.",
+            "targetText": "Are they envelopes?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-24:i02:r2",
-            "targetText": "It is a ticket.",
+            "targetText": "They are envelopes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-24:i02:r3",
-            "targetText": "Are they tickets?",
+            "targetText": "They are not envelopes.",
             "meaningByLocale": null
           }
         ],
@@ -127,19 +127,19 @@
           {
             "responseId": "en:lesson-03:session-24:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал курье",
+            "testedDimension": "Послухайте й оберіть — що запитав кур’єр",
             "feedbackByLocale": {
-              "ru": "Эта фраза называет один билет: `It is a ticket`. В записи начало `They are` и название нескольких — `tickets`.",
-              "uk": "Ця фраза називає один квиток: `It is a ticket`. У записі початок `They are` і назва кількох — `tickets`."
+              "ru": "Это утверждение: сначала `They are`. В записи сначала звучит вопрос `Are they`.",
+              "uk": "Це твердження: спочатку `They are`. У записі спочатку звучить запитання `Are they`."
             }
           },
           {
             "responseId": "en:lesson-03:session-24:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал курье",
+            "testedDimension": "Послухайте й оберіть — що запитав кур’єр",
             "feedbackByLocale": {
-              "ru": "Это вопрос: `Are they` — «Это билеты?» В записи сначала `They`, затем `are`: курьер называет билеты.",
-              "uk": "Це питання: `Are they` — «Це квитки?» У записі спершу `They`, потім `are`: кур’єр називає квитки."
+              "ru": "В этом варианте есть `not`. В записи курьер только спрашивает: `Are they envelopes?`",
+              "uk": "У цьому варіанті є `not`. У записі кур’єр лише питає: `Are they envelopes?`"
             }
           }
         ],
@@ -154,40 +154,40 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — кур’єр питає, що ви дістали з пласкої коробки; там одне блюдо для подавання їжі, скажіть «Це блюдо» (`dish` — «блюдо», `dishes` — «блюда»)",
+      "prompt": "Складіть фразу — кур’єр передає один конверт із квитками; скажіть «Це конверт»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i03:r1",
-          "text": "dishes"
+          "text": "envelopes"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — кур’єр питає, що ви дістали з пласкої коробки; там одне блюдо для подавання їжі, скажіть «Це блюдо» (`dish` — «блюдо», `dishes` — «блюда»)",
+      "accessibilityLabel": "Складіть фразу — кур’єр передає один конверт із квитками; скажіть «Це конверт»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a dish.",
+        "targetPhrase": "It is an envelope.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — курьер спрашивает, что вы вынули из плоской коробки; там одно блюдо для подачи еды, скажите «Это блюдо» (`dish` — «блюдо», `dishes` — «блюда»)",
-          "uk": "Зберіть фразу — кур’єр питає, що ви дістали з пласкої коробки; там одне блюдо для подавання їжі, скажіть «Це блюдо» (`dish` — «блюдо», `dishes` — «блюда»)"
+          "ru": "Соберите фразу — курьер передаёт один конверт с билетами; скажите «Это конверт»",
+          "uk": "Складіть фразу — кур’єр передає один конверт із квитками; скажіть «Це конверт»"
         },
         "orderedTokens": [
           "It",
           "is",
-          "a",
-          "dish"
+          "an",
+          "envelope"
         ],
         "authoredDistractorTokens": [
-          "dishes"
+          "envelopes"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i03:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер спрашивает, что ",
+            "testedDimension": "Складіть фразу — кур’єр передає один кон",
             "feedbackByLocale": {
-              "ru": "Вы называете один предмет посуды. Здесь нужно `a dish`, а `dishes` называет несколько блюд.",
-              "uk": "Ви називаєте один предмет посуду. Тут потрібно `a dish`, а `dishes` називає кілька блюд."
+              "ru": "Вы называете один предмет. Здесь нужно `an envelope`, а `envelopes` называет несколько.",
+              "uk": "Ви називаєте один предмет. Тут потрібно `an envelope`, а `envelopes` називає кілька."
             }
           }
         ]
@@ -200,63 +200,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — кур’єр уточнює, який текст надруковано на розвороті книги; це одна історія, скажіть «Це історія»",
+      "prompt": "Вставте слово — кур’єр показує два конверти й просить уточнити, чи це вони",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i04:r1",
-          "text": "is"
+          "text": "they"
         },
         {
           "responseId": "en:lesson-03:session-24:i04:r2",
-          "text": "are"
+          "text": "it"
         },
         {
           "responseId": "en:lesson-03:session-24:i04:r3",
-          "text": "am"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — кур’єр уточнює, який текст надруковано на розвороті книги; це одна історія, скажіть «Це історія»",
+      "accessibilityLabel": "Вставте слово — кур’єр показує два конверти й просить уточнити, чи це вони",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — курьер уточняет, что за текст напечатан на развороте книги; это одна история, скажите «Это история»",
-          "uk": "Вставте слово — кур’єр уточнює, який текст надруковано на розвороті книги; це одна історія, скажіть «Це історія»"
+          "ru": "Вставьте слово — курьер показывает два конверта и просит уточнить, они ли это",
+          "uk": "Вставте слово — кур’єр показує два конверти й просить уточнити, чи це вони"
         },
-        "gappedTargetPhrase": "It ___ a story.",
+        "gappedTargetPhrase": "Are ___ envelopes?",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-24:i04:r1",
-            "text": "is"
+            "text": "they"
           },
           {
             "responseId": "en:lesson-03:session-24:i04:r2",
-            "text": "are"
+            "text": "it"
           },
           {
             "responseId": "en:lesson-03:session-24:i04:r3",
-            "text": "am"
+            "text": "are"
           }
         ],
-        "testedDimension": "Вставьте слово — курьер уточняет, что за",
+        "testedDimension": "Вставте слово — кур’єр показує два конве",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i04:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — курьер уточняет, что за",
+            "testedDimension": "Вставте слово — кур’єр показує два конве",
             "feedbackByLocale": {
-              "ru": "Вы называете одну историю с началом `It is`. Слово `are` здесь не подходит к `It`.",
-              "uk": "Ви називаєте одну історію з початком `It is`. Слово `are` з `It` не вживаємо."
+              "ru": "Вопрос о двух предметах строим с `Are they`, а не `Are it`.",
+              "uk": "Запитання про два предмети будуємо з `Are they`, а не `Are it`."
             }
           },
           {
             "responseId": "en:lesson-03:session-24:i04:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — курьер уточняет, что за",
+            "testedDimension": "Вставте слово — кур’єр показує два конве",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`. В этой фразе стоит `It`, поэтому нужно `is`.",
-              "uk": "`am` уживаємо з `I`. У цій фразі стоїть `It`, тому потрібно `is`."
+              "ru": "После первого `Are` нужно `they`, затем `envelopes`.",
+              "uk": "Після першого `Are` потрібне `they`, а потім `envelopes`."
             }
           }
         ]
@@ -318,7 +318,7 @@
           {
             "responseId": "en:lesson-03:session-24:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что произнёс кур",
+            "testedDimension": "Послухайте й оберіть — що вимовив кур’єр",
             "feedbackByLocale": {
               "ru": "Этот вариант называет несколько стаканов: `They are glasses`. В записи звучит фраза про один — `It is a glass`.",
               "uk": "Цей варіант називає кілька склянок: `They are glasses`. У записі звучить фраза про одну: `It is a glass`."
@@ -327,7 +327,7 @@
           {
             "responseId": "en:lesson-03:session-24:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что произнёс кур",
+            "testedDimension": "Послухайте й оберіть — що вимовив кур’єр",
             "feedbackByLocale": {
               "ru": "Это отрицание: «Это не стакан». Здесь после `is` стоит `not a`; в записи после `is` звучит `a glass`, название стакана.",
               "uk": "Це заперечення: «Це не склянка». Тут після `is` стоїть `not a`; у записі після `is` звучить `a glass`, назва склянки."
@@ -384,12 +384,12 @@
             "text": "a dish"
           }
         ],
-        "testedDimension": "Вставьте название — курьер проверяет наб",
+        "testedDimension": "Вставте назву — кур’єр перевіряє набір д",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер проверяет наб",
+            "testedDimension": "Вставте назву — кур’єр перевіряє набір д",
             "feedbackByLocale": {
               "ru": "Нужно назвать два блюда. Их название — `dishes`, с окончанием `es`.",
               "uk": "Треба назвати два блюда. Їхня назва — `dishes`, із закінченням `es`."
@@ -398,7 +398,7 @@
           {
             "responseId": "en:lesson-03:session-24:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер проверяет наб",
+            "testedDimension": "Вставте назву — кур’єр перевіряє набір д",
             "feedbackByLocale": {
               "ru": "`a dish` называет одно блюдо. Здесь их два: `They are dishes`.",
               "uk": "`a dish` називає одне блюдо. Тут їх два: `They are dishes`."
@@ -443,7 +443,7 @@
           {
             "responseId": "en:lesson-03:session-24:i07:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — на коробке с набором п",
+            "testedDimension": "Зберіть питання — на коробці з набором п",
             "feedbackByLocale": {
               "ru": "Вы спрашиваете о нескольких предметах из набора. Нужно название нескольких стаканов — `glasses`.",
               "uk": "Ви питаєте про кілька предметів із набору. Потрібна назва кількох склянок — `glasses`."
@@ -498,12 +498,12 @@
             "text": "a stories"
           }
         ],
-        "testedDimension": "Вставьте название — курьер уточняет, как",
+        "testedDimension": "Вставте назву — кур’єр уточнює, які текс",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер уточняет, как",
+            "testedDimension": "Вставте назву — кур’єр уточнює, які текс",
             "feedbackByLocale": {
               "ru": "Для нескольких историй конечную `y` в `story` меняем на `ies`. Получается `stories`.",
               "uk": "Для кількох історій кінцеву `y` у `story` змінюємо на `ies`. Виходить `stories`."
@@ -512,7 +512,7 @@
           {
             "responseId": "en:lesson-03:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер уточняет, как",
+            "testedDimension": "Вставте назву — кур’єр уточнює, які текс",
             "feedbackByLocale": {
               "ru": "В этой фразе перед названием нескольких историй слово `a` не нужно: `They are stories`.",
               "uk": "У цій фразі перед назвою кількох історій `a` не потрібне: `They are stories`."
@@ -528,21 +528,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кур’єр питає про вміст другого конверта; ви показуєте два квитки й називаєте їх «Це квитки»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-24:i09:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — кур’єр питає про вміст другого конверта; ви показуєте два квитки й називаєте їх «Це квитки»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-24:i09:audio",
-          "transcript": "They are tickets."
+          "transcript": "They are envelopes."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are tickets.",
+        "targetPhrase": "They are envelopes.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -561,47 +561,47 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й оберіть — що сказав кур’єр",
+      "prompt": "Послухайте й оберіть — що сказав кур’єр перед підписом",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i10:r1",
-          "text": "They are not stories."
+          "text": "They are not envelopes."
         },
         {
           "responseId": "en:lesson-03:session-24:i10:r2",
-          "text": "They are stories."
+          "text": "They are envelopes."
         },
         {
           "responseId": "en:lesson-03:session-24:i10:r3",
-          "text": "Are they stories?"
+          "text": "Are they envelopes?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-24:i10:audio"
       ],
-      "accessibilityLabel": "Послухайте й оберіть — що сказав кур’єр",
+      "accessibilityLabel": "Послухайте й оберіть — що сказав кур’єр перед підписом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-24:i10:audio",
-          "transcript": "They are not stories."
+          "transcript": "They are not envelopes."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-24:i10:r1",
-            "targetText": "They are not stories.",
+            "targetText": "They are not envelopes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-24:i10:r2",
-            "targetText": "They are stories.",
+            "targetText": "They are envelopes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-24:i10:r3",
-            "targetText": "Are they stories?",
+            "targetText": "Are they envelopes?",
             "meaningByLocale": null
           }
         ],
@@ -610,19 +610,19 @@
           {
             "responseId": "en:lesson-03:session-24:i10:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал курье",
+            "testedDimension": "Послухайте й оберіть — що сказав кур’єр ",
             "feedbackByLocale": {
-              "ru": "Этот вариант утверждает: «Это истории», с продолжением `are stories`. В записи звучит `are not stories` — отрицание.",
-              "uk": "Цей варіант стверджує: «Це історії», із продовженням `are stories`. У записі звучить `are not stories` — заперечення."
+              "ru": "Этот вариант утверждает, что это конверты. В записи после `are` звучит `not`.",
+              "uk": "Цей варіант стверджує, що це конверти. У записі після `are` звучить `not`."
             }
           },
           {
             "responseId": "en:lesson-03:session-24:i10:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал курье",
+            "testedDimension": "Послухайте й оберіть — що сказав кур’єр ",
             "feedbackByLocale": {
-              "ru": "Это вопрос: «Это истории?» Начало — `Are they`. В записи порядок `They are`, а затем `not`: курьер говорит, что это не истории.",
-              "uk": "Це питання: «Це історії?» Початок — `Are they`. У записі порядок `They are`, а потім `not`: кур’єр каже, що це не історії."
+              "ru": "Это вопрос: начало `Are they`. В записи порядок `They are`, а затем `not`.",
+              "uk": "Це запитання з початком `Are they`. У записі порядок `They are`, а потім `not`."
             }
           }
         ],
@@ -676,12 +676,12 @@
             "text": "a glass"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает о ",
+        "testedDimension": "Вставте назву — кур’єр питає про предмет",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про предмет",
             "feedbackByLocale": {
               "ru": "Здесь называем один стакан: `a glass`. Слово `glasses` называет несколько.",
               "uk": "Тут називаємо одну склянку: `a glass`. Слово `glasses` називає кілька."
@@ -690,7 +690,7 @@
           {
             "responseId": "en:lesson-03:session-24:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про предмет",
             "feedbackByLocale": {
               "ru": "Слово `a` уже стоит перед пропуском. Если выбрать `a glass`, оно повторится; в пропуске нужно только `glass`.",
               "uk": "Слово `a` уже стоїть перед пропуском. Якщо обрати `a glass`, воно повториться; у пропуску потрібне тільки `glass`."
@@ -739,7 +739,7 @@
           {
             "responseId": "en:lesson-03:session-24:i12:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — что произнёс кур",
+            "testedDimension": "Послухайте й зберіть — що вимовив кур’єр",
             "feedbackByLocale": {
               "ru": "В записи звучит `dishes`, название нескольких блюд. Отрицание `not` не меняет эту форму.",
               "uk": "У записі звучить `dishes`, назва кількох блюд. Заперечення `not` цієї форми не змінює."
@@ -753,65 +753,41 @@
       "interactionId": "en:lesson-03:session-24:i13",
       "ordinal": 16,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — кур’єр звіряє конверти перед закриттям замовлення; назвіть кілька квитків на столі «Це квитки»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — кур’єр звіряє кілька конвертів перед закриттям замовлення; скажіть «Це конверти»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-24:i13:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-03:session-24:i13:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-03:session-24:i13:r3",
-          "text": "am"
+          "text": "envelope"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — кур’єр звіряє конверти перед закриттям замовлення; назвіть кілька квитків на столі «Це квитки»",
+      "accessibilityLabel": "Складіть фразу — кур’єр звіряє кілька конвертів перед закриттям замовлення; скажіть «Це конверти»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — курьер сверяет конверты перед закрытием заказа; назовите несколько билетов на столе «Это билеты»",
-          "uk": "Вставте слово — кур’єр звіряє конверти перед закриттям замовлення; назвіть кілька квитків на столі «Це квитки»"
+        "family": "phrase_builder",
+        "targetPhrase": "They are envelopes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — курьер сверяет несколько конвертов перед закрытием заказа; скажите «Это конверты»",
+          "uk": "Складіть фразу — кур’єр звіряє кілька конвертів перед закриттям замовлення; скажіть «Це конверти»"
         },
-        "gappedTargetPhrase": "They ___ tickets.",
-        "gapOptions": [
+        "orderedTokens": [
+          "They",
+          "are",
+          "envelopes"
+        ],
+        "authoredDistractorTokens": [
+          "envelope"
+        ],
+        "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i13:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-03:session-24:i13:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-03:session-24:i13:r3",
-            "text": "am"
-          }
-        ],
-        "testedDimension": "Вставьте слово — курьер сверяет конверты",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-24:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — курьер сверяет конверты",
+            "testedDimension": "Складіть фразу — кур’єр звіряє кілька ко",
             "feedbackByLocale": {
-              "ru": "В этой фразе про несколько билетов стоит `They`. С ним нужно `are`, а не `is`.",
-              "uk": "У цій фразі про кілька квитків стоїть `They`. З ним потрібно `are`, а не `is`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-24:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — курьер сверяет конверты",
-            "feedbackByLocale": {
-              "ru": "`am` используется с `I`. Здесь называем билеты с началом `They are`.",
-              "uk": "`am` уживаємо з `I`. Тут називаємо квитки з початком `They are`."
+              "ru": "Речь о нескольких предметах, поэтому нужна форма `envelopes`.",
+              "uk": "Ідеться про кілька предметів, тому потрібна форма `envelopes`."
             }
           }
         ]
@@ -834,10 +810,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-24:i14:p1",
-            "target": "tickets",
+            "target": "envelopes",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "конверты",
+              "uk": "конверти"
             }
           },
           {
@@ -866,13 +842,13 @@
           }
         ],
         "leftColumn": [
-          "tickets",
+          "envelopes",
           "dishes",
           "stories",
           "glasses"
         ],
         "rightColumn": [
-          "билеты",
+          "конверты",
           "блюда для подачи еды",
           "истории",
           "стаканы"
@@ -897,13 +873,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кур’єр питає, який короткий текст ви відкрили в книзі; це одна історія, назвіть її «Це історія»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-24:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — кур’єр питає, який короткий текст ви відкрили в книзі; це одна історія, назвіть її «Це історія»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -969,12 +945,12 @@
             "text": "a glasses"
           }
         ],
-        "testedDimension": "Вставьте название — курьер просит подтве",
+        "testedDimension": "Вставте назву — кур’єр просить підтверди",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-24:i16:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер просит подтве",
+            "testedDimension": "Вставте назву — кур’єр просить підтверди",
             "feedbackByLocale": {
               "ru": "Называем несколько стаканов. Нужно `glasses`; форма `glass` здесь называет один.",
               "uk": "Називаємо кілька склянок. Потрібно `glasses`; форма `glass` тут називає одну."
@@ -983,7 +959,7 @@
           {
             "responseId": "en:lesson-03:session-24:i16:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер просит подтве",
+            "testedDimension": "Вставте назву — кур’єр просить підтверди",
             "feedbackByLocale": {
               "ru": "В этой фразе перед названием нескольких стаканов `a` лишнее. Нужно `They are glasses`.",
               "uk": "У цій фразі перед назвою кількох склянок `a` зайве. Потрібно `They are glasses`."
@@ -994,56 +970,110 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-24:i17",
+      "interactionId": "en:lesson-03:session-24:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — перед підписом кур’єр уточнює останній рядок замовлення: які тексти зібрано в книзі; ви перевірили, що в ній кілька історій",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-24:i17:r1",
-          "text": "story"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — перед підписом кур’єр уточнює останній рядок замовлення: які тексти зібрано в книзі; ви перевірили, що в ній кілька історій",
+      "audioTargetIds": [
+        "en:lesson-03:session-24:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They are stories.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — перед подписью курьер уточняет последнюю строку заказа: какие тексты собраны в книге; вы проверили, что в ней несколько историй",
-          "uk": "Складіть фразу — перед підписом кур’єр уточнює останній рядок замовлення: які тексти зібрано в книзі; ви перевірили, що в ній кілька історій"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-24:i17:s01:audio",
+          "transcript": "It is an envelope."
         },
-        "orderedTokens": [
-          "They",
-          "are",
-          "stories"
-        ],
-        "authoredDistractorTokens": [
-          "story"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-03:session-24:i17:r1",
-            "correct": false,
-            "testedDimension": "Соберите фразу — перед подписью курьер у",
-            "feedbackByLocale": {
-              "ru": "Речь о нескольких историях. Для них нужна форма `stories`.",
-              "uk": "Ідеться про кілька історій. Для них потрібна форма `stories`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is an envelope.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-24:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-24:i17:s02:audio",
+          "transcript": "Are they envelopes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are they envelopes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-24:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-24:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-24:i17:s03:audio",
+          "transcript": "They are not envelopes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are not envelopes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "274bdfcf6bbc997734865f63c593d1c56d5246e4efe44e55154b1b4a9d22a6b0"
+  "learnerFingerprint": "89b4b8892eed8ef5be4843e478a299bd6b26ed8f6048e7d95d9910d0048d43d8"
 }

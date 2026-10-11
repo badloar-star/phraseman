@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — wet",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-31:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — dry",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -494,7 +494,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-31:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — warm",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -620,11 +620,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1044,26 +1044,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-31:i20",
+      "interactionId": "en:lesson-01:session-31:i20:s01",
       "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — сосед спросил, как на улице",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-31:i20:audio"
+        "en:lesson-01:session-31:i20:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — сосед спросил, как на улице",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-31:i20:audio",
-          "transcript": "It is dry. It is warm."
+          "audioTargetId": "en:lesson-01:session-31:i20:s01:audio",
+          "transcript": "It is dry."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is dry. It is warm.",
+        "targetPhrase": "It is dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i20:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i20:s02:audio",
+          "transcript": "It is warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is warm.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1077,11 +1110,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7c33d5f76ffccc9a3b4fdf70b1ed3eedaf40bf75f8f52bad133f280fb3048af7"
+  "learnerFingerprint": "d4ea78c632f7f10305e642cae6c32ac23f808140b3f7feb577b2d4700f22e31d"
 }

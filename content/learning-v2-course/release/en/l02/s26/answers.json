@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-26:i01",
-    "correctText": "",
+    "correctText": "weather",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i03",
-    "correctText": "",
+    "correctText": "time",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i08",
-    "correctText": "",
+    "correctText": "cold",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i11",
-    "correctText": "",
+    "correctText": "near",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i13",
-    "correctText": "",
+    "correctText": "station",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-26:i15",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-26:i15:p1=weather\nen:lesson-02:session-26:i15:p2=time\nen:lesson-02:session-26:i15:p3=cold\nen:lesson-02:session-26:i15:p4=near",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-26:i18",
-    "correctText": "What is the time? It is cold. It is near the station.",
+    "interactionId": "en:lesson-02:session-26:i18:s01",
+    "correctText": "What is the time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i18:s02",
+    "correctText": "It is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i18:s03",
+    "correctText": "It is near the station.",
     "correctResponseId": null
   }
 ]

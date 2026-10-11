@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro1:r2": {
+          "ru": "`armchair` начинается с гласного звука. Перед ним здесь ставим `an`, а не `a`.",
+          "uk": "`armchair` починається з голосного звука. Перед ним тут ставимо `an`, а не `a`."
+        },
+        "en:lesson-03:session-09:intro1:r3": {
+          "ru": "По-русски хватает слова «кресло». В этой английской фразе перед `armchair` нужно маленькое `an`.",
+          "uk": "Українською досить слова «крісло». У цій англійській фразі перед `armchair` потрібне маленьке `an`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro2:r2": {
+          "ru": "Вопрос не меняет выбор перед `oven`: слово начинается с гласного звука, поэтому нужно `an`.",
+          "uk": "Запитання не змінює вибір перед `oven`: слово починається з голосного звука, тому потрібне `an`."
+        },
+        "en:lesson-03:session-09:intro2:r3": {
+          "ru": "В таком вопросе после `Is` нужно `it`: `Is it an oven?` Без `it` начало неполное.",
+          "uk": "У такому запитанні після `Is` потрібне `it`: `Is it an oven?` Без `it` початок неповний."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-09:intro3:r2": {
+          "ru": "После `not` название остаётся с `an`: первый звук в `umbrella` гласный.",
+          "uk": "Після `not` назва залишається з `an`: перший звук в `umbrella` голосний."
+        },
+        "en:lesson-03:session-09:intro3:r3": {
+          "ru": "Между `It` и `not` пропущено `is`. Начало полного отрицания — `It is not`.",
+          "uk": "Між `It` і `not` пропущено `is`. Початок повного заперечення — `It is not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc808cd731a42fd07b24832d8f76c59208a1bd5f7502b22a8df3855653de8e64"
+}

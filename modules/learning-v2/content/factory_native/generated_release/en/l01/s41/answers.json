@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-41:i11:p1=fine\nen:lesson-01:session-41:i11:p2=late\nen:lesson-01:session-41:i11:p3=sure\nen:lesson-01:session-41:i11:p4=sorry",
     "correctResponseId": null
   },
   {
@@ -75,8 +75,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-41:i16",
-    "correctText": "I'm late. I'm sorry. You're fine.",
+    "interactionId": "en:lesson-01:session-41:i16:s01",
+    "correctText": "I'm late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:i16:s02",
+    "correctText": "I'm sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-41:i16:s03",
+    "correctText": "You're fine.",
     "correctResponseId": null
   }
 ]

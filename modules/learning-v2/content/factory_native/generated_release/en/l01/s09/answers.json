@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-09:i01",
-    "correctText": "",
+    "correctText": "welcome",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-09:i03",
-    "correctText": "",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-09:i07",
-    "correctText": "",
+    "correctText": "right",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-09:i10",
-    "correctText": "",
+    "correctText": "funny",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-09:i15",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-09:i15:p1=welcome\nen:lesson-01:session-09:i15:p2=kind\nen:lesson-01:session-09:i15:p3=right\nen:lesson-01:session-09:i15:p4=funny",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,23 @@
     "correctResponseId": "en:lesson-01:session-09:i17:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-09:i18",
-    "correctText": "You are right. I am new. I am not tired. You are kind.",
+    "interactionId": "en:lesson-01:session-09:i18:s01",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s02",
+    "correctText": "I am new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s03",
+    "correctText": "I am not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s04",
+    "correctText": "You are kind.",
     "correctResponseId": null
   }
 ]

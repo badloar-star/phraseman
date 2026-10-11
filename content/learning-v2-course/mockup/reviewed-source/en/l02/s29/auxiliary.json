@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro1:r2": {
+          "ru": "`is` уехало в конец, а начало `What is the` разваливать нельзя.",
+          "uk": "`is` поїхало в кінець, а початок `What is the` розбивати не можна."
+        },
+        "en:lesson-02:session-29:intro1:r3": {
+          "ru": "Вопрос начинают с `What is the`, а не с вещи.",
+          "uk": "Питання починають із `What is the`, а не з речі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro2:r2": {
+          "ru": "Так уточняют, о какой сумке речь. Здесь нужно выбрать одну из двух видимых сумок: `Which bag?`.",
+          "uk": "Так уточнюють, про яку сумку йдеться. Тут треба обрати одну з двох видимих сумок: `Which bag?`."
+        },
+        "en:lesson-02:session-29:intro2:r3": {
+          "ru": "Лишнее `the`. Вопрос из двух слов: `Which bag?`",
+          "uk": "Зайве `the`. Питання з двох слів: `Which bag?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-29:intro3:r2": {
+          "ru": "Или `Which bag?`, или `Which one?` Вместе они не идут: `one` эту сумку и заменяет.",
+          "uk": "Або `Which bag?`, або `Which one?` Разом вони не йдуть: `one` цю сумку й заміняє."
+        },
+        "en:lesson-02:session-29:intro3:r3": {
+          "ru": "Когда выбирают одну из уже названных вещей, говорят `Which one?`.",
+          "uk": "Коли обирають одну з уже названих речей, кажуть `Which one?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c3eb111d812b990c85bb188f55097004dd26e45ace9f3676764fbd963c015eaf"
+}

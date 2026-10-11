@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro1:r2": {
+          "ru": "`It` пропало. Без него непонятно, кто тяжёлый.",
+          "uk": "`It` зникло. Без нього незрозуміло, хто важкий."
+        },
+        "en:lesson-01:session-29:intro1:r3": {
+          "ru": "После `it` нужно `is`: `It is heavy`.",
+          "uk": "Після `it` потрібне `is`: `It is heavy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro2:r2": {
+          "ru": "Чемодан не мужчина. `he` — только про людей, про вещь — `it`.",
+          "uk": "Валіза не чоловік. `he` — тільки про людей, про річ — `it`."
+        },
+        "en:lesson-01:session-29:intro2:r3": {
+          "ru": "`she` — тоже только про людей. Для чемодана есть `it`.",
+          "uk": "`she` — теж тільки про людей. Для валізи є `it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-29:intro3:r2": {
+          "ru": "`clean` — это когда мыть нечего. Засохший кофе на дне — как раз есть что.",
+          "uk": "`clean` — це коли мити нічого. Засохла кава на дні — якраз є що."
+        },
+        "en:lesson-01:session-29:intro3:r3": {
+          "ru": "После `it` нужно `is`: `It is dirty`.",
+          "uk": "Після `it` потрібне `is`: `It is dirty`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ea1ab119ad7d53adb09b7f2fccfa6010c0c1b9e7b01af820bb2a37f8c6229a7"
+}

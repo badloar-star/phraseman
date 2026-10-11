@@ -1,7 +1,7 @@
-# Англійська · Урок 2 · Сесія 25 — «What is this?»
+# Англійська · Урок 2 · Заняття 25 — «What is this?»
 
-**Сцена сесії.** Вихідний у Дубліні, ви в кафе. У меню рядки, яких ви не розумієте, і цифри поруч. Доводиться питати.
-**Операція:** `What is + річ`
+**Сцена заняття.** Вихідний у Дубліні, ви в кафе. У меню рядки, яких ви не розумієте, і цифри поруч. Доводиться питати.
+**Як сказати:** `What is + річ`
 **Нові слова:** price, name
 **Повертаються:** cheap, street
 
@@ -55,77 +55,95 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — price**
-> **price** — «ціна». Цифра праворуч від рядка в меню.
+<!-- interaction_id: en:lesson-02:session-25:i01; family: listen_choose -->
+Ціль: `price`
 
-**2 · Послухайте і виберіть — price**
-🔊 *price* → **price** · press · prize
-- press — *Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е».*
-- prize — *Це «приз». Кінець інший: `price` закінчується глухо, `prize` — дзвінко.*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
+Ціль: `price`
+Варіанти: `price` · `press` · `prize`
 
 **3 · Картка слова — name**
-> **name** — «ім'я, назва». Годиться і для людини, і для страви, і для вулиці.
+<!-- interaction_id: en:lesson-02:session-25:i03; family: listen_choose -->
+Ціль: `name`
 
-**4 · Послухайте і виберіть — name**
-🔊 *name* → **name** · near · nine
-- near — *«Поруч», про відстань. Питаючи назву, ви кажете `name`.*
-- nine — *Це «дев'ять». Лічба, а не назва.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-25:i04; family: listen_choose -->
+Ціль: `name`
+Варіанти: `name` · `near` · `nine`
 
 **5 · Складіть фразу — ви показали на рядок у меню**
-Плитки: `is` `What` `this` → **What is this?**
+<!-- interaction_id: en:lesson-02:session-25:i05; family: phrase_builder -->
+Ціль: `What is this?`
 
-**6 · Вставте слово — питаєте про цифру поруч із рядком**
-What is the ___ ? → **price** · name · street
-- name — *Так ви спитаєте назву страви, а не скільки вона коштує.*
-- street — *Вулиця тут ні до чого: ви дивитесь у меню.*
+**6 · Послухайте і виберіть — про що ви питаєте в меню**
+<!-- interaction_id: en:lesson-02:session-25:i06; family: listen_choose -->
+Ціль: `What is the price?`
+Варіанти: `ціна` · `назва` · `вулиця`
 
 **7 · Вставте слово — питання про те, що стоїть на столі**
-What ___ this? → **is** · are · this
-- are — *Не для однієї речі. Про одну — `is`.*
-- this — *`this` уже стоїть у кінці. Другого не треба, треба `is`.*
+<!-- interaction_id: en:lesson-02:session-25:i07; family: context_gap_grammar -->
+Ціль: `What ___ this?`
+Варіанти: `is` · `are` · `this`
 
 **8 · Розрізніть звуки — яке з двох про ціну?**
-🔊 Два слова поспіль.
-*price · press* → **price**
-- press — *Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е».*
+<!-- interaction_id: en:lesson-02:session-25:i08; family: sound_contrast -->
+Варіанти: `price` · `press`
 
 **9 · Картка слова — cheap**
-> **cheap** — «дешево, недорого». Ціна, через яку не шкода.
+<!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
+Ціль: `cheap`
 
 **10 · Послухайте і складіть — «яка ціна?»**
-🔊 *What is the price?* Плитки: `price` `What` `the` `is` `are` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-25:i10; family: listen_build_dictation -->
+Ціль: `What is the price?`
 
 **11 · Вставте слово — ви заблукали і хочете дізнатися, де стоїте**
-What is the ___ ? → **street** · price · this
-*(`street` — «вулиця»)*
-- price — *У вулиці ціни немає. Ви питаєте, як вона зветься.*
-- this — *`this` — «це», воно не стає після `the`.*
+<!-- interaction_id: en:lesson-02:session-25:i11; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `street` · `price` · `this`
 
 **12 · Складіть фразу — спитайте назву страви**
-Плитки: `name` `is` `the` `What` → **What is the name?**
+<!-- interaction_id: en:lesson-02:session-25:i12; family: phrase_builder -->
+Ціль: `What is the name?`
 
-**13 · З'єднайте пари (Speed Match, 4 пари)**
-price — ціна · name — назва · cheap — дешево · street — вулиця
+**13 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-25:i13; family: speed_match -->
+Пари: `price` — ціна · `name` — назва · `cheap` — дешево · `street` — вулиця
+Ціль: `price · name · cheap · street`
 
 **14 · Вставте слово — ціна виявилася маленькою, ви задоволені**
-It is ___ . → **cheap** · price · what
-- price — *`price` — сама ціна, а не оцінка «дешево».*
-- what — *`what` починає питання, а ви кажете твердження.*
+<!-- interaction_id: en:lesson-02:session-25:i14; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `cheap` · `price` · `what`
 
-**15 · Складіть фразу — пастка: вам показали страву, ви питаєте, що це**
-Плитки: `What` `this` `is` `the` → **What is this?**
-*(плитка `the` зайва: перед `this` вона не ставиться)*
+**15 · Скажіть уголос — офіціант приносить незнайому страву, і ви уточнюєте, що це**
+<!-- interaction_id: en:lesson-02:session-25:i15; family: scripted_repeat_compare -->
+Ціль: `What is this?`
 
-**16 · Скажіть уголос — два питання поспіль офіціантові**
-🎙 **What is this? What is the price?** — послухайте, повторіть, порівняйте.
+**16 · Послухайте — Ліна показує офіціантові незнайомий предмет. Виберіть зміст почутого запитання**
+<!-- interaction_id: en:lesson-02:session-25:i16:s01; family: listen_choose -->
+Ціль: `What is this?`
+Варіанти: `що це` · `скільки це коштує` · `як це називається`
 
-**17 · Фінал сцени — ви біля каси: запитайте назву, ціну й оцініть її**
-🎙 Ви показали на страву, спитали назву, потім ціну і лишилися задоволені.
-**What is the name? What is the price? It is cheap.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i16:s02; family: scripted_repeat_compare -->
+Ціль: `What is the price?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i17:s01; family: scripted_repeat_compare -->
+Ціль: `What is the name?`
+
+**19 · Складіть запитання — офіціант назвав страву, але не сказав, скільки вона коштує**
+<!-- interaction_id: en:lesson-02:session-25:i17:s02; family: phrase_builder -->
+Ціль: `What is the price?`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i17:s03; family: scripted_repeat_compare -->
+Ціль: `It is cheap.`
 
 ## Для сборщика
 
@@ -133,7 +151,7 @@ new_words:
 price — цена — «цена». Цифра справа от строчки в меню.
 name — имя, название — «имя, название». Годится и для человека, и для блюда, и для улицы.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=sound_contrast, 9=word_card, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder, 13=speed_match, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=listen_choose, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare
 
 ---
 
@@ -168,21 +186,5 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | price | 1 | 2 (слух), 6 (вставте), 8 (звуки), 10 (складання) |
 | name | 3 | 4 (слух), 12 (складання) |
-| cheap | 9 — нагадування, слово з минулих сесій | з минулих сесій |
-| street | з минулих сесій | 11 (вставте слово) |
-
----
-
-🟡 **Стоит улучшить**
-- В задании 11 осталась формулировка «воно не стає після `the`» — тот же глагол, на который жаловался судья в интро 2, но здесь он в другом значении («не ставится»). Оставил, потому что в подсказках к заданиям текст не менялся по требованию судьи; если хотите единообразия — заменю на «після `the` воно не ставиться».
-
-🧩 **Скрытые связи**
-- Блок «Для сборщика» остался русским байт в байт — он технический, его читает сборщик, а не ученик.
-
-**Итог:**
-- Переписал украинскую версию сессии 25, закрыв все три замечания судьи.
-- В первом интро опора теперь своя, украинская: сказано просто, что вопрос короткий, а в английском между двумя словами обязательно стоит связка.
-- Во втором интро убрал слово, которое украинец читает как «становится», — теперь «з'являється».
-- В третьем интро убрал канцелярское «питання будується» — теперь просто «питаємо так само».
-- Английские слова, ловушки, номера и порядок заданий не тронуты вообще.
-- Пересчитал длину вступительных страниц после правок — все три в допуске.
+| cheap | 9 — нагадування, слово з минулих занять | з минулих занять |
+| street | з минулих занять | 11 (вставте слово) |

@@ -1,8 +1,8 @@
-# Англійська · Урок 1 · Сесія 56 — «Тиждень»
+# Англійська · Урок 1 · Заняття 56 — «Розмова про тиждень»
 
-**Сцена сесії.** Ви миєте посуд після вечері, телефон лежить на столі на гучному зв'язку. На тому кінці брат, який цілий місяць не телефонував, а тепер питає все одразу: як тиждень, як колеги в офісі, як квартира, чи не нудно самому.
+Після вечері вам телефонує брат. У розмові ви скажете про свій тиждень, колег і квартиру.
 
-**Операція:** повторення — `am` / `is` / `are` і `not` після зв'язки
+**Що ви повторите:** `am`, `is`, `are` і заперечення з `not`
 **Нові слова:** —
 **Повертаються:** week, tired, everyone, kind, flat, warm, alone
 
@@ -20,7 +20,7 @@
 
 - ✅ **It is hard.**
 - ❌ It are hard. — *`are` — для кількох. Тиждень один, йому потрібне `is`.*
-- ❌ It hard. — *Зв'язка `is` зникла. Між `it` і словом-ознакою вона потрібна.*
+- ❌ It hard. — *Між `it` і словом-ознакою потрібна форма `is`.*
 
 ---
 
@@ -35,8 +35,8 @@
 **Брат питає про нових колег. Вони хороші — скажіть про всіх.**
 
 - ✅ **Everyone is kind.**
-- ❌ Everyone are kind. — *Слово про багатьох, а зв'язка при ньому `is`. Англійська чує тут «кожен».*
-- ❌ Everyone kind. — *Зв'язка зникла зовсім. Між `everyone` і словом-ознакою потрібне `is`.*
+- ❌ Everyone are kind. — *Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`.*
+- ❌ Everyone kind. — *Між `everyone` і словом-ознакою потрібна форма `is`.*
 
 ---
 
@@ -44,87 +44,129 @@
 
 ### `alone` — «сам»
 
-`alone` — «сам, на самоті». Про себе це `I am alone`: зв'язку `am` беруть тільки з `I`, з іншими словами вона не йде.
+`alone` — «сам, на самоті». Про себе це `I am alone`: форму `am` беруть тільки з `I`, з іншими словами вона не йде.
 
 Щоб сказати навпаки, `not` ставлять після `am`: `I am not alone`. Українською «я не сам» обходиться двома словами, і третє здається зайвим — але викиньте `am`, і фраза розсиплеться.
 
 **Брат хвилюється, що ви там зовсім самі. Заспокойте його.**
 
 - ✅ **I am not alone.**
-- ❌ I not alone. — *Зникла зв'язка `am`. Без неї фраза не стоїть.*
-- ❌ I am no alone. — *`no` замість `not` — так тягне сказати з української. Після зв'язки йде `not`.*
+- ❌ I not alone. — *Після `I` потрібна форма `am`.*
+- ❌ I am no alone. — *Після `am` для заперечення ставлять `not`, не `no`.*
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — 21 завдання
 
 **1 · Вставте слово — брат телефонує об одинадцятій вечора, ви позіхаєте в слухавку**
+<!-- interaction_id: en:lesson-01:session-56:i01; family: context_gap_grammar -->
 I am ___ . → **tired** · alone · warm
 - alone — *«Сам». Про компанію, а ви позіхаєте від утоми.*
 - warm — *«Тепло». Про температуру, а не про те, що вас хилить на сон.*
 
-**2 · Послухайте і виберіть — week**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
 🔊 *week* → **week** · wick · walk
 - wick — *Інший голосний й інше слово — «ґніт».*
 - walk — *Зовсім інше слово — «іти пішки». У ньому чути «уок».*
 
 **3 · Вставте слово — брат питає про нових колег, вони хороші**
+<!-- interaction_id: en:lesson-01:session-56:i03; family: context_gap_grammar -->
 Everyone is ___ . → **kind** · tired · alone
 - tired — *«Втомився». Ви кажете не про їхній стан, а про вдачу.*
 - alone — *«Сам». Про всіх одразу так не скажеш.*
 
 **4 · Складіть фразу — «тиждень важкий», про тиждень через `it`**
+<!-- interaction_id: en:lesson-01:session-56:i04; family: phrase_builder -->
 Плитки: `hard` `is` `It` `are` → **It is hard.**
 
-**5 · Вставте зв'язку — про всіх колег одразу**
+**5 · Оберіть форму — про всіх колег одразу**
+<!-- interaction_id: en:lesson-01:session-56:i05; family: context_gap_grammar -->
 Everyone ___ kind. → **is** · are · am
-- are — *Людей багато, але `everyone` — «кожен», і зв'язка при ньому `is`.*
+- are — *Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`.*
 - am — *`am` беруть тільки з `I`. Тут мова не про вас.*
 
 **6 · Послухайте і складіть — «я втомився»**
+<!-- interaction_id: en:lesson-01:session-56:i06; family: listen_build_dictation -->
 🔊 *I am tired.* Плитки: `tired` `am` `I` `is` → **I am tired.**
 
 **7 · Вставте слово — брат питає про квартиру, там тепло**
+<!-- interaction_id: en:lesson-01:session-56:i07; family: context_gap_grammar -->
 The flat is ___ . → **warm** · kind · tired
 - kind — *`kind` — про вдачу людини, не про кімнату.*
 - tired — *«Втомився». Про квартиру так не кажуть.*
 
-**8 · З'єднайте пари (Speed Match, 4 пари)**
+**8 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-56:i08; family: speed_match -->
 week — тиждень · tired — втомився · kind — добрий · warm — тепло
 
 **9 · Складіть фразу — поруч із вами друзі; скажіть, що ви не сам**
+<!-- interaction_id: en:lesson-01:session-56:i09; family: phrase_builder -->
 Плитки: `alone` `not` `I` `am` `no` → **I am not alone.**
 
 **10 · Вставте слово — брат питає, чи не нудно вам у порожній квартирі**
+<!-- interaction_id: en:lesson-01:session-56:i10; family: context_gap_grammar -->
 I am not ___ . → **alone** · warm · kind
 - warm — *«Тепло». Він спитав не про батареї.*
 - kind — *«Добрий». Себе так не заспокоюють.*
 
 **11 · Розрізніть звуки — яке з двох про «тепло»?**
+<!-- interaction_id: en:lesson-01:session-56:i11; family: sound_contrast -->
 🔊 Два слова поспіль.
 *warm · worm* → **warm**
 - worm — *Це «черв'як». Про квартиру й погоду кажуть `warm`.*
 
 **12 · Послухайте і складіть — «квартира тепла»**
+<!-- interaction_id: en:lesson-01:session-56:i12; family: listen_build_dictation -->
 🔊 *The flat is warm.* Плитки: `warm` `flat` `is` `The` `are` → **The flat is warm.**
 
 **13 · Складіть фразу — «тиждень не важкий»**
+<!-- interaction_id: en:lesson-01:session-56:i13; family: phrase_builder -->
 Плитки: `hard` `not` `is` `It` `no` → **It is not hard.**
 
-**14 · Вставте зв'язку — про тиждень, який був легкий**
+**14 · Оберіть форму — про тиждень, який був легкий**
+<!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->
 It ___ not hard. → **is** · are · am
 - are — *Тиждень один. `are` беруть, коли мова про кількох.*
 - am — *`am` іде тільки з `I`. Тиждень — не ви.*
 
 **15 · Складіть фразу — брат: «Ти там втомився?» Дайте відповідь, що ні**
+<!-- interaction_id: en:lesson-01:session-56:i15; family: phrase_builder -->
 Плитки: `tired` `am` `I` `not` `no` → **I am not tired.**
 
-**16 · Скажіть уголос — заспокоюєте брата**
-🎙 **I am not alone. Everyone is kind.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i16:s01; family: scripted_repeat_compare -->
+Брат хвилюється, що ви самі. Скажіть, що ви не самі.
 
-**17 · Складіть фразу — поруч із вами друзі; скажіть, що ви не сам**
-🎙 Брат просить підбити підсумок тижня. Скажіть: тиждень важкий, ви втомилися, але ви не самі й усі навколо добрі.
-**It is hard. I am tired. I am not alone. Everyone is kind.**
+🎙 **I am not alone.**
+
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i16:s02; family: scripted_repeat_compare -->
+Розкажіть братові про колег: вони добрі.
+
+🎙 **Everyone is kind.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i17:s01; family: scripted_repeat_compare -->
+Брат питає, яким був ваш тиждень. Скажіть, що важким.
+
+🎙 **It is hard.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i17:s02; family: scripted_repeat_compare -->
+Брат питає, чи ви втомилися. Скажіть, що втомилися.
+
+🎙 **I am tired.**
+
+**20 · Вставте слово — друг питає, чи ви зараз самі**
+<!-- interaction_id: en:lesson-01:session-56:i17:s03; family: context_gap_grammar -->
+I ___ not alone. → **am** · is · are
+- is — *`is` ставлять після he, she або it. Після `I` потрібне `am`.*
+- are — *`are` ставлять після you, we або they. Після `I` потрібне `am`.*
+
+**21 · Складіть фразу — ви говорите про доброзичливих людей поруч**
+<!-- interaction_id: en:lesson-01:session-56:i17:s04; family: phrase_builder -->
+Плитки: `Everyone` `is` `kind.` `are` → **Everyone is kind.**
 
 ---
 
@@ -132,7 +174,7 @@ It ___ not hard. → **is** · are · am
 
 new_words: —
 
-modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=context_gap_grammar, 21=phrase_builder
 
 ---
 
@@ -175,8 +217,3 @@ modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_b
 | Інтро 2 | ~275 |
 | Інтро 3 | ~285 |
 
----
-
-- Замечание судьи закрыто: в разборе варианта `wick` теперь стоит «Інший голосний **й** інше слово» — чередование і/й соблюдено, вслух не спотыкается.
-- Больше ничего не менял: английские слова, фразы, ловушки, порядок и номера заданий, механики и блок «Для сборщика» остались байт в байт.
-- Остальной украинский текст судья не отметил, поэтому он сохранён как был.

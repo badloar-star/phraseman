@@ -1,0 +1,21 @@
+{
+  "session": "en/l03/s56",
+  "reviewedAt": "2026-10-04T12:30:00+01:00",
+  "reviewer": "/root/s56_release_receipts",
+  "scope": "Fresh current-byte review of final.ru.md, final.uk.md and practice.atomic.json after the listening-prompt, semantic, taste and locale repairs.",
+  "hashes": {
+    "ru": "233023677dafa0d049e8c89a640d5d31b1477f34bd64675fefe7954d57af0270",
+    "uk": "b3d27a29b0da88abc476d2b218c230a8627ee97fe1074216611d33b24a282cf0",
+    "atomic": "bd679b5353eb4bfa557ecccd62fa3d6b9a0239f1c276688bc6d70e5401d1bf14",
+    "preauthoring": "014afadde87da6a94f44b30bc82230fe4ab037f889645cfab3ac5531d2355eba"
+  },
+  "roles": {
+    "judge_learner": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Neutral i01/i06/i10/i14 listening prompts require playback; none names the target object, number, distance or meaning before the first attempt.", "The three exact intro answers recur as scored i11/i12/i13 targets, and i19 independently retrieves a single final phrase."] },
+    "judge_reader": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The first two scene sentences give a clear ordinary reason for the lesson: guests are imminent and three purchases need short labels.", "RU and UK instructions are short, natural and parallel; every assessed response is one word or one English phrase."] },
+    "judge_pedagogy": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["mat, tray and hook each receive isolated recognition, production and construction contacts before phrase work.", "The checkpoint then combines established article, knownness, number and distance choices with fading support."] },
+    "judge_nonsense": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The apartment-before-guests scene is physically coherent: a mat is at the door, a tray carries cups and hooks hold outerwear.", "The only light line about keeping cups away from elbows directly supports the distant-counter cue for That."] },
+    "judge_taste": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Rule explanations are concise, concrete and tied to the learner’s object labels rather than decorative metaphors.", "The small humor remains inside the scene and does not obscure the grammar choice."] },
+    "judge_progression": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The exact S56 row is a checkpoint integrating nouns, plural, articles and demonstratives with mat, tray and hook before guests arrive.", "All three intros connect current words and scene to current practice and then to the independent final."] },
+    "locale_uk": { "verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["UK preserves IDs, ordering, English targets and audio while using natural independent learner-facing Ukrainian.", "The repaired neutral listening prompts are equally non-leading in both locales."] }
+  }
+}

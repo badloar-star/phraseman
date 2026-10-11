@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro1:r2": {
+          "ru": "В этой фразе для называния одной ложки нужно `a spoon`. Перед `spoon` пропущено `a`.",
+          "uk": "У цій фразі одну ложку називаємо `a spoon`. Перед `spoon` пропущено `a`."
+        },
+        "en:lesson-03:session-23:intro1:r3": {
+          "ru": "Вы называете одну ложку. Нужна форма `spoon`; `spoons` означает несколько ложек.",
+          "uk": "Ви називаєте одну ложку. Потрібна форма `spoon`; `spoons` означає кілька ложок."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro2:r2": {
+          "ru": "Вы спрашиваете о нескольких приборах. Для нескольких вилок нужна форма `forks`.",
+          "uk": "Ви питаєте про кілька предметів столового приладдя. Для кількох виделок потрібна форма `forks`."
+        },
+        "en:lesson-03:session-23:intro2:r3": {
+          "ru": "В вопросе с `they` нужно начало `Are they`. Слово `Is` здесь не подходит к `they`.",
+          "uk": "У питанні з `they` потрібен початок `Are they`. Слово `Is` із `they` не вживаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-23:intro3:r2": {
+          "ru": "Чашек несколько, поэтому нужно `cups`, с окончанием `s`.",
+          "uk": "Чашок кілька, тому потрібно `cups`, із `s` наприкінці."
+        },
+        "en:lesson-03:session-23:intro3:r3": {
+          "ru": "В этой фразе называем несколько чашек словом `cups`. Слово `a` перед ним лишнее.",
+          "uk": "У цій фразі кілька чашок називаємо `cups`. Слово `a` перед ним зайве."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b35d9ae519e85706fe5a7c6753a4e605e235149cf7cb43d54c79ab228660d2ad"
+}

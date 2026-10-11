@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-46:i01",
-    "correctText": "",
+    "correctText": "fun",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i03",
-    "correctText": "",
+    "correctText": "boring",
     "correctResponseId": null
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i07",
-    "correctText": "",
+    "correctText": "cool",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-46:i08",
-    "correctText": "",
+    "correctText": "weird",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-46:i13",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-46:i13:p1=fun\nen:lesson-01:session-46:i13:p2=boring\nen:lesson-01:session-46:i13:p3=cool\nen:lesson-01:session-46:i13:p4=weird",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": "en:lesson-01:session-46:i16:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-46:i17",
-    "correctText": "I'm tired. It's cool. It's fun.",
+    "interactionId": "en:lesson-01:session-46:i17:s01",
+    "correctText": "I'm tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i17:s02",
+    "correctText": "It's cool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i17:s03",
+    "correctText": "It's fun.",
     "correctResponseId": null
   }
 ]

@@ -435,7 +435,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — друг спрашивает, что стоит рядом со стулом; ответьте двумя словами «кресло»",
+      "prompt": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i08:r1",
@@ -444,16 +444,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — друг спрашивает, что стоит рядом со стулом; ответьте двумя словами «кресло»",
+      "accessibilityLabel": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "An armchair.",
+        "targetPhrase": "It is an armchair.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — друг спрашивает, что стоит рядом со стулом; ответьте двумя словами «кресло»",
-          "uk": "Складіть коротку назву — друг запитує, що стоїть поруч зі стільцем; дайте двослівну відповідь: «крісло»"
+          "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+          "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
         },
         "orderedTokens": [
-          "An",
+          "It",
+          "is",
+          "an",
           "armchair"
         ],
         "authoredDistractorTokens": [
@@ -465,8 +467,8 @@
             "correct": false,
             "testedDimension": "Соберите короткое название — друг спраши",
             "feedbackByLocale": {
-              "ru": "Название `armchair` начинается с гласного звука. Перед ним нужно `An`, поэтому `A` остаётся лишним.",
-              "uk": "Назва `armchair` починається з голосного звука. Перед нею потрібне `An`, тому `A` залишається зайвим."
+              "ru": "После `It` нужна форма `is`, а перед `armchair` — `an`: `It is an armchair`.",
+              "uk": "Після `It` потрібна форма `is`, а перед `armchair` — `an`: `It is an armchair`."
             }
           }
         ]
@@ -668,65 +670,43 @@
       "interactionId": "en:lesson-03:session-09:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — друг принял трость за зонт; скажите «Это не зонт»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите отрицание — друг принял трость за зонт; скажите «Это не зонт»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i12:r1",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-09:i12:r2",
           "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-09:i12:r3",
-          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — друг принял трость за зонт; скажите «Это не зонт»",
+      "accessibilityLabel": "Соберите отрицание — друг принял трость за зонт; скажите «Это не зонт»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — друг принял трость за зонт; скажите «Это не зонт»",
-          "uk": "Вставте слово — друг прийняв тростину за парасолю; скажіть «Це не парасоля»"
+        "family": "phrase_builder",
+        "targetPhrase": "It is not an umbrella.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — друг принял трость за зонт; скажите «Это не зонт»",
+          "uk": "Складіть заперечення — друг прийняв тростину за парасолю; скажіть «Це не парасоля»"
         },
-        "gappedTargetPhrase": "It is not ___ umbrella.",
-        "gapOptions": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "an",
+          "umbrella"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i12:r1",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r2",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Вставьте слово — друг принял трость за з",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-09:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг принял трость за з",
+            "testedDimension": "Соберите отрицание — друг принял трость за зонт",
             "feedbackByLocale": {
-              "ru": "`umbrella` начинается с гласного звука. В отрицании перед названием тоже нужно `an`.",
-              "uk": "`umbrella` починається з голосного звука. У запереченні перед назвою теж потрібне `an`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — друг принял трость за з",
-            "feedbackByLocale": {
-              "ru": "`is` уже стоит перед `not`. После `not` здесь идёт название `an umbrella`.",
-              "uk": "`is` уже стоїть перед `not`. Після `not` тут іде назва `an umbrella`."
+              "ru": "Перед `umbrella` нужен `an`: слово начинается с гласного звука.",
+              "uk": "Перед `umbrella` потрібне `an`: слово починається з голосного звука."
             }
           }
         ]
@@ -908,13 +888,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг не понял, на что вы показываете рядом с креслом; скажите «Это лампа»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг не понял, на что вы показываете рядом с креслом; скажите «Это лампа»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -988,5 +968,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8e49cea74ffd3bde79510857bab579853493ea74937c63f87c05bce355cf4389"
+  "learnerFingerprint": "b28f232777cb52d28ca5db194928895077e2190783d421e62a6d5c97f0e15059"
 }

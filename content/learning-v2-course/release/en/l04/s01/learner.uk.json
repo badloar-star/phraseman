@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i01:r1",
+          "text": "pharmacy"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i01:r2",
+          "text": "factory"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i01:r3",
+          "text": "family"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть, що прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i01:audio",
+          "transcript": "pharmacy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-01:i01:r1",
+            "targetText": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i01:r2",
+            "targetText": "factory",
+            "meaningByLocale": {
+              "ru": "фабрика",
+              "uk": "фабрика"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i01:r3",
+            "targetText": "family",
+            "meaningByLocale": {
+              "ru": "семья",
+              "uk": "родина"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i01:r2",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "У `factory` после /f/ слышно /æ/, а у `pharmacy` — /ɑː/ в британском или /ɑːr/ в американском произношении.",
+              "uk": "У `factory` після /f/ чути /æ/, а у `pharmacy` — /ɑː/ у британській або /ɑːr/ в американській вимові."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i01:r3",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "У `family` после /f/ слышно /æ/, а у `pharmacy` — /ɑː/ в британском или /ɑːr/ в американском произношении.",
+              "uk": "У `family` після /f/ чути /æ/, а у `pharmacy` — /ɑː/ у британській або /ɑːr/ в американській вимові."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте слово для бібліотеки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте слово для бібліотеки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i02:audio",
+          "transcript": "library"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "library",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово «пекарня»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i03:r1",
+          "text": "bakery"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i03:r2",
+          "text": "battery"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i03:r3",
+          "text": "balcony"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i03:r4",
+          "text": "berry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово «пекарня»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово «пекарня»",
+          "uk": "Вставте слово «пекарня»"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i03:r1",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i03:r2",
+            "text": "battery"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i03:r3",
+            "text": "balcony"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i03:r4",
+            "text": "berry"
+          }
+        ],
+        "testedDimension": "точное слово для пекарни",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "точное слово для пекарни",
+            "feedbackByLocale": {
+              "ru": "`Battery` — батарейка. Для пекарни нужно `bakery`.",
+              "uk": "`Battery` — батарейка. Для пекарні потрібне `bakery`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "точное слово для пекарни",
+            "feedbackByLocale": {
+              "ru": "`Balcony` — балкон. Пекарня — `bakery`.",
+              "uk": "`Balcony` — балкон. Пекарня — `bakery`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i03:r4",
+            "correct": false,
+            "testedDimension": "точное слово для пекарни",
+            "feedbackByLocale": {
+              "ru": "`Berry` — ягода. Здесь нужно слово `bakery` — «пекарня».",
+              "uk": "`Berry` — ягода. Тут потрібне слово `bakery` — «пекарня»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте слово для аптеки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Промовте слово для аптеки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i04:audio",
+          "transcript": "pharmacy"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "pharmacy",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово «бібліотека»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i05:r1",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i05:r2",
+          "text": "librarian"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i05:r3",
+          "text": "liberty"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i05:r4",
+          "text": "laboratory"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово «бібліотека»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово «библиотека»",
+          "uk": "Вставте слово «бібліотека»"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i05:r1",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i05:r2",
+            "text": "librarian"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i05:r3",
+            "text": "liberty"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i05:r4",
+            "text": "laboratory"
+          }
+        ],
+        "testedDimension": "точное слово для библиотеки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "точное слово для библиотеки",
+            "feedbackByLocale": {
+              "ru": "`Librarian` — библиотекарь. Для библиотеки нужно `library`.",
+              "uk": "`Librarian` — бібліотекар. Для бібліотеки потрібне `library`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "точное слово для библиотеки",
+            "feedbackByLocale": {
+              "ru": "`Liberty` — свобода. Библиотека — `library`.",
+              "uk": "`Liberty` — свобода. Бібліотека — `library`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i05:r4",
+            "correct": false,
+            "testedDimension": "точное слово для библиотеки",
+            "feedbackByLocale": {
+              "ru": "`Laboratory` — лаборатория. Здесь нужно слово `library` — «библиотека».",
+              "uk": "`Laboratory` — лабораторія. Тут потрібне слово `library` — «бібліотека»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i06:r1",
+          "text": "bakery"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i06:r2",
+          "text": "battery"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i06:r3",
+          "text": "balcony"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть, що прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i06:audio",
+          "transcript": "bakery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-01:i06:r1",
+            "targetText": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i06:r2",
+            "targetText": "battery",
+            "meaningByLocale": {
+              "ru": "батарейка",
+              "uk": "батарейка"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i06:r3",
+            "targetText": "balcony",
+            "meaningByLocale": {
+              "ru": "балкон",
+              "uk": "балкон"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "Выбрана «батарейка», но в battery после /b/ слышно /æ/, а в записи у bakery — /eɪ/.",
+              "uk": "Вибрано «батарейка», але в battery після /b/ чути /æ/, а в записі у bakery — /eɪ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "Выбран «балкон», но balcony начинается с /bæ/, а в записи первый гласный bakery — /eɪ/.",
+              "uk": "Вибрано «балкон», але balcony починається з /bæ/, а в записі перший голосний bakery — /eɪ/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово «аптека»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i07:r1",
+          "text": "pharmacy"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i07:r2",
+          "text": "factory"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i07:r3",
+          "text": "family"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i07:r4",
+          "text": "farmer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово «аптека»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово «аптека»",
+          "uk": "Вставте слово «аптека»"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i07:r1",
+            "text": "pharmacy"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i07:r2",
+            "text": "factory"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i07:r3",
+            "text": "family"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i07:r4",
+            "text": "farmer"
+          }
+        ],
+        "testedDimension": "точное слово для аптеки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i07:r2",
+            "correct": false,
+            "testedDimension": "точное слово для аптеки",
+            "feedbackByLocale": {
+              "ru": "`Factory` — фабрика. Для аптеки нужно `pharmacy`.",
+              "uk": "`Factory` — фабрика. Для аптеки потрібне `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i07:r3",
+            "correct": false,
+            "testedDimension": "точное слово для аптеки",
+            "feedbackByLocale": {
+              "ru": "`Family` — семья. Аптека — `pharmacy`.",
+              "uk": "`Family` — родина. Аптека — `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i07:r4",
+            "correct": false,
+            "testedDimension": "точное слово для аптеки",
+            "feedbackByLocale": {
+              "ru": "`Farmer` — фермер. Здесь нужно слово `pharmacy` — «аптека».",
+              "uk": "`Farmer` — фермер. Тут потрібне слово `pharmacy` — «аптека»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i08",
+      "ordinal": 11,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i08:r1",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i08:r2",
+          "text": "liberty"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i08:r3",
+          "text": "laboratory"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть, що прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i08:audio",
+          "transcript": "library"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-01:i08:r1",
+            "targetText": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i08:r2",
+            "targetText": "liberty",
+            "meaningByLocale": {
+              "ru": "свобода",
+              "uk": "свобода"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i08:r3",
+            "targetText": "laboratory",
+            "meaningByLocale": {
+              "ru": "лаборатория",
+              "uk": "лабораторія"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "Выбрана «свобода», но liberty начинается с короткого /ɪ/, а в записи у library — /aɪ/.",
+              "uk": "Вибрано «свобода», але liberty починається з короткого /ɪ/, а в записі у library — /aɪ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "В `laboratory` после /l/ нет дифтонга /aɪ/, который слышен в `library`.",
+              "uk": "У `laboratory` після /l/ немає дифтонга /aɪ/, який чути в `library`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i09",
+      "ordinal": 12,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте слово для пекарні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте слово для пекарні",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i09:audio",
+          "transcript": "bakery"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "bakery",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова та значення біля стійки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова та значення біля стійки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-01:i10:p1",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-01:i10:p2",
+            "target": "house",
+            "meaningByLocale": {
+              "ru": "дом",
+              "uk": "будинок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-01:i10:p3",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "рядом",
+              "uk": "поруч"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-01:i10:p4",
+            "target": "behind",
+            "meaningByLocale": {
+              "ru": "за, позади",
+              "uk": "за, позаду"
+            }
+          }
+        ],
+        "leftColumn": [
+          "here",
+          "house",
+          "near",
+          "behind"
+        ],
+        "rightColumn": [
+          "тут",
+          "будинок",
+          "поруч",
+          "за, позаду"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення про бібліотеку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення про бібліотеку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-01:i11:audio",
+          "transcript": "There is a library here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a library here.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "library",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На записці біля стійки поруч із пекарнею написано «тиха». Складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На записці біля стійки поруч із пекарнею написано «тиха». Складіть повідомлення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a quiet bakery.",
+        "localizedMeaning": {
+          "ru": "На заметке у стойки возле пекарни написано «тихая». Соберите сообщение",
+          "uk": "На записці біля стійки поруч із пекарнею написано «тиха». Складіть повідомлення"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "quiet",
+          "bakery"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви шукаєте місце, де купують ліки. Вставте назву місця",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i13:r1",
+          "text": "pharmacy"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i13:r2",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i13:r3",
+          "text": "bakery"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте місце, де купують ліки. Вставте назву місця",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете место, где покупают лекарства. Вставьте название места",
+          "uk": "Ви шукаєте місце, де купують ліки. Вставте назву місця"
+        },
+        "gappedTargetPhrase": "There is a ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i13:r1",
+            "text": "pharmacy"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i13:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i13:r3",
+            "text": "bakery"
+          }
+        ],
+        "testedDimension": "название аптеки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "название аптеки",
+            "feedbackByLocale": {
+              "ru": "`Library` — библиотека. На этой отметке аптека, поэтому нужно `pharmacy`.",
+              "uk": "`Library` — бібліотека. На цій позначці аптека, тому потрібне `pharmacy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i13:r3",
+            "correct": false,
+            "testedDimension": "название аптеки",
+            "feedbackByLocale": {
+              "ru": "`Bakery` — пекарня. Здесь отмечена аптека: `pharmacy`.",
+              "uk": "`Bakery` — пекарня. Тут позначено аптеку: `pharmacy`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На записці біля стійки поруч із бібліотекою написано «маленька». Складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На записці біля стійки поруч із бібліотекою написано «маленька». Складіть повідомлення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a small library.",
+        "localizedMeaning": {
+          "ru": "На заметке у стойки возле библиотеки написано «маленькая». Соберите сообщение",
+          "uk": "На записці біля стійки поруч із бібліотекою написано «маленька». Складіть повідомлення"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "small",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На новій карті тут позначено тихе місце, де купують ліки. Вставте назву місця",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i15:r1",
+          "text": "pharmacy"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i15:r2",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i15:r3",
+          "text": "bakery"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На новій карті тут позначено тихе місце, де купують ліки. Вставте назву місця",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На новой карте здесь отмечено тихое место, где покупают лекарства. Вставьте название места",
+          "uk": "На новій карті тут позначено тихе місце, де купують ліки. Вставте назву місця"
+        },
+        "gappedTargetPhrase": "There is a quiet ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i15:r1",
+            "text": "pharmacy"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i15:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i15:r3",
+            "text": "bakery"
+          }
+        ],
+        "testedDimension": "самостоятельное название аптеки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "название аптеки",
+            "feedbackByLocale": {
+              "ru": "Library — библиотека, а лекарства покупают в pharmacy.",
+              "uk": "Library — бібліотека, а ліки купують у pharmacy."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "название аптеки",
+            "feedbackByLocale": {
+              "ru": "Bakery — пекарня, а лекарства покупают в pharmacy.",
+              "uk": "Bakery — пекарня, а ліки купують у pharmacy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На новій карті позначено тиху бібліотеку. Складіть повне повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На новій карті позначено тиху бібліотеку. Складіть повне повідомлення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a quiet library.",
+        "localizedMeaning": {
+          "ru": "На новой карте отмечена тихая библиотека. Соберите полное сообщение",
+          "uk": "На новій карті позначено тиху бібліотеку. Складіть повне повідомлення"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "quiet",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фінал — на новій карті позначено маленьку пекарню. Вставте назву місця",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-01:i17:r1",
+          "text": "bakery"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i17:r2",
+          "text": "pharmacy"
+        },
+        {
+          "responseId": "en:lesson-04:session-01:i17:r3",
+          "text": "library"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — на новій карті позначено маленьку пекарню. Вставте назву місця",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — на новой карте отмечена маленькая пекарня. Вставьте название места",
+          "uk": "Фінал — на новій карті позначено маленьку пекарню. Вставте назву місця"
+        },
+        "gappedTargetPhrase": "There is a small ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-01:i17:r1",
+            "text": "bakery"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i17:r2",
+            "text": "pharmacy"
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i17:r3",
+            "text": "library"
+          }
+        ],
+        "testedDimension": "самостоятельное название пекарни",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-01:i17:r2",
+            "correct": false,
+            "testedDimension": "название пекарни",
+            "feedbackByLocale": {
+              "ru": "Pharmacy — аптека, а на карте отмечена маленькая bakery.",
+              "uk": "Pharmacy — аптека, а на карті позначено маленьку bakery."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-01:i17:r3",
+            "correct": false,
+            "testedDimension": "название пекарни",
+            "feedbackByLocale": {
+              "ru": "Library — библиотека, а на карте отмечена маленькая bakery.",
+              "uk": "Library — бібліотека, а на карті позначено маленьку bakery."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1ac8cb2e9f15a872c802e98cbe3cb205e5983442213f77855c7fef00e1e2ece4"
+}

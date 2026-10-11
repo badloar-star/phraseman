@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-33:i01",
-    "correctText": "",
+    "correctText": "shoe",
+    "correctResponseId": "en:lesson-03:session-33:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i03",
+    "correctText": "sock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i05",
+    "correctText": "shirt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i02",
     "correctText": "shoe",
-    "correctResponseId": "en:lesson-03:session-33:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,33 +25,28 @@
     "correctResponseId": "en:lesson-03:session-33:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-33:i05",
-    "correctText": "",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-03:session-33:i06",
     "correctText": "shirt",
-    "correctResponseId": "en:lesson-03:session-33:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-33:i07",
-    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i08",
-    "correctText": "These shoes, please.",
+    "correctText": "shoe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i09",
-    "correctText": "socks",
+    "correctText": "sock",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-33:i10",
-    "correctText": "shirts",
+    "correctText": "shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i07",
+    "correctText": "en:lesson-03:session-33:i07:p1=shoe\nen:lesson-03:session-33:i07:p2=sock\nen:lesson-03:session-33:i07:p3=shirt\nen:lesson-03:session-33:i07:p4=hat",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-33:i17",
-    "correctText": "These are shoes. These are socks. These are shirts. These shirts, please.",
+    "interactionId": "en:lesson-03:session-33:i17:s01",
+    "correctText": "These are shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i17:s02",
+    "correctText": "These are socks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i17:s03",
+    "correctText": "These are shirts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i17:s04",
+    "correctText": "These shirts, please.",
     "correctResponseId": null
   }
 ]

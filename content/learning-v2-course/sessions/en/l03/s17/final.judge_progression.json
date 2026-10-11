@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "8965535fdc0783a9b6c2c710a9aa75ab68e1be54b59b98b44a2e7b03b5ffc4fd",
+  "localeSha256": "10d91b023ab6ad2c78eabdf0fd04f462d463b5ba97f6f4e8682c964990f939dc",
+  "comparedThrough": "en/l03/s16",
+  "newWords": [
+    "ticket",
+    "coin",
+    "card"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 17 | новая | обычное множественное число с `-s` | ticket, coin, card | курьер сверяет количество |",
+  "curriculumEvidence": {
+    "grammar": "обычная форма для нескольких предметов с добавлением `s`: `tickets`, `coins`, `cards`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "ticket",
+      "coin",
+      "card"
+    ],
+    "situation": "Вы с коллегой готовите небольшое мероприятие. Курьер привёз растения и подушки для зала, а также пакет с билетами и карточками доступа для участников. Вы сверяете доставку и готовите кассу у входа: монеты нужны для сдачи, а жетоны будут выдавать участникам."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

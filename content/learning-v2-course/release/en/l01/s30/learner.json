@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — busy",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-30:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — quiet",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -408,7 +408,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-30:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — loud",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -527,7 +527,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-30:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — free",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -584,11 +584,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -922,26 +922,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-30:i17",
+      "interactionId": "en:lesson-01:session-30:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы стоите в дверях кафе",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-30:i17:audio"
+        "en:lesson-01:session-30:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы стоите в дверях кафе",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-30:i17:audio",
-          "transcript": "It is loud. It is quiet."
+          "audioTargetId": "en:lesson-01:session-30:i17:s01:audio",
+          "transcript": "It is loud."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is loud. It is quiet.",
+        "targetPhrase": "It is loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i17:s02:audio",
+          "transcript": "It is quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is quiet.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -955,11 +988,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01c9b6baa5a3a455662a2e086da8c3b36151eba701045abc4f5d9fd0b066fb51"
+  "learnerFingerprint": "a5437c235952e172ad701f5982728066c2fe66bd7d82d484ea4b04d1e83e6e0e"
 }

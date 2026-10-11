@@ -1,39 +1,42 @@
 {
-  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
-  "reviewer": "/root/s15_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s15",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+  "exactRuSha256": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+  "exactUkSha256": "67cfee68c4af33540348ea016385983079ef735d9951a263061f70cfe71c4329",
+  "practiceAtomicSha256": "5d64bcd7018fa3ece0079fe28d14b81a6a292e6503d19193eade83b3c4e14187",
+  "localeHashes": {
+    "ru": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+    "uk": "67cfee68c4af33540348ea016385983079ef735d9951a263061f70cfe71c4329"
+  },
   "pairwise": "equal",
-  "pairwise_reason": "Эталон L1S2 разнообразнее по ритму и чаще использует запоминающиеся образы, но часть его приёмов нарушает нынешнюю структуру: ссылается на прошлое обучение и переносит сцену в объяснение. Текущая сессия выигрывает ясностью, соблюдает word-first и scene-only-questions, а единственный юмористический ход естественно объясняет нужную беглость.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
     "score": 4,
     "evidence": [
-      "«Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется.» — разговорно, понятно и связано с учебной задачей.",
-      "«Вопрос меняет начало фразы, а `a plant` остаётся вместе.» — простое человеческое объяснение без термина и лишнего образа."
+      "Current RU voice quote: «если перед каждым `a` устраивать совещание с собой, разговор затянется.» The humour is about the immediate speech decision."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "если перед каждым `a` устраивать совещание с собой, разговор затянется"
+      "«если перед каждым `a` устраивать совещание с собой, разговор затянется.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Сцены находятся в вопросах и дают естественные действия: назвать выбранный товар, ответить продавцу и уточнить содержимое покупки."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "`candle` — «свеча». Первый звук согласный «к», поэтому название одной свечи — `a candle`.",
-    "Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется.",
-    "Вопрос меняет начало фразы, а `a plant` остаётся вместе."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Текст понятный и живой, все три интро укладываются в 210–320 знаков, ai_text_or_nonsense пуст, а естественный юмор подтверждён цитатой; фактическое аудио не проверялось."
+  "verdict_reason": "Current RU voice quote: «если перед каждым `a` устраивать совещание с собой, разговор затянется.» The humour is about the immediate speech decision."
 }

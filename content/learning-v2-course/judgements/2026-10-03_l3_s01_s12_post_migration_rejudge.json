@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "learning_v2_post_migration_rejudge_v1",
+  "reviewer": "/root/s01_s12_post_migration_judges",
+  "reviewedAt": "2026-10-03T00:00:00Z",
+  "scope": {
+    "lesson": "en/l03",
+    "sessions": ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10", "s11", "s12"],
+    "reason": "Fresh rejudge after the global single-phrase migration changed both locale masters and invalidated prior hash-bound receipts.",
+    "filesReadPerSession": ["final.ru.md", "final.uk.md", "practice.atomic.json"],
+    "roles": ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader", "judge_taste", "locale_uk"]
+  },
+  "auditEvidence": {
+    "sourceGate": "Twelve-session direct audit: singlePhraseReleaseIssues, compositeGapReleaseIssues, dictationAudioTargetIssues, answerContractIssues, feedbackLocaleParityIssues and wordCardDefinitionIssues returned 0 issues for RU and UK in every session; locale interaction shape matched in all 12.",
+    "globalGate": "node content/learning-v2-course/pipeline/verify_all_single_phrase_sources.mjs --build-all exited 0: 166 sessions, 3229 interactions, 3229 preservation rows, 0 preservation violations, 166 private builds.",
+    "manualWalkthrough": "Read every current RU and UK intro, every current atomic prompt/target/choice/feedback entry, and all 202 current RU plus 202 current UK interactions in S01–S12. A speed-match grid remains a word-pair activity, not a request to say, hear, build, or fill several target-language phrases."
+  },
+  "sessions": [
+    {
+      "session": "en/l03/s01",
+      "titleRu": "Первая коробка",
+      "interactionCount": 17,
+      "sha256": {"ru": "f8a247640023bf235d6c5f4222133fad436a9ebe7ea359a892e6ecc68f731742", "uk": "9f3bec266cf502e88cf99f758be181702d7c1f207157d42f03137d40ff5aaba5"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["All 17 interactions have one intended answer or one stated speaking target; `a chair`, `a table`, and `a lamp` appear before their sentence work."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The three intros progressively establish `a + noun`, then full `It is a ...`, then the contrast with a state; the final negative uses already modelled material."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["No composite learner phrase, composite gap, mismatched dictation audio, ambiguous answer contract, or multi-phrase audio target remains."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The moving-in-and-opening-boxes scene is concrete and prompts identify what the learner must do without inventing a hidden situation."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Текст сохраняет ясный бытовой голос: шутка вырастает из реальной ошибки с артиклем и не подменяет объяснение правила.", "voice": {"score": 4, "evidence": ["Сэкономили одну букву — получили целую ошибку."]}, "humor": {"present": true, "on_topic": true, "examples": ["Сэкономили одну букву — получили целую ошибку."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Сэкономили одну букву — получили целую ошибку."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["RU/UK have 17 aligned interaction IDs, families and input modes; Ukrainian prompts and feedback are Ukrainian rather than copied Russian."]}
+      }
+    },
+    {
+      "session": "en/l03/s02",
+      "titleRu": "Что под чехлом?",
+      "interactionCount": 17,
+      "sha256": {"ru": "7e98f79e63e20873cbf36f4f4e1c21ac0d6754756f554f984765644a339d7be6", "uk": "69994d5a169bfa8c722bd7615c158d233f6779d787bf93e9b5cb1a0d7662b9ca"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["All 17 targets are answerable from a directly introduced word or returned frame; choices test the intended article or `is` distinction."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Sofa, bed and desk each receive a grounded intro and sentence model before independent selection, question, and state checks."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Atomic source has one target-language sentence at a time; every response contract and feedback route is present and coherent."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Removing covers gives an immediate reason to identify sofa, bed, and desk; the distinction between desk and table is stated plainly."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Шутка про подсчёт диванов держится в сцене и объясняет именно число предметов, не превращая текст в случайный стендап.", "voice": {"score": 4, "evidence": ["Три места для сидения ещё не повод менять фразу об одном диване."]}, "humor": {"present": true, "on_topic": true, "examples": ["Три места для сидения ещё не повод менять фразу об одном диване."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Три места для сидения ещё не повод менять фразу об одном диване."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The Ukrainian master retains all 17 targets and translates the cover scene, meanings, and feedback naturally."]}
+      }
+    },
+    {
+      "session": "en/l03/s03",
+      "titleRu": "Каждой вещи своё место",
+      "interactionCount": 17,
+      "sha256": {"ru": "b6a05b1dd8f223f7ca48f9c66a4d8e759322d83be41354e2698f9b0afc7e1ceb", "uk": "b6d7faa28750a3a0e1916604898bb275850564c88d9413e0e385bda0607ef75d"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The stool, mirror, and rug labels are introduced in context before learners build, hear, ask about, and negate one phrase at a time."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Intro examples prepare the exact noun phrases used later and distinguish naming one item from making a general claim."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["No learner operation contains several target phrases; matching stays a labelled word-pair exercise and all phrase activities are atomic."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Doorway, wall, and rug placement make each object identifiable for a beginner without relying on unexplained outside knowledge."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Лёгкая реплика о переписи зеркал поддерживает различие между одним выбранным предметом и всем множеством, не отвлекая от ответа.", "voice": {"score": 4, "evidence": ["Перепись всех зеркал для этой фразы не нужна."]}, "humor": {"present": true, "on_topic": true, "examples": ["Перепись всех зеркал для этой фразы не нужна."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Перепись всех зеркал для этой фразы не нужна."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["All 17 Ukrainian entries preserve the same English targets and present idiomatic Ukrainian explanations and feedback."]}
+      }
+    },
+    {
+      "session": "en/l03/s04",
+      "titleRu": "Хозяин показывает квартиру",
+      "interactionCount": 17,
+      "sha256": {"ru": "980d83b2077ebbd0b11b518259fd9a9f9edfde41a3c197393cee929446a4f923", "uk": "9e42bee1780bb956c3f8feef30f7de68e958c803132e8778e924249d9f038a2c"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Key, door and window occur in explicit scenes before the learner must form one assertion, one question, or one negation."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The intros make the word-order switch in `Is it ...?` explicit and then add `not` without changing the noun phrase."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["All target, audio and gap fields pass the atomic-source check; distractors are grammatical diagnostics rather than competing valid answers."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["A host showing an apartment supplies a coherent reason to identify a key, ask about a door, and correct a mistaken window label."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Игра со словом «потерять» привязана к ключу и к артиклю, поэтому добавляет запоминаемость и не расходится со сценой.", "voice": {"score": 4, "evidence": ["Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить."]}, "humor": {"present": true, "on_topic": true, "examples": ["Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The UK localisation retains the question and negation contrast with no target additions or Russian prompt leakage."]}
+      }
+    },
+    {
+      "session": "en/l03/s05",
+      "titleRu": "Что попало в кадр?",
+      "interactionCount": 17,
+      "sha256": {"ru": "ba862b2fc3fa411c85a3b003b45ee37b40b13ecb4156ae212b0e9c10cdff585e", "uk": "aba5b029ddde1b21687adba41bf5693ff5561c677a70dd0c2cea38e275889d9e"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Wall, floor and ceiling are separately taught and the clean-state contrast is named before it is tested."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The sequence moves from naming surfaces to separating noun phrases from state adjectives, with no unseen construction in the final check."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["All 17 atomic prompts and answer records have a single actionable target; no multi-blank or multi-sentence repair remains."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Photo framing makes the wall, floor and ceiling prompts legible; the text explains why `clean` is a state rather than a thing."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Шутка о пустом месте перед словом использует физическую стену из сцены и сразу возвращает внимание к нужному артиклю.", "voice": {"score": 4, "evidence": ["На стене можно ничего не вешать, но перед `wall` пустое место не оставляем"]}, "humor": {"present": true, "on_topic": true, "examples": ["На стене можно ничего не вешать, но перед `wall` пустое место не оставляем"], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["На стене можно ничего не вешать, но перед `wall` пустое место не оставляем"], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["Ukrainian anatomy of the photo scene, meaning glosses and feedback all align with the Russian source shape."]}
+      }
+    },
+    {
+      "session": "en/l03/s06",
+      "titleRu": "За покупками для дома",
+      "interactionCount": 17,
+      "sha256": {"ru": "f494d75bfd4ac76aaf99cfd965c91cc50989b5fea59c5640a4c6a5d225bf818e", "uk": "7c682fedcf9af556935893e88c7dd858003982f135ff376e10e6694f6e6dd304"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Basket, trolley and tag have concrete definitions and enter practice before their assertion, question, state, and negation forms."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Each intro describes an observable shop object and prepares the complete phrase later expected from the learner."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["No target asks for a packet of phrases or a bundled audio response; direct source checks found 0 contract issues."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The home-shopping route connects basket, trolley and price tag naturally and makes their meanings clear without specialist vocabulary."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Фраза о ненужных покупках остаётся внутри сцены корзины и спокойно снимает бытовую тревогу новичка, не маскируя правило.", "voice": {"score": 4, "evidence": ["Покупать что-нибудь ради правильной английской фразы не придётся."]}, "humor": {"present": true, "on_topic": true, "examples": ["Покупать что-нибудь ради правильной английской фразы не придётся."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Покупать что-нибудь ради правильной английской фразы не придётся."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The Ukrainian shop scene preserves all source targets and gives a natural local explanation of `trolley` and `tag`."]}
+      }
+    },
+    {
+      "session": "en/l03/s07",
+      "titleRu": "Куда убрать вещи",
+      "interactionCount": 17,
+      "sha256": {"ru": "9fa1ad28f7e1fc1c1649b2c59fb961d184c82ddc9bf592135c9451492503954b", "uk": "a71009df15260e96f0f73783d363bf6a0bce86593a16236dee4e2f79871ae73c"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Drawer, cupboard and wardrobe are distinguished by observable use before the learner answers with one target phrase per interaction."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The intros introduce each new storage word independently, then practice reuses the known `It is` frame without hiding a new rule."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Every target, audio transcript, and single-gap choice survives the atomic gate; no alternative answer is simultaneously correct."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Furniture parts and uses make drawer/cupboard/wardrobe distinctions understandable for a novice at home."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Реплика про стул с одеждой даёт живую бытовую картинку и при этом поддерживает точное различение названий мебели.", "voice": {"score": 4, "evidence": ["Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается."]}, "humor": {"present": true, "on_topic": true, "examples": ["Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The 17 Ukrainian interaction IDs, targets and route feedback match their Russian counterparts with Ukrainian surface language."]}
+      }
+    },
+    {
+      "session": "en/l03/s08",
+      "titleRu": "Что уже нашлось",
+      "interactionCount": 19,
+      "sha256": {"ru": "c1023792dc7f68ee0a24a3a6021ac0dfcba56d76097bca7cc2407d4ab91f5ffd", "uk": "b4e71203a2c3012badea838d0fb4665a1c122a130db7994515d229dc4a05de7c"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The 19 interactions intentionally focus on one new word, `shelf`, while separate intros prepare its assertion, question and correction forms before final use."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["This is a focused consolidation session: each intro changes one operation around the same newly introduced noun and then practice fades support step by step."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["All 19 interactions pass atomic, answer, feedback-parity, word-card-definition and locale-shape checks; no multi-phrase learner action exists."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Finding an unlisted shelf gives an understandable reason first to name it, then verify it, then correct a mistaken label."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Три интро держат один предмет ради фокуса, а короткая ирония о экономии на `a` остаётся понятной и связанной с задачей.", "voice": {"score": 4, "evidence": ["На маленьком `a` в этой фразе не сэкономить"]}, "humor": {"present": true, "on_topic": true, "examples": ["На маленьком `a` в этой фразе не сэкономить"], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["На маленьком `a` в этой фразе не сэкономить"], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The 19 Ukrainian entries have identical ID/family/input-mode shape and retain the same English shelf targets without extra meaning."]}
+      }
+    },
+    {
+      "session": "en/l03/s09",
+      "titleRu": "Ещё одна буква, тот же предмет",
+      "interactionCount": 17,
+      "sha256": {"ru": "0a44e3cf048a21c0d36015ee42b0adf337fdc611fab59bf90b12238fd71585a8", "uk": "d81dba2f7bb1fb2ffa31b487d5528b555f0855411580b36a78456f1897a5fc2b"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Armchair, oven and umbrella are introduced with their vowel-sound article before the learner builds one assertion, question, or negation at a time."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The sequence isolates the new `an` choice by sound and uses familiar sentence frames, so the learner is not asked to infer several new rules at once."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Source-level checks found no composite target, malformed gap, dictation mismatch, feedback parity defect, or answer ambiguity."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Entrance, appliance row and mistaken umbrella scenes are direct, physical situations that support the selected vocabulary."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Сдержанная реплика о выборе маленького слова поддерживает новую фонетическую развилку и остаётся дружелюбной для первого знакомства с `an`.", "voice": {"score": 4, "evidence": ["Кресло одно, а выбирать приходится ещё и слово перед ним."]}, "humor": {"present": true, "on_topic": true, "examples": ["Кресло одно, а выбирать приходится ещё и слово перед ним."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Кресло одно, а выбирать приходится ещё и слово перед ним."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["Ukrainian wording faithfully localises the sound-based a/an explanation and keeps all English targets identical."]}
+      }
+    },
+    {
+      "session": "en/l03/s10",
+      "titleRu": "Выбираем технику",
+      "interactionCount": 17,
+      "sha256": {"ru": "cb93e111055199f6c93e7217000f4ab627ace5a2a2493f20dda3d34ddc2efda1", "uk": "440babac71c188e5303c52bad1c85e046ab921e1b70add8fa387f812d2cb5c24"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Kettle, toaster and vacuum are all introduced in a shop context before each one appears in independent production or comprehension."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The session deliberately contrasts these consonant-sound nouns with the previous `an` set and keeps the sentence frame constant."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Each of the 17 activities has one target phrase or word, one associated audio target where applicable, and a complete answer route."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["A shelf of household appliances gives all three vocabulary items a clear shared situation without unexplained shifts."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Фраза о почти готовом тосте не уводит урок в сторону: она быстро возвращает внимание к нужному артиклю перед словом `toaster`.", "voice": {"score": 4, "evidence": ["Тост уже почти готов, но артикль пропускать рано."]}, "humor": {"present": true, "on_topic": true, "examples": ["Тост уже почти готов, но артикль пропускать рано."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Тост уже почти готов, но артикль пропускать рано."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The Ukrainian appliance-shopping copy preserves the three English words, their article logic and all 17 atomic interactions."]}
+      }
+    },
+    {
+      "session": "en/l03/s11",
+      "titleRu": "Буква есть, а звука нет",
+      "interactionCount": 17,
+      "sha256": {"ru": "704560b19c766ead55c9abfc3edf4d5e1b333e80f3de935cfdbc15d57e24424c", "uk": "0661440019d345a5151a08ea20f6689808bee2d0352f88779a934cfe6c3ca09b"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Hour and uniform each have a direct phonetic explanation before the learner is asked to select, build or say one phrase using the right article."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The two contrasting initial sounds make the a/an rule concrete; short `An hour` is explicitly framed as a non-sentence time expression."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["No interaction joins three phrases; all targets, audio and answer records remain atomic after migration."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Assembly time and a worker's uniform are familiar contexts that make the unusual spelling-pronunciation contrast understandable."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Шутка о старательной ошибке бережно объясняет немую букву и помогает запомнить звучание без пустого украшательства.", "voice": {"score": 4, "evidence": ["Старательно прочитать все буквы здесь значит старательно ошибиться."]}, "humor": {"present": true, "on_topic": true, "examples": ["Старательно прочитать все буквы здесь значит старательно ошибиться."], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Старательно прочитать все буквы здесь значит старательно ошибиться."], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The Ukrainian wording independently explains silent h and the initial y sound; it contains no Russian prompt or feedback leakage."]}
+      }
+    },
+    {
+      "session": "en/l03/s12",
+      "titleRu": "Слышать вместе с названием",
+      "interactionCount": 17,
+      "sha256": {"ru": "041cf67347a7cb6d6930a17efcb499ae2506bd28a02a990fee709c9641bade97", "uk": "f44ab4ad80cdf65dfe6dec86383ed53ecbe612fcc86794aa761a4067fbda0ae9"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["Vase, clock and radio are defined before every independent production, comprehension and correction task that uses them."]},
+        "judge_pedagogy": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The session consolidates sound-first article choice using known `hour` as a contrast and does not introduce an unprepared syntax operation."]},
+        "judge_nonsense": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["The atomic validator reports zero issues in both locales, with aligned feedback and answer contracts across all 17 interactions."]},
+        "judge_reader": {"verdict": "PASS", "blockers": [], "mustFix": [], "evidence": ["A display case and shop assistant provide an unbroken, ordinary setting for vase, clock and radio identification."]},
+        "judge_taste": {"verdict": "PASS", "pairwise": "equal", "pairwise_reason": "Реплика про выкрикивание артикля звучит по-человечески, прямо относится к произношению и помогает не перегружать новичка терминологией.", "voice": {"score": 4, "evidence": ["Выкрикивать его, чтобы доказать, что не забыли, не нужно"]}, "humor": {"present": true, "on_topic": true, "examples": ["Выкрикивать его, чтобы доказать, что не забыли, не нужно"], "misfires": []}, "ai_text_or_nonsense": [], "best_lines": ["Выкрикивать его, чтобы доказать, что не забыли, не нужно"], "blockers": [], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "blockers": [], "mustFix": [], "structureIdentical": true, "englishTargetsIdentical": true, "languagePurity": true, "meaningAdditions": [], "evidence": ["The Ukrainian master preserves all English targets and has a fully aligned 17-interaction structure with no extra semantic content."]}
+      }
+    }
+  ],
+  "overall": {
+    "verdict": "PASS",
+    "sessionsReviewed": 12,
+    "interactionsReviewedPerLocale": 206,
+    "roleVerdicts": {"judge_learner": "PASS", "judge_pedagogy": "PASS", "judge_nonsense": "PASS", "judge_reader": "PASS", "judge_taste": "PASS", "locale_uk": "PASS"},
+    "blockers": [],
+    "mustFix": [],
+    "revisedSessions": [],
+    "conclusion": "all PASS"
+  }
+}

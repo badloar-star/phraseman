@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-18:i01",
+    "correctText": "milk",
+    "correctResponseId": "en:lesson-04:session-18:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i02",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i03",
+    "correctText": "en:lesson-04:session-18:i03:p1=milk\nen:lesson-04:session-18:i03:p2=berry\nen:lesson-04:session-18:i03:p3=container\nen:lesson-04:session-18:i03:p4=basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i04",
+    "correctText": "There is some milk in the fridge.",
+    "correctResponseId": "en:lesson-04:session-18:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i05",
+    "correctText": "There is some milk in the container.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i06",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i07",
+    "correctText": "There is some milk behind the basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i08",
+    "correctText": "There is some milk near the berries.",
+    "correctResponseId": "en:lesson-04:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i09",
+    "correctText": "There is some milk by the container.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i10",
+    "correctText": "There is some milk by the breakfast basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i11",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-18:i12",
+    "correctText": "There is some milk.",
+    "correctResponseId": null
+  }
+]

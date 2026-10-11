@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — nervous",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-54:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — confident",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спрашивают, справитесь ли вы: вы делали это сто раз",
+      "prompt": "Вставьте слово — Анна спрашивает, справитесь ли вы: вы делали это сто раз",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i05:r1",
@@ -264,12 +264,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спрашивают, справитесь ли вы: вы делали это сто раз",
+      "accessibilityLabel": "Вставьте слово — Анна спрашивает, справитесь ли вы: вы делали это сто раз",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спрашивают, справитесь ли вы: вы делали это сто раз",
-          "uk": "Вставте слово — питають, чи впораєтеся ви: ви робили це сто разів"
+          "ru": "Вставьте слово — Анна спрашивает, справитесь ли вы: вы делали это сто раз",
+          "uk": "Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -286,12 +286,12 @@
             "text": "honest"
           }
         ],
-        "testedDimension": "Вставьте слово — спрашивают, справитесь ",
+        "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-54:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают, справитесь ",
+            "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
             "feedbackByLocale": {
               "ru": "«Свободно говорю» — про язык, а спросили про ваши силы.",
               "uk": "«Вільно говорю» — про мовлення, а спитали про ваші сили."
@@ -300,7 +300,7 @@
           {
             "responseId": "en:lesson-01:session-54:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают, справитесь ",
+            "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
             "feedbackByLocale": {
               "ru": "«Честный» — про правдивость, а не про уверенность в деле.",
               "uk": "«Чесний» — про правдивість, а не про впевненість у справі."
@@ -378,7 +378,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-54:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — fluent",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -465,7 +465,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спрашивают про ваш английский",
+      "prompt": "Вставьте слово — Анна спрашивает про ваш английский",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-54:i09:r1",
@@ -482,12 +482,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спрашивают про ваш английский",
+      "accessibilityLabel": "Вставьте слово — Анна спрашивает про ваш английский",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спрашивают про ваш английский",
-          "uk": "Вставте слово — питають про вашу англійську"
+          "ru": "Вставьте слово — Анна спрашивает про ваш английский",
+          "uk": "Вставте слово — Анна питає про вашу англійську"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -504,12 +504,12 @@
             "text": "honest"
           }
         ],
-        "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+        "testedDimension": "Вставьте слово — Анна спрашивает про английский",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+            "testedDimension": "Вставьте слово — Анна спрашивает про английский",
             "feedbackByLocale": {
               "ru": "«Волнуюсь» — про состояние, а вопрос был про язык.",
               "uk": "«Хвилююся» — про стан, а питання було про мовлення."
@@ -518,7 +518,7 @@
           {
             "responseId": "en:lesson-01:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+            "testedDimension": "Вставьте слово — Анна спрашивает про английский",
             "feedbackByLocale": {
               "ru": "«Честен» — про характер. Про речь говорят `fluent`.",
               "uk": "«Чесний» — про вдачу. Про мовлення кажуть `fluent`."
@@ -730,26 +730,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i14",
+      "interactionId": "en:lesson-01:session-54:i14:s01",
       "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы честно начинаете разговор",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-54:i14:audio"
+        "en:lesson-01:session-54:i14:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы честно начинаете разговор",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i14:audio",
-          "transcript": "I am nervous. I am honest."
+          "audioTargetId": "en:lesson-01:session-54:i14:s01:audio",
+          "transcript": "I am nervous."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am nervous. I am honest.",
+        "targetPhrase": "I am nervous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i14:s02",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i14:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i14:s02:audio",
+          "transcript": "I am honest."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am honest.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -764,7 +797,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i15",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -794,15 +827,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-54:i16",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -866,26 +899,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-54:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-01:session-54:i17:s01",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-54:i17:audio"
+        "en:lesson-01:session-54:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-54:i17:audio",
-          "transcript": "I am confident. I am fluent. I am calm. I am ready."
+          "audioTargetId": "en:lesson-01:session-54:i17:s01:audio",
+          "transcript": "I am confident."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am confident. I am fluent. I am calm. I am ready.",
+        "targetPhrase": "I am confident.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i17:s02:audio",
+          "transcript": "I am fluent."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am fluent.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i17:s03:audio",
+          "transcript": "I am calm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am calm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i17:s04:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -899,11 +1031,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d102aa06934a3d3b71f93d250ae823a9400965eaae8c3ee725e61514a0aac065"
+  "learnerFingerprint": "b017e65ee1bd050e8f0e4c690b4d593859c2e1f06aa38887817235fccfe46f0a"
 }

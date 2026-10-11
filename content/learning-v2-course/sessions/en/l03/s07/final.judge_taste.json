@@ -1,13 +1,38 @@
 {
-  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
-  "reviewer": "/root/l03_s07_taste",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_taste",
+  "sourceSha256": "05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31",
+  "exactRuSha256": "05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31",
+  "exactUkSha256": "ded1d9cbf081f526f9aa211e3dc6a52f467f56aad7695cbdf76278da053a1bc8",
+  "practiceAtomicSha256": "f69986ff25a9b7c98f830a4967444f28003a099f2bf0a5104b00348e0db63083",
   "pairwise": "equal",
-  "pairwise_reason": "Эталоны чаще дают яркий образ, но S7 держит ту же планку ясности, цельной бытовой сцены и естественного человеческого голоса. Уточнение кухонного контекста делает `cupboard` однозначным, а юмор вокруг `wardrobe` помогает запомнить значение без ложного правила.",
-  "voice": {"score": 4, "evidence": ["«`drawer` — «выдвижной ящик»: часть стола или шкафа, которую тянут на себя. Это не название всей мебели.» — точное объяснение простыми словами, которое легко представить.", "«Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается.» — живая человеческая реплика, которая одновременно уточняет значение `wardrobe`."]},
-  "humor": {"present": true, "on_topic": true, "examples": ["Одежде тоже есть куда переехать", "Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается."], "misfires": []},
-  "scene": {"present": true, "gives_reason_to_speak": true, "note": "Разбор последней коробки после переезда последовательно мотивирует называние мебели, вопрос о её состоянии и уточнение предмета по видимой ручке."},
-  "ai_text_or_nonsense": [], "water": [], "dead_language": [],
-  "best_lines": ["Одежде тоже есть куда переехать", "`drawer` — «выдвижной ящик»: часть стола или шкафа, которую тянут на себя.", "Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается."],
-  "must_fix": [], "verdict": "PASS",
-  "verdict_reason": "Текст ясный, цельный и живой, естественный юмористический ход подтверждён точными цитатами; `ai_text_or_nonsense` проверен и пуст."
+  "pairwise_reason": "The line is a brief scene-based cue for distinguishing cupboard and wardrobe.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Стул, заваленный одеждой, всё ещё"
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Стул, заваленный одеждой, всё ещё"
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "Стул, заваленный одеждой, всё ещё"
+  ],
+  "ai_text_or_nonsense": [],
+  "must_fix": [],
+  "verdict": "PASS",
+  "evidence": [
+    "The line is a brief scene-based cue for distinguishing cupboard and wardrobe."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "verdict_reason": "The current text keeps a clear everyday teaching voice; the cited line supports the language point and no AI-like padding was found."
 }

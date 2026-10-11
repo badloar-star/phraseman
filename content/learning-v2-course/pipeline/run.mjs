@@ -5,11 +5,11 @@
 // локалей пишутся скриптом, а не руками в чате. Судьи — отдельные вызовы с
 // чистой памятью (свежий агент судит честнее — проверено 16.08).
 //
-// Бэкенды: claude (headless `claude -p`, подписка) | api (Anthropic API,
-// ANTHROPIC_API_KEY в окружении — значение ключа скрипт не печатает) | mock.
+// Бэкенд выбирается явно. Автоматический выбор внешнего провайдера запрещён:
+// качество и стоимость нельзя незаметно привязывать к одному поставщику.
 //
 // Запуск:
-//   node run.mjs draft    --session en/l01/s04 [--backend claude|api|mock]
+//   node run.mjs draft    --session en/l01/s04 --backend <явно-настроенный-адаптер>
 //   node run.mjs judge    --session en/l01/s04 --file draft_A.ru.md
 //   node run.mjs edit     --session en/l01/s04 --file draft_A.ru.md
 //   node run.mjs localize --session en/l01/s04 --file final.ru.md [--locales uk,es]
@@ -18,12 +18,15 @@
 // Логи: префикс [FACTORY], каждый ранний выход и каждый catch пишет причину
 // (правило владельца «сперва логи»).
 
+import { Buffer } from "node:buffer";
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { bindTasteReceiptToSource, isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts, sourceSha256 } from "./owner_quality.mjs";
-import { judgeIssues, requiredJudgesForSession, sessionReadiness } from "./session_readiness.mjs";
+import { bindTasteReceiptToSource, isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts, sourceBytesSha256, sourceSha256 } from "./owner_quality.mjs";
+import { requirePreJudgeChoreography } from "./prejudge_choreography.mjs";
+import { parseIntro, parsePractice } from "./build_release.mjs";
+import { CANONICAL_BINDING_SCHEMA_VERSION, judgeIssues, judgeReceiptContractIssues, requiredJudgesForSession, sessionReadiness } from "./session_readiness.mjs";
 import { preauthoringDocumentManifest, requirePreauthoringReceipt } from "./preauthoring_guard.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -39,7 +42,7 @@ const opt = (name, dflt) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
-const BACKEND = opt("backend", process.env.FACTORY_BACKEND || "claude");
+const BACKEND = opt("backend", process.env.FACTORY_BACKEND || "disabled");
 // зачем: прототип 03.09 (L1 S4): оба Sonnet-черновика получили «worse» —
 // без юмора, слабые ловушки, возврат старых слов не состоялся; Opus — «equal».
 // Авторы по умолчанию Opus; Sonnet остаётся для локализации после проверки.
@@ -68,8 +71,26 @@ const write = (p, s) => {
   fs.writeFileSync(p, s, "utf8");
   LOG("записан", path.relative(ROOT, p), `${s.length} зн.`);
 };
+let mockMutationConsumed = false;
+let mockReceiptMutationConsumed = false;
+let mockLocaleCommitMutationConsumed = false;
+let mockLocaleCorrectionCommitMutationConsumed = false;
+let mockLocaleJudgeCallCount = 0;
+let mockCallCount = 0;
 const listDir = (d, filter = () => true) =>
   exists(d) ? fs.readdirSync(d).filter(filter).sort().map((f) => path.join(d, f)) : [];
+
+function applyMockMutation(envName, consumed) {
+  const mutateFile = process.env[envName]?.trim();
+  if (BACKEND !== "mock" || !mutateFile || consumed) return false;
+  const allowedRoot = process.env.FACTORY_SESSION_DIR?.trim();
+  const resolvedTarget = path.resolve(mutateFile);
+  if (!allowedRoot || !resolvedTarget.startsWith(`${path.resolve(allowedRoot)}${path.sep}`)) {
+    throw new Error(`${envName} вне FACTORY_SESSION_DIR`);
+  }
+  fs.appendFileSync(resolvedTarget, "\n<!-- mock mutation during judge -->\n", "utf8");
+  return true;
+}
 
 // зачем (владелец, 03.09, дословно): «ХОЧУ ДОБАВИТЬ ЖЁСТКОЕ ТРЕБОВАНИЕ И ЕГО
 // НАДО ВПИСАТЬ 45 РАЗ КАПСОМ, ЧТОБЫ НЕ ПРОЕБАТЬ НИКАК СЛУЧАЙНО». Файл
@@ -117,7 +138,13 @@ function parseSession(id) {
     LOG("ранний выход: --session ожидает вид en/l01/s04, получено:", id);
     process.exit(2);
   }
-  return { lang: m[1], lesson: Number(m[2]), session: Number(m[3]), dir: path.join(ROOT, "sessions", id) };
+  const overriddenDir = process.env.FACTORY_SESSION_DIR?.trim();
+  const testOverrideAllowed = BACKEND === "mock"
+    || (process.env.NODE_ENV === "test" && process.env.FACTORY_ALLOW_TEST_SESSION_DIR === "1");
+  if (overriddenDir && !testOverrideAllowed) {
+    throw new Error("FACTORY_SESSION_DIR разрешён только при явном mock/test guard");
+  }
+  return { lang: m[1], lesson: Number(m[2]), session: Number(m[3]), dir: overriddenDir ? path.resolve(overriddenDir) : path.join(ROOT, "sessions", id) };
 }
 
 /** Строки плана урока: из ПЛАН_КУРСА.md, таблицы «### Глава N · … · сцена: …». */
@@ -269,10 +296,11 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 // зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
 // и то же и правила не чувствует (владелец 07.09).
 const PHRASE_SAME_SKELETON_MAX = 2;
-export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА/;
+export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ни разу правильным ответом|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА|ATOMIC ANSWER НЕ ПРИВЯЗАН/;
 
-function finalBuilderPromptedByPreviousVoice(text, file) {
-  const scope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
+function finalBuilderPromptedByPreviousVoice(text, file, sessionIdentity = null) {
+  const scope = /^en\/l(\d{2})\/s(\d{2})$/i.exec(String(sessionIdentity || ""))
+    ?? String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
   if (!scope) return null;
   const lesson = Number(scope[1]);
   const session = Number(scope[2]);
@@ -291,15 +319,35 @@ function finalBuilderPromptedByPreviousVoice(text, file) {
   const final = tasks[tasks.length - 1];
   if (modes.get(previous.number) !== "scripted_repeat_compare" || modes.get(final.number) !== "phrase_builder") return null;
 
-  const spoken = /🎙\s*\*\*([^*\r\n]+)\*\*/.exec(previous.chunk)?.[1]?.trim();
-  const built = /→\s*\*\*([^*\r\n]+)\*\*/.exec(final.chunk)?.[1]?.trim();
+  const spoken = (/🎙\s*\*\*([^*\r\n]+)\*\*/.exec(previous.chunk)?.[1] ??
+    /^(?:Цель|Ціль):\s*`([^`]+)`/m.exec(previous.chunk)?.[1])?.trim();
+  const built = (/→\s*\*\*([^*\r\n]+)\*\*/.exec(final.chunk)?.[1] ??
+    /^(?:Цель|Ціль):\s*`([^`]+)`/m.exec(final.chunk)?.[1])?.trim();
   if (!spoken || !built) return null;
   const normalize = (value) => value.normalize("NFKC").toLocaleLowerCase("en").replace(/[‘’]/g, "'").replace(/[^\p{L}\p{N}']+/gu, " ").trim();
   return normalize(spoken) === normalize(built) ? { previous: previous.number, final: final.number, target: built } : null;
 }
 
-export function machineFacts(file) {
-  const text = read(file);
+export function machineFacts(file, sessionIdentity = null, sourceText = null, atomicSource = null) {
+  const text = sourceText ?? read(file);
+  let atomicPractice = null;
+  const atomicPath = path.join(path.dirname(file), "practice.atomic.json");
+  try {
+    const rawAtomic = atomicSource === null ? read(atomicPath) : atomicSource;
+    const source = typeof rawAtomic === "string" || Buffer.isBuffer(rawAtomic)
+      ? JSON.parse(String(rawAtomic))
+      : rawAtomic;
+    const localeMatch = /^final\.([a-z]{2})\.md$/i.exec(path.basename(file));
+    const locale = localeMatch?.[1]?.toLowerCase() ?? "ru";
+    const interactions = source?.interactionsByLocale?.[locale];
+    if (source?.schemaVersion === "learning_v2_atomic_practice_source_v1" && Array.isArray(interactions) && Array.isArray(source?.answers)) {
+      atomicPractice = { locale, interactions, answers: source.answers };
+    }
+  } catch {
+    // The release builder and source verifier own the missing/malformed-sidecar
+    // failure. Facts keep their legacy Markdown path so they cannot silently
+    // invent evidence from an unreadable authority.
+  }
   // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
   // может начать с A2 и не читал предыдущего». Отсылки к прошлому опыту
   // ловим машинно: это дешевле судьи и не пропускается.
@@ -315,17 +363,25 @@ export function machineFacts(file) {
     [/[Кк]ак и (?:в прошлый раз|раньше)/g, "«как раньше»"],
     [/[Тт]а же (?:скрепка|формула|коллега)/g, "«та же …»"],
   ];
-  const ret = /\*\*Возвращаются:\*\*\s*(.+)/.exec(text)?.[1] ?? "";
+  const ret = /^\*\*(?:Возвращаются|Повертаються):\*\*[^\S\r\n]*([^\r\n]*)$/m.exec(text)?.[1] ?? "";
   const practice = text.split(/^## Практика/m)[1] ?? "";
+  const canonicalTargets = practice.split("\n")
+    .map((line) => /^(?:Цель|Ціль):[^\S\r\n]*`([^`\r\n]+)`[^\S\r\n]*$/u.exec(line)?.[1])
+    .filter(Boolean);
   const facts = [];
-  const ownerScope = sessionIdFromDirectory(path.dirname(file));
+  const identityScope = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/i.exec(String(sessionIdentity || ""));
+  const ownerScope = identityScope
+    ? `${identityScope[1].toLowerCase()}/l${identityScope[2]}/s${identityScope[3]}`
+    : sessionIdFromDirectory(path.dirname(file));
   facts.push(...shortAnswerConstructionFacts(text, ownerScope));
   // зачем: длину автор на глаз не выдерживает (12 страниц из 21 вне нормы) —
   // считаем машинно и отдаём редактору, иначе подгонка ложится на человека
-  const introPages = introPart.split(new RegExp("^## Интро \\d+", "m")).slice(1);
-  const sessionScope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
-  const enforceIntroAnswerGrounding = sessionScope
-    && (Number(sessionScope[1]) > 3 || (Number(sessionScope[1]) === 3 && Number(sessionScope[2]) >= 25));
+  const introPages = introPart.split(new RegExp("^## [ИІ]нтро \\d+", "m")).slice(1);
+  const fileSessionScope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
+  const scopeLesson = identityScope?.[1]?.toLowerCase() === "en" ? Number(identityScope[2]) : Number(fileSessionScope?.[1]);
+  const scopeSession = identityScope?.[1]?.toLowerCase() === "en" ? Number(identityScope[3]) : Number(fileSessionScope?.[2]);
+  const enforceIntroAnswerGrounding = Number.isFinite(scopeLesson)
+    && (scopeLesson > 3 || (scopeLesson === 3 && scopeSession >= 25));
   introPages.forEach((page, k) => {
     const body = page.split(String.fromCharCode(10) + "**")[0].split(String.fromCharCode(10)).filter((x) => !x.trim().startsWith("###")).join(String.fromCharCode(10)).trim();
     const L = body.length;
@@ -347,9 +403,9 @@ export function machineFacts(file) {
   });
   // ЛЕСТНИЦА: нагрузка обязана соответствовать ступени урока (владелец 06.09).
   // Уроки 1-2 заморожены — они написаны до правила и переписывать их не велено.
-  const lessonFromPath = Number((String(file).match(/[\\\/]l(\d+)[\\\/]/) || [])[1] || 0);
+  const lessonFromPath = identityScope ? Number(identityScope[2]) : Number((String(file).match(/[\\\/]l(\d+)[\\\/]/) || [])[1] || 0);
   if (lessonFromPath > 2) {
-    facts.push(...difficultyFacts(text, lessonFromPath));
+    facts.push(...difficultyFacts(text, lessonFromPath, atomicPractice));
   }
   // СВЯЗКА КАК ОДИН ЗВУК: «price начинается с п» — там «пр», а не «п».
   const clusterWords = { price: "пр", street: "стр", plain: "пл", train: "тр", bread: "бр", bridge: "бр", crowded: "кр", pretty: "пр", school: "ск" };
@@ -373,10 +429,28 @@ export function machineFacts(file) {
     for (const h of hits) facts.push(`ОТСЫЛКА К ПРОШЛОМУ: ${name} — «${h}» ← сессию могут открыть первой, этого опыта у ученика нет`);
   }
   for (const w of ret.split(",").map((s) => s.trim()).filter(Boolean)) {
-    const re = new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
-    const total = (practice.match(re) || []).length;
+    const escapedWord = w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`\\b${escapedWord}\\b`, "gi");
+    const markdownTouches = (practice.match(re) || []).length;
+    // The Markdown cue for a gap contains only `___`; its visible choice and
+    // correctness live in the atomic source.  Count atomic option text only
+    // when Markdown has no occurrence, so one exercise is never counted twice.
+    const atomicOptions = atomicPractice
+      ? atomicPractice.interactions.flatMap((interaction) => Array.isArray(interaction?.responseOptions) ? interaction.responseOptions : [])
+      : [];
+    const atomicTouches = atomicOptions.filter((option) => new RegExp(`\\b${escapedWord}\\b`, "i").test(String(option?.text ?? ""))).length;
+    const total = markdownTouches || atomicTouches;
     // правильный ответ в формате эталонов — жирным: «→ **I am fine.**», «**I am early. I am not tired.**»
-    let asAnswer = (practice.match(new RegExp(`\\*\\*[^*\\n]*\\b${w}\\b[^*\\n]*\\*\\*`, "gi")) || []).length;
+    let asAnswer = (practice.match(new RegExp(`\\*\\*[^*\\n]*\\b${escapedWord}\\b[^*\\n]*\\*\\*`, "gi")) || []).length;
+    // Phrase builders and dictations keep their canonical correct phrase on an
+    // exact target line rather than in bold Markdown. Count only that contract:
+    // tiles, conditions, support copy, and distractors remain non-answers.
+    asAnswer += canonicalTargets.filter((target) => new RegExp(`\\b${escapedWord}\\b`, "i").test(target)).length;
+    // Choice activities store the accepted text in answers.json.  Builders
+    // have no correctResponseId and are already covered by canonical targets.
+    if (atomicPractice) {
+      asAnswer += atomicPractice.answers.filter((answer) => answer?.correctResponseId && new RegExp(`\\b${escapedWord}\\b`, "i").test(String(answer?.correctText ?? ""))).length;
+    }
     // зачем: в Speed Match слова пишутся БЕЗ жирного («tired — устал · here —
     // здесь»), и счётчик не видел в них правильного ответа. Педагог получал
     // ноль и валил сессию за слово, которое ученик реально соединяет сам.
@@ -386,13 +460,13 @@ export function machineFacts(file) {
     }
     facts.push(`${w}: касаний в практике ${total}, из них правильным ответом ${asAnswer}${total < 2 ? " ← МЕНЬШЕ ДВУХ" : ""}${asAnswer === 0 ? " ← ни разу правильным ответом" : ""}`);
   }
-  const v = validateModes(file);
+  const v = validateModes(file, text);
   facts.push(`заданий: ${v.taskCount ?? "?"}; механики вне списка: ${v.unknown?.length ? v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") : "нет"}`);
   // зачем: забракованный вариант S37 закончил независимой сборкой Whose is it?,
   // но задание прямо перед ней уже велело повторить Whose is it? вслух. Ученик
   // не извлекал фразу — переносил готовый ответ с соседнего экрана. Блокируем
   // только этот точный voice → final builder copy; раннее извлечение законно.
-  const promptedFinal = finalBuilderPromptedByPreviousVoice(text, file);
+  const promptedFinal = finalBuilderPromptedByPreviousVoice(text, file, sessionIdentity);
   if (promptedFinal) {
     facts.push(`ФИНАЛ ПОДСКАЗАН: задание ${promptedFinal.previous} уже показывает «${promptedFinal.target}» в scripted_repeat_compare прямо перед финальной сборкой ${promptedFinal.final} — финал должен требовать самостоятельного извлечения`);
   }
@@ -405,7 +479,7 @@ export function machineFacts(file) {
     // норма только для новых»). 17 выпущенных сессий имеют по 3 сборки —
     // они проверены судьями и работают, переделка их только сломала бы.
     // Граница проходит внутри урока 2: всё с сессии 31 и дальше.
-    const sessFromPath = Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
+    const sessFromPath = identityScope ? Number(identityScope[3]) : Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
     const underNewRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessFromPath >= PHRASE_BUILD_FROM_SESSION);
     const built = (v.entries || []).filter(([, f]) => f === "phrase_builder" || f === "listen_build_dictation").length;
     if (underNewRule && v.entries && v.entries.length && built < PHRASE_BUILD_MIN) {
@@ -418,7 +492,7 @@ export function machineFacts(file) {
   // «скелет» (фраза без последнего слова): больше двух одинаковых — однообразие.
   // Порог проверен на живых сессиях: ловит s30/s31, пропускает эталоны s19/s29/s51.
   {
-    const sessNo = Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
+    const sessNo = identityScope ? Number(identityScope[3]) : Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
     const newRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessNo >= PHRASE_BUILD_FROM_SESSION);
     if (newRule) {
       const answers = [];
@@ -497,7 +571,7 @@ export function machineFacts(file) {
   // спрашивал про `I am fine` — ученик читает про одно, отвечает про другое.
   // Проверяем машинно: слово из правильного ответа должно встречаться в тексте
   // страницы. Судьи этого не ловили — они смотрят каждую часть отдельно.
-  const introBlocks = text.split(/^## Интро \d+[^\n]*$/m).slice(1);
+  const introBlocks = text.split(/^## [ИІ]нтро \d+[^\n]*$/m).slice(1);
   for (const [i, block] of introBlocks.entries()) {
     const page = block.split(/^---\s*$/m)[0];
     // зачем: сам вопрос — не объяснение. Пока в вопросе стояло английское
@@ -607,7 +681,28 @@ function callModel({ system, user, model, maxTokens = 8000, label, attempt = 0 }
   let text = "";
   try {
     if (BACKEND === "mock") {
-      text = `{"verdict":"PASS","verdict_reason":"mock"}\n\n# MOCK ${label}`;
+      mockCallCount += 1;
+      const mutateOnCall = Number(process.env.FACTORY_MOCK_MUTATE_ON_CALL_NUMBER || "1");
+      if (!mockMutationConsumed && mockCallCount === mutateOnCall) {
+        mockMutationConsumed = applyMockMutation("FACTORY_MOCK_MUTATE_FILE_ON_CALL", mockMutationConsumed);
+      }
+      if (label.startsWith("судья локалей") && process.env.FACTORY_MOCK_LOCALE_JUDGE_SEQUENCE) {
+        const sequence = process.env.FACTORY_MOCK_LOCALE_JUDGE_SEQUENCE.split(",").map((value) => value.trim()).filter(Boolean);
+        const verdict = sequence[Math.min(mockLocaleJudgeCallCount, sequence.length - 1)] || "PASS";
+        mockLocaleJudgeCallCount += 1;
+        text = JSON.stringify({ verdict, verdict_reason: "mock locale sequence", locales: Object.fromEntries(LOCALES.map((locale) => [locale, { verdict }])) });
+      } else if (label.startsWith("судья локалей")) {
+        text = JSON.stringify({ verdict: "PASS", verdict_reason: "mock", locales: Object.fromEntries(LOCALES.map((locale) => [locale, { verdict: "PASS" }])) });
+      } else if (label.startsWith("правка локали") && process.env.FACTORY_MOCK_LOCALE_CORRECTION_FILE) {
+        const correctionFile = path.resolve(process.env.FACTORY_MOCK_LOCALE_CORRECTION_FILE);
+        const allowedRoot = process.env.FACTORY_SESSION_DIR?.trim();
+        if (!allowedRoot || !correctionFile.startsWith(`${path.resolve(allowedRoot)}${path.sep}`)) {
+          throw new Error("FACTORY_MOCK_LOCALE_CORRECTION_FILE вне FACTORY_SESSION_DIR");
+        }
+        text = read(correctionFile);
+      } else {
+        text = `{"verdict":"PASS","verdict_reason":"mock"}\n\n# MOCK ${label}`;
+      }
     } else if (BACKEND === "claude") {
       // зачем: на Windows командная строка ≤ 32 тыс. знаков, а системный промпт
       // с эталонами — 60+ тыс.: промпт уходит файлом, реплика — через stdin.
@@ -657,6 +752,8 @@ function callModel({ system, user, model, maxTokens = 8000, label, attempt = 0 }
       if (j.error) throw new Error(`api: ${j.error.type}: ${j.error.message}`);
       text = (j.content || []).map((c) => c.text || "").join("");
       LOG(`   токены: in ${j.usage?.input_tokens} out ${j.usage?.output_tokens}`);
+    } else if (BACKEND === "disabled") {
+      throw new Error("внешний backend не выбран: укажите явно разрешённый адаптер; автоматический вызов модели запрещён");
     } else {
       throw new Error(`неизвестный backend: ${BACKEND}`);
     }
@@ -738,8 +835,8 @@ const ALLOWED_MODES = new Set([
   "word_card", "listen_choose", "listen_build_dictation", "phrase_builder",
   "context_gap_grammar", "speed_match", "scripted_repeat_compare", "sound_contrast",
 ]);
-function validateModes(file) {
-  const text = read(file);
+function validateModes(file, sourceText = null) {
+  const text = sourceText ?? read(file);
   const m = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(text);
   if (!m) {
     WARN(`${path.basename(file)}: нет строки «modes:» в разделе «Для сборщика»`);
@@ -822,7 +919,7 @@ export function difficultyLadder(lesson) {
 
 // Count authored payloads rather than numbers claimed in task headings.
 // Numeric phrase/task/board targets guide the editor; they must not create filler.
-export function difficultyFacts(text, lesson) {
+export function difficultyFacts(text, lesson, atomicPractice = null) {
   const d = difficultyLadder(lesson);
   if (d.frozen) return [];
   const practice = (text.split(/^## Практика[^\n]*$/m)[1] ?? "").split(/^## Для сборщика/m)[0];
@@ -839,9 +936,13 @@ export function difficultyFacts(text, lesson) {
   const boardTargets = new Set();
   const phraseTargets = new Set();
   let boards = 0;
-  for (const task of tasks) {
+  for (const [taskIndex, task] of tasks.entries()) {
     const ordinal = Number(/^(\d+)/.exec(task)?.[1]);
     const family = modes.get(ordinal);
+    const atomic = atomicPractice?.interactions?.[taskIndex];
+    const atomicAnswer = atomic
+      ? atomicPractice.answers.find((answer) => answer?.interactionId === atomic.interactionId)
+      : null;
     if (!allowed.has(family)) {
       facts.push(`НЕРАЗРЕШЁННАЯ МЕХАНИКА: задание ${ordinal}, ${family ?? "не указана"}`);
       continue;
@@ -850,8 +951,11 @@ export function difficultyFacts(text, lesson) {
     const body = task.slice(task.indexOf("**") + 2);
     if (family === "speed_match") {
       boards++;
+      const atomicPairs = atomic?.family === "speed_match" && Array.isArray(atomic?.modePayload?.pairGrid)
+        ? atomic.modePayload.pairGrid.map((pair) => [pair?.target, pair?.meaningByLocale?.[atomicPractice.locale]])
+        : null;
       const line = body.split("\n").find(x => /·/.test(x) && /—/.test(x)) ?? "";
-      const pairs = line.split("·").map(x => x.split("—").map(y => y.replace(/[*_`]/g, "").trim())).filter(x => x[0] && x[1]);
+      const pairs = atomicPairs ?? line.split("·").map(x => x.split("—").map(y => y.replace(/[*_`]/g, "").trim())).filter(x => x[0] && x[1]);
       const current = new Set(pairs.map(x => normalize(x[0])));
       const meanings = new Set(pairs.map(x => normalize(x[1])));
       if (current.size < d.pairs) facts.push(`ПАРЫ НИЖЕ СТУПЕНИ: задание ${ordinal}, ${current.size}, минимум ${d.pairs}`);
@@ -862,10 +966,22 @@ export function difficultyFacts(text, lesson) {
       for (const target of current) boardTargets.add(target);
     }
     if (["listen_choose", "context_gap_grammar"].includes(family)) {
+      if (atomic?.modePayload?.isWordCard === true) continue;
       const inline = /→\s*\*\*([^*\r\n]+)\*\*((?:\s*·[^\r\n]+)+)/.exec(body);
-      const wrong = inline
-        ? new Set(inline[2].split("·").map(x => normalize(x)).filter(x => x && x !== normalize(inline[1]))).size
-        : new Set([...body.matchAll(/^\s*-\s*❌\s*(.+)$/gm)].map(m => normalize(m[1].split(/\s+—\s+\*/)[0]))).size;
+      const atomicOptions = atomic?.family === family && Array.isArray(atomic?.responseOptions) ? atomic.responseOptions : null;
+      const correctId = atomicAnswer?.correctResponseId ?? null;
+      const correctText = normalize(atomicAnswer?.correctText ?? "");
+      if (atomicOptions && atomicOptions.filter((option) => option?.responseId === correctId).length !== 1) {
+        facts.push(`ATOMIC ANSWER НЕ ПРИВЯЗАН: задание ${ordinal}, правильный responseId отсутствует или неоднозначен`);
+        continue;
+      }
+      const wrong = atomicOptions
+        ? new Set(atomicOptions.map((option) => [option?.responseId, normalize(option?.text ?? "")])
+          .filter(([responseId, value]) => value && responseId !== correctId && value !== correctText)
+          .map(([, value]) => value)).size
+        : inline
+          ? new Set(inline[2].split("·").map(x => normalize(x)).filter(x => x && x !== normalize(inline[1]))).size
+          : new Set([...body.matchAll(/^\s*-\s*❌\s*(.+)$/gm)].map(m => normalize(m[1].split(/\s+—\s+\*/)[0]))).size;
       if (wrong < d.distractors) facts.push(`ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ: задание ${ordinal}, ${wrong}, минимум ${d.distractors}`);
     }
     if (["phrase_builder", "listen_build_dictation"].includes(family)) {
@@ -942,20 +1058,244 @@ function stageDraft(S, ctx, plan, row, known) {
   return files;
 }
 
-function stageJudge(S, ctx, plan, row, known, file, only = null) {
-  const v = validateModes(file);
+function candidateProjection(sessionIdentity, sourceText, sourceSha256) {
+  return {
+    schemaVersion: "learning_v2_judge_candidate_projection_v1",
+    sessionIdentity,
+    sourceSha256,
+    intro: parseIntro(sourceText),
+    practice: parsePractice(sourceText),
+  };
+}
+
+function captureJudgeSnapshot(S, file) {
+  const paths = {
+    ru: path.join(S.dir, "final.ru.md"),
+    atomic: path.join(S.dir, "practice.atomic.json"),
+    ...Object.fromEntries(LOCALES
+      .filter((locale) => exists(path.join(S.dir, `final.${locale}.md`)))
+      .map((locale) => [locale, path.join(S.dir, `final.${locale}.md`)])),
+  };
+  if (path.resolve(file) !== path.resolve(paths.ru)) {
+    const resolvedFile = path.resolve(file);
+    if (path.dirname(resolvedFile) !== path.resolve(S.dir) || !/\.ru\.md$/u.test(path.basename(resolvedFile))) {
+      throw new Error(`JUDGE SOURCE HOLD:candidate_source_outside_session:${path.basename(file)}`);
+    }
+    const bytes = { ru: fs.readFileSync(resolvedFile) };
+    const digest = sourceBytesSha256(bytes.ru);
+    const sourceText = bytes.ru.toString("utf8");
+    const projectionText = JSON.stringify(candidateProjection(SESSION, sourceText, digest));
+    const projectionDigest = sourceBytesSha256(Buffer.from(projectionText, "utf8"));
+    return {
+      kind: "candidate",
+      paths: { ru: resolvedFile },
+      bytes,
+      text: { ru: sourceText, uk: "", atomic: projectionText },
+      digests: { ru: digest, projection: projectionDigest },
+      bindings: {
+        bindingSchemaVersion: CANONICAL_BINDING_SCHEMA_VERSION,
+        sourceKind: "candidate",
+        sourceSha256: digest,
+        exactRuSha256: digest,
+        learnerProjectionSha256: projectionDigest,
+        sourcePaths: [path.basename(resolvedFile)],
+      },
+    };
+  }
+  const bytes = Object.fromEntries(Object.entries(paths).map(([name, sourcePath]) => [name, fs.readFileSync(sourcePath)]));
+  const digests = Object.fromEntries(Object.entries(bytes).map(([name, sourceBytes]) => [name, sourceBytesSha256(sourceBytes)]));
+  const localeHashes = Object.fromEntries(Object.entries(digests).filter(([name]) => name !== "ru" && name !== "atomic"));
+  return {
+    kind: "canonical",
+    paths,
+    bytes,
+    text: Object.fromEntries(Object.entries(bytes).map(([name, sourceBytes]) => [name, sourceBytes.toString("utf8")])),
+    digests,
+    bindings: {
+      bindingSchemaVersion: CANONICAL_BINDING_SCHEMA_VERSION,
+      sourceSha256: digests.ru,
+      exactRuSha256: digests.ru,
+      ...(digests.uk ? { exactUkSha256: digests.uk } : {}),
+      practiceAtomicSha256: digests.atomic,
+      localeHashes: { ru: digests.ru, ...localeHashes },
+      sourcePaths: ["final.ru.md", ...Object.keys(localeHashes).map((locale) => `final.${locale}.md`), "practice.atomic.json"],
+    },
+  };
+}
+
+function assertJudgeSnapshot(snapshot) {
+  for (const name of Object.keys(snapshot.paths)) {
+    const liveSha256 = sourceSha256(snapshot.paths[name]);
+    if (liveSha256 !== snapshot.digests[name]) {
+      throw new Error(`JUDGE SOURCE HOLD:source_digest_changed:${name}:expected=${snapshot.digests[name]}:live=${liveSha256}`);
+    }
+  }
+}
+
+const captureCanonicalJudgeSnapshot = captureJudgeSnapshot;
+const assertCanonicalJudgeSnapshot = assertJudgeSnapshot;
+
+function canonicalReceiptFresh(receipt, snapshot) {
+  if (snapshot.kind === "candidate") {
+    return receipt?.sourceKind === "candidate"
+      && receipt?.sourceSha256 === snapshot.digests.ru
+      && receipt?.exactRuSha256 === snapshot.digests.ru
+      && receipt?.learnerProjectionSha256 === snapshot.digests.projection;
+  }
+  return receipt?.sourceSha256 === snapshot.digests.ru
+    && receipt?.exactRuSha256 === snapshot.digests.ru
+    && Object.entries(snapshot.bindings.localeHashes ?? {}).every(([locale, digest]) => receipt?.localeHashes?.[locale] === digest)
+    && receipt?.practiceAtomicSha256 === snapshot.digests.atomic;
+}
+
+function mockMeaningfulSourceQuote(sourceTexts) {
+  for (const source of Object.values(sourceTexts)) {
+    const line = String(source ?? "").split(/\r?\n/gu)
+      .map((value) => ({
+        value: value.replace(/[`*_#]/gu, "").trim(),
+        heading: /^\s{0,3}#{1,6}\s+\S/u.test(value),
+      }))
+      .find(({ value, heading }) => !heading && value.length >= 12 && (value.match(/[\p{L}\p{N}]+/gu) ?? []).length >= 2)?.value;
+    if (line) return line;
+  }
+  throw new Error("JUDGE RECEIPT HOLD: mock source has no meaningful exact quote");
+}
+
+function receiptRuntimeIdentity(role) {
+  return {
+    sessionId: SESSION,
+    role,
+    reviewer: {
+      schemaVersion: "learning_v2_reviewer_identity_v1",
+      reviewerId: `pipeline-${role}`,
+      sessionId: SESSION,
+      role,
+    },
+  };
+}
+
+function structuredMockEvidence(sourceTexts, role, locales) {
+  return locales.map((locale) => ({
+    fieldPath: `final.${locale}.md`,
+    quote: mockMeaningfulSourceQuote({ [locale]: sourceTexts[locale] }),
+    analysis: "Точная цитата подтверждает проверяемый аспект текущей сессии.",
+    coverage: role === "judge_locales" ? [role, locale] : [role],
+  }));
+}
+
+function receiptEvidenceContractPrompt(role, locales) {
+  return `\n\nОБЯЗАТЕЛЬНЫЙ КОНТРАКТ PASS-КВИТАНЦИИ: evidence — непустой JSON-массив объектов {fieldPath, quote, analysis, coverage}. fieldPath — точное имя final.<locale>.md; quote — точная содержательная цитата из этого файла; analysis — объяснение проверки; coverage — массив, содержащий \"${role}\"${role === "judge_locales" ? " и код соответствующей локали" : ""}. Для PASS нужны evidence по: ${locales.map((locale) => `final.${locale}.md`).join(", ")}. Строки вместо объектов запрещены.`;
+}
+
+function assertPassReceiptContract(receipt, label, sourceTexts, expectedRole, requiredEvidenceLocales = []) {
+  if (receipt?.verdict !== "PASS") return;
+  const issues = judgeReceiptContractIssues(receipt, label, sourceTexts, SESSION, expectedRole, { requiredEvidenceLocales });
+  if (issues.length) throw new Error(`JUDGE RECEIPT HOLD:${issues.join(" | ")}`);
+}
+
+function writeJudgeTransaction(entries, snapshot) {
+  const originals = new Map(entries.map(({ file }) => [file, exists(file) ? fs.readFileSync(file) : null]));
+  try {
+    if (!mockReceiptMutationConsumed) {
+      mockReceiptMutationConsumed = applyMockMutation("FACTORY_MOCK_MUTATE_FILE_BEFORE_RECEIPT_WRITE", mockReceiptMutationConsumed);
+    }
+    assertCanonicalJudgeSnapshot(snapshot);
+    for (const { file, value, log = null } of entries) {
+      assertCanonicalJudgeSnapshot(snapshot);
+      write(file, JSON.stringify(value, null, 2));
+      assertCanonicalJudgeSnapshot(snapshot);
+      if (log) LOG(log);
+    }
+    assertCanonicalJudgeSnapshot(snapshot);
+  } catch (error) {
+    for (const [file, original] of originals) {
+      if (original === null) {
+        try { if (exists(file)) fs.unlinkSync(file); } catch {}
+      } else {
+        fs.writeFileSync(file, original);
+      }
+    }
+    throw error;
+  }
+}
+
+function writeBoundStatus(S, payload) {
+  const finalRu = path.join(S.dir, "final.ru.md");
+  const initialSession = read(finalRu);
+  requirePreJudgeChoreography({ sessionIdentity: SESSION, sessionDir: S.dir, judgedFile: finalRu, judgedSource: initialSession });
+  const snapshot = captureCanonicalJudgeSnapshot(S, finalRu);
+  requirePreJudgeChoreography({
+    sessionIdentity: SESSION,
+    sessionDir: S.dir,
+    judgedFile: finalRu,
+    judgedSource: snapshot.text.ru,
+    canonicalSources: snapshot.text,
+  });
+  writeJudgeTransaction([{
+    file: path.join(S.dir, "status.json"),
+    value: { ...payload, ...snapshot.bindings },
+  }], snapshot);
+}
+
+export function composeCurrentJudgeInputs({ ru, uk, atomic }) {
+  let source;
+  try {
+    source = JSON.parse(atomic);
+  } catch (error) {
+    throw new Error(`JUDGE SOURCE HOLD:practice_atomic_malformed:${error.message}`);
+  }
+  const projection = source.schemaVersion === "learning_v2_judge_candidate_projection_v1"
+    ? source
+    : {
+      schemaVersion: source.schemaVersion,
+      courseSessionId: source.courseSessionId,
+      interactionsByLocale: source.interactionsByLocale,
+      answers: source.answers,
+    };
+  return {
+    kind: "canonical",
+    СЕССИЯ: ru,
+    СЕССИЯ_UK: uk,
+    ФАКТИЧЕСКАЯ_LEARNER_PROJECTION: JSON.stringify(projection, null, 2),
+  };
+}
+
+function stageJudge(S, ctx, plan, row, known, file, only = null, options = {}) {
+  const snapshot = options.snapshot ?? captureCanonicalJudgeSnapshot(S, file);
+  const session = snapshot.text.ru;
+  const preJudge = snapshot.kind === "canonical"
+    ? requirePreJudgeChoreography({
+      sessionIdentity: SESSION,
+      sessionDir: S.dir,
+      judgedFile: file,
+      judgedSource: session,
+      canonicalSources: snapshot.text,
+    })
+    : { session: SESSION };
+  assertCanonicalJudgeSnapshot(snapshot);
+  LOG(snapshot.kind === "canonical"
+    ? `PREJUDGE PASS: ${preJudge.session}; atomic ↔ ru/uk Markdown и choreography подтверждены`
+    : `PREJUDGE PASS: ${preJudge.session}; candidate bytes ↔ learner projection подтверждены`);
+  const v = validateModes(file, session);
   if (!v.ok) {
     LOG(`ранний выход из суда: ${path.basename(file)} не проходит проверку механик/объёма — сначала правка`);
-    return { judge_learner: { verdict: "BLOCK", verdict_reason: "механики вне списка приложения или объём" }, judge_taste: { verdict: "BLOCK", verdict_reason: "не судился" }, judge_pedagogy: { verdict: "BLOCK", verdict_reason: `modes: ${v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") || "объём"}` } };
+    const verdicts = { judge_learner: { verdict: "BLOCK", verdict_reason: "механики вне списка приложения или объём" }, judge_taste: { verdict: "BLOCK", verdict_reason: "не судился" }, judge_pedagogy: { verdict: "BLOCK", verdict_reason: `modes: ${v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") || "объём"}` } };
+    return options.returnRun ? { verdicts, pendingWrites: [], snapshot } : verdicts;
   }
-  const session = read(file);
   // зачем: судьям — сжатая Конституция и ОДИН эталон того же типа (не три):
   // контекст судьи ~в 3 раза дешевле, а вкус задаётся парным сравнением
-  const base = { ...buildVars(ctx, plan, row, known, S), КОНСТИТУЦИЯ: ctx.constitutionShort, ЭТАЛОНЫ: "" };
+  const base = {
+    ...buildVars(ctx, plan, row, known, S),
+    КОНСТИТУЦИЯ: ctx.constitutionShort,
+    ЭТАЛОНЫ: "",
+    ...composeCurrentJudgeInputs(snapshot.text),
+  };
   const same = exemplarOfSameType(S.lang, row);
-  const facts = machineFacts(file);
+  const facts = machineFacts(file, SESSION, session, snapshot.text.atomic);
   LOG(`машинные факты:\n${facts}`);
   const out = {};
+  const pendingWrites = [];
+  const forceRoles = new Set(options.forceRoles ?? []);
   for (const [name, vars] of [
     ["judge_learner", { ...base, СЕССИЯ: session }],
     ["judge_taste", { ...base, СЕССИЯ: session, ЭТАЛОН_ТОГО_ЖЕ_ТИПА: same }],
@@ -973,14 +1313,23 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
     // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
     // после обрыва по лимиту (один вызов судьи ≈ $0.31)
-    let verdictFresh = exists(cacheFile) && fs.statSync(cacheFile).mtimeMs >= fs.statSync(file).mtimeMs;
-    if (exists(cacheFile) && !verdictFresh) LOG(`   ${name}: кэш вердикта устарел (файл правился позже) — сужу заново`);
+    let verdictFresh = exists(cacheFile) && !forceRoles.has(name);
     if (verdictFresh) {
       try {
         const cached = JSON.parse(read(cacheFile));
-        if (name === "judge_taste" && cached.sourceSha256 !== sourceSha256(file)) {
+        if (!canonicalReceiptFresh(cached, snapshot)) {
           verdictFresh = false;
-          LOG(`   ${name}: кэш не связан с актуальным SHA-256 текста — сужу заново`);
+          LOG(`   ${name}: кэш не связан со всем canonical source set — сужу заново`);
+        }
+        if (verdictFresh && cached.verdict) {
+          const cachedSources = Object.fromEntries(Object.entries({ ru: snapshot.text.ru, uk: snapshot.text.uk }).filter(([, value]) => value));
+          const cachedIssues = cached.verdict === "PASS"
+            ? judgeReceiptContractIssues(cached, name, cachedSources, SESSION, name)
+            : [];
+          if (cachedIssues.length) {
+            verdictFresh = false;
+            LOG(`   ${name}: кэш не проходит receipt contract (${cachedIssues.join("; ")}) — сужу заново`);
+          }
         }
         if (verdictFresh && cached.verdict) {
           LOG(`   ${name}: из кэша — ${cached.verdict}`);
@@ -989,7 +1338,9 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
         }
       } catch (e) { WARN(`кэш вердикта ${path.basename(cacheFile)} нечитаем (${e.message}) — сужу заново`); }
     }
-    const text = callModel({ system: fill(prompt(name), vars), user: "Вынеси вердикт.", model: MODEL_BY_JUDGE[name] || MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
+    assertCanonicalJudgeSnapshot(snapshot);
+    const text = callModel({ system: `${fill(prompt(name), vars)}${receiptEvidenceContractPrompt(name, ["ru"])}`, user: "Вынеси вердикт.", model: MODEL_BY_JUDGE[name] || MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
+    assertCanonicalJudgeSnapshot(snapshot);
     let j;
     try { j = extractJson(text); } catch (e) {
       // зачем: судья бреда оборвал JSON на середине, но словами написал внятный
@@ -1003,12 +1354,20 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
       WARN(`${name}: ${e.message}; вердикт взят из текста ответа — ${verdict}`);
       j = { verdict, verdict_reason: "JSON повреждён, вердикт прочитан из текста ответа", raw: text };
     }
-    if (name === "judge_taste") j = bindTasteReceiptToSource(j, file);
+    if (BACKEND === "mock" && process.env.FACTORY_MOCK_JUDGE_OMIT_EVIDENCE !== "1") {
+      j = { ...j, evidence: structuredMockEvidence({ ru: snapshot.text.ru, uk: snapshot.text.uk }, name, ["ru"]) };
+    }
+    j = name === "judge_taste"
+      ? bindTasteReceiptToSource(j, file, { expectedSourceSha256: snapshot.digests.ru, sourceBytes: snapshot.bytes.ru })
+      : j;
+    j = { ...j, ...receiptRuntimeIdentity(name), ...snapshot.bindings };
+    assertPassReceiptContract(j, name, Object.fromEntries(Object.entries({ ru: snapshot.text.ru, uk: snapshot.text.uk }).filter(([, value]) => value)), name);
     out[name] = j;
-    write(path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`), JSON.stringify(j, null, 2));
-    LOG(`   ${name}: ${j.verdict} — ${j.verdict_reason}`);
+    pendingWrites.push({ file: cacheFile, name, value: j, log: `   ${name}: ${j.verdict} — ${j.verdict_reason}` });
   }
-  return out;
+  assertCanonicalJudgeSnapshot(snapshot);
+  if (!options.deferWrites) writeJudgeTransaction(pendingWrites, snapshot);
+  return options.returnRun ? { verdicts: out, pendingWrites, snapshot } : out;
 }
 
 // зачем: замер 05.09.2026 на ОДНОМ тексте — три прогона дали разные вердикты
@@ -1045,20 +1404,32 @@ function mergeTwo(name, a, b) {
 
 // Судит дважды тех судей, чьи вердикты нестабильны, и оставляет пересечение.
 function stageJudgeStable(S, ctx, plan, row, known, file, only = null) {
-  const first = stageJudge(S, ctx, plan, row, known, file, only);
+  const snapshot = captureCanonicalJudgeSnapshot(S, file);
+  const firstRun = stageJudge(S, ctx, plan, row, known, file, only, { snapshot, deferWrites: true, returnRun: true });
+  const first = firstRun.verdicts;
   const needSecond = Object.keys(first).filter((n) => DOUBLE_JUDGE.includes(n) && first[n].verdict !== "PASS");
-  if (!needSecond.length) return first;
+  if (!needSecond.length) {
+    writeJudgeTransaction(firstRun.pendingWrites, snapshot);
+    return first;
+  }
   LOG(`второй прогон для: ${needSecond.join(", ")} — чиним только повторяющееся`);
   const out = { ...first };
+  const writes = firstRun.pendingWrites.filter(({ name }) => !needSecond.includes(name));
   for (const name of needSecond) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
-    const keep = exists(cacheFile) ? read(cacheFile) : null;
-    try { if (exists(cacheFile)) fs.unlinkSync(cacheFile); } catch (e) { WARN(`не удалось убрать кэш ${name}: ${e.message}`); }
-    const second = stageJudge(S, ctx, plan, row, known, file, [name])[name];
+    const secondRun = stageJudge(S, ctx, plan, row, known, file, [name], {
+      snapshot,
+      deferWrites: true,
+      forceRoles: [name],
+      returnRun: true,
+    });
+    const second = secondRun.verdicts[name];
     out[name] = mergeTwo(name, first[name], second);
-    write(cacheFile, JSON.stringify(out[name], null, 2));
-    if (keep) write(path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.run1.json`), keep);
+    writes.push({ file: cacheFile, name, value: { ...out[name], ...snapshot.bindings }, log: `   ${name}: merged ${first[name].verdict}/${second.verdict} → ${out[name].verdict}` });
+    writes.push({ file: path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.run1.json`), name: `${name}.run1`, value: { ...first[name], ...snapshot.bindings } });
   }
+  assertCanonicalJudgeSnapshot(snapshot);
+  writeJudgeTransaction(writes, snapshot);
   return out;
 }
 
@@ -1074,7 +1445,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
     ВЕРДИКТ_РЕДАКТОРА: JSON.stringify(verdicts.judge_taste ?? { verdict: "—" }, null, 2),
     ВЕРДИКТ_ПЕДАГОГА: JSON.stringify(verdicts.judge_pedagogy ?? { verdict: "—" }, null, 2),
     ВЕРДИКТ_БРЕДА: JSON.stringify(verdicts.judge_nonsense ?? { verdict: "—" }, null, 2),
-    МАШИННЫЕ_ФАКТЫ: machineFacts(file),
+    МАШИННЫЕ_ФАКТЫ: machineFacts(file, SESSION),
   };
   const text = callModel({ system: fill(prompt("editor"), vars), user: "Исправь сессию.", model: MODEL_JUDGE, label: `редактор · ${path.basename(file)}` });
   const body = stripFence(text).split(/\n## Изменения/)[0].trim();
@@ -1085,7 +1456,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   // зачем: 03.09 вторая правка починила интро 3 и СЛОМАЛА интро 1 — редактор
   // не видел последствий своей работы до следующего круга. Сверяем сразу и
   // даём одну попытку доправить, называя, что именно он сломал или не закрыл.
-  const hard = (p) => machineFacts(p).split("\n").filter((l) => HARD_FACT_RE.test(l));
+  const hard = (p) => machineFacts(p, SESSION).split("\n").filter((l) => HARD_FACT_RE.test(l));
   const left = hard(f);
   if (left.length) {
     LOG(`   после правки осталось незакрытым (${left.length}): ${left.map((l) => l.split("—")[0].trim()).join("; ")}`);
@@ -1102,15 +1473,6 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
     else LOG(`   добор не помог (${after.length}) — оставляю первую правку, решать судьям`);
   }
   return f;
-}
-
-/** Что видит судья локали: все три интро + первые три задания. Голос живёт
- * в интро; проверять весь список заданий ×7 — платить за одно и то же. */
-function excerptForLocaleJudge(text) {
-  const intro = text.split(/^## Практика/m)[0] ?? text;
-  const practice = text.split(/^## Практика/m)[1] ?? "";
-  const firstTasks = practice.split(/^\*\*(?=\d+ · )/m).slice(0, 4).join("**");
-  return `${intro}\n## Практика (первые задания)\n${firstTasks}`;
 }
 
 /** Структурная сверка локали с мастером — бесплатно, без модели. */
@@ -1143,78 +1505,246 @@ function splitLocaleBatch(text, expected = LOCALES) {
   return out;
 }
 
+function captureLocaleAuthority(S, ruFile) {
+  const paths = { ru: path.join(S.dir, "final.ru.md"), atomic: path.join(S.dir, "practice.atomic.json") };
+  if (path.resolve(ruFile) !== path.resolve(paths.ru)) {
+    throw new Error(`LOCALE SOURCE HOLD:candidate_source_not_canonical:${path.basename(ruFile)}`);
+  }
+  const bytes = Object.fromEntries(Object.entries(paths).map(([name, file]) => [name, fs.readFileSync(file)]));
+  return {
+    paths,
+    bytes,
+    text: { ru: bytes.ru.toString("utf8"), atomic: bytes.atomic.toString("utf8") },
+    digests: Object.fromEntries(Object.entries(bytes).map(([name, value]) => [name, sourceBytesSha256(value)])),
+  };
+}
+
+function assertLocaleAuthority(snapshot) {
+  for (const name of ["ru", "atomic"]) {
+    const liveSha256 = sourceSha256(snapshot.paths[name]);
+    if (liveSha256 !== snapshot.digests[name]) {
+      throw new Error(`JUDGE SOURCE HOLD:source_digest_changed:${name}:expected=${snapshot.digests[name]}:live=${liveSha256}`);
+    }
+  }
+}
+
+function artifactSnapshot(files) {
+  return new Map(files.map((file) => [file, exists(file) ? fs.readFileSync(file) : null]));
+}
+
+function restoreArtifactSnapshot(snapshot) {
+  for (const [file, original] of snapshot) {
+    if (original === null) {
+      try { if (exists(file)) fs.unlinkSync(file); } catch {}
+    } else {
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, original);
+    }
+  }
+}
+
+function writeLocaleTransaction(entries, authoritySnapshot, {
+  mutationEnv = "FACTORY_MOCK_MUTATE_FILE_BEFORE_LOCALE_COMMIT",
+  originalSnapshot = null,
+} = {}) {
+  const originals = new Map(entries.map(({ file }) => [
+    file,
+    originalSnapshot?.has(file) ? originalSnapshot.get(file) : (exists(file) ? fs.readFileSync(file) : null),
+  ]));
+  const staged = [];
+  try {
+    for (let index = 0; index < entries.length; index += 1) {
+      const { file, value } = entries[index];
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      const temp = value === null ? null : `${file}.tmp-${process.pid}-${Date.now()}-${index}`;
+      if (temp) fs.writeFileSync(temp, value, "utf8");
+      staged.push({ file, temp });
+    }
+    if (mutationEnv === "FACTORY_MOCK_MUTATE_FILE_BEFORE_LOCALE_COMMIT" && !mockLocaleCommitMutationConsumed) {
+      mockLocaleCommitMutationConsumed = applyMockMutation(
+        mutationEnv,
+        mockLocaleCommitMutationConsumed,
+      );
+    } else if (mutationEnv === "FACTORY_MOCK_MUTATE_FILE_BEFORE_LOCALE_CORRECTION_COMMIT" && !mockLocaleCorrectionCommitMutationConsumed) {
+      mockLocaleCorrectionCommitMutationConsumed = applyMockMutation(
+        mutationEnv,
+        mockLocaleCorrectionCommitMutationConsumed,
+      );
+    }
+    // The authority check is deliberately after every output is staged and
+    // immediately before the first rename: no generated locale is visible
+    // unless the captured RU + atomic source set is still exact.
+    assertLocaleAuthority(authoritySnapshot);
+    for (const { file, temp } of staged) {
+      assertLocaleAuthority(authoritySnapshot);
+      if (exists(file)) fs.unlinkSync(file);
+      if (temp) fs.renameSync(temp, file);
+      assertLocaleAuthority(authoritySnapshot);
+    }
+    assertLocaleAuthority(authoritySnapshot);
+    for (const { file, value } of entries) {
+      LOG(value === null ? "удалён" : "записан", path.relative(ROOT, file), value === null ? "(инвалидация старой квитанции)" : `${value.length} зн.`);
+    }
+  } catch (error) {
+    for (const { temp } of staged) {
+      try { if (exists(temp)) fs.unlinkSync(temp); } catch {}
+    }
+    restoreArtifactSnapshot(originals);
+    throw error;
+  }
+}
+
+function serializeLocaleBatch(batch) {
+  return LOCALES.filter((locale) => batch[locale])
+    .map((locale) => `===LOCALE: ${locale}===\n${batch[locale].trim()}`)
+    .join("\n\n");
+}
+
 function stageLocalize(S, ruFile) {
   // зачем: 03.09 локализация стоила 14 вызовов из 28 ($4+ на сессию) — по
   // вызову на каждую из 7 локалей и по вызову на каждого судью локали.
   // Один вызов пишет все семь, один судит все семь: 14 → 2.
-  const ru = read(ruFile);
+  const authoritySnapshot = captureLocaleAuthority(S, ruFile);
+  const ru = authoritySnapshot.text.ru;
   const results = {};
   const batchFile = path.join(S.dir, "locales_batch.md");
+  const localeReceiptFile = path.join(S.dir, "locales.judge.json");
+  const stageArtifactSnapshot = artifactSnapshot([
+    batchFile,
+    localeReceiptFile,
+    ...LOCALES.map((locale) => path.join(S.dir, `final.${locale}.md`)),
+  ]);
   let batch;
+  let batchText;
+  let generatedBatch = false;
   const batchFresh = exists(batchFile) && fs.statSync(batchFile).mtimeMs >= fs.statSync(ruFile).mtimeMs;
   if (exists(batchFile) && !batchFresh) LOG(`кэш перевода устарел (русский правился позже) — перевожу заново`);
   if (batchFresh && read(batchFile).length > 5000) {
     LOG(`пропуск локализации: locales_batch.md уже есть (${read(batchFile).length} зн.)`);
-    batch = splitLocaleBatch(read(batchFile));
+    batchText = read(batchFile);
+    batch = splitLocaleBatch(batchText);
   } else {
+    assertLocaleAuthority(authoritySnapshot);
     const text = callModel({ system: fill(prompt("localize_batch"), { СЕССИЯ_RU: ru, ЛОКАЛИ: LOCALES.join(", ") }), user: `Сделай версии для локалей: ${LOCALES.join(", ")}. Только эти, по порядку.`, model: MODEL_DRAFT, maxTokens: 32000, label: `локали ×${LOCALES.length} (пакет)` });
-    write(batchFile, stripFence(text));
-    batch = splitLocaleBatch(stripFence(text));
+    assertLocaleAuthority(authoritySnapshot);
+    batchText = stripFence(text);
+    batch = splitLocaleBatch(batchText);
+    generatedBatch = true;
   }
   const missing = LOCALES.filter((l) => !batch[l] || batch[l].length < 500);
   if (missing.length) WARN(`в пакете нет или пусты локали: ${missing.join(", ")}`);
-  const parts = [];
   const structural = {};
+  const localeWrites = generatedBatch ? [{ file: batchFile, value: batchText }] : [];
   for (const loc of LOCALES) {
     if (!batch[loc]) continue;
     const f = path.join(S.dir, `final.${loc}.md`);
-    write(f, batch[loc]);
+    localeWrites.push({ file: f, value: batch[loc] });
     // зачем: структуру (номера заданий, английские цели, строку modes)
     // проверяет скрипт бесплатно — судье остаётся только язык и вкус.
     structural[loc] = compareStructure(ru, batch[loc]);
-    // судье отдаём интро целиком (там весь голос) + первые три задания,
-    // а не всю сессию ×7: 45 тыс. знаков → ~14 тыс.
-    parts.push(`===LOCALE: ${loc}===\n${excerptForLocaleJudge(batch[loc])}`);
   }
+  writeLocaleTransaction(localeWrites, authoritySnapshot);
   const structIssues = Object.entries(structural).filter(([, v]) => v.length);
   if (structIssues.length) WARN(`структурные расхождения: ${structIssues.map(([l, v]) => `${l}: ${v.join("; ")}`).join(" | ")}`);
-  // зачем: список локалей задаётся флагом (сейчас ru+uk). Раньше и промпт, и
-  // реплика говорили «семь» — судья выдавал BLOCK за отсутствие локалей,
-  // которых мы сознательно не заказывали.
-  const jt = callModel({ system: fill(prompt("judge_locale_batch"), { СЕССИЯ_RU: excerptForLocaleJudge(ru), СЕССИИ_ЛОКАЛЕЙ: parts.join("\n\n") }), user: `Вынеси вердикт по присланным локалям: ${LOCALES.join(", ")}.`, model: MODEL_JUDGE, maxTokens: 8000, label: `судья локалей ×${LOCALES.length}` });
-  let j;
-  try { j = extractJson(jt); } catch (e) { WARN(`судья локалей: ${e.message}`); j = { verdict: "REVISE", verdict_reason: "нет JSON", raw: jt }; }
-  write(path.join(S.dir, "locales.judge.json"), JSON.stringify(j, null, 2));
-  for (const loc of LOCALES) {
-    const v = j.locales?.[loc]?.verdict ?? (missing.includes(loc) ? "BLOCK" : "?");
-    results[loc] = v;
-    LOG(`   локаль ${loc}: ${v}`);
-  }
-  LOG(`   итог локалей: ${j.verdict} — ${j.verdict_reason}`);
+  const judgeLocaleBatch = (currentBatch) => {
+    const currentMissing = LOCALES.filter((locale) => !currentBatch[locale] || currentBatch[locale].length < 500);
+    const parts = LOCALES.filter((locale) => currentBatch[locale])
+      .map((locale) => `===LOCALE: ${locale}===\n${currentBatch[locale].trim()}`);
+    // зачем: список локалей задаётся флагом (сейчас ru+uk). Раньше и промпт, и
+    // реплика говорили «семь» — судья выдавал BLOCK за отсутствие локалей,
+    // которых мы сознательно не заказывали.
+    assertLocaleAuthority(authoritySnapshot);
+    requirePreJudgeChoreography({ sessionIdentity: SESSION, sessionDir: S.dir, judgedFile: ruFile, judgedSource: ru });
+    const localeSnapshot = captureCanonicalJudgeSnapshot(S, ruFile);
+    if (localeSnapshot.digests.ru !== authoritySnapshot.digests.ru || localeSnapshot.digests.atomic !== authoritySnapshot.digests.atomic) {
+      throw new Error("JUDGE SOURCE HOLD:source_digest_changed:locale_authority");
+    }
+    requirePreJudgeChoreography({
+      sessionIdentity: SESSION,
+      sessionDir: S.dir,
+      judgedFile: ruFile,
+      judgedSource: localeSnapshot.text.ru,
+      canonicalSources: localeSnapshot.text,
+    });
+    assertCanonicalJudgeSnapshot(localeSnapshot);
+    const jt = callModel({ system: `${fill(prompt("judge_locale_batch"), { СЕССИЯ_RU: ru, СЕССИИ_ЛОКАЛЕЙ: parts.join("\n\n") })}${receiptEvidenceContractPrompt("judge_locales", ["ru", ...LOCALES])}`, user: `Вынеси вердикт по присланным локалям: ${LOCALES.join(", ")}.`, model: MODEL_JUDGE, maxTokens: 8000, label: `судья локалей ×${LOCALES.length}` });
+    assertCanonicalJudgeSnapshot(localeSnapshot);
+    let verdict;
+    try { verdict = extractJson(jt); } catch (e) { WARN(`судья локалей: ${e.message}`); verdict = { verdict: "REVISE", verdict_reason: "нет JSON", raw: jt }; }
+    if (BACKEND === "mock" && process.env.FACTORY_MOCK_LOCALE_JUDGE_OMIT_EVIDENCE !== "1") {
+      verdict = { ...verdict, evidence: structuredMockEvidence(localeSnapshot.text, "judge_locales", ["ru", ...LOCALES]) };
+    }
+    verdict = { ...verdict, ...receiptRuntimeIdentity("judge_locales"), ...localeSnapshot.bindings };
+    assertPassReceiptContract(verdict, "locales.judge.json", localeSnapshot.text, "judge_locales", ["ru", ...LOCALES]);
+    writeJudgeTransaction([{ file: localeReceiptFile, value: verdict }], localeSnapshot);
+    const localeResults = {};
+    for (const loc of LOCALES) {
+      const value = verdict.locales?.[loc]?.verdict ?? (currentMissing.includes(loc) ? "BLOCK" : "?");
+      localeResults[loc] = value;
+      LOG(`   локаль ${loc}: ${value}`);
+    }
+    LOG(`   итог локалей: ${verdict.verdict} — ${verdict.verdict_reason}`);
+    return { verdict, localeResults };
+  };
+  let judged = judgeLocaleBatch(batch);
+  Object.assign(results, judged.localeResults);
   // зачем: круг правки перевода. Судья находит кальки и непереведённые
   // строки, но раньше его замечания никуда не шли — перевод так и оставался
   // битым. Один круг: переводчик получает вердикт и переписывает.
   const badLocales = LOCALES.filter((l) => results[l] === 'BLOCK' || results[l] === 'REVISE');
   if (badLocales.length) {
-    LOG(`   круг правки локалей: ${badLocales.join(', ')}`);
-    for (const loc of badLocales) {
-      const issues = JSON.stringify(j.locales?.[loc] ?? j, null, 2);
-      const cur = exists(path.join(S.dir, `final.${loc}.md`)) ? read(path.join(S.dir, `final.${loc}.md`)) : '';
-      if (!cur) { WARN(`локаль ${loc}: нечего править — файла нет`); continue; }
-      const fixed = callModel({
-        system: fill(prompt('localize_batch'), { СЕССИЯ: ru, ЛОКАЛИ: loc }),
-        user: `Ниже твой перевод на ${loc} и замечания судьи-носителя. Перепиши перевод, закрыв КАЖДОЕ замечание. Выдай только готовый текст локали, без преамбулы и без строк ===LOCALE===.
+    try {
+      LOG(`   круг правки локалей: ${badLocales.join(', ')}`);
+      const correctedBatch = { ...batch };
+      let corrected = false;
+      for (const loc of badLocales) {
+        const issues = JSON.stringify(judged.verdict.locales?.[loc] ?? judged.verdict, null, 2);
+        const cur = correctedBatch[loc] ?? '';
+        if (!cur) { WARN(`локаль ${loc}: нечего править — файла нет`); continue; }
+        assertLocaleAuthority(authoritySnapshot);
+        const fixed = callModel({
+          system: fill(prompt('localize_batch'), { СЕССИЯ_RU: ru, ЛОКАЛИ: loc }),
+          user: `Ниже твой перевод на ${loc} и замечания судьи-носителя. Перепиши перевод, закрыв КАЖДОЕ замечание. Выдай только готовый текст локали, без преамбулы и без строк ===LOCALE===.
 
 --- ТВОЙ ПЕРЕВОД ---
 ${cur}
 
 --- ЗАМЕЧАНИЯ ---
 ${issues}`,
-        model: MODEL_JUDGE, maxTokens: 8000, label: `правка локали ${loc}`,
-      });
-      const clean = stripFence(fixed).trim();
-      if (clean.length > 500) { write(path.join(S.dir, `final.${loc}.md`), clean); results[loc] = 'FIXED'; LOG(`   локаль ${loc}: переписана по замечаниям`); }
-      else WARN(`локаль ${loc}: правка вернула ${clean.length} зн. — оставляю прежний перевод`);
+          model: MODEL_JUDGE, maxTokens: 8000, label: `правка локали ${loc}`,
+        });
+        assertLocaleAuthority(authoritySnapshot);
+        const clean = stripFence(fixed).trim();
+        if (clean.length > 500) {
+          correctedBatch[loc] = clean;
+          corrected = true;
+        } else WARN(`локаль ${loc}: правка вернула ${clean.length} зн. — оставляю прежний перевод`);
+      }
+      if (corrected) {
+        const correctedBatchText = serializeLocaleBatch(correctedBatch);
+        const correctionWrites = [
+          { file: batchFile, value: correctedBatchText },
+          ...LOCALES.filter((locale) => correctedBatch[locale]).map((locale) => ({
+            file: path.join(S.dir, `final.${locale}.md`),
+            value: correctedBatch[locale],
+          })),
+          // The first verdict is bound to the uncorrected locale bytes. Remove
+          // it in the same transaction that publishes corrected locale bytes.
+          { file: localeReceiptFile, value: null },
+        ];
+        writeLocaleTransaction(correctionWrites, authoritySnapshot, {
+          mutationEnv: "FACTORY_MOCK_MUTATE_FILE_BEFORE_LOCALE_CORRECTION_COMMIT",
+          originalSnapshot: stageArtifactSnapshot,
+        });
+        batch = correctedBatch;
+        batchText = correctedBatchText;
+        judged = judgeLocaleBatch(batch);
+        for (const locale of Object.keys(results)) delete results[locale];
+        Object.assign(results, judged.localeResults);
+      }
+    } catch (error) {
+      restoreArtifactSnapshot(stageArtifactSnapshot);
+      throw error;
     }
   }
   return results;
@@ -1223,7 +1753,7 @@ ${issues}`,
 // ---------- main ----------
 function main() {
   if (!cmd || !SESSION) {
-    console.log("usage: node run.mjs <preflight|draft|judge|edit|localize|full> --session en/l01/s04 [--file x.ru.md] [--backend claude|api|mock]");
+    console.log("usage: node run.mjs <preflight|draft|judge|edit|localize|full> --session en/l01/s04 [--file x.ru.md] --backend <явно-настроенный-адаптер>");
     process.exit(2);
   }
   const S = parseSession(SESSION);
@@ -1254,7 +1784,7 @@ function main() {
     for (let prior = 25; prior < S.session; prior += 1) {
       const id = `en/l03/s${String(prior).padStart(2, "0")}`;
       const dir = path.join(ROOT, "sessions", "en", "l03", `s${String(prior).padStart(2, "0")}`);
-      const readiness = sessionReadiness(dir, ["uk"]);
+      const readiness = sessionReadiness(dir, ["uk"], { sessionId: id });
       if (!readiness.ready) priorRangeIssues.push(`${id}: ${readiness.issues.slice(0, 2).join(", ")}`);
     }
   }
@@ -1296,7 +1826,7 @@ function main() {
   if (cmd === "facts") {
     const f = path.join(S.dir, opt("file", "final.ru.md"));
     if (!fs.existsSync(f)) { console.error("НЕТ ФАЙЛА " + f); process.exit(2); }
-    const hard = machineFacts(f).split("\n").filter((l) => HARD_FACT_RE.test(l));
+    const hard = machineFacts(f, SESSION).split("\n").filter((l) => HARD_FACT_RE.test(l));
     for (const l of hard) console.log(l);
     return;
   }
@@ -1315,7 +1845,7 @@ function main() {
     // трёх были выброшенными деньгами. Машинные факты (касания возвращаемых
     // слов, объём, механики) отсеивают слабейшего бесплатно.
     const scored = allDrafts.map((f) => {
-      const facts = machineFacts(f);
+      const facts = machineFacts(f, SESSION);
       const penalty = (facts.match(/МЕНЬШЕ ДВУХ/g) || []).length * 2 + (facts.match(/ни разу правильным ответом/g) || []).length;
       LOG(`машинный отбор ${path.basename(f)}: штраф ${penalty}`);
       return { f, penalty };
@@ -1335,7 +1865,7 @@ function main() {
     LOG(`лучший черновик: ${path.basename(best.f)}`);
     const fullV = { ...stageJudgeStable(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
-    const openFacts = (f) => machineFacts(f).split(String.fromCharCode(10)).filter((l) => HARD_FACT_RE.test(l));
+    const openFacts = (f) => machineFacts(f, SESSION).split(String.fromCharCode(10)).filter((l) => HARD_FACT_RE.test(l));
     for (let round = 1; round <= 2 && (judgeIssues(cur.v, SESSION).length || openFacts(cur.f).length); round++) {
       const facts = openFacts(cur.f);
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6, открытых фактов ${facts.length})`);
@@ -1354,20 +1884,20 @@ function main() {
     // зачем: 03.09 сессия 8 вышла с разрывом «интро ↔ вопрос» — педагог дал
     // REVISE, а REVISE не останавливает. Посчитанный факт не зависит от
     // настроения судьи: пока он не закрыт, сессия не выпускается.
-    const hardFacts = machineFacts(cur.f)
+    const hardFacts = machineFacts(cur.f, SESSION)
       .split("\n")
       .filter((l) => HARD_FACT_RE.test(l));
     if (hardFacts.length) {
       WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
 
-      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
+      writeBoundStatus(S, { session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() });
       return;
     }
     const requiredJudges = requiredJudgesForSession(SESSION);
     const blocked = Object.entries(cur.v).filter(([role, j]) => requiredJudges.includes(role) && j?.verdict === "BLOCK");
     if (blocked.length) {
       WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
-      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
+      writeBoundStatus(S, { session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() });
       return;
     }
     if (judgeIssues(cur.v, SESSION).length) WARN(`черновик не получил PASS всех обязательных судей (${requiredJudges.join(", ")}) — проверю финал перед локализацией`);
@@ -1400,17 +1930,17 @@ function main() {
     if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
     if (finalBlocked.length || brokenTasks.length) {
       WARN(`СТОП перед локализацией: нет PASS всех обязательных судей или есть неоднозначные задания (${finalBlocked.join(", ")})`);
-      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blocked: finalBlocked, brokenTasks, locales: null, at: new Date().toISOString() }, null, 2));
+      writeBoundStatus(S, { session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blocked: finalBlocked, brokenTasks, locales: null, at: new Date().toISOString() });
       return;
     }
     const loc = stageLocalize(S, finalRu);
     const incompleteLocales = LOCALES.filter((locale) => loc[locale] !== "PASS");
     if (incompleteLocales.length) {
       WARN(`СТОП перед сборкой: локали без PASS: ${incompleteLocales.join(", ")}`);
-      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blockedBy: "locales", locales: loc, at: new Date().toISOString() }, null, 2));
+      writeBoundStatus(S, { session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blockedBy: "locales", locales: loc, at: new Date().toISOString() });
       return;
     }
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: true, needsHumanReview: false, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    writeBoundStatus(S, { session: SESSION, ru: finalScore, converged: true, needsHumanReview: false, draftScore: cur.s, locales: loc, at: new Date().toISOString() });
     // зачем: владелец спросил «почему макет не позволяет выбирать сессии
     // урока 2» — макет ничего не запрещал, он был собран ДО того, как эти
     // сессии появились. Пересобираем сами: релиз этой сессии и общий макет,
@@ -1426,7 +1956,7 @@ function main() {
           const st = exists(stp) ? JSON.parse(read(stp)) : {};
           st.buildProblems = buildProblems.map((l) => l.replace(/^.*[BUILD][WARN]s*/, ""));
           st.needsHumanReview = true;
-          write(stp, JSON.stringify(st, null, 2));
+          writeBoundStatus(S, st);
         } catch (e) { WARN(`не смог записать buildProblems в статус: ${e.message}`); }
       }
       if (rel.status !== 0) WARN(`сборка релиза не прошла (код ${rel.status}) — макет не обновлён`);

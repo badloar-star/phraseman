@@ -1,12 +1,17 @@
 {
-  "sourceSha256": "a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
-  "reviewer": "/root/s10_taste",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_taste",
+  "sourceSha256": "7f5aabd04911dd38ab9fa61c847ea2a21f01a32a782fc5e2523f5fe524327567",
+  "exactRuSha256": "7f5aabd04911dd38ab9fa61c847ea2a21f01a32a782fc5e2523f5fe524327567",
+  "exactUkSha256": "ccb522081a61eb473d449caf602772031a186626f4f26b90351f7fbb24aec980",
+  "practiceAtomicSha256": "e4b2236f438b07a9b2078cc54619f35022b4942bb092a3e2bf25c401f688a507",
   "pairwise": "equal",
-  "pairwise_reason": "S11 не уступает эталонам ясностью и живым голосом; молчащая h → согласный звук при u → применение знакомого вопроса.",
+  "pairwise_reason": "The line makes the silent-h trap memorable while explaining the exact `an hour` choice.",
   "voice": {
-    "score": 5,
+    "score": 4,
     "evidence": [
-      "Первая буква `h` не произносится, поэтому слово начинается с гласного звука и перед ним нужно `an`.",
       "Старательно прочитать все буквы здесь значит старательно ошибиться."
     ]
   },
@@ -18,20 +23,16 @@
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Стойка сервиса связывает ожидание мастера, его форму и технику."
-  },
-  "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
   "best_lines": [
-    "Первая буква `h` не произносится, поэтому слово начинается с гласного звука и перед ним нужно `an`.",
-    "Старательно прочитать все буквы здесь значит старательно ошибиться.",
-    "Вопрос не меняет выбор перед названием: там остаётся `a`, ведь первым слышен согласный «й»."
+    "Старательно прочитать все буквы здесь значит старательно ошибиться."
   ],
+  "ai_text_or_nonsense": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Выбор по звуку понятен, темп ровный, юмор работает на правило."
+  "evidence": [
+    "The line makes the silent-h trap memorable while explaining the exact `an hour` choice."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "verdict_reason": "The current text keeps a clear everyday teaching voice; the cited line supports the language point and no AI-like padding was found."
 }

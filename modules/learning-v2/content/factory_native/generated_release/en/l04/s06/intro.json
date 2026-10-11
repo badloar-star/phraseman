@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "освоить конструкцию `There is a + singular noun` для одного места внутри здания.",
+    "uk": "опанувати конструкцію `There is a + singular noun` для одного місця всередині будівлі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Клиника на указателе",
+        "uk": "Клініка на вказівнику"
+      },
+      "bodyByLocale": {
+        "ru": "`clinic` — «клиника»: место, куда приходят к врачу. На указателе это одно место. Запомните слово целиком: `clinic`. Оно отличается по смыслу от `library` — библиотеки и `bakery` — пекарни. Если в списке помещений нужна клиника, ищите именно слово `clinic`.",
+        "uk": "`clinic` — «клініка»: місце, куди приходять до лікаря. На вказівнику це одне місце. Запам’ятайте слово цілком: `clinic`. Воно відрізняється за значенням від `library` — бібліотеки та `bakery` — пекарні. Якщо у списку приміщень потрібна клініка, шукайте саме слово `clinic`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "На указателе отмечена клиника. Выберите слово.",
+          "uk": "На вказівнику позначено клініку. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r1",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r2",
+              "text": "library"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r3",
+              "text": "bakery"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r1",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r2",
+              "text": "library"
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro1:r3",
+              "text": "bakery"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На указателе отмечена клиника. Выберите слово.",
+          "uk": "На вказівнику позначено клініку. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одно место",
+        "uk": "Одне місце"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a clinic.` — «Есть клиника». Для одного места используйте `There is`, а перед `clinic` ставьте `a`. Форма `are` нужна, когда мест несколько. Здесь на указателе одна клиника: он не обещает филиал на каждом этаже, поэтому точная фраза — `There is a clinic.`",
+        "uk": "`There is a clinic.` — «Є клініка». Для одного місця використовуйте `There is`, а перед `clinic` ставте `a`. Форма `are` потрібна, коли місць кілька. Тут на вказівнику одна клініка: він не обіцяє філію на кожному поверсі, тому точна фраза — `There is a clinic.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "На указателе одна клиника. Выберите сообщение.",
+          "uk": "На вказівнику одна клініка. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r1",
+              "text": "There is a clinic."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r2",
+              "text": "There are a clinic."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r3",
+              "text": "There is clinic."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r1",
+              "text": "There is a clinic."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r2",
+              "text": "There are a clinic."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro2:r3",
+              "text": "There is clinic."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На указателе одна клиника. Выберите сообщение.",
+          "uk": "На вказівнику одна клініка. Оберіть повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Внутри здания",
+        "uk": "Усередині будівлі"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a clinic in the building.` — «В здании есть клиника». Здесь `There is a` говорит об одном месте, а `in the building` — где его ищут. Сначала соберите основу `There is a clinic`, затем добавьте место. Порядок помогает: сначала сообщаем, что есть, потом — в каком здании это искать.",
+        "uk": "`There is a clinic in the building.` — «У будівлі є клініка». Тут `There is a` говорить про одне місце, а `in the building` — де його шукати. Спершу складіть основу `There is a clinic`, а потім додайте місце. Порядок допомагає: спершу повідомляємо, що є, а потім — у якій будівлі це шукати."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "В здании есть одна клиника. Выберите сообщение.",
+          "uk": "У будівлі є одна клініка. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r1",
+              "text": "There is a clinic in the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r2",
+              "text": "There are a clinic in the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r3",
+              "text": "There is clinic in the building."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r1",
+              "text": "There is a clinic in the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r2",
+              "text": "There are a clinic in the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-06:intro3:r3",
+              "text": "There is clinic in the building."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В здании есть одна клиника. Выберите сообщение.",
+          "uk": "У будівлі є одна клініка. Оберіть повідомлення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fbf4739b75edf21afbccb3e4f3d152ac912d4a16ad65389508a8896b5c0ee79e"
+}

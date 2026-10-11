@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 15 — «Elegant и plain»
+# Английский · Урок 2 · Занятие 15 — «Elegant и plain»
 
-**Сцена сессии.** Кафе к обеду. За соседними столиками сидят очень разные люди, и спутник напротив всё время спрашивает про них: как одет, как выглядит, каково ему тут.
+**Сцена занятия.** Кафе перед обедом. За соседними столиками сидят Макс и Мира, а ваш спутник уточняет, как они одеты, как выглядят и удобно ли им здесь.
 
-**Операция:** повторение — `Is he …?` / `Is she …?` / `Is it …?` и короткие ответы
+**Как сказать:** повторение — `Is he …?` / `Is she …?` / `Is it …?` и короткие ответы
 **Новые слова:** elegant, plain
 **Возвращаются:** handsome, pretty, crowded, noisy, hungry, thirsty
 
@@ -10,13 +10,11 @@
 
 ## Интро 1
 
-### `elegant` — дорого и спокойно
+### `elegant` — стильно и точно
 
-`elegant` — «элегантный». Всё подобрано так, что придраться не к чему: пиджак сидит, цвета не спорят, ничего лишнего.
+`elegant` — «элегантный, изящный»: стильный и продуманный, без лишних деталей. Так можно сказать о человеке, одежде или простом и точном решении. Ценник это слово не проверяет: недорогой костюм тоже может выглядеть `elegant`. В английском ударение падает на первый слог. Здесь вы спросите `Is he elegant?`.
 
-Ударение падает на первый слог, а не на последний, как в русском «элегантный». Годится и про человека, и про вещь: `an elegant dress` — элегантное платье.
-
-**За столиком у окна мужчина в идеально сидящем костюме. Спросите спутника, элегантен ли он.**
+**За столиком у окна Макс в идеально сидящем костюме. Спросите спутника, элегантен ли он.**
 
 - ✅ **Is he elegant?**
 - ❌ He is elegant? — *Так вы сообщаете: «он элегантен». Вопрос начинают с `is`.*
@@ -26,13 +24,11 @@
 
 ## Интро 2
 
-### `plain` — просто и без затей
+### `plain` — просто, без украшений
 
-`plain` — «простой, без украшений». Серая футболка, белая чашка, стена без картин.
+`plain` — «простой, без украшений»: без рисунка, узора или лишних деталей. Так говорят о белой чашке без рисунка, однотонной рубашке или обычной воде без газа. О человеке `plain` может значить «невзрачный», поэтому здесь спрашиваем только про вещь. Для чашки вопрос звучит `Is it plain?`: `it` относится к вещи.
 
-Слово работает и про вещь, и про человека, и про еду: `plain water` — вода без газа и без вкуса, `a plain shirt` — рубашка без рисунка.
-
-**На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё — про вещь говорят `it`.**
+**На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё: для вещи используют `it`.**
 
 - ✅ **Is it plain?**
 - ❌ Is he plain? — *`he` — про мужчину. Чашка — вещь, для неё `it`.*
@@ -42,108 +38,124 @@
 
 ## Интро 3
 
-### Короткий ответ с `she is`
+### Короткий ответ про `elegant`
 
-На `Is she pretty?` можно ответить одним `Yes`. Можно добавить два слова из вопроса, только поставить их в обратном порядке.
+`Yes, she is.` — короткое «да» на вопрос `Is she elegant?`. Вопрос уже назвал женщину и слово `elegant`, поэтому в ответе остаются `she` и `is`: сначала человек, потом связка. Одного `Yes` тоже достаточно, но здесь тренируем полную короткую форму. Для мужчины было бы `Yes, he is.`
 
-Придумывать нечего: `is` и `she` берутся прямо из вопроса — `Yes, she is.` Про мужчину — `Yes, he is.`, про вещь — `Yes, it is.`
-
-**Спутник спросил: «Is she pretty?» — `pretty` значит «красивая». Женщина у стойки и правда хороша собой. Ответьте.**
+**Мира у стойки одета просто и изящно. Спутник спрашивает: `Is she elegant?` Ответьте коротко.**
 
 - ✅ **Yes, she is.**
 - ❌ Yes, she. — *Потерялось `is`. Оно приходит из вопроса и остаётся в ответе.*
-- ❌ Yes, he is. — *Спрашивали про женщину. `he` — про мужчину, `she` — про женщину.*
+- ❌ Yes, is she. — *Так снова получается вопрос. В ответе сначала `she`, потом `is`: `Yes, she is.`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — elegant**
-> **elegant** — «элегантный». Ничего лишнего, всё подобрано: костюм по фигуре, цвета не спорят.
+<!-- interaction_id: en:lesson-02:session-15:i01; family: listen_choose -->
+Цель: `elegant`
 
-**2 · Послушайте и выберите — elegant**
-🔊 *elegant* → **elegant** · element · eleven
-- element — *Это «элемент». Дальше расходятся: у `elegant` слышно «г», у `element` — «м».*
-- eleven — *Это «одиннадцать». Тоже начинается с `ele`, дальше расходятся.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-15:i02; family: listen_choose -->
+Цель: `elegant`
+Варианты: `elegant` · `element` · `eleven`
 
 **3 · Карточка слова — plain**
-> **plain** — «простой, без украшений». Белая чашка, серая футболка, стена без картин.
+<!-- interaction_id: en:lesson-02:session-15:i03; family: listen_choose -->
+Цель: `plain`
 
-**4 · Послушайте и выберите — plain**
-🔊 *plain* → **plain** · pain · rain
-- pain — *Это «боль». В `plain` после «п» слышно «л», в `pain` его нет.*
-- rain — *«Дождь». Первый звук другой: `plain` начинается с «п», `rain` — с «р».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-15:i04; family: listen_choose -->
+Цель: `plain`
+Варианты: `plain` · `pain` · `rain`
 
 **5 · Карточка слова — handsome**
-> **handsome** — «красивый». Так обычно говорят о мужчине, а о женщине чаще `pretty`.
+<!-- interaction_id: en:lesson-02:session-15:i05; family: listen_choose -->
+Цель: `handsome`
 
 **6 · Карточка слова — crowded**
-> **crowded** — «полно людей». Все столики заняты, у входа стоят и ждут.
+<!-- interaction_id: en:lesson-02:session-15:i06; family: listen_choose -->
+Цель: `crowded`
 
-**7 · Вставьте слово — мужчина в костюме, который сидит идеально**
-Is he ___ ? → **elegant** · hungry · thirsty
-- hungry — *«Голодный». По костюму этого не увидишь.*
-- thirsty — *«Хочет пить». Костюм об этом молчит.*
+**7 · Вставьте слово — Макс в костюме, который сидит идеально**
+<!-- interaction_id: en:lesson-02:session-15:i07; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `elegant` · `hungry` · `thirsty`
 
 **8 · Соберите фразу — «оно простое?» про белую чашку без рисунка**
-Плитки: `it` `plain` `is` `she` → **Is it plain?**
+<!-- interaction_id: en:lesson-02:session-15:i08; family: phrase_builder -->
+Цель: `Is it plain?`
 
 **9 · Вставьте слово — в зале ни одного свободного столика**
-The cafe is ___ . → **crowded** · plain · elegant
-- plain — *«Простое». Про количество людей это ничего не говорит.*
-- elegant — *«Элегантное». Про обстановку, а не про толпу.*
+<!-- interaction_id: en:lesson-02:session-15:i09; family: context_gap_grammar -->
+Цель: `The cafe is ___ .`
+Варианты: `crowded` · `plain` · `elegant`
 
 **10 · Различите звуки — какое из двух про «простой»?**
-🔊 Два слова подряд.
-*plain · pain* → **plain**
-- pain — *Это «боль». В `plain` после «п» слышно «л», в `pain` его нет.*
+<!-- interaction_id: en:lesson-02:session-15:i10; family: sound_contrast -->
+Варианты: `plain` · `pain`
 
-**11 · Вставьте слово — за столиком мужчина, на которого оборачиваются**
-Is he ___ ? → **handsome** · noisy · crowded
-- noisy — *«Шумный». Про внешность так не скажешь.*
-- crowded — *«Полно людей». Один человек полным людям не бывает.*
+**11 · Вставьте слово — за столиком Макс, на которого оборачиваются**
+<!-- interaction_id: en:lesson-02:session-15:i11; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `handsome` · `noisy` · `crowded`
 
-**12 · Послушайте и соберите — «она красивая?»**
-🔊 *Is she pretty?* Плитки: `she` `pretty` `is` `plain` → **Is she pretty?**
+**12 · Послушайте и соберите — «Мира красивая?»**
+<!-- interaction_id: en:lesson-02:session-15:i12; family: listen_build_dictation -->
+Цель: `Is she pretty?`
 
-**13 · Соедините пары (Speed Match, 4 пары)**
-elegant — элегантный · plain — простой · handsome — красивый (о мужчине) · crowded — полно людей
+**13 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-15:i13; family: speed_match -->
+Пары: `elegant` — элегантный · `plain` — простой · `handsome` — красивый (о мужчине) · `crowded` — полно людей
+Цель: `elegant · plain · handsome · crowded`
 
 **14 · Карточка слова — noisy**
-> **noisy** — «шумный». За стеной играет музыка, соседи говорят громко, и вы повышаете голос.
+<!-- interaction_id: en:lesson-02:session-15:i14; family: listen_choose -->
+Цель: `noisy`
 
 **15 · Вставьте слово — музыка играет так, что приходится повышать голос**
-The cafe is ___ . → **noisy** · pretty · elegant
-- pretty — *«Красивое». Глазами видно, ушами — нет.*
-- elegant — *«Элегантное». Про громкость молчит.*
+<!-- interaction_id: en:lesson-02:session-15:i15; family: context_gap_grammar -->
+Цель: `The cafe is ___ .`
+Варианты: `noisy` · `pretty` · `elegant`
 
-**16 · Соберите фразу — спутник ест уже второй сэндвич, спросите, голоден ли он**
-Плитки: `hungry` `is` `he` `not` → **Is he hungry?**
-*(`not` тут лишнее: вы спрашиваете, а не отрицаете.)*
+**16 · Соберите фразу — Макс ест уже второй сэндвич; спросите, голоден ли он**
+<!-- interaction_id: en:lesson-02:session-15:i16; family: phrase_builder -->
+Цель: `Is he hungry?`
 
-**17 · Вставьте слово — спутник третий раз тянется к воде**
-Is he ___ ? → **thirsty** · plain · handsome
-- plain — *«Простой». К воде это отношения не имеет.*
-- handsome — *«Красивый». Стакан воды красоту не выдаёт.*
+**17 · Вставьте слово — Макс третий раз тянется к воде**
+<!-- interaction_id: en:lesson-02:session-15:i17; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `thirsty` · `plain` · `handsome`
 
-**18 · Соберите ответ — на вопрос «Is she pretty?» вы согласны**
-Плитки: `she` `Yes,` `is` `he` → **Yes, she is.**
+**18 · Соберите ответ — Мира в изящном платье; на вопрос `Is she elegant?` вы согласны**
+<!-- interaction_id: en:lesson-02:session-15:i18; family: phrase_builder -->
+Цель: `Yes, she is.`
 
-**19 · Соберите вопрос — чашка совсем белая, без рисунка; уточните, простая ли она**
-Плитки: `plain` `is` `it` `are` → **Is it plain?**
+**19 · Послушайте и выберите услышанную реплику о белой чашке без рисунка**
+<!-- interaction_id: en:lesson-02:session-15:i19; family: listen_choose -->
+Цель: `Is it plain?`
+Варианты: `Is it plain?` · `It is plain.` · `Is it elegant?`
 
-**20 · Скажите вслух — обед заканчивается, вы описываете зал спутнику**
-🎙 **Is he elegant? Is it plain? The cafe is noisy.** — послушайте, повторите, сравните.
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-15:i20:s01; family: scripted_repeat_compare -->
+Цель: `Is he elegant?`
 
----
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-15:i20:s02; family: scripted_repeat_compare -->
+Цель: `Is it plain?`
+
+**22 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-15:i20:s03; family: scripted_repeat_compare -->
+Цель: `The cafe is noisy.`
 
 ## Для сборщика
 
 new_words:
-elegant — элегантный — «элегантный». Ничего лишнего, всё подобрано: костюм по фигуре, цвета не спорят.
-plain — простой, без украшений — «простой, без украшений». Белая чашка, серая футболка, стена без картин.
+elegant — элегантный, изящный — «элегантный, изящный». Стильный и продуманный, без лишних деталей; это не обязательно значит «дорогой».
+plain — простой, без украшений — «простой, без украшений». Без рисунка, узора или лишних деталей; о воде — обычная негазированная.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=word_card, 7=context_gap_grammar, 8=phrase_builder, 9=context_gap_grammar, 10=sound_contrast, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=word_card, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=phrase_builder, 19=phrase_builder, 20=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=context_gap_grammar, 10=sound_contrast, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=listen_choose, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=phrase_builder, 19=listen_choose, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
 
 ---
 

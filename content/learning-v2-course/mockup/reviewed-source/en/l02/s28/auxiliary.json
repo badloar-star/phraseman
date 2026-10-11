@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro1:r2": {
+          "ru": "`is` уехало в конец. Его место второе, сразу за `what`.",
+          "uk": "`is` поїхало в кінець. Його місце друге, одразу за `what`."
+        },
+        "en:lesson-02:session-28:intro1:r3": {
+          "ru": "Вопрос начинается с `what`, а не с вещи.",
+          "uk": "Питання починається з `what`, а не з речі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro2:r2": {
+          "ru": "Пропало `the`. В этом вопросе оно стоит перед словом.",
+          "uk": "Зникло `the`. У цьому питанні воно стоїть перед словом."
+        },
+        "en:lesson-02:session-28:intro2:r3": {
+          "ru": "`weather` — «погода». Погода за окном, а вам нужны часы.",
+          "uk": "`weather` — «погода». Погода за вікном, а вам потрібен годинник."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-28:intro3:r2": {
+          "ru": "`name` — это «название». Название вы услышали, а цифру нет.",
+          "uk": "`name` — це «назва». Назву ви почули, а цифру ні."
+        },
+        "en:lesson-02:session-28:intro3:r3": {
+          "ru": "`weather` — «погода». Вам нужна цифра, а не небо за окном.",
+          "uk": "`weather` — «погода». Вам потрібна цифра, а не небо за вікном."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "712bf0ed4a072c977fa991c16b410ae6c07337266fa3e701e7790b0bad144a2a"
+}

@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "После первого «с» в `school` слышно «к», а в `stool` — «т». В записи `stool`.",
               "uk": "Після першого «с» у `school` чути «к», а в `stool` — «т». У записі — `stool`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "После первого «с» в `spool` слышно «п», а в `stool` — «т». Здесь звучит `stool`.",
               "uk": "Після першого «с» у `spool` чути «п», а в `stool` — «т». Тут звучить `stool`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-03:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В первом слоге `minor` слышно «ай», а в `mirror` гласный ближе к «и». В записи `mirror`.",
               "uk": "У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до українського «и». У записі — `mirror`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-03:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "Первый гласный в `merry` ближе к «э», а в `mirror` — к «и». Здесь звучит `mirror`.",
               "uk": "Перший голосний у `merry` ближчий до «е», а в `mirror` — до українського «и». Тут звучить `mirror`."
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — брат показує на табурет; назвіть предмет двома словами",
+      "prompt": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — брат показує на табурет; назвіть предмет двома словами",
+      "accessibilityLabel": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A stool.",
+        "targetPhrase": "It is a stool.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — брат показывает на табурет; назовите предмет двумя словами",
-          "uk": "Складіть коротку назву — брат показує на табурет; назвіть предмет двома словами"
+          "ru": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
+          "uk": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "stool"
         ],
         "authoredDistractorTokens": [
@@ -275,10 +277,10 @@
           {
             "responseId": "en:lesson-03:session-03:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — брат показы",
+            "testedDimension": "Складіть коротку назву — брат показує на",
             "feedbackByLocale": {
-              "ru": "В коротком названии после `a` сразу идёт предмет: `a stool`. Форма `am` здесь не нужна.",
-              "uk": "У короткій назві після `a` одразу йде предмет: `a stool`. `am` тут не потрібне."
+              "ru": "После `It` нужна форма `is`, а перед одним табуретом — `a`: `It is a stool`.",
+              "uk": "Після `It` потрібна форма `is`, а перед одним табуретом — `a`: `It is a stool`."
             }
           }
         ]
@@ -383,7 +385,7 @@
           {
             "responseId": "en:lesson-03:session-03:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "`bug` начинается со смыкания губ для `b`, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. В записи `rug`.",
               "uk": "`bug` починається зі змикання губ для `b`, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. У записі — `rug`."
@@ -392,7 +394,7 @@
           {
             "responseId": "en:lesson-03:session-03:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "`mug` начинается с носового `m` при сомкнутых губах, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. Здесь звучит `rug`.",
               "uk": "`mug` починається з носового `m` при зімкнутих губах, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. Тут звучить `rug`."
@@ -439,13 +441,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — брат запитує, що ви поставили біля крісла; назвіть лампу (`lamp` — «лампа»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — брат запитує, що ви поставили біля крісла; назвіть лампу (`lamp` — «лампа»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -511,12 +513,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — брат держит коври",
+        "testedDimension": "Вставте частину фрази — брат тримає кили",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — брат держит коври",
+            "testedDimension": "Вставте частину фрази — брат тримає кили",
             "feedbackByLocale": {
               "ru": "Получится `It is rug`: в названии одного предмета перед `rug` не хватает `a`.",
               "uk": "Вийде `It is rug`: у назві одного предмета перед `rug` бракує `a`."
@@ -525,7 +527,7 @@
           {
             "responseId": "en:lesson-03:session-03:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — брат держит коври",
+            "testedDimension": "Вставте частину фрази — брат тримає кили",
             "feedbackByLocale": {
               "ru": "Получится `It a rug`: название на месте, но после `It` нужно `is`.",
               "uk": "Вийде `It a rug`: назва на місці, але після `It` потрібне `is`."
@@ -574,7 +576,7 @@
           {
             "responseId": "en:lesson-03:session-03:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — брат обращается ",
+            "testedDimension": "Послухайте й складіть — брат звертається",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `rug`, а не `mirror`: `Is it a rug?`.",
               "uk": "У записі прозвучало `rug`, а не `mirror`: `Is it a rug?`."
@@ -702,12 +704,12 @@
             "text": "a not"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — брат принял карти",
+        "testedDimension": "Вставте частину фрази — брат прийняв кар",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-03:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — брат принял карти",
+            "testedDimension": "Вставте частину фрази — брат прийняв кар",
             "feedbackByLocale": {
               "ru": "В этой фразе отрицание делаем через `not` после `is`: `It is not a mirror`.",
               "uk": "У цій фразі заперечення робимо через `not` після `is`: `It is not a mirror`."
@@ -716,7 +718,7 @@
           {
             "responseId": "en:lesson-03:session-03:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — брат принял карти",
+            "testedDimension": "Вставте частину фрази — брат прийняв кар",
             "feedbackByLocale": {
               "ru": "Между `a` и `mirror` здесь не ставим `not`. Нужный порядок: `not a mirror`.",
               "uk": "Між `a` і `mirror` тут не ставимо `not`. Потрібний порядок: `not a mirror`."
@@ -761,7 +763,7 @@
           {
             "responseId": "en:lesson-03:session-03:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — брат ищет зеркало; вы с",
+            "testedDimension": "Складіть фразу — брат шукає дзеркало; ви",
             "feedbackByLocale": {
               "ru": "Сейчас вы сообщаете место, а не называете предмет. Перед `here` в этой фразе `a` не нужно: `It is here`.",
               "uk": "Зараз ви повідомляєте місце, а не називаєте предмет. Перед `here` у цій фразі `a` не потрібне: `It is here`."
@@ -777,13 +779,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — ви заходите до кімнати, де брат розставляє речі; уточніть про табурет: «Він тут?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — ви заходите до кімнати, де брат розставляє речі; уточніть про табурет: «Він тут?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -810,13 +812,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — брат дивиться на згорнуту річ біля дверей; назвіть килимок повною фразою",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-03:i16:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — брат дивиться на згорнуту річ біля дверей; назвіть килимок повною фразою",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -874,7 +876,7 @@
           {
             "responseId": "en:lesson-03:session-03:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — брат принял низкий стол",
+            "testedDimension": "Складіть фразу — брат прийняв низький ст",
             "feedbackByLocale": {
               "ru": "После `It` здесь нужна форма `is`. Получится `It is not a stool`.",
               "uk": "Після `It` тут потрібне `is`. Вийде `It is not a stool`."
@@ -891,5 +893,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "37e958ff66f939219a5ce47227db32fd5d06276f14aa6549c72f3fb9e376dbf6"
+  "learnerFingerprint": "b512695b8c64ba37ba34b12102f471fc311b5c939747835ed1c3b3e18960336b"
 }

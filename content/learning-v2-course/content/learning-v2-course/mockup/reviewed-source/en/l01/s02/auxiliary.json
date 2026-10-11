@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro1:r2": {
+          "ru": "После `I` по-прежнему нужно `am`: `I am tired`.",
+          "uk": "Після `I` як і раніше потрібне `am`: `I am tired`."
+        },
+        "en:lesson-01:session-02:intro1:r3": {
+          "ru": "Хвост оборвали. Tired — с «-d» на конце, иначе это «шина».",
+          "uk": "Хвіст обірвали. Tired — з «-d» на кінці, інакше це «шина»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro2:r2": {
+          "ru": "Правда, но не то. Все и так видят, что вы здесь; им нужно услышать, что вы это понимаете: I am late.",
+          "uk": "Правда, але не те. Усі й так бачать, що ви тут; їм треба почути, що ви це розумієте: I am late."
+        },
+        "en:lesson-01:session-02:intro2:r3": {
+          "ru": "И снова без am. В спешке его теряют чаще всего — как ключи.",
+          "uk": "І знову без am. Поспішаючи, його гублять найчастіше — як ключі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro3:r2": {
+          "ru": "После `I` нужно `am`: `I am sorry`.",
+          "uk": "Після `I` потрібне `am`: `I am sorry`."
+        },
+        "en:lesson-01:session-02:intro3:r3": {
+          "ru": "`Am` уже стоит после `I`; второй раз его добавлять не нужно.",
+          "uk": "`Am` уже стоїть після `I`; вдруге його додавати не потрібно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4993605bc9ae9d07e16af6247475485e899835b44f53e04d9880facaa1796b59"
+}

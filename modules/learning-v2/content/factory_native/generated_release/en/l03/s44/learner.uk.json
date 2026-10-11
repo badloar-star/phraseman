@@ -1,0 +1,865 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-44:i01:r1",
+          "text": "customer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i01:audio",
+          "transcript": "customer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-44:i01:r1",
+            "targetText": "customer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "customer",
+          "definitionByLocale": {
+            "ru": "«покупатель». Человек, который покупает товар.",
+            "uk": "«покупець». Людина, яка купує товар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i03:audio",
+          "transcript": "seller"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "seller",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i05:audio",
+          "transcript": "assistant"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "assistant",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i02:audio",
+          "transcript": "customer"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "customer",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-44:i04:r1",
+          "text": "seller"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i04:audio",
+          "transcript": "seller"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-44:i04:r1",
+            "targetText": "seller",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seller",
+          "definitionByLocale": {
+            "ru": "«продавец».",
+            "uk": "«продавець»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i06:audio",
+          "transcript": "assistant"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "assistant",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i08:audio",
+          "transcript": "customer"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "customer",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i10:audio",
+          "transcript": "seller"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "seller",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i11:audio",
+          "transcript": "assistant"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "assistant",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слово зі значенням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слово зі значенням",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-44:i07:p1",
+            "target": "customer",
+            "meaningByLocale": {
+              "ru": "покупатель",
+              "uk": "покупець"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-44:i07:p2",
+            "target": "seller",
+            "meaningByLocale": {
+              "ru": "продавец",
+              "uk": "продавець"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-44:i07:p3",
+            "target": "assistant",
+            "meaningByLocale": {
+              "ru": "помощник",
+              "uk": "помічник"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-44:i07:p4",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          }
+        ],
+        "leftColumn": [
+          "customer",
+          "seller",
+          "assistant",
+          "receipt"
+        ],
+        "rightColumn": [
+          "покупець",
+          "продавець",
+          "помічник",
+          "чек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — покупця вже назвали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-44:i09:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i09:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i09:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i09:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — покупця вже назвали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — покупателя уже назвали",
+          "uk": "Вставте початок — покупця вже назвали"
+        },
+        "gappedTargetPhrase": "___ customer is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i09:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — покупателя уже назвали",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — покупателя уже назвали",
+            "feedbackByLocale": {
+              "ru": "Покупателя уже назвали.",
+              "uk": "Покупця вже назвали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — покупателя уже назвали",
+            "feedbackByLocale": {
+              "ru": "Перед `customer` нужен не `an`.",
+              "uk": "Перед `customer` потрібен не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — покупателя уже назвали",
+            "feedbackByLocale": {
+              "ru": "Нужен артикль: речь о названном покупателе.",
+              "uk": "Потрібен артикль: йдеться про вже названого покупця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i12:audio",
+          "transcript": "A seller is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A seller is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i13:audio",
+          "transcript": "An assistant is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "An assistant is here.",
+        "orderedTokens": [
+          "An",
+          "assistant",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "The"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — помічника вже назвали",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — помічника вже назвали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The assistant is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — помощника уже назвали",
+          "uk": "Складіть фразу — помічника вже назвали"
+        },
+        "orderedTokens": [
+          "The",
+          "assistant",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — новий помічник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-44:i15:r1",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i15:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i15:r3",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — новий помічник",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — новый помощник",
+          "uk": "Вставте початок — новий помічник"
+        },
+        "gappedTargetPhrase": "___ assistant is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-44:i15:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — новый помощник",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — новый помощник",
+            "feedbackByLocale": {
+              "ru": "Перед `assistant` нужен `an`.",
+              "uk": "Перед `assistant` потрібен `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — новый помощник",
+            "feedbackByLocale": {
+              "ru": "Помощника ещё не называли.",
+              "uk": "Помічника ще не називали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — новый помощник",
+            "feedbackByLocale": {
+              "ru": "Нужен артикль.",
+              "uk": "Потрібен артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-44:i16:r1",
+          "text": "Этот покупатель здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i16:r2",
+          "text": "Здесь покупатель"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i16:r3",
+          "text": "Этот продавец здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-44:i16:r4",
+          "text": "Где покупатель?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i16:audio",
+          "transcript": "The customer is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-44:i16:r1",
+            "targetText": "Этот покупатель здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i16:r2",
+            "targetText": "Здесь покупатель",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i16:r3",
+            "targetText": "Этот продавец здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i16:r4",
+            "targetText": "Где покупатель?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-44:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи есть `the`.",
+              "uk": "У записі є `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Звучит `customer`, не `seller`.",
+              "uk": "Звучить `customer`, а не `seller`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-44:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Это утверждение.",
+              "uk": "Це твердження."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i17:s01:audio",
+          "transcript": "A customer is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "A customer is here.",
+        "orderedTokens": [
+          "A",
+          "customer",
+          "is",
+          "here."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The seller is here.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 2 із 3"
+        },
+        "orderedTokens": [
+          "The",
+          "seller",
+          "is",
+          "here."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-44:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-44:i17:s03:audio",
+          "transcript": "An assistant is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "An assistant is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b4bfa3eed1f25f4afef6ad59d03928fb06f6c000e9b023509f200f1254db1f1a"
+}

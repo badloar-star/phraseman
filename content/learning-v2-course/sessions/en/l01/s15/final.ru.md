@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 15 — «Вечер, разбор дня»
+# Английский · Урок 1 · Занятие 15 — «Вечерний разговор о дне»
 
-**Сцена сессии.** Конец рабочего дня, кофе с коллегой. Вы вдвоём вспоминаете, кто как себя вёл сегодня, и говорите это друг другу вслух.
-**Операция:** повторение `I am` / `You are` (+ `not`) на словах о характере
+**Ситуация.** После рабочего дня вы пьёте кофе с коллегой Марком и говорите друг другу, как прошёл день.
+**Что вы освоите:** как сказать о себе и собеседнике `I am` / `You are`, включая `not`
 **Новые слова:** polite, serious, lucky, sad
 **Возвращаются:** kind, calm, honest, tired
 
@@ -20,7 +20,7 @@
 **Коллега весь день извинялся перед всеми подряд. Скажите ему про это.**
 
 - ✅ **You are polite.**
-- ❌ You polite. — *Скрепка выпала. По-русски «ты вежливый» обходится без связки, по-английски без `are` фраза не стоит.*
+- ❌ You polite. — *После `you` нужно `are`: без него английская фраза неполная.*
 - ❌ You am polite. — *`am` живёт только рядом с `I`. Про собеседника — всегда `are`.*
 
 ---
@@ -38,8 +38,8 @@
 **Вы пошутили, а коллега принял за чистую монету. Успокойте: «я не серьёзен».**
 
 - ✅ **I am not serious.**
-- ❌ I not am serious. — *`not` идёт после скрепки, а не перед. Сначала `I am`, потом `not`.*
-- ❌ I am no serious. — *`no` тут не работает. Отрицание при скрепке — только `not`.*
+- ❌ I not am serious. — *Сначала `I am`, затем `not`: `I am not serious`.*
+- ❌ I am no serious. — *В этой фразе отрицание — `not`: `I am not serious`.*
 
 ---
 
@@ -56,87 +56,114 @@
 **Коллега вытянул лёгкого клиента, пока остальные разбирали жалобы. Скажите ему: «ты везучий».**
 
 - ✅ **You are lucky.**
-- ❌ You is lucky. — *Чужая скрепка. При `you` — только `are`.*
+- ❌ You is lucky. — *После `you` нужно `are`, не `is`.*
 - ❌ You lucky are. — *`are` стоит сразу после `you`, а не в хвосте.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (20 заданий)
 
 **1 · Карточка слова — polite**
+<!-- interaction_id: en:lesson-01:session-15:i01; family: listen_choose -->
 > **polite** — «вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится.
 
-**2 · Послушайте и выберите — polite**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-15:i02; family: listen_choose -->
 🔊 *polite* → **polite** · pilot · plate
 - pilot — *«Пилот». Ударение в начале: PIE-lot. В `polite` — в конце: po-LITE.*
 - plate — *«Тарелка». Один слог вместо двух.*
 
 **3 · Карточка слова — serious**
+<!-- interaction_id: en:lesson-01:session-15:i03; family: listen_choose -->
 > **serious** — «серьёзный». Не шутит, не отмахивается — говорит как есть.
 
-**4 · Послушайте и выберите — serious**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-15:i04; family: listen_choose -->
 🔊 *serious* → **serious** · series · service
 - series — *«Серия». Начало то же, а конец другой: SI-riz в два слога против SI-ri-es в три.*
 - service — *«Обслуживание». Первый слог тянется без «и», у `serious` — чёткое «си».*
 
-**5 · Вставьте слово — коллега всем говорит «спасибо»**
+**5 · Вставьте слово — Вика всем говорит «спасибо»; вы говорите ей: «ты вежливая»**
+<!-- interaction_id: en:lesson-01:session-15:i05; family: context_gap_grammar -->
 You are ___ . → **polite** · serious · tired
 - serious — *«Серьёзный» — про другое. Тут человек вежливый.*
 - tired — *«Устал» — про силы, а не про манеры. Тут человек благодарит.*
 
 **6 · Соберите фразу — «я не серьёзен»**
+<!-- interaction_id: en:lesson-01:session-15:i06; family: phrase_builder -->
 Плитки: `not` `serious` `I` `am` → **I am not serious.**
 
 **7 · Карточка слова — lucky**
+<!-- interaction_id: en:lesson-01:session-15:i07; family: listen_choose -->
 > **lucky** — «везучий». Не заслужил, не рассчитал — просто повезло.
 
-**8 · Послушайте и выберите — lucky**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-15:i08; family: listen_choose -->
 🔊 *lucky* → **lucky** · luck · lock
 - luck — *«Удача». Без хвоста «-и» на конце.*
 - lock — *«Замок». Похоже на слух, но гласная другая: в `lock` она ближе к «о», в `lucky` — к «а». И `lock` в один слог.*
 
 **9 · Карточка слова — sad**
+<!-- interaction_id: en:lesson-01:session-15:i09; family: listen_choose -->
 > **sad** — «грустный». Не в слезах, но радости в человеке сейчас ноль.
 
-**10 · Послушайте и выберите — sad**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-15:i10; family: listen_choose -->
 🔊 *sad* → **sad** · said · sand
 - said — *«Сказал». Гласная другая: в `said` — как в «мэр», в `sad` рот открывается шире.*
 - sand — *«Песок». Лишний звук «н» в середине.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-15:i11; family: speed_match -->
 polite — вежливый · serious — серьёзный · lucky — везучий · sad — грустный
 
-**12 · Вставьте скрепку — вы говорите коллеге, что ему повезло**
+**12 · Вставьте слово — вы говорите Вике, что ей повезло**
+<!-- interaction_id: en:lesson-01:session-15:i12; family: context_gap_grammar -->
 You ___ lucky. → **are** · am · is
 - am — *`am` бывает только при `I`. Про собеседника — `are`.*
-- is — *Чужая скрепка. При `you` — только `are`.*
+- is — *После `you` нужно `are`.*
 
-**13 · Послушайте и соберите — «ты не грустный»**
+**13 · Послушайте и соберите — Вика молчит после трудного звонка; скажите ей: «ты не грустная»**
+<!-- interaction_id: en:lesson-01:session-15:i13; family: listen_build_dictation -->
 🔊 *You are not sad.* Плитки: `sad` `not` `You` `are` `am` → **You are not sad.**
 
 **14 · Карточка слова — calm**
+<!-- interaction_id: en:lesson-01:session-15:i14; family: listen_choose -->
 > **calm** — «спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была.
 
-**15 · Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу**
-You are ___ . → **calm** · sad · honest
-- sad — *«Грустный» — про другое: человек не грустил, он держался.*
-- honest — *«Честный» — про правду, а не про ровный голос.*
+**15 · Различите звуки — поезд отменили, а Вика спокойно читает; какое слово её описывает?**
+<!-- interaction_id: en:lesson-01:session-15:i15; family: sound_contrast -->
+🔊 Два слова подряд.
+*calm · come* → **calm**
+- come — *`come` — «приходить». Здесь описано состояние человека: `calm`.*
 
 **16 · Карточка слова — honest**
+<!-- interaction_id: en:lesson-01:session-15:i16; family: listen_choose -->
 > **honest** — «честный». Говорит как есть, даже когда правда невыгодна ему самому.
 
-**17 · Соберите фразу — «ты честный, я не грустный»**
-Плитки: `You` `are` `honest` `I` `am` `not` `sad` `is` → **You are honest. I am not sad.**
+**17 · Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»**
+<!-- interaction_id: en:lesson-01:session-15:i17:s01; family: phrase_builder -->
+Плитки: `You` `are` `honest` `is` → **You are honest.**
 
-**18 · Карточка слова — kind**
+**18 · Послушайте и соберите — Вика думает, что вы расстроены; скажите, что вы не грустите**
+<!-- interaction_id: en:lesson-01:session-15:i17:s02; family: listen_build_dictation -->
+🔊 *I am not sad.* Плитки: `sad` `not` `I` `am` `is` → **I am not sad.**
+
+**19 · Карточка слова — kind**
+<!-- interaction_id: en:lesson-01:session-15:i18; family: listen_choose -->
 > **kind** — «добрый». Помогает, когда его не просили и ему за это ничего не будет.
 
-**19 · Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали**
-Плитки: `You` `are` `kind` `I` `am` `tired` `am` → **You are kind. I am tired.**
+**20 · Соберите фразу — Вика помогла человеку с коробками; скажите ей: «ты добрая»**
+<!-- interaction_id: en:lesson-01:session-15:i19:s01; family: phrase_builder -->
+Плитки: `You` `are` `kind.` → **You are kind.**
 
-**20 · Скажите вслух — финал разговора**
-🎙 Кофе допит. Скажите коллеге всё, что о нём думаете: он вежливый, он спокойный, и сегодня ему повезло.
-**You are polite. You are calm. You are lucky.**
+**21 · Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали**
+<!-- interaction_id: en:lesson-01:session-15:i19:s02; family: listen_build_dictation -->
+🔊 *I am tired.* Плитки: `tired` `I` `am` `is` → **I am tired.**
+
+**22 · Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»**
+<!-- interaction_id: en:lesson-01:session-15:i20; family: scripted_repeat_compare -->
+🎙 **You are polite.**
 
 ---
 
@@ -153,6 +180,6 @@ calm — спокойный — «спокойный». Голос ровный,
 honest — честный — «честный». Говорит как есть, даже когда правда невыгодна ему самому.
 kind — добрый — «добрый». Помогает, когда его не просили и ему за это ничего не будет.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=context_gap_grammar, 16=word_card, 17=phrase_builder, 18=word_card, 19=phrase_builder, 20=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=sound_contrast, 16=word_card, 17=phrase_builder, 18=listen_build_dictation, 19=word_card, 20=phrase_builder, 21=listen_build_dictation, 22=scripted_repeat_compare
 
 ---

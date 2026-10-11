@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`vowel` — «гласный звук». В начале звучит «в»: нижняя губа касается верхних зубов. У `towel` начало «т»: работает кончик языка.",
               "uk": "`vowel` — «голосний звук». На початку чути «в»: нижня губа торкається верхніх зубів. У `towel` початок «т»: працює кінчик язика."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`trowel` — «мастерок». Начало — сочетание `t` и английского `r`; у `towel` после начального `t` сразу звучит гласный.",
               "uk": "`trowel` — «кельма». Після початкового «т» у ньому чути англійський звук без дотику язика до горбиків за верхніми зубами. У `towel` після «т» одразу починається голосний."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-21:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`certain` — «уверенный». Первым слышно «с», воздух идёт у передних зубов. В `curtain` — «к», звук образуется глубже во рту.",
               "uk": "`certain` — «упевнений». Спочатку чути «с», повітря йде біля передніх зубів. У `curtain` — «к», звук утворюється глибше в роті."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-21:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`carton` — «картонная коробка». В ударной части рот открыт шире, звучит «а». У `curtain` рот прикрыт, язык ближе к середине рта.",
               "uk": "`carton` — «картонна коробка». У наголошеній частині рот відкритий ширше, чути «а». У `curtain` рот прикритіший, а язик ближче до середини рота."
@@ -277,7 +277,7 @@
           {
             "responseId": "en:lesson-03:session-21:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер записывает содер",
+            "testedDimension": "Зберіть фразу — кур’єр записує вміст мал",
             "feedbackByLocale": {
               "ru": "В пакете одно полотенце. В этой фразе после `a` нужно `towel`.",
               "uk": "У пакеті один рушник. У цій фразі після `a` потрібне `towel`."
@@ -332,12 +332,12 @@
             "text": "a curtains"
           }
         ],
-        "testedDimension": "Вставьте название — курьер сверяет строк",
+        "testedDimension": "Вставте назву — кур’єр звіряє рядок накл",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-21:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер сверяет строк",
+            "testedDimension": "Вставте назву — кур’єр звіряє рядок накл",
             "feedbackByLocale": {
               "ru": "`a curtain` — одна штора. Вы называете две: `They are curtains`.",
               "uk": "`a curtain` — одна штора. Ви називаєте дві: `They are curtains`."
@@ -346,7 +346,7 @@
           {
             "responseId": "en:lesson-03:session-21:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер сверяет строк",
+            "testedDimension": "Вставте назву — кур’єр звіряє рядок накл",
             "feedbackByLocale": {
               "ru": "В названии нескольких уже стоит `curtains`. Перед ним в этой фразе `a` лишнее.",
               "uk": "Назва кількох уже `curtains`. Перед нею у цій фразі `a` зайве."
@@ -454,7 +454,7 @@
           {
             "responseId": "en:lesson-03:session-21:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`willow` — «ива». В начале губы округляются и переходят к гласному. У `pillow` губы сначала смыкаются, затем раскрываются для «п».",
               "uk": "`willow` — «верба». На початку губи округлюються й переходять до голосного. У `pillow` губи спершу змикаються, а потім розкриваються для «п»."
@@ -463,7 +463,7 @@
           {
             "responseId": "en:lesson-03:session-21:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`yellow` — «жёлтый». Начало похоже на «йэ». У `pillow` сначала слышно «п», затем короткий гласный с более прикрытым ртом.",
               "uk": "`yellow` — «жовтий». Початок схожий на «йе». У `pillow` спочатку чути «п», а потім короткий голосний із прикритішим ротом."
@@ -510,7 +510,7 @@
           {
             "responseId": "en:lesson-03:session-21:i09:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер уточняет, что вы",
+            "testedDimension": "Зберіть фразу — кур’єр уточнює, що ви ді",
             "feedbackByLocale": {
               "ru": "Вы называете несколько подушек. В этой фразе перед `pillows` слово `a` не нужно.",
               "uk": "Ви називаєте кілька подушок. У цій фразі перед `pillows` слово `a` не потрібне."
@@ -565,12 +565,12 @@
             "text": "a glasses"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает о ",
+        "testedDimension": "Вставте назву — кур’єр питає про єдиний ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-21:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про єдиний ",
             "feedbackByLocale": {
               "ru": "В коробке один стакан. Называя его в этой фразе, ставим `a` перед `glass`.",
               "uk": "У коробці одна склянка. Називаючи її в цій фразі, ставимо `a` перед `glass`."
@@ -579,7 +579,7 @@
           {
             "responseId": "en:lesson-03:session-21:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про єдиний ",
             "feedbackByLocale": {
               "ru": "`glasses` — несколько стаканов. Здесь один, поэтому нужно `a glass`.",
               "uk": "`glasses` — кілька склянок. Тут одна, тому потрібне `a glass`."
@@ -634,12 +634,12 @@
             "text": "a curtains"
           }
         ],
-        "testedDimension": "Вставьте название — в отдельной упаковке",
+        "testedDimension": "Вставте назву — в окремому пакованні одн",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-21:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — в отдельной упаковке",
+            "testedDimension": "Вставте назву — в окремому пакованні одн",
             "feedbackByLocale": {
               "ru": "Называя одну штору в этой фразе, ставим перед `curtain` слово `a`.",
               "uk": "Називаючи одну штору в цій фразі, ставимо перед `curtain` слово `a`."
@@ -648,7 +648,7 @@
           {
             "responseId": "en:lesson-03:session-21:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — в отдельной упаковке",
+            "testedDimension": "Вставте назву — в окремому пакованні одн",
             "feedbackByLocale": {
               "ru": "`curtains` называет несколько штор. В упаковке одна: `a curtain`.",
               "uk": "`curtains` називає кілька штор. У пакованні одна: `a curtain`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-21:i12:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — что сказал курье",
+            "testedDimension": "Послухайте й зберіть — що сказав кур’єр",
             "feedbackByLocale": {
               "ru": "В записи звучит `They are not towels`. Название нескольких полотенец здесь стоит без `a`.",
               "uk": "У записі звучить `They are not towels`. Назва кількох рушників тут стоїть без `a`."
@@ -752,12 +752,12 @@
             "text": "a pillow"
           }
         ],
-        "testedDimension": "Вставьте название — курьер сверяет списо",
+        "testedDimension": "Вставте назву — кур’єр звіряє список і п",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-21:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер сверяет списо",
+            "testedDimension": "Вставте назву — кур’єр звіряє список і п",
             "feedbackByLocale": {
               "ru": "Для нескольких здесь нужно `pillows`. Слово `a` перед ним лишнее.",
               "uk": "Для кількох тут потрібне `pillows`. Слово `a` перед ним зайве."
@@ -766,7 +766,7 @@
           {
             "responseId": "en:lesson-03:session-21:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер сверяет списо",
+            "testedDimension": "Вставте назву — кур’єр звіряє список і п",
             "feedbackByLocale": {
               "ru": "`a pillow` называет одну подушку. Вы называете две: `They are pillows`.",
               "uk": "`a pillow` називає одну подушку. Ви називаєте дві: `They are pillows`."
@@ -894,12 +894,12 @@
             "text": "a glass"
           }
         ],
-        "testedDimension": "Вставьте название — курьер уточняет, что",
+        "testedDimension": "Вставте назву — кур’єр уточнює, що лежит",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-21:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер уточняет, что",
+            "testedDimension": "Вставте назву — кур’єр уточнює, що лежит",
             "feedbackByLocale": {
               "ru": "Вы называете несколько стаканов. Здесь нужно `glasses`, без `a`.",
               "uk": "Ви називаєте кілька склянок. Тут потрібне `glasses`, без `a`."
@@ -908,7 +908,7 @@
           {
             "responseId": "en:lesson-03:session-21:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер уточняет, что",
+            "testedDimension": "Вставте назву — кур’єр уточнює, що лежит",
             "feedbackByLocale": {
               "ru": "`a glass` называет один стакан. В коробке несколько: `They are glasses`.",
               "uk": "`a glass` називає одну склянку. У коробці кілька: `They are glasses`."
@@ -924,13 +924,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кур’єр питає, що лежить у відкритому пакованні; ви дістали одну штору для вікна, скажіть «Це штора»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-21:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — кур’єр питає, що лежить у відкритому пакованні; ви дістали одну штору для вікна, скажіть «Це штора»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -987,7 +987,7 @@
           {
             "responseId": "en:lesson-03:session-21:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер дописывает после",
+            "testedDimension": "Складіть фразу — кур’єр дописує останній",
             "feedbackByLocale": {
               "ru": "В коробке одна подушка. Называем её `a pillow`, без окончания `s`.",
               "uk": "У коробці одна подушка. Називаємо її `a pillow`, без закінчення `s`."
@@ -1004,5 +1004,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2c5c98b410c8a5cd6e0c0c38a00142d012ca89606df00a1e1e861e413ba08444"
+  "learnerFingerprint": "9819af2bfd31dcabad249351fc4c558f7fd76d88bb9f5ff9d071784f7461a32b"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro1:r2": {
+          "ru": "Так вы сообщаете о своём голоде. Чтобы спросить друга, начните с `Are you`.",
+          "uk": "Так ви повідомляєте про свій голод. Щоб запитати друга, почніть із `Are you`."
+        },
+        "en:lesson-02:session-55:intro1:r3": {
+          "ru": "Это вопрос о вас обоих. Сейчас вы спрашиваете только друга: `Are you hungry?`.",
+          "uk": "Це запитання про вас обох. Зараз ви запитуєте лише друга: `Are you hungry?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro2:r2": {
+          "ru": "Это вопрос о шуме. Чтобы спросить, много ли людей, нужно `crowded`.",
+          "uk": "Це запитання про шум. Щоб запитати, чи багато людей, потрібне `crowded`."
+        },
+        "en:lesson-02:session-55:intro2:r3": {
+          "ru": "Так вы спрашиваете, закрыт ли магазин. Сейчас вас интересует, многолюдно ли там.",
+          "uk": "Так ви запитаєте, чи зачинений магазин. Зараз вас цікавить, чи людно там."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-55:intro3:r2": {
+          "ru": "Так можно спросить, где указана цена. Сейчас вы хотите узнать саму сумму: `What is the price?`.",
+          "uk": "Так можна запитати, де вказано ціну. Зараз ви хочете дізнатися саму суму: `What is the price?`."
+        },
+        "en:lesson-02:session-55:intro3:r3": {
+          "ru": "С `the price` в этом вопросе нужно `is`: `What is the price?`.",
+          "uk": "З `the price` у цьому запитанні потрібне `is`: `What is the price?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b91050f3d057ad25ef9749d011b67aafd93a87d89891e6ad5d5495ce78de3ffa"
+}

@@ -1,0 +1,485 @@
+{
+  "verdict": "PASS",
+  "bindingSchemaVersion": "learning_v2_preauthoring_guardian_v1",
+  "issuedAt": "2026-10-08T11:56:17.157Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "reviewer": "independent guardian PASS for en/l04/s15",
+  "session": "en/l04/s15",
+  "curriculumRow": "Урок 4, сессия 15 · тип: извлечение · грамматика: смешать `Is there…?` и `Are there…?` без готового каркаса · новые слова: gym · момент сцены: во время экскурсии по дому спрашиваем о тренажёрном зале и комнатах",
+  "cambridgeEvidence": "Проверен Cambridge-совместимый свод: Is there…? используется для одного места, Are there…? — для нескольких; S15 требует извлечь и смешать обе формы без готового каркаса, сохраняя число существительного.",
+  "newWords": [
+    "gym"
+  ],
+  "retrievalWords": [
+    "pharmacy",
+    "library",
+    "bakery",
+    "garden",
+    "bank",
+    "post office",
+    "supermarket",
+    "clinic",
+    "playground",
+    "building",
+    "shop",
+    "street",
+    "neighbourhood",
+    "dentist",
+    "hotel",
+    "tram",
+    "platform",
+    "taxi",
+    "laundrette"
+  ],
+  "scene": "Во время экскурсии по дому путешественник спрашивает о тренажёрном зале и комнатах рядом с ним, извлекая нужный вопрос без готового шаблона.",
+  "priorLearnerFacingScan": {
+    "through": "en/l04/s14",
+    "evidence": "Fresh read-only scan covered the current RU and UK learner-facing finals for every L04 session S01 through S14. S01-S14 are ready and establish singular/plural existence questions, the S13 contrast, and the S14 laundrette transfer; S15 adds gym and mixed extraction without a ready-made frame.",
+    "conflicts": [],
+    "hashes": {
+      "en/l04/s01/final.ru.md": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+      "en/l04/s01/final.uk.md": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89",
+      "en/l04/s02/final.ru.md": "c852046ed6256b664123a72ed87b088f9d758cdbddbf2f3af5d04d4127e70c6c",
+      "en/l04/s02/final.uk.md": "f5ee71b3e2fbe6e4353dcfffb9384fa2225ed3cd2a043a2255a3d41890513bf9",
+      "en/l04/s03/final.ru.md": "29c1e8f2306fd3d5be20352739697d0412bba5985b74e6591f30604470444cee",
+      "en/l04/s03/final.uk.md": "197162fceff7911a1960f531d0f3bc5d54aa09c4afcd1692dd5dafcfd5062d3f",
+      "en/l04/s04/final.ru.md": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+      "en/l04/s04/final.uk.md": "c75dba1c5e99d289db2342bacd2d52c50c92609942f60a26d8b7d457a11569c3",
+      "en/l04/s05/final.ru.md": "473eb1d504824f8076f08ccb0951ae84d4828850441d97405c40bff4d4df3e59",
+      "en/l04/s05/final.uk.md": "7ecd5376f2fe06a2d895fc61fd259bef28a9b7b0d2ab1b49dc18444ed986e320",
+      "en/l04/s06/final.ru.md": "9f299ca374a4b05a6070dd038aa913bcb6f2d1ceddd0744e47b6489e9441ec8a",
+      "en/l04/s06/final.uk.md": "a1d32e54256df5127d19a4890b6f61bddf7e224fc666812a38115305d67038b4",
+      "en/l04/s07/final.ru.md": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+      "en/l04/s07/final.uk.md": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c",
+      "en/l04/s08/final.ru.md": "59a69e03d0aa927a1fe4bd3b5715fb03753fe9418d77b1ccf40948e4edb12cdd",
+      "en/l04/s08/final.uk.md": "bb14fca0983b0d728b75754f092bfa9fffc6e38d09776c4159dc6849acfb8e55",
+      "en/l04/s09/final.ru.md": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+      "en/l04/s09/final.uk.md": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447",
+      "en/l04/s10/final.ru.md": "d1f4f7ffa83b4c5347a7afe07082eb9f9dba9194da704c587f0f36bedb563bb1",
+      "en/l04/s10/final.uk.md": "c393206424b3b666be67347a98c674ec2752d95ca29fc9c9403e8c849c6e6c35",
+      "en/l04/s11/final.ru.md": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+      "en/l04/s11/final.uk.md": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2",
+      "en/l04/s12/final.ru.md": "4ec2ee1b745e4a53cc916834552348c36e5685a5fcc58b2b85cc4c097b685bff",
+      "en/l04/s12/final.uk.md": "17864855f3345e1b2a9399ca9c03e43533092efa151f18c6409fd6326f259aa2",
+      "en/l04/s13/final.ru.md": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+      "en/l04/s13/final.uk.md": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+      "en/l04/s14/final.ru.md": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+      "en/l04/s14/final.uk.md": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46"
+    }
+  },
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "gym — тренажёрный зал / gym",
+      "practiceLink": "Сначала отдельно распознаётся и произносится gym во время экскурсии по дому."
+    },
+    {
+      "intro": 2,
+      "target": "Is there a gym here?",
+      "practiceLink": "Практика извлекает вопрос Is there…? для одного тренажёрного зала без готового каркаса."
+    },
+    {
+      "intro": 3,
+      "target": "Are there rooms near the gym?",
+      "practiceLink": "Практика извлекает Are there…? для нескольких комнат рядом с gym без готового каркаса."
+    }
+  ],
+  "independentFinal": {
+    "target": "Are there two rooms near the gym?",
+    "independence": "The final requires independent extraction of the plural Are there…? question with two rooms near the new gym; no ready-made question frame or complete answer is supplied."
+  },
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "ред первой сессией\n\nРовно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/КОНСТИТУЦИЯ.md` — единствен"
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "и написании текста.\nПосле compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпроходится заново. Пропуск л"
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": ", не решай сам.\r\n4. Правило = текст в промпте + машинная проверка. Одного текста мало.\r\n5. Проверь сторож н"
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "сия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то"
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": " учебного шага.\n\n1. Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n   полезны"
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 15 | извлечение | смешать `Is there…?` и `Are there…?` без готового каркаса | gym | во время экскурсии по дому спрашиваем о тренажёрном зале и комнатах |"
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "odex,\n> кто угодно. Перед написанием сессии откройте этот файл, найдите её грамматику"
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ogression`, который сравнивает текущие байты со всеми предыдущими\n   сессиями урока и проверяет новую лекси"
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "acing сессия вводит 1–5 действительно новых\n  полезных lexical senses и новую конкрет"
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ых lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  изменён: одна нова"
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": " явный review set с измеримым learning delta.\n- Пустой `new_words`, повтор ранее введё"
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "ПОДАЧИ НА СТРАНИЦЕ: слово → перевод → фраза\n\n**Источник:** [Teaching vocabulary](http"
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ов аннулируются.\n9. Все три интро используют новые слова и конкретную ситуацию текущей сессии.\n   "
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": " решение владельца: начало каждой сессии должно ощущаться как начало\nнормального урока. Ученик с первого чтени"
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "e текущей сессии.\n  Для каждой из трёх страниц он отдельно доказывает цепочку: новое сло"
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": ".** У каждой сессии одна сквозная ситуация (владелец, 03.09: «это\r\n  надо делать»). "
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "шибку» отложены |\n| Заданий 12–20, ориентир 17 | |\n| Возвращаемое слово ≥2 "
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "жной family.\n\n## 2. Единственные шесть активных режимов\n\n| Family | Канонический owner-макет | Не"
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "нглийские.\r\n\r\n## 7. Строгий контракт дистракторов\r\n\r\nДистрактор — не случайный неправильный"
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ализованный вариант передаёт только смысл услышанной\n   фразы. Нельзя дописывать `рядом`, `пор"
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "аскрывает уловку\r\n\r\nFeedback обязан назвать выбранный вариант и объяснить:\r\n\r\n1. почему он кажется похо"
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "бранную ловушку;\r\n- поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI не показывает внутренние н"
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "локированные слова; будущие слова не показываются.\nСохранение использует `bookmark-outline`"
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "БЫТЬ ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри требования "
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "дущем материале;\r\n- все восемь локалей самостоятельны и не объясняются через русский;\r\n- фразы "
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "evidence": "Independent guardian PASS evidence confirms this requirement for en/l04/s15 gym extraction.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "CKED`. Сессия `N+1` не может собираться, показываться как готовая или получать\r\nlearner-facing изменения, п"
+    }
+  ],
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "4ccd0c94f0d9aba516e8004e9f06e21c5fb6fd32247b90d4e6f8998276009b10",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "b706cb4c5249419efb618201979805331382df87d45175a606b9b7bd9286353e",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "9ce42854fe8e23846ffa35644369125a50996baadbc1e002bb2590925283f748",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "ФАБРИКА КУРСА PHRASEMAN\n=======================\n\nЕсли владелец сказал те",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Влад",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда\n\n> ⛔ СНАЧАЛА ПРОЧИТАЙ 00_ГЛАВНО",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "4ccd0c94f0d9aba516e8004e9f06e21c5fb6fd32247b90d4e6f8998276009b10",
+      "quote": "# Project Rules\n\n## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБО",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "# СТАРТ В2\n\n## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТСЯ КАК ПО",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие макетам\n\n**С",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии\n\n> **Owner ove",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT\r\n\r\n> Обязательный маршрут перед исследовани",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56\n\n**Статус:** дизайн",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier\n\n**Статус:** `REBUILD V2 / OWNE",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger\n\n**Status:** draft resear",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt\r\n\r\n**Дата:** 2026-0",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2\r\n\r\n> Владелец, 2026-08-27: «составь напиши ",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2\n\n> **Приоритет владельца 2026-09",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась\n\n> Владе",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Влад",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+      "quote": "# Конституция курса Learning V2\r\n\n> ## ⛔ АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 03",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике\r\n\r\n> **АКТУАЛЬНОЕ ",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "b706cb4c5249419efb618201979805331382df87d45175a606b9b7bd9286353e",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ\n\n> **Правило владельца 13.09",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении\n\n> Записано 2026-",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобр",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния\n\n> **ЗОЛОТОЙ ЭТАЛОН",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»\n\n> **ЗОЛОТОЙ ЭТАЛОН №3 — о",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "9ce42854fe8e23846ffa35644369125a50996baadbc1e002bb2590925283f748",
+      "quote": "# Английский · План курса 32 × 56\n\n> **Утверждён владельцем 2026-09-03**",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03\n\n> Калибровочная запись. С",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03\n\n**Сессия:** `exemplars/en",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03\n\n**Сессия:** `exemplars/en",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03\n\n**Сессия:** `sessions/en/",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03\n\n**Что пр",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными\r\n\r\n2026-09",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора\r\n\r\n2026-09-",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию\n\n**Стату",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный ",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    },
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": {
+      "sha256": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d",
+      "quote": "# Вердикт владельца: одна английская фраза на одно взаимодействие\n\nДата:",
+      "applied": "Fresh current-document read applied to en/l04/s15: gym extraction."
+    }
+  },
+  "mustFix": []
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro1:r2": {
+          "ru": "После `you` нужно `are`: без него английская фраза неполная.",
+          "uk": "Після `you` потрібне `are`: без нього англійська фраза неповна."
+        },
+        "en:lesson-01:session-15:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про собеседника — всегда `are`.",
+          "uk": "`am` живе тільки поруч із `I`. Про співрозмовника — завжди `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro2:r2": {
+          "ru": "Сначала `I am`, затем `not`: `I am not serious`.",
+          "uk": "Спершу `I am`, потім `not`: `I am not serious`."
+        },
+        "en:lesson-01:session-15:intro2:r3": {
+          "ru": "В этой фразе отрицание — `not`: `I am not serious`.",
+          "uk": "У цій фразі заперечення — `not`: `I am not serious`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro3:r2": {
+          "ru": "После `you` нужно `are`, не `is`.",
+          "uk": "Після `you` потрібне `are`, не `is`."
+        },
+        "en:lesson-01:session-15:intro3:r3": {
+          "ru": "`are` стоит сразу после `you`, а не в хвосте.",
+          "uk": "`are` стоїть одразу після `you`, а не в хвості."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e4d82f77ad0bf5a3001226b810513358b96532d1561bf24d39227caf26846ffd"
+}

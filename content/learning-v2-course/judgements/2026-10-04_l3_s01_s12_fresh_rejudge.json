@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "learning_v2_fresh_content_rejudge_v2",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00Z",
+  "scope": {
+    "lesson": "en/l03",
+    "sessions": ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10", "s11", "s12"],
+    "filesReadPerSession": ["final.ru.md", "final.uk.md", "practice.atomic.json"],
+    "roles": ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader", "judge_taste", "locale_uk"],
+    "authoritiesRead": [
+      "judgements/owner/2026-10-03_single_phrase_per_interaction.md",
+      "judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "judgements/owner/2026-09-08_short_answer_construction_and_humor.md",
+      "judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "pipeline/КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md",
+      "pipeline/prompts/judge_learner.md",
+      "pipeline/prompts/judge_pedagogy.md",
+      "pipeline/prompts/judge_nonsense.md",
+      "pipeline/prompts/judge_reader.md",
+      "pipeline/prompts/judge_taste.md",
+      "pipeline/prompts/judge_locale.md"
+    ]
+  },
+  "redEvidence": {
+    "command": "Test-Path content\\learning-v2-course\\judgements\\2026-10-04_l3_s01_s12_fresh_rejudge.json",
+    "resultBeforeWrite": false,
+    "meaning": "The required fresh judgement artifact did not exist before this review."
+  },
+  "deterministicEvidence": {
+    "globalSinglePhraseSourceGate": {
+      "command": "node pipeline/verify_all_single_phrase_sources.mjs",
+      "result": {"verdict": "PASS", "sessions": 167, "interactions": 3246, "preservationRows": 3246, "preservationViolations": 0, "built": 0}
+    },
+    "contractTests": {
+      "command": "node --test pipeline/single_phrase_rule_contract.test.mjs pipeline/verify_single_phrase_preservation.test.mjs pipeline/session_readiness_owner_quality.test.mjs",
+      "result": {"tests": 12, "pass": 12, "fail": 0}
+    },
+    "targetedAtomicAudit": {
+      "sessions": 12,
+      "ruUkShapeMismatches": 0,
+      "cyrillicInEnglishTargetAudioOrOptions": 0,
+      "rawSemicolonPipePackets": 0,
+      "dictationAudioTargetMismatches": 0,
+      "repeatAudioTargetMismatches": 0,
+      "rawNothingMarkersInSelectableOptions": 0,
+      "note": "The global source gate and this audit validate atomicity and exact audio contracts; they do not prove that every intro answer becomes a current practice target."
+    }
+  },
+  "sessions": [
+    {
+      "session": "en/l03/s01",
+      "overall": "PASS",
+      "sha256": {"ru": "09e287459bd10203dfb78c61a8b707bbd588665ade1693b4d99e26672b1e3a00", "uk": "739906891df73ef971221ee831ac8cb89e89b465483f233e444b0e8544bf8b11", "atomic": "4eb969e85669e61d6e4e9f928ae039be02e23291a2c7a5d6d2174a7e41899739"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "evidence": ["chair, table and lamp are introduced before use; each interaction has one actionable answer."], "mustFix": []},
+        "judge_pedagogy": {"verdict": "PASS", "evidence": ["The three intro answers are practised as the reconstructed gap `It is a chair.`, `It is a table.`, and dictation `It is a lamp.`."], "mustFix": []},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["17 aligned interactions; one English phrase per interaction; audio and selectable fields contain no Cyrillic control words, raw `ничего`/`нічого`, or packet delimiters."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["Opening one moving box gives a concrete reason to name every object."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Сэкономили одну букву — получили целую ошибку.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["RU/UK interaction IDs, families and English targets align; Ukrainian text is localized and no Russian prompt was copied."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s02",
+      "overall": "PASS",
+      "sha256": {"ru": "ce8886f77213f9a2b7e6c68c857c1a2f8018653432b302c94ca4d9d4cf3280d9", "uk": "d0bbd5b2c13967a28b7d58cdfab5d4f7fcfdc5cb5254d77997760446a2ea5809", "atomic": "2cfda1a1b2ddcdab19177fb55e5443c46541a48dfe0a3a7e723a9d61d91e3a5f"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "evidence": ["Sofa, bed and desk are taught before their assertion, question and correction practice."], "mustFix": []},
+        "judge_pedagogy": {"verdict": "PASS", "evidence": ["Intro answers `It is a sofa.`, `It is a bed.`, and `It is a desk.` are current practice correctTexts i05, i16 and i13."], "mustFix": []},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["All 17 interactions are atomic and answer/audio contracts match."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["Removing covers from furniture gives an intelligible shared scene."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Три места для сидения ещё не повод менять фразу об одном диване.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["Aligned 17-item RU/UK structure with identical English targets and natural Ukrainian wording."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s03",
+      "overall": "BLOCK",
+      "sha256": {"ru": "374be7e574f84d60900a53ffd1c4282b4a081de8c9fbe67cf5ddb31f3ef39166", "uk": "f746945fc58dcf2bbb3df7c93e18ab43503230d4fc46ada45b1668a5eee53175", "atomic": "3480cb222c428076d0a0583e7c5d461e8e8f398d573830b451062111816a2539"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["The learner is taught the full answer `It is a stool.`, but practice reduces stool to `A stool.` or changes it to a negative."], "mustFix": ["Add a current assessed practice target for `It is a stool.`."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Owner 19.09 requires every intro's correct answer to reappear as a real practice target. Intro 1 correct answer `It is a stool.` has no matching current practice correctText; i05 is only `A stool.` and i17 is `It is not a stool.`."], "mustFix": ["Make `It is a stool.` a current assessed target, or change intro 1 to the exact current assessed target and preserve the intended learning sequence."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["Atomic fields and audio contracts pass; the defect is semantic intro-to-practice alignment, not a packet or audio defect."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["The apartment-placement scene is understandable."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Перепись всех зеркал для этой фразы не нужна.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["RU/UK preserve the same alignment defect and otherwise have matching structure and English targets."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s04",
+      "overall": "BLOCK",
+      "sha256": {"ru": "51b1332f12365e67d013b943d66e881b75d9c75b0438ee702be685ab1219ed1f", "uk": "87d0c05d7bcddbe90ca75bd61046ee924058e9c4077807203b7b7022187efb9f", "atomic": "91d826a9877730b10e41d7695908c371377207044cf981bf44ea18a9be9b0009"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["Intro 3 teaches `It is not a window.`, but window practice supplies a positive assertion rather than that assessed negative."], "mustFix": ["Assess the exact intro-3 answer in current practice."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 3 correct answer `It is not a window.` is absent from practice correctTexts; i08 is `It is a window.`, while negatives use key and door."], "mustFix": ["Create an assessed `It is not a window.` interaction or change intro 3 to an exact current practice target."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["17 atomic RU and UK interactions pass the single-phrase/audio checks."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["A host showing a flat supports the key, door and window exchanges."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["Aligned RU/UK data and natural Ukrainian localisation; the shared alignment defect is reported by pedagogy."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s05",
+      "overall": "PASS",
+      "sha256": {"ru": "a4bea4f5730e50818d95d47c6683f415474cea891a325a0dbd3e83aee1bae11f", "uk": "032ceca4a217d5816a32f2a772baf376b55be67d36a208724f5a51abc195472e", "atomic": "fef0313d682e477688eb07df89a016e9d082dbfe6bd206c504d5bea88ef4161f"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "evidence": ["Wall, floor and ceiling are introduced before use; state contrast `clean` is directly scaffolded."], "mustFix": []},
+        "judge_pedagogy": {"verdict": "PASS", "evidence": ["Intro answers recur as practice targets: wall i05, floor i16, and the reconstructed ceiling gap i14."], "mustFix": []},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["No compound assessed phrase, list option, raw zero-article marker, or audio mismatch."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["The photo-frame scene makes the surfaces and the question purpose clear."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «На стене можно ничего не вешать, но перед `wall` пустое место не оставляем»."], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["UK preserves all targets and uses idiomatic wording; no Cyrillic enters English assessed fields."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s06",
+      "overall": "PASS",
+      "sha256": {"ru": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce", "uk": "7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca", "atomic": "a2d5a55e09181a3df481043eaa27d4b547abedf6f97489c670bbdf5b83aaadbe"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "evidence": ["Basket, trolley and tag have concrete definitions and precede their target interactions."], "mustFix": []},
+        "judge_pedagogy": {"verdict": "PASS", "evidence": ["Exact intro answers are assessed as i15 basket, i16 trolley and i08 tag."], "mustFix": []},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["All 17 interactions remain one phrase or one selectable meaning, with matching audio where applicable."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["A home-goods shop supplies a clear reason to identify the three objects."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Покупать что-нибудь ради правильной английской фразы не придётся.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["Matching RU/UK interaction shape and English targets; Ukrainian translations are independent, readable prose."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s07",
+      "overall": "BLOCK",
+      "sha256": {"ru": "a5ae0335a6bd716c9297bf0998c7952365715d6e9771903552eac741eb1c9623", "uk": "a936e3dc583d1e60be928ce14fcfef6076531195dc45711abcc9bdf0e5104ecd", "atomic": "116ae1d806fdf1d8f79c51e3ee307b21a398434d8ecc3b11e5673441b4b70731"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["The full stool-like naming frame is explained for drawer, but practice supplies only `A drawer.` and a question."], "mustFix": ["Assess `It is a drawer.` in current practice."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 1 correct answer `It is a drawer.` has no matching practice target; i05 is `A drawer.` and i17 is `Is it a drawer?`."], "mustFix": ["Add an assessed `It is a drawer.` target or revise intro 1 to precisely prepare an existing target."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["Atomic, audio, and response-option contracts are clean."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["Unpacking and storing household items is a coherent learner scene."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Стул, заваленный одеждой, всё ещё `a chair`: от вашей привычки мебель не переименовывается.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["The two locales are structurally parallel; the missing target is present in neither and is captured by pedagogy."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s08",
+      "overall": "PASS",
+      "sha256": {"ru": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb", "uk": "f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad", "atomic": "cbd4a8cf4f89871efe6740958fbaacee20b743146f6bd9a16e1f3d4497242a35"},
+      "roles": {
+        "judge_learner": {"verdict": "PASS", "evidence": ["The one new word and its assertion, question and correction forms are all explicitly taught and answerable."], "mustFix": []},
+        "judge_pedagogy": {"verdict": "PASS", "evidence": ["Each intro answer reappears in current practice, including the split three-step final i17:s01–s03."], "mustFix": []},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["The former three-phrase final is split into three atomic interactions with exact independent audio targets."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["A found-items list makes the assert/question/correction sequence intelligible."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «На маленьком `a` в этой фразе не сэкономить: оно стоит перед `shelf`.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["19 aligned RU/UK interactions, including identical split IDs and English targets."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s09",
+      "overall": "BLOCK",
+      "sha256": {"ru": "224e46cfda433337d938609a0d905a617b6c27ed15526031c5390b7a93065308", "uk": "26a72a80ac4cc6833f21acdaa2d93a56e6360f66e0f5e2a7f2c1c7e33cf077ed", "atomic": "f99d17c76add7c3917e56c2d272e78b8cc3a451d96ebd4989ce7b518b6cba436"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["Intro 1 models `It is an armchair.`, but current practice gives only `An armchair.` and `Is it an armchair?`."], "mustFix": ["Assess the introduced full armchair assertion."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 1 correct answer `It is an armchair.` has no current practice target. The owner rule requires the exact analysed intro answer to appear in practice."], "mustFix": ["Add a current assessed `It is an armchair.` target, or replace the intro answer with an existing exact target without losing the a/an learning step."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["All target/audio/options are atomic and language-pure; no semicolon, pipe, raw zero marker, or audio mismatch."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["The store route from furniture to kitchen equipment to umbrellas is comprehensible."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Кресло одно, а выбирать приходится ещё и слово перед ним.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["UK mirrors the English targets and interaction order with natural Ukrainian localisation."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s10",
+      "overall": "BLOCK",
+      "sha256": {"ru": "9753b869549e2ea09632a0e9bba0eec098dbbaa5e9cc919c735c8374366a4e2d", "uk": "a36160eadf24189d9fd3a78cdfc84693d57e82fa825243c1001f108b7028fdbd", "atomic": "fa68aa2769716a732f29196f9a1b2687de44132e9b5f76764ac1dd14d157a0fb"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["After Intro 1 teaches `It is a kettle.`, practice offers `A kettle.` and a question, not the taught full assertion."], "mustFix": ["Assess the exact full kettle assertion."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 1 correct answer `It is a kettle.` is absent from practice; i05 is `A kettle.` and i13 is `Is it a kettle?`."], "mustFix": ["Add a current assessed `It is a kettle.` target or make Intro 1 prepare an exact target already practised."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["All 17 interactions meet the one-phrase and exact-audio contracts."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["Shopping for appliances gives the learner a consistent reason for each exchange."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Тост уже почти готов, но артикль пропускать рано.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["Aligned RU/UK structure and English targets; no locale leakage found."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s11",
+      "overall": "BLOCK",
+      "sha256": {"ru": "5a5da26824e7173f6316cc6d0af117bc84b1e7a3aa299ba860227a0a3922babd", "uk": "7c8b288c4a70e9ee4fb3dc50b2a51b80947c4169c2ce926f40eca371e492e48d", "atomic": "5652605be385b8dbbcf0afe3c87de77491b0b73100f6aad9a0734f5cdf4a0fbd"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["Intro 3 teaches the question `Is it a uniform?`, while practice supplies positive and negative uniform assertions but no such current assessed question."], "mustFix": ["Assess the exact uniform question."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 3 correct answer `Is it a uniform?` has no matching practice correctText; i11/i14 are `It is not a uniform.`, and i17 is `It is a uniform.`."], "mustFix": ["Add an assessed `Is it a uniform?` target, or align Intro 3 to an exact existing practice target."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["The `hour`/`uniform` audio and one-answer mechanics are atomic and exact."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["The service counter makes the time and work-clothes exchanges plausible."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Старательно прочитать все буквы здесь значит старательно ошибиться.»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["Ukrainian wording is fluent and preserves the English sound-based distinction and interaction shape."], "mustFix": []}
+      }
+    },
+    {
+      "session": "en/l03/s12",
+      "overall": "BLOCK",
+      "sha256": {"ru": "bb266eba8ef8b585bdc22684dab73afe19cd982f3e5af0c790f6a24d5bfe68d8", "uk": "29827b3dd8846696b193ba1d57c739e17439b6a2c3d6e22ad93cc3dd2ceefb2d", "atomic": "a5e77e2b3c3a59e4a867b2b58e85201fae2d63910fd416626e3a1a740acd400c"},
+      "roles": {
+        "judge_learner": {"verdict": "REVISE", "evidence": ["Two analysed intro answers disappear from assessed practice: `It is a vase.` becomes only `A vase.`/a negative, and `Is it a clock?` becomes only assertions."], "mustFix": ["Assess both exact intro answers in current practice."]},
+        "judge_pedagogy": {"verdict": "BLOCK", "evidence": ["Intro 1 `It is a vase.` and Intro 2 `Is it a clock?` are both absent from practice correctTexts. This violates the owner-required per-page intro → practice chain."], "mustFix": ["Add current assessed targets for `It is a vase.` and `Is it a clock?`, or rewrite the affected intros to exact existing practice targets with their current scenes."]},
+        "judge_nonsense": {"verdict": "PASS", "evidence": ["All 17 interactions are atomic; English target/audio fields have no Cyrillic control words, and dictation/repeat audio matches targets exactly."], "mustFix": []},
+        "judge_reader": {"verdict": "PASS", "evidence": ["The showcase and seller scene gives a concrete reason to name, ask about, and hear the objects."], "mustFix": []},
+        "judge_taste": {"verdict": "PASS", "evidence": ["Literal current-RU voice line: «Выкрикивать его, чтобы доказать, что не забыли, не нужно: `It is a vase` — «Это ваза».»"], "mustFix": []},
+        "locale_uk": {"verdict": "PASS", "evidence": ["The Ukrainian copy is fluent and structurally aligned; its shared missing chains are recorded by pedagogy."], "mustFix": []}
+      }
+    }
+  ],
+  "overall": "BLOCK",
+  "overallReason": "Any role BLOCK or REVISE blocks the range. S03, S04, S07, S09, S10, S11 and S12 breach the owner requirement that every exact correct intro answer becomes a real current practice target; atomic single-phrase verification remains PASS but cannot override this semantic defect.",
+  "noPerSessionReceiptsMaterialized": true
+}

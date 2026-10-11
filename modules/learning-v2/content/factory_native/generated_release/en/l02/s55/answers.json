@@ -41,13 +41,18 @@
   },
   {
     "interactionId": "en:lesson-02:session-55:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-55:i09:p1=hungry\nen:lesson-02:session-55:i09:p2=crowded\nen:lesson-02:session-55:i09:p3=station\nen:lesson-02:session-55:i09:p4=price",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-55:i10",
-    "correctText": "Excuse me. Are you busy?",
-    "correctResponseId": "en:lesson-02:session-55:i10:r1"
+    "interactionId": "en:lesson-02:session-55:i10:s01",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i10:s02",
+    "correctText": "Are you busy?",
+    "correctResponseId": "en:lesson-02:session-55:i10:s02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-55:i11",

@@ -1,0 +1,74 @@
+{
+  "session": "s51",
+  "sourceSha256": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+  "exactRuSha256": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+  "exactUkSha256": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_learner",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "evidence": [
+    "The first intro explicitly grounds orange as a colour before assessment and accurately contrasts /ɒ/ orange with consonant-initial violet/navy/pink."
+  ],
+  "scope": "Fresh independent text-only audit of the exact current RU and UK sources.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "ccbda67bb5ab1cce4417cc6ff0839161a704a7e2df5fd4ca3cf53b02e504a897",
+    "localeSha256": "3e72ecf37ad36fff2c1a9a6183b8ad37f9b58b56e7f6fb42b4e4f733f8e47ad1",
+    "practiceAtomicSha256": "7ead79824cee42a292b63e9ee5edcb9036ef35cf5903240c38a2a30de7e19a25"
+  },
+  "localeSha256": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e",
+  "practiceAtomicSha256": "f1462c6c5d9ba083e1a499cf85a24b9df60ff3dc6bf83be8349f84f28328c7af",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "d6d921b1cd188f79fa8d26c9835a3a1a5636e789ca66738f0d5cf530aa2df034",
+    "localeSha256": "64d5a38fa63427388e4a7579c1bf450ff12c00fb7d2f7de461b1177b04d2beb4",
+    "practiceAtomicSha256": "f1462c6c5d9ba083e1a499cf85a24b9df60ff3dc6bf83be8349f84f28328c7af",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+    "uk": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_learner",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+    "exactRuSha256": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+    "exactUkSha256": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e",
+    "localeSha256": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e",
+    "localeHashes": {
+      "ru": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+      "uk": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e"
+    },
+    "practiceAtomicSha256": "f1462c6c5d9ba083e1a499cf85a24b9df60ff3dc6bf83be8349f84f28328c7af",
+    "evidence": [
+      "The first intro explicitly grounds orange as a colour before assessment and accurately contrasts /ɒ/ orange with consonant-initial violet/navy/pink."
+    ]
+  }
+}

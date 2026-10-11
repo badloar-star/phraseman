@@ -1,157 +1,166 @@
-# Англійська · Урок 2 · Сесія 12 — «`Is he` на слух, коли навколо гамірно»
+# Англійська · Урок 2 · Заняття 12 — «Is he / Is she на слух»
 
-**Сцена сесії.** Кав'ярня, вечір, гамір такий, що половину слів доводиться вгадувати. Супутник киває через столик то на одного відвідувача, то на іншого — а ви розбираєте питання на слух.
-
-**Операція:** повторення `Is he / Is she + слово` — упізнавання у швидкій мові
-**Нові слова:** lost, curious, upset, pretty
-**Повертаються:** tired, hungry, cold
+**Сцена заняття.** У галасливій кав’ярні ви через столик уточнюєте, хто з працівників вільний і кого немає на місці.
+**Як сказати:** розрізнити на слух швидкі запитання `Is he …?` і `Is she …?`
+**Нові слова:** available, missing
+**Повертаються:** tired, hungry, cold, awake
 
 ---
 
 ## Інтро 1
 
-### Перше слово вирішує все
+### `available` — вільний зараз
 
-`Is he tired?` — «він втомився?». Першим іде `is`, одразу за ним `he`.
+`available` — «вільний, доступний». Про людину так кажуть, коли вона зараз може поговорити чи допомогти: вона не зайнята іншою справою. Це не означає «нічого не робить увесь день». У кав’ярні вільний працівник іноді зникає саме тоді, коли ви піднімаєте руку. Запитання про чоловіка: `Is he available?`.
 
-Слухайте перше слово. Перше `is` — вас питають. Перше `he` — вам повідомляють. Слова в обох фразах ті самі, місцями міняються тільки ці два.
+**Адміністратор закінчив розмову й може допомогти. Запитайте, чи вільний він зараз.**
 
-**Супутник киває на чоловіка, який позіхає втретє. Запитайте, чи він втомився.**
-
-- ✅ **Is he tired?**
-- ❌ He is tired. — *Так ви повідомляєте: «він втомився». Питання починається з `is`.*
-- ❌ Is tired he? — *`he` відірвали від `is`. Ці двоє йдуть парою: спершу `is he`, потім саме слово.*
+- ✅ **Is he available?**
+- ❌ He is available? — *Це повідомлення. Запитання починається з `is`.*
+- ❌ Is available he? — *Після `is` ставлять `he`, потім `available`.*
 
 ---
 
 ## Інтро 2
 
-### Як звучать `is he` і `is she`
+### `missing` — не там, де очікували
 
-`Is she hungry?` — «вона голодна?». `she` — про жінку, `he` — про чоловіка; саме слово після них не змінюється.
+`missing` — «відсутній, зниклий»: людину або річ не знаходять там, де вони мають бути. Про людину слово може звучати серйозно, тому тут ідеться просто про працівницю, яка має бути біля стійки, але її немає. Швидке запитання `Is she missing?` починається з `is she`, а далі йде `missing`.
 
-У швидкій мові звук «г» у `he` майже зникає, і `is he` злипається в один короткий шматок. З `is she` так не виходить: «ш» чути завжди. Саме за цим «ш» їх і розрізняють.
+**Працівниця має бути біля стійки, але її ніде не видно. Запитайте, чи вона відсутня.**
 
-**Супутник киває на жінку, яка дивиться в меню вже п'ять хвилин. Запитайте, чи вона голодна.**
-
-- ✅ **Is she hungry?**
-- ❌ Is he hungry? — *Це питання про чоловіка. Про жінку — `is she`.*
-- ❌ She is hungry? — *Порядок як у повідомленні. У питанні `is` виходить наперед.*
+- ✅ **Is she missing?**
+- ❌ She is missing? — *Це повідомлення. Запитання починається з `is`.*
+- ❌ Is missing she? — *Після `is` ставлять `she`, потім `missing`.*
 
 ---
 
 ## Інтро 3
 
-### Відповідь коротша за питання
+### Почуйте, про кого питають
 
-`Yes, he is.` і `No, he is not.` — ось і вся відповідь. Запитали `Is he cold?` — кажете `Yes, he is.`, і `cold` можна не повторювати: про що мова, і так зрозуміло. Не згодні — `not` стає після `is`.
+У `Is he available?` друге слово `he` показує, що йдеться про чоловіка. У `Is she missing?` слово `she` вказує на жінку. У шумі не вгадуйте запитання за одним звуком: слухайте зв’язку `is he` або `is she` й останнє слово — `available` чи `missing`. Порядок запитання завжди починається з `is`.
 
-Три коротких слова — і ви підтримали розмову, не перекрикуючи гамір.
+**Ваш колега Артем помічає працівницю біля стійки й питає, чи вона вільна. Оберіть точне запитання.**
 
-**Супутник киває на чоловіка, який сидить біля самих дверей і щулиться від протягу: «Is he cold?» Ви згодні. Відповідайте коротко.**
-
-- ✅ **Yes, he is.**
-- ❌ Yes, is he. — *Так знову виходить питання. У відповіді `he` іде першим, `is` за ним.*
-- ❌ Yes, he is cold. — *Слово з питання повторювати не треба: короткої відповіді досить.*
+- ✅ **Is she available?**
+- ❌ Is he available? — *`He` стосується чоловіка, а йдеться про працівницю.*
+- ❌ She is available. — *Це повідомлення, а потрібне запитання з `is` на початку.*
 
 ---
 
-## Практика (21 завдання, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Послухайте і виберіть — питання чи повідомлення**
-🔊 *Is he tired?* → **Is he tired?** · He is tired. · Is she tired?
+<!-- interaction_id: en:lesson-02:session-12:i01; family: listen_choose -->
+Ціль: `Is he tired?`
+Варіанти: `Is he tired?` · `He is tired.` · `Is she tired?`
 - He is tired. — *У записі першим іде `is`, а не `he`. Отже, питають.*
 - Is she tired? — *«Ш» у записі не чути — отже, це `is he`, про чоловіка.*
 
-**2 · Послухайте і виберіть — про кого мова**
-🔊 *Is she hungry?* → **Is she hungry?** · Is he hungry? · She is hungry.
-- Is he hungry? — *У записі чути «ш» посередині — це `is she`, про жінку.*
-- She is hungry. — *Порядок повідомлення. Питання починається з `is`.*
+**2 · Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна**
+<!-- interaction_id: en:lesson-02:session-12:i02; family: phrase_builder -->
+Ціль: `Is she hungry?`
 
 **3 · Розрізніть звуки — де початок питання про жінку?**
-🔊 Два початки поспіль.
+<!-- interaction_id: en:lesson-02:session-12:i03; family: sound_contrast -->
+Ціль: `is she`
 *is he · is she* → **is she**
-- is he — *Це про чоловіка: «г» ковтається, і слова зливаються. У `is she` чути «ш».*
+- is he — *Це про чоловіка: у `is he` немає звуку «ш». У `is she` він чути.*
 
-**4 · Вставте слово — чоловік біля вікна кутається в шарф усередині теплої зали**
+**4 · Вставте слово — Том біля вікна кутається в шарф усередині теплої зали**
+<!-- interaction_id: en:lesson-02:session-12:i04; family: context_gap_grammar -->
+Ціль: `he`
 Is ___ cold? → **he** · she · it
-- she — *Це питання про жінку. Біля вікна сидить чоловік.*
-- it — *`it` — про річ або погоду, не про людину за столиком.*
+- she — *Це питання про жінку. Біля вікна сидить Том.*
+- it — *`it` — про річ або погоду, не про людину біля вікна.*
 
-**5 · Послухайте і складіть — «вона голодна?»**
-🔊 *Is she hungry?* Плитки: `she` `Is` `hungry` `he` → **Is she hungry?**
+**5 · Послухайте та складіть — «вона голодна?»**
+<!-- interaction_id: en:lesson-02:session-12:i05; family: listen_build_dictation -->
+Ціль: `Is she hungry?`
 
 **6 · Картка слова — lost**
-> **lost** — «заблукав». Людина не знає, де вона і куди йти: крутить карту, звіряє вивіску з адресою.
+<!-- interaction_id: en:lesson-02:session-12:i06; family: listen_choose -->
+Ціль: `lost`
 
 **7 · Послухайте і виберіть — питання чи повідомлення**
-🔊 *He is lost.* → **He is lost.** · Is he lost? · Is she lost?
-- Is he lost? — *У записі першим іде `he`, а не `is`. Отже, це повідомлення, а не питання.*
-- Is she lost? — *Це питання, та ще й про жінку. А в записі — повідомлення про чоловіка.*
+<!-- interaction_id: en:lesson-02:session-12:i07; family: listen_choose -->
+Ціль: `He is lost.`
+Варіанти: `He is lost.` · `Is he lost?` · `Is she lost?`
 
-**8 · З'єднайте пари (Speed Match, 4 пари)**
-tired — втомився · hungry — голодний · cold — холодно · lost — заблукав
+**8 · З’єднайте пари**
+<!-- interaction_id: en:lesson-02:session-12:i08; family: speed_match -->
+Пари: `tired` — втомився · `hungry` — голодний · `cold` — холодно · `lost` — заблукав
+Ціль: `tired · hungry · cold · lost`
 
-**9 · Вставте слово — жінка біля дверей тримає карту і звіряє її з вивіскою**
-Is she ___ ? → **lost** · pretty · hungry
-- pretty — *«Гарна» — це про зовнішність. А людина з картою шукає дорогу: про це кажуть `lost`.*
-- hungry — *`hungry` — «голодний». Вивіску з картою звіряють не через голод.*
+**9 · Вставте слово — Міра біля дверей тримає карту і звіряє її з вивіскою**
+<!-- interaction_id: en:lesson-02:session-12:i09; family: context_gap_grammar -->
+Ціль: `Is she ___ ?`
+Варіанти: `lost` · `pretty` · `hungry`
 
 **10 · Картка слова — curious**
-> **curious** — «цікавий, допитливий». Людині цікаво, що діється навколо: озирається, дослухається, тягне шию.
+<!-- interaction_id: en:lesson-02:session-12:i10; family: listen_choose -->
+Ціль: `curious`
 
 **11 · Послухайте і виберіть — «він допитливий?»**
-🔊 *Is he curious?* → **Is he curious?** · Is she curious? · He is curious.
-- Is she curious? — *«Ш» у записі не чути — отже, це `is he`, про чоловіка.*
-- He is curious. — *Повідомлення. Питання починається з `is`.*
+<!-- interaction_id: en:lesson-02:session-12:i11; family: listen_choose -->
+Ціль: `Is he curious?`
+Варіанти: `Is he curious?` · `Is she curious?` · `He is curious.`
 
-**12 · Складіть фразу — хлопець за стійкою весь час озирається на двері**
-Плитки: `he` `Is` `curious` `she` → **Is he curious?**
+**12 · Складіть фразу — Том за стійкою весь час озирається на двері**
+<!-- interaction_id: en:lesson-02:session-12:i12; family: phrase_builder -->
+Ціль: `Is he curious?`
 
 **13 · Картка слова — upset**
-> **upset** — «засмучений». Щось пішло не так, і людина це переживає: дивиться в стіл і мовчить.
+<!-- interaction_id: en:lesson-02:session-12:i13; family: listen_choose -->
+Ціль: `upset`
 
 **14 · Послухайте і складіть — «вона засмучена?»**
-🔊 *Is she upset?* Плитки: `upset` `Is` `she` `is` → **Is she upset?**
+<!-- interaction_id: en:lesson-02:session-12:i14; family: listen_build_dictation -->
+Ціль: `Is she upset?`
 
 **15 · Вставте слово — супутник питає «Is she upset?», і ви згодні**
-___ , she is. → **Yes** · No · Is
-- No — *`No` — це незгода. А ви згодні.*
-- Is — *З `is` виходить знову питання, а вас просять відповісти.*
+<!-- interaction_id: en:lesson-02:session-12:i15; family: context_gap_grammar -->
+Ціль: `___ , she is.`
+Варіанти: `Yes` · `No` · `Is`
 
 **16 · Складіть коротку відповідь — «Is he hungry?» Він щойно з'їв два бургери**
-Плитки: `not` `he` `No,` `is` → **No, he is not.**
+<!-- interaction_id: en:lesson-02:session-12:i16; family: phrase_builder -->
+Ціль: `No, he is not.`
 
 **17 · Картка слова — pretty**
-> **pretty** — «гарний, милий». Про людину, про річ, про місце: `a pretty dress` — гарна сукня.
+<!-- interaction_id: en:lesson-02:session-12:i17; family: listen_choose -->
+Ціль: `pretty`
 
 **18 · Послухайте і виберіть — «вона гарна?»**
-🔊 *Is she pretty?* → **Is she pretty?** · Is he pretty? · She is pretty.
-- Is he pretty? — *Це `is he`, про чоловіка. А питають про жінку: `is she`.*
-- She is pretty. — *Повідомлення, а не питання. У питанні `is` іде першим.*
+<!-- interaction_id: en:lesson-02:session-12:i18; family: listen_choose -->
+Ціль: `Is she pretty?`
+Варіанти: `Is she pretty?` · `Is he pretty?` · `She is pretty.`
 
-**19 · З'єднайте пари (Speed Match, 4 пари)**
-upset — засмучений · curious — допитливий · pretty — гарний · she — вона
+**19 · З’єднайте пари**
+<!-- interaction_id: en:lesson-02:session-12:i19; family: speed_match -->
+Пари: `upset` — засмучений · `curious` — допитливий · `pretty` — гарний · `she` — вона
+Ціль: `upset · curious · pretty · she`
 
 **20 · Складіть фразу — супутник показує фото сестри; запитайте, чи вона гарна**
-Плитки: `Is` `pretty` `she` `not` → **Is she pretty?**
+<!-- interaction_id: en:lesson-02:session-12:i20; family: phrase_builder -->
+Ціль: `Is she pretty?`
 
-**21 · Фінал сцени — запитайте і відповідайте**
-🎙 Супутник киває на чоловіка, який позіхає втретє над порожньою чашкою. Запитайте, чи він втомився, а потім самі й відповідайте — так, втомився.
-**Is he tired? Yes, he is.**
+**21 · Промовте одну фразу. запитайте й дайте відповідь**
+<!-- interaction_id: en:lesson-02:session-12:i21:s01; family: scripted_repeat_compare -->
+Ціль: `Is he tired?`
+🎙 **Is he tired?**
 
----
+**22 · Промовте одну фразу. запитайте й дайте відповідь**
+<!-- interaction_id: en:lesson-02:session-12:i21:s02; family: scripted_repeat_compare -->
+Ціль: `Yes, he is.`
+🎙 **Yes, he is.**
 
-## Для сборщика
+## Для збирача
 
-new_words: lost, curious, upset, pretty
+atomic_practice: practice.atomic.json
+new_words:
+available — вільний, доступний — Зараз може поговорити чи допомогти.
+missing — відсутній, зниклий — Не там, де його очікують.
 
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=context_gap_grammar, 5=listen_build_dictation, 6=word_card, 7=listen_choose, 8=speed_match, 9=context_gap_grammar, 10=word_card, 11=listen_choose, 12=phrase_builder, 13=word_card, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=word_card, 18=listen_choose, 19=speed_match, 20=phrase_builder, 21=scripted_repeat_compare
-
----
-
-- Зроблено українську версію 12-ї сесії другого уроку — одну, як і просили.
-- Англійські слова, фрази, пастки, порядок і номери завдань, механіки та службовий блок не змінювалися — залишились точно як в оригіналі.
-- Пояснення переписані живою українською: спирався на українську вимову, а не на російську. Зокрема, у поясненні про звук `he` йдеться про наше «г», бо саме воно там ковтається.
-- Жодних вигаданих слів чи кальок: «заблукав», «допитливий», «засмучений», «гарний», «щулиться від протягу», «гамір» — це звичайна жива мова.
-- Усі підписи, заголовки й службові рядки перекладені, порожніх місць немає.
+modes: 1=listen_choose, 2=phrase_builder, 3=sound_contrast, 4=context_gap_grammar, 5=listen_build_dictation, 6=listen_choose, 7=listen_choose, 8=speed_match, 9=context_gap_grammar, 10=listen_choose, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=listen_build_dictation, 15=context_gap_grammar, 16=phrase_builder, 17=listen_choose, 18=listen_choose, 19=speed_match, 20=phrase_builder, 21=scripted_repeat_compare, 22=scripted_repeat_compare

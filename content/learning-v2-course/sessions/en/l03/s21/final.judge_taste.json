@@ -1,47 +1,42 @@
 {
-  "sourceSha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
-  "reviewer": "/root/s21_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s21",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "18792e2aa504bbf54fe900185ad1c8493f836cea4fd3006fcd91b1577b67161c",
+  "exactRuSha256": "18792e2aa504bbf54fe900185ad1c8493f836cea4fd3006fcd91b1577b67161c",
+  "exactUkSha256": "a765b72dbf13b798b7888d1ac3fc10f5e624cbccd06b71f787ea0cbe412c2af5",
+  "practiceAtomicSha256": "959404a23bcea3b4c75cc4175a43116c0a2ba5f673aa345f45d5503e7ddeb632",
+  "localeHashes": {
+    "ru": "18792e2aa504bbf54fe900185ad1c8493f836cea4fd3006fcd91b1577b67161c",
+    "uk": "a765b72dbf13b798b7888d1ac3fc10f5e624cbccd06b71f787ea0cbe412c2af5"
+  },
   "pairwise": "equal",
-  "pairwise_reason": "Золотой эталон ярче отдельными образами, а текущая сессия достигает той же редакторской планки более спокойным способом: правило объяснено последовательно, сцена даёт буквальную причину говорить, а единственный юмористический ход точно попадает в типичную ошибку. После четырёх строк правки в тексте не осталось прежних синтаксических и регистровых провалов; точные определения слов сохранены.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
     "score": 4,
     "evidence": [
-      "«`towel` — «полотенце»: им вытираются после душа или вытирают мокрые вещи.» — новое слово сразу объяснено обычной фразой и с точной границей значения.",
-      "«Меняется и начало фразы, и название предметов: нельзя просто добавить окончание и оставить всё остальное.» — правило связано с действием ученика и сказано без терминов.",
-      "«Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка.» — тёплое заигрывание с узнаваемой ошибкой, без приклеенной шутки."
+      "Current RU voice quote: «Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка.» It is a concise warning about the exact learner error."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка."
+      "«Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Сверка доставки с курьером последовательно объясняет, зачем назвать один предмет или несколько. Обновлённые задания 13 и 16 теперь формулируют действие прямо: курьер спрашивает о содержимом, ученик видит точное число предметов и называет их; никакие убеждения или ошибки собеседника не выдуманы."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "Перед `towel` стоит `a`: слово крошечное, пропустить его легко. Но в этой фразе про одно полотенце оно нужно.",
-    "Меняется и начало фразы, и название предметов: нельзя просто добавить окончание и оставить всё остальное.",
-    "Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Прежние замечания закрыты четырьмя точными строками, точные определения и удачный юмор сохранены, а ИИ-текста, бреда, воды, мёртвого языка и обязательных правок в текущем мастере не найдено.",
-  "reviewHistory": [
-    {
-      "sourceSha256": "749160656f9f0ceb18c296df4e6141efece3cbb489c60a017e3998a5ed3771fe",
-      "receipt": "judgements/2026-09-12_l03_s21_taste_initial.json",
-      "confirmation": "Actual re-review retracted card definition and pillow water findings. Accurate sense boundaries must remain. Intro1 syntax concern repeated; T13/T16 downgraded to optional register polish. Humour passed throughout. Final actual review reread entire revised master and confirmed exact four-line delta."
-    }
-  ]
+  "verdict_reason": "Current RU voice quote: «Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка.» It is a concise warning about the exact learner error."
 }

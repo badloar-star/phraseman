@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro1:r2": {
+          "ru": "Это «мы проиграли, мы потеряли». Про своё состояние — `we are lost`.",
+          "uk": "Це «ми програли, ми втратили». Про свій стан — `we are lost`."
+        },
+        "en:lesson-01:session-38:intro1:r3": {
+          "ru": "`is` — про одного. Вас несколько, значит `are`.",
+          "uk": "`is` — про одного. Вас кілька, отже `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro2:r2": {
+          "ru": "Скрепка выпала. По-русски её нет, по-английски `are` обязательно.",
+          "uk": "Скріпка випала. Українською її немає, англійською `are` обов'язкове."
+        },
+        "en:lesson-01:session-38:intro2:r3": {
+          "ru": "`save` — «спасать», действие. Нужно `safe`.",
+          "uk": "`save` — «рятувати», дія. Потрібне `safe`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-38:intro3:r2": {
+          "ru": "Лишнее `in`. С `home` оно не нужно: `They are home`.",
+          "uk": "Зайве `in`. З `home` воно не потрібне: `They are home`."
+        },
+        "en:lesson-01:session-38:intro3:r3": {
+          "ru": "`is` — про одного человека. Их двое: `they are`.",
+          "uk": "`is` — про одну людину. Їх двоє: `they are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c4b978ac6fb94eefc1e8a2b565ac952384d4c8dde783ddc9b13c95996052461d"
+}

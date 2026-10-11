@@ -41,13 +41,18 @@
   },
   {
     "interactionId": "en:lesson-02:session-56:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-56:i09:p1=free\nen:lesson-02:session-56:i09:p2=ready\nen:lesson-02:session-56:i09:p3=manager\nen:lesson-02:session-56:i09:p4=here",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-56:i10",
-    "correctText": "Excuse me. Are you ready?",
-    "correctResponseId": "en:lesson-02:session-56:i10:r1"
+    "interactionId": "en:lesson-02:session-56:i10:s01",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-56:i10:s02",
+    "correctText": "Are you ready?",
+    "correctResponseId": "en:lesson-02:session-56:i10:s02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-56:i11",

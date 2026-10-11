@@ -1,7 +1,8 @@
-# Англійська · Урок 2 · Сесія 31 — «Меню і рахунок»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 31 — «Меню і рахунок»
 
-**Сцена сесії.** Вечеря в дублінському кафе добігає кінця: тарілки прибрали, а на столі лишилася пара речей, назви яких треба знати.
-**Операція:** повторення всіх конструкцій уроку — `What is…?`, `Where is…?`, `Is it…?`, `It is + місце`
+**Сцена заняття.** Вечеря в дублінському кафе добігає кінця: тарілки прибрали, а на столі лишилася пара речей, назви яких треба знати.
+**Як сказати:** повторення всіх конструкцій уроку — `What is…?`, `Where is…?`, `Is it…?`, `It is + місце`
 **Нові слова:** menu, bill
 **Повертаються:** price, name, near, corner, toilets
 
@@ -55,77 +56,90 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — menu**
-> **menu** — «меню». Книжечка або аркуш, де написано, що тут готують і почому.
+<!-- interaction_id: en:lesson-02:session-31:i01; family: listen_choose -->
+Ціль: `menu`
 
-**2 · Послухайте й виберіть — menu**
-🔊 *menu* → **menu** · many · money
-- many — *«Багато». Прозвучало `menu` — це про список страв, а не про кількість.*
-- money — *«Гроші». Наголошений голосний інший: у `menu` чути «е», у `money` — «а».*
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
+Ціль: `menu`
+Варіанти: `menu` · `many` · `money`
 
 **3 · Картка слова — bill**
-> **bill** — «рахунок». Аркушик із сумою, який приносять, коли вечеря закінчилася.
+<!-- interaction_id: en:lesson-02:session-31:i03; family: listen_choose -->
+Ціль: `bill`
 
-**4 · Послухайте й виберіть — bill**
-🔊 *bill* → **bill** · ball · bell
-- ball — *«М'яч». Голосна інша: у `ball` чути «о», у `bill` — «і».*
-- bell — *«Дзвін». Голосна всередині інша: «е» проти «і».*
+**4 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-31:i04; family: listen_choose -->
+Ціль: `bill`
+Варіанти: `bill` · `ball` · `bell`
 
 **5 · Вставте слово — ви щойно сіли за стіл і хочете вибрати їжу**
-The ___ , please. → **menu** · bill · corner
-- bill — *Рахунок просять, коли поїли. Ви щойно сіли.*
-- corner — *`corner` — «кут». Кут вам не принесуть.*
+<!-- interaction_id: en:lesson-02:session-31:i05; family: context_gap_grammar -->
+Ціль: `The ___ , please.`
+Варіанти: `menu` · `bill` · `corner`
 
 **6 · Складіть фразу — «що це?», офіціант поклав перед вами книжечку**
-Плитки: `is` `What` `this` → **What is this?**
+<!-- interaction_id: en:lesson-02:session-31:i06; family: phrase_builder -->
+Ціль: `What is this?`
 
 **7 · Вставте слово — у меню рядок без цифри, питаєте про ціну**
-What is the ___ ? → **price** · name · bill
-- name — *`name` — «назва». Ви питаєте не як страву звуть, а скільки вона коштує.*
-- bill — *Рахунок — це вся сума за вечерю. Ціна однієї страви — `price`.*
+<!-- interaction_id: en:lesson-02:session-31:i07; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `price` · `name` · `bill`
 
 **8 · Розрізніть звуки — яке з двох про рахунок?**
-🔊 Два слова поспіль.
-*bill · ball* → **bill**
-- ball — *Це «м'яч». У `ball` чути «о», у `bill` — «і».*
+<!-- interaction_id: en:lesson-02:session-31:i08; family: sound_contrast -->
+Варіанти: `bill` · `ball`
 
 **9 · Складіть фразу — страва в меню без назви, спитайте як вона називається**
-Плитки: `the` `What` `name` `is` → **What is the name?**
+<!-- interaction_id: en:lesson-02:session-31:i09; family: phrase_builder -->
+Ціль: `What is the name?`
 
-**10 · З'єднайте пари (Speed Match, 4 пари)**
-menu — меню · bill — рахунок · price — ціна · name — назва
+**10 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-31:i10; family: speed_match -->
+Пари: `menu` — меню · `bill` — рахунок · `price` — ціна · `name` — назва
+Ціль: `menu · bill · price · name`
 
 **11 · Вставте слово — ви шукаєте, де помити руки, і питаєте офіціанта**
-Where are the ___ ? → **toilets** · prices · rules
-- prices — *`prices` — ціни. Вони в меню, а не в кінці зали.*
-- rules — *`rules` — правила. Їх не шукають очима по залі.*
+<!-- interaction_id: en:lesson-02:session-31:i11; family: context_gap_grammar -->
+Ціль: `Where are the ___ ?`
+Варіанти: `toilets` · `prices` · `rules`
 
-**12 · Вставте слово — офіціант махнув рукою: це он там, у кутку зали**
-It is in the ___ . → **corner** · menu · price
-- menu — *Меню — це книжечка на столі, а не місце в залі.*
-- price — *Ціна не буває місцем. Вам показали кут: `corner`.*
+**12 · Промовте фразу — офіціант показав на кут зали**
+<!-- interaction_id: en:lesson-02:session-31:i12; family: scripted_repeat_compare -->
+Ціль: `It is in the corner.`
 
 **13 · Складіть фразу — ви питаєте, чи це близько (питання, а не відповідь)**
-Плитки: `it` `Is` `near` → **Is it near?**
+<!-- interaction_id: en:lesson-02:session-31:i13; family: phrase_builder -->
+Ціль: `Is it near?`
 
 **14 · Вставте слово — до потрібного місця два кроки від вашого столу**
-It is ___ . → **near** · bill · menu
-- bill — *`bill` — рахунок, а не відстань.*
-- menu — *Меню лежить на столі, але питання було не про нього.*
+<!-- interaction_id: en:lesson-02:session-31:i14; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `bill` · `menu`
 
 **15 · Послухайте й складіть — «де туалети?»**
-🔊 *Where are the toilets?* Плитки: `are` `Where` `toilets` `the` → **Where are the toilets?**
+<!-- interaction_id: en:lesson-02:session-31:i15; family: listen_build_dictation -->
+Ціль: `Where are the toilets?`
 
-**16 · Складіть без підказки — серед плиток є зайва**
-Офіціант повернувся з книжечкою, і ви хочете дізнатися ціну. Плитки: `price` `What` `the` `is` `name` → **What is the price?**
+**16 · Складіть запитання — ви тримаєте річ у руках і не бачите цінника; запитайте про ціну**
+<!-- interaction_id: en:lesson-02:session-31:i16; family: phrase_builder -->
+Ціль: `What is the price?`
 
-**17 · Фінал сцени — три фрази поспіль, без підказок**
-🎙 Вечеря закінчується. Спитайте, де туалети; дізнайтеся, чи це близько; попросіть рахунок.
-**Where are the toilets? Is it near? The bill, please.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-31:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Where are the toilets?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-31:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Is it near?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-31:i17:s03; family: scripted_repeat_compare -->
+Ціль: `The bill, please.`
 
 ## Для сборщика
 
@@ -133,7 +147,7 @@ new_words:
 menu — меню — книжечка або аркуш, де написано, що тут готують і почому
 bill — рахунок — аркушик із сумою, який приносять, коли вечеря закінчилася
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=sound_contrast, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=sound_contrast, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=scripted_repeat_compare, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -163,8 +177,8 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 |---|---|---|
 | menu | 1 | 2 (слух), 5 (вставка) |
 | bill | 3 | 4 (слух), 8 (звуки) |
-| price | з минулих сесій | інтро 3, 7 |
-| name | з минулих сесій | інтро 2, 9 |
+| price | з минулих занять | інтро 3, 7 |
+| name | з минулих занять | інтро 2, 9 |
 
 **Складання фрази: 4** (6, 9, 13, 15, 16 — з них 6, 9, 13, 16 складання плитками, 15 на слух) — скелети різні: `What is this?` · `What is the name?` · `Is it near?` · `Where are the toilets?` · `What is the ___?` із зайвою плиткою.
 
@@ -172,14 +186,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 
 🟡 **Стоїть покращити**
 - У завданні 4 підказка до `bell` спирається на різницю «е»/«і» — для українського вуха це чутно добре, але при озвучці варто перевірити, щоб диктор не змазав голосну.
-
-🧩 **Приховані зв'язки**
-- Слова `price`, `name`, `near`, `corner`, `toilets` приходять з попередніх сесій — їх українські визначення мають збігатися з тими, що вже видані учневі раніше.
-
----
-
-- Зробив украинскую версию 31-й сессии — только её, как и просили.
-- Английские слова, фразы, номера и порядок заданий, блок для сборщика оставил без изменений.
-- Пересказал все объяснения живым украинским: не подстрочник с русского, а как объяснил бы носитель.
-- Проверил, чтобы нигде не осталось русских слов с украинскими окончаниями и калек.
-- Ловушки оставил те же — для украинца они реалистичны так же, как для русскоязычного (путаница «меню/счёт», «цена/название»).

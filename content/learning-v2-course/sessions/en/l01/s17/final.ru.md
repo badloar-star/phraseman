@@ -1,9 +1,9 @@
-# Английский · Урок 1 · Сессия 17 — «He is / she is»
+# Английский · Урок 1 · Занятие 17 — «Знакомство с коллегами»
 
-**Сцена сессии.** Первое утро на новой работе в Дублине. Начальник ведёт вас по офису и по очереди показывает на людей: этот, эта, тот у окна. Вы называете каждого вслух — коротко, одной фразой.
+**Ситуация.** В первое утро на новой работе руководитель знакомит вас с Максом и Анной. Вы говорите, какие они.
 
-**Операция:** `He is` / `She is` + слово
-**Новые слова:** nice, friendly
+**Что вы освоите:** как сказать о мужчине `He is` и о женщине `She is`
+**Новые слова:** nice, new, tall, friendly
 **Возвращаются:** kind, quiet, tired, new, tall
 
 ---
@@ -57,76 +57,93 @@
 **Начальник представляет женщину, которая вышла на работу в прошлый понедельник. Скажите про неё.**
 
 - ✅ **She is new.**
-- ❌ She new. — *Скрепка выпала. Между `she` и словом о человеке всегда стоит `is`.*
+- ❌ She new. — *После `she` нужно `is`: `She is new`.*
 - ❌ She is kind. — *Это «добрая» — про поступки. «Недавно пришла» — `new`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (17 заданий)
 
 **1 · Карточка слова — tall**
+<!-- interaction_id: en:lesson-01:session-17:i01; family: listen_choose -->
 > **tall** — «высокий». Про рост человека: приходится нагибаться в дверях.
 
-**2 · Послушайте и выберите — tall**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
 🔊 *tall* → **tall** · tell · ball
 - tell — *Другая гласная: `tall` — «тол», `tell` — «тэл».*
 - ball — *Начинается с «б». `tall` — с «т».*
 
 **3 · Карточка слова — nice**
+<!-- interaction_id: en:lesson-01:session-17:i03; family: listen_choose -->
 > **nice** — «приятный». Общая оценка человека. Молчаливый человек тоже может быть `nice`.
 
-**4 · Послушайте и выберите — nice**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-17:i04; family: listen_choose -->
 🔊 *nice* → **nice** · night · mice
 - night — *В конце «т». `nice` заканчивается на «с».*
 - mice — *Начинается с «м». Слушайте первый звук: у `nice` он «н».*
 
-**5 · Соберите фразу — начальник показывает на парня под потолок**
+**5 · Соберите фразу — руководитель показывает на Макса, самого высокого в комнате**
+<!-- interaction_id: en:lesson-01:session-17:i05; family: phrase_builder -->
 Плитки: `is` `He` `tall` → **He is tall.**
 
-**6 · Вставьте слово — про женщину, с которой легко**
+**6 · Вставьте слово — Лина говорит: «Анна очень приятная». Скажите об Анне по-английски**
+<!-- interaction_id: en:lesson-01:session-17:i06; family: context_gap_grammar -->
 She ___ nice. → **is** · am · are
 - am — *`am` живёт только рядом с `I`. Про неё — `is`.*
 - are — *`are` — для «вы». Про неё одну — `is`.*
 
 **7 · Карточка слова — friendly**
+<!-- interaction_id: en:lesson-01:session-17:i07; family: listen_choose -->
 > **friendly** — «дружелюбный». Подходит первым и сам начинает разговор.
 
-**8 · Карточка слова — new**
-> **new** — «новый». Про человека — «недавно здесь, работает вторую неделю».
+**8 · Различите звуки — new или no**
+<!-- interaction_id: en:lesson-01:session-17:i08; family: sound_contrast -->
+🔊 Два слова подряд.
+*new · no* → **new**
+- no — *`no` — «нет». Здесь прозвучало `new` — «новый».*
 
-**9 · Послушайте и соберите — «она дружелюбная»**
+**9 · Послушайте и соберите — Анна первой позвала вас на обед; скажите, что она дружелюбная**
+<!-- interaction_id: en:lesson-01:session-17:i09; family: listen_build_dictation -->
 🔊 *She is friendly.* Плитки: `friendly` `She` `is` `He` → **She is friendly.**
 
-**10 · Вставьте слово — парень с вами не заговаривал, но и не мешал никому**
-He is ___ . → **nice** · friendly · new
-- friendly — *Это про того, кто подходит первым. А он молчал.*
+**10 · Вставьте слово — Лина говорит: «Макс — приятный человек». Передайте её характеристику по-английски**
+<!-- interaction_id: en:lesson-01:session-17:i10; family: context_gap_grammar -->
+He is ___ . → **nice** · tall · new
+- tall — *`tall` — «высокий»: это про рост, а здесь нужна характеристика `nice` — «приятный».*
 - new — *«Недавно пришёл» — не про характер.*
 
 **11 · Карточка слова — tired**
+<!-- interaction_id: en:lesson-01:session-17:i11; family: listen_choose -->
 > **tired** — «усталый». Уже с утра выглядит так, будто рабочий день кончился.
 
-**12 · Вставьте слово — парень у окна зевает третий раз подряд**
-He is ___ . → **tired** · new · tall
-- new — *«Недавно пришёл» — не про зевоту.*
-- tall — *Про рост, а речь о том, что он клюёт носом.*
+**12 · Соберите фразу — Макс у окна зевает третий раз подряд**
+<!-- interaction_id: en:lesson-01:session-17:i12; family: phrase_builder -->
+Плитки: `He` `is` `tired` → **He is tired.**
 
-**13 · Соедините пары (Speed Match, 4 пары)**
+**13 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-17:i13; family: speed_match -->
 tall — высокий · nice — приятный · new — новый · friendly — дружелюбный
 
 **14 · Карточка слова — quiet**
+<!-- interaction_id: en:lesson-01:session-17:i14; family: listen_choose -->
 > **quiet** — «тихий». Человек, который за весь день не сказал ни слова.
 
-**15 · Соберите фразу — парень весь день молчит за своим столом**
-Плитки: `quiet` `is` `He` `not` → **He is quiet.**
-*(плитка `not` лишняя: он и правда молчит)*
+**15 · Соберите фразу — Макс весь день молчит за своим столом**
+<!-- interaction_id: en:lesson-01:session-17:i15; family: phrase_builder -->
+Плитки: `quiet` `is` `He` `tall` → **He is quiet.**
+*(плитка `tall` лишняя: это «высокий», а Макс здесь тихий)*
 
-**16 · Вставьте слово — она помогла найти кабинет и принесла кофе**
+**16 · Вставьте слово — Анна помогла найти кабинет и принесла кофе**
+<!-- interaction_id: en:lesson-01:session-17:i16; family: context_gap_grammar -->
 She is ___ . → **kind** · tired · tall
 - tired — *Это «устала», а она наоборот на ногах и помогает.*
 - tall — *Про рост. Помогла — это `kind`.*
 
-**17 · Соберите фразу — тот же парень у окна к обеду совсем сник**
-Плитки: `is` `tired` `He` → **He is tired.**
+**17 · Скажите вслух — Макс у окна зевает третий раз подряд**
+<!-- interaction_id: en:lesson-01:session-17:i17; family: scripted_repeat_compare -->
+🎙 **He is tired.**
 
 ---
 
@@ -140,6 +157,6 @@ friendly — дружелюбный — «дружелюбный». Подход
 tired — усталый — «усталый». Уже с утра выглядит так, будто рабочий день кончился.
 quiet — тихий — «тихий». Человек, который за весь день не сказал ни слова.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=word_card, 9=listen_build_dictation, 10=context_gap_grammar, 11=word_card, 12=context_gap_grammar, 13=speed_match, 14=word_card, 15=phrase_builder, 16=context_gap_grammar, 17=phrase_builder
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=sound_contrast, 9=listen_build_dictation, 10=context_gap_grammar, 11=word_card, 12=phrase_builder, 13=speed_match, 14=word_card, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
 
 ---

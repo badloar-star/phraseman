@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-14:intro1:r2": {
+          "ru": "`Laundry` — это стирка или бельё вообще. На карте отмечено конкретное место: `laundrette`.",
+          "uk": "`Laundry` — це прання або білизна загалом. На карті позначено конкретне місце: `laundrette`."
+        },
+        "en:lesson-04:session-14:intro1:r3": {
+          "ru": "`Landmark` — достопримечательность. Нам нужно место, где стирают одежду: `laundrette`.",
+          "uk": "`Landmark` — пам’ятка. Нам потрібне місце, де перуть одяг: `laundrette`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-14:intro2:r2": {
+          "ru": "`Laundrettes` — несколько мест. Здесь на карте одна отметка, поэтому нужны `Is` и `a laundrette`.",
+          "uk": "`Laundrettes` — кілька місць. Тут на карті одна позначка, тому потрібні `Is` і `a laundrette`."
+        },
+        "en:lesson-04:session-14:intro2:r3": {
+          "ru": "Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a laundrette nearby?`.",
+          "uk": "Це повідомлення, а не питання. Питання починається з `Is`: `Is there a laundrette nearby?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-14:intro3:r2": {
+          "ru": "Это вопрос об одной прачечной. На карте несколько отметок, поэтому нужны `Are` и `laundrettes`.",
+          "uk": "Це питання про одну пральню. На карті кілька позначок, тому потрібні `Are` і `laundrettes`."
+        },
+        "en:lesson-04:session-14:intro3:r3": {
+          "ru": "Это сообщение. Вопрос начинается с `Are`: `Are there laundrettes nearby?`.",
+          "uk": "Це повідомлення. Питання починається з `Are`: `Are there laundrettes nearby?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "118b528c90ebd7e0cc2cc387357968e8f00b1e09992ce29ef2cadcf3f387b5f8"
+}

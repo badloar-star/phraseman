@@ -1,0 +1,53 @@
+{
+  "session": "en/l04/s12",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T22:06:36.3201321Z",
+  "sourceSha256": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+  "exactRuSha256": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+  "exactUkSha256": "17864855F3345E1B2A9399CA9C03E43533092EFA151F18C6409FD6326F259AA2",
+  "practiceAtomicSha256": "63ADB6152E9389F791CA57D32CF6011D6964426E981961CBDCFBFE23CF0FABA8",
+  "localeHashes": {
+    "ru": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+    "uk": "17864855F3345E1B2A9399CA9C03E43533092EFA151F18C6409FD6326F259AA2"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_current_s05_s12_review",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent read-only taste review against owner 2026-09-08 session-level humor rule",
+  "verdict": "PASS",
+  "pairwise": "equal",
+  "pairwise_reason": "Both locales use the same concise language-derived joke about a short answer stopping at the right time.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл.",
+      "Коротка відповідь уміє вчасно зупинитися: заощаджує слова, а не зміст."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "mustFix": [],
+  "blockers": [],
+  "evidence": [
+    "The humor explains why the noun phrase is omitted from a short answer, so it is integral rather than a glued prop joke (RU/UK:24).",
+    "No forced scene prop, fake quotation, generic AI filler, or tonal misfire was found."
+  ],
+  "verdict_reason": "Clear human teaching voice with one natural language-derived humorous move preserved across locales."
+}

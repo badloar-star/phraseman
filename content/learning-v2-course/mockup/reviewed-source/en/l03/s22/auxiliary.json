@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro1:r2": {
+          "ru": "Вы называете несколько бутылок. После `They are` здесь нужно `bottles`, с окончанием `s`.",
+          "uk": "Ви називаєте кілька пляшок. Після `They are` тут потрібно `bottles`, із `s` наприкінці."
+        },
+        "en:lesson-03:session-22:intro1:r3": {
+          "ru": "Для названия нескольких бутылок в этой фразе нужно `bottles`. Слово `a` перед ним лишнее.",
+          "uk": "У цій фразі кілька пляшок називаємо `bottles`. Слово `a` перед ним зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro2:r2": {
+          "ru": "Миски две. Их название — `bowls`, с `s` на конце.",
+          "uk": "Мисок дві. Їхня назва — `bowls`, із `s` наприкінці."
+        },
+        "en:lesson-03:session-22:intro2:r3": {
+          "ru": "`a bowl` называет одну миску. Вы называете две: `They are bowls`.",
+          "uk": "`a bowl` називає одну миску. Ви називаєте дві: `They are bowls`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-22:intro3:r2": {
+          "ru": "Вопрос о нескольких предметах из набора. Нужно название нескольких тарелок: `plates`.",
+          "uk": "Питання про кілька предметів із набору. Потрібна назва кількох тарілок: `plates`."
+        },
+        "en:lesson-03:session-22:intro3:r3": {
+          "ru": "Про несколько предметов спрашиваем с началом `Are they`. Название `plates` здесь уже верное.",
+          "uk": "Про кілька предметів питаємо з початком `Are they`. Назва `plates` тут уже правильна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e17efe1ba89544aae81e845e5d9211f3243684c882cf0fbda5c64a634db220fc"
+}

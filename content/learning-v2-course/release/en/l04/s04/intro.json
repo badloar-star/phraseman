@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать `There is` для одного места и `There are` для нескольких.",
+    "uk": "обрати `There is` для одного місця і `There are` для кількох."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна почта на маршруте",
+        "uk": "Одне відділення на маршруті"
+      },
+      "bodyByLocale": {
+        "ru": "`post office` — «почтовое отделение»: сюда заходят отправить письмо или получить посылку. На маршруте отмечено одно отделение, поэтому скажите `There is a post office.` Форма `is` и артикль `a` показывают, что место одно. Для нескольких отделений понадобятся `are` и форма `post offices`.",
+        "uk": "`post office` — «поштове відділення»: сюди заходять надіслати лист або отримати посилку. На маршруті позначено одне відділення, тому скажіть `There is a post office.` Форма `is` та артикль `a` показують, що місце одне. Для кількох відділень знадобляться `are` і форма `post offices`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы проходите мимо одной почты. Выберите точное сообщение.",
+          "uk": "Ви проходите повз одне поштове відділення. Оберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r1",
+              "text": "There is a post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r2",
+              "text": "There are a post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r3",
+              "text": "There is post office."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r1",
+              "text": "There is a post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r2",
+              "text": "There are a post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro1:r3",
+              "text": "There is post office."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы проходите мимо одной почты. Выберите точное сообщение.",
+          "uk": "Ви проходите повз одне поштове відділення. Оберіть точне повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Почта и несколько банков",
+        "uk": "Пошта і кілька банків"
+      },
+      "bodyByLocale": {
+        "ru": "`There are banks near the post office.` — «Рядом с почтовым отделением есть банки». Слово `banks` означает несколько банков, поэтому сообщение начинается с `There are`. Артикль `a` перед `banks` не ставят. `Near the post office` показывает, где находятся банки, и не меняет их количество.",
+        "uk": "`There are banks near the post office.` — «Біля поштового відділення є банки». Слово `banks` означає кілька банків, тому повідомлення починається з `There are`. Артикль `a` перед `banks` не ставлять. `Near the post office` показує, де розташовані банки, і не змінює їхньої кількості."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Рядом с почтой несколько банков. Выберите точное сообщение.",
+          "uk": "Біля пошти кілька банків. Оберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r1",
+              "text": "There are banks near the post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r2",
+              "text": "There is banks near the post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r3",
+              "text": "There are bank near the post office."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r1",
+              "text": "There are banks near the post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r2",
+              "text": "There is banks near the post office."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro2:r3",
+              "text": "There are bank near the post office."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом с почтой несколько банков. Выберите точное сообщение.",
+          "uk": "Біля пошти кілька банків. Оберіть точне повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почта за зданием",
+        "uk": "Пошта за будівлею"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a post office behind the building.` — «За зданием есть почтовое отделение». Почта всё ещё одна, поэтому `is` не меняется и перед `post office` остаётся `a`. `Behind the building` только добавляет место: одно отделение не размножается от нового адреса. Полная основа фразы остаётся `There is a post office`.",
+        "uk": "`There is a post office behind the building.` — «Поштове відділення є за будівлею». Пошта все ще одна, тому `is` не змінюється й перед `post office` лишається `a`. `Behind the building` лише додає місце: одне відділення не розмножується від нової адреси. Повна основа фрази лишається `There is a post office`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "За зданием отмечена одна почта. Выберите точное сообщение.",
+          "uk": "За будівлею позначено одну пошту. Оберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r1",
+              "text": "There is a post office behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r2",
+              "text": "There are a post office behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r3",
+              "text": "There is post offices behind the building."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r1",
+              "text": "There is a post office behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r2",
+              "text": "There are a post office behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-04:intro3:r3",
+              "text": "There is post offices behind the building."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За зданием отмечена одна почта. Выберите точное сообщение.",
+          "uk": "За будівлею позначено одну пошту. Оберіть точне повідомлення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7ea3bc83e36cc5984ac1a758066c86b867f6df0f6958294cc9a2ffdf35af6534"
+}

@@ -1,0 +1,531 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите, что прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-07:i01:r1",
+          "text": "playground"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i01:r2",
+          "text": "playgroup"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i01:r3",
+          "text": "playgrounds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите, что прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-07:i01:audio",
+          "transcript": "playground"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-07:i01:r1",
+            "targetText": "playground",
+            "meaningByLocale": {
+              "ru": "площадка",
+              "uk": "майданчик"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i01:r2",
+            "targetText": "playgroup",
+            "meaningByLocale": {
+              "ru": "игровая группа",
+              "uk": "ігрова група"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i01:r3",
+            "targetText": "playgrounds",
+            "meaningByLocale": {
+              "ru": "площадки",
+              "uk": "майданчики"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "auditory word discrimination",
+            "feedbackByLocale": {
+              "ru": "В записи `playground`, а не `playgroup`: слышно конец `-ground`.",
+              "uk": "У записі `playground`, а не `playgroup`: там є кінець `-ground`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i01:r3",
+            "correct": false,
+            "testedDimension": "auditory word discrimination",
+            "feedbackByLocale": {
+              "ru": "В записи один `playground`, без окончания `-s`.",
+              "uk": "У записі один `playground`, без закінчення `-s`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите новое слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-07:i02:audio",
+          "transcript": "playground"
+        },
+        "targetPhrase": "playground"
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Во дворе отмечено место для детей. Выберите название",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-07:i03:r1",
+          "text": "playground"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i03:r2",
+          "text": "building"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i03:r3",
+          "text": "shop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Во дворе отмечено место для детей. Выберите название",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-07:i03:r1",
+            "text": "playground"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i03:r2",
+            "text": "building"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i03:r3",
+            "text": "shop"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`Building` — здание. Место для детей — `playground`.",
+              "uk": "`Building` — будівля. Місце для дітей — `playground`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`Shop` — магазин. Во дворе отмечена `playground`.",
+              "uk": "`Shop` — магазин. У дворі позначено `playground`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение о площадке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение о площадке",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-07:i04:audio",
+          "transcript": "There is a playground near a building."
+        },
+        "hiddenTargetPhrase": "There is a playground near a building.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "playground",
+          "near",
+          "a",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение об одной площадке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение об одной площадке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a playground near the shop.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "playground",
+          "near",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму для одной площадки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-07:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму для одной площадки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There ___ a playground near the street.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-07:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i06:r3",
+            "text": "am"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "Площадка одна, поэтому нужна форма `is`.",
+              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
+              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите сообщение о домах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Произнесите сообщение о домах",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-07:i07:audio",
+          "transcript": "There are buildings beside the playground."
+        },
+        "targetPhrase": "There are buildings beside the playground."
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i08",
+      "ordinal": 11,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "playground",
+            "meaningByLocale": {
+              "ru": "площадка",
+              "uk": "майданчик"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "building",
+            "meaningByLocale": {
+              "ru": "здание",
+              "uk": "будівля"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "магазин",
+              "uk": "магазин"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "street",
+            "meaningByLocale": {
+              "ru": "улица",
+              "uk": "вулиця"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму для нескольких домов",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-07:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-07:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму для нескольких домов",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There ___ buildings on the street.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-07:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i09:r3",
+            "text": "am"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "Зданий несколько, поэтому нужна форма `are`.",
+              "uk": "Будинків кілька, тому потрібна форма `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "`Am` употребляется с `I`; здесь несколько `buildings`.",
+              "uk": "`Am` уживається з `I`; тут кілька `buildings`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i10",
+      "ordinal": 13,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение о магазине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение о магазине",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a shop near the playground.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "shop",
+          "near",
+          "the",
+          "playground"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение о домах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение о домах",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-07:i11:audio",
+          "transcript": "There are buildings on the street near the playground."
+        },
+        "hiddenTargetPhrase": "There are buildings on the street near the playground.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "buildings",
+          "on",
+          "the",
+          "street",
+          "near",
+          "the",
+          "playground"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — соберите сообщение о площадке и зданиях",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — соберите сообщение о площадке и зданиях",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a playground near the buildings.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "playground",
+          "near",
+          "the",
+          "buildings"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fc5820e91497c702e135e6cd23cc5a67a84bdc7267655378d219a67f9122f26f"
+}

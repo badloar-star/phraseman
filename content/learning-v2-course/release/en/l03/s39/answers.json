@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-39:i01",
-    "correctText": "",
+    "correctText": "grape",
+    "correctResponseId": "en:lesson-03:session-39:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i03",
+    "correctText": "lemon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i05",
+    "correctText": "onion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i02",
     "correctText": "grape",
-    "correctResponseId": "en:lesson-03:session-39:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-39:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,24 +25,29 @@
     "correctResponseId": "en:lesson-03:session-39:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-39:i05",
-    "correctText": "",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-03:session-39:i06",
     "correctText": "onion",
-    "correctResponseId": "en:lesson-03:session-39:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-39:i07",
-    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i08",
-    "correctText": "Это виноград",
-    "correctResponseId": "en:lesson-03:session-39:i08:r1"
+    "correctText": "grape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i10",
+    "correctText": "lemon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i11",
+    "correctText": "onion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i07",
+    "correctText": "en:lesson-03:session-39:i07:p1=grape\nen:lesson-03:session-39:i07:p2=lemon\nen:lesson-03:session-39:i07:p3=onion\nen:lesson-03:session-39:i07:p4=apple",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i09",
@@ -45,18 +55,13 @@
     "correctResponseId": "en:lesson-03:session-39:i09:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-39:i10",
-    "correctText": "These grapes, please.",
+    "interactionId": "en:lesson-03:session-39:i12:s01",
+    "correctText": "These are lemons.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-39:i11",
-    "correctText": "Это лимоны",
-    "correctResponseId": "en:lesson-03:session-39:i11:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-39:i12",
-    "correctText": "These are lemons. Those are grapes.",
+    "interactionId": "en:lesson-03:session-39:i12:s02",
+    "correctText": "Those are grapes.",
     "correctResponseId": null
   },
   {
@@ -65,8 +70,13 @@
     "correctResponseId": "en:lesson-03:session-39:i13:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-39:i14",
-    "correctText": "Those are onions. Those onions, please.",
+    "interactionId": "en:lesson-03:session-39:i14:s01",
+    "correctText": "Those are onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i14:s02",
+    "correctText": "Those onions, please.",
     "correctResponseId": null
   },
   {
@@ -75,13 +85,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-39:i16",
-    "correctText": "These are grapes. Those are lemons. These are onions.",
+    "interactionId": "en:lesson-03:session-39:i16:s01",
+    "correctText": "These are grapes.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-39:i17",
-    "correctText": "Those are grapes. These are lemons. Those onions, please.",
+    "interactionId": "en:lesson-03:session-39:i16:s02",
+    "correctText": "Those are lemons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i16:s03",
+    "correctText": "These are onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s01",
+    "correctText": "Those are grapes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s02",
+    "correctText": "These are lemons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-39:i17:s03",
+    "correctText": "Those onions, please.",
     "correctResponseId": null
   }
 ]

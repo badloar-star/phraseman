@@ -1,0 +1,74 @@
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_reader",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s45",
+  "sourceSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+  "exactRuSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+  "exactUkSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The product-table scenario distinguishes first mention, known attribute and the a/an sound condition; three intro targets reappear before independent retrieval."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "993b1fa0623ba0e80043e27ad6b3b28d3a392aa5721ccaa993654055ea790c71",
+    "localeSha256": "e2a58ec7b8b9a9d3255724174b7dfef21a2787ad438781878332f2ff20359725",
+    "practiceAtomicSha256": "745cc5f8908b77a73d6eee58d3f920fcf91738c06ee8237d53c17c3f633d2f5e"
+  },
+  "localeSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+  "practiceAtomicSha256": "03712aec703b9d767e266825cefee28e279d2d9fa805561757af069de6afdabf",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "f2780cc53e8ead36428742100910d547a0cd2d55e2373da07aff5328c95644ef",
+    "localeSha256": "54137c9c63bb9730bd843ff1d9c0421dcea95919b1e53b87872adb50a15e6cb3",
+    "practiceAtomicSha256": "ccd3dde3628aae734e3003f89cbf236712e1cf6e8534de07c76f60b5423e171d",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "uk": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_reader",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "exactRuSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "exactUkSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+    "localeSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+    "localeHashes": {
+      "ru": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+      "uk": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70"
+    },
+    "practiceAtomicSha256": "03712aec703b9d767e266825cefee28e279d2d9fa805561757af069de6afdabf",
+    "evidence": [
+      "The product-table scenario distinguishes first mention, known attribute and the a/an sound condition; three intro targets reappear before independent retrieval."
+    ]
+  }
+}

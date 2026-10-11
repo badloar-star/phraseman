@@ -808,13 +808,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — женщина помогает гостям собраться; узнайте у друга, кто она",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — женщина помогает гостям собраться; узнайте у друга, кто она",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -841,13 +841,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы хотите попрощаться с хозяином, но не видите его; спросите друга, где он",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-37:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы хотите попрощаться с хозяином, но не видите его; спросите друга, где он",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -905,5 +905,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b25cc4cd8a1fd84dfc22ed5e2c8924db1dc0767b6a0c8b6bcc0a220796f8cc0b"
+  "learnerFingerprint": "4466f1cf1a668f28b0fa89d649ad95740bf199c092785a3080484e46488c933a"
 }

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-27:i01",
-    "correctText": "",
+    "correctText": "prices",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-27:i03",
-    "correctText": "",
+    "correctText": "rules",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-27:i13",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-27:i13:p1=prices\nen:lesson-02:session-27:i13:p2=rules\nen:lesson-02:session-27:i13:p3=cheap\nen:lesson-02:session-27:i13:p4=shops",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": "en:lesson-02:session-27:i15:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-27:i16",
-    "correctText": "What are these? What are these prices?",
+    "interactionId": "en:lesson-02:session-27:i16:s01",
+    "correctText": "What are these?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-27:i17",
-    "correctText": "What are these? What are these prices? What are these rules?",
+    "interactionId": "en:lesson-02:session-27:i16:s02",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s01",
+    "correctText": "What are these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s02",
+    "correctText": "What are these prices?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-27:i17:s03",
+    "correctText": "What are these rules?",
     "correctResponseId": null
   }
 ]

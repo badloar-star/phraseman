@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — hungry",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -233,7 +233,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — sure",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -333,11 +333,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -594,7 +594,9 @@
           "not",
           "sure"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -728,26 +730,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-03:i15",
+      "interactionId": "en:lesson-01:session-03:i15:s01",
       "ordinal": 18,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вежливый отказ от третьей чашки",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-03:i15:audio"
+        "en:lesson-01:session-03:i15:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вежливый отказ от третьей чашки",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-03:i15:audio",
-          "transcript": "I am not cold. I am fine."
+          "audioTargetId": "en:lesson-01:session-03:i15:s01:audio",
+          "transcript": "I am not cold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am not cold. I am fine.",
+        "targetPhrase": "I am not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i15:s02",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i15:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i15:s02:audio",
+          "transcript": "I am fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am fine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -762,15 +797,15 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова, которые уже ваши",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -834,26 +869,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-03:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-01:session-03:i17:s01",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа начальнику подряд",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-03:i17:audio"
+        "en:lesson-01:session-03:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа начальнику подряд",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-03:i17:audio",
-          "transcript": "I am not tired. I am not hungry. I am not alone. I am ready."
+          "audioTargetId": "en:lesson-01:session-03:i17:s01:audio",
+          "transcript": "I am not tired."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am not tired. I am not hungry. I am not alone. I am ready.",
+        "targetPhrase": "I am not tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s02:audio",
+          "transcript": "I am not hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s03:audio",
+          "transcript": "I am not alone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not alone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-03:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-03:i17:s04:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -867,11 +1001,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "321d7eda06118bd05c13dd66510f9dff44ebe6a73c4a748342938c72915222bd"
+  "learnerFingerprint": "e61e75668787365f4646a3ceb7be7b054a54a69300ae3dcfb33266805f05b4b4"
 }

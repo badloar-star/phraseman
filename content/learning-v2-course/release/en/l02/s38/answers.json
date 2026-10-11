@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-38:i01",
-    "correctText": "",
+    "correctText": "manager",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-38:i03",
-    "correctText": "",
+    "correctText": "intern",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-38:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-38:i10:p1=manager\nen:lesson-02:session-38:i10:p2=intern\nen:lesson-02:session-38:i10:p3=new\nen:lesson-02:session-38:i10:p4=sure",
     "correctResponseId": null
   },
   {

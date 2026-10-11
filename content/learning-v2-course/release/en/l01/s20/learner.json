@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-20:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — married",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-20:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — single",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -290,7 +290,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про парня с кольцом",
+      "prompt": "Вставьте слово — в анкете гостя указано, что он состоит в браке",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-20:i06:r1",
@@ -307,12 +307,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про парня с кольцом",
+      "accessibilityLabel": "Вставьте слово — в анкете гостя указано, что он состоит в браке",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — про парня с кольцом",
-          "uk": "Вставте слово — про хлопця з каблучкою"
+          "ru": "В анкете гостя указано, что он состоит в браке. Вставьте слово.",
+          "uk": "В анкеті гостя вказано, що він перебуває у шлюбі. Вставте слово."
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -329,24 +329,24 @@
             "text": "funny"
           }
         ],
-        "testedDimension": "Вставьте слово — про парня с кольцом",
+        "testedDimension": "Выбор married по явно указанному семейному положению",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-20:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — про парня с кольцом",
+            "testedDimension": "Выбор married по явно указанному семейному положению",
             "feedbackByLocale": {
-              "ru": "Ровно наоборот: `single` — когда пары нет. А тут кольцо.",
-              "uk": "Рівно навпаки: `single` — коли пари немає. А тут каблучка."
+              "ru": "`Single` — когда пары нет. Здесь в анкете прямо указано, что гость состоит в браке.",
+              "uk": "`Single` — коли пари немає. Тут в анкеті прямо вказано, що гість перебуває у шлюбі."
             }
           },
           {
             "responseId": "en:lesson-01:session-20:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — про парня с кольцом",
+            "testedDimension": "Выбор married по явно указанному семейному положению",
             "feedbackByLocale": {
-              "ru": "«Смешной». Про кольцо это ничего не говорит.",
-              "uk": "«Смішний». Про каблучку це нічого не говорить."
+              "ru": "`Funny` — «смешной». Здесь нужен факт о семейном положении из анкеты.",
+              "uk": "`Funny` — «смішний». Тут потрібен факт про сімейний стан з анкети."
             }
           }
         ]
@@ -451,7 +451,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-20:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — famous",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -571,7 +571,7 @@
         "en:lesson-01:session-20:i11:audioA",
         "en:lesson-01:session-20:i11:audioB"
       ],
-      "accessibilityLabel": "Послушайте и выберите — rich",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "sound_contrast",
         "contrastA": "rich",
@@ -718,11 +718,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -924,5 +924,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e143c48408bb56f401cd0652779be81581a4091228f16117df69e017f99231a9"
+  "learnerFingerprint": "d1ad06bd474e5955d47b3a6f1780607a469c04a08b596c1b0e68c06d411b3b22"
 }

@@ -1,0 +1,32 @@
+{
+  "session": "en/l04/s10",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-05T01:20:00.000Z",
+  "sourceSha256": "0716432043DFB5C3EAC999DDA0080F55682F67BE67E2E652B173DBBEADAC050B",
+  "exactRuSha256": "0716432043DFB5C3EAC999DDA0080F55682F67BE67E2E652B173DBBEADAC050B",
+  "exactUkSha256": "4927182A514E53F8B7B31165513936938E9BC1358AE77D23C516FFE297B79B3E",
+  "practiceAtomicSha256": "76C0E2D67AAAFF3B548AFD4EAAD73AA46DBBF87F24BBC8A1A718B738648785BA",
+  "localeHashes": {
+    "ru": "0716432043DFB5C3EAC999DDA0080F55682F67BE67E2E652B173DBBEADAC050B",
+    "uk": "4927182A514E53F8B7B31165513936938E9BC1358AE77D23C516FFE297B79B3E"
+  },
+  "sourcePaths": ["final.ru.md", "final.uk.md", "practice.atomic.json"],
+  "reviewer": "/root/s10_guardian_repair",
+  "role": "judge_locales_uk",
+  "verdict": "PASS",
+  "severity": {"P0": 0, "P1": 0, "P2": 0},
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "locale": "uk",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "languagePurity": true,
+  "semanticParity": true,
+  "evidence": [
+    "The Ukrainian master has the same three introductions and twelve ordered practice interactions as RU, with matching interaction IDs, families, English targets, ordered tokens, answer IDs, and reference-audio transcripts in the atomic contract.",
+    "The Ukrainian learner-facing text is natural and complete: `Біля стійки для відвідувачів`, `чи є поруч готель`, `Оберіть питання`, and `Навмання` are idiomatic Ukrainian choices; prompts and feedback contain no Russian leakage.",
+    "The operation stays semantically parallel: i06 independently assesses `Yes, there is.` and i10 independently assesses `No, there isn't.`, with localized explanations for singular `is` rather than a plural or pronoun response."
+  ],
+  "verdict_reason": "PASS: UK is structurally faithful, semantically parallel, linguistically pure, and natural learner-facing Ukrainian for the exact bound source."
+}

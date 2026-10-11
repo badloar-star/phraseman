@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-45:intro1:r2": {
+          "ru": "После `I` нужна форма `am` или сокращение `I'm`.",
+          "uk": "Після `I` потрібна форма `am` або скорочення `I'm`."
+        },
+        "en:lesson-01:session-45:intro1:r3": {
+          "ru": "Здесь нужно слово `satisfied`.",
+          "uk": "Тут потрібне слово `satisfied`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-45:intro2:r2": {
+          "ru": "Про одного мужчину нужна форма `isn't`.",
+          "uk": "Про одного чоловіка потрібна форма `isn't`."
+        },
+        "en:lesson-01:session-45:intro2:r3": {
+          "ru": "После `he` нужна форма `is`.",
+          "uk": "Після `he` потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-45:intro3:r2": {
+          "ru": "Здесь можно раскрыть `it is`, поэтому нужен апостроф: `it's`.",
+          "uk": "Тут можна розкрити `it is`, тому потрібен апостроф: `it's`."
+        },
+        "en:lesson-01:session-45:intro3:r3": {
+          "ru": "После `it's` нужно слово `settled`.",
+          "uk": "Після `it's` потрібне слово `settled`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b07a29d934e1ea71686c4d742829363cb81221cf67afc9cbd0393871ad09cba2"
+}

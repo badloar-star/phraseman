@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать `There is a + singular noun` для одного места и `There are + plural noun` для нескольких.",
+    "uk": "обрати `There is a + singular noun` для одного місця і `There are + plural noun` для кількох."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один супермаркет",
+        "uk": "Один супермаркет"
+      },
+      "bodyByLocale": {
+        "ru": "`supermarket` — «супермаркет»: большой магазин, где покупают продукты. На листовке он один, поэтому речь идёт об одном месте, а не о нескольких. Для одного места используем `There is`, а перед его названием ставим `a`: `There is a supermarket.`",
+        "uk": "`supermarket` — «супермаркет»: великий магазин, де купують продукти. У листівці він один, тому йдеться про одне місце, а не про кілька. Для одного місця використовуємо `There is`, а перед його назвою ставимо `a`: `There is a supermarket.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "В списке один супермаркет. Выберите сообщение.",
+          "uk": "У списку один супермаркет. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r1",
+              "text": "There is a supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r2",
+              "text": "There are a supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r3",
+              "text": "There is supermarket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r1",
+              "text": "There is a supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r2",
+              "text": "There are a supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro1:r3",
+              "text": "There is supermarket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В списке один супермаркет. Выберите сообщение.",
+          "uk": "У списку один супермаркет. Оберіть повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько магазинов",
+        "uk": "Кілька магазинів"
+      },
+      "bodyByLocale": {
+        "ru": "`There are shops near the supermarket.` — «Рядом с супермаркетом есть магазины». `Shops` — несколько магазинов, поэтому нужны `are` и форма без `a`. Один супермаркет рядом не меняет число `shops`: соседнее слово здесь не командует. Смотрите на название места после `is/are`.",
+        "uk": "`There are shops near the supermarket.` — «Біля супермаркету є магазини». `Shops` — кілька магазинів, тому потрібні `are` і форма без `a`. Один супермаркет поруч не змінює числа `shops`: сусіднє слово тут не командує. Дивіться на назву місця після `is/are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "В списке несколько магазинов рядом с супермаркетом. Выберите сообщение.",
+          "uk": "У списку кілька магазинів біля супермаркету. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r1",
+              "text": "There are shops near the supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r2",
+              "text": "There is shops near the supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r3",
+              "text": "There are a shops near the supermarket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r1",
+              "text": "There are shops near the supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r2",
+              "text": "There is shops near the supermarket."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro2:r3",
+              "text": "There are a shops near the supermarket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В списке несколько магазинов рядом с супермаркетом. Выберите сообщение.",
+          "uk": "У списку кілька магазинів біля супермаркету. Оберіть повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Считайте места",
+        "uk": "Порахуйте місця"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a supermarket near the shops.` — «Рядом с магазинами есть супермаркет». Считайте место сразу после формы: один `supermarket` требует `There is a`. Слова `near the shops` только уточняют, где он находится; несколько магазинов в этот подсчёт не входят. Главный в этой фразе — один супермаркет.",
+        "uk": "`There is a supermarket near the shops.` — «Біля магазинів є супермаркет». Рахуйте місце одразу після форми: один `supermarket` потребує `There is a`. Слова `near the shops` лише уточнюють, де він розташований; кілька магазинів у цей підрахунок не входять. Головний у цій фразі — один супермаркет."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "В списке один супермаркет рядом с магазинами. Выберите сообщение.",
+          "uk": "У списку один супермаркет біля магазинів. Оберіть повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r1",
+              "text": "There is a supermarket near the shops."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r2",
+              "text": "There are a supermarket near the shops."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r3",
+              "text": "There is supermarkets near the shops."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r1",
+              "text": "There is a supermarket near the shops."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r2",
+              "text": "There are a supermarket near the shops."
+            },
+            {
+              "responseId": "en:lesson-04:session-05:intro3:r3",
+              "text": "There is supermarkets near the shops."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В списке один супермаркет рядом с магазинами. Выберите сообщение.",
+          "uk": "У списку один супермаркет біля магазинів. Оберіть повідомлення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "203b7961cf27402655d5ab83e0ceb593dfeaf8886fa61eddad120d6aa9f201cf"
+}

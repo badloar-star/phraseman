@@ -18,7 +18,10 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { scopedOwnerQualityRequired } from "./owner_quality.mjs";
 import { progressionIssues } from "./progression_quality_gate.mjs";
-import { progressionJudgeRequired, sessionReadiness } from "./session_readiness.mjs";
+import { CANONICAL_BINDING_SCHEMA_VERSION, progressionJudgeRequired, sessionReadiness } from "./session_readiness.mjs";
+import { newWordDeclarationIssues, parseSessionHeader } from "./session_header.mjs";
+import { assertSinglePhraseIntro, assertSinglePhraseSource, feedbackLocaleParityIssues, introPracticeTargetRepeatIssues, practiceTargetRepeatIssues, projectSinglePhraseRelease, scopedFamilyChoreographyIssues } from "./single_phrase_release.mjs";
+import { writeMockupFile } from "./write_mockup_file.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -30,7 +33,24 @@ const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[
 const SESSION = opt("session", null);
 const LOCALES = opt("locales", "ru,uk").split(",").map((s) => s.trim()).filter(Boolean);
 const DEFAULT_OUT = path.resolve(ROOT, "release");
-const OUT = path.resolve(ROOT, opt("out", "release"));
+const OUT_ARG = opt("out", "release");
+const OUT = path.resolve(ROOT, OUT_ARG);
+const MIGRATE_COMPOSITE_SOURCE = args.includes("--migration-composite-source");
+const CHECK_SOURCE_RELEASE = args.includes("--check-source-release");
+
+function actorClarityGate(scope) {
+  const audit = spawnSync(process.execPath, [path.join(HERE, "audit_actor_clarity.mjs"), "--scope", scope], {
+    cwd: ROOT,
+    encoding: "utf8",
+  });
+  if (audit.error) return [`actor_clarity_audit_failed:${audit.error.message}`];
+  if (audit.status === 0) return [];
+  return String(audit.stderr || audit.stdout || "actor_clarity_audit_failed")
+    .split(/\r?\n/u)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .slice(0, 6);
+}
 
 const read = (p) => fs.readFileSync(p, "utf8");
 const exists = (p) => fs.existsSync(p);
@@ -39,23 +59,34 @@ const sha = (v) => crypto.createHash("sha256").update(typeof v === "string" ? v 
 // ---------- разбор Markdown ----------
 
 /** Заголовок сессии: тема, операция, новые слова, сцена. */
-function parseHeader(md) {
-  const title = /^#\s+(.+)$/m.exec(md)?.[1]?.trim() ?? "";
-  const scene = /\*\*Сцена сессии\.\*\*\s*([\s\S]*?)\n\n/.exec(md)?.[1]?.replace(/\s+/g, " ").trim() ?? "";
-  const operation = /\*\*Операц[иі]я:\*\*\s*(.+)/.exec(md)?.[1]?.trim() ?? "";
-  const newWords = (/\*\*Новые слова:\*\*\s*(.+)/.exec(md)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  return { title, scene, operation, newWords };
+export function parseHeader(md) {
+  return parseSessionHeader(md);
+}
+
+function duplicateMarkedChoice(block) {
+  const seen = new Set();
+  for (const match of String(block ?? "").matchAll(/^-\s+[✅❌]\s*(.+)$/gmu)) {
+    let text = match[1].trim();
+    const feedback = /—\s*\*[\s\S]+?\*\s*$/u.exec(text);
+    if (feedback) text = text.slice(0, feedback.index).trim();
+    const key = text.replace(/^\*\*|\*\*$/gu, "").normalize("NFKC").toLocaleLowerCase("en-US").replace(/\s+/gu, " ").trim();
+    if (!key) continue;
+    if (seen.has(key)) return key;
+    seen.add(key);
+  }
+  return null;
 }
 
 /** Три страницы интро: заголовок, тело, вопрос, варианты с разборами. */
-function parseIntro(md) {
+export function parseIntro(md) {
   const pages = [];
   // зачем: ранние эталоны пишут «## Интро 1 · Понятие», поздние — «## Интро 1».
   // Локали пишут заголовок на своём языке («## Інтро 1» на украинском) — это
   // естественно для носителя, поэтому ловим любое написание слова «интро».
   const blocks = md.split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/mi).slice(1);
   for (const [i, raw] of blocks.entries()) {
-    const body = raw.split(/^---\s*$/m)[0];
+    const section = raw.split(/^##\s+/m, 1)[0];
+    const body = section.split(/^---\s*$/m)[0];
     const heading = /^###\s+(.+)$/m.exec(body)?.[1]?.trim() ?? "";
     // зачем: вопрос — жирный блок перед списком вариантов, и он часто занимает
     // две-три строки; однострочный поиск его терял (интро 1–2 уходили без вопроса)
@@ -74,11 +105,75 @@ function parseIntro(md) {
     // другого цвета». В Markdown целевой язык размечен обратными кавычками —
     // сохраняем разметку как есть, макет и приложение красят её акцентом.
     const text = bodyParas.join("\n\n");
+    const duplicateChoice = duplicateMarkedChoice(body);
+    if (duplicateChoice) throw new Error(`intro_choice_duplicate:page=${i + 1}:choice=${duplicateChoice}`);
     const options = parseOptions(body);
     if (!options.length) WARN(`интро ${i + 1}: не найдено вариантов ответа`);
     pages.push({ kind: ["concept", "formula", "trap"][i] ?? "tip", heading, text, question, options });
   }
   return pages;
+}
+
+function requestedIntroQuestionIssues(perLocale, requestedLocales) {
+  const issues = [];
+  for (const locale of requestedLocales) {
+    if (locale !== "ru" && locale !== "uk") continue;
+    for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+      if (!String(perLocale?.[locale]?.intro?.[pageIndex]?.question ?? "").trim()) {
+        issues.push(`intro_question_missing:${SESSION}:${locale}:page=${pageIndex + 1}`);
+      }
+    }
+  }
+  return issues;
+}
+
+export function introFeedbackContractIssues(perLocale) {
+  const requiredLocales = ["ru", "uk"];
+  for (const locale of requiredLocales) {
+    if (!perLocale?.[locale]) return [`reason=locale_missing:locale=${locale}`];
+  }
+  const ruPages = perLocale.ru.intro ?? [];
+  const ukPages = perLocale.uk.intro ?? [];
+  if (ruPages.length !== ukPages.length) return [`reason=page_count:ru=${ruPages.length}:uk=${ukPages.length}`];
+
+  const issues = [];
+  for (let pageIndex = 0; pageIndex < ruPages.length; pageIndex += 1) {
+    const page = pageIndex + 1;
+    const ruOptions = ruPages[pageIndex]?.options ?? [];
+    const ukOptions = ukPages[pageIndex]?.options ?? [];
+    if (ruOptions.length !== ukOptions.length) {
+      issues.push(`page=${page}:reason=option_count:ru=${ruOptions.length}:uk=${ukOptions.length}`);
+      continue;
+    }
+    const correctIndexes = Object.fromEntries(requiredLocales.map((locale) => [
+      locale,
+      (perLocale[locale].intro[pageIndex]?.options ?? []).flatMap((option, index) => option.correct ? [index] : []),
+    ]));
+    if (correctIndexes.ru.length !== 1 || correctIndexes.uk.length !== 1 || correctIndexes.ru[0] !== correctIndexes.uk[0]) {
+      issues.push(`page=${page}:reason=correct_index:ru=${correctIndexes.ru.join(",") || "missing"}:uk=${correctIndexes.uk.join(",") || "missing"}`);
+      continue;
+    }
+    const orderMismatch = ruOptions.findIndex((option, index) => option.text !== ukOptions[index]?.text);
+    if (orderMismatch >= 0) {
+      issues.push(`page=${page}:reason=option_order:index=${orderMismatch}:ru=${JSON.stringify(ruOptions[orderMismatch]?.text)}:uk=${JSON.stringify(ukOptions[orderMismatch]?.text)}`);
+      continue;
+    }
+    const correctIndex = correctIndexes.ru[0];
+    for (const locale of requiredLocales) {
+      const options = perLocale[locale].intro[pageIndex]?.options ?? [];
+      const wrong = options.filter((_, index) => index !== correctIndex);
+      if (wrong.length !== options.length - 1) {
+        issues.push(`page=${page}:reason=wrong_feedback_count:locale=${locale}:expected=${options.length - 1}:actual=${wrong.length}`);
+        continue;
+      }
+      for (const [index, option] of options.entries()) {
+        if (index !== correctIndex && !String(option.feedback ?? "").trim()) {
+          issues.push(`page=${page}:reason=wrong_feedback_missing:locale=${locale}:index=${index}`);
+        }
+      }
+    }
+  }
+  return issues;
 }
 
 /** Варианты ответа. Два формата, оба живут в эталонах:
@@ -110,9 +205,18 @@ function parseOptions(block) {
     }
   }
 
+  // 1c) compact authoring form: the first declared option is correct. Seed
+  // the authored order before attaching the response-specific feedback below.
+  const declaredOptions = /^(?:Варианты|Варіанти):\s*(.+)$/mi.exec(block)?.[1] ?? "";
+  for (const [index, rawOption] of declaredOptions.split("·").map((item) => item.trim()).filter(Boolean).entries()) {
+    const fence = rawOption.startsWith("``") && rawOption.endsWith("``") ? 2
+      : rawOption.startsWith("`") && rawOption.endsWith("`") ? 1 : 0;
+    add(fence ? rawOption.slice(fence, -fence).trim() : rawOption, index === 0, "");
+  }
+
   // 2) список разборов. Пункт может переноситься на следующие строки —
   //    склеиваем до следующего «- » или пустой строки, иначе разбор теряется.
-  const glued = block.replace(/\n(?![-*\s]*$)(?!\s*-\s)(?!\s*\*\*\d)[ \t]+(\S)/g, " $1");
+  const glued = block.replace(/\r?\n(?![ \t]*(?:-\s|\*\*\d))[ \t]+(?=\S)/gu, " ");
   for (const m of glued.matchAll(/^-\s+(✅|❌)?\s*(.+)$/gm)) {
     const marked = m[1];
     let rest = m[2].trim();
@@ -142,7 +246,7 @@ function familyFromTitle(title) {
   if (/собери(те)? фразу|собери(те)? без подсказк|соберите|склад(іть|и) фразу|склад(іть|и) без підказ/.test(t)) return "phrase_builder";
   if (/вставьте (слово|скрепку)|вставьте|встав(те|ити) (слово|скріпку)|вставте/.test(t)) return "context_gap_grammar";
   if (/соедините пары|speed match|з.єднайте пари/.test(t)) return "speed_match";
-  if (/скажите вслух|скажите три|скажите пять|финал сцены|ответьте|скажіть уголос|скажіть три|скажіть п.ять|фінал сцени|відповідайте/.test(t)) return "scripted_repeat_compare";
+  if (/скажите вслух|скажите три|скажите пять|произнесите (?:слово|фразу)|финал сцены|ответьте|скажіть уголос|скажіть три|скажіть п.ять|промовте (?:слово|фразу)|фінал сцени|відповідайте/.test(t)) return "scripted_repeat_compare";
   return null;
 }
 
@@ -159,7 +263,7 @@ function familyFromBody(body) {
 }
 
 /** Задания практики: номер, тип из «## Для сборщика», содержимое. */
-function parsePractice(md) {
+export function parsePractice(md) {
   const modesLine = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(md)?.[1] ?? "";
   const modes = new Map([...modesLine.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((m) => [Number(m[1]), m[2]]));
   // зачем: заголовок практики локаль пишет на своём языке. Раздел «Для
@@ -179,7 +283,18 @@ function parsePractice(md) {
     const family = modes.get(ordinal) ?? familyFromTitle(head[2]) ?? familyFromBody(bodyForFamily);
     if (!family) { WARN(`задание ${ordinal}: механика не определена ни строкой modes, ни названием «${head[2].trim()}»`); continue; }
     const bodyText = chunk.slice(head[0].length);
-    tasks.push({ ordinal, title: head[2].trim(), family, body: bodyText, options: parseOptions(bodyText), ...parseTaskParts(bodyText) });
+    // An ID annotation belongs to the task only when it is immediately under
+    // that task heading. A later annotation is the next task's metadata and
+    // must never be attached backwards.
+    const interactionId = /^\s*<!--\s*interaction_id:\s*([^;]+);/u.exec(bodyText)?.[1]?.trim() ?? "";
+    const title = head[2].trim();
+    const parts = parseTaskParts(bodyText);
+    let options = parseOptions(bodyText);
+    if (family === "sound_contrast" && !options.length) {
+      const contrast = /—\s*([^/—]+?)\s*\/\s*([^/—]+)\s*$/u.exec(title);
+      if (contrast) options = [contrast[1], contrast[2]].map((text) => ({ text: text.trim(), correct: false, feedback: "" }));
+    }
+    tasks.push({ ordinal, title, family, interactionId, body: bodyText, options, ...parts });
   }
   return tasks;
 }
@@ -187,9 +302,28 @@ function parsePractice(md) {
 /** Части задания: цель, плитки, аудио, пары, определение карточки. */
 function parseTaskParts(body) {
   const parts = {};
+  const declaredTarget = /^(?:Цель|Ціль):\s*`([^`]+)`/mi.exec(body)?.[1]?.trim();
+  if (declaredTarget) parts.target = declaredTarget;
+  const visibleCondition = /^(?:Условие|Умова):\s*([^\r\n]+)/mi.exec(body)?.[1]?.trim();
+  if (visibleCondition) parts.condition = visibleCondition;
+  const bodyLines = body.split(/\r?\n/u);
+  const taskLineIndex = bodyLines.findIndex((line) =>
+    /___|→|🔊|🎙/u.test(line)
+    || /^(?:Плитки|Соберите|Складіть|Склади|Пары|Пари):/iu.test(line.trim())
+    || /^>\s*\*\*/u.test(line.trim()));
+  const guidanceLines = bodyLines.slice(0, taskLineIndex < 0 ? bodyLines.length : taskLineIndex)
+    .map((line) => line.trim())
+    .filter((line) => line
+      && !/^<!--[\s\S]*-->$/u.test(line)
+      && !/^#{1,6}\s/u.test(line)
+      && !/^[-*]\s/u.test(line)
+      && !/^\*\*(?:\d+\s*·|[^*]+:)\*\*/u.test(line)
+      && !/^(?:Цель|Ціль|Варианты|Варіанти|Значения вариантов|Значення варіантів|Плитки|Соберите|Складіть|Склади|Пары|Пари|modes):/iu.test(line))
+    .map((line) => line.replace(/^(?:Условие|Умова):\s*/iu, "").trim());
+  if (guidanceLines.length) parts.visibleGuidance = guidanceLines.join(" ").replace(/\s+/gu, " ").trim();
   const optionMeaningsLine = /^(?:Значения вариантов|Значення варіантів):\s*(.+)$/mi.exec(body)?.[1];
   if (optionMeaningsLine) {
-    parts.optionMeanings = Object.fromEntries(optionMeaningsLine.split("·").map((entry) => {
+    parts.optionMeanings = Object.fromEntries(optionMeaningsLine.split(/[·;]/u).map((entry) => {
       const divider = entry.indexOf("—");
       if (divider < 0) return null;
       const target = entry.slice(0, divider).replace(/[*_`]/g, "").trim();
@@ -200,7 +334,7 @@ function parseTaskParts(body) {
   // цель: последняя жирная фраза после стрелки, либо жирная строка целиком
   const arrow = [...body.matchAll(/→\s*\*\*(.+?)\*\*/g)].map((m) => m[1].trim());
   if (arrow.length) parts.target = arrow[arrow.length - 1];
-  const tiles = /(?:Плитки|Соберите):\s*(.+)/.exec(body);
+  const tiles = /(?:Плитки|Соберите|Складіть|Склади):\s*(.+)/.exec(body);
   if (tiles) parts.tokens = [...tiles[1].matchAll(/`([^`]+)`/g)].map((m) => m[1]);
   const audio = /🔊\s*\*([^*]+)\*/.exec(body);
   if (audio) parts.audio = audio[1].trim();
@@ -215,7 +349,8 @@ function parseTaskParts(body) {
   if (/·/.test(body) && /—/.test(body)) {
     const line = body.split("\n").find((l) => (l.match(/·/g) || []).length >= 2 && /—/.test(l));
     if (line) parts.pairs = line.split("·").map((p) => {
-      const [t, m] = p.split("—").map((s) => s.replace(/[*_`]/g, "").trim());
+      const [rawTarget, m] = p.split("—").map((s) => s.replace(/[*_`]/g, "").trim());
+      const t = rawTarget.replace(/^(?:Пары|Пари):\s*/iu, "").trim();
       return t && m ? { target: t, meaning: m } : null;
     }).filter(Boolean);
   }
@@ -242,6 +377,9 @@ const INPUT_MODE = {
 };
 
 const localized = (byLocale) => Object.fromEntries(LOCALES.map((l) => [l, byLocale[l] ?? byLocale.ru ?? ""]));
+const normalizeRuntimePurpose = (interaction) => interaction?.purpose === "independent_final"
+  ? { ...interaction, purpose: "independent_check" }
+  : interaction;
 
 function sanitizeLearnerPrompt(value) {
   return String(value ?? "")
@@ -291,12 +429,77 @@ function orderedTokensForTask(task) {
 
 function authoredDistractorsForTask(task, ordered) {
   const normalize = (token) => token.trim().split(/\s+/).map((word) => word.replace(/[.,?!;:]+$/, "").toLowerCase()).join(" ");
-  const correct = new Set(ordered.map(normalize));
-  return (task.tokens ?? []).filter((token) => !correct.has(normalize(token)));
+  const remaining = new Map();
+  for (const token of ordered) {
+    const key = normalize(token);
+    remaining.set(key, (remaining.get(key) ?? 0) + 1);
+  }
+  return (task.tokens ?? []).filter((token) => {
+    const key = normalize(token);
+    const count = remaining.get(key) ?? 0;
+    if (!count) return true;
+    remaining.set(key, count - 1);
+    return false;
+  });
+}
+
+// A builder's wrong choice is a physical tile, not a response option.  Authors
+// state its explanation alongside the tile list; preserve occurrence order so
+// repeated distractor text still receives distinct d1/d2 identities.
+export function slotFeedbackForTask(task, perLocale, sessionId, ordered) {
+  const distractors = authoredDistractorsForTask(task, ordered);
+  const normalize = (value) => String(value ?? "").trim().replace(/\s+/gu, " ").toLocaleLowerCase("en");
+  const annotationQueues = Object.fromEntries(LOCALES.map((locale) => {
+    const body = String(perLocale[locale]?.body ?? "");
+    const rows = [...body.matchAll(/\*?\(?\s*плитка\s+`([^`]+)`\s+(?:лишняя|зайва)\s*:\s*([^*\r\n)]+)\s*\)?\*?/giu)]
+      .map((match) => ({ token: match[1], feedback: match[2].trim() }));
+    return [locale, rows];
+  }));
+  const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+  return distractors.map((token, index) => ({
+    responseId: `${id}:tile:d${index + 1}`,
+    correct: false,
+    testedDimension: task.title.slice(0, 40),
+    feedbackByLocale: localized(Object.fromEntries(LOCALES.map((locale) => {
+      const annotation = annotationQueues[locale].shift();
+      return [locale, annotation && normalize(annotation.token) === normalize(token) ? annotation.feedback : ""];
+    }))),
+  }));
+}
+
+function normalizedTokenSurface(value) {
+  return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
+}
+
+function atomicTokensReconstructTarget(target, orderedTokens) {
+  if (!Array.isArray(orderedTokens) || !orderedTokens.length || orderedTokens.some((token) => !normalizedTokenSurface(token))) return false;
+  const normalizeTarget = (value) => normalizedTokenSurface(value).replace(/[.?!]+$/u, "");
+  return normalizeTarget(orderedTokens.join(" ")) === normalizeTarget(target);
+}
+
+function validAtomicDistractors(distractors) {
+  return Array.isArray(distractors) && distractors.every((token) => normalizedTokenSurface(token).length > 0);
+}
+
+function declaredTilesCoverOrdered(declaredTokens, orderedTokens) {
+  if (!Array.isArray(declaredTokens)) return false;
+  const normalize = (token) => normalizedTokenSurface(token)
+    .split(" ")
+    .map((word) => word.replace(/[.,?!;:]+$/u, "").toLocaleLowerCase("en"))
+    .join(" ");
+  const remaining = declaredTokens.map((token) => ({ key: normalize(token), used: false }));
+  return orderedTokens.every((ordered) => {
+    const index = remaining.findIndex((entry) => !entry.used && entry.key === normalize(ordered));
+    if (index < 0) return false;
+    remaining[index].used = true;
+    return true;
+  });
 }
 
 function buildInteraction(task, perLocale, sessionId, index, total) {
-  const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+  // Авторский ID обязателен для исторически расщеплённых реплик: порядковый
+  // номер задания меняется при восстановлении, но ID ответа и аудио — нет.
+  const id = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
   // зачем: карточка нового слова — не выбор, а показ. В формате плеера своего
   // семейства для неё нет, поэтому идёт как listen_choose с единственным
   // «вариантом» — самим словом; макет и приложение узнают её по cardByLocale.
@@ -304,15 +507,15 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
   const loc = (field) => localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.[field] ?? ""])));
 
   // IDs use positions in the full option list, including the correct answer.
-  const feedback = task.options.flatMap((o, i) => o.correct ? [] : [{
+  const feedback = task.options.map((o, i) => ({
     responseId: `${id}:r${i + 1}`,
-    correct: false,
+    correct: Boolean(o.correct),
     testedDimension: task.title.slice(0, 40),
     feedbackByLocale: localized(Object.fromEntries(LOCALES.map((l) => {
       const alt = perLocale[l]?.options?.[i];
       return [l, alt?.feedback ?? o.feedback];
     }))),
-  }]);
+  }));
 
   const responseOptions = task.options.map((o, i) => ({ responseId: `${id}:r${i + 1}`, text: o.text }));
 
@@ -324,7 +527,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       localizedMeaning: loc("title"),
       orderedTokens: ordered,
       authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
-      slotFeedback: feedback,
+      slotFeedback: slotFeedbackForTask(task, perLocale, sessionId, ordered),
     };
   } else if (family === "listen_choose") {
     const cardByLocale = task.card
@@ -362,11 +565,11 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       hiddenTargetPhrase: task.target ?? task.audio ?? "",
       orderedTokens: ordered,
       authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
-      slotFeedback: feedback,
+      slotFeedback: slotFeedbackForTask(task, perLocale, sessionId, ordered),
     };
   } else if (family === "context_gap_grammar") {
     modePayload = {
-      family, localizedScene: loc("title"),
+      family, localizedScene: loc(task.visibleGuidance ? "visibleGuidance" : task.condition ? "condition" : "title"),
       // зачем: строка пропуска в Markdown несёт и варианты («I ___ wrong. →
       // **am** · not · is») — в payload должна попасть только сама фраза
       gappedTargetPhrase: (/^[^\r\n]*___[^\r\n]*/m.exec(task.body)?.[0] ?? "").split("→")[0].replace(/[*`]/g, "").trim(),
@@ -401,6 +604,10 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     };
   }
 
+  if ((task.visibleGuidance || task.condition) && modePayload && !modePayload.localizedScene) {
+    modePayload.localizedScene = task.visibleGuidance ? loc("visibleGuidance") : loc("condition");
+  }
+
   // зачем (владелец, 03.09: «почему задания уже сами дают ответ?»): автор
   // пишет заголовок «Послушайте и выберите — welcome», а welcome и есть
   // правильный ответ. В заголовке для ученика хвост « — <ответ>» срезаем.
@@ -415,6 +622,595 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       : [modePayload?.audioA?.audioTargetId, modePayload?.audioB?.audioTargetId].filter(Boolean),
     accessibilityLabel: learnerPrompt, modePayload, scriptedAlternate: null,
   };
+}
+
+export function firstMarkdownAtomicLearnerMismatch(task, interaction, locale, answer = undefined) {
+  const payload = interaction?.modePayload ?? {};
+  const visibleText = (value) => String(value ?? "").replace(/^`+|`+$/gu, "").replace(/\s+/gu, " ").trim();
+  const visibleFeedbackText = (value) => visibleText(String(value ?? "")
+    // Resolve every inline code span while both delimiters are still present.
+    // Running visibleText first can consume only the leading fence of a raw
+    // string such as "`Gate` … `garden`.", cross-pairing unrelated spans.
+    .replace(/(`+)([^`\r\n]+)\1/gu, "$2"))
+    .replace(/!\[([^\]]*)\]\([^)]*\)/gu, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/gu, "$1")
+    .replace(/(\*\*|__|~~)([^\r\n]+?)\1/gu, "$2")
+    .replace(/(^|[\s(])([*_])([^*_\r\n]+)\2(?=$|[\s).,!?;:])/gu, "$1$3")
+    .replace(/\s+/gu, " ")
+    .trim();
+  const choiceFamilies = new Set(["listen_choose", "context_gap_grammar", "sound_contrast"]);
+  const requiresChoiceBinding = choiceFamilies.has(task.family) && !task.card && !payload.isWordCard;
+  const markdownOptions = (task.options ?? []).map((item, index) => choiceFamilies.has(task.family)
+    ? { responseId: `${interaction?.interactionId}:r${index + 1}`, text: visibleText(item.text) }
+    : visibleText(item.text));
+  const atomicOptions = (interaction?.responseOptions ?? []).map((item) => choiceFamilies.has(task.family)
+    ? { responseId: item.responseId, text: visibleText(item.text) }
+    : visibleText(item.text));
+  if (JSON.stringify(markdownOptions) !== JSON.stringify(atomicOptions)) return "responseOptions";
+  if (requiresChoiceBinding && answer !== undefined) {
+    const correctIndex = (task.options ?? []).findIndex((option) => option.correct);
+    const expectedCorrectResponseId = correctIndex >= 0 ? `${interaction?.interactionId}:r${correctIndex + 1}` : null;
+    const expectedCorrectText = correctIndex >= 0 ? visibleText(task.options[correctIndex].text) : "";
+    if (answer?.correctResponseId !== expectedCorrectResponseId) return "answers.correctResponseId";
+    if (locale === "ru" && visibleText(answer?.correctText) !== expectedCorrectText) return "answers.correctText";
+  }
+  if (task.family === "phrase_builder") {
+    if (visibleText(task.target) !== visibleText(payload.targetPhrase)) return "modePayload.targetPhrase";
+    const ordered = orderedTokensForTask(task);
+    if (Object.prototype.hasOwnProperty.call(task, "tokens")) {
+      if (!declaredTilesCoverOrdered(task.tokens, ordered)) return "modePayload.declaredTiles";
+      if (JSON.stringify(ordered) !== JSON.stringify(payload.orderedTokens ?? [])) return "modePayload.orderedTokens";
+      if (JSON.stringify(authoredDistractorsForTask(task, ordered)) !== JSON.stringify(payload.authoredDistractorTokens ?? [])) return "modePayload.authoredDistractorTokens";
+    } else {
+      if (!atomicTokensReconstructTarget(task.target, payload.orderedTokens)) return "modePayload.orderedTokens";
+      if (!validAtomicDistractors(payload.authoredDistractorTokens ?? [])) return "modePayload.authoredDistractorTokens";
+    }
+  }
+  if (task.family === "listen_build_dictation") {
+    const target = task.target ?? task.audio ?? "";
+    if (visibleText(target) !== visibleText(payload.hiddenTargetPhrase)) return "modePayload.hiddenTargetPhrase";
+    const audio = task.audio ?? task.target ?? "";
+    if (visibleText(audio) !== visibleText(payload.referenceAudio?.transcript)) return "modePayload.referenceAudio.transcript";
+    const ordered = orderedTokensForTask(task);
+    if (Object.prototype.hasOwnProperty.call(task, "tokens")) {
+      if (!declaredTilesCoverOrdered(task.tokens, ordered)) return "modePayload.declaredTiles";
+      if (JSON.stringify(ordered) !== JSON.stringify(payload.orderedTokens ?? [])) return "modePayload.orderedTokens";
+      if (JSON.stringify(authoredDistractorsForTask(task, ordered)) !== JSON.stringify(payload.authoredDistractorTokens ?? [])) return "modePayload.authoredDistractorTokens";
+    } else {
+      if (!atomicTokensReconstructTarget(target, payload.orderedTokens)) return "modePayload.orderedTokens";
+      if (!validAtomicDistractors(payload.authoredDistractorTokens ?? [])) return "modePayload.authoredDistractorTokens";
+    }
+  }
+  if (task.family === "listen_choose") {
+    const target = task.audio ?? task.card?.word ?? task.target ?? "";
+    if (visibleText(target) !== visibleText(payload.referenceAudio?.transcript)) return "modePayload.referenceAudio.transcript";
+    // The player can render meaningByLocale instead of responseOptions. Keep
+    // every visible label bidirectionally tied to the reviewed Markdown.
+    if (!payload.isWordCard) {
+      const expectedMeaningChoices = (task.options ?? []).map((option, index) => ({
+        responseId: `${interaction.interactionId}:r${index + 1}`,
+        targetText: visibleText(option.text),
+        meaning: Object.prototype.hasOwnProperty.call(task.optionMeanings ?? {}, option.text)
+          ? visibleText(task.optionMeanings[option.text])
+          : null,
+      }));
+      const atomicMeaningChoices = (payload.localizedMeaningChoices ?? []).map((choice) => ({
+        responseId: choice.responseId,
+        targetText: visibleText(choice.targetText),
+        meaning: choice.meaningByLocale === null || choice.meaningByLocale === undefined
+          ? null
+          : visibleText(choice.meaningByLocale?.[locale]),
+      }));
+      if (JSON.stringify(expectedMeaningChoices) !== JSON.stringify(atomicMeaningChoices)) {
+        return "modePayload.localizedMeaningChoices";
+      }
+    }
+  }
+  if (task.family === "scripted_repeat_compare") {
+    const target = task.speak ?? task.target ?? "";
+    if (visibleText(target) !== visibleText(payload.targetPhrase)) return "modePayload.targetPhrase";
+    if (visibleText(target) !== visibleText(payload.referenceAudio?.transcript)) return "modePayload.referenceAudio.transcript";
+  }
+  if (task.family === "context_gap_grammar") {
+    const gap = task.target?.includes("___")
+      ? task.target
+      : (/^[^\r\n]*___[^\r\n]*/m.exec(task.body)?.[0] ?? "").split("→")[0].replace(/^(?:Цель|Ціль):\s*/iu, "").replace(/[*`]/g, "").trim();
+    if (visibleText(gap) !== visibleText(payload.gappedTargetPhrase)) return "modePayload.gappedTargetPhrase";
+    const expectedGapOptions = (task.options ?? []).map((option, index) => ({
+      responseId: `${interaction.interactionId}:r${index + 1}`,
+      text: visibleText(option.text),
+    }));
+    const actualGapOptions = (payload.gapOptions ?? []).map((option) => ({
+      responseId: option.responseId,
+      text: visibleText(option.text),
+    }));
+    if (JSON.stringify(expectedGapOptions) !== JSON.stringify(actualGapOptions)) return "modePayload.gapOptions";
+  }
+  if (task.family === "sound_contrast") {
+    const [contrastA = "", contrastB = ""] = (task.options ?? []).map((option) => visibleText(option.text));
+    if (visibleText(payload.contrastA) !== contrastA) return "modePayload.contrastA";
+    if (visibleText(payload.contrastB) !== contrastB) return "modePayload.contrastB";
+    if (visibleText(payload.audioA?.transcript) !== contrastA) return "modePayload.audioA.transcript";
+    if (visibleText(payload.audioB?.transcript) !== contrastB) return "modePayload.audioB.transcript";
+    const expectedAudioA = `${interaction.interactionId}:audioA`;
+    const expectedAudioB = `${interaction.interactionId}:audioB`;
+    if (payload.audioA?.audioTargetId !== expectedAudioA) return "modePayload.audioA.audioTargetId";
+    if (payload.audioB?.audioTargetId !== expectedAudioB) return "modePayload.audioB.audioTargetId";
+    if (JSON.stringify(interaction.audioTargetIds ?? []) !== JSON.stringify([expectedAudioA, expectedAudioB])) return "audioTargetIds";
+  }
+  if (task.family === "speed_match") {
+    const markdownPairs = (task.pairs ?? []).map((item) => ({ target: visibleText(item.target), meaning: visibleText(item.meaning) }));
+    const atomicPairs = (payload.pairGrid ?? []).map((item) => ({ target: visibleText(item.target), meaning: visibleText(item.meaningByLocale?.[locale]) }));
+    if (JSON.stringify(markdownPairs) !== JSON.stringify(atomicPairs)) return "modePayload.pairGrid";
+  }
+  // Only gap tasks project an explicit learner-facing scene. For a pair grid,
+  // its pair line is content, not a scene; treating it as one creates a false
+  // parity failure and hides a correctly verified card.
+  const expectedScene = task.family === "context_gap_grammar" ? (task.visibleGuidance ?? task.condition) : null;
+  if (expectedScene && visibleText(expectedScene) !== visibleText(payload.localizedScene?.[locale])) {
+    return "modePayload.localizedScene";
+  }
+  if (new Set(["listen_choose", "context_gap_grammar", "sound_contrast"]).has(task.family) && !task.card) {
+    const expectedFeedback = (task.options ?? []).flatMap((option, index) => !visibleFeedbackText(option.feedback) ? [] : [{
+      responseId: `${interaction.interactionId}:r${index + 1}`,
+      text: visibleFeedbackText(option.feedback),
+    }]);
+    const actualFeedback = Array.isArray(payload.choiceFeedback) ? payload.choiceFeedback.map((entry) => ({
+      responseId: entry?.responseId,
+      text: visibleFeedbackText(entry?.feedbackByLocale?.[locale]),
+    })) : [];
+    const actualByResponseId = new Map(actualFeedback.map((entry) => [entry.responseId, entry.text]));
+    if (expectedFeedback.some((entry) => actualByResponseId.get(entry.responseId) !== entry.text)) return "modePayload.choiceFeedback";
+  }
+  const markdownWord = task.card?.word ?? (payload.wordCard ? task.target : "");
+  if (visibleText(markdownWord) !== visibleText(payload.wordCard?.word)) return "modePayload.wordCard.word";
+  return null;
+}
+
+export function atomicMarkdownParityIssues({ sessionIdentity, sessionId, atomicSource, tasksByLocale }) {
+  const issues = [];
+  if (!atomicSource || atomicSource.schemaVersion !== "learning_v2_atomic_practice_source_v1" || atomicSource.courseSessionId !== sessionId) {
+    issues.push(`atomic_source_contract:${sessionIdentity}`);
+    return issues;
+  }
+  // A word card is rendered by the learner as a single-answer listen_choose
+  // payload (with isWordCard=true). Markdown keeps the learner-facing name
+  // "word_card". Compare the runtime family, otherwise a correct word card is
+  // falsely reported as a source/release divergence.
+  const runtimeFamily = (family) => family === "word_card" ? "listen_choose" : family;
+  for (const [locale, tasks] of Object.entries(tasksByLocale ?? {})) {
+    const interactions = atomicSource.interactionsByLocale?.[locale];
+    const mismatch = !Array.isArray(interactions) || tasks.length !== interactions.length
+      ? 0
+      : tasks.findIndex((task, index) => {
+        const expectedInteractionId = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+        return task.ordinal !== index + 1 || task.title !== interactions[index]?.prompt ||
+          expectedInteractionId !== interactions[index]?.interactionId || runtimeFamily(task.family) !== interactions[index]?.family;
+      });
+    if (mismatch >= 0) {
+      const task = tasks[mismatch] ?? null;
+      const interaction = interactions?.[mismatch] ?? null;
+      issues.push(`atomic_markdown_parity:${sessionIdentity}:${locale}:index=${mismatch}:markdown=${JSON.stringify(task && { ordinal: task.ordinal, title: task.title, interactionId: task.interactionId, family: task.family })}:atomic=${JSON.stringify(interaction && { prompt: interaction.prompt, interactionId: interaction.interactionId, family: interaction.family })}`);
+      continue;
+    }
+    const answerByInteractionId = new Map((atomicSource.answers ?? []).map((answer) => [answer.interactionId, answer]));
+    for (const [index, task] of tasks.entries()) {
+      const interaction = interactions[index];
+      const field = firstMarkdownAtomicLearnerMismatch(task, interaction, locale, answerByInteractionId.get(interaction.interactionId) ?? null);
+      if (field) {
+        issues.push(`atomic_markdown_learner_parity:${sessionIdentity}:${locale}:index=${index}:field=${field}`);
+        break;
+      }
+    }
+  }
+  return issues;
+}
+
+const RELEASE_SEMANTIC_PATHS_BY_FAMILY = Object.freeze({
+  listen_choose: [
+    "modePayload.referenceAudio.transcript",
+    "modePayload.slowReferenceAudio.transcript",
+    "modePayload.localizedMeaningChoices",
+    "modePayload.wordCard.word",
+  ],
+  phrase_builder: [
+    "modePayload.targetPhrase",
+    "modePayload.orderedTokens",
+    "modePayload.authoredDistractorTokens",
+  ],
+  scripted_repeat_compare: [
+    "modePayload.targetPhrase",
+    "modePayload.referenceAudio.transcript",
+  ],
+  context_gap_grammar: [
+    "modePayload.gappedTargetPhrase",
+    "modePayload.gapOptions",
+  ],
+  listen_build_dictation: [
+    "modePayload.hiddenTargetPhrase",
+    "modePayload.referenceAudio.transcript",
+    "modePayload.orderedTokens",
+    "modePayload.authoredDistractorTokens",
+  ],
+  speed_match: ["modePayload.pairGrid"],
+  sound_contrast: [
+    "modePayload.contrastA",
+    "modePayload.contrastB",
+    "modePayload.audioA.transcript",
+    "modePayload.audioB.transcript",
+  ],
+});
+
+function valueAtPath(value, dottedPath) {
+  return dottedPath.split(".").reduce((current, key) => current?.[key], value);
+}
+
+function exactJsonEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function duplicateIds(rows) {
+  const seen = new Set();
+  const duplicates = new Set();
+  for (const row of Array.isArray(rows) ? rows : []) {
+    const id = row?.interactionId;
+    if (typeof id !== "string" || !id) continue;
+    if (seen.has(id)) duplicates.add(id);
+    seen.add(id);
+  }
+  return [...duplicates].sort();
+}
+
+/**
+ * Compare the reviewed atomic/Markdown source with the checked-in learner
+ * release.  Only explicit learner-facing schema fields are compared: this
+ * deliberately does not invent equivalence between different exercise
+ * families or infer a target from prose.
+ */
+export function sourceReleaseSemanticParityIssues({
+  sessionIdentity,
+  sessionId,
+  atomicSource,
+  sourceIntroByLocale,
+  sourceLearningOutcomeByLocale = {},
+  releaseIntro,
+  releaseLearnersByLocale,
+  releaseAnswers,
+  releaseIntroCorrectChoiceIndexes = null,
+  locales = Object.keys(atomicSource?.interactionsByLocale ?? {}),
+}) {
+  const issue = (suffix) => `source_release_parity:${sessionIdentity}:${suffix}`;
+  const issues = [];
+  if (!atomicSource || atomicSource.schemaVersion !== "learning_v2_atomic_practice_source_v1" || atomicSource.courseSessionId !== sessionId) {
+    issues.push(issue("atomic_source_contract"));
+    return issues;
+  }
+  if (releaseIntro?.courseSessionId !== sessionId) {
+    issues.push(issue(`courseSessionId:source=${JSON.stringify(sessionId)}:release=${JSON.stringify(releaseIntro?.courseSessionId)}`));
+  }
+
+  for (const [locale, sourcePages] of Object.entries(sourceIntroByLocale ?? {})) {
+    if (releaseIntro?.learningOutcomeByLocale?.[locale] !== sourceLearningOutcomeByLocale[locale]) {
+      issues.push(issue(`intro:${locale}:learningOutcome:source=${JSON.stringify(sourceLearningOutcomeByLocale[locale])}:release=${JSON.stringify(releaseIntro?.learningOutcomeByLocale?.[locale])}`));
+    }
+    const releasePages = releaseIntro?.pages;
+    if (!Array.isArray(releasePages)) {
+      issues.push(issue(`intro:${locale}:release_pages_missing`));
+      continue;
+    }
+    const pageCount = Math.max(sourcePages.length, releasePages.length);
+    for (let pageIndex = 0; pageIndex < pageCount; pageIndex += 1) {
+      const sourcePage = sourcePages[pageIndex];
+      const releasePage = releasePages[pageIndex];
+      if (!sourcePage) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:source_page_missing`));
+        continue;
+      }
+      if (!releasePage) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:release_page_missing`));
+        continue;
+      }
+      const expectedPageId = `${sessionId}:intro${pageIndex + 1}`;
+      if (releasePage.pageOrdinal !== pageIndex + 1) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:pageOrdinal:source=${pageIndex + 1}:release=${JSON.stringify(releasePage.pageOrdinal)}`));
+      }
+      if (releasePage.pageId !== expectedPageId) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:pageId:source=${JSON.stringify(expectedPageId)}:release=${JSON.stringify(releasePage.pageId)}`));
+      }
+      if (releasePage.kind !== sourcePage.kind) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:kind:source=${JSON.stringify(sourcePage.kind)}:release=${JSON.stringify(releasePage.kind)}`));
+      }
+      if (releasePage?.titleByLocale?.[locale] !== sourcePage.heading) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:title:source=${JSON.stringify(sourcePage.heading)}:release=${JSON.stringify(releasePage?.titleByLocale?.[locale])}`));
+      }
+      if (releasePage?.bodyByLocale?.[locale] !== sourcePage.text) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:body:source=${JSON.stringify(sourcePage.text)}:release=${JSON.stringify(releasePage?.bodyByLocale?.[locale])}`));
+      }
+      if (releasePage?.question?.promptByLocale?.[locale] !== sourcePage.question) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:question.prompt:source=${JSON.stringify(sourcePage.question)}:release=${JSON.stringify(releasePage?.question?.promptByLocale?.[locale])}`));
+      }
+      if (releasePage?.question?.accessibilityLabelByLocale?.[locale] !== sourcePage.question) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:question.accessibilityLabel:source=${JSON.stringify(sourcePage.question)}:release=${JSON.stringify(releasePage?.question?.accessibilityLabelByLocale?.[locale])}`));
+      }
+      const expectedQuestionId = `${expectedPageId}:q`;
+      if (releasePage?.question?.interactionId !== expectedQuestionId) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:question.interactionId:source=${JSON.stringify(expectedQuestionId)}:release=${JSON.stringify(releasePage?.question?.interactionId)}`));
+      }
+      const sourceChoices = (sourcePage.options ?? []).map((option) => option.text);
+      const releaseChoices = releasePage?.question?.choicesByLocale?.[locale];
+      const releaseChoiceText = Array.isArray(releaseChoices) ? releaseChoices.map((option) => option?.text) : null;
+      if (!exactJsonEqual(sourceChoices, releaseChoiceText)) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:choices:source=${JSON.stringify(sourceChoices)}:release=${JSON.stringify(releaseChoiceText)}`));
+      }
+      const expectedResponseIds = sourceChoices.map((_, choiceIndex) => `${expectedPageId}:r${choiceIndex + 1}`);
+      const releaseResponseIds = Array.isArray(releaseChoices) ? releaseChoices.map((option) => option?.responseId) : null;
+      if (!exactJsonEqual(expectedResponseIds, releaseResponseIds)) {
+        issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:choices.responseIds:source=${JSON.stringify(expectedResponseIds)}:release=${JSON.stringify(releaseResponseIds)}`));
+      }
+      const sourceCorrectIndexes = (sourcePage.options ?? []).flatMap((option, choiceIndex) => option.correct ? [choiceIndex] : []);
+      const explicitReleaseIndex = releasePage?.question?.correctChoiceIndex;
+      const manifestIndex = Array.isArray(releaseIntroCorrectChoiceIndexes)
+        ? releaseIntroCorrectChoiceIndexes[pageIndex]
+        : undefined;
+      const correctnessAuthorities = [
+        ...(Number.isInteger(explicitReleaseIndex) ? [{ label: "release", value: explicitReleaseIndex }] : []),
+        ...(Number.isInteger(manifestIndex) ? [{ label: "manifest", value: manifestIndex }] : []),
+      ];
+      for (const authority of correctnessAuthorities) {
+        if (sourceCorrectIndexes.length !== 1 || sourceCorrectIndexes[0] !== authority.value) {
+          const sourceCorrect = sourceCorrectIndexes.length === 1 ? sourceCorrectIndexes[0] : sourceCorrectIndexes;
+          issues.push(issue(`intro:${locale}:page=${pageIndex + 1}:choices.correctIndex:source=${JSON.stringify(sourceCorrect)}:release=${authority.value}:authority=${authority.label}`));
+        }
+      }
+    }
+  }
+
+  for (const locale of locales) {
+    const sourceInteractions = atomicSource.interactionsByLocale?.[locale];
+    if (!Array.isArray(sourceInteractions)) {
+      issues.push(issue(`practice:${locale}:source_interactions_missing`));
+      continue;
+    }
+    let expectedProjection;
+    try {
+      expectedProjection = projectSinglePhraseRelease({
+        interactions: sourceInteractions,
+        answers: atomicSource.answers ?? [],
+        locale,
+      });
+    } catch (error) {
+      issues.push(issue(`practice:${locale}:source_projection_failed:${error instanceof Error ? error.message : String(error)}`));
+      continue;
+    }
+    const expectedInteractions = expectedProjection.interactions.map(normalizeRuntimePurpose);
+    const releaseLearner = releaseLearnersByLocale?.[locale];
+    if (releaseLearner?.courseSessionId !== sessionId) {
+      issues.push(issue(`practice:${locale}:courseSessionId:source=${JSON.stringify(sessionId)}:release=${JSON.stringify(releaseLearner?.courseSessionId)}`));
+    }
+    const releaseInteractions = releaseLearner?.interactions;
+    if (!Array.isArray(releaseInteractions)) {
+      issues.push(issue(`practice:${locale}:release_interactions_missing`));
+      continue;
+    }
+    for (const id of duplicateIds(expectedInteractions)) issues.push(issue(`practice:${locale}:${id}:source_interaction_duplicate`));
+    for (const id of duplicateIds(releaseInteractions)) issues.push(issue(`practice:${locale}:${id}:release_interaction_duplicate`));
+    const sourceById = new Map(expectedInteractions.map((interaction) => [interaction?.interactionId, interaction]));
+    const releaseById = new Map(releaseInteractions.map((interaction) => [interaction?.interactionId, interaction]));
+    for (const sourceInteraction of expectedInteractions) {
+      const interactionId = sourceInteraction?.interactionId;
+      if (typeof interactionId !== "string" || !interactionId) {
+        issues.push(issue(`practice:${locale}:source_interaction_id_missing`));
+        continue;
+      }
+      const releaseInteraction = releaseById.get(interactionId);
+      if (!releaseInteraction) {
+        issues.push(issue(`practice:${locale}:${interactionId}:release_interaction_missing`));
+        continue;
+      }
+      for (const field of ["family", "inputMode", "prompt", "responseOptions"]) {
+        if (!exactJsonEqual(sourceInteraction[field], releaseInteraction[field])) {
+          issues.push(issue(`practice:${locale}:${interactionId}:${field}:source=${JSON.stringify(sourceInteraction[field])}:release=${JSON.stringify(releaseInteraction[field])}`));
+        }
+      }
+      const familyPaths = RELEASE_SEMANTIC_PATHS_BY_FAMILY[sourceInteraction.family] ?? [];
+      for (const field of familyPaths) {
+        const sourceValue = valueAtPath(sourceInteraction, field);
+        const releaseValue = valueAtPath(releaseInteraction, field);
+        if (!exactJsonEqual(sourceValue, releaseValue)) {
+          issues.push(issue(`practice:${locale}:${interactionId}:${field}:source=${JSON.stringify(sourceValue)}:release=${JSON.stringify(releaseValue)}`));
+        }
+      }
+    }
+    for (const releaseInteraction of releaseInteractions) {
+      const interactionId = releaseInteraction?.interactionId;
+      if (typeof interactionId !== "string" || !interactionId) {
+        issues.push(issue(`practice:${locale}:release_interaction_id_missing`));
+      } else if (!sourceById.has(interactionId)) {
+        issues.push(issue(`practice:${locale}:${interactionId}:source_interaction_missing`));
+      }
+    }
+  }
+
+  let sourceAnswers = [];
+  try {
+    const firstLocale = locales.find((locale) => Array.isArray(atomicSource.interactionsByLocale?.[locale]));
+    sourceAnswers = firstLocale
+      ? projectSinglePhraseRelease({
+        interactions: atomicSource.interactionsByLocale[firstLocale],
+        answers: atomicSource.answers ?? [],
+        locale: firstLocale,
+      }).answers
+      : [];
+  } catch (error) {
+    issues.push(issue(`answers:source_projection_failed:${error instanceof Error ? error.message : String(error)}`));
+  }
+  const checkedReleaseAnswers = Array.isArray(releaseAnswers) ? releaseAnswers : [];
+  for (const id of duplicateIds(sourceAnswers)) issues.push(issue(`answers:${id}:source_answer_duplicate`));
+  for (const id of duplicateIds(checkedReleaseAnswers)) issues.push(issue(`answers:${id}:release_answer_duplicate`));
+  const sourceAnswerById = new Map(sourceAnswers.map((answer) => [answer?.interactionId, answer]));
+  const releaseAnswerById = new Map(checkedReleaseAnswers.map((answer) => [answer?.interactionId, answer]));
+  for (const sourceAnswer of sourceAnswers) {
+    const interactionId = sourceAnswer?.interactionId;
+    if (typeof interactionId !== "string" || !interactionId) {
+      issues.push(issue("answers:source_answer_id_missing"));
+      continue;
+    }
+    const releaseAnswer = releaseAnswerById.get(interactionId);
+    if (!releaseAnswer) {
+      issues.push(issue(`answers:${interactionId}:release_answer_missing`));
+      continue;
+    }
+    for (const field of ["correctText", "correctResponseId"]) {
+      if (!exactJsonEqual(sourceAnswer[field], releaseAnswer[field])) {
+        issues.push(issue(`answers:${interactionId}:answers.${field}:source=${JSON.stringify(sourceAnswer[field])}:release=${JSON.stringify(releaseAnswer[field])}`));
+      }
+    }
+  }
+  for (const releaseAnswer of checkedReleaseAnswers) {
+    const interactionId = releaseAnswer?.interactionId;
+    if (typeof interactionId !== "string" || !interactionId) {
+      issues.push(issue("answers:release_answer_id_missing"));
+    } else if (!sourceAnswerById.has(interactionId)) {
+      issues.push(issue(`answers:${interactionId}:source_answer_missing`));
+    }
+  }
+  return issues;
+}
+
+function readJsonForParity(file, label, issues) {
+  if (!exists(file)) {
+    issues.push(`source_release_parity:${label}:file_missing:${path.basename(file)}`);
+    return null;
+  }
+  try {
+    return JSON.parse(read(file));
+  } catch (error) {
+    issues.push(`source_release_parity:${label}:file_unreadable:${path.basename(file)}:${error.message}`);
+    return null;
+  }
+}
+
+export function factoryManifestCorrectChoiceIndexes({ root = ROOT, sessionIdentity }) {
+  const match = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/u.exec(sessionIdentity);
+  if (!match || match[1] !== "en") return { indexes: null, issues: [] };
+  const manifestFile = path.resolve(
+    root,
+    "..",
+    "..",
+    "modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts",
+  );
+  const label = `source_release_parity:${sessionIdentity}:manifest`;
+  if (!exists(manifestFile)) return { indexes: null, issues: [`${label}:file_missing`] };
+  try {
+    const source = read(manifestFile);
+    const lessonOrdinal = Number(match[2]);
+    const sessionOrdinal = Number(match[3]);
+    const rowHeader = new RegExp(`lessonOrdinal:\\s*${lessonOrdinal}\\s*,\\s*sessionOrdinal:\\s*${sessionOrdinal}\\s*,`, "u");
+    const headerMatch = rowHeader.exec(source);
+    if (!headerMatch) return { indexes: null, issues: [`${label}:row_missing`] };
+    const afterHeader = source.slice(headerMatch.index + headerMatch[0].length);
+    const nextRow = /lessonOrdinal:\s*\d+\s*,\s*sessionOrdinal:\s*\d+\s*,/u.exec(afterHeader);
+    const rowSource = afterHeader.slice(0, nextRow?.index ?? afterHeader.length);
+    const indexesText = /introCorrectChoiceIndexes:\s*Object\.freeze\((\[[^\]\r\n]*\])\)/u.exec(rowSource)?.[1];
+    if (!indexesText) return { indexes: null, issues: [`${label}:correct_indexes_missing`] };
+    const indexes = JSON.parse(indexesText);
+    if (!Array.isArray(indexes)) {
+      return { indexes: null, issues: [`${label}:correct_indexes_invalid`] };
+    }
+    if (indexes.length !== 3) {
+      return { indexes: null, issues: [`${label}:correct_indexes_length:expected=3:actual=${indexes.length}`] };
+    }
+    if (indexes.some((value) => !Number.isInteger(value) || value < 0 || value > 2)) {
+      return { indexes: null, issues: [`${label}:correct_indexes_invalid`] };
+    }
+    return { indexes, issues: [] };
+  } catch (error) {
+    return { indexes: null, issues: [`${label}:unreadable:${error instanceof Error ? error.message : String(error)}`] };
+  }
+}
+
+function sourceReleaseSessionIssues(root, sessionIdentity, locales) {
+  const match = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/u.exec(sessionIdentity);
+  if (!match) return [`source_release_parity:${sessionIdentity}:invalid_session_identity`];
+  const [, language, lesson, session] = match;
+  const sessionId = `${language}:lesson-${lesson}:session-${session}`;
+  const sourceDir = path.join(root, "sessions", sessionIdentity);
+  const releaseDir = path.join(root, "release", language, `l${lesson}`, `s${session}`);
+  const issues = [];
+  const atomicSource = readJsonForParity(path.join(sourceDir, "practice.atomic.json"), sessionIdentity, issues);
+  const releaseIntro = readJsonForParity(path.join(releaseDir, "intro.json"), sessionIdentity, issues);
+  const releaseAnswers = readJsonForParity(path.join(releaseDir, "answers.json"), sessionIdentity, issues);
+  const manifestAuthority = factoryManifestCorrectChoiceIndexes({ root, sessionIdentity });
+  issues.push(...manifestAuthority.issues);
+  const sourceIntroByLocale = {};
+  const sourceLearningOutcomeByLocale = {};
+  const tasksByLocale = {};
+  const releaseLearnersByLocale = {};
+  for (const locale of locales) {
+    const sourceFile = path.join(sourceDir, `final.${locale}.md`);
+    if (!exists(sourceFile)) {
+      issues.push(`source_release_parity:${sessionIdentity}:${locale}:file_missing:${path.basename(sourceFile)}`);
+    } else {
+      try {
+        const markdown = read(sourceFile);
+        sourceIntroByLocale[locale] = parseIntro(markdown);
+        sourceLearningOutcomeByLocale[locale] = parseHeader(markdown).operation;
+        tasksByLocale[locale] = parsePractice(markdown);
+      } catch (error) {
+        issues.push(`source_release_parity:${sessionIdentity}:${locale}:source_unreadable:${error.message}`);
+      }
+    }
+    const learnerName = locale === "ru" ? "learner.json" : `learner.${locale}.json`;
+    const learner = readJsonForParity(path.join(releaseDir, learnerName), `${sessionIdentity}:${locale}`, issues);
+    if (learner) releaseLearnersByLocale[locale] = learner;
+  }
+  if (atomicSource) {
+    issues.push(...atomicMarkdownParityIssues({
+      sessionIdentity,
+      sessionId,
+      atomicSource,
+      tasksByLocale,
+    }));
+  }
+  if (atomicSource && releaseIntro && releaseAnswers) {
+    issues.push(...sourceReleaseSemanticParityIssues({
+      sessionIdentity,
+      sessionId,
+      atomicSource,
+      sourceIntroByLocale,
+      sourceLearningOutcomeByLocale,
+      releaseIntro,
+      releaseLearnersByLocale,
+      releaseAnswers,
+      releaseIntroCorrectChoiceIndexes: manifestAuthority.indexes,
+      locales,
+    }));
+  }
+  return issues;
+}
+
+function discoverSourceReleaseSessions(root) {
+  const sessionsRoot = path.join(root, "sessions");
+  if (!exists(sessionsRoot)) return [];
+  const result = [];
+  for (const language of fs.readdirSync(sessionsRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory())) {
+    const languageDir = path.join(sessionsRoot, language.name);
+    for (const lesson of fs.readdirSync(languageDir, { withFileTypes: true }).filter((entry) => entry.isDirectory() && /^l\d{2}$/u.test(entry.name))) {
+      const lessonDir = path.join(languageDir, lesson.name);
+      for (const session of fs.readdirSync(lessonDir, { withFileTypes: true }).filter((entry) => entry.isDirectory() && /^s\d{2}$/u.test(entry.name))) {
+        result.push(`${language.name}/${lesson.name}/${session.name}`);
+      }
+    }
+  }
+  return result.sort();
+}
+
+export function sourceReleaseScopeIssues({ root = ROOT, scope, locales = ["ru", "uk"] }) {
+  const sessions = scope === "all"
+    ? discoverSourceReleaseSessions(root)
+    : String(scope ?? "").split(",").map((value) => value.trim()).filter(Boolean);
+  if (!sessions.length) return ["source_release_parity:scope_empty"];
+  return sessions.flatMap((sessionIdentity) => sourceReleaseSessionIssues(root, sessionIdentity, locales));
 }
 
 // ---------- main ----------
@@ -433,18 +1229,51 @@ function recheckHardFacts(dir, file = "final.ru.md") {
     .filter((l) => l && !l.startsWith("[FACTORY]") && !l.startsWith("[BUILD]"));
 }
 
-function main() {
+async function main() {
   if (!SESSION) { LOG("ранний выход: нужен --session en/l01/s04"); process.exit(2); }
+  if (CHECK_SOURCE_RELEASE) {
+    const issues = sourceReleaseScopeIssues({ root: ROOT, scope: SESSION, locales: LOCALES });
+    for (const parityIssue of issues) WARN(parityIssue);
+    if (issues.length) {
+      WARN(`source/release semantic parity: BLOCKED (${issues.length} mismatches)`);
+      process.exitCode = 1;
+      return;
+    }
+    LOG("source/release semantic parity: PASS");
+    return;
+  }
   const m = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/.exec(SESSION);
   if (!m) { LOG(`ранний выход: --session ожидает en/l01/s04, получено: ${SESSION}`); process.exit(2); }
   const [, lang, lesson, session] = m;
   const dir = path.join(ROOT, "sessions", SESSION);
   const sessionId = `${lang}:lesson-${lesson}:session-${session}`;
 
+  // `build_release.mjs` resolves relative output paths from the course root.
+  // A repository-root path here silently creates a second nested course tree,
+  // leaving the actual mockup stale. Reject that ambiguous spelling before
+  // any source validation or file writes.
+  const normalizedOutArg = String(OUT_ARG).replaceAll("\\", "/").replace(/^\.\/+/, "");
+  if (!path.isAbsolute(OUT_ARG) && /^content\/learning-v2-course(?:\/|$)/u.test(normalizedOutArg)) {
+    WARN(`nested_course_output_path:${OUT_ARG}: use a path relative to content/learning-v2-course, for example mockup/reviewed-source`);
+    process.exit(2);
+  }
+
+  // Никакой безличный текст не должен попасть к ученику: проверяем именно
+  // исходник этой сессии до разбора Markdown и до любой записи релиза.
+  const actorClarityIssues = actorClarityGate(SESSION);
+  if (actorClarityIssues.length) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА actor-clarity gate: ${actorClarityIssues.join("; ")}`);
+    process.exit(1);
+  }
+
   // A private --out is a review artifact. Writing the canonical release is a
   // publication step and must fail before touching existing files when the
   // current owner-scoped session has incomplete or stale independent review.
   const writesDefaultRelease = path.relative(DEFAULT_OUT, OUT) === "";
+  if (MIGRATE_COMPOSITE_SOURCE && writesDefaultRelease) {
+    WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: migration-composite-source разрешён только с приватным --out");
+    process.exit(1);
+  }
   if (writesDefaultRelease && scopedOwnerQualityRequired(SESSION)) {
     if (!LOCALES.includes("ru") || !LOCALES.includes("uk")) {
       WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: основной макет требует обе локали ru,uk");
@@ -452,7 +1281,7 @@ function main() {
     }
     const requestedLocales = LOCALES.filter((locale) => locale !== "ru");
     if (progressionJudgeRequired(SESSION)) {
-      const progression = progressionIssues(path.dirname(dir), 25);
+      const progression = progressionIssues(path.dirname(dir), Number(session));
       if (progression.length) {
         WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА progression gate: ${progression.join("; ")}`);
         process.exit(1);
@@ -481,6 +1310,31 @@ function main() {
     LOG(`${loc}: интро ${perLocale[loc].intro.length}, заданий ${perLocale[loc].tasks.length}`);
   }
   if (!perLocale.ru) { LOG("ранний выход: нет мастера final.ru.md"); process.exit(2); }
+  const introQuestionIssues = requestedIntroQuestionIssues(perLocale, LOCALES);
+  if (introQuestionIssues.length) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${introQuestionIssues[0]}`);
+    process.exit(1);
+  }
+
+  let guardianNewWords = null;
+  const guardianFile = path.join(dir, "preauthoring.json");
+  if (exists(guardianFile)) {
+    try {
+      const guardian = JSON.parse(read(guardianFile));
+      guardianNewWords = Array.isArray(guardian?.newWords) ? guardian.newWords : [];
+    } catch (error) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: new_words_guardian_unreadable:${error.message}`);
+      process.exit(1);
+    }
+  }
+  const declarationIssues = newWordDeclarationIssues(
+    Object.fromEntries(Object.entries(perLocale).map(([locale, value]) => [locale, value.header])),
+    { guardianNewWords },
+  );
+  if (declarationIssues.length) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${declarationIssues[0]}`);
+    process.exit(1);
+  }
 
   // зачем: за сутки ТРИЖДЫ правка русского не доходила до того, что видит
   // человек — перевод оставался старым, и в приложении два языка рассказывали
@@ -500,6 +1354,38 @@ function main() {
   }
 
   const master = perLocale.ru;
+  const buildsBilingualAuxiliary = LOCALES.includes("ru") && LOCALES.includes("uk");
+  if (buildsBilingualAuxiliary) {
+    const introFeedbackIssues = introFeedbackContractIssues(perLocale);
+    if (introFeedbackIssues.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: intro_feedback_contract_hold:${SESSION}:${introFeedbackIssues[0]}`);
+      process.exit(1);
+    }
+  }
+  let sourceBindingSchemaVersion = null;
+  try {
+    const status = JSON.parse(read(path.join(dir, "status.json")));
+    if (status?.bindingSchemaVersion === CANONICAL_BINDING_SCHEMA_VERSION) {
+      sourceBindingSchemaVersion = CANONICAL_BINDING_SCHEMA_VERSION;
+    }
+  } catch {
+    // Readiness owns missing/malformed status. Private review builds may not
+    // have one and therefore cannot claim the versioned binding contract.
+  }
+  const atomicSourcePath = path.join(dir, "practice.atomic.json");
+  const atomicSource = exists(atomicSourcePath) ? JSON.parse(read(atomicSourcePath)) : null;
+  if (atomicSource) {
+    const parityIssues = atomicMarkdownParityIssues({
+      sessionIdentity: SESSION,
+      sessionId,
+      atomicSource,
+      tasksByLocale: Object.fromEntries(Object.entries(perLocale).map(([locale, value]) => [locale, value.tasks])),
+    });
+    if (parityIssues.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${parityIssues[0]}`);
+      process.exit(1);
+    }
+  }
   // сверка структуры локалей с мастером
   for (const [loc, v] of Object.entries(perLocale)) {
     if (loc === "ru") continue;
@@ -511,6 +1397,7 @@ function main() {
 
   const introChild = {
     schemaVersion: "learning_v2_course_session_intro_child_v1",
+    ...(sourceBindingSchemaVersion ? { sourceBindingSchemaVersion } : {}),
     courseSessionId: sessionId,
     learningOutcomeByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.header.operation ?? ""]))),
     pages: master.intro.map((p, i) => ({
@@ -532,11 +1419,108 @@ function main() {
   };
   introChild.introFingerprint = sha(introChild.pages);
 
-  const interactions = master.tasks.map((t, i) =>
-    buildInteraction(t, Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, t.ordinal)])), sessionId, i, master.tasks.length));
+  // Intro option objects are sealed. Response-specific explanations travel
+  // beside them and keep the same stable response IDs after UI shuffling.
+  const auxiliaryChild = buildsBilingualAuxiliary ? {
+    schemaVersion: "learning_v2_release_auxiliary_projection_v1",
+    courseSessionId: sessionId,
+    entries: master.intro.map((page, pageIndex) => {
+      const interactionId = `${sessionId}:intro${pageIndex + 1}:q`;
+      const responseFeedbackById = Object.fromEntries(page.options.flatMap((option, optionIndex) => {
+        if (option.correct) return [];
+        const feedbackByLocale = Object.fromEntries(LOCALES.map((locale) => [
+          locale,
+          perLocale[locale]?.intro[pageIndex]?.options?.[optionIndex]?.feedback ?? option.feedback ?? "",
+        ]));
+        return Object.values(feedbackByLocale).some((value) => String(value).trim())
+          ? [[`${sessionId}:intro${pageIndex + 1}:r${optionIndex + 1}`, feedbackByLocale]]
+          : [];
+      }));
+      return { interactionId, responseFeedbackById };
+    }),
+    auxiliaryFingerprint: "",
+  } : null;
+  if (auxiliaryChild) auxiliaryChild.auxiliaryFingerprint = sha(auxiliaryChild.entries);
+
+  try {
+    assertSinglePhraseIntro(introChild, `${SESSION}:intro`);
+  } catch (error) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
+
+  const sourceInteractions = atomicSource
+    ? structuredClone(atomicSource.interactionsByLocale?.ru ?? [])
+    : master.tasks.map((t, i) =>
+      buildInteraction(t, Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, t.ordinal)])), sessionId, i, master.tasks.length));
+
+  // Answers are authored against the unsplit source interaction.  The release
+  // projection below gives every derived sentence its own answer identity.
+  const sourceAnswers = atomicSource
+    ? structuredClone(atomicSource.answers ?? [])
+    : master.tasks.map((t) => ({
+      interactionId: `${sessionId}:i${String(t.ordinal).padStart(2, "0")}`,
+      correctText: t.target ?? t.speak ?? t.options.find((o) => o.correct)?.text ?? "",
+      correctResponseId: t.options.findIndex((o) => o.correct) >= 0 ? `${sessionId}:i${String(t.ordinal).padStart(2, "0")}:r${t.options.findIndex((o) => o.correct) + 1}` : null,
+    }));
+
+  // Owner judgment 2026-10-03, strengthened after the all-course audit:
+  // every English source master must already contain one assessed phrase per
+  // interaction. A clean release projection is not permission to keep a
+  // composite source that could reintroduce the defect on a later rebuild.
+  const strictSinglePhraseMasterRequired = true;
+  if (strictSinglePhraseMasterRequired && !MIGRATE_COMPOSITE_SOURCE) {
+    try {
+      assertSinglePhraseSource(sourceInteractions, `${SESSION}:ru`);
+    } catch (error) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${error instanceof Error ? error.message : String(error)}`);
+      process.exit(1);
+    }
+    const introPracticeRepeats = introPracticeTargetRepeatIssues(introChild, sourceInteractions, { source: `${SESSION}:ru`, newWords: master.header.newWords });
+    if (introPracticeRepeats.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: intro_practice_target_repeat_hold:${JSON.stringify(introPracticeRepeats[0])}`);
+      process.exit(1);
+    }
+    const practiceRepeats = practiceTargetRepeatIssues(sourceInteractions, { source: `${SESSION}:ru`, newWords: master.header.newWords });
+    if (practiceRepeats.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: practice_target_cross_family_repeat_hold:${JSON.stringify(practiceRepeats[0])}`);
+      process.exit(1);
+    }
+    const choreography = scopedFamilyChoreographyIssues(SESSION, sourceInteractions, {
+      source: `${SESSION}:ru`,
+      newWords: master.header.newWords,
+      answers: sourceAnswers,
+    });
+    if (choreography.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: family_choreography_hold:${JSON.stringify(choreography[0])}`);
+      process.exit(1);
+    }
+  }
+
+  let projected;
+  try {
+    projected = projectSinglePhraseRelease({ interactions: sourceInteractions, answers: sourceAnswers, locale: "ru" });
+  } catch (error) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
+  const interactions = projected.interactions.map(normalizeRuntimePurpose);
+  const answers = projected.answers;
+  if (strictSinglePhraseMasterRequired && !MIGRATE_COMPOSITE_SOURCE) {
+    const projectedChoreography = scopedFamilyChoreographyIssues(SESSION, interactions, {
+      source: `${SESSION}:ru:projected`,
+      newWords: master.header.newWords,
+      answers,
+    });
+    if (projectedChoreography.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: projected_family_choreography_hold:${JSON.stringify(projectedChoreography[0])}`);
+      process.exit(1);
+    }
+  }
 
   const learnerChild = {
     schemaVersion: "learning_v2_course_session_learner_child_v1",
+    ...(sourceBindingSchemaVersion ? { sourceBindingSchemaVersion } : {}),
     courseSessionId: sessionId, targetLanguage: lang,
     interactions, practiceInteractionCount: interactions.length, firstPracticeOrdinal: 4,
     evaluatorPayload: "absent_by_exact_schema", acceptedAnswerPayload: "absent_by_exact_schema",
@@ -548,19 +1532,80 @@ function main() {
   const localizedLearnerFiles = {};
   for (const loc of Object.keys(perLocale)) {
     if (loc === "ru") continue;
-    const localeInteractions = interactions.map((interaction, index) => {
-      const localeTask = byOrdinal(loc, master.tasks[index].ordinal) ?? master.tasks[index];
-      // Собираем локальный interaction целиком: переводятся не только prompt,
-      // но и видимые responseOptions/targetText. Идентификаторы сохраняются,
-      // потому что позиции заданий и вариантов сверены с мастером.
-      return buildInteraction(
-        localeTask,
-        Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, master.tasks[index].ordinal)])),
-        sessionId,
-        index,
-        master.tasks.length,
-      );
+    const localeSourceInteractions = atomicSource
+      ? structuredClone(atomicSource.interactionsByLocale?.[loc] ?? [])
+      : sourceInteractions.map((interaction, index) => {
+        const localeTask = byOrdinal(loc, master.tasks[index].ordinal) ?? master.tasks[index];
+        // Собираем локальный interaction целиком: переводятся не только prompt,
+        // но и видимые responseOptions/targetText. Идентификаторы сохраняются,
+        // потому что позиции заданий и вариантов сверены с мастером.
+        return buildInteraction(
+          localeTask,
+          Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, master.tasks[index].ordinal)])),
+          sessionId,
+          index,
+          master.tasks.length,
+        );
+      });
+    if (strictSinglePhraseMasterRequired && !MIGRATE_COMPOSITE_SOURCE) {
+      try {
+        assertSinglePhraseSource(localeSourceInteractions, `${SESSION}:${loc}`);
+      } catch (error) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${error instanceof Error ? error.message : String(error)}`);
+        process.exit(1);
+      }
+      const introPracticeRepeats = introPracticeTargetRepeatIssues(introChild, localeSourceInteractions, { source: `${SESSION}:${loc}`, newWords: master.header.newWords });
+      if (introPracticeRepeats.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: intro_practice_target_repeat_hold:${JSON.stringify(introPracticeRepeats[0])}`);
+        process.exit(1);
+      }
+      const practiceRepeats = practiceTargetRepeatIssues(localeSourceInteractions, { source: `${SESSION}:${loc}`, newWords: master.header.newWords });
+      if (practiceRepeats.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: practice_target_cross_family_repeat_hold:${JSON.stringify(practiceRepeats[0])}`);
+        process.exit(1);
+      }
+      const choreography = scopedFamilyChoreographyIssues(SESSION, localeSourceInteractions, {
+        source: `${SESSION}:${loc}`,
+        newWords: master.header.newWords,
+        answers: sourceAnswers,
+      });
+      if (choreography.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: family_choreography_hold:${JSON.stringify(choreography[0])}`);
+        process.exit(1);
+      }
+    }
+    let localeInteractions;
+    let localeAnswers;
+    try {
+      const localeProjection = projectSinglePhraseRelease({ interactions: localeSourceInteractions, answers: sourceAnswers, locale: loc });
+      localeInteractions = localeProjection.interactions.map(normalizeRuntimePurpose);
+      localeAnswers = localeProjection.answers;
+    } catch (error) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${error instanceof Error ? error.message : String(error)}`);
+      process.exit(1);
+    }
+    if (strictSinglePhraseMasterRequired && !MIGRATE_COMPOSITE_SOURCE) {
+      const projectedChoreography = scopedFamilyChoreographyIssues(SESSION, localeInteractions, {
+        source: `${SESSION}:${loc}:projected`,
+        newWords: master.header.newWords,
+        answers: localeAnswers,
+      });
+      if (projectedChoreography.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: projected_family_choreography_hold:${JSON.stringify(projectedChoreography[0])}`);
+        process.exit(1);
+      }
+    }
+    const shapeMismatchIndex = localeInteractions.findIndex((interaction, index) => {
+      const base = interactions[index];
+      return !base || interaction.interactionId !== base.interactionId || interaction.family !== base.family ||
+        (/:s\d{2}$/u.test(interaction.interactionId) && interaction.responseOptions.length !== base.responseOptions.length);
     });
+    if (shapeMismatchIndex >= 0 || localeInteractions.length !== interactions.length) {
+      const base = interactions[shapeMismatchIndex] ?? null;
+      const localizedInteraction = localeInteractions[shapeMismatchIndex] ?? null;
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: single_phrase_projection_hold:${SESSION}:${loc}:locale_shape_alignment:index=${shapeMismatchIndex}:base=${base?.interactionId ?? "missing"}/${base?.family ?? "missing"}/${base?.responseOptions?.length ?? "missing"}:locale=${localizedInteraction?.interactionId ?? "missing"}/${localizedInteraction?.family ?? "missing"}/${localizedInteraction?.responseOptions?.length ?? "missing"}:counts=${interactions.length}/${localeInteractions.length}`);
+      process.exit(1);
+    }
     localizedLearnerFiles[`learner.${loc}.json`] = {
       ...learnerChild,
       interactions: localeInteractions,
@@ -568,19 +1613,62 @@ function main() {
     };
   }
 
-  // ответы — отдельно: плеер их не получает, они нужны серверу-оценщику
-  const answers = master.tasks.map((t) => ({
-    interactionId: `${sessionId}:i${String(t.ordinal).padStart(2, "0")}`,
-    correctText: t.target ?? t.speak ?? t.options.find((o) => o.correct)?.text ?? "",
-    correctResponseId: t.options.findIndex((o) => o.correct) >= 0 ? `${sessionId}:i${String(t.ordinal).padStart(2, "0")}:r${t.options.findIndex((o) => o.correct) + 1}` : null,
-  }));
+  // Cross-locale feedback is one authored contract. Validate the assembled
+  // projections here, before any canonical file is touched, so a direct build
+  // cannot bypass the global all-source verifier.
+  const projectedByLocale = {
+    ru: interactions,
+    ...Object.fromEntries(Object.entries(localizedLearnerFiles).map(([name, child]) => [
+      /^learner\.([a-z]{2}(?:-[A-Z]{2})?)\.json$/u.exec(name)?.[1],
+      child.interactions,
+    ]).filter(([locale]) => locale)),
+  };
+  const feedbackParity = feedbackLocaleParityIssues(projectedByLocale, { answers });
+  if (feedbackParity.length) {
+    WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: feedback_locale_parity_hold:${SESSION}:${JSON.stringify(feedbackParity[0])}`);
+    process.exit(1);
+  }
 
   const outDir = path.join(OUT, lang, `l${lesson}`, `s${session}`);
   fs.mkdirSync(outDir, { recursive: true });
-  const files = { "intro.json": introChild, "learner.json": learnerChild, ...localizedLearnerFiles, "answers.json": answers };
+  const files = {
+    "intro.json": introChild,
+    ...(auxiliaryChild ? { "auxiliary.json": auxiliaryChild } : {}),
+    "learner.json": learnerChild,
+    ...localizedLearnerFiles,
+    "answers.json": answers,
+  };
+  if (MIGRATE_COMPOSITE_SOURCE && !atomicSource) {
+    files["source.snapshot.json"] = {
+      schemaVersion: "learning_v2_composite_source_snapshot_v1",
+      courseSessionId: sessionId,
+      interactionsByLocale: Object.fromEntries([
+        ["ru", sourceInteractions],
+        ...Object.keys(perLocale).filter((locale) => locale !== "ru").map((locale) => {
+          const localeInteractions = sourceInteractions.map((interaction, index) => {
+            const localeTask = byOrdinal(locale, master.tasks[index].ordinal) ?? master.tasks[index];
+            return buildInteraction(
+              localeTask,
+              Object.fromEntries(LOCALES.map((item) => [item, byOrdinal(item, master.tasks[index].ordinal)])),
+              sessionId,
+              index,
+              master.tasks.length,
+            );
+          });
+          return [locale, localeInteractions];
+        }),
+      ]),
+      answers: sourceAnswers,
+    };
+    files["preservation.ledger.json"] = {
+      schemaVersion: "learning_v2_single_phrase_preservation_ledger_v1",
+      courseSessionId: sessionId,
+      rows: projected.preservationLedger,
+    };
+  }
   for (const [name, data] of Object.entries(files)) {
     const p = path.join(outDir, name);
-    fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf8");
+    await writeMockupFile(p, JSON.stringify(data, null, 2));
     LOG(`записан ${path.relative(ROOT, p)} (${fs.statSync(p).size} байт)`);
   }
 
@@ -591,7 +1679,8 @@ function main() {
     else if (it.family === "phrase_builder" && !it.modePayload.orderedTokens.length) problems.push(`${it.interactionId}: пустые orderedTokens`);
     else if (it.family === "speed_match" && (it.modePayload.pairGrid.length < 4 || it.modePayload.pairGrid.length > (Number(lesson) <= 2 ? 4 : 7))) problems.push(`${it.interactionId}: пар ${it.modePayload.pairGrid.length}, поддерживается ${Number(lesson) <= 2 ? "4" : "4–7"}`);
     // карточка слова вариантов не имеет по определению — это не дефект
-    const isCard = master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
+    const isCard = Boolean(it.modePayload?.isWordCard) ||
+      master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
     if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length < 2) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length}`);
     const optionCapacity = Number(lesson) <= 2 ? 4 : 5;
     if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length > optionCapacity) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length} — больше ${optionCapacity}, проверь строку вариантов на лишние тире и звёздочки`);
@@ -655,4 +1744,4 @@ function main() {
   LOG(`готово: ${interactions.length} заданий, ${LOCALES.join("+")}`);
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

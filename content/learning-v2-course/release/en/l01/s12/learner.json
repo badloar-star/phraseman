@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — calm",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — brave",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -451,7 +451,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — honest",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -527,7 +527,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — smart",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -584,11 +584,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -970,13 +970,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — он был прав насчёт клиента",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-12:i18:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — он был прав насчёт клиента",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1003,11 +1003,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова, которые уже ваши",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1071,26 +1071,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-12:i20",
+      "interactionId": "en:lesson-01:session-12:i20:s01",
       "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — скажите ему всё вслух: он смелый, спокойный и прав",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-12:i20:audio"
+        "en:lesson-01:session-12:i20:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — скажите ему всё вслух: он смелый, спокойный и прав",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-12:i20:audio",
-          "transcript": "You are brave. You are calm. You are right."
+          "audioTargetId": "en:lesson-01:session-12:i20:s01:audio",
+          "transcript": "You are brave."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You are brave. You are calm. You are right.",
+        "targetPhrase": "You are brave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i20:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i20:s02:audio",
+          "transcript": "You are calm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are calm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i20:s03",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i20:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i20:s03:audio",
+          "transcript": "You are right."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are right.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1104,11 +1170,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "688c7acb27f9f0cc21e9504a91ef8c7b2ddbaa8e0283eeedd46934c9abd8efb7"
+  "learnerFingerprint": "a9b6742641abf4cf361eae1ccc9cf0632f3b0a77ef082d60eb2f5a0ce73f8e42"
 }

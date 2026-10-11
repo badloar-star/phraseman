@@ -64,6 +64,38 @@ test('mockup never aligns a Speed Match pair on the same row', () => {
   }
 });
 
+test('mockup identifies a selected extra builder tile by its physical tile ID', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  const fn = source.slice(source.indexOf('function renderBuilder('), source.indexOf('function renderPairs('));
+  const shuffleSource = source.slice(source.indexOf('const shuffle ='), source.indexOf('function resetStep('));
+  const state = { answered: false, ok: null, assembled: [], tileFeedback: null, step: 3, right: 0, wrong: 0, locale: 'ru' };
+  let nodes = [];
+  const panel = { append: node => nodes.push(node) };
+  const scope = {
+    S: state,
+    h: (tag, props, children = []) => ({ tag, props, children }),
+    shuffle: values => values,
+    speak: () => {},
+    document: { createTextNode: text => ({ text }) },
+    loc: value => value?.[state.locale] ?? value?.ru ?? '',
+    tl: value => value,
+    WARNBOX: () => assert.fail('unexpected missing tiles'),
+    render: () => { nodes = []; scope.renderBuilder(panel, { interactionId: 'fixture' }, payload); },
+  };
+  const payload = {
+    targetPhrase: 'I am here.', orderedTokens: ['I', 'am', 'here'], authoredDistractorTokens: ['ready', 'ready'],
+    slotFeedback: [
+      { responseId: 'fixture:tile:d1', correct: false, feedbackByLocale: { ru: 'Первый лишний ready.' } },
+      { responseId: 'fixture:tile:d2', correct: false, feedbackByLocale: { ru: 'Второй лишний ready.' } },
+    ],
+  };
+  vm.runInNewContext(`${shuffleSource}\n${fn}`, scope);
+  scope.render();
+  const tiles = nodes.find(node => node?.props?.class === 'tiles').children;
+  tiles.filter(tile => tile.props.text === 'ready')[1].props.onClick();
+  assert.equal(state.tileFeedback, 'Второй лишний ready.');
+});
+
 test('Speed Match derangement has a guaranteed fallback for five pairs', () => {
   const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
   const shuffleSource = source.slice(source.indexOf('const shuffle ='), source.indexOf('function resetStep('));
@@ -112,4 +144,62 @@ test('mockup shuffles choices and renders localized listen meanings', () => {
   const labels = nodes[0].children.map(button => button.children[0].text);
   assert.notEqual(labels[0], 'телефон', 'authored correct-first choice must never remain first after seeded shuffle');
   assert.deepEqual(new Set(labels), new Set(['кістка', 'телефон']));
+});
+
+test('mockup renders separate sound-contrast audioA and audioB controls', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  const fn = source.slice(source.indexOf('function renderChoice('), source.indexOf('function correctIdOf('));
+  const shuffleSource = source.slice(source.indexOf('const shuffle ='), source.indexOf('function resetStep('));
+  const state = { answered: false, picked: null, ok: false, right: 0, wrong: 0, locale: 'ru' };
+  const spoken = [];
+  const nodes = [];
+  const panel = { append: node => nodes.push(node) };
+  const scope = {
+    S: state,
+    h: (tag, props, children = []) => ({ tag, props, children }),
+    speak: text => spoken.push(text),
+    document: { createTextNode: text => ({ text }) },
+    loc: value => value?.[state.locale] ?? value?.ru ?? '',
+    tl: value => value,
+    sanitizeLearnerPrompt: value => value,
+    WARNBOX: () => assert.fail('unexpected missing sound-contrast audio'),
+    correctIdOf: () => 'fixture:r1',
+    nextRow: () => ({ tag: 'next' }),
+    render: () => {},
+  };
+  vm.runInNewContext(`${shuffleSource}\n${fn}`, scope);
+  scope.renderChoice(panel, {
+    interactionId: 'en:lesson-01:session-04:i08',
+    family: 'sound_contrast',
+    responseOptions: [
+      { responseId: 'fixture:r1', text: 'right' },
+      { responseId: 'fixture:r2', text: 'wrong' },
+    ],
+  }, {
+    audioA: { audioTargetId: 'fixture:a', transcript: 'right' },
+    audioB: { audioTargetId: 'fixture:b', transcript: 'wrong' },
+    contrastA: 'right',
+    contrastB: 'wrong',
+    choiceFeedback: [],
+  });
+  const audioButtons = nodes[0].children;
+  assert.deepEqual(Array.from(audioButtons, button => button.children[0].text), ['▶  Прослушать A', '▶  Прослушать B']);
+  audioButtons.forEach(button => button.props.onClick());
+  assert.deepEqual(spoken, ['right', 'wrong']);
+});
+
+test('mockup fails closed when canonical release contains a multi-phrase practice or intro interaction', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  assert.match(source, /auditSinglePhraseRelease/u);
+  assert.match(source, /single_phrase_mockup_hold/u);
+  assert.match(source, /report\.violationCount/u);
+  assert.match(source, /report\.introFileCount/u);
+});
+
+test('mockup keeps learner-facing labels free of the internal session term and numbers every task', () => {
+  const source = fs.readFileSync(fileURLToPath(new URL('./build_mockup.mjs', import.meta.url)), 'utf8');
+  assert.match(source, /const displayTitle/u);
+  assert.match(source, /text:"Задание " \+ taskNumber/u);
+  assert.match(source, /Пройти урок/u);
+  assert.doesNotMatch(source.slice(source.indexOf('const displayTitle'), source.indexOf('const esc')), /\\bсессия\\b/u);
 });

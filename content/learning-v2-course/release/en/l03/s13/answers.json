@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-13:i01",
-    "correctText": "",
+    "correctText": "earring",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-13:i03",
-    "correctText": "",
+    "correctText": "necklace",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-13:i06",
-    "correctText": "",
+    "correctText": "bracelet",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-13:i10",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-13:i10:p1=earring\nen:lesson-03:session-13:i10:p2=necklace\nen:lesson-03:session-13:i10:p3=bracelet\nen:lesson-03:session-13:i10:p4=vase",
     "correctResponseId": null
   },
   {

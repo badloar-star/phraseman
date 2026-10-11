@@ -1,0 +1,46 @@
+{
+  "session": "en/l04/s07",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:51:31.1413850Z",
+  "sourceSha256": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+  "exactRuSha256": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+  "exactUkSha256": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c",
+  "practiceAtomicSha256": "fe4704288bb4b7b987dde04fc9ca634fb07179a0ad475b89e0668f3cd0bf005e",
+  "localeHashes": {
+    "ru": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+    "uk": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "localeSha256": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c",
+  "role": "locale_ru_uk",
+  "sourceReport": "fresh independent post-repair full RU/UK/atomic parity review",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "must_fix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "semanticParity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "All three intros and 12 tasks mirror order, mechanics, English targets, options and feedback intent.",
+        "The repaired am feedback naturally mirrors RU; no Russian leakage, untranslated prop/jargon or meaning addition remains."
+      ]
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "RU/UK learner-facing source and both atomic locale maps are structurally identical and semantically aligned on current hashes."
+  ]
+}

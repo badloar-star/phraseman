@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 18 — «Where are: питаємо про кілька»
+# Англійська · Урок 2 · Заняття 18 — «Where are: питаємо про кілька»
 
-**Сцена сесії.** Торговий центр у вихідний. Ви стоїте біля входу з пакетом і не розумієте, куди йти: усе потрібне десь є, але вказівників немає.
+**Сцена заняття.** Торговий центр у вихідний. Ви стоїте біля входу з пакетом і не розумієте, куди йти: усе потрібне десь є, але вказівників немає.
 
-**Операція:** `Where are` + кілька предметів
+**Як сказати:** `Where are` + кілька предметів
 **Нові слова:** shops, toilets
 **Повертаються:** street, station, crowded, lost
 
@@ -58,77 +58,91 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — shops**
-> **shops** — «магазини». Один — `shop`, додали `-s` — стало кілька.
+<!-- interaction_id: en:lesson-02:session-18:i01; family: listen_choose -->
+Ціль: `shops`
 
-**2 · Послухайте і виберіть — shops**
-🔊 *shops* → **shops** · tops · chops
-- tops — *Починається з «т», а `shops` — з «ш», як у слові «шапка».*
-- chops — *Починається з «ч». У `shops` перший звук — «ш».*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-18:i02; family: listen_choose -->
+Ціль: `shops`
+Варіанти: `shops` · `tops` · `chops`
 
 **3 · Картка слова — toilets**
-> **toilets** — «туалети». У торговому центрі їх кілька, тому й слово стоїть на кілька.
+<!-- interaction_id: en:lesson-02:session-18:i03; family: listen_choose -->
+Ціль: `toilets`
 
-**4 · Послухайте і виберіть — toilets**
-🔊 *toilets* → **toilets** · tickets · tablets
-- tickets — *«Квитки». Голосний на початку інший: у `toilets` він тягнеться, у `tickets` короткий.*
-- tablets — *«Пігулки». Голосний на початку інший: у `toilets` він тягнеться, у `tablets` відкритий.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-18:i04; family: listen_choose -->
+Ціль: `toilets`
+Варіанти: `toilets` · `tickets` · `tablets`
 
 **5 · Вставте слово — ви питаєте про магазини**
-Where ___ the shops? → **are** · is · am
-- is — *`is` працює з одним предметом. Магазинів кілька.*
-- am — *Це слово тільки про себе: `I am`. У питанні про місце йому нема чого робити.*
+<!-- interaction_id: en:lesson-02:session-18:i05; family: context_gap_grammar -->
+Ціль: `Where ___ the shops?`
+Варіанти: `are` · `is` · `am`
 
-**6 · Вставте слово — вокзал у місті один**
-Where ___ the station? → **is** · are · am
-- are — *`are` потрібне, коли місць кілька. Вокзал один.*
-- am — *`am` іде поряд з `I`, а не з місцем.*
+**6 · Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста**
+<!-- interaction_id: en:lesson-02:session-18:i06; family: phrase_builder -->
+Ціль: `Where is the station?`
 
-**7 · Складіть фразу — «де туалети?»**
-Плитки: `the` `toilets` `where` `are` `is` → **Where are the toilets?**
+**7 · Послухайте запис біля стійки інформації та виберіть почуту фразу**
+<!-- interaction_id: en:lesson-02:session-18:i07; family: listen_choose -->
+Ціль: `Where are the toilets?`
+Варіанти: `Where are the toilets?` · `Where is the station?` · `Where are the shops?`
 
 **8 · Картка слова — crowded**
-> **crowded** — «людно». Людей стільки, що йдеш боком і весь час когось обходиш.
+<!-- interaction_id: en:lesson-02:session-18:i08; family: listen_choose -->
+Ціль: `crowded`
 
 **9 · Вставте слово — у суботу тут не проштовхнутися**
-The shops are ___ . → **crowded** · lost · cold
-- lost — *«Заблукав» — це про людину, яка не знає дороги, а не про магазини.*
-- cold — *«Холодно» — про погоду або про річ. Ідеться про натовп, а не про температуру.*
+<!-- interaction_id: en:lesson-02:session-18:i09; family: context_gap_grammar -->
+Ціль: `The shops are ___ .`
+Варіанти: `crowded` · `lost` · `cold`
 
 **10 · Послухайте і складіть — «де магазини?»**
-🔊 *Where are the shops?* Плитки: `where` `the` `are` `shops` `is` → **Where are the shops?**
+<!-- interaction_id: en:lesson-02:session-18:i10; family: listen_build_dictation -->
+Ціль: `Where are the shops?`
 
-**11 · З'єднайте пари (Speed Match, 4 пари)**
-shops — магазини · toilets — туалети · crowded — людно · station — вокзал
+**11 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-18:i11; family: speed_match -->
+Пари: `shops` — магазини · `toilets` — туалети · `crowded` — людно · `station` — вокзал
+Ціль: `shops · toilets · crowded · station`
 
 **12 · Розрізніть слова — яке з двох про «вулицю»?**
-🔊 Два слова поспіль.
-*street · treat* → **street**
-- treat — *«Частування». Перший звук інший: `street` починається зі «с», `treat` — з «т».*
+<!-- interaction_id: en:lesson-02:session-18:i12; family: sound_contrast -->
+Варіанти: `street` · `treat`
 
 **13 · Вставте слово — ви втретє виходите до того самого входу**
-I am ___ . → **lost** · crowded · cold
-- crowded — *«Людно» — про місце, де багато народу, а не про людину.*
-- cold — *«Холодно» — про температуру. Ви не мерзнете, ви не розумієте, куди йти.*
+<!-- interaction_id: en:lesson-02:session-18:i13; family: context_gap_grammar -->
+Ціль: `I am ___ .`
+Варіанти: `lost` · `crowded` · `cold`
 
-**14 · Складіть фразу — «де вокзал?», вокзал один**
-Плитки: `station` `where` `the` `is` `are` → **Where is the station?**
+**14 · Послухайте й складіть — біля карти ви питаєте про єдиний вокзал**
+<!-- interaction_id: en:lesson-02:session-18:i14; family: listen_build_dictation -->
+Ціль: `Where is the station?`
 
 **15 · Вставте слово — ви біля входу і шукаєте поверх з вітринами**
-Where are the ___ ? → **shops** · station · street
-- station — *«Вокзал» — його немає в торговому центрі, і він один: тоді було б `Where is`.*
-- street — *«Вулиця» — вона надворі, а ви шукаєте всередині. І вулиця одна.*
+<!-- interaction_id: en:lesson-02:session-18:i15; family: context_gap_grammar -->
+Ціль: `Where are the ___ ?`
+Варіанти: `shops` · `station` · `street`
 
-**16 · Скажіть уголос — ви питаєте охоронця про туалети**
-🎙 **Where are the toilets?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-18:i16; family: scripted_repeat_compare -->
+Ціль: `Where are the toilets?`
 
-**17 · Фінал сцени — скажіть, що заблукали, і запитайте про крамниці й туалети**
-🎙 Ви заблукали в центрі й підходите до охоронця. Скажіть, що заблукали, запитайте про магазини і про туалети.
-**I am lost. Where are the shops? Where are the toilets?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-18:i17:s01; family: scripted_repeat_compare -->
+Ціль: `I am lost.`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-18:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Where are the shops?`
+
+**19 · Послухайте й складіть — біля входу до торгового центру ви питаєте про туалети**
+<!-- interaction_id: en:lesson-02:session-18:i17:s03; family: listen_build_dictation -->
+Ціль: `Where are the toilets?`
 
 ## Для сборщика
 
@@ -136,7 +150,7 @@ new_words:
 shops — магазини — «магазини». Один — `shop`, додали `-s` — стало кілька.
 toilets — туалети — «туалети». У торговому центрі їх кілька, тому й слово стоїть на кілька.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=context_gap_grammar, 7=phrase_builder, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_choose, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=sound_contrast, 13=context_gap_grammar, 14=listen_build_dictation, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation
 
 ---
 
@@ -166,23 +180,4 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 | shops | завдання 1 | 2 (слух), 5 (вставка), 10 (складання) |
 | toilets | завдання 3 | 4 (слух), 7 (складання) |
 | crowded | завдання 8 | 9 (вставка) |
-| station | із сесії 17 | 6 (вставка `is`) |
-
----
-
-🟡 **Стоит улучшить**
-- Заголовок «Для сборщика» оставлен по-русски намеренно: это служебная метка, одинаковая во всех локалях. Скажите, если сборщику нужен локализованный заголовок.
-
-🧩 **Скрытые связи**
-- Строки `new_words` и `modes` совпадают с мастером байт в байт — сборщик соберёт украинскую сессию тем же кодом.
-- Слова `street`, `station`, `crowded`, `lost` тянутся из сессии 17: если её украинская версия называет их иначе, доска пар (задание 11) разойдётся с прошлым уроком.
-
----
-
-- Закрыл все четыре замечания судьи.
-- Заголовок практики теперь на украинском.
-- «Ви не знаходите» заменил на живое «Ви ніяк не знайдете».
-- «Вам терміново треба» заменил на «Вам терміново потрібно».
-- Объяснение про `the` переписал от украинского языка: артикля у нас нет вообще, поэтому рука его пропускает.
-- Заодно убрал заимствованное «шорти» из опоры на звук «ш» — теперь «шапка».
-- Английские слова, ошибки-ловушки, номера и порядок заданий не трогал.
+| station | із заняття 17 | 6 (вставка `is`) |

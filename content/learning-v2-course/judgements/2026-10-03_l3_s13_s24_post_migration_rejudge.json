@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "learning_v2_post_migration_rejudge_v1",
+  "reviewer": "/root/s13_s24_post_migration_judges",
+  "reviewedAt": "2026-10-03T21:30:00Z",
+  "scope": "Fresh source-only re-judgement of L3S13–L3S24 after the atomic one-phrase migration. Reviewed final.ru.md, final.uk.md, and practice.atomic.json for every session. No audio file was listened to.",
+  "method": {
+    "manualWalkthrough": "For each session: all three intros, every learner interaction and its answer contract, RU/UK feedback, scene continuity, and final independent action.",
+    "deterministicEvidence": [
+      "verify_all_single_phrase_sources.mjs --build-all: PASS; 166 sessions, 3229 interactions, 0 preservation violations.",
+      "progression_quality_gate.mjs --lesson en/l03 --from s13: PASS.",
+      "For S13–S24, singlePhraseReleaseIssues, compositeGapReleaseIssues, dictationAudioTargetIssues, answerContractIssues, feedbackLocaleParityIssues and wordCardDefinitionIssues returned 0 issues in both locales.",
+      "Each pair has identical atomic interaction ids and English targets; counts are 17/17 except split one-phrase S16 and S24, which are 19/19."
+    ],
+    "limitations": [
+      "This is a text and source-contract review, not an acoustic review of generated audio.",
+      "A fresh receipt cannot repair stale per-session receipts; it records the exact current source hashes below."
+    ]
+  },
+  "sessions": [
+    {
+      "session": "s13",
+      "sha256": {"ru": "7f587549d63f436b3937784a7837142a1c4957d0276e8a076c579b2efe17b52a", "uk": "ec528e3b946e9fd6d341a1486a8e1322062f92f48e953fc8c587c2f694231794"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["All 17 tasks have one target; the three intros explicitly prepare an earring, necklace, and bracelet before the final `It is a bracelet.`."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Cards and listening recognition precede phrase building; the a/an contrast stays tied to the initial sound of the spoken noun."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The gift-counter scene gives each question a concrete referent; distractors test article choice or sentence order rather than arbitrary guessing."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["RU and UK instructions give a scene, a requested utterance, and a concise correction; no composite learner interaction remains."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The counter scene stays concrete and the explanation makes the sound distinction memorable without putting a joke in place of the rule.","voice":{"score":4,"quote":"Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными."},"humor":{"present":true,"onTopic":true,"quotes":["Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["RU/UK atomic ids, targets, options, and feedback contracts align; Ukrainian wording localizes the same jewellery scene."]}
+      }
+    },
+    {
+      "session": "s14",
+      "sha256": {"ru": "02226e1152235c0b59f9a4f482e95469558926ca70bec272d874fdafd96c68b5", "uk": "954e7c43de685c18e5c3f5f8a7677f22d8e83daf23cd3b877997e764b9c24d23"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The café scene, one portion of salad, and one whole egg make the article choices unambiguous; every final target was introduced above it."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It transfers the previous a/an operation to new food words, then retrieves clock and hour without changing the grammar operation."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The food and time references are ordinary café situations; feedback distinguishes article, missing subject, and word order clearly."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Each choice and listening task asks for one phrase only, with no hidden multi-answer instruction."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The voice is warm and economical; the small joke supports the learner’s urge to translate word by word and immediately returns to a usable sentence.","voice":{"score":4,"quote":"Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно."},"humor":{"present":true,"onTopic":true,"quotes":["Слово почти как русское, но перевести всю фразу слово в слово было бы слишком удобно."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK retains the same one-portion/one-egg scope and each English answer is identical to RU."]}
+      }
+    },
+    {
+      "session": "s15",
+      "sha256": {"ru": "0ced95f08977f03ed03613425111b92340f3b9444a4efd338c60704c18398ec4", "uk": "9d441f88436ff81a6c0ea580cc770db88b5b38121eedbb451d50b91f60cdca12"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Candle, cushion and plant are defined before their independent use; the final asks for the already modelled `Is it a plant?` operation."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The session varies lexical context while maintaining a single a/an decision, and returns armchair/oven as supported contrast cases."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Shopping choices, a closed bag, and a rendezvous near a product are coherent; no option conflicts with its stated scene."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The text is direct for a beginner and atomic tasks preserve one target phrase per action."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The lightly comic line gives the article decision a human rhythm while the lesson remains specific to the shop scene and beginner goal.","voice":{"score":4,"quote":"Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется."},"humor":{"present":true,"onTopic":true,"quotes":["Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["The Ukrainian scene and corrections carry the same a/an contrast without adding a separate operation."]}
+      }
+    },
+    {
+      "session": "s16",
+      "sha256": {"ru": "9ca7284b663adf51ff5a2f408613c0446a0be841d10e60808be89296a71696f8", "uk": "f824a5b40ea672259b353f3762e83c745a5a62953beebef4543cbf4632581597"},
+      "interactionCounts": {"ru": 19, "uk": 19},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The invoice assertion, question, and negation are introduced one by one. The former three-part final is correctly split into three individual one-phrase interactions."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["This is an appropriate checkpoint: invoice is new, while uniform, plant, and hour provide familiar retrieval supports for the article rule."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Basket, cashier, invoice and warranty sheet form a coherent checkout scenario; negative feedback addresses the exact a/an or word-order error."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Nineteen interactions arise from explicit atomic splitting, not from a hidden three-sentence prompt; every displayed target is one phrase."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The checkpoint does not become bureaucratic: it keeps a clear checkout scene and uses a small observation about first letters to explain listening for sound.","voice":{"score":4,"quote":"Угадать по первой букве иногда хочется, но здесь правило честное: слышим гласный — ставим `an`."},"humor":{"present":true,"onTopic":true,"quotes":["Угадать по первой букве иногда хочется, но здесь правило честное: слышим гласный — ставим `an`."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK preserves all 19 atomic targets and accurately localizes invoice as a payment document."]}
+      }
+    },
+    {
+      "session": "s17",
+      "sha256": {"ru": "a8f243e56058c2baaad0a470f92dcbf9ce2a851d5915e2d7dce3de8fd3824060", "uk": "867b541d7675e7f9a7e90804a9eabb6db5446bea8bdea2108ac6f99283f3a09b"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Tickets, coins and cards are each presented with count and a concrete event reference before their first production task."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It introduces regular plural -s in a gradual assertion/question/negation cycle without leaking later spelling exceptions."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The event, delivery, cash change and access-card details are mutually consistent; incorrect variants diagnose number or auxiliary agreement."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Instructions specify what is present and what the learner must say; no ambiguous short answer or composite audio prompt was found."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The line about a whole bundle and one added letter provides a compact human image that reinforces the exact plural operation.","voice":{"score":4,"quote":"Билетов может быть целая пачка, а дописать нужно всего одну букву."},"humor":{"present":true,"onTopic":true,"quotes":["Билетов может быть целая пачка, а дописать нужно всего одну букву."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["Ukrainian retains the event scenario, plural scope and all English forms exactly."]}
+      }
+    },
+    {
+      "session": "s18",
+      "sha256": {"ru": "5c1f9756be462972c1623f31467f3f89cc900dcf208a4f6ba11d205d78d665dd", "uk": "021cdc3c01663664c23a76e7ddfb35c01b0051af7830a84b725e2de14a386449"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The four new objects each receive a card and recognition before `buses`, `dishes`, `watches` or `boxes` is demanded."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The operation is deliberately limited to the shown spellings with `es`; it does not overclaim a universal rule."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Moving boxes, kitchen items, tickets and a bus stop coexist naturally in the move-in scene; choices target spelling, number, or sentence start."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The explanation makes the one-watch/several-watches distinction explicit, avoiding Russian singular/plural ambiguity."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The wording uses an everyday joke about how Russian word forms hide quantity, then immediately grounds the learner in the useful English contrast.","voice":{"score":4,"quote":"По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь."},"humor":{"present":true,"onTopic":true,"quotes":["По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK correctly avoids importing the Russian ambiguity around `часы` and retains the same English learner targets."]}
+      }
+    },
+    {
+      "session": "s19",
+      "sha256": {"ru": "7930eb31142cb696b2ca01da1c0158e7fe6e7e3400e8cefa96a701d968c87976", "uk": "5d520a4acc91a70664ec5751f172762d20fb612ac41598c4506f814e87b3daf6"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Each new `-y` word is defined, contrasted with its plural, and used in a concrete story, puzzle or battery package before the final."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It limits the spelling operation to y after a consonant in the named words and keeps familiar plural sentence frames."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Countries refer to France and Germany printed on a puzzle, not to a box; scenes and feedback preserve the intended referent."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["All tasks remain atomic and the learner can see which meaning, count, and spelling choice is being tested."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The narrative of a story makes the spelling repair memorable without becoming a detached gag or an invented grammar rule.","voice":{"score":4,"quote":"Хочется просто дописать `s` и перейти к развязке, но перед `y` стоит согласная буква `r` — здесь нужна замена."},"humor":{"present":true,"onTopic":true,"quotes":["Хочется просто дописать `s` и перейти к развязке, но перед `y` стоит согласная буква `r` — здесь нужна замена."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK mirrors the same y-to-ies scope and bilingual meaning contracts without added grammar."]}
+      }
+    },
+    {
+      "session": "s20",
+      "sha256": {"ru": "786b9bf4e22ce0907b5e7931012e3060a364481d9f6331515e62b3155920ccb3", "uk": "6718f3d18d4fd7c48a2a59c37578bdc65d010dd38641b0887874c5dc03755b0e"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The delivery scene tells the learner why listening comes before seeing; each singular/plural auditory contrast is introduced before a listening task."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It focuses on the audible extra syllable in only the listed forms and does not claim that every plural sounds alike."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Glasses, brushes and benches are plausible items in a home-and-terrace delivery; corrections explain the relevant sound or grammar difference."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Listening prompts do not reveal the answer, and each interaction has one target phrase or word."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The humour comes directly from the listening strategy and makes the instruction to hear the final syllable easier to remember.","voice":{"score":4,"quote":"Узнать начало и перестать слушать — удобно, пока не выяснится, что стаканов несколько."},"humor":{"present":true,"onTopic":true,"quotes":["Узнать начало и перестать слушать — удобно, пока не выяснится, что стаканов несколько."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["Ukrainian maintains the one-/two-syllable listening contrast and matching English task targets."]}
+      }
+    },
+    {
+      "session": "s21",
+      "sha256": {"ru": "7079a9e3c26ae6dccab6e8133b23b8a95c6d6b546994e8ed7d4061451136f980", "uk": "0b45e01b5c083469a19e18b20ed123dfa7e420a450e0553e384ae5818e8ee443"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The delivery note establishes count before each towel, curtain and pillow answer; final production relies on forms introduced in the intros."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It explicitly changes both the frame and noun when moving from one item to several, which addresses the intended learner error."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The packing list, boxes and bedroom items give sensible reasons for checking one versus several objects."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The Russian and Ukrainian prompts are precise about count and do not make `a` distractors look correct by context."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"A brief joke about carrying `a` along by habit is exactly the mistake this session prevents and does not distract from the rule.","voice":{"score":4,"quote":"Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка."},"humor":{"present":true,"onTopic":true,"quotes":["Окончание добавили, а `a` прихватили на всякий случай? Получится ошибка."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK represents the one/many distinction naturally and has no extra English target or answer route."]}
+      }
+    },
+    {
+      "session": "s22",
+      "sha256": {"ru": "c14552dc7c979553b971a8a6b834d942d4e9b73500555aea8dc8f094e47c2fac", "uk": "3d0060fb585ba69c536b278bcdf282f5cad44d44e481ff83878413e36aa57228"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Bottle, bowl and plate have visible meanings and count in the kitchen-box scene before the learner must name or question them."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["It reinforces familiar regular plural forms in a new kitchen scene, preserving the known `They are` / `Are they` frames."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Nested bowls, water bottles, plates and a kitchen delivery are coherent; all distractors diagnose one-versus-many or auxiliary choice."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Instructions plainly tell the learner the object count, and feedback remains short and actionable in both locales."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The tiny delivery joke is grounded in the exact plural decision and lets the domestic scene feel lived in without replacing explanation.","voice":{"score":4,"quote":"Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали."},"humor":{"present":true,"onTopic":true,"quotes":["Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK has the same target inventory and count logic, with no language contamination or unreviewed meaning addition."]}
+      }
+    },
+    {
+      "session": "s23",
+      "sha256": {"ru": "b7001f0ffad309e6a26c00b1bb4fd36e8b74f2cde24cc04e1e0f7e1b2a231451", "uk": "27cd305d857d5f518c398aa7f0a50f61c975fd68c72e0b42e388f8ff746de565"},
+      "interactionCounts": {"ru": 17, "uk": 17},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Spoon, fork and cup are taught with count and full frames before independent practice; `bowl` is clearly marked as a returning word."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The session retrieves one/many forms across assertion, question and negation without inventing a new plural or article rule."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Unpacking kitchenware into a drawer and cupboard gives each item a clear place; no answer conflicts with the described count."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The learner sees one action at a time; the former hidden multi-phrase risk is absent from the atomic source and final task list."]},
+        "judge_taste": {"verdict":"PASS","pairwise":"equal","pairwiseReason":"The humour is actually present in the current learner-facing RU feedback, not merely in the obsolete receipt, and it directly distinguishes the sound contrast.","voice":{"score":4,"quote":"`soon` — «скоро». Это когда принесут ложку, а не как её назвать."},"humor":{"present":true,"onTopic":true,"quotes":["`soon` — «скоро». Это когда принесут ложку, а не как её назвать."],"misfires":[]},"ai_text_or_nonsense":[],"blockers":[],"mustFix":[]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["The quoted `soon` feedback and all practice targets have a matching Ukrainian localization; no target changes between locales."]}
+      }
+    },
+    {
+      "session": "s24",
+      "sha256": {"ru": "de7bc21b78a810c2d9f22ce2281c7c7fa6e21d6dce6bde9af1969af89df04f1e", "uk": "8836b8e62b2b93ae6ab2ddd820d4b0adddb615339aacfa90336f3db70dd9cfab"},
+      "interactionCounts": {"ru": 19, "uk": 19},
+      "roles": {
+        "judge_learner": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The envelope singular, plural question and plural negation are separately introduced, then the source keeps all 19 learner interactions atomic."]},
+        "judge_pedagogy": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["This retrieval session coherently uses known dish, story and glass forms while making envelope the only new word."]},
+        "judge_nonsense": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["Delivery, signature, envelopes, stories and kitchen items are all plausible references; answer feedback targets a real contrast."]},
+        "judge_reader": {"verdict":"PASS","blockers":[],"mustFix":[],"evidence":["The split final produces separate one-phrase learner actions rather than a compound prompt, and RU/UK instructions are comprehensible."]},
+        "judge_taste": {"verdict":"REVISE","pairwise":"worse","pairwiseReason":"The technical lesson is clear, but the current learner-facing RU source has no actual humorous or playful line. The stale receipt’s envelope quotation is descriptive, not humour, so it cannot satisfy the humour gate.","voice":{"score":3,"quote":"Перед подписью курьер показывает ещё два конверта, но это не конверты с билетами."},"humor":{"present":false,"onTopic":false,"quotes":[],"misfires":[]},"ai_text_or_nonsense":[],"blockers":["No current learner-facing RU humour citation exists for this session."],"mustFix":["Add one short, natural, on-topic humorous or playful line to the learner-facing RU source and provide its faithful UK localization; then rejudge taste against new hashes."]},
+        "locale_uk": {"verdict":"PASS","structureIdentical":true,"englishTargetsIdentical":true,"languagePurity":true,"meaningAdditions":[],"blockers":[],"mustFix":[],"evidence":["UK preserves all 19 atomic ids and English targets; this PASS does not override the separate RU taste REVISE."]}
+      }
+    }
+  ],
+  "summary": {
+    "sessionsReviewed": 12,
+    "roleVerdicts": {"PASS": 71, "REVISE": 1},
+    "releaseBlockingSessions": ["s24"],
+    "releaseBlockers": ["L3S24 judge_taste is REVISE because its current learner-facing RU source contains no genuine, quotable humour despite the mandatory voice/humour contract."],
+    "allOtherRolesPass": true
+  }
+}

@@ -1,7 +1,7 @@
-# Английский · Урок 2 · Сессия 19 — «It is near»
+# Английский · Урок 2 · Занятие 19 — «It is near»
 
-**Сцена сессии.** Вы спросили, где что находится, — и вам отвечают. Ответ короткий, рукой машут в сторону: рядом, за углом, вон в том конце улицы.
-**Операция:** ответ `It is` + слово о месте
+**Сцена занятия.** Вы спросили, где что находится, — и вам отвечают. Ответ короткий, рукой машут в сторону: рядом, за углом, вон в том конце улицы.
+**Как сказать:** ответ `It is` + слово о месте
 **Новые слова:** near, behind
 **Возвращаются:** street, station, shops, crowded
 
@@ -55,77 +55,95 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — near**
-> **near** — «рядом, близко». Идти пару минут, можно и не спрашивать дважды.
+<!-- interaction_id: en:lesson-02:session-19:i01; family: listen_choose -->
+Цель: `near`
 
-**2 · Послушайте и выберите — near**
-🔊 *near* → **near** · nine · name
-- nine — *Это «девять» — счёт, а не место. Гласная другая: в `nine` слышно «ай».*
-- name — *Это «имя». Гласная другая: в `name` слышно «эй».*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-19:i02; family: listen_choose -->
+Цель: `near`
+Варианты: `near` · `nine` · `name`
 
 **3 · Карточка слова — behind**
-> **behind** — «за, позади». То, что искали, стоит с другой стороны.
+<!-- interaction_id: en:lesson-02:session-19:i03; family: listen_choose -->
+Цель: `behind`
 
-**4 · Послушайте и выберите — behind**
-🔊 *behind* → **behind** · find · bell
-- find — *Это «найти». Первый звук другой: `find` начинается с «ф», `behind` — с «б».*
-- bell — *Это «звонок». Короче: в `behind` два слога, в `bell` один.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-19:i04; family: listen_choose -->
+Цель: `behind`
+Варианты: `behind` · `find` · `bell`
 
 **5 · Соберите фразу — «это рядом»**
-Плитки: `is` `near` `It` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-19:i05; family: phrase_builder -->
+Цель: `It is near.`
 
 **6 · Вставьте слово — прохожий показывает: идти пару минут**
-It is ___ . → **near** · behind · crowded
-- behind — *Это «позади», про сторону, а не про расстояние.*
-- crowded — *Это «людно», про толпу. Про «пару минут» — `near`.*
+<!-- interaction_id: en:lesson-02:session-19:i06; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `near` · `behind` · `crowded`
 
 **7 · Соберите фразу — «это за вокзалом»**
-Плитки: `the` `behind` `station` `It` `is` → **It is behind the station.**
+<!-- interaction_id: en:lesson-02:session-19:i07; family: phrase_builder -->
+Цель: `It is behind the station.`
 
 **8 · Вставьте слово — туалеты с другой стороны вокзала**
-It is ___ the station. → **behind** · near · street
-- near — *«Рядом с вокзалом» — это не «с другой стороны».*
-- street — *`street` — «улица», это место, а не сторона. После пропуска уже стоит `the station`, второе место туда не встанет.*
+<!-- interaction_id: en:lesson-02:session-19:i08; family: context_gap_grammar -->
+Цель: `It is ___ the station.`
+Варианты: `behind` · `near` · `street`
 
 **9 · Различите звуки — какое из двух про «рядом»?**
-🔊 Два слова подряд.
-*near · far* → **near**
-- far — *Это «далеко» — противоположное по смыслу. И звучит иначе: `far` начинается с «ф».*
+<!-- interaction_id: en:lesson-02:session-19:i09; family: sound_contrast -->
+Варианты: `near` · `far`
 
 **10 · Вставьте слово — где искать кафе? Магазины совсем близко**
-It is near the ___ . → **shops** · near · behind
-- near — *`near` уже стоит перед пропуском. Тут нужно место.*
-- behind — *Это «позади», а не место. После `the` называют, что именно.*
+<!-- interaction_id: en:lesson-02:session-19:i10; family: context_gap_grammar -->
+Цель: `It is near the ___ .`
+Варианты: `shops` · `near` · `behind`
 
 **11 · Послушайте и соберите — «это рядом с улицей»**
-🔊 *It is near the street.* Плитки: `street` `is` `near` `It` `the` `at` → **It is near the street.**
+<!-- interaction_id: en:lesson-02:session-19:i11; family: listen_build_dictation -->
+Цель: `It is near the street.`
 
-**12 · Соедините пары (Speed Match, 4 пары)**
-near — рядом · behind — позади · station — вокзал · street — улица
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-19:i12; family: speed_match -->
+Пары: `near` — рядом · `behind` — позади · `station` — вокзал · `street` — улица
+Цель: `near · behind · station · street`
 
 **13 · Вставьте слово — на улице не протолкнуться**
-The street is ___ . → **crowded** · near · behind
-- near — *«Улица рядом» — про расстояние, а не про толпу.*
-- behind — *«Улица позади» — про сторону. Про толпу — `crowded`.*
+<!-- interaction_id: en:lesson-02:session-19:i13; family: context_gap_grammar -->
+Цель: `The street is ___ .`
+Варианты: `crowded` · `near` · `behind`
 
 **14 · Собери фразу — вы спрашиваете, а не отвечаете: «это рядом?»**
-Плитки: `it` `Is` `near` `the` → **Is it near?**
-*(плитка `the` лишняя: после `near` тут ничего не называют)*
+<!-- interaction_id: en:lesson-02:session-19:i14; family: phrase_builder -->
+Цель: `Is it near?`
 
-**15 · Соберите фразу — «это за магазинами»**
-Плитки: `behind` `It` `shops` `is` `the` `are` → **It is behind the shops.**
-*(плитка `are` лишняя: речь про одно место — `it is`)*
+**15 · Послушайте и соберите — у входа вы объясняете, что объект за магазинами**
+<!-- interaction_id: en:lesson-02:session-19:i15; family: listen_build_dictation -->
+Цель: `It is behind the shops.`
 
-**16 · Скажите вслух — вам объяснили дорогу, повторите за прохожим**
-🎙 **It is near. It is behind the shops.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i16:s01; family: scripted_repeat_compare -->
+Цель: `It is near.`
 
-**17 · Финал сцены — три ответа подряд: где это находится**
-🎙 «Где вокзал? Где туалеты? Где магазины?» Ответьте: рядом; за вокзалом; рядом с улицей.
-**It is near. It is behind the station. It is near the street.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i16:s02; family: scripted_repeat_compare -->
+Цель: `It is behind the shops.`
 
----
+**18 · Послушайте ответ на вопрос «Где вокзал?» и выберите услышанную фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s01; family: listen_choose -->
+Цель: `It is near.`
+Варианты: `It is near.` · `Is it near?` · `It is behind the shops.`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s02; family: scripted_repeat_compare -->
+Цель: `It is behind the station.`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s03; family: scripted_repeat_compare -->
+Цель: `It is near the street.`
 
 ## Для сборщика
 
@@ -133,7 +151,7 @@ new_words:
 near — рядом, близко — «рядом, близко». Идти пару минут, можно и не спрашивать дважды.
 behind — за, позади — «за, позади». То, что искали, стоит с другой стороны.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_choose, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -162,7 +180,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | near | да, задание 1 | да — 2, 5, 6, 9, 10, 11 |
 | behind | да, задание 3 | да — 4, 7, 8 |
-| station | из прошлых сессий (l02_s17) | да — 7, 8 |
-| street | из прошлых сессий (l02_s17) | да — 8 (ловушка), 11 |
+| station | из прошлых занятий (l02_s17) | да — 7, 8 |
+| street | из прошлых занятий (l02_s17) | да — 8 (ловушка), 11 |
 
 ---

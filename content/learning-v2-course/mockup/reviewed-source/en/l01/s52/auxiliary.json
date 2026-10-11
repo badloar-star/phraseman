@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro1:r2": {
+          "ru": "Между «неделей» и словом о ней нужно `is`.",
+          "uk": "Між «тижнем» і словом про нього потрібне `is`."
+        },
+        "en:lesson-01:session-52:intro1:r3": {
+          "ru": "`are` идёт к «многим». Неделя одна — `is`.",
+          "uk": "`are` іде до «багатьох». Тиждень один — `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro2:r2": {
+          "ru": "Ночей несколько, поэтому нужна форма `are`.",
+          "uk": "Ночей кілька, тому потрібна форма `are`."
+        },
+        "en:lesson-01:session-52:intro2:r3": {
+          "ru": "Ночь одна, поэтому нужна форма `is`.",
+          "uk": "Ніч одна, тому потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro3:r2": {
+          "ru": "Получилось «я — утро». Про себя нужно слово о состоянии: `tired`.",
+          "uk": "Вийшло «я — ранок». Про себе потрібне слово про стан: `tired`."
+        },
+        "en:lesson-01:session-52:intro3:r3": {
+          "ru": "Не хватает `am`. С `I` всегда нужно `am`, даже если в конце есть `in the morning`.",
+          "uk": "Бракує `am`. З `I` завжди потрібне `am`, навіть якщо наприкінці є `in the morning`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3c0a513decf8565a762b3178a434dd999d550579a33323c293caa6d731198f87"
+}

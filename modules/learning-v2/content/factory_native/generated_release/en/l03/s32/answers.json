@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-32:i01",
-    "correctText": "",
+    "correctText": "postcard",
+    "correctResponseId": "en:lesson-03:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i03",
+    "correctText": "magnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i05",
+    "correctText": "keyring",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-32:i02",
     "correctText": "postcard",
-    "correctResponseId": "en:lesson-03:session-32:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-32:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,18 +25,13 @@
     "correctResponseId": "en:lesson-03:session-32:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-32:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-32:i06",
+    "correctText": "keyring",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-32:i06",
-    "correctText": "keyring",
-    "correctResponseId": "en:lesson-03:session-32:i06:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-32:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-32:i07:p1=postcard\nen:lesson-03:session-32:i07:p2=magnet\nen:lesson-03:session-32:i07:p3=keyring\nen:lesson-03:session-32:i07:p4=key",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": "en:lesson-03:session-32:i16:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-32:i17",
-    "correctText": "That is a postcard. Is this a magnet? That keyring, please.",
+    "interactionId": "en:lesson-03:session-32:i17:s01",
+    "correctText": "That is a postcard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17:s02",
+    "correctText": "Is this a magnet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17:s03",
+    "correctText": "That keyring, please.",
     "correctResponseId": null
   }
 ]

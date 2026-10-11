@@ -591,11 +591,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -818,26 +818,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-41:i16",
+      "interactionId": "en:lesson-01:session-41:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — два ответа подряд у стойки",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-41:i16:audio"
+        "en:lesson-01:session-41:i16:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — два ответа подряд у стойки",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-41:i16:audio",
-          "transcript": "I'm late. I'm sorry. You're fine."
+          "audioTargetId": "en:lesson-01:session-41:i16:s01:audio",
+          "transcript": "I'm late."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I'm late. I'm sorry. You're fine.",
+        "targetPhrase": "I'm late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i16:s02",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i16:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i16:s02:audio",
+          "transcript": "I'm sorry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm sorry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i16:s03",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i16:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i16:s03:audio",
+          "transcript": "You're fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You're fine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -851,11 +917,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 16,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "081a789f770615aa42a0874c02f9da4452f5428437dea575d5a558ec28f31a32"
+  "learnerFingerprint": "13ef446c5f03600a20c49851020069aeb1f2bc898751888a63907d75432a5e71"
 }

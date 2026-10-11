@@ -38,8 +38,14 @@ export const LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2: Readonly<
     }),
   "bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c":
     Object.freeze({
+      status: "SUPERSEDED" as const,
+      reason:
+        "SUPERSEDED_BY_OWNER_APPROVED_LESSON_4_CONTRACT_2026_10_04" as const,
+    }),
+  "f776cf32cd9a46df28ce54ff548c29abd1b9722a76e243fedc30cf5109a418b0":
+    Object.freeze({
       status: "APPROVED" as const,
       reason:
-        "OWNER_APPROVAL_CONTINUE_FULL_B1_COURSE_2026_09_02" as const,
+        "OWNER_EXPLICIT_CONTINUE_AND_WRITE_LESSON_4_2026_10_04" as const,
     }),
 });

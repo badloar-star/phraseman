@@ -1,67 +1,27 @@
 {
-  "sourceSha256": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
-  "localeSha256": {
-    "uk": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7"
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "542df42f09ba4053b0cec1bc98a3383becdaa672ed8d18bdaa0a49a3cf474dec",
+  "exactRuSha256": "542df42f09ba4053b0cec1bc98a3383becdaa672ed8d18bdaa0a49a3cf474dec",
+  "exactUkSha256": "5f528e09aa4d6100804f8dcefe0e07cce61939a881468e6a24620c49469c4f90",
+  "practiceAtomicSha256": "06aa840c0260e99e3293dbf4957f961e8a0bfead15c557f162553f912c2e9512",
+  "localeHashes": {
+    "ru": "542df42f09ba4053b0cec1bc98a3383becdaa672ed8d18bdaa0a49a3cf474dec",
+    "uk": "5f528e09aa4d6100804f8dcefe0e07cce61939a881468e6a24620c49469c4f90"
   },
   "locales": {
     "uk": {
       "verdict": "PASS",
-      "sourceSha256": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
-      "localeSha256": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7",
-      "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
-      "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
-      "priorFullReview": {
-        "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
-        "localeSha256": {
-          "uk": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340"
-        },
-        "locales": {
-          "uk": {
-            "session": "en/l03/s03",
-            "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
-            "localeSha256": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340",
-            "reviewScope": "full previously reviewed source plus all round-two deltas",
-            "verdict": "PASS",
-            "checks": {
-              "mirrorAnchorsCorrected": true,
-              "mirrorAnchor": "українського «и»",
-              "mirrorReferentNowUnambiguous": true,
-              "currentReferentText": "ви стоїте поруч із дзеркалом",
-              "rugDefinitionNaturalInBothOccurrences": true,
-              "currentRugDefinition": "Його кладуть на підлогу, щоб накрити її частину.",
-              "remainingNativeLanguageDefects": false
-            },
-            "scope": "current local course source and local preview only; app-export compatibility excluded",
-            "actualReceipt": "judgements/2026-09-08_l03_native_vowel_correction.json",
-            "appExportCompatibility": "INCOMPATIBLE_UNRESOLVED",
-            "actualAudioReviewed": false,
-            "visualReviewPerformed": false
-          }
-        }
-      },
-      "deltaReview": {
-        "session": "s03",
-        "baseHashes": {
-          "ru": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
-          "uk": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340"
-        },
-        "currentHashes": {
-          "ru": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
-          "uk": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7"
-        },
-        "diffReviewed": "Two bug/rug and mug/rug feedback lines in each locale",
-        "rolesCovered": {
-          "reader": "PASS",
-          "pedagogy": "PASS",
-          "nonsense": "PASS",
-          "taste": "PASS",
-          "native": "PASS"
-        },
-        "englishAnswersInvariant": true,
-        "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 121 backtick spans identical in order",
-        "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
-        "retainPriorFullTaste": true
-      }
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
     }
-  }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
 }

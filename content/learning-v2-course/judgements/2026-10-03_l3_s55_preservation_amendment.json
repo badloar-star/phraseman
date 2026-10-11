@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "learning_v2_preservation_amendment_judgement_v1",
+  "verdict": "PASS",
+  "issuedAt": "2026-10-03T21:03:49.448Z",
+  "scope": "Exact S55 preservation-ledger amendment only; no learner source, pipeline, receipt, status, release or mockup mutation.",
+  "courseSessionId": "en:lesson-03:session-55",
+  "rationale": "Fresh owner-required reauthoring of an unreleased S55 draft after PREAUTHORING PASS to satisfy current one-phrase, word-first-three-distinct-contacts and family-choreography contracts (2026-10-03).",
+  "oldDraftUnreleasedEvidence": {
+    "beforeSourceAuditContainsS55": true,
+    "beforeSourceAuditSessionCount": 167,
+    "oldSnapshotInteractionsByLocale": {
+      "ru": 17,
+      "uk": 17
+    },
+    "oldSnapshotSha256": "fcb85b54acf8ea4013ec2005ea15652cc3ca230cb4521a7288a3ff8efbe62317",
+    "canonicalReleaseDirectoryExists": false,
+    "canonicalMockupSha256": "16c686fcb2c7f96387ed7d7ddbae9355a99f98932ed3e83f5b37b13a3fdb64f8",
+    "canonicalMockupSessionCount": 166,
+    "canonicalMockupLastSession": "en/l03/s54",
+    "canonicalMockupContainsS55": false,
+    "conclusion": "The before-source audit captured an old S55 draft, while canonical release and mockup stopped at S54; S55 was unreleased when reauthored."
+  },
+  "exactHashes": {
+    "beforeSourceAuditFileSha256": "448de3555c2e7956aa4f0cf783c3052ff5e1b45bed4751c9ef2bd9c6b143ff29",
+    "beforeAuditSha256FieldBefore": "1f16e49e5f65c8770ee2d58736739ca809f5fe9632b768010692505039fdde54",
+    "beforeAuditSha256FieldAfter": "1f16e49e5f65c8770ee2d58736739ca809f5fe9632b768010692505039fdde54",
+    "preauthoringSha256Before": "6f76a65bd6e9b41439a990780be4d44f5256475bcbf931ef0ff29ef0e5c184bd",
+    "preauthoringSha256After": "6f76a65bd6e9b41439a990780be4d44f5256475bcbf931ef0ff29ef0e5c184bd",
+    "sourceSha256Before": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+    "sourceSha256After": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+    "ledgerSha256Before": "24a60e16d53f09eef65e4ae315ae7b38aab176d83ee56e0e5e0e81b91fe3641e",
+    "ledgerSha256After": "95635352245f6a2536b255db7f2a4463ae3b04cadf1ee7f14af973acf909e6d9"
+  },
+  "deterministicPreconditions": {
+    "preauthoringVerdict": "PASS",
+    "ruAndUkExpectedRowsIdentical": true,
+    "ruAndUkSubstitutionIssuesIdentical": true,
+    "nonSubstitutionIssues": 0,
+    "existingS55AmendmentsBefore": 0
+  },
+  "mutation": {
+    "replacedS55LedgerRows": 17,
+    "rowCountBefore": 3246,
+    "rowCountAfter": 3246,
+    "totalAmendmentsBefore": 97,
+    "amendmentsAdded": 16,
+    "totalAmendmentsAfter": 113,
+    "beforeAuditSha256Preserved": true,
+    "substitutions": [
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i02",
+        "segmentIndex": 1,
+        "from": "shape",
+        "to": "material"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i03",
+        "segmentIndex": 1,
+        "from": "material",
+        "to": "pattern"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i04",
+        "segmentIndex": 1,
+        "from": "material",
+        "to": "shape"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i05",
+        "segmentIndex": 1,
+        "from": "The shape is round.",
+        "to": "material"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i06",
+        "segmentIndex": 1,
+        "from": "This material is soft.",
+        "to": "pattern"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i07",
+        "segmentIndex": 1,
+        "from": "pattern",
+        "to": "shape"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i08",
+        "segmentIndex": 1,
+        "from": "pattern",
+        "to": "material"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i09",
+        "segmentIndex": 1,
+        "from": "en:lesson-03:session-55:i09:p1=shape\nen:lesson-03:session-55:i09:p2=material\nen:lesson-03:session-55:i09:p3=pattern\nen:lesson-03:session-55:i09:p4=round\nen:lesson-03:session-55:i09:p5=soft\nen:lesson-03:session-55:i09:p6=striped\nen:lesson-03:session-55:i09:p7=here",
+        "to": "pattern"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i10",
+        "segmentIndex": 1,
+        "from": "These patterns are striped.",
+        "to": "en:lesson-03:session-55:i10:p1=shape\nen:lesson-03:session-55:i10:p2=material\nen:lesson-03:session-55:i10:p3=pattern\nen:lesson-03:session-55:i10:p4=round"
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i11",
+        "segmentIndex": 1,
+        "from": "That shape is square.",
+        "to": "The shape is round."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i12",
+        "segmentIndex": 1,
+        "from": "___ shape is round.",
+        "to": "This material is ___."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i13",
+        "segmentIndex": 1,
+        "from": "Those patterns are bright.",
+        "to": "That pattern is striped."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i14",
+        "segmentIndex": 1,
+        "from": "These materials are soft.",
+        "to": "The shape is square."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i15",
+        "segmentIndex": 1,
+        "from": "It is a pattern.",
+        "to": "These patterns are pale."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i16",
+        "segmentIndex": 1,
+        "from": "This shape is square.",
+        "to": "___ materials are soft."
+      },
+      {
+        "oldInteractionId": "en:lesson-03:session-55:i17",
+        "segmentIndex": 1,
+        "from": "Those materials are soft.",
+        "to": "Those patterns are striped."
+      }
+    ]
+  },
+  "validation": {
+    "focusedPreservationLedgerIssues": {
+      "command": "inline Node check using preservationLedgerIssues for ru and uk",
+      "status": "PASS",
+      "rows": 17,
+      "amendments": 16,
+      "issuesByLocale": {
+        "ru": [],
+        "uk": []
+      }
+    },
+    "singlePhraseReleaseTests": {
+      "command": "node --test content/learning-v2-course/pipeline/single_phrase_release.test.mjs",
+      "status": "PASS",
+      "tests": 24,
+      "passed": 24,
+      "failed": 0
+    },
+    "globalVerifier": {
+      "command": "node content/learning-v2-course/pipeline/verify_all_single_phrase_sources.mjs --build-all",
+      "status": "PASS",
+      "sessions": 167,
+      "interactions": 3246,
+      "preservationRows": 3246,
+      "preservationViolations": 0,
+      "privateBuilds": 167,
+      "outputRoot": "C:/appsprojects/phraseman/.codex-tmp/single-phrase-all-build-YAtuCO"
+    },
+    "gitDiffCheck": {
+      "command": "git diff --check -- content/learning-v2-course/migration/single-phrase-2026-10-03/preservation-ledger.json content/learning-v2-course/judgements/2026-10-03_l3_s55_preservation_amendment.json",
+      "status": "NOT_EVIDENCE",
+      "finding": "Both scoped files were untracked, so the zero exit code was vacuous for content isolation. It is retained only as command history and is not used to support PASS."
+    }
+  },
+  "releaseAuthority": false,
+  "residualUncertainty": [
+    "No independent byte-for-byte copy of the pre-write ledger was preserved. The deterministic reconstruction serializes to the exact SHA-256 recorded from the actual ledger immediately before mutation; this is reproducible corroboration, not an independently preserved artifact.",
+    "This judgement validates only preservation provenance for S55. It does not replace the required fresh content judges, locale judge, release receipts or release decision."
+  ],
+  "forensicReconciliation": {
+    "performedAt": "2026-10-03T21:16:47.652Z",
+    "actualMutationCommand": "node C:/Temp/s55_preservation_amend.mjs",
+    "reproductionCommand": "node C:/Temp/s55_forensic_reconcile.mjs",
+    "verdict": "PASS",
+    "courseSessionId": "en:lesson-03:session-55",
+    "algorithm": [
+      "Read current ledger and immutable before-source-audit S55 snapshot.",
+      "For RU and UK independently call projectSinglePhraseRelease(old interactions, old answers, locale).",
+      "Call buildPreservationLedger(old interactions, projected interactions, projected answers); require zero issues and byte-identical RU/UK rows.",
+      "Replace the 17 current contiguous S55 rows with those 17 reconstructed old projected rows.",
+      "Remove exactly the 16 amendments whose courseSessionId is S55.",
+      "Serialize with JSON.stringify(value, null, 2) plus one LF, matching the original generator format."
+    ],
+    "sourceCounts": {
+      "currentRows": 3246,
+      "currentS55Rows": 17,
+      "reconstructedRows": 3246,
+      "currentAmendments": 113,
+      "removedS55Amendments": 16,
+      "reconstructedPriorAmendments": 97
+    },
+    "reconstructedPreState": {
+      "recordedBeforeSha256": "24a60e16d53f09eef65e4ae315ae7b38aab176d83ee56e0e5e0e81b91fe3641e",
+      "reconstructedByteSha256": "24a60e16d53f09eef65e4ae315ae7b38aab176d83ee56e0e5e0e81b91fe3641e",
+      "byteHashMatchesRecorded": true,
+      "stableSemanticSha256": "0ca148c5a774aa5f64aecfbf1ee470f67ff41c8d4a74f85c5488fff6b53f81af",
+      "artifactStatus": "No independent byte-for-byte pre-write copy was preserved. The exact LF serialization is reproducibly reconstructed and matches the SHA-256 recorded from the actual file immediately before mutation."
+    },
+    "scopeIsolation": {
+      "nonS55Rows": {
+        "countCurrent": 3229,
+        "countReconstructedPre": 3229,
+        "currentStableSha256": "3140b9622568df0e99e4a136fc9e291c6d79083a616b5a9ecc0363bd86204854",
+        "reconstructedPreStableSha256": "3140b9622568df0e99e4a136fc9e291c6d79083a616b5a9ecc0363bd86204854",
+        "equal": true
+      },
+      "prior97Amendments": {
+        "countCurrent": 97,
+        "countReconstructedPre": 97,
+        "currentStableSha256": "ef99b79abbd4638f9f1644c85a06d2ece05ceb1eedadc25db19e8c9cd8351ad6",
+        "reconstructedPreStableSha256": "ef99b79abbd4638f9f1644c85a06d2ece05ceb1eedadc25db19e8c9cd8351ad6",
+        "equal": true
+      },
+      "topLevelFields": {
+        "current": {
+          "schemaVersion": "learning_v2_single_phrase_preservation_ledger_v1",
+          "beforeAuditSha256": "1f16e49e5f65c8770ee2d58736739ca809f5fe9632b768010692505039fdde54",
+          "sessionCount": 167,
+          "rowCount": 3246
+        },
+        "reconstructedPre": {
+          "schemaVersion": "learning_v2_single_phrase_preservation_ledger_v1",
+          "beforeAuditSha256": "1f16e49e5f65c8770ee2d58736739ca809f5fe9632b768010692505039fdde54",
+          "sessionCount": 167,
+          "rowCount": 3246
+        },
+        "currentStableSha256": "27db223d6d6abdf6f4bb20a862cf17cdd0eb59bd84e33438ea9fbd85c980ba70",
+        "reconstructedPreStableSha256": "27db223d6d6abdf6f4bb20a862cf17cdd0eb59bd84e33438ea9fbd85c980ba70",
+        "equal": true
+      }
+    },
+    "scopeIsolationVerdict": "PASS"
+  }
+}

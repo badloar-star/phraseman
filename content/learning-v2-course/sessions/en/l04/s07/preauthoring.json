@@ -1,0 +1,455 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-10-04T21:57:11.656Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "session": "en/l04/s07",
+  "curriculumRow": "Урок 4, сессия 7 · тип: извлечение · грамматика: выбрать singular или plural с меньшей опорой и вернуть building, shop, street · новые слова: playground · момент сцены: во дворе жилого комплекса отмечаем площадку и соседние здания",
+  "cambridgeEvidence": "Cambridge grammar summary was checked for the already-established There is/There are number choice. S07 is retrieval: singular playground takes There is; plural neighbouring buildings take There are. The new word is presented before its first phrase.",
+  "newWords": [
+    "playground"
+  ],
+  "retrievalWords": [
+    "building",
+    "shop",
+    "street",
+    "clinic",
+    "library",
+    "bakery",
+    "supermarket"
+  ],
+  "scene": "A resident stands in the courtyard of one apartment complex, points out its playground, and then identifies neighbouring buildings, shop, and street. The opening must name the courtyard, visible playground, and immediate need to describe what is there.",
+  "priorLearnerFacingScan": {
+    "through": "en/l04/s06",
+    "evidence": "The guardian read the current RU and UK learner-facing finals for every L4 session S01 through S06 and their current hashes. The range establishes There is/There are, places in the neighbourhood, and the in-building clinic transfer; it contains no learner-facing introduction of playground. The S07 courtyard is distinct from the S01-S06 apartment, street, garden, bank, supermarket, and floor-directory scenes.",
+    "conflicts": [],
+    "hashes": {
+      "en/l04/s01/final.ru.md": "cb115832c38e013b927620c7a3fd553e6568017bb58214a0829ba714decedd53",
+      "en/l04/s01/final.uk.md": "34f6972a26f12c121fcd46f504f934eabf8ad01624d8fe1dac1dd22d94b08788",
+      "en/l04/s02/final.ru.md": "da01688c59d2b7e8985285fce982c239c63d6d710fae6281d77cc5735b2cfb9e",
+      "en/l04/s02/final.uk.md": "e3767cbaf9b739d74b238cc15aea61e87e768ea8251292a20ccdc389f46f7be8",
+      "en/l04/s03/final.ru.md": "1c9a9d9dae858edc97160c2dc59a7c31f666f3dfe50fefcaf0e7253cbef7f4f5",
+      "en/l04/s03/final.uk.md": "e941ed8e8cf5cde07c8431bc5bce4920c7989bcd9df32aedfc6be06ed2798598",
+      "en/l04/s04/final.ru.md": "ef44d1d0f228767a3bb542c4bf1104d0646b82b412f4a4fab377d48b26d608fe",
+      "en/l04/s04/final.uk.md": "08cc2cd3ec7b93336cf3cedf83975f35556aa795ebe2ed06da2ac327addbd498",
+      "en/l04/s05/final.ru.md": "7bd81ee66d08d1b9a38f9181f6943f9b5ee37fd57d4c4a9c60d14579b2e8edee",
+      "en/l04/s05/final.uk.md": "9c6dbe521b9cd83b93487de026bccba07c80618bdc614f7079a24efb62d1c121",
+      "en/l04/s06/final.ru.md": "22dd2917e6faf4454bc6eeb709ea70d909baac44343802da75efa8bee4b0b8db",
+      "en/l04/s06/final.uk.md": "3b07015d87141166b2d71f6d6f1ca83a63e97805a8ce41357ffc16c7dff2dd64"
+    }
+  },
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "playground — площадка / дитячий майданчик in the complex courtyard",
+      "practiceLink": "Supported listening recognises playground before a phrase is built."
+    },
+    {
+      "intro": 2,
+      "target": "There is a playground in the courtyard.",
+      "practiceLink": "Guided choice contrasts is/are only against the singular playground."
+    },
+    {
+      "intro": 3,
+      "target": "There are buildings near the playground.",
+      "practiceLink": "Guided retrieval selects plural There are for neighbouring buildings."
+    }
+  ],
+  "independentFinal": {
+    "target": "There is a playground near the buildings.",
+    "independence": "The final requires an unprompted singular/plural decision with the S07 word and prior retrieval words; no word card, translation choice, or preceding model sentence supplies the answer."
+  },
+  "mustFix": [],
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "626bae2957b356128d0fcf3b1c3a4e7251d963b6b5a144753dc497fdcf38e133",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "ФАБРИКА КУРСА PHRASEMAN\n=======================\n\nЕсли владелец с",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда\n\n> ⛔ СНАЧАЛА ПРОЧИТАЙ 0",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "# Project Rules\n\n## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "# СТАРТ В2\n\n## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТС",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие маке",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии\n\n> **O",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT\r\n\r\n> Обязательный маршрут перед исс",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56\n\n**Статус:*",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier\n\n**Статус:** `REBUILD V",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger\n\n**Status:** draf",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt\r\n\r\n**Дата:*",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2\r\n\r\n> Владелец, 2026-08-27: «составь",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2\n\n> **Приоритет владельца",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась\n",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+      "quote": "# Конституция курса Learning V2\r\n\n> ## ⛔ АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАД",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике\r\n\r\n> **АКТ",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "626bae2957b356128d0fcf3b1c3a4e7251d963b6b5a144753dc497fdcf38e133",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ\n\n> **Правило владель",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении\n\n> Записа",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния\n\n> **ЗОЛОТО",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»\n\n> **ЗОЛОТОЙ ЭТАЛО",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+      "quote": "ольшом здании |\n| 7 | извлечение | выбрать singular или plural с",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03\n\n> Калибровочная з",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03\n\n**Сессия:** `exem",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03\n\n**Сессия:** `exem",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03\n\n**Сессия:** `sess",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03\n\n",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными\r\n\r",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора\r\n\r\n",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию\n",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    },
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": {
+      "sha256": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d",
+      "quote": "# Вердикт владельца: одна английская фраза на одно взаимодействи",
+      "applied": "Read against S07 authoring constraints: exact curriculum, learner safety, scene continuity, and evidence binding."
+    }
+  },
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "первой сессией\n\nРовно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/К"
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "писании текста.\nПосле compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпр"
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": " решай сам.\r\n4. Правило = текст в промпте + машинная проверка. Одного текста "
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-0"
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "бного шага.\n\n1. Каждая нумерованная learner-facing сессия вводит 1–5 дейс"
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 7 | извлечение | выбрать singular или plural с меньшей опорой и вернуть building, shop, street | playground | во дворе жилого комплекса отмечаем площадку и соседние здания |"
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": ",\n> кто угодно. Перед написанием сессии откройте этот файл, найд"
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ssion`, который сравнивает текущие байты со всеми предыдущими\n   сессиями уро"
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "g сессия вводит 1–5 действительно новых\n  полезных lexical sense"
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "exical senses и новую конкретную ситуацию. Grammar-контракт не\n "
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ый review set с измеримым learning delta.\n- Пустой `new_words`, "
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "ЧИ НА СТРАНИЦЕ: слово → перевод → фраза\n\n**Источник:** [Teaching"
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ннулируются.\n9. Все три интро используют новые слова и конкретную си"
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": "ение владельца: начало каждой сессии должно ощущаться как начало\nнормального уро"
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "кущей сессии.\n  Для каждой из трёх страниц он отдельно доказывае"
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": "У каждой сессии одна сквозная ситуация (владелец, 03.09: «это\r\n "
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "у» отложены |\n| Заданий 12–20, ориентир 17 | |\n| Возвращаемое сл"
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": " family.\n\n## 2. Единственные шесть активных режимов\n\n| Family | Кан"
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "йские.\r\n\r\n## 7. Строгий контракт дистракторов\r\n\r\nДистрактор — не"
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ованный вариант передаёт только смысл услышанной\n   фразы. Нельз"
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ывает уловку\r\n\r\nFeedback обязан назвать выбранный вариант и объяснить:\r\n\r"
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ную ловушку;\r\n- поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI "
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "рованные слова; будущие слова не показываются.\nСохранение исполь"
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": " ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри тр"
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "м материале;\r\n- все восемь локалей самостоятельны и не объясняютс"
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "evidence": "Applied to the bounded S07 packet with the exact playground retrieval delta, one courtyard scene, and author-facing constraints.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "`. Сессия `N+1` не может собираться, показываться как готовая или получать\r\nl"
+    }
+  ]
+}

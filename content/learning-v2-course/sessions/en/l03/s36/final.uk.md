@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 36 — «Один чи кілька — на слух»
+# Англійська · Урок 3 · Заняття 36 — «Один чи кілька — на слух»
 
-**Сцена сесії.** Ви з другом стоїте надворі біля вітрини магазину товарів для саду й прогулянок; за склом виставлено дерево в горщику, квіти та велосипеди. Динамік по черзі описує один товар або кілька, а ви на слух знаходите потрібне у вітрині.
+**Сцена заняття.** Ви з другом стоїте надворі біля вітрини магазину товарів для саду й прогулянок; за склом виставлено дерево в горщику, квіти та велосипеди. Динамік по черзі описує один товар або кілька, а ви на слух знаходите потрібне у вітрині.
 
-**Операція:** розрізняти `that is` і `those are`, однину та множину на слух
+**Як сказати:** розрізняти `that is` і `those are`, однину та множину на слух
 **Нові слова:** tree, flower, bicycle
 **Для повторення:** that, those, is, are, this, these, photo, frame
 
@@ -42,7 +42,7 @@
 
 `bicycle` — «велосипед», `bicycles` — «велосипеди». У вітрині стоїть один велосипед: `That is a bicycle.` — «Це велосипед». Для кількох прозвучить `Those are bicycles.` Слухайте всю пару `that is` або `those are`, а не полюйте лише на останній звук: початок уже підказує число.
 
-**У записі говорять про один велосипед за склом. Виберіть почуту фразу.**
+**У записі працівник магазину описує один велосипед за склом. Виберіть почуту фразу.**
 
 - ✅ **That is a bicycle.**
 - ❌ Those are bicycles. — *Тут три сигнали кількох предметів: `those`, `are` і `bicycles`. У записі названо один велосипед.*
@@ -50,85 +50,95 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — tree**
-> **tree** — «дерево». Висока рослина з твердим стовбуром і гілками.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-36:i01; family: listen_choose -->
+Ціль: `tree`
+Варіанти: `tree`
 
-**2 · Послухайте й виберіть — яке слово назвав оформлювач вітрини**
-🔊 *tree* → **tree** · three · free · train
-Значення варіантів: tree — дерево · three — три · free — безкоштовний · train — потяг
-- three — *На початку `three` язик опиняється між зубами для звука /θ/, а `tree` починається сполукою /tr/.*
-- free — *`free` починається зі звука /f/, а на початку `tree` чути /tr/.*
-- train — *Початок /tr/ схожий, але в `train` інший голосний і наприкінці чути /n/.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-36:i03; family: scripted_repeat_compare -->
+Ціль: `flower`
 
-**3 · Картка слова — flower**
-> **flower** — «квітка». Частина рослини з пелюстками.
+**3 · Вставте слово — на ціннику під предметом із педалями**
+<!-- interaction_id: en:lesson-03:session-36:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `bicycle` · `flower` · `tree`
 
-**4 · Послухайте й виберіть — яке слово назвав оформлювач вітрини**
-🔊 *flower* → **flower** · tower · power · shower
-Значення варіантів: flower — квітка · tower — вежа · power — сила · shower — душ
-- tower — *Кінець звучить схоже, але `tower` починається зі звука /t/, а `flower` — сполукою /fl/.*
-- power — *`power` починається зі звука /p/. На початку `flower` чути два приголосні /fl/.*
-- shower — *`shower` починається звуком /ʃ/, а `flower` — сполукою /fl/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-36:i02; family: scripted_repeat_compare -->
+Ціль: `tree`
 
-**5 · Картка слова — bicycle**
-> **bicycle** — «велосипед». Транспорт на двох колесах із педалями.
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-36:i04; family: listen_choose -->
+Ціль: `flower`
+Варіанти: `flower`
 
-**6 · Послухайте й виберіть — яке слово назвав оформлювач вітрини**
-🔊 *bicycle* → **bicycle** · cycle · tricycle · motorcycle
-Значення варіантів: bicycle — велосипед · cycle — цикл · tricycle — триколісний велосипед · motorcycle — мотоцикл
-- cycle — *У `cycle` немає першого складу `bi-`, який чути на початку `bicycle`.*
-- tricycle — *`tricycle` починається складом `tri-`, а цільове слово — складом `bi-`.*
-- motorcycle — *На початку `motorcycle` чути окреме слово `motor`, а `bicycle` починається звуками /baɪ-/ і має три склади.*
+**6 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-36:i06; family: scripted_repeat_compare -->
+Ціль: `bicycle`
 
 **7 · З'єднайте слова зі значеннями — сезонна вітрина**
-tree — дерево · flower — квітка · bicycle — велосипед · frame — рамка
+<!-- interaction_id: en:lesson-03:session-36:i07; family: speed_match -->
+Пари: `tree` — дерево · `flower` — квітка · `bicycle` — велосипед · `frame` — рамка
+Ціль: `tree · flower · bicycle · frame`
 
-**8 · Послухайте й виберіть точне значення фрази про дерево**
-🔊 *That is a tree.* → **Це дерево** · Це дерева · Це квітка · Це велосипед
-- Це дерева — *У записі чути `that is` і `a tree`: ідеться про одне дерево.*
-- Це квітка — *Число збігається, але названо `tree` — дерево, а не `flower`.*
-- Це велосипед — *Названо `tree`, а велосипед англійською — `bicycle`.*
+**8 · Складіть фразу — одне дерево за склом**
+<!-- interaction_id: en:lesson-03:session-36:i08; family: phrase_builder -->
+Ціль: `That is a tree.`
 
-**9 · Складіть опис — за склом кілька дерев**
-Плитки: `Those` `are` `trees` `That` `is` `a` `tree` → **Those are trees.**
+**9 · Послухайте та складіть фразу — одна рамка поруч із вітриною**
+<!-- interaction_id: en:lesson-03:session-36:i09; family: listen_build_dictation -->
+Ціль: `That is a frame.`
 
-**10 · Послухайте й виберіть точне значення фрази про квіти**
-🔊 *Those are flowers.* → **Це квіти** · Це квітка · Це дерева · Це велосипед
-- Це квітка — *У записі чути `those are` і `flowers`: говорять про кілька квітів.*
-- Це дерева — *Число збігається, але названо `flowers` — квіти, а не `trees`.*
-- Це велосипед — *У записі названо кілька квітів, а не один велосипед.*
+**10 · Промовте фразу — на плакаті одна фотографія**
+<!-- interaction_id: en:lesson-03:session-36:i10; family: scripted_repeat_compare -->
+Ціль: `That is a photo.`
 
 **11 · Послухайте й складіть — за склом одна квітка**
-🔊 *That is a flower.* Плитки: `That` `is` `a` `flower` `Those` `are` `flowers` → **That is a flower.**
+<!-- interaction_id: en:lesson-03:session-36:i11; family: listen_build_dictation -->
+Ціль: `That is a flower.`
 
-**12 · Послухайте й виберіть точне значення фрази про велосипед**
-🔊 *That is a bicycle.* → **Це велосипед** · Це велосипеди · Це дерево · Це квіти
-- Це велосипеди — *`That is` і `a bicycle` указують на один велосипед.*
-- Це дерево — *Число збігається, але в записі названо `bicycle`, а не `tree`.*
-- Це квіти — *У записі один предмет і слово `bicycle`; квітів було б кілька.*
+**12 · Послухайте й виберіть точне значення фрази**
+<!-- interaction_id: en:lesson-03:session-36:i12; family: listen_choose -->
+Ціль: `That is a bicycle.`
+Варіанти: `То велосипед.` · `То велосипеди.` · `То дерево.` · `То квіти.`
 
 **13 · Вставте форму — за склом кілька велосипедів**
-Those ___ bicycles. → **are** · is · am · be
-- is — *`is` стосується одного предмета. Після `those` потрібна форма `are`.*
-- am — *`am` працює з `I`, а тут ідеться про кілька велосипедів.*
-- be — *У цій фразі потрібна готова форма `are`, а не словникова форма `be`.*
+<!-- interaction_id: en:lesson-03:session-36:i13; family: context_gap_grammar -->
+Ціль: `Those ___ bicycles.`
+Варіанти: `are` · `is` · `am` · `be`
 
 **14 · Складіть опис — за склом кілька велосипедів**
-Плитки: `Those` `are` `bicycles` `That` `is` `a` `bicycle` → **Those are bicycles.**
+<!-- interaction_id: en:lesson-03:session-36:i14; family: phrase_builder -->
+Ціль: `Those are bicycles.`
 
-**15 · Скажіть уголос — у сусідній вітрині одна фотографія**
-🎙 **That is a photo.** — вимовте фразу, потім послухайте зразок і порівняйте.
+**15 · Промовте опис одного дерева за склом**
+<!-- interaction_id: en:lesson-03:session-36:i15; family: scripted_repeat_compare -->
+Ціль: `That is a tree.`
 
-**16 · Послухайте й складіть два описи**
-🔊 *That is a frame. Those are photos.* Плитки: `That` `is` `a` `frame` `Those` `are` `photos` `photo` → **That is a frame. Those are photos.**
+**16 · Послухайте та складіть одну фразу — кілька квітів**
+<!-- interaction_id: en:lesson-03:session-36:i16:s01; family: listen_build_dictation -->
+Ціль: `Those are flowers.`
 
-**17 · Фінал — опишіть другу вітрину**
-🎙 **Those are trees. That is a flower. Those are bicycles.** — у другій вітрині стоять кілька дерев, одна квітка та кілька велосипедів. Назвіть їх, потім послухайте зразок і порівняйте.
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-36:i16:s02; family: scripted_repeat_compare -->
+Ціль: `Those are photos.`
 
-## Для збирача
-new_words: tree — дерево — Висока рослина з твердим стовбуром і гілками.
-new_words: flower — квітка — Частина рослини з пелюстками.
-new_words: bicycle — велосипед — Транспорт на двох колесах із педалями.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_choose, 9=phrase_builder, 10=listen_choose, 11=listen_build_dictation, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare
+**18 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-36:i17:s01; family: phrase_builder -->
+Ціль: `Those are trees.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-36:i17:s02; family: scripted_repeat_compare -->
+Ціль: `That is a flower.`
+
+**20 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-36:i17:s03; family: listen_build_dictation -->
+Ціль: `Those are bicycles.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=phrase_builder, 9=listen_build_dictation, 10=scripted_repeat_compare, 11=listen_build_dictation, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation
+

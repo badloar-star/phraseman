@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "73f4eb745fa9d3148ac0daa12e8ffa6411ac40357785e52819970e4ead560303",
+  "localeSha256": "935cd39bf9ab2d547fb00b3a90747d3210d253ca0c0561e3d38d61193a15f3a7",
+  "comparedThrough": "en/l03/s13",
+  "newWords": [
+    "sandwich",
+    "salad",
+    "egg"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 14 | перенос | `a/an` вне квартиры, с обычными товарами | sandwich, salad, egg | делаем паузу в кафе |",
+  "curriculumEvidence": {
+    "grammar": "перенос `a/an` на названия еды: один сэндвич, одна порция салата, одно яйцо; выбор по первому звуку следующего названия",
+    "newWords": [
+      "sandwich",
+      "salad",
+      "egg"
+    ],
+    "situation": "После покупок вы с другом заходите в кафе. Вы называете еду, уточняете, что принесли, и смотрите, сколько времени осталось до следующей встречи."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

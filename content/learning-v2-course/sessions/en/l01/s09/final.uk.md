@@ -1,8 +1,9 @@
-# Англійська · Урок 1 · Сесія 9 — «You are»
+# Англійська · Урок 1 · Заняття 9 — «You are»
 
-**Сцена сесії.** Ранок, офісна кухня. Колега мовчки ставить перед вами склянку кави — ви навіть не просили. Тепер треба щось сказати їй — не про себе, а про людину навпроти.
+**Ситуація.** Уранці Міра приносить вам каву. Ви дякуєте їй і говорите
+короткі фрази про неї: що вона добра, має рацію або смішна.
 
-**Операція:** `You are + слово`
+**Що ви опануєте:** як сказати про співрозмовника з `You are + слово`
 **Нові слова:** welcome, kind, funny
 **Повертаються:** tired, sorry, sure, early, new, right
 
@@ -10,19 +11,19 @@
 
 ## Інтро 1
 
-### У «вас» своя скріпка
+### З you використовують are
 
 Про себе — `I am`. Про людину навпроти — `You are`.
 
-Скріпка змінилася, і на іншу людину `am` не натягнути: воно живе тільки з `I`.
+Після `you` ставлять `are`; `am` використовують лише після `I`.
 
-Слово після скріпки не змінюється. `tired` — «втомлений» і для вас, і для співрозмовника: `I am tired`, `You are tired`.
+Слово після `are` не змінюється. `tired` — «втомлений» і для вас, і для співрозмовника: `I am tired`, `You are tired`.
 
 **Колега втретє тре очі. Скажіть їй: «ти втомлена».**
 
 - ✅ **You are tired.**
-- ❌ You am tired. — *`am` — тільки про себе, воно нікуди не ходить від `I`. Для `you` є своя скріпка: `are`.*
-- ❌ You tired. — *Скріпка випала. Українською її й немає, а англійською без `are` фраза не тримається.*
+- ❌ You am tired. — *`am` використовують лише після `I`. Після `you` потрібне `are`.*
+- ❌ You tired. — *Після `you` потрібне `are`: `You are tired`.*
 
 ---
 
@@ -50,91 +51,124 @@
 
 `funny` — «смішний». `You are funny` — похвала жарту, а не діагноз.
 
-`kind` — «добрий». Обидва слова про людину навпроти, обидва з тією самою скріпкою `are`.
+`kind` — «добрий». Обидва слова про людину навпроти, обидва йдуть після `are`.
 
 Українською хочеться сказати двома словами: «ти смішна». Англійською без `are` фраза не стоїть.
 
 **Колега пожартувала, ви засміялися. Скажіть їй: «ти смішна».**
 
 - ✅ **You are funny.**
-- ❌ You funny. — *Скріпку з'їли. Українською «ти смішна» без дієслова, а англійською без `are` фраза розсипається.*
-- ❌ You is funny. — *Чужа скріпка. `is` не для `you` — тут тільки `are`.*
+- ❌ You funny. — *Після `you` потрібне `are`: `You are funny`.*
+- ❌ You is funny. — *`is` не використовують після `you`; тут потрібне `are`.*
 
 ---
 
-## Практика (перші завдання)
+## Практика (21 завдання, підтримка зменшується)
 
 **1 · Картка слова — welcome**
+<!-- interaction_id: en:lesson-01:session-09:i01; family: listen_choose -->
 > **welcome** — «будь ласка» у відповідь на «дякую». Дослівно «бажаний», але так ніхто не думає.
 
 **2 · Послухайте і виберіть — welcome**
+<!-- interaction_id: en:lesson-01:session-09:i02; family: listen_choose -->
 🔊 *welcome* → **welcome** · well · walk
+- ✅ welcome — *Правильно: `welcome` — відповідь на «дякую». Почули «уел-кам» — обирайте це слово.*
 - well — *«Добре». Занадто коротко: у `welcome` два склади, «уел-кам».*
 - walk — *«Йти пішки». Початок схожий, але далі нічого спільного.*
 
 **3 · Картка слова — kind**
+<!-- interaction_id: en:lesson-01:session-09:i03; family: listen_choose -->
 > **kind** — «добрий». Про людину, яка робить дрібниці, про які її не просили.
 
 **4 · Послухайте і виберіть — kind**
+<!-- interaction_id: en:lesson-01:session-09:i04; family: listen_choose -->
 🔊 *kind* → **kind** · kid · find
+- ✅ kind — *Правильно: `kind` — «добрий». У слові чути довге «ай»: «кайнд».*
 - kid — *Коротке «кід». У `kind` голосна тягнеться: «кайнд».*
 - find — *Майже те саме звучання, але починається з «ф». Слухайте перший звук.*
 
-**5 · Складіть фразу — колега поставила каву, ви вдячні**
+**5 · Складіть фразу — Міра поставила каву, ви вдячні**
+<!-- interaction_id: en:lesson-01:session-09:i05; family: phrase_builder -->
 Плитки: `are` `kind` `You` → **You are kind.**
 
-**6 · Вставте скріпку — вона позіхає над своєю чашкою**
+**6 · Вставте слово — Міра втомилася**
+<!-- interaction_id: en:lesson-01:session-09:i06; family: context_gap_grammar -->
 You ___ tired. → **are** · am · is
+- ✅ are — *Правильно: після `you` ставлять `are`: `You are tired`.*
 - am — *`am` живе тільки з `I`. Віддати його співрозмовнику не можна.*
 - is — *Не для `you`. Про людину навпроти — завжди `are`.*
 
 **7 · Картка слова — right**
+<!-- interaction_id: en:lesson-01:session-09:i07; family: listen_choose -->
 > **right** — «має рацію». Коли співрозмовник влучив у ціль і сперечатися нема про що.
 
 **8 · Послухайте і виберіть — right**
+<!-- interaction_id: en:lesson-01:session-09:i08; family: listen_choose -->
 🔊 *right* → **right** · red · read
+- ✅ right — *Правильно: `right` звучить як «райт» і означає «має рацію».*
 - red — *«Червоний». Одна коротка голосна, ніякого «ай».*
 - read — *«Читати». Тягнеться «і», а в `right` — «ай»: «райт».*
 
-**9 · Складіть фразу — ви сказали «дякую», вона відповідає**
+**9 · Складіть фразу — ви сказали Мірі «дякую», вона відповідає**
+<!-- interaction_id: en:lesson-01:session-09:i09; family: phrase_builder -->
 Плитки: `welcome` `are` `You` → **You are welcome.**
 
 **10 · Картка слова — funny**
+<!-- interaction_id: en:lesson-01:session-09:i10; family: listen_choose -->
 > **funny** — «смішний». Про жарт, а не про дивний запах у холодильнику.
 
-**11 · Вставте слово — вона розповіла анекдот, і ви все ще смієтеся**
+**11 · Вставте слово — Міра розповіла жарт, і ви все ще смієтеся**
+<!-- interaction_id: en:lesson-01:session-09:i11; family: context_gap_grammar -->
 You are ___ . → **funny** · sorry · early
+- ✅ funny — *Правильно: смішний жарт — `funny`, тому `You are funny`.*
 - sorry — *«Вибач». За вдалий жарт не вибачаються.*
 - early — *«Рано». Це про час, а не про сміх.*
 
 **12 · Послухайте і складіть — «ти маєш рацію»**
+<!-- interaction_id: en:lesson-01:session-09:i12; family: listen_build_dictation -->
 🔊 *You are right.* Плитки: `right` `are` `You` → **You are right.**
 
-**13 · Вставте слово — ви сперечалися про молоко, і вона вгадала**
-You are ___ . → **right** · kind · welcome
-- kind — *«Добра». Про вчинок, а не про те, що вона вгадала.*
-- welcome — *Це відповідь на «дякую». Тут вона не відповідає, а виявилася права.*
+**13 · Складіть фразу — Міра звірила список покупок і правильно назвала кількість молока**
+<!-- interaction_id: en:lesson-01:session-09:i13; family: phrase_builder -->
+Плитки: `You` `are` `right` `am` `not` → **You are right.**
+*(плитка `am` зайва: `am` ставлять лише після `I`, а тут підмет `You`)*
+*(плитка `not` зайва: ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне)*
 
-**14 · Вставте слово — світло в офісі ще не увімкнули, а кава вже зварена**
-You are ___ . → **early** · tired · funny
-- tired — *«Ти втомлена» — можливо, але кава зварена не тому.*
-- funny — *«Ти смішна» — не про те, що вона прийшла першою.*
+**14 · Скажіть уголос — Міра прийшла до відкриття офісу; скажіть їй, що вона прийшла рано**
+<!-- interaction_id: en:lesson-01:session-09:i14; family: scripted_repeat_compare -->
+🎙 Скажіть: **You are early.**
 
-**15 · З'єднайте пари (Speed Match, 4 пари)**
+**15 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-09:i15; family: speed_match -->
 welcome — нема за що · kind — добрий · right — має рацію · funny — смішний
 
-**16 · Пастка на уважність — вона питає, о котрій збори. Ви не знаєте**
+**16 · Складіть фразу — Міра питає, о котрій збори. Ви не знаєте**
+<!-- interaction_id: en:lesson-01:session-09:i16; family: phrase_builder -->
 Складіть: `am` `I` `not` `sure` `are` → **I am not sure.**
-*(плитка `are` зайва: вона лишилася від розмови про співрозмовницю)*
+*(плитка `are` зайва: після `I` використовують `am`, тому `are` у цій фразі не підходить)*
 
 **17 · Вставте слово — ви штовхнули її ліктем, кава хлюпнула на стіл**
+<!-- interaction_id: en:lesson-01:session-09:i17; family: context_gap_grammar -->
 I am ___ . → **sorry** · early · new
+- ✅ sorry — *Правильно: якщо ви випадково розлили каву, кажете `I am sorry` — «вибачте».*
 - early — *«Рано». Про час, а не про вибачення.*
 - new — *«Новенький» — правда, але за розлиту каву вибачаються словом `sorry`.*
 
-**18 · Фінал сцени — чотири репліки поспіль: ви перепрошуєте і хвалите її**
-🎙 Вона каже: «Перший день? Важко, мабуть». Ви: «Ти маєш рацію. Я новенький. Я не втомився. І — ти добра».
-**You are right. I am new. I am not tired. You are kind.**
+**18 · Скажіть уголос — Міра звірила час зустрічі за календарем, і ви підтверджуєте її розрахунок**
+<!-- interaction_id: en:lesson-01:session-09:i18:s01; family: scripted_repeat_compare -->
+🎙 Скажіть: **You are right.**
+
+**19 · Скажіть уголос — ви знайомитеся з Мірою в перший робочий день**
+<!-- interaction_id: en:lesson-01:session-09:i18:s02; family: scripted_repeat_compare -->
+🎙 Скажіть: **I am new.**
+
+**20 · Скажіть уголос — після перерви ви відповідаєте Мірі, що вже не втомилися**
+<!-- interaction_id: en:lesson-01:session-09:i18:s03; family: scripted_repeat_compare -->
+🎙 Скажіть: **I am not tired.**
+
+**21 · Скажіть уголос — Міра допомогла вам знайти потрібний кабінет, і ви кажете їй, що вона добра**
+<!-- interaction_id: en:lesson-01:session-09:i18:s04; family: scripted_repeat_compare -->
+🎙 Скажіть: **You are kind.**
 
 ---
 
@@ -146,4 +180,4 @@ kind — добрий — про людину, яка робить дрібни�
 right — має рацію — коли співрозмовник влучив у ціль і сперечатися нема про що.
 funny — смішний — про жарт, а не про дивний запах у холодильнику.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=listen_choose, 9=phrase_builder, 10=word_card, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=context_gap_grammar, 15=speed_match, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=listen_choose, 9=phrase_builder, 10=word_card, 11=context_gap_grammar, 12=listen_build_dictation, 13=phrase_builder, 14=scripted_repeat_compare, 15=speed_match, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare

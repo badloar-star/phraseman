@@ -1,0 +1,555 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-10-04T16:58:04.881Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "reviewer": "fresh independent L4 S03 preauthoring guardian — current prior-chain regeneration",
+  "reviewDate": "2026-10-04",
+  "sourceReport": "Fresh independent guardian regeneration for L4 S03 after the released L4 S01–S02 source/guardian chain changed. This receipt binds the current prior range and unchanged current S03 planned/source bytes; it does not author, release, project, or modify learner-facing content.",
+  "session": "en/l04/s03",
+  "curriculumRow": "Урок 4, сессия 3 · тип: новая · грамматика: сообщить о наличии нескольких мест: `There are + plural noun` · новые слова: bank · момент сцены: у районного стенда замечаем, что банков несколько",
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "ФАБРИКА КУРСА PHRASEMAN\n=======================\n\nЕсли владелец сказал тебе «посмотри папку Codex на рабочем столе» —\nоткрой файл НАЧНИ_ОТСЮДА.md и выполняй его. Больше он ничего об",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: «ХОЧУ ДОБАВИТЬ ЖЁСТКОЕ ТРЕБОВАНИЕ И ЕГО\n> НАДО ВПИСАТЬ 45 РАЗ КАПСОМ, ЧТОБЫ НЕ П",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда\n\n> ⛔ СНАЧАЛА ПРОЧИТАЙ 00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md — ОНО ВЫШЕ ВСЕГО ОСТАЛЬНОГО В ЭТОЙ ПАПКЕ.\n\nВладелец сказал тебе только «посмотри папку Codex",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "# Project Rules\n\n## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09-19)\n\nПри любом написании, продолжении, изменении, проверке или показе learner-f",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "# СТАРТ В2\n\n## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТСЯ КАК ПОНЯТНЫЙ ЖИВОЙ УРОК\n\n- В первых двух предложениях сцены ученик понимает место, участников или\n  предметы и бли",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие макетам\n\n**Статус:** `NORMATIVE`, обязательный owner contract.  \n**Решение владельца:** 2026-08-25.  \n**Область:** весь ",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии\n\n> **Owner override 2026-09-19.** Каждая сессия, включая checkpoint/voice/recall,\n> обязана вводить 1–5 новых lexical sens",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT\r\n\r\n> Обязательный маршрут перед исследованием, планированием, написанием,\r\n> изменением или проверкой любой Learning V2 session.\r\n\r\n## Статус\r\n\r\n### CU",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56\n\n**Статус:** дизайн утверждён владельцем 2026-08-28; реализация blueprint ещё не является owner-approved curriculum content.  \n",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier\n\n**Статус:** `REBUILD V2 / OWNER-APPROVED SCOPE`, prerequisite для полного English blueprint.\n**Target language:** English.  \n**Interface l",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger\n\n**Status:** draft research authority for the English 32 × 56 blueprint.  \n**Rule:** a source constrains decisions; it does not silen",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt\r\n\r\n**Дата:** 2026-08-30  \r\n**Статус:** `OWNER APPROVED`\n**Canonical fingerprint:**\r\n`bb53181a104f8476761eef548949b0f978a0fd2f0c",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2\r\n\r\n> Владелец, 2026-08-27: «составь напиши библию Learning V2, по правилам которой\r\n> будут строго писаться все описания и тексты интро. Проведи ресёрч",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2\n\n> **Приоритет владельца 2026-09-19:** каждая нумерованная сессия вводит новые\n> слова и новую ситуацию. Grammar-контракт остаётся прежним: ",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась\n\n> Владелец, 2026-08-27: «ты можешь себе добавить к документации как правильно\n> делать, заебали эти ошибки одно и т",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: «ХОЧУ ДОБАВИТЬ ЖЁСТКОЕ ТРЕБОВАНИЕ И ЕГО\n> НАДО ВПИСАТЬ 45 РАЗ КАПСОМ, ЧТОБЫ НЕ П",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+      "quote": "# Конституция курса Learning V2\r\n\n> ## ⛔ АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 03.10: ОДНО ВЗАИМОДЕЙСТВИЕ — ОДНА ФРАЗА ЦЕЛЕВОГО ЯЗЫКА\n> В одном задании разрешена ровно одна фраза целевого я",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике\r\n\r\n> **АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 08.09 — короткие ответы и живой юмор.**\r\n> В грамматическом выборе короткого ответа неверн",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ\n\n> **Правило владельца 13.09.2026, дословно:** «Каждая сессия, проверять все\n> мелочи и детали перед написанием сессии. Ориентироваться ",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении\n\n> Записано 2026-09-03, чтобы авторы сессий и будущий сборщик знали настоящий\n> формат. В макете (`mockup/`) карточка нарисов",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что\n> видит ученик (локаль ru). Все судьи конвейера сравнивают новые сес",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния\n\n> **ЗОЛОТОЙ ЭТАЛОН №2 — одобрен владельцем 2026-09-03** с правками (убраны\n> «вчера/сегодня», второй Speed Match без повторов ",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»\n\n> **ЗОЛОТОЙ ЭТАЛОН №3 — одобрен владельцем 2026-09-03 без правок.** Сессия\n> с **новой операцией** поверх известной: отрицание. Интро",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+      "quote": "# Английский · План курса 32 × 56\n\n> **Утверждён владельцем 2026-09-03** (арка-сериал, `not` в уроке 1,\n> перекройка урока 22). Основа — список 32 грамматических уроков от 30.08\n> ",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03\n\n> Калибровочная запись. Судьи конвейера читают эту папку целиком, чтобы\n> знать вкус владельца по фактам, а не по пересказу.\n\n**Сесси",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s02.ru.md` (сессия-повторение, версия до\nправок: интро с «вчера вы выучили», второй Speed Match с повто",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s03.ru.md` («I am not», новая операция\nповерх известной, интро свободной структуры).\n\n**Общий вердикт:*",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03\n\n**Сессия:** `sessions/en/l01/s04/final.ru.md` — первая сессия, написанная\nконвейером (автор Opus, 3 судьи, редактор ×2, повторный суд",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03\n\n**Что проверялось:** четыре сессии (эталоны 1–3 + сессия 4 конвейера) после\nсокращения интро вдвое и подсветки целев",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными\r\n\r\n2026-09-08. На скриншоте Learning V2, английский L2/S38, задание 2: аудио manager, варианты manager / intern / coll",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора\r\n\r\n2026-09-08. Скриншот: английский L2/S49, интро1 «Ответить о себе».\r\n\r\nДословно: «такое недопустмио! они все подхлдят",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию\n\n**Статус:** NORMATIVE  \n**Дата:** 2026-09-19  \n**Область:** каждая learner-facing сессия Learning V2, все локали.\n\n",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный смысл аудио в каждой сессии\n\nЭто решение имеет приоритет над прежними правилами checkpoint, voice, recall,\nr",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    },
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": {
+      "sha256": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d",
+      "quote": "# Вердикт владельца: одна английская фраза на одно взаимодействие\n\nДата: 2026-10-03.\n\nВладелец запретил задания, в которых ученик должен за один экран обработать,\nсобрать, вставить",
+      "applied": "Перечитано заново независимым guardian перед регенерацией L4 S03; применено к точной границе bank, операции There are + plural noun, районному стенду и всем текущим owner-запретам."
+    }
+  },
+  "priorLearnerFacingScan": {
+    "through": "en/l04/s02",
+    "evidence": "Детерминированно проверены 510 канонических learner-facing файлов: по одному final.ru.md, final.uk.md и practice.atomic.json для всех 168 сессий English L1–L3 плюс released L4 S01–S02. Case-insensitive lexical-boundary поиск bank дал 0 совпадений; manifest ниже привязан к текущим RU/UK байтам L4 S01–S02.",
+    "conflicts": [],
+    "hashes": {
+      "en/l04/s01/final.ru.md": "cb115832c38e013b927620c7a3fd553e6568017bb58214a0829ba714decedd53",
+      "en/l04/s01/final.uk.md": "34f6972a26f12c121fcd46f504f934eabf8ad01624d8fe1dac1dd22d94b08788",
+      "en/l04/s02/final.ru.md": "da01688c59d2b7e8985285fce982c239c63d6d710fae6281d77cc5735b2cfb9e",
+      "en/l04/s02/final.uk.md": "e3767cbaf9b739d74b238cc15aea61e87e768ea8251292a20ccdc389f46f7be8"
+    }
+  },
+  "newWords": [
+    "bank"
+  ],
+  "retrievalWords": [
+    "there",
+    "are",
+    "is",
+    "banks",
+    "near",
+    "behind",
+    "station",
+    "street",
+    "house",
+    "building",
+    "small",
+    "new"
+  ],
+  "cambridgeEvidence": "Use only the full affirmative plural existential pattern There are + plural noun. Plural banks takes no a/an. Singular There is may appear only as a diagnostic contrast already grounded in S01–S02. Do not introduce questions, short answers, negatives, some/any, contraction, new prepositions, have/has, Present Simple, past, future, comparison, or L5+ grammar.",
+  "scene": "At a neighbourhood information board, the learner notices several banks in the area and reports that the banks exist and where they are using only familiar near/behind location chunks.",
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "There are banks.",
+      "practiceLink": "Later assess the same plural operation with a distinct current-scene target: There are banks here."
+    },
+    {
+      "intro": 2,
+      "target": "There are banks near the station.",
+      "practiceLink": "Later assess a different normalized target in the same location frame: There are small banks near the station."
+    },
+    {
+      "intro": 3,
+      "target": "There are banks behind the building.",
+      "practiceLink": "Later assess the operation without copying the intro: There are small banks behind the building."
+    }
+  ],
+  "independentFinal": {
+    "target": "There are banks near the house.",
+    "independence": "The final stays in the neighbourhood-board scene and uses the approved plural affirmative operation, but its normalized target is absent from all intro targets and reserved practice links; it receives one independent interaction and one answer contract."
+  },
+  "proposedSequence": {
+    "intros": 3,
+    "practices": 17,
+    "totalInteractions": 20,
+    "onePhrasePerInteraction": true,
+    "wordFirstContactsPerNewSurface": 3,
+    "wordFirstFamilies": "exactly three distinct supported activity families for bank before any assessed phrase containing bank or banks",
+    "introPracticeExactRepeatForbidden": true,
+    "grammarDelta": "new full affirmative plural existential operation There are + plural noun"
+  },
+  "authoringConstraints": [
+    "Teach exactly one new operation: full affirmative plural There are + plural noun; bank is the only new lexical sense.",
+    "Use bank for the exactly three word-first contacts, then banks in plural phrases; no assessed phrase containing bank/banks may precede the completed three-family word-first cycle.",
+    "Every intro uses banks and the current neighbourhood-board scene, and no exact normalized intro target may recur in practice.",
+    "Every ordinary interaction contains exactly one target-language word or phrase and one learning target; bundled clauses, semicolon packages, multiple sentences and three-phrase screens are forbidden.",
+    "Listen_choose plays exactly one English word or phrase and shows atomic natural RU/UK meanings that match only the audio; prompt and choices must not reveal or embellish the answer.",
+    "sound_contrast is inactive and forbidden for every new S03 interaction; use only phrase_builder, listen_choose, listen_build_dictation, context_gap_grammar, speed_match, and scripted_repeat_compare.",
+    "Plural banks has no a/an. Diagnostic traps may contrast There is/There are or singular/plural only with one objectively correct answer and without teaching another operation.",
+    "Do not introduce questions, short answers, negatives, some/any, contractions, in/on/under/next to/between, new prepositions, have/has, Present Simple, past, future, comparisons, or L5+ material.",
+    "All six active mode-native families appear at least once, adjacent practice families differ, and payloads remain family-native; sound_contrast is not active authoring.",
+    "Choice tasks require one correct response, at least three visible diagnostic distractors where required, unique responseIds and choice-specific natural RU/UK feedback.",
+    "RU and UK preserve identical interaction order, facts, targets and correct answers while each reads naturally in its own language.",
+    "At least one relevant humorous move must arise from bank/banks or singular/plural and must clarify the material rather than decorate the scene."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "previousReleaseEvidence": {
+    "sessions": {
+      "en/l04/s01": {
+        "readiness": "READY",
+        "ruSourceSha256": "cb115832c38e013b927620c7a3fd553e6568017bb58214a0829ba714decedd53",
+        "ukSourceSha256": "34f6972a26f12c121fcd46f504f934eabf8ad01624d8fe1dac1dd22d94b08788",
+        "atomicSha256": "5e49391bb072b052200c28ae5c0b289d583365ae280963efac8853a37ad20349",
+        "preauthoringSha256": "9a5ff25eaf122b3ebfb4deb57f90be75fbcaa6a5cf46435f0f6bad440e05c43f"
+      },
+      "en/l04/s02": {
+        "readiness": "READY",
+        "ruSourceSha256": "da01688c59d2b7e8985285fce982c239c63d6d710fae6281d77cc5735b2cfb9e",
+        "ukSourceSha256": "e3767cbaf9b739d74b238cc15aea61e87e768ea8251292a20ccdc389f46f7be8",
+        "atomicSha256": "b142097a80e6602fced74449298b9d72677f0dad2f2985407f30b2511229ce96",
+        "preauthoringSha256": "5d34ca14e5ba2b26989e9a1b653c172da8b9e43632653fd0572ed1f25ef1077c",
+        "native": {
+          "intro": "76102f194ff83c2cf98aaae82a87a3b52cfd3593563633aa83937a865d9de553",
+          "learner": "3cb64640c5dbd36d822b58aed1649b19b7c1cb429299513433dbe2824998f6c1",
+          "learnerUk": "25a3b984917370d28f8dfbeb29a1c755bd2430b947c732e40c66571519ed4091",
+          "answers": "11cb4ff0d97954b5e1ca9a09156d4aaa091291779d5dedd00f7de7d48933c09f"
+        }
+      }
+    }
+  },
+  "registryEvidence": {
+    "operationId": "en.grammar.existence_place.there_is_are",
+    "courseOperationId": "en.existential.there_are.affirmative",
+    "prerequisite": "en.existential.there_is.affirmative",
+    "lexicalAssignmentOrdinal": 171,
+    "exactAssignment": "assignment(171, THERE_IS_ARE_OPERATION_ID, [sense(\"bank\", \"банк\", \"noun\")], [], [\"There is a bank.\", \"There are banks nearby.\"])",
+    "interpretation": "The broad registry contains both singular and plural examples, but S03 authoring is limited to the newly planned full affirmative plural There are + plural noun; singular is prior knowledge only."
+  },
+  "orbitBootstrap": {
+    "documents": [
+      "docs/v2/HANDOVER.md",
+      "docs/v2/README.md",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md"
+    ],
+    "hashes": {
+      "docs/v2/HANDOVER.md": "624081244929f015b241072cf8b8c4686500b42ffd7f427a0b6db999a64ec772",
+      "docs/v2/README.md": "f0b46706eb4a4e1d0d367c3685dedcc35036c08d9a978cbf8518e04f49be39ab",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md": "84f609784109dfa3b44436296ec325fc3cfb59a99426be7639ced936d8b0864e",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md": "c989c6a8f7a6a105c21296c172ec07a088af174c36f01e2ca97c9dfa0e5795e6",
+      "orbit-v2/SKILL.md": "dbe2e91484af87fa800cd0da662cb5a29da0c6a81a4ac78a06b07e1ca8059b46",
+      "orbit-v2/references/orbit-v2-master-plan.md": "b30c7790a112ff11d01154c9bb5601c6bf1e95c29177883a860b35400a7a51dc",
+      "orbit-v2/references/orbit-v2-model-routing.md": "b458fa2efefd05f4c7b97af86cb13a95ca6ea4f049de15da99c702e8132387f9",
+      "orbit-v2/references/orbit-v2-handover-contract.md": "f0798fdadf3a3cbe75a76659a0e2e53baa3e63cb50f60cdd957487e9aba4c6f3"
+    },
+    "applied": "ORBIT bootstrap перечитан и сверён с живым деревом. Этот artifact только регенерирует независимый S03 guardian на текущем released S01–S02 prior chain и текущих неизменённых S03 source bytes; он не разрешает изменение learner source, receipts/status, release, mockup, native, API, commit, push или deploy."
+  },
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "evidence": "Три Desktop Codex документа перечитаны целиком перед S03; guardian не использует память от S02 вместо нового чтения.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": " 2. Что прочитать перед первой сессией\n\nРовно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/КОНСТИТУЦИЯ.md` — единственный документ правил.\n2. `фабрика/exemp"
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "evidence": "AGENTS.md, СТАРТ В2 и ORBIT bootstrap перечитаны после выпуска S02; отдельная квитанция относится только к en/l04/s03.",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "ые owner-вердикты при написании текста.\nПосле compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпроходится заново. Пропуск любого пункта означает `HOLD`: новую се"
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "evidence": "ГЛАВНОЕ ТРЕБОВАНИЕ, Конституция и Метод работы сверены с текущими байтами и применены к plural existential без расширения scope.",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": "бъём работы — спроси, не решай сам.\r\n4. Правило = текст в промпте + машинная проверка. Одного текста мало.\r\n5. Проверь сторож на файле с дефектом И на эталоне. «Молч"
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "evidence": "Все три owner-approved эталона L01 перечитаны; S03 обязана дать ясный scene-first вход и слово до первой plural-фразы.",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "йский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что\n> видит ученик (локаль ru). Все "
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "evidence": "Все owner judgements перечитаны; S03 сохраняет одну фразу и одну цель на interaction, точный смысл аудио и связанное с практикой интро.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "h или повтор\nтого же учебного шага.\n\n1. Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n   полезных lexical senses. Пустой `new_words`, "
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "evidence": "Точная строка L4 S03 совпадает с планом: новая операция There are + plural noun, новое bank и несколько банков у районного стенда.",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 3 | новая | сообщить о наличии нескольких мест: `There are + plural noun` | bank | у районного стенда замечаем, что банков несколько |"
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "evidence": "Cambridge boundary подтверждает affirmative existential There are перед plural noun; неопределённое общее множественное идёт без a/an.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "модели** — Claude, Codex,\n> кто угодно. Перед написанием сессии откройте этот файл, найдите её грамматику\n> и пишите по формулировкам отсюда. Т"
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "evidence": "Детерминированно проверены 510 канонических RU, UK и atomic learner-facing файлов L1–L3 и released L4 S01–S02; lexical-boundary совпадений bank нет.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": " свежий\n   `judge_progression`, который сравнивает текущие байты со всеми предыдущими\n   сессиями урока и проверяет новую лексику, честность grammar progression,\n   "
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "evidence": "Ровно один новый lexical sense: bank как финансовое учреждение; он отсутствует во всём предыдущем learner-facing корпусе.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "мерованная learner-facing сессия вводит 1–5 действительно новых\n  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  из"
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "evidence": "Новая конкретная сцена — у районного стенда ученик замечает несколько банков и сообщает об их наличии и знакомом положении.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ельно новых\n  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  изменён: одна новая операция либо явный review set с изм"
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "evidence": "S03 вводит ровно одну новую операцию: full affirmative plural There are + plural noun; singular There is остаётся только диагностической опорой.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": " новая операция либо явный review set с измеримым learning delta.\n- Пустой `new_words`, повтор ранее введённого слова как нового, прежняя\n  конс"
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "evidence": "Bank получает ровно три самостоятельных word-first контакта в трёх разных supported families до первой оцениваемой фразы с banks.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": ").\n\n---\n\n## ПОРЯДОК ПОДАЧИ НА СТРАНИЦЕ: слово → перевод → фраза\n\n**Источник:** [Teaching vocabulary](https://dictionary.cambridge.org/grammar/b"
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "evidence": "Все три intro targets содержат plural banks и районный стенд; каждый ведёт к отдельной practice-фразе той же операции.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ле изменения\n   байтов аннулируются.\n9. Все три интро используют новые слова и конкретную ситуацию текущей сессии.\n   Правильный ответ каждой страницы снача"
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "evidence": "Первые два предложения будущего интро называют районный стенд, несколько банков и задачу сообщить о них; новичок понимает цель сразу.",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": " все локали.\n\nПрямое решение владельца: начало каждой сессии должно ощущаться как начало\nнормального урока. Ученик с первого чтения понимает, где он оказался, что\nпроис"
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "evidence": "Три intro→practice цепочки имеют разные нормализованные targets; independent final использует четвёртую фразу и не копирует обучение.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "лов, сцены и practice текущей сессии.\n  Для каждой из трёх страниц он отдельно доказывает цепочку: новое слово и\n  текущая сцена → правильный scor"
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "evidence": "Все интро и практики остаются у районного стенда и описывают несколько банков в районе; посторонние истории запрещены.",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": " ученика.\r\n- **Сцена.** У каждой сессии одна сквозная ситуация (владелец, 03.09: «это\r\n  надо делать»). Все вопросы интро и инструкции к задан"
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "evidence": "Пакет ограничен тремя intro и семнадцатью practice interactions, всего двадцать действий, каждое с одной целевой фразой или word target.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "ог, печать, «найди ошибку» отложены |\n| Заданий 12–20, ориентир 17 | |\n| Возвращаемое слово ≥2 касаний | И хотя бы раз правильным отв"
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "evidence": "Разрешены только шесть active families: phrase_builder, listen_choose, listen_build_dictation, context_gap_grammar, speed_match и scripted_repeat_compare. sound_contrast снят с active authoring и для S03 запрещён. Word-first bank использует ровно три разные разрешённые family до первой фразы.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": " подписали именем нужной family.\n\n## 2. Единственные шесть активных режимов\n\n| Family | Канонический owner-макет | Неподменяемая учебная операция |\n|---|--"
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "evidence": "Каждый применимый выбор имеет ровно один правильный ответ и минимум три диагностические ловушки по are/plural/no article или exact meaning.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "е окрашиваются как английские.\r\n\r\n## 7. Строгий контракт дистракторов\r\n\r\nДистрактор — не случайный неправильный вариант. Он должен быть максимально\r\n"
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "evidence": "Listen_choose проигрывает ровно одно английское слово или фразу и показывает только locale-native значения без добавленных фактов.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": " `listen_choose` локализованный вариант передаёт только смысл услышанной\n   фразы. Нельзя дописывать `рядом`, `поруч`, `вдали`, `вдалині` или другую\n   "
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "evidence": "Каждый неверный responseId получает уникальный RU/UK feedback, называющий выбранную ловушку и точную plural-ошибку.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "нение после ошибки раскрывает уловку\r\n\r\nFeedback обязан назвать выбранный вариант и объяснить:\r\n\r\n1. почему он кажется похожим/подходящим;\r\n2. точную ошибку — зв"
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "evidence": "Опора убывает от трёх word-first контактов и guided plural clauses к самостоятельному новому There are target в той же сцене.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ясняет конкретную выбранную ловушку;\r\n- поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI не показывает внутренние названия families и QA-поля.\r\n\r\nВердикт"
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "evidence": "Запрещены вопросы, short answers, negatives, some/any, contractions, новые prepositions, have/has, Present Simple и любые будущие L4/L5 операции.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "идны только уже разблокированные слова; будущие слова не показываются.\nСохранение использует `bookmark-outline` / `bookmark`, а не сердце/лайк, и одн"
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "evidence": "Юмор разрешён только из разницы одного и нескольких банков или работы формы are; декоративный бред и приклеенные шутки блокируют authoring.",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "# ВСЕ ТЕКСТЫ ДОЛЖНЫ БЫТЬ ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри требования выше — не стиль и не пожелание. Это ус"
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "evidence": "RU и UK создаются как естественные самостоятельные локали с одинаковыми facts, targets и порядком, без русского fallback в украинском.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ссии, прошлом или будущем материале;\r\n- все восемь локалей самостоятельны и не объясняются через русский;\r\n- фразы живые, самостоятельные и не являются f"
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "evidence": "L4 S01 и S02 имеют sessionReadiness ready:true, семь свежих PASS и совпадающие canonical/native hashes; предыдущий диапазон закрыт.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "вного диапазона\r\n`LOCKED`. Сессия `N+1` не может собираться, показываться как готовая или получать\r\nlearner-facing изменения, пока `N` не `LOCKED`. Изменение source "
+    }
+  ],
+  "blueprintFingerprint": "f776cf32cd9a46df28ce54ff548c29abd1b9722a76e243fedc30cf5109a418b0",
+  "curriculumSha256": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+  "currentPlannedSourceEvidence": {
+    "status": "UNCHANGED_CURRENT_S03_BYTES",
+    "ruSourceSha256": "1c9a9d9dae858edc97160c2dc59a7c31f666f3dfe50fefcaf0e7253cbef7f4f5",
+    "ukSourceSha256": "e941ed8e8cf5cde07c8431bc5bce4920c7989bcd9df32aedfc6be06ed2798598",
+    "atomicSha256": "a3fbba882dea687d6557937f75173b86dc3b7a64f4b2e26b0b88c05c719db70a",
+    "interpretation": "These hashes identify the already-written current S03 sources whose authoring boundary this regenerated guardian describes. They do not substitute for fresh downstream judge receipts or status rebinding."
+  },
+  "activeFamilyContract": {
+    "allowed": [
+      "phrase_builder",
+      "listen_choose",
+      "listen_build_dictation",
+      "context_gap_grammar",
+      "speed_match",
+      "scripted_repeat_compare"
+    ],
+    "forbidden": [
+      "sound_contrast"
+    ],
+    "wordFirst": "Exactly three pre-phrase contacts for bank in three distinct allowed families.",
+    "listenChoose": "Exactly one English audio target; visible choices are natural localized meanings only and do not leak English target text."
+  }
+}

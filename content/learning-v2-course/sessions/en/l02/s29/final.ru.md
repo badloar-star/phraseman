@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 29 — «What или which»
+# Английский · Урок 2 · Занятие 29 — «What или which»
 
-**Сцена сессии.** Выходной в Дублине. Вы стоите у витрины с двумя одинаковыми на вид сумками, и надо как-то объяснить продавцу, о какой из них речь.
+**Сцена занятия.** Выходной в Дублине. Вы стоите у витрины с двумя одинаковыми на вид сумками, и надо как-то объяснить продавцу, о какой из них речь.
 
-**Операция:** `what` ↔ `which` — когда вариантов сколько угодно, а когда их два-три и они известны
+**Как сказать:** `what` ↔ `which` — когда вариантов сколько угодно, а когда их два-три и они известны
 **Новые слова:** one
 **Возвращаются:** price, name, cheap, elegant, street
 
@@ -56,86 +56,98 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — which**
-🔊 *which* → **which** · cheap · price
-- cheap — *Это «дёшево». Слово другое: `which` про выбор, `cheap` про цену.*
-- price — *«Цена». Прозвучало `which` — это про выбор, а не про деньги.*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-29:i01; family: listen_choose -->
+Цель: `which`
+Варианты: `which` · `cheap` · `price`
 
 **2 · Вставьте слово — на бирке нет цифры, спрашиваете про стоимость**
-___ is the price? → **what** · which · one
-- which — *`which` просит показать одну вещь из нескольких. А вы ждёте в ответ цифру.*
-- one — *`one` встаёт вместо вещи, а тут вещь названа прямо — `price`. Начало вопроса другое.*
+<!-- interaction_id: en:lesson-02:session-29:i02; family: context_gap_grammar -->
+Цель: `___ is the price?`
+Варианты: `what` · `which` · `one`
 
 **3 · Карточка слова — one**
-> **one** — заменяет вещь, которую уже назвали. Вместо `Which bag?` говорят `Which one?`
+<!-- interaction_id: en:lesson-02:session-29:i03; family: listen_choose -->
+Цель: `one`
 
 **4 · Вставьте слово — перед вами две сумки, и называть их второй раз незачем**
-Which ___ ? → **one** · what · price
-- what — *`what` уже не нужно: вопрос начат с `Which`. После него идёт то, что выбирают.*
-- price — *«Цена» — это вещь. А тут вы про сумку, которую уже назвали.*
+<!-- interaction_id: en:lesson-02:session-29:i04; family: context_gap_grammar -->
+Цель: `Which ___ ?`
+Варианты: `one` · `what` · `price`
 
 **5 · Соберите фразу — продавец назвал две улицы, где есть его лавки**
-Плитки: `street` `Which` → **Which street?**
-*(`street` — «улица»)*
+<!-- interaction_id: en:lesson-02:session-29:i05; family: phrase_builder -->
+Цель: `Which street?`
 
 **6 · Послушайте и выберите — что прозвучало**
-🔊 *cheap* → **cheap** · street · name
-- street — *«Улица». Прозвучало `cheap` — это про цену, а не про место.*
-- name — *«Название». Прозвучало `cheap` — это оценка цены, а не как вещь зовут.*
+<!-- interaction_id: en:lesson-02:session-29:i06; family: listen_choose -->
+Цель: `cheap`
+Варианты: `cheap` · `street` · `name`
 
 **7 · Вставьте слово — на прилавке две сумки, вы спрашиваете про красивую**
-___ one is elegant? → **which** · what · name
-- what — *Сумки лежат перед вами, выбор из двух. Значит `which`.*
-- name — *`name` — «название». Вопрос не с него начинают.*
+<!-- interaction_id: en:lesson-02:session-29:i07; family: context_gap_grammar -->
+Цель: `___ one is elegant?`
+Варианты: `which` · `what` · `name`
 
 **8 · Соберите фразу — «сколько это стоит?»**
-Плитки: `the` `is` `price` `What` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-29:i08; family: phrase_builder -->
+Цель: `What is the price?`
 
 **9 · Послушайте и соберите — «которая из них?»**
-🔊 *Which one?* Плитки: `one` `Which` `is` → **Which one?**
-*(плитка `is` лишняя: тут вопрос кончается на `one`. С `is` он продолжился бы — `Which one is cheap?`)*
+<!-- interaction_id: en:lesson-02:session-29:i09; family: listen_build_dictation -->
+Цель: `Which one?`
 
 **10 · Карточка слова — elegant**
-> **elegant** — «изящный». Про то, как вещь выглядит, а не сколько стоит: и сумка, и платье, и стул.
+<!-- interaction_id: en:lesson-02:session-29:i10; family: listen_choose -->
+Цель: `elegant`
 
 **11 · Вставьте слово — продавец назвал вещь незнакомым словом, вы ждёте, что он его повторит**
-___ is the name? → **What** · Which · One
-- Which — *`which` просит выбрать из нескольких. А вы ждёте, что вам назовут слово.*
-- One — *`one` заменяет вещь, а вопрос с него не начинают.*
+<!-- interaction_id: en:lesson-02:session-29:i11; family: context_gap_grammar -->
+Цель: `___ is the name?`
+Варианты: `What` · `Which` · `One`
 
-**12 · Соедините пары (Speed Match, 4 пары)**
-what — что · which — который из · elegant — изящный · price — цена
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-29:i12; family: speed_match -->
+Пары: `what` — что · `which` — который из · `elegant` — изящный · `price` — цена
+Цель: `what · which · elegant · price`
 
 **13 · Вставьте слово — сумка стоит три евро, и это дёшево**
-It is ___ . → **cheap** · elegant · street
-- elegant — *«Изящный» — про вид вещи, а не про цену. Три евро — это `cheap`.*
-- street — *«Улица». Про стоимость так не скажешь.*
+<!-- interaction_id: en:lesson-02:session-29:i13; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `cheap` · `elegant` · `street`
 
-**14 · Вставьте слово — сумка без украшений и рисунков, совсем простая на вид**
-It is ___ . → **elegant** · cheap · name
-- cheap — *«Дёшево» — про цену. А вы говорите не про цифру, а про вид.*
-- name — *`name` — «название». Это не описание вещи, а как она зовётся.*
+**14 · Соберите сообщение — продавец показывает простую, но изящную сумку**
+<!-- interaction_id: en:lesson-02:session-29:i14; family: phrase_builder -->
+Цель: `It is elegant.`
 
-**15 · Соберите фразу — «которая из них дешёвая?»**
-Плитки: `is` `cheap` `Which` `one` → **Which one is cheap?**
+**15 · Произнесите фразу — «которая из них дешёвая?»**
+<!-- interaction_id: en:lesson-02:session-29:i15; family: scripted_repeat_compare -->
+Цель: `Which one is cheap?`
 
-**16 · Соберите фразу — «которая сумка изящная?» (сумки перед вами, их две)**
-Плитки: `elegant` `What` `Which` `is` `one` → **Which one is elegant?**
-*(плитка `What` лишняя: выбор из двух известных — это `which`)*
+**16 · Вставьте слово — перед вами две сумки; спросите, какая из них изящная**
+<!-- interaction_id: en:lesson-02:session-29:i16; family: context_gap_grammar -->
+Цель: `Which one is ___ ?`
+Варианты: `elegant` · `cheap` · `price`
 
-**17 · Финал сцены — продавец достал две сумки**
-🎙 Спросите, которая из них, потом — сколько стоит, потом — как называется эта сумка.
-**Which one? What is the price? What is the name?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-29:i17:s01; family: scripted_repeat_compare -->
+Цель: `Which one?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-29:i17:s02; family: scripted_repeat_compare -->
+Цель: `What is the price?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-29:i17:s03; family: scripted_repeat_compare -->
+Цель: `What is the name?`
 
 ## Для сборщика
 
 new_words: one
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=word_card, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=word_card, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=context_gap_grammar, 15=phrase_builder, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -166,6 +178,6 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=word_card, 4=context_gap_gramma
 | what | из интро 1 | задания 2, 8 |
 | which | из интро 2 и 3 | задания 1, 5, 6, 7, 9 |
 | elegant | карточка 10 | задания 13 (ловушка), 14 |
-| price | из прошлых сессий | задания 1, 2, 4, 8 |
+| price | из прошлых занятий | задания 1, 2, 4, 8 |
 
 ---

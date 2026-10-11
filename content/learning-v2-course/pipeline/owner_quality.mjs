@@ -59,8 +59,21 @@ export function sourceSha256(sourcePath) {
   return crypto.createHash("sha256").update(fs.readFileSync(sourcePath)).digest("hex");
 }
 
-export function bindTasteReceiptToSource(receipt, sourcePath) {
-  return { ...receipt, sourceSha256: sourceSha256(sourcePath) };
+export function sourceBytesSha256(sourceBytes) {
+  return crypto.createHash("sha256").update(sourceBytes).digest("hex");
+}
+
+export function bindTasteReceiptToSource(receipt, sourcePath, { expectedSourceSha256 = null, sourceBytes = null } = {}) {
+  const capturedSha256 = sourceBytes === null ? sourceSha256(sourcePath) : sourceBytesSha256(sourceBytes);
+  if (expectedSourceSha256 && capturedSha256 !== expectedSourceSha256) {
+    throw new Error(`source_digest_mismatch:expected=${expectedSourceSha256}:captured=${capturedSha256}`);
+  }
+  const liveSha256 = sourceSha256(sourcePath);
+  const expectedLiveSha256 = expectedSourceSha256 ?? capturedSha256;
+  if (liveSha256 !== expectedLiveSha256) {
+    throw new Error(`source_digest_changed:expected=${expectedLiveSha256}:live=${liveSha256}`);
+  }
+  return { ...receipt, sourceSha256: capturedSha256 };
 }
 
 function normalizeAnswer(value) {
@@ -74,8 +87,44 @@ function normalizeAnswer(value) {
 }
 
 export function isWellFormedBeShortAnswer(value) {
+  return beShortAnswerShape(value) !== null;
+}
+
+function questionHeadsForFinite(finite) {
+  return {
+    "i am": ["are you"],
+    "you are": ["am i"],
+    "he is": ["is he"],
+    "she is": ["is she"],
+    "it is": ["is it"],
+    "we are": ["are we"],
+    "they are": ["are they"],
+    "there is": ["is there"],
+    "there are": ["are there"],
+  }[finite] ?? [];
+}
+
+function beShortAnswerShape(value) {
   const answer = normalizeAnswer(value);
-  return /^(?:yes (?:i am|you are|he is|she is|it is|we are|they are)|no (?:i am not|i'm not|you are not|you aren't|you're not|he is not|he isn't|he's not|she is not|she isn't|she's not|it is not|it isn't|it's not|we are not|we aren't|we're not|they are not|they aren't|they're not))$/.test(answer);
+  const match = /^(yes|no) (.+)$/u.exec(answer);
+  if (!match) return null;
+  const polarity = match[1];
+  const expanded = match[2]
+    .replace(/^i'm not$/u, "i am not")
+    .replace(/^you're not$|^you aren't$/u, "you are not")
+    .replace(/^he's not$|^he isn't$/u, "he is not")
+    .replace(/^she's not$|^she isn't$/u, "she is not")
+    .replace(/^it's not$|^it isn't$/u, "it is not")
+    .replace(/^we're not$|^we aren't$/u, "we are not")
+    .replace(/^they're not$|^they aren't$/u, "they are not")
+    .replace(/^there's not$|^there isn't$/u, "there is not")
+    .replace(/^there aren't$/u, "there are not");
+  const finite = polarity === "no" ? expanded.replace(/ not$/u, "") : expanded;
+  const allowed = new Set(["i am", "you are", "he is", "she is", "it is", "we are", "they are", "there is", "there are"]);
+  if (!allowed.has(finite) || (polarity === "no" && expanded === finite)) return null;
+  const [subject, auxiliary] = finite.split(" ");
+  const questionHeads = questionHeadsForFinite(finite);
+  return { polarity, subject, auxiliary, finite, questionHeads };
 }
 
 function parseIntroOptions(block) {
@@ -108,13 +157,124 @@ function constructionFact(location, correct, wrong) {
   return `КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ: ${location}: при верном «${correct}» грамматически собраны также ${wrong.map((value) => `«${value}»`).join(", ")} — для проверки формы сохраняй лицо и полярность, а ловушки строй на связке или порядке слов`;
 }
 
+function declaredShortCorrectFact(location, correct) {
+  return `КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ: ${location}: верный вариант не является коротким ответом — «${correct}»`;
+}
+
+function questionLicensingFact(location, correct) {
+  return `КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ: ${location}: для «${correct}» нет согласованного английского вопроса на той же странице`;
+}
+
+const ENGLISH_BE_QUESTION_RE = /\b(?:am\s+i|are\s+you|is\s+he|is\s+she|is\s+it|are\s+we|are\s+they|is\s+there|are\s+there)\b[^?\r\n]*\?/giu;
+
+function hasLicensingEnglishQuestion(block, correct) {
+  const shape = beShortAnswerShape(correct);
+  if (!shape) return false;
+  return (String(block || "").match(ENGLISH_BE_QUESTION_RE) ?? [])
+    .map(normalizeAnswer)
+    .some((question) => shape.questionHeads.some((head) => question === head || question.startsWith(`${head} `)));
+}
+
+function beYesNoReplyPrefixShape(value) {
+  const answer = normalizeAnswer(value)
+    .replace(/^(yes|no) i'm(?= |$)/u, "$1 i am")
+    .replace(/^(yes|no) you're(?= |$)/u, "$1 you are")
+    .replace(/^(yes|no) he's(?= |$)/u, "$1 he is")
+    .replace(/^(yes|no) she's(?= |$)/u, "$1 she is")
+    .replace(/^(yes|no) it's(?= |$)/u, "$1 it is")
+    .replace(/^(yes|no) we're(?= |$)/u, "$1 we are")
+    .replace(/^(yes|no) they're(?= |$)/u, "$1 they are")
+    .replace(/^(yes|no) there's(?= |$)/u, "$1 there is")
+    .replace(/^(no) (you|we|they|there) aren't(?= |$)/u, "$1 $2 are not")
+    .replace(/^(no) (he|she|it|there) isn't(?= |$)/u, "$1 $2 is not");
+  const match = /^(yes|no) (i am|you are|he is|she is|it is|we are|they are|there is|there are)(?: (not))?(?: (.+))?$/u.exec(answer);
+  if (!match || (match[1] === "no") !== Boolean(match[3])) return null;
+  return { polarity: match[1], subject: match[2].split(" ")[0], finite: match[2], remainder: match[4] ?? "" };
+}
+
+function startsWithBeYesNoReply(value) {
+  return beYesNoReplyPrefixShape(value) !== null;
+}
+
+function declaresBeYesNoConstruction(block, correct) {
+  if (startsWithBeYesNoReply(correct)) return true;
+  const taught = [...String(block || "").matchAll(/`([^`\r\n]+)`|\*\*([^*\r\n]+)\*\*/gu)]
+    .map((match) => match[1] ?? match[2]);
+  return taught.some((value) => isWellFormedBeShortAnswer(value));
+}
+
+function isQuestionAlignedFullBeReply(block, shape) {
+  if (!shape?.remainder) return false;
+  return (String(block || "").match(ENGLISH_BE_QUESTION_RE) ?? [])
+    .map(normalizeAnswer)
+    .some((question) => questionHeadsForFinite(shape.finite).some((head) => question.startsWith(`${head} `) && question.slice(head.length + 1) === shape.remainder));
+}
+
+function feedbackForOption(block, option) {
+  const expected = normalizeAnswer(option);
+  for (const line of String(block || "").split(/\r?\n/u)) {
+    const match = /^\s*-\s*(?:❌\s*)?(.+?)\s+—\s+\*(.+)\*\s*$/u.exec(line);
+    if (!match) continue;
+    const candidate = match[1].replace(/^\*\*|\*\*$/gu, "").trim();
+    if (normalizeAnswer(candidate) === expected) return match[2];
+  }
+  return "";
+}
+
+function isDeterminateShortAnswerDiagnostic(block, correct, correctShape, wrong, wrongShape) {
+  if (!wrongShape || !hasLicensingEnglishQuestion(block, correct)) return false;
+  const feedback = normalizeAnswer(feedbackForOption(block, wrong));
+  if (!feedback) return false;
+
+  const polarityContrast = wrongShape.finite === correctShape.finite
+    && wrongShape.polarity !== correctShape.polarity;
+  if (polarityContrast) return /\byes\b/u.test(feedback) && /\bno\b/u.test(feedback);
+
+  const existentialNumberContrast = wrongShape.polarity === correctShape.polarity
+    && wrongShape.subject === "there"
+    && correctShape.subject === "there"
+    && wrongShape.finite !== correctShape.finite
+    && new Set([wrongShape.finite, correctShape.finite]).size === 2
+    && [wrongShape.finite, correctShape.finite].every((finite) => finite === "there is" || finite === "there are");
+  return existentialNumberContrast && /\bis\b/u.test(feedback) && /\bare\b/u.test(feedback);
+}
+
+function malformedIdentityFacts(location, correct, wrongOptions, block = "") {
+  const correctShape = beShortAnswerShape(correct);
+  if (!correctShape) return [];
+  const grammatical = [];
+  const semantic = [];
+  const subjects = new Set(["i", "you", "he", "she", "it", "we", "they", "there"]);
+  for (const wrong of wrongOptions) {
+    const normalized = normalizeAnswer(wrong);
+    const wrongPolarity = /^(yes|no)\b/u.exec(normalized)?.[1];
+    const wrongSubject = normalized.split(" ").find((token, index) => index > 0 && subjects.has(token));
+    const prefixShape = beYesNoReplyPrefixShape(wrong);
+    const shortShape = beShortAnswerShape(wrong);
+    const grammaticalShape = shortShape ?? (isQuestionAlignedFullBeReply(block, prefixShape) ? prefixShape : null);
+    if (grammaticalShape) {
+      if (isDeterminateShortAnswerDiagnostic(block, correct, correctShape, wrong, shortShape)) continue;
+      if (grammaticalShape.polarity !== correctShape.polarity || grammaticalShape.subject !== correctShape.subject) semantic.push(wrong);
+      else grammatical.push(wrong);
+      continue;
+    }
+    if ((wrongPolarity && wrongPolarity !== correctShape.polarity) || (wrongSubject && wrongSubject !== correctShape.subject)) {
+      semantic.push(wrong);
+    }
+  }
+  const facts = [];
+  if (grammatical.length) facts.push(constructionFact(location, correct, grammatical));
+  if (semantic.length) facts.push(`КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ: ${location}: МЕНЯЕТ СМЫСЛ — при верном «${correct}» варианты ${semantic.map((wrong) => `«${wrong}»`).join(", ")} меняют полярность или лицо вместо ошибки конструкции`);
+  return facts;
+}
+
 function modeMap(markdown) {
   const block = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/mi.exec(markdown)?.[1] ?? "";
   return new Map([...block.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((match) => [Number(match[1]), match[2]]));
 }
 
 export function shortAnswerConstructionFacts(markdown, sessionId) {
-  if (!scopedOwnerQualityRequired(sessionId)) return [];
+  if (sessionParts(sessionId)?.language !== "en") return [];
   const text = String(markdown || "");
   const facts = [];
 
@@ -124,9 +284,15 @@ export function shortAnswerConstructionFacts(markdown, sessionId) {
     if (!SHORT_ANSWER_MARKER_RE.test(block)) continue;
     const options = parseIntroOptions(block);
     const correct = options.find((option) => option.correct)?.text;
-    if (!correct || !isWellFormedBeShortAnswer(correct)) continue;
-    const grammaticalWrong = options.filter((option) => !option.correct && isWellFormedBeShortAnswer(option.text)).map((option) => option.text);
-    if (grammaticalWrong.length) facts.push(constructionFact(`интро ${match[1]}`, correct, grammaticalWrong));
+    if (!correct) continue;
+    if (!declaresBeYesNoConstruction(block, correct)) continue;
+    const location = `интро ${match[1]}`;
+    if (!isWellFormedBeShortAnswer(correct)) {
+      facts.push(declaredShortCorrectFact(location, correct));
+      continue;
+    }
+    if (!hasLicensingEnglishQuestion(block, correct)) facts.push(questionLicensingFact(location, correct));
+    facts.push(...malformedIdentityFacts(location, correct, options.filter((option) => !option.correct).map((option) => option.text), block));
   }
 
   const modes = modeMap(text);
@@ -139,9 +305,12 @@ export function shortAnswerConstructionFacts(markdown, sessionId) {
     const choice = choiceLine(block);
     if (!choice) continue;
     const correct = reconstruct(choice.stem, choice.correct);
-    if (!isWellFormedBeShortAnswer(correct)) continue;
-    const grammaticalWrong = choice.wrong.map((option) => reconstruct(choice.stem, option)).filter(isWellFormedBeShortAnswer);
-    if (grammaticalWrong.length) facts.push(constructionFact(`задание ${ordinal}`, correct, grammaticalWrong));
+    const location = `задание ${ordinal}`;
+    if (!isWellFormedBeShortAnswer(correct)) {
+      facts.push(declaredShortCorrectFact(location, correct));
+      continue;
+    }
+    facts.push(...malformedIdentityFacts(location, correct, choice.wrong.map((option) => reconstruct(choice.stem, option)), block));
   }
 
   return facts;

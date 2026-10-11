@@ -1,8 +1,7 @@
-# Английский · Урок 1 · Сессия 43 — «We're, they're и короткое нет»
+# Английский · Урок 1 · Занятие 43 — «We're, they're и короткое нет»
 
-**Сцена сессии.** Пятница, паб после работы. Гул, музыка, все говорят обрывками — и никто не выговаривает длинные формы целиком.
-
-**Операция:** сокращения `we're` / `they're` и `isn't` / `aren't`
+**Ситуация.** В кафе Ира, Олег и вы заканчиваете встречу. Ира спрашивает, готовы ли вы, а Олег рассказывает о коллегах за соседним столом.
+**Сегодня.** Скажете `we're`, `they're`, `isn't` и `aren't`.
 **Новые слова:** bad, real, true
 **Возвращаются:** ok, ready, late, funny, wrong
 
@@ -12,7 +11,7 @@
 
 ### `we are` в баре звучит как `we're`
 
-`we` — «мы», `are` — скрепка, которая стоит между «мы» и словом о нас: `we are ready`.
+`we` — «мы». После `we` ставим `are`: `we are ready`.
 
 В шуме это долго. Два слова слипаются в одно: `we're ready`. Значок `'` стоит там, где пропал кусок.
 
@@ -32,12 +31,12 @@
 
 `they` — «они»: их больше одного, и вас среди них нет. `funny` — «смешные». Полностью — `they are funny`, коротко — `they're funny`.
 
-Скрепку тянет выбросить совсем: `they funny` — коротко, бодро и не по-английски. `are` не исчезает, оно прячется в значок.
+В `they're` уже есть `are`. Поэтому `they funny` — не английская фраза.
 
 **За соседним столом хохочут весь вечер. Скажите приятелю про них: «они смешные».**
 
 - ✅ **They're funny.**
-- ❌ They funny. — *Скрепка пропала целиком. Между `they` и словом нужно `are` — или `they're`.*
+- ❌ They funny. — *После `they` нужно `are`: полная форма `They are funny`, короткая — `They're funny`.*
 - ❌ They're are funny. — *`are` уже внутри `they're`. Хватит одного.*
 
 ---
@@ -48,7 +47,7 @@
 
 `bad` — «плохой». Чтобы сказать «он не плохой», ставят `is not`: `He is not bad`.
 
-В живой речи `not` теряет свою `o` и приклеивается к скрепке: `is not` → `isn't`, `are not` → `aren't`. Выходит `He isn't bad`.
+В живой речи `is not` становится `isn't`, а `are not` — `aren't`. Получается `He isn't bad`.
 
 `isn't` — когда человек один. `aren't` — когда их несколько. Перепутать легко: обе формы одинаково короткие и одинаково хочется сказать первую попавшуюся.
 
@@ -60,79 +59,98 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (19 заданий, подсказок становится меньше)
 
 **1 · Карточка слова — bad**
+<!-- interaction_id: en:lesson-01:session-43:i01; family: listen_choose -->
 > **bad** — «плохой, скверный». Не катастрофа, просто так себе: погода, кофе, настроение.
 
-**2 · Послушайте и выберите — bad**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-43:i02; family: listen_choose -->
 🔊 *bad* → **bad** · bed · bag
 - bed — *Это «кровать». В `bad` рот открыт шире.*
 - bag — *«Сумка». Разница в последнем звуке: `bad` кончается на «д».*
 
 **3 · Соберите фразу — «мы готовы»**
+<!-- interaction_id: en:lesson-01:session-43:i03; family: phrase_builder -->
 Плитки: `ready` `we're` `are` → **We're ready.**
 *(плитка `are` лишняя: она уже спрятана внутри `we're`)*
 
 **4 · Карточка слова — real**
+<!-- interaction_id: en:lesson-01:session-43:i04; family: listen_choose -->
 > **real** — «настоящий». То, что существует на самом деле, а не выдумка и не подделка.
 
-**5 · Послушайте и выберите — real**
+**5 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-43:i05; family: listen_choose -->
 🔊 *real* → **real** · rail · reel
 - rail — *«Рельс». Звучит «рэйл» — с «эй» в середине. В `real` слышно «ри-эл».*
 - reel — *«Катушка». Один долгий «и». В `real` два звука: «ри-эл».*
 
 **6 · Карточка слова — true**
+<!-- interaction_id: en:lesson-01:session-43:i06; family: listen_choose -->
 > **true** — «правда, правдиво». Так и есть, никто не приврал.
 
 **7 · Вставьте слово — приятель клянётся, что это не выдумка**
+<!-- interaction_id: en:lesson-01:session-43:i07; family: context_gap_grammar -->
 It's ___ . → **true** · bad · ready
 - bad — *Это «плохой». Про «так и есть» — `true`.*
 - ready — *«Готов», можно начинать. Про правдивость истории — `true`.*
 
-**8 · Вставьте слово — про несколько человек за соседним столом**
-They ___ funny. → **are** · is · am
-- is — *`is` — про одного. Про нескольких — `are`, а коротко `they're`.*
-- am — *`am` бывает только с `I`. Про «они» — `are`.*
+**8 · Соберите фразу — несколько коллег за соседним столом всех рассмешили**
+<!-- interaction_id: en:lesson-01:session-43:i08; family: phrase_builder -->
+Плитки: `They` `are` `funny` `is` → **They are funny.**
 
 **9 · Послушайте и соберите — «они не опаздывают»**
+<!-- interaction_id: en:lesson-01:session-43:i09; family: listen_build_dictation -->
 🔊 *They aren't late.* Плитки: `aren't` `They` `late` `isn't` → **They aren't late.**
 *(`late` — «опоздал»)*
 
 **10 · Вставьте слово — приятель боится, что история выдумана. Успокойте: она настоящая**
+<!-- interaction_id: en:lesson-01:session-43:i10; family: context_gap_grammar -->
 It ___ real. → **is** · are · am
 - are — *`are` — про нескольких. Про одну вещь — `is`.*
 - am — *`am` идёт только с `I`. Про вещь — `is`.*
 
-**11 · Вставьте слово — про одну коллегу, которая всех насмешила**
-She ___ funny. → **is** · are · am
-- are — *`are` — про нескольких. Про одну — `is`.*
-- am — *`am` только с `I`. Про неё — `is`.*
-*(`funny` — «смешная»)*
+**11 · Послушайте и соберите — одна коллега всех рассмешила**
+<!-- interaction_id: en:lesson-01:session-43:i11; family: listen_build_dictation -->
+🔊 *She is funny.* Плитки: `She` `is` `funny` → **She is funny.**
 
 **12 · Соберите фразу — «мы не опаздываем»**
+<!-- interaction_id: en:lesson-01:session-43:i12; family: phrase_builder -->
 Плитки: `late` `We` `aren't` → **We aren't late.**
 *(`late` — «опоздал»)*
 
-**13 · Соберите фразу — приятель говорит, что вы ошиблись. Возразите: «я не ошибся»**
-Плитки: `wrong` `I` `not` `am` → **I am not wrong.**
-*(`wrong` — «ошибся, неправ»)*
+**13 · Послушайте и соберите — приятель ошибочно говорит, что вы неправы**
+<!-- interaction_id: en:lesson-01:session-43:i13; family: listen_build_dictation -->
+🔊 *I am not wrong.* Плитки: `I` `am` `not` `wrong` → **I am not wrong.**
 
 **14 · Вставьте слово — приятель называет ваш ответ ошибочным, а он верный**
+<!-- interaction_id: en:lesson-01:session-43:i14; family: context_gap_grammar -->
 You aren't ___ . → **wrong** · true · real
 - true — *«Правда» — про историю, а не про того, кто в споре прав.*
 - real — *«Настоящий» — про вещи и истории, а не про правоту в споре.*
 
-**15 · Послушайте и выберите — ok**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-43:i15; family: listen_choose -->
 🔊 *ok* → **ok** · oak · old
 - oak — *«Дуб». Один слог вместо двух: `ok` — «оу-кей».*
 - old — *«Старый». Кончается на «д», а `ok` — на «й».*
 
-**16 · Соедините пары (Speed Match, 4 пары)**
+**16 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-43:i16; family: speed_match -->
 bad — плохой · real — настоящий · true — правда · ok — нормально
 
-**17 · Скажите вслух — конец вечера, вас торопят к выходу**
-🎙 **We're ready. They aren't late. It isn't bad.** — послушайте, повторите, сравните.
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-43:i17:s01; family: scripted_repeat_compare -->
+Ира спрашивает, готовы ли вы с Олегом уходить. 🎙 **We're ready.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-43:i17:s02; family: scripted_repeat_compare -->
+Олег говорит о коллегах за соседним столом: они пришли вовремя. 🎙 **They aren't late.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-43:i17:s03; family: scripted_repeat_compare -->
+Ира пробует кофе и говорит, что он не такой уж плохой. 🎙 **It isn't bad.**
 
 ---
 
@@ -143,39 +161,7 @@ bad — плохой — «плохой, скверный». Не катастр
 real — настоящий — «настоящий». То, что существует на самом деле, а не выдумка и не подделка.
 true — правда — «правда, правдиво». Так и есть, никто не приврал.
 
-modes: 1=word_card, 2=listen_choose, 3=phrase_builder, 4=word_card, 5=listen_choose, 6=word_card, 7=context_gap_grammar, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=context_gap_grammar, 12=phrase_builder, 13=phrase_builder, 14=context_gap_grammar, 15=listen_choose, 16=speed_match, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=phrase_builder, 4=word_card, 5=listen_choose, 6=word_card, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=listen_build_dictation, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=listen_choose, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
-## Самопроверка
-
-**1. Возвращаемые слова**
-
-| слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
-|---|---|---|
-| ok | 15 (слух), 16 (доска) | 15 — верный вариант на слух |
-| ready | 3 (сборка), 7 (ловушка) | 3 — `We're ready.` |
-| late | 9 (диктант), 12 (сборка), 17 (голос) | 9 и 12 — часть верного ответа |
-| funny | 8 (пропуск), 11 (пропуск) | 8 и 11 — фраза с `funny` собирается верно |
-| wrong | 13 (сборка), 14 (пропуск) | 13 и 14 — `wrong` в верном ответе |
-
-**2. Страницы интро**
-
-| страница | слово в ✅ ответе | стоит ли это слово в тексте НАД вопросом |
-|---|---|---|
-| Интро 1 | `We're ready` | да — `we're ready` разобрано в тексте |
-| Интро 2 | `They're funny` | да — `funny` и `they're funny` разобраны |
-| Интро 3 | `He isn't bad` | да — `bad`, `isn't` и `He isn't bad` в тексте |
-
-**3. Доска пар (задание 16)**
-
-| слово | карточка | отработка ДО доски |
-|---|---|---|
-| bad | 1 | 2 (слух) + Интро 3 |
-| real | 4 | 5 (слух) + 10 (пропуск) |
-| true | 6 | 7 (верный ответ) + 14 (разобранная ловушка) |
-| ok | из прошлых сессий | 15 (слух) |
-
-Доска стоит предпоследней — все четыре слова к этому моменту прошли и карточку, и отработку.
-
----

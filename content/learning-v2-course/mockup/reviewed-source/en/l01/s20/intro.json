@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "`he is` / `she is` + слово",
+    "uk": "`he is` / `she is` + слово"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`married` — женат и замужем одним словом",
+        "uk": "`married` — одружений і заміжня одним словом"
+      },
+      "bodyByLocale": {
+        "ru": "`married` — и «женат», и «замужем». Английский не стал придумывать два слова: `He is married`, `She is married`, меняется только `he` или `she`.\n\nРядом живёт `marry` — «жениться»: это действие, один день и много гостей. А `married` — состояние, которое началось после.",
+        "uk": "`married` — це й «одружений», і «заміжня». Англійська не стала вигадувати два слова: `He is married`, `She is married`, змінюється тільки `he` або `she`.\n\nПоруч живе `marry` — «одружитися»: це дія, один день і багато гостей. А `married` — стан, який почався після."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "В анкете гостя Антона указано, что он состоит в браке. Скажите: «он женат».",
+          "uk": "В анкеті гостя Антона вказано, що він перебуває у шлюбі. Скажіть: «він одружений»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r1",
+              "text": "He is married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r2",
+              "text": "He married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r3",
+              "text": "He is marry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r1",
+              "text": "He is married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r2",
+              "text": "He married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r3",
+              "text": "He is marry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В анкете гостя Антона указано, что он состоит в браке. Скажите: «он женат».",
+          "uk": "В анкеті гостя Антона вказано, що він перебуває у шлюбі. Скажіть: «він одружений»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`single` — не состоит в браке",
+        "uk": "`single` — не перебуває у шлюбі"
+      },
+      "bodyByLocale": {
+        "ru": "`single` — «не женат», «не замужем»: в этой анкете человек не состоит в браке.\n\nНи печали, ни диагноза в слове нет, это просто факт: в анкетах `single` стоит соседним квадратиком с `married`.\n\nЗвучит «СИНГЛ», через «нг» — как в слове «сингл» про песню.",
+        "uk": "`single` — «неодружений», «незаміжня»: у цій анкеті людина не перебуває у шлюбі.\n\nНі смутку, ні діагнозу в слові немає, це просто факт: в анкетах `single` стоїть сусіднім квадратиком із `married`.\n\nЗвучить «СІНГЛ» — так само, як «сингл» про пісню, з наголосом на першому складі."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Лина показывает анкету Марины: в ней указано, что Марина не состоит в браке. Скажите: «она не замужем».",
+          "uk": "Ліна показує анкету Марини: у ній вказано, що Марина не перебуває у шлюбі. Скажіть: «вона незаміжня»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r1",
+              "text": "She is single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r2",
+              "text": "She single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r3",
+              "text": "She are single."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r1",
+              "text": "She is single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r2",
+              "text": "She single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r3",
+              "text": "She are single."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина показывает анкету Марины: в ней указано, что Марина не состоит в браке. Скажите: «она не замужем».",
+          "uk": "Ліна показує анкету Марини: у ній вказано, що Марина не перебуває у шлюбі. Скажіть: «вона незаміжня»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`famous` и `rich` — знаменит и богат",
+        "uk": "`famous` і `rich` — відомий і багатий"
+      },
+      "bodyByLocale": {
+        "ru": "`famous` — «знаменитый»: человека узнают люди, с которыми он не знаком. `rich` — «богатый».\n\n`famous` звучит «ФЭЙ-мас»: первый слог тянется, второй проглатывается. Не «фамоус», как читается глазами.\n\nСхема прежняя: `He is famous`, `She is rich`. Новое тут только слово в конце.",
+        "uk": "`famous` — «відомий»: людину впізнають ті, з ким вона не знайома. `rich` — «багатий».\n\n`famous` звучить «ФЕЙ-мас»: перший склад тягнеться, другий проковтується. Не «фамоус», як читається очима.\n\nСхема та сама: `He is famous`, `She is rich`. Нове тут тільки слово в кінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Лина говорит, что гостью Софию узнают на улице после рекламы, в которой она снялась. Скажите: «она знаменита».",
+          "uk": "Ліна каже, що гостю Софію впізнають на вулиці після реклами, у якій вона знялася. Скажіть: «вона відома»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r1",
+              "text": "She is famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r2",
+              "text": "She is rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r3",
+              "text": "She famous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r1",
+              "text": "She is famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r2",
+              "text": "She is rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r3",
+              "text": "She famous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лина говорит, что гостью Софию узнают на улице после рекламы, в которой она снялась. Скажите: «она знаменита».",
+          "uk": "Ліна каже, що гостю Софію впізнають на вулиці після реклами, у якій вона знялася. Скажіть: «вона відома»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "05ee5a3721c973354eea5b01eff6026802c1a62207360f64076a4f6866b7e661"
+}

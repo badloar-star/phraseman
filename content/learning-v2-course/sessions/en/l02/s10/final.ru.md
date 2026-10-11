@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 10 — «Is it…?» про место и погоду
+# Английский · Урок 2 · Занятие 10 — «Is it…?» про место и погоду
 
-**Сцена сессии.** Кафе в центре, вечер. За окном улица, внутри гул голосов, и спутник то и дело кивает то на зал, то на дверь — и спрашивает, что вы обо всём этом думаете.
+**Сцена занятия.** Кафе в центре, вечер. За окном улица, внутри гул голосов, и спутник то и дело кивает то на зал, то на дверь — и спрашивает, что вы обо всём этом думаете.
 
-**Операция:** `Is it + слово` — вопрос про вещь, место или погоду
+**Как сказать:** `Is it + слово` — вопрос про вещь, место или погоду
 **Новые слова:** crowded, noisy
 **Возвращаются:** cold, comfortable, ok
 
@@ -56,79 +56,96 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — crowded**
-> **crowded** — «людно, битком». Столики заняты, у бара стоят, между стульями боком.
+<!-- interaction_id: en:lesson-02:session-10:i01; family: listen_choose -->
+Цель: `crowded`
 
-**2 · Послушайте и выберите — crowded**
-🔊 *crowded* → **crowded** · cloudy · called
-- cloudy — *В `crowded` после «к» слышно «р», в `cloudy` — «л».*
-- called — *«Позвонил». Это про действие, а `crowded` — про место.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-10:i02; family: listen_choose -->
+Цель: `crowded`
+Варианты: `crowded` · `cloudy` · `called`
 
 **3 · Карточка слова — noisy**
-> **noisy** — «шумно». Место, где приходится повышать голос, чтобы вас услышали.
+<!-- interaction_id: en:lesson-02:session-10:i03; family: listen_choose -->
+Цель: `noisy`
 
-**4 · Послушайте и выберите — noisy**
-🔊 *noisy* → **noisy** · nose · nice
-- nose — *«Нос». Начало общее, но дальше расходятся: в `noisy` слышно «ой», в `nose` — «оу».*
-- nice — *«Приятный». Заканчивается на «с», а `noisy` — на «зи».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-10:i04; family: listen_choose -->
+Цель: `noisy`
+Варианты: `noisy` · `nose` · `nice`
 
 **5 · Вставьте слово — в зале не пройти между столиками**
-Is it ___ ? → **crowded** · cold · comfortable
-- cold — *«Холодно» — про температуру. Речь о количестве людей.*
-- comfortable — *«Удобно» — про стул. Вы спрашиваете, сколько тут народу.*
+<!-- interaction_id: en:lesson-02:session-10:i05; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `crowded` · `cold` · `comfortable`
 
 **6 · Соберите фразу — «шумно ли тут?»**
-Плитки: `it` `noisy` `Is` `are` → **Is it noisy?**
+<!-- interaction_id: en:lesson-02:session-10:i06; family: phrase_builder -->
+Цель: `Is it noisy?`
 
 **7 · Вставьте слово — вы сели, спина утонула в мягком кресле**
-It is ___ . → **comfortable** · noisy · crowded
-- noisy — *«Шумно» — про уши, а вы про кресло.*
-- crowded — *«Людно» — про зал, а вы про своё место.*
+<!-- interaction_id: en:lesson-02:session-10:i07; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `comfortable` · `noisy` · `crowded`
 
-**8 · Послушайте и выберите — cold**
-🔊 *cold* → **cold** · gold · nice
-- gold — *«Золото». Различаются только первым звуком: «к» против «г».*
-- nice — *«Приятный». Начинается с «н», а `cold` — с «к».*
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-10:i08; family: listen_choose -->
+Цель: `cold`
+Варианты: `cold` · `gold` · `nice`
 
-**9 · Соедините пары (Speed Match, 4 пары)**
-crowded — людно · noisy — шумно · cold — холодно · comfortable — удобно
+**9 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-10:i09; family: speed_match -->
+Пары: `crowded` — людно · `noisy` — шумно · `cold` — холодно · `comfortable` — удобно
+Цель: `crowded · noisy · cold · comfortable`
 
-**10 · Вставьте скрепку — маленькое слово, которое начинает вопрос**
-___ it noisy? → **Is** · Are · Am
-- Are — *Чужая скрепка: `are` идёт с `you` и `they`. С `it` — только `is`.*
-- Am — *`am` идёт с `I`, про себя. Про место — `is it`.*
+**10 · Вставьте слово — слово, которое начинает вопрос**
+<!-- interaction_id: en:lesson-02:session-10:i10; family: context_gap_grammar -->
+Цель: `___ it noisy?`
+Варианты: `Is` · `Are` · `Am`
 
 **11 · Послушайте и соберите — «людно ли тут?»**
-🔊 *Is it crowded?* Плитки: `crowded` `Is` `it` `noisy` → **Is it crowded?**
+<!-- interaction_id: en:lesson-02:session-10:i11; family: listen_build_dictation -->
+Цель: `Is it crowded?`
 
 **12 · Различите звуки — какое из двух про «людно»?**
-🔊 Два слова подряд.
-*crowded · cloudy* → **crowded**
-- cloudy — *Это «облачно». После «к» в `cloudy` слышно «л», в `crowded` — «р».*
+<!-- interaction_id: en:lesson-02:session-10:i12; family: sound_contrast -->
+Варианты: `crowded` · `cloudy`
 
 **13 · Вставьте слово — вы вошли с улицы без куртки и сразу поёжились**
-Is it ___ ? → **cold** · noisy · crowded
-- noisy — *«Шумно» — про громкость, а вы поёжились от температуры.*
-- crowded — *«Людно» — про количество людей, а не про холод.*
+<!-- interaction_id: en:lesson-02:session-10:i13; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `cold` · `noisy` · `crowded`
 
 **14 · Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему**
-Плитки: `comfortable` `Is` `it` `am` → **Is it comfortable?**
+<!-- interaction_id: en:lesson-02:session-10:i14; family: phrase_builder -->
+Цель: `Is it comfortable?`
 
 **15 · Вставьте слово — спутник спрашивает, как вам тут, и всё вас устраивает**
-It is ___ . → **ok** · crowded · noisy
-- crowded — *«Людно» — это описание зала, а не ваша оценка.*
-- noisy — *«Шумно» — жалоба, а вы говорите, что всё нормально.*
+<!-- interaction_id: en:lesson-02:session-10:i15; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `ok` · `crowded` · `noisy`
 
-**16 · Скажите вслух — два вопроса подряд про этот зал**
-🎙 **Is it crowded? Is it noisy?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i16:s01; family: scripted_repeat_compare -->
+Цель: `Is it crowded?`
 
-**17 · Финал сцены — три фразы подряд про этот зал**
-🎙 Спутник спрашивает, как вам это место. Скажите: тут людно, тут шумно, но вам нормально.
-**It is crowded. It is noisy. It is ok.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i16:s02; family: scripted_repeat_compare -->
+Цель: `Is it noisy?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s01; family: scripted_repeat_compare -->
+Цель: `It is crowded.`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s02; family: scripted_repeat_compare -->
+Цель: `It is noisy.`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-10:i17:s03; family: scripted_repeat_compare -->
+Цель: `It is ok.`
 
 ## Для сборщика
 
@@ -136,7 +153,7 @@ new_words:
 crowded — людно, битком — «людно, битком». Столики заняты, у бара стоят, между стульями боком.
 noisy — шумно — «шумно». Место, где приходится повышать голос, чтобы вас услышали.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=context_gap_grammar, 11=listen_build_dictation, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=speed_match, 10=context_gap_grammar, 11=listen_build_dictation, 12=sound_contrast, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -164,7 +181,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 |---|---|---|
 | crowded | 1 | 2 (слух), 5 (выбор) |
 | noisy | 3 | 4 (слух), 6 (сборка) |
-| cold | из прошлых сессий | 8 (слух) |
-| comfortable | из прошлых сессий | 7 (выбор) |
+| cold | из прошлых занятий | 8 (слух) |
+| comfortable | из прошлых занятий | 7 (выбор) |
 
 ---

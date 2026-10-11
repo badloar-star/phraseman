@@ -799,13 +799,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — новый участник подошёл к месту сбора и просит помочь ему спросить, не рано ли он пришёл; произнесите вопрос от его лица",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — новый участник подошёл к месту сбора и просит помочь ему спросить, не рано ли он пришёл; произнесите вопрос от его лица",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -832,13 +832,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг потерял вас из виду и звонит; сообщите, что вы здесь",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-42:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг потерял вас из виду и звонит; сообщите, что вы здесь",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -897,5 +897,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f1d702547cc8e1536da3bf9745ada9346c611851a2a9cdef4357ffe228c15e96"
+  "learnerFingerprint": "1d5e40d5697ce886ef037e4486ad94c4396257ac336b34e6d683d5330686bc68"
 }

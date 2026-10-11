@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-37:i06",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-37:i06:p1=tired\nen:lesson-01:session-37:i06:p2=happy\nen:lesson-01:session-37:i06:p3=cold\nen:lesson-01:session-37:i06:p4=hot",
     "correctResponseId": null
   },
   {
@@ -70,13 +70,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-37:i15",
-    "correctText": "She is cold. I am not cold.",
+    "interactionId": "en:lesson-01:session-37:i15:s01",
+    "correctText": "She is cold.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-37:i16",
-    "correctText": "I am tired. He is tired. It is hot. We are happy.",
+    "interactionId": "en:lesson-01:session-37:i15:s02",
+    "correctText": "I am not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16:s01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16:s02",
+    "correctText": "He is tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16:s03",
+    "correctText": "It is hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16:s04",
+    "correctText": "We are happy.",
     "correctResponseId": null
   }
 ]

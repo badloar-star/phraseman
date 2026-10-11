@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 4 — «Хозяин показывает квартиру»
+# Английский · Урок 3 · Занятие 4 — «Хозяин показывает квартиру»
 
-**Сцена сессии.** Хозяин квартиры показывает, где что находится, и оставляет вам ключ. Вы слушаете его пояснения, называете вещи вслух и переспрашиваете, когда нужно уточнить.
+**Сцена занятия.** Хозяин квартиры показывает, где что находится, и оставляет вам ключ. Вы слушаете его пояснения, называете вещи вслух и переспрашиваете, когда нужно уточнить.
 
-**Операция:** знакомое `a + noun` на слух и вслух; сохраняем `a` в названии внутри утверждения, вопроса и отрицания  
+**Как сказать:** знакомое `a + noun` на слух и вслух; сохраняем `a` в названии внутри утверждения, вопроса и отрицания  
 **Новые слова:** key, door, window  
 **Возвращаются:** mirror
 
@@ -50,76 +50,84 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — key**  
-> **key** — «ключ». Им открывают замок.
+**1 · Карточка слова — key**
+<!-- interaction_id: en:lesson-03:session-04:i01; family: listen_choose -->
+Цель: `key`
 
-**2 · Послушайте и выберите — какое слово произнёс хозяин**  
-🔊 *key* → **key** · tea · fee
-- tea — *Первый звук в `tea` — «т», а в `key` — «к». В записи `key`.*
-- fee — *Первый звук в `fee` — «ф», а в `key` — «к». Здесь звучит `key`.*
+**2 · Послушайте и выберите — какое слово произнёс хозяин**
+<!-- interaction_id: en:lesson-03:session-04:i02; family: listen_choose -->
+Цель: `key`
+Варианты: `key` · `tea` · `fee`
 
-**3 · Карточка слова — door**  
-> **door** — «дверь». Её открывают, чтобы войти или выйти.
+**3 · Карточка слова — door**
+<!-- interaction_id: en:lesson-03:session-04:i03; family: listen_choose -->
+Цель: `door`
 
-**4 · Послушайте и выберите — какое слово прозвучало в прихожей**  
-🔊 *door* → **door** · four · more
-- four — *В `four` первым слышно «ф», а в `door` — «д». В записи `door`.*
-- more — *В `more` первым слышно «м», а в `door` — «д». Здесь звучит `door`.*
+**4 · Послушайте и выберите — какое слово прозвучало в прихожей**
+<!-- interaction_id: en:lesson-03:session-04:i04; family: listen_choose -->
+Цель: `door`
+Варианты: `door` · `four` · `more`
 
-**5 · Послушайте и соберите — хозяин коротко называет предмет**  
-🔊 *A key.* Плитки: `key` `A` `door` → **A key.**  
-Лишняя плитка: `door`.
-- door — *В записи прозвучало `key`, а не `door`. Короткое название — `A key`.*
+**5 · Послушайте и соберите — хозяин коротко называет предмет**
+<!-- interaction_id: en:lesson-03:session-04:i05; family: listen_build_dictation -->
+Цель: `A key.`
+Варианты: `door`
 
-**6 · Карточка слова — window**  
-> **window** — «окно». Через него в комнату попадает дневной свет.
+**6 · Карточка слова — window**
+<!-- interaction_id: en:lesson-03:session-04:i06; family: listen_choose -->
+Цель: `window`
 
-**7 · Послушайте и выберите — какое слово произнёс хозяин**  
-🔊 *window* → **window** · willow · winter
-- willow — *В середине `willow` слышно «л», а в `window` — сочетание «н» и «д». В записи `window`.*
-- winter — *Во второй части `winter` слышно «т», а в `window` — «д». Здесь звучит `window`.*
+**7 · Послушайте и выберите — какое слово произнёс хозяин**
+<!-- interaction_id: en:lesson-03:session-04:i07; family: listen_choose -->
+Цель: `window`
+Варианты: `window` · `willow` · `winter`
 
-**8 · Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»**  
-Плитки: `window` `is` `It` `a` → **It is a window.**
+**8 · Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»**
+<!-- interaction_id: en:lesson-03:session-04:i08; family: phrase_builder -->
+Цель: `It is not a window.`
 
-**9 · Скажите вслух — хозяин показывает на предмет у входа; назовите зеркало (`mirror` — «зеркало»)**  
-🎙️ **It is a mirror.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-04:i09; family: scripted_repeat_compare -->
+Цель: `It is a mirror.`
 
-**10 · Послушайте и соберите — хозяин обращается к вам из коридора**  
-🔊 *Is it a door?* Плитки: `door` `it` `Is` `a` `window` → **Is it a door?**  
-Лишняя плитка: `window`.
-- window — *В записи прозвучало `door`, а не `window`: `Is it a door?`.*
+**10 · Послушайте и соберите — хозяин обращается к вам из коридора**
+<!-- interaction_id: en:lesson-03:session-04:i10; family: listen_build_dictation -->
+Цель: `Is it a door?`
+Варианты: `window`
 
-**11 · Соедините пары — что показал хозяин (Speed Match, 4 пары)**  
-key — ключ · door — дверь · window — окно · mirror — зеркало
+**11 · Соедините пары — что показал хозяин**
+<!-- interaction_id: en:lesson-03:session-04:i11; family: speed_match -->
+Пары: `key` — ключ · `door` — дверь · `window` — окно · `mirror` — зеркало
+Цель: `key · door · window · mirror`
 
-**12 · Соберите фразу — хозяин принял металлический брелок в вашей руке за ключ; возразите: «Это не ключ»**  
-Плитки: `key` `It` `a` `not` `is` `are` → **It is not a key.**  
-Лишняя плитка: `are`.
-- are — *После `It` здесь нужна форма `is`. Отрицание и название идут дальше: `It is not a key`.*
+**12 · Соберите фразу — хозяин принял металлический брелок в вашей руке за ключ; возразите: «Это не ключ»**
+<!-- interaction_id: en:lesson-03:session-04:i12; family: phrase_builder -->
+Цель: `It is not a key.`
+Варианты: `are`
 
-**13 · Скажите вслух — хозяин придерживает входную дверь; назовите её полной фразой**  
-🎙️ **It is a door.**
+**13 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-04:i13; family: scripted_repeat_compare -->
+Цель: `It is a door.`
 
-**14 · Соберите вопрос — хозяин показывает на блестящую поверхность у шкафа; уточните, зеркало ли это**  
-Плитки: `mirror` `it` `a` `Is` `Are` → **Is it a mirror?**  
-Лишняя плитка: `Are`.
-- Are — *Вопрос об этом предмете начинаем с `Is it`: `Is it a mirror?`.*
+**14 · Соберите вопрос — хозяин показывает на блестящую поверхность у шкафа; уточните, зеркало ли это**
+<!-- interaction_id: en:lesson-03:session-04:i14; family: phrase_builder -->
+Цель: `Is it a mirror?`
+Варианты: `Are`
 
-**15 · Скажите вслух — хозяин достаёт небольшой предмет из кармана; спросите «Это ключ?»**  
-🎙️ **Is it a key?**
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-04:i15; family: scripted_repeat_compare -->
+Цель: `Is it a key?`
 
-**16 · Скажите вслух — хозяин решил, что вы указываете на дверь, но вы показываете на шкаф; возразите: «Это не дверь»**  
-🎙️ **It is not a door.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-04:i16; family: scripted_repeat_compare -->
+Цель: `It is not a door.`
 
-**17 · Соберите фразу — перед уходом хозяин спрашивает, что осталось на столе; вы показываете на ключ и называете его полной фразой**  
-Плитки: `key` `a` `It` `is` `am` → **It is a key.**  
-Лишняя плитка: `am`.
-- am — *Форма `am` относится к `I`. Здесь называем предмет через `It is`: `It is a key`.*
-
----
+**17 · Соберите фразу — перед уходом хозяин спрашивает, что осталось на столе; вы показываете на ключ и называете его полной фразой**
+<!-- interaction_id: en:lesson-03:session-04:i17; family: phrase_builder -->
+Цель: `It is a key.`
+Варианты: `am`
 
 ## Для сборщика
 
@@ -128,7 +136,7 @@ key — ключ — им открывают замок
 door — дверь — её открывают, чтобы войти или выйти  
 window — окно — через него в комнату попадает дневной свет
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=listen_build_dictation, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=phrase_builder, 13=scripted_repeat_compare, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_build_dictation, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=phrase_builder, 13=scripted_repeat_compare, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ## Самопроверка
 

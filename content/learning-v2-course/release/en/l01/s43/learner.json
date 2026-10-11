@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-43:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — bad",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -219,7 +219,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-43:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — real",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -773,7 +773,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — ok",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -830,11 +830,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -898,26 +898,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-43:i17",
+      "interactionId": "en:lesson-01:session-43:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — конец вечера, вас торопят к выходу",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-43:i17:audio"
+        "en:lesson-01:session-43:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — конец вечера, вас торопят к выходу",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-43:i17:audio",
-          "transcript": "We're ready. They aren't late. It isn't bad."
+          "audioTargetId": "en:lesson-01:session-43:i17:s01:audio",
+          "transcript": "We're ready."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We're ready. They aren't late. It isn't bad.",
+        "targetPhrase": "We're ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i17:s02:audio",
+          "transcript": "They aren't late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They aren't late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-43:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-43:i17:s03:audio",
+          "transcript": "It isn't bad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It isn't bad.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -931,11 +997,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2b946eb4e4234502abffe578e5e44968a54be59edf9583054e347d0dddfca9a1"
+  "learnerFingerprint": "cb243105628f8becd04a5ee704b44b2bfae381b825b07f1ae76065590d217191"
 }

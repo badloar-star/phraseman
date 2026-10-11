@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-43:intro1:r2": {
+          "ru": "Без значка это «были». Фраза уехала в прошлое.",
+          "uk": "Без значка це «були». Фраза поїхала в минуле."
+        },
+        "en:lesson-01:session-43:intro1:r3": {
+          "ru": "`are` уже спрятано внутри `we're`. Второй раз его ставить не нужно.",
+          "uk": "`are` уже сховане всередині `we're`. Удруге його ставити не треба."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-43:intro2:r2": {
+          "ru": "После `they` нужно `are`: полная форма `They are funny`, короткая — `They're funny`.",
+          "uk": "Після `they` потрібне `are`: повна форма `They are funny`, коротка — `They're funny`."
+        },
+        "en:lesson-01:session-43:intro2:r3": {
+          "ru": "`are` уже внутри `they're`. Хватит одного.",
+          "uk": "`are` уже всередині `they're`. Досить одного."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-43:intro3:r2": {
+          "ru": "Значок встал не туда. Он стоит на месте выпавшей `o`: `isn't`.",
+          "uk": "Значок став не туди. Він стоїть на місці зниклої `o`: `isn't`."
+        },
+        "en:lesson-01:session-43:intro3:r3": {
+          "ru": "`aren't` — про нескольких. Про одного человека — `isn't`.",
+          "uk": "`aren't` — про кількох. Про одну людину — `isn't`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fd7592f54566cc25d6be3a41af06910f195b3c988142e733c62c8bbc0259200d"
+}

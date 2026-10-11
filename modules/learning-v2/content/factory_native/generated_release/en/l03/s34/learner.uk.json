@@ -9,13 +9,18 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — blanket",
-      "responseOptions": [],
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-34:i01:r1",
+          "text": "blanket"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i01:audio"
       ],
-      "accessibilityLabel": "Картка слова — blanket",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -27,10 +32,7 @@
           {
             "responseId": "en:lesson-03:session-34:i01:r1",
             "targetText": "blanket",
-            "meaningByLocale": {
-              "ru": "«плед». Мягкое покрывало, которым укрываются на диване или в кресле.",
-              "uk": "«плед». М'яке покривало, яким укриваються на дивані або в кріслі."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -47,184 +49,122 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-34:i02",
+      "interactionId": "en:lesson-03:session-34:i03",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-34:i02:r1",
-          "text": "blanket"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i02:r2",
-          "text": "bracket"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i02:r3",
-          "text": "banquet"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i02:r4",
-          "text": "blank"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-34:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-34:i02:audio",
-          "transcript": "blanket"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-34:i02:r1",
-            "targetText": "blanket",
-            "meaningByLocale": {
-              "ru": "плед",
-              "uk": "плед"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i02:r2",
-            "targetText": "bracket",
-            "meaningByLocale": {
-              "ru": "скобка",
-              "uk": "скоба"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i02:r3",
-            "targetText": "banquet",
-            "meaningByLocale": {
-              "ru": "банкет",
-              "uk": "бенкет"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i02:r4",
-            "targetText": "blank",
-            "meaningByLocale": {
-              "ru": "пустой",
-              "uk": "порожній"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-34:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Оба слова начинаются с `b`, но в `bracket` слышно начало `br`, а в `blanket` — `bl`.",
-              "uk": "Обидва слова починаються з `b`, але в `bracket` чути початок `br`, а в `blanket` — `bl`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `banquet` после первого слога слышно сочетание /kw/, а в `blanket` — /k/. В записи прозвучало `blanket`.",
-              "uk": "У `banquet` після першого складу чути поєднання /kw/, а в `blanket` — /k/. У записі прозвучало `blanket`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i02:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`blank` состоит из одного слога и заканчивается сразу после /ŋk/. В `blanket` слышен второй слог.",
-              "uk": "`blank` складається з одного складу й закінчується одразу після /ŋk/. У `blanket` чути другий склад."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-34:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — sheet",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i03:audio"
       ],
-      "accessibilityLabel": "Картка слова — sheet",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-34:i03:audio",
           "transcript": "sheet"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-34:i03:r1",
-            "targetText": "sheet",
-            "meaningByLocale": {
-              "ru": "«простыня». Кусок ткани, которым застилают матрас перед сном.",
-              "uk": "«простирадло». Шматок тканини, яким застеляють матрац перед сном."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "sheet",
-          "definitionByLocale": {
-            "ru": "«простыня». Кусок ткани, которым застилают матрас перед сном.",
-            "uk": "«простирадло». Шматок тканини, яким застеляють матрац перед сном."
-          }
-        }
+        "targetPhrase": "sheet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i05:audio",
+          "transcript": "duvet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "duvet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i02:audio",
+          "transcript": "blanket"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "blanket",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-34:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
+      "prompt": "Послухайте та виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i04:r1",
           "text": "sheet"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i04:r2",
-          "text": "seat"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i04:r3",
-          "text": "sheep"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i04:r4",
-          "text": "ship"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -236,109 +176,17 @@
           {
             "responseId": "en:lesson-03:session-34:i04:r1",
             "targetText": "sheet",
-            "meaningByLocale": {
-              "ru": "простыня",
-              "uk": "простирадло"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i04:r2",
-            "targetText": "seat",
-            "meaningByLocale": {
-              "ru": "сиденье",
-              "uk": "сидіння"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i04:r3",
-            "targetText": "sheep",
-            "meaningByLocale": {
-              "ru": "овца",
-              "uk": "вівця"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i04:r4",
-            "targetText": "ship",
-            "meaningByLocale": {
-              "ru": "корабль",
-              "uk": "корабель"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-34:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Гласный и конец похожи, но `seat` начинается со звука /s/, а `sheet` — с /ʃ/.",
-              "uk": "Голосний і кінець схожі, але `seat` починається зі звука /s/, а `sheet` — з /ʃ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Начало и гласный совпадают, но `sheep` заканчивается звуком /p/, а `sheet` — /t/.",
-              "uk": "Початок і голосний збігаються, але `sheep` закінчується звуком /p/, а `sheet` — /t/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i04:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `ship` короткий гласный /ɪ/ и конец /p/. В записи прозвучало `sheet` с /iː/ и /t/.",
-              "uk": "У `ship` короткий голосний /ɪ/ і кінець /p/. У записі прозвучало `sheet` з /iː/ та /t/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-34:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — duvet",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-34:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — duvet",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-34:i05:audio",
-          "transcript": "duvet"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-34:i05:r1",
-            "targetText": "duvet",
-            "meaningByLocale": {
-              "ru": "«пуховое одеяло». Тёплое одеяло с мягким наполнителем, которое кладут в пододеяльник.",
-              "uk": "«пухова ковдра». Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "duvet",
+          "word": "sheet",
           "definitionByLocale": {
-            "ru": "«пуховое одеяло». Тёплое одеяло с мягким наполнителем, которое кладут в пододеяльник.",
-            "uk": "«пухова ковдра». Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру."
+            "ru": "«простыня».",
+            "uk": "«простирадло»."
           }
         }
       },
@@ -348,111 +196,137 @@
       "interactionId": "en:lesson-03:session-34:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав продавець",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-34:i06:r1",
-          "text": "duvet"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i06:r2",
-          "text": "duet"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i06:r3",
-          "text": "survey"
-        },
-        {
-          "responseId": "en:lesson-03:session-34:i06:r4",
-          "text": "delay"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав продавець",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-34:i06:audio",
           "transcript": "duvet"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-34:i06:r1",
-            "targetText": "duvet",
-            "meaningByLocale": {
-              "ru": "пуховое одеяло",
-              "uk": "пухова ковдра"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i06:r2",
-            "targetText": "duet",
-            "meaningByLocale": {
-              "ru": "дуэт",
-              "uk": "дует"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i06:r3",
-            "targetText": "survey",
-            "meaningByLocale": {
-              "ru": "опрос",
-              "uk": "опитування"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i06:r4",
-            "targetText": "delay",
-            "meaningByLocale": {
-              "ru": "задержка",
-              "uk": "затримка"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-34:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`duet` заканчивается сочетанием /et/, а в конце `duvet` слышно /veɪ/.",
-              "uk": "`duet` закінчується сполукою /et/, а наприкінці `duvet` чути /veɪ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Оба слова заканчиваются звуком /veɪ/, но `survey` начинается со звука /s/, а `duvet` — со звука /d/.",
-              "uk": "Обидва слова закінчуються звуком /veɪ/, але `survey` починається зі звука /s/, а `duvet` — зі звука /d/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-34:i06:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`delay` начинается со слога /dɪ/, а `duvet` — со слога /duː/. В записи прозвучало `duvet`.",
-              "uk": "`delay` починається зі складу /dɪ/, а `duvet` — зі складу /duː/. У записі прозвучало `duvet`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "duvet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i08:audio",
+          "transcript": "blanket"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "blanket",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i09:audio",
+          "transcript": "sheet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "sheet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i10:audio",
+          "transcript": "duvet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "duvet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-34:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -505,8 +379,8 @@
         ],
         "rightColumn": [
           "плед",
-          "простыня",
-          "пуховое одеяло",
+          "простирадло",
+          "пухова ковдра",
           "подушка"
         ],
         "pairingKey": "pair_id",
@@ -520,104 +394,6 @@
           "accuracy",
           "personal_best"
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-34:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Those sheets, please.",
-        "localizedMeaning": {
-          "ru": "Соберите короткую просьбу — вам нужны простыни с дальней полки",
-          "uk": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці"
-        },
-        "orderedTokens": [
-          "Those",
-          "sheets,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "are",
-          "These",
-          "sheet"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-34:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кілька простирадл на дальній полиці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-34:i09:audio"
-      ],
-      "accessibilityLabel": "Скажіть уголос — кілька простирадл на дальній полиці",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-34:i09:audio",
-          "transcript": "sheets"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "sheets",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-34:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й перенесіть у відповідь ціле слово — кілька пухових ковдр",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-34:i10:audio"
-      ],
-      "accessibilityLabel": "Послухайте й перенесіть у відповідь ціле слово — кілька пухових ковдр",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-34:i10:audio",
-          "transcript": "duvets"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "duvets",
-        "orderedTokens": [
-          "duvets"
-        ],
-        "authoredDistractorTokens": [
-          "duvet",
-          "duets",
-          "sheets"
-        ],
-        "slotFeedback": []
       },
       "scriptedAlternate": null
     },
@@ -663,19 +439,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i12:r1",
-          "text": "Це туфлі"
+          "text": "Это туфли"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r2",
-          "text": "Це туфля"
+          "text": "Это туфля"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r3",
-          "text": "Це шкарпетки"
+          "text": "Это носки"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r4",
-          "text": "Ті туфлі, будь ласка"
+          "text": "Те туфли, пожалуйста"
         }
       ],
       "mediaIds": [],
@@ -693,22 +469,22 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-34:i12:r1",
-            "targetText": "Це туфлі",
+            "targetText": "Это туфли",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r2",
-            "targetText": "Це туфля",
+            "targetText": "Это туфля",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r3",
-            "targetText": "Це шкарпетки",
+            "targetText": "Это носки",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r4",
-            "targetText": "Ті туфлі, будь ласка",
+            "targetText": "Те туфли, пожалуйста",
             "meaningByLocale": null
           }
         ],
@@ -717,7 +493,7 @@
           {
             "responseId": "en:lesson-03:session-34:i12:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "Так называют один предмет. В записи `those are` и форма `shoes` показывают несколько туфель.",
               "uk": "Так називають один предмет. У записі `those are` і форма `shoes` указують на кілька туфель."
@@ -726,7 +502,7 @@
           {
             "responseId": "en:lesson-03:session-34:i12:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "Число совпадает, но в записи назвали `shoes` — туфли, а не носки.",
               "uk": "Число збігається, але в записі назвали `shoes` — туфлі, а не шкарпетки."
@@ -735,7 +511,7 @@
           {
             "responseId": "en:lesson-03:session-34:i12:r4",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "Это просьба выбрать туфли. В записи их просто называют: `Those are shoes`.",
               "uk": "Це прохання вибрати туфлі. У записі їх просто називають: `Those are shoes`."
@@ -800,12 +576,12 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вставте вказівне слово — кілька подушок ",
+        "testedDimension": "Вставьте указатель — несколько подушек л",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-34:i13:r2",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — кілька подушок ",
+            "testedDimension": "Вставьте указатель — несколько подушек л",
             "feedbackByLocale": {
               "ru": "`that` показывает на один предмет и сочетается с `is`. Для нескольких подушек нужно `those`.",
               "uk": "`that` указує на один предмет і поєднується з `is`. Для кількох подушок потрібне `those`."
@@ -814,7 +590,7 @@
           {
             "responseId": "en:lesson-03:session-34:i13:r3",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — кілька подушок ",
+            "testedDimension": "Вставьте указатель — несколько подушек л",
             "feedbackByLocale": {
               "ru": "`these` показывает на несколько предметов рядом. Здесь подушки находятся вдали, поэтому нужно `those`.",
               "uk": "`these` указує на кілька предметів поруч. Тут подушки розташовані вдалині, тому потрібне `those`."
@@ -823,7 +599,7 @@
           {
             "responseId": "en:lesson-03:session-34:i13:r4",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — кілька подушок ",
+            "testedDimension": "Вставьте указатель — несколько подушек л",
             "feedbackByLocale": {
               "ru": "`Are are pillows` не образует фразу. В начале нужен указатель `Those`.",
               "uk": "`Are are pillows` не утворює фразу. На початку потрібне вказівне слово `Those`."
@@ -839,13 +615,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — назвіть кілька простирадл на дальній полиці",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i14:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — назвіть кілька простирадл на дальній полиці",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -934,26 +710,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-34:i17",
+      "interactionId": "en:lesson-03:session-34:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — назвіть три групи й виберіть пледи",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-34:i17:audio"
+        "en:lesson-03:session-34:i17:s01:audio"
       ],
-      "accessibilityLabel": "Фінал — назвіть три групи й виберіть пледи",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-34:i17:audio",
-          "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please."
+          "audioTargetId": "en:lesson-03:session-34:i17:s01:audio",
+          "transcript": "Those are blankets."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+        "targetPhrase": "Those are blankets.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -965,13 +741,104 @@
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 4",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are sheets.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 2 із 4"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "sheets."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i17:s03:audio",
+          "transcript": "Those are duvets."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are duvets.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-34:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 4 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-34:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 4 із 4",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-34:i17:s04:audio",
+          "transcript": "Those blankets, please."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Those blankets, please.",
+        "orderedTokens": [
+          "Those",
+          "blankets,",
+          "please."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b842be022dbc67587a27d1076e673ea8aa649b65db89c401aeb2be42198f5fc8"
+  "learnerFingerprint": "6551e3264414fcad41c06fdb300c7bf1d1f5d501af3a0b4385ab14d65f3e96a7"
 }

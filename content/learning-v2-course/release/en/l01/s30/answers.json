@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-30:i01",
-    "correctText": "",
+    "correctText": "busy",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i03",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i07",
-    "correctText": "",
+    "correctText": "loud",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i09",
-    "correctText": "",
+    "correctText": "free",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-30:i11:p1=busy\nen:lesson-01:session-30:i11:p2=quiet\nen:lesson-01:session-30:i11:p3=loud\nen:lesson-01:session-30:i11:p4=free",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-30:i17",
-    "correctText": "It is loud. It is quiet.",
+    "interactionId": "en:lesson-01:session-30:i17:s01",
+    "correctText": "It is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i17:s02",
+    "correctText": "It is quiet.",
     "correctResponseId": null
   }
 ]

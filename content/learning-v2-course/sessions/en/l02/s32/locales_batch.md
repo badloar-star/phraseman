@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 32 — «Вечеря самими питаннями»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 32 — «Вечеря самими питаннями»
 
-**Сцена сесії.** Вечір у дублінському кафе. Ви сіли за столик, англійської майже немає, але вечерю замовити треба — і все робиться питаннями: що це, де те, чи дорого.
+**Сцена заняття.** Вечір у дублінському кафе. Ви сіли за столик, англійської майже немає, але вечерю замовити треба — і все робиться питаннями: що це, де те, чи дорого.
 
-**Операція:** повторення — `What is…?`, `Where is…?`, `Is it…?`, `It is + місце`
+**Як сказати:** повторення — `What is…?`, `Where is…?`, `Is it…?`, `It is + місце`
 **Нові слова:** —
 **Повертаються:** menu, bill, price, toilet, corner, cheap, near
 
@@ -14,7 +15,7 @@
 
 `price` — «ціна», та сама цифра праворуч від страви. `What is the price?` — так питають, скільки це коштує.
 
-Складається завжди однаково: `What is the` — і слово, про яке питаєте. Ці три слова йдуть підряд і місцями не міняються.
+Українською слова в питанні можна пересунути: «яка ціна» і «ціна яка» — обидва варіанти зрозумілі. Англійською так не вийде: спершу `What`, за ним `is`, потім `the` і саме слово. Один порядок, інших немає.
 
 **У меню рядок без цифри. Спитайте офіціанта, скільки це коштує.**
 
@@ -30,7 +31,7 @@
 
 `cheap` — «дешевий». Про їжу в меню, про кімнату, про квиток — усюди, де є ціна.
 
-Сказати «це дешеве» — `It is cheap`. А спитати «це дешеве?» — `Is it cheap?` Ті самі слова, тільки `is` та `it` помінялися місцями.
+Українською, щоб зробити з розповіді питання, ми додаємо `чи` або просто піднімаємо голос наприкінці — слова лишаються на своїх місцях. Англійською голосу мало, слова треба переставити. `It is cheap` — це розповідь. `Is it cheap?` — питання: `is` вийшло наперед.
 
 **У меню рядок без цінника. Спитайте офіціанта, чи дешева це страва.**
 
@@ -46,7 +47,7 @@
 
 `toilet` — «туалет». Спитати, де він, можна так: `Where is the toilet?`
 
-Складається так само, як питання про ціну: `Where is the` — і саме місце. Різниця тільки в першому слові: `What` питає про річ, `Where` — про місце.
+Порядок той самий, що й у питанні про ціну: `Where`, `is`, `the` і саме місце. Різниця тільки в першому слові: `What` питає про річ, `Where` — про місце.
 
 **Ви встали з-за столу і шукаєте туалет. Спитайте офіціанта.**
 
@@ -56,92 +57,98 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
-**1 · Послухайте і виберіть — menu**
-🔊 *menu* → **menu** · money · many
-- money — *Це «гроші». Меню приносять на початку вечері, гроші віддають у кінці.*
-- many — *Це «багато». Слово-опис, а не річ на столі.*
+**1 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-32:i01; family: listen_choose -->
+Ціль: `menu`
+Варіанти: `menu` · `money` · `many`
 
 **2 · Вставте слово — ви питаєте назву книжечки з їжею**
-What is the ___ ? → **menu** · bill · corner
-- bill — *Це рахунок, папірець у кінці вечері. Їжу за ним не вибирають.*
-- corner — *Це «кут» — про місце, а не про те, що лежить на столі.*
+<!-- interaction_id: en:lesson-02:session-32:i02; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `menu` · `bill` · `corner`
 
 **3 · Складіть фразу — спитайте про ціну**
-Плитки: `the` `What` `price` `is` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-32:i03; family: phrase_builder -->
+Ціль: `What is the price?`
 
-**4 · Послухайте і виберіть — cheap**
-🔊 *cheap* → **cheap** · sheep · shop
-- sheep — *Це «вівця». Перший звук як у слові «шаль», а в `cheap` — як у «чай».*
-- shop — *Це «магазин». Прозвучало `cheap` — це про ціну, а не про місце.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-32:i04; family: listen_choose -->
+Ціль: `cheap`
+Варіанти: `cheap` · `sheep` · `shop`
 
 **5 · Вставте слово — страва коштує два євро**
-It is ___ . → **cheap** · near · lost
-- near — *Це «поруч», про відстань. Два євро — це про ціну.*
-- lost — *Це «загубився». До тарілки з їжею не стосується.*
+<!-- interaction_id: en:lesson-02:session-32:i05; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `cheap` · `near` · `lost`
 
 **6 · Складіть фразу — спитайте, чи дешеве це**
-Плитки: `it` `Is` `cheap` → **Is it cheap?**
+<!-- interaction_id: en:lesson-02:session-32:i06; family: phrase_builder -->
+Ціль: `Is it cheap?`
 
 **7 · Розрізніть звуки — яке з двох про «дешевий»?**
-🔊 Два слова підряд.
-*cheap · jeep* → **cheap**
-- jeep — *Це «джип». Перший звук інший: `jeep` починається з `j`, `cheap` — з `ch`.*
+<!-- interaction_id: en:lesson-02:session-32:i07; family: sound_contrast -->
+Варіанти: `cheap` · `jeep`
 
 **8 · Картка слова — corner**
-> **corner** — «кут». Місце, де сходяться дві стіни або дві вулиці. «Столик у кутку», «крамниця на розі».
+<!-- interaction_id: en:lesson-02:session-32:i08; family: listen_choose -->
+Ціль: `corner`
 
-**9 · Послухайте і виберіть — corner**
-🔊 *corner* → **corner** · coffee · cover
-- coffee — *Це «кава». Прозвучало `corner` — це про місце, а не про напій.*
-- cover — *Це «обкладинка». Прозвучало `corner` — це про кут зали, а не про річ.*
+**9 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
+Ціль: `corner`
+Варіанти: `corner` · `coffee` · `cover`
 
 **10 · Вставте слово — ви хочете дізнатися, скільки це коштує**
-What is the ___ ? → **price** · cheap · near
-*(`price` — «ціна», сама цифра на ціннику)*
-- cheap — *Це опис, «дешевий». А цифру на ціннику звуть `price`.*
-- near — *Це «поруч», про місце. До вартості стосунку не має.*
+<!-- interaction_id: en:lesson-02:session-32:i10; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `price` · `cheap` · `near`
 
-**11 · З'єднайте пари (Speed Match, 4 пари)**
-menu — меню · cheap — дешевий · price — ціна · corner — кут
+**11 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-32:i11; family: speed_match -->
+Пари: `menu` — меню · `cheap` — дешевий · `price` — ціна · `corner` — кут
+Ціль: `menu · cheap · price · corner`
 
 **12 · Картка слова — bill**
-> **bill** — «рахунок». Папірець із сумою, який приносять у кінці вечері.
+<!-- interaction_id: en:lesson-02:session-32:i12; family: listen_choose -->
+Ціль: `bill`
 
 **13 · Вставте слово — ви поїли і хочете розрахуватися**
-What is the ___ ? → **bill** · menu · toilet
-*(`bill` — «рахунок»)*
-- menu — *Меню вам уже принесли на початку. Платять за рахунком.*
-- toilet — *Це місце, а не папірець із сумою.*
+<!-- interaction_id: en:lesson-02:session-32:i13; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `bill` · `menu` · `toilet`
 
 **14 · Складіть фразу — спитайте, де туалет**
-Плитки: `the` `is` `toilet` `Where` → **Where is the toilet?**
+<!-- interaction_id: en:lesson-02:session-32:i14; family: phrase_builder -->
+Ціль: `Where is the toilet?`
 
 **15 · Вставте слово — офіціант показує рукою: туалет за два кроки**
-It is ___ . → **near** · cheap · bill
-*(`near` — «поруч»)*
-- cheap — *`cheap` — про ціну. А тут мова про те, чи далеко йти.*
-- bill — *Це рахунок, річ. А тут потрібне слово про відстань.*
+<!-- interaction_id: en:lesson-02:session-32:i15; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `cheap` · `bill`
 
 **16 · Послухайте і складіть — «це поруч»**
-🔊 *It is near.* Плитки: `near` `It` `is` `Where` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-32:i16; family: listen_build_dictation -->
+Ціль: `It is near.`
 
-**17 · Складіть без підказки — рахунок, питання цілком**
-Плитки: `the` `What` `bill` `is` `Where` → **What is the bill?**
-*(плитка `Where` зайва: рахунок ви не шукаєте, ви питаєте суму)*
+**17 · Складіть запитання — ви поїли і кличете офіціанта; запитайте про рахунок**
+<!-- interaction_id: en:lesson-02:session-32:i17; family: phrase_builder -->
+Ціль: `What is the bill?`
 
-**18 · Скажіть уголос — кінець вечері**
-🎙 Ви доїли, кличете офіціанта і кажете дві фрази підряд: просите рахунок і питаєте, де туалет.
-**What is the bill? Where is the toilet?**
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-32:i18:s01; family: scripted_repeat_compare -->
+Ціль: `What is the bill?`
 
----
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-32:i18:s02; family: scripted_repeat_compare -->
+Ціль: `Where is the toilet?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=sound_contrast, 8=word_card, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=sound_contrast, 8=listen_choose, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ## Самоперевірка
 
@@ -173,17 +180,3 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose
 | cheap | інтро 2 | 4, 5, 6, 7 |
 | corner | картка 8 | 9 (слух) |
 | near | розбір у завданні 5 | 10 (пастка) |
-
----
-
-🟡 **Стоит улучшить**
-- В задании 4 украинская опора на звук: пояснение «як у слові „шаль“ / як у „чай“» работает для украинского уха так же, как русское — оба звука в языке есть. Если позже появится локаль без звука `ч` (например, вьетнамская), опору придётся переделывать полностью.
-
-🧩 **Скрытые связи**
-- Английские слова, номера заданий, блок «Для сборщика» и `modes` оставлены байт в байт — сборщик читает их одинаково для всех локалей, любое расхождение сломает сборку сессии.
-
-- Сделал украинскую версию урока — целиком, ничего не пропустил.
-- Английские слова, фразы, номера заданий и служебный блок в конце оставил ровно такими же, как в русском варианте — их трогать нельзя.
-- Переписал только объяснения: живым украинским, без калек с русского («крамниця на розі», «за два кроки», «розрахуватися»).
-- Подсказку про звук в слове `cheap` дал через украинские слова «шаль» и «чай» — так украинцу понятнее, чем через русские примеры.
-- Таблицы самопроверки тоже перевёл, чтобы в файле не осталось русских кусков.

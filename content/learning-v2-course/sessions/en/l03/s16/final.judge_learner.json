@@ -1,222 +1,33 @@
 {
-  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
-  "reviewer": "/root/s10_blind",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "medium",
-  "introAnswers": [
-    {
-      "step": 1,
-      "answer": "It is an umbrella."
-    },
-    {
-      "step": 2,
-      "answer": "An hour."
-    },
-    {
-      "step": 3,
-      "answer": "It is not a cushion."
-    }
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s16",
+  "role": "judge_learner",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
   ],
-  "practiceAnswers": [
-    {
-      "step": 1,
-      "answer": "a"
-    },
-    {
-      "step": 2,
-      "answer": "It is an umbrella."
-    },
-    {
-      "step": 3,
-      "answer": "A cushion."
-    },
-    {
-      "step": 4,
-      "answer": "An"
-    },
-    {
-      "step": 5,
-      "answer": "It is a uniform."
-    },
-    {
-      "step": 6,
-      "answer": "a"
-    },
-    {
-      "step": 7,
-      "answer": "Is it an umbrella?"
-    },
-    {
-      "step": 8,
-      "answer": "An hour."
-    },
-    {
-      "step": 9,
-      "answer": {
-        "candle": "свеча",
-        "cushion": "подушка",
-        "umbrella": "зонт",
-        "plant": "растение"
-      }
-    },
-    {
-      "step": 10,
-      "answer": "a"
-    },
-    {
-      "step": 11,
-      "answer": "It is not a cushion."
-    },
-    {
-      "step": 12,
-      "answer": "It is a plant."
-    },
-    {
-      "step": 13,
-      "answer": "It is a uniform."
-    },
-    {
-      "step": 14,
-      "answer": "It is not an umbrella."
-    },
-    {
-      "step": 15,
-      "answer": "It is not a candle."
-    },
-    {
-      "step": 16,
-      "answer": "Is it a plant?"
-    },
-    {
-      "step": 17,
-      "answer": "It is a cushion."
-    }
-  ],
-  "learning_delta": [
-    "Закрепил выбор a/an по первому звуку.",
-    "Применил тот же выбор самостоятельно в вопросе и отрицании."
-  ],
-  "increasing_independence": "Проверка без новых карточек; перенос знакомого выбора между утверждением, вопросом, отрицанием и коротким ответом.",
-  "impossible_tasks": [],
-  "ambiguous_tasks": [],
-  "pacing_issues": [],
-  "humour_issues": [],
-  "actualAudioReviewed": false,
-  "verdict": "PASS",
-  "reason": "Чекпоинт требует самостоятельного переноса уже изученного правила на разные фразы, но все нужные слова и контрасты даны в доступной опоре.",
-  "previousReview": {
-    "sourceSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
-    "reviewer": "/root/s10_blind",
-    "model": "gpt-5.6-terra",
-    "reasoningEffort": "medium",
-    "introAnswers": [
-      {
-        "step": 1,
-        "answer": "It is an umbrella."
-      },
-      {
-        "step": 2,
-        "answer": "An hour."
-      },
-      {
-        "step": 3,
-        "answer": "It is not a cushion."
-      }
-    ],
-    "practiceAnswers": [
-      {
-        "step": 1,
-        "answer": "a"
-      },
-      {
-        "step": 2,
-        "answer": "It is an umbrella."
-      },
-      {
-        "step": 3,
-        "answer": "A cushion."
-      },
-      {
-        "step": 4,
-        "answer": "An"
-      },
-      {
-        "step": 5,
-        "answer": "It is a uniform."
-      },
-      {
-        "step": 6,
-        "answer": "a"
-      },
-      {
-        "step": 7,
-        "answer": "Is it an umbrella?"
-      },
-      {
-        "step": 8,
-        "answer": "An hour."
-      },
-      {
-        "step": 9,
-        "answer": {
-          "candle": "свеча",
-          "cushion": "подушка",
-          "umbrella": "зонт",
-          "plant": "растение"
-        }
-      },
-      {
-        "step": 10,
-        "answer": "a"
-      },
-      {
-        "step": 11,
-        "answer": "It is not a cushion."
-      },
-      {
-        "step": 12,
-        "answer": "It is a plant."
-      },
-      {
-        "step": 13,
-        "answer": "It is a uniform."
-      },
-      {
-        "step": 14,
-        "answer": "It is not an umbrella."
-      },
-      {
-        "step": 15,
-        "answer": "It is not a candle."
-      },
-      {
-        "step": 16,
-        "answer": "Is it a plant?"
-      },
-      {
-        "step": 17,
-        "answer": "It is a cushion."
-      }
-    ],
-    "learning_delta": [
-      "Закрепил выбор a/an по первому звуку.",
-      "Применил тот же выбор самостоятельно в вопросе и отрицании."
-    ],
-    "increasing_independence": "Проверка без новых карточек; перенос знакомого выбора между утверждением, вопросом, отрицанием и коротким ответом.",
-    "impossible_tasks": [],
-    "ambiguous_tasks": [],
-    "pacing_issues": [],
-    "humour_issues": [],
-    "actualAudioReviewed": false,
-    "verdict": "PASS",
-    "reason": "Чекпоинт требует самостоятельного переноса уже изученного правила на разные фразы, но все нужные слова и контрасты даны в доступной опоре."
+  "sourceSha256": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+  "exactRuSha256": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+  "exactUkSha256": "c16b9bfe5ca41f9d3892c9bef9e66f32cf0309a0a2a82ea73da5ca26b3d5d498",
+  "practiceAtomicSha256": "1ae043acd69b3fc918e09f2c4b2c5acc4a86db96b5952201a94f47d26dde837f",
+  "localeHashes": {
+    "ru": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+    "uk": "c16b9bfe5ca41f9d3892c9bef9e66f32cf0309a0a2a82ea73da5ca26b3d5d498"
   },
-  "scope": "Initial whole-source review plus actual independent Intro3 heading/body delta review",
-  "deltaReview": {
-    "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
-    "comparisonBaseSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
-    "verdict": "PASS",
-    "evidence": "Actual delta PASS: prior answer set valid, explicit not=не clearer, pacing PASS, findings[].",
-    "findings": []
-  }
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Invoice assertion, question and negation are introduced separately, and the three-part finish is split into i17:s01–s03."
+  ],
+  "verdictReason": "Invoice assertion, question and negation are introduced separately, and the three-part finish is split into i17:s01–s03."
 }

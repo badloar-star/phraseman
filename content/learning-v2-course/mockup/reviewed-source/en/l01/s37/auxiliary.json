@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-37:intro1:r2": {
+          "ru": "`is` — про кого-то одного со стороны: `he is`, `she is`. Про себя всегда `am`.",
+          "uk": "`is` — про когось одного збоку: `he is`, `she is`. Про себе завжди `am`."
+        },
+        "en:lesson-01:session-37:intro1:r3": {
+          "ru": "После `I` нужно `am`: I am tired.",
+          "uk": "Після `I` потрібне `am`: I am tired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-37:intro2:r2": {
+          "ru": "`is` — только про одного. Вас за столом много, значит `are`.",
+          "uk": "`is` — тільки про одного. Вас за столом багато, отже `are`."
+        },
+        "en:lesson-01:session-37:intro2:r3": {
+          "ru": "`am` принадлежит одному-единственному слову — `I`. Больше ни с кем не встаёт.",
+          "uk": "`am` належить одному-єдиному слову — `I`. Більше ні з ким не стає."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-37:intro3:r2": {
+          "ru": "`he` — про мужчину. Суп в английском не мужчина и не женщина, он `it`.",
+          "uk": "`he` — про чоловіка. Суп в англійській не чоловік і не жінка, він `it`."
+        },
+        "en:lesson-01:session-37:intro3:r3": {
+          "ru": "`are` — когда их много. Тарелка одна, значит `is`.",
+          "uk": "`are` — коли їх багато. Тарілка одна, отже `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0af519c3a70b3fdbc418bf588f0a2ab5d2ce5b9facf494346be90b74bdda48fa"
+}

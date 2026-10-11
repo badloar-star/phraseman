@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "learning_v2_legacy_binding_ledger_v1",
+  "generatedAt": "2026-10-04T00:00:00.000Z",
+  "admissionPolicy": "exact_pre_v1_source_evidence_and_release_bytes",
+  "evidence": {
+    "ownerScopedSessionsScanned": 83,
+    "strictTripleBoundSessions": 59,
+    "heldChangedOrUnboundSessions": 24,
+    "admittedLegacySessions": 0,
+    "sourceAudit": {
+      "path": "migration/single-phrase-2026-10-03/before-source-audit.json",
+      "sha256": "7d65e2f87423bde165e52d4f89249599cfe8c9e08e61bcdaf1dafe66a14e734a"
+    },
+    "preservationLedger": {
+      "path": "migration/single-phrase-2026-10-03/preservation-ledger.json",
+      "sha256": "10b5e37b0e0bacb2fe14452f736f2c602ef17495f2baca4f429833b61a1fc364"
+    }
+  },
+  "entries": {}
+}

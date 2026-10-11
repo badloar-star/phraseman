@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `I'm not` / `isn't` / `aren't`; `it's` против `its`",
+    "uk": "контраст `I'm not` / `isn't` / `aren't`; `it's` проти `its`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`satisfied` — доволен результатом",
+        "uk": "`satisfied` — задоволений результатом"
+      },
+      "bodyByLocale": {
+        "ru": "`satisfied` — «довольный, удовлетворённый»: результат соответствует ожиданиям, и человеку больше не нужно ничего менять. Это спокойное чувство, не обязательно восторг. Если ужин удался, спорить с десертом уже трудно. Про себя говорят `I'm satisfied.`, а отрицание — `I'm not satisfied.`.",
+        "uk": "`satisfied` — «задоволений»: результат відповідає очікуванням, і людині більше не треба нічого змінювати. Це спокійне відчуття, не обов’язково захват. Якщо вечеря вдалася, сперечатися з десертом уже важко. Про себе кажуть `I'm satisfied.`, а заперечення — `I'm not satisfied.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Ужин удался, и вы довольны. Скажите об этом.",
+          "uk": "Вечеря вдалася, і ви задоволені. Скажіть про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm satisfied."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I satisfied."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I'm satisfy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm satisfied."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I satisfied."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I'm satisfy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ужин удался, и вы довольны. Скажите об этом.",
+          "uk": "Вечеря вдалася, і ви задоволені. Скажіть про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`exhausted` — очень сильно устал",
+        "uk": "`exhausted` — дуже сильно втомився"
+      },
+      "bodyByLocale": {
+        "ru": "`exhausted` — «крайне устал, изнурён». Это сильнее обычного `tired`: сил почти не осталось. Слово описывает состояние человека, а не просто долгий день. Про мужчину можно спросить `Is he exhausted?`; если он бодр, ответить `No, he is not.` или сказать `He isn't exhausted.`.",
+        "uk": "`exhausted` — «украй втомлений, виснажений». Це сильніше за звичайне `tired`: сил майже не лишилося. Слово описує стан людини, а не просто довгий день. Про чоловіка можна запитати `Is he exhausted?`; якщо він бадьорий, відповісти `No, he is not.` або сказати `He isn't exhausted.`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Мужчина бодр и собирается гулять дальше. Скажите, что он не изнурён.",
+          "uk": "Чоловік бадьорий і збирається гуляти далі. Скажіть, що він не виснажений."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't exhausted."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He aren't exhausted."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He not exhausted."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't exhausted."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He aren't exhausted."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He not exhausted."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мужчина бодр и собирается гулять дальше. Скажите, что он не изнурён.",
+          "uk": "Чоловік бадьорий і збирається гуляти далі. Скажіть, що він не виснажений."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`settled` — вопрос решён",
+        "uk": "`settled` — питання вирішено"
+      },
+      "bodyByLocale": {
+        "ru": "`settled` в `It's settled.` значит «вопрос решён, договорились». Это не означает автоматически, что счёт уже оплачен. `It's` — сокращение от `it is`; `its` без апострофа означает «его» у вещи или животного. Проверка простая: `It is settled` звучит верно, поэтому здесь нужно `it's`.",
+        "uk": "`settled` у `It's settled.` означає «питання вирішено, домовилися». Це не означає автоматично, що рахунок уже сплачено. `It's` — скорочення від `it is`; `its` без апострофа — присвійне «його/її» для речі або тварини. Перевірка проста: `It is settled` звучить правильно, тому тут потрібне `it's`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Все согласовали время и место встречи. Скажите: «Вопрос решён».",
+          "uk": "Усі погодили час і місце зустрічі. Скажіть: «Питання вирішено»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's settled."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its settled."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's settle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's settled."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its settled."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's settle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Все согласовали время и место встречи. Скажите: «Вопрос решён».",
+          "uk": "Усі погодили час і місце зустрічі. Скажіть: «Питання вирішено»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e735f70b8a0ecdeb8736d96aab7e0773be6cedd9b1f360bc5c9ce2f9f5ff8a2a"
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 20 — «Where is — сквозь шум»
+# Английский · Урок 2 · Занятие 20 — «Where is — сквозь шум»
 
-**Сцена сессии.** У метро гудят машины, рядом играет уличный музыкант. Вы спрашиваете дорогу, и переспрашивать приходится всем — и вам, и вам в ответ.
+**Сцена занятия.** У метро гудят машины, рядом играет уличный музыкант. Вы спрашиваете дорогу, и переспрашивать приходится всем — и вам, и вам в ответ.
 
-**Операция:** повторение `Where is` + место — на слух
+**Как сказать:** повторение `Where is` + место — на слух
 **Новые слова:** —
 **Возвращаются:** station, street, near, behind, crowded
 
@@ -56,84 +56,96 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — station**
-🔊 *station* → **station** · street · standing
-- street — *Это «улица». Третий звук там «р», а у `station` — «эй».*
-- standing — *Начало общее, а дальше расходятся: у `station` идёт «эй», у `standing` — «эн».*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-20:i01; family: listen_choose -->
+Цель: `station`
+Варианты: `station` · `street` · `standing`
 
-**2 · Послушайте и выберите — near**
-🔊 *near* → **near** · name · nine
-- name — *Начинается так же, но гласная другая: в `name` слышно «эй».*
-- nine — *В `nine` гласная «ай». В `near` — «иэ».*
+**2 · Соберите сообщение — по карте объект рядом с вами**
+<!-- interaction_id: en:lesson-02:session-20:i02; family: phrase_builder -->
+Цель: `It is near.`
 
 **3 · Различите звуки — какое из двух про «рядом»?**
-🔊 Два слова подряд.
-*near · nine* → **near**
-- nine — *Это «девять». Первый звук один, а гласная разная: «ай» против «иэ».*
+<!-- interaction_id: en:lesson-02:session-20:i03; family: sound_contrast -->
+Варианты: `near` · `nine`
 
-**4 · Послушайте и выберите — behind**
-🔊 *behind* → **behind** · bell · behave
-- bell — *Один слог, коротко. `behind` тянется на два.*
-- behave — *Начало то же, конец другой: в `behind` слышно «айнд».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-20:i04; family: listen_choose -->
+Цель: `behind`
+Варианты: `behind` · `bell` · `behave`
 
 **5 · Карточка слова — crowded**
-> **crowded** — «людно, битком». Столько народу, что идёшь боком. Про улицу, про вагон, про кафе в обед.
+<!-- interaction_id: en:lesson-02:session-20:i05; family: listen_choose -->
+Цель: `crowded`
 
-**6 · Послушайте и выберите — crowded**
-🔊 *crowded* → **crowded** · cloud · crow
-- cloud — *«Облако». Первый звук общий, но дальше «л», а в `crowded` — «р».*
-- crow — *Это «ворона», и слово короче: в `crowded` два слога, в `crow` один.*
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-20:i06; family: listen_choose -->
+Цель: `crowded`
+Варианты: `crowded` · `cloud` · `crow`
 
-**7 · Соедините пары (Speed Match, 4 пары)**
-station — вокзал · street — улица · near — рядом · behind — за
+**7 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-20:i07; family: speed_match -->
+Пары: `station` — вокзал · `street` — улица · `near` — рядом · `behind` — за
+Цель: `station · street · near · behind`
 
 **8 · Послушайте и соберите — «где вокзал?»**
-🔊 *Where is the station?* Плитки: `is` `the` `Where` `station` `street` → **Where is the station?**
+<!-- interaction_id: en:lesson-02:session-20:i08; family: listen_build_dictation -->
+Цель: `Where is the station?`
 
 **9 · Вставьте слово — прохожий показывает: идти пару минут**
-It is ___ . → **near** · behind · crowded
-- behind — *«За, позади» — тогда бы показали назад, а не вперёд.*
-- crowded — *«Людно» — это про толпу, а не про расстояние.*
+<!-- interaction_id: en:lesson-02:session-20:i09; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `near` · `behind` · `crowded`
 
 **10 · Послушайте и соберите — «где улица?»**
-🔊 *Where is the street?* Плитки: `street` `Where` `the` `is` `station` → **Where is the street?**
+<!-- interaction_id: en:lesson-02:session-20:i10; family: listen_build_dictation -->
+Цель: `Where is the street?`
 
 **11 · Вставьте слово — вы ищете улицу, а не вокзал**
-Where is the ___ ? → **street** · station · near
-- station — *Это «вокзал». Улица — `street`.*
-- near — *«Рядом» — это ответ, а не место, которое вы ищете.*
+<!-- interaction_id: en:lesson-02:session-20:i11; family: context_gap_grammar -->
+Цель: `Where is the ___ ?`
+Варианты: `street` · `station` · `near`
 
 **12 · Послушайте и выберите — что именно спросили?**
-🔊 *Where is the station?* → **где вокзал** · где улица · вокзал рядом
-- где улица — *Прозвучало `station`, а «улица» — это `street`.*
-- вокзал рядом — *Фраза началась с `where` — значит это вопрос.*
+<!-- interaction_id: en:lesson-02:session-20:i12; family: listen_choose -->
+Цель: `Where is the station?`
+Варианты: `где вокзал` · `где улица` · `вокзал рядом`
 
 **13 · Вставьте слово — у выхода толпа, идёте боком**
-The street is ___ . → **crowded** · near · behind
-- near — *«Рядом» — про расстояние, а вы говорите про людей.*
-- behind — *«Позади» — тоже про место, а не про толпу.*
+<!-- interaction_id: en:lesson-02:session-20:i13; family: context_gap_grammar -->
+Цель: `The street is ___ .`
+Варианты: `crowded` · `near` · `behind`
 
 **14 · Соберите фразу — прохожий показывает за вокзал: вход находится там**
-Плитки: `behind` `the` `station` `is` `It` `where` → **It is behind the station.**
+<!-- interaction_id: en:lesson-02:session-20:i14; family: phrase_builder -->
+Цель: `It is behind the station.`
 
 **15 · Послушайте и соберите — ответ прохожего**
-🔊 *It is near.* Плитки: `near` `It` `is` `behind` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-20:i15; family: listen_build_dictation -->
+Цель: `It is near.`
 
 **16 · Соберите вопрос — вам назвали адрес, но не сказали дорогу; спросите про улицу**
-Плитки: `the` `street` `Where` `is` `It` → **Where is the street?**
+<!-- interaction_id: en:lesson-02:session-20:i16; family: phrase_builder -->
+Цель: `Where is the street?`
 
-**17 · Соберите вопрос — вам назвали адрес, но не сказали дорогу; спросите про улицу**
-🎙 Шум у метро. Спросите, где вокзал; спросите, где улица; и скажите, что улица людная.
-**Where is the station? Where is the street? The street is crowded.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s01; family: scripted_repeat_compare -->
+Цель: `Where is the station?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s02; family: scripted_repeat_compare -->
+Цель: `Where is the street?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s03; family: scripted_repeat_compare -->
+Цель: `The street is crowded.`
 
 ## Для сборщика
 
 new_words: —
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=phrase_builder, 3=sound_contrast, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -161,9 +173,9 @@ modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_choose, 5=wo
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| station | из прошлых сессий (l02_s17) | задание 1 — выбор на слух |
-| street | из прошлых сессий (l02_s17) | интро 2 — вопрос страницы |
-| near | из прошлых сессий (l02_s19) | задания 2 и 3 — выбор и различение |
-| behind | из прошлых сессий (l02_s19) | задание 4 — выбор на слух |
+| station | из прошлых занятий (l02_s17) | задание 1 — выбор на слух |
+| street | из прошлых занятий (l02_s17) | интро 2 — вопрос страницы |
+| near | из прошлых занятий (l02_s19) | задания 2 и 3 — выбор и различение |
+| behind | из прошлых занятий (l02_s19) | задание 4 — выбор на слух |
 
 ---

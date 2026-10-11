@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import test from 'node:test';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-function facts(t, lesson, { pairs = 5, wrong = 3, tasks = 17, secondBoard = false, overlap = false, duplicateTarget = false, duplicateMeaning = false, correctAsWrong = false } = {}) {
+function facts(t, lesson, { pairs = 5, wrong = 3, tasks = 17, secondBoard = false, overlap = false, duplicateTarget = false, duplicateMeaning = false, correctAsWrong = false, atomicOnly = false, missingAtomicAnswers = false } = {}) {
   const parent = fs.realpathSync(os.tmpdir());
   const root = fs.mkdtempSync(path.join(parent, 'learning-ladder-'));
   t.after(() => {
@@ -26,10 +26,52 @@ function facts(t, lesson, { pairs = 5, wrong = 3, tasks = 17, secondBoard = fals
       ? Array.from({ length: pairs }, (_, i) => `${n === 2 && overlap && i === 0 ? 'word1a' : `word${n}${String.fromCharCode(97 + (duplicateTarget && i === 1 ? 0 : i))}`} — значение ${duplicateMeaning && i === 1 ? 0 : i}`).join(' · ')
       : `She ___ ready. → **is**${Array.from({ length: wrong }, (_, i) => ` · ${correctAsWrong && i === 0 ? 'IS' : `wrong${i}`}`).join('')}`;
     // Intentionally omit a count in the title: inspect the actual board.
-    blocks.push(`**${n} · ${board ? 'Соедините пары' : 'Вставьте слово'}**\n${content}`);
+    blocks.push(`**${n} · ${board ? 'Соедините пары' : 'Вставьте слово'}**\n${atomicOnly ? `Цель: \`task-${n}\`` : content}`);
   }
   const source = path.join(dir, 'final.ru.md');
   fs.writeFileSync(source, `# Test\n\n**Новые слова:** —\n\n## Практика\n\n${blocks.join('\n\n')}\n\n## Для сборщика\n\nmodes: ${modes.join(', ')}\n`);
+  if (atomicOnly) {
+    const interactions = Array.from({ length: tasks }, (_, index) => {
+      const n = index + 1;
+      const board = n === 1 || (n === 2 && secondBoard);
+      if (board) {
+        return {
+          interactionId: `test:i${n}`,
+          family: 'speed_match',
+          prompt: 'Соедините пары',
+          responseOptions: [],
+          modePayload: {
+            family: 'speed_match',
+            pairGrid: Array.from({ length: pairs }, (_, i) => ({
+              pairId: `test:i${n}:p${i + 1}`,
+              target: n === 2 && overlap && i === 0 ? 'word1a' : `word${n}${String.fromCharCode(97 + (duplicateTarget && i === 1 ? 0 : i))}`,
+              meaningByLocale: { ru: `значение ${duplicateMeaning && i === 1 ? 0 : i}` },
+            })),
+          },
+        };
+      }
+      return {
+        interactionId: `test:i${n}`,
+        family: 'context_gap_grammar',
+        prompt: 'Вставьте слово',
+        responseOptions: [
+          { responseId: `test:i${n}:right`, text: 'is' },
+          ...Array.from({ length: wrong }, (_, i) => ({ responseId: `test:i${n}:wrong${i}`, text: correctAsWrong && i === 0 ? 'IS' : `wrong${i}` })),
+        ],
+        modePayload: { family: 'context_gap_grammar' },
+      };
+    });
+    fs.writeFileSync(path.join(dir, 'practice.atomic.json'), JSON.stringify({
+      schemaVersion: 'learning_v2_atomic_practice_source_v1',
+      courseSessionId: `en:lesson-${String(lesson).padStart(2, '0')}:session-01`,
+      interactionsByLocale: { ru: interactions },
+      answers: missingAtomicAnswers ? [] : interactions.map((item) => ({
+        interactionId: item.interactionId,
+        correctText: item.family === 'speed_match' ? item.modePayload.pairGrid.map((pair) => pair.target).join('\n') : 'is',
+        correctResponseId: item.family === 'speed_match' ? null : `${item.interactionId}:right`,
+      })),
+    }, null, 2));
+  }
   const program = `import {machineFacts,HARD_FACT_RE} from ${JSON.stringify(pathToFileURL(path.join(here, 'run.mjs')).href)}; const all=machineFacts(${JSON.stringify(source)}).split('\\n'); console.log(JSON.stringify({all,hard:all.filter(x=>HARD_FACT_RE.test(x))}));`;
   const result = spawnSync(process.execPath, ['--input-type=module', '--eval', program], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr);
@@ -57,6 +99,13 @@ test('duplicate labels cannot inflate board or wrong-option counts', t => {
   assert.ok(facts(t,5,{duplicateTarget:true}).hard.some(x=>x.includes('ДУБЛИ В ДОСКЕ')));
   assert.ok(facts(t,5,{duplicateMeaning:true}).hard.some(x=>x.includes('ДУБЛИ В ДОСКЕ')));
   assert.ok(facts(t,9,{correctAsWrong:true}).hard.some(x=>x.includes('ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ')));
+});
+test('machine facts read pair and distractor evidence from authoritative atomic practice', t => {
+  const output = facts(t, 3, { pairs: 4, wrong: 2, atomicOnly: true });
+  assert.ok(!output.hard.some(x => /ПАРЫ НИЖЕ|ДИСТРАКТОРЫ НИЖЕ/.test(x)), output.hard.join('\n'));
+});test('atomic choice evidence fails closed when its correct-answer record is missing', t => {
+  const output = facts(t, 9, { pairs: 5, wrong: 3, atomicOnly: true, missingAtomicAnswers: true });
+  assert.ok(output.hard.some(x => /ATOMIC ANSWER НЕ ПРИВЯЗАН/.test(x)), output.all.join('\n'));
 });
 
 function evaluate(expression) {

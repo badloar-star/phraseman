@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`store` — «магазин». У него один слог, а у `story` два: после первой гласной части слышно продолжение. Дослушайте слово.",
               "uk": "`store` — «магазин». У ньому один склад, а в `story` — два: після першої голосної частини чути продовження. Дослухайте слово."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`stormy` — «штормовой». Перед последним гласным губы смыкаются на «м». В `story` там английский звук `r`, губы не смыкаются.",
               "uk": "`stormy` — «штормовий». Перед останньою голосною губи змикаються на «м». У `story` там чути англійський звук `r`, і губи не змикаються. Дослухайте середину слова."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-19:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовил",
             "feedbackByLocale": {
               "ru": "`county` — «графство». В первом слоге гласный переходит в другой, а в `country` он звучит ровно. Слушайте первый слог.",
               "uk": "`county` — «графство». У першому складі голосний переходить в інший звук, а в `country` він звучить рівно. Слухайте перший склад."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-19:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовил",
             "feedbackByLocale": {
               "ru": "`entry` — «вход». Начинается с гласного, а `country` — со звука «к». Конец похож, различие ищите в начале.",
               "uk": "`entry` — «вхід». Воно починається з голосного, а `country` — зі звука «к». Кінець схожий, тож шукайте різницю на початку."
@@ -276,7 +276,7 @@
           {
             "responseId": "en:lesson-03:session-19:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — сестра спрашивает, что ",
+            "testedDimension": "Зберіть фразу — сестра питає, що це за т",
             "feedbackByLocale": {
               "ru": "В сборнике несколько историй. Нужна форма `stories`, с заменой конечной `y` на `ies`.",
               "uk": "У збірці кілька історій. Потрібна форма `stories`, із заміною кінцевої `y` на `ies`."
@@ -384,7 +384,7 @@
           {
             "responseId": "en:lesson-03:session-19:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`flattery` — «лесть». В начале слышно сочетание «фл», а у `battery` — «б». Остальная часть звучит похоже.",
               "uk": "`flattery` — «лестощі». На початку чути поєднання «фл», а в `battery` — «б». Решта слова звучить схоже."
@@ -393,7 +393,7 @@
           {
             "responseId": "en:lesson-03:session-19:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`buttery` — «маслянистый». Первый гласный как в `country`; у `battery` рот на первом гласном раскрыт шире. Сравните начало.",
               "uk": "`buttery` — «маслянистий». У `battery` рот на першій голосній відкривається ширше, ніж у `buttery`. Порівняйте початок."
@@ -450,12 +450,12 @@
             "text": "country"
           }
         ],
-        "testedDimension": "Вставьте название — сестра читает на кор",
+        "testedDimension": "Вставте назву — сестра читає на коробці ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-19:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — сестра читает на кор",
+            "testedDimension": "Вставте назву — сестра читає на коробці ",
             "feedbackByLocale": {
               "ru": "Перед `y` стоит согласная буква. Для нескольких стран нужно заменить `y` на `ies`, а не дописать `s`.",
               "uk": "Перед `y` стоїть приголосна літера. Для кількох країн потрібно міняти `y` на `ies`, а не дописувати `s`."
@@ -464,7 +464,7 @@
           {
             "responseId": "en:lesson-03:session-19:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — сестра читает на кор",
+            "testedDimension": "Вставте назву — сестра читає на коробці ",
             "feedbackByLocale": {
               "ru": "Так называется одна страна. Здесь названы две, поэтому выбираем `countries`.",
               "uk": "Так називається одна країна. Тут названо дві, тому обираємо `countries`."
@@ -509,7 +509,7 @@
           {
             "responseId": "en:lesson-03:session-19:i09:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — сестра держит упаковку",
+            "testedDimension": "Зберіть питання — сестра тримає пакованн",
             "feedbackByLocale": {
               "ru": "Спрашиваем о нескольких предметах. После `Are they` нужно `batteries`.",
               "uk": "Питаємо про кілька предметів. Після `Are they` потрібне `batteries`."
@@ -564,12 +564,12 @@
             "text": "boxs"
           }
         ],
-        "testedDimension": "Вставьте название — сестра спрашивает пр",
+        "testedDimension": "Вставте назву — сестра питає про дві пор",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-19:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — сестра спрашивает пр",
+            "testedDimension": "Вставте назву — сестра питає про дві пор",
             "feedbackByLocale": {
               "ru": "Коробок две. В этой фразе нужна форма для нескольких: `boxes`.",
               "uk": "Коробок дві. У цій фразі потрібна форма для кількох: `boxes`."
@@ -578,7 +578,7 @@
           {
             "responseId": "en:lesson-03:session-19:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — сестра спрашивает пр",
+            "testedDimension": "Вставте назву — сестра питає про дві пор",
             "feedbackByLocale": {
               "ru": "Для нескольких коробок к `box` приписываем `es`: `boxes`. Одной добавленной `s` мало.",
               "uk": "Для кількох коробок до `box` дописуємо `es`: `boxes`. Однієї доданої `s` замало."
@@ -627,7 +627,7 @@
           {
             "responseId": "en:lesson-03:session-19:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — сестра говорит о",
+            "testedDimension": "Послухайте й зберіть — сестра говорить п",
             "feedbackByLocale": {
               "ru": "В записи звучит `stories`. Речь о нескольких текстах, поэтому название после `not` сохраняет `ies`.",
               "uk": "У записі звучить `stories`. Йдеться про кілька текстів, тому назва після `not` зберігає `ies`."
@@ -765,7 +765,7 @@
           {
             "responseId": "en:lesson-03:session-19:i13:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказала сест",
+            "testedDimension": "Послухайте й оберіть — що сказала сестра",
             "feedbackByLocale": {
               "ru": "Здесь сначала `They are`: это сообщение. В записи вопрос начинается с `Are they`.",
               "uk": "Тут спочатку `They are`: це повідомлення. У записі питання починається з `Are they`."
@@ -774,7 +774,7 @@
           {
             "responseId": "en:lesson-03:session-19:i13:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказала сест",
+            "testedDimension": "Послухайте й оберіть — що сказала сестра",
             "feedbackByLocale": {
               "ru": "Этот вопрос об историях: `stories`. В записи последним звучит `countries` — «страны».",
               "uk": "Це питання про історії: `stories`. У записі наприкінці звучить `countries` — «країни»."
@@ -821,7 +821,7 @@
           {
             "responseId": "en:lesson-03:session-19:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — сестра складывает две ",
+            "testedDimension": "Зберіть питання — сестра складає два пак",
             "feedbackByLocale": {
               "ru": "Вопрос о двух упаковках. Для нескольких коробок нужно название `boxes`.",
               "uk": "Це питання про два паковання. Для кількох коробок потрібна назва `boxes`."
@@ -876,12 +876,12 @@
             "text": "battery"
           }
         ],
-        "testedDimension": "Вставьте название — на пакете обозначены",
+        "testedDimension": "Вставте назву — на пакованні позначено ч",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — на пакете обозначены",
+            "testedDimension": "Вставте назву — на пакованні позначено ч",
             "feedbackByLocale": {
               "ru": "К конечной `y` после согласной не просто добавляем `s`: заменяем `y` на `ies`. Получается `batteries`.",
               "uk": "До кінцевої `y` після приголосної не просто додаємо `s`: міняємо `y` на `ies`. Виходить `batteries`."
@@ -890,7 +890,7 @@
           {
             "responseId": "en:lesson-03:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — на пакете обозначены",
+            "testedDimension": "Вставте назву — на пакованні позначено ч",
             "feedbackByLocale": {
               "ru": "Батареек четыре. Для нескольких нужно `batteries`, а не название одной батарейки.",
               "uk": "Батарейок чотири. Для кількох потрібне `batteries`, а не назва однієї батарейки."
@@ -906,13 +906,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — сестра питає, чи країни перелічено на коробці; там назви двох міст, скажіть «Це не країни»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-19:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — сестра питає, чи країни перелічено на коробці; там назви двох міст, скажіть «Це не країни»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -968,7 +968,7 @@
           {
             "responseId": "en:lesson-03:session-19:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — сестра спрашивает, что ",
+            "testedDimension": "Складіть фразу — сестра питає, що лежить",
             "feedbackByLocale": {
               "ru": "Вы называете четыре батарейки. В названии для нескольких конечная `y` меняется на `ies`: `batteries`.",
               "uk": "Ви називаєте чотири батарейки. У назві для кількох кінцева `y` міняється на `ies`: `batteries`."
@@ -985,5 +985,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c1a4f611a05171de06baf3f0009fcba54748bd65973992138e983d01888e4039"
+  "learnerFingerprint": "3043d6d4bc3c029cbcb5cfcb6d05c86488316db596a7986186acd90be89c0fed"
 }

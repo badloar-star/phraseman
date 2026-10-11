@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-18:i01",
-    "correctText": "",
+    "correctText": "shy",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i03",
-    "correctText": "",
+    "correctText": "loud",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i05",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i09",
-    "correctText": "",
+    "correctText": "clever",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i11",
-    "correctText": "",
+    "correctText": "bossy",
     "correctResponseId": null
   },
   {
@@ -61,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i13",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-18:i13:p1=shy\nen:lesson-01:session-18:i13:p2=loud\nen:lesson-01:session-18:i13:p3=clever\nen:lesson-01:session-18:i13:p4=quiet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i14",
-    "correctText": "",
+    "correctText": "funny",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i16",
-    "correctText": "",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
@@ -91,7 +91,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i19",
-    "correctText": "",
+    "correctText": "smart",
     "correctResponseId": null
   },
   {
@@ -101,12 +101,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i21",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-18:i21:p1=bossy\nen:lesson-01:session-18:i21:p2=funny\nen:lesson-01:session-18:i21:p3=kind\nen:lesson-01:session-18:i21:p4=smart",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-18:i22",
-    "correctText": "She is loud. He is quiet. She is kind.",
+    "interactionId": "en:lesson-01:session-18:i22:s01",
+    "correctText": "She is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i22:s02",
+    "correctText": "He is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-18:i22:s03",
+    "correctText": "She is kind.",
     "correctResponseId": null
   }
 ]

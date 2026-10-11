@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro1:r2": {
+          "ru": "Это «Где он?». Алекс перед вами; вы хотите узнать, кто он.",
+          "uk": "Це «Де він?». Алекс перед вами, а ви хочете дізнатися, хто він."
+        },
+        "en:lesson-02:session-38:intro1:r3": {
+          "ru": "В этом отдельном вопросе `is` стоит перед `he`: `Who is he?`",
+          "uk": "В окремому запитанні `is` стоїть перед `he`: `Who is he?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro2:r2": {
+          "ru": "Так вы спросите, новенькая ли она. Чтобы узнать, кто она, нужен вопрос `Who is she?`",
+          "uk": "Так ви запитаєте, чи вона новенька. Щоб дізнатися, хто вона, потрібне запитання `Who is she?`"
+        },
+        "en:lesson-02:session-38:intro2:r3": {
+          "ru": "С `he` получится вопрос о мужчине. Здесь вы спрашиваете о женщине: `Who is she?`",
+          "uk": "Із `he` вийде запитання про чоловіка. Тут ви запитуєте про жінку: `Who is she?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-38:intro3:r2": {
+          "ru": "Здесь `these people` — несколько людей. В этом вопросе нужно `are`, а не `is`.",
+          "uk": "Тут `these people` — кілька людей. У цьому запитанні потрібне `are`, а не `is`."
+        },
+        "en:lesson-02:session-38:intro3:r3": {
+          "ru": "Это вопрос о месте. Людей вы видите; чтобы узнать, кто они, начните с `Who`.",
+          "uk": "Це запитання про місце. Людей ви бачите; щоб дізнатися, хто вони, почніть із `Who`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "794d3b4f9df431fd73d1464fdb467b70afa033a4333a966164228528ba01bf7f"
+}

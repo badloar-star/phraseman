@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro1:r2": {
+          "ru": "Так вы сообщаете: «холодно». Вопрос начинается с `is`.",
+          "uk": "Так ви повідомляєте: «холодно». Запитання починається з `is`."
+        },
+        "en:lesson-02:session-10:intro1:r3": {
+          "ru": "`it` оторвали от `is`. Эти двое идут парой: сначала `is it`, потом само слово.",
+          "uk": "`it` відірвали від `is`. Ці двоє ходять парою: спершу `is it`, потім саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro2:r2": {
+          "ru": "`crowd` — это «толпа», предмет. А вам нужно, какое место: `crowded`.",
+          "uk": "`crowd` — це «натовп», предмет. А вам потрібно, яке місце: `crowded`."
+        },
+        "en:lesson-02:session-10:intro2:r3": {
+          "ru": "`is` выпало. Вопрос без него не собирается: `Is it crowded?`",
+          "uk": "`is` випало. Запитання без нього не збирається: `Is it crowded?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-10:intro3:r2": {
+          "ru": "Это «удобно ли» — про стул и мягкость. Вам нужно про громкость: `noisy`.",
+          "uk": "Це «чи зручно» — про стілець і м'якість. Вам потрібно про шум: `noisy`."
+        },
+        "en:lesson-02:session-10:intro3:r3": {
+          "ru": "`it` пропало. Без него непонятно, о чём речь: `Is it noisy?`",
+          "uk": "`it` зникло. Без нього незрозуміло, про що йдеться: `Is it noisy?`"
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5ec809fc276dfe4792ac3bf67f5d513ef31b8700b36513c4d548290506938939"
+}

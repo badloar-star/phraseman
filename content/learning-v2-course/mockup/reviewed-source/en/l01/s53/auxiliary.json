@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro1:r2": {
+          "ru": "После `I` перед `tired` нужно `am`.",
+          "uk": "Після `I` перед `tired` потрібне `am`."
+        },
+        "en:lesson-01:session-53:intro1:r3": {
+          "ru": "`is` — не для `I`. Про себя — `am`.",
+          "uk": "`is` — не для `I`. Про себе — `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro2:r2": {
+          "ru": "`is` — про одного. «Мы» — это уже двое, нужно `are`.",
+          "uk": "`is` — про одного. «Ми» — це вже двоє, потрібне `are`."
+        },
+        "en:lesson-01:session-53:intro2:r3": {
+          "ru": "После `we` перед `busy` нужно `are`.",
+          "uk": "Після `we` перед `busy` потрібне `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro3:r2": {
+          "ru": "Сначала ставят `is`, затем `not`.",
+          "uk": "Спершу ставлять `is`, потім `not`."
+        },
+        "en:lesson-01:session-53:intro3:r3": {
+          "ru": "`not` убежал в конец. Его место сразу после `is`.",
+          "uk": "`not` утік у кінець. Його місце одразу після `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4f76f7e7ab58327a00ffc5853730abf94b0b12fe3793511eef8ac39ed7125c18"
+}

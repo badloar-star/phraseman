@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro1:r2": {
+          "ru": "Это вопрос о местоположении. Вы видите мужчину и хотите узнать, кто он.",
+          "uk": "Це запитання про місце. Ви бачите чоловіка й хочете дізнатися, хто він."
+        },
+        "en:lesson-02:session-56:intro1:r3": {
+          "ru": "В полном вопросе между `Who` и `he` нужно `is`: `Who is he?`.",
+          "uk": "У повному запитанні між `Who` і `he` потрібне `is`: `Who is he?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro2:r2": {
+          "ru": "После `I` нужна форма `am`: `No, I am not`.",
+          "uk": "Після `I` потрібна форма `am`: `No, I am not`."
+        },
+        "en:lesson-02:session-56:intro2:r3": {
+          "ru": "Здесь пропущено `am`. В полном коротком ответе оставьте `I am not`.",
+          "uk": "Тут пропущено `am`. У повній короткій відповіді залиште `I am not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-56:intro3:r2": {
+          "ru": "Это вопрос о вас обоих. Сейчас вы проверяете только своё понимание: `Am I wrong?`.",
+          "uk": "Це запитання про вас обох. Зараз ви перевіряєте лише своє розуміння: `Am I wrong?`."
+        },
+        "en:lesson-02:session-56:intro3:r3": {
+          "ru": "С `I` в этом вопросе нужна форма `am`: `Am I wrong?`.",
+          "uk": "З `I` у цьому запитанні потрібна форма `am`: `Am I wrong?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "74d20b5a74037216f4bff00210b9a44deacd915475c213b6db397c96e4fa764d"
+}

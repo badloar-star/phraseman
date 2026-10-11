@@ -12,21 +12,39 @@ const judges = ["learner", "pedagogy", "nonsense", "reader"];
 
 function accepted(dir) {
   fs.mkdirSync(dir, { recursive: true });
+  const session = dir.replace(/\\/gu, "/").match(/\/sessions\/([a-z]{2}\/l\d{2}\/s\d{2})$/iu)?.[1];
+  if (!session) throw new Error(`fixture path must end with sessions/<lang>/lNN/sNN: ${dir}`);
   const source = "master source";
+  const localizedSource = "localized master source";
   fs.writeFileSync(path.join(dir, "final.ru.md"), source);
-  fs.writeFileSync(path.join(dir, "final.uk.md"), "localization");
-  for (const role of judges) fs.writeFileSync(path.join(dir, `final.judge_${role}.json`), JSON.stringify({ verdict: "PASS" }));
+  fs.writeFileSync(path.join(dir, "final.uk.md"), localizedSource);
+  fs.writeFileSync(path.join(dir, "practice.atomic.json"), "{}\n");
+  const digest = (name) => crypto.createHash("sha256").update(fs.readFileSync(path.join(dir, name))).digest("hex");
+  const ru = digest("final.ru.md");
+  const uk = digest("final.uk.md");
+  const atomic = digest("practice.atomic.json");
+  const bindings = { sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeSha256: uk, practiceAtomicSha256: atomic };
+  const evidence = (role, locale, quote, extraCoverage = []) => ({ fieldPath: `final.${locale}.md`, quote, analysis: "Exact quote verifies the current session requirement.", coverage: [role, ...extraCoverage] });
+  const identity = (role) => ({ session, sessionId: session, role, reviewer: `learning-v2-reviewer-v1|reviewerId=pipeline-${role}|sessionId=${session}|role=${role}` });
+  for (const role of judges) fs.writeFileSync(path.join(dir, `final.judge_${role}.json`), JSON.stringify({
+    verdict: "PASS",
+    evidence: [evidence(`judge_${role}`, "ru", source)],
+    ...identity(`judge_${role}`),
+    ...bindings,
+  }));
   fs.writeFileSync(path.join(dir, "final.judge_taste.json"), JSON.stringify({
-    sourceSha256: crypto.createHash("sha256").update(source).digest("hex"),
+    ...bindings,
+    ...identity("judge_taste"),
+    evidence: [evidence("judge_taste", "ru", source)],
     pairwise: "equal",
     pairwise_reason: "The source was compared with the reference for clarity, voice, and teaching value.",
-    voice: { score: 4, evidence: ["The wording has a distinct and readable teaching voice."] },
+    voice: { score: 4, evidence: [source] },
     humor: { present: true, on_topic: true, examples: ["«master source» is the cited source phrase used by this fixture."], misfires: [] },
     ai_text_or_nonsense: [], must_fix: [], verdict: "PASS",
     verdict_reason: "The fixture records a complete independent taste decision.",
   }));
-  fs.writeFileSync(path.join(dir, "locales.judge.json"), JSON.stringify({ locales: { uk: { verdict: "PASS" } } }));
-  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ converged: true, needsHumanReview: false }));
+  fs.writeFileSync(path.join(dir, "locales.judge.json"), JSON.stringify({ sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeHashes: { ru, uk }, practiceAtomicSha256: atomic, ...identity("judge_locales"), evidence: [evidence("judge_locales", "ru", source, ["ru"]), evidence("judge_locales", "uk", localizedSource, ["uk"])], locales: { uk: { verdict: "PASS" } } }));
+  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeHashes: { ru, uk }, practiceAtomicSha256: atomic, converged: true, needsHumanReview: false }));
 }
 
 function withFactory(fn) {

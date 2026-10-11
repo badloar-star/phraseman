@@ -906,13 +906,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — сестра спрашивает, страны ли перечислены на коробке; там названия двух городов, скажите «Это не страны»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-19:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — сестра спрашивает, страны ли перечислены на коробке; там названия двух городов, скажите «Это не страны»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -985,5 +985,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2ceb77491cdda724b3982e1b21fe5cf0557cef85e6fe921b0738c5054ce39e1f"
+  "learnerFingerprint": "6c39bb7c0fd0b1741c7b459125eb157b4228a021e22f6532e3e06ab35e4052cd"
 }

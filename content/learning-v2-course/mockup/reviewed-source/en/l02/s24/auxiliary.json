@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro1:r2": {
+          "ru": "Так вы не спросили, а объявили ему, что он заблудился. В вопросе `are` идёт первым.",
+          "uk": "Так ви не запитали, а оголосили йому, що він заблукав. У запитанні `are` іде першим."
+        },
+        "en:lesson-02:session-24:intro1:r3": {
+          "ru": "Хвост оборван. Про человека — `lost`, с «-t» на конце.",
+          "uk": "Хвіст обірвано. Про людину — `lost`, із «-t» на кінці."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro2:r2": {
+          "ru": "`is` уехало в конец. Его место второе, сразу за `where`.",
+          "uk": "`is` поїхало в кінець. Його місце друге, одразу за `where`."
+        },
+        "en:lesson-02:session-24:intro2:r3": {
+          "ru": "Это «что такое мост?». Прохожий начнёт рассказывать про реку, а вам нужна дорога.",
+          "uk": "Це «що таке міст?». Перехожий почне розповідати про річку, а вам потрібна дорога."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-24:intro3:r2": {
+          "ru": "Между `it` и словом о месте нужно `is`.",
+          "uk": "Між `it` і словом про місце потрібне `is`."
+        },
+        "en:lesson-02:session-24:intro3:r3": {
+          "ru": "`near` — «рядом», а вокзал именно позади магазинов, не сбоку от них.",
+          "uk": "`near` — «поряд», а вокзал саме позаду крамниць, не збоку від них."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b895e5468de1ed87b41d6e327deee1a95639be9dd3f4fdc52d7195f70fa45a2"
+}

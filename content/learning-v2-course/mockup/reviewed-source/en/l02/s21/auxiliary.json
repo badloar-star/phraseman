@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro1:r2": {
+          "ru": "Так вы спросили «что такое вокзал?» Прохожий начнёт объяснять, что это здание с поездами.",
+          "uk": "Так ви спитали «що таке вокзал?» Перехожий почне пояснювати, що це будівля, де зупиняються поїзди."
+        },
+        "en:lesson-02:session-21:intro1:r3": {
+          "ru": "`is` встаёт сразу за `where`, а не в конец.",
+          "uk": "`is` стає одразу за `where`, а не в кінець."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro2:r2": {
+          "ru": "`is` уехало в конец. Сразу за `where` — `is`, потом место.",
+          "uk": "`is` поїхало в кінець. Одразу за `where` — `is`, потім місце."
+        },
+        "en:lesson-02:session-21:intro2:r3": {
+          "ru": "Пропало `the`. Перед местом оно нужно: `the street`.",
+          "uk": "Зникло `the`. Перед місцем воно потрібне: `the street`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-21:intro3:r2": {
+          "ru": "Тут их несколько. Для нескольких берут `are`.",
+          "uk": "Тут їх кілька. Для кількох беруть `are`."
+        },
+        "en:lesson-02:session-21:intro3:r3": {
+          "ru": "«Что такое туалеты?» Вы знаете что. Вам нужно где — значит `where`.",
+          "uk": "«Що таке туалети?» Ви знаєте що. Вам треба де — отже `where`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "686985b987af530138d5010c821974ad9f3f591009b4df977b43cbf1eb4978bb"
+}

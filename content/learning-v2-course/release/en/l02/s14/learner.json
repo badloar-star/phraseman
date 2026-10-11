@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — какое слово произнёс продавец",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i02:r1",
@@ -64,14 +64,14 @@
         },
         {
           "responseId": "en:lesson-02:session-14:i02:r3",
-          "text": "soft"
+          "text": "old"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — sold",
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс продавец",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -92,7 +92,7 @@
           },
           {
             "responseId": "en:lesson-02:session-14:i02:r3",
-            "targetText": "soft",
+            "targetText": "old",
             "meaningByLocale": null
           }
         ],
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-02:session-14:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sold",
+            "testedDimension": "Послушайте и выберите — какое слово прои",
             "feedbackByLocale": {
               "ru": "«Продавать». Гласная другая: в `sold` слышно «оу», в `sell` — «э».",
               "uk": "Інший голосний: у `sold` чути «оу», у `sell` — «е»."
@@ -110,10 +110,10 @@
           {
             "responseId": "en:lesson-02:session-14:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — sold",
+            "testedDimension": "Послушайте и выберите — какое слово прои",
             "feedbackByLocale": {
-              "ru": "«Мягкий». Гласная другая: в `sold` слышно «оу», в `soft` — чистое «о».",
-              "uk": "Інший голосний: у `sold` чути «оу», у `soft` — чисте «о»."
+              "ru": "«Старый». В `old` сразу слышно гласный «оу», а в `sold` перед ним есть начальный звук «с».",
+              "uk": "«Старий». В `old` одразу чути голосний «оу», а в `sold` перед ним є початковий звук «с»."
             }
           }
         ],
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — продавец кладёт руку на коробку и говорит, что её ждёт другой покупатель",
+      "prompt": "Вставьте слово — продавец кладёт руку на коробку и говорит, что другой покупатель уже оплатил её",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-14:i04:r1",
@@ -188,12 +188,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — продавец кладёт руку на коробку и говорит, что её ждёт другой покупатель",
+      "accessibilityLabel": "Вставьте слово — продавец кладёт руку на коробку и говорит, что другой покупатель уже оплатил её",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — продавец кладёт руку на коробку и говорит, что её ждёт другой покупатель",
-          "uk": "Вставте слово — продавець кладе руку на коробку й каже, що її чекає інший покупець"
+          "ru": "Вставьте слово — продавец кладёт руку на коробку и говорит, что другой покупатель уже оплатил её",
+          "uk": "Вставте слово — продавець кладе руку на коробку й каже, що інший покупець уже оплатив її"
         },
         "gappedTargetPhrase": "Is it ___ ?",
         "gapOptions": [
@@ -311,13 +311,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «оно продано?»",
+      "prompt": "Послушайте продавца и соберите его короткий вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «оно продано?»",
+      "accessibilityLabel": "Послушайте продавца и соберите его короткий вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -456,11 +456,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -697,13 +697,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «оно красивое?»",
+      "prompt": "Послушайте продавца и соберите его короткий вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «оно красивое?»",
+      "accessibilityLabel": "Послушайте продавца и соберите его короткий вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -730,26 +730,26 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — продавец спросил про шарф, а шарф вам не нравится. Слово из вопроса не повторяйте",
+      "prompt": "Финал 1 из 3 — спросите, дешёвое ли пальто",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — продавец спросил про шарф, а шарф вам не нравится. Слово из вопроса не повторяйте",
+      "accessibilityLabel": "Финал 1 из 3 — спросите, дешёвое ли пальто",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "No, it is not.",
+        "targetPhrase": "Is it cheap?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — продавец спросил про шарф, а шарф вам не нравится. Слово из вопроса не повторяйте",
-          "uk": "Складіть фразу — продавець запитав про шарф, а шарф вам не подобається. Слово з питання не повторюйте"
+          "ru": "Финал 1 из 3 — спросите, дешёвое ли пальто",
+          "uk": "Фінал 1 із 3 — запитайте, чи дешеве пальто"
         },
         "orderedTokens": [
-          "No,",
+          "Is",
           "it",
-          "is",
-          "not"
+          "cheap"
         ],
         "authoredDistractorTokens": [
-          "pretty"
+          "sold",
+          "not"
         ],
         "slotFeedback": []
       },
@@ -761,21 +761,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы держите пальто и хотите знать цену и хозяина",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы держите пальто и хотите знать цену и хозяина",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-14:i16:audio",
-          "transcript": "Is it cheap? Is it sold?"
+          "transcript": "Is it sold?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it cheap? Is it sold?",
+        "targetPhrase": "Is it sold?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -794,21 +794,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд про это пальто",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд про это пальто",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-14:i17:audio",
-          "transcript": "Is it cheap? Is it sold? It is pretty."
+          "transcript": "No, it is not sold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is it cheap? Is it sold? It is pretty.",
+        "targetPhrase": "No, it is not sold.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -828,5 +828,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f78bd64850dca6b2547ce898dcef91b3f8338d5bda2c06500310ded780a0b60a"
+  "learnerFingerprint": "5c2a75945bed690c89a3880edb4fadacdb4130ff410958d9a882a571a42f3815"
 }

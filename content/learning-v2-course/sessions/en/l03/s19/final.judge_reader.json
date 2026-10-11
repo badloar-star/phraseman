@@ -1,74 +1,33 @@
 {
-  "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
-  "reviewer": "/root/s17_reader_delta",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "medium",
-  "pages": [
-    {
-      "page": 1,
-      "retelling": "When there are several stories, I replace the final y in story with ies, so it becomes stories.",
-      "what_i_do_now": "For several stories, I will write stories rather than adding only s.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 2,
-      "retelling": "For several countries, I look before the final y; here r comes before it, so country becomes countries.",
-      "what_i_do_now": "For several countries, I will replace y with ies and say They are countries.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 3,
-      "retelling": "For several batteries, battery changes its final y to ies because r comes before it.",
-      "what_i_do_now": "To ask about several batteries, I will say Are they batteries? and keep ies in the word.",
-      "understood": true,
-      "problems": []
-    }
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s19",
+  "role": "judge_reader",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
   ],
-  "pages_understood": 3,
+  "sourceSha256": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+  "exactRuSha256": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+  "exactUkSha256": "82e746287fb82c3ac418620bac98c2705f547d3ba417560e449b6f8d1de4dd8c",
+  "practiceAtomicSha256": "35a2d9e6ccdfcd91526966a1bc5e88caac4bc4f82d748b9b6f674d1e2791c606",
+  "localeHashes": {
+    "ru": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+    "uk": "82e746287fb82c3ac418620bac98c2705f547d3ba417560e449b6f8d1de4dd8c"
+  },
   "verdict": "PASS",
-  "verdict_reason": "The three intro pages are unchanged, so prior reader findings remain: each is clear after one read and gives a concrete plural-word action.",
-  "reviewHistory": [
-    {
-      "sourceSha256": "08064c8eca0a86379274bd93d5623bc66b7a3816a2ec04bc10fe102d3e76bb12",
-      "reviewer": "/root/s17_reader_delta",
-      "model": "gpt-5.6-terra",
-      "reasoningEffort": "medium",
-      "pages": [
-        {
-          "page": 1,
-          "retelling": "When there are several stories, I replace the final y in story with ies, so it becomes stories.",
-          "what_i_do_now": "For several stories, I will write stories rather than adding only s.",
-          "understood": true,
-          "problems": []
-        },
-        {
-          "page": 2,
-          "retelling": "For several countries, I look before the final y; here r comes before it, so country becomes countries.",
-          "what_i_do_now": "For several countries, I will replace y with ies and say They are countries.",
-          "understood": true,
-          "problems": []
-        },
-        {
-          "page": 3,
-          "retelling": "For several batteries, battery changes its final y to ies because r comes before it.",
-          "what_i_do_now": "To ask about several batteries, I will say Are they batteries? and keep ies in the word.",
-          "understood": true,
-          "problems": []
-        }
-      ],
-      "pages_understood": 3,
-      "verdict": "PASS",
-      "verdict_reason": "I understood all three pages after one read: they show the same visible change in a word, then give me a phrase I can use with it."
-    }
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Prompts expose the count and the intended spelling repair without asking for compound output."
   ],
-  "deltaReview": {
-    "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
-    "scope": "Reader projection only; compared with immediately prior three-page reading.",
-    "pages_unchanged": true,
-    "pages_understood": 3,
-    "verdict": "PASS",
-    "reason": "The three intro pages are unchanged, so prior reader findings remain: each is clear after one read and gives a concrete plural-word action."
-  }
+  "verdictReason": "Prompts expose the count and the intended spelling repair without asking for compound output."
 }

@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 48 — «Вечер в двух словах»
+# Английский · Урок 1 · Занятие 48 — «Вечер в двух словах»
 
-**Сцена сессии.** Пятница, паб. Вечер кончается, друг собирает всех к выходу и на ходу спрашивает, кто как и кто где.
+**Ситуация.** В пятницу вечером Мира и Олег собираются у выхода из паба. Олег спрашивает вас, как прошёл вечер и кто уже ушёл.
 
-**Операция:** повторение сокращений `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` + `isn't` / `aren't`
+**Сегодня.** Повторите сокращения `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` и отрицания `isn't` / `aren't`.
 **Новые слова:** —
 **Возвращаются:** tired, happy, loud, gone, great, home
 
@@ -65,71 +65,112 @@
 ## Практика (16 заданий, поддержка убывает)
 
 **1 · Послушайте и выберите — `tired`**
+<!-- interaction_id: en:lesson-01:session-48:i01; family: listen_choose -->
 🔊 *tired* → **tired** · tide · tried
 - tide — *`tide` — это прилив в море. Нам нужно про человека, который устал.*
 - tried — *Те же буквы, другой порядок: `tried` — «попробовал». Нам нужно «устал».*
 
 **2 · Вставьте слово — вы устали после недели**
+<!-- interaction_id: en:lesson-01:session-48:i02; family: context_gap_grammar -->
 `I'm ___ .` → **tired** · happy · home
 - happy — *«Рад» — тоже правда, но друг спросил про силы.*
 - home — *«Дома» — а вы ещё в пабе.*
 
 **3 · Послушайте и выберите — `gone`**
+<!-- interaction_id: en:lesson-01:session-48:i03; family: listen_choose -->
 🔊 *gone* → **gone** · go · gun
 - go — *`go` — «идти», `gone` — «ушёл». Нужно второе.*
 - gun — *«Ружьё». В пабе такое лучше не говорить.*
 
 **4 · Соберите фразу — «она ушла»**
+<!-- interaction_id: en:lesson-01:session-48:i04; family: phrase_builder -->
 Плитки: `gone` `She's` `is` `home` → **She's gone.**
 
-**5 · Вставьте скрепку — про друга, которого нет за столом**
+**5 · Выберите форму после `He` — про друга, которого нет за столом**
+<!-- interaction_id: en:lesson-01:session-48:i05; family: context_gap_grammar -->
 `He ___ gone.` → **is** · am · are
 - am — *`am` живёт рядом с `I`. Про «он» — `is`.*
 - are — *`are` — про «вы», «мы», «они». Про одного — `is`.*
 
 **6 · Различите звуки — какое из двух про «шумный»?**
+<!-- interaction_id: en:lesson-01:session-48:i06; family: sound_contrast -->
 🔊 Два слова подряд.
 *loud · load* → **loud**
 - load — *В `loud` слышно «ау», как в «ау, кто здесь». В `load` — «оу».*
 
 **7 · Вставьте слово — в пабе тихо, хотя пятница**
+<!-- interaction_id: en:lesson-01:session-48:i07; family: context_gap_grammar -->
 `It isn't ___ .` → **loud** · gone · great
 - gone — *«Ушёл» — про человека, а не про шум в зале.*
 - great — *«Отлично» — вы бы это и не отрицали.*
 
 **8 · Соберите фразу — в пабе пятница, а за соседним столом тихо**
+<!-- interaction_id: en:lesson-01:session-48:i08; family: phrase_builder -->
 Плитки: `loud` `They` `aren't` `They're` → **They aren't loud.**
 
 **9 · Послушайте и соберите — «я устал»**
+<!-- interaction_id: en:lesson-01:session-48:i09; family: listen_build_dictation -->
 🔊 *I'm tired.* Плитки: `tired` `I'm` `I` `happy` → **I'm tired.**
 
 **10 · Вставьте слово — друг спрашивает, как вам вечер**
+<!-- interaction_id: en:lesson-01:session-48:i10; family: context_gap_grammar -->
 `It's ___ .` → **great** · loud · gone
 - loud — *«Шумный» — это про звук, а не про то, понравилось ли.*
 - gone — *«Ушёл» — про человека, который уехал.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-48:i11; family: speed_match -->
 tired — устал · gone — ушёл · loud — шумный · great — отлично
 
 **12 · Вставьте слово — друг спрашивает, куда вы теперь**
+<!-- interaction_id: en:lesson-01:session-48:i12; family: context_gap_grammar -->
 `I'm going ___ .` → **home** · great · loud
 - great — *«Отлично» — не место, куда идут.*
 - loud — *«Шумный» — тоже не место.*
 
 **13 · Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись**
+<!-- interaction_id: en:lesson-01:session-48:i13; family: phrase_builder -->
 Плитки: `home` `We` `aren't` `isn't` → **We aren't home.**
 
 **14 · Вставьте слово — друг весь вечер смеялся**
+<!-- interaction_id: en:lesson-01:session-48:i14; family: context_gap_grammar -->
 `He's ___ .` → **happy** · gone · home
 - gone — *Он никуда не ушёл, он рядом и смеётся.*
 - home — *«Дома» — а он в пабе.*
 
-**15 · Скажите вслух — вы устали, но уходить рано**
-🎙 **I'm tired. It isn't late.** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i15:s01; family: scripted_repeat_compare -->
+После рабочей недели вы хотите уйти пораньше. Скажите почему.
 
-**16 · Финал сцены — пересказать вечер в четырёх фразах**
-🎙 Друг у выхода просит коротко: как всё прошло. Скажите, что вы устали, что тот, кто сидел рядом, ушёл, что было не шумно и что вечер отличный.
-**I'm tired. He's gone. It isn't loud. It's great.**
+🎙 **I'm tired.**
+
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i15:s02; family: scripted_repeat_compare -->
+Мира смотрит на часы: до закрытия ещё далеко. Скажите об этом.
+
+🎙 **It isn't late.**
+
+**17 · Соберите фразу — вы объясняете, почему хотите уйти пораньше**
+<!-- interaction_id: en:lesson-01:session-48:i16:s01; family: phrase_builder -->
+Плитки: `I'm` `tired` `are` → **I'm tired.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s02; family: scripted_repeat_compare -->
+Мира смотрит на пустой стул Олега: он уже ушёл. Скажите об этом.
+
+🎙 **He's gone.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s03; family: scripted_repeat_compare -->
+В пабе выключили музыку, и теперь не шумно. Скажите об этом.
+
+🎙 **It isn't loud.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s04; family: scripted_repeat_compare -->
+Олег спрашивает, понравился ли вам вечер. Ответьте.
+
+🎙 **It's great.**
 
 ---
 
@@ -137,7 +178,7 @@ tired — устал · gone — ушёл · loud — шумный · great — 
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 

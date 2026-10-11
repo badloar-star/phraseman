@@ -1,0 +1,96 @@
+{
+  "session": "en/l04/s14",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T11:50:11.751Z",
+  "sourceSha256": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+  "exactRuSha256": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+  "exactUkSha256": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46",
+  "practiceAtomicSha256": "524ae07d28d7f0a91fd6d768c5759014940ee17b3fba5e279a1f67d3e9358787",
+  "localeHashes": {
+    "ru": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+    "uk": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S14 quality/spec reviewers",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s11",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s13",
+  "newWords": [
+    "laundrette"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "independent singular/plural choice in Is there a laundrette nearby? versus Are there laundrettes nearby?",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 14 | перенос | самостоятельно выбрать singular или plural в вопросе о наличии | laundrette | в туристическом киоске ищем прачечную самообслуживания |",
+  "curriculumEvidence": {
+    "grammar": "The row requires choosing singular or plural in the availability question.",
+    "newWords": [
+      "laundrette"
+    ],
+    "situation": "The tourist kiosk scene searches for a laundrette."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "laundrette"
+      ],
+      "correctAnswer": "laundrette",
+      "practiceTask": 1,
+      "practiceTarget": "taxi",
+      "sameOperation": true,
+      "sceneEvidence": "The empty taxi rank introduces one taxi.",
+      "finalEvidence": "The current final practices a taxi in the same scene."
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "laundrette"
+      ],
+      "correctAnswer": "Is there a laundrette nearby?",
+      "practiceTask": 8,
+      "practiceTarget": "Is there a taxi?",
+      "sameOperation": true,
+      "sceneEvidence": "The empty taxi rank asks whether one taxi is present.",
+      "finalEvidence": "The current final tests Is there a taxi?"
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "laundrette"
+      ],
+      "correctAnswer": "Are there laundrettes nearby?",
+      "practiceTask": 12,
+      "practiceTarget": "Are there taxis?",
+      "sameOperation": true,
+      "sceneEvidence": "The empty taxi rank asks whether several taxis are present.",
+      "finalEvidence": "The current final tests Are there taxis?"
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Exact curriculum grammar, platform vocabulary, and station situation all occur in RU/UK/atomic.",
+    "The full-form i11 is a distinct guided interaction for the negative branch, while i06 is the distinct guided affirmative interaction and i12 remains the sole independent check; no authority requires a second independent check."
+  ],
+  "at": "2026-10-08T11:50:11.751Z",
+  "localeSha256": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46",
+  "preauthoringSha256": "dc2683489686b2ba47cd4be46007758e1efd59a44f13cfc253cd38bce6bf5dad",
+  "converged": true,
+  "needsHumanReview": false
+}

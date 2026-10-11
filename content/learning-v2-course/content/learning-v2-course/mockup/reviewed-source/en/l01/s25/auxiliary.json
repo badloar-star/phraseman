@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro1:r2": {
+          "ru": "Пропущено `is`. В английском после `it` оно нужно.",
+          "uk": "Пропущено `is`. В англійській після `it` воно потрібне."
+        },
+        "en:lesson-01:session-25:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про вещь — `is`.",
+          "uk": "`am` живе тільки поряд з `I`. Про річ — `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro2:r2": {
+          "ru": "`dark` не меняется. Хвостов у него не бывает.",
+          "uk": "`dark` не змінюється. Хвостів у нього не буває."
+        },
+        "en:lesson-01:session-25:intro2:r3": {
+          "ru": "Пропущено `is`. После `it` ставится `is`.",
+          "uk": "Пропущено `is`. Після `it` ставимо `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-25:intro3:r2": {
+          "ru": "В конце слова есть `e`: `expensive`. На слух её не слышно, а писать надо.",
+          "uk": "У кінці слова є `e`: `expensive`. На слух її не чути, а писати треба."
+        },
+        "en:lesson-01:session-25:intro3:r3": {
+          "ru": "`he` — про мужчину. Счёт — вещь, значит `it`.",
+          "uk": "`he` — про чоловіка. Рахунок — річ, отже `it`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bc33596bd9621027430bda76046b9593e4b43b66db7d6663526f6f008b90a7a4"
+}

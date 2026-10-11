@@ -1,57 +1,57 @@
 [
   {
     "interactionId": "en:lesson-01:session-45:i01",
-    "correctText": "not",
-    "correctResponseId": "en:lesson-01:session-45:i01:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-45:i02",
-    "correctText": "He isn't busy.",
+    "correctText": "satisfied",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-45:i02",
+    "correctText": "satisfied",
+    "correctResponseId": "en:lesson-01:session-45:i02:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-45:i03",
-    "correctText": "aren't",
-    "correctResponseId": "en:lesson-01:session-45:i03:r1"
+    "correctText": "exhausted",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i04",
-    "correctText": "It's",
+    "correctText": "exhausted",
     "correctResponseId": "en:lesson-01:session-45:i04:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i05",
-    "correctText": "I'm not done.",
+    "correctText": "settled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i06",
-    "correctText": "",
-    "correctResponseId": null
+    "correctText": "settled",
+    "correctResponseId": "en:lesson-01:session-45:i06:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i07",
-    "correctText": "full",
-    "correctResponseId": "en:lesson-01:session-45:i07:r1"
+    "correctText": "en:lesson-01:session-45:i07:p1=satisfied\nen:lesson-01:session-45:i07:p2=exhausted\nen:lesson-01:session-45:i07:p3=settled\nen:lesson-01:session-45:i07:p4=ready",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i08",
-    "correctText": "full",
+    "correctText": "satisfied",
     "correctResponseId": "en:lesson-01:session-45:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i09",
-    "correctText": "",
+    "correctText": "I'm satisfied.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i10",
-    "correctText": "isn't",
+    "correctText": "exhausted",
     "correctResponseId": "en:lesson-01:session-45:i10:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i11",
-    "correctText": "It isn't full.",
+    "correctText": "I'm exhausted.",
     "correctResponseId": null
   },
   {
@@ -61,27 +61,37 @@
   },
   {
     "interactionId": "en:lesson-01:session-45:i13",
-    "correctText": "We aren't ready.",
+    "correctText": "It's settled.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i14",
-    "correctText": "I'm not",
+    "correctText": "I'm not satisfied.",
     "correctResponseId": "en:lesson-01:session-45:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i15",
-    "correctText": "They aren't done.",
+    "correctText": "It isn't settled.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-45:i16",
-    "correctText": "I'm ready.",
+    "correctText": "They aren't ready.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-45:i17",
-    "correctText": "I'm not ready. I'm not busy. It's done.",
+    "interactionId": "en:lesson-01:session-45:i17:s01",
+    "correctText": "I'm not satisfied.",
+    "correctResponseId": "en:lesson-01:session-45:i17:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-45:i17:s02",
+    "correctText": "It isn't settled.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-45:i17:s03",
+    "correctText": "They aren't exhausted.",
     "correctResponseId": null
   }
 ]

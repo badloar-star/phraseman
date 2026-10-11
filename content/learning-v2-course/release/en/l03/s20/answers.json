@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-20:i01",
-    "correctText": "",
+    "correctText": "glass",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-20:i03",
-    "correctText": "",
+    "correctText": "brush",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-20:i07",
-    "correctText": "",
+    "correctText": "bench",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-20:i14",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-20:i14:p1=glasses\nen:lesson-03:session-20:i14:p2=brushes\nen:lesson-03:session-20:i14:p3=benches\nen:lesson-03:session-20:i14:p4=boxes",
     "correctResponseId": null
   },
   {

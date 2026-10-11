@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 34 — «Кілька речей у дальній вітрині»
+# Англійська · Урок 3 · Заняття 34 — «Кілька речей у дальній вітрині»
 
-**Сцена сесії.** У магазині домашнього текстилю ви вибираєте речі для гостьової кімнати. Продавець показує кілька пледів, простирадл і пухових ковдр на дальній стіні; вам треба назвати кожну групу й попросити зняти потрібну з полиці.
+**Сцена заняття.** У магазині домашнього текстилю ви вибираєте речі для гостьової кімнати. Поруч на ближній полиці лежить одна подушка, а на дальній стіні — кілька пледів, простирадл, пухових ковдр і подушок; вам треба назвати кожну групу й попросити зняти потрібну з полиці.
 
-**Операція:** `those + plural noun` і `Those are…` для кількох предметів удалині
+**Як сказати:** `those + plural noun` і `Those are…` для кількох предметів удалині
 **Нові слова:** blanket, sheet, duvet
 **Для повторення:** pillow, that, these, are, please
 
@@ -50,79 +50,96 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — blanket**
-> **blanket** — «плед». М'яке покривало, яким укриваються на дивані або в кріслі.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-34:i01; family: listen_choose -->
+Ціль: `blanket`
+Варіанти: `blanket`
 
-**2 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *blanket* → **blanket** · bracket · banquet · blank
-Значення варіантів: blanket — плед · bracket — скоба · banquet — бенкет · blank — порожній
-- bracket — *Обидва слова починаються з `b`, але в `bracket` чути початок `br`, а в `blanket` — `bl`.*
-- banquet — *У `banquet` після першого складу чути поєднання /kw/, а в `blanket` — /k/. У записі прозвучало `blanket`.*
-- blank — *`blank` складається з одного складу й закінчується одразу після /ŋk/. У `blanket` чути другий склад.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-34:i03; family: scripted_repeat_compare -->
+Ціль: `sheet`
 
-**3 · Картка слова — sheet**
-> **sheet** — «простирадло». Шматок тканини, яким застеляють матрац перед сном.
+**3 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-34:i05; family: listen_choose -->
+Ціль: `duvet`
+Варіанти: `duvet` · `blanket` · `sheet`
 
-**4 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *sheet* → **sheet** · seat · sheep · ship
-Значення варіантів: sheet — простирадло · seat — сидіння · sheep — вівця · ship — корабель
-- seat — *Голосний і кінець схожі, але `seat` починається зі звука /s/, а `sheet` — з /ʃ/.*
-- sheep — *Початок і голосний збігаються, але `sheep` закінчується звуком /p/, а `sheet` — /t/.*
-- ship — *У `ship` короткий голосний /ɪ/ і кінець /p/. У записі прозвучало `sheet` з /iː/ та /t/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-34:i02; family: scripted_repeat_compare -->
+Ціль: `blanket`
 
-**5 · Картка слова — duvet**
-> **duvet** — «пухова ковдра». Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру.
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-34:i04; family: listen_choose -->
+Ціль: `sheet`
+Варіанти: `sheet`
 
-**6 · Послухайте й виберіть — яке слово назвав продавець**
-🔊 *duvet* → **duvet** · duet · survey · delay
-Значення варіантів: duvet — пухова ковдра · duet — дует · survey — опитування · delay — затримка
-- duet — *`duet` закінчується сполукою /et/, а наприкінці `duvet` чути /veɪ/.*
-- survey — *Обидва слова закінчуються звуком /veɪ/, але `survey` починається зі звука /s/, а `duvet` — зі звука /d/.*
-- delay — *`delay` починається зі складу /dɪ/, а `duvet` — зі складу /duː/. У записі прозвучало `duvet`.*
+**6 · Розрізніть слово — duvet або duty**
+<!-- interaction_id: en:lesson-03:session-34:i06; family: sound_contrast -->
+Ціль: `duvet`
+Варіанти: `duvet` · `duty`
 
-**7 · З'єднайте слова зі значеннями — відділ постільних товарів**
-blanket — плед · sheet — простирадло · duvet — пухова ковдра · pillow — подушка
+**7 · Складіть коротке прохання — подушка лежить поруч**
+<!-- interaction_id: en:lesson-03:session-34:i08; family: phrase_builder -->
+Ціль: `This pillow, please.`
 
-**8 · Складіть коротке прохання — вам потрібні простирадла з дальньої полиці**
-Плитки: `Those` `sheets` `please` `are` `These` `sheet` → **Those sheets, please.**
+**8 · Послухайте та складіть коротке прохання**
+<!-- interaction_id: en:lesson-03:session-34:i09; family: listen_build_dictation -->
+Ціль: `Those pillows, please.`
 
-**9 · Скажіть уголос — кілька простирадл на дальній полиці**
-🎙 **sheets** — послухайте, повторіть і порівняйте.
+**9 · Промовте коротке прохання**
+<!-- interaction_id: en:lesson-03:session-34:i10; family: scripted_repeat_compare -->
+Ціль: `That pillow, please.`
 
-**10 · Послухайте й перенесіть у відповідь ціле слово — кілька пухових ковдр**
-🔊 *duvets* Плитки: `duvets` `duvet` `duets` `sheets` → **duvets**
+**10 · З'єднайте слова зі значеннями — відділ постільних товарів**
+<!-- interaction_id: en:lesson-03:session-34:i07; family: speed_match -->
+Пари: `blanket` — плед · `sheet` — простирадло · `duvet` — пухова ковдра · `pillow` — подушка
+Ціль: `blanket · sheet · duvet · pillow`
 
 **11 · Складіть твердження — кілька пледів лежать у дальній вітрині**
-Плитки: `Those` `are` `blankets` `That` `is` `blanket` → **Those are blankets.**
+<!-- interaction_id: en:lesson-03:session-34:i11; family: phrase_builder -->
+Ціль: `Those are blankets.`
 
 **12 · Послухайте й виберіть точне значення фрази**
-🔊 *Those are shoes.* → **Це туфлі** · Це туфля · Це шкарпетки · Ті туфлі, будь ласка
-- Це туфля — *Так називають один предмет. У записі `those are` і форма `shoes` указують на кілька туфель.*
-- Це шкарпетки — *Число збігається, але в записі назвали `shoes` — туфлі, а не шкарпетки.*
-- Ті туфлі, будь ласка — *Це прохання вибрати туфлі. У записі їх просто називають: `Those are shoes`.*
+<!-- interaction_id: en:lesson-03:session-34:i12; family: listen_choose -->
+Ціль: `Those are shoes.`
+Варіанти: `Он ті туфлі.` · `Це туфля.` · `Це шкарпетки.` · `Ті туфлі, будь ласка.`
 
 **13 · Вставте вказівне слово — кілька подушок лежать на дальній полиці**
-___ are pillows. → **Those** · That · These · Are
-- That — *`that` указує на один предмет і поєднується з `is`. Для кількох подушок потрібне `those`.*
-- These — *`these` указує на кілька предметів поруч. Тут подушки розташовані вдалині, тому потрібне `those`.*
-- Are — *`Are are pillows` не утворює фразу. На початку потрібне вказівне слово `Those`.*
+<!-- interaction_id: en:lesson-03:session-34:i13; family: context_gap_grammar -->
+Ціль: `___ are pillows.`
+Варіанти: `Those` · `That` · `These` · `Are`
 
-**14 · Скажіть уголос — назвіть кілька простирадл на дальній полиці**
-🎙 **Those are sheets.** — вимовте фразу, потім послухайте зразок і порівняйте.
+**14 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i14; family: scripted_repeat_compare -->
+Ціль: `Those are sheets.`
 
 **15 · Послухайте й складіть фразу про кілька пухових ковдр**
-🔊 *Those are duvets.* Плитки: `Those` `are` `duvets` `That` `is` `duvet` → **Those are duvets.**
+<!-- interaction_id: en:lesson-03:session-34:i15; family: listen_build_dictation -->
+Ціль: `Those are duvets.`
 
 **16 · Складіть коротке прохання — продавець має зняти кілька пледів із дальньої полиці**
-Плитки: `Those` `blankets` `please` `are` `That` `blanket` → **Those blankets, please.**
+<!-- interaction_id: en:lesson-03:session-34:i16; family: phrase_builder -->
+Ціль: `Those blankets, please.`
 
-**17 · Фінал — назвіть три групи й виберіть пледи**
-🎙 **Those are blankets. Those are sheets. Those are duvets. Those blankets, please.** — скажіть продавцеві всі чотири фрази, потім послухайте зразок і порівняйте.
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Those are blankets.`
 
-## Для збирача
-new_words: blanket — плед — М'яке покривало, яким укриваються на дивані або в кріслі.
-new_words: sheet — простирадло — Шматок тканини, яким застеляють матрац перед сном.
-new_words: duvet — пухова ковдра — Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+**18 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i17:s02; family: phrase_builder -->
+Ціль: `Those are sheets.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i17:s03; family: scripted_repeat_compare -->
+Ціль: `Those are duvets.`
+
+**20 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-34:i17:s04; family: listen_build_dictation -->
+Ціль: `Those blankets, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=phrase_builder, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation
+

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro1:r2": {
+          "ru": "Перед названием одного предмета в этой фразе нужно `a`: `a shelf`.",
+          "uk": "Перед назвою одного предмета в цій фразі потрібне `a`: `a shelf`."
+        },
+        "en:lesson-03:session-08:intro1:r3": {
+          "ru": "Название `a shelf` на месте. Чтобы получилась полная фраза, после `It` добавьте `is`.",
+          "uk": "Назва `a shelf` уже на місці. Щоб утворилася повна фраза, після `It` додайте `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro2:r2": {
+          "ru": "В вопросе название тоже остаётся с `a`: `Is it a shelf?`.",
+          "uk": "У запитанні назва теж залишається з `a`: `Is it a shelf?`."
+        },
+        "en:lesson-03:session-08:intro2:r3": {
+          "ru": "Про один предмет спрашиваем `Is it`. `Are` здесь не сочетается с `it`.",
+          "uk": "Про один предмет запитуємо `Is it`. `Are` тут не поєднується з `it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-08:intro3:r2": {
+          "ru": "Перед `not` пропущено `is`. Полное начало — `It is not`.",
+          "uk": "Перед `not` пропущено `is`. Повний початок — `It is not`."
+        },
+        "en:lesson-03:session-08:intro3:r3": {
+          "ru": "После `not` оставьте название целиком: `a shelf`.",
+          "uk": "Після `not` залиште назву цілком: `a shelf`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d2e46bfa22abd2f29a8c4ac0e6290bea20e953e01f8e7bf386d30b49b7dfa31c"
+}

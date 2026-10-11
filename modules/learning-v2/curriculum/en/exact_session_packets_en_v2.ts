@@ -248,7 +248,7 @@ function canonicalExamplesForPacket(
     return operation
       ? [...operation.positiveExamples, ...operation.canonicalLexicalExamples]
       : [];
-  }));
+  })).filter((example) => /[.!?]$/u.test(example.trim()));
   const groundingExamples = unique(newLexicalSenseIds.flatMap((senseId) => {
     const sense = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.find(
       (candidate) => candidate.id === senseId,
@@ -368,10 +368,10 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
         : reviewOperationIds;
       const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
       const lexicalAssignment = lexicalAssignmentBySessionId.get(exactSessionId);
-      const newLexicalSenseIds = role === "checkpoint"
-        ? Object.freeze([])
-        : lexicalAssignment
-          ? Object.freeze(lexicalAssignment.newSenses.map((sense) => sense.id))
+      const newLexicalSenseIds = lexicalAssignment
+        ? Object.freeze(lexicalAssignment.newSenses.map((sense) => sense.id))
+        : role === "checkpoint"
+          ? Object.freeze([])
           : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
       const retrievalLexicalSenseIds = unique([
         ...(lexicalAssignment?.retrievalSenseIds ?? []),

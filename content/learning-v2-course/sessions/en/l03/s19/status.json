@@ -1,12 +1,30 @@
 {
+  "schemaVersion": "learning_v2_derived_all_six_pass_status_v1",
   "session": "en/l03/s19",
-  "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "sourceSha256": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+  "exactRuSha256": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+  "exactUkSha256": "82e746287fb82c3ac418620bac98c2705f547d3ba417560e449b6f8d1de4dd8c",
+  "practiceAtomicSha256": "35a2d9e6ccdfcd91526966a1bc5e88caac4bc4f82d748b9b6f674d1e2791c606",
+  "localeHashes": {
+    "ru": "5b394026306290477380da71c76e14e079f0119a9036b64b22f19d0ed040310f",
+    "uk": "82e746287fb82c3ac418620bac98c2705f547d3ba417560e449b6f8d1de4dd8c"
+  },
   "converged": true,
   "needsHumanReview": false,
-  "locales": [
-    "ru",
-    "uk"
-  ],
-  "audioReviewed": false,
-  "visualReviewed": false
+  "blockedBy": null,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "locale_uk": "PASS"
+  },
+  "allSixPass": true,
+  "staleBlockClearedAt": "2026-10-03T23:43:52.623Z"
 }

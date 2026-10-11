@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "8731376b4b44a22107f868e169dae6381d6a5e340552c55a15396b3d872b1dfa",
+  "localeSha256": "e57939d8d2c7e95838e0c11ad0f1635500e6788485adc09289558de242404428",
+  "comparedThrough": "en/l03/s22",
+  "newWords": [
+    "spoon",
+    "fork",
+    "cup"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 23 | слова | извлечение форм одного и нескольких предметов | spoon, fork, cup | раскладываем кухонные вещи |",
+  "curriculumEvidence": {
+    "grammar": "извлечение форм одного и нескольких предметов: `a spoon`, `spoons`, `a fork`, `forks`, `a cup`, `cups`; знакомые `It is a`, `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "spoon",
+      "fork",
+      "cup"
+    ],
+    "situation": "Друг помогает вам разложить распакованные кухонные вещи: приборы — в ящик, посуду — в шкаф. Вы разбираете свёртки на столе и называете их содержимое, чтобы друг освободил подходящее место."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

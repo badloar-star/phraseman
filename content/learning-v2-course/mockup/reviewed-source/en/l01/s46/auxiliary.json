@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro1:r2": {
+          "ru": "Пропал значок. Без него `its` — это «его, её», и получилось «его весело».",
+          "uk": "В українській апостроф розділяє звуки: «м'яч», «п'ять». В англійській він робить інше — стоїть замість зниклої букви. Прибрали його — і залишилося `its`, «його, її»."
+        },
+        "en:lesson-01:session-46:intro1:r3": {
+          "ru": "`funny` — «смешной», про шутки и хохот. Игра не смешит, она увлекает: `fun`.",
+          "uk": "`funny` — «смішний», про жарти й регіт. Гра не смішить, вона захоплює: `fun`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro2:r2": {
+          "ru": "Смысл верный, но здесь нужна форма, где `not` сжат в один кусок с `is`: `isn't`.",
+          "uk": "Зміст правильний, але тут потрібна форма, де `not` зливається з `is` в одне слово: `isn't`."
+        },
+        "en:lesson-01:session-46:intro2:r3": {
+          "ru": "`bored` — про человека, которому скучно. Сериал сам не скучает, он скучный: `boring`.",
+          "uk": "`bored` — про людину, якій нудно. Серіал сам не нудьгує, він нудний: `boring`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-46:intro3:r2": {
+          "ru": "Выпало `are`. Оно спрятано внутри `they're` — значок стоит вместо буквы `a`.",
+          "uk": "Випало `are`. Воно сховане всередині `they're` — значок стоїть замість букви `a`."
+        },
+        "en:lesson-01:session-46:intro3:r3": {
+          "ru": "`he's` — про одного. Соседей несколько, значит `they're`.",
+          "uk": "`he's` — про одного. Сусідів кілька, отже `they're`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "749567f7249debe448f2326045af629785aaed50f2b924f9be5ab359c62d7f4f"
+}

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — colleagues",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-36:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — friends",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -382,7 +382,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-36:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — guests",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -571,7 +571,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы обедаете всей командой, вас спрашивают, почему все за одним столом",
+      "prompt": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-36:i12:r1",
@@ -588,12 +588,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы обедаете всей командой, вас спрашивают, почему все за одним столом",
+      "accessibilityLabel": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы обедаете всей командой, вас спрашивают, почему все за одним столом",
-          "uk": "Вставте слово — ви обідаєте всією командою, вас питають, чому всі за одним столом"
+          "ru": "Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом",
+          "uk": "Вставте слово — колега Міра питає, чому вся команда обідає за одним столом"
         },
         "gappedTargetPhrase": "We are ___ .",
         "gapOptions": [
@@ -709,11 +709,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -863,26 +863,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i16",
+      "interactionId": "en:lesson-01:session-36:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы объясняете, кто есть кто",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-36:i16:audio"
+        "en:lesson-01:session-36:i16:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы объясняете, кто есть кто",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i16:audio",
-          "transcript": "We are colleagues. They are guests."
+          "audioTargetId": "en:lesson-01:session-36:i16:s01:audio",
+          "transcript": "We are colleagues."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are colleagues. They are guests.",
+        "targetPhrase": "We are colleagues.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -896,26 +896,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-36:i17",
+      "interactionId": "en:lesson-01:session-36:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд: кто вы друг другу и кто они",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-36:i17:audio"
+        "en:lesson-01:session-36:i16:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд: кто вы друг другу и кто они",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-36:i17:audio",
-          "transcript": "We are colleagues. We are together. They are friends. They are guests."
+          "audioTargetId": "en:lesson-01:session-36:i16:s02:audio",
+          "transcript": "They are guests."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are colleagues. We are together. They are friends. They are guests.",
+        "targetPhrase": "They are guests.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i17:s01:audio",
+          "transcript": "We are colleagues."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are colleagues.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i17:s02:audio",
+          "transcript": "We are together."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are together.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i17:s03:audio",
+          "transcript": "They are friends."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are friends.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-36:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-36:i17:s04:audio",
+          "transcript": "They are guests."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are guests.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -929,11 +1061,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f11ac475a1e6f9f850e1d1fbc512e0e8ae4a08eaf2a38f9c6f604b5e490a575a"
+  "learnerFingerprint": "6b8ea6cd65358780b736f2db9ebed08b0133e5cf4547e0fd8e8507674fcd0c28"
 }

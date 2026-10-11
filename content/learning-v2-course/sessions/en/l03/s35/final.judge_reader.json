@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+  "sourceSha256": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Первые два предложения сразу задают мастерскую оформления, предметы на ближнем столе и практическую цель заказа.",
-    "Каждое интро вводит photo, album или frame через значение и немедленное действие в текущей сцене.",
-    "Финал у второй стойки ясно просит сначала назвать предметы, затем выбрать нужное количество."
-  ]
+    "Wall-decoration workshop is stable across intros and all targets are prepared before practice."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "b0a7ed7778d98f67df3788312d4991497b3d3599dd77bc80afa0c03569119137",
+    "localeSha256": "8e12fed484ba25de11db15ae79f868602952fb5822f522539a1cb68455b6f215",
+    "practiceAtomicSha256": "95c9fa568f2c776a98161a6575f46d5246d59e5d17370d8e1a5f4d08b6b46e85"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+  "exactUkSha256": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84",
+  "localeSha256": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84",
+  "practiceAtomicSha256": "542eb831b12a3e4e97136757684b9242c4c3af78bc01a197a89e6f3b9d4aafbd",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "d62acfa2612997eccd3d089b11ee3cd4f6c6ce0a6501e8c5d0c23c2462a91f8d",
+    "localeSha256": "6213b2b101c00ec2b75ecf1898434ec5e01b3890b595ff930c22c6c95a30c580",
+    "practiceAtomicSha256": "542eb831b12a3e4e97136757684b9242c4c3af78bc01a197a89e6f3b9d4aafbd",
+    "findings": []
+  },
+  "mustFix": [],
+  "localeHashes": {
+    "ru": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+    "uk": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_reader",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+    "exactRuSha256": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+    "exactUkSha256": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84",
+    "localeSha256": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84",
+    "localeHashes": {
+      "ru": "412f0c3764bb73712f68eb289461abb50bdd65e4e9e7e1c5fcbee7b45d370b59",
+      "uk": "284163a7197089207d049a9fd64fe34c1838b4f977ba6a2fa4b6841abcf37a84"
+    },
+    "practiceAtomicSha256": "542eb831b12a3e4e97136757684b9242c4c3af78bc01a197a89e6f3b9d4aafbd",
+    "evidence": [
+      "Wall-decoration workshop is stable across intros and all targets are prepared before practice."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

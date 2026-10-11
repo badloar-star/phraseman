@@ -1,0 +1,904 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i01:r1",
+          "text": "size"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i01:audio",
+          "transcript": "size"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-45:i01:r1",
+            "targetText": "size",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "size",
+          "definitionByLocale": {
+            "ru": "«размер». Характеристика того, насколько велик или мал товар.",
+            "uk": "«розмір». Характеристика того, наскільки великий або малий товар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i03:audio",
+          "transcript": "colour"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "colour",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i05:audio",
+          "transcript": "model"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "model",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i02:audio",
+          "transcript": "size"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "size",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i04:r1",
+          "text": "colour"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i04:audio",
+          "transcript": "colour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-45:i04:r1",
+            "targetText": "colour",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "colour",
+          "definitionByLocale": {
+            "ru": "«цвет».",
+            "uk": "«колір»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i06:audio",
+          "transcript": "model"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "model",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i08:audio",
+          "transcript": "size"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "size",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i10:audio",
+          "transcript": "colour"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "colour",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i11:audio",
+          "transcript": "model"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "model",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слово зі значенням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слово зі значенням",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-45:i07:p1",
+            "target": "size",
+            "meaningByLocale": {
+              "ru": "размер",
+              "uk": "розмір"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i07:p2",
+            "target": "colour",
+            "meaningByLocale": {
+              "ru": "цвет",
+              "uk": "колір"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i07:p3",
+            "target": "model",
+            "meaningByLocale": {
+              "ru": "модель",
+              "uk": "модель"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-45:i07:p4",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          }
+        ],
+        "leftColumn": [
+          "size",
+          "colour",
+          "model",
+          "receipt"
+        ],
+        "rightColumn": [
+          "розмір",
+          "колір",
+          "модель",
+          "чек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — розмір уже зрозумілий обом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i09:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i09:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i09:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i09:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — розмір уже зрозумілий обом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — размер уже понятен обоим",
+          "uk": "Вставте початок — розмір уже зрозумілий обом"
+        },
+        "gappedTargetPhrase": "___ size is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i09:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — размер уже понятен обо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — размер уже понятен обо",
+            "feedbackByLocale": {
+              "ru": "Размер уже назвали в разговоре.",
+              "uk": "Розмір уже назвали в розмові."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — размер уже понятен обо",
+            "feedbackByLocale": {
+              "ru": "Перед `size` нужен не `an`.",
+              "uk": "Перед `size` потрібен не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — размер уже понятен обо",
+            "feedbackByLocale": {
+              "ru": "Для этого известного размера нужен `the`.",
+              "uk": "Для цього відомого розміру потрібен `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i12:audio",
+          "transcript": "It is a small size."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a small size.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i13:audio",
+          "transcript": "It is an old model."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is an old model.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "an",
+          "old",
+          "model"
+        ],
+        "authoredDistractorTokens": [
+          "the"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — модель уже названо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — модель уже названо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The model is old.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — модель уже названа",
+          "uk": "Складіть фразу — модель уже названо"
+        },
+        "orderedTokens": [
+          "The",
+          "model",
+          "is",
+          "old"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — колір називають уперше",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i15:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i15:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i15:r3",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — колір називають уперше",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — цвет называют впервые",
+          "uk": "Вставте початок — колір називають уперше"
+        },
+        "gappedTargetPhrase": "It is ___ dark colour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — цвет называют впервые",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — цвет называют впервые",
+            "feedbackByLocale": {
+              "ru": "Перед `dark` нужен `a`, не `an`.",
+              "uk": "Перед `dark` потрібен `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — цвет называют впервые",
+            "feedbackByLocale": {
+              "ru": "Цвет ещё не называли.",
+              "uk": "Колір ще не називали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — цвет называют впервые",
+            "feedbackByLocale": {
+              "ru": "Перед впервые названным цветом нужен артикль.",
+              "uk": "Перед уперше названим кольором потрібен артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i16:r1",
+          "text": "Этот размер маленький"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i16:r2",
+          "text": "Один размер маленький"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i16:r3",
+          "text": "Этот цвет тёмный"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i16:r4",
+          "text": "Где размер?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i16:audio",
+          "transcript": "The size is small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-45:i16:r1",
+            "targetText": "Этот размер маленький",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i16:r2",
+            "targetText": "Один размер маленький",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i16:r3",
+            "targetText": "Этот цвет тёмный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i16:r4",
+            "targetText": "Где размер?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи есть `the`.",
+              "uk": "У записі є `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `size is small`, не `colour is dark`.",
+              "uk": "Звучить `size is small`, а не `colour is dark`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, не вопрос.",
+              "uk": "Це твердження, не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-45:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-45:i17:s01:audio",
+          "transcript": "It is a dark colour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a dark colour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The size is small.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 2 із 3"
+        },
+        "orderedTokens": [
+          "The",
+          "size",
+          "is",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-45:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 3 із 3",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-45:i17:s03:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i17:s03:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-45:i17:s03:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 3 із 3",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — уточните товар у стола",
+          "uk": "Вставте одну відповідь в одну фразу — крок 3 із 3"
+        },
+        "gappedTargetPhrase": "It is ___ old model.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-45:i17:s03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i17:s03:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i17:s03:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Финал — уточните товар у стола",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-45:i17:s03:r2",
+            "correct": false,
+            "testedDimension": "Финал — уточните товар у стола",
+            "feedbackByLocale": {
+              "ru": "Для известного размера нужен `the`; старая модель появляется впервые, поэтому нужен `an`.",
+              "uk": "Для відомого розміру потрібен `the`; стара модель з’являється вперше, тому потрібен `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-45:i17:s03:r3",
+            "correct": false,
+            "testedDimension": "Финал — уточните товар у стола",
+            "feedbackByLocale": {
+              "ru": "Перед `dark` нужен `a`, а перед `old` — `an`.",
+              "uk": "Перед `dark` потрібен `a`, а перед `old` — `an`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3c36f1b75f77f7c0f2d0653df878668c508afe9281a7597ab84ad68635bb6a62"
+}

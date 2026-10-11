@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`power` — «мощность». Сначала слышно «п», а затем гласный. В `hour` слово начинается сразу с гласного, без «п».",
               "uk": "`power` — «потужність». Спочатку чути «п», а потім голосний звук. У `hour` слово починається відразу з голосного, без «п»."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`tower` — «башня». У него перед похожей гласной частью слышно «т». Запись начинается с гласного: `hour`.",
               "uk": "`tower` — «вежа». Перед схожою голосною частиною в ньому чути «т». Запис починається з голосного: `hour`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-11:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`unicorn` — «единорог». В последней части слышно «к», а у `uniform` на этом месте «ф». Слушайте дальше похожего начала.",
               "uk": "`unicorn` — «єдиноріг». У завершальній частині чути «к», а в `uniform` на цьому місці — «ф». Не зупиняйтеся на схожому початку — дослухайте слово далі."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-11:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`universe` — «вселенная». В последней части слышно «в», а в `uniform` — «ф». Похожие первые звуки ещё не определяют ответ.",
               "uk": "`universe` — «всесвіт». У завершальній частині чути «в», а в `uniform` — «ф». Подібні перші звуки ще не дають відповіді."
@@ -286,12 +286,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Вставьте слово — сотрудник написал, что ",
+        "testedDimension": "Вставте слово — працівник написав, що ск",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-11:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник написал, что ",
+            "testedDimension": "Вставте слово — працівник написав, що ск",
             "feedbackByLocale": {
               "ru": "Начальная `h` в `hour` не произносится. Слово начинается с гласного звука, поэтому выбираем `An`.",
               "uk": "Початкову `h` у `hour` не вимовляють. Слово починається з голосного звуку, тому обираємо `An`."
@@ -300,7 +300,7 @@
           {
             "responseId": "en:lesson-03:session-11:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник написал, что ",
+            "testedDimension": "Вставте слово — працівник написав, що ск",
             "feedbackByLocale": {
               "ru": "Здесь нужно назвать срок двумя словами. Перед `hour` ставим `An`; `Is` не заменяет это маленькое слово.",
               "uk": "Тут треба назвати час двома словами. Перед `hour` ставимо `An`; `Is` не замінює це маленьке слово."
@@ -344,7 +344,7 @@
           {
             "responseId": "en:lesson-03:session-11:i06:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — друг указыв",
+            "testedDimension": "Складіть коротку назву — друг вказує на ",
             "feedbackByLocale": {
               "ru": "Хотя первой написана `u`, сначала слышен согласный «й». Поэтому короткое название начинается с `A`.",
               "uk": "Хоча першою написано `u`, спочатку чути приголосний «й». Тому коротка назва починається з `A`."
@@ -399,12 +399,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — покупатель принёс чайни",
+        "testedDimension": "Вставте слово — покупець приніс чайник д",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-11:i07:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — покупатель принёс чайни",
+            "testedDimension": "Вставте слово — покупець приніс чайник д",
             "feedbackByLocale": {
               "ru": "В `kettle` сначала слышен согласный «к». Для этого названия нужно `a`.",
               "uk": "У `kettle` спочатку чути приголосний «к». Для цієї назви потрібне `a`."
@@ -413,7 +413,7 @@
           {
             "responseId": "en:lesson-03:session-11:i07:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — покупатель принёс чайни",
+            "testedDimension": "Вставте слово — покупець приніс чайник д",
             "feedbackByLocale": {
               "ru": "`am` сочетается с `I`. После готового начала `It is` здесь нужно название `a kettle`.",
               "uk": "`am` поєднується з `I`. Після готового початку `It is` тут потрібна назва `a kettle`."
@@ -460,7 +460,7 @@
           {
             "responseId": "en:lesson-03:session-11:i08:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — сотрудник отвеча",
+            "testedDimension": "Послухайте й складіть — працівник відпов",
             "feedbackByLocale": {
               "ru": "В записи перед `hour` звучит `An`: первая буква названия молчит, а первый звук гласный.",
               "uk": "У записі перед `hour` звучить `An`: перша літера назви мовчить, а перший звук голосний."
@@ -515,12 +515,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — у стойки оставили пылес",
+        "testedDimension": "Вставте слово — біля стійки залишили пил",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — у стойки оставили пылес",
+            "testedDimension": "Вставте слово — біля стійки залишили пил",
             "feedbackByLocale": {
               "ru": "Первый звук в `vacuum` — согласный «в». Перед этим названием ставим `a`.",
               "uk": "Перший звук у `vacuum` — приголосний «в». Перед цією назвою ставимо `a`."
@@ -529,7 +529,7 @@
           {
             "responseId": "en:lesson-03:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — у стойки оставили пылес",
+            "testedDimension": "Вставте слово — біля стійки залишили пил",
             "feedbackByLocale": {
               "ru": "`is` уже есть в начале. Перед `vacuum` сейчас нужно `a`, а не второе `is`.",
               "uk": "`is` уже є на початку. Перед `vacuum` зараз потрібне `a`, а не друге `is`."
@@ -667,7 +667,7 @@
           {
             "responseId": "en:lesson-03:session-11:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сотрудник ск",
+            "testedDimension": "Послухайте й оберіть — що працівник сказ",
             "feedbackByLocale": {
               "ru": "В этом варианте после `is` сразу стоит `a`. В записи между ними слышно `not` — название отрицают.",
               "uk": "У цьому варіанті після `is` одразу стоїть `a`. У записі між ними чути `not` — назву заперечують."
@@ -676,7 +676,7 @@
           {
             "responseId": "en:lesson-03:session-11:i11:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сотрудник ск",
+            "testedDimension": "Послухайте й оберіть — що працівник сказ",
             "feedbackByLocale": {
               "ru": "Этот вопрос начинается с `Is it`. В записи сначала `It is`, а затем слышно `not`.",
               "uk": "Це питання починається з `Is it`. У записі спершу `It is`, а потім чути `not`."
@@ -724,7 +724,7 @@
           {
             "responseId": "en:lesson-03:session-11:i12:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — сотрудник назвал время",
+            "testedDimension": "Складіть питання — працівник назвав час ",
             "feedbackByLocale": {
               "ru": "Начните вопрос с `Is it`. Перед `hour` нужно `an`: написанная `h` не даёт согласного звука.",
               "uk": "Почніть питання з `Is it`. Перед `hour` потрібне `an`: написана `h` не дає приголосного звуку."
@@ -738,65 +738,56 @@
       "interactionId": "en:lesson-03:session-11:i13",
       "ordinal": 16,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — працівник підтверджує, що синій комплект — робоча форма; назвіть його повною фразою",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання — запитайте працівника, чи це робоча форма",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-11:i13:r1",
-          "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-11:i13:r2",
           "text": "an"
         },
         {
-          "responseId": "en:lesson-03:session-11:i13:r3",
-          "text": "is"
+          "responseId": "en:lesson-03:session-11:i13:r2",
+          "text": "Are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — працівник підтверджує, що синій комплект — робоча форма; назвіть його повною фразою",
+      "accessibilityLabel": "Складіть питання — запитайте працівника, чи це робоча форма",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — сотрудник подтверждает, что синий комплект — рабочая форма; назовите его полной фразой",
-          "uk": "Вставте слово — працівник підтверджує, що синій комплект — робоча форма; назвіть його повною фразою"
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a uniform?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — спросите сотрудника, рабочая ли это форма",
+          "uk": "Складіть питання — запитайте працівника, чи це робоча форма"
         },
-        "gappedTargetPhrase": "It is ___ uniform.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "uniform"
+        ],
+        "authoredDistractorTokens": [
+          "an",
+          "Are"
+        ],
+        "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-11:i13:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-11:i13:r2",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-11:i13:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Вставьте слово — сотрудник подтверждает,",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-11:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник подтверждает,",
+            "testedDimension": "Складіть питання — запитайте працівника, ч",
             "feedbackByLocale": {
-              "ru": "В начале `uniform` слышен согласный «й», поэтому нужно `a`. Одна буква `u` без звучания сбивает с выбора.",
-              "uk": "На початку `uniform` чути приголосний «й», тому потрібне `a`. Сама літера `u` збиває з пантелику, якщо дивитися лише на написання."
+              "ru": "В начале `uniform` слышен согласный «й», поэтому нужен `a`: `Is it a uniform?`.",
+              "uk": "На початку `uniform` чути приголосний «й», тому потрібне `a`: `Is it a uniform?`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-11:i13:r3",
+            "responseId": "en:lesson-03:session-11:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудник подтверждает,",
+            "testedDimension": "Складіть питання — запитайте працівника, ч",
             "feedbackByLocale": {
-              "ru": "В начале уже стоит `It is`. Перед названием одежды осталось поставить `a`.",
-              "uk": "На початку вже стоїть `It is`. Перед назвою одягу лишилося поставити `a`."
+              "ru": "С `it` вопрос начинается с `Is`, а не с `Are`: `Is it a uniform?`.",
+              "uk": "З `it` питання починається з `Is`, а не з `Are`: `Is it a uniform?`."
             }
           }
         ]
@@ -840,7 +831,7 @@
           {
             "responseId": "en:lesson-03:session-11:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите отрицание — друг принял обычный",
+            "testedDimension": "Складіть заперечення — друг прийняв звич",
             "feedbackByLocale": {
               "ru": "Отрицание не меняет начало слова `uniform`. Перед согласным «й» оставляем `a`.",
               "uk": "Заперечення не змінює початок слова `uniform`. Перед приголосним «й» лишаємо `a`."
@@ -905,7 +896,7 @@
           {
             "responseId": "en:lesson-03:session-11:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сотрудник от",
+            "testedDimension": "Послухайте й оберіть — що працівник відп",
             "feedbackByLocale": {
               "ru": "В вопросе первым звучало бы `Is`. Здесь запись начинается с `It`, затем идёт `is`.",
               "uk": "У питанні першим звучало б `Is`. Тут запис починається з `It`, а потім іде `is`."
@@ -914,7 +905,7 @@
           {
             "responseId": "en:lesson-03:session-11:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сотрудник от",
+            "testedDimension": "Послухайте й оберіть — що працівник відп",
             "feedbackByLocale": {
               "ru": "В этом варианте есть `not`. В записи после `is` сразу звучит `an hour`, без отрицания.",
               "uk": "У цьому варіанті є `not`. У записі після `is` одразу звучить `an hour`, без заперечення."
@@ -932,13 +923,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг не зрозумів, який прилад покупець поставив на стійку; скажіть «Це чайник»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-11:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг не зрозумів, який прилад покупець поставив на стійку; скажіть «Це чайник»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -995,7 +986,7 @@
           {
             "responseId": "en:lesson-03:session-11:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — сотрудник показывает ко",
+            "testedDimension": "Складіть фразу — працівник показує компл",
             "feedbackByLocale": {
               "ru": "Сначала `It is`, затем название с `a`: слово `uniform` начинается с согласного «й».",
               "uk": "Спершу `It is`, потім назва з `a`: слово `uniform` починається з приголосного «й»."
@@ -1012,5 +1003,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "85f0b85323ffef9566c6794cd128ee81e55dd8600fb21e6ab632124fedbf8d78"
+  "learnerFingerprint": "8cb5e6cba1dc7f1c7e14978dfc0acebddb596b53b5e627c59db91bf362f2b609"
 }

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-14:i01",
-    "correctText": "",
+    "correctText": "safe",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i03",
-    "correctText": "",
+    "correctText": "warm",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i07",
-    "correctText": "",
+    "correctText": "dry",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i09",
-    "correctText": "",
+    "correctText": "ready",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-14:i14",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-14:i14:p1=safe\nen:lesson-01:session-14:i14:p2=warm\nen:lesson-01:session-14:i14:p3=dry\nen:lesson-01:session-14:i14:p4=ready",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-14:i18",
-    "correctText": "You are safe. You are dry. You are warm. You are ready.",
+    "interactionId": "en:lesson-01:session-14:i18:s01",
+    "correctText": "You are safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i18:s02",
+    "correctText": "You are dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i18:s03",
+    "correctText": "You are warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i18:s04",
+    "correctText": "You are ready.",
     "correctResponseId": null
   }
 ]

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-06:i01",
-    "correctText": "",
+    "correctText": "basket",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-06:i03",
-    "correctText": "",
+    "correctText": "trolley",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-06:i06",
-    "correctText": "",
+    "correctText": "tag",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-06:i10",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-06:i10:p1=basket\nen:lesson-03:session-06:i10:p2=trolley\nen:lesson-03:session-06:i10:p3=tag\nen:lesson-03:session-06:i10:p4=lamp",
     "correctResponseId": null
   },
   {

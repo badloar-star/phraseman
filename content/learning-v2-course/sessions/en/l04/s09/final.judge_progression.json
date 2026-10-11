@@ -1,0 +1,92 @@
+{
+  "session": "en/l04/s09",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:59:12.7287864Z",
+  "sourceSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactRuSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactUkSha256": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447",
+  "practiceAtomicSha256": "8b10280d28a7addbcf847ba5cbb86b7ab9e6a6982378a2f8e718c1a882d5448a",
+  "localeHashes": {
+    "ru": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+    "uk": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review through en/l04/s08 after exact-target repair",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s08",
+  "newWords": [
+    "dentist"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation: Is there a/an + singular noun?",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 9 | новая | вопрос об одном месте или специалисте: `Is there a/an + singular noun?` | dentist | с зубной болью спрашиваем в справочной о стоматологе |",
+  "curriculumEvidence": {
+    "grammar": "Intros 2–3 and tasks 4–12 introduce and retrieve singular existential question order Is there a/an...?",
+    "newWords": [
+      "dentist"
+    ],
+    "situation": "With tooth pain, the learner asks an information desk whether a dentist is available (final.ru.md:3)."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "dentist"
+      ],
+      "sceneEvidence": "The learner needs the word for the specialist who treats teeth.",
+      "correctAnswer": "dentist",
+      "practiceTask": 3,
+      "practiceTarget": "dentist",
+      "finalEvidence": "i12 independently builds `Is there a dentist near the pharmacy?`, carrying the new word into the planned question.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "dentist"
+      ],
+      "sceneEvidence": "At the information desk, the learner asks whether one dentist is available.",
+      "correctAnswer": "Is there a dentist?",
+      "practiceTask": 5,
+      "practiceTarget": "Is there a dentist near the library?",
+      "finalEvidence": "i12 requires the same singular existential question with a different familiar anchor, near the pharmacy.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "dentist"
+      ],
+      "sceneEvidence": "The learner asks about a dentist in the building.",
+      "correctAnswer": "Is there a dentist in the building?",
+      "practiceTask": 7,
+      "practiceTarget": "Is there a dentist in this building?",
+      "finalEvidence": "The proximal this-building retrieval preserves the same question operation, then i12 independently transfers it to near the pharmacy.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "The exact curriculum grammar, dentist and toothache/information-desk situation are present in current source.",
+    "Prior sources through S08 contain affirmative existential forms but do not introduce dentist or the singular existential question operation.",
+    "No intro correct answer now exactly repeats as an assessed practice target: i05 adds near the library; i07 changes in the building to in this building; i12 remains near the pharmacy."
+  ]
+}

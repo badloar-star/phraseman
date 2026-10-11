@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro1:r2": {
+          "ru": "`is` идёт к «он», «она», «оно». Про себя — `am`.",
+          "uk": "`is` іде до «він», «вона», «воно». Про себе — `am`."
+        },
+        "en:lesson-01:session-55:intro1:r3": {
+          "ru": "Между `I` и `tired` нужно `am`.",
+          "uk": "Між `I` і `tired` потрібне `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro2:r2": {
+          "ru": "`is` — про одного. Их много, значит `are`.",
+          "uk": "`is` — про одного. Їх багато, отже `are`."
+        },
+        "en:lesson-01:session-55:intro2:r3": {
+          "ru": "Между `they` и `quiet` нужно `are`.",
+          "uk": "Між `they` і `quiet` потрібне `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-55:intro3:r2": {
+          "ru": "После `It` нужна форма `is`. `not` ставят после `is`, а не вместо него.",
+          "uk": "Після `It` потрібна форма `is`. `not` ставлять після `is`, а не замість нього."
+        },
+        "en:lesson-01:session-55:intro3:r3": {
+          "ru": "`no` тут не работает. Отрицание к слову о признаке — `not`.",
+          "uk": "`no` тут не працює. Заперечення до слова про ознаку — `not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "134a51aee2996e36cbbc608f587b8354f0fc116a02e6ec3df170887952e385e0"
+}

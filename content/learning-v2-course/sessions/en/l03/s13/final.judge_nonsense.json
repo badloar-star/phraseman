@@ -1,62 +1,33 @@
 {
-  "sourceSha256": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
-  "reviewer": "/root/s10_truth",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "medium",
-  "problems": [],
-  "verdict": "PASS",
-  "verdict_reason": "Проверены все утверждения о значениях, единственном числе, выборе a/an, английских фразах и девяти произносительных вариантах; неверных фактов, ложных универсалий, придуманных связей или противоречий не найдено, фактическое аудио не оценивалось.",
-  "evidence": [
-    "earring one countornament starts vowel: an; necklace /n/ bracelet /b/: a. Rule scoped to directlyfollowingnoun.",
-    "hearing adds/h/; steering adds/st/. Necklacerecklesslegless /n/ /r/ /l/ onsets and /k/ vs/g/ valid, no Englishr=Cyrillicр.",
-    "bracelet final/t/, bracing finalnasal/ŋ/; graceless initial/g/ vs/b/, sharedmiddle. Definitions/wrongmeaningsaccurate.",
-    "Allkeyedstatements/questions/negativecontrasts grammaticalunique incontexts."
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s13",
+  "role": "judge_nonsense",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
   ],
-  "primarySources": [
-    "https://dictionary.cambridge.org/us/dictionary/english/earring",
-    "https://dictionary.cambridge.org/pronunciation/english/hearing",
-    "https://dictionary.cambridge.org/pronunciation/english/steering-wheel",
-    "https://dictionary.cambridge.org/us/pronunciation/english/necklace",
-    "https://dictionary.cambridge.org/us/pronunciation/english/reckless",
-    "https://dictionary.cambridge.org/us/pronunciation/english/legless",
-    "https://dictionary.cambridge.org/us/dictionary/english/bracelet",
-    "https://dictionary.cambridge.org/us/pronunciation/english/bracing",
-    "https://dictionary.cambridge.org/pronunciation/english/graceless"
-  ],
-  "actualAudioReviewed": false,
-  "previousReview": {
-    "sourceSha256": "49aff36a6e2fa8bd2e5d0d4b3856f1aecc562407b9aeefa46cad895d568d24f5",
-    "reviewer": "/root/s10_truth",
-    "model": "gpt-5.6-sol",
-    "reasoningEffort": "medium",
-    "problems": [],
-    "verdict": "PASS",
-    "verdict_reason": "Проверены все утверждения о значениях, единственном числе, выборе a/an, английских фразах и девяти произносительных вариантах; неверных фактов, ложных универсалий, придуманных связей или противоречий не найдено, фактическое аудио не оценивалось.",
-    "evidence": [
-      "earring one countornament starts vowel: an; necklace /n/ bracelet /b/: a. Rule scoped to directlyfollowingnoun.",
-      "hearing adds/h/; steering adds/st/. Necklacerecklesslegless /n/ /r/ /l/ onsets and /k/ vs/g/ valid, no Englishr=Cyrillicр.",
-      "bracelet final/t/, bracing finalnasal/ŋ/; graceless initial/g/ vs/b/, sharedmiddle. Definitions/wrongmeaningsaccurate.",
-      "Allkeyedstatements/questions/negativecontrasts grammaticalunique incontexts."
-    ],
-    "primarySources": [
-      "https://dictionary.cambridge.org/us/dictionary/english/earring",
-      "https://dictionary.cambridge.org/pronunciation/english/hearing",
-      "https://dictionary.cambridge.org/pronunciation/english/steering-wheel",
-      "https://dictionary.cambridge.org/us/pronunciation/english/necklace",
-      "https://dictionary.cambridge.org/us/pronunciation/english/reckless",
-      "https://dictionary.cambridge.org/us/pronunciation/english/legless",
-      "https://dictionary.cambridge.org/us/dictionary/english/bracelet",
-      "https://dictionary.cambridge.org/us/pronunciation/english/bracing",
-      "https://dictionary.cambridge.org/pronunciation/english/graceless"
-    ],
-    "actualAudioReviewed": false
+  "sourceSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactRuSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactUkSha256": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e",
+  "practiceAtomicSha256": "30008b1faa3ab4c5b3c6f36ec38fb6b275241b4ae6303493762f7287cbc18d2a",
+  "localeHashes": {
+    "ru": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+    "uk": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e"
   },
-  "scope": "Initial whole review plus actual independent review of changed intro bodies",
-  "deltaReview": {
-    "sourceSha256": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
-    "comparisonBaseSha256": "49aff36a6e2fa8bd2e5d0d4b3856f1aecc562407b9aeefa46cad895d568d24f5",
-    "verdict": "PASS",
-    "evidence": "Actual boundedintro2/3factdeltaPASS: necklace /n/→a, bracelet /b/→a, correctquestioninversion, nofalseuniversals.",
-    "findings": []
-  }
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The gift-counter scene keeps object, count and article cues coherent."
+  ],
+  "verdictReason": "The gift-counter scene keeps object, count and article cues coherent."
 }

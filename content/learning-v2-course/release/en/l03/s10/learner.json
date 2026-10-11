@@ -60,7 +60,7 @@
         },
         {
           "responseId": "en:lesson-03:session-10:i02:r2",
-          "text": "metal"
+          "text": "cattle"
         },
         {
           "responseId": "en:lesson-03:session-10:i02:r3",
@@ -87,7 +87,7 @@
           },
           {
             "responseId": "en:lesson-03:session-10:i02:r2",
-            "targetText": "metal",
+            "targetText": "cattle",
             "meaningByLocale": null
           },
           {
@@ -103,8 +103,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово прои",
             "feedbackByLocale": {
-              "ru": "`metal` — «металл». Начало похоже, но первым звучит «м». В записи слышно «к»: `kettle`.",
-              "uk": "`metal` — «метал». Початок подібний, але першим звучить «м». У записі чути «к»: `kettle`."
+              "ru": "`cattle` — «крупный рогатый скот». Оба слова начинаются с «к», но `cattle` звучит как **cat-l**, а `kettle` — как **ket-l**. В записи звучит `kettle`.",
+              "uk": "`cattle` — «велика рогата худоба». Обидва слова починаються з «к», але `cattle` звучить як **cat-l**, а `kettle` — як **ket-l**. У записі звучить `kettle`."
             }
           },
           {
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
+      "prompt": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-10:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
+      "accessibilityLabel": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A kettle.",
+        "targetPhrase": "It is a kettle.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
-          "uk": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома словами «чайник»"
+          "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+          "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "kettle"
         ],
         "authoredDistractorTokens": [
@@ -277,8 +279,8 @@
             "correct": false,
             "testedDimension": "Соберите короткое название — продавец сп",
             "feedbackByLocale": {
-              "ru": "Для короткого названия тоже выбираем по первому звуку: в `kettle` он согласный, поэтому нужно `A`.",
-              "uk": "Для короткої назви теж обираємо за першим звуком: у `kettle` він приголосний, тому потрібне `A`."
+              "ru": "После `It` нужна форма `is`, а перед одним чайником — `a`: `It is a kettle`.",
+              "uk": "Після `It` потрібна форма `is`, а перед одним чайником — `a`: `It is a kettle`."
             }
           }
         ]
@@ -908,13 +910,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг заметил сиденье за стойкой продавца; уточните «Это кресло?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-10:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг заметил сиденье за стойкой продавца; уточните «Это кресло?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -988,5 +990,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "59aac64974138afb8bdc66ade6a21f3a1c556ff3d97840a7a93444f51b99a611"
+  "learnerFingerprint": "6a26f8b1569cc27d5c6dd2f638d1f458ced379f6e9e7aac128b1d941964b8c86"
 }

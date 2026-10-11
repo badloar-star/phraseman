@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — tall",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-17:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — nice",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -450,7 +450,9 @@
           "is",
           "friendly"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "He"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -642,11 +644,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -886,5 +888,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48d72b8c7f07ea0a3f6eedd6db6cc53d11e7997b76737cef00885c55b60ba06c"
+  "learnerFingerprint": "6d018f3620049897a78a0d4b903b4320a4a2e5e8b81ead02d308c4d310dc1c86"
 }

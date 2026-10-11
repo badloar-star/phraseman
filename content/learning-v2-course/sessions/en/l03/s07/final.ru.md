@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 7 — «Куда убрать вещи»
+# Английский · Урок 3 · Занятие 7 — «Куда убрать вещи»
 
-**Сцена сессии.** Вы с другом разбираете последнюю коробку после переезда. Находите место для мелочей, посуды и одежды, уточняете, какая мебель для чего нужна.
+**Сцена занятия.** Вы с другом разбираете последнюю коробку после переезда. Находите место для мелочей, посуды и одежды, уточняете, какая мебель для чего нужна.
 
-**Операция:** называем предметы с `a + noun`, чередуем знакомые утверждения, вопросы и отрицания с меньшей опорой  
+**Как сказать:** называем предметы с `a + noun`, чередуем знакомые утверждения, вопросы и отрицания с меньшей опорой  
 **Новые слова:** drawer, cupboard, wardrobe  
 **Возвращаются:** lamp, open, closed
 
@@ -50,80 +50,86 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — drawer**  
-> **drawer** — «выдвижной ящик». Его выдвигают из стола или шкафа, чтобы положить или достать вещи.
+**1 · Карточка слова — drawer**
+<!-- interaction_id: en:lesson-03:session-07:i01; family: listen_choose -->
+Цель: `drawer`
 
-**2 · Послушайте и выберите — что произнёс друг, пока вы разбираете вещи**  
-🔊 *drawer* → **drawer** · drier · dream
-- drier — *В `drier` гласный после начала меняется в ходе звучания; в `drawer` он звучит ровнее, с округлёнными губами. В записи — `drawer`.*
-- dream — *В `dream` гласный произносят с растянутыми губами, в `drawer` — с округлёнными. Здесь звучит `drawer`.*
+**2 · Послушайте и выберите — что произнёс друг, пока вы разбираете вещи**
+<!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
+Цель: `drawer`
+Варианты: `drawer` · `drier` · `dream`
 
-**3 · Карточка слова — cupboard**  
-> **cupboard** — «шкаф». В нём хранят вещи за дверцами. Здесь речь о кухонном шкафе для посуды.
+**3 · Карточка слова — cupboard**
+<!-- interaction_id: en:lesson-03:session-07:i03; family: listen_choose -->
+Цель: `cupboard`
 
-**4 · Послушайте и выберите — какое слово произнёс друг**  
-🔊 *cupboard* → **cupboard** · covered · coward
-- covered — *В середине `covered` для `v` нижняя губа касается верхних зубов. В `cupboard` для `b` смыкаются обе губы. В записи — `cupboard`.*
-- coward — *В `coward` первый гласный заметно скользит и заканчивается округлением губ. В `cupboard` он короткий, а затем губы смыкаются для `b`. Здесь — `cupboard`.*
+**4 · Послушайте и выберите — какое слово произнёс друг**
+<!-- interaction_id: en:lesson-03:session-07:i04; family: listen_choose -->
+Цель: `cupboard`
+Варианты: `cupboard` · `covered` · `coward`
 
-**5 · Соберите короткое название — друг спрашивает, куда вы кладёте мелочи; назовите выдвижной ящик двумя словами**  
-Плитки: `drawer` `A` `is` → **A drawer.**  
-Лишняя плитка: `is`.
-- is — *Нужна короткая часть `a drawer`. Между `a` и названием предмета `is` не ставим.*
+**5 · Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»**
+<!-- interaction_id: en:lesson-03:session-07:i05; family: phrase_builder -->
+Цель: `It is a drawer.`
+Варианты: `is`
 
-**6 · Карточка слова — wardrobe**  
-> **wardrobe** — «шкаф для одежды». В нём хранят одежду: развешивают её или складывают.
+**6 · Карточка слова — wardrobe**
+<!-- interaction_id: en:lesson-03:session-07:i06; family: listen_choose -->
+Цель: `wardrobe`
 
-**7 · Послушайте и выберите — какое слово произнёс друг**  
-🔊 *wardrobe* → **wardrobe** · warble · warlock
-- warble — *После общей первой части в `warble` сразу слышится `b`, а в `wardrobe` — сочетание `d` + `r`. В записи — `wardrobe`.*
-- warlock — *После общей первой части в `warlock` слышится `l`, а в `wardrobe` — сочетание `d` + `r`. Здесь — `wardrobe`.*
+**7 · Послушайте и выберите — какое слово произнёс друг**
+<!-- interaction_id: en:lesson-03:session-07:i07; family: listen_choose -->
+Цель: `wardrobe`
+Варианты: `wardrobe` · `warble` · `warlock`
 
-**8 · Послушайте и соберите — друг говорит о мебели рядом с коробкой**  
-🔊 *It is a cupboard.* Плитки: `cupboard` `a` `is` `It` `drawer` → **It is a cupboard.**  
-Лишняя плитка: `drawer`.
-- drawer — *В записи назван `cupboard`, поэтому собираем `It is a cupboard`.*
+**8 · Послушайте и соберите — друг говорит о мебели рядом с коробкой**
+<!-- interaction_id: en:lesson-03:session-07:i08; family: listen_build_dictation -->
+Цель: `It is a cupboard.`
+Варианты: `drawer`
 
-**9 · Скажите вслух — друг достал из коробки предмет для освещения; назовите лампу (`lamp` — «лампа»)**  
-🎙️ **It is a lamp.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-07:i09; family: scripted_repeat_compare -->
+Цель: `It is a lamp.`
 
-**10 · Соедините английские названия с русскими значениями (Speed Match, 4 пары)**  
-drawer — выдвижной ящик · cupboard — кухонный шкаф · wardrobe — шкаф для одежды · lamp — лампа
+**10 · Соедините английские названия с русскими значениями**
+<!-- interaction_id: en:lesson-03:session-07:i10; family: speed_match -->
+Пары: `drawer` — выдвижной ящик · `cupboard` — кухонный шкаф · `wardrobe` — шкаф для одежды · `lamp` — лампа
+Цель: `drawer · cupboard · wardrobe · lamp`
 
-**11 · Соберите вопрос — друг стоит у шкафа; спросите «Он открыт?» (`open` — «открыт»)**  
-Плитки: `open` `it` `Is` `Are` → **Is it open?**  
-Лишняя плитка: `Are`.
-- Are — *Вопрос об этом шкафе начинаем с `Is it`, а затем добавляем `open`.*
+**11 · Соберите вопрос — друг стоит у шкафа; спросите «Он открыт?» (`open` — «открыт»)**
+<!-- interaction_id: en:lesson-03:session-07:i11; family: phrase_builder -->
+Цель: `Is it open?`
+Варианты: `Are`
 
-**12 · Вставьте слово — друг не видит дверцы из-за коробки; сообщите «Он закрыт» (`closed` — «закрыт»)**  
-It ___ closed. → **is** · are · am
-- are — *Для этой фразы нужно `It is closed`. `are` с `It` не сочетается.*
-- am — *`am` подходит к `I`. О шкафе здесь говорим `It is closed`.*
+**12 · Вставьте слово — друг не видит дверцы из-за коробки; сообщите «Он закрыт» (`closed` — «закрыт»)**
+<!-- interaction_id: en:lesson-03:session-07:i12; family: context_gap_grammar -->
+Цель: `It ___ closed.`
+Варианты: `is` · `are` · `am`
 
-**13 · Скажите вслух — вы уже вышли из кухни; спросите друга, закрыт ли шкаф**  
-🎙️ **Is it closed?**
+**13 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-07:i13; family: scripted_repeat_compare -->
+Цель: `Is it closed?`
 
-**14 · Соберите отрицание — друг хочет повесить куртку в кухонный шкаф для посуды; объясните «Это не шкаф для одежды»**  
-Плитки: `wardrobe` `is` `not` `a` `It` `am` → **It is not a wardrobe.**  
-Лишняя плитка: `am`.
-- am — *После `It` нужно `is`, дальше — `not a wardrobe`. `am` осталось бы без подходящего `I`.*
+**14 · Соберите отрицание — друг хочет повесить куртку в кухонный шкаф для посуды; объясните «Это не шкаф для одежды»**
+<!-- interaction_id: en:lesson-03:session-07:i14; family: phrase_builder -->
+Цель: `It is not a wardrobe.`
+Варианты: `am`
 
-**15 · Вставьте слово — друг спрашивает о выдвижном ящике; сообщите «Он открыт»**  
-___ is open. → **It** · Is · Am
-- Is — *`is` уже стоит перед `open`. Сначала назовите предмет через `It`.*
-- Am — *Для фразы о ящике нужно `It is open`; начинать её с `Am` здесь нельзя.*
+**15 · Вставьте слово — друг спрашивает о выдвижном ящике; сообщите «Он открыт»**
+<!-- interaction_id: en:lesson-03:session-07:i15; family: context_gap_grammar -->
+Цель: `___ is open.`
+Варианты: `It` · `Is` · `Am`
 
-**16 · Скажите вслух — друг показывает на высокую мебель в спальне; назовите шкаф для одежды**  
-🎙️ **It is a wardrobe.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-07:i16; family: scripted_repeat_compare -->
+Цель: `It is a wardrobe.`
 
-**17 · Соберите вопрос — под крышкой нового стола видна ручка; уточните у друга «Это выдвижной ящик?»**  
-Плитки: `drawer` `it` `a` `Is` `Are` → **Is it a drawer?**  
-Лишняя плитка: `Are`.
-- Are — *Вопрос об этом предмете начинаем с `Is it`, затем добавляем `a drawer`.*
-
----
+**17 · Соберите вопрос — под крышкой нового стола видна ручка; уточните у друга «Это выдвижной ящик?»**
+<!-- interaction_id: en:lesson-03:session-07:i17; family: phrase_builder -->
+Цель: `Is it a drawer?`
+Варианты: `Are`
 
 ## Для сборщика
 
@@ -132,7 +138,7 @@ drawer — выдвижной ящик — его выдвигают из сто
 cupboard — шкаф — в нём хранят вещи за дверцами; здесь речь о кухонном шкафе для посуды  
 wardrobe — шкаф для одежды — в нём хранят одежду: развешивают её или складывают
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=phrase_builder
 
 ## Самопроверка
 

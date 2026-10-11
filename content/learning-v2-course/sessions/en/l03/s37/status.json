@@ -1,10 +1,14 @@
 {
   "session": "en/l03/s37",
-  "sourceSha256": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+  "sourceSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+  "exactRuSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+  "exactUkSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+  "localeSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
   "localeHashes": {
-    "ru": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
-    "uk": "13a9969ca4a59c5c95db7000dc0099a3d1562449e628f76d2f340347bbb4b3f7"
+    "ru": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+    "uk": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9"
   },
+  "practiceAtomicSha256": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f",
   "converged": true,
   "needsHumanReview": false,
   "brokenTasks": [],
@@ -18,5 +22,22 @@
     "judge_progression": "PASS",
     "locale_uk": "PASS"
   },
-  "at": "2026-09-19T23:16:03.127Z"
+  "at": "2026-10-03T23:52:13.8854878+01:00",
+  "derivedFromFreshBatchReview": {
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "exactRuSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+    "exactUkSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+    "practiceAtomicSha256": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f"
+  },
+  "verdict": "PASS",
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "blockedBy": null,
+  "staleBlockClearedAt": "2026-10-03T23:51:18.898Z"
 }

@@ -774,7 +774,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — сумка без единой лишней детали, и глаз от неё не оторвать",
+          "ru": "Вставьте слово — сумка без украшений и рисунков, совсем простая на вид",
           "uk": "Вставте слово — сумка без жодної зайвої деталі, і очей від неї не відвести"
         },
         "gappedTargetPhrase": "It is ___ .",
@@ -792,12 +792,12 @@
             "text": "name"
           }
         ],
-        "testedDimension": "Вставьте слово — сумка без единой лишней",
+        "testedDimension": "Вставьте слово — сумка без украшений и р",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-29:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сумка без единой лишней",
+            "testedDimension": "Вставьте слово — сумка без украшений и р",
             "feedbackByLocale": {
               "ru": "«Дёшево» — про цену. А вы говорите не про цифру, а про вид.",
               "uk": "«Дешево» — про ціну. А ви говорите не про цифру, а про вигляд."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-02:session-29:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — сумка без единой лишней",
+            "testedDimension": "Вставьте слово — сумка без украшений и р",
             "feedbackByLocale": {
               "ru": "`name` — «название». Это не описание вещи, а как она зовётся.",
               "uk": "`name` — «назва». Це не опис речі, а те, як її звуть."
@@ -877,26 +877,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-29:i17",
+      "interactionId": "en:lesson-02:session-29:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — продавец достал две сумки",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-29:i17:audio"
+        "en:lesson-02:session-29:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — продавец достал две сумки",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-29:i17:audio",
-          "transcript": "Which one? What is the price? What is the name?"
+          "audioTargetId": "en:lesson-02:session-29:i17:s01:audio",
+          "transcript": "Which one?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Which one? What is the price? What is the name?",
+        "targetPhrase": "Which one?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:i17:s02:audio",
+          "transcript": "What is the price?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the price?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-29:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-29:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-29:i17:s03:audio",
+          "transcript": "What is the name?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the name?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -910,11 +976,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "607506d4f6e3f093ac67a9f259f3d0af8b984c9561795de1cc9ba913b147fe92"
+  "learnerFingerprint": "c66285ea3371e0b10413122408003ea66e397ffe6010b01f8f7a2a2072a06407"
 }

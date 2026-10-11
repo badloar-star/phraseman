@@ -1,0 +1,2 @@
+import fs from "node:fs";import path from "node:path";
+const root=path.resolve(import.meta.dirname,".."),p=path.join(root,"migration/single-phrase-2026-10-03/preservation-ledger.json"),x=JSON.parse(fs.readFileSync(p,"utf8")),r=x.rows.find(v=>v.courseSessionId==="en:lesson-01:session-53"&&v.oldInteractionId==="en:lesson-01:session-53:i09"&&v.segmentIndex===1);if(!r)throw Error("ledger row missing");r.audioTranscript="sick";fs.writeFileSync(p,JSON.stringify(x,null,2)+"\n");

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro1:r2": {
+          "ru": "`is` выпало. `not` держится за `is` — без него ему не на чем стоять.",
+          "uk": "`is` випало. `not` тримається за `is` — без нього йому нема на чому стояти."
+        },
+        "en:lesson-01:session-32:intro1:r3": {
+          "ru": "`no` тут не работает. Отрицание после `is` — только `not`.",
+          "uk": "`no` тут не працює. Заперечення після `is` — тільки `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro2:r2": {
+          "ru": "Хвост оборван. На конце `-ive`, целиком: `expensive`.",
+          "uk": "Хвіст обірвано. На кінці `-ive`, повністю: `expensive`."
+        },
+        "en:lesson-01:session-32:intro2:r3": {
+          "ru": "Отрицание вышло, а `is` осталось за дверью. Порядок один: `It is not`.",
+          "uk": "Заперечення вийшло, а `is` лишилося за дверима. Порядок один: `It is not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-32:intro3:r2": {
+          "ru": "Начало съедено. Погода всегда начинается с `it`.",
+          "uk": "Початок з'їдено. Погода завжди починається з `it`."
+        },
+        "en:lesson-01:session-32:intro3:r3": {
+          "ru": "`rain` — это сам дождь. Про погоду — `rainy`.",
+          "uk": "`rain` — це сам дощ. Про погоду — `rainy`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b33fa8f68340d549387faf80981fce831cf338c8686c9d5a7cb7fd8511515bc1"
+}

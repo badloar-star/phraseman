@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i03",
-    "correctText": "",
+    "correctText": "one",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i10",
-    "correctText": "",
+    "correctText": "elegant",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-29:i12",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-29:i12:p1=what\nen:lesson-02:session-29:i12:p2=which\nen:lesson-02:session-29:i12:p3=elegant\nen:lesson-02:session-29:i12:p4=price",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-29:i17",
-    "correctText": "Which one? What is the price? What is the name?",
+    "interactionId": "en:lesson-02:session-29:i17:s01",
+    "correctText": "Which one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-29:i17:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-29:i17:s03",
+    "correctText": "What is the name?",
     "correctResponseId": null
   }
 ]

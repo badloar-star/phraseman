@@ -560,11 +560,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -905,17 +905,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите вопрос — в меню картинка блюда без подписи; спросите, как оно называется",
+      "prompt": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите вопрос — в меню картинка блюда без подписи; спросите, как оно называется",
+      "accessibilityLabel": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "What is the name?",
         "localizedMeaning": {
-          "ru": "Соберите вопрос — в меню картинка блюда без подписи; спросите, как оно называется",
-          "uk": "Складіть запитання — у меню картинка страви без підпису; запитайте, як вона називається"
+          "ru": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
+          "uk": "Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну"
         },
         "orderedTokens": [
           "What",
@@ -931,26 +931,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-28:i17",
+      "interactionId": "en:lesson-02:session-28:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три вопроса подряд, голосом",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-28:i17:audio"
+        "en:lesson-02:session-28:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три вопроса подряд, голосом",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-28:i17:audio",
-          "transcript": "What is this? What is the price? What is the time?"
+          "audioTargetId": "en:lesson-02:session-28:i17:s01:audio",
+          "transcript": "What is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "What is this? What is the price? What is the time?",
+        "targetPhrase": "What is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:i17:s02:audio",
+          "transcript": "What is the price?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the price?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-28:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-28:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-28:i17:s03:audio",
+          "transcript": "What is the time?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the time?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -964,11 +1030,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a0a88ce60fa8a46b9da3869005814f7a33914fc86c357bfeb065cce656cd4d7"
+  "learnerFingerprint": "e2d10b8facd400a509239415f845c3a7dbcdd4d47997397b74cd341953bf446a"
 }

@@ -1,34 +1,17 @@
 {
-  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
-  "pages": [
-    {
-      "page": 1,
-      "retelling": "Когда я называю стену фразой «Это стена», мне нужно сказать «It is a wall» и не пропустить «a».",
-      "what_i_do_now": "На крупном плане стены скажу «It is a wall».",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 2,
-      "retelling": "Слово «floor» называет пол, а «clean» говорит о его чистоте, поэтому «a» нужно только в названии предмета.",
-      "what_i_do_now": "Назову пол «It is a floor», а о чистом поле скажу «It is clean».",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 3,
-      "retelling": "«A ceiling» можно сказать как короткое название, а в полной фразе перед ним добавляются «It is», не убирая «a».",
-      "what_i_do_now": "Если отвечаю полной фразой про потолок, скажу «It is a ceiling».",
-      "understood": true,
-      "problems": []
-    }
-  ],
-  "pages_understood": 3,
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_reader",
+  "sourceSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactRuSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactUkSha256": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8",
+  "practiceAtomicSha256": "90566163873b3ee36aacc69502ef44e356932965dd9a566ba3bf8ab5a7632483",
   "verdict": "PASS",
-  "issues": [],
   "evidence": [
-    "Интро последовательно различают название предмета, сообщение о состоянии и короткое название с полной фразой. В каждом случае новый предмет и нужное действие названы до вопроса.",
-    "Сцена с крупными фотографиями не распадается: штукатурка, плитка, снимок потолка и ручка двери дают понятные поводы уточнять, какая поверхность или вещь попала в кадр.",
-    "Карточечные определения звучат естественно и конкретно. Инструкции практики называют предмет и действие; варианты и плитки оставляют один бесспорный ответ."
-  ]
+    "The scene says what is visible and why the learner is naming it before each answer.",
+    "All three intro answers are exact current assessed targets, not merely nearby fragments."
+  ],
+  "blockers": [],
+  "mustFix": []
 }

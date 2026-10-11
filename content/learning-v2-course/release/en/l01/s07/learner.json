@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — glad",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -171,17 +171,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вас спрашивают, будете ли добавку",
+      "prompt": "Соберите фразу — официант спрашивает, будете ли вы добавку",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вас спрашивают, будете ли добавку",
+      "accessibilityLabel": "Соберите фразу — официант спрашивает, будете ли вы добавку",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am full.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вас спрашивают, будете ли добавку",
-          "uk": "Складіть фразу — вас питають, чи будете добавку"
+          "ru": "Соберите фразу — официант спрашивает, будете ли вы добавку",
+          "uk": "Складіть фразу — офіціант питає, чи будете ви добавку"
         },
         "orderedTokens": [
           "I",
@@ -263,7 +263,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-07:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — scared",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -567,11 +567,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -877,11 +877,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова, которые уже ваши",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -945,26 +945,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-07:i18",
+      "interactionId": "en:lesson-01:session-07:i18:s01",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы, а лифт уже приехал",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-07:i18:audio"
+        "en:lesson-01:session-07:i18:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы, а лифт уже приехал",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-07:i18:audio",
-          "transcript": "I am tired. I am not lost. I am fine. I am glad."
+          "audioTargetId": "en:lesson-01:session-07:i18:s01:audio",
+          "transcript": "I am tired."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am tired. I am not lost. I am fine. I am glad.",
+        "targetPhrase": "I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i18:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i18:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i18:s02:audio",
+          "transcript": "I am not lost."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not lost.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i18:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i18:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i18:s03:audio",
+          "transcript": "I am fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i18:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i18:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i18:s04:audio",
+          "transcript": "I am glad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am glad.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -978,11 +1077,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 18,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "679a21229064f6347d15cfa5d9eae71055963fddb8fe91444ba9f831de65ea13"
+  "learnerFingerprint": "d4b4618fa3976f2ca648aad13b374bfe3f1d0c671a9182408ddfd2c51a3c95f2"
 }

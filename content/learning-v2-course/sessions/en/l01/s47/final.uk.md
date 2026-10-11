@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 47 — «Кінець вечора»
+# Англійська · Урок 1 · Заняття 47 — «Кінець вечора»
 
-**Сцена сесії.** Паб зачиняється. Хтось ще тримає склянку, хтось уже позіхає, а комусь час додому — і все це треба сказати коротко.
-**Операція:** повторення скорочень `I'm` / `he's` / `she's` / `we're` / `they're` + `isn't` / `aren't`
+**Ситуація.** Паб зачиняється. Міра допиває воду, Олег уже позіхає, а ви збираєтеся додому; у розмові ви коротко описуєте кожного.
+**Сьогодні.** Повторите скорочення `I'm` / `he's` / `she's` / `we're` / `they're` та заперечення `isn't` / `aren't`.
 **Нові слова:** drunk, sober, sleepy
 **Повертаються:** awake, quiet, late, tired, home
 
@@ -60,76 +60,112 @@
 ## Практика (перші завдання)
 
 **1 · Картка слова — drunk**
+<!-- interaction_id: en:lesson-01:session-47:i01; family: listen_choose -->
 > **drunk** — «п'яний». Не «веселий після одного келиха», а коли мова пливе і таксі вже викликають.
 
-**2 · Послухайте і виберіть — drunk**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-47:i02; family: listen_choose -->
 🔊 *drunk* → **drunk** · drink · dark
 - drink — *`drink` — «пити», сама дія. `drunk` — про людину після.*
 - dark — *Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем.*
 
 **3 · Картка слова — sober**
+<!-- interaction_id: en:lesson-01:session-47:i03; family: listen_choose -->
 > **sober** — «тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо.
 
 **4 · Складіть фразу — ви за кермом, друг тягнеться до вашої склянки**
+<!-- interaction_id: en:lesson-01:session-47:i04; family: phrase_builder -->
 Плитки: `sober` `I'm` `am` `he's` → **I'm sober.**
 
 **5 · Картка слова — sleepy**
+<!-- interaction_id: en:lesson-01:session-47:i05; family: listen_choose -->
 > **sleepy** — «сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії.
 
-**6 · Послухайте і виберіть — sleepy**
+**6 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-47:i06; family: listen_choose -->
 🔊 *sleepy* → **sleepy** · sleep · sleeper
 - sleep — *Обрубаний хвіст. `sleep` — «спати», `sleepy` — «сонний».*
 - sleeper — *Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить.*
 
 **7 · Картка слова — awake**
+<!-- interaction_id: en:lesson-01:session-47:i07; family: listen_choose -->
 > **awake** — «не спить». Очі розплющені, голова працює.
 
 **8 · Вставте слово — друг залпом допив каву і очі загорілися**
+<!-- interaction_id: en:lesson-01:session-47:i08; family: context_gap_grammar -->
 He's ___ . → **awake** · sleepy · drunk
 - sleepy — *Навпаки: кава його розбудила, а `sleepy` — «сонний».*
 - drunk — *`drunk` — «п'яний», а тут людина збадьорилася.*
 
-**9 · З'єднайте пари (Speed Match, 4 пари)**
+**9 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-47:i09; family: speed_match -->
 drunk — п'яний · sober — тверезий · sleepy — сонний · awake — не спить
 
-**10 · Вставте слово — ви сідаєте за кермо, і вас перепитують**
+**10 · Вставте слово — Міра питає, чи ви тверезі, перш ніж довірити вам кермо її машини**
+<!-- interaction_id: en:lesson-01:session-47:i10; family: context_gap_grammar -->
 I'm ___ . → **sober** · drunk · late
 - drunk — *За кермо так не сідають. Вам потрібно «тверезий».*
 - late — *`late` — «спізнився». Про час, а не про випите.*
 
 **11 · Картка слова — tired**
+<!-- interaction_id: en:lesson-01:session-47:i11; family: listen_choose -->
 > **tired** — «втомлений». Не про сон, а про сили: їх за день витратили більше, ніж лишилося.
 
 **12 · Вставте слово — друг цілий день тягав ящики, але спати не хоче**
+<!-- interaction_id: en:lesson-01:session-47:i12; family: context_gap_grammar -->
 He's ___ . → **tired** · sleepy · drunk
 - sleepy — *`sleepy` — «сонний», а його якраз не тягне спати.*
 - drunk — *«П'яний» тут ні до чого: людина працювала, а не пила.*
 
 **13 · Послухайте і складіть — «вона не сонна»**
+<!-- interaction_id: en:lesson-01:session-47:i13; family: listen_build_dictation -->
 🔊 *She isn't sleepy.* Плитки: `isn't` `She` `sleepy` `aren't` → **She isn't sleepy.**
 
 **14 · Складіть фразу — друзі біля виходу, усі бадьорі**
+<!-- interaction_id: en:lesson-01:session-47:i14; family: phrase_builder -->
 Плитки: `They` `aren't` `sleepy` `isn't` → **They aren't sleepy.**
 
 **15 · Картка слова — quiet**
+<!-- interaction_id: en:lesson-01:session-47:i15; family: listen_choose -->
 > **quiet** — «тихий». Про зал, де вимкнули музику, і про людину, яка весь вечір мовчала.
 
 **16 · Вставте слово — перша ночі, музику вимкнули, усі замовкли**
+<!-- interaction_id: en:lesson-01:session-47:i16; family: context_gap_grammar -->
 It's ___ . → **quiet** · awake · drunk
 - awake — *`awake` — про людину, яка не спить, а не про зал.*
 - drunk — *«П'яний» — теж про людину. Про тишу потрібно `quiet`.*
 
-**17 · Вставте слово — на вас чекали об одинадцятій, а на годиннику північ**
-I'm ___ . → **late** · quiet · sober
-- quiet — *`quiet` — «тихий». Про годинник це нічого не каже.*
-- sober — *«Тверезий» — правда, але вас питають не про це, а про час.*
+**17 · Складіть фразу — на вас чекали об одинадцятій, а на годиннику північ**
+<!-- interaction_id: en:lesson-01:session-47:i17; family: phrase_builder -->
+Плитки: `I'm` `late` `quiet` → **I'm late.**
 
-**18 · Складіть фразу — ви прощаєтеся і їдете до себе**
-Плитки: `I'm` `home` `late` `going` → **I'm home.**
+**18 · Послухайте і складіть — ви прощаєтеся і їдете до себе**
+<!-- interaction_id: en:lesson-01:session-47:i18; family: listen_build_dictation -->
+🔊 *I'm home.* Плитки: `I'm` `home` → **I'm home.**
 
-**19 · Фінал сцени — чотири фрази поспіль перед дорогою додому**
-🎙 Паб зачиняється. Скажіть: ви тверезі, друг сонний, вони не сонні, а ви втомилися.
-**I'm sober. He's sleepy. They aren't sleepy. I'm tired.**
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-47:i19:s01; family: scripted_repeat_compare -->
+Міра пропонує вам сісти за кермо її машини. Відповідайте, що ви тверезі.
+
+🎙 **I'm sober.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-47:i19:s02; family: scripted_repeat_compare -->
+Друг позіхає біля виходу з пабу. Скажіть про нього.
+
+🎙 **He's sleepy.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-47:i19:s03; family: scripted_repeat_compare -->
+Міра й Олег після прогулянки все ще бадьорі. Скажіть про них.
+
+🎙 **They aren't sleepy.**
+
+**22 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-47:i19:s04; family: scripted_repeat_compare -->
+Після перенесення ящиків у вас майже не лишилося сил. Скажіть про себе.
+
+🎙 **I'm tired.**
 
 ---
 
@@ -140,7 +176,7 @@ drunk — п'яний — «п'яний». Не «веселий після од
 sober — тверезий — «тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо.
 sleepy — сонний — «сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=listen_choose, 7=word_card, 8=context_gap_grammar, 9=speed_match, 10=context_gap_grammar, 11=word_card, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=word_card, 16=context_gap_grammar, 17=context_gap_grammar, 18=phrase_builder, 19=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=listen_choose, 7=word_card, 8=context_gap_grammar, 9=speed_match, 10=context_gap_grammar, 11=word_card, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=word_card, 16=context_gap_grammar, 17=phrase_builder, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
 
 ## Самоперевірка
 
@@ -181,16 +217,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card,
 
 ---
 
-🟡 **Стоит улучшить**
-- Форма «ви тверезі» (множина при вежливом «ви») теперь выдержана и в интро 1, и в финале сцены 19 — судья указал только на интро, но правило то же, иначе внутри урока была бы разнобойная вежливость.
-
-🧩 **Скрытые связи**
-- Замена «отямився» → «протверезів» затронула два места: интро 1 и карточку слова в практике, плюс дублирующую строку в блоке «Для сборщика» — там определение обязано совпадать с карточкой байт в байт.
-- Английские строки, номера, режимы и плитки не тронуты.
-
----
-
-- Исправил всё, на что указал носитель: заголовок практики теперь по-украински, «ви тверезі» вместо «ви тверезий», «протверезів/протверезіла» вместо неверного «отямився», разбор ошибки с зевотой переписан живой фразой.
-- Дополнительно поправил ту же вежливую форму в финальном задании урока, чтобы внутри сессии не было разнобоя.
-- Определение слова «тверезий» поменял сразу в двух местах — в карточке и в служебном списке слов, чтобы они совпадали.
-- Английские слова, ошибки-ловушки, порядок и номера заданий остались нетронутыми.

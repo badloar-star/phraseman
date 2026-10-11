@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-20:intro1:r2": {
+          "ru": "Пропало `is`. Оно стоит вторым, сразу за `where`.",
+          "uk": "Зникло `is`. Воно стоїть другим, одразу за `where`."
+        },
+        "en:lesson-02:session-20:intro1:r3": {
+          "ru": "`is` уехало в конец. Его место — второе, до самого места.",
+          "uk": "`is` поїхало в кінець. Його місце — друге, до самого місця."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-20:intro2:r2": {
+          "ru": "Это «вокзал». После «ст» у него «эй», а вы услышали «р».",
+          "uk": "Це «вокзал». Після «ст» у нього «ей», а ви почули «р»."
+        },
+        "en:lesson-02:session-20:intro2:r3": {
+          "ru": "Тоже на «ст», но третий звук там «э», а не «р».",
+          "uk": "Теж на «ст», але третій звук там «е», а не «р»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-20:intro3:r2": {
+          "ru": "Между `it` и словом о месте стоит `is`.",
+          "uk": "Між `it` і словом про місце стоїть `is`."
+        },
+        "en:lesson-02:session-20:intro3:r3": {
+          "ru": "Так вы спрашиваете сами. Прохожий отвечает, значит первым идёт `it`.",
+          "uk": "Так питаєте ви самі. Перехожий відповідає, отже першим іде `it`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ae7add0b469b7bb1ea1222ffc873de4fb5180e0d42b43c6d06e6390f092d217"
+}

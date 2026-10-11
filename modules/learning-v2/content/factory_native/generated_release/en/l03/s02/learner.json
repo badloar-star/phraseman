@@ -441,13 +441,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — сестра показывает на ещё один предмет; назовите его: «Это стол» (`table` — «стол»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-02:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — сестра показывает на ещё один предмет; назовите его: «Это стол» (`table` — «стол»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -781,13 +781,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — сестра пробует приподнять диван; спросите её: «Он тяжёлый?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-02:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — сестра пробует приподнять диван; спросите её: «Он тяжёлый?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -814,13 +814,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы сняли последний чехол; сестра из дверей спрашивает, что под ним; назовите кровать",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-02:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы сняли последний чехол; сестра из дверей спрашивает, что под ним; назовите кровать",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -894,5 +894,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cad4df0b535a3255d34e9522b4f5e6c50401cd4b833d4de4d8dee23f213c41a3"
+  "learnerFingerprint": "692ca6ee497c3d6e9e6ff975480641298dace13c4221c57618687f770f7ee354"
 }

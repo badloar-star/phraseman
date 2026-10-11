@@ -1,0 +1,36 @@
+{
+  "session": "en/l04/s04",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:38:16.2729341Z",
+  "sourceSha256": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+  "exactRuSha256": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+  "exactUkSha256": "c75dba1c5e99d289db2342bacd2d52c50c92609942f60a26d8b7d457a11569c3",
+  "practiceAtomicSha256": "e3e1e5a719079959602790f9b8b7254b86a1d1b51cf015d25b912d5b5dc1bdfe",
+  "localeHashes": {
+    "ru": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+    "uk": "c75dba1c5e99d289db2342bacd2d52c50c92609942f60a26d8b7d457a11569c3"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_reader",
+  "sourceReport": "fresh independent read-only seven-role textual review; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The first two scene sentences give place, one visible post office and the immediate number-choice task without a story detour.",
+    "Intro lengths are RU 288/288/316 and UK 283/283/309 characters, all within 210–320.",
+    "The pages begin with the word/form and translation, use short ordinary explanations and contain no unexplained grammar jargon."
+  ]
+}
+

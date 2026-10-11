@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-05:intro1:r2": {
+          "ru": "Это не вопрос, а удивление вслух. Обычный вопрос начинается с `are`.",
+          "uk": "Це не запитання, а здивування вголос. Звичайне запитання починається з `are`."
+        },
+        "en:lesson-02:session-05:intro1:r3": {
+          "ru": "`you` оторвали от `are`. Эти двое идут парой: сначала `are you`, потом само слово.",
+          "uk": "`you` відірвали від `are`. Ці двоє йдуть парою: спершу `are you`, потім саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-05:intro2:r2": {
+          "ru": "Так спрашивают. А вы уже видите, что человек заблудился, — значит `you` идёт первым.",
+          "uk": "Так питають. А ви вже бачите, що людина заблукала, — отже `you` йде першим."
+        },
+        "en:lesson-02:session-05:intro2:r3": {
+          "ru": "`are` пропало. Без него это не фраза: между `you` и словом нужно `are`.",
+          "uk": "`are` зникло. Без нього це не фраза: між `you` і словом потрібне `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-05:intro3:r2": {
+          "ru": "Вы не спросили, а сообщили ему это. Для вопроса `are` выходит вперёд.",
+          "uk": "Ви не спитали, а повідомили йому це. Для запитання `are` виходить наперед."
+        },
+        "en:lesson-02:session-05:intro3:r3": {
+          "ru": "`you` уехал в конец. Он держится за `are`: `are you`, а потом слово.",
+          "uk": "`you` поїхав у кінець. Він тримається за `are`: `are you`, а потім слово."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bbdf095130cc59ed8605dc8219bf86cf455176924ad19e8301773885c0b5b23f"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-04:intro1:r2": {
+          "ru": "Почта одна, поэтому нужна форма `is`, а не `are`.",
+          "uk": "Пошта одна, тому потрібне `is`, а не `are`."
+        },
+        "en:lesson-04:session-04:intro1:r3": {
+          "ru": "С одним исчисляемым местом нужен артикль: `a post office`.",
+          "uk": "З одним злічуваним місцем потрібен артикль: `a post office`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-04:intro2:r2": {
+          "ru": "`Banks` — это несколько банков, поэтому нужно `There are`.",
+          "uk": "`Banks` — це кілька банків, тому потрібне `There are`."
+        },
+        "en:lesson-04:session-04:intro2:r3": {
+          "ru": "После `There are` здесь нужна форма множественного числа `banks`.",
+          "uk": "Після `There are` тут потрібна форма множини `banks`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-04:intro3:r2": {
+          "ru": "Одна почта требует `There is a post office`.",
+          "uk": "Одна пошта потребує `There is a post office`."
+        },
+        "en:lesson-04:session-04:intro3:r3": {
+          "ru": "Здесь одна почта: `a post office`, а не `post offices`.",
+          "uk": "Тут одна пошта: `a post office`, а не `post offices`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52d429518fd9b376bc5b49fddcc4758e15baad6dff0a4bd7cb0253385efcd127"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro1:r2": {
+          "ru": "`is` выпало. `not` его не заменяет — он приходит после него.",
+          "uk": "`is` випало. `not` його не заміняє — воно приходить після нього."
+        },
+        "en:lesson-01:session-19:intro1:r3": {
+          "ru": "`not` убежал в конец. Его место сразу за `is`, перед словом.",
+          "uk": "`not` втекло в кінець. Його місце одразу за `is`, перед словом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro2:r2": {
+          "ru": "Без `is` фраза рассыпается. Сначала `she is`, потом `not`.",
+          "uk": "Без `is` фраза розсипається. Спершу `she is`, потім `not`."
+        },
+        "en:lesson-01:session-19:intro2:r3": {
+          "ru": "`mean` — «вредная», про злой умысел. Речь была про манеры, а это `rude`.",
+          "uk": "`mean` — «шкідлива», про злий намір. Мова була про манери, а це `rude`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-19:intro3:r2": {
+          "ru": "`not` встал перед `is`, а должен после: сначала `he is`, потом `not`.",
+          "uk": "`not` стало перед `is`, а має після: спершу `he is`, потім `not`."
+        },
+        "en:lesson-01:session-19:intro3:r3": {
+          "ru": "`she` — про женщину. Речь о парне, значит `he`.",
+          "uk": "`she` — про жінку. Мова про хлопця, отже `he`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e5d2875d2e0a31a4e19acb35c5f5bd00dadf9e9c4dda310455c7a9abcd3d2f3"
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 2 — «Что под чехлом?»
+# Английский · Урок 3 · Занятие 2 — «Что под чехлом?»
 
-**Сцена сессии.** Вы обустраиваете квартиру. Вместе с сестрой снимаете чехлы с крупной мебели и разбираетесь, что куда поставить.
+**Сцена занятия.** Вы обустраиваете квартиру. Вместе с сестрой снимаете чехлы с крупной мебели и разбираетесь, что куда поставить.
 
-**Операция:** применение `It is a + noun`: называем крупную мебель  
+**Как сказать:** применение `It is a + noun`: называем крупную мебель  
 **Новые слова:** sofa, bed, desk  
 **Возвращаются:** table, heavy
 
@@ -50,78 +50,85 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — sofa**  
-> **sofa** — «диван». Мягкая мебель, на которой можно сидеть рядом.
+**1 · Карточка слова — sofa**
+<!-- interaction_id: en:lesson-03:session-02:i01; family: listen_choose -->
+Цель: `sofa`
 
-**2 · Послушайте и выберите — какое слово произнесла сестра**  
-🔊 *sofa* → **sofa** · safer · suffer
-- safer — *В первом слоге `safer` слышно «эй», а в `sofa` — «оу». В записи `sofa`.*
-- suffer — *В первом слоге `suffer` гласный ближе к «а», а в `sofa` слышно «оу». Здесь звучит `sofa`.*
+**2 · Послушайте и выберите — какое слово произнесла сестра**
+<!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
+Цель: `sofa`
+Варианты: `sofa` · `safer` · `suffer`
 
-**3 · Карточка слова — bed**  
-> **bed** — «кровать». Мебель, на которой спят.
+**3 · Карточка слова — bed**
+<!-- interaction_id: en:lesson-03:session-02:i03; family: listen_choose -->
+Цель: `bed`
 
-**4 · Послушайте и выберите — какое слово прозвучало в комнате**  
-🔊 *bed* → **bed** · red · bad
-- red — *В `red` начальный `r` звучит плавно, без удара кончиком языка; `bed` начинается со смыкания губ для `b`. В записи `bed`.*
-- bad — *В `bad` гласный произносится с более открытым ртом, чем в `bed`. Здесь звучит `bed`.*
+**4 · Послушайте и выберите — какое слово прозвучало в комнате**
+<!-- interaction_id: en:lesson-03:session-02:i04; family: listen_choose -->
+Цель: `bed`
+Варианты: `bed` · `red` · `bad`
 
-**5 · Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»**  
-Плитки: `sofa` `is` `It` `a` → **It is a sofa.**
+**5 · Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»**
+<!-- interaction_id: en:lesson-03:session-02:i05; family: phrase_builder -->
+Цель: `It is a sofa.`
 
-**6 · Карточка слова — desk**  
-> **desk** — «письменный стол». За ним пишут, учатся или работают.
+**6 · Карточка слова — desk**
+<!-- interaction_id: en:lesson-03:session-02:i06; family: listen_choose -->
+Цель: `desk`
 
-**7 · Послушайте и выберите — какое слово произнесла сестра**  
-🔊 *desk* → **desk** · disk · dusk
-- disk — *В середине `disk` гласный ближе к «и», а в `desk` — к «э». В записи `desk`.*
-- dusk — *В середине `dusk` гласный ближе к «а», а в `desk` — к «э». Здесь звучит `desk`.*
+**7 · Послушайте и выберите — какое слово произнесла сестра**
+<!-- interaction_id: en:lesson-03:session-02:i07; family: listen_choose -->
+Цель: `desk`
+Варианты: `desk` · `disk` · `dusk`
 
-**8 · Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол**  
-Плитки: `desk` `it` `a` `Is` `Are` → **Is it a desk?**  
-Лишняя плитка: `Are`.
-- Are — *Вопрос об этом предмете начинаем с `Is it`: `Is it a desk?`. Начало `Are it` не подходит.*
+**8 · Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол**
+<!-- interaction_id: en:lesson-03:session-02:i08; family: phrase_builder -->
+Цель: `Is it a desk?`
+Варианты: `Are`
 
-**9 · Скажите вслух — сестра показывает на ещё один предмет; назовите его: «Это стол» (`table` — «стол»)**  
-🎙️ **It is a table.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-02:i09; family: scripted_repeat_compare -->
+Цель: `It is a table.`
 
-**10 · Послушайте и соберите — сестра говорит о мебели под чехлом**  
-🔊 *It is not a bed.* Плитки: `bed` `It` `a` `not` `is` `sofa` → **It is not a bed.**  
-Лишняя плитка: `sofa`.
-- sofa — *В записи прозвучало `bed`, а не `sofa`: `It is not a bed`.*
+**10 · Послушайте и соберите — сестра говорит о мебели под чехлом**
+<!-- interaction_id: en:lesson-03:session-02:i10; family: listen_build_dictation -->
+Цель: `It is not a bed.`
+Варианты: `sofa`
 
-**11 · Соедините пары — мебель в квартире (Speed Match, 4 пары)**  
-sofa — диван · bed — кровать · desk — письменный стол · table — стол
+**11 · Соедините пары — мебель в квартире**
+<!-- interaction_id: en:lesson-03:session-02:i11; family: speed_match -->
+Пары: `sofa` — диван · `bed` — кровать · `desk` — письменный стол · `table` — стол
+Цель: `sofa · bed · desk · table`
 
-**12 · Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»**  
-It ___ bed. → **is a** · is · a
-- is — *Получится `It is bed`: перед названием кровати не хватает `a`.*
-- a — *Получится `It a bed`: после `It` не хватает `is`. Здесь нужны оба слова: `is a`.*
+**12 · Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»**
+<!-- interaction_id: en:lesson-03:session-02:i12; family: context_gap_grammar -->
+Цель: `It ___ bed.`
+Варианты: `is a` · `is` · `a`
 
-**13 · Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол**  
-Плитки: `a` `desk` `It` `is` `not` → **It is a desk.**  
-Лишняя плитка: `not`.
-- not — *Нужно назвать предмет. С `not` получилось бы «Это не письменный стол», а вы как раз показываете на него.*
+**13 · Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол**
+<!-- interaction_id: en:lesson-03:session-02:i13; family: phrase_builder -->
+Цель: `It is a desk.`
+Варианты: `not`
 
-**14 · Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)**  
-It ___ heavy. → **is** · are · am
-- are — *Об одном предмете здесь говорим `It is heavy`. Форма `are` с `It` не подходит.*
-- am — *Форма `am` нужна с `I`, когда говорим о себе. Здесь речь о столе: `It is heavy`.*
+**14 · Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)**
+<!-- interaction_id: en:lesson-03:session-02:i14; family: context_gap_grammar -->
+Цель: `It ___ heavy.`
+Варианты: `is` · `are` · `am`
 
-**15 · Скажите вслух — сестра пробует приподнять диван; спросите её: «Он тяжёлый?»**  
-🎙️ **Is it heavy?**
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-02:i15; family: scripted_repeat_compare -->
+Цель: `Is it heavy?`
 
-**16 · Скажите вслух — вы сняли последний чехол; сестра из дверей спрашивает, что под ним; назовите кровать**  
-🎙️ **It is a bed.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-02:i16; family: scripted_repeat_compare -->
+Цель: `It is a bed.`
 
-**17 · Соберите вопрос — сестра показывает на крупный предмет у стены; чехол ещё на месте, и вы хотите уточнить, диван ли это**  
-Плитки: `sofa` `Is` `a` `it` `Are` → **Is it a sofa?**  
-Лишняя плитка: `Are`.
-- Are — *Для вопроса об одном предмете здесь нужно `Is it`: `Is it a sofa?`.*
-
----
+**17 · Соберите вопрос — сестра показывает на крупный предмет у стены; чехол ещё на месте, и вы хотите уточнить, диван ли это**
+<!-- interaction_id: en:lesson-03:session-02:i17; family: phrase_builder -->
+Цель: `Is it a sofa?`
+Варианты: `Are`
 
 ## Для сборщика
 
@@ -130,7 +137,7 @@ sofa — диван — мягкая мебель, на которой можн�
 bed — кровать — мебель, на которой спят  
 desk — письменный стол — за ним пишут, учатся или работают
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ## Самопроверка
 

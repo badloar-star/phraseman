@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-50:i01",
-    "correctText": "",
+    "correctText": "job",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i03",
-    "correctText": "",
+    "correctText": "boss",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i07",
-    "correctText": "",
+    "correctText": "flat",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i09",
-    "correctText": "",
+    "correctText": "city",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-50:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-50:i11:p1=job\nen:lesson-01:session-50:i11:p2=boss\nen:lesson-01:session-50:i11:p3=flat\nen:lesson-01:session-50:i11:p4=city",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,38 @@
     "correctResponseId": "en:lesson-01:session-50:i15:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-50:i16",
-    "correctText": "It's small. It's expensive. It's new.",
+    "interactionId": "en:lesson-01:session-50:i16:s01",
+    "correctText": "It's small.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-50:i17",
-    "correctText": "It's new. He's kind. It's small. I'm tired.",
+    "interactionId": "en:lesson-01:session-50:i16:s02",
+    "correctText": "It's expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i16:s03",
+    "correctText": "It's new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17:s01",
+    "correctText": "It's new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17:s02",
+    "correctText": "He's kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17:s03",
+    "correctText": "It's small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17:s04",
+    "correctText": "I'm tired.",
     "correctResponseId": null
   }
 ]

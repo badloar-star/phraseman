@@ -1,0 +1,53 @@
+{
+  "session": "en/l03/s55",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "sourceSha256": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+  "exactRuSha256": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+  "exactUkSha256": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576",
+  "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_pedagogy",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-03_l3_s55_strict_content_rejudge.json",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Final inspection supplies shape/material/pattern and requires knownness, distance and singular/plural selection across three exact intro-to-practice-to-final chains."
+  ],
+  "must_fix": [],
+  "localeSha256": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576",
+  "localeHashes": {
+    "ru": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+    "uk": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+    "exactRuSha256": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+    "exactUkSha256": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576",
+    "localeSha256": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576",
+    "localeHashes": {
+      "ru": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+      "uk": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576"
+    },
+    "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+    "evidence": [
+      "Final inspection supplies shape/material/pattern and requires knownness, distance and singular/plural selection across three exact intro-to-practice-to-final chains."
+    ]
+  }
+}

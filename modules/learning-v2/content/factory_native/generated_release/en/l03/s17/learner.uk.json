@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`cricket` — «крикет», спортивная игра. Начинается со звука «к», а `ticket` — с «т». Дальше звучание похоже.",
               "uk": "`cricket` — «крикет», спортивна гра. Воно починається звуком «к», а `ticket` — «т». Далі звучання схоже."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`picket` — «участник пикета». Первым слышно «п», а у `ticket` — «т». Слушайте начало слова.",
               "uk": "`picket` — «учасник пікету». Спершу чути «п», а в `ticket` — «т». Слухайте початок слова."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-17:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`coil` — «моток». На конце слышно «л», а в `coin` — «н». Начало слов одинаковое, поэтому дослушайте конец.",
               "uk": "`coil` — «моток». Наприкінці чути «л», а в `coin` — «н». Початок слів однаковий, тож дослухайте до кінця."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-17:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказала",
             "feedbackByLocale": {
               "ru": "`join` — «соединять». В начале звучит «дж», а в `coin` — «к». Гласная часть и конец похожи.",
               "uk": "`join` — «з’єднувати». На початку звучить «дж», а в `coin` — «к». Голосна частина й кінець схожі."
@@ -276,7 +276,7 @@
           {
             "responseId": "en:lesson-03:session-17:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — коллега спрашивает про ",
+            "testedDimension": "Зберіть фразу — колега питає про пачку з",
             "feedbackByLocale": {
               "ru": "Пачка содержит несколько билетов. Нужно название с добавленной `s`: `tickets`.",
               "uk": "У пачці кілька квитків. Потрібна назва з доданою `s`: `tickets`."
@@ -384,7 +384,7 @@
           {
             "responseId": "en:lesson-03:session-17:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`cart` — «тележка». На конце слышно «т», а в `card` — «д». Начало у слов одинаковое.",
               "uk": "`cart` — «візок». Наприкінці чути «т», а в `card` — «д». Початок у слів однаковий."
@@ -393,7 +393,7 @@
           {
             "responseId": "en:lesson-03:session-17:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`guard` — «охранник». Первым звучит «г», а в `card` — «к». Остальная часть звучит одинаково.",
               "uk": "`guard` — «охоронець». На початку в ньому звук ближчий до українського «ґ», а в `card` — «к». Решта слова звучить схоже."
@@ -450,12 +450,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте название — курьер указывает на ",
+        "testedDimension": "Вставте назву — кур’єр показує на кілька",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-17:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер указывает на ",
+            "testedDimension": "Вставте назву — кур’єр показує на кілька",
             "feedbackByLocale": {
               "ru": "Растений несколько, поэтому к названию нужно добавить `s`: `plants`.",
               "uk": "Рослин кілька, тому до назви треба додати `s`: `plants`."
@@ -464,7 +464,7 @@
           {
             "responseId": "en:lesson-03:session-17:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер указывает на ",
+            "testedDimension": "Вставте назву — кур’єр показує на кілька",
             "feedbackByLocale": {
               "ru": "В начале уже стоит `They are`. Дальше нужно название растений — `plants`, а не ещё одно слово для начала фразы.",
               "uk": "На початку вже стоїть `They are`. Далі потрібна назва рослин — `plants`, а не ще одне слово для початку фрази."
@@ -509,7 +509,7 @@
           {
             "responseId": "en:lesson-03:session-17:i09:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — коллега сортирует моне",
+            "testedDimension": "Зберіть питання — колега сортує монети й",
             "feedbackByLocale": {
               "ru": "Вопрос о нескольких предметах. После `Are they` нужно `coins` с буквой `s`.",
               "uk": "Це питання про кілька предметів. Після `Are they` потрібно `coins` з літерою `s`."
@@ -564,12 +564,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте название — курьер достал из кор",
+        "testedDimension": "Вставте назву — кур’єр дістав із коробки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-17:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер достал из кор",
+            "testedDimension": "Вставте назву — кур’єр дістав із коробки",
             "feedbackByLocale": {
               "ru": "Название одной подушки не подходит для всей группы. Добавьте `s`: `cushions`.",
               "uk": "Назва однієї подушки не підходить для цілої групи. Додайте `s`: `cushions`."
@@ -578,7 +578,7 @@
           {
             "responseId": "en:lesson-03:session-17:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер достал из кор",
+            "testedDimension": "Вставте назву — кур’єр дістав із коробки",
             "feedbackByLocale": {
               "ru": "`are` уже есть после `They`. Теперь нужно назвать предметы: `cushions`.",
               "uk": "`are` уже стоїть після `They`. Тепер треба назвати предмети: `cushions`."
@@ -627,7 +627,7 @@
           {
             "responseId": "en:lesson-03:session-17:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — коллега говорит ",
+            "testedDimension": "Послухайте й зберіть — колега говорить п",
             "feedbackByLocale": {
               "ru": "В записи звучит `cards`: речь о нескольких предметах. Название сохраняет `s` и после `not`.",
               "uk": "У записі звучить `cards`: йдеться про кілька предметів. Назва зберігає `s` і після `not`."
@@ -765,7 +765,7 @@
           {
             "responseId": "en:lesson-03:session-17:i13:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что курьер сказа",
+            "testedDimension": "Послухайте й оберіть — що кур’єр сказав ",
             "feedbackByLocale": {
               "ru": "Этот вариант начинается с `They are` и называет предметы. В записи сначала звучит `Are they` — курьер спрашивает.",
               "uk": "Цей варіант починається з `They are` і називає предмети. У записі спочатку звучить `Are they` — кур’єр питає."
@@ -774,7 +774,7 @@
           {
             "responseId": "en:lesson-03:session-17:i13:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что курьер сказа",
+            "testedDimension": "Послухайте й оберіть — що кур’єр сказав ",
             "feedbackByLocale": {
               "ru": "Здесь спрашивают о карточках: `cards`. В записи в конце звучит `tickets` — «билеты».",
               "uk": "Тут питають про картки: `cards`. У записі наприкінці звучить `tickets` — «квитки»."
@@ -821,7 +821,7 @@
           {
             "responseId": "en:lesson-03:session-17:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — в оставшейся коробке н",
+            "testedDimension": "Зберіть питання — у коробці, що лишилася",
             "feedbackByLocale": {
               "ru": "Вопрос относится ко всем свёрткам. Для нескольких подушек нужно `cushions`.",
               "uk": "Питання стосується всіх згортків. Для кількох подушок потрібно `cushions`."
@@ -837,13 +837,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кур’єр питає про металеві жетони на столі; поясніть, що це не монети",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — кур’єр питає про металеві жетони на столі; поясніть, що це не монети",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -909,12 +909,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте название — коллега показывает м",
+        "testedDimension": "Вставте назву — колега показує монети, в",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-17:i16:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — коллега показывает м",
+            "testedDimension": "Вставте назву — колега показує монети, в",
             "feedbackByLocale": {
               "ru": "Называем несколько монет. К `coin` добавляем `s`: `coins`.",
               "uk": "Називаємо кілька монет. До `coin` додаємо `s`: `coins`."
@@ -923,7 +923,7 @@
           {
             "responseId": "en:lesson-03:session-17:i16:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — коллега показывает м",
+            "testedDimension": "Вставте назву — колега показує монети, в",
             "feedbackByLocale": {
               "ru": "После готового начала `They are` нужно название денег — `coins`. `is` монеты не называет.",
               "uk": "Після готового початку `They are` потрібна назва грошей — `coins`. `is` монети не називає."
@@ -968,7 +968,7 @@
           {
             "responseId": "en:lesson-03:session-17:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер просит проверить",
+            "testedDimension": "Складіть фразу — кур’єр просить перевіри",
             "feedbackByLocale": {
               "ru": "В пачке несколько карточек. После `They are` нужно название с `s`: `cards`.",
               "uk": "У пачці кілька карток. Після `They are` потрібна назва з `s`: `cards`."
@@ -985,5 +985,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1391d32d0f15deb6eb407119f803b6ea5578e005129dbbe257df489b15f3bb9f"
+  "learnerFingerprint": "54fdb5e2adea214846ae2137b2a8f7ffffeba4ac8afa41da1e0096486be18e7a"
 }

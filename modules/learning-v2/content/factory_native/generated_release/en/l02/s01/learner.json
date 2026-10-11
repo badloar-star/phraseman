@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-01:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — awake",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-01:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — thirsty",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -382,7 +382,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-01:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — dizzy",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -551,7 +551,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+      "prompt": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает:",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-01:i11:r1",
@@ -568,14 +568,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+      "accessibilityLabel": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает:",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
           "uk": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся"
         },
-        "gappedTargetPhrase": "Сосед спрашивает: Are you ___ ?",
+        "gappedTargetPhrase": "Are you ___ ?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-01:i11:r1",
@@ -722,11 +722,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -848,26 +848,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-01:i17",
+      "interactionId": "en:lesson-02:session-01:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — финал сцены",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-01:i17:audio"
+        "en:lesson-02:session-01:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — финал сцены",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-01:i17:audio",
-          "transcript": "Are you awake? Are you hungry? Are you thirsty?"
+          "audioTargetId": "en:lesson-02:session-01:i17:s01:audio",
+          "transcript": "Are you awake?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you awake? Are you hungry? Are you thirsty?",
+        "targetPhrase": "Are you awake?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i17:s02:audio",
+          "transcript": "Are you hungry?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you hungry?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i17:s03:audio",
+          "transcript": "Are you thirsty?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you thirsty?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -881,11 +947,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4f4de089d2cef8c7c679c5976a3141efd3ac2ae598ab64ff65a2d44237fd370"
+  "learnerFingerprint": "03fcdd89d6a7f04022d6edcb3f995f550adef6154bcb8cc8873c059c3e603fc2"
 }

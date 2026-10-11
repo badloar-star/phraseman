@@ -1,12 +1,26 @@
 {
   "session": "en/l03/s08",
-  "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+  "exactRuSha256": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+  "exactUkSha256": "f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad",
+  "practiceAtomicSha256": "cbd4a8cf4f89871efe6740958fbaacee20b743146f6bd9a16e1f3d4497242a35",
+  "localeHashes": {
+    "ru": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+    "uk": "f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad"
+  },
   "converged": true,
   "needsHumanReview": false,
-  "locales": [
-    "ru",
-    "uk"
-  ],
-  "audioReviewed": false,
-  "visualReviewed": false
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "locale_uk": "PASS"
+  }
 }

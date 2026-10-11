@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   PREAUTHORING_REQUIREMENT_IDS,
   PREAUTHORING_REQUIREMENT_SOURCES,
+  preauthoringAuthorityConflictIssues,
   preauthoringDocumentManifest,
   preauthoringReceiptIssues,
   priorLearnerFacingManifest,
@@ -75,8 +76,56 @@ const valid = () => {
   };
 };
 
-test("fresh session-bound preauthoring receipt passes", () => {
-  assert.deepEqual(preauthoringReceiptIssues(valid(), expected), []);
+test("current conflicting mandatory blueprint authorities block an otherwise valid receipt", () => {
+  const issues = preauthoringReceiptIssues(valid(), expected).join("\n");
+  assert.match(issues, /конфликт обязательных blueprint authority/u);
+  assert.match(issues, /repo\/docs\/v2\/СТАРТ В2\.md/u);
+  assert.match(issues, /94ab72b4979033687bde511b0b7de9b53a1692190e61dfe7cfc8475b94673cbf/u);
+  assert.match(issues, /repo\/docs\/v2\/curriculum\/en\/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30\.md/u);
+  assert.match(issues, /bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c/u);
+  assert.match(issues, /OWNER REVIEW REQUIRED/u);
+  assert.match(issues, /OWNER APPROVED/u);
+  assert.match(issues, /PENDING/u);
+});
+
+test("unambiguous mandatory blueprint authorities add no conflict issue", () => {
+  const fingerprint = "a".repeat(64);
+  const documents = [
+    {
+      name: "repo/docs/v2/СТАРТ В2.md",
+      text: `## CURRENT AUTHORITY\n\n- Текущий canonical fingerprint:\n  \`${fingerprint}\`.\n- Статус: \`OWNER APPROVED\`.`,
+    },
+    {
+      name: "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md",
+      text: `# Receipt\n\n**Статус:** \`OWNER APPROVED\`\n**Canonical fingerprint:**\n\`${fingerprint}\``,
+    },
+  ];
+
+  assert.deepEqual(preauthoringAuthorityConflictIssues(documents), []);
+});
+
+test("conflicting fixture reports each concrete fingerprint and status", () => {
+  const pendingFingerprint = "b".repeat(64);
+  const approvedFingerprint = "c".repeat(64);
+  const documents = [
+    {
+      name: "start.md",
+      text: `- Текущий canonical fingerprint:\n  \`${pendingFingerprint}\`.\n- Статус: \`OWNER REVIEW REQUIRED\`.`,
+    },
+    {
+      name: "receipt.md",
+      text: `**Статус:** \`OWNER APPROVED\`\n**Canonical fingerprint:**\n\`${approvedFingerprint}\`\n\nНовый exact fingerprint выше имеет\n\`ownerApproval = PENDING\``,
+    },
+  ];
+
+  const issues = preauthoringAuthorityConflictIssues(documents).join("\n");
+  assert.match(issues, /start\.md/u);
+  assert.match(issues, new RegExp(pendingFingerprint, "u"));
+  assert.match(issues, /OWNER REVIEW REQUIRED/u);
+  assert.match(issues, /receipt\.md/u);
+  assert.match(issues, new RegExp(approvedFingerprint, "u"));
+  assert.match(issues, /OWNER APPROVED/u);
+  assert.match(issues, /PENDING/u);
 });
 
 test("receipt becomes HOLD when any required instruction changes", () => {

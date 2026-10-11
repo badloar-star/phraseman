@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-05:i07",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-05:i07:p1=ready\nen:lesson-02:session-05:i07:p2=lost\nen:lesson-02:session-05:i07:p3=thirsty\nen:lesson-02:session-05:i07:p4=hungry",
     "correctResponseId": null
   },
   {
@@ -76,12 +76,22 @@
   },
   {
     "interactionId": "en:lesson-02:session-05:i16",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-05:i16:p1=awake\nen:lesson-02:session-05:i16:p2=cold\nen:lesson-02:session-05:i16:p3=are\nen:lesson-02:session-05:i16:p4=am",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-05:i17",
-    "correctText": "Are you ready? Are you thirsty? You are lost.",
+    "interactionId": "en:lesson-02:session-05:i17:s01",
+    "correctText": "Are you ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i17:s02",
+    "correctText": "Are you thirsty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i17:s03",
+    "correctText": "You are lost.",
     "correctResponseId": null
   }
 ]

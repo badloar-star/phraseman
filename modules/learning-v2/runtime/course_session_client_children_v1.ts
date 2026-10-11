@@ -17,6 +17,10 @@ import {
   validateLearningV2ModeNativePayloadV1,
   type LearningV2ModeNativePayloadV1,
 } from "../contracts/mode_native_payload_v1";
+import {
+  LEARNING_V2_COURSE_SESSION_MAX_PRACTICE_INTERACTIONS_V1,
+  LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1,
+} from "./course_session_limits_v1";
 
 export const LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-intro-child.v1" as const;
@@ -577,7 +581,8 @@ export function parseLearningV2CourseSessionLearnerChildV1(
   if (
     !Array.isArray(value.interactions) ||
     value.interactions.length < 6 ||
-    value.interactions.length > 19 ||
+    value.interactions.length >
+      LEARNING_V2_COURSE_SESSION_MAX_PRACTICE_INTERACTIONS_V1 ||
     !LANGUAGE_RE.test(String(value.targetLanguage)) ||
     !["standard", "rapid", "voice_heavy"].includes(
       String(value.interactionProfile),
@@ -769,7 +774,7 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
   if (
     !Array.isArray(value.entries) ||
     value.entries.length < 9 ||
-    value.entries.length > 22
+    value.entries.length > LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1
   )
     fail();
   const ids = new Set<string>();

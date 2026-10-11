@@ -1,30 +1,27 @@
 {
-  "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
-  "localeSha256": {
-    "uk": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf"
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactRuSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactUkSha256": "0ff3ee539f855bd8073ec5c7913984de6890e86a3d844ceddf23b9fb904c09d7",
+  "practiceAtomicSha256": "c74a9586a2cb3c24d31cee7ac4158a18d48a78fbe3c32a3beb61ed0d5f1ce06f",
+  "localeHashes": {
+    "ru": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+    "uk": "0ff3ee539f855bd8073ec5c7913984de6890e86a3d844ceddf23b9fb904c09d7"
   },
   "locales": {
     "uk": {
-      "session": "en/l03/s01",
-      "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
-      "localeSha256": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
-      "reviewScope": "phonetic delta only, on top of the existing native review",
       "verdict": "PASS",
-      "checks": {
-        "onlyIntendedDelta": true,
-        "currentText": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.",
-        "assessment": "Natural and precise. «Починається» correctly limits the comparison to the vowel onset, accommodates UK /ɪə/ and US /ɪr/, and cannot be mistaken for pitch."
-      },
-      "scope": "current local course source and local preview only; app-export compatibility excluded",
-      "actualReceipt": "judgements/2026-09-08_l03_native_vowel_correction.json",
-      "appExportCompatibility": "INCOMPATIBLE_UNRESOLVED",
-      "actualAudioReviewed": false,
-      "visualReviewPerformed": false,
-      "freshReview20260919": {
-        "reviewedAt": "2026-09-19T17:35:00.3816872Z",
-        "evidence": "UK matches RU exactly for the fable onset distractor: f versus t; no calque or meaning drift.",
-        "mustFix": []
-      }
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
     }
-  }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
 }

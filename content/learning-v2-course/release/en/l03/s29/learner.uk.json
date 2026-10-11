@@ -9,13 +9,18 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — parcel",
-      "responseOptions": [],
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-29:i01:r1",
+          "text": "parcel"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-29:i01:audio"
       ],
-      "accessibilityLabel": "Картка слова — parcel",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -27,10 +32,7 @@
           {
             "responseId": "en:lesson-03:session-29:i01:r1",
             "targetText": "parcel",
-            "meaningByLocale": {
-              "ru": "«посылка». Выглядит лёгкой ровно до момента, когда её приходится поднимать.",
-              "uk": "«посилка». Виглядає легкою рівно до миті, коли її доводиться піднімати."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -47,184 +49,122 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i02",
+      "interactionId": "en:lesson-03:session-29:i03",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав сусід",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-29:i02:r1",
-          "text": "parcel"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i02:r2",
-          "text": "pencil"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i02:r3",
-          "text": "person"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i02:r4",
-          "text": "puzzle"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-29:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав сусід",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i02:audio",
-          "transcript": "parcel"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-29:i02:r1",
-            "targetText": "parcel",
-            "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i02:r2",
-            "targetText": "pencil",
-            "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i02:r3",
-            "targetText": "person",
-            "meaningByLocale": {
-              "ru": "человек",
-              "uk": "людина"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i02:r4",
-            "targetText": "puzzle",
-            "meaningByLocale": {
-              "ru": "пазл",
-              "uk": "пазл"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-29:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В первом ударном слоге `pencil` звучит /pɛn/, а `parcel` начинается с /pɑː/ в британском или /pɑr/ в американском произношении.",
-              "uk": "У першому наголошеному складі `pencil` звучить /pɛn/, а `parcel` починається з /pɑː/ у британській або /pɑr/ в американській вимові."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Первый ударный слог `person` звучит /pɜː/ в британском или /pɝ/ в американском произношении; у `parcel` там /pɑː/ или /pɑr/.",
-              "uk": "Перший наголошений склад `person` звучить /pɜː/ у британській або /pɝ/ в американській вимові; у `parcel` там /pɑː/ або /pɑr/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i02:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "После /p/ в `puzzle` звучит /ʌ/, а в `parcel` — /ɑː/ или /ɑr/; в середине также слышны /z/ и /s/ соответственно.",
-              "uk": "Після /p/ у `puzzle` звучить /ʌ/, а в `parcel` — /ɑː/ або /ɑr/; усередині також чути відповідно /z/ і /s/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — letter",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-29:i03:audio"
       ],
-      "accessibilityLabel": "Картка слова — letter",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-29:i03:audio",
           "transcript": "letter"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-29:i03:r1",
-            "targetText": "letter",
-            "meaningByLocale": {
-              "ru": "«письмо». Бумажное сообщение, которое умеет путешествовать без зарядки.",
-              "uk": "«лист». Паперове повідомлення, яке вміє подорожувати без заряджання."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "letter",
-          "definitionByLocale": {
-            "ru": "«письмо». Бумажное сообщение, которое умеет путешествовать без зарядки.",
-            "uk": "«лист». Паперове повідомлення, яке вміє подорожувати без заряджання."
-          }
-        }
+        "targetPhrase": "letter",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i05:audio",
+          "transcript": "stamp"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "stamp",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i02:audio",
+          "transcript": "parcel"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "parcel",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-29:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав сусід",
+      "prompt": "Послухайте та виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-29:i04:r1",
           "text": "letter"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i04:r2",
-          "text": "better"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i04:r3",
-          "text": "later"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i04:r4",
-          "text": "little"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-29:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав сусід",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -236,109 +176,17 @@
           {
             "responseId": "en:lesson-03:session-29:i04:r1",
             "targetText": "letter",
-            "meaningByLocale": {
-              "ru": "письмо",
-              "uk": "лист"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i04:r2",
-            "targetText": "better",
-            "meaningByLocale": {
-              "ru": "лучше",
-              "uk": "краще"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i04:r3",
-            "targetText": "later",
-            "meaningByLocale": {
-              "ru": "позже",
-              "uk": "пізніше"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i04:r4",
-            "targetText": "little",
-            "meaningByLocale": {
-              "ru": "маленький",
-              "uk": "маленький"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-29:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`better` начинается звуком `b`, а `letter` — звуком `l`.",
-              "uk": "`better` починається звуком `b`, а `letter` — звуком `l`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `later` первый гласный скользит от `э` к `й`: /eɪ/. В `letter` звучит короткий /e~ɛ/.",
-              "uk": "У `later` перший голосний ковзає від `е` до `й`: /eɪ/. У `letter` звучить короткий /e~ɛ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i04:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`little` начинается как `lit`, а в записи прозвучало начало `let`.",
-              "uk": "`little` починається як `lit`, а в записі прозвучав початок `let`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — stamp",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-29:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — stamp",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i05:audio",
-          "transcript": "stamp"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-29:i05:r1",
-            "targetText": "stamp",
-            "meaningByLocale": {
-              "ru": "«почтовая марка». Маленький квадратик, без которого большое письмо никуда не уедет.",
-              "uk": "«поштова марка». Маленький квадратик, без якого великий лист нікуди не поїде."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "stamp",
+          "word": "letter",
           "definitionByLocale": {
-            "ru": "«почтовая марка». Маленький квадратик, без которого большое письмо никуда не уедет.",
-            "uk": "«поштова марка». Маленький квадратик, без якого великий лист нікуди не поїде."
+            "ru": "«письмо».",
+            "uk": "«лист»."
           }
         }
       },
@@ -348,111 +196,137 @@
       "interactionId": "en:lesson-03:session-29:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав сусід",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-29:i06:r1",
-          "text": "stamp"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i06:r2",
-          "text": "step"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i06:r3",
-          "text": "stop"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i06:r4",
-          "text": "lamp"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-29:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав сусід",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-29:i06:audio",
           "transcript": "stamp"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-29:i06:r1",
-            "targetText": "stamp",
-            "meaningByLocale": {
-              "ru": "почтовая марка",
-              "uk": "поштова марка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i06:r2",
-            "targetText": "step",
-            "meaningByLocale": {
-              "ru": "шаг",
-              "uk": "крок"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i06:r3",
-            "targetText": "stop",
-            "meaningByLocale": {
-              "ru": "остановка",
-              "uk": "зупинка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i06:r4",
-            "targetText": "lamp",
-            "meaningByLocale": {
-              "ru": "лампа",
-              "uk": "лампа"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-29:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`step` оканчивается на `p`, а в `stamp` перед `p` слышно `m`.",
-              "uk": "`step` закінчується на `p`, а в `stamp` перед `p` чути `m`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `stop` нет звука `m`; в записи перед последним `p` он слышен.",
-              "uk": "У `stop` немає звука `m`; у записі перед останнім `p` його чути."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i06:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`lamp` начинается звуком `l`, а `stamp` — сочетанием `st`.",
-              "uk": "`lamp` починається звуком `l`, а `stamp` — сполученням `st`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "stamp",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i08:audio",
+          "transcript": "parcel"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "parcel",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i09:audio",
+          "transcript": "letter"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "letter",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i10:audio",
+          "transcript": "stamp"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "stamp",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-29:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -504,9 +378,9 @@
           "key"
         ],
         "rightColumn": [
-          "посылка",
-          "письмо",
-          "почтовая марка",
+          "посилка",
+          "лист",
+          "поштова марка",
           "ключ"
         ],
         "pairingKey": "pair_id",
@@ -524,127 +398,28 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поставте у відповідь ціле слово — коробка, яку принесли поштою",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поставте у відповідь ціле слово — коробка, яку принесли поштою",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "parcel",
-        "localizedMeaning": {
-          "ru": "Поставьте в ответ целое слово — коробка, которую принесли по почте",
-          "uk": "Поставте у відповідь ціле слово — коробка, яку принесли поштою"
-        },
-        "orderedTokens": [
-          "parcel"
-        ],
-        "authoredDistractorTokens": [
-          "pencil",
-          "person",
-          "puzzle"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — паперове повідомлення в конверті",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-29:i09:audio"
-      ],
-      "accessibilityLabel": "Скажіть уголос — паперове повідомлення в конверті",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i09:audio",
-          "transcript": "letter"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "letter",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й поставте у відповідь ціле слово — поштова марка",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-29:i10:audio"
-      ],
-      "accessibilityLabel": "Послухайте й поставте у відповідь ціле слово — поштова марка",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i10:audio",
-          "transcript": "stamp"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "stamp",
-        "orderedTokens": [
-          "stamp"
-        ],
-        "authoredDistractorTokens": [
-          "step",
-          "stop",
-          "lamp"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i11",
+      "interactionId": "en:lesson-03:session-29:i11:s01",
       "ordinal": 14,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть два речення — посилка поруч і вона важка",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть два речення — посилка поруч і вона важка",
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a parcel. It is heavy.",
+        "targetPhrase": "This is a parcel.",
         "localizedMeaning": {
           "ru": "Соберите две фразы — посылка рядом и она тяжёлая",
-          "uk": "Складіть два речення — посилка поруч і вона важка"
+          "uk": "Складіть одну фразу — крок 1 із 2"
         },
         "orderedTokens": [
           "This",
           "is",
           "a",
-          "parcel.",
-          "It",
-          "is",
-          "heavy"
+          "parcel."
         ],
         "authoredDistractorTokens": [
           "that"
@@ -654,26 +429,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i12",
+      "interactionId": "en:lesson-03:session-29:i11:s02",
       "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — лист лежить далеко й він мокрий",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-29:i12:audio"
+        "en:lesson-03:session-29:i11:s02:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — лист лежить далеко й він мокрий",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i12:audio",
-          "transcript": "That is a letter. It is wet."
+          "audioTargetId": "en:lesson-03:session-29:i11:s02:audio",
+          "transcript": "It is heavy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a letter. It is wet.",
+        "targetPhrase": "It is heavy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -687,82 +462,175 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i13",
+      "interactionId": "en:lesson-03:session-29:i12:s01",
       "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a letter.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 1 із 2"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "letter."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i12:s02",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i12:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i12:s02:audio",
+          "transcript": "It is wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i13:s01",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i13:s01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 2",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i13:s01:audio",
+          "transcript": "This is a parcel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a parcel.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "parcel."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i13:s02",
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — продовжте говорити про названу посилку, не вказуючи на неї знову",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 2 із 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-29:i13:r1",
+          "responseId": "en:lesson-03:session-29:i13:s02:r1",
           "text": "It"
         },
         {
-          "responseId": "en:lesson-03:session-29:i13:r2",
+          "responseId": "en:lesson-03:session-29:i13:s02:r2",
           "text": "This"
         },
         {
-          "responseId": "en:lesson-03:session-29:i13:r3",
+          "responseId": "en:lesson-03:session-29:i13:s02:r3",
           "text": "That"
         },
         {
-          "responseId": "en:lesson-03:session-29:i13:r4",
+          "responseId": "en:lesson-03:session-29:i13:s02:r4",
           "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — продовжте говорити про названу посилку, не вказуючи на неї знову",
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 2 із 2",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — продолжите говорить о названной посылке без нового указания",
-          "uk": "Вставте слово — продовжте говорити про названу посилку, не вказуючи на неї знову"
+          "uk": "Вставте одну відповідь в одну фразу — крок 2 із 2"
         },
-        "gappedTargetPhrase": "This is a parcel. ___ is heavy.",
+        "gappedTargetPhrase": "___ is heavy.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-03:session-29:i13:r1",
+            "responseId": "en:lesson-03:session-29:i13:s02:r1",
             "text": "It"
           },
           {
-            "responseId": "en:lesson-03:session-29:i13:r2",
+            "responseId": "en:lesson-03:session-29:i13:s02:r2",
             "text": "This"
           },
           {
-            "responseId": "en:lesson-03:session-29:i13:r3",
+            "responseId": "en:lesson-03:session-29:i13:s02:r3",
             "text": "That"
           },
           {
-            "responseId": "en:lesson-03:session-29:i13:r4",
+            "responseId": "en:lesson-03:session-29:i13:s02:r4",
             "text": "Is"
           }
         ],
-        "testedDimension": "Вставте слово — продовжте говорити про н",
+        "testedDimension": "Вставьте слово — продолжите говорить о н",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-29:i13:r2",
+            "responseId": "en:lesson-03:session-29:i13:s02:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
             "feedbackByLocale": {
               "ru": "`This is heavy` снова указывает на ближнюю вещь. По условию посылка уже названа, поэтому `It` возвращается к ней.",
               "uk": "`This is heavy` знову вказує на ближню річ. За умовою посилку вже названо, тому `It` повертається до неї."
             }
           },
           {
-            "responseId": "en:lesson-03:session-29:i13:r3",
+            "responseId": "en:lesson-03:session-29:i13:s02:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
             "feedbackByLocale": {
               "ru": "`That` указывает на другую дальнюю вещь. Здесь продолжаем говорить об уже названной посылке: `It is heavy`.",
               "uk": "`That` указує на іншу далеку річ. Тут продовжуємо говорити про вже названу посилку: `It is heavy`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-29:i13:r4",
+            "responseId": "en:lesson-03:session-29:i13:s02:r4",
             "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
             "feedbackByLocale": {
               "ru": "`Is is heavy` не образует фразу. Про названную вещь начинаем со слова `It`.",
               "uk": "`Is is heavy` не утворює речення. Про названу річ починаємо зі слова `It`."
@@ -773,88 +641,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-03:session-29:i14:s01",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення двох речень",
+      "prompt": "Послухайте одну фразу — крок 1 із 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-29:i14:r1",
-          "text": "Он лист. Він мокрий."
+          "responseId": "en:lesson-03:session-29:i14:s01:r1",
+          "text": "Вон письмо."
         },
         {
-          "responseId": "en:lesson-03:session-29:i14:r2",
-          "text": "Ось лист. Він мокрий."
+          "responseId": "en:lesson-03:session-29:i14:s01:r2",
+          "text": "Вот письмо."
         },
         {
-          "responseId": "en:lesson-03:session-29:i14:r3",
-          "text": "Он лист. Він важкий."
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i14:r4",
-          "text": "Он посилка. Вона мокра."
+          "responseId": "en:lesson-03:session-29:i14:s01:r3",
+          "text": "Вон посылка."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-29:i14:audio"
+        "en:lesson-03:session-29:i14:s01:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення двох речень",
+      "accessibilityLabel": "Послухайте одну фразу — крок 1 із 2",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i14:audio",
-          "transcript": "That is a letter. It is wet."
+          "audioTargetId": "en:lesson-03:session-29:i14:s01:audio",
+          "transcript": "That is a letter."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-29:i14:r1",
-            "targetText": "Он лист. Він мокрий.",
+            "responseId": "en:lesson-03:session-29:i14:s01:r1",
+            "targetText": "Вон письмо.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-29:i14:r2",
-            "targetText": "Ось лист. Він мокрий.",
+            "responseId": "en:lesson-03:session-29:i14:s01:r2",
+            "targetText": "Вот письмо.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-29:i14:r3",
-            "targetText": "Он лист. Він важкий.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i14:r4",
-            "targetText": "Он посилка. Вона мокра.",
+            "responseId": "en:lesson-03:session-29:i14:s01:r3",
+            "targetText": "Вон посылка.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-29:i14:r2",
+            "responseId": "en:lesson-03:session-29:i14:s01:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення дво",
+            "testedDimension": "Послушайте и выберите точное значение дв",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That`, а вариант передаёт `This`: изменился указатель.",
               "uk": "У записі перше слово — `That`, а варіант передає `This`: змінилося вказівне слово."
             }
           },
           {
-            "responseId": "en:lesson-03:session-29:i14:r3",
+            "responseId": "en:lesson-03:session-29:i14:s01:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення дво",
-            "feedbackByLocale": {
-              "ru": "Первая фраза совпадает, но во второй прозвучало `wet`, а не `heavy`.",
-              "uk": "Перше речення збігається, але в другому прозвучало `wet`, а не `heavy`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i14:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення дво",
+            "testedDimension": "Послушайте и выберите точное значение дв",
             "feedbackByLocale": {
               "ru": "В записи назвали `letter`, а не `parcel`; слово `It` затем возвращается именно к письму.",
               "uk": "У записі назвали `letter`, а не `parcel`; слово `It` потім повертається саме до листа."
@@ -867,28 +717,85 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
+      "interactionId": "en:lesson-03:session-29:i14:s02",
+      "ordinal": 21,
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть два речення — марка поруч і вона маленька",
+      "prompt": "Складіть одну фразу — крок 2 із 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть два речення — марка поруч і вона маленька",
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a stamp. It is small.",
+        "targetPhrase": "It is wet.",
         "localizedMeaning": {
-          "ru": "Соберите две фразы — марка рядом и она маленькая",
-          "uk": "Складіть два речення — марка поруч і вона маленька"
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 2 із 2"
         },
         "orderedTokens": [
-          "This",
+          "It",
           "is",
-          "a",
-          "stamp.",
+          "wet."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i15:s01",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i15:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i15:s01:audio",
+          "transcript": "This is a stamp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a stamp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i15:s02",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is small.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — марка рядом и она маленькая",
+          "uk": "Складіть одну фразу — крок 2 із 2"
+        },
+        "orderedTokens": [
           "It",
           "is",
           "small"
@@ -901,112 +808,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-29:i16",
-      "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — продовжте говорити про названий лист, не вказуючи на нього знову",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-29:i16:r1",
-          "text": "It"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i16:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i16:r3",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-29:i16:r4",
-          "text": "Am"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — продовжте говорити про названий лист, не вказуючи на нього знову",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — продолжите говорить о названном письме без нового указания",
-          "uk": "Вставте слово — продовжте говорити про названий лист, не вказуючи на нього знову"
-        },
-        "gappedTargetPhrase": "That is a letter. ___ is wet.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-29:i16:r1",
-            "text": "It"
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i16:r2",
-            "text": "That"
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i16:r3",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i16:r4",
-            "text": "Am"
-          }
-        ],
-        "testedDimension": "Вставте слово — продовжте говорити про н",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-29:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
-            "feedbackByLocale": {
-              "ru": "`That` снова указывает на вещь вдали. Письмо уже названо, поэтому дальше используем `It`.",
-              "uk": "`That` знову вказує на річ вдалині. Лист уже названо, тому далі використовуємо `It`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
-            "feedbackByLocale": {
-              "ru": "`This` укажет на ближнюю вещь и сменит точку отсчёта. Здесь продолжаем говорить о названном письме: `It`.",
-              "uk": "`This` укаже на ближню річ і змінить точку відліку. Тут продовжуємо говорити про названий лист: `It`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-29:i16:r4",
-            "correct": false,
-            "testedDimension": "Вставте слово — продовжте говорити про н",
-            "feedbackByLocale": {
-              "ru": "`am` используется с `I`, когда говорим о себе. Про уже названное письмо нужно `It`.",
-              "uk": "`am` уживаємо з `I`, коли говоримо про себе. Про вже названий лист потрібно `It`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-29:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-03:session-29:i16:s01",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — пошта помінялася місцями",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-29:i17:audio"
+        "en:lesson-03:session-29:i16:s01:audio"
       ],
-      "accessibilityLabel": "Фінал — пошта помінялася місцями",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-29:i17:audio",
-          "transcript": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small."
+          "audioTargetId": "en:lesson-03:session-29:i16:s01:audio",
+          "transcript": "That is a letter."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+        "targetPhrase": "That is a letter.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1018,13 +839,286 @@
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i16:s02",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 2 із 2",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-29:i16:s02:r1",
+          "text": "It"
+        },
+        {
+          "responseId": "en:lesson-03:session-29:i16:s02:r2",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-29:i16:s02:r3",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-29:i16:s02:r4",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 2 із 2",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — продолжите говорить о названном письме без нового указания",
+          "uk": "Вставте одну відповідь в одну фразу — крок 2 із 2"
+        },
+        "gappedTargetPhrase": "___ is wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r1",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r3",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r4",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — продолжите говорить о н",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
+            "feedbackByLocale": {
+              "ru": "`That` снова указывает на вещь вдали. Письмо уже названо, поэтому дальше используем `It`.",
+              "uk": "`That` знову вказує на річ вдалині. Лист уже названо, тому далі використовуємо `It`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
+            "feedbackByLocale": {
+              "ru": "`This` укажет на ближнюю вещь и сменит точку отсчёта. Здесь продолжаем говорить о названном письме: `It`.",
+              "uk": "`This` укаже на ближню річ і змінить точку відліку. Тут продовжуємо говорити про названий лист: `It`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i16:s02:r4",
+            "correct": false,
+            "testedDimension": "Вставьте слово — продолжите говорить о н",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`, когда говорим о себе. Про уже названное письмо нужно `It`.",
+              "uk": "`am` уживаємо з `I`, коли говоримо про себе. Про вже названий лист потрібно `It`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s01",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i17:s01:audio",
+          "transcript": "That is a parcel."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a parcel.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s02",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 2 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 6",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is heavy.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 2 із 6"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "heavy."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s03",
+      "ordinal": 28,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i17:s03:audio",
+          "transcript": "This is a letter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a letter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s04",
+      "ordinal": 29,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 4 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 4 із 6",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i17:s04:audio",
+          "transcript": "It is wet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is wet.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "wet."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s05",
+      "ordinal": 30,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i17:s05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i17:s05:audio",
+          "transcript": "That is a stamp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a stamp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:i17:s06",
+      "ordinal": 31,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 6 із 6",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-29:i17:s06:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 6 із 6",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-29:i17:s06:audio",
+          "transcript": "It is small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is small.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "small."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 28,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e532d95b82267b9b2d31c4508945cc34d39fee3b4c166d6f778ed8b086c76e94"
+  "learnerFingerprint": "9e1e3f9af52583e1fd87a04429b3a97e33783f9518dd0da651785b44f0942500"
 }

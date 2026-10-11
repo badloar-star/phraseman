@@ -1,16 +1,27 @@
 {
-  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
-  "localeSha256":{"uk":"13adb3db0e6ed2cbf3f19a8a32f64825e0309afb1cdedaf03680b202c4e62806"},
-  "locales":{"uk":{
-    "reviewer":"/root/s09_uk_native","verdict":"PASS","necessaryFixes":[],
-    "reviewScope":"Independent full native review followed by actual delta reread. Initial REVISE preserved in judgements/2026-09-12_l03_s09_uk_review.json.",
-    "structure_identical":true,"english_targets_identical":true,
-    "language_purity":{"foreign_fragments":[],"machine_translation_smell":[]},
-    "native_anchor":{"uses_own_language_contrast":true,"wrong_russian_anchor_leaked":[]},
-    "traps_localized":{"ok":true,"untypical_for_my_speakers":[]},
-    "humor":{"present":true,"on_topic":true,"examples":["Крісло одне, а маленьке слово перед ним теж доведеться обрати."],"misfires":[]},
-    "introLengths":[271,270,263],"feedbackItemsReviewed":25,"actualAudioReviewed":false,
-    "evidence":["Exact delta verified against prior UK hash91796f893a25b7a24adbaa78e3791aca1cc7c860411308c93d6d19ab7e1985c0.","All recommended native wording repairs applied; definitions add no unsupported properties.","25 feedback lines remain clear and trap-specific; textual phonetic claims remain valid for standard UK English.","Previous intro2 sentence-count finding explicitly retracted: current factory Constitution has no sentence cap; six short sentences read coherently and naturally."],
-    "verdict_reason":"Усі потрібні мовні правки перевірено; український текст природний, зміст і завдання збережено, тематичний гумор працює. Обов’язкових виправлень немає."
-  }}
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactRuSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactUkSha256": "3bfe9ae141b060ee10831801b542ec84f6fc46903ca3f385f7326f7eca45c3f1",
+  "practiceAtomicSha256": "914ec75d6521ed4215c9716dcb81a202d8a17dc84d6b4fc0f873c2d36692ec4f",
+  "localeHashes": {
+    "ru": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+    "uk": "3bfe9ae141b060ee10831801b542ec84f6fc46903ca3f385f7326f7eca45c3f1"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
 }

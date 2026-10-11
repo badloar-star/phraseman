@@ -1,59 +1,17 @@
 {
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_learner",
+  "sourceSha256": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+  "exactRuSha256": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+  "exactUkSha256": "401fa51ee359f336bda948ddde2a5c7121efc69ea92cc42cdb42e535f42ac122",
+  "practiceAtomicSha256": "e54af6c5240b986db6319c057c77ec6dadf057eadc7468236b324d73671b0616",
   "verdict": "PASS",
-  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
-  "scope": "Actual final delta combined with retained full prior review",
-  "previousReview": {
-    "sourceSha256": "8876f932d3f797faa1733088c18bb616e2ec825daa8ac5eb466d646dabbe859b",
-    "reviewer": "/root/s10_blind",
-    "model": "gpt-5.6-terra",
-    "reasoningEffort": "medium",
-    "verdict": "REVISE",
-    "reason": "Сессия полностью проходима и даёт три полезных слова, но объяснения заметно повторяют уже известную механику.",
-    "introAnswers": [
-      "It is a kettle.",
-      "Is it a toaster?",
-      "It is not a vacuum."
-    ],
-    "practiceAnswers": [
-      "kettle",
-      "kettle",
-      "toaster",
-      "toaster",
-      "A kettle.",
-      "vacuum",
-      "vacuum",
-      "an",
-      "a",
-      {
-        "toaster": "тостер",
-        "oven": "духовка",
-        "kettle": "чайник",
-        "vacuum": "пылесос"
-      },
-      "It is a toaster.",
-      "an",
-      "Is it a kettle?",
-      "It is not a vacuum.",
-      "It is not a toaster.",
-      "Is it an armchair?",
-      "It is a vacuum."
-    ],
-    "impossible_tasks": [],
-    "felt_alive": [
-      "Магазин техники держит одну понятную ситуацию: продавец, полка, коробка и необходимость уточнить предмет.",
-      "Фраза про то, что вычёркивать половину отрицания — перебор, немного оживляет объяснение."
-    ],
-    "felt_dead": [
-      "Определения на карточках звучат как словарная статья.",
-      "Повторяющиеся формулы про согласный звук и полную фразу делают интро тяжеловесным."
-    ],
-    "would_continue": "да",
-    "correctionHistory": [
-      "Initially answered a in practice8; after targeted re-read independently corrected to an: oven starts with a vowel sound.",
-      "Withdrew factually false three-consecutive-cards criticism: cards1,3,6 are separated by listening/build and required before new-word use. Retained REVISE for intro repetition."
-    ],
-    "actualAudioReviewed": false
-  },
-  "deltaEvidence": "judgements/2026-09-12_l03_s10_final_delta.json",
-  "actualAudioReviewed": false
+  "evidence": [
+    "Choosing appliances gives a direct reason to name each item for the seller.",
+    "Exact intro answers assessed: It is a kettle. | It is a toaster. | It is a vacuum.."
+  ],
+  "blockers": [],
+  "mustFix": []
 }

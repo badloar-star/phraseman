@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — thirsty",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -502,11 +502,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -792,7 +792,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-13:i16:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — comfortable",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -910,11 +910,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1006,7 +1006,7 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-13:i21",
+      "interactionId": "en:lesson-02:session-13:i21:s01",
       "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
@@ -1015,17 +1015,50 @@
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-13:i21:audio"
+        "en:lesson-02:session-13:i21:s01:audio"
       ],
       "accessibilityLabel": "Скажите вслух — спросите, не потерялся ли он, и ответьте за него",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-13:i21:audio",
-          "transcript": "Is he lost? Yes, he is."
+          "audioTargetId": "en:lesson-02:session-13:i21:s01:audio",
+          "transcript": "Is he lost?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is he lost? Yes, he is.",
+        "targetPhrase": "Is he lost?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-13:i21:s02",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите, не потерялся ли он, и ответьте за него",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-13:i21:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите, не потерялся ли он, и ответьте за него",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-13:i21:s02:audio",
+          "transcript": "Yes, he is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, he is.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1039,11 +1072,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "40d73183f18366e9c2eae2ac4eb8e9a74b81d54c1c5dc1fba29e1c378fc22dff"
+  "learnerFingerprint": "8b5fd3004529acf16f8cc1a47d96b8130d3578406f3cab08f61a9a1b78ae8332"
 }

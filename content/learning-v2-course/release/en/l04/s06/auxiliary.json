@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-06:intro1:r2": {
+          "ru": "`Library` — библиотека. На указателе отмечена `clinic`.",
+          "uk": "`Library` — бібліотека. На вказівнику позначено `clinic`."
+        },
+        "en:lesson-04:session-06:intro1:r3": {
+          "ru": "`Bakery` — пекарня. Здесь нужно слово `clinic`.",
+          "uk": "`Bakery` — пекарня. Тут потрібне слово `clinic`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-06:intro2:r2": {
+          "ru": "Клиника одна, поэтому нужно `There is a clinic`.",
+          "uk": "Клініка одна, тому потрібне `There is a clinic`."
+        },
+        "en:lesson-04:session-06:intro2:r3": {
+          "ru": "Перед одним исчисляемым местом нужен `a`: `a clinic`.",
+          "uk": "Перед одним злічуваним місцем потрібен `a`: `a clinic`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-06:intro3:r2": {
+          "ru": "Клиника одна, поэтому нужны `There is` и `a clinic`.",
+          "uk": "Клініка одна, тому потрібні `There is` і `a clinic`."
+        },
+        "en:lesson-04:session-06:intro3:r3": {
+          "ru": "С одним местом нужен `a`: `a clinic`.",
+          "uk": "З одним місцем потрібен `a`: `a clinic`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "44bc33b2597cdb8b0f1856b51bccad23b3ebac4dfe7df1ca3f21cdef6ac88900"
+}

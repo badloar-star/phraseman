@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro1:r2": {
+          "ru": "`Am` используется только с `I`. После `you` нужно `are`.",
+          "uk": "`Am` використовується лише з `I`. Після `you` потрібне `are`."
+        },
+        "en:lesson-01:session-09:intro1:r3": {
+          "ru": "После `you` нужно `are`: `You are tired`.",
+          "uk": "Після `you` потрібне `are`: `You are tired`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro2:r2": {
+          "ru": "Это «тебе жаль». Так говорят не в ответ на спасибо, а в конце ссоры.",
+          "uk": "Це «тобі шкода». Так кажуть не у відповідь на «дякую», а наприкінці сварки."
+        },
+        "en:lesson-01:session-09:intro2:r3": {
+          "ru": "`are` потерялась. Полная фраза — три слова, и первые два всегда вместе.",
+          "uk": "`are` загубилася. Повна фраза — три слова, і перші два завжди разом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-09:intro3:r2": {
+          "ru": "После `you` нужно `are`: `You are funny`.",
+          "uk": "Після `you` потрібне `are`: `You are funny`."
+        },
+        "en:lesson-01:session-09:intro3:r3": {
+          "ru": "`Is` не используется с `you`; здесь нужно `are`.",
+          "uk": "`Is` не використовується з `you`; тут потрібне `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1abf8a9929a9dbf2fa3839b947d2bf85ed53f98f8630f93bbc19e61bf010edf6"
+}

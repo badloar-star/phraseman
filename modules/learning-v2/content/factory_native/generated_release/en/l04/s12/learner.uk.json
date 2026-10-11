@@ -1,0 +1,581 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i01:r1",
+          "text": "platform"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i01:r2",
+          "text": "playground"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i01:r3",
+          "text": "platter"
+        }
+      ],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i01:audio"
+      ],
+      "modePayload": {
+        "referenceAudio": {
+          "transcript": "platform"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-12:i01:r1",
+            "targetText": "platform",
+            "meaningByLocale": {
+              "ru": "платформа",
+              "uk": "платформа"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i01:r2",
+            "targetText": "playground",
+            "meaningByLocale": {
+              "ru": "площадка",
+              "uk": "майданчик"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i01:r3",
+            "targetText": "platter",
+            "meaningByLocale": {
+              "ru": "блюдо",
+              "uk": "таця"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i01:r2",
+            "feedbackByLocale": {
+              "ru": "Оба слова начинаются с /pl/, но в `playground` после него слышно /eɪ/, а в `platform` — /æ/.",
+              "uk": "Обидва слова починаються з /pl/, але в `playground` після нього чути /eɪ/, а в `platform` — /æ/."
+            },
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i01:r3",
+            "feedbackByLocale": {
+              "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
+              "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
+            },
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте слово на табло",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i02:audio"
+      ],
+      "modePayload": {
+        "targetPhrase": "platform",
+        "referenceAudio": {
+          "transcript": "platform"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На табло позначено місце, де пасажири чекають на поїзд. Оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i03:r1",
+          "text": "platform"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i03:r2",
+          "text": "train"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i03:r3",
+          "text": "tram"
+        }
+      ],
+      "audioTargetIds": [],
+      "modePayload": {
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i03:r1",
+            "text": "platform"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i03:r2",
+            "text": "train"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i03:r3",
+            "text": "tram"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i03:r2",
+            "feedbackByLocale": {
+              "ru": "`Train` — поезд, а пассажиры ждут поезд у `platform`.",
+              "uk": "`Train` — поїзд, а пасажири чекають на поїзд біля `platform`."
+            },
+            "correct": false,
+            "testedDimension": "lexical_meaning"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i03:r3",
+            "feedbackByLocale": {
+              "ru": "`Tram` — трамвай; на табло обозначено место у железнодорожных путей.",
+              "uk": "`Tram` — трамвай; на табло позначено місце біля залізничних колій."
+            },
+            "correct": false,
+            "testedDimension": "lexical_meaning"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку відповідь про одну платформу й оберіть її зміст",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i04:r1",
+          "text": "Yes, there is."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i04:r2",
+          "text": "Yes, there are."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i04:r3",
+          "text": "No, there isn't."
+        }
+      ],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i04:audio"
+      ],
+      "modePayload": {
+        "referenceAudio": {
+          "transcript": "Yes, there is."
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-12:i04:r1",
+            "targetText": "Yes, there is.",
+            "meaningByLocale": {
+              "ru": "Да, есть одна.",
+              "uk": "Так, є одна."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r2",
+            "targetText": "Yes, there are.",
+            "meaningByLocale": {
+              "ru": "Да, есть несколько.",
+              "uk": "Так, є кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r3",
+            "targetText": "No, there isn't.",
+            "meaningByLocale": {
+              "ru": "Нет, одной нет.",
+              "uk": "Ні, однієї немає."
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i04:r2",
+            "feedbackByLocale": {
+              "ru": "Эта форма относится к нескольким местам; в записи — форма для одного места.",
+              "uk": "Ця форма стосується кількох місць; у записі — форма для одного місця."
+            },
+            "correct": false,
+            "testedDimension": "auditory_proposition"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i04:r3",
+            "feedbackByLocale": {
+              "ru": "Послушайте ещё раз: в записи `Yes`, а не `No`.",
+              "uk": "Послухайте ще раз: у записі `Yes`, а не `No`."
+            },
+            "correct": false,
+            "testedDimension": "sentence_type"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання пасажира про платформи",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there platforms?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос пассажира о платформах",
+          "uk": "Складіть питання пасажира про платформи"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "platforms"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": []
+      },
+      "accessibilityLabel": "Складіть питання пасажира про платформи"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після оголошення оберіть коротку відповідь на питання `Are there platforms near the building?`",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i06:r1",
+          "text": "Yes, there are."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i06:r2",
+          "text": "Yes, are there."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i06:r3",
+          "text": "Yes, there are there."
+        }
+      ],
+      "audioTargetIds": [],
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На схеме вокзала платформы отмечены рядом со зданием.",
+          "uk": "На схемі вокзалу платформи позначено біля будівлі."
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i06:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i06:r2",
+            "text": "Yes, are there."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i06:r3",
+            "text": "Yes, there are there."
+          }
+        ],
+        "testedDimension": "affirmative_plural_short_reply",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i06:r2",
+            "feedbackByLocale": {
+              "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
+              "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
+            },
+            "correct": false,
+            "testedDimension": "short_reply_repetition"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i06:r3",
+            "feedbackByLocale": {
+              "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
+              "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
+            },
+            "correct": false,
+            "testedDimension": "short_reply_word_order"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть питання",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-12:i07:audio"
+      ],
+      "modePayload": {
+        "hiddenTargetPhrase": "Are there two platforms?",
+        "referenceAudio": {
+          "transcript": "Are there two platforms?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "two",
+          "platforms"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення на табло про платформи",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "targetPhrase": "There are platforms.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "platforms"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Швидко з’єднайте назви на схемі біля вокзалу з українськими значеннями",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "platform",
+            "meaningByLocale": {
+              "ru": "платформа",
+              "uk": "платформа"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "platforms",
+            "meaningByLocale": {
+              "ru": "платформы",
+              "uk": "платформи"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "there are",
+            "meaningByLocale": {
+              "ru": "есть (несколько)",
+              "uk": "є (кілька)"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після оголошення оберіть питання про третю платформу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i10:r1",
+          "text": "Are there three platforms?"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i10:r2",
+          "text": "Is there three platforms?"
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i10:r3",
+          "text": "There are three platforms."
+        }
+      ],
+      "audioTargetIds": [],
+      "modePayload": {
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i10:r1",
+            "text": "Are there three platforms?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i10:r2",
+            "text": "Is there three platforms?"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i10:r3",
+            "text": "There are three platforms."
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i10:r2",
+            "feedbackByLocale": {
+              "ru": "С `three platforms` вопрос начинается с `Are there`: `Are there three platforms?`.",
+              "uk": "З `three platforms` питання починається з `Are there`: `Are there three platforms?`."
+            },
+            "correct": false,
+            "testedDimension": "plural_question_agreement"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i10:r3",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. Вопрос начинается с `Are there`: `Are there three platforms?`.",
+              "uk": "Це повідомлення. Питання починається з `Are there`: `Are there three platforms?`."
+            },
+            "correct": false,
+            "testedDimension": "question_statement"
+          }
+        ],
+        "localizedScene": {
+          "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
+          "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
+        }
+      },
+      "mediaIds": [],
+      "accessibilityLabel": "Після оголошення оберіть питання про третю платформу"
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повну заперечну відповідь: на табло немає двох платформ",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, there are not.",
+        "localizedMeaning": {
+          "ru": "Соберите полный отрицательный ответ: на табло нет двух платформ",
+          "uk": "Складіть повну заперечну відповідь: на табло немає двох платформ"
+        },
+        "orderedTokens": [
+          "No,",
+          "there",
+          "are",
+          "not"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-12:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фінал — після оголошення на вокзалі на схемі позначено дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-12:i12:r1",
+          "text": "Yes, there are."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i12:r2",
+          "text": "No, there aren't."
+        },
+        {
+          "responseId": "en:lesson-04:session-12:i12:r3",
+          "text": "Yes, there is."
+        }
+      ],
+      "audioTargetIds": [],
+      "modePayload": {
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-12:i12:r1",
+            "text": "Yes, there are."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r2",
+            "text": "No, there aren't."
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r3",
+            "text": "Yes, there is."
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-12:i12:r2",
+            "feedbackByLocale": {
+              "ru": "`No, there aren't.` — короткое отрицание, поэтому оно может показаться подходящим к вопросу. Но после объявления на схеме отмечены две платформы, а `No` говорит, что платформ нет. Когда есть несколько мест, отвечайте `Yes, there are.`.",
+              "uk": "`No, there aren't.` — коротка заперечна відповідь, тому вона може здатися доречною до питання. Але після оголошення на схемі позначено дві платформи, а `No` говорить, що платформ немає. Коли місць кілька, відповідайте `Yes, there are.`."
+            },
+            "correct": false,
+            "testedDimension": "polarity"
+          },
+          {
+            "responseId": "en:lesson-04:session-12:i12:r3",
+            "feedbackByLocale": {
+              "ru": "`Yes, there is.` тоже начинается с утвердительного `Yes`, но `is` отвечает об одном месте. После объявления на схеме две платформы, поэтому для нескольких нужно `are`: `Yes, there are.`. Видите `two` или название во множественном числе — выбирайте `are`.",
+              "uk": "`Yes, there is.` теж починається зі ствердного `Yes`, але `is` відповідає про одне місце. Після оголошення на схемі дві платформи, тому для кількох потрібне `are`: `Yes, there are.`. Бачите `two` або назву в множині — обирайте `are`."
+            },
+            "correct": false,
+            "testedDimension": "singular_plural_agreement"
+          }
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ca8682608b31e5608b6ca52e5e84c3c4d33a39adedd590fd7d465ce09688a859"
+}

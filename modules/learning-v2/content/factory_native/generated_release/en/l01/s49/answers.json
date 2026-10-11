@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-49:i01",
-    "correctText": "",
+    "correctText": "everyone",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-49:i03",
-    "correctText": "",
+    "correctText": "nobody",
     "correctResponseId": null
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-49:i06",
-    "correctText": "",
+    "correctText": "people",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-49:i07",
-    "correctText": "",
+    "correctText": "family",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-49:i12",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-49:i12:p1=everyone\nen:lesson-01:session-49:i12:p2=nobody\nen:lesson-01:session-49:i12:p3=people\nen:lesson-01:session-49:i12:p4=family",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,33 @@
     "correctResponseId": "en:lesson-01:session-49:i15:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-49:i16",
-    "correctText": "Everyone is kind. Nobody is loud.",
+    "interactionId": "en:lesson-01:session-49:i16:s01",
+    "correctText": "Everyone is kind.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-49:i17",
-    "correctText": "People are loud. Everyone is kind. My family is fine. I am tired.",
+    "interactionId": "en:lesson-01:session-49:i16:s02",
+    "correctText": "Nobody is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i17:s01",
+    "correctText": "People are loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i17:s02",
+    "correctText": "Everyone is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i17:s03",
+    "correctText": "My family is fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i17:s04",
+    "correctText": "I am tired.",
     "correctResponseId": null
   }
 ]

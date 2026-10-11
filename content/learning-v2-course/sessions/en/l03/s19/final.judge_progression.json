@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "8678527c384655b9cf8089a4846921bbb44865578a37b8cdbfbea6206c175c2b",
+  "localeSha256": "077215e80840450956a2cad847d5aa83f57b1a3e7561e3b038291bfe3aa7154b",
+  "comparedThrough": "en/l03/s18",
+  "newWords": [
+    "story",
+    "country",
+    "battery"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 19 | тонкость | согласная + `y`: форма множественного числа с `-ies` | story, country, battery | читаем подписи на упаковках |",
+  "curriculumEvidence": {
+    "grammar": "в названиях нескольких предметов конечная `y` после согласной буквы меняется на `ies`: `stories`, `countries`, `batteries`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "story",
+      "country",
+      "battery"
+    ],
+    "situation": "Вы с сестрой проверяете доставку для вечера дома: сборник коротких рассказов, пазл с картой мира и батарейки для настольной лампы. Читаете подписи на упаковках, заглядываете в книгу и решаете, какие коробки сохранить."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

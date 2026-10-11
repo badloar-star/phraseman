@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 25 — «This — ось це, поруч»
+# Англійська · Урок 3 · Заняття 25 — «This — ось це, поруч»
 
-**Сцена сесії.** У майстерні електроніки ви показуєте майстрові комплект, який принесли на діагностику. Телефон, зарядний пристрій і шнур лежать перед вами на приймальній стійці; ви по черзі називаєте кожен предмет.
+**Сцена заняття.** У майстерні електроніки ви показуєте майстрові комплект, який принесли на діагностику. Телефон, зарядний пристрій і шнур лежать перед вами на приймальній стійці; ви по черзі називаєте кожен предмет.
 
-**Операція:** `This is a + предмет` — назвати один предмет поруч
+**Як сказати:** `This is a + предмет` — назвати один предмет поруч
 **Нові слова:** phone, charger, cable
 **Для повторення:** cup, cups
 
@@ -56,82 +56,87 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — phone**
-> **phone** — «телефон». Пристрій, з якого телефонують і надсилають повідомлення.
+<!-- interaction_id: en:lesson-03:session-25:i01; family: listen_choose -->
+Ціль: `phone`
 
-**2 · Послухайте й виберіть — яке слово назвав майстер**
-🔊 *phone* → **phone** · bone · cone · tone
-Значення варіантів: phone — телефон · bone — кістка · cone — конус · tone — тон
-- bone — *У `bone` перший звук — `b`: губи змикаються. У `phone` чути `f`.*
-- cone — *У `cone` початок — `k`; у `phone` першим чути `f`.*
-- tone — *У `tone` першим чути `t`; `phone` починається зі звука `f`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-25:i03; family: scripted_repeat_compare -->
+Ціль: `charger`
 
-**3 · Картка слова — charger**
-> **charger** — «зарядний пристрій». Пристрій, яким заряджають телефон.
+**3 · Вставте слово — на стійці лежить шнур; виберіть його назву**
+<!-- interaction_id: en:lesson-03:session-25:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `cable` · `charger` · `phone`
 
-**4 · Послухайте й виберіть — яке слово назвав майстер**
-🔊 *charger* → **charger** · charmer · larger · charter
-Значення варіантів: charger — зарядка · charmer — чарівна людина · larger — більший · charter — статут
-- charmer — *У середині `charmer` чути `m`, а в `charger` — дзвінке `дж`.*
-- larger — *У `larger` першим чути `l`; `charger` починається зі звука `ч`.*
-- charter — *Порівняйте середину: `char-ter` звучить із `t`, а `char-ger` — із дзвінким `дж`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-25:i02; family: scripted_repeat_compare -->
+Ціль: `phone`
 
-**5 · Картка слова — cable**
-> **cable** — «шнур». Шнур, який з'єднує телефон із зарядним пристроєм.
+**5 · Послухайте й виберіть — яке слово назвав майстер**
+<!-- interaction_id: en:lesson-03:session-25:i04; family: listen_choose -->
+Значення варіантів: `charger` — зарядка · `charmer` — чарівна людина · `larger` — більший · `charter` — статут
+Ціль: `charger`
+Варіанти: `charger` · `charmer` · `larger` · `charter`
 
-**6 · Послухайте й виберіть — яке слово назвав майстер**
-🔊 *cable* → **cable** · table · label · fable
-Значення варіантів: cable — шнур · table — стіл · label — етикетка · fable — байка
-- table — *`table` — стіл. На початку чути `t`, а `cable` починається з `k`.*
-- label — *`label` — етикетка. На початку чути `l`, а в `cable` спочатку чути звук `k`.*
-- fable — *`fable` — байка. Воно починається з `f`, а шнур `cable` — зі звука `k`.*
+**6 · Розрізніть звук — яке зі знайомих слів прозвучало**
+<!-- interaction_id: en:lesson-03:session-25:i06; family: sound_contrast -->
+Ціль: `cable`
+*cable · charger* → **cable**
 
 **7 · З'єднайте слова зі значеннями — предмети на приймальній стійці**
-phone — телефон · charger — зарядка · cable — шнур · cups — чашки
+<!-- interaction_id: en:lesson-03:session-25:i07; family: speed_match -->
+Пари: `phone` — телефон · `cup` — чашка · `cable` — шнур · `cups` — чашки
+Ціль: `phone · cup · cable · cups`
 
-**8 · Перенесіть у відповідь ціле слово — пристрій, яким телефонують**
-Плитки: `phone` `bone` `cone` `tone` → **phone**
+**8 · Вставте слово — ви показуєте телефон поруч із собою**
+<!-- interaction_id: en:lesson-03:session-25:i08; family: context_gap_grammar -->
+Ціль: `This is a ___.`
+Варіанти: `phone` · `charger` · `cable`
 
-**9 · Скажіть уголос — те, чим заряджають телефон**
-🎙 **charger** — послухайте, повторіть і порівняйте.
+**9 · Розрізніть звук — charger чи charter**
+<!-- interaction_id: en:lesson-03:session-25:i09; family: sound_contrast -->
+Ціль: `charger`
+*charger · charter* → **charger**
 
-**10 · Послухайте й перенесіть у відповідь ціле слово — шнур**
-🔊 *cable* Плитки: `cable` `table` `label` `fable` → **cable**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-25:i10; family: scripted_repeat_compare -->
+Ціль: `This is a cable.`
 
 **11 · Складіть фразу — ви показуєте телефон поруч із собою**
-Плитки: `phone` `This` `a` `is` `The` `are` `phones` → **This is a phone.**
+<!-- interaction_id: en:lesson-03:session-25:i11; family: phrase_builder -->
+Ціль: `This is a phone.`
 
-**12 · Скажіть уголос — ви показуєте зарядний пристрій майстрові**
-🎙 **This is a charger.** — послухайте, повторіть і порівняйте.
+**12 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-25:i12; family: listen_build_dictation -->
+Ціль: `This is a charger.`
 
 **13 · Вставте слово — ви показуєте один шнур поруч із собою**
-This ___ a cable. → **is** · are · am · a
-- are — *Шнур один. Після `This` тут потрібне `is`.*
-- am — *`am` ставлять після `I`. З предметом поруч потрібна зв'язка `This is`.*
-- a — *`a` вже стоїть перед `cable`. Між `This` і `a cable` потрібне `is`.*
+<!-- interaction_id: en:lesson-03:session-25:i13; family: context_gap_grammar -->
+Ціль: `This ___ a cable.`
+Варіанти: `is` · `are` · `am` · `a`
 
 **14 · Послухайте й виберіть значення точної фрази**
-🔊 *This is a cup.* → **Це чашка** · Це кепка · Це поліцейський · Це поріз
-- Це кепка — *У записі прозвучало `cup` — «чашка». Для «кепка» прозвучало б `cap`.*
-- Це поліцейський — *У записі прозвучало `cup`. Слово `cop` означало б «поліцейський».*
-- Це поріз — *У записі слово закінчується на `p`: `cup`. Для «поріз» прозвучало б `cut`, із `t` наприкінці.*
+<!-- interaction_id: en:lesson-03:session-25:i14; family: listen_choose -->
+Ціль: `This is a cup.`
+Варіанти: `Це чашка` · `Це кепка` · `Це поліцейський` · `Це поріз`
 
 **15 · Складіть фразу — біля вас стоїть пляшка**
-Плитки: `bottle` `This` `a` `is` `The` `are` `bottles` → **This is a bottle.**
+<!-- interaction_id: en:lesson-03:session-25:i15; family: phrase_builder -->
+Ціль: `This is a bottle.`
 
 **16 · Вставте маленьке слово — ви показуєте одну чашку**
-This is ___ cup. → **a** · is · are · cups
-- is — *Зв'язка `is` уже стоїть після `This`. Перед одним `cup` потрібне маленьке слово `a`.*
-- are — *У цій фразі зв'язка вже є: `This is`. У пропуску перед одним `cup` потрібне `a`.*
-- cups — *`cups` називає кілька чашок. Тут після пропуску вже стоїть форма однієї чашки `cup`, тому потрібне `a`.*
+<!-- interaction_id: en:lesson-03:session-25:i16; family: context_gap_grammar -->
+Ціль: `This is ___ cup.`
+Варіанти: `a` · `is` · `are` · `cups`
 
-**17 · Фінал — самі назвіть шнур поруч**
-🎙 **This is a cable.** — скажіть фразу, потім послухайте зразок і порівняйте.
+**17 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-25:i17; family: listen_build_dictation -->
+Ціль: `This is a cable.`
 
-## Для збирача
-new_words: phone — телефон — Пристрій, з якого телефонують і надсилають повідомлення.
-new_words: charger — зарядний пристрій — Пристрій, яким заряджають телефон.
-new_words: cable — шнур — Шнур, який з'єднує телефон із зарядним пристроєм.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation
+

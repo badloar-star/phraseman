@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro1:r2": {
+          "ru": "Скрепка `is` пропала. По-русски её нет, по-английски без неё фразы не существует.",
+          "uk": "Скріпка `is` зникла. Українською її немає, англійською без неї фрази не існує."
+        },
+        "en:lesson-01:session-23:intro1:r3": {
+          "ru": "`are` — не для одного человека. Про него — только `is`.",
+          "uk": "`are` — не для однієї людини. Про нього — тільки `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro2:r2": {
+          "ru": "«Он злой» — это сильнее. А он всего лишь бурчит про лифт: `grumpy`.",
+          "uk": "«Він злий» — це сильніше. А він усього лише бурчить про ліфт: `grumpy`."
+        },
+        "en:lesson-01:session-23:intro2:r3": {
+          "ru": "Без `is` фраза не стоит. Про него — всегда `he is`.",
+          "uk": "Без `is` фраза не стоїть. Про нього — завжди `he is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-23:intro3:r2": {
+          "ru": "Слова поменялись местами. Сначала `is`, потом `not`.",
+          "uk": "Слова помінялися місцями. Спершу `is`, потім `not`."
+        },
+        "en:lesson-01:session-23:intro3:r3": {
+          "ru": "`no` тут не работает. Отрицание в такой фразе — `not`, и только после `is`.",
+          "uk": "`no` тут не працює. Заперечення в такій фразі — `not`, і тільки після `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "93b40b598fa78b419e8d2da2111436cae26d69db7902cf993a9622a84a52befe"
+}

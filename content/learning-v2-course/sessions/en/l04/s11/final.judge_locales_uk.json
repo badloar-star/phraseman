@@ -1,0 +1,32 @@
+{
+  "session": "en/l04/s11",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-05T01:20:00.000Z",
+  "sourceSha256": "B26EC93264987B47D5716091F2043CA0822BFAABB0101E32DB285EA2A9CA7045",
+  "exactRuSha256": "B26EC93264987B47D5716091F2043CA0822BFAABB0101E32DB285EA2A9CA7045",
+  "exactUkSha256": "CCCA69FB33CB9903B0D5B31116E891CF7026E961B4C58492AF8797ED30B8C0F6",
+  "practiceAtomicSha256": "61619D947EFE8AC400CB73A9182DCA2DB3FD750A31E0336AEB1969DBABB50B63",
+  "localeHashes": {
+    "ru": "B26EC93264987B47D5716091F2043CA0822BFAABB0101E32DB285EA2A9CA7045",
+    "uk": "CCCA69FB33CB9903B0D5B31116E891CF7026E961B4C58492AF8797ED30B8C0F6"
+  },
+  "sourcePaths": ["final.ru.md", "final.uk.md", "practice.atomic.json"],
+  "reviewer": "independent-s11-ntl-review",
+  "role": "judge_locales_uk",
+  "verdict": "PASS",
+  "severity": {"P0": 0, "P1": 0, "P2": 0},
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "locale": "uk",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "languagePurity": true,
+  "semanticParity": true,
+  "evidence": [
+    "The Ukrainian master has the same three introductions and twelve ordered practice interactions as RU, with matching interaction IDs, families, English targets, ordered tokens, answer IDs, and reference-audio transcripts in the atomic contract.",
+    "The Ukrainian learner-facing text is natural and complete for a transport map; prompts and feedback contain no Russian leakage.",
+    "The operation stays semantically parallel: both locales assess `Are there trams?` and extended plural tram questions with the same targets and localized explanations."
+  ],
+  "verdict_reason": "PASS: UK is structurally faithful, semantically parallel, linguistically pure, and natural learner-facing Ukrainian for the exact bound source."
+}

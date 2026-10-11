@@ -1,7 +1,7 @@
-# Англійська · Урок 2 · Сесія 19 — «It is near»
+# Англійська · Урок 2 · Заняття 19 — «It is near»
 
-**Сцена сесії.** Ви запитали, де щось міститься, — і вам відповідають. Відповідь коротка, рукою махають убік: поруч, за рогом, ген у тому кінці вулиці.
-**Операція:** відповідь `It is` + слово про місце
+**Сцена заняття.** Ви запитали, де щось міститься, — і вам відповідають. Відповідь коротка, рукою махають убік: поруч, за рогом, ген у тому кінці вулиці.
+**Як сказати:** відповідь `It is` + слово про місце
 **Нові слова:** near, behind
 **Повертаються:** street, station, shops, crowded
 
@@ -55,77 +55,95 @@
 
 ---
 
-## Практика (перші завдання)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — near**
-> **near** — «поруч, близько». Іти хвилини дві, можна й не перепитувати.
+<!-- interaction_id: en:lesson-02:session-19:i01; family: listen_choose -->
+Ціль: `near`
 
-**2 · Послухайте і виберіть — near**
-🔊 *near* → **near** · nine · name
-- nine — *Це «дев'ять» — лічба, а не місце. Голосний інший: у `nine` чути «ай».*
-- name — *Це «ім'я». Голосний інший: у `name` чути «ей».*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-19:i02; family: listen_choose -->
+Ціль: `near`
+Варіанти: `near` · `nine` · `name`
 
 **3 · Картка слова — behind**
-> **behind** — «за, позаду». Те, що шукали, стоїть з іншого боку.
+<!-- interaction_id: en:lesson-02:session-19:i03; family: listen_choose -->
+Ціль: `behind`
 
-**4 · Послухайте і виберіть — behind**
-🔊 *behind* → **behind** · find · bell
-- find — *Це «знайти». Перший звук інший: `find` починається з «ф», `behind` — з «б».*
-- bell — *Це «дзвінок». Коротше: у `behind` два склади, у `bell` один.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-19:i04; family: listen_choose -->
+Ціль: `behind`
+Варіанти: `behind` · `find` · `bell`
 
 **5 · Складіть фразу — «це поруч»**
-Плитки: `is` `near` `It` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-19:i05; family: phrase_builder -->
+Ціль: `It is near.`
 
 **6 · Вставте слово — перехожий показує: іти хвилини дві**
-It is ___ . → **near** · behind · crowded
-- behind — *Це «позаду», про бік, а не про відстань.*
-- crowded — *Це «людно», про натовп. Про «хвилини дві» — `near`.*
+<!-- interaction_id: en:lesson-02:session-19:i06; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `behind` · `crowded`
 
 **7 · Складіть фразу — «це за вокзалом»**
-Плитки: `the` `behind` `station` `It` `is` → **It is behind the station.**
+<!-- interaction_id: en:lesson-02:session-19:i07; family: phrase_builder -->
+Ціль: `It is behind the station.`
 
 **8 · Вставте слово — туалети з іншого боку вокзалу**
-It is ___ the station. → **behind** · near · street
-- near — *«Поруч із вокзалом» — це не «з іншого боку».*
-- street — *`street` — «вулиця», це місце, а не бік. Після пропуску вже стоїть `the station`, друге місце туди не стане.*
+<!-- interaction_id: en:lesson-02:session-19:i08; family: context_gap_grammar -->
+Ціль: `It is ___ the station.`
+Варіанти: `behind` · `near` · `street`
 
 **9 · Розрізніть звуки — яке з двох про «поруч»?**
-🔊 Два слова поспіль.
-*near · far* → **near**
-- far — *Це «далеко» — протилежне за змістом. І звучить інакше: `far` починається з «ф».*
+<!-- interaction_id: en:lesson-02:session-19:i09; family: sound_contrast -->
+Варіанти: `near` · `far`
 
 **10 · Вставте слово — де шукати кав'ярню? Крамниці зовсім близько**
-It is near the ___ . → **shops** · near · behind
-- near — *`near` уже стоїть перед пропуском. Тут потрібне місце.*
-- behind — *Це «позаду», а не місце. Після `the` називають, що саме.*
+<!-- interaction_id: en:lesson-02:session-19:i10; family: context_gap_grammar -->
+Ціль: `It is near the ___ .`
+Варіанти: `shops` · `near` · `behind`
 
 **11 · Послухайте і складіть — «це поруч із вулицею»**
-🔊 *It is near the street.* Плитки: `street` `is` `near` `It` `the` `at` → **It is near the street.**
+<!-- interaction_id: en:lesson-02:session-19:i11; family: listen_build_dictation -->
+Ціль: `It is near the street.`
 
-**12 · З'єднайте пари (Speed Match, 4 пари)**
-near — поруч · behind — позаду · station — вокзал · street — вулиця
+**12 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-19:i12; family: speed_match -->
+Пари: `near` — поруч · `behind` — позаду · `station` — вокзал · `street` — вулиця
+Ціль: `near · behind · station · street`
 
 **13 · Вставте слово — на вулиці не проштовхнутися**
-The street is ___ . → **crowded** · near · behind
-- near — *«Вулиця поруч» — про відстань, а не про натовп.*
-- behind — *«Вулиця позаду» — про бік. Про натовп — `crowded`.*
+<!-- interaction_id: en:lesson-02:session-19:i13; family: context_gap_grammar -->
+Ціль: `The street is ___ .`
+Варіанти: `crowded` · `near` · `behind`
 
 **14 · Складіть фразу — ви запитуєте, а не відповідаєте: «це поруч?»**
-Плитки: `it` `Is` `near` `the` → **Is it near?**
-*(плитка `the` зайва: після `near` тут нічого не називають)*
+<!-- interaction_id: en:lesson-02:session-19:i14; family: phrase_builder -->
+Ціль: `Is it near?`
 
-**15 · Складіть фразу — «це за крамницями»**
-Плитки: `behind` `It` `shops` `is` `the` `are` → **It is behind the shops.**
-*(плитка `are` зайва: мова про одне місце — `it is`)*
+**15 · Послухайте й складіть — біля входу ви пояснюєте, що об’єкт за крамницями**
+<!-- interaction_id: en:lesson-02:session-19:i15; family: listen_build_dictation -->
+Ціль: `It is behind the shops.`
 
-**16 · Скажіть уголос — вам пояснили дорогу, повторіть за перехожим**
-🎙 **It is near. It is behind the shops.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i16:s01; family: scripted_repeat_compare -->
+Ціль: `It is near.`
 
-**17 · Фінал сцени — три відповіді поспіль: де це розташовано**
-🎙 «Де вокзал? Де туалети? Де крамниці?» Відповідайте: поруч; за вокзалом; поруч із вулицею.
-**It is near. It is behind the station. It is near the street.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i16:s02; family: scripted_repeat_compare -->
+Ціль: `It is behind the shops.`
 
----
+**18 · Послухайте відповідь на запитання «Де вокзал?» і виберіть почуту фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s01; family: listen_choose -->
+Ціль: `It is near.`
+Варіанти: `It is near.` · `Is it near?` · `It is behind the shops.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s02; family: scripted_repeat_compare -->
+Ціль: `It is behind the station.`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-19:i17:s03; family: scripted_repeat_compare -->
+Ціль: `It is near the street.`
 
 ## Для сборщика
 
@@ -133,7 +151,7 @@ new_words:
 near — рядом, близко — «рядом, близко». Идти пару минут, можно и не спрашивать дважды.
 behind — за, позади — «за, позади». То, что искали, стоит с другой стороны.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_choose, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -162,13 +180,5 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | near | так, завдання 1 | так — 2, 5, 6, 9, 10, 11 |
 | behind | так, завдання 3 | так — 4, 7, 8 |
-| station | з минулих сесій (l02_s17) | так — 7, 8 |
-| street | з минулих сесій (l02_s17) | так — 8 (пастка), 11 |
-
----
-
-🟡 **Стоит улучшить** — заголовок практики теперь на украинском; сам служебный блок «Для сборщика» оставлен без изменений намеренно (по правилу он неизменен байт в байт).
-
-- Исправил единственное замечание судьи: заголовок раздела с заданиями теперь на украинском.
-- Всё остальное оставил как было — английские слова, фразы, ловушки, номера и порядок заданий не трогал.
-- Служебный блок для сборщика оставил в исходном виде, как требуют правила.
+| station | з минулих занять (l02_s17) | так — 7, 8 |
+| street | з минулих занять (l02_s17) | так — 8 (пастка), 11 |

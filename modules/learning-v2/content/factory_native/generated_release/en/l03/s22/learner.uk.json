@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`battle` — «битва». Ударный гласный произносится с языком ближе к передней части рта. В `bottle` язык глубже; сравните середину слов.",
               "uk": "`battle` — «битва». Наголошений голосний вимовляється з язиком ближче до передньої частини рота. У `bottle` язик глибше; порівняйте середину слів."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`beetle` — «жук». На ударном гласном рот почти закрыт, язык поднят спереди. В `bottle` рот открыт шире, язык глубже.",
               "uk": "`beetle` — «жук». На наголошеному голосному рот майже закритий, язик високо спереду. У `bottle` рот відкритий ширше, а язик глибше."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-22:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`bull` — «бык». Гласный ровный, губы округлены. В `bowl` звучание гласного меняется: к концу губы округляются сильнее.",
               "uk": "`bull` — «бик». Голосний рівний, губи округлені. У `bowl` звучання голосного змінюється: наприкінці губи округлюються сильніше."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-22:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`ball` — «мяч». Гласный звучит ровно. В `bowl` он меняется по ходу звучания, рот к концу прикрывается, губы сильнее округляются.",
               "uk": "`ball` — «м’яч». Голосний звучить рівно. У `bowl` він змінюється під час звучання: рот наприкінці прикривається, губи округлюються сильніше."
@@ -276,7 +276,7 @@
           {
             "responseId": "en:lesson-03:session-22:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер отмечает содержи",
+            "testedDimension": "Зберіть фразу — кур’єр позначає вміст пе",
             "feedbackByLocale": {
               "ru": "Вы называете несколько бутылок. В этой фразе нужно `bottles`.",
               "uk": "Ви називаєте кілька пляшок. У цій фразі потрібно `bottles`."
@@ -331,12 +331,12 @@
             "text": "a bowl"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает о ",
+        "testedDimension": "Вставте назву — кур’єр питає про дві мис",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-22:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про дві мис",
             "feedbackByLocale": {
               "ru": "Перед вами две миски. Их название — `bowls`, с окончанием `s`.",
               "uk": "Перед вами дві миски. Їхня назва — `bowls`, із `s` наприкінці."
@@ -345,7 +345,7 @@
           {
             "responseId": "en:lesson-03:session-22:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "testedDimension": "Вставте назву — кур’єр питає про дві мис",
             "feedbackByLocale": {
               "ru": "`a bowl` — одна миска. Здесь называем две: `They are bowls`.",
               "uk": "`a bowl` — одна миска. Тут називаємо дві: `They are bowls`."
@@ -453,7 +453,7 @@
           {
             "responseId": "en:lesson-03:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`slate` — «сланец», горная порода. Первым слышно «с», воздух идёт непрерывно. У `plate` начало «п»: губы смыкаются и раскрываются.",
               "uk": "`slate` — «сланець», гірська порода. Спочатку чути «с»: повітря йде безперервно. У `plate` початок — англійське `p`: губи змикаються й розкриваються."
@@ -462,7 +462,7 @@
           {
             "responseId": "en:lesson-03:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`late` — «поздно». Первым звучит «л». У `plate` сначала «п», затем «л»; остальная часть звучит одинаково.",
               "uk": "`late` — «пізно». Спочатку звучить англійське `l`. У `plate` спершу чути `p`, потім `l`; решта звучить однаково."
@@ -509,7 +509,7 @@
           {
             "responseId": "en:lesson-03:session-22:i09:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — вы сверяете строку про",
+            "testedDimension": "Зберіть питання — ви звіряєте рядок про ",
             "feedbackByLocale": {
               "ru": "Уточняем название нескольких предметов из набора. Нужно `plates`.",
               "uk": "Уточнюємо назву кількох предметів із набору. Потрібно `plates`."
@@ -564,12 +564,12 @@
             "text": "a dish"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "testedDimension": "Вставте назву — кур’єр питає, що ви діст",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-22:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що ви діст",
             "feedbackByLocale": {
               "ru": "Вы называете два предмета посуды. Нужно `dishes`, форма для нескольких блюд.",
               "uk": "Ви називаєте два предмети посуду. Потрібно `dishes`, форма для кількох блюд."
@@ -578,7 +578,7 @@
           {
             "responseId": "en:lesson-03:session-22:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що ви діст",
             "feedbackByLocale": {
               "ru": "`a dish` называет одно блюдо. Здесь их два: `They are dishes`.",
               "uk": "`a dish` називає одне блюдо. Тут їх два: `They are dishes`."
@@ -627,7 +627,7 @@
           {
             "responseId": "en:lesson-03:session-22:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — что сказал курье",
+            "testedDimension": "Послухайте й зберіть — що сказав кур’єр",
             "feedbackByLocale": {
               "ru": "В записи звучит название нескольких мисок — `bowls`. Отрицание `not` эту форму не меняет.",
               "uk": "У записі звучить назва кількох мисок — `bowls`. Заперечення `not` цієї форми не змінює."
@@ -682,12 +682,12 @@
             "text": "bottles"
           }
         ],
-        "testedDimension": "Вставьте название — в боковом отделении ",
+        "testedDimension": "Вставте назву — у бічному відділенні зал",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-22:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — в боковом отделении ",
+            "testedDimension": "Вставте назву — у бічному відділенні зал",
             "feedbackByLocale": {
               "ru": "Называя одну бутылку в этой фразе, ставим перед `bottle` слово `a`.",
               "uk": "Називаючи одну пляшку в цій фразі, ставимо перед `bottle` слово `a`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-22:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — в боковом отделении ",
+            "testedDimension": "Вставте назву — у бічному відділенні зал",
             "feedbackByLocale": {
               "ru": "`bottles` — несколько бутылок. В отделении одна: `a bottle`.",
               "uk": "`bottles` — кілька пляшок. У відділенні одна: `a bottle`."
@@ -751,12 +751,12 @@
             "text": "a plates"
           }
         ],
-        "testedDimension": "Вставьте название — курьер проверяет пос",
+        "testedDimension": "Вставте назву — кур’єр перевіряє останні",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-22:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер проверяет пос",
+            "testedDimension": "Вставте назву — кур’єр перевіряє останні",
             "feedbackByLocale": {
               "ru": "Под бумагой несколько тарелок. Нужна форма `plates`, с окончанием `s`.",
               "uk": "Під папером кілька тарілок. Потрібна форма `plates`, із `s` наприкінці."
@@ -765,7 +765,7 @@
           {
             "responseId": "en:lesson-03:session-22:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер проверяет пос",
+            "testedDimension": "Вставте назву — кур’єр перевіряє останні",
             "feedbackByLocale": {
               "ru": "Вы называете несколько тарелок. В этой фразе перед `plates` слово `a` не нужно.",
               "uk": "Ви називаєте кілька тарілок. У цій фразі перед `plates` слово `a` не потрібне."
@@ -854,13 +854,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — кур’єр шукає в списку блюда для подавання їжі; ви показуєте на два розпаковані блюда й називаєте їх «Це блюда»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — кур’єр шукає в списку блюда для подавання їжі; ви показуєте на два розпаковані блюда й називаєте їх «Це блюда»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -926,12 +926,12 @@
             "text": "bowl"
           }
         ],
-        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "testedDimension": "Вставте назву — кур’єр питає, що залишил",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-22:i16:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що залишил",
             "feedbackByLocale": {
               "ru": "`bowls` называет несколько мисок. Вы вынули одну: `a bowl`.",
               "uk": "`bowls` називає кілька мисок. Ви дістали одну: `a bowl`."
@@ -940,7 +940,7 @@
           {
             "responseId": "en:lesson-03:session-22:i16:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "testedDimension": "Вставте назву — кур’єр питає, що залишил",
             "feedbackByLocale": {
               "ru": "В этой фразе для называния одной миски нужно `a bowl`. Слово `a` пропускать не стоит.",
               "uk": "У цій фразі одну миску називаємо `a bowl`. Слово `a` пропускати не варто."
@@ -985,7 +985,7 @@
           {
             "responseId": "en:lesson-03:session-22:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — курьер проверяет, всё л",
+            "testedDimension": "Складіть фразу — кур’єр перевіряє, чи вс",
             "feedbackByLocale": {
               "ru": "Вы называете две миски. Нужна форма `bowls`.",
               "uk": "Ви називаєте дві миски. Потрібна форма `bowls`."
@@ -1002,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d33d000413519ac3318148f40e3695bf1d52d62969bf25e6bf19b5d0e71edb1"
+  "learnerFingerprint": "a887a182333ae7dd70d445a3bc76ad4e476fd9dfc6436021729361bfa75a6b1b"
 }

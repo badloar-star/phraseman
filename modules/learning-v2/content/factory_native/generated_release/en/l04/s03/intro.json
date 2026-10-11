@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о наличии нескольких мест: `There are + plural noun`.",
+    "uk": "повідомити про наявність кількох місць: `There are + plural noun`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда банков несколько",
+        "uk": "Коли банків кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`bank` — «банк», а `banks` — «банки». На районном стенде отмечено несколько банков, поэтому сообщение начинается с `There are`: `There are banks.` После `are` назовите места во множественном числе — `banks`. Артикль `a` здесь не нужен, потому что речь идёт не об одном банке.",
+        "uk": "`bank` — «банк», а `banks` — «банки». На районному стенді позначено кілька банків, тому повідомлення починається з `There are`: `There are banks.` Після `are` назвіть місця у множині — `banks`. Артикль `a` тут не потрібен, бо йдеться не про один банк."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "На стенде отмечено несколько банков. Выберите точное сообщение.",
+          "uk": "На стенді позначено кілька банків. Виберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r1",
+              "text": "There are banks."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r2",
+              "text": "There is banks."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r3",
+              "text": "There are a banks."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r1",
+              "text": "There are banks."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r2",
+              "text": "There is banks."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro1:r3",
+              "text": "There are a banks."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На стенде отмечено несколько банков. Выберите точное сообщение.",
+          "uk": "На стенді позначено кілька банків. Виберіть точне повідомлення."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Банки рядом со станцией",
+        "uk": "Банки поруч зі станцією"
+      },
+      "bodyByLocale": {
+        "ru": "`There are banks near the station.` означает «Рядом со станцией есть банки». `There are banks` сообщает, что банков несколько, а `near the station` показывает место. Сначала назовите наличие и сами места, затем добавьте ориентир. На карте это одно короткое сообщение, а не два отдельных.",
+        "uk": "`There are banks near the station.` означає «Поруч зі станцією є банки». `There are banks` повідомляє, що банків кілька, а `near the station` показує місце. Спочатку назвіть наявність і самі місця, потім додайте орієнтир. На карті це одне коротке повідомлення, а не два окремі."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы показываете соседу банки рядом со станцией. Выберите точную фразу.",
+          "uk": "Ви показуєте сусідові банки поруч зі станцією. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r1",
+              "text": "There are banks near the station."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r2",
+              "text": "There is banks near the station."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r3",
+              "text": "There are bank near the station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r1",
+              "text": "There are banks near the station."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r2",
+              "text": "There is banks near the station."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro2:r3",
+              "text": "There are bank near the station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете соседу банки рядом со станцией. Выберите точную фразу.",
+          "uk": "Ви показуєте сусідові банки поруч зі станцією. Виберіть точну фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Банки за зданием",
+        "uk": "Банки за будівлею"
+      },
+      "bodyByLocale": {
+        "ru": "`There are banks behind the building.` означает «За зданием есть банки». `Behind the building` показывает, где они находятся. Для нескольких банков используйте `are` и форму `banks`; `a` перед ней не ставьте. Банков на карте несколько — жаль, очередь от этого короче не становится.",
+        "uk": "`There are banks behind the building.` означає «За будівлею є банки». `Behind the building` показує, де вони розташовані. Для кількох банків використовуйте `are` і форму `banks`; `a` перед нею не ставте. Банків на карті кілька — шкода, черга від цього коротшою не стає."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "На карте несколько банков за зданием. Выберите точное сообщение.",
+          "uk": "На карті кілька банків за будівлею. Виберіть точне повідомлення."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r1",
+              "text": "There are banks behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r2",
+              "text": "There are a banks behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r3",
+              "text": "There is bank behind the building."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r1",
+              "text": "There are banks behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r2",
+              "text": "There are a banks behind the building."
+            },
+            {
+              "responseId": "en:lesson-04:session-03:intro3:r3",
+              "text": "There is bank behind the building."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На карте несколько банков за зданием. Выберите точное сообщение.",
+          "uk": "На карті кілька банків за будівлею. Виберіть точне повідомлення."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a993b29783a61f41c7c06718af89a8ee926acef1932b5a3aecbc9e7643f74d7"
+}

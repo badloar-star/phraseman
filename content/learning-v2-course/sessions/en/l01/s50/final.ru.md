@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 50 — «Всё сразу: работа, город, дом»
+# Английский · Урок 1 · Занятие 50 — «Работа, начальник и дом»
 
-**Сцена сессии.** Воскресенье, звонок домой. Мама уже спросила, как вы, — теперь ей интересно всё остальное: работа, начальник, квартира, город.
-**Операция:** применение — полные и короткие формы вперемешку
+**Ситуация.** В воскресенье вы звоните маме из Дублина. Она спрашивает о новой работе, начальнике, квартире и городе.
+**Сегодня.** Скажите короткими английскими фразами о работе, начальнике, квартире, городе и себе.
 **Новые слова:** job, boss, flat, city
 **Возвращаются:** new, small, expensive, kind, tired
 
@@ -11,17 +11,17 @@
 
 ### `It is` можно сжать в `It's`
 
-`job` — «работа»: место, куда вы ходите, и должность, которая там написана. Работа — вещь, поэтому про неё `it`.
+`job` — «работа» или «должность»: то, чем вы зарабатываете на жизнь. О работе говорят `it`.
 
 `It is new` — «она новая». В быстрой речи два слова слипаются: `It's new`. Обе формы верные.
 
-А вот `its` без значка — совсем другое слово, «его». Значок заменяет букву `i` из `is`.
+А вот `its` без апострофа — совсем другое слово: «его» или «её». Апостроф заменяет букву `i` из `is`.
 
 **Мама не знает, давно ли вы там. Скажите, что работа новая.**
 
 - ✅ **It's new.**
-- ❌ It new. — *Пропала связка. Значок `'` заменяет `i` из `is`, а не всё `is` целиком.*
-- ❌ Its new. — *Без значка `its` — это «его, чьё». А нужно `it's`, короткое `it is`.*
+- ❌ It new. — *После `it` не хватает `is`. В короткой форме оно прячется в `It's`.*
+- ❌ Its new. — *Без апострофа `its` значит «его» или «её». Здесь нужно `it's`: короткое `it is`.*
 
 ---
 
@@ -31,14 +31,14 @@
 
 `boss` — «начальник». Это человек, значит `he` или `she`, а не `it`.
 
-`kind` — «добрый». `He is kind`, или коротко — `He's kind`. Сокращается `is` и приклеивается к тому, кто впереди.
+`kind` — «добрый». `He is kind`, или коротко — `He's kind`. В короткой форме `is` присоединяется к `he`.
 
 Начальник не добрый? Тогда `He isn't kind`: тут `is` слиплось с `not`.
 
 **Мама спрашивает, какой он. Он вам нравится — скажите, что добрый.**
 
 - ✅ **He's kind.**
-- ❌ He kind. — *Связка выпала. По-русски «он добрый» обходится без «есть», по-английски — нет.*
+- ❌ He kind. — *После `he` не хватает `is`. По-английски нужно `He is kind` или `He's kind`.*
 - ❌ He's isn't kind. — *Тут `is` дважды. Что-то одно: `He's kind` или `He isn't kind`.*
 
 ---
@@ -47,7 +47,7 @@
 
 ### Сказать «не» можно двумя путями
 
-`flat` — «квартира», `city` — «город». Вещи, значит про них `it`.
+`flat` — «квартира», `city` — «город». И квартира, и город в таких фразах называются словом `it`.
 
 Квартира маленькая — `It's small`. Дорогая — `It's expensive`.
 
@@ -61,85 +61,131 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (22 задания, поддержка убывает)
 
 **1 · Карточка слова — job**
-> **job** — «работа». Место, куда вы ходите пять дней в неделю, и должность, которая там написана. Не про действие, а про место.
+<!-- interaction_id: en:lesson-01:session-50:i01; family: listen_choose -->
+> **job** — «работа» или «должность»: то, чем вы зарабатываете на жизнь.
 
-**2 · Послушайте и выберите — job**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-50:i02; family: listen_choose -->
 🔊 *job* → **job** · jog · joke
-- jog — *«Бег трусцой» — занятие, а не место работы.*
+- jog — *«Бег трусцой» — это занятие, а не работа или должность.*
 - joke — *«Шутка». Похоже началом, но это не про работу.*
 
 **3 · Карточка слова — boss**
+<!-- interaction_id: en:lesson-01:session-50:i03; family: listen_choose -->
 > **boss** — «начальник». Тот, кто говорит, что делать, и подписывает отпуск.
 
-**4 · Послушайте и выберите — boss**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-50:i04; family: listen_choose -->
 🔊 *boss* → **boss** · bus · box
 - bus — *«Автобус» — транспорт, а не человек.*
 - box — *«Коробка». Тоже вещь, а `boss` — человек.*
 
 **5 · Вставьте слово — мама спрашивает, какая работа**
+<!-- interaction_id: en:lesson-01:session-50:i05; family: context_gap_grammar -->
 It's ___ . → **new** · kind · tired
 - kind — *«Добрый» — это про человека. Работа доброй не бывает.*
-- tired — *«Устал» — тоже про человека. Устать может кто-то, а не работа.*
+- tired — *«Устал» — тоже про человека. Уставать может человек, а не работа.*
 
 **6 · Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится**
+<!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->
 Плитки: `kind` `He's` `not` `is` → **He's kind.**
 
 **7 · Карточка слова — flat**
+<!-- interaction_id: en:lesson-01:session-50:i07; family: listen_choose -->
 > **flat** — «квартира». Так говорят в Британии и Ирландии; американцы скажут `apartment`. В Дублине привычнее `flat`.
 
-**8 · Послушайте и выберите — flat**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-50:i08; family: listen_choose -->
 🔊 *flat* → **flat** · fat · flag
 - fat — *«Толстый» — про человека, а не про жильё.*
 - flag — *Это «флаг». Прозвучало `flat` — «квартира».*
 
 **9 · Карточка слова — city**
+<!-- interaction_id: en:lesson-01:session-50:i09; family: listen_choose -->
 > **city** — «город». Большой, с улицами и людьми, — Дублин, Москва, Варшава.
 
-**10 · Послушайте и выберите — city**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-50:i10; family: listen_choose -->
 🔊 *city* → **city** · sit · seat
 - sit — *Это «сидеть». Прозвучало `city` — «город».*
 - seat — *Это «сиденье». Прозвучало `city` — «город».*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-50:i11; family: speed_match -->
 job — работа · boss — начальник · flat — квартира · city — город
 
 **12 · Вставьте слово — квартира стоит дороже, чем вы рассчитывали**
+<!-- interaction_id: en:lesson-01:session-50:i12; family: context_gap_grammar -->
 It's ___ . → **expensive** · small · new
 - small — *«Маленькая» — правда, но мама спросила про цену, а не про метры.*
 - new — *«Новая» — не про деньги. Дорого — это `expensive`.*
 
 **13 · Послушайте и соберите — «она не маленькая», про город**
+<!-- interaction_id: en:lesson-01:session-50:i13; family: listen_build_dictation -->
 🔊 *It isn't small.* Плитки: `isn't` `It` `small` `is` → **It isn't small.**
 
 **14 · Соберите фразу — «начальник не добрый»**
+<!-- interaction_id: en:lesson-01:session-50:i14; family: phrase_builder -->
 Плитки: `He` `isn't` `kind` `is` → **He isn't kind.**
 
 **15 · Вставьте слово — мама спрашивает, как вы после недели**
+<!-- interaction_id: en:lesson-01:session-50:i15; family: context_gap_grammar -->
 I'm ___ . → **tired** · expensive · small
 - expensive — *«Дорогой» — про цену вещей. О себе так не говорят.*
 - small — *«Маленький» — про размер. Мама спрашивала про силы.*
 
-**16 · Скажите вслух — рассказываете про квартиру и город**
-🎙 **It's small. It's expensive. It's new.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-50:i16:s01; family: scripted_repeat_compare -->
+Мама спрашивает о вашей квартире. Скажите, что она маленькая.
 
-**17 · Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится**
-🎙 Мама просит рассказать всё сразу: работа новая, начальник добрый, квартира маленькая, вы устали.
-**It's new. He's kind. It's small. I'm tired.**
+🎙 **It's small.**
+
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-50:i16:s02; family: scripted_repeat_compare -->
+Мама спрашивает о цене квартиры. Скажите, что она дорогая.
+
+🎙 **It's expensive.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-50:i16:s03; family: scripted_repeat_compare -->
+Мама спрашивает о вашей работе. Скажите, что она новая.
+
+🎙 **It's new.**
+
+**19 · Соберите фразу — вы показываете другу новую вещь**
+<!-- interaction_id: en:lesson-01:session-50:i17:s01; family: phrase_builder -->
+Плитки: `It's` `new.` `small.` `are` → **It's new.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-50:i17:s02; family: scripted_repeat_compare -->
+Мама спрашивает о начальнике. Скажите, что он добрый.
+
+🎙 **He's kind.**
+
+**21 · Соберите фразу — вы описываете маленькую вещь на столе**
+<!-- interaction_id: en:lesson-01:session-50:i17:s03; family: phrase_builder -->
+Плитки: `It's` `small.` `new.` `are` → **It's small.**
+
+**22 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-50:i17:s04; family: scripted_repeat_compare -->
+Мама спрашивает, как вы после первой недели. Скажите, что устали.
+
+🎙 **I'm tired.**
 
 ---
 
 ## Для сборщика
 
 new_words:
-job — работа — место, куда вы ходите пять дней в неделю, и должность, которая там написана; не про действие, а про место
+job — работа или должность — то, чем вы зарабатываете на жизнь
 boss — начальник — тот, кто говорит, что делать, и подписывает отпуск
 flat — квартира — так говорят в Британии и Ирландии; американцы скажут apartment, в Дублине привычнее flat
 city — город — большой, с улицами и людьми: Дублин, Москва, Варшава
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare, 21=phrase_builder, 22=scripted_repeat_compare
 
 ---
 

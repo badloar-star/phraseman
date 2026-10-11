@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о нескольких предметах или местах: `Are there + plural noun?`",
+    "uk": "запитати про кілька предметів або місць: `Are there + plural noun?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Трамвай",
+        "uk": "Трамвай"
+      },
+      "bodyByLocale": {
+        "ru": "`tram` — «трамвай». Один трамвай называется `a tram`, а несколько — `trams`. Это городской рельсовый транспорт, который идёт по рельсам и делает частые остановки на улицах. На схеме трамвай отмечает маршрут внутри города.",
+        "uk": "`tram` — «трамвай». Один трамвай називається `a tram`, а кілька — `trams`. Це міський рейковий транспорт, який їде рейками й часто зупиняється на вулицях. На схемі слово `tram` допомагає впізнати саме міський маршрут."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "На схеме показан городской маршрут с частыми остановками на улицах. Выберите группу слов.",
+          "uk": "На схемі показано міський маршрут із частими зупинками на вулицях. Оберіть групу слів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r1",
+              "text": "a tram"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r2",
+              "text": "a train"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r3",
+              "text": "a bus"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r1",
+              "text": "a tram"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r2",
+              "text": "a train"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro1:r3",
+              "text": "a bus"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На схеме показан городской маршрут с частыми остановками на улицах. Выберите группу слов.",
+          "uk": "На схемі показано міський маршрут із частими зупинками на вулицях. Оберіть групу слів."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос о нескольких трамваях",
+        "uk": "Питання про кілька трамваїв"
+      },
+      "bodyByLocale": {
+        "ru": "`Are there trams?` — «Есть трамваи?». Если предметов несколько, вопрос начинается с `Are there`, а дальше идёт существительное во множественном числе — `trams`. На транспортной карте лучше спросить сразу: карта молчит уверенно, а идти пешком придётся вам.",
+        "uk": "`Are there trams?` — «Є трамваї?». Якщо предметів кілька, запитання починається з `Are there`, а далі йде іменник у множині — `trams`. На транспортній карті краще запитати одразу: карта мовчить упевнено, а йти пішки доведеться вам."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "На карте нужно спросить о нескольких трамваях. Выберите вопрос.",
+          "uk": "На карті треба запитати про кілька трамваїв. Оберіть питання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r1",
+              "text": "Are there trams?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r2",
+              "text": "Is there a tram?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r3",
+              "text": "There are trams."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r1",
+              "text": "Are there trams?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r2",
+              "text": "Is there a tram?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro2:r3",
+              "text": "There are trams."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На карте нужно спросить о нескольких трамваях. Выберите вопрос.",
+          "uk": "На карті треба запитати про кілька трамваїв. Оберіть питання."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Трамваи рядом с отелем",
+        "uk": "Трамваї біля готелю"
+      },
+      "bodyByLocale": {
+        "ru": "`Are there trams near the hotel?` — «Есть трамваи рядом с отелем?». Порядок не меняется: сначала `Are there`, затем `trams`, потом место. `Near the hotel` уточняет точку поиска; оно не меняет множественное число и не превращает вопрос в сообщение.",
+        "uk": "`Are there trams near the hotel?` — «Є трамваї біля готелю?». Порядок не змінюється: спочатку `Are there`, потім `trams`, далі місце. `Near the hotel` уточнює точку пошуку; воно не змінює множину й не перетворює питання на повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Гость у стойки смотрит на отель на карте. Выберите вопрос о трамваях рядом с ним.",
+          "uk": "Гість біля стійки дивиться на готель на карті. Оберіть питання про трамваї поруч."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r1",
+              "text": "Are there trams near the hotel?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r2",
+              "text": "Are there a tram near the hotel?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r3",
+              "text": "There are trams near the hotel?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r1",
+              "text": "Are there trams near the hotel?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r2",
+              "text": "Are there a tram near the hotel?"
+            },
+            {
+              "responseId": "en:lesson-04:session-11:intro3:r3",
+              "text": "There are trams near the hotel?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Гость у стойки смотрит на отель на карте. Выберите вопрос о трамваях рядом с ним.",
+          "uk": "Гість біля стійки дивиться на готель на карті. Оберіть питання про трамваї поруч."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b05453d8620586fb2e837774072615d4829e3331525582f3955a42821baa3829"
+}

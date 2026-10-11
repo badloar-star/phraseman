@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 54 — «Квартира: орендодавець, орендна плата, правила»
+# Англійська · Урок 2 · Заняття 54 — «Квартира: орендодавець, орендна плата, правила»
 
-**Сцена сесії.** У неділю ввечері ви з другом прийшли подивитися квартиру в Дубліні. Вас зустрічає жінка, яка показує квартиру; поруч перебуває ще один чоловік. Ви з’ясовуєте, хто здає квартиру, скільки коштує оренда та які тут правила.
+**Сцена заняття.** У неділю ввечері ви з другом прийшли подивитися квартиру в Дубліні. Вас зустрічає жінка, яка показує квартиру; поруч перебуває ще один чоловік. Ви з’ясовуєте, хто здає квартиру, скільки коштує оренда та які тут правила.
 
-**Операція:** знайомі запитання з `be` під час розмови про оренду  
+**Як сказати:** знайомі запитання з `be` під час розмови про оренду  
 **Нові слова:** landlord, rent  
 **Повертаються:** flat, price, rules
 
@@ -50,130 +50,89 @@
 
 ---
 
-## Практика (17 завдань, підтримки поступово меншає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — landlord**
-> **landlord** — «орендодавець», власник, який здає житло. У розмові про оренду квартири це слово називає людину, в якої ви її винаймаєте. Тут ідеться про людину.
+<!-- interaction_id: en:lesson-02:session-54:i01; family: listen_choose -->
+Ціль: `landlord`
 
 **2 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *landlord* → **landlord** · landmark · landslide
-- landmark — *Це «орієнтир». Друга частина починається зі звука «м», для якого губи змикаються. У `landlord` після `land` одразу звучить «л».*
-- landslide — *Це «зсув». Друга частина починається зі сполуки «сл». У записі після `land` одразу звучить «л»: `landlord`.*
+<!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
+Ціль: `landlord`
+Варіанти: `landlord` · `landmark` · `landslide`
 
 **3 · Складіть фразу — друг указує на чоловіка, який відповідає на запитання; уточніть, чи він орендодавець**
-Плитки: `landlord` `he` `the` `Is` → **Is he the landlord?**
+<!-- interaction_id: en:lesson-02:session-54:i03; family: phrase_builder -->
+Ціль: `Is he the landlord?`
 
 **4 · Картка слова — rent**
-> **rent** — «орендна плата», сума, яку регулярно сплачують за користування чужим житлом. Тут це назва плати. Початковий звук такий самий, як у `ready` — «готовий».
+<!-- interaction_id: en:lesson-02:session-54:i04; family: listen_choose -->
+Ціль: `rent`
 
 **5 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *rent* → **rent** · lent · sent
-- lent — *Це «позичив». Перший звук такий самий, як у `landlord`. У записі початок звучить як у `ready`: `rent`.*
-- sent — *Це «надіслав», зі звуком «с» на початку. У записі перший звук такий самий, як у `ready`: `rent`.*
+<!-- interaction_id: en:lesson-02:session-54:i05; family: listen_choose -->
+Ціль: `rent`
+Варіанти: `rent` · `lent` · `sent`
 
 **6 · Складіть фразу — господар показує суму в оголошенні; уточніть, чи це орендна плата**
-Плитки: `rent` `it` `Is` `the` → **Is it the rent?**
+<!-- interaction_id: en:lesson-02:session-54:i06; family: phrase_builder -->
+Ціль: `Is it the rent?`
 
 **7 · Вставте слово — ви оглянули невелику квартиру; скажіть другові «Квартира маленька»**
-*(`flat` — «квартира»; `small` — «маленька»)*
-The ___ is small. → **flat** · landlord · rules
-- landlord — *Це «орендодавець». Ви описуєте розмір квартири, тому потрібне `flat`.*
-- rules — *Це «правила». Щоб сказати про квартиру, оберіть `flat`: `The flat is small`.*
+<!-- interaction_id: en:lesson-02:session-54:i07; family: context_gap_grammar -->
+Ціль: `The ___ is small.`
+Варіанти: `flat` · `landlord` · `rules`
 
 **8 · Послухайте й виберіть — яка репліка друга прозвучала після огляду**
-🔊 *The flat is quiet.* → **The flat is quiet.** · Is the flat quiet? · The flat is quite small.
-- Is the flat quiet? — *Це запитання. У записі друг повідомляє: спочатку `The flat is`.*
-- The flat is quite small. — *Це «Квартира доволі маленька». У записі після `is` звучить `quiet` — «тиха».*
+<!-- interaction_id: en:lesson-02:session-54:i08; family: listen_choose -->
+Ціль: `The flat is quiet.`
+Варіанти: `The flat is quiet.` · `Is the flat quiet?` · `The flat is quite small.`
 
 **9 · Складіть фразу — господар пояснив правила; уточніть у друга, чи зрозумілі вони йому**
-*(`rules` — «правила»; `clear` — «зрозумілі»)*
-Плитки: `clear` `rules` `Are` `the` → **Are the rules clear?**
+<!-- interaction_id: en:lesson-02:session-54:i09; family: phrase_builder -->
+Ціль: `Are the rules clear?`
 
-**10 · З’єднайте пари — слова для розмови про оренду (Speed Match, 4 пари)**
-flat — квартира · price — ціна · rules — правила · rent — орендна плата
+**10 · З’єднайте пари — слова для розмови про оренду**
+<!-- interaction_id: en:lesson-02:session-54:i10; family: speed_match -->
+Пари: `flat` — квартира · `price` — ціна · `rules` — правила · `rent` — орендна плата
+Ціль: `flat · price · rules · rent`
 
-**11 · Вставте слово — друг запитав, чи той чоловік є орендодавцем; чоловік підтвердив, що здає цю квартиру, коротко дайте відповідь «Так»**
-Yes, he ___ . → **is** · are · am
-- are — *Після `he` у цій короткій відповіді потрібне `is`: `Yes, he is`.*
-- am — *Форма `am` поєднується з `I`. Тут ви відповідаєте про чоловіка: `he is`.*
+**11 · Вставте слово — Лена запитала, чи здає цю квартиру Михайло; Михайло підтвердив, коротко дайте відповідь «Так»**
+<!-- interaction_id: en:lesson-02:session-54:i11; family: context_gap_grammar -->
+Ціль: `Yes, he ___ .`
+Варіанти: `is` · `are` · `am`
 
-**12 · Вставте слово — в оголошенні та на аркуші господаря вказано різні суми; уточніть, чи правильно зазначено ціну в оголошенні**
-*(`price` — «ціна»; `right` — «правильна»)*
-Is the ___ right? → **price** · landlord · rules
-- landlord — *Це «орендодавець». Ви перевіряєте вказану ціну, тому потрібне `price`.*
-- rules — *Це «правила». Зараз ідеться про суму в оголошенні: `Is the price right?`*
+**12 · Складіть фразу — Лена звіряє оголошення з аркушем Михайла: суми різні; запитайте, чи правильно зазначено ціну**
+<!-- interaction_id: en:lesson-02:session-54:i12; family: phrase_builder -->
+Ціль: `Is the price right?`
+Ряд: `Is` · `the` · `price` · `right`
 
 **13 · Послухайте й складіть — господар відійшов, а ви затрималися біля входу; друг повідомляє, де він**
-🔊 *The landlord is inside.* Плитки: `inside` `landlord` `is` `The` → **The landlord is inside.**
-*(`inside` — «усередині»)*
+<!-- interaction_id: en:lesson-02:session-54:i13; family: listen_build_dictation -->
+Ціль: `The landlord is inside.`
 
 **14 · Вставте слово — ви обговорили правила з другом і обоє їх зрозуміли; повідомте, що правила зрозумілі**
-The rules ___ clear. → **are** · is · am
-- is — *У цьому повідомленні з `the rules` потрібна форма `are`: `The rules are clear`.*
-- am — *Форма `am` поєднується з `I`. Тут ви говорите про правила, тому потрібне `are`.*
+<!-- interaction_id: en:lesson-02:session-54:i14; family: context_gap_grammar -->
+Ціль: `The rules ___ clear.`
+Варіанти: `are` · `is` · `am`
 
-**15 · Скажіть уголос — друг запитує, чи впевнені ви у своєму виборі квартири; ви ще сумніваєтеся, скажіть «Я не впевнений» (`sure` — «впевнений»)**
-🎙 **I am not sure.** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-54:i15; family: scripted_repeat_compare -->
+Ціль: `I am not sure.`
 
-**16 · Скажіть уголос — ви хочете уточнити в друга, чи тепло у квартирі; запитайте «У квартирі тепло?» (`warm` — «тепла»)**
-🎙 **Is the flat warm?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-54:i16; family: scripted_repeat_compare -->
+Ціль: `Is the flat warm?`
 
-**17 · Складіть фразу — ви хочете поставити господареві ще одне запитання; зверніться до жінки, яка показувала квартиру, й уточніть, чи зайнятий зараз орендодавець**
-*(`excuse me` — «перепрошую», звертання для привернення уваги; `busy` — «зайнятий»)*
-Плитки: `busy` `Excuse me` `Are` `the` `landlord` `Is` → **Excuse me. Is the landlord busy?**
-*(плитка `Are` зайва: у цьому запитанні про орендодавця потрібне `Is`)*
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-54:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Excuse me.`
 
----
+**18 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-02:session-54:i17:s02; family: phrase_builder -->
+Ціль: `Is the landlord busy?`
 
-## Для збирача
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=listen_choose, 3=phrase_builder, 4=listen_choose, 5=listen_choose, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=phrase_builder
 
-new_words:
-landlord — орендодавець, власник, який здає житло
-rent — орендна плата; у цій сесії іменник
-
-modes: 1=word_card, 2=listen_choose, 3=phrase_builder, 4=word_card, 5=listen_choose, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно є ПРАВИЛЬНОЮ відповіддю |
-|---|---|---|
-| flat | 7, 8, 10, 16 | 7, 8, 10, 16 |
-| price | 10, 12 | 10, 12 |
-| rules | 7, 9, 10, 12, 14 | 9, 10, 14 |
-
-Усі заявлені повернення мають переклад, щонайменше дві появи та правильне вживання. Нові слова проходять послідовності **landlord: 1 → 2 → 3**, **rent: 4 → 5 → 6**.
-
-**2. Сторінки інтро**
-
-| сторінка | правильна відповідь | чи є вона в поясненні |
-|---|---|---|
-| Інтро 1 | Who is the landlord? | так |
-| Інтро 2 | What is the rent? | так |
-| Інтро 3 | What are the rules? | так |
-
-Повні правильні відповіді інтро не повторюються в практиці. Гумор третього інтро пов’язаний із вибором `are` у запитанні про правила.
-
-**3. Дошка пар**
-
-| слово | введення | відпрацювання до завдання 10 |
-|---|---|---|
-| flat | урок 1, сесія 50 | 7, 8 |
-| price | урок 2, сесія 25 | переклад в інтро 2; слово введено раніше |
-| rules | урок 2, сесія 28 | 9 |
-| rent | картка 4 | 5, 6 |
-
-**4. Складання й фінал**
-
-П’ять складань: **3, 6, 9, 13, 17**. Серед них запитання про людину, суму й зрозумілість правил, повідомлення на слух і запитання зі звертанням та зайвою плиткою. Каркаси не повторюються.
-
-У завданні 11 зберігається `Yes, he`, а варіанти перевіряють форму `is / are / am`. Голосові завдання містять по одній репліці. У фіналі з’ясовується, чи зайнятий орендодавець; відомості про те, що він усередині, цього не розкривають. Попереднє голосове завдання не містить фінальної відповіді.
-
-**5. Словникова перевірка варіантів на слух**
-
-Для завдання 2 звірено початок другої частини та значення: [landlord](https://dictionary.cambridge.org/us/pronunciation/english/landlord), [landmark](https://dictionary.cambridge.org/dictionary/english/landmark), [landslide](https://dictionary.cambridge.org/dictionary/english/landslide). Для завдання 5 звірено різні початкові звуки: [rent](https://dictionary.cambridge.org/pronunciation/english/rent), [lent](https://dictionary.cambridge.org/us/dictionary/english/lent), [sent](https://dictionary.cambridge.org/dictionary/english/sent). Розрізнення не спирається на кінцевий приголосний або вимову `r` після голосного.
-
-Значення `rent` обмежено платою за оренду; `landlord` означає власника, який здає житло. Їх звірено за [статтею rent](https://dictionary.cambridge.org/dictionary/english/rent) і [статтею landlord](https://dictionary.cambridge.org/dictionary/english/landlord). Фактичне аудіо за текстом не перевірялося.

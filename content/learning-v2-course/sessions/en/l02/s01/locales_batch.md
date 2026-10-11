@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 1 — «Are you»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 1 — «Are you»
 
-**Сцена сесії.** Суботній ранок у хостелі. Сусід по кімнаті вже на ногах і засипає вас запитаннями, поки ви намагаєтеся зрозуміти, де ви і котра година.
+**Сцена заняття.** Суботній ранок у хостелі. Сусід по кімнаті вже на ногах і засипає вас запитаннями, поки ви намагаєтеся зрозуміти, де ви і котра година.
 
-**Операція:** `Are you + слово` — запитання до співрозмовника
+**Як сказати:** `Are you + слово` — запитання до співрозмовника
 **Нові слова:** thirsty, dizzy
 **Повертаються:** awake, hungry, lost
 
@@ -58,75 +59,90 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — awake**
-> **awake** — «прокинувся, не спить». Очі розплющені, а чи міркуєте ви — то вже інше питання.
+<!-- interaction_id: en:lesson-02:session-01:i01; family: listen_choose -->
+Ціль: `awake`
 
-**2 · Послухайте і виберіть — awake**
-🔊 *awake* → **awake** · away · wake
-- away — *Це «геть, у від'їзді». Про сон у ньому нічого немає.*
-- wake — *Те саме слово без початкового складу. В `awake` перед ним є ще один короткий склад.*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-01:i02; family: listen_choose -->
+Ціль: `awake`
+Варіанти: `awake` · `away` · `wake`
 
 **3 · Картка слова — thirsty**
-> **thirsty** — «хочу пити». У горлі сухо, і в голові тільки пляшка води.
+<!-- interaction_id: en:lesson-02:session-01:i03; family: listen_choose -->
+Ціль: `thirsty`
 
-**4 · Послухайте і виберіть — thirsty**
-🔊 *thirsty* → **thirsty** · thirty · sixty
-- thirty — *Це «тридцять», число. Мова була не про лічбу, а про воду.*
-- sixty — *Це «шістдесят». Теж число, до спраги стосунку не має.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-01:i04; family: listen_choose -->
+Ціль: `thirsty`
+Варіанти: `thirsty` · `thirty` · `sixty`
 
 **5 · Складіть фразу — запитайте, чи прокинувся сусід**
-Плитки: `you` `Are` `awake` `am` → **Are you awake?**
+<!-- interaction_id: en:lesson-02:session-01:i05; family: phrase_builder -->
+Ціль: `Are you awake?`
 
 **6 · Картка слова — hungry**
-> **hungry** — «голодний». Шлунок уже подає голос, а сніданку немає.
+<!-- interaction_id: en:lesson-02:session-01:i06; family: listen_choose -->
+Ціль: `hungry`
 
 **7 · Картка слова — dizzy**
-> **dizzy** — «голова паморочиться». Кімната хитнулася, хоча ви стоїте на місці.
+<!-- interaction_id: en:lesson-02:session-01:i07; family: listen_choose -->
+Ціль: `dizzy`
 
-**8 · Послухайте і виберіть — dizzy**
-🔊 *dizzy* → **dizzy** · busy · lucky
-- busy — *Це «зайнятий». Про самопочуття воно нічого не каже.*
-- lucky — *Це «щасливчик, везучий». До паморочення в голові стосунку не має.*
+**8 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-01:i08; family: listen_choose -->
+Ціль: `dizzy`
+Варіанти: `dizzy` · `busy` · `lucky`
 
 **9 · Вставте слово — сусід простягає бутерброд і питає про їжу**
-Are you ___ ? → **hungry** · dizzy · awake
-- dizzy — *Це про паморочення в голові. Бутерброд тут не допоможе.*
-- awake — *Це «прокинувся». Питають не про це, а про голод.*
+<!-- interaction_id: en:lesson-02:session-01:i09; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `hungry` · `dizzy` · `awake`
 
 **10 · Картка слова — lost**
-> **lost** — «заблукав». Вулиці навколо незнайомі, і куди йти — незрозуміло.
+<!-- interaction_id: en:lesson-02:session-01:i10; family: listen_choose -->
+Ціль: `lost`
 
-**11 · Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся**
-Сусід питає: Are you ___ ? → **lost** · thirsty · hungry
-- thirsty — *Це «хочете пити?». Карта в руках говорить про інше.*
-- hungry — *Це про голод. З картою на розі людина шукає дорогу.*
+**11 · Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає:**
+<!-- interaction_id: en:lesson-02:session-01:i11; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `lost` · `thirsty` · `hungry`
 
-**12 · Вставте слово — початок запитання**
-___ you hungry? → **Are** · Am · Is
-- Am — *Ця форма про себе: `I am`. До співрозмовника вона не йде.*
-- Is — *Ця форма про когось третього. До `you` іде `are`.*
+**12 · Складіть запитання — сусід накриває на стіл і кличе вас їсти**
+<!-- interaction_id: en:lesson-02:session-01:i12; family: phrase_builder -->
+Ціль: `Are you hungry?`
+Плитки: `Are` · `you` · `hungry` · `is`
 
 **13 · Послухайте і складіть — «ви хочете пити?»**
-🔊 *Are you thirsty?* Плитки: `thirsty` `Are` `you` `hungry` → **Are you thirsty?**
+<!-- interaction_id: en:lesson-02:session-01:i13; family: listen_build_dictation -->
+Ціль: `Are you thirsty?`
 
-**14 · З'єднайте пари (Speed Match, 4 пари)**
-awake — прокинувся · thirsty — хочу пити · hungry — голодний · dizzy — голова паморочиться
+**14 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-01:i14; family: speed_match -->
+Пари: `awake` — прокинувся · `thirsty` — хочу пити · `hungry` — голодний · `dizzy` — голова паморочиться
+Ціль: `awake · thirsty · hungry · dizzy`
 
 **15 · Складіть фразу — ви різко встали і схопилися за стіну; сусід питає про голову**
-Плитки: `dizzy` `Are` `you` `are` → **Are you dizzy?**
-*(зайве `are` — пастка: у запитанні зв'язка одна)*
+<!-- interaction_id: en:lesson-02:session-01:i15; family: phrase_builder -->
+Ціль: `Are you dizzy?`
 
-**16 · Складіть фразу без підказки — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав**
-Плитки: `lost` `you` `Are` `not` → **Are you lost?**
-*(плитка `not` зайва: сусід питає прямо, без заперечення)*
+**16 · Промовте одне запитання — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав**
+<!-- interaction_id: en:lesson-02:session-01:i16; family: scripted_repeat_compare -->
+Ціль: `Are you lost?`
 
-**17 · Скажіть уголос — фінал сцени**
-🎙 Сусід на ногах, ви ще ні. Три запитання поспіль:
-**Are you awake? Are you hungry? Are you thirsty?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-01:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Are you awake?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-01:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Are you hungry?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-01:i17:s03; family: scripted_repeat_compare -->
+Ціль: `Are you thirsty?`
 
 ## Для сборщика
 
@@ -134,7 +150,7 @@ new_words:
 thirsty — хочу пити — «хочу пити». У горлі сухо, і в голові тільки пляшка води.
 dizzy — голова паморочиться — «голова паморочиться». Кімната хитнулася, хоча ви стоїте на місці.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=word_card, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=speed_match, 15=phrase_builder, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=context_gap_grammar, 10=listen_choose, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 

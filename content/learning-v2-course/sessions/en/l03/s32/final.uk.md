@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 32 — «Три фрази в музейному кіоску»
+# Англійська · Урок 3 · Заняття 32 — «Три фрази в музейному кіоску»
 
-**Сцена сесії.** Після виставки ви підходите до працівника музейного кіоску по подарунок для друга: на стійці та у вітрині лежать листівка, магніт і брелок. Щоб вибрати один подарунок, ви назвете перший предмет, запитаєте про другий і попросите дати третій.
+**Сцена заняття.** Після виставки ви підходите до працівника музейного кіоску по подарунок для друга: на стійці та у вітрині лежать листівка, магніт і брелок. Щоб вибрати один подарунок, ви назвете перший предмет, запитаєте про другий і попросите дати третій.
 
-**Операція:** checkpoint — вибір між твердженням, запитанням і коротким проханням із `this/that`
+**Як сказати:** checkpoint — вибір між твердженням, запитанням і коротким проханням із `this/that`
 **Нові слова:** postcard, magnet, keyring
 **Для повторення:** this, that, is, a, please
 
@@ -12,9 +12,9 @@
 
 ### Назвати листівку перед вами
 
-`postcard` — «листівка». Листівка лежить на стійці перед вами, тому скажіть: `This is a postcard.` — «Це листівка».
+`postcard` — «листівка». Вона лежить перед вами: `This is a postcard.` — «Це листівка».
 
-Порядок суворий: `this + is + a + предмет`. `This` указує, `is` з’єднує, а `a` показує, що предмет один. Якщо забрати одну ланку, речення перестане працювати.
+Порядок: `this + is + a + предмет`. `This` указує, `is` з’єднує, `a` показує один предмет. Листівка іноді дістається додому пізніше за вас, але `a` в цій фразі запізнюватися не повинно.
 
 **Листівка лежить на стійці перед вами. Назвіть її.**
 
@@ -56,82 +56,96 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — postcard**
-> **postcard** — «листівка». Повідомлення з подорожі, яке іноді повертається додому пізніше за вас.
+<!-- interaction_id: en:lesson-03:session-32:i01; family: listen_choose -->
+Ціль: `postcard`
 
-**2 · Послухайте й виберіть — яке слово назвав працівник кіоску**
-🔊 *postcard* → **postcard** · postcode · postmark · poster
-Значення варіантів: postcard — листівка · postcode — поштовий індекс · postmark — поштовий штемпель · poster — плакат
-- postcode — *Обидва слова починаються з `post`, але далі в записі звучить `card`, а не `code`.*
-- postmark — *Після `post` у записі чути `card`. У `postmark` друга частина — `mark`.*
-- poster — *`poster` коротше й закінчується без частини `card`; у записі прозвучало повне `postcard`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-32:i03; family: scripted_repeat_compare -->
+Ціль: `magnet`
 
-**3 · Картка слова — magnet**
-> **magnet** — «магніт». Маленький сувенір, який тримається за холодильник міцніше за деякі плани.
+**3 · Виберіть назву — що лежить на стійці**
+<!-- interaction_id: en:lesson-03:session-32:i05; family: listen_choose -->
+Значення варіантів: `keyring` — кільце з ключами · `key` — ключ · `magnet` — магніт
+Ціль: `keyring`
+Варіанти: `keyring` · `key` · `magnet`
 
-**4 · Послухайте й виберіть — яке слово назвав працівник кіоску**
-🔊 *magnet* → **magnet** · maggot · magic · market
-Значення варіантів: magnet — магніт · maggot — личинка · magic — магія · market — ринок
-- maggot — *У `magnet` після `g` чути `n`; у `maggot` цього звука немає.*
-- magic — *У `magic` середина звучить як `дж`, а в `magnet` — поєднання `гн`.*
-- market — *`market` починається з `mar-`, а в записі прозвучав початок `mag-`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-32:i02; family: scripted_repeat_compare -->
+Ціль: `postcard`
 
-**5 · Картка слова — keyring**
-> **keyring** — «брелок». Кільце для ключів: один дзвін замість трьох окремих пошуків.
+**5 · Послухайте й виберіть — яке слово назвав працівник кіоску**
+<!-- interaction_id: en:lesson-03:session-32:i04; family: listen_choose -->
+Значення варіантів: `magnet` — магніт · `maggot` — личинка · `magic` — магія · `market` — ринок
+Ціль: `magnet`
+Варіанти: `magnet` · `maggot` · `magic` · `market`
 
-**6 · Послухайте й виберіть — яке слово назвав працівник кіоску**
-🔊 *keyring* → **keyring** · earring · keyhole · keychain
-Значення варіантів: keyring — брелок · earring — сережка · keyhole — замкова щілина · keychain — ланцюжок для ключів
-- earring — *`earring` починається з голосного, а в `keyring` першим чути `k`.*
-- keyhole — *Початок `key` збігається, але далі в записі звучить `ring`, а не `hole`.*
-- keychain — *Початок `key` збігається, але наприкінці прозвучало `ring`, а не `chain`.*
+**6 · Розрізніть слово — keyring або key**
+<!-- interaction_id: en:lesson-03:session-32:i06; family: sound_contrast -->
+Ціль: `keyring`
+Варіанти: `keyring` · `key`
 
 **7 · З’єднайте слова зі значеннями — музейний кіоск**
-postcard — листівка · magnet — магніт · keyring — брелок · key — ключ
+<!-- interaction_id: en:lesson-03:session-32:i07; family: speed_match -->
+Пари: `postcard` — листівка · `magnet` — магніт · `keyring` — брелок · `key` — ключ
+Ціль: `postcard · magnet · keyring · key`
 
-**8 · Поставте у відповідь ціле слово — картка із зображенням і місцем для короткого повідомлення**
-Плитки: `postcard` `postcode` `postmark` `poster` → **postcard**
+**8 · Заповніть прохання — виберіть листівку на стійці**
+<!-- interaction_id: en:lesson-03:session-32:i08; family: context_gap_grammar -->
+Ціль: `This ___, please.`
+Варіанти: `postcard` · `magnet` · `keyring`
 
-**9 · Скажіть уголос — сувенір, який тримається на металевій поверхні**
-🎙 **magnet** — послухайте, повторіть і порівняйте.
+**9 · Розрізніть вказівник — this або that**
+<!-- interaction_id: en:lesson-03:session-32:i09; family: sound_contrast -->
+Ціль: `This`
+Варіанти: `This` · `That`
 
-**10 · Послухайте й поставте у відповідь ціле слово — кільце для кількох ключів**
-🔊 *keyring* Плитки: `keyring` `earring` `keyhole` `keychain` → **keyring**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-32:i10; family: scripted_repeat_compare -->
+Ціль: `This keyring, please.`
 
 **11 · Складіть твердження — листівка лежить на стійці перед вами**
-Плитки: `This` `is` `a` `postcard` `That` `are` `please` → **This is a postcard.**
+<!-- interaction_id: en:lesson-03:session-32:i11; family: phrase_builder -->
+Ціль: `This is a postcard.`
 
 **12 · Послухайте й виберіть точне значення фрази**
-🔊 *That is a magnet.* → **Он магніт.** · Ось магніт. · Он магніт? · Той магніт, будь ласка.
-- Ось магніт. — *У записі прозвучало `That`, а цей варіант передає `This`.*
-- Он магніт? — *У записі порядок `That is`: це твердження, а не запитання.*
-- Той магніт, будь ласка. — *Це прохання вибрати магніт. У записі його просто називають.*
+<!-- interaction_id: en:lesson-03:session-32:i12; family: listen_choose -->
+Ціль: `That is a magnet.`
+Варіанти: `То магніт.` · `Ось магніт.` · `То магніт?` · `Той магніт, будь ласка.`
 
 **13 · Вставте вказівне слово — брелок лежить просто перед вами**
-Is ___ a keyring? → **this** · that · it · a
-- that — *`that` указує на далеку річ. Брелок перед вами, тому потрібне `this`.*
-- it — *Після `Is` тут потрібне вказівне слово для близької речі: `Is this a keyring?`*
-- a — *Артикль уже стоїть перед `keyring`. У пропуску потрібне `this`.*
+<!-- interaction_id: en:lesson-03:session-32:i13; family: context_gap_grammar -->
+Ціль: `Is ___ a keyring?`
+Варіанти: `this` · `that` · `are` · `a`
 
-**14 · Скажіть уголос — листівка стоїть у дальній вітрині**
-🎙 **That postcard, please.** — спочатку вимовте прохання, потім послухайте зразок і порівняйте.
+**14 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-32:i14; family: listen_build_dictation -->
+Ціль: `That postcard, please.`
 
 **15 · Складіть запитання — магніт висить у дальній вітрині**
-Плитки: `Is` `that` `a` `magnet` `this` `are` `please` → **Is that a magnet?**
+<!-- interaction_id: en:lesson-03:session-32:i15; family: phrase_builder -->
+Ціль: `Is that a magnet?`
 
 **16 · Послухайте й виберіть точне значення прохання**
-🔊 *This keyring, please.* → **Цей брелок, будь ласка.** · Той брелок, будь ласка. · Це брелок. · Це брелок?
-- Той брелок, будь ласка. — *У записі прозвучало `This`, а цей варіант передає `That`.*
-- Це брелок. — *Це твердження. У записі звучить коротке прохання з `please`.*
-- Це брелок? — *Це запитання. У записі брелок вибирають, а не запитують, чи це брелок.*
+<!-- interaction_id: en:lesson-03:session-32:i16; family: listen_choose -->
+Ціль: `This keyring, please.`
+Варіанти: `Цей брелок, будь ласка.` · `Той брелок, будь ласка.` · `Це брелок.` · `Це брелок?`
 
-**17 · Фінал — речі переставили: листівка тепер у дальній вітрині, магніт перед вами, брелок на дальній полиці**
-🎙 Спочатку назвіть листівку, запитайте про магніт і попросіть брелок, потім послухайте зразок і порівняйте: **That is a postcard. Is this a magnet? That keyring, please.**
+**17 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-32:i17:s01; family: listen_build_dictation -->
+Ціль: `That is a postcard.`
 
-## Для збирача
-new_words: postcard — листівка — Повідомлення з подорожі, яке іноді повертається додому пізніше за вас.
-new_words: magnet — магніт — Маленький сувенір, який тримається за холодильник міцніше за деякі плани.
-new_words: keyring — брелок — Кільце для ключів: один дзвін замість трьох окремих пошуків.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=phrase_builder, 16=listen_choose, 17=scripted_repeat_compare
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-32:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Is this a magnet?`
+
+**19 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-32:i17:s03; family: phrase_builder -->
+Ціль: `That keyring, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=listen_build_dictation, 15=phrase_builder, 16=listen_choose, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=phrase_builder
+

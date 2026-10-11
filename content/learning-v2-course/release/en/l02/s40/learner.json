@@ -759,13 +759,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг говорит, что шарф оставил стажёр, но вы не запомнили, кто из мужчин стажёр; уточните",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг говорит, что шарф оставил стажёр, но вы не запомнили, кто из мужчин стажёр; уточните",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -792,13 +792,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг ищет руководительницу в комнате, а она вышла; скажите, что её здесь нет",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-40:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг ищет руководительницу в комнате, а она вышла; скажите, что её здесь нет",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -857,5 +857,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0ecdf1ef4510d76c06f2b2c031503e9540c3e5a862141b03c32134c32a793f5f"
+  "learnerFingerprint": "99eb723d5fdb3d143142eef0ff78bd0bcbbeda58dbe556d16044ccb23a688473"
 }

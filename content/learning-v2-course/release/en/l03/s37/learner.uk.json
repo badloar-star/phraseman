@@ -9,13 +9,18 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — building",
-      "responseOptions": [],
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-37:i01:r1",
+          "text": "building"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-37:i01:audio"
       ],
-      "accessibilityLabel": "Картка слова — building",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -27,10 +32,7 @@
           {
             "responseId": "en:lesson-03:session-37:i01:r1",
             "targetText": "building",
-            "meaningByLocale": {
-              "ru": "«здание». Сооружение со стенами и крышей.",
-              "uk": "«будівля». Споруда зі стінами та дахом."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -47,184 +49,122 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-37:i02",
+      "interactionId": "en:lesson-03:session-37:i03",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-37:i02:r1",
-          "text": "building"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i02:r2",
-          "text": "billing"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i02:r3",
-          "text": "builder"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i02:r4",
-          "text": "ceiling"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-37:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i02:audio",
-          "transcript": "building"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i02:r1",
-            "targetText": "building",
-            "meaningByLocale": {
-              "ru": "здание",
-              "uk": "будівля"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i02:r2",
-            "targetText": "billing",
-            "meaningByLocale": {
-              "ru": "выставление счёта",
-              "uk": "виставлення рахунку"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i02:r3",
-            "targetText": "builder",
-            "meaningByLocale": {
-              "ru": "строитель",
-              "uk": "будівельник"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i02:r4",
-            "targetText": "ceiling",
-            "meaningByLocale": {
-              "ru": "потолок",
-              "uk": "стеля"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-37:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `billing` после /l/ сразу идёт гласный, а в середине `building` слышится /d/.",
-              "uk": "У `billing` після /l/ одразу йде голосний, а всередині `building` чути /d/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Оба слова начинаются с `build-`, но `builder` заканчивается частью /ər/, а `building` — слогом /ɪŋ/.",
-              "uk": "Обидва слова починаються з `build-`, але `builder` закінчується частиною /ər/, а `building` — складом /ɪŋ/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i02:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`ceiling` начинается звуком /s/ и долгим /iː/, а `building` — звуком /b/ и коротким /ɪ/.",
-              "uk": "`ceiling` починається звуком /s/ і довгим /iː/, а `building` — звуком /b/ і коротким /ɪ/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-37:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — entrance",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-37:i03:audio"
       ],
-      "accessibilityLabel": "Картка слова — entrance",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-37:i03:audio",
           "transcript": "entrance"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i03:r1",
-            "targetText": "entrance",
-            "meaningByLocale": {
-              "ru": "«вход». Место или дверь, через которые входят.",
-              "uk": "«вхід». Місце або двері, через які входять."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "entrance",
-          "definitionByLocale": {
-            "ru": "«вход». Место или дверь, через которые входят.",
-            "uk": "«вхід». Місце або двері, через які входять."
-          }
-        }
+        "targetPhrase": "entrance",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i05:audio",
+          "transcript": "exit"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "exit",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i02:audio",
+          "transcript": "building"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "building",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-37:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав друг",
+      "prompt": "Послухайте та виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-37:i04:r1",
           "text": "entrance"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i04:r2",
-          "text": "sentence"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i04:r3",
-          "text": "instance"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i04:r4",
-          "text": "engine"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-37:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав друг",
+      "accessibilityLabel": "Послухайте та виберіть слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -236,109 +176,17 @@
           {
             "responseId": "en:lesson-03:session-37:i04:r1",
             "targetText": "entrance",
-            "meaningByLocale": {
-              "ru": "вход",
-              "uk": "вхід"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i04:r2",
-            "targetText": "sentence",
-            "meaningByLocale": {
-              "ru": "предложение",
-              "uk": "речення"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i04:r3",
-            "targetText": "instance",
-            "meaningByLocale": {
-              "ru": "случай",
-              "uk": "випадок"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i04:r4",
-            "targetText": "engine",
-            "meaningByLocale": {
-              "ru": "двигатель",
-              "uk": "двигун"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-37:i04:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`sentence` начинается звуком /s/, а `entrance` — гласным /e/.",
-              "uk": "`sentence` починається звуком /s/, а `entrance` — голосним /e/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i04:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Первый гласный в `instance` — /ɪ/, а `entrance` начинается с /e/.",
-              "uk": "Перший голосний в `instance` — /ɪ/, а `entrance` починається з /e/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i04:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Оба слова начинаются на /en/, но затем в `engine` слышится /dʒ/, а в `entrance` — /tr/.",
-              "uk": "Обидва слова починаються на /en/, але далі в `engine` чути /dʒ/, а в `entrance` — /tr/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-37:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — exit",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-37:i05:audio"
-      ],
-      "accessibilityLabel": "Картка слова — exit",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i05:audio",
-          "transcript": "exit"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i05:r1",
-            "targetText": "exit",
-            "meaningByLocale": {
-              "ru": "«выход». Место или дверь, через которые выходят.",
-              "uk": "«вихід». Місце або двері, через які виходять."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "exit",
+          "word": "entrance",
           "definitionByLocale": {
-            "ru": "«выход». Место или дверь, через которые выходят.",
-            "uk": "«вихід». Місце або двері, через які виходять."
+            "ru": "«вход».",
+            "uk": "«вхід»."
           }
         }
       },
@@ -348,111 +196,137 @@
       "interactionId": "en:lesson-03:session-37:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-37:i06:r1",
-          "text": "exit"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i06:r2",
-          "text": "visit"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i06:r3",
-          "text": "edit"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i06:r4",
-          "text": "exist"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-37:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав друг",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-37:i06:audio",
           "transcript": "exit"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i06:r1",
-            "targetText": "exit",
-            "meaningByLocale": {
-              "ru": "выход",
-              "uk": "вихід"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i06:r2",
-            "targetText": "visit",
-            "meaningByLocale": {
-              "ru": "посещение",
-              "uk": "відвідування"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i06:r3",
-            "targetText": "edit",
-            "meaningByLocale": {
-              "ru": "правка",
-              "uk": "правка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i06:r4",
-            "targetText": "exist",
-            "meaningByLocale": {
-              "ru": "существовать",
-              "uk": "існувати"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-37:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "`visit` начинается звуком /v/, а `exit` — ударной частью /ek-/.",
-              "uk": "`visit` починається звуком /v/, а `exit` — наголошеною частиною /ek-/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "Начало похоже, но в середине `edit` слышится /d/, а в `exit` — /ks/.",
-              "uk": "Початок схожий, але всередині `edit` чути /d/, а в `exit` — /ks/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i06:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть — яке слово назвав",
-            "feedbackByLocale": {
-              "ru": "В `exist` ударение падает на второй слог, а `exit` начинается ударной частью /ek-/.",
-              "uk": "В `exist` наголос падає на другий склад, а `exit` починається наголошеною частиною /ek-/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "exit",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i08:audio",
+          "transcript": "building"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "building",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i10:audio",
+          "transcript": "entrance"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "entrance",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i11:audio",
+          "transcript": "exit"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "exit",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-37:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -504,9 +378,9 @@
           "bicycle"
         ],
         "rightColumn": [
-          "здание",
-          "вход",
-          "выход",
+          "будівля",
+          "вхід",
+          "вихід",
           "велосипед"
         ],
         "pairingKey": "pair_id",
@@ -524,102 +398,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-37:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення фрази про ближній корпус",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-37:i08:r1",
-          "text": "Це будівля"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i08:r2",
-          "text": "Це будівлі"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i08:r3",
-          "text": "Це вхід"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i08:r4",
-          "text": "Це вихід"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-37:i08:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення фрази про ближній корпус",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i08:audio",
-          "transcript": "This is a building."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i08:r1",
-            "targetText": "Це будівля",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i08:r2",
-            "targetText": "Це будівлі",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i08:r3",
-            "targetText": "Це вхід",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i08:r4",
-            "targetText": "Це вихід",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-37:i08:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "В записи слышно `this is` и `a building`: называют одно здание.",
-              "uk": "У записі чути `this is` і `a building`: називають одну будівлю."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i08:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "Названо `building` — здание, а не `entrance` — вход.",
-              "uk": "Названо `building` — будівлю, а не `entrance` — вхід."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i08:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "Названо `building` — здание, а не `exit` — выход.",
-              "uk": "Названо `building` — будівлю, а не `exit` — вихід."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-03:session-37:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -670,12 +450,12 @@
             "text": "That"
           }
         ],
-        "testedDimension": "Вставте вказівне слово — поруч кілька ко",
+        "testedDimension": "Вставьте указатель — рядом находятся нес",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — поруч кілька ко",
+            "testedDimension": "Вставьте указатель — рядом находятся нес",
             "feedbackByLocale": {
               "ru": "`Those are buildings` называет несколько зданий дальше. Эти корпуса рядом, поэтому нужно `These`.",
               "uk": "`Those are buildings` називає кілька будівель далі. Ці корпуси поруч, тому потрібно `These`."
@@ -684,7 +464,7 @@
           {
             "responseId": "en:lesson-03:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — поруч кілька ко",
+            "testedDimension": "Вставьте указатель — рядом находятся нес",
             "feedbackByLocale": {
               "ru": "`This` относится к одному предмету и требует `is`. Здесь зданий несколько.",
               "uk": "`This` стосується одного предмета й потребує `is`. Тут будівель кілька."
@@ -693,140 +473,13 @@
           {
             "responseId": "en:lesson-03:session-37:i09:r4",
             "correct": false,
-            "testedDimension": "Вставте вказівне слово — поруч кілька ко",
+            "testedDimension": "Вставьте указатель — рядом находятся нес",
             "feedbackByLocale": {
               "ru": "`That` относится к одному дальнему предмету и требует `is`. Здесь несколько зданий рядом.",
               "uk": "`That` стосується одного далекого предмета й потребує `is`. Тут кілька будівель поруч."
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-37:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть опис — через площу одна будівля",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть опис — через площу одна будівля",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That is a building.",
-        "localizedMeaning": {
-          "ru": "Соберите описание — через площадь находится одно здание",
-          "uk": "Складіть опис — через площу одна будівля"
-        },
-        "orderedTokens": [
-          "That",
-          "is",
-          "a",
-          "building"
-        ],
-        "authoredDistractorTokens": [
-          "This",
-          "These",
-          "are"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення фрази про входи",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-37:i11:r1",
-          "text": "Це входи"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i11:r2",
-          "text": "Це вхід"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i11:r3",
-          "text": "Це будівлі"
-        },
-        {
-          "responseId": "en:lesson-03:session-37:i11:r4",
-          "text": "Це виходи"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-37:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення фрази про входи",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i11:audio",
-          "transcript": "Those are entrances."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-37:i11:r1",
-            "targetText": "Це входи",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i11:r2",
-            "targetText": "Це вхід",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i11:r3",
-            "targetText": "Це будівлі",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i11:r4",
-            "targetText": "Це виходи",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-37:i11:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "В записи слышно `those are` и `entrances`: говорят о нескольких входах.",
-              "uk": "У записі чути `those are` і `entrances`: ідеться про кілька входів."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i11:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "Число совпадает, но названо `entrances` — входы, а не `buildings`.",
-              "uk": "Число збігається, але названо `entrances` — входи, а не `buildings`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-37:i11:r4",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
-            "feedbackByLocale": {
-              "ru": "Названо `entrances`, а выходы по-английски — `exits`.",
-              "uk": "Названо `entrances`, а виходи англійською — `exits`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -843,7 +496,7 @@
       "accessibilityLabel": "Складіть опис — один вхід поруч зі схемою",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is an entrance.",
+        "targetPhrase": "This is a building.",
         "localizedMeaning": {
           "ru": "Соберите описание — один вход рядом со схемой",
           "uk": "Складіть опис — один вхід поруч зі схемою"
@@ -851,8 +504,8 @@
         "orderedTokens": [
           "This",
           "is",
-          "an",
-          "entrance"
+          "a",
+          "building"
         ],
         "authoredDistractorTokens": [
           "That",
@@ -873,19 +526,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-37:i13:r1",
-          "text": "Це виходи"
+          "text": "Это выходы"
         },
         {
           "responseId": "en:lesson-03:session-37:i13:r2",
-          "text": "Це вихід"
+          "text": "Это выход"
         },
         {
           "responseId": "en:lesson-03:session-37:i13:r3",
-          "text": "Це входи"
+          "text": "Это входы"
         },
         {
           "responseId": "en:lesson-03:session-37:i13:r4",
-          "text": "Це будівлі"
+          "text": "Это здания"
         }
       ],
       "mediaIds": [],
@@ -903,22 +556,22 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-37:i13:r1",
-            "targetText": "Це виходи",
+            "targetText": "Это выходы",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-37:i13:r2",
-            "targetText": "Це вихід",
+            "targetText": "Это выход",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-37:i13:r3",
-            "targetText": "Це входи",
+            "targetText": "Это входы",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-37:i13:r4",
-            "targetText": "Це будівлі",
+            "targetText": "Это здания",
             "meaningByLocale": null
           }
         ],
@@ -927,7 +580,7 @@
           {
             "responseId": "en:lesson-03:session-37:i13:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "В записи слышно `these are` и `exits`: говорят о нескольких выходах.",
               "uk": "У записі чути `these are` і `exits`: ідеться про кілька виходів."
@@ -936,7 +589,7 @@
           {
             "responseId": "en:lesson-03:session-37:i13:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "Число совпадает, но названо `exits` — выходы, а не `entrances`.",
               "uk": "Число збігається, але названо `exits` — виходи, а не `entrances`."
@@ -945,7 +598,7 @@
           {
             "responseId": "en:lesson-03:session-37:i13:r4",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть точне значення фра",
+            "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
               "ru": "Названо `exits`, а здания по-английски — `buildings`.",
               "uk": "Названо `exits`, а будівлі англійською — `buildings`."
@@ -996,21 +649,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — через площу один вхід",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — через площу один вхід",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-37:i15:audio",
-          "transcript": "That is an entrance."
+          "transcript": "Those are entrances."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "That is an entrance.",
+        "targetPhrase": "Those are entrances.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1024,33 +677,30 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-37:i16",
+      "interactionId": "en:lesson-03:session-37:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть два описи",
+      "prompt": "Послухайте та складіть одну фразу — крок 1 із 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-37:i16:audio"
+        "en:lesson-03:session-37:i16:s01:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть два описи",
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 1 із 2",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i16:audio",
-          "transcript": "Those are buildings. These are exits."
+          "audioTargetId": "en:lesson-03:session-37:i16:s01:audio",
+          "transcript": "Those are buildings."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Those are buildings. These are exits.",
+        "hiddenTargetPhrase": "Those are buildings.",
         "orderedTokens": [
           "Those",
           "are",
-          "buildings.",
-          "These",
-          "are",
-          "exits"
+          "buildings."
         ],
         "authoredDistractorTokens": [
           "This",
@@ -1062,26 +712,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-37:i17",
+      "interactionId": "en:lesson-03:session-37:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — назвіть орієнтири біля другої точки комплексу",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-37:i17:audio"
+        "en:lesson-03:session-37:i16:s02:audio"
       ],
-      "accessibilityLabel": "Фінал — назвіть орієнтири біля другої точки комплексу",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-37:i17:audio",
-          "transcript": "Those are buildings. This is an entrance. That is an exit."
+          "audioTargetId": "en:lesson-03:session-37:i16:s02:audio",
+          "transcript": "These are exits."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are buildings. This is an entrance. That is an exit.",
+        "targetPhrase": "These are exits.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1093,13 +743,105 @@
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть одну фразу — крок 1 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть одну фразу — крок 1 із 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are buildings.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу — крок 1 із 3"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "buildings."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i17:s02:audio",
+          "transcript": "This is an entrance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is an entrance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-37:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-37:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послухайте та складіть одну фразу — крок 3 із 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-37:i17:s03:audio",
+          "transcript": "That is an exit."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is an exit.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "an",
+          "exit."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "996bd579f696f4a56909d60fd779e1416a9fbf1b70fba3abebb4857626a3bffe"
+  "learnerFingerprint": "7a4628b38c0b210785a1d7301b452442e5232a47b26408999336192f93c0a3cc"
 }

@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-28:i01",
-    "correctText": "",
+    "correctText": "suitcase",
+    "correctResponseId": "en:lesson-03:session-28:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:i03",
+    "correctText": "backpack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:i05",
+    "correctText": "wallet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i02",
     "correctText": "suitcase",
-    "correctResponseId": "en:lesson-03:session-28:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-28:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,18 +25,13 @@
     "correctResponseId": "en:lesson-03:session-28:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-28:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-28:i06",
+    "correctText": "wallet",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-28:i06",
-    "correctText": "wallet",
-    "correctResponseId": "en:lesson-03:session-28:i06:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-28:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-28:i07:p1=suitcase\nen:lesson-03:session-28:i07:p2=backpack\nen:lesson-03:session-28:i07:p3=wallet\nen:lesson-03:session-28:i07:p4=bag",
     "correctResponseId": null
   },
   {
@@ -51,37 +51,47 @@
   },
   {
     "interactionId": "en:lesson-03:session-28:i11",
-    "correctText": "Give me this suitcase.",
+    "correctText": "This suitcase, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i12",
-    "correctText": "Give me that backpack.",
+    "correctText": "That backpack, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i13",
-    "correctText": "this",
+    "correctText": "This",
     "correctResponseId": "en:lesson-03:session-28:i13:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i14",
-    "correctText": "Передай мне эту сумку",
+    "correctText": "Эту сумку, пожалуйста",
     "correctResponseId": "en:lesson-03:session-28:i14:r1"
   },
   {
     "interactionId": "en:lesson-03:session-28:i15",
-    "correctText": "Give me that phone.",
+    "correctText": "That phone, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-28:i16",
-    "correctText": "me",
+    "correctText": "This",
     "correctResponseId": "en:lesson-03:session-28:i16:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-28:i17",
-    "correctText": "Give me this suitcase. Give me that backpack. Give me this wallet.",
+    "interactionId": "en:lesson-03:session-28:i17:s01",
+    "correctText": "This suitcase, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:i17:s02",
+    "correctText": "That backpack, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-28:i17:s03",
+    "correctText": "This wallet, please.",
     "correctResponseId": null
   }
 ]

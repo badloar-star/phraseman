@@ -1,0 +1,6 @@
+import assert from "node:assert/strict"; import fs from "node:fs"; import path from "node:path"; import { fileURLToPath } from "node:url"; import test from "node:test";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),".."), session="en:lesson-01:session-12";
+const data=()=>JSON.parse(fs.readFileSync(path.join(root,"sessions/en/l01/s12/practice.atomic.json"),"utf8"));
+const choices=["i02:r1","i04:r1","i05:r1","i08:r1","i09:r1","i10:r1","i15:r1"],tiles=["i06:tile:d1","i12:tile:d1","i13:tile:d1","i16:tile:d1","i17:tile:d1"];
+test("L01/S12 explains every correct choice",()=>{for(const locale of ["ru","uk"]){const all=data().interactionsByLocale[locale].flatMap(x=>x.modePayload?.choiceFeedback??[]);for(const suffix of choices)assert.equal(all.some(x=>x.responseId===`${session}:${suffix}`&&x.correct&&x.feedbackByLocale?.ru&&x.feedbackByLocale?.uk),true,`${locale}:${suffix}`);}});
+test("L01/S12 explains each unused tile",()=>{for(const locale of ["ru","uk"]){const all=data().interactionsByLocale[locale].flatMap(x=>x.modePayload?.slotFeedback??[]);for(const suffix of tiles)assert.equal(all.some(x=>x.responseId===`${session}:${suffix}`&&x.feedbackByLocale?.ru&&x.feedbackByLocale?.uk),true,`${locale}:${suffix}`);}});

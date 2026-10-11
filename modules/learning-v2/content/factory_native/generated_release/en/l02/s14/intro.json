@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-02:session-14",
   "learningOutcomeByLocale": {
     "ru": "перенос — вопрос про вещь: `Is it …?`",
-    "uk": ""
+    "uk": "перенесення — питання про річ: `Is it …?`"
   },
   "pages": [
     {
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-02:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Короткий ответ",
-        "uk": "Коротка відповідь"
+        "ru": "Отрицательный ответ про вещь",
+        "uk": "Заперечна відповідь про річ"
       },
       "bodyByLocale": {
-        "ru": "Продавец спрашивает: `Is it cheap?` Отвечать целиком не нужно — слово `cheap` он только что произнёс сам.\n\nОстаётся `it is`, и это весь ответ: `Yes, it is.` А если нет — между ними встаёт `not`: `No, it is not.`",
-        "uk": "Продавець питає: `Is it cheap?` Відповідати повністю не треба — слово `cheap` він щойно сказав сам.\n\nЛишається `it is`, і це вся відповідь: `Yes, it is.` А якщо ні — між ними стає `not`: `No, it is not.`"
+        "ru": "`sold` — «продано». Продавец спрашивает: `Is it sold?` Если товар свободен, ответьте полной отрицательной фразой: `No, it is not sold.` После `No` сначала идут `it is`, затем `not` и слово `sold`.\n\nТак собеседник слышит и ответ, и сам признак вещи. Магазин маленький, зато фраза получилась целиком.",
+        "uk": "`sold` — «продано». Продавець питає: `Is it sold?` Якщо товар вільний, дайте повну заперечну відповідь: `No, it is not sold.` Після `No` спочатку йдуть `it is`, потім `not` і слово `sold`.\n\nТак співрозмовник чує і відповідь, і саму ознаку речі. Крамниця маленька, зате фраза вийшла цілою."
       },
       "question": {
         "interactionId": "en:lesson-02:session-14:intro3:q",
         "promptByLocale": {
-          "ru": "Продавец про пальто: «Is it comfortable?» — `comfortable` значит «удобный». Оно неудобное. Ответьте коротко.",
-          "uk": "Продавець про пальто: «Is it comfortable?» — `comfortable` означає «зручний». Воно незручне. Відповідайте коротко."
+          "ru": "Продавец спрашивает, продано ли пальто. Оно свободно. Ответьте полной отрицательной фразой.",
+          "uk": "Продавець питає, чи продано пальто. Воно вільне. Дайте повну заперечну відповідь."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-14:intro3:r1",
-              "text": "No, it is not."
+              "text": "No, it is not sold."
             },
             {
               "responseId": "en:lesson-02:session-14:intro3:r2",
-              "text": "No, it not is."
+              "text": "No, it not sold."
             },
             {
               "responseId": "en:lesson-02:session-14:intro3:r3",
-              "text": "No, is it not."
+              "text": "No, is it not sold."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-14:intro3:r1",
-              "text": "No, it is not."
+              "text": "No, it is not sold."
             },
             {
               "responseId": "en:lesson-02:session-14:intro3:r2",
-              "text": "No, it not is."
+              "text": "No, it not sold."
             },
             {
               "responseId": "en:lesson-02:session-14:intro3:r3",
-              "text": "No, is it not."
+              "text": "No, is it not sold."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Продавец про пальто: «Is it comfortable?» — `comfortable` значит «удобный». Оно неудобное. Ответьте коротко.",
-          "uk": "Продавець про пальто: «Is it comfortable?» — `comfortable` означає «зручний». Воно незручне. Відповідайте коротко."
+          "ru": "Продавец спрашивает, продано ли пальто. Оно свободно. Ответьте полной отрицательной фразой.",
+          "uk": "Продавець питає, чи продано пальто. Воно вільне. Дайте повну заперечну відповідь."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "20eaad2e07544c4b1d80701978a912571e6e0f7b45299254877e9f66a9c40f56"
+  "introFingerprint": "1ae54b2412bd014fe530f1e81761e483aa14dcc1c8d850c8e4f42414312a27e6"
 }

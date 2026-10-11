@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — anxious",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-07:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — relaxed",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -546,11 +546,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -812,26 +812,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-07:i16",
+      "interactionId": "en:lesson-02:session-07:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вопрос и ответ подряд",
+      "prompt": "У автобуса ваш друг всё время смотрит на табло и мнёт билет. Скажите ему по-английски, что хотите узнать, тревожится ли он.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-07:i16:audio"
+        "en:lesson-02:session-07:i16:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вопрос и ответ подряд",
+      "accessibilityLabel": "У автобуса ваш друг всё время смотрит на табло и мнёт билет. Скажите ему по-английски, что хотите узнать, тревожится ли он.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-07:i16:audio",
-          "transcript": "Are you anxious? No, I am not."
+          "audioTargetId": "en:lesson-02:session-07:i16:s01:audio",
+          "transcript": "Are you anxious?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you anxious? No, I am not.",
+        "targetPhrase": "Are you anxious?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -845,26 +845,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-07:i17",
+      "interactionId": "en:lesson-02:session-07:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — два вопроса и ответ на один из них",
+      "prompt": "Окно закрыто, на вас тёплая куртка. Скажите, что вам не холодно.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-07:i17:audio"
+        "en:lesson-02:session-07:i16:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — два вопроса и ответ на один из них",
+      "accessibilityLabel": "Окно закрыто, на вас тёплая куртка. Скажите, что вам не холодно.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-07:i17:audio",
-          "transcript": "Are you relaxed? Are you hungry? Yes, I am."
+          "audioTargetId": "en:lesson-02:session-07:i16:s02:audio",
+          "transcript": "No, I am not cold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you relaxed? Are you hungry? Yes, I am.",
+        "targetPhrase": "No, I am not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спокойно пьёт чай и никуда не спешит. Скажите ему по-английски, что хотите узнать, расслаблен ли он.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Друг спокойно пьёт чай и никуда не спешит. Скажите ему по-английски, что хотите узнать, расслаблен ли он.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:i17:s01:audio",
+          "transcript": "Are you relaxed?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you relaxed?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг не ел с утра и смотрит на меню. Скажите ему по-английски, что хотите узнать, голоден ли он.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Друг не ел с утра и смотрит на меню. Скажите ему по-английски, что хотите узнать, голоден ли он.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:i17:s02:audio",
+          "transcript": "Are you hungry?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you hungry?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После завтрака и короткой прогулки вы спокойны. Скажите, что вы расслаблены.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-07:i17:s03:audio"
+      ],
+      "accessibilityLabel": "После завтрака и короткой прогулки вы спокойны. Скажите, что вы расслаблены.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-07:i17:s03:audio",
+          "transcript": "Yes, I am relaxed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, I am relaxed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -878,11 +977,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f3a052ce00d7b4f6e985195f85c38527e025f6ac4d23562ab251782a069c87c6"
+  "learnerFingerprint": "1b3f483f57c587453050ad08ab83ffd020933cc7fdc90abd312a0b58566cdf02"
 }

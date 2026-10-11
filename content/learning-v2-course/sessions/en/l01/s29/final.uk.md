@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 29 — «It» про речі
+# Англійська · Урок 1 · Заняття 29 — «Речі після поїздки»
 
-**Сцена сесії.** Вечір у квартирі: ви розбираєте сумку, торкаєтесь речей і коротко говорите про кожну — що важке, що чисте, а що ні.
-**Операція:** застосування `It is` про речі та предмети
+**Ситуація.** Лена повернулася з поїздки й розбирає сумку в квартирі. Вона описує господарю речі: чи важка сумка, чи чиста сорочка і чи порожній холодильник.
+**Як сказати:** `It is`, коли описуєте одну річ.
 **Нові слова:** heavy, light, clean, dirty
 **Повертаються:** small, new, empty, broken
 
@@ -21,7 +21,7 @@
 
 - ✅ **It is heavy.**
 - ❌ Is heavy. — *`It` зникло. Без нього незрозуміло, хто важкий.*
-- ❌ It heavy. — *Загубилася скріпка `is`. Українською її немає, англійською без неї не говорять.*
+- ❌ It heavy. — *Між `it` і словом потрібна форма `is`.*
 
 ---
 
@@ -57,80 +57,107 @@
 
 - ✅ **It is dirty.**
 - ❌ It is clean. — *`clean` — це коли мити нічого. Засохла кава на дні — якраз є що.*
-- ❌ It dirty. — *Скріпка `is` знову випала. Між `It` і словом про річ вона стоїть завжди.*
+- ❌ It dirty. — *Між `it` і словом потрібна форма `is`.*
 
 ---
 
 ## Практика (18 завдань, підтримка зменшується)
 
 **1 · Картка слова — heavy**
+<!-- interaction_id: en:lesson-01:session-29:i01; family: listen_choose -->
 > **heavy** — «важкий». Піднімаєте і одразу ставите назад.
 
-**2 · Послухайте і виберіть — heavy**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *heavy* → **heavy** · happy · hairy
 - happy — *«Радий». Схоже початком, але в `heavy` середина інша: «хе-ві».*
 - hairy — *Теж на «х», але це не про вагу. `heavy` — «хе-ві».*
 
 **3 · Картка слова — light**
+<!-- interaction_id: en:lesson-01:session-29:i03; family: listen_choose -->
 > **light** — «легкий». Берете однією рукою і забуваєте, що несете.
 
 **4 · Вставте слово — коробка порожня, ви піднімаєте її мізинцем**
+<!-- interaction_id: en:lesson-01:session-29:i04; family: context_gap_grammar -->
 It is ___ . → **light** · heavy · new
 - heavy — *Навпаки. Мізинцем важке не піднімають.*
 - new — *«Нова» — може бути, але зараз ви говорите про вагу, а не про те, нова вона чи ні.*
 
 **5 · Складіть фразу — «воно важке»**
+<!-- interaction_id: en:lesson-01:session-29:i05; family: phrase_builder -->
 Плитки: `heavy` `It` `is` `light` → **It is heavy.**
 
 **6 · Картка слова — clean**
+<!-- interaction_id: en:lesson-01:session-29:i06; family: listen_choose -->
 > **clean** — «чистий». Наче річчю ще не користувалися.
 
-**7 · Послухайте і виберіть — clean**
+**7 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-29:i07; family: listen_choose -->
 🔊 *clean* → **clean** · clear · queen
 - clear — *Близько за звуком, але кінець інший: у `clean` чути «н» одразу після довгого «і».*
 - queen — *Кінець схожий, а початок ні. `clean` починається з «кл».*
 
 **8 · Картка слова — dirty**
+<!-- interaction_id: en:lesson-01:session-29:i08; family: listen_choose -->
 > **dirty** — «брудний». Мити треба зараз, а не потім.
 
-**9 · Послухайте і виберіть — dirty**
+**9 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-29:i09; family: listen_choose -->
 🔊 *dirty* → **dirty** · thirty · daddy
 - thirty — *Відрізняється тільки початком, але початок вирішує: `dirty` — з «д».*
 - daddy — *Теж із «д», але всередині «де-ді», а в `dirty` тягнеться «де».*
 
-**10 · З'єднайте пари (Speed Match, 4 пари)**
+**10 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-29:i10; family: speed_match -->
 heavy — важкий · light — легкий · clean — чистий · dirty — брудний
 
 **11 · Вставте слово — ви витрусили сумку, всередині нічого не залишилося**
+<!-- interaction_id: en:lesson-01:session-29:i11; family: context_gap_grammar -->
 It is ___ . → **empty** · dirty · heavy
 - dirty — *Всередині не бруд, всередині взагалі нічого.*
 - heavy — *Порожня сумка важкою не буває. Ви кажете, що в ній порожньо.*
 
-**12 · Вставте скріпку — ви говорите про сорочку, яку щойно випрали**
-It ___ clean. → **is** · are · am
-- are — *Чужа скріпка. З `it` — тільки `is`.*
-- am — *`am` буває тільки про себе: `I am`. Про річ — `is`.*
+**12 · Складіть фразу — сорочку щойно випрали, вона чиста**
+<!-- interaction_id: en:lesson-01:session-29:i12; family: phrase_builder -->
+Плитки: `clean` `It` `is` `are` → **It is clean.**
 
 **13 · Послухайте і складіть — «воно брудне»**
+<!-- interaction_id: en:lesson-01:session-29:i13; family: listen_build_dictation -->
 🔊 *It is dirty.* Плитки: `dirty` `is` `It` `clean` → **It is dirty.**
 
 **14 · Картка слова — broken**
+<!-- interaction_id: en:lesson-01:session-29:i14; family: listen_choose -->
 > **broken** — «зламаний». Було ціле, стало не ціле.
 
 **15 · Складіть фразу — чашка випала з рук і розбилася**
+<!-- interaction_id: en:lesson-01:session-29:i15; family: phrase_builder -->
 Плитки: `broken` `It` `is` `he` → **It is broken.**
 
 **16 · Вставте слово — квартира маленька, дві кімнати і все**
+<!-- interaction_id: en:lesson-01:session-29:i16; family: context_gap_grammar -->
 It is ___ . → **small** · light · clean
 - light — *Про вагу, а не про розмір. Квартиру на руках не носять.*
 - clean — *Чиста — можливо, але ви говорите про розмір.*
 
-**17 · З'єднайте пари — слова про речі (Speed Match, 4 пари)**
+**17 · З'єднайте пари — слова про речі**
+<!-- interaction_id: en:lesson-01:session-29:i17; family: speed_match -->
 small — маленький · new — новий · empty — порожній · broken — зламаний
 
-**18 · Скажіть уголос — ви пройшли по квартирі і розповідаєте по телефону**
-🎙 Сумка важка, чашка брудна, холодильник порожній, а квартира нова.
-**It is heavy. It is dirty. It is empty. It is new.**
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s01; family: scripted_repeat_compare -->
+🎙 **It is heavy.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s02; family: scripted_repeat_compare -->
+🎙 **It is dirty.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s03; family: scripted_repeat_compare -->
+🎙 **It is empty.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s04; family: scripted_repeat_compare -->
+🎙 **It is new.**
 
 ---
 
@@ -142,7 +169,7 @@ light — легкий — Берете однією рукою і забува�
 clean — чистий — Наче річчю ще не користувалися.
 dirty — брудний — Мити треба зараз, а не потім.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=phrase_builder, 16=context_gap_grammar, 17=speed_match, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=speed_match, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 
@@ -178,17 +205,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phras
 | empty | з минулих сесій | 11 (правильна відповідь) |
 | broken | 14 (картка) | 15 (складання фрази) |
 
----
-
-🟡 **Стоит улучшить**
-- Замечание судьи закрыто: служебный заголовок блока практики теперь на украинском («Практика (18 завдань, підтримка зменшується)»), русских слов в теле локали не осталось. Единственная строка на русском — «Для сборщика», и она не тронута намеренно: это служебный блок, который по заданию идёт байт в байт.
-- В задании 9 текстовая подсказка про звук в `dirty` остаётся приблизительной — если у сборщика есть озвучка, ученик будет ориентироваться на неё.
-
-🧩 **Скрытые связи**
-- Возвращаемые слова (small, new, empty, broken) должны совпадать по переводу с их украинскими карточками из прошлых сессий, иначе ученик увидит два разных перевода одного слова.
-
-Итог:
-- Исправил то, на что указал проверяющий: русский подзаголовок в списке заданий заменён на украинский.
-- Всё остальное оставил как было — задания, их порядок, английские слова и служебный блок не менял.
-- Проверил весь текст ещё раз: русских слов в объяснениях не осталось.
-- Служебную строку «Для сборщика» не переводил специально — она должна оставаться неизменной.

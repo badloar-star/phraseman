@@ -1,99 +1,27 @@
 {
-  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
-  "localeSha256": {
-    "uk": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be"
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactRuSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactUkSha256": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8",
+  "practiceAtomicSha256": "90566163873b3ee36aacc69502ef44e356932965dd9a566ba3bf8ab5a7632483",
+  "localeHashes": {
+    "ru": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+    "uk": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8"
   },
   "locales": {
     "uk": {
-      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
-      "localeSha256": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be",
-      "scope": "native Ukrainian and current local preview only; no app, audio, or visual compatibility claim",
       "verdict": "PASS",
-      "issues": [],
-      "checks": {
-        "hashesMatchTaskPacket": true,
-        "structureIdentical": true,
-        "englishTargetsOptionsTilesAndOrderUnchanged": true,
-        "orderedEnglishCodeSpanCount": 130,
-        "introBodyLengthsIncludingMarkup": [
-          248,
-          300,
-          263
-        ],
-        "languagePurity": {
-          "foreignFragmentsFound": false,
-          "machineTranslationSmellFound": false
-        },
-        "nativeAnchors": {
-          "floorGender": {
-            "verdict": "PASS",
-            "evidence": [
-              "`floor` — «підлога»",
-              "«Вона чиста»",
-              "«Вона чиста?»"
-            ],
-            "assessment": "Feminine agreement is consistent in the intro, instructions, and returned-word practice."
-          },
-          "doorPlural": {
-            "verdict": "PASS",
-            "evidence": [
-              "`door` — «двері»",
-              "«назвіть двері»",
-              "local pair: door — двері"
-            ],
-            "assessment": "Ukrainian pluralia tantum is handled naturally. The English singular target remains explicit and no Ukrainian instruction implies several doors."
-          }
-        },
-        "definitionsAliveAndNatural": {
-          "verdict": "PASS",
-          "items": [
-            "wall — concrete room boundary",
-            "floor — lower room surface people walk on",
-            "ceiling — upper room surface above the head"
-          ]
-        },
-        "soundExplanations": {
-          "verdict": "PASS",
-          "usesUkrainianOwnAnchors": true,
-          "inheritedRussianPhoneticsFound": false,
-          "details": [
-            "`wall` versus `tall`/`ball`: initial consonant and lip-action contrast is clear.",
-            "`floor` versus `claw`/`slaw`: initial consonant clusters are described accurately.",
-            "`ceiling` versus `feeling`/`kneeling`: initial consonants are distinguished without invented syllable boundaries."
-          ],
-          "actualAudioReviewed": false
-        },
-        "instructionsAndErrorExplanations": {
-          "verdict": "PASS",
-          "unambiguous": true,
-          "feedbackMatchesEachPresentedTrap": true
-        },
-        "humor": {
-          "verdict": "PASS",
-          "natural": true,
-          "examples": [
-            "«На стіні може нічого не висіти, але місце перед `wall` порожнім не лишаємо»",
-            "«чи вже час брати швабру»"
-          ],
-          "assessment": "The humor grows from the wall/floor distinction and does not create a false rule."
-        },
-        "localPreviewPairGridLabels": [
-          "wall — стіна",
-          "floor — підлога",
-          "ceiling — стеля",
-          "door — двері"
-        ],
-        "visualReviewPerformed": false,
-        "appCompatibilityClaimed": false
-      },
-      "remainingIssues": [
-        {
-          "scope": "future app export",
-          "status": "retained_unresolved",
-          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this native/local review.",
-          "affectsCurrentVerdict": false
-        }
-      ]
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
     }
-  }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
 }

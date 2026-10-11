@@ -522,59 +522,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-55:i10",
+      "interactionId": "en:lesson-02:session-55:i10:s01",
       "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-55:i10:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-55:i10:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-55:i10:s02",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая реплика прозвучала при обращении к прохожему",
+      "prompt": "Послушайте одну фразу и выберите ответ — шаг 2 из 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-55:i10:r1",
-          "text": "Excuse me. Are you busy?"
+          "responseId": "en:lesson-02:session-55:i10:s02:r1",
+          "text": "Are you busy?"
         },
         {
-          "responseId": "en:lesson-02:session-55:i10:r2",
-          "text": "Excuse me. Are you ready?"
+          "responseId": "en:lesson-02:session-55:i10:s02:r2",
+          "text": "Are you ready?"
         },
         {
-          "responseId": "en:lesson-02:session-55:i10:r3",
-          "text": "Excuse me. Are we busy?"
+          "responseId": "en:lesson-02:session-55:i10:s02:r3",
+          "text": "Are we busy?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-55:i10:audio"
+        "en:lesson-02:session-55:i10:s02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какая реплика прозвучала при обращении к прохожему",
+      "accessibilityLabel": "Послушайте одну фразу и выберите ответ — шаг 2 из 2",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-55:i10:audio",
-          "transcript": "Excuse me. Are you busy?"
+          "audioTargetId": "en:lesson-02:session-55:i10:s02:audio",
+          "transcript": "Are you busy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-02:session-55:i10:r1",
-            "targetText": "Excuse me. Are you busy?",
+            "responseId": "en:lesson-02:session-55:i10:s02:r1",
+            "targetText": "Are you busy?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-55:i10:r2",
-            "targetText": "Excuse me. Are you ready?",
+            "responseId": "en:lesson-02:session-55:i10:s02:r2",
+            "targetText": "Are you ready?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-55:i10:r3",
-            "targetText": "Excuse me. Are we busy?",
+            "responseId": "en:lesson-02:session-55:i10:s02:r3",
+            "targetText": "Are we busy?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-55:i10:r2",
+            "responseId": "en:lesson-02:session-55:i10:s02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какая реплика пр",
             "feedbackByLocale": {
@@ -583,7 +616,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-55:i10:r3",
+            "responseId": "en:lesson-02:session-55:i10:s02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какая реплика пр",
             "feedbackByLocale": {
@@ -599,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i11",
-      "ordinal": 14,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -668,7 +701,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i12",
-      "ordinal": 15,
+      "ordinal": 16,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -700,7 +733,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i13",
-      "ordinal": 16,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -769,7 +802,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i14",
-      "ordinal": 17,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -798,17 +831,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i15",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы неверно назвали имя хозяина, а друг поправил вас; признайте «Я неправ» (`wrong` — «неправ»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-55:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы неверно назвали имя хозяина, а друг поправил вас; признайте «Я неправ» (`wrong` — «неправ»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -831,17 +864,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i16",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы хотите обратиться к одному из гостей; привлеките его внимание словом «Извините» (`excuse me`)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-55:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы хотите обратиться к одному из гостей; привлеките его внимание словом «Извините» (`excuse me`)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -864,7 +897,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-55:i17",
-      "ordinal": 20,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -909,11 +942,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8b471820ecb26c6f176c1a602295b4da40155f23b2b97f4848f30b181ed14827"
+  "learnerFingerprint": "d42f2fbfa73f221f3384d0192bdc485f1972a1691a26d220692185cd399f4b7a"
 }

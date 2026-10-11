@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro1:r2": {
+          "ru": "`are` — для нескольких. Неделя одна, ей нужно `is`.",
+          "uk": "`are` — для кількох. Тиждень один, йому потрібне `is`."
+        },
+        "en:lesson-01:session-56:intro1:r3": {
+          "ru": "Между `it` и словом-признаком нужна форма `is`.",
+          "uk": "Між `it` і словом-ознакою потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro2:r2": {
+          "ru": "Людей много, но `everyone` означает «каждый», поэтому нужна форма `is`.",
+          "uk": "Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`."
+        },
+        "en:lesson-01:session-56:intro2:r3": {
+          "ru": "Между `everyone` и словом-признаком нужна форма `is`.",
+          "uk": "Між `everyone` і словом-ознакою потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro3:r2": {
+          "ru": "После `I` нужна форма `am`.",
+          "uk": "Після `I` потрібна форма `am`."
+        },
+        "en:lesson-01:session-56:intro3:r3": {
+          "ru": "После `am` для отрицания ставят `not`, не `no`.",
+          "uk": "Після `am` для заперечення ставлять `not`, не `no`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0940398074999f4cb49d226a6f227603431bac2402e089a320e6d114b32c0a12"
+}

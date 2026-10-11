@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "learning_v2_independent_rejudge_v1",
+  "reviewer": "/root/s24_humor_repair_rejudge",
+  "reviewedAt": "2026-10-03T20:36:14.7821476Z",
+  "scope": "Fresh source-only review of the current L3S24 Russian and Ukrainian masters and their atomic interaction contract after the humour repair. Earlier receipts were not trusted.",
+  "sourceSha256": {
+    "finalRu": "292707639c225713d4d44e06fba4c0ff25f849796b093ff2420cdd4b5b99d3a3",
+    "finalUk": "579fb3269df5b3722892b915bda07c8ac6b477d84e74d9cc0c11761bb2c0d1af",
+    "practiceAtomic": "13df34ecf513b95d89a46a6751d3360098f45be7a2a1604dcc4624fdee17d9ca"
+  },
+  "interactionAudit": {
+    "ruCount": 19,
+    "ukCount": 19,
+    "singlePhraseIssues": 0,
+    "compositeGapIssues": 0,
+    "dictationAudioTargetIssues": 0,
+    "answerContractIssues": 0,
+    "feedbackLocaleParityIssues": 0,
+    "wordCardDefinitionIssues": 0,
+    "evidence": [
+      "All 19 atomic interactions in each locale were inspected. The previous three-phrase finish is now three separate actions i17:s01, i17:s02 and i17:s03, each with one transcript and one target phrase.",
+      "The source gates returned zero issues for both locales; the all-source single-phrase verifier also returned PASS for the canonical source set (166 sessions, 3229 interactions, 0 preservation violations).",
+      "This was a source review only; no generated audio was played. Audio transcript-to-target contracts were checked in practice.atomic.json."
+    ]
+  },
+  "roles": {
+    "judge_learner": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The three intros teach exactly the session's usable sequence: one envelope (`It is an envelope.`), two envelopes as a question (`Are they envelopes?`), then negation (`They are not envelopes.`).",
+        "The final three voice interactions use those already-modelled phrases separately, so a beginner is never asked to produce a hidden multi-part response.",
+        "Every choice task has a concrete count or object cue and feedback identifies the tested mistake: article, singular/plural noun, auxiliary, or word order."
+      ]
+    },
+    "judge_pedagogy": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "New word `envelope` receives a visible meaning and singular/plural cycle before independent retrieval; `dish`, `story`, and `glass` are limited retrieval supports rather than new grammar.",
+        "Listening, building, gap choice, recall, and matching alternate without two identical adjacent activity families.",
+        "The final sequence checks assertion, question, and negation as three atomic learner actions rather than treating a three-sentence chain as one answer."
+      ]
+    },
+    "judge_nonsense": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The delivery scene remains internally coherent: envelopes with tickets, dishes, glasses, and a book of stories are checked before signing.",
+        "The phrase `They are not envelopes.` is grounded by two packages that are explicitly said not to be ticket envelopes; distractors remain diagnostic rather than semantically competing answers.",
+        "No factual, grammatical, or scene contradiction was found in the 19 target/answer pairs."
+      ]
+    },
+    "judge_reader": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Prompts state the scene, count or referent, and the requested English response in direct beginner language.",
+        "Each listening item has one audio transcript, each builder has one target phrase, and each gap contains one blank rather than a compound sentence exercise.",
+        "RU and UK feedback are present for every incorrect selectable response and explain the exact response-level error."
+      ]
+    },
+    "judge_taste": {
+      "verdict": "PASS",
+      "pairwise": "equal",
+      "pairwiseReason": "The repaired line is concise, connected to the exact plurality rule, and supports recall without replacing the explanation or breaking the delivery scene.",
+      "voice": {
+        "score": 4,
+        "evidence": [
+          "The line gives a concrete image before returning immediately to `They are` and the placement of `not`; it reads as a teacher's small mnemonic rather than canned decoration."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "«Даже в одной руке курьера два конверта остаются `they`.»"
+        ],
+        "misfires": []
+      },
+      "ai_text_or_nonsense": [],
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The humour is understandable: grammatical plurality depends on the number of envelopes, not on how many hands hold them. It is accurate, gentle, and immediately followed by the operative rule.",
+        "The Ukrainian counterpart, «Навіть в одній руці кур’єра два конверти залишаються `they`.» preserves the same mnemonic and does not add a separate joke or claim."
+      ],
+      "best_lines": [
+        "«Даже в одной руке курьера два конверта остаются `they`.»"
+      ]
+    },
+    "locale_uk": {
+      "verdict": "PASS",
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "meaningAdditions": [],
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The atomic records have the same 19 interaction IDs, families, input modes, English targets, answer IDs, and audio transcripts in RU and UK.",
+        "Ukrainian prompts, meanings, and response feedback are localized into Ukrainian; no Russian-only learner copy appears in the UK source contract.",
+        "The repaired `they` mnemonic carries the same scope and pedagogical point in both masters."
+      ]
+    }
+  },
+  "blockers": [],
+  "mustFix": [],
+  "verdict": "PASS",
+  "verdictReason": "All six independent role checks pass on the current exact source hashes. The repaired humour is appropriate and the formerly composite ending is now 19 atomic interactions with no source-contract violations.",
+  "limitations": [
+    "No generated audio was acoustically listened to; source transcripts and audio-target contracts were reviewed.",
+    "This fresh external receipt does not itself replace stale per-session release receipts or publish a release."
+  ]
+}

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-39:i01",
-    "correctText": "",
+    "correctText": "couple",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-39:i03",
-    "correctText": "",
+    "correctText": "crowd",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-39:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-39:i10:p1=couple\nen:lesson-02:session-39:i10:p2=crowd\nen:lesson-02:session-39:i10:p3=host\nen:lesson-02:session-39:i10:p4=guests",
     "correctResponseId": null
   },
   {

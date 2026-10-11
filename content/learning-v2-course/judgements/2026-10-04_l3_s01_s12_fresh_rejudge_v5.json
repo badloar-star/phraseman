@@ -1,0 +1,910 @@
+{
+  "schemaVersion": "learning_v2_fresh_content_rejudge_v1",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "scope": "Fresh independent current-byte review of en/l03/s01 through s12 after the S09 exact-negative repair. Earlier reports and receipts were not used as verdict evidence.",
+  "authoritiesRead": [
+    "C:/Users/badlo/OneDrive/Desktop/Codex/00_ПРОЧТИ_ПЕРВЫМ.txt",
+    "C:/Users/badlo/OneDrive/Desktop/Codex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+    "C:/Users/badlo/OneDrive/Desktop/Codex/НАЧНИ_ОТСЮДА.md",
+    "content/learning-v2-course/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+    "content/learning-v2-course/КОНСТИТУЦИЯ.md",
+    "content/learning-v2-course/МЕТОД_РАБОТЫ.md",
+    "content/learning-v2-course/exemplars/en/l01_s01.ru.md",
+    "content/learning-v2-course/exemplars/en/l01_s02.ru.md",
+    "content/learning-v2-course/exemplars/en/l01_s03.ru.md",
+    "content/learning-v2-course/judgements/owner/*",
+    "content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md"
+  ],
+  "deterministicEvidence": {
+    "readinessRed": "Before this review, all 12 sessions were blocked only by stale, hash-mismatched receipts.",
+    "exactIntroPracticeAlignment": "PASS: node --test content/learning-v2-course/pipeline/intro_practice_alignment.test.mjs (1/1).",
+    "progressionQualityGate": "PASS: node content/learning-v2-course/pipeline/progression_quality_gate.mjs --lesson en/l03 --from s01 --to s12.",
+    "strictSinglePhraseSourceVerifier": "PASS: 167 sessions, 3246 interactions, 3246 preservation rows, 0 violations.",
+    "localeShapeAudit": "PASS: S01-S12 each have matching RU/UK counts, interaction IDs, families, and target/audio contracts.",
+    "manualExactIntroAudit": "PASS: every exact current intro correct answer occurs in that session's assessed current answers; S09 includes `It is not an umbrella.`."
+  },
+  "sessions": [
+    {
+      "session": "s01",
+      "sha256": {
+        "ru": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+        "uk": "0ff3ee539f855bd8073ec5c7913984de6890e86a3d844ceddf23b9fb904c09d7",
+        "atomic": "c74a9586a2cb3c24d31cee7ac4158a18d48a78fbe3c32a3beb61ed0d5f1ce06f"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a chair.",
+        "It is a table.",
+        "It is a lamp."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The first-box scene makes each full naming answer concrete before the learner builds or hears it.",
+            "Exact intro answers assessed: It is a chair. | It is a table. | It is a lamp.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Chair, table, and lamp each move from word recognition to a full `It is a ...` retrieval.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Every checked target, audio transcript, and selectable response is one concrete phrase or word.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The friend, opened box, and object are clear on all three introductory pages.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The short article cue grows from the exact construction and does not distract from the object-name task."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s02",
+      "sha256": {
+        "ru": "ce8886f77213f9a2b7e6c68c857c1a2f8018653432b302c94ca4d9d4cf3280d9",
+        "uk": "d0bbd5b2c13967a28b7d58cdfab5d4f7fcfdc5cb5254d77997760446a2ea5809",
+        "atomic": "2cfda1a1b2ddcdab19177fb55e5443c46541a48dfe0a3a7e723a9d61d91e3a5f"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a sofa.",
+        "It is a bed.",
+        "It is a desk."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Removing covers gives a clear reason to identify each large item with a complete answer.",
+            "Exact intro answers assessed: It is a sofa. | It is a bed. | It is a desk.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "The known naming frame is reused with three new furniture words and diminishing support.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The cover-removal scene and all one-phrase interactions are internally coherent.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Each page states which uncovered item the learner needs to name.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The count cue explains the singular object directly and remains inside the sofa scene."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s03",
+      "sha256": {
+        "ru": "542df42f09ba4053b0cec1bc98a3383becdaa672ed8d18bdaa0a49a3cf474dec",
+        "uk": "5f528e09aa4d6100804f8dcefe0e07cce61939a881468e6a24620c49469c4f90",
+        "atomic": "06aa840c0260e99e3293dbf4957f961e8a0bfead15c557f162553f912c2e9512"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a stool.",
+        "It is a mirror.",
+        "It is a rug."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The placement task gives each stool, mirror, and rug answer a practical purpose.",
+            "Exact intro answers assessed: It is a stool. | It is a mirror. | It is a rug.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Exact full answers from all three intros are independently retrieved in current atomic practice.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Furniture placement, questions, and corrections remain everyday and single-phrase.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The brother, item, and intended placement stay explicit rather than requiring invented context.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The line clears up the article point through the actual mirror example without adding a detached joke."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s04",
+      "sha256": {
+        "ru": "1f9433b606c9fcc6b375819a8940240312c6c0d15038f1a7690041de150c0c83",
+        "uk": "73dd1d8bfd444c60321129c279b5cab81174a1d45cc1ce019e4b8c613717a9d3",
+        "atomic": "d18085b5864bc50a7b6b70da2cbc0f9bca6de797e8071138e896701df63bcb64"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a key.",
+        "Is it a door?",
+        "It is not a window."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The landlord tour supplies a natural reason to name, ask about, and correct one household item.",
+            "Exact intro answers assessed: It is a key. | Is it a door? | It is not a window.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Statement, question, and negative are separately introduced and separately assessed as full forms.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The key, door, and window actions are coherent and do not bundle dialogue turns.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The learner can tell whether the task asks for a name, a question, or a correction.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The small joke points straight at the article needed in the key phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s05",
+      "sha256": {
+        "ru": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+        "uk": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8",
+        "atomic": "90566163873b3ee36aacc69502ef44e356932965dd9a566ba3bf8ab5a7632483"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a wall.",
+        "It is a floor.",
+        "It is a ceiling."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Photographs give a simple reason to identify a visible surface in a complete sentence.",
+            "Exact intro answers assessed: It is a wall. | It is a floor. | It is a ceiling.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "The session distinguishes object naming from a state such as `It is clean` without introducing an unrelated operation.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The photo scene, target phrases, and feedback retain one coherent referent at a time.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The scene says what is visible and why the learner is naming it before each answer.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The aside directly separates the noun `floor` from the state `clean`."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s06",
+      "sha256": {
+        "ru": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+        "uk": "7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca",
+        "atomic": "a2d5a55e09181a3df481043eaa27d4b547abedf6f97489c670bbdf5b83aaadbe"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a basket.",
+        "It is a trolley.",
+        "It is a tag."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "A home-goods shop gives an immediate purpose for naming a basket, trolley, and tag.",
+            "Exact intro answers assessed: It is a basket. | It is a trolley. | It is a tag.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "New shop vocabulary receives word recognition before the full naming retrieval.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Shopping actions and atomic targets are plausible; no response combines multiple phrases.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Prompts identify the item and the required answer in the same shopping situation.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The joke belongs to the empty-basket example and reinforces that it is still one basket."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s07",
+      "sha256": {
+        "ru": "05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31",
+        "uk": "ded1d9cbf081f526f9aa211e3dc6a52f467f56aad7695cbdf76278da053a1bc8",
+        "atomic": "f69986ff25a9b7c98f830a4967444f28003a099f2bf0a5104b00348e0db63083"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a drawer.",
+        "It is a cupboard.",
+        "It is a wardrobe."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Unpacking supplies a clear reason to identify furniture by what it stores.",
+            "Exact intro answers assessed: It is a drawer. | It is a cupboard. | It is a wardrobe.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Each new furniture word is prepared as a full phrase and then retrieved exactly in practice.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The storage scene is ordinary and each target/audio contract remains atomic.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The object and its use are named before the learner must respond.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The line is a brief scene-based cue for distinguishing cupboard and wardrobe."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s08",
+      "sha256": {
+        "ru": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+        "uk": "f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad",
+        "atomic": "cbd4a8cf4f89871efe6740958fbaacee20b743146f6bd9a16e1f3d4497242a35"
+      },
+      "interactionCounts": {
+        "ru": 19,
+        "uk": 19
+      },
+      "exactIntroAssessedTargets": [
+        "It is a shelf.",
+        "Is it a shelf?",
+        "It is not a shelf."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The inventory list explains why the learner must state, ask, and correct one shelf entry.",
+            "Exact intro answers assessed: It is a shelf. | Is it a shelf? | It is not a shelf.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "This checkpoint contrasts statement, question, and negative through three exact full practice targets.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "List checking remains coherent and the 19 current interactions each assess one phrase or word.",
+            "RU/UK have 19/19 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The same list scene continues across all three pages without forcing a new setting.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The article reminder is tied to `a shelf` and helps the current naming task."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s09",
+      "sha256": {
+        "ru": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+        "uk": "3bfe9ae141b060ee10831801b542ec84f6fc46903ca3f385f7326f7eca45c3f1",
+        "atomic": "914ec75d6521ed4215c9716dcb81a202d8a17dc84d6b4fc0f873c2d36692ec4f"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is an armchair.",
+        "Is it an oven?",
+        "It is not an umbrella."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The home-goods store scene gives distinct, understandable reasons to name an armchair, ask about an oven, and reject an umbrella.",
+            "Exact intro answers assessed: It is an armchair. | Is it an oven? | It is not an umbrella.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "The repaired practice now independently assesses the complete Intro 3 target `It is not an umbrella.` alongside the first two exact intro targets.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "All present targets, audio transcripts, and selectable responses are language-pure atomic units.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The full negative requested on Intro 3 is now the full answer assessed in practice, so prompt and response scope match.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The sentence explains the sound-based `an armchair` decision inside the immediate object scene."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s10",
+      "sha256": {
+        "ru": "d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db",
+        "uk": "401fa51ee359f336bda948ddde2a5c7121efc69ea92cc42cdb42e535f42ac122",
+        "atomic": "e54af6c5240b986db6319c057c77ec6dadf057eadc7468236b324d73671b0616"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a kettle.",
+        "It is a toaster.",
+        "It is a vacuum."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "Choosing appliances gives a direct reason to name each item for the seller.",
+            "Exact intro answers assessed: It is a kettle. | It is a toaster. | It is a vacuum.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "The consonant-sound article decision is applied consistently to three new appliance names.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The shop scene is plausible and each listened, built, or gapped answer is one phrase.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "Prompts say which appliance is visible and what response is expected.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The toast line is a compact reminder attached to the toaster phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s11",
+      "sha256": {
+        "ru": "7f5aabd04911dd38ab9fa61c847ea2a21f01a32a782fc5e2523f5fe524327567",
+        "uk": "ccb522081a61eb473d449caf602772031a186626f4f26b90351f7fbb24aec980",
+        "atomic": "e4b2236f438b07a9b2078cc54619f35022b4942bb092a3e2bf25c401f688a507"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "an",
+        "It is a uniform.",
+        "Is it a uniform?"
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The service counter makes the waiting time and the worker uniform easy to picture before answering.",
+            "Exact intro answers assessed: an | It is a uniform. | Is it a uniform?."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "Silent `h` and consonant-sound `u` are presented as two concrete article choices, with the full uniform statement and question retrieved in practice.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "The repair-counter scene, targets, and one-phrase interactions remain coherent.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The learner is told whether to supply an article, name an item, or ask a single question.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The line makes the silent-h trap memorable while explaining the exact `an hour` choice."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    },
+    {
+      "session": "s12",
+      "sha256": {
+        "ru": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+        "uk": "938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7",
+        "atomic": "c93852a62708b8f668c4170b4e333b0c9c7bee3ba588094b061e8af51d45fcbb"
+      },
+      "interactionCounts": {
+        "ru": 17,
+        "uk": 17
+      },
+      "exactIntroAssessedTargets": [
+        "It is a vase.",
+        "Is it a clock?",
+        "It is a radio."
+      ],
+      "roles": {
+        "judge_learner": {
+          "verdict": "PASS",
+          "evidence": [
+            "The display-window scene supplies a clear reason to name, ask about, and identify one item.",
+            "Exact intro answers assessed: It is a vase. | Is it a clock? | It is a radio.."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_pedagogy": {
+          "verdict": "PASS",
+          "evidence": [
+            "The listening checkpoint consolidates the `a/an` sound distinction through exact current full targets.",
+            "No diagnostic check asks the learner to process more than one target-language phrase."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_nonsense": {
+          "verdict": "PASS",
+          "evidence": [
+            "Every visible option, audio target, and localized meaning is a single allowed unit.",
+            "RU/UK have 17/17 aligned current atomic interactions."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_reader": {
+          "verdict": "PASS",
+          "evidence": [
+            "The seller, glass display, and needed action are clear before each introductory response.",
+            "All three intro answers are exact current assessed targets, not merely nearby fragments."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "judge_taste": {
+          "verdict": "PASS",
+          "evidence": [
+            "The line gently keeps `a` attached to `vase` and does not distract from the listening point."
+          ],
+          "blockers": [],
+          "mustFix": []
+        },
+        "locale_uk": {
+          "verdict": "PASS",
+          "evidence": [
+            "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+            "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+          ],
+          "blockers": [],
+          "mustFix": []
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  "overall": "PASS",
+  "overallReason": "All six fresh roles PASS on exact current bytes for every S01-S12 session. The prior S09 intro-to-practice defect is absent: the complete negative is now independently assessed.",
+  "limitations": [
+    "Static-source review verifies declared audio transcripts and contracts; no acoustic listening evidence is claimed."
+  ]
+}

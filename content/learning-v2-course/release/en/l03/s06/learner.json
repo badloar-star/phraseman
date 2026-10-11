@@ -459,13 +459,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг показывает на вещь для вашего рабочего стола; назовите лампу (`lamp` — «лампа»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг показывает на вещь для вашего рабочего стола; назовите лампу (`lamp` — «лампа»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -749,13 +749,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы хотите взять тележку возле друга; спросите у него «Она пустая?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы хотите взять тележку возле друга; спросите у него «Она пустая?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -828,13 +828,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг спрашивает, что стоит за большой коробкой у кассы; назовите тележку",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-06:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг спрашивает, что стоит за большой коробкой у кассы; назовите тележку",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -909,5 +909,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d0fa0b466c62a203beeaf384965eea4c31420aa2327b352a64181dfcf19d87af"
+  "learnerFingerprint": "a53388d7e27946e461001711bdecd74ee4959ef04b805e47685924794e9e0f33"
 }

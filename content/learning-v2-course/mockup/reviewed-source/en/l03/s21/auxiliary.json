@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro1:r2": {
+          "ru": "Называя один предмет в этой фразе, ставим перед `towel` маленькое `a`: `It is a towel`.",
+          "uk": "Називаючи один предмет у цій фразі, ставимо перед `towel` маленьке `a`: `It is a towel`."
+        },
+        "en:lesson-03:session-21:intro1:r3": {
+          "ru": "Вы достали одно полотенце. После `a` здесь нужно название одного — `towel`, без окончания `s`.",
+          "uk": "Ви дістали один рушник. Після `a` тут потрібна назва одного — `towel`, без закінчення `s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro2:r2": {
+          "ru": "Вы называете несколько штор. В этой фразе нужно `curtains`; `a` перед названием нескольких не ставим.",
+          "uk": "Ви називаєте кілька штор. У цій фразі потрібне `curtains`; `a` перед назвою кількох не ставимо."
+        },
+        "en:lesson-03:session-21:intro2:r3": {
+          "ru": "`a curtain` называет одну штору. В коробке две, поэтому после `They are` нужно `curtains`.",
+          "uk": "`a curtain` називає одну штору. У коробці дві, тому після `They are` потрібне `curtains`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-21:intro3:r2": {
+          "ru": "Название нескольких подушек — `pillows`. В этой фразе `a` перед ним лишнее.",
+          "uk": "Назва кількох подушок — `pillows`. У цій фразі `a` перед нею зайве."
+        },
+        "en:lesson-03:session-21:intro3:r3": {
+          "ru": "В упаковке две подушки. `a pillow` называет одну; здесь нужна форма `pillows`.",
+          "uk": "У пакованні дві подушки. `a pillow` називає одну; тут потрібна форма `pillows`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3e530f8f51b5584a49a6413a632e1f074ed2e438c9f23a66cd5617ab32726378"
+}

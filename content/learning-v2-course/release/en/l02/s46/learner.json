@@ -789,13 +789,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — ведущий просит оценить его речь после настройки телефона; его слова звучат разборчиво",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — ведущий просит оценить его речь после настройки телефона; его слова звучат разборчиво",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -822,13 +822,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — ведущий спрашивает о ваших заметках; вы всё подготовили и сообщаете, что готовы",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-46:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — ведущий спрашивает о ваших заметках; вы всё подготовили и сообщаете, что готовы",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -886,5 +886,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3bb4042126e4cfee43d2e0fb714ca9d48845f89872da7201a6cbd94810d8a70d"
+  "learnerFingerprint": "b3a1e5fcf3ec2c83ca3e8d087b9786f16c1625f4ae34685708b95776d34a1edc"
 }

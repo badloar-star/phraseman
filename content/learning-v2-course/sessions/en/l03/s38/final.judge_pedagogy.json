@@ -1,15 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+  "sourceSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
   "localeHashes": {
-    "ru": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
-    "uk": "25808936bd81a08fe162ecd7f0975513d84b9760cc928869f5c3a44e51f7a64c"
+    "ru": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+    "uk": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b"
   },
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Word-first цепочки apple, banana и orange ведут к заданиям 8, 11 и 13.",
-    "Сначала отрабатывается называние групп, затем выбор товара у продавца.",
-    "Финал меняет расстояние для всех трёх целей."
-  ]
+    "Market transfer tests these/those plural with new apple/banana/orange; listening options are sound-oriented and exact localized meanings."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "b71047aba0ae4021270a28b3a4d50aeff3f20154d769a27a043117ca35d8a04f",
+    "localeSha256": "fc6fc3aa9d9c2ac1b7b9e47bcd287c81a73c6a118df8dbc27b8db5037d65fece",
+    "practiceAtomicSha256": "13d0618b5a136f1e5d47564b02239f9867daf87ade959333c0a47c849f465941"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+  "exactUkSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+  "localeSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+  "practiceAtomicSha256": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "45dca78958aeab7b7642b3be94ca49d8c11e14176b3821440af2c9f120d5c109",
+    "localeSha256": "7b6731d68081bbb9185b93a4d9e8ea56326aa9f96f8770723d3ee0b9b2e009cd",
+    "practiceAtomicSha256": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5",
+    "findings": []
+  },
+  "mustFix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+    "exactRuSha256": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+    "exactUkSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+    "localeSha256": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b",
+    "localeHashes": {
+      "ru": "c751516cacc3050652868cfb93247a5a7345fb408421203d1adb91a5648a45fe",
+      "uk": "cc797aefc0cd557b64312d789fa0c45b115364712a695747efb18574547cc96b"
+    },
+    "practiceAtomicSha256": "495e6ff28e871ccef2a2d663b1a009bb054a10631c5158e3968330b6aeac05c5",
+    "evidence": [
+      "Market transfer tests these/those plural with new apple/banana/orange; listening options are sound-oriented and exact localized meanings."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

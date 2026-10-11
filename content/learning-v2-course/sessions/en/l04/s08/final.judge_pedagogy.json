@@ -1,0 +1,35 @@
+{
+  "session": "en/l04/s08",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:51:31.1413850Z",
+  "sourceSha256": "59a69e03d0aa927a1fe4bd3b5715fb03753fe9418d77b1ccf40948e4edb12cdd",
+  "exactRuSha256": "59a69e03d0aa927a1fe4bd3b5715fb03753fe9418d77b1ccf40948e4edb12cdd",
+  "exactUkSha256": "bb14fca0983b0d728b75754f092bfa9fffc6e38d09776c4159dc6849acfb8e55",
+  "practiceAtomicSha256": "80bb8b733e35aa536b3ac3a536f4afa1015bda08c5e717195a1793ed105df1df",
+  "localeHashes": {
+    "ru": "59a69e03d0aa927a1fe4bd3b5715fb03753fe9418d77b1ccf40948e4edb12cdd",
+    "uk": "bb14fca0983b0d728b75754f092bfa9fffc6e38d09776c4159dc6849acfb8e55"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_pedagogy",
+  "sourceReport": "fresh independent post-repair read-only seven-role textual review",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "This is the planned no-new-grammar checkpoint: independently report singular and plural places.",
+    "Neighbourhood receives word-level grounding; familiar words then exercise both is and are branches with fading support.",
+    "Feedback identifies number/form errors in ordinary language, and the sole final legitimately samples the singular branch of the same checkpoint operation."
+  ]
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 6 — «Спросить у прохожего»
+# Английский · Урок 2 · Занятие 6 — «Спросить у прохожего»
 
-**Сцена сессии.** Утро субботы, вы вышли из хостела и стоите на перекрёстке. Карта не помогает, зато мимо идут люди — и у них можно спросить.
+**Сцена занятия.** Утро субботы, вы вышли из хостела и стоите на перекрёстке. Карта не помогает. Рядом идут Ира с телефоном, Ольга с сумкой и Никита без куртки; у каждого можно вежливо спросить, всё ли в порядке.
 
-**Операция:** перенос `Are you + слово?` на разговор с незнакомцем
+**Как сказать:** перенос `Are you + слово?` на разговор с незнакомцем
 **Новые слова:** —
 **Возвращаются:** lost, ok, hungry, thirsty, cold, awake
 
@@ -16,7 +16,7 @@
 
 У них одно слово `you` — и для «ты», и для «вы». Приятель, прохожий и полицейский — всем говорят одинаково, и никто не обижается.
 
-**Женщина у светофора вертит телефон с картой и оглядывается на дома. Спросите, не заблудилась ли она.**
+**Ира у светофора вертит телефон с картой и оглядывается на дома. Спросите Иру, не заблудилась ли она.**
 
 - ✅ **Are you lost?**
 - ❌ You are lost? — *Так вы сообщаете ей новость, а не спрашиваете. В вопросе `are` идёт первым.*
@@ -32,7 +32,7 @@
 
 Длинный вариант — `Are you ok?`, он подходит всегда и всем. Короткое `Ok?` тоже поймут, но только когда и так ясно, о чём речь: человек уже сидит на асфальте и держится за колено.
 
-**Женщина впереди споткнулась о бордюр и замерла. Спросите, всё ли с ней в порядке.**
+**Ольга впереди споткнулась о бордюр и замерла. Спросите Ольгу, всё ли с ней в порядке.**
 
 - ✅ **Are you ok?**
 - ❌ Ok you are? — *Слова те же, порядок вывернут. Начинаем с `are you`.*
@@ -48,7 +48,7 @@
 
 Выучили `are you` один раз — и дальше просто подставляете нужное слово. Перепутаете последнее — предложите замёрзшему человеку воды.
 
-**Мальчик у остановки без куртки, руки в рукавах, плечи подняты. Спросите, не замёрз ли он.**
+**Никита у остановки без куртки, руки в рукавах, плечи подняты. Спросите Никиту, не замёрз ли он.**
 
 - ✅ **Are you cold?**
 - ❌ Are you hungry? — *Это «ты голоден?». Он дрожит, а не смотрит на булочную.*
@@ -56,84 +56,106 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — lost**
-🔊 *lost* → **lost** · lot · last
-- lot — *Другое слово: `a lot` — «много». В `lost` в конце слышно «ст», в `lot` — только «т».*
-- last — *Другая гласная и другой смысл: `last` — «последний».*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-06:i01; family: listen_choose -->
+Цель: `lost`
+Варианты: `lost` · `lot` · `last`
 
-**2 · Вставьте слово — женщина с телефоном-картой вертится на месте**
-Are you ___ ? → **lost** · awake · hungry
-- awake — *«Проснулась?» Она на ногах посреди улицы, это и так видно.*
-- hungry — *«Голодна?» Она ищет дорогу, а не еду.*
+**2 · Вставьте слово — Ира с телефоном-картой вертится на месте**
+<!-- interaction_id: en:lesson-02:session-06:i02; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `lost` · `awake` · `hungry`
 
-**3 · Послушайте и выберите — thirsty**
-🔊 *thirsty* → **thirsty** · dirty · thirty
-- dirty — *`dirty` — «грязный». Речь о человеке у фонтанчика, а не о пятне на куртке.*
-- thirty — *`thirty` — «тридцать». В `thirsty` есть «с» перед последней частью, в `thirty` его нет.*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-06:i03; family: listen_choose -->
+Цель: `thirsty`
+Варианты: `thirsty` · `dirty` · `thirty`
 
-**4 · Соберите фразу — спросить, не хочет ли человек пить**
-Плитки: `you` `thirsty` `are` `is` → **Are you thirsty?**
+**4 · Соберите фразу — спросить Иру, не хочет ли она пить**
+<!-- interaction_id: en:lesson-02:session-06:i04; family: phrase_builder -->
+Цель: `Are you thirsty?`
 
-**5 · Вставьте слово — женщина уронила сумку и села на скамейку**
-Are you ___ ? → **ok** · cold · thirsty
-- cold — *«Замёрзла?» На улице тепло, дело не в холоде.*
-- thirsty — *«Хочешь пить?» Она только что упала — сначала спрашивают, цела ли.*
+**5 · Вставьте слово — Ольга уронила сумку и села на скамейку**
+<!-- interaction_id: en:lesson-02:session-06:i05; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `ok` · `cold` · `thirsty`
 
 **6 · Послушайте и соберите — «ты голоден?»**
-🔊 *Are you hungry?* Плитки: `hungry` `are` `you` `cold` → **Are you hungry?**
+<!-- interaction_id: en:lesson-02:session-06:i06; family: listen_build_dictation -->
+Цель: `Are you hungry?`
 
 **7 · Различите звуки — какое из двух про «холодно»?**
-🔊 Два слова подряд.
-*cold · gold* → **cold**
-- gold — *`gold` — «золото». Слова различаются первым звуком: «к» против «г», дальше всё одинаково.*
+<!-- interaction_id: en:lesson-02:session-06:i07; family: sound_contrast -->
+Варианты: `cold` · `gold`
 
-**8 · Вставьте слово — мальчик без куртки, плечи подняты, руки в рукавах**
-Are you ___ ? → **cold** · lost · ok
-- lost — *«Заблудился?» Он стоит у своей остановки, дорогу не ищет.*
-- ok — *`Are you ok?` спрашивают, когда человеку плохо непонятно отчего. Тут видно отчего — он мёрзнет.*
+**8 · Вставьте слово — Никита без куртки, плечи подняты, руки в рукавах**
+<!-- interaction_id: en:lesson-02:session-06:i08; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `cold` · `lost` · `ok`
 
-**9 · Соедините пары (Speed Match, 4 пары)**
-lost — заблудился · ok — в порядке · thirsty — хочет пить · cold — замёрз
+**9 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-06:i09; family: speed_match -->
+Пары: `lost` — заблудился · `ok` — в порядке · `thirsty` — хочет пить · `cold` — замёрз
+Цель: `lost · ok · thirsty · cold`
 
-**10 · Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он**
-Спросите прохожего, не заблудился ли он.
-Плитки: `are` `lost` `you` `not` → **Are you lost?**
+**10 · Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он**
+<!-- interaction_id: en:lesson-02:session-06:i10; family: phrase_builder -->
+Цель: `Are you lost?`
 
-**11 · Вставьте слово — человек стоит у фонтанчика и облизывает губы**
-Are you ___ ? → **thirsty** · awake · lost
-- awake — *«Проснулся?» Он бодро стоит у воды, со сном это не связано.*
-- lost — *«Заблудился?» Он никуда не идёт, он смотрит на воду.*
+**11 · Вставьте слово — Ира стоит у фонтанчика и облизывает губы**
+<!-- interaction_id: en:lesson-02:session-06:i11; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `thirsty` · `awake` · `lost`
 
 **12 · Послушайте и соберите — «ты в порядке?»**
-🔊 *Are you ok?* Плитки: `you` `ok` `are` `hungry` → **Are you ok?**
+<!-- interaction_id: en:lesson-02:session-06:i12; family: listen_build_dictation -->
+Цель: `Are you ok?`
 
 **13 · Вставьте слово — сосед по комнате сидит с закрытыми глазами, вы уходите**
-Are you ___ ? → **awake** · cold · thirsty
-- cold — *«Замёрз?» В комнате обычная температура, дело не в этом.*
-- thirsty — *«Хочешь пить?» Вы проверяете, спит он или нет.*
+<!-- interaction_id: en:lesson-02:session-06:i13; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `awake` · `cold` · `thirsty`
 
-**14 · Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он**
-Плитки: `cold` `are` `you` `am` → **Are you cold?**
+**14 · Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он**
+<!-- interaction_id: en:lesson-02:session-06:i14; family: phrase_builder -->
+Цель: `Are you cold?`
 
-**15 · Скажите вслух — два вопроса подряд незнакомцу**
-🎙 **Are you lost? Are you ok?** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-06:i15:s01; family: scripted_repeat_compare -->
+Цель: `Are you lost?`
 
-**16 · Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он**
-Плитки: `hungry` `you` `are` `you` → **Are you hungry?**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-06:i15:s02; family: scripted_repeat_compare -->
+Цель: `Are you ok?`
 
-**17 · Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он**
-🎙 Перекрёсток, вокруг люди. Спросите по очереди: заблудился ли он, в порядке ли он, не хочет ли пить, не замёрз ли.
-**Are you lost? Are you ok? Are you thirsty? Are you cold?**
+**17 · Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он**
+<!-- interaction_id: en:lesson-02:session-06:i16; family: phrase_builder -->
+Цель: `Are you hungry?`
 
----
+**18 · Послушайте и выберите — Никита снова идёт мимо той же витрины, и вы спрашиваете, не заблудился ли он**
+<!-- interaction_id: en:lesson-02:session-06:i17:s01; family: listen_choose -->
+Цель: `Are you lost?`
+Варианты: `Are you lost?` · `You are lost.` · `Are you late?`
+
+**19 · Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она**
+<!-- interaction_id: en:lesson-02:session-06:i17:s02; family: phrase_builder -->
+Цель: `Are you ok?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-06:i17:s03; family: scripted_repeat_compare -->
+Цель: `Are you thirsty?`
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-06:i17:s04; family: scripted_repeat_compare -->
+Цель: `Are you cold?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=sound_contrast, 8=context_gap_grammar, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=sound_contrast, 8=context_gap_grammar, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder, 18=listen_choose, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

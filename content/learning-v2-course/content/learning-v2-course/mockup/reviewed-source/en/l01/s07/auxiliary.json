@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro1:r2": {
+          "ru": "После `I` нужно `am`: `I am glad`.",
+          "uk": "Після `I` потрібне `am`: `I am glad`."
+        },
+        "en:lesson-01:session-07:intro1:r3": {
+          "ru": "Так говорят в мультиках про пещерных людей. О себе начинают с `I`.",
+          "uk": "Так говорять у мультиках про печерних людей. Про себе починають з `I`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro2:r2": {
+          "ru": "Это «я ещё не наелся» — и вам принесут четвёртый кусок.",
+          "uk": "Це «я ще не наївся» — і вам принесуть четвертий шматок."
+        },
+        "en:lesson-01:session-07:intro2:r3": {
+          "ru": "Без `am` фраза рассыпается. Два слова тут не работают, нужно три.",
+          "uk": "Без `am` фраза розсипається. Два слова тут не працюють, потрібно три."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-07:intro3:r2": {
+          "ru": "Русское «я не боюсь» просочилось целиком. `not` цепляется к `am`, а не к `I`.",
+          "uk": "Українське «я не боюся» перебралося сюди без змін. `not` чіпляється до `am`, а не до `I`."
+        },
+        "en:lesson-01:session-07:intro3:r3": {
+          "ru": "Ровно противоположное: вы признались, что боитесь. Одно `not` — и смысл другой.",
+          "uk": "Рівно протилежне: ви зізналися, що боїтеся. Одне `not` — і зміст інший."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "72afa4e2ade927b8d7935322670c7c2b55276e7c2b8fd8ec3c0fa3d6f84b12a2"
+}

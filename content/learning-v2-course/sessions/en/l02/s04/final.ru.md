@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 4 — «Are you» в шуме
+# Английский · Урок 2 · Занятие 4 — «Are you» в шуме
 
-**Сцена сессии.** Общая кухня хостела в субботу утром. Гремит чайник, все говорят разом, и короткий вопрос приходится ловить на слух.
+**Сцена занятия.** В общей кухне хостела гремит чайник. Сосед Том спрашивает вас короткими вопросами, пока Мира готовит чай; нужно расслышать именно вопрос Тома.
 
-**Операция:** повторение `Are you + слово` — узнавание на слух
+**Как сказать:** повторение `Are you + слово` — узнавание на слух
 **Новые слова:** curious, cheerful
 **Возвращаются:** awake, thirsty, cold
 
@@ -56,77 +56,95 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — curious**
-> **curious** — «любопытно». Когда очень хочется заглянуть в чужую банку, но неловко.
+<!-- interaction_id: en:lesson-02:session-04:i01; family: listen_choose -->
+Цель: `curious`
 
-**2 · Послушайте и выберите — curious**
-🔊 *curious* → **curious** · courage · curly
-- courage — *«Смелость». Другое слово, и звучит оно иначе с середины.*
-- curly — *«Кудрявый». Начало похожее, но `curly` короче: два слога против трёх.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-04:i02; family: listen_choose -->
+Цель: `curious`
+Варианты: `curious` · `courage` · `curly`
 
 **3 · Карточка слова — cheerful**
-> **cheerful** — «весёлый». Человек, который в семь утра уже напевает.
+<!-- interaction_id: en:lesson-02:session-04:i03; family: listen_choose -->
+Цель: `cheerful`
 
-**4 · Послушайте и выберите — cheerful**
-🔊 *cheerful* → **cheerful** · careful · cheap
-- careful — *«Осторожный». Начинается с «кэр-», а не с «чи-».*
-- cheap — *«Дешёвый». Один слог, и на конце нет «-фул».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-04:i04; family: listen_choose -->
+Цель: `cheerful`
+Варианты: `cheerful` · `careful` · `cheap`
 
 **5 · Различите звуки — какое из двух про настроение?**
-🔊 Два слова подряд.
-*cheerful · careful* → **cheerful**
-- careful — *Это «осторожный». `cheerful` начинается с «ч», как в слове «чай».*
+<!-- interaction_id: en:lesson-02:session-04:i05; family: sound_contrast -->
+Варианты: `cheerful` · `careful`
 
 **6 · Соберите фразу — спросите про настроение**
-Плитки: `you` `cheerful` `are` `am` → **Are you cheerful?**
+<!-- interaction_id: en:lesson-02:session-04:i06; family: phrase_builder -->
+Цель: `Are you cheerful?`
 
 **7 · Послушайте и соберите — «тебе любопытно?»**
-🔊 *Are you curious?* Плитки: `curious` `are` `you` `cold` → **Are you curious?**
+<!-- interaction_id: en:lesson-02:session-04:i07; family: listen_build_dictation -->
+Цель: `Are you curious?`
 
 **8 · Послушайте и выберите — что спросил сосед**
-🔊 *Are you awake?* → **Are you awake?** · Are you cold? · You are awake.
-- Are you cold? — *Последнее слово другое. `awake` — «проснулся», `cold` — «холодно».*
-- You are awake. — *Это сообщение, а не вопрос: `are` стоит вторым.*
+<!-- interaction_id: en:lesson-02:session-04:i08; family: listen_choose -->
+Цель: `Are you awake?`
+Варианты: `Are you awake?` · `Are you cold?` · `You are awake.`
 
 **9 · Вставьте слово — сосед второй час пьёт чай и молчит, а вы всё утро без единого глотка**
-Are you ___ ? → **thirsty** · curious · awake
-- curious — *«Любопытно» — про интерес, а не про сухое горло.*
-- awake — *«Проснулся» — вы давно на ногах, вопрос не об этом.*
+<!-- interaction_id: en:lesson-02:session-04:i09; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `thirsty` · `curious` · `awake`
 
-**10 · Вставьте слово — начало вопроса**
-___ you cheerful? → **Are** · Is · Am
-- Is — *Чужое слово. С `you` идёт `are`.*
-- Am — *Это про себя, `I am`. К `you` оно не подходит.*
+**10 · Послушайте и соберите — «ты весёлый?»**
+<!-- interaction_id: en:lesson-02:session-04:i10; family: listen_build_dictation -->
+Цель: `Are you cheerful?`
+Плитки: `Are` · `you` · `cheerful` · `is`
 
-**11 · Послушайте и соберите — «тебе холодно?»**
-🔊 *Are you cold?* Плитки: `cold` `you` `are` `cheerful` → **Are you cold?**
+**11 · Соберите вопрос — сосед в футболке стоит у открытого окна и обхватил себя руками**
+<!-- interaction_id: en:lesson-02:session-04:i11; family: phrase_builder -->
+Цель: `Are you cold?`
 
-**12 · Соедините пары (Speed Match, 4 пары)**
-curious — любопытно · cheerful — весёлый · awake — проснулся · cold — холодно
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-04:i12; family: speed_match -->
+Пары: `curious` — любопытно · `cheerful` — весёлый · `awake` — проснулся · `cold` — холодно
+Цель: `curious · cheerful · awake · cold`
 
 **13 · Вставьте слово — сосед в футболке стоит у открытого окна и обхватил себя руками**
-Are you ___ ? → **cold** · cheerful · thirsty
-- cheerful — *«Весёлый» — но человек не улыбается, он ёжится.*
-- thirsty — *«Хочу пить». Человек у окна ёжится от холода, про жажду в сцене ничего нет.*
+<!-- interaction_id: en:lesson-02:session-04:i13; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `cold` · `cheerful` · `thirsty`
 
 **14 · Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он**
-Плитки: `awake` `are` `you` `not` → **Are you awake?**
+<!-- interaction_id: en:lesson-02:session-04:i14; family: phrase_builder -->
+Цель: `Are you awake?`
 
 **15 · Послушайте и выберите — про воду или про интерес**
-🔊 *Are you thirsty?* → **Are you thirsty?** · Are you curious? · Are you cheerful?
-- Are you curious? — *Другое последнее слово: `curious` — «любопытно».*
-- Are you cheerful? — *`cheerful` — «весёлый». Тут прозвучало слово про жажду.*
+<!-- interaction_id: en:lesson-02:session-04:i15; family: listen_choose -->
+Цель: `Are you thirsty?`
+Варианты: `Are you thirsty?` · `Are you curious?` · `Are you cheerful?`
 
-**16 · Скажите вслух — два вопроса подряд**
-🎙 **Are you awake? Are you thirsty?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-04:i16:s01; family: scripted_repeat_compare -->
+Цель: `Are you awake?`
 
-**17 · Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он**
-🎙 Кухня опустела, остался один сосед. Спросите, проснулся ли он, холодно ли ему и весело ли ему.
-**Are you awake? Are you cold? Are you cheerful?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-04:i16:s02; family: scripted_repeat_compare -->
+Цель: `Are you thirsty?`
 
----
+**18 · Послушайте и соберите — «ты не спишь?»**
+<!-- interaction_id: en:lesson-02:session-04:i17:s01; family: listen_build_dictation -->
+Цель: `Are you awake?`
+
+**19 · Обратитесь к Тому и произнесите вслух вопрос: не холодно ли ему**
+<!-- interaction_id: en:lesson-02:session-04:i17:s02; family: scripted_repeat_compare -->
+Цель: `Tom, are you cold?`
+
+**20 · Обратитесь к Мире и произнесите вслух вопрос: в хорошем ли она настроении**
+<!-- interaction_id: en:lesson-02:session-04:i17:s03; family: scripted_repeat_compare -->
+Цель: `Mira, are you cheerful?`
 
 ## Для сборщика
 
@@ -134,7 +152,7 @@ new_words:
 curious — любопытно — «любопытно». Когда очень хочется заглянуть в чужую банку, но неловко.
 cheerful — весёлый — «весёлый». Человек, который в семь утра уже напевает.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=sound_contrast, 6=phrase_builder, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=context_gap_grammar, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=sound_contrast, 6=phrase_builder, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=phrase_builder, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -162,7 +180,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=sound_contr
 |---|---|---|
 | curious | 1 | 2 (слух), 7 (сборка) |
 | cheerful | 3 | 4 (слух), 5 (звуки), 6 (сборка), 10 (вставка) |
-| awake | из прошлых сессий | 8 (выбор на слух) |
-| cold | из прошлых сессий | 11 (сборка на слух) |
+| awake | из прошлых занятий | 8 (выбор на слух) |
+| cold | из прошлых занятий | 11 (сборка на слух) |
 
 ---

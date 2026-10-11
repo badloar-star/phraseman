@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "отличить вопросительный порядок `Is/Are there…?` от утверждения `There is/are…`.",
+    "uk": "відрізнити порядок питання `Is/Are there…?` від твердження `There is/are…`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`taxi` — такси",
+        "uk": "`taxi` — таксі"
+      },
+      "bodyByLocale": {
+        "ru": "`taxi` — «такси», машина, за поездку в которой платят водителю. Одна машина — `a taxi`, несколько — `taxis`. Буква `s` в конце не украшение: она показывает, что машин больше одной. В вопросе `Are` выходит вперёд, будто первым подаёт сигнал на стоянке.",
+        "uk": "`taxi` — «таксі», машина, за поїздку в якій платять водієві. Одна машина — `a taxi`, кілька — `taxis`. Літера `s` наприкінці не для краси: вона показує, що машин більше однієї. У питанні `Are` виходить уперед, ніби першим подає сигнал на стоянці."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "У пустой стоянки видна одна машина. Выберите, что это.",
+          "uk": "На порожній стоянці видно одну машину. Оберіть, що це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r1",
+              "text": "a taxi"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r2",
+              "text": "a tram"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r3",
+              "text": "a platform"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r1",
+              "text": "a taxi"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r2",
+              "text": "a tram"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro1:r3",
+              "text": "a platform"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У пустой стоянки видна одна машина. Выберите, что это.",
+          "uk": "На порожній стоянці видно одну машину. Оберіть, що це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос начинается с `Is`",
+        "uk": "Питання починається з `Is`"
+      },
+      "bodyByLocale": {
+        "ru": "`There is a taxi.` — это сообщение: «Есть одно такси». Когда вы спрашиваете, есть ли оно, `is` переходит вперёд: `Is there a taxi?` Сначала стоит `Is`, затем `there`, потом само место или предмет. Вопросительный знак помогает, но порядок слов делает основную работу.",
+        "uk": "`There is a taxi.` — це повідомлення: «Є одне таксі». Коли ви питаєте, чи воно є, `is` переходить наперед: `Is there a taxi?` Спочатку стоїть `Is`, потім `there`, а далі саме місце або предмет. Знак питання допомагає, але порядок слів робить основну роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "У пустой стоянки вы не уверены, есть ли одна машина. Задайте вопрос.",
+          "uk": "На порожній стоянці ви не впевнені, чи є одна машина. Поставте питання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r1",
+              "text": "Is there a taxi?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r2",
+              "text": "There is a taxi?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r3",
+              "text": "Is there taxi?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r1",
+              "text": "Is there a taxi?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r2",
+              "text": "There is a taxi?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro2:r3",
+              "text": "Is there taxi?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У пустой стоянки вы не уверены, есть ли одна машина. Задайте вопрос.",
+          "uk": "На порожній стоянці ви не впевнені, чи є одна машина. Поставте питання."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вопрос о нескольких машинах начинается с `Are`",
+        "uk": "Питання про кілька машин починається з `Are`"
+      },
+      "bodyByLocale": {
+        "ru": "`There are taxis.` — сообщение о нескольких машинах. Вопрос строится так: `Are there taxis?` Форма `are` выходит вперёд, а `taxis` остаётся во множественном числе. Не меняйте местами весь ряд: переставляется только начало.",
+        "uk": "`There are taxis.` — повідомлення про кілька машин. Питання будується так: `Are there taxis?` Форма `are` виходить наперед, а `taxis` залишається у множині. Порядок підказує, що саме ви питаєте. Не переставляйте весь ряд: змінюється лише початок."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "На дальней стороне стоянки могут стоять несколько машин. Спросите об этом.",
+          "uk": "На дальньому боці стоянки можуть стояти кілька машин. Запитайте про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r1",
+              "text": "Are there taxis?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r2",
+              "text": "There are taxis?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r3",
+              "text": "Is there taxis?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r1",
+              "text": "Are there taxis?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r2",
+              "text": "There are taxis?"
+            },
+            {
+              "responseId": "en:lesson-04:session-13:intro3:r3",
+              "text": "Is there taxis?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На дальней стороне стоянки могут стоять несколько машин. Спросите об этом.",
+          "uk": "На дальньому боці стоянки можуть стояти кілька машин. Запитайте про це."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "44dc111cb5475d41d8a649d42380ee8c5a5927577a34e067d45bc807d8f709ce"
+}

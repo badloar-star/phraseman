@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 28 — «Оно сломалось»
+# Английский · Урок 1 · Занятие 28 — «Вещи в квартире»
 
-**Сцена сессии.** Вы вернулись в квартиру после работы и обходите её: что-то не закрывается, что-то не включается, а холодильник оказался пустым.
-**Операция:** `It is` про предметы (голос и слух)
+**Ситуация.** Лена вернулась после работы в съёмную квартиру. Она звонит хозяину, чтобы объяснить: лампочка не работает, окно открыто, а холодильник пуст.
+**Как сказать:** `It is`, когда описываете состояние одной вещи.
 **Новые слова:** broken, open, closed, empty
 **Возвращаются:** cold, hot, small, new
 
@@ -20,7 +20,7 @@
 **Вы жмёте выключатель в коридоре — тишина, темнота. Скажите про свет.**
 
 - ✅ **It is broken.**
-- ❌ It broken. — *Скрепка `is` пропала. По-русски её нет, по-английски без неё фраза не собирается.*
+- ❌ It broken. — *Между `it` и словом нужна форма `is`.*
 - ❌ It is break. — *`break` — это «ломать»: так говорят про того, кто ломает. Свет ничего не ломает, он сам сломан — `broken`.*
 
 ---
@@ -55,98 +55,143 @@
 
 - ✅ **It is empty.**
 - ❌ It is small. — *`small` — «маленький», это про размер. А холодильник может быть огромным и всё равно пустым внутри.*
-- ❌ It empty. — *Скрепка `is` снова потерялась. Про вещь — `It is`, два слова вместе.*
+- ❌ It empty. — *Между `it` и словом нужна форма `is`.*
 
 ---
 
 ## Практика (21 задание, поддержка убывает)
 
 **1 · Карточка слова — broken**
+<!-- interaction_id: en:lesson-01:session-28:i01; family: listen_choose -->
 > **broken** — «сломано». Вещь работала, а теперь не работает: лампочка, замок, стул, телефон.
 
-**2 · Послушайте и выберите — broken**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-28:i02; family: listen_choose -->
 🔊 *broken* → **broken** · brown · broke
 - brown — *Похоже началом, но это «коричневый». В `broken` два слога: БРОУ-кен.*
 - broke — *Другое слово, «сломал». Нам нужно `broken` — то, что сломано.*
 
 **3 · Карточка слова — open**
+<!-- interaction_id: en:lesson-01:session-28:i03; family: listen_choose -->
 > **open** — «открыто». Дверь не заперта, окно отошло, магазин работает.
 
-**4 · Послушайте и выберите — open**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-28:i04; family: listen_choose -->
 🔊 *open* → **open** · oven · often
 - oven — *Тут в середине `v`. Это «духовка» — вещь, но не состояние.*
 - often — *Это «часто». Слушайте середину: в `open` там «п», в `often` — другой звук.*
 
 **5 · Соберите фразу — лампочка в коридоре не горит**
+<!-- interaction_id: en:lesson-01:session-28:i05; family: phrase_builder -->
 Плитки: `broken` `It` `is` `open` → **It is broken.**
 
 **6 · Карточка слова — closed**
+<!-- interaction_id: en:lesson-01:session-28:i06; family: listen_choose -->
 > **closed** — «закрыто». Дверь заперта, окно захлопнуто, магазин уже не работает.
 
-**7 · Послушайте и выберите — closed**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-28:i07; family: listen_choose -->
 🔊 *closed* → **closed** · cold · clothes
 - cold — *Это «холодно». В `cold` перед концом слышно «л», а в `closed` на её месте жужжит «з»: КОУЛД — КЛОУЗД.*
 - clothes — *Тоже жужжит, но на самом конце. У `closed` последний звук — «д»: КЛОУЗД.*
 
 **8 · Вставьте слово — вы пришли к магазину в девять вечера, свет внутри выключен**
+<!-- interaction_id: en:lesson-01:session-28:i08; family: context_gap_grammar -->
 It is ___ . → **closed** · open · new
 - open — *Ровно наоборот. Свет не горит, дверь заперта — это `closed`.*
 - new — *`new` — «новый», про возраст магазина, а не про то, впустят ли вас.*
 
 **9 · Карточка слова — empty**
+<!-- interaction_id: en:lesson-01:session-28:i09; family: listen_choose -->
 > **empty** — «пусто». Внутри ничего нет: холодильник, стакан, комната без мебели.
 
-**10 · Послушайте и выберите — empty**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-28:i10; family: listen_choose -->
 🔊 *empty* → **empty** · enter · any
 - enter — *Другое слово и другой конец. В `empty` слышно «мп» посередине.*
 - any — *Только первый звук совпадает. `empty` — два слога: ЭМ-пти.*
 
 **11 · Послушайте и соберите — «оно пустое»**
+<!-- interaction_id: en:lesson-01:session-28:i11; family: listen_build_dictation -->
 🔊 *It is empty.* Плитки: `empty` `is` `It` `closed` → **It is empty.**
 
-**12 · Соедините пары (Speed Match, 4 пары)**
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-28:i12; family: speed_match -->
 broken — сломано · open — открыто · closed — закрыто · empty — пусто
 
 **13 · Вставьте слово — `cold` значит «холодно». Вы взяли чашку с полки, а чай в ней остыл ещё утром**
+<!-- interaction_id: en:lesson-01:session-28:i13; family: context_gap_grammar -->
 It is ___ . → **cold** · hot · empty
 - hot — *`hot` — «горячо». Ровно наоборот: чай стоял с утра, горячим он быть не может.*
 - empty — *В чашке чай есть, просто холодный. Пустой она не стала.*
 
 **14 · Соберите фразу — форточка на кухне отошла, и в комнату тянет воздухом**
+<!-- interaction_id: en:lesson-01:session-28:i14; family: phrase_builder -->
 Плитки: `is` `open` `It` `not` → **It is open.**
 *(плитка `not` лишняя: окно действительно открыто, отрицать нечего)*
 
 **15 · Различите звуки — какое из двух про «закрыто»?**
+<!-- interaction_id: en:lesson-01:session-28:i15; family: sound_contrast -->
 🔊 Два слова подряд.
 *closed · cold* → **closed**
 - cold — *Это «холодно». В `closed` перед концом жужжит «з», в `cold` на её месте «л»: КЛОУЗД — КОУЛД.*
 
 **16 · Вставьте слово — `hot` значит «горячо». Вы дотронулись до батареи, и руку пришлось отдёрнуть**
+<!-- interaction_id: en:lesson-01:session-28:i16; family: context_gap_grammar -->
 It is ___ . → **hot** · cold · broken
 - cold — *`cold` — «холодно». Наоборот: руку отдёргивают от горячего.*
 - broken — *Батарея как раз работает — даже слишком хорошо.*
 
-**17 · Вставьте слово — `small` значит «маленький». Вы заглянули в кладовку: два шага в длину, шкаф и всё**
-It is ___ . → **small** · empty · cold
-- empty — *Шкаф там стоит, значит не пусто. Речь про размер комнаты.*
-- cold — *Про тепло ничего не сказано. Два шага в длину — это `small`.*
+**17 · Соберите фразу — кладовка два шага в длину, шкаф и всё**
+<!-- interaction_id: en:lesson-01:session-28:i17; family: phrase_builder -->
+Плитки: `small` `It` `is` `are` → **It is small.**
 
 **18 · Вставьте слово — `new` значит «новый». Вы въехали неделю назад, обои ещё пахнут краской**
+<!-- interaction_id: en:lesson-01:session-28:i18; family: context_gap_grammar -->
 It is ___ . → **new** · old · small
 - old — *`old` — «старый». Ровно наоборот: неделя — это совсем свежая квартира.*
 - small — *Про размер речи нет. Свежий ремонт — это `new`.*
 
-**19 · Соедините пары — слова про вещи (Speed Match, 4 пары)**
+**19 · Соедините пары — слова про вещи**
+<!-- interaction_id: en:lesson-01:session-28:i19; family: speed_match -->
 cold — холодно · hot — горячо · small — маленький · new — новый
 
-**20 · Скажите вслух — вы звоните хозяину квартиры и перечисляете беды**
-🎙 **It is broken. It is empty. It is cold.** — послушайте, повторите, сравните.
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-28:i20:s01; family: scripted_repeat_compare -->
+🎙 **It is broken.**
 
-**21 · Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая**
-🎙 Вы стоите у входной двери и проверяете напоследок. Скажите про дверь, что она закрыта, а потом про кладовку, что она маленькая.
-Плитки: `It` `is` `closed` `It` `is` `small` `new` → **It is closed. It is small.**
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-28:i20:s02; family: scripted_repeat_compare -->
+🎙 **It is empty.**
+
+**22 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-28:i20:s03; family: scripted_repeat_compare -->
+🎙 **It is cold.**
+
+**23 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-01:session-28:i21:s01; family: phrase_builder -->
+Плитки: `closed.` `It` `is` `new` → **It is closed.**
+
+**24 · Скажите вслух — квартира маленькая**
+<!-- interaction_id: en:lesson-01:session-28:i21:s02; family: scripted_repeat_compare -->
+🎙 **It is small.**
 
 ---
+
+## Пояснения к проверенным ответам
+
+- 2: **broken** — в конце слышно `-ken`; это «сломано», не `brown` и не `broke`.
+- 4: **open** — «открыто», не `oven` и не `often`.
+- 5: лишняя плитка **open**: лампочка не горит, значит `It is broken.`
+- 7–8: **closed** — «закрыто»: в девять вечера магазин не работает и свет выключен.
+- 10–11: **empty** — «пусто»; лишняя **closed** не описывает пустой предмет.
+- 13: **cold** — чай остыл; `hot` значит наоборот.
+- 14: лишняя плитка **not**: форточка открыта, поэтому `It is open.`
+- 15: **closed** — в конце слышно `-zd`; `cold` значит «холодно».
+- 16: **hot** — батарея горячая.
+- 17: лишняя плитка **are**: после `It` ставят `is`.
+- 18: **new** — обои пахнут свежей краской после недавнего заселения.
+- 23: лишняя плитка **new**: здесь нужно `It is closed.`
 
 ## Для сборщика
 
@@ -156,7 +201,7 @@ open — открыто — дверь не заперта, окно отошл�
 closed — закрыто — дверь заперта, окно захлопнуто, магазин уже не работает
 empty — пусто — внутри ничего нет: холодильник, стакан, комната без мебели
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=context_gap_grammar, 9=word_card, 10=listen_choose, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=sound_contrast, 16=context_gap_grammar, 17=context_gap_grammar, 18=context_gap_grammar, 19=speed_match, 20=scripted_repeat_compare, 21=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=context_gap_grammar, 9=listen_choose, 10=listen_choose, 11=listen_build_dictation, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=sound_contrast, 16=context_gap_grammar, 17=phrase_builder, 18=context_gap_grammar, 19=speed_match, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare, 23=phrase_builder, 24=scripted_repeat_compare
 
 ---
 

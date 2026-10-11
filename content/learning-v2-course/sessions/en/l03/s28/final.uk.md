@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 28 — «Передай цю або ту річ»
+# Англійська · Урок 3 · Заняття 28 — «Ця або та річ»
 
-**Сцена сесії.** Ви з другом збираєтеся вийти з магазину. Частина речей лежить поруч на касі, частина залишилася далі біля входу; ви просите передати потрібну річ і уточнюєте відстань словом `this` або `that`.
+**Сцена заняття.** Ви з другом збираєтеся вийти з магазину. Частина речей лежить поруч на касі, частина залишилася далі біля входу; ви вибираєте потрібну річ коротким проханням і розрізняєте `this` та `that` на слух.
 
-**Операція:** `Give me this/that + предмет` — попросити конкретну річ поруч або вдалині
+**Як сказати:** розрізняти `this` та `that` у короткому проханні про річ поруч або вдалині
 **Нові слова:** suitcase, backpack, wallet
 **Для повторення:** phone, key, bag, screen
 
@@ -10,33 +10,33 @@
 
 ## Інтро 1
 
-### Попросити річ поруч
+### Вибрати річ поруч
 
-`Give me` — «дай мені, передай мені». Валіза стоїть поруч із вами біля каси, тому додаємо `this`: `Give me this suitcase.` — «Передай мені цю валізу».
+`suitcase` — «валіза». Валіза стоїть поруч із вами біля каси: `This suitcase, please.` — «Ця валіза, будь ласка».
 
 Після `this` одразу йде назва речі, без `a`: `this suitcase`. Слово `this` показує, що потрібна саме ближня валіза, а не інша біля входу.
 
-**Валіза стоїть просто перед вами біля каси. Попросіть друга передати цю валізу.**
+**Валіза стоїть просто перед вами біля каси. Виберіть цю валізу коротким проханням.**
 
-- ✅ **Give me this suitcase.**
-- ❌ Give me that suitcase. — *`that` указує на далеку річ. Валіза поруч, тому потрібне `this`.*
-- ❌ Give me this a suitcase. — *Після `this` назва речі йде без `a`: `this suitcase`.*
+- ✅ **This suitcase, please.**
+- ❌ That suitcase, please. — *`that` указує на далеку річ. Валіза поруч, тому потрібне `this`.*
+- ❌ This a suitcase, please. — *Після `this` назва речі йде без `a`: `this suitcase`.*
 
 ---
 
 ## Інтро 2
 
-### Попросити річ вдалині
+### Вибрати річ вдалині
 
-Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `Give me that backpack.` — «Передай мені той рюкзак».
+`backpack` — «рюкзак». Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `That backpack, please.` — «Той рюкзак, будь ласка».
 
-Початок прохання не змінюється: `Give me`. Далі `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`.
+У короткому проханні `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`.
 
-**Рюкзак залишився на стійці біля входу. Попросіть друга передати той рюкзак.**
+**Рюкзак залишився на стійці біля входу. Виберіть той рюкзак коротким проханням.**
 
-- ✅ **Give me that backpack.**
-- ❌ Give me this backpack. — *Рюкзак знаходиться біля входу. Тут потрібне `that`, а не `this`.*
-- ❌ Give that backpack. — *Треба сказати, кому передати річ. Після `Give` додайте `me`: `Give me that backpack`.*
+- ✅ **That backpack, please.**
+- ❌ This backpack, please. — *Рюкзак знаходиться біля входу. Тут потрібне `that`, а не `this`.*
+- ❌ That a backpack, please. — *Після `that` назва речі йде без `a`: `that backpack`.*
 
 ---
 
@@ -44,94 +44,107 @@
 
 ### Почути `this` або `that`
 
-`wallet` — «гаманець». Для гаманця поруч скажіть `Give me this wallet.`, а для гаманця вдалині — `Give me that wallet.` Одне коротке слово змінює вибрану річ.
+`wallet` — «гаманець». Для речі поруч скажіть `This wallet, please.`, вдалині — `That wallet, please.`
 
-Обидва вказівні слова починаються звуком /ð/. Розрізняйте голосні: /ɪ/ у `this` та /æ/ у `that`. Спочатку визначте відстань, потім виберіть потрібне слово.
+Не вгадуйте за початком: дослухайте `this` або `that` до кінця й дивіться, де лежить річ. Каса не любить лотерей: одне слово вирішує, який гаманець поїде з вами.
 
-**Гаманець лежить просто перед вами на прилавку. Попросіть друга передати цей гаманець.**
+**Гаманець лежить просто перед вами на прилавку. Виберіть цей гаманець коротким проханням.**
 
-- ✅ **Give me this wallet.**
-- ❌ Give me that wallet. — *Гаманець лежить просто перед вами. Потрібне вказівне слово `this`.*
-- ❌ Give me this a wallet. — *Після `this` слово `wallet` іде одразу, без `a`.*
+- ✅ **This wallet, please.**
+- ❌ That wallet, please. — *Гаманець лежить просто перед вами. Потрібне вказівне слово `this`.*
+- ❌ This a wallet, please. — *Після `this` слово `wallet` іде одразу, без `a`.*
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — suitcase**
-> **suitcase** — «валіза». На коліщатах, але на сходах раптом згадує, що вона просто важка коробка.
+<!-- interaction_id: en:lesson-03:session-28:i01; family: listen_choose -->
+Ціль: `suitcase`
 
-**2 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *suitcase* → **suitcase** · sunshine · seaside · suit
-Значення варіантів: suitcase — валіза · sunshine — сонячне світло · seaside — морське узбережжя · suit — костюм
-- sunshine — *Після першого звука в `sunshine` чути коротке `u`; `suitcase` починається як `suit`.*
-- seaside — *`seaside` починається довгим `see`, а `suitcase` — звуками слова `suit`.*
-- suit — *`suit` закінчується після одного складу, а `suitcase` продовжується словом `case`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-28:i03; family: scripted_repeat_compare -->
+Ціль: `backpack`
 
-**3 · Картка слова — backpack**
-> **backpack** — «рюкзак». Дві лямки звільняють руки, щоб у кожній опинилося ще по пакету.
+**3 · Виберіть назву — на прилавку лежить гаманець**
+<!-- interaction_id: en:lesson-03:session-28:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `wallet` · `backpack` · `suitcase`
 
-**4 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *backpack* → **backpack** · backpacker · package · baggage
-Значення варіантів: backpack — рюкзак · backpacker — турист із рюкзаком · package — посилка · baggage — багаж
-- backpacker — *Після повного `backpack` у `backpacker` чути ще один склад `er`.*
-- package — *`package` починається звуком `p`, а `backpack` — звуком `b`.*
-- baggage — *Після `ba` у `baggage` чути `g`, а в `backpack` — `k`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-28:i02; family: scripted_repeat_compare -->
+Ціль: `suitcase`
 
-**5 · Картка слова — wallet**
-> **wallet** — «гаманець». Уміщується в кишені й усе одно першим зникає, коли доходить черга до оплати.
+**5 · Послухайте й виберіть — яке слово назвав друг**
+<!-- interaction_id: en:lesson-03:session-28:i04; family: listen_choose -->
+Значення варіантів: `backpack` — рюкзак · `backpacker` — турист із рюкзаком · `package` — посилка · `baggage` — багаж
+Ціль: `backpack`
+Варіанти: `backpack` · `backpacker` · `package` · `baggage`
 
-**6 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *wallet* → **wallet** · wall · walnut · Wallace
-Значення варіантів: wallet — гаманець · wall — стіна · walnut — волоський горіх · Wallace — Воллес
-- wall — *`wall` закінчується одразу після `l`, а в `wallet` чути ще один склад.*
-- walnut — *У середині `walnut` чути `n`; у `wallet` після `l` іде інший короткий склад.*
-- Wallace — *`Wallace` закінчується звуком `s`, а `wallet` — звуком `t`.*
+**6 · Розрізніть слово — wallet або wall**
+<!-- interaction_id: en:lesson-03:session-28:i06; family: sound_contrast -->
+Ціль: `wallet`
+Варіанти: `wallet` · `wall`
 
 **7 · З'єднайте слова зі значеннями — речі перед виходом**
-suitcase — валіза · backpack — рюкзак · wallet — гаманець · bag — сумка
+<!-- interaction_id: en:lesson-03:session-28:i07; family: speed_match -->
+Пари: `suitcase` — валіза · `backpack` — рюкзак · `wallet` — гаманець · `bag` — сумка
+Ціль: `suitcase · backpack · wallet · bag`
 
-**8 · Перенесіть у відповідь ціле слово — річ на коліщатах для подорожі**
-Плитки: `suitcase` `sunshine` `seaside` `suit` → **suitcase**
+**8 · Розрізніть слово — This або That**
+<!-- interaction_id: en:lesson-03:session-28:i08; family: sound_contrast -->
+Ціль: `This`
+Варіанти: `This` · `That`
 
-**9 · Скажіть уголос — сумка з двома лямками**
-🎙 **backpack** — послухайте, повторіть і порівняйте.
+**9 · Виберіть форму — той рюкзак стоїть там**
+<!-- interaction_id: en:lesson-03:session-28:i09; family: context_gap_grammar -->
+Ціль: `That ___ there.`
+Варіанти: `is` · `are`
 
-**10 · Послухайте й перенесіть у відповідь ціле слово — гаманець**
-🔊 *wallet* Плитки: `wallet` `wall` `walnut` `Wallace` → **wallet**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-28:i10; family: scripted_repeat_compare -->
+Ціль: `This wallet, please.`
 
-**11 · Складіть прохання — валіза стоїть поруч із вами**
-Плитки: `suitcase` `this` `me` `Give` `that` `a` → **Give me this suitcase.**
+**11 · Складіть коротке прохання — валіза стоїть поруч із вами**
+<!-- interaction_id: en:lesson-03:session-28:i11; family: phrase_builder -->
+Ціль: `This suitcase, please.`
 
-**12 · Скажіть уголос — рюкзак залишився біля дальніх дверей**
-🎙 **Give me that backpack.** — послухайте, повторіть і порівняйте.
+**12 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-28:i12; family: listen_build_dictation -->
+Ціль: `That backpack, please.`
 
 **13 · Вставте вказівне слово — гаманець лежить просто перед вами на прилавку**
-Give me ___ wallet. → **this** · that · a · is
-- that — *`that` указує на далеку річ. Гаманець просто перед вами, тому потрібне `this`.*
-- a — *Після `Give me` потрібне вказівне слово відстані. Для ближньої речі це `this`.*
-- is — *Прохання вже починається з `Give me`. Перед `wallet` потрібне ближнє вказівне слово `this`.*
+<!-- interaction_id: en:lesson-03:session-28:i13; family: context_gap_grammar -->
+Ціль: `___ wallet, please.`
+Варіанти: `This` · `That` · `A` · `Is`
 
 **14 · Послухайте й виберіть значення точного прохання**
-🔊 *Give me this bag.* → **Передай мені цю сумку** · Передай мені ту сумку · Передай мені цей ключ · Передай мені той ключ
-- Передай мені ту сумку — *У записі прозвучало `this`, прохання про ближню сумку; для далекої сумки прозвучало б `that bag`.*
-- Передай мені цей ключ — *Вказівне слово `this` збігається, але в записі назвали `bag`, а не `key`.*
-- Передай мені той ключ — *Тут відрізняються обидва ключові слова: прозвучали `this bag`, а не `that key`.*
+<!-- interaction_id: en:lesson-03:session-28:i14; family: listen_choose -->
+Ціль: `This bag, please.`
+Варіанти: `Цю сумку, будь ласка` · `Ту сумку, будь ласка` · `Цей ключ, будь ласка` · `Той ключ, будь ласка`
 
-**15 · Складіть прохання — телефон лежить далеко на вітрині**
-Плитки: `phone` `that` `me` `Give` `this` `is` → **Give me that phone.**
+**15 · Складіть коротке прохання — телефон лежить далеко на вітрині**
+<!-- interaction_id: en:lesson-03:session-28:i15; family: phrase_builder -->
+Ціль: `That phone, please.`
 
-**16 · Вставте слово — ключ лежить поруч із вами**
-Give ___ this key. → **me** · is · this · a
-- is — *У проханні після `Give` потрібно назвати отримувача: `me`. Зв'язка `is` тут не потрібна.*
-- this — *Вказівне слово `this` уже стоїть перед `key`. Після `Give` потрібне `me`.*
-- a — *Перед `key` уже є слово `this`; після `Give` потрібне слово `me`.*
+**16 · Вставте вказівне слово — ключ лежить поруч із вами**
+<!-- interaction_id: en:lesson-03:session-28:i16; family: context_gap_grammar -->
+Ціль: `___ key, please.`
+Варіанти: `This` · `That` · `Is` · `A`
 
-**17 · Фінал — самі попросіть три речі перед виходом із магазину**
-🎙 **Give me this suitcase. Give me that backpack. Give me this wallet.** — вимовте три прохання без підказки, потім послухайте зразок і порівняйте.
+**17 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-28:i17:s01; family: listen_build_dictation -->
+Ціль: `This suitcase, please.`
 
-## Для збирача
-new_words: suitcase — валіза — На коліщатах, але на сходах раптом згадує, що вона просто важка коробка.
-new_words: backpack — рюкзак — Дві лямки звільняють руки, щоб у кожній опинилося ще по пакету.
-new_words: wallet — гаманець — Уміщується в кишені й усе одно першим зникає, коли доходить черга до оплати.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-28:i17:s02; family: scripted_repeat_compare -->
+Ціль: `That backpack, please.`
+
+**19 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-28:i17:s03; family: phrase_builder -->
+Ціль: `This wallet, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=phrase_builder
+

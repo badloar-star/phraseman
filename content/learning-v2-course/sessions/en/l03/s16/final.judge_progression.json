@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "26355877faecac1a3cbfe8e67a0698188f31557217cda9e3dc8a569e75dad03a",
+  "localeSha256": "47e230e2df91526a723aa3c55e2f0be0319cfbc9ad270baaa313ff3e1770a296",
+  "comparedThrough": "en/l03/s15",
+  "newWords": [
+    "invoice"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 16 | checkpoint | `a` против `an`, без новой грамматики | новое: invoice; возврат: слова главы | проверяем корзину перед оплатой |",
+  "curriculumEvidence": {
+    "grammar": "checkpoint — выбор `a/an` перед названием одного предмета; контраст `an hour/a uniform`, знакомые утверждения, вопросы и отрицания",
+    "newWords": [
+      "invoice"
+    ],
+    "situation": "Вы с другом проверяете корзину перед кассой магазина для дома. Называете покупки, уточняете содержимое упаковок и узнаёте у сотрудника, сколько ждать сборки мебели."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "planned_review:current-plan learning delta",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

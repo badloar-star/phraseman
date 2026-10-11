@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-09:i01",
-    "correctText": "",
+    "correctText": "handsome",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i03",
-    "correctText": "",
+    "correctText": "pretty",
     "correctResponseId": null
   },
   {
@@ -21,27 +21,27 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i05",
-    "correctText": "Is he handsome?",
+    "correctText": "en:lesson-02:session-09:i05:p1=handsome\nen:lesson-02:session-09:i05:p2=pretty\nen:lesson-02:session-09:i05:p3=cold\nen:lesson-02:session-09:i05:p4=curious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-09:i06",
-    "correctText": "Is she pretty?",
+    "correctText": "Is he handsome?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-09:i07",
-    "correctText": "",
+    "correctText": "cheerful",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-09:i08",
-    "correctText": "",
+    "correctText": "curious",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-09:i09",
-    "correctText": "cheerful",
+    "correctText": "handsome",
     "correctResponseId": "en:lesson-02:session-09:i09:r1"
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i11",
-    "correctText": "",
+    "correctText": "upset",
     "correctResponseId": null
   },
   {
@@ -66,12 +66,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-09:i14",
-    "correctText": "cheerful",
+    "correctText": "is",
     "correctResponseId": "en:lesson-02:session-09:i14:r1"
   },
   {
     "interactionId": "en:lesson-02:session-09:i15",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-09:i15:p1=handsome\nen:lesson-02:session-09:i15:p2=pretty\nen:lesson-02:session-09:i15:p3=cheerful\nen:lesson-02:session-09:i15:p4=curious",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": "en:lesson-02:session-09:i16:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-09:i17",
-    "correctText": "Is he handsome? Is she curious? Is he cold?",
+    "interactionId": "en:lesson-02:session-09:i17:s01",
+    "correctText": "Is he handsome?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i17:s02",
+    "correctText": "Is she curious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i17:s03",
+    "correctText": "Is he cold?",
     "correctResponseId": null
   }
 ]

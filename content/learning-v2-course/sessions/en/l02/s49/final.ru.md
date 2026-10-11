@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 49 — «Как прошла неделя?»
+# Английский · Урок 2 · Занятие 49 — «Как прошла неделя?»
 
-**Сцена сессии.** В воскресенье вечером вы с другом сидите в общей гостиной хостела и листаете фотографии за неделю. Он спрашивает о людях и местах на снимках. Потом вы собираетесь выйти на вечернюю прогулку.
+**Сцена занятия.** В воскресенье вечером вы с другом сидите в общей гостиной хостела и листаете фотографии за неделю. Он спрашивает о людях и местах на снимках. Потом вы собираетесь выйти на вечернюю прогулку.
 
-**Операция:** смешанное повторение знакомых вопросов и коротких ответов
+**Как сказать:** смешанное повторение знакомых вопросов и коротких ответов
 **Новые слова:** —
 **Возвращаются:** tired, manager, near, ready
 
@@ -50,88 +50,90 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — какая реплика прозвучала в начале разговора**
-🔊 *Are you tired?* → **Are you tired?** · Am I tired? · Are you ready?
-- Am I tired? — *Это вопрос о себе. В записи друг начинает с `Are you` и обращается к вам.*
-- Are you ready? — *Это вопрос о готовности. На записи последнее слово `tired` — «устал».*
+<!-- interaction_id: en:lesson-02:session-49:i01; family: listen_choose -->
+Цель: `Are you tired?`
+Варианты: `Are you tired?` · `Am I tired?` · `Are you ready?`
 
 **2 · Вставьте слово — друг спросил, устали ли вы; вы устали, ответьте коротко: «Да»**
-*(`tired` — «устал»)*
-Yes, I ___ . → **am** · are · is
-- are — *Вы отвечаете о себе: `Yes, I am`. Здесь нужно `am`.*
-- is — *Сочетание `I is` не подходит для этого ответа. Скажите `Yes, I am`.*
+<!-- interaction_id: en:lesson-02:session-49:i02; family: context_gap_grammar -->
+Цель: `Yes, I ___ .`
+Варианты: `am` · `are` · `is`
 
 **3 · Соберите фразу — друг открыл фотографию с незнакомым вам мужчиной; спросите, кто он**
-Плитки: `he` `Who` `is` → **Who is he?**
+<!-- interaction_id: en:lesson-02:session-49:i03; family: phrase_builder -->
+Цель: `Who is he?`
 
-**4 · Вставьте слово — на следующем снимке ваш руководитель; объясните другу, кто этот мужчина**
-*(`manager` — «руководитель»)*
-He is the ___ . → **manager** · intern · host
-- intern — *Это «стажёр». На снимке человек, который руководит вашей командой: `manager`.*
-- host — *Это «хозяин вечера». Сейчас вы называете рабочую роль мужчины — `manager`.*
+**4 · Вставьте слово — на следующем снимке руководитель Марк; объясните другу, кто такой Марк**
+<!-- interaction_id: en:lesson-02:session-49:i04; family: context_gap_grammar -->
+Цель: `He is the ___ .`
+Варианты: `manager` · `intern` · `host`
 
-**5 · Вставьте слово — друг показывает кафе на фотографии; спросите его название**
-___ is the name? → **What** · Where · Who
-- Where — *Это слово для вопроса о месте. Вам нужно название кафе, поэтому начните с `What`.*
-- Who — *Это «кто». Вы узнаёте название места: `What is the name?`*
+**5 · Скажите вслух — друг показывает кафе на фотографии; спросите, как оно называется**
+<!-- interaction_id: en:lesson-02:session-49:i05; family: scripted_repeat_compare -->
+Цель: `What is the name?`
 
 **6 · Соберите фразу — друг упомянул станцию рядом с районом на фотографии; попросите показать, где она**
-Плитки: `station` `the` `Where` `is` → **Where is the station?**
+<!-- interaction_id: en:lesson-02:session-49:i06; family: phrase_builder -->
+Цель: `Where is the station?`
 
 **7 · Послушайте и выберите — какая реплика прозвучала, когда друг вернулся к фотографии вашего руководителя**
-🔊 *Is he new?* → **Is he new?** · Is she new? · He is new.
-- Is she new? — *Это вопрос о женщине. В записи после `Is` звучит `he` — «он».*
-- He is new. — *Это сообщение. На записи сначала `Is he`: друг задаёт вопрос.*
+<!-- interaction_id: en:lesson-02:session-49:i07; family: listen_choose -->
+Цель: `Is he new?`
+Варианты: `Is he new?` · `Is she new?` · `He is new.`
 
 **8 · Соберите фразу — руководитель работает в компании много лет; на вопрос друга, новенький ли он, ответьте коротко: «Нет»**
-Плитки: `not` `he` `No` `is` → **No, he is not.**
+<!-- interaction_id: en:lesson-02:session-49:i08; family: phrase_builder -->
+Цель: `No, he is not.`
 
 **9 · Вставьте слово — вы обсуждаете дорогу от хостела до станции; уточните, близко ли она**
-*(`near` — «близко»)*
-Is it ___ ? → **near** · ready · tired
-- ready — *Это «готово». Вы спрашиваете о расстоянии до станции: `near`.*
-- tired — *Это «устал». Для вопроса о близости станции нужно `Is it near?`*
+<!-- interaction_id: en:lesson-02:session-49:i09; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `near` · `ready` · `tired`
 
-**10 · Соедините пары — слова из разговора о неделе (Speed Match, 4 пары)**
-tired — устал · manager — руководитель · near — близко · ready — готов
+**10 · Соедините пары — слова из разговора о неделе**
+<!-- interaction_id: en:lesson-02:session-49:i10; family: speed_match -->
+Пары: `tired` — устал · `manager` — руководитель · `near` — близко · `ready` — готов
+Цель: `tired · manager · near · ready`
 
 **11 · Соберите фразу — теперь вы обсуждаете кафе на фотографии; спросите, близко ли оно от хостела**
-Плитки: `near` `it` `Is` → **Is it near?**
+<!-- interaction_id: en:lesson-02:session-49:i11; family: phrase_builder -->
+Цель: `Is it near?`
 
 **12 · Послушайте и выберите — какая реплика прозвучала в ответ на вопрос о кафе**
-🔊 *I am not sure.* → **I am not sure.** · I am sure. · Are you sure?
-- I am sure. — *Без `not` это «Я уверен». На записи друг говорит, что не уверен.*
-- Are you sure? — *Это вопрос к собеседнику. В записи друг сообщает о себе: `I am not sure`.*
+<!-- interaction_id: en:lesson-02:session-49:i12; family: listen_choose -->
+Цель: `I am not sure.`
+Варианты: `I am not sure.` · `I am sure.` · `Are you sure?`
 
 **13 · Послушайте и соберите — друг вернулся к вопросу о расстоянии до станции**
-🔊 *It is not near.* Плитки: `near` `It` `not` `is` → **It is not near.**
+<!-- interaction_id: en:lesson-02:session-49:i13; family: listen_build_dictation -->
+Цель: `It is not near.`
 
 **14 · Вставьте слово — вы с другом планируете выйти на прогулку; уточните, готовы ли вы оба**
-*(`ready` — «готов»)*
-Are ___ ready? → **we** · I · he
-- I — *Это «я». Вы спрашиваете о вас обоих, поэтому нужно `we`.*
-- he — *Это «он». Чтобы включить себя и друга, выберите `we`: `Are we ready?`*
+<!-- interaction_id: en:lesson-02:session-49:i14; family: context_gap_grammar -->
+Цель: `Are ___ ready?`
+Варианты: `we` · `I` · `he`
 
-**15 · Скажите вслух — вы предполагаете, что фотографию сделали в субботу, но сомневаетесь; спросите: «Я ошибаюсь?» (`wrong` — «неправ»)**
-🎙 **Am I wrong?** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-49:i15; family: scripted_repeat_compare -->
+Цель: `Am I wrong?`
 
-**16 · Скажите вслух — вы отложили телефон и готовы выходить; сообщите другу: «Я готов» (`ready` — «готов»)**
-🎙 **I am ready.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-49:i16; family: scripted_repeat_compare -->
+Цель: `I am ready.`
 
 **17 · Соберите фразу — перед выходом вы хотите узнать, который час; спросите друга**
-Плитки: `time` `Where` `the` `What` `is` → **What is the time?**
-*(плитка `Where` лишняя: вы спрашиваете время, а не место)*
-
----
+<!-- interaction_id: en:lesson-02:session-49:i17; family: phrase_builder -->
+Цель: `What is the time?`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=context_gap_grammar, 5=context_gap_grammar, 6=phrase_builder, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=context_gap_grammar, 5=scripted_repeat_compare, 6=phrase_builder, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ---
 
@@ -166,10 +168,10 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=context_gap_g
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| tired | из предыдущих сессий | 1, 2 |
-| manager | урок 2, сессия 38 | 4 |
-| near | урок 2, сессия 19 | 9 |
-| ready | из предыдущих сессий | знакомое слово; встречается как неверный вариант в заданиях 1 и 9 |
+| tired | из предыдущих занятий | 1, 2 |
+| manager | урок 2, занятие 38 | 4 |
+| near | урок 2, занятие 19 | 9 |
+| ready | из предыдущих занятий | знакомое слово; встречается как неверный вариант в заданиях 1 и 9 |
 
 На единственной доске четыре знакомых слова. Новых слов и карточек нет.
 

@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `tall` первым слышно «т». В начале `wall` губы округляются для английского звука `w`. В записи `wall`.",
               "uk": "На початку `tall` чути «т». На початку `wall` губи округлюються для англійського звука `w`. У записі — `wall`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Для первого «б» в `ball` губы смыкаются. В начале `wall` они округлены, но не смыкаются. Здесь звучит `wall`.",
               "uk": "Для першого «б» у `ball` губи змикаються. На початку `wall` вони округлені, але не змикаються. Тут звучить `wall`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-05:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В начале `claw` слышно сочетание «к» и «л», а в `floor` — «ф» и «л». В записи `floor`.",
               "uk": "На початку `claw` чути сполучення «к» і «л», а у `floor` — «ф» і «л». У записі — `floor`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-05:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В начале `slaw` слышно «с» и «л», а в `floor` — «ф» и «л». Здесь звучит `floor`.",
               "uk": "На початку `slaw` чути «с» і «л», а у `floor` — «ф» і «л». Тут звучить `floor`."
@@ -368,7 +368,7 @@
           {
             "responseId": "en:lesson-03:session-05:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Первый звук в `feeling` — «ф», а в `ceiling` — «с». В записи `ceiling`.",
               "uk": "Перший звук у `feeling` — «ф», а в `ceiling` — «с». У записі — `ceiling`."
@@ -377,7 +377,7 @@
           {
             "responseId": "en:lesson-03:session-05:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В начале `kneeling` слышно «н», а в `ceiling` — «с». Здесь звучит `ceiling`.",
               "uk": "На початку `kneeling` чути «н», а в `ceiling` — «с». Тут звучить `ceiling`."
@@ -395,7 +395,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — подруга показує знімок стелі; назвіть її двома словами",
+      "prompt": "Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i08:r1",
@@ -404,16 +404,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — подруга показує знімок стелі; назвіть її двома словами",
+      "accessibilityLabel": "Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A ceiling.",
+        "targetPhrase": "It is a ceiling.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — подруга показывает снимок потолка; назовите его двумя словами",
-          "uk": "Складіть коротку назву — подруга показує знімок стелі; назвіть її двома словами"
+          "ru": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
+          "uk": "Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "ceiling"
         ],
         "authoredDistractorTokens": [
@@ -423,10 +425,10 @@
           {
             "responseId": "en:lesson-03:session-05:i08:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — подруга пок",
+            "testedDimension": "Складіть коротку назву — подруга показує",
             "feedbackByLocale": {
-              "ru": "Для короткого названия нужны `a` и само слово: `a ceiling`. Форма `is` между ними не ставится.",
-              "uk": "Для короткої назви потрібні `a` і саме слово: `a ceiling`. `is` між ними не ставимо."
+              "ru": "Полная фраза начинается с `It is`: получится `It is a ceiling`. Одного `is` вместо всей фразы недостаточно.",
+              "uk": "Повна фраза починається з `It is`: вийде `It is a ceiling`. Одного `is` замість усієї фрази недостатньо."
             }
           }
         ]
@@ -439,13 +441,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — на наступному знімку подруга помітила ручку; назвіть двері (`door` — «двері»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — на наступному знімку подруга помітила ручку; назвіть двері (`door` — «двері»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -505,7 +507,7 @@
           {
             "responseId": "en:lesson-03:session-05:i10:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — подруга обращает",
+            "testedDimension": "Послухайте й складіть — подруга звертаєт",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `floor`, а не `wall`: `Is it a floor?`.",
               "uk": "У записі прозвучало `floor`, а не `wall`: `Is it a floor?`."
@@ -633,12 +635,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+        "testedDimension": "Вставте частину фрази — на знімку вимито",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-05:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+            "testedDimension": "Вставте частину фрази — на знімку вимито",
             "feedbackByLocale": {
               "ru": "Вы описываете состояние словом `clean`. Перед ним в этой фразе `a` не нужно: `It is clean`.",
               "uk": "Ви описуєте стан словом `clean`. Перед ним у цій фразі `a` не потрібне: `It is clean`."
@@ -647,7 +649,7 @@
           {
             "responseId": "en:lesson-03:session-05:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+            "testedDimension": "Вставте частину фрази — на знімку вимито",
             "feedbackByLocale": {
               "ru": "В `It a clean` пропало `is` и появилось лишнее `a`. Нужная фраза — `It is clean`.",
               "uk": "У `It a clean` зникло `is` і з’явилося зайве `a`. Потрібна фраза — `It is clean`."
@@ -694,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-05:i13:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — подруга приняла фотогра",
+            "testedDimension": "Складіть фразу — подруга прийняла фотогр",
             "feedbackByLocale": {
               "ru": "После `It` здесь нужна форма `is`. Получится `It is not a wall`.",
               "uk": "Після `It` тут потрібне `is`. Вийде `It is not a wall`."
@@ -749,12 +751,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — на фотографии вид",
+        "testedDimension": "Вставте частину фрази — на фотографії ви",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-05:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на фотографии вид",
+            "testedDimension": "Вставте частину фрази — на фотографії ви",
             "feedbackByLocale": {
               "ru": "Начало получится правильным, но перед `ceiling` не хватит `a`: `It is a ceiling`.",
               "uk": "Початок вийде правильним, але перед `ceiling` бракуватиме `a`: `It is a ceiling`."
@@ -763,7 +765,7 @@
           {
             "responseId": "en:lesson-03:session-05:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — на фотографии вид",
+            "testedDimension": "Вставте частину фрази — на фотографії ви",
             "feedbackByLocale": {
               "ru": "Название `a ceiling` получится, но для полной фразы после `It` нужно `is`.",
               "uk": "Назва `a ceiling` вийде, але для повної фрази після `It` потрібне `is`."
@@ -779,13 +781,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — подруга наблизила знімок підлоги; уточніть у неї: «Вона чиста?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — подруга наблизила знімок підлоги; уточніть у неї: «Вона чиста?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -812,13 +814,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — подруга запитує, що знято на фотографії з дерев’яними дошками; назвіть підлогу повною фразою",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i16:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — подруга запитує, що знято на фотографії з дерев’яними дошками; назвіть підлогу повною фразою",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -875,7 +877,7 @@
           {
             "responseId": "en:lesson-03:session-05:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — на последней фотографи",
+            "testedDimension": "Складіть запитання — на останній фотогра",
             "feedbackByLocale": {
               "ru": "Вопрос об этой поверхности здесь начинается с `Is it`: `Is it a ceiling?`.",
               "uk": "Запитання про цю поверхню тут починається з `Is it`: `Is it a ceiling?`."
@@ -892,5 +894,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b0abef5eb27db3d515c1e974716bcf937c506043752cd15fa48a0b8f785755b1"
+  "learnerFingerprint": "76eb6265596abfb13774ecfb184cbbaaf7585270d813032bb1714a6cf9b6ca4d"
 }

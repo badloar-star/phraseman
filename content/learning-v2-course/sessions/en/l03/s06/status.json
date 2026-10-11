@@ -1,13 +1,26 @@
 {
   "session": "en/l03/s06",
-  "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+  "exactRuSha256": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+  "exactUkSha256": "7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca",
+  "practiceAtomicSha256": "a2d5a55e09181a3df481043eaa27d4b547abedf6f97489c670bbdf5b83aaadbe",
+  "localeHashes": {
+    "ru": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+    "uk": "7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca"
+  },
   "converged": true,
   "needsHumanReview": false,
-  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s06_native_delta.json",
-  "locales": [
-    "ru",
-    "uk"
-  ],
-  "audioReviewed": false,
-  "visualReviewed": false
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "locale_uk": "PASS"
+  }
 }

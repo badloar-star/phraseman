@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-31:i01",
-    "correctText": "",
+    "correctText": "hat",
+    "correctResponseId": "en:lesson-03:session-31:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i03",
+    "correctText": "belt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i05",
+    "correctText": "boot",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-31:i02",
     "correctText": "hat",
-    "correctResponseId": "en:lesson-03:session-31:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-31:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,18 +25,13 @@
     "correctResponseId": "en:lesson-03:session-31:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-31:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-31:i06",
+    "correctText": "boot",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-31:i06",
-    "correctText": "boot",
-    "correctResponseId": "en:lesson-03:session-31:i06:r1"
-  },
-  {
     "interactionId": "en:lesson-03:session-31:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-31:i07:p1=hat\nen:lesson-03:session-31:i07:p2=belt\nen:lesson-03:session-31:i07:p3=boot\nen:lesson-03:session-31:i07:p4=key",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": "en:lesson-03:session-31:i16:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-31:i17",
-    "correctText": "That hat, please. This belt, please. That boot, please.",
+    "interactionId": "en:lesson-03:session-31:i17:s01",
+    "correctText": "That hat, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i17:s02",
+    "correctText": "This belt, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i17:s03",
+    "correctText": "That boot, please.",
     "correctResponseId": null
   }
 ]

@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 56 — «Город больше не чужой»
+# Английский · Урок 2 · Занятие 56 — «Город больше не чужой»
 
-**Сцена сессии.** Вечером вы возвращаетесь в свой хостел в Дублине. Новый постоялец просит помочь ему разобраться у стойки: найти сотрудницу, уточнить номер комнаты и узнать, где что находится. Вы ещё не знаете всех ответов, но можете спросить вместе с ним.
+**Сцена занятия.** Вечером вы возвращаетесь в свой хостел в Дублине. Новый постоялец просит помочь ему разобраться у стойки: найти сотрудницу, уточнить номер комнаты и узнать, где что находится. Вы ещё не знаете всех ответов, но можете спросить вместе с ним.
 
-**Операция:** итоговое повторение вопросов и коротких ответов урока 2  
+**Как сказать:** итоговое повторение вопросов и коротких ответов урока 2  
 **Новые слова:** —  
 **Возвращаются:** free, ready, manager, here, wrong, excuse me, toilets
 
@@ -50,93 +50,96 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Вставьте слово — разговор по телефону закончился; постоялец тоже убрал телефон, спросите, свободен ли он сейчас**  
-*(`free` — «свободен»)*  
-Are you ___ ? → **free** · closed · crowded
-- closed — *Это «закрытый». Сейчас вы спрашиваете, свободен ли человек: `Are you free?`.*
-- crowded — *Это «многолюдный, переполненный». Для вопроса о том, не занят ли собеседник, нужно `free`.*
+**1 · Вставьте слово — разговор по телефону закончился; постоялец тоже убрал телефон, спросите, свободен ли он сейчас**
+<!-- interaction_id: en:lesson-02:session-56:i01; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `free` · `closed` · `crowded`
 
-**2 · Вставьте слово — постоялец в ответ спрашивает, свободны ли вы; теперь вы можете уделить ему время, ответьте коротко «Да»**  
-Yes, I ___ . → **am** · is · are
-- is — *В ответе о себе после `I` нужно `am`: `Yes, I am`.*
-- are — *В вопросе было `Are you`, но за себя вы отвечаете `I am`.*
+**2 · Соберите фразу — постоялец спрашивает, свободны ли вы; теперь вы можете уделить ему время, ответьте коротко «Да»**
+<!-- interaction_id: en:lesson-02:session-56:i02; family: phrase_builder -->
+Цель: `Yes, I am.`
+Ряд: `Yes,` · `I` · `am`
 
-**3 · Послушайте и выберите — какая реплика постояльца прозвучала в холле**  
-🔊 *Who is she?* → **Who is she?** · Where is she? · Who is he?
-- Where is she? — *Этот вариант начинается с `Where` — «где». В записи первое слово `Who` — «кто».*
-- Who is he? — *В этом варианте звучит `he` — «он». В записи последнее слово `she` — «она».*
+**3 · Послушайте и выберите — какая реплика постояльца прозвучала в холле**
+<!-- interaction_id: en:lesson-02:session-56:i03; family: listen_choose -->
+Цель: `Who is she?`
+Варианты: `Who is she?` · `Where is she?` · `Who is he?`
 
-**4 · Соберите фразу — постоялец спросил о женщине за стойкой; вы знаете, что она руководит хостелом, объясните, кто она**  
-*(`manager` — «руководитель»)*  
-Плитки: `manager` `is` `She` `the` → **She is the manager.**
+**4 · Соберите фразу — постоялец спросил о женщине за стойкой; вы знаете, что она руководит хостелом, объясните, кто она**
+<!-- interaction_id: en:lesson-02:session-56:i04; family: phrase_builder -->
+Цель: `She is the manager.`
 
-**5 · Вставьте слово — пока вы разговаривали, руководительница отошла; спросите другого сотрудника, где она**  
-Where ___ she? → **is** · are · am
-- are — *В этом вопросе с `she` нужна форма `is`: `Where is she?`.*
-- am — *Форма `am` подходит к `I`. Здесь вы спрашиваете о женщине: `Where is she?`.*
+**5 · Вставьте слово — пока вы разговаривали, руководительница отошла; спросите другого сотрудника, где она**
+<!-- interaction_id: en:lesson-02:session-56:i05; family: context_gap_grammar -->
+Цель: `Where ___ she?`
+Варианты: `is` · `are` · `am`
 
-**6 · Послушайте и соберите — сотрудник отвечает на ваш вопрос о руководительнице**  
-🔊 *She is here.* Плитки: `here` `She` `is` → **She is here.**  
-*(`here` — «здесь»)*
+**6 · Послушайте и соберите — сотрудник отвечает на ваш вопрос о руководительнице**
+<!-- interaction_id: en:lesson-02:session-56:i06; family: listen_build_dictation -->
+Цель: `She is here.`
 
-**7 · Соберите фразу — перед обращением к руководительнице вы вместе проверили сведения о комнате; спросите постояльца, готовы ли вы оба подойти к стойке**  
-*(`ready` — «готов»)*  
-Плитки: `ready` `we` `Are` → **Are we ready?**
+**7 · Соберите фразу — перед обращением к руководительнице вы вместе проверили сведения о комнате; спросите постояльца, готовы ли вы оба подойти к стойке**
+<!-- interaction_id: en:lesson-02:session-56:i07; family: phrase_builder -->
+Цель: `Are we ready?`
 
-**8 · Вставьте слово — вы оба считаете, что нашли номер комнаты в списке, но запись не совсем ясна; спросите руководительницу «Мы ошибаемся?»**  
-*(`wrong` — «неправый, ошибающийся»)*  
-Are we ___ ? → **wrong** · free · hungry
-- free — *Это «свободны». Сейчас вы проверяете своё общее предположение, поэтому нужно `wrong`.*
-- hungry — *Это «голодны». Чтобы уточнить, не ошиблись ли вы, спросите `Are we wrong?`.*
+**8 · Вставьте слово — вы оба считаете, что нашли номер комнаты в списке, но запись не совсем ясна; спросите руководительницу «Мы ошибаемся?»**
+<!-- interaction_id: en:lesson-02:session-56:i08; family: context_gap_grammar -->
+Цель: `Are we ___ ?`
+Варианты: `wrong` · `free` · `hungry`
 
-**9 · Соедините пары — люди и состояние дел (Speed Match, 4 пары)**  
-free — свободен · ready — готов · manager — руководитель · here — здесь
+**9 · Соедините пары — люди и состояние дел**
+<!-- interaction_id: en:lesson-02:session-56:i09; family: speed_match -->
+Пары: `free` — свободен · `ready` — готов · `manager` — руководитель · `here` — здесь
+Цель: `free · ready · manager · here`
 
-**10 · Послушайте и выберите — какая следующая реплика прозвучала у стойки**  
-*(`excuse me` — «извините», чтобы привлечь внимание)*  
-🔊 *Excuse me. Are you ready?* → **Excuse me. Are you ready?** · Excuse me. Are we ready? · Excuse me. You are ready.
-- Excuse me. Are we ready? — *В этом варианте звучит `we` — «мы». В записи после `Are` идёт `you`.*
-- Excuse me. You are ready. — *После обращения здесь идёт сообщение `You are ready`. В записи порядок другой: `Are you ready?`.*
+**10 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-56:i10:s01; family: scripted_repeat_compare -->
+Цель: `Excuse me.`
 
-**11 · Соберите фразу — на стойке лежит ключ, который никто не забирает; покажите его сотрудникам и спросите, чей он**  
-Плитки: `it` `Whose` `is` → **Whose is it?**
+**11 · Послушайте одну фразу и выберите ответ**
+<!-- interaction_id: en:lesson-02:session-56:i10:s02; family: listen_choose -->
+Цель: `Are you ready?`
+Варианты: `Are you ready?` · `Are we ready?` · `You are ready.`
 
-**12 · Вставьте слово — руководительница отвечает на звонок; постоялец спрашивает вас `Is she free?`, ответьте коротко «Нет»**  
-No, she ___ not. → **is** · am · are
-- am — *Вы отвечаете о женщине, поэтому сохраняете `she is`: `No, she is not`.*
-- are — *После `she` в этом коротком ответе нужно `is`: `No, she is not`.*
+**12 · Соберите фразу — на стойке лежит ключ, который никто не забирает; покажите его сотрудникам и спросите, чей он**
+<!-- interaction_id: en:lesson-02:session-56:i11; family: phrase_builder -->
+Цель: `Whose is it?`
 
-**13 · Соберите фразу — после звонка руководительница показывает общую кухню; спросите, какие там правила**  
-*(`rules` — «правила»)*  
-Плитки: `rules` `What` `the` `are` → **What are the rules?**
+**13 · Вставьте слово — руководительница отвечает на звонок; постоялец спрашивает вас `Is she free?`, ответьте коротко «Нет»**
+<!-- interaction_id: en:lesson-02:session-56:i12; family: context_gap_grammar -->
+Цель: `No, she ___ not.`
+Варианты: `is` · `am` · `are`
 
-**14 · Послушайте и выберите — какая реплика постояльца прозвучала после разговора о кухне**  
-*(`toilets` — «туалеты»)*  
-🔊 *Are the toilets here?* → **Are the toilets here?** · The toilets are here. · Are the toilets near?
-- The toilets are here. — *Это сообщение с началом `The toilets are`. В записи сначала звучит `Are the toilets`.*
-- Are the toilets near? — *В этом варианте последнее слово `near` — «близко». В записи звучит `here` — «здесь».*
+**14 · Соберите фразу — после звонка руководительница показывает общую кухню; спросите, какие там правила**
+<!-- interaction_id: en:lesson-02:session-56:i13; family: phrase_builder -->
+Цель: `What are the rules?`
 
-**15 · Скажите вслух — руководительница уточнила номер комнаты, и вы поняли, что прочитали его неверно; признайте перед постояльцем «Я неправ» (`wrong` — «неправ»)**  
-🎙️ **I am wrong.**
+**15 · Послушайте и выберите — какая реплика постояльца прозвучала после разговора о кухне**
+<!-- interaction_id: en:lesson-02:session-56:i14; family: listen_choose -->
+Цель: `Are the toilets here?`
+Варианты: `Are the toilets here?` · `The toilets are here.` · `Are the toilets near?`
 
-**16 · Скажите вслух — вы ещё хотите уточнить, где находятся туалеты; привлеките внимание сотрудника словом «Извините» (`excuse me`)**  
-🎙️ **Excuse me.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-56:i15; family: scripted_repeat_compare -->
+Цель: `I am wrong.`
 
-**17 · Соберите вопрос — сотрудник вас слушает; спросите, где находятся туалеты**  
-Плитки: `the` `is` `Where` `toilets` `are` → **Where are the toilets?**  
-Лишняя плитка: `is`.
-- is — *С `the toilets` в этом вопросе нужно `are`: `Where are the toilets?`.*
+**17 · Послушайте и соберите — вы подходите к сотруднику, чтобы вежливо обратиться к нему**
+<!-- interaction_id: en:lesson-02:session-56:i16; family: listen_build_dictation -->
+Цель: `Excuse me.`
 
----
+**18 · Соберите вопрос — сотрудник вас слушает; спросите, где находятся туалеты**
+<!-- interaction_id: en:lesson-02:session-56:i17; family: phrase_builder -->
+Цель: `Where are the toilets?`
+Варианты: `is`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=phrase_builder, 8=context_gap_grammar, 9=speed_match, 10=listen_choose, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_choose, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=context_gap_grammar, 2=phrase_builder, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=phrase_builder, 8=context_gap_grammar, 9=speed_match, 10=scripted_repeat_compare, 11=listen_choose, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_choose, 16=scripted_repeat_compare, 17=listen_build_dictation, 18=phrase_builder
 
 ### Самопроверка 1 — возвраты
 

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "соединяем знакомые слова `a`, `the`, `this`, `that`, `these`, `those`, `is` и `are` в одной понятной сцене.",
+    "uk": "поєднуємо знайомі слова `a`, `the`, `this`, `that`, `these`, `those`, `is` і `are` в одній зрозумілій сцені."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коврик у двери",
+        "uk": "Килимок біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "`mat` — «небольшой коврик у двери». `rug` чаще называют ковром или ковриком в комнате; у двери у вас лежит `mat`. Когда вы показываете на один коврик рядом и называете его впервые, скажите `This is a mat.` — «Это коврик». `This` показывает рядом, `is` связывает с названием, а `a` вводит один предмет.",
+        "uk": "`mat` — «невеликий килимок біля дверей». `rug` частіше називають килимом або килимком у кімнаті; біля дверей у вас лежить `mat`. Коли ви показуєте на один килимок поруч і називаєте його вперше, скажіть `This is a mat.` — «Це килимок». `This` показує поруч, `is` поєднує з назвою, а `a` вводить один предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг держит коврик у двери. Выберите точную фразу.",
+          "uk": "Друг тримає килимок біля дверей. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r1",
+              "text": "This is a mat."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r2",
+              "text": "This are a mat."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r3",
+              "text": "These are a mat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r1",
+              "text": "This is a mat."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r2",
+              "text": "This are a mat."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro1:r3",
+              "text": "These are a mat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг держит коврик у двери. Выберите точную фразу.",
+          "uk": "Друг тримає килимок біля дверей. Виберіть точну фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поднос на стойке",
+        "uk": "Таця на стійці"
+      },
+      "bodyByLocale": {
+        "ru": "`tray` — «поднос»: на нём переносят чашки и еду. На дальней стойке стоит один деревянный поднос. `That tray is wooden.` — «Тот поднос деревянный». `That` показывает на один предмет дальше; после него артикль не нужен. Дальняя стойка бережёт чашки от локтей — и помогает честно сказать `That`.",
+        "uk": "`tray` — «таця»: на ній переносять чашки й їжу. На дальній стійці стоїть одна дерев’яна таця. `That tray is wooden.` — «Та таця дерев’яна». `That` показує на один предмет далі; після нього артикль не потрібен. Дальня стійка береже чашки від ліктів — і допомагає чесно сказати `That`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы смотрите на один поднос на дальней стойке. Выберите точную фразу.",
+          "uk": "Ви дивитеся на одну тацю на дальній стійці. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r1",
+              "text": "That tray is wooden."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r2",
+              "text": "Those tray are wooden."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r3",
+              "text": "That tray are wooden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r1",
+              "text": "That tray is wooden."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r2",
+              "text": "Those tray are wooden."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro2:r3",
+              "text": "That tray are wooden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы смотрите на один поднос на дальней стойке. Выберите точную фразу.",
+          "uk": "Ви дивитеся на одну тацю на дальній стійці. Виберіть точну фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Крючки в прихожей",
+        "uk": "Гачки в передпокої"
+      },
+      "bodyByLocale": {
+        "ru": "`hook` — «крючок»: на него можно повесить куртку или сумку. В прихожей рядом висят несколько металлических крючков. `These hooks are metal.` означает «Эти крючки металлические». `These` показывает на несколько предметов рядом, поэтому у `hooks` появляется `-s`, а в середине стоит `are`.",
+        "uk": "`hook` — «гачок»: на нього можна повісити куртку або сумку. У передпокої поруч висять кілька металевих гачків. `These hooks are metal.` означає «Ці гачки металеві». `These` показує на кілька предметів поруч, тому у `hooks` з’являється `-s`, а посередині стоїть `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на несколько крючков в прихожей. Выберите точную фразу.",
+          "uk": "Друг показує на кілька гачків у передпокої. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r1",
+              "text": "These hooks are metal."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r2",
+              "text": "This hooks are metal."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r3",
+              "text": "These hooks is metal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r1",
+              "text": "These hooks are metal."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r2",
+              "text": "This hooks are metal."
+            },
+            {
+              "responseId": "en:lesson-03:session-56:intro3:r3",
+              "text": "These hooks is metal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на несколько крючков в прихожей. Выберите точную фразу.",
+          "uk": "Друг показує на кілька гачків у передпокої. Виберіть точну фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "59daaf3894c94c641cd8ce0cae8c78697b9ac6abae67733c4013fce1fb69899c"
+}

@@ -1,1 +1,36 @@
-{"verdict":"PASS","reviewer":"/root/s10_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium","sourceSha256":"846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502","localeSha256":{"uk":"2ab88529a174fe44826477b9ea6b7d1689964b3dcf7326057804ee2f6f064ad9"},"locales":{"uk":{"verdict":"PASS","problems":[],"evidence":["Initialwhole review plusactualdelta: newintro2/3natural/idiomatic, bodycounts240/248/223.","призначитивсімназвам works as relevantlanguagehumour.","RecklesscueconcreteaccurateEnglishr noUkrainianрidentity; quoteperiodfixed.","Learneranswers/options/orderunchanged; explanatoryr/recklesswording intentionallychanged.","No remainingnative/factualissue."]}},"initialReview":"judgements/2026-09-12_l03_s13_uk_initial.json","actualAudioReviewed":false,"visualReviewed":false}
+{
+  "schemaVersion": "learning_v2_fresh_locale_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s13",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactRuSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactUkSha256": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e",
+  "practiceAtomicSha256": "30008b1faa3ab4c5b3c6f36ec38fb6b275241b4ae6303493762f7287cbc18d2a",
+  "localeHashes": {
+    "ru": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+    "uk": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "must_fix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "RU/UK IDs, English targets, options, feedback contracts and 17-item structure align; Ukrainian copy localizes the jewellery scene."
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

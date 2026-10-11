@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 14 — «Это ещё продаётся?»
+# Английский · Урок 2 · Занятие 14 — «Это ещё продаётся?»
 
-**Сцена сессии.** Маленький магазин на боковой улице Дублина. На витрине пальто без ценника, на полке — последняя пара ботинок, и всё время непонятно, можно это купить или оно уже чьё-то.
+**Сцена занятия.** Маленький магазин на боковой улице Дублина. На витрине пальто без ценника, на полке — последняя пара ботинок, и всё время непонятно, можно это купить или оно уже чьё-то.
 
-**Операция:** перенос — вопрос про вещь: `Is it …?`
+**Как сказать:** перенос — вопрос про вещь: `Is it …?`
 **Новые слова:** sold
 **Возвращаются:** cheap, comfortable, pretty, crowded
 
@@ -42,91 +42,102 @@
 
 ## Интро 3
 
-### Короткий ответ
+### Отрицательный ответ про вещь
 
-Продавец спрашивает: `Is it cheap?` Отвечать целиком не нужно — слово `cheap` он только что произнёс сам.
+`sold` — «продано». Продавец спрашивает: `Is it sold?` Если товар свободен, ответьте полной отрицательной фразой: `No, it is not sold.` После `No` сначала идут `it is`, затем `not` и слово `sold`.
 
-Остаётся `it is`, и это весь ответ: `Yes, it is.` А если нет — между ними встаёт `not`: `No, it is not.`
+Так собеседник слышит и ответ, и сам признак вещи. Магазин маленький, зато фраза получилась целиком.
 
-**Продавец про пальто: «Is it comfortable?» — `comfortable` значит «удобный». Оно неудобное. Ответьте коротко.**
+**Продавец спрашивает, продано ли пальто. Оно свободно. Ответьте полной отрицательной фразой.**
 
-- ✅ **No, it is not.**
-- ❌ No, it not is. — *`is` и `not` поменялись местами. Сначала `is`, потом `not`.*
-- ❌ No, is it not. — *Так снова получается вопрос. В ответе первым идёт `it`.*
+- ✅ **No, it is not sold.**
+- ❌ No, it not sold. — *После `it` нужно `is`, затем `not`: `it is not sold`.*
+- ❌ No, is it not sold. — *После `No` нужен ответ `it is`, а порядок `is it` снова начинает вопрос.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — sold**
-> **sold** — «продано». Вещь ещё на месте, но её уже кто-то купил.
+<!-- interaction_id: en:lesson-02:session-14:i01; family: listen_choose -->
+Цель: `sold`
 
-**2 · Послушайте и выберите — sold**
-🔊 *sold* → **sold** · sell · soft
-- sell — *«Продавать». Гласная другая: в `sold` слышно «оу», в `sell` — «э».*
-- soft — *«Мягкий». Гласная другая: в `sold` слышно «оу», в `soft` — чистое «о».*
+**2 · Послушайте и выберите — какое слово произнёс продавец**
+<!-- interaction_id: en:lesson-02:session-14:i02; family: listen_choose -->
+Цель: `sold`
+Варианты: `sold` · `sell` · `old`
 
 **3 · Карточка слова — crowded**
-> **crowded** — «многолюдный». Про место, где столько народу, что не пройти: магазин в субботу, автобус утром.
+<!-- interaction_id: en:lesson-02:session-14:i03; family: listen_choose -->
+Цель: `crowded`
 
-**4 · Вставьте слово — продавец кладёт руку на коробку и говорит, что её ждёт другой покупатель**
-Is it ___ ? → **sold** · crowded · pretty
-- crowded — *«Многолюдный» — так говорят про магазин или улицу, а не про коробку.*
-- pretty — *«Красивый» — про внешний вид, а покупателю сейчас важно, свободна ли вещь.*
+**4 · Вставьте слово — продавец кладёт руку на коробку и говорит, что другой покупатель уже оплатил её**
+<!-- interaction_id: en:lesson-02:session-14:i04; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `sold` · `crowded` · `pretty`
 
 **5 · Соберите фразу — «оно дешёвое?»**
-Плитки: `it` `cheap` `Is` `is` → **Is it cheap?**
+<!-- interaction_id: en:lesson-02:session-14:i05; family: phrase_builder -->
+Цель: `Is it cheap?`
 
 **6 · Карточка слова — comfortable**
-> **comfortable** — «удобный». Про кресло, в котором не хочется вставать, и про ботинок, который нигде не жмёт.
+<!-- interaction_id: en:lesson-02:session-14:i06; family: listen_choose -->
+Цель: `comfortable`
 
-**7 · Послушайте и соберите — «оно продано?»**
-🔊 *Is it sold?* Плитки: `sold` `Is` `it` `cheap` → **Is it sold?**
+**7 · Послушайте продавца и соберите его короткий вопрос**
+<!-- interaction_id: en:lesson-02:session-14:i07; family: listen_build_dictation -->
+Цель: `Is it sold?`
 
 **8 · Вставьте слово — вы прошли в ботинках по всему магазину, нога нигде не жмёт**
-It is ___ . → **comfortable** · sold · crowded
-- sold — *«Продано» — это про то, чья вещь, а не про то, как в ней ноге.*
-- crowded — *«Многолюдный» — про место, где полно народу. Ботинок таким быть не может.*
+<!-- interaction_id: en:lesson-02:session-14:i08; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `comfortable` · `sold` · `crowded`
 
 **9 · Карточка слова — pretty**
-> **pretty** — «красивый». Про вещь, на которой глаз останавливается: шарф, пальто, витрина.
+<!-- interaction_id: en:lesson-02:session-14:i09; family: listen_choose -->
+Цель: `pretty`
 
-**10 · Соедините пары (Speed Match, 4 пары)**
-sold — продано · cheap — дешёвый · comfortable — удобный · crowded — многолюдный
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-14:i10; family: speed_match -->
+Пары: `sold` — продано · `cheap` — дешёвый · `comfortable` — удобный · `crowded` — многолюдный
+Цель: `sold · cheap · comfortable · crowded`
 
-**11 · Вставьте скрепку — вы спрашиваете про витрину**
-___ it cheap? → **Is** · Are · Am
-- Are — *Чужая скрепка: `are` идёт с `you` или `they`. Про одну вещь — `is`.*
-- Am — *`am` идёт с `I`. Пальто — это `it`, значит `is`.*
+**11 · Вставьте слово — вы спрашиваете про витрину**
+<!-- interaction_id: en:lesson-02:session-14:i11; family: context_gap_grammar -->
+Цель: `___ it cheap?`
+Варианты: `Is` · `Are` · `Am`
 
 **12 · Соберите ответ — продавец: «Is it cheap?» Цена вас порадовала. Слово из вопроса не повторяйте**
-Плитки: `is` `it` `Yes,` `cheap` → **Yes, it is.**
+<!-- interaction_id: en:lesson-02:session-14:i12; family: phrase_builder -->
+Цель: `Yes, it is.`
 
 **13 · Вставьте слово — суббота, в магазин не протолкнуться**
-Is it ___ ? → **crowded** · sold · comfortable
-- sold — *«Продано» — про вещь, а не про магазин, полный людей.*
-- comfortable — *«Удобный» — про кресло или обувь. Про толпу так не скажут.*
+<!-- interaction_id: en:lesson-02:session-14:i13; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `crowded` · `sold` · `comfortable`
 
-**14 · Послушайте и соберите — «оно красивое?»**
-🔊 *Is it pretty?* Плитки: `pretty` `it` `Is` `not` → **Is it pretty?**
+**14 · Послушайте продавца и соберите его короткий вопрос**
+<!-- interaction_id: en:lesson-02:session-14:i14; family: listen_build_dictation -->
+Цель: `Is it pretty?`
 
-**15 · Соберите фразу — продавец спросил про шарф, а шарф вам не нравится. Слово из вопроса не повторяйте**
-Плитки: `not` `it` `No,` `is` `pretty` → **No, it is not.**
+**15 · Послушайте и выберите — вы спрашиваете продавца, дешёвое ли пальто**
+<!-- interaction_id: en:lesson-02:session-14:i15; family: listen_choose -->
+Цель: `Is it cheap?`
+Варианты: `Is it cheap?` · `It is cheap.` · `Is it pretty?`
 
-**16 · Скажите вслух — вы держите пальто и хотите знать цену и хозяина**
-🎙 **Is it cheap? Is it sold?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-14:i16; family: scripted_repeat_compare -->
+Цель: `Is it sold?`
 
-**17 · Финал сцены — три фразы подряд про это пальто**
-🎙 Вы дошли до кассы с пальто. Спросите, дешёвое ли оно, спросите, не продано ли, и скажите, что оно красивое.
-**Is it cheap? Is it sold? It is pretty.**
-
----
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-14:i17; family: scripted_repeat_compare -->
+Цель: `No, it is not sold.`
 
 ## Для сборщика
 
 new_words: sold — продано — «продано». Вещь ещё на месте, но её уже кто-то купил.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phrase_builder, 6=word_card, 7=listen_build_dictation, 8=context_gap_grammar, 9=word_card, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=listen_build_dictation, 8=context_gap_grammar, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare
 
 ## Самопроверка
 
@@ -134,9 +145,9 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phras
 
 | слово | в каких заданиях | где оно ПРАВИЛЬНЫЙ ответ |
 |---|---|---|
-| cheap | 5, 7, 10, 11, 12, 16, 17 | 5 (сборка `Is it cheap?`), 16, 17 |
+| cheap | 5, 7, 10, 11, 12, 15 | 5 и 15 (сборка `Is it cheap?`) |
 | comfortable | 6, 8, 10, 13 | 8 (вставка слова) |
-| pretty | 4, 9, 14, 15, 17 | 14 (сборка `Is it pretty?`), 17 |
+| pretty | 4, 9, 14 | 14 (сборка `Is it pretty?`) |
 | crowded | 3, 4, 8, 10, 13 | 13 (вставка слова) |
 
 **2. Страницы интро**
@@ -145,7 +156,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phras
 |---|---|---|
 | Интро 1 | `Is it cheap?` | да — `Is it cheap?` разобрано в тексте |
 | Интро 2 | `Is it sold?` | да — `sold`, `It is sold.` в тексте |
-| Интро 3 | `No, it is not.` | да — `No, it is not.` выведено в тексте |
+| Интро 3 | `No, it is not sold.` | да — полный отрицательный ответ выведен в тексте |
 
 **3. Доска пар (задание 10)**
 

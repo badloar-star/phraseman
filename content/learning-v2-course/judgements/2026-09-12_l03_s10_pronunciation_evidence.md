@@ -6,7 +6,7 @@ listening or quality assessment. This is not session authoring or acceptance.
 
 | Target | Candidate | UK / US evidence | Primary page |
 |---|---|---|---|
-| kettle | metal, settle | /ˈket.əl/, /ˈmet.əl/, /ˈset.əl/; US medial /t̬/ in all three | [kettle](https://dictionary.cambridge.org/us/pronunciation/english/kettle), [metal](https://dictionary.cambridge.org/us/pronunciation/english/metal), [settle](https://dictionary.cambridge.org/us/pronunciation/english/settle) |
+| kettle | cattle, settle | kettle UK /ˈket.əl/, US /ˈket̬.əl/; cattle UK /ˈkæt.əl/, US /ˈkæt̬.əl/; settle UK /ˈset.əl/, US /ˈset̬.əl/ | [kettle](https://dictionary.cambridge.org/pronunciation/english/kettle), [cattle](https://dictionary.cambridge.org/us/pronunciation/english/cattle), [settle](https://dictionary.cambridge.org/us/pronunciation/english/settle) |
 | toaster | poster, coaster | /ˈtəʊ.stər/, /ˈpəʊ.stər/, /ˈkəʊ.stər/; US /oʊ/ and final /ɚ/ | [toaster](https://dictionary.cambridge.org/us/pronunciation/english/toaster), [poster](https://dictionary.cambridge.org/us/pronunciation/english/poster), [coaster](https://dictionary.cambridge.org/us/pronunciation/english/coaster) |
 | vacuum | vacuous | /ˈvæk.juːm/ vs /ˈvæk.ju.əs/ in both; same stressed beginning, different ending | [vacuum](https://dictionary.cambridge.org/us/pronunciation/english/vacuum), [vacuous](https://dictionary.cambridge.org/us/pronunciation/english/vacuous) |
 | vacuum | volume | volume UK /ˈvɒl.juːm/, US /ˈvɑːl.juːm/; same initial /v/, stress and /juːm/ ending, differing first vowel and /k/ vs /l/ | [volume](https://dictionary.cambridge.org/us/pronunciation/english/volume) |

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "выбирайте `a`, `an` или `the`: `a/an` при первом упоминании, `the` для уже известной в разговоре характеристики.",
+    "uk": "обирайте `a`, `an` або `the`: `a/an` за першої згадки, `the` для характеристики, уже відомої в розмові."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Размер товара",
+        "uk": "Розмір товару"
+      },
+      "bodyByLocale": {
+        "ru": "`size` — «размер». У стола вы впервые называете размер товара: `It is a small size.` После этого собеседники знают, о каком размере говорят: `The size is small.` `A` вводит один размер в разговор, а `the` возвращает к этому размеру.",
+        "uk": "`size` — «розмір». Біля столу ви вперше називаєте розмір товару: `It is a small size.` Після цього співрозмовники знають, про який розмір ідеться: `The size is small.` `A` вводить один розмір у розмову, а `the` повертає до цього розміру."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы впервые называете размер на товаре. Выберите фразу.",
+          "uk": "Ви вперше називаєте розмір на товарі. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r1",
+              "text": "It is a small size."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r2",
+              "text": "It is the small size."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r3",
+              "text": "It is an small size."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r1",
+              "text": "It is a small size."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r2",
+              "text": "It is the small size."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro1:r3",
+              "text": "It is an small size."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы впервые называете размер на товаре. Выберите фразу.",
+          "uk": "Ви вперше називаєте розмір на товарі. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цвет товара",
+        "uk": "Колір товару"
+      },
+      "bodyByLocale": {
+        "ru": "`colour` — «цвет». Теперь вы впервые называете цвет товара: `It is a dark colour.` Если разговор уже идёт об этом цвете, скажите `The colour is dark.` У товара свой цвет; `the` помогает не отправить собеседника искать другой.",
+        "uk": "`colour` — «колір». Тепер ви вперше називаєте колір товару: `It is a dark colour.` Якщо розмова вже про цей колір, скажіть `The colour is dark.` У товару свій колір; `the` допомагає не відправити співрозмовника шукати інший."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы впервые называете цвет товара. Выберите фразу.",
+          "uk": "Ви вперше називаєте колір товару. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r1",
+              "text": "It is a dark colour."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r2",
+              "text": "It is the dark colour."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r3",
+              "text": "It is an dark colour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r1",
+              "text": "It is a dark colour."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r2",
+              "text": "It is the dark colour."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro2:r3",
+              "text": "It is an dark colour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы впервые называете цвет товара. Выберите фразу.",
+          "uk": "Ви вперше називаєте колір товару. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Модель товара",
+        "uk": "Модель товару"
+      },
+      "bodyByLocale": {
+        "ru": "`model` — «модель». У стола вы впервые называете модель товара: `It is an old model.` Перед гласным звуком в `old` нужен `an`. Когда эта модель уже названа, говорят `The model is old.` Так вы уточняете именно тот товар, который смотрите.",
+        "uk": "`model` — «модель». Біля столу ви вперше називаєте модель товару: `It is an old model.` Перед голосним звуком в `old` потрібен `an`. Коли цю модель уже назвали, кажуть `The model is old.` Так ви уточнюєте саме той товар, який розглядаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Старую модель называют впервые. Выберите фразу.",
+          "uk": "Стару модель називають уперше. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r1",
+              "text": "It is an old model."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r2",
+              "text": "It is a old model."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r3",
+              "text": "It is the old model."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r1",
+              "text": "It is an old model."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r2",
+              "text": "It is a old model."
+            },
+            {
+              "responseId": "en:lesson-03:session-45:intro3:r3",
+              "text": "It is the old model."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Старую модель называют впервые. Выберите фразу.",
+          "uk": "Стару модель називають уперше. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a7ac09265c3aa12cc06a28727cdfc0cf17df78b81eeefd233f05f217b5bbf4a3"
+}

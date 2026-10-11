@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 48 — «Перед выступлением»
+# Английский · Урок 2 · Занятие 48 — «Перед выступлением»
 
-**Сцена сессии.** В воскресенье после обеда вы с другом готовите короткое выступление в районном центре. Организатор помогает проверить микрофон и порядок выхода. До начала нужно уточнить время, проверить речь и убедиться, что вы оба готовы.
+**Сцена занятия.** В воскресенье после обеда вы с другом готовите короткое выступление в районном центре. Организатор помогает проверить микрофон и порядок выхода. До начала нужно уточнить время, проверить речь и убедиться, что вы оба готовы.
 
-**Операция:** проверка вопросов о себе `Am I…?` и о своей компании `Are we…?`
+**Как сказать:** проверка вопросов о себе `Am I…?` и о своей компании `Are we…?`
 **Новые слова:** —
 **Возвращаются:** late, early, ready, sure, wrong, audible, clear, polite, rude
 
@@ -50,88 +50,90 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — какая реплика прозвучала при входе в зал**
-🔊 *Am I late?* → **Am I late?** · Are we late? · Am I early?
-- Are we late? — *Это вопрос о нескольких людях. В записи начало `Am I`: человек спрашивает только о себе.*
-- Am I early? — *Это «Я рано?» На записи последнее слово `late` — «опоздал».*
+<!-- interaction_id: en:lesson-02:session-48:i01; family: listen_choose -->
+Цель: `Am I late?`
+Варианты: `Am I late?` · `Are we late?` · `Am I early?`
 
 **2 · Вставьте слово — вы с другом видите, что зал ещё готовят; спросите организатора, не рано ли вы пришли**
-*(`early` — «рано»)*
-Are we ___ ? → **early** · ready · late
-- ready — *Это вопрос о готовности. Сейчас вы уточняете время вашего прихода: `early`.*
-- late — *Это вопрос об опоздании. Вы хотите узнать, не пришли ли раньше нужного времени.*
+<!-- interaction_id: en:lesson-02:session-48:i02; family: context_gap_grammar -->
+Цель: `Are we ___ ?`
+Варианты: `early` · `ready` · `late`
 
 **3 · Соберите фразу — организатор проверил ваши заметки; спросите, готовы ли вы сами к выступлению**
-*(`ready` — «готов»)*
-Плитки: `ready` `Am` `I` → **Am I ready?**
+<!-- interaction_id: en:lesson-02:session-48:i03; family: phrase_builder -->
+Цель: `Am I ready?`
 
-**4 · Соберите фразу — друг спрашивает, помните ли вы точное время выхода; вы сомневаетесь**
-*(`sure` — «уверен»)*
-Плитки: `sure` `not` `I` `am` → **I am not sure.**
+**4 · Произнесите фразу — друг спрашивает, помните ли вы точное время выхода; вы сомневаетесь**
+<!-- interaction_id: en:lesson-02:session-48:i04; family: scripted_repeat_compare -->
+Цель: `I am not sure.`
 
 **5 · Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»**
-*(`wrong` — «неправ»)*
-Am I ___ ? → **wrong** · clear · polite
-- clear — *Это вопрос о понятности или разборчивости. Сейчас вы проверяете, не ошиблись ли во времени: `wrong`.*
-- polite — *Это «вежливый». Вы уточняете правильность своих сведений, а не манеру общения.*
+<!-- interaction_id: en:lesson-02:session-48:i05; family: context_gap_grammar -->
+Цель: `Am I ___ ?`
+Варианты: `wrong` · `clear` · `polite`
 
-**6 · Вставьте слово — вы с другом выбрали порядок ваших реплик; перед репетицией спросите: «Мы уверены?»**
-Are we ___ ? → **sure** · audible · here
-- audible — *Это вопрос о слышимости. Сейчас вы проверяете уверенность в общем решении: `sure`.*
-- here — *Это «здесь». Вы уточняете не место, а уверенность: `Are we sure?`*
+**6 · Послушайте и соберите — вы с другом проверяете порядок реплик перед репетицией**
+<!-- interaction_id: en:lesson-02:session-48:i06; family: listen_build_dictation -->
+Цель: `Are we sure?`
 
-**7 · Соедините пары — время и уверенность (Speed Match, 4 пары)**
-late — опоздал · early — рано · wrong — неправ · sure — уверен
+**7 · Соедините пары — время и уверенность**
+<!-- interaction_id: en:lesson-02:session-48:i07; family: speed_match -->
+Пары: `late` — опоздал · `early` — рано · `wrong` — неправ · `sure` — уверен
+Цель: `late · early · wrong · sure`
 
 **8 · Послушайте и выберите — какая реплика прозвучала при проверке микрофона**
-🔊 *Am I audible?* → **Am I audible?** · Am I clear? · Are you audible?
-- Am I clear? — *Это вопрос о разборчивости. В записи последнее слово `audible` — проверка слышимости.*
-- Are you audible? — *Это вопрос к собеседнику. В записи человек начинает с `Am I` и проверяет собственный голос.*
+<!-- interaction_id: en:lesson-02:session-48:i08; family: listen_choose -->
+Цель: `Am I audible?`
+Варианты: `Am I audible?` · `Am I clear?` · `Are you audible?`
 
 **9 · Соберите фразу — организатор подтвердил, что голос слышен; теперь проверьте, разборчиво ли звучат ваши слова через микрофон**
-*(`clear` — «разборчивый»; здесь вопрос о качестве звука)*
-Плитки: `clear` `I` `Am` → **Am I clear?**
+<!-- interaction_id: en:lesson-02:session-48:i09; family: phrase_builder -->
+Цель: `Am I clear?`
 
-**10 · Соедините пары — звук, готовность и общение (Speed Match, 4 пары)**
-ready — готов · audible — слышимый · clear — разборчивый · polite — вежливый
+**10 · Соедините пары — звук, готовность и общение**
+<!-- interaction_id: en:lesson-02:session-48:i10; family: speed_match -->
+Пары: `ready` — готов · `audible` — слышимый · `clear` — разборчивый · `polite` — вежливый
+Цель: `ready · audible · clear · polite`
 
 **11 · Вставьте слово — вы хотите узнать мнение организатора о своей манере общения; спросите, считает ли он вас вежливым**
-*(`polite` — «вежливый»)*
-Am I ___ ? → **polite** · rude · sure
-- rude — *Это «грубый». Вы спрашиваете именно о вежливости, поэтому нужно `polite`.*
-- sure — *Это вопрос об уверенности. Здесь вы просите оценить вашу манеру общения.*
+<!-- interaction_id: en:lesson-02:session-48:i11; family: context_gap_grammar -->
+Цель: `Am I ___ ?`
+Варианты: `polite` · `rude` · `sure`
 
 **12 · Послушайте и соберите — друг говорит об организаторе**
-🔊 *He is not rude.* Плитки: `rude` `He` `not` `is` → **He is not rude.**
+<!-- interaction_id: en:lesson-02:session-48:i12; family: listen_build_dictation -->
+Цель: `He is not rude.`
 
 **13 · Послушайте и выберите — какая реплика прозвучала после проверки голоса организатора**
-🔊 *You are clear.* → **You are clear.** · Are you clear? · You are not clear.
-- Are you clear? — *Это вопрос. В записи сначала `You are`: собеседник даёт оценку.*
-- You are not clear. — *Отрицание `not` меняет смысл. В записи его нет: речь организатора разборчива.*
+<!-- interaction_id: en:lesson-02:session-48:i13; family: listen_choose -->
+Цель: `You are clear.`
+Варианты: `You are clear.` · `Are you clear?` · `You are not clear.`
 
-**14 · Скажите вслух — спросите организатора, грубо ли ваша команда обычно отвечает на замечания: «Мы грубые?» (`rude` — «грубый»)**
-🎙 **Are we rude?** — послушайте, повторите, сравните.
+**14 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-48:i14; family: scripted_repeat_compare -->
+Цель: `Are we rude?`
 
-**15 · Скажите вслух — вы проверили свои заметки и сообщаете другу: «Я готов» (`ready` — «готов»)**
-🎙 **I am ready.** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-48:i15; family: scripted_repeat_compare -->
+Цель: `I am ready.`
 
-**16 · Скажите вслух — друг переживает из-за своей манеры общения, а вы считаете его вежливым; скажите ему об этом (`polite` — «вежливый»)**
-🎙 **You are polite.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-48:i16; family: scripted_repeat_compare -->
+Цель: `You are polite.`
 
 **17 · Соберите фразу — до выхода осталось немного времени; свои заметки вы проверили, но друг ещё не подтвердил готовность. Уточните, готовы ли вы оба**
-Плитки: `ready` `Am` `we` `Are` → **Are we ready?**
-*(плитка `Am` лишняя: вопрос о вас обоих начинается с `Are we`)*
-
----
+<!-- interaction_id: en:lesson-02:session-48:i17; family: phrase_builder -->
+Цель: `Are we ready?`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=phrase_builder, 5=context_gap_grammar, 6=context_gap_grammar, 7=speed_match, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=listen_build_dictation, 13=listen_choose, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_build_dictation, 7=speed_match, 8=listen_choose, 9=phrase_builder, 10=speed_match, 11=context_gap_grammar, 12=listen_build_dictation, 13=listen_choose, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ---
 
@@ -172,9 +174,9 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=phrase_builde
 | 7 | wrong | знакомое слово; задание 5 |
 | 7 | sure | знакомое слово; задания 4, 6 |
 | 10 | ready | знакомое слово; задание 3 |
-| 10 | audible | урок 2, сессия 46; задание 8 |
-| 10 | clear | урок 2, сессия 46; задание 9 |
-| 10 | polite | урок 1, сессия 15; возвращается в уроке 2, сессии 47 |
+| 10 | audible | урок 2, занятие 46; задание 8 |
+| 10 | clear | урок 2, занятие 46; задание 9 |
+| 10 | polite | урок 1, занятие 15; возвращается в уроке 2, занятия 47 |
 
 Две доски по четыре пары. Слова между досками не пересекаются. Новых слов и карточек нет.
 

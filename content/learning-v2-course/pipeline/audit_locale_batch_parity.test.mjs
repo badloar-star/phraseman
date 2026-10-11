@@ -1,0 +1,20 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+
+const root = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-batch-parity-"));
+const session = path.join(root, "sessions/en/l01/s01");
+fs.mkdirSync(session, { recursive: true });
+fs.mkdirSync(path.join(root, "pipeline"), { recursive: true });
+fs.copyFileSync(path.join(import.meta.dirname, "audit_locale_batch_parity.mjs"), path.join(root, "pipeline/audit_locale_batch_parity.mjs"));
+fs.writeFileSync(path.join(session, "final.uk.md"), "## Практика\n\n**1 · Один**\n\n**2 · Два**\n");
+fs.writeFileSync(path.join(session, "locales_batch.md"), "## Практика\n\n**1 · Один**\n");
+let run = spawnSync(process.execPath, [path.join(root, "pipeline/audit_locale_batch_parity.mjs")], { encoding: "utf8" });
+assert.equal(run.status, 1);
+assert.match(run.stdout, /l01\/s01/u);
+fs.writeFileSync(path.join(session, "locales_batch.md"), "## Практика\n\n**1 · Один**\n\n**2 · Два**\n");
+run = spawnSync(process.execPath, [path.join(root, "pipeline/audit_locale_batch_parity.mjs")], { encoding: "utf8" });
+assert.equal(run.status, 0, run.stdout + run.stderr);
+fs.rmSync(root, { recursive: true, force: true });

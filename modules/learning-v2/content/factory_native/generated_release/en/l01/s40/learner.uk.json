@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-40:i01:p1",
+            "target": "friendly",
+            "meaningByLocale": {
+              "ru": "дружелюбный",
+              "uk": "привітний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i01:p2",
+            "target": "loud",
+            "meaningByLocale": {
+              "ru": "шумный",
+              "uk": "гучний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i01:p3",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый",
+              "uk": "добрий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i01:p4",
+            "target": "new",
+            "meaningByLocale": {
+              "ru": "новый",
+              "uk": "новий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "friendly",
+          "loud",
+          "kind",
+          "new"
+        ],
+        "rightColumn": [
+          "дружелюбный",
+          "шумный",
+          "добрый",
+          "новый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте скріпку — ви говорите за весь свій стіл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i02:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i02:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте скріпку — ви говорите за весь свій стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы говорите за весь свой стол",
+          "uk": "Вставте скріпку — ви говорите за весь свій стіл"
+        },
+        "gappedTargetPhrase": "We ___ friendly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i02:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i02:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставте скріпку — ви говорите за весь св",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте скріпку — ви говорите за весь св",
+            "feedbackByLocale": {
+              "ru": "`is` про одного: `he is`, `she is`. Вас несколько.",
+              "uk": "`is` про одного: `he is`, `she is`. А вас кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте скріпку — ви говорите за весь св",
+            "feedbackByLocale": {
+              "ru": "`am` только про себя одного. «Мы» — это `are`.",
+              "uk": "`am` тільки про себе одного. «Ми» — це `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — за стіною цілий день лунає сміх",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i03:r1",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i03:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i03:r3",
+          "text": "new"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — за стіною цілий день лунає сміх",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — из-за стены весь день гремит смех",
+          "uk": "Вставте слово — за стіною цілий день лунає сміх"
+        },
+        "gappedTargetPhrase": "They are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i03:r1",
+            "text": "loud"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i03:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i03:r3",
+            "text": "new"
+          }
+        ],
+        "testedDimension": "Вставте слово — за стіною цілий день лун",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — за стіною цілий день лун",
+            "feedbackByLocale": {
+              "ru": "«Тихие» — прямо наоборот тому, что вы слышите.",
+              "uk": "«Тихі» — прямо навпаки до того, що ви чуєте."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — за стіною цілий день лун",
+            "feedbackByLocale": {
+              "ru": "«Новые» — это про то, давно ли человек в компании, а не про шум.",
+              "uk": "«Нові» — це про те, чи давно людина в компанії, а не про шум."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i04:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i04:r2",
+          "text": "kid"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i04:r3",
+          "text": "king"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i04:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:i04:r1",
+            "targetText": "kind",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i04:r2",
+            "targetText": "kid",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i04:r3",
+            "targetText": "king",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — kind",
+            "feedbackByLocale": {
+              "ru": "«Кид», короткая гласная и без «н» на конце. И значит «ребёнок».",
+              "uk": "«Кід», коротка голосна і без «н» у кінці. І значить «дитина»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — kind",
+            "feedbackByLocale": {
+              "ru": "На конце «нг», а не «нд». И это «король».",
+              "uk": "У кінці «нґ», а не «нд». І це «король»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — за вашим столом усі добрі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — за вашим столом усі добрі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are kind.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — за вашим столом все добрые",
+          "uk": "Складіть фразу — за вашим столом усі добрі"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — колега Ліна питає, чи давно ваша команда тут працює",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — колега Ліна питає, чи давно ваша команда тут працює",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are new.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
+          "uk": "Складіть фразу — колега Ліна питає, чи давно ваша команда тут працює"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "new"
+        ],
+        "authoredDistractorTokens": [
+          "old"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — за вашим столом цілий обід сміються",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i07:r1",
+          "text": "funny"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i07:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i07:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — за вашим столом цілий обід сміються",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — за вашим столом весь обед смеются",
+          "uk": "Вставте слово — за вашим столом цілий обід сміються"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i07:r1",
+            "text": "funny"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i07:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i07:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Вставте слово — за вашим столом цілий об",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — за вашим столом цілий об",
+            "feedbackByLocale": {
+              "ru": "«Тихие» — а у вас за столом смех.",
+              "uk": "«Тихі» — а у вас за столом сміх."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — за вашим столом цілий об",
+            "feedbackByLocale": {
+              "ru": "«Опаздываем» — это про часы, а не про то, какие вы.",
+              "uk": "«Спізнюємося» — це про годинник, а не про те, які ви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Розрізніть звуки — яке з двох про «добрий»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i08:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i08:r2",
+          "text": "kid"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i08:audioA",
+        "en:lesson-01:session-40:i08:audioB"
+      ],
+      "accessibilityLabel": "Розрізніть звуки — яке з двох про «добрий»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "kind",
+        "contrastB": "kid",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-40:i08:audioA",
+          "transcript": "kind"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-40:i08:audioB",
+          "transcript": "kid"
+        },
+        "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «добри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Розрізніть звуки — яке з двох про «добри",
+            "feedbackByLocale": {
+              "ru": "Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».",
+              "uk": "Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i09:r1",
+          "text": "mean"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i09:r2",
+          "text": "man"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i09:r3",
+          "text": "main"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i09:audio",
+          "transcript": "mean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-40:i09:r1",
+            "targetText": "mean",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i09:r2",
+            "targetText": "man",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i09:r3",
+            "targetText": "main",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — mean",
+            "feedbackByLocale": {
+              "ru": "«Мэн» — это «мужчина», гласная короткая.",
+              "uk": "«Мен» — це «чоловік», голосна коротка."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — mean",
+            "feedbackByLocale": {
+              "ru": "«Мэйн» — другая гласная. `mean` — «мин», долгое «и».",
+              "uk": "«Мейн» — інша голосна. `mean` — «мін», довге «і»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви не згодні, що ваш відділ злий",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i10:r1",
+          "text": "mean"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i10:r2",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i10:r3",
+          "text": "friendly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви не згодні, що ваш відділ злий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы не согласны, что ваш отдел злой",
+          "uk": "Вставте слово — ви не згодні, що ваш відділ злий"
+        },
+        "gappedTargetPhrase": "We are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i10:r1",
+            "text": "mean"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i10:r2",
+            "text": "kind"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i10:r3",
+            "text": "friendly"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви не згодні, що ваш від",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви не згодні, що ваш від",
+            "feedbackByLocale": {
+              "ru": "Получится «мы не добрые» — вы говорите обратное.",
+              "uk": "Вийде «ми не добрі» — а ви кажете протилежне."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви не згодні, що ваш від",
+            "feedbackByLocale": {
+              "ru": "Тоже наоборот: вы как раз дружелюбные.",
+              "uk": "Теж навпаки: ви якраз привітні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — про сусідній відділ: вони не тихі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — про сусідній відділ: вони не тихі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are not quiet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — про соседний отдел: они не тихие",
+          "uk": "Складіть фразу — про сусідній відділ: вони не тихі"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте скріпку — ви розповідаєте про людей з іншого відділу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте скріпку — ви розповідаєте про людей з іншого відділу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы рассказываете про людей из другого отдела",
+          "uk": "Вставте скріпку — ви розповідаєте про людей з іншого відділу"
+        },
+        "gappedTargetPhrase": "They ___ funny.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставте скріпку — ви розповідаєте про лю",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте скріпку — ви розповідаєте про лю",
+            "feedbackByLocale": {
+              "ru": "Их там целый отдел — одним `is` не обойтись.",
+              "uk": "Їх там цілий відділ — одним `is` не обійтися."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте скріпку — ви розповідаєте про лю",
+            "feedbackByLocale": {
+              "ru": "`am` — только про себя.",
+              "uk": "`am` — тільки про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ліна питає, хто ці люди: ви бачите їх лише в офісі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-40:i13:r1",
+          "text": "colleagues"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i13:r2",
+          "text": "friends"
+        },
+        {
+          "responseId": "en:lesson-01:session-40:i13:r3",
+          "text": "guests"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ліна питає, хто ці люди: ви бачите їх лише в офісі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
+          "uk": "Вставте слово — Ліна питає, хто ці люди: ви бачите їх лише в офісі"
+        },
+        "gappedTargetPhrase": "They are my ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-40:i13:r1",
+            "text": "colleagues"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i13:r2",
+            "text": "friends"
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i13:r3",
+            "text": "guests"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ліна питає, хто ці люди",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ліна питає, хто ці люди",
+            "feedbackByLocale": {
+              "ru": "«Друзья» — а это люди с работы.",
+              "uk": "«Друзі» — а це люди з роботи."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ліна питає, хто ці люди",
+            "feedbackByLocale": {
+              "ru": "«Гости» — они не в гостях, они тут работают.",
+              "uk": "«Гості» — вони не в гостях, вони тут працюють."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — «ми добрі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — «ми добрі»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i14:audio",
+          "transcript": "We are kind."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are kind.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "kind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-40:i15:p1",
+            "target": "funny",
+            "meaningByLocale": {
+              "ru": "смешной",
+              "uk": "смішний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i15:p2",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихий",
+              "uk": "тихий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i15:p3",
+            "target": "colleagues",
+            "meaningByLocale": {
+              "ru": "коллеги",
+              "uk": "колеги"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-40:i15:p4",
+            "target": "mean",
+            "meaningByLocale": {
+              "ru": "злой",
+              "uk": "злий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "funny",
+          "quiet",
+          "colleagues",
+          "mean"
+        ],
+        "rightColumn": [
+          "смешной",
+          "тихий",
+          "коллеги",
+          "злой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are friendly.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
+          "uk": "Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "friendly"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s01:audio",
+          "transcript": "We are new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу — крок 2 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s02:audio",
+          "transcript": "We are kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are kind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу — крок 3 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s03:audio",
+          "transcript": "They are loud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу — крок 4 із 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s04:audio",
+          "transcript": "They are not mean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are not mean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9ec5eddc6eea476ee532fe8346f53ab8b57bfb98b2f7f71161e7b7b351f8a6c8"
+}

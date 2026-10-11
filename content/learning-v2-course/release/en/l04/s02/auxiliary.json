@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-02:intro1:r2": {
+          "ru": "`Garden` начинается со звука /ɡ/, поэтому нужен `a`, а не `an`.",
+          "uk": "`Garden` починається зі звука /ɡ/, тому потрібне `a`, а не `an`."
+        },
+        "en:lesson-04:session-02:intro1:r3": {
+          "ru": "Перед одним впервые названным садом нужно `a`: `a garden`.",
+          "uk": "Перед одним уперше названим садом потрібне `a`: `a garden`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-02:intro2:r2": {
+          "ru": "`Behind` значит «за домом», а на этом плане сад рядом с ним.",
+          "uk": "`Behind` означає «за будинком», а на цьому плані сад поруч із ним."
+        },
+        "en:lesson-04:session-02:intro2:r3": {
+          "ru": "После `There` пропало `is`.",
+          "uk": "Після `There` зникло `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-02:intro3:r2": {
+          "ru": "`Near` означает «рядом», а сад находится за зданием.",
+          "uk": "`Near` означає «поруч», а сад розташований за будівлею."
+        },
+        "en:lesson-04:session-02:intro3:r3": {
+          "ru": "Для сообщения о наличии нужно полное начало `There is`.",
+          "uk": "Для повідомлення про наявність потрібен повний початок `There is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "792bfe21dfaa7784801fedaa633d4fd319a5cec9c97df76616448293a0ef79a3"
+}

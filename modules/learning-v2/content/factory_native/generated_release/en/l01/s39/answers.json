@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-39:i01",
-    "correctText": "",
+    "correctText": "early",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i03",
-    "correctText": "",
+    "correctText": "right",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i05",
-    "correctText": "",
+    "correctText": "wrong",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i07",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-39:i07:p1=early\nen:lesson-01:session-39:i07:p2=right\nen:lesson-01:session-39:i07:p3=wrong\nen:lesson-01:session-39:i07:p4=late",
     "correctResponseId": null
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-39:i09",
-    "correctText": "",
+    "correctText": "fine",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-39:i10",
-    "correctText": "",
+    "correctText": "sorry",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-39:i17",
-    "correctText": "We are early. We are fine. We are sorry.",
+    "interactionId": "en:lesson-01:session-39:i17:s01",
+    "correctText": "We are early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i17:s02",
+    "correctText": "We are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i17:s03",
+    "correctText": "We are sorry.",
     "correctResponseId": null
   }
 ]

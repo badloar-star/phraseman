@@ -1,0 +1,87 @@
+{
+  "sourceSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+  "pairwise": "equal",
+  "pairwise_reason": "Сессия держит один ясный демонстрационный стол и проводит через него первое упоминание и уже известный референт. Объяснения сразу называют английскую конструкцию и перевод, а практика возвращает ровно те же естественные фразы без справочного или канцелярского тона.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "«У демонстрационного стола вы уточняете один товар: сначала называете характеристику впервые, затем говорите об уже понятной характеристике.» — сцена сразу объясняет, зачем выбирать артикль и к чему он относится."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "У товара свой цвет; `the` помогает не отправить собеседника искать другой."
+    ],
+    "misfires": []
+  },
+  "scene": {
+    "present": true,
+    "gives_reason_to_speak": true,
+    "note": "Один товар у демонстрационного стола даёт естественный повод сначала назвать характеристику, затем вернуться к ней с the."
+  },
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "verdict": "PASS",
+  "verdict_reason": "Текст естественно и точно проводит контраст a/an и the; сцена, голос и связанный с правилом юмор подтверждены точными цитатами.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "993b1fa0623ba0e80043e27ad6b3b28d3a392aa5721ccaa993654055ea790c71",
+    "localeSha256": "e2a58ec7b8b9a9d3255724174b7dfef21a2787ad438781878332f2ff20359725",
+    "practiceAtomicSha256": "745cc5f8908b77a73d6eee58d3f920fcf91738c06ee8237d53c17c3f633d2f5e"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+  "exactUkSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+  "localeSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+  "practiceAtomicSha256": "03712aec703b9d767e266825cefee28e279d2d9fa805561757af069de6afdabf",
+  "localeHashes": {
+    "ru": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "uk": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70"
+  },
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "f2780cc53e8ead36428742100910d547a0cd2d55e2373da07aff5328c95644ef",
+    "localeSha256": "54137c9c63bb9730bd843ff1d9c0421dcea95919b1e53b87872adb50a15e6cb3",
+    "practiceAtomicSha256": "ccd3dde3628aae734e3003f89cbf236712e1cf6e8534de07c76f60b5423e171d",
+    "findings": []
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The product-table scenario distinguishes first mention, known attribute and the a/an sound condition; three intro targets reappear before independent retrieval."
+  ],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_taste",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "exactRuSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+    "exactUkSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+    "localeSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+    "localeHashes": {
+      "ru": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+      "uk": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70"
+    },
+    "practiceAtomicSha256": "03712aec703b9d767e266825cefee28e279d2d9fa805561757af069de6afdabf",
+    "evidence": [
+      "The product-table scenario distinguishes first mention, known attribute and the a/an sound condition; three intro targets reappear before independent retrieval."
+    ]
+  }
+}

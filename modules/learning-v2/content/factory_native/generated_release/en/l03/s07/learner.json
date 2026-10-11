@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — друг спрашивает, куда вы кладёте мелочи; назовите выдвижной ящик двумя словами",
+      "prompt": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — друг спрашивает, куда вы кладёте мелочи; назовите выдвижной ящик двумя словами",
+      "accessibilityLabel": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A drawer.",
+        "targetPhrase": "It is a drawer.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — друг спрашивает, куда вы кладёте мелочи; назовите выдвижной ящик двумя словами",
-          "uk": "Складіть коротку назву — друг запитує, куди ви кладете дрібниці; назвіть висувну шухляду двома словами"
+          "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+          "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "drawer"
         ],
         "authoredDistractorTokens": [
@@ -277,8 +279,8 @@
             "correct": false,
             "testedDimension": "Соберите короткое название — друг спраши",
             "feedbackByLocale": {
-              "ru": "Нужна короткая часть `a drawer`. Между `a` и названием предмета `is` не ставим.",
-              "uk": "Потрібна коротка назва `a drawer`. Між `a` й назвою предмета `is` не ставимо."
+              "ru": "После `It` нужна форма `is`, а перед одним ящиком — `a`: `It is a drawer`.",
+              "uk": "Після `It` потрібна форма `is`, а перед однією шухлядою — `a`: `It is a drawer`."
             }
           }
         ]
@@ -459,13 +461,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг достал из коробки предмет для освещения; назовите лампу (`lamp` — «лампа»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг достал из коробки предмет для освещения; назовите лампу (`lamp` — «лампа»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -679,13 +681,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы уже вышли из кухни; спросите друга, закрыт ли шкаф",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы уже вышли из кухни; спросите друга, закрыт ли шкаф",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -828,13 +830,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг показывает на высокую мебель в спальне; назовите шкаф для одежды",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг показывает на высокую мебель в спальне; назовите шкаф для одежды",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -908,5 +910,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3bc25496d8fc8dd62d2158860cd28fa3c2c9c23cb7a1a7255a2666d5ca512ac0"
+  "learnerFingerprint": "c37a93c7d5d2521d2a929bb906837fb2fc871e63e5baf64057334ab731f3a26a"
 }

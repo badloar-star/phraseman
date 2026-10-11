@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-53:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи сначала `Is he`: друг задаёт вопрос.",
               "uk": "Це повідомлення. У записі спочатку `Is he`: друг ставить запитання."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-53:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о женщине. В записи после `Is` звучит `he` — о мужчине; `busy` значит «занят».",
               "uk": "Це запитання про жінку. У записі після `Is` звучить `he` — ідеться про чоловіка; `busy` означає «зайнятий»."
@@ -124,12 +124,12 @@
             "text": "sure"
           }
         ],
-        "testedDimension": "Вставьте слово — сотрудница подтвердила,",
+        "testedDimension": "Вставте слово — працівниця підтвердила, ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-53:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудница подтвердила,",
+            "testedDimension": "Вставте слово — працівниця підтвердила, ",
             "feedbackByLocale": {
               "ru": "Слово `busy` описывает занятого человека. Здесь нужно сообщить, что машина свободна: `free`.",
               "uk": "Слово `busy` описує зайняту людину. Тут треба повідомити, що машина вільна: `free`."
@@ -138,7 +138,7 @@
           {
             "responseId": "en:lesson-02:session-53:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — сотрудница подтвердила,",
+            "testedDimension": "Вставте слово — працівниця підтвердила, ",
             "feedbackByLocale": {
               "ru": "Это «уверен». Вы сообщаете о свободной машине: `It is free`.",
               "uk": "Це «впевнений». Ви повідомляєте про вільну машину: `It is free`."
@@ -232,7 +232,7 @@
           {
             "responseId": "en:lesson-02:session-53:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи сначала `Are they`: звучит вопрос.",
               "uk": "Це повідомлення. У записі спочатку `Are they`: звучить запитання."
@@ -241,7 +241,7 @@
           {
             "responseId": "en:lesson-02:session-53:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос с `you`. В записи звучит `they` — «они», а `wet` значит «мокрые».",
               "uk": "Це запитання з `you`. У записі звучить `they` — «вони», а `wet` означає «мокрі»."
@@ -298,12 +298,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — после сушки вы проверил",
+        "testedDimension": "Вставте слово — після сушіння ви перевір",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-53:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — после сушки вы проверил",
+            "testedDimension": "Вставте слово — після сушіння ви перевір",
             "feedbackByLocale": {
               "ru": "В сообщении с `they` нужна форма `are`: `They are dry`.",
               "uk": "У повідомленні з `they` потрібна форма `are`: `They are dry`."
@@ -312,7 +312,7 @@
           {
             "responseId": "en:lesson-02:session-53:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — после сушки вы проверил",
+            "testedDimension": "Вставте слово — після сушіння ви перевір",
             "feedbackByLocale": {
               "ru": "Форма `am` сочетается с `I`. Здесь речь о полотенцах: `They are dry`.",
               "uk": "Форма `am` поєднується з `I`. Тут ідеться про рушники: `They are dry`."
@@ -396,12 +396,12 @@
             "text": "How"
           }
         ],
-        "testedDimension": "Вставьте слово — другая сотрудница подош",
+        "testedDimension": "Вставте слово — інша працівниця підійшла",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-53:i07:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — другая сотрудница подош",
+            "testedDimension": "Вставте слово — інша працівниця підійшла",
             "feedbackByLocale": {
               "ru": "Это вопрос о месте. Вы хотите узнать, кто эта женщина: `Who is she?`.",
               "uk": "Це запитання про місце. Ви хочете дізнатися, хто ця жінка: `Who is she?`."
@@ -410,7 +410,7 @@
           {
             "responseId": "en:lesson-02:session-53:i07:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — другая сотрудница подош",
+            "testedDimension": "Вставте слово — інша працівниця підійшла",
             "feedbackByLocale": {
               "ru": "Это вопрос о состоянии или самочувствии: «Как она?» Здесь нужно узнать, кто эта женщина: `Who is she?`.",
               "uk": "Це запитання про стан або самопочуття: «Як вона?» Тут треба дізнатися, хто ця жінка: `Who is she?`."
@@ -475,7 +475,7 @@
           {
             "responseId": "en:lesson-02:session-53:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос. В записи друг сообщает: `She is the manager` — «Она руководитель».",
               "uk": "Це запитання. У записі друг повідомляє: `She is the manager` — «Вона керівниця»."
@@ -484,7 +484,7 @@
           {
             "responseId": "en:lesson-02:session-53:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение о мужчине. На записи первое слово `She` — «она».",
               "uk": "Це повідомлення про чоловіка. Перше слово в записі — `She`, «вона»."
@@ -614,12 +614,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — вам нужно найти туалеты",
+        "testedDimension": "Вставте слово — вам треба знайти туалети",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-53:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вам нужно найти туалеты",
+            "testedDimension": "Вставте слово — вам треба знайти туалети",
             "feedbackByLocale": {
               "ru": "В этом вопросе с `the toilets` нужна форма `are`: `Where are the toilets?`.",
               "uk": "У цьому запитанні з `the toilets` потрібна форма `are`: `Where are the toilets?`."
@@ -628,7 +628,7 @@
           {
             "responseId": "en:lesson-02:session-53:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вам нужно найти туалеты",
+            "testedDimension": "Вставте слово — вам треба знайти туалети",
             "feedbackByLocale": {
               "ru": "Форма `am` подходит к `I`. Здесь вопрос о туалетах, поэтому нужно `are`.",
               "uk": "Форма `am` поєднується з `I`. Тут запитання про туалети, тому потрібне `are`."
@@ -693,7 +693,7 @@
           {
             "responseId": "en:lesson-02:session-53:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи сначала `Is she`: друг задаёт вопрос.",
               "uk": "Це повідомлення. У записі спочатку `Is she`: друг ставить запитання."
@@ -702,7 +702,7 @@
           {
             "responseId": "en:lesson-02:session-53:i11:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос к вам. В записи друг спрашивает о женщине: `Is she sure?`.",
               "uk": "Це запитання до вас. У записі друг запитує про жінку: `Is she sure?`."
@@ -791,12 +791,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг спрашивает, верна ",
+        "testedDimension": "Вставте слово — друг запитує, чи правиль",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-53:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает, верна ",
+            "testedDimension": "Вставте слово — друг запитує, чи правиль",
             "feedbackByLocale": {
               "ru": "После `it` в этом ответе нужно `is`: `No, it is not`.",
               "uk": "Після `it` у цій відповіді потрібне `is`: `No, it is not`."
@@ -805,7 +805,7 @@
           {
             "responseId": "en:lesson-02:session-53:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает, верна ",
+            "testedDimension": "Вставте слово — друг запитує, чи правиль",
             "feedbackByLocale": {
               "ru": "Форма `am` подходит к `I`. Вы отвечаете о цене, поэтому сохраняем `it is not`.",
               "uk": "Форма `am` поєднується з `I`. Ви відповідаєте про ціну, тому зберігаємо `it is not`."
@@ -850,13 +850,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви перерахували загальну вартість і хочете перевірити свій розрахунок у друга; запитайте «Я помиляюся?» (`wrong` — «неправий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-53:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви перерахували загальну вартість і хочете перевірити свій розрахунок у друга; запитайте «Я помиляюся?» (`wrong` — «неправий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -883,13 +883,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — речі зібрано, але ви хочете перевірити, чи все ви з другом закінчили; запитайте «Ми готові?» (`ready` — «готовий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-53:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — речі зібрано, але ви хочете перевірити, чи все ви з другом закінчили; запитайте «Ми готові?» (`ready` — «готовий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -948,5 +948,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "22f98f5dbb209abb6546b1801d36a5c392111748e855e2207f4771050c1d46ef"
+  "learnerFingerprint": "8d2304d53ef67bdd64d869166aae524c9e01d244551376e24763a36d9ce92ac4"
 }

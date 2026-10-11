@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+  "sourceSha256": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Три интро готовят remote, button и switch в единой музейной сцене.",
-    "Все 17 заданий имеют один ответ; task 14 показывает локализованные значения.",
-    "Финал без английской подсказки требует три текущих вопроса."
-  ]
+    "Техник, близкие remote/button и дальний switch задают однозначную причину спросить о каждом предмете."
+  ],
+  "localeHashes": {
+    "ru": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+    "uk": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8"
+  },
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "e0f041063065d28ba6280376a157fd2c7d735354a2a73a6a0e424ab190448d2b",
+    "localeSha256": "fe263168f620f2474ed76f1469cdd058c016abbf04ada72b8f1347034815161d",
+    "practiceAtomicSha256": "05f87d7500e53fb68d15aa98b2bf010adb4ee04c7d1000146e3457c6871eb9a6"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "exactRuSha256": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+  "exactUkSha256": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8",
+  "localeSha256": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8",
+  "practiceAtomicSha256": "115c6f7edd98502718da438d52e07281ef1ef72ff3ace3090ad8b7db85edd141",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "916e12177b008663907c365b4dc5d3df680427f24c282e508bb19d23e97e975e",
+    "localeSha256": "06352b2319ff4a3346d1cc6ccc6368179e772e49f5b7297fa95e10f9ffa3b353",
+    "practiceAtomicSha256": "115c6f7edd98502718da438d52e07281ef1ef72ff3ace3090ad8b7db85edd141",
+    "findings": []
+  },
+  "mustFix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_learner",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+    "exactRuSha256": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+    "exactUkSha256": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8",
+    "localeSha256": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8",
+    "localeHashes": {
+      "ru": "0de750af1fd46c27fb18ad8a4ea2bb458ca08f59a6d938f3f435bc73e8657dea",
+      "uk": "1f0b7c96dcd001be6e4ecf98b1568168b0093776978db6d14229f63c13c97de8"
+    },
+    "practiceAtomicSha256": "115c6f7edd98502718da438d52e07281ef1ef72ff3ace3090ad8b7db85edd141",
+    "evidence": [
+      "Техник, близкие remote/button и дальний switch задают однозначную причину спросить о каждом предмете."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

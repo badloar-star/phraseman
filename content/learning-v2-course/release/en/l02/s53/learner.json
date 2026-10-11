@@ -850,13 +850,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы пересчитали общую стоимость и хотите проверить свой расчёт у друга; спросите «Я ошибаюсь?» (`wrong` — «неправ»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-53:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы пересчитали общую стоимость и хотите проверить свой расчёт у друга; спросите «Я ошибаюсь?» (`wrong` — «неправ»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -883,13 +883,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вещи собраны, но вы хотите проверить, всё ли вы с другом закончили; спросите «Мы готовы?» (`ready` — «готов»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-53:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вещи собраны, но вы хотите проверить, всё ли вы с другом закончили; спросите «Мы готовы?» (`ready` — «готов»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -948,5 +948,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ec48fee0537e1ef9276ae92fab3d946ea147a6c2c8b4387ccdda7f7ffb15bfd2"
+  "learnerFingerprint": "5bfc8c740f2df5a712ed267009e43b95fd5da668541ba3949d598f9ce47e9740"
 }

@@ -1,1 +1,27 @@
-{"verdict":"PASS","reviewer":"/root/s10_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium","sourceSha256":"96740f70090bc3e488826de4763ffeb9b9505e75904deae3785585f0efd4ac99","localeSha256":{"uk":"5586dacec9fe2430b09a2402722596e7fa2546722ddea58fb8c21d6633a123db"},"locales":{"uk":{"verdict":"PASS","problems":[],"evidence":["Whole initial review plus actual corrected delta: all fivefixgroups present,natural,nostalewording.","English skeleton/options/order0diffs; radio card/new_wordsagree.","Voice/vice feedback Britishlongа/Americanей accurate, notassignedunknownclip.","Natural humour retained, no remainingfinding."]}},"initialReview":"judgements/2026-09-12_l03_s12_uk_initial.json","actualAudioReviewed":false,"visualReviewed":false}
+{
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactRuSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactUkSha256": "938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7",
+  "practiceAtomicSha256": "c93852a62708b8f668c4170b4e333b0c9c7bee3ba588094b061e8af51d45fcbb",
+  "localeHashes": {
+    "ru": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+    "uk": "938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "evidence": [
+        "RU/UK have equal counts, equal IDs, equal families, and matching English target/audio contracts.",
+        "Ukrainian learner prompts remain localized; no Russian instructional leakage found in the current audit."
+      ],
+      "blockers": [],
+      "mustFix": []
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": []
+}

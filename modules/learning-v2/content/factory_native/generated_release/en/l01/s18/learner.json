@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — shy",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — loud",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -559,7 +559,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — clever",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -692,11 +692,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1092,11 +1092,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1160,26 +1160,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-18:i22",
+      "interactionId": "en:lesson-01:session-18:i22:s01",
       "ordinal": 25,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — перерыв кончается, вы подводите итог про троих",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-18:i22:audio"
+        "en:lesson-01:session-18:i22:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — перерыв кончается, вы подводите итог про троих",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-18:i22:audio",
-          "transcript": "She is loud. He is quiet. She is kind."
+          "audioTargetId": "en:lesson-01:session-18:i22:s01:audio",
+          "transcript": "She is loud."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is loud. He is quiet. She is kind.",
+        "targetPhrase": "She is loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i22:s02",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i22:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i22:s02:audio",
+          "transcript": "He is quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is quiet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-18:i22:s03",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-18:i22:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-18:i22:s03:audio",
+          "transcript": "She is kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is kind.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1193,11 +1259,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 22,
+  "practiceInteractionCount": 24,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "10f4d0de7b1683ee428341bde46f92fb79ecbeee9b4eea76e52ca8bbcc67716a"
+  "learnerFingerprint": "388f429d6d636d075ae598f62923cef64f9b9e4b383d9afd6ea489265f089d4b"
 }

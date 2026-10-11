@@ -64,14 +64,14 @@
         },
         {
           "responseId": "en:lesson-01:session-01:i02:r3",
-          "text": "hear"
+          "text": "hill"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-01:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — here",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -92,7 +92,7 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i02:r3",
-            "targetText": "hear",
+            "targetText": "hill",
             "meaningByLocale": null
           }
         ],
@@ -112,8 +112,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — here",
             "feedbackByLocale": {
-              "ru": "Звучит почти так же, но это другое слово. Пока запоминаем только here — «здесь».",
-              "uk": "Звучить майже так само, але це інше слово. Поки що запам'ятовуємо лише here — «тут»."
+              "ru": "`hill` короткое и заканчивается на `л`; в `here` гласный тянется иначе. Слушайте середину и конец слова.",
+              "uk": "`hill` коротке й закінчується на `л`; у `here` голосний тягнеться інакше. Слухайте середину й кінець слова."
             }
           }
         ],
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-01:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — ready",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -309,7 +309,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-01:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — fine",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -366,13 +366,26 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — happy",
-      "responseOptions": [],
+      "prompt": "Новое слово happy: послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i07:r1",
+          "text": "happy"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i07:r2",
+          "text": "hobby"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i07:r3",
+          "text": "heavy"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-01:i07:audio"
       ],
-      "accessibilityLabel": "Карточка слова — happy",
+      "accessibilityLabel": "Новое слово happy: послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -388,10 +401,39 @@
               "ru": "«рад, доволен». Не обязательно прыгать от радости: happy — это и просто «мне хорошо».",
               "uk": "«радий, задоволений». Не обов'язково стрибати з радості: happy — це і просто «мені добре»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:r2",
+            "targetText": "hobby",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:r3",
+            "targetText": "heavy",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:r2",
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast",
+            "feedbackByLocale": {
+              "ru": "В `hobby` первый гласный ближе к «о», а в `happy` звучит открытый /æ/.",
+              "uk": "У `hobby` перший голосний ближчий до «о», а в `happy` звучить відкритий /æ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:r3",
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast",
+            "feedbackByLocale": {
+              "ru": "В середине `heavy` слышно /v/, а в `happy` — два звука /p/.",
+              "uk": "У середині `heavy` чути /v/, а в `happy` — два звуки /p/."
+            }
+          }
+        ],
         "isWordCard": true,
         "wordCard": {
           "word": "happy",
@@ -409,11 +451,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -482,17 +524,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я здесь»",
+      "prompt": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я здесь»",
+      "accessibilityLabel": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am here.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я здесь»",
-          "uk": "Складіть фразу — «я тут»"
+          "ru": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+          "uk": "Складіть фразу — колега шукає вас, а ви вже в кімнаті"
         },
         "orderedTokens": [
           "I",
@@ -752,13 +794,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — «я рад»",
+      "prompt": "Скажите вслух — вашу идею одобрили, и вы этому рады",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-01:i14:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — «я рад»",
+      "accessibilityLabel": "Скажите вслух — вашу идею одобрили, и вы этому рады",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -815,11 +857,11 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вас спрашивают, как вы; у вас всё хорошо",
+      "prompt": "Соберите фразу — коллега Мира спрашивает, как вы; у вас всё хорошо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вас спрашивают, как вы; у вас всё хорошо",
+      "accessibilityLabel": "Соберите фразу — коллега Мира спрашивает, как вы; у вас всё хорошо",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am fine.",
@@ -840,26 +882,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-01:i17",
+      "interactionId": "en:lesson-01:session-01:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите три фразы подряд — финал сцены",
+      "prompt": "Скажите вслух — коллега ищет вас, а вы уже в комнате",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-01:i17:audio"
+        "en:lesson-01:session-01:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите три фразы подряд — финал сцены",
+      "accessibilityLabel": "Скажите вслух — коллега ищет вас, а вы уже в комнате",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-01:i17:audio",
-          "transcript": "I am here. I am ready. I am fine."
+          "audioTargetId": "en:lesson-01:session-01:i17:s01:audio",
+          "transcript": "I am here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am here. I am ready. I am fine.",
+        "targetPhrase": "I am here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — встреча начинается, и вы подготовились",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — встреча начинается, и вы подготовились",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i17:s02:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коллега спрашивает, как вы, и у вас всё хорошо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коллега спрашивает, как вы, и у вас всё хорошо",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i17:s03:audio",
+          "transcript": "I am fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am fine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -873,11 +981,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1f93b6631dfa743cc18ee2a3caff24c070911421a74fc0822eafd89191e55efc"
+  "learnerFingerprint": "e7e39ffaf01d22cfcfc2da45c0b54599016ab4554a709a30c050d858ab4aa07c"
 }

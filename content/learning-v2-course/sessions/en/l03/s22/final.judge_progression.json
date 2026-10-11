@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "be8ed40cbaf7f372723520bc7e918c7cee124de0e746bd1821113ed236ca15f1",
+  "localeSha256": "1713ecd6b6a560b9736805df69369b5bd323cf0b8f89aa748650993757f3bd2e",
+  "comparedThrough": "en/l03/s21",
+  "newWords": [
+    "bottle",
+    "bowl",
+    "plate"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 22 | перенос | множественное число в списке доставки | bottle, bowl, plate | проверяем кухонную коробку |",
+  "curriculumEvidence": {
+    "grammar": "перенос знакомого множественного числа в проверку кухонной доставки: `bottles`, `bowls`, `plates`; знакомые `They are`, `Are they`, `They are not`, `It is a`",
+    "newWords": [
+      "bottle",
+      "bowl",
+      "plate"
+    ],
+    "situation": "Вы проверяете кухонную коробку из доставки. Курьер читает список, а вы достаёте посуду и бутылки, снимаете бумагу и сверяете названия. Нужно убедиться, что наборы на месте, прежде чем убрать пустую коробку."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 37 — «Спочатку число, потім відстань»
+# Англійська · Урок 3 · Заняття 37 — «Спочатку число, потім відстань»
 
-**Сцена сесії.** Ви з другом стоїте у дворі ділового комплексу біля схеми сусідніх корпусів; поруч один корпус, а через площу видно інші будівлі, входи й виходи. Треба за числом і відстанню вибрати точне вказівне слово, щоб назвати орієнтир і знайти потрібний шлях.
+**Сцена заняття.** Ви з другом стоїте у дворі ділового комплексу біля схеми сусідніх корпусів; поруч один корпус, а через площу видно інші будівлі, входи й виходи. Треба за числом і відстанню вибрати точне вказівне слово, щоб назвати орієнтир і знайти потрібний шлях.
 
-**Операція:** вибирати `this/that + is` для одного й `these/those + are` для кількох
+**Як сказати:** вибирати `this/that + is` для одного й `these/those + are` для кількох
 **Нові слова:** building, entrance, exit
 **Для повторення:** this, that, these, those, is, are, tree, flower, bicycle
 
@@ -50,85 +50,105 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — building**
-> **building** — «будівля». Споруда зі стінами та дахом.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-37:i01; family: listen_choose -->
+Ціль: `building`
+Варіанти: `building` · `entrance` · `exit`
+- entrance — *`Entrance` — вхід, а `building` — уся споруда.*
+- exit — *`Exit` — вихід, а `building` — уся споруда.*
 
-**2 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *building* → **building** · billing · builder · ceiling
-Значення варіантів: building — будівля · billing — виставлення рахунку · builder — будівельник · ceiling — стеля
-- billing — *У `billing` після /l/ одразу йде голосний, а всередині `building` чути /d/.*
-- builder — *Обидва слова починаються з `build-`, але `builder` закінчується частиною /ər/, а `building` — складом /ɪŋ/.*
-- ceiling — *`ceiling` починається звуком /s/ і довгим /iː/, а `building` — звуком /b/ і коротким /ɪ/.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-37:i03; family: scripted_repeat_compare -->
+Ціль: `entrance`
 
-**3 · Картка слова — entrance**
-> **entrance** — «вхід». Місце або двері, через які входять.
+**3 · Послухайте слово та прочитайте його значення**
+<!-- interaction_id: en:lesson-03:session-37:i05; family: listen_choose -->
+Ціль: `exit` — «вихід»: місце або двері, через які виходять.
 
-**4 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *entrance* → **entrance** · sentence · instance · engine
-Значення варіантів: entrance — вхід · sentence — речення · instance — випадок · engine — двигун
-- sentence — *`sentence` починається звуком /s/, а `entrance` — голосним /e/.*
-- instance — *Перший голосний в `instance` — /ɪ/, а `entrance` починається з /e/.*
-- engine — *Обидва слова починаються на /en/, але далі в `engine` чути /dʒ/, а в `entrance` — /tr/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-37:i02; family: scripted_repeat_compare -->
+Ціль: `building`
 
-**5 · Картка слова — exit**
-> **exit** — «вихід». Місце або двері, через які виходять.
+**5 · Послухайте слово та прочитайте його значення**
+<!-- interaction_id: en:lesson-03:session-37:i04; family: listen_choose -->
+Ціль: `entrance` — «вхід»: місце або двері, через які входять.
 
-**6 · Послухайте й виберіть — яке слово назвав друг**
-🔊 *exit* → **exit** · visit · edit · exist
-Значення варіантів: exit — вихід · visit — відвідування · edit — правка · exist — існувати
-- visit — *`visit` починається звуком /v/, а `exit` — наголошеною частиною /ek-/.*
-- edit — *Початок схожий, але всередині `edit` чути /d/, а в `exit` — /ks/.*
-- exist — *В `exist` наголос падає на другий склад, а `exit` починається наголошеною частиною /ek-/.*
+**6 · Повторіть слово**
+<!-- interaction_id: en:lesson-03:session-37:i06; family: scripted_repeat_compare -->
+Ціль: `exit`
 
 **7 · З'єднайте слова зі значеннями — схема комплексу**
-building — будівля · entrance — вхід · exit — вихід · bicycle — велосипед
+<!-- interaction_id: en:lesson-03:session-37:i07; family: speed_match -->
+Пари: `building` — будівля · `entrance` — вхід · `exit` — вихід · `bicycle` — велосипед
+Ціль: `building · entrance · exit · bicycle`
 
-**8 · Послухайте й виберіть точне значення фрази про ближній корпус**
-🔊 *This is a building.* → **Це будівля** · Це будівлі · Це вхід · Це вихід
-- Це будівлі — *У записі чути `this is` і `a building`: називають одну будівлю.*
-- Це вхід — *Названо `building` — будівлю, а не `entrance` — вхід.*
-- Це вихід — *Названо `building` — будівлю, а не `exit` — вихід.*
+**8 · Послухайте та виберіть точне значення фрази**
+<!-- interaction_id: en:lesson-03:session-37:i08; family: listen_choose -->
+Ціль: `This is a building.`
+Варіанти: `Це будівля` · `Це будівлі` · `Це вхід` · `Це вихід`
+- Це будівлі — *У записі `this is a building`: йдеться про одну будівлю, не про кілька.*
+- Це вхід — *Названо `building` — будівлю, не `entrance` — вхід.*
+- Це вихід — *Названо `building` — будівлю, не `exit` — вихід.*
 
 **9 · Вставте вказівне слово — поруч кілька корпусів**
-___ are buildings. → **These** · Those · This · That
-- Those — *`Those are buildings` називає кілька будівель далі. Ці корпуси поруч, тому потрібно `These`.*
-- This — *`This` стосується одного предмета й потребує `is`. Тут будівель кілька.*
-- That — *`That` стосується одного далекого предмета й потребує `is`. Тут кілька будівель поруч.*
+<!-- interaction_id: en:lesson-03:session-37:i09; family: context_gap_grammar -->
+Ціль: `___ are buildings.`
+Варіанти: `These` · `Those` · `This` · `That`
 
-**10 · Складіть опис — через площу одна будівля**
-Плитки: `That` `is` `a` `building` `This` `These` `are` → **That is a building.**
+**10 · Складіть опис — один вхід поруч зі схемою**
+<!-- interaction_id: en:lesson-03:session-37:i12; family: phrase_builder -->
+Ціль: `This is an entrance.`
 
-**11 · Послухайте й виберіть точне значення фрази про входи**
-🔊 *Those are entrances.* → **Це входи** · Це вхід · Це будівлі · Це виходи
-- Це вхід — *У записі чути `those are` і `entrances`: ідеться про кілька входів.*
-- Це будівлі — *Число збігається, але названо `entrances` — входи, а не `buildings`.*
-- Це виходи — *Названо `entrances`, а виходи англійською — `exits`.*
+**11 · Послухайте запис і виберіть його точне значення**
+<!-- interaction_id: en:lesson-03:session-37:i13; family: listen_choose -->
+Ціль: `These are exits.`
+Варіанти: `Це виходи` · `Це вихід` · `Це входи` · `Це будівлі`
 
-**12 · Складіть опис — один вхід поруч зі схемою**
-Плитки: `This` `is` `an` `entrance` `That` `These` `are` → **This is an entrance.**
+**12 · Вставте слово — біля дальньої стіни один вихід**
+<!-- interaction_id: en:lesson-03:session-37:i11; family: context_gap_grammar -->
+Ціль: `That is an ___.`
+🔊 *exit* · *exist*
+→ **exit** · exist
+- exist — *`Exist` означає «існувати». Біля дальньої стіни позначено вихід — `exit`.*
 
-**13 · Послухайте й виберіть точне значення фрази про виходи**
-🔊 *These are exits.* → **Це виходи** · Це вихід · Це входи · Це будівлі
-- Це вихід — *У записі чути `these are` і `exits`: ідеться про кілька виходів.*
-- Це входи — *Число збігається, але названо `exits` — виходи, а не `entrances`.*
-- Це будівлі — *Названо `exits`, а будівлі англійською — `buildings`.*
+**13 · Складіть опис — один вихід біля дальньої стіни**
+<!-- interaction_id: en:lesson-03:session-37:i14; family: phrase_builder -->
+Ціль: `That is an exit.`
 
-**14 · Складіть опис — один вихід біля дальньої стіни**
-Плитки: `That` `is` `an` `exit` `This` `These` `are` → **That is an exit.**
+**14 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-37:i10; family: listen_choose -->
+Ціль: `entrance`
+Варіанти: `entrance` · `building` · `exit`
+- building — *`Building` — уся будівля. `Entrance` — місце, через яке входять.*
+- exit — *`Exit` — місце, через яке виходять, а тут потрібен вхід.*
 
-**15 · Скажіть уголос — через площу один вхід**
-🎙 **That is an entrance.** — вимовте фразу, потім послухайте зразок і порівняйте.
+**15 · Промовте опис кількох дальніх входів**
+<!-- interaction_id: en:lesson-03:session-37:i15; family: scripted_repeat_compare -->
+Ціль: `Those are entrances.`
 
-**16 · Послухайте й складіть два описи**
-🔊 *Those are buildings. These are exits.* Плитки: `Those` `are` `buildings` `These` `exits` `This` `is` `an` → **Those are buildings. These are exits.**
+**16 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-37:i16:s01; family: listen_build_dictation -->
+Ціль: `Those are buildings.`
 
-**17 · Фінал — назвіть орієнтири біля другої точки комплексу**
-🎙 **Those are buildings. This is an entrance. That is an exit.** — біля другої точки кілька будівель видно через двір, один вхід розташований поруч із вами, а один вихід — далі. Назвіть три орієнтири, потім послухайте зразок і порівняйте.
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-37:i16:s02; family: scripted_repeat_compare -->
+Ціль: `These are exits.`
 
-## Для збирача
-new_words: building — будівля — Споруда зі стінами та дахом.
-new_words: entrance — вхід — Місце або двері, через які входять.
-new_words: exit — вихід — Місце або двері, через які виходять.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare
+**18 · Складіть фразу — через площу видно кілька корпусів**
+<!-- interaction_id: en:lesson-03:session-37:i17:s01; family: phrase_builder -->
+Ціль: `Those are buildings.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-37:i17:s02; family: scripted_repeat_compare -->
+Ціль: `This is an entrance.`
+
+**20 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-37:i17:s03; family: listen_build_dictation -->
+Ціль: `That is an exit.`
+
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=context_gap_grammar, 13=phrase_builder, 14=listen_choose, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation

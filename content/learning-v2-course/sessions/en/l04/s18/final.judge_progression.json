@@ -1,0 +1,96 @@
+{
+  "session": "en/l04/s18",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T13:51:45.788Z",
+  "sourceSha256": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+  "exactRuSha256": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+  "exactUkSha256": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20",
+  "practiceAtomicSha256": "caaffafb6bfe7bff92047a7947c3355cb311ac7a1d24201b37faac6f15490037",
+  "localeHashes": {
+    "ru": "14566fbed296d29af066ad8d7b9c34ab5b4ba61b2547ab70ff7344979dbcd059",
+    "uk": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S18 quality/spec reviewers",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s11",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s17",
+  "newWords": [
+    "milk"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "affirmative There is some + noncount food",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 18 | новая | `There is some + noncount food` в закрытом списке еды | milk | перед завтраком проверяем молоко |",
+  "curriculumEvidence": {
+    "grammar": "The row requires There is some + noncount food.",
+    "newWords": [
+      "milk"
+    ],
+    "situation": "Before breakfast, check the milk."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "milk"
+      ],
+      "correctAnswer": "milk",
+      "sceneEvidence": "Milk is introduced before breakfast.",
+      "practiceTask": 1,
+      "practiceTarget": "milk",
+      "finalEvidence": "The current final practices milk.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "milk"
+      ],
+      "correctAnswer": "some milk",
+      "sceneEvidence": "Some milk is identified as limited noncount food.",
+      "practiceTask": 8,
+      "practiceTarget": "some milk",
+      "finalEvidence": "The current final practices some with milk.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "milk"
+      ],
+      "correctAnswer": "There is some milk on the shelf.",
+      "sceneEvidence": "Some milk is located on the shelf.",
+      "practiceTask": 12,
+      "practiceTarget": "There is some milk on the shelf.",
+      "finalEvidence": "The current final combines the operation and scene.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Exact curriculum grammar, platform vocabulary, and station situation all occur in RU/UK/atomic.",
+    "The full-form i11 is a distinct guided interaction for the negative branch, while i06 is the distinct guided affirmative interaction and i12 remains the sole independent check; no authority requires a second independent check."
+  ],
+  "at": "2026-10-08T13:51:45.788Z",
+  "localeSha256": "c9af0df1379837c6e0598a654e2fab77e531e9b3f218531b478085c77d26ee20",
+  "preauthoringSha256": "ef706858133e03581000f9e99837817f4d3af95cb8dcdf80b273f103c312774f",
+  "converged": true,
+  "needsHumanReview": false
+}

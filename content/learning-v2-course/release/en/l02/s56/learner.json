@@ -517,59 +517,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-56:i10",
+      "interactionId": "en:lesson-02:session-56:i10:s01",
       "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-56:i10:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-56:i10:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-56:i10:s02",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какая следующая реплика прозвучала у стойки",
+      "prompt": "Послушайте одну фразу и выберите ответ — шаг 2 из 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-56:i10:r1",
-          "text": "Excuse me. Are you ready?"
+          "responseId": "en:lesson-02:session-56:i10:s02:r1",
+          "text": "Are you ready?"
         },
         {
-          "responseId": "en:lesson-02:session-56:i10:r2",
-          "text": "Excuse me. Are we ready?"
+          "responseId": "en:lesson-02:session-56:i10:s02:r2",
+          "text": "Are we ready?"
         },
         {
-          "responseId": "en:lesson-02:session-56:i10:r3",
-          "text": "Excuse me. You are ready."
+          "responseId": "en:lesson-02:session-56:i10:s02:r3",
+          "text": "You are ready."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-56:i10:audio"
+        "en:lesson-02:session-56:i10:s02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какая следующая реплика прозвучала у стойки",
+      "accessibilityLabel": "Послушайте одну фразу и выберите ответ — шаг 2 из 2",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-56:i10:audio",
-          "transcript": "Excuse me. Are you ready?"
+          "audioTargetId": "en:lesson-02:session-56:i10:s02:audio",
+          "transcript": "Are you ready?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-02:session-56:i10:r1",
-            "targetText": "Excuse me. Are you ready?",
+            "responseId": "en:lesson-02:session-56:i10:s02:r1",
+            "targetText": "Are you ready?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-56:i10:r2",
-            "targetText": "Excuse me. Are we ready?",
+            "responseId": "en:lesson-02:session-56:i10:s02:r2",
+            "targetText": "Are we ready?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-02:session-56:i10:r3",
-            "targetText": "Excuse me. You are ready.",
+            "responseId": "en:lesson-02:session-56:i10:s02:r3",
+            "targetText": "You are ready.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-56:i10:r2",
+            "responseId": "en:lesson-02:session-56:i10:s02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какая следующая ",
             "feedbackByLocale": {
@@ -578,7 +611,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-56:i10:r3",
+            "responseId": "en:lesson-02:session-56:i10:s02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какая следующая ",
             "feedbackByLocale": {
@@ -594,7 +627,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i11",
-      "ordinal": 14,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -622,7 +655,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i12",
-      "ordinal": 15,
+      "ordinal": 16,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -691,7 +724,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i13",
-      "ordinal": 16,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -720,7 +753,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i14",
-      "ordinal": 17,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -796,17 +829,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i15",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — руководительница уточнила номер комнаты, и вы поняли, что прочитали его неверно; признайте перед постояльцем «Я неправ» (`wrong` — «неправ»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-56:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — руководительница уточнила номер комнаты, и вы поняли, что прочитали его неверно; признайте перед постояльцем «Я неправ» (`wrong` — «неправ»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -829,17 +862,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i16",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы ещё хотите уточнить, где находятся туалеты; привлеките внимание сотрудника словом «Извините» (`excuse me`)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-56:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы ещё хотите уточнить, где находятся туалеты; привлеките внимание сотрудника словом «Извините» (`excuse me`)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -862,7 +895,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-56:i17",
-      "ordinal": 20,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -907,11 +940,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c1eb66f26bede1bb28f8021862eb1f1206319e2da061b744767a94ccf99cc54d"
+  "learnerFingerprint": "979b6bb3bad9fd5efd3ef517959a6beaa5f7b7f0cf3c1e189d029af2a277da76"
 }

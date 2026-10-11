@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro1:r2": {
+          "ru": "Так сказать можно, но это другое: «он женился», то есть действие в прошлом. Здесь нужен факт о его состоянии: `He is married`.",
+          "uk": "Так сказати можна, але це інше: «він одружився», тобто дія в минулому. Тут потрібен факт про його стан: `He is married`."
+        },
+        "en:lesson-01:session-20:intro1:r3": {
+          "ru": "Хвост оборвали. `marry` — «жениться», а состояние — `married`, с `-ed`.",
+          "uk": "Хвіст обірвали. `marry` — «одружитися», а стан — `married`, з `-ed`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro2:r2": {
+          "ru": "Без `is` фраза не стоит. Про одного человека — `he is` или `she is`.",
+          "uk": "Без `is` фраза не тримається. Про одну людину — `he is` або `she is`."
+        },
+        "en:lesson-01:session-20:intro2:r3": {
+          "ru": "`are` не используется с `she`. Здесь нужно `is`.",
+          "uk": "`are` не використовується з `she`. Тут потрібне `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-20:intro3:r2": {
+          "ru": "Это «богатая». Её узнают на улице — про деньги ничего не сказали.",
+          "uk": "Це «багата». Її впізнають на вулиці — про гроші нічого не сказали."
+        },
+        "en:lesson-01:session-20:intro3:r3": {
+          "ru": "После `she` нужно `is`: `She is famous`.",
+          "uk": "Після `she` потрібне `is`: `She is famous`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "910e0f3e055f789a4b006e2245ae37fbb809e68082576c307b2cef9daef3a5fd"
+}

@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "19d42ddea58742443eb07d8b5a8c207b9edf508c4bfb4ccf198c030d6a7ed9a9",
+  "localeSha256": "ecdcbc346c6fc1c0eece496318b809231eb89e099e6598372e4ae848e4ab6b41",
+  "comparedThrough": "en/l03/s05",
+  "newWords": [
+    "basket",
+    "trolley",
+    "tag"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 6 | перенос | та же модель при выборе одного товара | basket, trolley, tag | заходим в магазин для дома |",
+  "curriculumEvidence": {
+    "grammar": "перенос знакомого `a + noun` в магазин: называем один предмет коротко или полной фразой",
+    "newWords": [
+      "basket",
+      "trolley",
+      "tag"
+    ],
+    "situation": "Вы с другом зашли в магазин для дома. Выбираете, во что складывать покупки, рассматриваете товары и разбираетесь с ярлыками."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 5 — «Что попало в кадр?»
+# Английский · Урок 3 · Занятие 5 — «Что попало в кадр?»
 
-**Сцена сессии.** Вы с подругой рассматриваете фотографии квартиры и пытаетесь разобраться, какие поверхности попали в кадр. На крупных планах трудно понять, что снято, поэтому вы называете поверхности и уточняете детали.
+**Сцена занятия.** Вы с подругой рассматриваете фотографии квартиры и пытаетесь разобраться, какие поверхности попали в кадр. На крупных планах трудно понять, что снято, поэтому вы называете поверхности и уточняете детали.
 
-**Операция:** контраст при назывании одного предмета: `It is a + noun`; отличаем название от сообщения о состоянии  
+**Как сказать:** контраст при назывании одного предмета: `It is a + noun`; отличаем название от сообщения о состоянии  
 **Новые слова:** wall, floor, ceiling  
 **Возвращаются:** door, clean
 
@@ -50,78 +50,85 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — wall**  
-> **wall** — «стена». Она отделяет одну комнату от другой или комнату от улицы.
+**1 · Карточка слова — wall**
+<!-- interaction_id: en:lesson-03:session-05:i01; family: listen_choose -->
+Цель: `wall`
 
-**2 · Послушайте и выберите — какое слово произнесла подруга**  
-🔊 *wall* → **wall** · tall · ball
-- tall — *В `tall` первым слышно «т». В начале `wall` губы округляются для английского звука `w`. В записи `wall`.*
-- ball — *Для первого «б» в `ball` губы смыкаются. В начале `wall` они округлены, но не смыкаются. Здесь звучит `wall`.*
+**2 · Послушайте и выберите — какое слово произнесла подруга**
+<!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
+Цель: `wall`
+Варианты: `wall` · `tall` · `ball`
 
-**3 · Карточка слова — floor**  
-> **floor** — «пол». Нижняя поверхность комнаты, по которой ходят.
+**3 · Карточка слова — floor**
+<!-- interaction_id: en:lesson-03:session-05:i03; family: listen_choose -->
+Цель: `floor`
 
-**4 · Послушайте и выберите — какое слово прозвучало при просмотре снимков**  
-🔊 *floor* → **floor** · claw · slaw
-- claw — *В начале `claw` слышно сочетание «к» и «л», а в `floor` — «ф» и «л». В записи `floor`.*
-- slaw — *В начале `slaw` слышно «с» и «л», а в `floor` — «ф» и «л». Здесь звучит `floor`.*
+**4 · Послушайте и выберите — какое слово прозвучало при просмотре снимков**
+<!-- interaction_id: en:lesson-03:session-05:i04; family: listen_choose -->
+Цель: `floor`
+Варианты: `floor` · `claw` · `slaw`
 
-**5 · Соберите фразу — подруга спрашивает, что снято крупным планом; скажите «Это стена»**  
-Плитки: `wall` `a` `is` `It` → **It is a wall.**
+**5 · Соберите фразу — подруга спрашивает, что снято крупным планом; скажите «Это стена»**
+<!-- interaction_id: en:lesson-03:session-05:i05; family: phrase_builder -->
+Цель: `It is a wall.`
 
-**6 · Карточка слова — ceiling**  
-> **ceiling** — «потолок». Верхняя поверхность комнаты над головой.
+**6 · Карточка слова — ceiling**
+<!-- interaction_id: en:lesson-03:session-05:i06; family: listen_choose -->
+Цель: `ceiling`
 
-**7 · Послушайте и выберите — какое слово произнесла подруга**  
-🔊 *ceiling* → **ceiling** · feeling · kneeling
-- feeling — *Первый звук в `feeling` — «ф», а в `ceiling` — «с». В записи `ceiling`.*
-- kneeling — *В начале `kneeling` слышно «н», а в `ceiling` — «с». Здесь звучит `ceiling`.*
+**7 · Послушайте и выберите — какое слово произнесла подруга**
+<!-- interaction_id: en:lesson-03:session-05:i07; family: listen_choose -->
+Цель: `ceiling`
+Варианты: `ceiling` · `feeling` · `kneeling`
 
-**8 · Соберите короткое название — подруга показывает снимок потолка; назовите его двумя словами**  
-Плитки: `ceiling` `A` `is` → **A ceiling.**  
-Лишняя плитка: `is`.
-- is — *Для короткого названия нужны `a` и само слово: `a ceiling`. Форма `is` между ними не ставится.*
+**8 · Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»**
+<!-- interaction_id: en:lesson-03:session-05:i08; family: phrase_builder -->
+Цель: `It is a ceiling.`
+Варианты: `is`
 
-**9 · Скажите вслух — на следующем снимке подруга заметила ручку; назовите дверь (`door` — «дверь»)**  
-🎙️ **It is a door.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-05:i09; family: scripted_repeat_compare -->
+Цель: `It is a door.`
 
-**10 · Послушайте и соберите — подруга обращается к вам, рассматривая фотографию**  
-🔊 *Is it a floor?* Плитки: `floor` `a` `Is` `it` `wall` → **Is it a floor?**  
-Лишняя плитка: `wall`.
-- wall — *В записи прозвучало `floor`, а не `wall`: `Is it a floor?`.*
+**10 · Послушайте и соберите — подруга обращается к вам, рассматривая фотографию**
+<!-- interaction_id: en:lesson-03:session-05:i10; family: listen_build_dictation -->
+Цель: `Is it a floor?`
+Варианты: `wall`
 
-**11 · Соедините пары — что видно на фотографиях (Speed Match, 4 пары)**  
-wall — стена · floor — пол · ceiling — потолок · door — дверь
+**11 · Соедините пары — что видно на фотографиях**
+<!-- interaction_id: en:lesson-03:session-05:i11; family: speed_match -->
+Пары: `wall` — стена · `floor` — пол · `ceiling` — потолок · `door` — дверь
+Цель: `wall · floor · ceiling · door`
 
-**12 · Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)**  
-It ___ clean. → **is** · is a · a
-- is a — *Вы описываете состояние словом `clean`. Перед ним в этой фразе `a` не нужно: `It is clean`.*
-- a — *В `It a clean` пропало `is` и появилось лишнее `a`. Нужная фраза — `It is clean`.*
+**12 · Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)**
+<!-- interaction_id: en:lesson-03:session-05:i12; family: context_gap_grammar -->
+Цель: `It ___ clean.`
+Варианты: `is` · `is a` · `a`
 
-**13 · Соберите фразу — подруга приняла фотографию пола за стену; возразите: «Это не стена»**  
-Плитки: `wall` `It` `a` `is` `not` `are` → **It is not a wall.**  
-Лишняя плитка: `are`.
-- are — *После `It` здесь нужна форма `is`. Получится `It is not a wall`.*
+**13 · Соберите фразу — подруга приняла фотографию пола за стену; возразите: «Это не стена»**
+<!-- interaction_id: en:lesson-03:session-05:i13; family: phrase_builder -->
+Цель: `It is not a wall.`
+Варианты: `are`
 
-**14 · Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой**  
-It ___ ceiling. → **is a** · is · a
-- is — *Начало получится правильным, но перед `ceiling` не хватит `a`: `It is a ceiling`.*
-- a — *Название `a ceiling` получится, но для полной фразы после `It` нужно `is`.*
+**14 · Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой**
+<!-- interaction_id: en:lesson-03:session-05:i14; family: context_gap_grammar -->
+Цель: `It ___ ceiling.`
+Варианты: `is a` · `is` · `a`
 
-**15 · Скажите вслух — подруга приблизила снимок пола; уточните у неё: «Он чистый?»**  
-🎙️ **Is it clean?**
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-05:i15; family: scripted_repeat_compare -->
+Цель: `Is it clean?`
 
-**16 · Скажите вслух — подруга спрашивает, что снято на фотографии с деревянными досками; назовите пол полной фразой**  
-🎙️ **It is a floor.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-05:i16; family: scripted_repeat_compare -->
+Цель: `It is a floor.`
 
-**17 · Соберите вопрос — на последней фотографии белая поверхность и край светильника; уточните у подруги, потолок ли это**  
-Плитки: `ceiling` `Is` `a` `it` `Are` → **Is it a ceiling?**  
-Лишняя плитка: `Are`.
-- Are — *Вопрос об этой поверхности здесь начинается с `Is it`: `Is it a ceiling?`.*
-
----
+**17 · Соберите вопрос — на последней фотографии белая поверхность и край светильника; уточните у подруги, потолок ли это**
+<!-- interaction_id: en:lesson-03:session-05:i17; family: phrase_builder -->
+Цель: `Is it a ceiling?`
+Варианты: `Are`
 
 ## Для сборщика
 
@@ -130,7 +137,7 @@ wall — стена — она отделяет одну комнату от д�
 floor — пол — нижняя поверхность комнаты, по которой ходят  
 ceiling — потолок — верхняя поверхность комнаты над головой
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ## Самопроверка
 

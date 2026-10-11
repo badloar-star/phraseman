@@ -854,13 +854,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — курьер ищет в списке блюда для подачи еды; вы показываете на два распакованных блюда и называете их «Это блюда»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — курьер ищет в списке блюда для подачи еды; вы показываете на два распакованных блюда и называете их «Это блюда»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,5 +1002,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6fd28a77e9deecd50a6567e66d326071eee5603d80370ef88a303e75c319288a"
+  "learnerFingerprint": "b0387a59e09adb9bce7c181bed6652bd858bc56ba40fc85e6db737a05cfa074d"
 }

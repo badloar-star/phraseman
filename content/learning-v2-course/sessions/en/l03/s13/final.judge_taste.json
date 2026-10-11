@@ -1,1 +1,42 @@
-{"reviewer":"/root/s13_taste","model":"gpt-5.6-sol","reasoningEffort":"high","freshContext":true,"sourceSha256":"846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502","actual_exemplar":"exemplars/en/l01_s02.ru.md","intro_body_markdown_chars":[245,254,228],"pairwise":"equal","pairwise_reason":"Эталон ярче отдельными образами, обновлённаяS13 достигает той же редакторской силы в нынешней структуре: слово с переводом сразу, связная мысль, ситуация только в вопросе. Ход про одноan для всех названий даёт юмор из языковой ошибки.","voice":{"score":4,"evidence":["Простое уверенное начало без разгона.","Живой образ объясняет, почему общий смысл не выбирает артикль.","Построение вопроса объяснено последовательно без сцены."]},"humor":{"present":true,"on_topic":true,"examples":["Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными."],"misfires":[]},"scene":{"present":true,"gives_reason_to_speak":true,"note":"Люди и ситуация в вопросах; телаинтро только значение/звук/построениефразы."},"ai_text_or_nonsense":[],"water":[],"dead_language":[],"best_lines":["`earring` — «серьга», украшение для уха.","Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными.","Перед начальным согласным «б» выбираем `a`."],"must_fix":[],"verdict":"PASS","verdict_reason":"Обе сценические вставки устранены, юмор остался естественным и связанным с правилом, а ИИ-текста, бреда, воды и мёртвого языка не найдено.","initialReview":"judgements/2026-09-12_l03_s13_taste_initial.json"}
+{
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s13",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactRuSha256": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+  "exactUkSha256": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e",
+  "practiceAtomicSha256": "30008b1faa3ab4c5b3c6f36ec38fb6b275241b4ae6303493762f7287cbc18d2a",
+  "localeHashes": {
+    "ru": "eab836e51392ba1243f537395b446642bda03191a64fa6f23e615fc51ad23c9c",
+    "uk": "91383ce4295f858cb25d0eba3e3d0c066ef37a60799c09a6d360e8223895236e"
+  },
+  "pairwise": "equal",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Current RU voice quote: «Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными.» It teaches the actual contrast."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "«Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными.»"
+    ],
+    "misfires": []
+  },
+  "ai_text_or_nonsense": [],
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "verdict": "PASS",
+  "verdict_reason": "Current RU voice quote: «Одно удачное `an` нельзя назначить всем названиям сразу: смысл может быть похожим, а первые звуки — разными.» It teaches the actual contrast."
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 52 — «У двери зала»
+# Английский · Урок 2 · Занятие 52 — «У двери зала»
 
-**Сцена сессии.** В воскресенье вечером вы с другом пришли на кинопоказ в небольшой клуб. У двери зала вы быстро переговариваетесь с сотрудниками: выясняете, кто отвечает за показ, проверяете билеты и уточняете, куда пройти.
+**Сцена занятия.** В воскресенье вечером вы с другом пришли на кинопоказ в небольшой клуб. У двери зала вы быстро переговариваетесь с сотрудниками: выясняете, кто отвечает за показ, проверяете билеты и уточняете, куда пройти.
 
-**Операция:** знакомые вопросы вперемешку — на слух и вслух
+**Как сказать:** знакомые вопросы вперемешку — на слух и вслух
 **Новые слова:** —
 **Возвращаются:** ready, manager, open, here, excuse me
 
@@ -42,99 +42,103 @@
 
 `Excuse me. Is it open?` — «Извините. Открыто?» Здесь `open` — «открыто», а `Excuse me` привлекает внимание. На одном «Извините» легко остановиться от волнения, но вопрос пока существует только у вас в голове. Добавьте `Is it open?`, если понятно, о каком месте речь.
 
-**Сотрудник указал на нужный зал. Привлеките его внимание и спросите, открыт ли зал.**
+**Вы уже привлекли внимание сотрудника словами `Excuse me.` Теперь спросите, открыт ли зал.**
 
-- ✅ **Excuse me. Is it open?**
-- ❌ Excuse me. It open? — *В полном вопросе нужно `Is it open?`: после обращения сначала `Is`, затем `it`.*
-- ❌ Excuse me. Is it closed? — *Это «Закрыто?» Вам нужно спросить, открыт ли зал: `open`.*
+- ✅ **Is it open?**
+- ❌ It open? — *В полном вопросе нужно `Is it open?`: после обращения сначала `Is`, затем `it`.*
+- ❌ Is it closed? — *Это «Закрыто?» Вам нужно спросить, открыт ли зал: `open`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — какая реплика прозвучала у входа**
-🔊 *Are you ready?* → **Are you ready?** · Are we ready? · You are ready.
-- Are we ready? — *В этом вопросе звучит `we` — «мы». В записи сотрудник обращается к вам: `Are you`.*
-- You are ready. — *Это сообщение. В записи первые слова стоят иначе: `Are you`.*
+<!-- interaction_id: en:lesson-02:session-52:i01; family: listen_choose -->
+Цель: `Are you ready?`
+Варианты: `Are you ready?` · `Are we ready?` · `You are ready.`
 
 **2 · Соберите фразу — сотрудник спросил, готовы ли вы показать билет; вы ещё ищете его в телефоне, ответьте коротко «Нет»**
-*(`ready` — «готов»)*
-Плитки: `am` `No` `not` `I` → **No, I am not.**
+<!-- interaction_id: en:lesson-02:session-52:i02; family: phrase_builder -->
+Цель: `No, I am not.`
 
 **3 · Послушайте и выберите — какая реплика друга прозвучала рядом с вами**
-🔊 *Who is he?* → **Who is he?** · Where is he? · Who is she?
-- Where is he? — *Это вопрос о месте. В записи первое слово `Who` — «кто».*
-- Who is she? — *Это вопрос о женщине. В записи в конце звучит `he` — «он».*
+<!-- interaction_id: en:lesson-02:session-52:i03; family: listen_choose -->
+Цель: `Who is he?`
+Варианты: `Who is he?` · `Where is he?` · `Who is she?`
 
 **4 · Соберите фразу — друг спросил о мужчине с ключами; вы знаете, что он руководитель клуба, объясните, кто он**
-*(`manager` — «руководитель»)*
-Плитки: `manager` `He` `the` `is` → **He is the manager.**
+<!-- interaction_id: en:lesson-02:session-52:i04; family: phrase_builder -->
+Цель: `He is the manager.`
 
 **5 · Вставьте слово — руководитель отошёл, и вы потеряли его из виду; спросите сотрудницу, где он**
-Where ___ he? → **is** · are · am
-- are — *В этом вопросе о мужчине нужно `is`: `Where is he?`.*
-- am — *Форма `am` подходит к `I`. Здесь вопрос с `he`, поэтому выбираем `is`.*
+<!-- interaction_id: en:lesson-02:session-52:i05; family: context_gap_grammar -->
+Цель: `Where ___ he?`
+Варианты: `is` · `are` · `am`
 
 **6 · Послушайте и выберите — какая реплика сотрудницы прозвучала в ответ**
-🔊 *He is inside.* → **He is inside.** · He is outside. · Is he inside?
-- He is outside. — *Это «Он снаружи». В записи последнее слово `inside` — «внутри».*
-- Is he inside? — *Это вопрос. На записи сотрудница сообщает: сначала `He is`.*
+<!-- interaction_id: en:lesson-02:session-52:i06; family: listen_choose -->
+Цель: `He is inside.`
+Варианты: `He is inside.` · `He is outside.` · `Is he inside?`
 
 **7 · Вставьте слово — вы показываете на зал; спросите сотрудницу, открыт ли он**
-*(`open` — «открыто»)*
-Is it ___ ? → **open** · ready · sure
-- ready — *Это вопрос о готовности. По условию вы уточняете, открыт ли зал: `open`.*
-- sure — *Это «уверен». Для вопроса об открытом зале нужно `Is it open?`.*
+<!-- interaction_id: en:lesson-02:session-52:i07; family: context_gap_grammar -->
+Цель: `Is it ___ ?`
+Варианты: `open` · `ready` · `sure`
 
-**8 · Соберите фразу — другу тоже нужен билет; обратитесь к сотруднице и спросите цену**
-*(`excuse me` — «извините», обращение для привлечения внимания; `price` — «цена»)*
-Плитки: `price` `Excuse me` `What` `the` `is` → **Excuse me. What is the price?**
+**8 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-52:i08:s01; family: scripted_repeat_compare -->
+Цель: `Excuse me.`
 
-**9 · Послушайте и выберите — какая реплика друга прозвучала над планом здания**
-🔊 *Are we here?* → **Are we here?** · We are here. · Are you here?
-- We are here. — *Это сообщение. В записи первые слова `Are we`: друг спрашивает.*
-- Are you here? — *Это вопрос с `you`. В записи звучит `we`, включающее вас обоих.*
+**9 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-02:session-52:i08:s02; family: phrase_builder -->
+Цель: `What is the price?`
 
-**10 · Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»**
-*(`here` — «здесь»)*
-Yes, we ___ . → **are** · is · am
-- is — *В этом коротком ответе с `we` нужна форма `are`: `Yes, we are`.*
-- am — *Форма `am` сочетается с `I`. Здесь сохраняем `we are`.*
+**10 · Послушайте и выберите — какая реплика друга прозвучала над планом здания**
+<!-- interaction_id: en:lesson-02:session-52:i09; family: listen_choose -->
+Цель: `Are we here?`
+Варианты: `Are we here?` · `We are here.` · `Are you here?`
 
-**11 · Соедините пары — слова для разговора у входа (Speed Match, 4 пары)**
-ready — готов · manager — руководитель · open — открыто · here — здесь
+**11 · Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»**
+<!-- interaction_id: en:lesson-02:session-52:i10; family: context_gap_grammar -->
+Цель: `Yes, we ___ .`
+Варианты: `are` · `is` · `am`
 
-**12 · Послушайте и соберите — друг спрашивает о сотруднице, которая проверяет билеты**
-🔊 *Is she new?* Плитки: `new` `she` `Is` → **Is she new?**
-*(`new` — «новенькая»)*
+**12 · Соедините пары — слова для разговора у входа**
+<!-- interaction_id: en:lesson-02:session-52:i11; family: speed_match -->
+Пары: `ready` — готов · `manager` — руководитель · `open` — открыто · `here` — здесь
+Цель: `ready · manager · open · here`
 
-**13 · Послушайте и выберите — какая следующая реплика сотрудницы прозвучала у двери**
-🔊 *Is he ready?* → **Is he ready?** · He is ready. · Is she ready?
-- He is ready. — *Это сообщение. В записи сначала `Is he`: сотрудница задаёт вопрос.*
-- Is she ready? — *Это вопрос о женщине. В записи после `Is` звучит `he`.*
+**13 · Послушайте и соберите — друг спрашивает о сотруднице, которая проверяет билеты**
+<!-- interaction_id: en:lesson-02:session-52:i12; family: listen_build_dictation -->
+Цель: `Is she new?`
 
-**14 · Соберите фразу — руководитель вернулся к двери и стоит рядом с вами; сообщите другу «Руководитель здесь»**
-Плитки: `here` `The` `is` `manager` → **The manager is here.**
+**14 · Послушайте и выберите — какая следующая реплика сотрудницы прозвучала у двери**
+<!-- interaction_id: en:lesson-02:session-52:i13; family: listen_choose -->
+Цель: `Is he ready?`
+Варианты: `Is he ready?` · `He is ready.` · `Is she ready?`
 
-**15 · Скажите вслух — вы предполагаете, что вход по вашему билету находится за другой дверью; спросите сотрудницу «Я ошибаюсь?» (`wrong` — «неправ»)**
-🎙 **Am I wrong?** — послушайте, повторите, сравните.
+**15 · Соберите фразу — руководитель вернулся к двери и стоит рядом с вами; сообщите другу «Руководитель здесь»**
+<!-- interaction_id: en:lesson-02:session-52:i14; family: phrase_builder -->
+Цель: `The manager is here.`
 
-**16 · Скажите вслух — сотрудница закончила объяснение и отвернулась; привлеките её внимание перед ещё одним вопросом (`excuse me` — «извините»)**
-🎙 **Excuse me.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-52:i15; family: scripted_repeat_compare -->
+Цель: `Am I wrong?`
 
-**17 · Соберите фразу — сотрудница вас слушает; спросите, где туалеты**
-*(`toilets` — «туалеты»)*
-Плитки: `toilets` `is` `Where` `the` `are` → **Where are the toilets?**
-*(плитка `is` лишняя: в этом вопросе с `the toilets` нужно `are`)*
+**17 · Послушайте и соберите — сотрудница готова выслушать ваш вопрос**
+<!-- interaction_id: en:lesson-02:session-52:i16; family: listen_build_dictation -->
+Цель: `Excuse me.`
 
----
+**18 · Соберите фразу — сотрудница вас слушает; спросите, где туалеты**
+<!-- interaction_id: en:lesson-02:session-52:i17; family: phrase_builder -->
+Цель: `Where are the toilets?`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=context_gap_grammar, 8=phrase_builder, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=context_gap_grammar, 8=scripted_repeat_compare, 9=phrase_builder, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=listen_build_dictation, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=listen_build_dictation, 18=phrase_builder
 
 ---
 
@@ -166,10 +170,10 @@ modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=phrase_builder, 5=c
 
 | слово | первое введение | отработка до задания 11 |
 |---|---|---|
-| ready | урок 1, сессия 1 | 1, 2 |
-| manager | урок 2, сессия 38 | 4 |
-| open | урок 1, сессия 28 | 7 |
-| here | урок 1, сессия 1 | 9, 10 |
+| ready | урок 1, занятие 1 | 1, 2 |
+| manager | урок 2, занятие 38 | 4 |
+| open | урок 1, занятие 28 | 7 |
+| here | урок 1, занятие 1 | 9, 10 |
 
 **4. Сборки и слух**
 

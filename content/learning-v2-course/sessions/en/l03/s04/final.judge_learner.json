@@ -1,102 +1,17 @@
 {
-  "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
-  "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
-  "introAnswers": [
-    {
-      "step": 1,
-      "answer": "It is a key."
-    },
-    {
-      "step": 2,
-      "answer": "Is it a door?"
-    },
-    {
-      "step": 3,
-      "answer": "It is not a window."
-    }
-  ],
-  "practiceAnswers": [
-    {
-      "step": 1,
-      "answer": "Acknowledged: key — ключ."
-    },
-    {
-      "step": 2,
-      "answer": "key"
-    },
-    {
-      "step": 3,
-      "answer": "Acknowledged: door — дверь."
-    },
-    {
-      "step": 4,
-      "answer": "door"
-    },
-    {
-      "step": 5,
-      "answer": "A key."
-    },
-    {
-      "step": 6,
-      "answer": "Acknowledged: window — окно."
-    },
-    {
-      "step": 7,
-      "answer": "window"
-    },
-    {
-      "step": 8,
-      "answer": "It is a window."
-    },
-    {
-      "step": 9,
-      "answer": "It is a mirror."
-    },
-    {
-      "step": 10,
-      "answer": "Is it a door?"
-    },
-    {
-      "step": 11,
-      "answer": {
-        "door": "дверь",
-        "key": "ключ",
-        "mirror": "зеркало",
-        "window": "окно"
-      }
-    },
-    {
-      "step": 12,
-      "answer": "It is not a key."
-    },
-    {
-      "step": 13,
-      "answer": "It is a door."
-    },
-    {
-      "step": 14,
-      "answer": "Is it a mirror?"
-    },
-    {
-      "step": 15,
-      "answer": "Is it a key?"
-    },
-    {
-      "step": 16,
-      "answer": "It is not a door."
-    },
-    {
-      "step": 17,
-      "answer": "It is a key."
-    }
-  ],
-  "ambiguities": [],
-  "leaks": [],
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_learner",
+  "sourceSha256": "1f9433b606c9fcc6b375819a8940240312c6c0d15038f1a7690041de150c0c83",
+  "exactRuSha256": "1f9433b606c9fcc6b375819a8940240312c6c0d15038f1a7690041de150c0c83",
+  "exactUkSha256": "73dd1d8bfd444c60321129c279b5cab81174a1d45cc1ce019e4b8c613717a9d3",
+  "practiceAtomicSha256": "d18085b5864bc50a7b6b70da2cbc0f9bca6de797e8071138e896701df63bcb64",
   "verdict": "PASS",
-  "answerComparison": {
-    "intro": 3,
-    "practice": 17,
-    "matched": true,
-    "scope": "text only; current absolute-path private projection"
-  }
+  "evidence": [
+    "The landlord tour supplies a natural reason to name, ask about, and correct one household item.",
+    "Exact intro answers assessed: It is a key. | Is it a door? | It is not a window.."
+  ],
+  "blockers": [],
+  "mustFix": []
 }

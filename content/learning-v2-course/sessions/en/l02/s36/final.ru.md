@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 36 — «Кто или где? Слушаем вопрос»
+# Английский · Урок 2 · Занятие 36 — «Кто или где? Слушаем вопрос»
 
-**Сцена сессии.** Вечеринка у соседей в разгаре. В комнате играет музыка, гости разговаривают одновременно. Вы с другом пытаетесь расслышать вопросы и разобраться, кто из гостей хозяин дома.
+**Сцена занятия.** Вечеринка у соседей в разгаре. В комнате играет музыка, гости разговаривают одновременно. Вы с другом пытаетесь расслышать вопросы и разобраться, кто из гостей хозяин дома.
 
-**Операция:** повторение `Who is…?` на слух и вслух; различение с `Where is…?`
+**Как сказать:** повторение `Who is…?` на слух и вслух; различение с `Where is…?`
 **Новые слова:** —
 **Возвращаются:** host, guest, noisy, sure, here
 
@@ -50,86 +50,90 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — какой вопрос друг задал о мужчине у колонки**
-🔊 *Who is he?* → **Who is he?** · Where is he? · Who is she?
-- Where is he? — *Это вопрос о месте. На записи в начале `Who`: друг спрашивает, кто этот мужчина.*
-- Who is she? — *В этом варианте вопрос о женщине. На записи последнее слово — `he`, «он».*
+<!-- interaction_id: en:lesson-02:session-36:i01; family: listen_choose -->
+Цель: `Who is he?`
+Варианты: `Who is he?` · `Where is he?` · `Who is she?`
 
 **2 · Соберите фразу — спросите о женщине рядом с другом: «Кто она?»**
-Плитки: `she` `Who` `is` → **Who is she?**
+<!-- interaction_id: en:lesson-02:session-36:i02; family: phrase_builder -->
+Цель: `Who is she?`
 
 **3 · Послушайте и выберите слово**
-🔊 *host* → **host** · post · roast
-- post — *`Post` — «почта». Послушайте первый звук: в записи `host`.*
-- roast — *`Roast` — «жаркое». Послушайте первый звук: в записи `host`.*
+<!-- interaction_id: en:lesson-02:session-36:i03; family: listen_choose -->
+Цель: `host`
+Варианты: `host` · `post` · `roast`
 
-**4 · Скажите вслух — хозяин громче всех перекрикивает музыку; скажите, что он шумный**
-*(`noisy` — «шумный»)*
-🎙 **The host is noisy.** — послушайте, повторите, сравните.
+**4 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-36:i04; family: scripted_repeat_compare -->
+Цель: `The host is noisy.`
 
 **5 · Вставьте слово — музыка мешает разговору; спросите друга: «Здесь шумно?»**
-Is it ___ here? → **noisy** · sure · guest
-- sure — *Это «уверен». Для вопроса о шуме нужно `noisy`.*
-- guest — *Это «гость», человек. Здесь нужно описание обстановки — `noisy`.*
+<!-- interaction_id: en:lesson-02:session-36:i05; family: context_gap_grammar -->
+Цель: `Is it ___ here?`
+Варианты: `noisy` · `sure` · `guest`
 
 **6 · Послушайте и выберите — что друг спросил о мужчине у колонки**
-🔊 *Is he the host?* → **Is he the host?** · Who is the host? · Where is the host?
-- Who is the host? — *Это «Кто хозяин?». На записи друг уточняет про одного мужчину: «Он хозяин?»*
-- Where is the host? — *Это «Где хозяин?». На записи нет `Where`: вопрос начинается с `Is he`.*
+<!-- interaction_id: en:lesson-02:session-36:i06; family: listen_choose -->
+Цель: `Is he the host?`
+Варианты: `Is he the host?` · `Who is the host?` · `Where is the host?`
 
 **7 · Соберите фразу — друг ищет одного гостя; тот подошёл к вам, скажите: «Гость здесь»**
-*(`guest` — «гость»; `here` — «здесь»)*
-Плитки: `here` `guest` `The` `is` → **The guest is here.**
+<!-- interaction_id: en:lesson-02:session-36:i07; family: phrase_builder -->
+Цель: `The guest is here.`
 
 **8 · Послушайте и выберите — какой вопрос задаёт подошедший сосед**
-🔊 *Who is the guest?* → **Who is the guest?** · Where is the guest? · Who is the host?
-- Where is the guest? — *Так спрашивают, где гость. На записи начало `Who is`: сосед хочет узнать, кто этот гость.*
-- Who is the host? — *Здесь вопрос о хозяине. Сосед произнёс в конце `guest` — «гость».*
+<!-- interaction_id: en:lesson-02:session-36:i08; family: listen_choose -->
+Цель: `Who is the guest?`
+Варианты: `Who is the guest?` · `Where is the guest?` · `Who is the host?`
 
 **9 · Послушайте и соберите — друг говорит о хозяине**
-🔊 *The host is here.* Плитки: `host` `here` `is` `The` → **The host is here.**
+<!-- interaction_id: en:lesson-02:session-36:i09; family: listen_build_dictation -->
+Цель: `The host is here.`
 
 **10 · Вставьте слово — вы точно знаете, кто хозяин; скажите другу: «Я уверен»**
-*(`sure` — «уверен»)*
-I am ___ . → **sure** · here · noisy
-- here — *Это «здесь». Вы хотите подтвердить уверенность в ответе: `I am sure`.*
-- noisy — *Это «шумный». Здесь речь о том, что вы точно знаете ответ, — `sure`.*
+<!-- interaction_id: en:lesson-02:session-36:i10; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `sure` · `here` · `noisy`
 
 **11 · Соберите фразу — друг спрашивает, знакомы ли двое гостей; вы не знаете и признаётесь: «Я не уверен»**
-Плитки: `sure` `I` `not` `am` → **I am not sure.**
+<!-- interaction_id: en:lesson-02:session-36:i11; family: phrase_builder -->
+Цель: `I am not sure.`
 
 **12 · Послушайте и выберите — друг спрашивает о женщине, которую потерял из виду**
-🔊 *Is she here?* → **Is she here?** · Is he here? · Who is she?
-- Is he here? — *В этом варианте вопрос о мужчине. На записи звучит `she`: друг спрашивает о женщине.*
-- Who is she? — *Это «Кто она?». Друг спросил, здесь ли она: в конце прозвучало `here`.*
+<!-- interaction_id: en:lesson-02:session-36:i12; family: listen_choose -->
+Цель: `Is she here?`
+Варианты: `Is she here?` · `Is he here?` · `Who is she?`
 
 **13 · Послушайте и соберите — гость говорит о колонке**
-🔊 *It is noisy.* Плитки: `noisy` `It` `not` `is` → **It is noisy.**
-*(плитка `not` лишняя: на записи сказано, что шумно, без отрицания)*
+<!-- interaction_id: en:lesson-02:session-36:i13; family: listen_build_dictation -->
+Цель: `It is noisy.`
 
-**14 · Скажите вслух — хозяин отошёл, и вы ищете его; спросите друга, где хозяин**
-🎙 **Where is the host?** — послушайте, повторите, сравните.
+**14 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-36:i14; family: scripted_repeat_compare -->
+Цель: `Where is the host?`
 
-**15 · Скажите вслух — друг упомянул знакомого мужчину; уточните, здесь ли он**
-🎙 **Is he here?** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-36:i15; family: scripted_repeat_compare -->
+Цель: `Is he here?`
 
 **16 · Соберите фразу — друг ждёт одну гостью; покажите на подошедшую женщину и спросите: «Она та гостья?»**
-Плитки: `guest` `she` `the` `Is` → **Is she the guest?**
+<!-- interaction_id: en:lesson-02:session-36:i16; family: phrase_builder -->
+Цель: `Is she the guest?`
 
-**17 · Соберите фразу — вы перешли к другой компании; все перед вами, но вы не знаете, кто из них хозяин вечера; узнайте это**
-Плитки: `host` `Where` `the` `is` `Who` → **Who is the host?**
-*(плитка `Where` лишняя: нужно узнать человека, а не его местонахождение)*
-
----
+**17 · Послушайте и выберите — какой вопрос вы задали о хозяине вечеринки**
+<!-- interaction_id: en:lesson-02:session-36:i17; family: listen_choose -->
+Цель: `Who is the host?`
+Варианты: `Who is the host?` · `Where is the host?` · `Who is the guest?`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_choose, 7=phrase_builder, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=phrase_builder
+modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_compare, 5=context_gap_grammar, 6=listen_choose, 7=phrase_builder, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=listen_choose, 13=listen_build_dictation, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=listen_choose
 
 ---
 
@@ -155,7 +159,7 @@ modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_com
 
 **3. Доска пар**
 
-Доски пар в этой сессии нет.
+Доски пар в этой занятия нет.
 
 **4. Сборки**
 

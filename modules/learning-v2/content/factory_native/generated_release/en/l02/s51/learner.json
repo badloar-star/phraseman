@@ -123,25 +123,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i03",
+      "interactionId": "en:lesson-02:session-51:i03:s01",
       "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:i03:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:i03:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i03:s02",
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг объяснил прохожему, что вы ищете станцию; привлеките его внимание и спросите, далеко ли она",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг объяснил прохожему, что вы ищете станцию; привлеките его внимание и спросите, далеко ли она",
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Excuse me. Is it far?",
+        "targetPhrase": "Is it far?",
         "localizedMeaning": {
           "ru": "Соберите фразу — друг объяснил прохожему, что вы ищете станцию; привлеките его внимание и спросите, далеко ли она",
           "uk": "Складіть фразу — друг пояснив перехожому, що ви шукаєте станцію; приверніть його увагу й запитайте, чи далеко вона"
         },
         "orderedTokens": [
-          "Excuse me.",
           "Is",
           "it",
           "far"
@@ -153,7 +185,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -222,7 +254,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -298,7 +330,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i06",
-      "ordinal": 9,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -327,7 +359,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i07",
-      "ordinal": 10,
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -396,7 +428,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i08",
-      "ordinal": 11,
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -424,7 +456,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i09",
-      "ordinal": 12,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -496,54 +528,54 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i10",
-      "ordinal": 13,
+      "interactionId": "en:lesson-02:session-51:i10:s01",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте выражение — прохожий отвлёкся на карту; привлеките его внимание, чтобы уточнить, уверен ли он в выбранном повороте",
+      "prompt": "Вставьте один ответ в одну фразу — шаг 1 из 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-51:i10:r1",
+          "responseId": "en:lesson-02:session-51:i10:s01:r1",
           "text": "Excuse me"
         },
         {
-          "responseId": "en:lesson-02:session-51:i10:r2",
+          "responseId": "en:lesson-02:session-51:i10:s01:r2",
           "text": "I am sure"
         },
         {
-          "responseId": "en:lesson-02:session-51:i10:r3",
+          "responseId": "en:lesson-02:session-51:i10:s01:r3",
           "text": "We are ready"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте выражение — прохожий отвлёкся на карту; привлеките его внимание, чтобы уточнить, уверен ли он в выбранном повороте",
+      "accessibilityLabel": "Вставьте один ответ в одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте выражение — прохожий отвлёкся на карту; привлеките его внимание, чтобы уточнить, уверен ли он в выбранном повороте",
           "uk": "Вставте вираз — перехожий відволікся на карту; приверніть його увагу, щоб уточнити, чи впевнений він у вибраному повороті"
         },
-        "gappedTargetPhrase": "___ . Are you sure?",
+        "gappedTargetPhrase": "___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-02:session-51:i10:r1",
+            "responseId": "en:lesson-02:session-51:i10:s01:r1",
             "text": "Excuse me"
           },
           {
-            "responseId": "en:lesson-02:session-51:i10:r2",
+            "responseId": "en:lesson-02:session-51:i10:s01:r2",
             "text": "I am sure"
           },
           {
-            "responseId": "en:lesson-02:session-51:i10:r3",
+            "responseId": "en:lesson-02:session-51:i10:s01:r3",
             "text": "We are ready"
           }
         ],
         "testedDimension": "Вставьте выражение — прохожий отвлёкся н",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-51:i10:r2",
+            "responseId": "en:lesson-02:session-51:i10:s01:r2",
             "correct": false,
             "testedDimension": "Вставьте выражение — прохожий отвлёкся н",
             "feedbackByLocale": {
@@ -552,7 +584,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-51:i10:r3",
+            "responseId": "en:lesson-02:session-51:i10:s01:r3",
             "correct": false,
             "testedDimension": "Вставьте выражение — прохожий отвлёкся н",
             "feedbackByLocale": {
@@ -565,8 +597,41 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-02:session-51:i10:s02",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:i10:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:i10:s02:audio",
+          "transcript": "Are you sure?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you sure?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-02:session-51:i11",
-      "ordinal": 14,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -642,7 +707,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i12",
-      "ordinal": 15,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -674,7 +739,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i13",
-      "ordinal": 16,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -742,54 +807,87 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-02:session-51:i14:s01",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:i14:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:i14:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i14:s02",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — перед ещё одним вопросом уточните у прохожего, занят ли он",
+      "prompt": "Вставьте один ответ в одну фразу — шаг 2 из 2",
       "responseOptions": [
         {
-          "responseId": "en:lesson-02:session-51:i14:r1",
+          "responseId": "en:lesson-02:session-51:i14:s02:r1",
           "text": "busy"
         },
         {
-          "responseId": "en:lesson-02:session-51:i14:r2",
+          "responseId": "en:lesson-02:session-51:i14:s02:r2",
           "text": "station"
         },
         {
-          "responseId": "en:lesson-02:session-51:i14:r3",
+          "responseId": "en:lesson-02:session-51:i14:s02:r3",
           "text": "name"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — перед ещё одним вопросом уточните у прохожего, занят ли он",
+      "accessibilityLabel": "Вставьте один ответ в одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — перед ещё одним вопросом уточните у прохожего, занят ли он",
           "uk": "Вставте слово — перед іще одним запитанням уточніть у перехожого, чи зайнятий він"
         },
-        "gappedTargetPhrase": "Excuse me. Are you ___ ?",
+        "gappedTargetPhrase": "Are you ___ ?",
         "gapOptions": [
           {
-            "responseId": "en:lesson-02:session-51:i14:r1",
+            "responseId": "en:lesson-02:session-51:i14:s02:r1",
             "text": "busy"
           },
           {
-            "responseId": "en:lesson-02:session-51:i14:r2",
+            "responseId": "en:lesson-02:session-51:i14:s02:r2",
             "text": "station"
           },
           {
-            "responseId": "en:lesson-02:session-51:i14:r3",
+            "responseId": "en:lesson-02:session-51:i14:s02:r3",
             "text": "name"
           }
         ],
         "testedDimension": "Вставьте слово — перед ещё одним вопросо",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-51:i14:r2",
+            "responseId": "en:lesson-02:session-51:i14:s02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — перед ещё одним вопросо",
             "feedbackByLocale": {
@@ -798,7 +896,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-51:i14:r3",
+            "responseId": "en:lesson-02:session-51:i14:s02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — перед ещё одним вопросо",
             "feedbackByLocale": {
@@ -812,17 +910,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i15",
-      "ordinal": 18,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы сверили дорогу с картой и теперь уверены; сообщите другу «Я уверен» (`sure` — «уверен»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы сверили дорогу с картой и теперь уверены; сообщите другу «Я уверен» (`sure` — «уверен»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -845,17 +943,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-51:i16",
-      "ordinal": 19,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы с другом разобрались с дорогой и готовы идти; скажите «Мы готовы» (`ready` — «готов»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-51:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы с другом разобрались с дорогой и готовы идти; скажите «Мы готовы» (`ready` — «готов»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -877,25 +975,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-51:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-02:session-51:i17:s01",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-51:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-51:i17:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:i17:s02",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — дорогу вы выяснили; обратитесь к прохожему и спросите, открыта ли станция",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — дорогу вы выяснили; обратитесь к прохожему и спросите, открыта ли станция",
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Excuse me. Is the station open?",
+        "targetPhrase": "Is the station open?",
         "localizedMeaning": {
           "ru": "Соберите фразу — дорогу вы выяснили; обратитесь к прохожему и спросите, открыта ли станция",
           "uk": "Складіть фразу — дорогу ви з’ясували; зверніться до перехожого й запитайте, чи відкрита станція"
         },
         "orderedTokens": [
-          "Excuse me.",
           "Is",
           "the",
           "station",
@@ -909,11 +1039,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d44f56691480873a8fea6ef2d778f8a6d15fe9ff0b4691377494d170e680845"
+  "learnerFingerprint": "1a222465ccfe624f9177795dfe68dc10fa699073f4905bf9f32cfc1a17fd1dc0"
 }

@@ -413,21 +413,22 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
+      "prompt": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
+      "accessibilityLabel": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a window.",
+        "targetPhrase": "It is not a window.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
-          "uk": "Складіть фразу — господар просить назвати предмет за шторою; скажіть «Це вікно»"
+          "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+          "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
         },
         "orderedTokens": [
           "It",
           "is",
+          "not",
           "a",
           "window"
         ],
@@ -442,13 +443,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин показывает на предмет у входа; назовите зеркало (`mirror` — «зеркало»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин показывает на предмет у входа; назовите зеркало (`mirror` — «зеркало»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -644,13 +645,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин придерживает входную дверь; назовите её полной фразой",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i13:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин придерживает входную дверь; назовите её полной фразой",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -723,13 +724,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин достаёт небольшой предмет из кармана; спросите «Это ключ?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин достаёт небольшой предмет из кармана; спросите «Это ключ?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -756,13 +757,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин решил, что вы указываете на дверь, но вы показываете на шкаф; возразите: «Это не дверь»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин решил, что вы указываете на дверь, но вы показываете на шкаф; возразите: «Это не дверь»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -836,5 +837,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7b7fd569a8abc42bed21e1fa618bb2e4e3878a38ec4ac2395ca385b58fee48b3"
+  "learnerFingerprint": "a1a81285e6c13d745e4b3628cd455108c94e578054ee927b424cc98ca07bb0eb"
 }

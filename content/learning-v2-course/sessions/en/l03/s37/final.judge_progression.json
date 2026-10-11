@@ -1,13 +1,13 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+  "sourceSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
   "localeHashes": {
-    "ru": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
-    "uk": "13a9969ca4a59c5c95db7000dc0099a3d1562449e628f76d2f340347bbb4b3f7"
+    "ru": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+    "uk": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9"
   },
   "comparedThrough": "en/l03/s36",
   "curriculumExactMatch": true,
-  "curriculumRow": "| 37 | контраст | выбирать this/that + is для одного и these/those + are для нескольких | building, entrance, exit | обсуждаем соседние помещения |",
+  "curriculumRow": "| 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения |",
   "curriculumEvidence": {
     "grammar": "RU/UK выбирают this/that + is для одного и these/those + are для нескольких по числу и расстоянию.",
     "newWords": [
@@ -67,13 +67,70 @@
   "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "Fresh S01-S36 RU+UK scan found no learner-facing building/buildings, entrance/entrances or exit/exits.",
-    "No phone, key or bag example is reused, and no S38 apple/banana/orange material appears.",
-    "Tasks 8, 11 and 13 are separate scored phrase-level audio links with exact distance-neutral meanings.",
-    "Both locales parse as 17 tasks and 17 modes; task 14 is a phrase builder in text and metadata."
+    "Exact current curriculum row verified: | 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
   "deterministicGates": {
     "progression_quality_gate_from_25": "PASS",
     "check_new_words_l03": "PASS: zero repeats"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "deee6c6bc115c683476c63f948a28f7a96e4154a64870fca4b65cf918e288305",
+    "localeSha256": "206aa0bb6d0d5f2b971d2f9da6afac4b9fe52a2d4daf1a9f3efec222a2748727",
+    "practiceAtomicSha256": "e2e730ca3bfef33a02f5dfe107972cced7a6e7ca993941acd487bcb5c29d3a42"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+  "exactUkSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+  "localeSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+  "practiceAtomicSha256": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "8ce54080eb537110c150d9495d6149e21a67089641130225f088553cbdbb9cf8",
+    "localeSha256": "bbf4408e2c3a748d303f50e4ba8a9f8e39df231f066240ad567155f5d56f58e2",
+    "practiceAtomicSha256": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+    "exactRuSha256": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+    "exactUkSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+    "localeSha256": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9",
+    "localeHashes": {
+      "ru": "76099515ff4e4e5c40a43b4212cc3f74632280fd12c0aae2cbff30d04f23a94e",
+      "uk": "4aa7fe0ba1065e53d01f57880e4c18426efe7481a9a3b8799d83e376c8cf4fe9"
+    },
+    "practiceAtomicSha256": "70eb4719a103942e0412a6ff07de4623d0b4adbc24cc60de7ed4a7ff5f289a8f",
+    "evidence": [
+      "Exact current curriculum row verified: | 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 37 | контраст | выбирать `this/that + is` для одного и `these/those + are` для нескольких | building, entrance, exit | обсуждаем соседние помещения |",
+    "grammarLexiconSituation": "Planned integrated contrast, new building/entrance/exit and unique complex-yard scene pass current cross-session audit.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s36"
   }
 }

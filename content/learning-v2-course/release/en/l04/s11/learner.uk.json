@@ -1,0 +1,498 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та оберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i01:r1",
+          "text": "tram"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i01:r2",
+          "text": "train"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i01:r3",
+          "text": "tramp"
+        }
+      ],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i01:audio"
+      ],
+      "modePayload": {
+        "referenceAudio": {
+          "transcript": "tram"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-11:i01:r1",
+            "targetText": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i01:r2",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "поезд",
+              "uk": "поїзд"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i01:r3",
+            "targetText": "tramp",
+            "meaningByLocale": {
+              "ru": "бродяга",
+              "uk": "волоцюга"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i01:r2",
+            "feedbackByLocale": {
+              "ru": "В `tram` слышны короткий /æ/ и финальное /m/; в `train` — /eɪ/ и /n/.",
+              "uk": "У `tram` чути короткий /æ/ і фінальний /m/; у `train` — /eɪ/ і /n/."
+            },
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i01:r3",
+            "feedbackByLocale": {
+              "ru": "В `tramp` после /m/ слышно /p/; в записи `tram` заканчивается на /m/.",
+              "uk": "У `tramp` після /m/ чути /p/; у записі `tram` закінчується на /m/."
+            },
+            "correct": false,
+            "testedDimension": "auditory_phonetic_contrast"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте нове слово",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i02:audio"
+      ],
+      "modePayload": {
+        "targetPhrase": "tram",
+        "referenceAudio": {
+          "transcript": "tram"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Швидко з’єднайте назви з українськими значеннями",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "bank",
+            "meaningByLocale": {
+              "ru": "банк",
+              "uk": "банк"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "garden",
+            "meaningByLocale": {
+              "ru": "сад",
+              "uk": "сад"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "p5",
+            "target": "tram",
+            "meaningByLocale": {
+              "ru": "трамвай",
+              "uk": "трамвай"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте питання й оберіть його зміст",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i04:r1",
+          "text": "Are there trams near the garden?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i04:r2",
+          "text": "Is there a tram near the garden?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i04:r3",
+          "text": "There are trams near the garden."
+        }
+      ],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i04:audio"
+      ],
+      "modePayload": {
+        "referenceAudio": {
+          "transcript": "Are there trams near the garden?"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-11:i04:r1",
+            "targetText": "Are there trams near the garden?",
+            "meaningByLocale": {
+              "ru": "Рядом с садом есть трамваи?",
+              "uk": "Біля саду є трамваї?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i04:r2",
+            "targetText": "Is there a tram near the garden?",
+            "meaningByLocale": {
+              "ru": "Рядом с садом есть один трамвай?",
+              "uk": "Біля саду є один трамвай?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i04:r3",
+            "targetText": "There are trams near the garden.",
+            "meaningByLocale": {
+              "ru": "Рядом с садом есть трамваи.",
+              "uk": "Біля саду є трамваї."
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i04:r2",
+            "feedbackByLocale": {
+              "ru": "В записи несколько трамваев, поэтому `Are there trams`, не один `tram`.",
+              "uk": "У записі кілька трамваїв, тому `Are there trams`, а не один `tram`."
+            },
+            "correct": false,
+            "testedDimension": "auditory_proposition"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i04:r3",
+            "feedbackByLocale": {
+              "ru": "В записи вопрос `Are there ...?`, а не сообщение.",
+              "uk": "У записі питання `Are there ...?`, а не повідомлення."
+            },
+            "correct": false,
+            "testedDimension": "sentence_type"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання про трамваї біля бібліотеки",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "targetPhrase": "Are there trams near the library?",
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "the",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Оберіть питання про трамваї біля аптеки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-11:i06:r1",
+          "text": "Are there trams near the pharmacy?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i06:r2",
+          "text": "Is there trams near the pharmacy?"
+        },
+        {
+          "responseId": "en:lesson-04:session-11:i06:r3",
+          "text": "There are trams near the pharmacy."
+        }
+      ],
+      "audioTargetIds": [],
+      "modePayload": {
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-11:i06:r1",
+            "text": "Are there trams near the pharmacy?"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i06:r2",
+            "text": "Is there trams near the pharmacy?"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i06:r3",
+            "text": "There are trams near the pharmacy."
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-11:i06:r2",
+            "feedbackByLocale": {
+              "ru": "Трамваев несколько: `Are there trams ...?`.",
+              "uk": "Трамваїв кілька: `Are there trams ...?`."
+            },
+            "correct": false,
+            "testedDimension": "lexical_choice"
+          },
+          {
+            "responseId": "en:lesson-04:session-11:i06:r3",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. Вопрос: `Are there trams near the pharmacy?`.",
+              "uk": "Це повідомлення. Питання: `Are there trams near the pharmacy?`."
+            },
+            "correct": false,
+            "testedDimension": "lexical_choice"
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть питання",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i07:audio"
+      ],
+      "modePayload": {
+        "hiddenTargetPhrase": "Are there trams near the bank?",
+        "referenceAudio": {
+          "transcript": "Are there trams near the bank?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i08",
+      "ordinal": 11,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання про трамваї біля пошти",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "targetPhrase": "Are there trams near the post office?",
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "the",
+          "post",
+          "office"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Швидко з’єднайте назви з українськими значеннями",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "post office",
+            "meaningByLocale": {
+              "ru": "почта",
+              "uk": "пошта"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i10",
+      "ordinal": 13,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та складіть питання",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i10:audio"
+      ],
+      "modePayload": {
+        "hiddenTargetPhrase": "Are there trams near the dentist?",
+        "referenceAudio": {
+          "transcript": "Are there trams near the dentist?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "the",
+          "dentist"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ],
+        "localizedScene": {
+          "ru": "Послушайте вопрос и соберите его из плиток.",
+          "uk": ""
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте питання про трамваї біля пекарні",
+      "responseOptions": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-11:i11:audio"
+      ],
+      "modePayload": {
+        "targetPhrase": "Are there trams near the bakery?",
+        "referenceAudio": {
+          "transcript": "Are there trams near the bakery?"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-11:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фінал — складіть питання про трамваї біля клініки",
+      "responseOptions": [],
+      "audioTargetIds": [],
+      "modePayload": {
+        "targetPhrase": "Are there trams near the clinic?",
+        "orderedTokens": [
+          "Are",
+          "there",
+          "trams",
+          "near",
+          "the",
+          "clinic"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "066b77d9f27ea463b39228326e24de3bf012516fdaabc7f345ac8372e16f7242"
+}

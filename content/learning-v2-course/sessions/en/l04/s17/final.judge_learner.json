@@ -1,0 +1,40 @@
+{
+  "session": "en/l04/s17",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T13:32:57.085Z",
+  "sourceSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactRuSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactUkSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "practiceAtomicSha256": "b3d9af1391da1cbd09a42b170d9d5a693a5c9a161a2e1229d1d27c8d6ac90546",
+  "localeHashes": {
+    "ru": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+    "uk": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_s14_quality_review",
+  "role": "judge_learner",
+  "sourceReport": "fresh independent read-only seven-role textual review after canonical-repeat repair; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The station-board scene immediately gives the learner a practical question about additional platforms (final.ru.md:3-6; final.uk.md:3-6).",
+    "Intro 2 teaches the positive plural reply and i06 retrieves Yes, there are. in a different station-map question before sole independent i12 (RU:24-30,81-86,115-119; UK:24-30,80-85,114-118).",
+    "Intro 3 explicitly states aren't = are not; guided i11 constructs the full negative No, there are not. with four ordered tokens and diagnostic is, so the learner reaches the contracted form through a meaningful bridge rather than an unexplained variant (RU:36-42,110-113; UK:36-42,109-112)."
+  ],
+  "at": "2026-10-08T13:32:57.086Z",
+  "localeSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "preauthoringSha256": "fb19c4883d799f206a8753b1c5e6267c83f6212e2b7de112a3ae072d131547ee",
+  "converged": true,
+  "needsHumanReview": false
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro1:r2": {
+          "ru": "После `I` нужна форма `am`, а не `is`: `Yes, I am`.",
+          "uk": "Після `I` потрібне `am`, а не `is`: `Yes, I am`."
+        },
+        "en:lesson-02:session-49:intro1:r3": {
+          "ru": "В этом коротком ответе пропало `I`. Сохраните оба слова: `Yes, I am`.",
+          "uk": "У цій короткій відповіді зникло `I`. Збережіть обидва слова: `Yes, I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro2:r2": {
+          "ru": "Это вопрос о месте. Вы хотите узнать, кто этот мужчина, поэтому нужно `Who`.",
+          "uk": "Це запитання про місце. Ви хочете дізнатися, хто цей чоловік, тому потрібне `Who`."
+        },
+        "en:lesson-02:session-49:intro2:r3": {
+          "ru": "Это вопрос о названии в примере с местом. Сейчас вы спрашиваете о мужчине: `Who is he?`",
+          "uk": "Це запитання про назву в прикладі з місцем. Зараз ви запитуєте про чоловіка: `Who is he?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-49:intro3:r2": {
+          "ru": "Так вы уточните расстояние. Сейчас вам нужно узнать само место станции.",
+          "uk": "Так ви уточните відстань. Зараз вам треба дізнатися, де саме розташована станція."
+        },
+        "en:lesson-02:session-49:intro3:r3": {
+          "ru": "Это вопрос «Что это за станция?» Он не спрашивает, где она находится.",
+          "uk": "Це запитання «Що це за станція?» Воно не з’ясовує, де вона розташована."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a1010ac68681a25ec9dca226ceb51276968915a704c03e9bc4096224a565aa50"
+}

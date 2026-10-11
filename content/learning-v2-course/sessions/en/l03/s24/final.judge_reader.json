@@ -1,32 +1,33 @@
 {
-  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
-  "reviewer": "/root/s23_reader",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "medium",
-  "pages": [
-    {
-      "page": 1,
-      "retelling": "Один билет — ticket и It is a ticket; несколько билетов — tickets и They are tickets. Вместе с количеством меняется вся фраза.",
-      "what_i_do_now": "Если вижу один билет, говорю It is a ticket; если несколько — They are tickets.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 2,
-      "retelling": "Glass означает один стакан, glasses — несколько. Две буквы s уже есть в слове glass, но для множественного числа к ss добавляют es.",
-      "what_i_do_now": "Если передо мной несколько стаканов, называю их They are glasses.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 3,
-      "retelling": "Story означает одну историю, stories — несколько историй. Для множественного числа конечная y заменяется на ies; перед stories в фразе a не ставят.",
-      "what_i_do_now": "Если историй несколько, говорю They are stories без a.",
-      "understood": true,
-      "problems": []
-    }
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s24",
+  "role": "judge_reader",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
   ],
+  "sourceSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactRuSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactUkSha256": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2",
+  "practiceAtomicSha256": "13df34ecf513b95d89a46a6751d3360098f45be7a2a1604dcc4624fdee17d9ca",
+  "localeHashes": {
+    "ru": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+    "uk": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2"
+  },
   "verdict": "PASS",
-  "verdict_reason": "Все три страницы с первого прочтения ясно показывают форму одного и нескольких предметов и дают фразу, которую можно сразу применить."
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Former multi-phrase final is i17:s01–s03: three independent one-phrase interactions with exact audios."
+  ],
+  "verdictReason": "Former multi-phrase final is i17:s01–s03: three independent one-phrase interactions with exact audios."
 }
-

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 29 — «Назвали — далі it»
+# Англійська · Урок 3 · Заняття 29 — «Назвали — далі it»
 
-**Сцена сесії.** Біля дверей квартири ви із сусідом розбираєте пошту після того, як пішов листоноша. Посилка лежить поруч, лист — далі на килимку, а марку видно на конверті: спочатку треба назвати річ, а потім коротко додати, яка вона, не повторюючи назву.
+**Сцена заняття.** Біля дверей квартири ви із сусідом розбираєте пошту після того, як пішов листоноша. Посилка лежить поруч, лист — далі на килимку, а марку видно на конверті: спочатку треба назвати річ, а потім коротко додати, яка вона, не повторюючи назву.
 
-**Операція:** `this/that` указує на предмет; `it` повертається до вже названого предмета
+**Як сказати:** `this/that` указує на предмет; `it` повертається до вже названого предмета
 **Нові слова:** parcel, letter, stamp
 **Для повторення:** phone, key, heavy, wet, small
 
@@ -16,11 +16,11 @@
 
 Щоб додати «вона важка», не повторюйте `parcel`: скажіть `It is heavy.` Разом: `This is a parcel. It is heavy.` — «Це посилка. Вона важка». Посилку назвали один раз — і продовжили про неї.
 
-**Посилка лежить поруч. Спочатку назвіть її, потім продовжте говорити про неї, не вказуючи знову: вона важка.**
+**Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка.**
 
-- ✅ **This is a parcel. It is heavy.**
-- ❌ This is a parcel. This is heavy. — *Перше речення вказує через `this` і називає предмет словом `parcel`. У другому посилку вже названо, тому використовуємо `it`.*
-- ❌ Is this a parcel? It is heavy. — *Перше речення тут запитує, чи це посилка. За ситуацією потрібно спочатку назвати предмет: `This is a parcel`, а потім продовжити через `it`.*
+- ✅ **It is heavy.**
+- ❌ They are heavy. — *Йдеться про одну посилку, тому потрібна форма однини `It is`, а не множина `They are`.*
+- ❌ Is it heavy? — *Це запитання. За ситуацією ви повідомляєте сусідові, що вже названа посилка важка.*
 
 ---
 
@@ -32,11 +32,11 @@
 
 Потім `it` підхоплює вже названий лист. Разом: `That is a letter. It is wet.` — «Он лист. Він мокрий». Лист устиг намокнути, але вдруге представлятися йому не треба.
 
-**Лист лежить далі біля дверей. Спочатку назвіть його, потім продовжте говорити про нього, не вказуючи знову: він мокрий.**
+**Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий.**
 
-- ✅ **That is a letter. It is wet.**
-- ❌ That is a letter. That is wet. — *Перше речення вже назвало лист. У другому не потрібно знову вказувати вдалину через `that`: `it` повертається до вже названого листа.*
-- ❌ That is a letter. It wet. — *У другому реченні після `it` потрібне знайоме слово-зв’язка `is`: `It is wet`.*
+- ✅ **It is wet.**
+- ❌ They are wet. — *Йдеться про один лист, тому потрібне `It is wet`, а не множина `They are wet`.*
+- ❌ It wet. — *Після `it` потрібне `is`: `It is wet`.*
 
 ---
 
@@ -48,90 +48,139 @@
 
 У наступному реченні `it` означає ту саму марку. Разом: `This is a stamp. It is small.` — «Це марка. Вона маленька». Саме `it` не каже «поруч» або «далеко» — воно продовжує розмову про вже названу річ.
 
-**Марка лежить поруч. Спочатку назвіть її, потім продовжте говорити про ту саму марку: вона маленька.**
+**Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька.**
 
-- ✅ **This is a stamp. It is small.**
-- ❌ This is a stamp. That is small. — *Після першого речення марку вже названо. `That` укаже на іншу далеку річ, а `it` продовжить говорити про ту саму марку.*
-- ❌ This is a stamp. This is a small. — *У другому реченні після `a` бракує назви речі. Марку вже названо, тому кажемо `It is small`.*
+- ✅ **It is small.**
+- ❌ That is small. — *Марку вже названо. `That` укаже на іншу далеку річ, а `it` продовжить говорити про ту саму марку.*
+- ❌ This is a small. — *Після `a` бракує назви речі. Марку вже названо, тому кажемо `It is small`.*
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — parcel**
-> **parcel** — «посилка». Виглядає легкою рівно до миті, коли її доводиться піднімати.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-29:i01; family: listen_choose -->
+Ціль: `parcel`
+Варіанти: `parcel`
 
-**2 · Послухайте й виберіть — яке слово назвав сусід**
-🔊 *parcel* → **parcel** · pencil · person · puzzle
-Значення варіантів: parcel — посилка · pencil — олівець · person — людина · puzzle — пазл
-- pencil — *У першому наголошеному складі `pencil` звучить /pɛn/, а `parcel` починається з /pɑː/ у британській або /pɑr/ в американській вимові.*
-- person — *Перший наголошений склад `person` звучить /pɜː/ у британській або /pɝ/ в американській вимові; у `parcel` там /pɑː/ або /pɑr/.*
-- puzzle — *Після /p/ у `puzzle` звучить /ʌ/, а в `parcel` — /ɑː/ або /ɑr/; усередині також чути відповідно /z/ і /s/.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-29:i03; family: scripted_repeat_compare -->
+Ціль: `letter`
 
-**3 · Картка слова — letter**
-> **letter** — «лист». Паперове повідомлення, яке вміє подорожувати без заряджання.
+**3 · Виберіть назву — на конверті лежить марка**
+<!-- interaction_id: en:lesson-03:session-29:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `stamp` · `letter` · `parcel`
 
-**4 · Послухайте й виберіть — яке слово назвав сусід**
-🔊 *letter* → **letter** · better · later · little
-Значення варіантів: letter — лист · better — краще · later — пізніше · little — маленький
-- better — *`better` починається звуком `b`, а `letter` — звуком `l`.*
-- later — *У `later` перший голосний ковзає від `е` до `й`: /eɪ/. У `letter` звучить короткий /e~ɛ/.*
-- little — *`little` починається як `lit`, а в записі прозвучав початок `let`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-29:i02; family: scripted_repeat_compare -->
+Ціль: `parcel`
 
-**5 · Картка слова — stamp**
-> **stamp** — «поштова марка». Маленький квадратик, без якого великий лист нікуди не поїде.
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-29:i04; family: listen_choose -->
+Ціль: `letter`
+Варіанти: `letter`
 
-**6 · Послухайте й виберіть — яке слово назвав сусід**
-🔊 *stamp* → **stamp** · step · stop · lamp
-Значення варіантів: stamp — поштова марка · step — крок · stop — зупинка · lamp — лампа
-- step — *`step` закінчується на `p`, а в `stamp` перед `p` чути `m`.*
-- stop — *У `stop` немає звука `m`; у записі перед останнім `p` його чути.*
-- lamp — *`lamp` починається звуком `l`, а `stamp` — сполученням `st`.*
+**6 · Розрізніть слово — stamp або stand**
+<!-- interaction_id: en:lesson-03:session-29:i06; family: sound_contrast -->
+Ціль: `stamp`
+Варіанти: `stamp` · `stand`
 
-**7 · З’єднайте слова зі значеннями — пошта біля дверей**
-parcel — посилка · letter — лист · stamp — поштова марка · key — ключ
+**7 · Виберіть форму — ця річ лежить тут**
+<!-- interaction_id: en:lesson-03:session-29:i08; family: context_gap_grammar -->
+Ціль: `This ___ here.`
+Варіанти: `is` · `are`
 
-**8 · Поставте у відповідь ціле слово — коробка, яку принесли поштою**
-Плитки: `parcel` `pencil` `person` `puzzle` → **parcel**
+**8 · Розрізніть слово — This або That**
+<!-- interaction_id: en:lesson-03:session-29:i09; family: sound_contrast -->
+Ціль: `This`
+Варіанти: `This` · `That`
 
-**9 · Скажіть уголос — паперове повідомлення в конверті**
-🎙 **letter** — послухайте, повторіть і порівняйте.
+**9 · Промовте одну фразу — марка лежить поруч на столі**
+<!-- interaction_id: en:lesson-03:session-29:i10; family: scripted_repeat_compare -->
+Ціль: `This stamp, please.`
 
-**10 · Послухайте й поставте у відповідь ціле слово — поштова марка**
-🔊 *stamp* Плитки: `stamp` `step` `stop` `lamp` → **stamp**
+**10 · З’єднайте слова зі значеннями — пошта біля дверей**
+<!-- interaction_id: en:lesson-03:session-29:i07; family: speed_match -->
+Пари: `parcel` — посилка · `letter` — лист · `stamp` — поштова марка · `key` — ключ
+Ціль: `parcel · letter · stamp · key`
 
-**11 · Складіть два речення — посилка поруч і вона важка**
-Плитки: `This` `is` `a` `parcel` `It` `is` `heavy` `that` → **This is a parcel. It is heavy.**
+**11 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i11:s01; family: phrase_builder -->
+Ціль: `This is a parcel.`
 
-**12 · Скажіть уголос — лист лежить далеко й він мокрий**
-🎙 **That is a letter. It is wet.** — послухайте, повторіть і порівняйте.
+**12 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i11:s02; family: scripted_repeat_compare -->
+Ціль: `It is heavy.`
 
-**13 · Вставте слово — продовжте говорити про названу посилку, не вказуючи на неї знову**
-This is a parcel. ___ is heavy. → **It** · This · That · Is
-- This — *`This is heavy` знову вказує на ближню річ. За умовою посилку вже названо, тому `It` повертається до неї.*
-- That — *`That` указує на іншу далеку річ. Тут продовжуємо говорити про вже названу посилку: `It is heavy`.*
-- Is — *`Is is heavy` не утворює речення. Про названу річ починаємо зі слова `It`.*
+**13 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i12:s01; family: phrase_builder -->
+Ціль: `That is a letter.`
 
-**14 · Послухайте й виберіть точне значення двох речень**
-🔊 *That is a letter. It is wet.* → **Он лист. Він мокрий.** · Ось лист. Він мокрий. · Он лист. Він важкий. · Он посилка. Вона мокра.
-- Ось лист. Він мокрий. — *У записі перше слово — `That`, а варіант передає `This`: змінилося вказівне слово.*
-- Он лист. Він важкий. — *Перше речення збігається, але в другому прозвучало `wet`, а не `heavy`.*
-- Он посилка. Вона мокра. — *У записі назвали `letter`, а не `parcel`; слово `It` потім повертається саме до листа.*
+**14 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i12:s02; family: scripted_repeat_compare -->
+Ціль: `It is wet.`
 
-**15 · Складіть два речення — марка поруч і вона маленька**
-Плитки: `This` `is` `a` `stamp` `It` `is` `small` `that` → **This is a stamp. It is small.**
+**15 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i13:s01; family: listen_build_dictation -->
+Ціль: `This is a parcel.`
 
-**16 · Вставте слово — продовжте говорити про названий лист, не вказуючи на нього знову**
-That is a letter. ___ is wet. → **It** · That · This · Am
-- That — *`That` знову вказує на річ вдалині. Лист уже названо, тому далі використовуємо `It`.*
-- This — *`This` укаже на ближню річ і змінить точку відліку. Тут продовжуємо говорити про названий лист: `It`.*
-- Am — *`am` уживаємо з `I`, коли говоримо про себе. Про вже названий лист потрібно `It`.*
+**16 · Вставте одну відповідь в одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i13:s02; family: context_gap_grammar -->
+Ціль: `___ is heavy.`
+Варіанти: `It` · `This` · `That` · `Is`
 
-**17 · Фінал — пошта помінялася місцями**
-🎙 **That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.** — посилка тепер далі біля сходів, лист поруч на килимку, а марка залишилася на конверті біля дверей. Спочатку самостійно назвіть кожну річ, потім продовжте говорити про неї через `it`; після відповіді послухайте зразок і порівняйте.
+**17 · Послухайте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i14:s01; family: listen_choose -->
+Ціль: `That is a letter.`
+Варіанти: `То лист.` · `Ось лист.` · `То посилка.`
 
-## Для збирача
-new_words: parcel — посилка — Виглядає легкою рівно до миті, коли її доводиться піднімати.
-new_words: letter — лист — Паперове повідомлення, яке вміє подорожувати без заряджання.
-new_words: stamp — поштова марка — Маленький квадратик, без якого великий лист нікуди не поїде.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+**18 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i14:s02; family: phrase_builder -->
+Ціль: `It is wet.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i15:s01; family: scripted_repeat_compare -->
+Ціль: `This is a stamp.`
+
+**20 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i15:s02; family: phrase_builder -->
+Ціль: `It is small.`
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i16:s01; family: scripted_repeat_compare -->
+Ціль: `That is a letter.`
+
+**22 · Вставте одну відповідь в одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i16:s02; family: context_gap_grammar -->
+Ціль: `___ is wet.`
+Варіанти: `It` · `That` · `This` · `Am`
+
+**23 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s01; family: scripted_repeat_compare -->
+Ціль: `That is a parcel.`
+
+**24 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s02; family: phrase_builder -->
+Ціль: `It is heavy.`
+
+**25 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s03; family: scripted_repeat_compare -->
+Ціль: `This is a letter.`
+
+**26 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s04; family: listen_build_dictation -->
+Ціль: `It is wet.`
+
+**27 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s05; family: scripted_repeat_compare -->
+Ціль: `That is a stamp.`
+
+**28 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-29:i17:s06; family: listen_build_dictation -->
+Ціль: `It is small.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=context_gap_grammar, 8=sound_contrast, 9=scripted_repeat_compare, 10=speed_match, 11=phrase_builder, 12=scripted_repeat_compare, 13=phrase_builder, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=context_gap_grammar, 17=listen_choose, 18=phrase_builder, 19=scripted_repeat_compare, 20=phrase_builder, 21=scripted_repeat_compare, 22=context_gap_grammar, 23=scripted_repeat_compare, 24=phrase_builder, 25=scripted_repeat_compare, 26=listen_build_dictation, 27=scripted_repeat_compare, 28=listen_build_dictation
+

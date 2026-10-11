@@ -1,34 +1,36 @@
 {
-  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
-  "localeSha256": {
-    "uk": "ee601edf470bc467ca76480b31c1e8e13579c739dbabe87aa09b8e6c20332fb1"
+  "schemaVersion": "learning_v2_fresh_locale_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s18",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+  "exactRuSha256": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+  "exactUkSha256": "55b551927cc02baabd97da5b6ba9681d08fd4ba4e581922ee7f0f4e270f30473",
+  "practiceAtomicSha256": "62e8500f4f46e08c9324b23ecafdeb8479bee0bd4a9ee4f1845e66829fe41c3d",
+  "localeHashes": {
+    "ru": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+    "uk": "55b551927cc02baabd97da5b6ba9681d08fd4ba4e581922ee7f0f4e270f30473"
   },
-  "reviewer": "/root/s17_uk_native",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "medium",
-  "previousReviewPath": "judgements/2026-09-12_l03_s18_uk_initial.json",
-  "scope": "Full independent native review plus actual exact four-occurrence delta check",
   "locales": {
     "uk": {
       "verdict": "PASS",
-      "problems": [],
-      "intro_body_chars": [
-        234,
-        245,
-        246
-      ],
-      "structure_identical": true,
-      "english_targets_identical": true,
-      "humor": {
-        "present": true,
-        "on_topic": true,
-        "evidence": [
-          "Два годинники не сховаються за одним `watch`."
-        ]
-      },
-      "deltaEvidence": "Independent exact transform equals current; exactly four repairs in three groups, old box wording0/new2. Prior fullscope retained. Number of watches nowconsistent, box physicalcontainer, native metadata. No otherchanges."
+      "blockers": [],
+      "mustFix": [],
+      "must_fix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "UK uses its own natural watch wording while preserving the same English targets and activity contract."
+      ]
     }
   },
-  "verdict": "PASS",
-  "actualAudioReviewed": false
+  "verdict": "PASS"
 }

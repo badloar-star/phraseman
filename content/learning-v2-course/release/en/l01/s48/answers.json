@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-48:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-48:i11:p1=tired\nen:lesson-01:session-48:i11:p2=gone\nen:lesson-01:session-48:i11:p3=loud\nen:lesson-01:session-48:i11:p4=great",
     "correctResponseId": null
   },
   {
@@ -70,13 +70,33 @@
     "correctResponseId": "en:lesson-01:session-48:i14:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-48:i15",
-    "correctText": "I'm tired. It isn't late.",
+    "interactionId": "en:lesson-01:session-48:i15:s01",
+    "correctText": "I'm tired.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-48:i16",
-    "correctText": "I'm tired. He's gone. It isn't loud. It's great.",
+    "interactionId": "en:lesson-01:session-48:i15:s02",
+    "correctText": "It isn't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16:s01",
+    "correctText": "I'm tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16:s02",
+    "correctText": "He's gone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16:s03",
+    "correctText": "It isn't loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16:s04",
+    "correctText": "It's great.",
     "correctResponseId": null
   }
 ]

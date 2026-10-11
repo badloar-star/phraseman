@@ -1,9 +1,9 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+  "sourceSha256": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
   "localeHashes": {
-    "ru": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
-    "uk": "891cd58d440d5f041acc979b59c316cb02a8ba8fb9e3f5ee57608afca2be741a"
+    "ru": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+    "uk": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d"
   },
   "comparedThrough": "en/l03/s27",
   "curriculumExactMatch": true,
@@ -66,13 +66,61 @@
   "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "В learner-facing RU+UK S01–S27 нет suitcase, backpack или wallet.",
-    "Сцена выхода из магазина с получением вещей новая.",
-    "Все три интро ведут к практике и трёхчастному финалу.",
-    "progression_quality_gate --from 25 и check_new_words --session 28 проходят."
+    "Exact current curriculum row verified: | 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
   "deterministicGates": {
     "progression_quality_gate_from_25": "PASS",
     "check_new_words_session_28": "PASS: 56 sessions, 130 unique new words, no repeats"
+  },
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "7f854982ccf173981c3f9014629400d9e87e1f36e2fd7fab41194431a0ceafee",
+    "localeSha256": "859d0d5757a3abc976bedadc968d12be48f17c6cfced1f91b270f8ec99b0db25",
+    "practiceAtomicSha256": "b0544da6af1e6da701d4ca6c5c6eea7f1b98595fddef787380ec8c918d112efa",
+    "findings": []
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "exactRuSha256": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+  "exactUkSha256": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d",
+  "localeSha256": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d",
+  "practiceAtomicSha256": "b0544da6af1e6da701d4ca6c5c6eea7f1b98595fddef787380ec8c918d112efa",
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+    "exactRuSha256": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+    "exactUkSha256": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d",
+    "localeSha256": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d",
+    "localeHashes": {
+      "ru": "e2de55a232e88949a0fc5d0e54f73c33890ce502b79652dddfbfe37533232725",
+      "uk": "a616667681c9e975685cdcef7b9ef52cace7bd2e5b6fa355246720f3ed15df0d"
+    },
+    "practiceAtomicSha256": "b0544da6af1e6da701d4ca6c5c6eea7f1b98595fddef787380ec8c918d112efa",
+    "evidence": [
+      "Exact current curriculum row verified: | 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина |",
+    "grammarLexiconSituation": "Точный плановый listening/request transfer следует после question session; suitcase/backpack/wallet новы, сцена нова.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s27"
   }
 }

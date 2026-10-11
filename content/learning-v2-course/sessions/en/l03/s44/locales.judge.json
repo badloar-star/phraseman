@@ -1,0 +1,80 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+  "localeSha256": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "tasks": 17,
+  "languagePurity": true,
+  "semanticParity": true,
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "The cash-desk dialogue presents each person once before `the`; a/an sound explanations and practice targets are concrete and native-language parity holds."
+      ]
+    }
+  },
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh final RU/UK audit after task 2 feedback repair.",
+    "Ukrainian faithfully and naturally expresses the stress and vowel distinction in the repaired feedback.",
+    "All scene, intros, target tokens, audio meanings, options, feedback, final, and assembler blocks remain parallel without residue or semantic additions."
+  ],
+  "localeHashes": {
+    "ru": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+    "uk": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "eff387176fdd75c4b344659c4c0e876a1ba11923a4660dd1cc71bcb6d2121cd5",
+    "localeSha256": "686729f256a00a58ded8e09d06ca35b760bd2619f6a372254489fff3d138aba8",
+    "practiceAtomicSha256": "2cf63ddc430cc20ee3e83a0bf27ea1a7e108ba617cfb719df5f9458a2ae815e0"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+  "exactUkSha256": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11",
+  "practiceAtomicSha256": "55018eac22ab9743f0c098a94b4249c42e103cb4875a6d089ae1038728dd195c",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "7f31b177fe2f445cf4b0abff7ac4941c23323e4351e07144f62425591b56c38b",
+    "localeSha256": "0caa5606accf56a9f5ad90f570169ea954a15c32752bec011aeb03584bb2f711",
+    "practiceAtomicSha256": "1ffcd89ef9c0aa5542c9bdac0a74958c3245fa1efcc2a42b02fb5c0a9247b1c2",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+    "exactRuSha256": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+    "exactUkSha256": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11",
+    "localeSha256": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11",
+    "localeHashes": {
+      "ru": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+      "uk": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11"
+    },
+    "practiceAtomicSha256": "55018eac22ab9743f0c098a94b4249c42e103cb4875a6d089ae1038728dd195c",
+    "evidence": [
+      "The cash-desk dialogue presents each person once before `the`; a/an sound explanations and practice targets are concrete and native-language parity holds."
+    ]
+  }
+}

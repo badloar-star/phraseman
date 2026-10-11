@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-29:i01",
-    "correctText": "",
+    "correctText": "heavy",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i03",
-    "correctText": "",
+    "correctText": "light",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i06",
-    "correctText": "",
+    "correctText": "clean",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i08",
-    "correctText": "",
+    "correctText": "dirty",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i10",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-29:i10:p1=heavy\nen:lesson-01:session-29:i10:p2=light\nen:lesson-01:session-29:i10:p3=clean\nen:lesson-01:session-29:i10:p4=dirty",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i14",
-    "correctText": "",
+    "correctText": "broken",
     "correctResponseId": null
   },
   {
@@ -81,12 +81,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-29:i17",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-29:i17:p1=small\nen:lesson-01:session-29:i17:p2=new\nen:lesson-01:session-29:i17:p3=empty\nen:lesson-01:session-29:i17:p4=broken",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-29:i18",
-    "correctText": "It is heavy. It is dirty. It is empty. It is new.",
+    "interactionId": "en:lesson-01:session-29:i18:s01",
+    "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s02",
+    "correctText": "It is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s03",
+    "correctText": "It is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18:s04",
+    "correctText": "It is new.",
     "correctResponseId": null
   }
 ]

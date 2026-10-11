@@ -21,42 +21,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Посылка лежит рядом. Сначала назовите её, затем продолжите говорить о ней без нового указания: она тяжёлая.",
-          "uk": "Посилка лежить поруч. Спочатку назвіть її, потім продовжте говорити про неї, не вказуючи знову: вона важка."
+          "ru": "Вы уже сказали соседу `This is a parcel.` Теперь продолжите о той же посылке: она тяжёлая.",
+          "uk": "Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "This is a parcel. It is heavy."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "This is a parcel. This is heavy."
+              "text": "They are heavy."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "Is this a parcel? It is heavy."
+              "text": "Is it heavy?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro1:r1",
-              "text": "This is a parcel. It is heavy."
+              "text": "It is heavy."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r2",
-              "text": "This is a parcel. This is heavy."
+              "text": "They are heavy."
             },
             {
               "responseId": "en:lesson-03:session-29:intro1:r3",
-              "text": "Is this a parcel? It is heavy."
+              "text": "Is it heavy?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Посылка лежит рядом. Сначала назовите её, затем продолжите говорить о ней без нового указания: она тяжёлая.",
-          "uk": "Посилка лежить поруч. Спочатку назвіть її, потім продовжте говорити про неї, не вказуючи знову: вона важка."
+          "ru": "Вы уже сказали соседу `This is a parcel.` Теперь продолжите о той же посылке: она тяжёлая.",
+          "uk": "Ви вже сказали сусідові `This is a parcel.` Тепер продовжте про ту саму посилку: вона важка."
         }
       }
     },
@@ -75,42 +75,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Письмо лежит дальше у двери. Сначала назовите его, затем продолжите говорить о нём без нового указания: оно мокрое.",
-          "uk": "Лист лежить далі біля дверей. Спочатку назвіть його, потім продовжте говорити про нього, не вказуючи знову: він мокрий."
+          "ru": "Вы уже сказали `That is a letter.` Теперь продолжите о том же письме: оно мокрое.",
+          "uk": "Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "That is a letter. It is wet."
+              "text": "It is wet."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "That is a letter. That is wet."
+              "text": "They are wet."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "That is a letter. It wet."
+              "text": "It wet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro2:r1",
-              "text": "That is a letter. It is wet."
+              "text": "It is wet."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r2",
-              "text": "That is a letter. That is wet."
+              "text": "They are wet."
             },
             {
               "responseId": "en:lesson-03:session-29:intro2:r3",
-              "text": "That is a letter. It wet."
+              "text": "It wet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Письмо лежит дальше у двери. Сначала назовите его, затем продолжите говорить о нём без нового указания: оно мокрое.",
-          "uk": "Лист лежить далі біля дверей. Спочатку назвіть його, потім продовжте говорити про нього, не вказуючи знову: він мокрий."
+          "ru": "Вы уже сказали `That is a letter.` Теперь продолжите о том же письме: оно мокрое.",
+          "uk": "Ви вже сказали `That is a letter.` Тепер продовжте про той самий лист: він мокрий."
         }
       }
     },
@@ -129,42 +129,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Марка лежит рядом. Сначала назовите её, затем продолжите говорить о той же марке: она маленькая.",
-          "uk": "Марка лежить поруч. Спочатку назвіть її, потім продовжте говорити про ту саму марку: вона маленька."
+          "ru": "Вы уже сказали `This is a stamp.` Теперь продолжите о той же марке: она маленькая.",
+          "uk": "Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "This is a stamp. It is small."
+              "text": "It is small."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "This is a stamp. That is small."
+              "text": "That is small."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "This is a stamp. This is a small."
+              "text": "This is a small."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-29:intro3:r1",
-              "text": "This is a stamp. It is small."
+              "text": "It is small."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r2",
-              "text": "This is a stamp. That is small."
+              "text": "That is small."
             },
             {
               "responseId": "en:lesson-03:session-29:intro3:r3",
-              "text": "This is a stamp. This is a small."
+              "text": "This is a small."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Марка лежит рядом. Сначала назовите её, затем продолжите говорить о той же марке: она маленькая.",
-          "uk": "Марка лежить поруч. Спочатку назвіть її, потім продовжте говорити про ту саму марку: вона маленька."
+          "ru": "Вы уже сказали `This is a stamp.` Теперь продолжите о той же марке: она маленькая.",
+          "uk": "Ви вже сказали `This is a stamp.` Тепер продовжте про ту саму марку: вона маленька."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "48ffd71ede97eff18cf7f2cef272aeaef3a5c11e8c8c64f46f63268ddccbb460"
+  "introFingerprint": "efccf5e0227cdfbbdef5722017bf96864b55cb7574e5ec5fbfb6c75ef5c5db57"
 }

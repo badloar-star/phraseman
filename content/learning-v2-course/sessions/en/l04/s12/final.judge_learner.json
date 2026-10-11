@@ -1,0 +1,35 @@
+{
+  "session": "en/l04/s12",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T22:06:36.3201321Z",
+  "sourceSha256": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+  "exactRuSha256": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+  "exactUkSha256": "17864855F3345E1B2A9399CA9C03E43533092EFA151F18C6409FD6326F259AA2",
+  "practiceAtomicSha256": "63ADB6152E9389F791CA57D32CF6011D6964426E981961CBDCFBFE23CF0FABA8",
+  "localeHashes": {
+    "ru": "4EC2EE1B745E4A53CC916834552348C36E5685A5FCC58B2B85CC4C097B685BFF",
+    "uk": "17864855F3345E1B2A9399CA9C03E43533092EFA151F18C6409FD6326F259AA2"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_current_s05_s12_review",
+  "role": "judge_learner",
+  "sourceReport": "fresh independent read-only seven-role textual review after canonical-repeat repair; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The station-board scene immediately gives the learner a practical question about additional platforms (final.ru.md:3-6; final.uk.md:3-6).",
+    "Intro 2 teaches the positive plural reply and i06 retrieves Yes, there are. in a different station-map question before sole independent i12 (RU:24-30,81-86,115-119; UK:24-30,80-85,114-118).",
+    "Intro 3 explicitly states aren't = are not; guided i11 constructs the full negative No, there are not. with four ordered tokens and diagnostic is, so the learner reaches the contracted form through a meaningful bridge rather than an unexplained variant (RU:36-42,110-113; UK:36-42,109-112)."
+  ]
+}

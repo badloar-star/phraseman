@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro1:r2": {
+          "ru": "`am` пропало целиком, а вместе с ним и фраза. Либо `I am tired`, либо `I'm tired`.",
+          "uk": "`am` зникло цілком, а з ним і фраза. Або `I am tired`, або `I'm tired`."
+        },
+        "en:lesson-01:session-48:intro1:r3": {
+          "ru": "Значок потерялся. Без него это не сокращение, а непонятное слово.",
+          "uk": "Значок загубився. Без нього це не скорочення, а незрозуміле слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro2:r2": {
+          "ru": "Пропало `is`. Оно спрятано в `he's` — без него связи между «он» и «ушёл» нет.",
+          "uk": "Зникло `is`. Воно заховане в `he's` — без нього зв'язку між «він» і «пішов» немає."
+        },
+        "en:lesson-01:session-48:intro2:r3": {
+          "ru": "`go` — «идти», а нужно «ушёл»: `gone`.",
+          "uk": "`go` — «іти», а треба «пішов»: `gone`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-48:intro3:r2": {
+          "ru": "`isn't` — про одного. Про нескольких — `aren't`.",
+          "uk": "`isn't` — про одного. Про кількох — `aren't`."
+        },
+        "en:lesson-01:session-48:intro3:r3": {
+          "ru": "Два сокращения сразу: `are` уже спрятано в `they're`. Что-то одно.",
+          "uk": "Два скорочення відразу: `are` вже заховане в `they're`. Щось одне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7dc89fa366dbe0b67564085f998b02be0cae0784bcc9c968e1a713df1943d271"
+}

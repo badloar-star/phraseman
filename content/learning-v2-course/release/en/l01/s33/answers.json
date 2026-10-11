@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-33:i01",
-    "correctText": "",
+    "correctText": "together",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-33:i08",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-33:i08:p1=together\nen:lesson-01:session-33:i08:p2=hungry\nen:lesson-01:session-33:i08:p3=ready\nen:lesson-01:session-33:i08:p4=late",
     "correctResponseId": null
   },
   {
@@ -55,8 +55,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-33:i12",
-    "correctText": "We are hungry. We are ready.",
+    "interactionId": "en:lesson-01:session-33:i12:s01",
+    "correctText": "We are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i12:s02",
+    "correctText": "We are ready.",
     "correctResponseId": null
   },
   {
@@ -75,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-33:i16",
-    "correctText": "We are hungry. We are together. We are ready.",
+    "interactionId": "en:lesson-01:session-33:i16:s01",
+    "correctText": "We are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i16:s02",
+    "correctText": "We are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i16:s03",
+    "correctText": "We are ready.",
     "correctResponseId": null
   }
 ]

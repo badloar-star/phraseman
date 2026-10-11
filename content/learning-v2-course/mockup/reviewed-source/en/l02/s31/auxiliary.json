@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro1:r2": {
+          "ru": "Это счёт, бумажка с суммой в конце ужина. Еду по ней не выбирают.",
+          "uk": "Це рахунок, папірець із сумою наприкінці вечері. Їжу за ним не вибирають."
+        },
+        "en:lesson-02:session-31:intro1:r3": {
+          "ru": "Это цена, одна цифра. А книжечка целиком — `menu`.",
+          "uk": "Це ціна, одна цифра. А книжечка вся — `menu`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro2:r2": {
+          "ru": "Меню приносят в начале, а не в конце. Вы уже поели.",
+          "uk": "Меню приносять на початку, а не в кінці. Ви вже поїли."
+        },
+        "en:lesson-02:session-31:intro2:r3": {
+          "ru": "`name` — «имя, название». Официанту нужно другое слово.",
+          "uk": "`name` — «ім'я, назва». Офіціантові потрібне інше слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-31:intro3:r2": {
+          "ru": "Так вы спросите, как блюдо называется. Вам нужна цифра — значит `price`.",
+          "uk": "Так ви спитаєте, як страва називається. Вам потрібна цифра — отже `price`."
+        },
+        "en:lesson-02:session-31:intro3:r3": {
+          "ru": "Меню вы уже держите в руках. Непонятна вам цена, про неё и спрашивайте.",
+          "uk": "Меню ви вже тримаєте в руках. Незрозуміла вам ціна, про неї і питайте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0c5cc53135683fc8f0568ba7e2568fa9a84b95d16617bb9fd905a742023b506b"
+}

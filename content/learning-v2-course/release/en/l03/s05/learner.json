@@ -395,7 +395,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткое название — подруга показывает снимок потолка; назовите его двумя словами",
+      "prompt": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i08:r1",
@@ -404,16 +404,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткое название — подруга показывает снимок потолка; назовите его двумя словами",
+      "accessibilityLabel": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A ceiling.",
+        "targetPhrase": "It is a ceiling.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — подруга показывает снимок потолка; назовите его двумя словами",
-          "uk": "Складіть коротку назву — подруга показує знімок стелі; назвіть її двома словами"
+          "ru": "Соберите фразу — подруга показывает снимок потолка; скажите полной фразой «Это потолок»",
+          "uk": "Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "ceiling"
         ],
         "authoredDistractorTokens": [
@@ -425,8 +427,8 @@
             "correct": false,
             "testedDimension": "Соберите короткое название — подруга пок",
             "feedbackByLocale": {
-              "ru": "Для короткого названия нужны `a` и само слово: `a ceiling`. Форма `is` между ними не ставится.",
-              "uk": "Для короткої назви потрібні `a` і саме слово: `a ceiling`. `is` між ними не ставимо."
+              "ru": "Полная фраза начинается с `It is`: получится `It is a ceiling`. Одного `is` вместо всей фразы недостаточно.",
+              "uk": "Повна фраза починається з `It is`: вийде `It is a ceiling`. Одного `is` замість усієї фрази недостатньо."
             }
           }
         ]
@@ -439,13 +441,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — на следующем снимке подруга заметила ручку; назовите дверь (`door` — «дверь»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — на следующем снимке подруга заметила ручку; назовите дверь (`door` — «дверь»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -779,13 +781,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — подруга приблизила снимок пола; уточните у неё: «Он чистый?»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — подруга приблизила снимок пола; уточните у неё: «Он чистый?»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -812,13 +814,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — подруга спрашивает, что снято на фотографии с деревянными досками; назовите пол полной фразой",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-05:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — подруга спрашивает, что снято на фотографии с деревянными досками; назовите пол полной фразой",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -892,5 +894,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "95677ded695ae2d8b83a19d48a9c59a3d2c5c838befc2a40a563815d15b97343"
+  "learnerFingerprint": "1d1f8605c74c2a4ac146c41978b82045b9a4c8a4e60d720f2bdff7d52331b1a1"
 }

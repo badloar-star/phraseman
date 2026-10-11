@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+  "sourceSha256": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Три интро готовят отдельные цепочки для sweater, scarf и glove.",
-    "Известный контраст this/that переносится в новую сервисную формулу This/That + noun, please.",
-    "Поддержка снижается к финалу с новой расстановкой всех трёх вещей."
-  ]
+    "Перенос this/that requests в новый домен использует new sweater/scarf/glove и дистанцию как проверяемый смысл."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "3337fee71a1c04a0e3dac2031960c77517d981f96c6c3c2673632302e4745a55",
+    "localeSha256": "715f583d4e9af9c590aa0a19ae0cf97498e8d260797cc0b792d98cf83bf90301",
+    "practiceAtomicSha256": "01dd8646ee5f0b358ba4a08d44250eaa292f8e12aa15f678f24f839de9844f69"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+  "exactUkSha256": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8",
+  "localeSha256": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8",
+  "practiceAtomicSha256": "8877cf2c618a4dc0d3f71082dde8305af2d425a9b44f7e2a90e4178add47e67c",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "ba285f26d172ccc8024f3bc8cbb74f84ed8f06c917354157644ff78818a90ff7",
+    "localeSha256": "f0e94c8048fd5ebf99b5221ced88b9bb79a508485da8e14af0bbd82c216bc04b",
+    "practiceAtomicSha256": "8877cf2c618a4dc0d3f71082dde8305af2d425a9b44f7e2a90e4178add47e67c",
+    "findings": []
+  },
+  "mustFix": [],
+  "localeHashes": {
+    "ru": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+    "uk": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+    "exactRuSha256": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+    "exactUkSha256": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8",
+    "localeSha256": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8",
+    "localeHashes": {
+      "ru": "8c745e03eed70c0da4c8d3331be5b82a8f7b520ee39b0970c3a0d69f74c0f99c",
+      "uk": "427bf3ddf1a288eec628aeb0dff5331623fb7de1987e49789436b19910c466e8"
+    },
+    "practiceAtomicSha256": "8877cf2c618a4dc0d3f71082dde8305af2d425a9b44f7e2a90e4178add47e67c",
+    "evidence": [
+      "Перенос this/that requests в новый домен использует new sweater/scarf/glove и дистанцию как проверяемый смысл."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

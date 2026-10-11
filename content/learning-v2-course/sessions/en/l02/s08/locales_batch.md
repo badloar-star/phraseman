@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 8 — «Десять питань за сніданком»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 8 — «Десять питань за сніданком»
 
-**Сцена сесії.** Ранок суботи, кухня хостелу. За столом сусід, який учора повернувся за північ, і розмова йде короткими питаннями: голодний? хочеш пити? змерз?
+**Сцена заняття.** Ранок суботи, кухня хостелу. За столом сусід, який учора повернувся за північ, і розмова йде короткими питаннями: голодний? хочеш пити? змерз?
 
-**Операція:** повторення `Are you + слово?` та відповідей `Yes, I am` / `No, I am not`
+**Як сказати:** повторення `Are you + слово?` та відповідей `Yes, I am` / `No, I am not`
 **Нові слова:** —
 **Повертаються:** awake, hungry, thirsty, cold, lost
 
@@ -46,7 +47,7 @@
 
 Відмова будується так само, як згода, тільки з доданим `not`: `No, I am not.`
 
-`not` іде після `am`, не перед ним. Усе решта як у `Yes, I am`, тому й вчити наново нічого. Зате забудете `not` — і замість відмови погодитеся.
+`not` іде після `am`, не перед ним. Решта — як у `Yes, I am`, тому й вчити наново нічого. Зате забудете `not` — і замість відмови погодитеся.
 
 **Сусід бере другу склянку й питає: «Are you thirsty?» («хочеш пити?») Пити ви не хочете. Відмовтеся.**
 
@@ -56,85 +57,106 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · З'єднайте пари (Speed Match, 4 пари)**
-awake — прокинувся · hungry — голодний · thirsty — хоче пити · cold — змерз
+**1 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-08:i01; family: speed_match -->
+Пари: `awake` — прокинувся · `hungry` — голодний · `thirsty` — хоче пити · `cold` — змерз
+Ціль: `awake · hungry · thirsty · cold`
 
 **2 · Вставте слово — сусід спить обличчям у стіл, ви його будите**
-___ you awake? → **Are** · You · Am
-- You — *З цього починається повідомлення, а не питання: `You are awake`. У питанні першим стоїть `are`.*
-- Am — *`am` — форма для `I`. Ви питаєте сусіда, а до `you` іде `are`.*
+<!-- interaction_id: en:lesson-02:session-08:i02; family: context_gap_grammar -->
+Ціль: `___ you awake?`
+Варіанти: `Are` · `You` · `Am`
 
-**3 · Послухайте і виберіть — awake**
-🔊 *awake* → **awake** · away · alone
-- away — *`away` — «геть». Початок спільний, а далі розходяться: в `awake` чути «к», в `away` — «у».*
-- alone — *`alone` — «сам». Теж починається з «е-», але далі «л», а не «у».*
+**3 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-08:i03; family: listen_choose -->
+Ціль: `awake`
+Варіанти: `awake` · `away` · `alone`
 
 **4 · Складіть фразу — спитати сусіда, чи він не голодний**
-Плитки: `hungry` `you` `Are` `am` → **Are you hungry?**
+<!-- interaction_id: en:lesson-02:session-08:i04; family: phrase_builder -->
+Ціль: `Are you hungry?`
 
 **5 · Вставте слово — сусід утретє тягнеться до глечика з водою**
-Are you ___ ? → **thirsty** · lost · awake
-- lost — *«Заблукав». За кухонним столом заблукати важко.*
-- awake — *«Прокинувся». Він явно не спить — він п'є.*
+<!-- interaction_id: en:lesson-02:session-08:i05; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `thirsty` · `lost` · `awake`
 
 **6 · Послухайте і складіть — «так, я голодний» коротко**
-🔊 *Yes, I am.* Плитки: `am` `Yes` `I` `not` → **Yes, I am.**
+<!-- interaction_id: en:lesson-02:session-08:i06; family: listen_build_dictation -->
+Ціль: `Yes, I am.`
 
 **7 · Вставте слово — ви відмовляєтеся від добавки**
-No, I am ___ . → **not** · no · am
-- no — *`no` стоїть на початку відповіді, а всередині фрази працює `not`.*
-- am — *`am` уже сказане один раз. Заперечення робить `not`.*
+<!-- interaction_id: en:lesson-02:session-08:i07; family: context_gap_grammar -->
+Ціль: `No, I am ___ .`
+Варіанти: `not` · `no` · `am`
 
 **8 · Складіть фразу — вікно було відчинене всю ніч, спитайте сусіда, чи він не змерз**
-Плитки: `cold` `Are` `you` `not` → **Are you cold?**
-*(Плитка `not` не потрібна: ви питаєте, а не заперечуєте.)*
+<!-- interaction_id: en:lesson-02:session-08:i08; family: phrase_builder -->
+Ціль: `Are you cold?`
 
 **9 · Розрізніть звуки — яке з двох про «змерз»?**
-🔊 Два слова підряд.
-*cold · gold* → **cold**
-- gold — *Це «золото». Перший звук інший: `cold` починається як «к», `gold` — як «ґ».*
+<!-- interaction_id: en:lesson-02:session-08:i09; family: sound_contrast -->
+Варіанти: `cold` · `gold`
 
-**10 · Послухайте і виберіть — thirsty**
-🔊 *thirsty* → **thirsty** · thirty · dirty
-- thirty — *«Тридцять». У `thirsty` перед кінцем чути «с», у `thirty` його немає.*
-- dirty — *«Брудний». Перший звук інший: `thirsty` починається із шепелявого «th», `dirty` — з «д».*
+**10 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-08:i10; family: listen_choose -->
+Ціль: `thirsty`
+Варіанти: `thirsty` · `thirty` · `dirty`
 
 **11 · Вставте слово — сусід підійшов до хостелу з іншого боку й не розуміє, куди потрапив**
-Are you ___ ? → **lost** · hungry · cold
-- hungry — *«Голодний». Він не про їжу — він не зрозумів, де він.*
-- cold — *«Змерз». Про розгубленість це не каже.*
+<!-- interaction_id: en:lesson-02:session-08:i11; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `lost` · `hungry` · `cold`
 
 **12 · Послухайте і складіть — «ні, я не голодний»**
-🔊 *No, I am not.* Плитки: `not` `am` `No` `I` → **No, I am not.**
+<!-- interaction_id: en:lesson-02:session-08:i12; family: listen_build_dictation -->
+Ціль: `No, I am not.`
 
 **13 · Вставте слово — сусід сидить у куртці й ховає руки в рукави**
-Are you ___ ? → **cold** · awake · hungry
-- awake — *«Прокинувся». Він і не спав, він мерзне.*
-- hungry — *«Голодний». Куртка і сховані руки — це про холод, а не про їжу.*
+<!-- interaction_id: en:lesson-02:session-08:i13; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `cold` · `awake` · `hungry`
 
 **14 · Складіть фразу — сусід спитав «Are you lost?», а ви заблукали**
-Плитки: `am` `Yes` `I` `lost` → **Yes, I am.**
-*(Плитка `lost` не потрібна: слово з питання в короткій відповіді не повторюють.)*
+<!-- interaction_id: en:lesson-02:session-08:i14; family: phrase_builder -->
+Ціль: `Yes, I am lost.`
 
-**15 · З'єднайте пари (Speed Match, 4 пари)**
-lost — заблукав · not — не · yes — так · no — ні
+**15 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-08:i15; family: speed_match -->
+Пари: `lost` — заблукав · `not` — не · `yes` — так · `no` — ні
+Ціль: `lost · not · yes · no`
 
-**16 · Скажіть уголос — спитайте і відповідайте за двох**
-🎙 **Are you awake? Yes, I am.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i16:s01; family: scripted_repeat_compare -->
+Ціль: `Are you awake?`
 
-**17 · Фінал сцени — чотири фрази підряд, без підказок**
-🎙 Сніданок добігає кінця. Спитайте сусіда, чи він не змерз і чи не хоче пити, а потім відповідайте за себе: голодні ви так, а заблукали ні.
-**Are you cold? Are you thirsty? Yes, I am. No, I am not.**
+**17 · Ви щойно розплющили очі й сіли за стіл. Скажіть, що ви вже прокинулися.**
+<!-- interaction_id: en:lesson-02:session-08:i16:s02; family: scripted_repeat_compare -->
+Ціль: `Yes, I am awake.`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Are you cold?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Are you thirsty?`
+
+**20 · Після довгої прогулянки ви хочете води. Скажіть, що ви хочете пити.**
+<!-- interaction_id: en:lesson-02:session-08:i17:s03; family: scripted_repeat_compare -->
+Ціль: `Yes, I am thirsty.`
+
+**21 · На вас теплий светр, і в кімнаті тепло. Скажіть, що вам не холодно.**
+<!-- interaction_id: en:lesson-02:session-08:i17:s04; family: scripted_repeat_compare -->
+Ціль: `No, I am not cold.`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=phrase_builder, 9=sound_contrast, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=phrase_builder, 9=sound_contrast, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 
@@ -162,32 +184,14 @@ modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 
 
 | слово | картка | відпрацювання ДО дошки |
 |---|---|---|
-| awake (дошка 1) | з минулих сесій | з минулих сесій |
-| hungry (дошка 1) | з минулих сесій | з минулих сесій |
-| thirsty (дошка 1) | з минулих сесій | з минулих сесій |
-| cold (дошка 1) | з минулих сесій | з минулих сесій |
-| lost (дошка 15) | з минулих сесій | завдання 5, 11 |
+| awake (дошка 1) | з минулих занять | з минулих занять |
+| hungry (дошка 1) | з минулих занять | з минулих занять |
+| thirsty (дошка 1) | з минулих занять | з минулих занять |
+| cold (дошка 1) | з минулих занять | з минулих занять |
+| lost (дошка 15) | з минулих занять | завдання 5, 11 |
 
 | not (дошка 15) | Інтро 3 | Інтро 3, завдання 12, 14 |
 | yes (дошка 15) | Інтро 2 | Інтро 2, завдання 4, 14 |
 | no (дошка 15) | Інтро 3 | Інтро 3, завдання 12 |
 
 *Дошки 1 і 15 не перетинаються: дошка 1 — слова про стан, дошка 15 — слова відповіді.*
-
----
-
-🟡 **Стоит улучшить**
-- В задании 9 украинская опора точнее русской: `gold` дано через «ґ», а не «г» — у украинца «г» фрикативная, и через неё контраст `cold/gold` не читался бы. Это осознанная замена, а не отсебятина.
-- В задании 3 разбор `alone` переписан под украинскую фонетику («починається з „е-“»), потому что русское «э-» украинцу ничего не подсказывает.
-
-🧩 **Скрытые связи**
-- Строка `## Для сборщика` и блок `modes:` оставлены в исходном виде байт в байт — их читает сборщик, любой перевод заголовка сломал бы парсинг.
-- Английские слова, порядок и номера заданий, набор плиток не тронуты — украинская версия сходится с мастером один в один по механике.
-
----
-
-- Сделал украинскую версию урока — только её, как и просили.
-- Английские слова, порядок заданий и все служебные пометки оставил ровно как в оригинале, менял только объяснения.
-- Объяснения не переводил дословно, а переписал так, как сказал бы украинец: где русская подсказка про звуки не работала для украинского уха, поставил свою.
-- Две правки именно такие: буква «ґ» вместо «г» в паре cold/gold и начало слова alone — иначе ученик слышал бы не то.
-- Проверочные таблицы в конце тоже переведены, ничего не пропущено и лишнего не добавлено.

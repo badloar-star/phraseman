@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 23 — «Какой он человек»
+# Английский · Урок 1 · Занятие 23 — «Какой он человек»
 
-**Сцена сессии.** Вечер, парковка у офиса. Вы ждёте такси вместе с коллегой, и она успевает коротко описать каждого, кто выходит из дверей: этот терпеливый, тот вечно ворчит, а вон та — гордость всего отдела.
+**Ситуация.** Вечером у офиса Лина ждёт с вами такси и рассказывает о коллегах: Денис терпеливый, Олег ворчит, а Анна мягко общается с детьми.
 
-**Операция:** повторение `he is` / `she is` (+ `not`) на словах о характере
+**Как сказать:** `he is`, `she is` и `he is not`, когда описываете характер другого человека.
 **Новые слова:** patient, proud, grumpy, gentle
 **Возвращаются:** kind, quiet, angry, calm
 
@@ -14,12 +14,12 @@
 
 `patient` — «терпеливый». Тот, кто объясняет третий раз и не начинает вздыхать.
 
-Про другого человека нужна скрепка `is`: `He is patient`. По-русски «он терпеливый» держится и без неё, поэтому рука сама пишет `He patient` — а англичанин такую фразу не поймёт.
+О другом человеке говорят с `is`: `He is patient`. В английской фразе `is` нельзя пропускать.
 
 **Из дверей выходит парень, который сегодня полдня объяснял вам почту. Скажите про него.**
 
 - ✅ **He is patient.**
-- ❌ He patient. — *Скрепка `is` пропала. По-русски её нет, по-английски без неё фразы не существует.*
+- ❌ He patient. — *В английской фразе нужна форма `is`: `He is patient`.*
 - ❌ He are patient. — *`are` — не для одного человека. Про него — только `is`.*
 
 ---
@@ -56,81 +56,116 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (20 заданий, поддержка убывает)
 
 **1 · Карточка слова — patient**
+<!-- interaction_id: en:lesson-01:session-23:i01; family: listen_choose -->
 > **patient** — «терпеливый». Ждёт, объясняет ещё раз и не закатывает глаза.
 
-**2 · Послушайте и выберите — patient**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-23:i02; family: listen_choose -->
 🔊 *patient* → **patient** · patent · payment
+- patient — *В записи `patient` три части `pa-tient`; в середине слышно шипящее `sh`, не чистое `t` и не `payment`.*
 - patent — *В середине `patient` шипящий, как в «шов». В `patent` там чистое «т».*
 - payment — *А тут в середине «м». Про человека — слово с шипящим.*
 
 **3 · Карточка слова — grumpy**
+<!-- interaction_id: en:lesson-01:session-23:i03; family: listen_choose -->
 > **grumpy** — «ворчливый». Всё ему не так, и он обязательно об этом скажет.
 
-**4 · Послушайте и выберите — grumpy**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-23:i04; family: listen_choose -->
 🔊 *grumpy* → **grumpy** · grimy · gripy
+- grumpy — *В записи `grumpy` после `gr` слышно короткое «а», а не «ай» в `grimy` и не другой конец `gripy`.*
 - grimy — *Слушайте гласную сразу после «гр»: в `grimy` там «ай», в `grumpy` — «а».*
-- gripy — *Та же ловушка: «ай» вместо «а». Нужное слово начинается как «грам».*
+- gripy — *После `gr` здесь слышится «ай», а в `grumpy` — другой гласный звук.*
 
-**5 · Соберите фразу — коллега кивает на парня у входа: он терпеливый**
+**5 · Соберите фразу — Лина прямо говорит, что Денис терпеливый**
+<!-- interaction_id: en:lesson-01:session-23:i05; family: phrase_builder -->
 Плитки: `patient` `is` `He` `am` → **He is patient.**
+*`am` лишнее: с `He` ставят `is` — `He is patient.`*
 
-**6 · Вставьте слово — этот мужчина бурчит на всё подряд каждый день**
+**6 · Вставьте слово — Лина прямо говорит: «Олег ворчливый»**
+<!-- interaction_id: en:lesson-01:session-23:i06; family: context_gap_grammar -->
 He is ___ . → **grumpy** · quiet · kind
+- grumpy — *Лина прямо называет Олега ворчливым: это `grumpy`, не `quiet` и не `kind`.*
 - quiet — *«Тихий» — а он как раз громко всем недоволен.*
 - kind — *«Добрый» — не про того, кто бурчит с утра до вечера.*
 
 **7 · Карточка слова — proud**
+<!-- interaction_id: en:lesson-01:session-23:i07; family: listen_choose -->
 > **proud** — «горд». И хорошее: гордится своей работой. И не очень: держит нос выше остальных.
 
-**8 · Послушайте и выберите — proud**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-23:i08; family: listen_choose -->
 🔊 *proud* → **proud** · pride · prod
+- proud — *В записи `proud` слышно «ау»: это не `pride` с «ай» и не короткое `prod`.*
 - pride — *В `pride` слышно «ай», в `proud` — «ау».*
 - prod — *В `prod` один короткий звук «о». В `proud` звук едет от «а» к «у».*
 
 **9 · Карточка слова — gentle**
+<!-- interaction_id: en:lesson-01:session-23:i09; family: listen_choose -->
 > **gentle** — «мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — `She is gentle`, про мужчину — `He is gentle`.
 
-**10 · Послушайте и выберите — gentle**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-23:i10; family: listen_choose -->
 🔊 *gentle* → **gentle** · general · gentleman
+- gentle — *В записи два слога `gen-tle`: после «джен» слышно `t`, не продолжение `general` или `gentleman`.*
 - general — *После «джен» в `gentle` идёт «т». В `general` там гласная: дже-не-рал.*
 - gentleman — *У `gentleman` есть третий слог, «мен» на конце. `gentle` кончается на «тл».*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-23:i11; family: speed_match -->
 patient — терпеливый · grumpy — ворчливый · proud — горд · gentle — мягкий
 
-**12 · Вставьте слово — про женщину говорят, что она с детьми очень мягкая**
+**12 · Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»**
+<!-- interaction_id: en:lesson-01:session-23:i12; family: context_gap_grammar -->
 She is ___ . → **gentle** · proud · grumpy
+- gentle — *Анна мягко ведёт себя с детьми, поэтому `gentle`; это не гордость и не ворчание.*
 - proud — *«Горда» — это про другое, а речь о том, как она себя ведёт с детьми.*
 - grumpy — *«Ворчливая» — прямо наоборот тому, что вам сказали.*
 
 **13 · Послушайте и соберите — «она не гордая»**
+<!-- interaction_id: en:lesson-01:session-23:i13; family: listen_build_dictation -->
 🔊 *She is not proud.* Плитки: `not` `She` `proud` `is` `are` → **She is not proud.**
+*`are` лишнее: с `She` ставят `is` — `She is not proud.`*
 
-**14 · Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно**
-Коллега говорит: «Он вечно всем недоволен?» Вы отвечаете правду: он спокойный.
+**14 · Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно**
+<!-- interaction_id: en:lesson-01:session-23:i14; family: phrase_builder -->
+Лина спрашивает, почему Денис не кричит вместе со всеми. Вы отвечаете: он спокойный.
 Плитки: `He` `calm` `is` `not` → **He is calm.**
+*`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.*
 
-**15 · Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос**
+**15 · Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»**
+<!-- interaction_id: en:lesson-01:session-23:i15; family: context_gap_grammar -->
 She is ___ . → **kind** · angry · proud
+- kind — *Анна всем помогает — это `kind`; `angry` и `proud` не называют такую помощь.*
 - angry — *«Злая» — прямо противоположное тому, что вы про неё знаете.*
 - proud — *«Горда» — здесь речь о том, что она добра к людям.*
 
-**16 · Вставьте слово — мужчина вышел, хлопнул дверью так, что стёкла звякнули**
-He is ___ . → **angry** · quiet · grumpy
-- quiet — *«Тихий» — он молчит, но дверью тихие не хлопают. Это злость.*
-- grumpy — *«Ворчливый» — это бурчание себе под нос, помельче. А тут человек вспылил.*
+**16 · Соберите фразу — Лина видит, как Олег хлопает дверью: он злится**
+<!-- interaction_id: en:lesson-01:session-23:i16; family: phrase_builder -->
+Плитки: `angry` `He` `is` `are` → **He is angry.**
+*`are` лишнее: с `He` ставят `is` — `He is angry.`*
 
-**17 · Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова**
+**17 · Вставьте слово — Лина прямо говорит: «Анна тихая»**
+<!-- interaction_id: en:lesson-01:session-23:i17; family: context_gap_grammar -->
 She is ___ . → **quiet** · angry · grumpy
+- quiet — *Лина прямо говорит, что Анна тихая: это `quiet`, а не злость и не ворчание.*
 - angry — *«Злая» — молчание ещё не злость. Про молчаливую — `quiet`.*
 - grumpy — *«Ворчливая» — та как раз говорит, и много. А эта молчит.*
 
-**18 · Скажите вслух — такси подъехало, вы коротко подводите итог**
-🎙 Коллега спрашивает напоследок, что вы думаете о команде. Ответьте про троих:
-**He is patient. She is gentle. He is not grumpy.**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-23:i18:s01; family: scripted_repeat_compare -->
+🎙 **He is patient.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-23:i18:s02; family: scripted_repeat_compare -->
+🎙 **She is gentle.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-23:i18:s03; family: scripted_repeat_compare -->
+🎙 **He is not grumpy.**
 
 ---
 
@@ -142,7 +177,7 @@ proud — горд — «горд». И хорошее: гордится сво�
 grumpy — ворчливый — «ворчливый». Всё ему не так, и он обязательно об этом скажет.
 gentle — мягкий — «мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — She is gentle, про мужчину — He is gentle.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=context_gap_grammar, 17=context_gap_grammar, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 

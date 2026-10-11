@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-19:i01",
-    "correctText": "",
+    "correctText": "near",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-19:i03",
-    "correctText": "",
+    "correctText": "behind",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-19:i12",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-19:i12:p1=near\nen:lesson-02:session-19:i12:p2=behind\nen:lesson-02:session-19:i12:p3=station\nen:lesson-02:session-19:i12:p4=street",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-19:i16",
-    "correctText": "It is near. It is behind the shops.",
+    "interactionId": "en:lesson-02:session-19:i16:s01",
+    "correctText": "It is near.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-19:i17",
-    "correctText": "It is near. It is behind the station. It is near the street.",
+    "interactionId": "en:lesson-02:session-19:i16:s02",
+    "correctText": "It is behind the shops.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-19:i17:s01",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-19:i17:s02",
+    "correctText": "It is behind the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-19:i17:s03",
+    "correctText": "It is near the street.",
     "correctResponseId": null
   }
 ]

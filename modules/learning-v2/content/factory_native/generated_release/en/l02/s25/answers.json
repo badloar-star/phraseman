@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-25:i01",
-    "correctText": "",
+    "correctText": "price",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-25:i03",
-    "correctText": "",
+    "correctText": "name",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-25:i09",
-    "correctText": "",
+    "correctText": "cheap",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-25:i13",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-25:i13:p1=price\nen:lesson-02:session-25:i13:p2=name\nen:lesson-02:session-25:i13:p3=cheap\nen:lesson-02:session-25:i13:p4=street",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-25:i16",
-    "correctText": "What is this? What is the price?",
+    "interactionId": "en:lesson-02:session-25:i16:s01",
+    "correctText": "What is this?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-25:i17",
-    "correctText": "What is the name? What is the price? It is cheap.",
+    "interactionId": "en:lesson-02:session-25:i16:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s01",
+    "correctText": "What is the name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-25:i17:s03",
+    "correctText": "It is cheap.",
     "correctResponseId": null
   }
 ]

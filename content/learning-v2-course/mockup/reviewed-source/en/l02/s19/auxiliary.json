@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro1:r2": {
+          "ru": "Пропало `is`. Между `it` и словом о месте оно нужно: `It is near`.",
+          "uk": "Зникло `is`. Між `it` і словом про місце воно потрібне: `It is near`."
+        },
+        "en:lesson-02:session-19:intro1:r3": {
+          "ru": "Так начинают вопрос. Вы отвечаете, значит первым идёт `it`, потом `is`.",
+          "uk": "Так починають запитання. Ви відповідаєте, отже першим іде `it`, потім `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro2:r2": {
+          "ru": "Потерялось `the`. С `station` и `shops` оно нужно: `behind the station`.",
+          "uk": "Загубилося `the`. Зі `station` і `shops` воно потрібне: `behind the station`."
+        },
+        "en:lesson-02:session-19:intro2:r3": {
+          "ru": "Пропало `is`. Сначала `it is`, и только потом `behind`.",
+          "uk": "Зникло `is`. Спершу `it is`, і аж тоді `behind`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-19:intro3:r2": {
+          "ru": "Потерялось `the`: говорят `near the shops`.",
+          "uk": "Загубилося `the`: кажуть `near the shops`."
+        },
+        "en:lesson-02:session-19:intro3:r3": {
+          "ru": "`is` выпало. Между `it` и `near` оно нужно.",
+          "uk": "`is` випало. Між `it` і `near` воно потрібне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a073a3a140a61b4b92bc206b258a8f9f5c4da64b819a2f71b42c57a9510ee3a"
+}

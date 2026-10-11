@@ -60,7 +60,7 @@
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r2",
-          "text": "handle"
+          "text": "candy"
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r3",
@@ -87,7 +87,7 @@
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r2",
-            "targetText": "handle",
+            "targetText": "candy",
             "meaningByLocale": null
           },
           {
@@ -101,16 +101,16 @@
           {
             "responseId": "en:lesson-03:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
-              "ru": "`handle` — «ручка», за которую берутся, например у двери. В начале слышен лёгкий выдох, а в `candle` — «к». Остальная часть звучит одинаково.",
-              "uk": "`handle` — «ручка», за яку беруться, наприклад, щоб відчинити двері. На початку чути легкий видих, а в `candle` — «к». Решта слова звучить однаково."
+              "ru": "`candy` — «конфета». `candy` начинается так же, /kæn/, но заканчивается /di/; `candle` заканчивается /dəl/.",
+              "uk": "`candy` — «цукерка». `candy` починається так само, /kæn/, але закінчується /di/; `candle` закінчується /dəl/."
             }
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`sandal` — «сандалия». Начинается с «с», а `candle` — с «к». Похожее окончание здесь не помогает: слушайте начало.",
               "uk": "`sandal` — «сандаля». Починається з «с», а `candle` — з «к». Подібне закінчення тут не допомагає: слухайте початок."
@@ -156,7 +156,7 @@
           {
             "responseId": "en:lesson-03:session-15:i03:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — друг спраши",
+            "testedDimension": "Складіть коротку назву — друг питає, що ",
             "feedbackByLocale": {
               "ru": "Перед согласным началом `candle` нужно `A`. Короткое название тоже включает это маленькое слово.",
               "uk": "Оскільки `candle` починається з приголосного, перед ним потрібне `A`. Коротка назва теж містить це маленьке слово."
@@ -264,7 +264,7 @@
           {
             "responseId": "en:lesson-03:session-15:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`kitchen` — «кухня». В середине слышно «ч», а в `cushion` — «ш». Начальный «к» и ритм похожи, поэтому слушайте середину.",
               "uk": "`kitchen` — «кухня». Посередині чути «ч», а в `cushion` — «ш». Початковий «к» і ритм подібні, тому слухайте середину."
@@ -273,7 +273,7 @@
           {
             "responseId": "en:lesson-03:session-15:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`pushing` — «толкая». Первым звучит «п», а в `cushion` — «к». В середине у обоих слов слышно «ш».",
               "uk": "`pushing` — «штовхаючи». Першим звучить «п», а в `cushion` — «к». Посередині в обох словах чути «ш»."
@@ -330,12 +330,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — друг предлагает встрети",
+        "testedDimension": "Вставте слово — друг пропонує зустрітися",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "testedDimension": "Вставте слово — друг пропонує зустрітися",
             "feedbackByLocale": {
               "ru": "`armchair` начинается с гласного звука. Перед названием кресла в этой фразе нужно `an`.",
               "uk": "`armchair` починається з голосного звуку. Перед назвою крісла в цій фразі потрібне `an`."
@@ -344,7 +344,7 @@
           {
             "responseId": "en:lesson-03:session-15:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "testedDimension": "Вставте слово — друг пропонує зустрітися",
             "feedbackByLocale": {
               "ru": "После `It` уже есть `is`. Перед названием одного кресла нужно `an`, а не ещё одно `is`.",
               "uk": "Після `It` уже є `is`. Перед назвою одного крісла потрібне `an`, а не ще одне `is`."
@@ -452,7 +452,7 @@
           {
             "responseId": "en:lesson-03:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`grant` — «грант». Первым слышно «г», а в `plant` — «п». Окончания похожи, поэтому различайте начало.",
               "uk": "`grant` — «грант». На початку чути звук, близький до українського «ґ», а `plant` починається з «пл». Закінчення подібні, тому розрізняйте початок."
@@ -461,7 +461,7 @@
           {
             "responseId": "en:lesson-03:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`chant` — «скандирование». Начинается с «ч». В `plant` сначала слышно «пл», хотя дальше слова звучат похоже.",
               "uk": "`chant` — «скандування». Починається з «ч». У `plant` спершу чути «пл», хоча далі слова звучать подібно."
@@ -518,12 +518,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг предлагает встрети",
+        "testedDimension": "Вставте слово — друг пропонує зустрітися",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-15:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "testedDimension": "Вставте слово — друг пропонує зустрітися",
             "feedbackByLocale": {
               "ru": "В начале `oven` слышен гласный звук. В этой фразе перед названием нужен вариант `an`.",
               "uk": "На початку `oven` чути голосний звук. У цій фразі перед назвою потрібен варіант `an`."
@@ -532,7 +532,7 @@
           {
             "responseId": "en:lesson-03:session-15:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "testedDimension": "Вставте слово — друг пропонує зустрітися",
             "feedbackByLocale": {
               "ru": "Начало `It is` уже готово. Между ним и названием духовки нужно `an`, а не `am`.",
               "uk": "Початок `It is` уже готовий. Між ним і назвою духовки потрібне `an`, а не `am`."
@@ -581,7 +581,7 @@
           {
             "responseId": "en:lesson-03:session-15:i10:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — друг называет то",
+            "testedDimension": "Послухайте й складіть — друг називає тов",
             "feedbackByLocale": {
               "ru": "Перед `oven` в записи звучит `an`. Слово начинается с гласного звука, поэтому `a` здесь лишнее.",
               "uk": "Перед `oven` у записі звучить `an`. Слово починається з голосного звуку, тому `a` тут зайве."
@@ -700,7 +700,7 @@
           {
             "responseId": "en:lesson-03:session-15:i12:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — друг положил в корзину",
+            "testedDimension": "Складіть питання — друг поклав до кошика",
             "feedbackByLocale": {
               "ru": "После `Is it` нужно `a cushion`. Название начинается с согласного «к».",
               "uk": "Після `Is it` потрібне `a cushion`. Назва починається з приголосного «к»."
@@ -765,7 +765,7 @@
           {
             "responseId": "en:lesson-03:session-15:i13:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
             "feedbackByLocale": {
               "ru": "Этот вариант подтверждает название. В записи после `is` слышно `not`: название отрицают.",
               "uk": "Цей варіант стверджує, що це рослина. У записі після `is` чути `not`: сказано, що це не рослина."
@@ -774,7 +774,7 @@
           {
             "responseId": "en:lesson-03:session-15:i13:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "testedDimension": "Послухайте й оберіть — що друг сказав пр",
             "feedbackByLocale": {
               "ru": "Здесь названо `cushion` — «подушка». В записи после `a` звучит `plant` — «растение».",
               "uk": "Тут названо `cushion` — «подушка». У записі після `a` звучить `plant` — «рослина»."
@@ -823,7 +823,7 @@
           {
             "responseId": "en:lesson-03:session-15:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите отрицание — продавец уточняет, ",
+            "testedDimension": "Складіть заперечення — продавець уточнює",
             "feedbackByLocale": {
               "ru": "После `It is not` название свечи остаётся с `a`: первый звук `candle` согласный.",
               "uk": "Після `It is not` назва свічки лишається з `a`: перший звук `candle` приголосний."
@@ -839,13 +839,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг просить назвати меблі, які ви обрали; скажіть «Це крісло»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг просить назвати меблі, які ви обрали; скажіть «Це крісло»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -905,7 +905,7 @@
           {
             "responseId": "en:lesson-03:session-15:i16:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — продавец уточняе",
+            "testedDimension": "Послухайте й складіть — продавець уточню",
             "feedbackByLocale": {
               "ru": "В записи после `Is it` звучит `a plant`. Перед согласным началом названия нужно `a`.",
               "uk": "У записі після `Is it` звучить `a plant`. Назва починається з приголосного, тому перед нею потрібне `a`."
@@ -951,7 +951,7 @@
           {
             "responseId": "en:lesson-03:session-15:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — продавец просит назвать",
+            "testedDimension": "Складіть фразу — продавець просить назва",
             "feedbackByLocale": {
               "ru": "Начните с `It is`, затем добавьте `a cushion`. Первый звук названия подушки согласный.",
               "uk": "Почніть з `It is`, а потім додайте `a cushion`. Перший звук назви подушки приголосний."
@@ -968,5 +968,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "03940709c1dce0cb32b32576a1e8af36dafca6e556259c01d44ab648f2fa9ea8"
+  "learnerFingerprint": "f4a84f80e57ebfd9383cca221c470cd02b6b5d21899068d7894185f194b899ee"
 }

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 31 — «Костюм потрібен зараз»
+# Англійська · Урок 3 · Заняття 31 — «Костюм потрібен зараз»
 
-**Сцена сесії.** Перед репетицією ви разом із костюмером шукаєте в театральній костюмерній капелюх, ремінь і чобіт. Речі лежать у різних місцях, актори вже чекають, тому вам треба швидко вказати, що подати.
+**Сцена заняття.** Перед репетицією ви разом із костюмером шукаєте в театральній костюмерній капелюх, ремінь і чобіт. Речі лежать у різних місцях, актори вже чекають, тому вам треба швидко вказати, що подати.
 
-**Операція:** словникове тренування зі швидким перенесенням — `This/That + один предмет, please` у театральній костюмерній
+**Як сказати:** словникове тренування зі швидким перенесенням — `This/That + один предмет, please` у театральній костюмерній
 **Нові слова:** hat, belt, boot
 **Для повторення:** bag, box, key, this, that, please
 
@@ -58,82 +58,95 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — hat**
-> **hat** — «капелюх». Головний убір із крисами, який надягають на голову.
+<!-- interaction_id: en:lesson-03:session-31:i01; family: listen_choose -->
+Ціль: `hat`
 
-**2 · Послухайте й виберіть — яке слово назвав костюмер**
-🔊 *hat* → **hat** · hot · heart · cat
-Значення варіантів: hat — капелюх · hot — гарячий · heart — серце · cat — кіт
-- hot — *Початок однаковий, але голосний інший: у `hat` звучить /æ/, а в `hot` — /ɒ~ɑ/.*
-- heart — *`heart` звучить /hɑːt/ або /hɑrt/ — залежно від акценту. У `hat` інший голосний: короткий /æ/.*
-- cat — *Голосний схожий, але `cat` починається звуком `k`, а `hat` — звуком `h`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-31:i03; family: scripted_repeat_compare -->
+Ціль: `belt`
 
-**3 · Картка слова — belt**
-> **belt** — «ремінь». Смуга зі шкіри або тканини, яку носять на талії.
+**3 · Виберіть назву — на ближній полиці стоїть чобіт**
+<!-- interaction_id: en:lesson-03:session-31:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `boot` · `belt` · `hat`
 
-**4 · Послухайте й виберіть — яке слово назвав костюмер**
-🔊 *belt* → **belt** · built · bell · bolt
-Значення варіантів: belt — ремінь · built — побудував · bell — дзвін · bolt — засув
-- built — *У `built` звучить /ɪ/, а в `belt` — /e/. Кінцевий `t` є в обох словах.*
-- bell — *Початок схожий, але в `bell` немає кінцевого `t`, який чути в `belt`.*
-- bolt — *У `bolt` середина звучить як /oʊ~əʊ/, а в `belt` — короткий /e/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-31:i02; family: scripted_repeat_compare -->
+Ціль: `hat`
 
-**5 · Картка слова — boot**
-> **boot** — «один чобіт». Високе взуття, що закриває стопу й частину ноги.
+**5 · Послухайте й виберіть — яке слово назвав костюмер**
+<!-- interaction_id: en:lesson-03:session-31:i04; family: listen_choose -->
+Значення варіантів: `belt` — ремінь · `built` — побудував · `bench` — лава · `bolt` — засув
+Ціль: `belt`
+Варіанти: `belt` · `built` · `bench` · `bolt`
 
-**6 · Послухайте й виберіть — яке слово назвав костюмер**
-🔊 *boot* → **boot** · book · boat · bought
-Значення варіантів: boot — чобіт · book — книжка · boat — човен · bought — купив
-- book — *Обидва слова починаються `b`, але в `boot` довгий /uː/ і кінцевий `t`; у `book` короткий /ʊ/ і кінцевий `k`.*
-- boat — *У `boat` звучить /oʊ~əʊ/, а в `boot` — довгий /uː/.*
-- bought — *Кінцевий `t` збігається, але голосний у `bought` — /ɔː~ɑ/, а в `boot` — /uː/.*
+**6 · Розрізніть слово — boot або book**
+<!-- interaction_id: en:lesson-03:session-31:i06; family: sound_contrast -->
+Ціль: `boot`
+Варіанти: `boot` · `book`
 
 **7 · З’єднайте слова зі значеннями — театральний костюм**
-hat — капелюх · belt — ремінь · boot — чобіт · key — ключ
+<!-- interaction_id: en:lesson-03:session-31:i07; family: speed_match -->
+Пари: `hat` — капелюх · `belt` — ремінь · `boot` — чобіт · `key` — ключ
+Ціль: `hat · belt · boot · key`
 
-**8 · Поставте у відповідь ціле слово — головний убір із крисами**
-Плитки: `hat` `hot` `heart` `cat` → **hat**
+**8 · Виберіть форму — ця річ лежить тут**
+<!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
+Ціль: `This ___ here.`
+Варіанти: `is` · `are`
 
-**9 · Скажіть уголос — смуга, яку носять на талії**
-🎙 **belt** — послухайте, повторіть і порівняйте.
+**9 · Розрізніть слово — This або That**
+<!-- interaction_id: en:lesson-03:session-31:i09; family: sound_contrast -->
+Ціль: `This`
+Варіанти: `This` · `That`
 
-**10 · Послухайте й поставте у відповідь ціле слово — високий черевик**
-🔊 *boot* Плитки: `boot` `book` `boat` `bought` → **boot**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i10; family: scripted_repeat_compare -->
+Ціль: `This boot, please.`
 
 **11 · Складіть прохання — капелюх лежить на столі перед вами**
-Плитки: `This` `hat` `please` `That` `a` → **This hat, please.**
+<!-- interaction_id: en:lesson-03:session-31:i11; family: phrase_builder -->
+Ціль: `This hat, please.`
 
-**12 · Скажіть уголос — ремінь висить біля дальньої стіни**
-🎙 **That belt, please.** — послухайте, повторіть і порівняйте.
+**12 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i12; family: listen_build_dictation -->
+Ціль: `That belt, please.`
 
 **13 · Вставте вказівне слово — чобіт стоїть просто перед вами**
-___ boot, please. → **This** · That · It · Is
-- That — *`that` вибирає річ вдалині. Чобіт перед вами, тому потрібне `This`.*
-- It — *`it boot` не утворює прохання. Перед назвою близької речі ставимо `This`.*
-- Is — *`Is boot` — неправильний початок запитання. Тут потрібне прохання `This boot, please`.*
+<!-- interaction_id: en:lesson-03:session-31:i13; family: context_gap_grammar -->
+Ціль: `___ boot, please.`
+Варіанти: `This` · `That` · `It` · `Is`
 
 **14 · Послухайте й виберіть точне значення прохання**
-🔊 *That hat, please.* → **Той капелюх, будь ласка.** · Цей капелюх, будь ласка. · Той ремінь, будь ласка. · Цей ремінь, будь ласка.
-- Цей капелюх, будь ласка. — *У записі прозвучало `That`, а цей варіант передає `This`.*
-- Той ремінь, будь ласка. — *Вказівне слово передано правильно, але в записі назвали `hat` — капелюх, а не `belt` — ремінь.*
-- Цей ремінь, будь ласка. — *Тут не збігаються обидва ключові слова: прозвучали `That hat`, а не `This belt`.*
+<!-- interaction_id: en:lesson-03:session-31:i14; family: listen_choose -->
+Ціль: `That hat, please.`
+Варіанти: `Той капелюх, будь ласка.` · `Цей капелюх, будь ласка.` · `Той ремінь, будь ласка.` · `Цей ремінь, будь ласка.`
 
 **15 · Складіть прохання — чобіт стоїть біля дальньої стіни**
-Плитки: `That` `boot` `please` `This` `is` → **That boot, please.**
+<!-- interaction_id: en:lesson-03:session-31:i15; family: phrase_builder -->
+Ціль: `That boot, please.`
 
 **16 · Вставте вказівне слово — ремінь уже поклали на стіл перед вами**
-___ belt, please. → **This** · That · It · Am
-- That — *Ремінь уже поруч. Після переміщення вибираємо `This`, а не попереднє `That`.*
-- It — *`it belt` не утворює прохання. Перед назвою вибраної речі потрібне вказівне слово `This`.*
-- Am — *`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо ремінь словом `This`.*
+<!-- interaction_id: en:lesson-03:session-31:i16; family: context_gap_grammar -->
+Ціль: `___ belt, please.`
+Варіанти: `This` · `That` · `It` · `Am`
 
-**17 · Фінал — речі переставили: капелюх тепер біля стіни, ремінь перед вами, а чобіт біля дверей вдалині**
-🎙 Спочатку попросіть усі три речі по черзі, потім послухайте зразок і порівняйте: **That hat, please. This belt, please. That boot, please.**
+**17 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s01; family: listen_build_dictation -->
+Ціль: `That hat, please.`
 
-## Для збирача
-new_words: hat — капелюх — Головний убір із крисами, який надягають на голову.
-new_words: belt — ремінь — Смуга зі шкіри або тканини, яку носять на талії.
-new_words: boot — один чобіт — Високе взуття, що закриває стопу й частину ноги.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s02; family: scripted_repeat_compare -->
+Ціль: `This belt, please.`
+
+**19 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s03; family: listen_build_dictation -->
+Ціль: `That boot, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation
+

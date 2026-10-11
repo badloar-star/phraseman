@@ -19,13 +19,15 @@ function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResul
   try {
     const draft = path.join(dir, "draft.ru.md"); fs.writeFileSync(draft, "draft");
     let judging = 0; let localized = 0; let built = 0;
+    const readinessCalls = [];
+    const scope = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/u.exec(session);
     const context = {
       cmd: "full", SESSION: session, HERE: here, ROOT: path.dirname(here),
       LOCALES: ["uk"],
       fs, path, process: { execPath: process.execPath },
       LOG: () => {}, WARN: () => {}, opt: (_name, fallback) => fallback,
-      parseSession: () => ({ lang: "en", lesson: 2, session: 33, dir }),
-      loadPlan: () => ({ rows: new Map([[33, { type: "новая", grammar: "Who is", words: "host" }]]) }),
+      parseSession: () => ({ lang: scope[1], lesson: Number(scope[2]), session: Number(scope[3]), dir }),
+      loadPlan: () => ({ rows: new Map([[Number(scope[3]), { n: Number(scope[3]), type: "новая", grammar: "Who is", words: "host", moment: "test" }]]) }),
       knownBefore: () => ({ ops: [], words: [] }), courseContext: () => ({}),
       stageDraft: () => [draft], machineFacts: () => "", HARD_FACT_RE: /never-a-fact/,
       stageJudge: () => ({ judge_taste: initial.judge_taste }),
@@ -37,16 +39,31 @@ function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResul
       spawnSync: () => { built++; return { status: 0, stdout: "", stderr: "" }; },
       exists: fs.existsSync, read: (file) => fs.readFileSync(file, "utf8"),
       write: (file, text) => fs.writeFileSync(file, text), judgeIssues, requiredJudgesForSession, REQUIRED_JUDGES,
+      writeBoundStatus: (_S, value) => fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify(value)),
       requirePreauthoringReceipt: () => ({ ready: true, issues: [] }),
+      requirePreJudgeChoreography: () => ({ session }),
+      sessionReadiness: (...args) => { readinessCalls.push(args); return { ready: true, issues: [] }; },
     };
     vm.runInNewContext(mainSource, context, { timeout: 1000 });
-    return { localized, built, status: JSON.parse(fs.readFileSync(path.join(dir, "status.json"), "utf8")) };
+    return { localized, built, readinessCalls, status: JSON.parse(fs.readFileSync(path.join(dir, "status.json"), "utf8")) };
   } finally {
     assert.equal(path.dirname(dir), parent);
     assert.ok(path.basename(dir).startsWith("learning-v2-full-"));
     fs.rmSync(dir, { recursive: true, force: true });
   }
 }
+
+test("prior-range readiness binds each prior session to its own id", () => {
+  const progressionPass = { ...pass(), judge_progression: { verdict: "PASS" } };
+  const result = exercise(progressionPass, [], progressionPass, { uk: "BLOCK" }, "en/l03/s27");
+  assert.equal(
+    JSON.stringify(result.readinessCalls.map(([dir, locales, options]) => ({ suffix: dir.replace(/\\/gu, "/").split("/sessions/")[1], locales: [...locales], sessionId: options.sessionId }))),
+    JSON.stringify([
+      { suffix: "en/l03/s25", locales: ["uk"], sessionId: "en/l03/s25" },
+      { suffix: "en/l03/s26", locales: ["uk"], sessionId: "en/l03/s26" },
+    ]),
+  );
+});
 
 for (const role of REQUIRED_JUDGES) test(`final ${role} BLOCK stops before localization or build`, () => {
   const final = pass(); final[role] = { verdict: "BLOCK" };

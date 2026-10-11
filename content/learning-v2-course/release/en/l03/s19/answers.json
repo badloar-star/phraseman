@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-19:i01",
-    "correctText": "",
+    "correctText": "story",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-19:i03",
-    "correctText": "",
+    "correctText": "country",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-19:i06",
-    "correctText": "",
+    "correctText": "battery",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-19:i12",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-19:i12:p1=stories\nen:lesson-03:session-19:i12:p2=countries\nen:lesson-03:session-19:i12:p3=batteries\nen:lesson-03:session-19:i12:p4=boxes",
     "correctResponseId": null
   },
   {

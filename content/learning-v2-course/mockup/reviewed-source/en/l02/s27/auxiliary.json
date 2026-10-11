@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro1:r2": {
+          "ru": "`these` — про несколько вещей, а `is` — про одну. Вместе они не идут.",
+          "uk": "`these` — про кілька речей, а `is` — про одну. Разом вони не йдуть."
+        },
+        "en:lesson-02:session-27:intro1:r3": {
+          "ru": "`are` уехало в конец. В вопросе оно стоит вторым, сразу за `what`.",
+          "uk": "`are` поїхало в кінець. У питанні воно стоїть другим, одразу за `what`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro2:r2": {
+          "ru": "Цен несколько, значит `are`. `is` остаётся для одной вещи.",
+          "uk": "Цін кілька, отже `are`. `is` лишається для однієї речі."
+        },
+        "en:lesson-02:session-27:intro2:r3": {
+          "ru": "Хвост потерялся. Несколько цен — `prices`, с «-s».",
+          "uk": "Хвостик загубився. Кілька цін — `prices`, із «-s»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-27:intro3:r2": {
+          "ru": "`this` — про одну вещь. Про несколько — `these`.",
+          "uk": "`this` — про одну річ. Про кілька — `these`."
+        },
+        "en:lesson-02:session-27:intro3:r3": {
+          "ru": "Хвост потерялся. Правил на доске несколько — `rules`.",
+          "uk": "Хвостик загубився. Правил на дошці кілька — `rules`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "657b827cbbb1705fca70f02d5f0492bc396240dcd258680632e5417c04ac0148"
+}

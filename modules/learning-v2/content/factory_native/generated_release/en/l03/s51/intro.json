@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "`an` ставят перед словом, которое начинается с гласного звука: `an orange chair`. Перед согласным звуком остаётся `a`: `a yellow chair`.",
+    "uk": "`an` ставлять перед словом, яке починається з голосного звуку: `an orange chair`. Перед приголосним звуком лишається `a`: `a yellow chair`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Оранжевый — это цвет",
+        "uk": "Помаранчевий — це колір"
+      },
+      "bodyByLocale": {
+        "ru": "`orange` бывает фруктом, а на ценнике — «оранжевый». Апельсин в пакет не нужен: кресло всё равно не поместится. `violet` — «фиолетовый». Orange начинается со звука /ɒ/, поэтому: `An orange chair is here.` Violet начинается с /v/: `A violet chair is here.`",
+        "uk": "`orange` буває фруктом, а на ціннику — «помаранчевий». Апельсин у пакет не потрібен: крісло все одно не поміститься. `violet` — «фіолетовий». Orange починається зі звуку /ɒ/, тому: `An orange chair is here.` Violet починається з /v/: `A violet chair is here.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Рядом с оранжевым стоит фиолетовое кресло. Выберите фразу о фиолетовом.",
+          "uk": "Поруч із помаранчевим стоїть фіолетове крісло. Виберіть фразу про фіолетове."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r1",
+              "text": "A violet chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r2",
+              "text": "An violet chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r3",
+              "text": "A chair violet is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r1",
+              "text": "A violet chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r2",
+              "text": "An violet chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro1:r3",
+              "text": "A chair violet is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом с оранжевым стоит фиолетовое кресло. Выберите фразу о фиолетовом.",
+          "uk": "Поруч із помаранчевим стоїть фіолетове крісло. Виберіть фразу про фіолетове."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тёмно-синее кресло",
+        "uk": "Темно-синє крісло"
+      },
+      "bodyByLocale": {
+        "ru": "`navy` — «тёмно-синий». На следующем ценнике одно тёмно-синее кресло: `A navy chair is here.` Navy начинается со звука /n/. Это согласный звук, поэтому перед navy стоит обычное `a`; в слове не нужно искать гласную букву после n.",
+        "uk": "`navy` — «темно-синій». На наступному ціннику одне темно-синє крісло: `A navy chair is here.` Navy починається зі звуку /n/. Це приголосний звук, тому перед navy стоїть звичайне `a`; після n не треба шукати голосну букву."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы нашли тёмно-синее кресло. Выберите фразу.",
+          "uk": "Ви знайшли темно-синє крісло. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r1",
+              "text": "A navy chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r2",
+              "text": "An navy chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r3",
+              "text": "A chair navy is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r1",
+              "text": "A navy chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r2",
+              "text": "An navy chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro2:r3",
+              "text": "A chair navy is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы нашли тёмно-синее кресло. Выберите фразу.",
+          "uk": "Ви знайшли темно-синє крісло. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Розовое кресло",
+        "uk": "Рожеве крісло"
+      },
+      "bodyByLocale": {
+        "ru": "`pink` — «розовый». На следующем ценнике одно розовое кресло: `A pink chair is here.` Pink начинается со звука /p/, поэтому перед ним стоит `a`. Смотрите не на длину слова и не на первую букву артикля, а на первый звук цвета.",
+        "uk": "`pink` — «рожевий». На наступному ціннику одне рожеве крісло: `A pink chair is here.` Pink починається зі звуку /p/, тому перед ним стоїть `a`. Дивіться не на довжину слова й не на букву артикля, а на перший звук кольору."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Продавец показывает розовое кресло. Выберите фразу.",
+          "uk": "Продавець показує рожеве крісло. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r1",
+              "text": "A pink chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r2",
+              "text": "An pink chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r3",
+              "text": "A chair pink is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r1",
+              "text": "A pink chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r2",
+              "text": "An pink chair is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-51:intro3:r3",
+              "text": "A chair pink is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец показывает розовое кресло. Выберите фразу.",
+          "uk": "Продавець показує рожеве крісло. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cc8497e02e58d1e5be6fbf3734cad109a94e3a95fcc8cb73d257f4f8082bab20"
+}

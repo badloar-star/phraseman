@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-13:intro1:r2": {
+          "ru": "`are` — это про `you`. Про себя всегда `am`.",
+          "uk": "`are` — це про `you`. Про себе завжди `am`."
+        },
+        "en:lesson-01:session-13:intro1:r3": {
+          "ru": "После `I` нужно `am`. По-русски «я готов» обходится без этого слова, а по-английски оно необходимо.",
+          "uk": "Після `I` потрібне `am`. Українською «я готовий» обходиться без цього слова, а англійською воно потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-13:intro2:r2": {
+          "ru": "`am` ходит только с `I`. К `you` приставляется `are`.",
+          "uk": "`am` ходить тільки з `I`. До `you` чіпляється `are`."
+        },
+        "en:lesson-01:session-13:intro2:r3": {
+          "ru": "После `you` нужно `are`: You are young.",
+          "uk": "Після `you` потрібне `are`: You are young."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-13:intro3:r2": {
+          "ru": "`are` уехало от `you`. Про себя — `am`.",
+          "uk": "`are` поїхало від `you`. Про себе — `am`."
+        },
+        "en:lesson-01:session-13:intro3:r3": {
+          "ru": "Так спрашивают, а не рассказывают. В рассказе `I` идёт первым.",
+          "uk": "Так питають, а не розповідають. У розповіді `I` іде першим."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b95551a86aed4f0a212a05df1a0fa87ac3afa572959793a3102143492776b106"
+}

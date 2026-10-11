@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 34 — «Кто эти люди?»
+# Английский · Урок 2 · Занятие 34 — «Кто эти люди?»
 
-**Сцена сессии.** На вечеринке у соседей в Дублине вы выходите в сад. Половину людей здесь видите впервые. Друг помогает разобраться, кто с кем знаком, а двое похожих гостей оказываются близнецами.
+**Сцена занятия.** На вечеринке у соседей в Дублине вы выходите в сад. Половину людей здесь видите впервые. Друг помогает разобраться, кто с кем знаком, а двое похожих гостей оказываются близнецами.
 
-**Операция:** применение `Who are these people?`
+**Как сказать:** применение `Who are these people?`
 **Новые слова:** strangers, twins
 **Возвращаются:** these, people, guests, sure
 
@@ -50,79 +50,83 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — strangers**
-> **strangers** — «незнакомцы». Люди, с которыми вы лично не знакомы.
+<!-- interaction_id: en:lesson-02:session-34:i01; family: listen_choose -->
+Цель: `strangers`
 
 **2 · Послушайте и выберите слово**
-🔊 *strangers* → **strangers** · rangers · dangers
-- rangers — *`Rangers` — «рейнджеры». Послушайте начало слова: в записи `strangers`.*
-- dangers — *`Dangers` — «опасности». Послушайте начало слова: в записи `strangers`.*
+<!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
+Цель: `strangers`
+Варианты: `strangers` · `rangers` · `dangers`
 
 **3 · Карточка слова — twins**
-> **twins** — «близнецы». Двое детей, родившихся у одной матери после одной беременности. Взрослые близнецы тоже `twins`.
+<!-- interaction_id: en:lesson-02:session-34:i03; family: listen_choose -->
+Цель: `twins`
 
 **4 · Послушайте и выберите слово**
-🔊 *twins* → **twins** · tins · wins
-- tins — *`Tins` — «жестяные банки». Послушайте начало слова: в записи `twins`.*
-- wins — *`Wins` — «побеждает». Послушайте начало слова: в записи `twins`.*
+<!-- interaction_id: en:lesson-02:session-34:i04; family: listen_choose -->
+Цель: `twins`
+Варианты: `twins` · `tins` · `wins`
 
 **5 · Соберите фразу — друг спрашивает о двоих у забора; скажите: «Они незнакомцы»**
-Плитки: `strangers` `They` `are` → **They are strangers.**
+<!-- interaction_id: en:lesson-02:session-34:i05; family: phrase_builder -->
+Цель: `They are strangers.`
 
 **6 · Вставьте слово — спросите друга: «Кто эти люди?»**
-*(`these` — «эти»)*
-Who are ___ people? → **these** · this · they
-- this — *Для «эти люди» нужно `these people`. Слово `this` относится к одному.*
-- they — *Это «они». Перед `people` здесь нужно слово «эти» — `these`.*
+<!-- interaction_id: en:lesson-02:session-34:i06; family: context_gap_grammar -->
+Цель: `Who are ___ people?`
+Варианты: `these` · `this` · `they`
 
 **7 · Послушайте и выберите слово**
-🔊 *people* → **people** · pupil · purple
-- pupil — *`Pupil` — «ученик». Послушайте первый слог: в записи `people`.*
-- purple — *`Purple` — «фиолетовый». Послушайте первый слог: в записи `people`.*
+<!-- interaction_id: en:lesson-02:session-34:i07; family: listen_choose -->
+Цель: `people`
+Варианты: `people` · `pupil` · `purple`
 
 **8 · Вставьте слово — двое гостей оказались близнецами; назовите их родство**
-They are ___ . → **twins** · strangers · sure
-- strangers — *Это «незнакомцы». Здесь нужно назвать родство — `twins`, «близнецы».*
-- sure — *Получится «Они уверены». Это не ответ о том, кем двое приходятся друг другу.*
+<!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
+Цель: `They are ___ .`
+Варианты: `twins` · `strangers` · `sure`
 
 **9 · Соберите фразу — вас с другом приняли за близнецов; скажите: «Мы не близнецы»**
-Плитки: `twins` `not` `We` `are` → **We are not twins.**
+<!-- interaction_id: en:lesson-02:session-34:i09; family: phrase_builder -->
+Цель: `We are not twins.`
 
 **10 · Вставьте слово — друг переспрашивает, точно ли гости близнецы; скажите: «Я уверен»**
-*(`sure` — «уверен»)*
-I am ___ . → **sure** · twins · people
-- twins — *Это «близнецы». Чтобы сказать, что вы уверены в ответе, нужно `sure`.*
-- people — *Это «люди». В этой фразе нужно слово о вашей уверенности — `sure`.*
+<!-- interaction_id: en:lesson-02:session-34:i10; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `sure` · `twins` · `people`
 
-**11 · Соедините пары (Speed Match, 4 пары)**
-these — эти · people — люди · guests — гости · sure — уверен
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-34:i11; family: speed_match -->
+Пары: `these` — эти · `people` — люди · `guests` — гости · `sure` — уверен
+Цель: `these · people · guests · sure`
 
 **12 · Послушайте и соберите — друг говорит о нескольких гостях**
-*(`guests` — «гости»)*
-🔊 *The guests are strangers.* Плитки: `strangers` `are` `The` `guests` `not` → **The guests are strangers.**
-*(плитка `not` лишняя: на записи гости — незнакомцы, без отрицания)*
+<!-- interaction_id: en:lesson-02:session-34:i12; family: listen_build_dictation -->
+Цель: `The guests are strangers.`
 
 **13 · Вставьте слово — вы показываете на компанию у забора: «Кто эти люди?»**
-Who are these ___ ? → **people** · name · host
-- name — *Это «имя». В вопросе про этих людей нужно `people`.*
-- host — *Это один хозяин. Вы спрашиваете о нескольких людях — `these people`.*
+<!-- interaction_id: en:lesson-02:session-34:i13; family: context_gap_grammar -->
+Цель: `Who are these ___ ?`
+Варианты: `people` · `name` · `host`
 
 **14 · Соберите фразу — друг спрашивает, знакомы ли близнецы с хозяином; вы не знаете и признаётесь: «Я не уверен»**
-Плитки: `sure` `I` `not` `am` → **I am not sure.**
+<!-- interaction_id: en:lesson-02:session-34:i14; family: phrase_builder -->
+Цель: `I am not sure.`
 
-**15 · Скажите вслух — обратитесь к двум похожим гостям и спросите, близнецы ли они**
-🎙 **Are you twins?** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-34:i15; family: scripted_repeat_compare -->
+Цель: `Are you twins?`
 
 **16 · Послушайте и соберите — друг узнал двоих гостей и обращается к ним**
-🔊 *You are twins.* Плитки: `twins` `are` `You` → **You are twins.**
+<!-- interaction_id: en:lesson-02:session-34:i16; family: listen_build_dictation -->
+Цель: `You are twins.`
 
 **17 · Соберите фразу — в сад вышла ещё одна компания; узнайте у друга, кто эти люди**
-Плитки: `people` `Who` `these` `are` `is` → **Who are these people?**
-*(плитка `is` лишняя: вопрос о нескольких людях, поэтому нужно `are`)*
-
----
+<!-- interaction_id: en:lesson-02:session-34:i17; family: phrase_builder -->
+Цель: `Who are these people?`
 
 ## Для сборщика
 
@@ -130,7 +134,7 @@ new_words:
 strangers — незнакомцы — Люди, с которыми вы лично не знакомы.
 twins — близнецы — Двое детей, родившихся у одной матери после одной беременности. Взрослые близнецы тоже `twins`.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=phrase_builder
 
 ---
 
@@ -157,10 +161,10 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| these | введено в уроке 2, сессии 27 | задание 6 |
-| people | из урока 1, сессии 49 | задание 7 |
-| guests | из урока 1, сессии 36; возвращено в уроке 2, сессии 33 | изучено в предыдущих сессиях |
-| sure | из урока 1, сессии 3 | задание 10 |
+| these | введено в уроке 2, занятия 27 | задание 6 |
+| people | из урока 1, занятия 49 | задание 7 |
+| guests | из урока 1, занятия 36; возвращено в уроке 2, занятия 33 | изучено в предыдущих занятиях |
+| sure | из урока 1, занятия 3 | задание 10 |
 
 **4. Сборки**
 

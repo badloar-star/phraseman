@@ -1,0 +1,96 @@
+{
+  "session": "en/l04/s17",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T13:32:57.088Z",
+  "sourceSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactRuSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactUkSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "practiceAtomicSha256": "b3d9af1391da1cbd09a42b170d9d5a693a5c9a161a2e1229d1d27c8d6ac90546",
+  "localeHashes": {
+    "ru": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+    "uk": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_s14_quality_review",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s11",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s16",
+  "newWords": [
+    "container"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "affirmative There are some + plural noun for limited quantity",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 17 | новая | `There are some + plural noun` в утверждении о наличии | новое: container; возврат: berry | после рынка раскладываем ягоды в контейнеры общего холодильника |",
+  "curriculumEvidence": {
+    "grammar": "The row requires affirmative There are some + plural noun.",
+    "newWords": [
+      "container"
+    ],
+    "situation": "After the market, berries are sorted into containers in a shared fridge."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "container"
+      ],
+      "correctAnswer": "container",
+      "sceneEvidence": "One container is introduced after the market.",
+      "practiceTask": 1,
+      "practiceTarget": "container",
+      "finalEvidence": "The current final practices container.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "container"
+      ],
+      "correctAnswer": "There are some containers",
+      "sceneEvidence": "Several containers are present.",
+      "practiceTask": 8,
+      "practiceTarget": "There are some containers here.",
+      "finalEvidence": "The current final practices some + plural.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "container"
+      ],
+      "correctAnswer": "There are some containers for berries.",
+      "sceneEvidence": "Several containers hold berries.",
+      "practiceTask": 12,
+      "practiceTarget": "There are some containers for berries.",
+      "finalEvidence": "The current final combines container with berry retrieval.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Exact curriculum grammar, platform vocabulary, and station situation all occur in RU/UK/atomic.",
+    "The full-form i11 is a distinct guided interaction for the negative branch, while i06 is the distinct guided affirmative interaction and i12 remains the sole independent check; no authority requires a second independent check."
+  ],
+  "at": "2026-10-08T13:32:57.088Z",
+  "localeSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "preauthoringSha256": "fb19c4883d799f206a8753b1c5e6267c83f6212e2b7de112a3ae072d131547ee",
+  "converged": true,
+  "needsHumanReview": false
+}

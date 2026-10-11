@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-08:i06",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-08:i06:p1=ready\nen:lesson-01:session-08:i06:p2=tired\nen:lesson-01:session-08:i06:p3=lost\nen:lesson-01:session-08:i06:p4=hungry",
     "correctResponseId": null
   },
   {
@@ -66,12 +66,17 @@
   },
   {
     "interactionId": "en:lesson-01:session-08:i14",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-08:i14:p1=sure\nen:lesson-01:session-08:i14:p2=free\nen:lesson-01:session-08:i14:p3=done\nen:lesson-01:session-08:i14:p4=new",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-08:i15",
-    "correctText": "I am tired. I am not hungry.",
+    "interactionId": "en:lesson-01:session-08:i15:s01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i15:s02",
+    "correctText": "I am not hungry.",
     "correctResponseId": null
   },
   {
@@ -80,8 +85,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-08:i17",
-    "correctText": "I am ready. I am not lost. I am not hungry. I am done.",
+    "interactionId": "en:lesson-01:session-08:i17:s01",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i17:s02",
+    "correctText": "I am not lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i17:s03",
+    "correctText": "I am not hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i17:s04",
+    "correctText": "I am done.",
     "correctResponseId": null
   }
 ]

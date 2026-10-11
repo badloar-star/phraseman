@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "learning_v2_l04_provenance_audit_v1",
+  "auditedAt": "2026-10-09",
+  "sourceRoot": "C:/Users/badlo/Documents/Codex/2026-09-26/new-chat-3/output",
+  "purpose": "Inventory archival evidence before any L04 preservation admission. This is not a release approval and must not be treated as a substitute for a snapshot plus preservation ledger.",
+  "sessions": {
+    "en/l04/s01": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s01", "delta": "current-repair-publication-fact-deltas/en-l04-s01.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s02": { "baseline": "repair-source-baseline-before-final-round/en-l04-s02", "state": "exact-baseline-found" },
+    "en/l04/s03": { "baseline": "repair-source-baseline-before-final-round/en-l04-s03", "state": "exact-baseline-found" },
+    "en/l04/s04": { "baseline": "repair-source-baseline-before-final-round/en-l04-s04", "state": "exact-baseline-found" },
+    "en/l04/s05": { "baseline": "repair-source-baseline-before-final-round/en-l04-s05", "state": "exact-baseline-found" },
+    "en/l04/s06": { "baseline": "repair-source-baseline-before-final-round/en-l04-s06", "state": "exact-baseline-found" },
+    "en/l04/s07": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s08": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s08", "delta": "current-repair-publication-fact-deltas/en-l04-s08.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s09": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s09", "delta": "current-repair-publication-fact-deltas/en-l04-s09.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s10": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s10", "delta": "current-repair-publication-fact-deltas/en-l04-s10.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s11": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s11", "delta": "current-repair-publication-fact-deltas/en-l04-s11.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s12": { "baseline": "repair-source-baseline-before-publication-facts/en-l04-s12", "delta": "current-repair-publication-fact-deltas/en-l04-s12.json", "state": "exact-baseline-and-delta-found" },
+    "en/l04/s13": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s14": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s15": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s16": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s17": { "state": "no-archival-source-snapshot-found" },
+    "en/l04/s18": { "state": "no-archival-source-snapshot-found" }
+  },
+  "admission": "HOLD: archival source exists for 11 of 18 sessions; seven sessions have no recoverable pre-change source snapshot."
+}

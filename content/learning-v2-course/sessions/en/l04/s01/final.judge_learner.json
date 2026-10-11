@@ -1,0 +1,36 @@
+{
+  "session": "en/l04/s01",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:38:16.2729341Z",
+  "sourceSha256": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+  "exactRuSha256": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+  "exactUkSha256": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89",
+  "practiceAtomicSha256": "04b766373d683d7eba946c2baacc027d26673bc31ec0eca1e8e43ef9e0a9e3f5",
+  "localeHashes": {
+    "ru": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+    "uk": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_learner",
+  "sourceReport": "fresh independent read-only seven-role textual review; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The check-in scene immediately gives the learner a map and a reason to report that a pharmacy, library and bakery exist (final.ru.md:3; final.uk.md:3).",
+    "Each new word is grounded before phrase work, and the 17-task path moves from listening/speaking/word insertion into full There is phrases and the independent i17 gap final.",
+    "RU and UK prompts, choices and feedback were read against the current atomic source; each interaction has one unambiguous correct response."
+  ]
+}
+

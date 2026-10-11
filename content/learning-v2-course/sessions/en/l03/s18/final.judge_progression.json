@@ -1,0 +1,35 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "8d15e5e8d2af19bd9a7eaa989ed355aa8e2ee0092f677d5f7d17d84eb8cc74ae",
+  "localeSha256": "ff38ea376fb9242d6c45ea85eeac0b72bea9469b2e05da5f81d0f1f323da9a58",
+  "comparedThrough": "en/l03/s17",
+  "newWords": [
+    "bus",
+    "dish",
+    "watch",
+    "box"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 18 | новая | множественное число с `-es` после нужных окончаний | bus, dish, watch, box | распаковываем разные коробки |",
+  "curriculumEvidence": {
+    "grammar": "письменная форма для нескольких предметов с добавлением `es` в словах `bus`, `dish`, `watch`, `box`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "bus",
+      "dish",
+      "watch",
+      "box"
+    ],
+    "situation": "Вы с другом разбираете коробки после переезда. В большой — посуда, в маленькой — наручные часы и конверт с билетами. Друг относит пустую упаковку к двери. Из окна новой квартиры видна автобусная остановка."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-35:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — sure",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-35:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — wrong",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -338,7 +338,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-35:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — free",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -528,7 +528,9 @@
           "not",
           "alone"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -608,11 +610,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -681,7 +683,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
+      "prompt": "Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-35:i13:r1",
@@ -698,12 +700,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
+      "accessibilityLabel": "Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
-          "uk": "Вставте слово — питають, чи можемо ми затриматися: після обіду нарада"
+          "ru": "Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание",
+          "uk": "Вставте слово — керівник питає, чи можемо ми затриматися: після обіду нарада"
         },
         "gappedTargetPhrase": "We are not ___ .",
         "gapOptions": [
@@ -833,26 +835,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-35:i17",
+      "interactionId": "en:lesson-01:session-35:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — пять ответов подряд о вас двоих",
+      "prompt": "Произнесите одну фразу — шаг 1 из 5",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-35:i17:audio"
+        "en:lesson-01:session-35:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — пять ответов подряд о вас двоих",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 5",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-35:i17:audio",
-          "transcript": "We are not late. We are hungry. We are not busy. We are not sure. We are ready."
+          "audioTargetId": "en:lesson-01:session-35:i17:s01:audio",
+          "transcript": "We are not late."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are not late. We are hungry. We are not busy. We are not sure. We are ready.",
+        "targetPhrase": "We are not late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 5",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 5",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i17:s02:audio",
+          "transcript": "We are hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 5",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 5",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i17:s03:audio",
+          "transcript": "We are not busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are not busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 5",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 5",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i17:s04:audio",
+          "transcript": "We are not sure."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are not sure.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i17:s05",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 5 из 5",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i17:s05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 5 из 5",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i17:s05:audio",
+          "transcript": "We are ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are ready.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -866,11 +1000,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "30329a5e3a20b96b40eccd5167062c7196bbdacde7a4b3563d7ec3fde9204026"
+  "learnerFingerprint": "e561bc0ab8882b03feac042404cd0cc1685e941b77916f092968c11be115c85e"
 }

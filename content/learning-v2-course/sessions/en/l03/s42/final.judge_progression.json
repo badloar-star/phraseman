@@ -1,1 +1,115 @@
-{"verdict":"PASS","sourceSha256":"580e52542eaa1b9954e1fbf009dcc9b08b940d5210bdef6e76c1cba2e3f41e46","comparedThrough":"English L1 + L2 + en/l03/s41","newWords":["locker","keypad","compartment"],"sceneNovel":true,"grammarProgression":"immediate_situational_the_for_mutually_identifiable_objects_without_prior_a","introPracticeAligned":true,"introFinalCoverage":["The locker is broken. -> tasks 11 and 13 -> final","The keypad is dark. -> tasks 12 and 14 -> final","The compartment is closed. -> tasks 15 and 16 -> final"],"repeatedPrimaryTargets":[],"meaningAdditions":[],"mustFix":[],"evidence":["Полный learner-facing scan English L1, L2 и L3 S1–S41 не нашёл locker, keypad или compartment.","Совместная проверка одного отказавшего электронного локера ранее не встречалась.","S42 добавляет ситуационное the после S41 с дискурсивной цепочкой a→the.","Все интро используют текущие слова и сцену, отрабатываются позже и входят в финал."]}
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "comparedThrough": "en/l03/s41",
+  "newWords": [
+    "handle",
+    "lock",
+    "bell"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 42 | применение | `the` для понятного обоим предмета в сцене | handle, lock, bell | показываем конкретную поломку |",
+  "curriculumEvidence": {
+    "grammar": "Ставить `the`, когда предмет уже понятен обоим из общей ситуации.",
+    "newWords": [
+      "handle",
+      "lock",
+      "bell"
+    ],
+    "situation": "«Вы и сотрудник стоите у одной входной двери. Ручка заела, замок сломан, а звонок молчит…»"
+  },
+  "sceneNovel": true,
+  "grammarProgression": "planned_application:the for a shared visible door component",
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "handle"
+      ],
+      "sceneEvidence": "«Вы тянете ручку входной двери, но она не двигается.»",
+      "correctAnswer": "The handle is stuck.",
+      "practiceTask": 11,
+      "practiceTarget": "___ handle is stuck. → the",
+      "finalEvidence": "Финал требует `The handle is stuck.` как первое сообщение.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "lock"
+      ],
+      "sceneEvidence": "«Сотрудник проверяет замок на этой двери и видит поломку.»",
+      "correctAnswer": "The lock is broken.",
+      "practiceTask": 14,
+      "practiceTarget": "The lock is broken.",
+      "finalEvidence": "Финал требует `The lock is broken.` как второе сообщение.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "bell"
+      ],
+      "sceneEvidence": "«Вы нажали звонок у этой двери, но звука нет.»",
+      "correctAnswer": "The bell is silent.",
+      "practiceTask": 15,
+      "practiceTarget": "___ bell is silent. → the",
+      "finalEvidence": "Финал требует `The bell is silent.` как третье сообщение.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+  ],
+  "localeHashes": {
+    "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+  },
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "d27c1c33cf65880165ecba6fcd10af571578876ca455f2a1d5448f2103c94837",
+    "localeSha256": "9f406d391099d4d8094d5868c02217f5f3bc4c12c6b41df6d925a1c867e9cef3",
+    "practiceAtomicSha256": "58c70bb86b937862ff4cb0c86f9b957d1985c388459a6279c65fa39166250131",
+    "findings": []
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeHashes": {
+      "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+      "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+    },
+    "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+    "evidence": [
+      "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+    ]
+  }
+}

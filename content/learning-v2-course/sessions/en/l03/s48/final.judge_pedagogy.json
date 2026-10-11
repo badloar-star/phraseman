@@ -1,0 +1,74 @@
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_pedagogy",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s48",
+  "sourceSha256": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+  "exactRuSha256": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+  "exactUkSha256": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Order-and-receipt checkpoint visibly recycles the article system and adds the planned order vocabulary without new grammar."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "0a89836ca2af71fc9bd947b7a431c8f303e75bddca415dfe1e81d9f94a3d1bcc",
+    "localeSha256": "496affa42a896da80a5481ee088023721845494058849b5bce4cf277e5e2af93",
+    "practiceAtomicSha256": "ed696b33bc4a87dff3d814f86206e921380c6c2e15180216b5f3a79f42f61e28"
+  },
+  "localeSha256": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4",
+  "practiceAtomicSha256": "f092143c804cfba73710414b2a2da3a186838d00049fdf892a67b92dca844e3f",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "ba8e538fce92f33f06040046f036c48007621c32a521fe86eef8256685f960e9",
+    "localeSha256": "f0a029df27313e9db04e9f1b781ccc3d0bea286af7899dd0e20a5496fcb22d0d",
+    "practiceAtomicSha256": "a9f4c69e9e4e53c79812ad2dc43fac69c32754c728db3bf3df1be58e7d0a1124",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+    "uk": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+    "exactRuSha256": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+    "exactUkSha256": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4",
+    "localeSha256": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4",
+    "localeHashes": {
+      "ru": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+      "uk": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4"
+    },
+    "practiceAtomicSha256": "f092143c804cfba73710414b2a2da3a186838d00049fdf892a67b92dca844e3f",
+    "evidence": [
+      "Order-and-receipt checkpoint visibly recycles the article system and adds the planned order vocabulary without new grammar."
+    ]
+  }
+}

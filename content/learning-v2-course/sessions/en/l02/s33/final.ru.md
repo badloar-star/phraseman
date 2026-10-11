@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 33 — «Who is»
+# Английский · Урок 2 · Занятие 33 — «Who is»
 
-**Сцена сессии.** Вечеринка у соседей в Дублине. Вы знакомитесь с людьми и хотите понять, кто принимает гостей и к кому можно подойти.
+**Сцена занятия.** Вечеринка у соседей в Дублине. Вы знакомитесь с людьми и хотите понять, кто принимает гостей и к кому можно подойти.
 
-**Операция:** `Who is` + человек
+**Как сказать:** `Who is` + человек
 **Новые слова:** host, guest
 **Возвращаются:** guests, name, cheerful, near, corner
 
@@ -28,7 +28,7 @@
 
 `guest` — «гость», а `guests` — «гости». Про одного гостя спрашиваем `Who is the guest?` — «Кто гость?» Вопрос начинается с `Who is`: меняем только `the host` на `the guest`. Важно, кого ищем: хозяин принимает людей, а гостя пригласили. Для одного гостя здесь нужно `is`.
 
-**Сосед говорит, что из трёх мужчин один гость, а двое живут здесь. Спросите, кто гость.**
+**Сосед Илья говорит, что среди Алекса, Макса и Олега один — гость, а двое живут здесь. Спросите, кто гость.**
 
 - ✅ **Who is the guest?**
 - ❌ Who is the host? — *Так вы спросите про хозяина. Вам нужен гость — `guest`.*
@@ -42,92 +42,95 @@
 
 `Who is he?` — «Кто он?» Так можно спросить о мужчине, которого вы видите, но пока не знаете. В этом отдельном вопросе `is` стоит перед `he` — «он». А `Where is he?` означает «Где он?». Выберите, что хотите выяснить: кто этот человек или где он находится.
 
-**Незнакомый мужчина машет вам через комнату. Спросите соседа: «Кто он?»**
+**Алекс машет вам через комнату. Спросите соседа Илью: «Кто он?»**
 
 - ✅ **Who is he?**
-- ❌ Where is he? — *Это «Где он?». Мужчину вы видите; узнать хотите, кто он.*
+- ❌ Where is he? — *Это «Где он?». Алекса вы видите; узнать хотите, кто он.*
 - ❌ Who he is? — *Для самостоятельного вопроса нужен порядок `Who is he?`: `is` перед `he`.*
 
 ---
 
-## Практика (18 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — host**
-> **host** — «хозяин вечера». Принимает гостей у себя: встречает их, знакомит друг с другом.
+<!-- interaction_id: en:lesson-02:session-33:i01; family: listen_choose -->
+Цель: `host`
 
 **2 · Послушайте и выберите слово**
-🔊 *host* → **host** · coast · toast
-- coast — *`Coast` — «побережье». Послушайте первый звук: в записи `host`.*
-- toast — *`Toast` — «тост». Послушайте первый звук: в записи `host`.*
+<!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
+Цель: `host`
+Варианты: `host` · `coast` · `toast`
 
 **3 · Карточка слова — guest**
-> **guest** — «гость». Пришёл к кому-то в гости: поздоровался, познакомился, остался поболтать.
+<!-- interaction_id: en:lesson-02:session-33:i03; family: listen_choose -->
+Цель: `guest`
 
 **4 · Послушайте и выберите слово**
-🔊 *guest* → **guest** · best · west
-- best — *`Best` — «лучший». Послушайте первый звук: в записи `guest`.*
-- west — *`West` — «запад». Послушайте первый звук: в записи `guest`.*
+<!-- interaction_id: en:lesson-02:session-33:i04; family: listen_choose -->
+Цель: `guest`
+Варианты: `guest` · `best` · `west`
 
 **5 · Соберите фразу — спросите соседа: «Кто хозяин?»**
-Плитки: `the` `Who` `host` `is` → **Who is the host?**
+<!-- interaction_id: en:lesson-02:session-33:i05; family: phrase_builder -->
+Цель: `Who is the host?`
 
 **6 · Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость**
-Who is the ___ ? → **guest** · host · name
-- host — *Это «хозяин». Вопрос нужен про гостя — `guest`.*
-- name — *Это «имя». Здесь вы спрашиваете, кто гость, а не как его зовут.*
+<!-- interaction_id: en:lesson-02:session-33:i06; family: context_gap_grammar -->
+Цель: `Who is the ___ ?`
+Варианты: `guest` · `host` · `name`
 
-**7 · Вставьте слово — хозяин в этой комнате, но вы не знаете, кто из людей хозяин**
-___ is the host? → **Who** · Where · What
-- Where — *Это «где». Место вам известно; вы хотите узнать человека.*
-- What — *Для вопроса «Кто хозяин?» нужно `Who`: `Who is the host?`*
+**7 · Произнесите фразу — вы хотите поблагодарить хозяина, но не знаете, кто он**
+<!-- interaction_id: en:lesson-02:session-33:i07; family: scripted_repeat_compare -->
+Цель: `Who is the host?`
 
 **8 · Послушайте и выберите слово**
-🔊 *guests* → **guests** · tests · vests
-- tests — *`Tests` — «тесты». Послушайте первый звук: в записи `guests`.*
-- vests — *`Vests` — «жилеты». Послушайте первый звук: в записи `guests`.*
+<!-- interaction_id: en:lesson-02:session-33:i08; family: listen_choose -->
+Цель: `guests`
+Варианты: `guests` · `tests` · `vests`
 
 **9 · Вставьте слово — скажите, что хозяин близко**
-*(`near` — «рядом, близко»)*
-The host is ___ . → **near** · cheerful · name
-- cheerful — *Это «весёлый». Нужно сообщить о расстоянии — «близко».*
-- name — *Это «имя». Оно не передаёт, где находится хозяин.*
+<!-- interaction_id: en:lesson-02:session-33:i09; family: context_gap_grammar -->
+Цель: `The host is ___ .`
+Варианты: `near` · `cheerful` · `name`
 
-**10 · Соедините пары (Speed Match, 4 пары)**
-guests — гости · name — имя · cheerful — весёлый · corner — угол
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-33:i10; family: speed_match -->
+Пары: `guests` — гости · `name` — имя · `cheerful` — весёлый · `corner` — угол
+Цель: `guests · name · cheerful · corner`
 
 **11 · Послушайте и выберите слово**
-🔊 *name* → **name** · game · fame
-- game — *`Game` — «игра». Послушайте первый звук: в записи `name`.*
-- fame — *`Fame` — «слава». Послушайте первый звук: в записи `name`.*
+<!-- interaction_id: en:lesson-02:session-33:i11; family: listen_choose -->
+Цель: `name`
+Варианты: `name` · `game` · `fame`
 
 **12 · Соберите фразу — о хозяине: «Он не весёлый»**
-*(`cheerful` — «весёлый»)*
-Плитки: `cheerful` `He` `not` `is` → **He is not cheerful.**
+<!-- interaction_id: en:lesson-02:session-33:i12; family: phrase_builder -->
+Цель: `He is not cheerful.`
 
-**13 · Соберите фразу — сосед упомянул гостя; спросите, где он**
-Плитки: `guest` `is` `Where` `the` → **Where is the guest?**
+**13 · Произнесите фразу — сосед упомянул гостя; спросите, где он**
+<!-- interaction_id: en:lesson-02:session-33:i13; family: scripted_repeat_compare -->
+Цель: `Where is the guest?`
 
 **14 · Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты**
-*(`corner` — «угол»)*
-The guest is near the ___ . → **corner** · host · guests
-- host — *Получится «рядом с хозяином». Сосед назвал угол комнаты.*
-- guests — *Получится «рядом с гостями». Вам нужно место — угол, `corner`.*
+<!-- interaction_id: en:lesson-02:session-33:i14; family: context_gap_grammar -->
+Цель: `The guest is near the ___ .`
+Варианты: `corner` · `host` · `guests`
 
 **15 · Послушайте и соберите — сосед подсказывает, где хозяин**
-🔊 *The host is near.* Плитки: `near` `host` `The` `is` `not` → **The host is near.**
-*(плитка `not` лишняя: на записи хозяин рядом, без отрицания)*
+<!-- interaction_id: en:lesson-02:session-33:i15; family: listen_build_dictation -->
+Цель: `The host is near.`
 
-**16 · Скажите вслух — спросите соседа, кто гость**
-🎙 **Who is the guest?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-33:i16; family: scripted_repeat_compare -->
+Цель: `Who is the guest?`
 
 **17 · Соберите фразу — сосед спрашивает о двух вошедших; скажите: «Они гости»**
-Плитки: `guests` `are` `They` → **They are guests.**
+<!-- interaction_id: en:lesson-02:session-33:i17; family: phrase_builder -->
+Цель: `They are guests.`
 
-**18 · Соберите фразу — мужчина машет вам; узнайте у соседа, кто он**
-Плитки: `he` `is` `Who` `Where` → **Who is he?**
-*(плитка `Where` лишняя: вы видите мужчину и спрашиваете, кто он)*
-
----
+**18 · Произнесите фразу — Алекс машет вам; узнайте у соседа Ильи, кто он**
+<!-- interaction_id: en:lesson-02:session-33:i18; family: scripted_repeat_compare -->
+Цель: `Who is he?`
 
 ## Для сборщика
 
@@ -135,7 +138,7 @@ new_words:
 host — хозяин вечера — Принимает гостей у себя: встречает их, знакомит друг с другом.
 guest — гость — Пришёл к кому-то в гости: поздоровался, познакомился, остался поболтать.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=listen_choose, 9=context_gap_grammar, 10=speed_match, 11=listen_choose, 12=phrase_builder, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=phrase_builder, 18=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=listen_choose, 9=context_gap_grammar, 10=speed_match, 11=listen_choose, 12=phrase_builder, 13=scripted_repeat_compare, 14=context_gap_grammar, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare
 
 ---
 
@@ -163,10 +166,10 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| guests | из урока 1, сессия 36 | повторное узнавание в задании 8 |
-| name | из урока 2, сессия 25 | изучено в предыдущих сессиях |
-| cheerful | из урока 2, сессия 4 | изучено в предыдущих сессиях |
-| corner | из урока 2, сессия 23 | изучено в предыдущих сессиях |
+| guests | из урока 1, занятие 36 | повторное узнавание в задании 8 |
+| name | из урока 2, занятие 25 | изучено в предыдущих занятиях |
+| cheerful | из урока 2, занятие 4 | изучено в предыдущих занятиях |
+| corner | из урока 2, занятие 23 | изучено в предыдущих занятиях |
 
 **4. Сборки**
 

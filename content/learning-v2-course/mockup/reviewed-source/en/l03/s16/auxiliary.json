@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro1:r2": {
+          "ru": "В начале `invoice` звучит гласный. В этой фразе перед названием счёта нужно `an`.",
+          "uk": "На початку `invoice` чути голосний звук. У цій фразі перед назвою рахунка потрібне `an`."
+        },
+        "en:lesson-03:session-16:intro1:r3": {
+          "ru": "Называя один счёт после `It is`, сохраняем маленькое `an` перед названием.",
+          "uk": "Називаючи один рахунок після `It is`, зберігаємо маленьке `an` перед назвою."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro2:r2": {
+          "ru": "`invoice` начинается с гласного звука, поэтому в вопросе остаётся `an invoice`.",
+          "uk": "`invoice` починається з голосного звука, тому в запитанні залишається `an invoice`."
+        },
+        "en:lesson-03:session-16:intro2:r3": {
+          "ru": "Это порядок утверждения. Для вопроса начинаем с `Is it`.",
+          "uk": "Це порядок твердження. Для запитання починаємо з `Is it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-16:intro3:r2": {
+          "ru": "Отрицание не меняет первый звук `invoice`: нужно `not an invoice`.",
+          "uk": "Заперечення не змінює першого звука `invoice`: потрібно `not an invoice`."
+        },
+        "en:lesson-03:session-16:intro3:r3": {
+          "ru": "Перед `not` пропущено `is`: `It is not an invoice`.",
+          "uk": "Перед `not` пропущено `is`: `It is not an invoice`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "44b2939567458b9990de6c05f082e03d69a6067c0e7e8ae40ab207bd0a268056"
+}

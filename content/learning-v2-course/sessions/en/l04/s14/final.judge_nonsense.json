@@ -1,0 +1,40 @@
+{
+  "session": "en/l04/s14",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T11:50:11.750Z",
+  "sourceSha256": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+  "exactRuSha256": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+  "exactUkSha256": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46",
+  "practiceAtomicSha256": "524ae07d28d7f0a91fd6d768c5759014940ee17b3fba5e279a1f67d3e9358787",
+  "localeHashes": {
+    "ru": "e234d40354d319b9e740c6f3e3aadada2373d51ef4aeb081e349e10981ae1c19",
+    "uk": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S14 quality/spec reviewers",
+  "role": "judge_nonsense",
+  "sourceReport": "fresh independent read-only seven-role textual review; audio claims reviewed textually only",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The station board, platforms near the building, and checking whether two or three platforms exist form a coherent single scene.",
+    "The written sound contrast is internally correct and accent-neutral: platter and platform share /plæt/, while only platform continues with /f/ and /m/ (RU/UK:46-53).",
+    "All English forms and localized meanings are internally consistent; no invented rule, semantic contradiction, or absurd causal claim was found."
+  ],
+  "at": "2026-10-08T11:50:11.750Z",
+  "localeSha256": "2fdfbc1e586e6c73d61c66fba954d06f3bb96793b5a408cbbb8304b976671b46",
+  "preauthoringSha256": "dc2683489686b2ba47cd4be46007758e1efd59a44f13cfc253cd38bce6bf5dad",
+  "converged": true,
+  "needsHumanReview": false
+}

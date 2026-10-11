@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "37a5712b712d035a6a140707ad038daf85da76686180d07e2001a4c5d58e114e",
+  "localeSha256": "660ea59f8806b0234a7c33354daa959e9853b79c1c68086abc697d2504a0ea03",
+  "comparedThrough": "en/l03/s19",
+  "newWords": [
+    "glass",
+    "brush",
+    "bench"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 20 | голос/слух | услышать один предмет или несколько по окончанию | glass, brush, bench | курьер диктует содержимое |",
+  "curriculumEvidence": {
+    "grammar": "услышать разницу между одним и несколькими предметами в `glass/glasses`, `brush/brushes`, `bench/benches`; у этих форм для нескольких появляется дополнительный слог; знакомые `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "glass",
+      "brush",
+      "bench"
+    ],
+    "situation": "Вы принимаете доставку для дома и террасы. Курьер читает названия из списка, пока вы проверяете упаковки с посудой, принадлежностями для уборки и мебелью. Часть вещей ещё в машине, поэтому сначала приходится слушать, а потом смотреть."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

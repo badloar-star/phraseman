@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro1:r2": {
+          "ru": "Слова стоят как в сообщении, а не в вопросе. Чтобы спросить, `are` выходит вперёд.",
+          "uk": "Слова стоять як у повідомленні, а не в запитанні. Щоб запитати, `are` виходить наперед."
+        },
+        "en:lesson-02:session-01:intro1:r3": {
+          "ru": "`you` оторвано от `are`. Эти двое идут парой: сначала `are`, сразу за ним тот, о ком спрашивают.",
+          "uk": "`you` відірване від `are`. Ці двоє йдуть парою: спочатку `are`, одразу за ним той, про кого питають."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro2:r2": {
+          "ru": "Это «хотите пить?». Печенье жажду не лечит.",
+          "uk": "Це «хочете пити?». Печиво спрагу не лікує."
+        },
+        "en:lesson-02:session-01:intro2:r3": {
+          "ru": "Слова рассыпались. Порядок жёсткий: `are`, потом `you`, и только потом само слово.",
+          "uk": "Слова розсипалися. Порядок жорсткий: `are`, потім `you`, і аж тоді саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-01:intro3:r2": {
+          "ru": "Это «вы заблудились?». Человек стоит в своей же комнате.",
+          "uk": "Це «ви заблукали?». Людина стоїть у своїй же кімнаті."
+        },
+        "en:lesson-02:session-01:intro3:r3": {
+          "ru": "Порядок как в сообщении. В вопросе `are` идёт первым.",
+          "uk": "Порядок як у повідомленні. У запитанні `are` іде першим."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c4685c24ae868436b71b3cb505f1f67bae9d4dbd56bce7087ef2203367574816"
+}

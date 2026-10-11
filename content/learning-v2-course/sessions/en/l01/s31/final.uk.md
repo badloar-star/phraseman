@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 31 — «Мокро, сухо, спекотно, тепло»
+# Англійська · Урок 1 · Заняття 31 — «Погода за вікном»
 
-**Сцена сесії.** Дублін за вікном міняється щодня: то дощ зранку, то на обід сонце. Сусід з того боку сходової клітки вже вдягнений і на виході — щоразу питає, що там надворі.
-**Операція:** `It is` про погоду (нові слова)
+**Ситуація.** Лена зустрічає сусіда Тома біля під'їзду в Дубліні. Том збирається вийти й питає Лену, яка погода надворі.
+**Як сказати:** `It is`, коли говорите про погоду.
 **Нові слова:** wet, dry, hot, warm
 **Повертаються:** cold, rainy, windy
 
@@ -19,7 +19,7 @@
 
 - ✅ **It is wet.**
 - ❌ Is wet. — *Зникло `it`. Фраза про погоду завжди починається з нього, навіть якщо українською там нічого немає.*
-- ❌ It wet. — *Загубилася скріпка `is`. `It` і слово про погоду завжди через `is`.*
+- ❌ It wet. — *Між `it` і словом про погоду потрібна форма `is`.*
 
 ---
 
@@ -62,81 +62,104 @@
 ## Практика (20 завдань, підтримка спадає)
 
 **1 · Картка слова — wet**
+<!-- interaction_id: en:lesson-01:session-31:i01; family: listen_choose -->
 > **wet** — «мокро, мокрий». Про дощ надворі, про лавку, на яку краще не сідати, і про вас, якщо парасольки не було.
 
-**2 · Послухайте і виберіть — wet**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
 🔊 *wet* → **wet** · went · what
 - went — *Усередині чути «н», якого у `wet` немає.*
 - what — *Початок той самий. Далі голосний інший: у `what` чути «о», у `wet` — «е».*
 
 **3 · Картка слова — dry**
+<!-- interaction_id: en:lesson-01:session-31:i03; family: listen_choose -->
 > **dry** — «сухо, сухий». Дощу немає, асфальт світлий, куртку можна не вішати на батарею.
 
-**4 · Послухайте і виберіть — dry**
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-31:i04; family: listen_choose -->
 🔊 *dry* → **dry** · try · draw
 - try — *Відрізняється тільки першим звуком. `dry` починається з «д».*
 - draw — *Початок той самий, `dr`. Далі у `dry` чути «ай», а в `draw` — довге «о».*
 
 **5 · Картка слова — cold**
+<!-- interaction_id: en:lesson-01:session-31:i05; family: listen_choose -->
 > **cold** — «холодно, холодний». Про погоду, через яку вертаєшся по шарф, і про чай, що стояв надто довго.
 
 **6 · Вставте слово — дощ іде третю годину**
+<!-- interaction_id: en:lesson-01:session-31:i06; family: context_gap_grammar -->
 It is ___ . → **wet** · dry · cold
 - dry — *Це «сухо», а надворі дощ. Мокро — `wet`.*
 - cold — *«Холодно» — про температуру, а питання про воду згори.*
 
 **7 · Складіть фразу — «сухо»**
+<!-- interaction_id: en:lesson-01:session-31:i07; family: phrase_builder -->
 Плитки: `dry` `is` `It` `am` → **It is dry.**
 
 **8 · Картка слова — hot**
+<!-- interaction_id: en:lesson-01:session-31:i08; family: listen_choose -->
 > **hot** — «спекотно, гаряче». Про погоду, від якої шукаєш тінь, і про чай, який поки що не випити.
 
 **9 · Картка слова — warm**
+<!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
 > **warm** — «тепло». Не спекотно й не холодно, а рівно так, як хочеться.
 
-**10 · Послухайте і виберіть — warm**
+**10 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-31:i10; family: listen_choose -->
 🔊 *warm* → **warm** · worm · war
 - worm — *`worm` — «черв'як». На місці голосного там глухий невиразний звук, ні «о», ні «а». У `warm` ясно чути «о».*
 - war — *Обрубаний хвіст. У `warm` на кінці чути «м».*
 
 **11 · Вставте слово — сонце пече, ви шукаєте тінь**
+<!-- interaction_id: en:lesson-01:session-31:i11; family: context_gap_grammar -->
 It is ___ . → **hot** · warm · cold
 - warm — *«Тепло» — це коли приємно. А ви ховаєтесь від сонця, отже вже забагато.*
 - cold — *Прямо навпаки. `cold` — про холод.*
 
-**12 · З'єднайте пари (Speed Match, 4 пари)**
+**12 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-31:i12; family: speed_match -->
 wet — мокро · dry — сухо · hot — спекотно · warm — тепло
 
 **13 · Вставте слово — зранку шарф і друга кофта**
+<!-- interaction_id: en:lesson-01:session-31:i13; family: context_gap_grammar -->
 It is ___ . → **cold** · warm · dry
 - warm — *«Тепло» — це коли кофта не потрібна.*
 - dry — *Про воду, а мова про температуру.*
 
 **14 · Картка слова — rainy**
+<!-- interaction_id: en:lesson-01:session-31:i14; family: listen_choose -->
 > **rainy** — «дощово». Не одна хмарка на годину, а день, коли дощ іде і йде.
 
 **15 · Вставте слово — ллє зранку і не збирається вщухати**
+<!-- interaction_id: en:lesson-01:session-31:i15; family: context_gap_grammar -->
 It is ___ . → **rainy** · dry · hot
 - dry — *Це «сухо», а з неба ллє.*
 - hot — *Про спеку, а мова про дощ.*
 
 **16 · Картка слова — windy**
+<!-- interaction_id: en:lesson-01:session-31:i16; family: listen_choose -->
 > **windy** — «вітряно». Вітер вириває двері з рук, а парасольку вивертає навиворіт.
 
 **17 · Вставте слово — шапку зриває, іти доводиться боком**
+<!-- interaction_id: en:lesson-01:session-31:i17; family: context_gap_grammar -->
 It is ___ . → **windy** · warm · wet
 - warm — *Про тепло, а мова про вітер.*
 - wet — *Про воду, а вас тіпає вітром, не дощем.*
 
 **18 · Послухайте і складіть — «дощово»**
+<!-- interaction_id: en:lesson-01:session-31:i18; family: listen_build_dictation -->
 🔊 *It is rainy.* Плитки: `rainy` `It` `is` `windy` → **It is rainy.**
 
 **19 · Складіть фразу — надворі рве парасолю з рук**
+<!-- interaction_id: en:lesson-01:session-31:i19; family: phrase_builder -->
 Плитки: `windy` `It` `are` `is` → **It is windy.**
 
-**20 · Скажіть уголос — сусід спитав, як надворі**
-🎙 Дощ скінчився, вийшло сонце, куртка не потрібна. Відповідайте двома фразами:
-**It is dry. It is warm.**
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-31:i20:s01; family: scripted_repeat_compare -->
+🎙 **It is dry.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-31:i20:s02; family: scripted_repeat_compare -->
+🎙 **It is warm.**
 
 ---
 
@@ -148,7 +171,7 @@ dry — сухо, сухий — дощу немає, асфальт світл�
 hot — спекотно, гаряче — про погоду, від якої шукаєш тінь, і про чай, який поки що не випити
 warm — тепло — не спекотно й не холодно, а рівно так, як хочеться
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=context_gap_grammar, 7=phrase_builder, 8=word_card, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=word_card, 15=context_gap_grammar, 16=word_card, 17=context_gap_grammar, 18=listen_build_dictation, 19=phrase_builder, 20=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=context_gap_grammar, 7=phrase_builder, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar, 18=listen_build_dictation, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 
@@ -179,18 +202,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 
 | hot | 8 | 11 (вибір) |
 | warm | 9 | 10 (слух), 11 (розбір пастки) |
 
----
-
-🟡 **Стоит улучшить**
-- Ловушка `It wet.` (интро 1) для украинца звучит так же естественно-ошибочно, как для русского — пропуск связки в украинском тот же. Поэтому оставил без замены; если позже захотите более «своей» ошибки, можно добавить вариант с порядком слов.
-- В задании 2 разбор `what` пришлось привязать к украинскому «е» вместо русского «э» — украинское «е» звучит ближе к английскому в `wet`, так что опора честная.
-
-🧩 **Скрытые связи**
-- Блок «Для сборщика» и коды режимов оставлены байт в байт, только определения слов переведены — как требует формат. Заголовок блока тоже не тронут (служебная строка для сборщика).
-
-**Итог:**
-- Сделал украинскую версию урока про погоду — не перевод, а пересказ живым украинским.
-- Все английские слова, порядок заданий, ловушки и служебный блок для сборщика остались точно такими же.
-- Объяснения, определения слов и разборы ошибок переписаны так, как объяснял бы украинец украинцу.
-- «Спекотно» вместо «жарко», «парасолька», «вітряно» — обычные живые слова, без выдуманных.
-- Опору на язык проверил: пропуск связки — реальная ошибка и для украинского, поэтому ловушки оставил на месте.

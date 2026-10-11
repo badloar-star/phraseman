@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 24 — «Дорогу здобувають запитаннями»
+# Англійська · Урок 2 · Заняття 24 — «Дорогу здобувають запитаннями»
 
-**Сцена сесії.** Вечір, Дублін. Супутник поруч втомився, потяг за півгодини, а дорогу доводиться здобувати в перехожих — по одному запитанню за раз.
+**Сцена заняття.** Вечір, Дублін. Супутник поруч втомився, потяг за півгодини, а дорогу доводиться здобувати в перехожих — по одному запитанню за раз.
 
-**Операція:** повторення — `Where is + місце`, `Are you + слово`, відповідь `it is + прийменник місця`
+**Як сказати:** повторення — `Where is + місце`, `Are you + слово`, відповідь `it is + прийменник місця`
 **Нові слова:** —
 **Повертаються:** station, bridge, corner, near, behind, lost, tired, thirsty
 
@@ -56,136 +56,102 @@
 
 ---
 
-## Практика (перші завдання)
+## Практика — по одній цільовій фразі
 
-**1 · Послухайте й виберіть — station**
-🔊 *station* → **station** · stand · stay
-- stand — *Це «стояти». Коротше: у `station` два склади, у `stand` один.*
-- stay — *Це «залишитися». Теж один склад проти двох у `station`.*
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-24:i01; family: listen_choose -->
+Ціль: `station`
+Варіанти: `station` · `stand` · `stay`
 
 **2 · Вставте слово — ви шукаєте будівлю з потягами**
-Where is the ___ ? → **station** · corner · bridge
-- corner — *«Ріг вулиці». Про потяги там не знають.*
-- bridge — *«Міст». Через річку він вас проведе, але потяги стоять не на ньому.*
+<!-- interaction_id: en:lesson-02:session-24:i02; family: context_gap_grammar -->
+Ціль: `Where is the ___ ?`
+Варіанти: `station` · `corner` · `bridge`
 
 **3 · Складіть фразу — «де міст?»**
-Плитки: `the` `where` `bridge` `is` → **Where is the bridge?**
+<!-- interaction_id: en:lesson-02:session-24:i03; family: phrase_builder -->
+Ціль: `Where is the bridge?`
 
 **4 · Розрізніть звуки — яке з двох про ріг вулиці?**
-🔊 Два слова поспіль.
-*corner · corridor* → **corner**
-- corridor — *Це «коридор», три склади. У `corner` їх два.*
+<!-- interaction_id: en:lesson-02:session-24:i04; family: sound_contrast -->
+Варіанти: `corner` · `corridor`
 
 **5 · Вставте слово — перехожий показує на кінець вулиці, де вона повертає**
-It is at the ___ . → **corner** · station · bridge
-- station — *Вулиця не повертає вокзалом. Місце, де сходяться дві вулиці, — `corner`.*
-- bridge — *Міст іде через річку, а тут просто поворот вулиці.*
+<!-- interaction_id: en:lesson-02:session-24:i05; family: context_gap_grammar -->
+Ціль: `It is at the ___ .`
+Варіанти: `corner` · `station` · `bridge`
 
-**6 · З'єднайте пари (Speed Match, 4 пари)**
-station — вокзал · bridge — міст · corner — ріг вулиці · lost — заблукав
+**6 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-24:i06; family: speed_match -->
+Пари: `station` — вокзал · `bridge` — міст · `corner` — ріг вулиці · `lost` — заблукав
+Ціль: `station · bridge · corner · lost`
 
-**7 · Послухайте й виберіть — near**
-🔊 *near* → **near** · name · nine
-- name — *Голосна інша: у `name` вона звучить як «ей».*
-- nine — *У `nine` голосна звучить як «ай». У `near` — тягнеться до «і».*
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-02:session-24:i07; family: listen_choose -->
+Ціль: `near`
+Варіанти: `near` · `name` · `nine`
 
 **8 · Вставте слово — вокзал прямо перед вами, іти хвилину**
-It is ___ . → **near** · behind · lost
-- behind — *«Позаду» — а вокзал у вас перед очима, не за спиною.*
-- lost — *Це про людину, а не про будівлю. Вокзал нікуди не губився.*
+<!-- interaction_id: en:lesson-02:session-24:i08; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `behind` · `lost`
 
 **9 · Послухайте й складіть — «він позаду мосту»**
-🔊 *It is behind the bridge.* Плитки: `behind` `it` `bridge` `is` `the` `near` → **It is behind the bridge.**
+<!-- interaction_id: en:lesson-02:session-24:i09; family: listen_build_dictation -->
+Ціль: `It is behind the bridge.`
 
-**10 · Вставте скріпку — маленьке `is` між словами**
-Where ___ the corner? → **is** · are · am
-- are — *Про одне місце — `is`. `are` іде з іншими словами.*
-- am — *Це лише про себе: `I am`. Про ріг вулиці так не запитують.*
+**10 · Вставте `is` — виберіть слово для запитання про місце**
+<!-- interaction_id: en:lesson-02:session-24:i10; family: context_gap_grammar -->
+Ціль: `Where ___ the corner?`
+Варіанти: `is` · `are` · `am`
 
 **11 · Розрізніть звуки — яке з двох про втому?**
-🔊 Два слова поспіль.
-*tired · third* → **tired**
-- third — *Починається з міжзубного звука: язик між зубами. У `tired` перший звук — звичайне «т».*
+<!-- interaction_id: en:lesson-02:session-24:i11; family: sound_contrast -->
+Варіанти: `tired` · `third`
 
 **12 · Вставте слово — супутник просить води, втретє за десять хвилин**
-Are you ___ ? → **thirsty** · tired · lost
-- tired — *«Втомився». Від утоми води не просять.*
-- lost — *«Заблукав». Він поруч із вами й нікуди не подівся, йому просто хочеться пити.*
+<!-- interaction_id: en:lesson-02:session-24:i12; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `thirsty` · `tired` · `lost`
 
 **13 · Складіть запитання — супутник утретє просить води і сідає на кожну лавку; запитайте, чи він втомився**
-Плитки: `you` `tired` `are` `is` → **Are you tired?**
+<!-- interaction_id: en:lesson-02:session-24:i13; family: phrase_builder -->
+Ціль: `Are you tired?`
 
-**14 · З'єднайте пари (Speed Match, 4 пари)**
-near — поряд · behind — позаду · tired — втомився · thirsty — хоче пити
+**14 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-24:i14; family: speed_match -->
+Пари: `near` — поряд · `behind` — позаду · `tired` — втомився · `thirsty` — хоче пити
+Ціль: `near · behind · tired · thirsty`
 
 **15 · Складіть фразу — сцена вимагає відповіді, а не запитання**
-Вам сказали: вокзал поряд. Повторіть це супутникові.
-Плитки: `near` `is` `it` `are` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-24:i15; family: phrase_builder -->
+Ціль: `It is near.`
 
-**16 · Скажіть уголос — два запитання поспіль**
-🎙 **Where is the station? Are you tired?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i16:s01; family: scripted_repeat_compare -->
+Ціль: `Where is the station?`
 
-**17 · Фінал сцени — чотири фрази поспіль: запитання, дорога і відповідь**
-🎙 Ви біля мосту, супутник ледве йде. Запитайте, чи він не заблукав, запитайте про вокзал, скажіть, що вокзал позаду крамниць, і запитайте, чи він не хоче пити.
-**Are you lost? Where is the station? It is behind the shops. Are you thirsty?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i16:s02; family: scripted_repeat_compare -->
+Ціль: `Are you tired?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Are you lost?`
 
-## Для складальника
+**19 · Послухайте й складіть — ви уточнюєте у перехожого, де вокзал**
+<!-- interaction_id: en:lesson-02:session-24:i17:s02; family: listen_build_dictation -->
+Ціль: `Where is the station?`
 
-new_words: —
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s03; family: scripted_repeat_compare -->
+Ціль: `It is behind the shops.`
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contrast, 5=context_gap_grammar, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-24:i17:s04; family: scripted_repeat_compare -->
+Ціль: `Are you thirsty?`
 
-## Самоперевірка
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=sound_contrast, 5=context_gap_grammar, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| station | 1, 2, 6, 16, 17 | 1, 2, 16, 17 |
-| bridge | 3, 6, 9, 17 (інтро 2) | 3, 9 |
-| corner | 4, 5, 6, 10 | 4, 5 |
-| near | 7, 8, 14, 15 | 7, 8, 15 |
-| behind | 9, 14, 17 | 9, 17 |
-| lost | 6, 12, 17 (інтро 1) | 6, 17 |
-| tired | 11, 13, 14, 16 | 11, 13, 16 |
-| thirsty | 12, 14, 17 | 12, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | `Are you lost?` | так — `lost` і `Are you lost?` розібрані вище |
-| Інтро 2 | `Where is the bridge?` | так — `where`, `is`, `bridge` названі вище |
-| Інтро 3 | `It is behind the shops.` | так — `behind` і `It is behind the shops` стоять у тексті |
-
-**3. Дошка пар**
-
-| слово | картка | відпрацювання ДО дошки |
-|---|---|---|
-| station (дошка 6) | з минулих сесій | завдання 1, 2 |
-| bridge (дошка 6) | з минулих сесій | завдання 3 |
-| corner (дошка 6) | з минулих сесій | завдання 4, 5 |
-| lost (дошка 6) | з минулих сесій | інтро 1 |
-| near (дошка 14) | з минулих сесій | завдання 7, 8 |
-| behind (дошка 14) | з минулих сесій | завдання 9 |
-| tired (дошка 14) | з минулих сесій | завдання 11, 13 |
-| thirsty (дошка 14) | з минулих сесій | завдання 12 |
-
-Дошки 6 і 14 не мають спільних слів.
-
----
-
-🟡 **Варто покращити**
-- Завдання 4 (`corner` / `corridor`): `corridor` учень не проходив. Розбір його не вчить, лише відкидає — за правилом дистракторів це припустимо, але пара тримається на кількості складів (третя за надійністю ознака). Якщо суддя звука забракує — замінити на `corner` / `cold` (різниця в першому звуці, найнадійніший рівень).
-
-🧩 **Приховані зв'язки**
-- Сесія цілком стоїть на словах уроків 21–23; рядок «Нові слова» порожній — це checkpoint, так і задумано планом.
-- Дошка 6 і дошка 14 ділять сесію навпіл за наборами слів — за будь-якої правки завдань 1–5 і 7–13 перевіряти, що відпрацювання лишається ДО своєї дошки.
-
----
-
-- Виправив єдине зауваження судді: у заголовку блока вправ був російський уламок — тепер там чиста українська.
-- Решту тексту не чіпав: англійські слова, фрази, пастки, номери й порядок завдань, службовий блок — усе лишилося слово в слово.
-- Пояснення й далі спираються на українську мову, без кальок і без русизмів.

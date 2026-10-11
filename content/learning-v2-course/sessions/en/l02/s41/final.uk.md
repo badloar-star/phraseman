@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 41 — «Я не запізнився?»
+# Англійська · Урок 2 · Заняття 41 — «Я не запізнився?»
 
-**Сцена сесії.** У неділю вранці друг запросив вас поснідати до сусідів. Біля дверей ви уточнюєте час і сумніваєтеся, чи попередив він господарів про ваш прихід.
+**Сцена заняття.** У неділю вранці друг запросив вас поснідати до сусідів. Біля дверей ви уточнюєте час і сумніваєтеся, чи попередив він господарів про ваш прихід.
 
-**Операція:** запитання про себе `Am I + слово?`
+**Як сказати:** запитання про себе `Am I + слово?`
 **Нові слова:** punctual
 **Повертаються:** wrong, early, late, here, welcome
 **Нове значення поверненого слова:** welcome — «бажаний», про того, кого раді бачити.
@@ -51,152 +51,86 @@
 
 ---
 
-## Практика (17 завдань, підтримки поступово меншає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — punctual**
-> **punctual** — «пунктуальний». Тут — про людину, яка зазвичай приходить у домовлений час.
+<!-- interaction_id: en:lesson-02:session-41:i01; family: listen_choose -->
+Ціль: `punctual`
 
 **2 · Послухайте й виберіть — яке слово вимовив друг**
-🔊 *punctual* → **punctual** · factual · actual
-- factual — *Це «заснований на фактах». На початку `factual` чути звук «ф», а в `punctual` — «п».*
-- actual — *Це «справжній». Слово `actual` починається з голосного, а в записі першим чути звук «п»: `punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
+Ціль: `punctual`
+Варіанти: `punctual` · `factual` · `actual`
 
 **3 · Вставте слово — друг запитує, чи часто ви затримуєтеся; скажіть, що ви пунктуальні й зазвичай приходите в домовлений час**
-I am ___ . → **punctual** · early · late
-- early — *Це «рано». Ви описуєте звичку приходити в домовлений час, тому потрібне `punctual`.*
-- late — *Це «пізно» або «із запізненням». Тут ви говорите про свою пунктуальність: `I am punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i03; family: context_gap_grammar -->
+Ціль: `I am ___ .`
+Варіанти: `punctual` · `early` · `late`
 
 **4 · Послухайте й виберіть — яке запитання прозвучало біля дверей**
-🔊 *Am I early?* → **Am I early?** · Am I late? · Are you early?
-- Am I late? — *Це «Я запізнився?» Останнє слово в записі — `early`, «рано».*
-- Are you early? — *Це запитання до співрозмовника. Запис починається з `Am I`: людина запитує про себе.*
+<!-- interaction_id: en:lesson-02:session-41:i04; family: listen_choose -->
+Ціль: `Am I early?`
+Варіанти: `Am I early?` · `Am I late?` · `Are you early?`
 
 **5 · Вставте слово — ви назвали другові час сніданку, але сумніваєтеся; запитайте: «Я помиляюся?»**
-*(`wrong` — «неправий»)*
-Am I ___ ? → **wrong** · sure · tired
-- sure — *Вийде запитання про те, чи ви впевнені. Зараз ви хочете перевірити, чи не помилилися: `Am I wrong?`*
-- tired — *Це «втомлений». Ви перевіряєте своє припущення про час, тому тут потрібне `wrong`.*
+<!-- interaction_id: en:lesson-02:session-41:i05; family: context_gap_grammar -->
+Ціль: `Am I ___ ?`
+Варіанти: `wrong` · `sure` · `tired`
 
 **6 · Складіть фразу — друг телефонує дізнатися, чи ви дійшли; повідомте, що ви тут**
-*(`here` — «тут»)*
-Плитки: `here` `I` `am` → **I am here.**
+<!-- interaction_id: en:lesson-02:session-41:i06; family: phrase_builder -->
+Ціль: `I am here.`
 
 **7 · Вставте слово — господар відчинив двері; запитайте його: «Я запізнився?»**
-*(`late` — «із запізненням»)*
-___ I late? → **Am** · Are · Is
-- Are — *З `I` це запитання починається з `Am`: `Am I late?`*
-- Is — *Тут ви запитуєте про себе. Сполучення `Is I` замініть на `Am I`.*
+<!-- interaction_id: en:lesson-02:session-41:i07; family: context_gap_grammar -->
+Ціль: `___ I late?`
+Варіанти: `Am` · `Are` · `Is`
 
 **8 · Складіть фразу — у сусідів ще накривають на стіл; уточніть у друга, чи прийшли ви раніше запланованого часу**
-*(`early` — «рано»)*
-Плитки: `early` `I` `Am` → **Am I early?**
+<!-- interaction_id: en:lesson-02:session-41:i08; family: phrase_builder -->
+Ціль: `Am I early?`
 
-**9 · З’єднайте пари — слова для розмови про час і сумніви (Speed Match, 4 пари)**
-punctual — пунктуальний · wrong — неправий · early — рано · late — із запізненням
+**9 · З’єднайте пари — слова для розмови про час і сумніви**
+<!-- interaction_id: en:lesson-02:session-41:i09; family: speed_match -->
+Пари: `punctual` — пунктуальний · `wrong` — неправий · `early` — рано · `late` — із запізненням
+Ціль: `punctual · wrong · early · late`
 
 **10 · Вставте слово — запитайте друга: «Мені тут раді?»**
-*(`welcome` — «бажаний», `here` — «тут»)*
-Am I welcome ___ ? → **here** · outside · upstairs
-- outside — *Вийде запитання про те, чи раді вам надворі. Для «тут» потрібне `here`.*
-- upstairs — *Це «нагорі». Ви запитуєте про місце, де стоїте: «тут» — `here`.*
+<!-- interaction_id: en:lesson-02:session-41:i10; family: context_gap_grammar -->
+Ціль: `Am I welcome ___ ?`
+Варіанти: `here` · `outside` · `upstairs`
 
 **11 · Послухайте й виберіть — що сусід сказав вашому другові біля дверей**
-🔊 *You are welcome here.* → **You are welcome here.** · You are welcome. · Am I welcome here?
-- You are welcome. — *У цьому варіанті немає `here`. У записі сусід каже повністю: `You are welcome here` — «Тобі тут раді».*
-- Am I welcome here? — *Це запитання про себе. Запис починається з `You are`: сусід звертається до вашого друга.*
+<!-- interaction_id: en:lesson-02:session-41:i11; family: listen_choose -->
+Ціль: `You are welcome here.`
+Варіанти: `You are welcome here.` · `You are welcome.` · `Am I welcome here?`
 
 **12 · Складіть фразу — друг теж хвилюється, що запізнився, але ви знаєте, що він прийшов вчасно; заспокойте його**
-Плитки: `late` `not` `You` `are` → **You are not late.**
+<!-- interaction_id: en:lesson-02:session-41:i12; family: phrase_builder -->
+Ціль: `You are not late.`
 
 **13 · Послухайте й складіть — друг звіряє час, який назвав вам, зі своїм запрошенням**
-🔊 *I am not wrong.* Плитки: `wrong` `I` `not` `am` → **I am not wrong.**
+<!-- interaction_id: en:lesson-02:session-41:i13; family: listen_build_dictation -->
+Ціль: `I am not wrong.`
 
 **14 · Вставте слово — ви з другом часто зустрічаєтеся; запитайте, чи вважає він вас пунктуальною людиною**
-Am I ___ ? → **punctual** · welcome · wrong
-- welcome — *Це запитання про те, чи вам раді. Зараз ви запитуєте про звичку приходити вчасно: `punctual`.*
-- wrong — *Вийде «Я помиляюся?» Ви просите оцінити свою пунктуальність, тому потрібне `punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i14; family: context_gap_grammar -->
+Ціль: `Am I ___ ?`
+Варіанти: `punctual` · `welcome` · `wrong`
 
-**15 · Скажіть уголос — ви думаєте, що господар чекає ще одного гостя; уточніть у друга, чи не помиляєтеся**
-🎙 **Am I wrong?** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-41:i15; family: scripted_repeat_compare -->
+Ціль: `Am I wrong?`
 
-**16 · Скажіть уголос — господар назвав час сніданку, і ви зрозуміли, що прийшли раніше; скажіть про це**
-🎙 **I am early.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-41:i16; family: scripted_repeat_compare -->
+Ціль: `I am early.`
 
 **17 · Складіть фразу — друг кличе вас заходити, але ви досі не впевнені, чи раді господарі вашому приходу; запитайте його про це**
-Плитки: `here` `You` `welcome` `I` `Am` → **Am I welcome here?**
-*(плитка `You` зайва: ви запитуєте про себе)*
+<!-- interaction_id: en:lesson-02:session-41:i17; family: phrase_builder -->
+Ціль: `Am I welcome here?`
 
----
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=listen_choose, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
-## Для збирача
-
-new_words:
-punctual — пунктуальний — Тут — про людину, яка зазвичай приходить у домовлений час.
-
-modes: 1=word_card, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=listen_choose, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно є ПРАВИЛЬНОЮ відповіддю |
-|---|---|---|
-| wrong | 5, 9, 13, 14, 15 | 5, 9, 13, 15 |
-| early | 3, 4, 8, 9, 16 | 4, 8, 9, 16 |
-| late | 3, 4, 7, 9, 12 | 7, 9, 12 |
-| here | 6, 10, 11, 17 | 6, 10, 11, 17 |
-| welcome | 10, 11, 14, 17 | 10, 11, 17 |
-
-Усі повернені слова мають український переклад у практиці, щонайменше два контакти й використання у правильній відповіді. Нове значення `welcome` пояснено в інтро 3 до практики. Слово залишається в рядку «Повертаються».
-
-**2. Сторінки інтро**
-
-| сторінка | слово у відповіді ✅ | чи є це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | Am, I, late | так — `Am I late?` |
-| Інтро 2 | Am, I, wrong | так — `Am I wrong?` |
-| Інтро 3 | Am, I, welcome, here | так — `Am I welcome here?` |
-
-Довжина пояснень зі зворотними лапками, без заголовків і запитань: **295, 278 і 252 знаків**. Кожне починається з англійського слова або фрази та українського значення.
-
-**3. Дошка пар — завдання 9**
-
-| слово | картка | практика ДО дошки |
-|---|---|---|
-| punctual | 1 | 2, 3 |
-| wrong | із попередніх сесій | 5 |
-| early | із попередніх сесій | 4, 8 |
-| late | із попередніх сесій | 7 |
-
-На єдиній дошці чотири слова. Нове слово пройшло картку, розпізнавання на слух і використання у фразі до дошки.
-
-**4. Нове слово й значення**
-
-| матеріал | пояснення | розпізнавання | використання у фразі |
-|---|---|---|---|
-| punctual | картка 1 | 2 | 3, 14 |
-| welcome — «бажаний» | інтро 3 | фраза в завданні 11 | 10, 11, 17 |
-
-У завданнях 3 і 14 `punctual` описує звичку людини приходити в домовлений час. Прихід раніше або пізніше в конкретній ситуації передається словами `early` і `late`.
-
-**5. Складання**
-
-| завдання | правильна фраза | робота учня |
-|---|---|---|
-| 6 | I am here. | повідомлення про себе |
-| 8 | Am I early? | запитання про час свого приходу |
-| 12 | You are not late. | заперечення у зверненні до друга |
-| 13 | I am not wrong. | заперечення, складене на слух |
-| 17 | Am I welcome here? | самостійне запитання про себе із зайвою плиткою |
-
-П’ять складань. Початок `Am I` використовується у двох. У кожному голосовому завданні одне висловлювання. Безпосередньо перед фіналом звучить `I am early.`, а у фіналі складається `Am I welcome here?`
-
-**6. Завдання на слух**
-
-У завданні 2 варіанти `punctual`, `factual` і `actual` мають схоже закінчення, але відрізняються початком. Ознака для перевірки — перший звук: /p/, /f/ і /æ/ відповідно. Пояснення не спираються на кількість складів або кінцевий приголосний.
-
-Вимову звірено з Cambridge: [punctual](https://dictionary.cambridge.org/us/pronunciation/english/punctual), [factual](https://dictionary.cambridge.org/pronunciation/english/factual), [actual](https://dictionary.cambridge.org/pronunciation/english/actual).
-
-Інструкція до завдання 2 не дає перекладу чи опису правильної відповіді. У завданнях 4 і 11 вибираються цілі фрази. Набори варіантів різняться. Словникова перевірка не підтверджує якість аудіозаписів.

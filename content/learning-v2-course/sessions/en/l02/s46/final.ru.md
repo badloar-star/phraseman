@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 46 — «Проверка связи»
+# Английский · Урок 2 · Занятие 46 — «Проверка связи»
 
-**Сцена сессии.** В воскресенье утром вы созваниваетесь с ведущим перед коротким телефонным интервью. Он предлагает сначала проверить звук. Вы уточняете, слышен ли ваш голос и разборчиво ли звучит речь.
+**Сцена занятия.** В воскресенье утром вы созваниваетесь с ведущим перед коротким телефонным интервью. Он предлагает сначала проверить звук. Вы уточняете, слышен ли ваш голос и разборчиво ли звучит речь.
 
-**Операция:** применение вопросов о себе при проверке слышимости и разборчивости речи
+**Как сказать:** применение вопросов о себе при проверке слышимости и разборчивости речи
 **Новые слова:** audible, clear
 **Возвращаются:** ready, sure
 
@@ -50,77 +50,83 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — audible**
-> **audible** — «слышимый». Звук достаточно громкий, чтобы его услышать. При проверке связи это слово звучит формально.
+<!-- interaction_id: en:lesson-02:session-46:i01; family: listen_choose -->
+Цель: `audible`
 
 **2 · Послушайте и выберите — какое слово произнёс ведущий**
-🔊 *audible* → **audible** · edible · laudable
-- edible — *Это «съедобный». Первый гласный похож на начало русского «это». У `audible` начальный гласный другой — переслушайте начало.*
-- laudable — *Это «похвальный». Слово начинается со звука «л», а `audible` — с гласного.*
+<!-- interaction_id: en:lesson-02:session-46:i02; family: listen_choose -->
+Цель: `audible`
+Варианты: `audible` · `edible` · `laudable`
 
 **3 · Карточка слова — clear**
-> **clear** — «разборчивый, понятный». Здесь — о речи, в которой слова легко разобрать и понять.
+<!-- interaction_id: en:lesson-02:session-46:i03; family: listen_choose -->
+Цель: `clear`
 
 **4 · Послушайте и выберите — какое слово прозвучало**
-🔊 *clear* → **clear** · near · fear
-- near — *Это «близко». Слово начинается со звука «н», а `clear` — со звука «к».*
-- fear — *Это «страх». В начале `fear` слышен звук «ф», а в записи слово начинается со звука «к»: `clear`.*
+<!-- interaction_id: en:lesson-02:session-46:i04; family: listen_choose -->
+Цель: `clear`
+Варианты: `clear` · `near` · `fear`
 
 **5 · Соберите фразу — ведущий просит проверить микрофон телефона; спросите, слышно ли вас**
-Плитки: `audible` `I` `Am` → **Am I audible?**
+<!-- interaction_id: en:lesson-02:session-46:i05; family: phrase_builder -->
+Цель: `Am I audible?`
 
 **6 · Вставьте слово — ведущий сказал, что голос слышен; уточните, разборчивы ли ваши слова**
-Am I ___ ? → **clear** · audible · ready
-- audible — *Голос уже слышен. Сейчас вы проверяете, легко ли разобрать слова: `clear`.*
-- ready — *Это «готов». Вопрос сейчас о разборчивости вашей речи, поэтому нужно `clear`.*
+<!-- interaction_id: en:lesson-02:session-46:i06; family: context_gap_grammar -->
+Цель: `Am I ___ ?`
+Варианты: `clear` · `audible` · `ready`
 
 **7 · Послушайте и выберите — какой вопрос ведущий задал во время проверки звука**
-🔊 *Am I clear?* → **Am I clear?** · Am I audible? · Are you clear?
-- Am I audible? — *Это вопрос о слышимости. На записи последнее слово `clear` — ведущий проверяет разборчивость своей речи.*
-- Are you clear? — *Это вопрос к вам. В записи начало `Am I`: ведущий спрашивает о себе.*
+<!-- interaction_id: en:lesson-02:session-46:i07; family: listen_choose -->
+Цель: `Am I clear?`
+Варианты: `Am I clear?` · `Am I audible?` · `Are you clear?`
 
 **8 · Соберите фразу — ведущий спрашивает, уверены ли вы, что всё проверили; вы пока сомневаетесь**
-*(`sure` — «уверен»)*
-Плитки: `sure` `not` `I` `am` → **I am not sure.**
+<!-- interaction_id: en:lesson-02:session-46:i08; family: phrase_builder -->
+Цель: `I am not sure.`
 
 **9 · Вставьте слово — ведущий спрашивает, подготовили ли вы свои заметки; они перед вами, скажите: «Я готов»**
-*(`ready` — «готов»)*
-I am ___ . → **ready** · sure · late
-- sure — *Это «уверен». Вы сообщаете о готовности к интервью: `ready`.*
-- late — *Это «опоздал» или «опаздываю». Сейчас речь о подготовленных заметках: `I am ready`.*
+<!-- interaction_id: en:lesson-02:session-46:i09; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `ready` · `sure` · `late`
 
-**10 · Соедините пары — слова перед интервью (Speed Match, 4 пары)**
-audible — слышимый · clear — разборчивый · ready — готов · sure — уверен
+**10 · Соедините пары — слова перед интервью**
+<!-- interaction_id: en:lesson-02:session-46:i10; family: speed_match -->
+Пары: `audible` — слышимый · `clear` — разборчивый · `ready` — готов · `sure` — уверен
+Цель: `audible · clear · ready · sure`
 
 **11 · Соберите фразу — ведущий проверяет свою речь; вы легко разбираете его слова, подтвердите: «Вы говорите разборчиво»**
-Плитки: `clear` `You` `are` → **You are clear.**
+<!-- interaction_id: en:lesson-02:session-46:i11; family: phrase_builder -->
+Цель: `You are clear.`
 
 **12 · Вставьте слово — вы отодвинули телефон и хотите проверить, слышен ли по-прежнему ваш голос**
-___ I audible? → **Am** · Are · Is
-- Are — *Вопрос о себе с `I` начинается с `Am`: `Am I audible?`*
-- Is — *Сочетание `Is I` не подходит для этого вопроса. Нужны первые два слова `Am I`.*
+<!-- interaction_id: en:lesson-02:session-46:i12; family: context_gap_grammar -->
+Цель: `___ I audible?`
+Варианты: `Am` · `Are` · `Is`
 
 **13 · Послушайте и соберите — ведущий оценивает вашу общую готовность к началу интервью**
-🔊 *We are not ready.* Плитки: `ready` `We` `not` `are` → **We are not ready.**
+<!-- interaction_id: en:lesson-02:session-46:i13; family: listen_build_dictation -->
+Цель: `We are not ready.`
 
 **14 · Вставьте слово — ведущий проверяет свои записи; спросите, готов ли он начинать**
-Are you ___ ? → **ready** · audible · early
-- audible — *Это вопрос о слышимости его голоса. Сейчас вы уточняете готовность ведущего: `ready`.*
-- early — *Это «рано». Вы спрашиваете, готов ли собеседник, поэтому нужно `Are you ready?`*
+<!-- interaction_id: en:lesson-02:session-46:i14; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `ready` · `audible` · `early`
 
-**15 · Скажите вслух — ведущий просит оценить его речь после настройки телефона; его слова звучат разборчиво**
-🎙 **You are clear.** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-46:i15; family: scripted_repeat_compare -->
+Цель: `You are clear.`
 
-**16 · Скажите вслух — ведущий спрашивает о ваших заметках; вы всё подготовили и сообщаете, что готовы**
-🎙 **I am ready.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-46:i16; family: scripted_repeat_compare -->
+Цель: `I am ready.`
 
 **17 · Соберите фразу — вы изменили положение телефона; перед интервью проверьте у ведущего, разборчиво ли теперь звучат ваши слова**
-Плитки: `clear` `you` `Am` `I` → **Am I clear?**
-*(плитка `you` лишняя: вы спрашиваете о своей речи)*
-
----
+<!-- interaction_id: en:lesson-02:session-46:i17; family: phrase_builder -->
+Цель: `Am I clear?`
 
 ## Для сборщика
 
@@ -128,7 +134,7 @@ new_words:
 audible — слышимый — Звук достаточно громкий, чтобы его услышать. При проверке связи это слово звучит формально.
 clear — разборчивый, понятный — Здесь — о речи, в которой слова легко разобрать и понять.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=phrase_builder, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ---
 
@@ -159,8 +165,8 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | audible | 1 | 2, 5 |
 | clear | 3 | 4, 6, 7 |
-| ready | из предыдущих сессий | 9 |
-| sure | из предыдущих сессий | 8 |
+| ready | из предыдущих занятий | 9 |
+| sure | из предыдущих занятий | 8 |
 
 На единственной доске четыре слова. Оба новых слова прошли карточку, узнавание на слух и использование во фразе до доски.
 

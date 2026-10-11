@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 39 — «Проверяем собранный заказ»
+# Английский · Урок 3 · Занятие 39 — «Проверяем собранный заказ»
 
-**Сцена сессии.** Вы с другом забираете предварительный заказ у стойки выдачи на крытом рынке; продавец складывает в коробку виноград, лимоны и лук, разложенные ближе и дальше на упаковочном столе. Нужно проверить содержимое и точно сказать продавцу, что уже лежит перед вами, что стоит дальше и что добавить в коробку.
+**Сцена занятия.** Вы с другом забираете предварительный заказ у стойки выдачи на крытом рынке; продавец складывает в коробку виноград, лимоны и лук, разложенные ближе и дальше на упаковочном столе. Нужно проверить содержимое и точно сказать продавцу, что уже лежит перед вами, что стоит дальше и что добавить в коробку.
 
-**Операция:** называть и выбирать группы предметов через `these/those` с меньшей опорой
+**Как сказать:** называть и выбирать группы предметов через `these/those` с меньшей опорой
 **Новые слова:** grape, lemon, onion
 **Для повторения:** these, those, are, apple
 
@@ -50,85 +50,108 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — grape**
-> **grape** — «виноградина». Небольшая круглая ягода, растущая гроздьями.
+**1 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-39:i01; family: listen_choose -->
+Цель: `grape`
+Варианты: `grape`
 
-**2 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *grape* → **grape** · graph · grip · group
-Значения вариантов: grape — виноградина · graph — график · grip — хватка · group — группа
-- graph — *В конце `graph` слышится /f/, а `grape` заканчивается звуком /p/.*
-- grip — *В `grip` краткий звук /ɪ/, а в `grape` — дифтонг /eɪ/.*
-- group — *В `group` слышится долгий /uː/, а в `grape` — /eɪ/.*
+**2 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-39:i03; family: scripted_repeat_compare -->
+Цель: `lemon`
 
-**3 · Карточка слова — lemon**
-> **lemon** — «лимон». Жёлтый цитрусовый фрукт с кислым соком.
+**3 · Послушайте и выберите овощ — у упаковочного стола**
+<!-- interaction_id: en:lesson-03:session-39:i05; family: listen_choose -->
+Цель: `onion`
+Варианты: `onion`
 
-**4 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *lemon* → **lemon** · melon · lemma · linen
-Значения вариантов: lemon — лимон · melon — дыня · lemma — лемма · linen — лён
-- melon — *У `melon` звуки /m/ и /l/ стоят в другом порядке; `lemon` начинается с /l/.*
-- lemma — *`lemma` заканчивается гласным /ə/, а в `lemon` слышен конечный /n/.*
-- linen — *В первом слоге `linen` слышится /ɪ/, а в `lemon` — /e/.*
+**4 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-39:i02; family: scripted_repeat_compare -->
+Цель: `grape`
 
-**5 · Карточка слова — onion**
-> **onion** — «луковица». Круглый овощ из нескольких плотных слоёв.
+**5 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-39:i04; family: listen_choose -->
+Цель: `lemon`
+Варианты: `lemon`
 
-**6 · Послушайте и выберите — какое слово назвал продавец**
-🔊 *onion* → **onion** · union · canyon · opinion
-Значения вариантов: onion — луковица · union — союз · canyon — каньон · opinion — мнение
-- union — *`union` начинается звуком /j/, а `onion` — гласным /ʌ/.*
-- canyon — *`canyon` начинается слогом /kæn/, которого нет в `onion`.*
-- opinion — *`opinion` длиннее и содержит три слога, а `onion` — два.*
+**6 · Произнесите слово — лук лежит рядом**
+<!-- interaction_id: en:lesson-03:session-39:i06; family: scripted_repeat_compare -->
+Цель: `onion`
 
 **7 · Соедините слова со значениями — продукты для заказа**
-grape — виноградина · lemon — лимон · onion — луковица · apple — яблоко
+<!-- interaction_id: en:lesson-03:session-39:i08; family: speed_match -->
+Пары: `grape` — виноградина · `lemon` — лимон · `onion` — луковица · `apple` — яблоко
+Цель: `grape · lemon · onion · apple`
 
-**8 · Послушайте и выберите точное значение фразы о винограде**
-🔊 *These are grapes.* → **Это виноград** · Это виноградина · Это лимоны · Это лук
-- Это виноградина — *В записи слышны `these are` и `grapes`: называют группу винограда.*
-- Это лимоны — *Названо `grapes` — виноград, а не `lemons` — лимоны.*
-- Это лук — *Названо `grapes`, а луковицы по-английски — `onions`.*
+**8 · Послушайте и соберите просьбу — лук на дальней стойке**
+<!-- interaction_id: en:lesson-03:session-39:i10; family: listen_build_dictation -->
+Цель: `Those onions, please.`
 
-**9 · Вставьте указатель — виноград теперь лежит у дальней стойки**
-___ are grapes. → **Those** · These · That · This
-- These — *`These are grapes` подходит для винограда рядом. Эта группа дальше, поэтому нужно `Those`.*
-- That — *`That` относится к одному предмету и требует `is`. Здесь называют группу.*
-- This — *`This` относится к одному предмету рядом. Здесь группа находится дальше.*
+**9 · Произнесите фразу — яблоки лежат рядом**
+<!-- interaction_id: en:lesson-03:session-39:i11; family: scripted_repeat_compare -->
+Цель: `These are apples.`
 
-**10 · Соберите просьбу — вы выбираете виноград перед вами**
-Плитки: `These` `grapes` `please` `Those` `are` `grape` → **These grapes, please.**
+**10 · Соберите описание — лук лежит рядом**
+<!-- interaction_id: en:lesson-03:session-39:i07; family: phrase_builder -->
+Цель: `These are onions.`
 
-**11 · Послушайте и выберите точное значение фразы о лимонах**
-🔊 *Those are lemons.* → **Это лимоны** · Это лимон · Это виноград · Это лук
-- Это лимон — *В записи слышны `those are` и `lemons`: называют несколько лимонов.*
-- Это виноград — *Названо `lemons` — лимоны, а не `grapes` — виноград.*
-- Это лук — *Названо `lemons`, а луковицы по-английски — `onions`.*
+**11 · Вставьте указатель — виноград теперь лежит у дальней стойки**
+<!-- interaction_id: en:lesson-03:session-39:i09; family: context_gap_grammar -->
+Цель: `___ are grapes.`
+Варианты: `Those` · `These` · `That` · `This`
 
-**12 · Соберите два описания — лимоны рядом, виноград дальше**
-Плитки: `These` `are` `lemons` `Those` `are` `grapes` `This` `is` `a` → **These are lemons. Those are grapes.**
+**12 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i12:s01; family: phrase_builder -->
+Цель: `These are lemons.`
 
-**13 · Послушайте и выберите точное значение просьбы**
-🔊 *These onions, please.* → **Эти луковицы, пожалуйста** · Те луковицы, пожалуйста · Эти лимоны, пожалуйста · Это луковицы
-- Те луковицы, пожалуйста — *В записи слышно `these`, а не `those`: выбирают близкую группу.*
-- Эти лимоны, пожалуйста — *Названо `onions` — луковицы, а не `lemons` — лимоны.*
-- Это луковицы — *В записи нет `are`: это просьба добавить товар, а не сообщение о его названии.*
+**13 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i12:s02; family: scripted_repeat_compare -->
+Цель: `Those are grapes.`
 
-**14 · Соберите описание и просьбу — лук находится у дальней стойки**
-Плитки: `Those` `are` `onions` `Those` `onions` `please` `These` `is` `an` → **Those are onions. Those onions, please.**
+**14 · Послушайте и выберите точное значение просьбы**
+<!-- interaction_id: en:lesson-03:session-39:i13; family: listen_choose -->
+Цель: `These onions, please.`
+Варианты: `Эти луковицы, пожалуйста` · `Те луковицы, пожалуйста` · `Эти лимоны, пожалуйста` · `Это луковицы`
 
-**15 · Скажите вслух — лук находится у дальней стойки**
-🎙 **Those are onions.** — произнесите фразу, затем послушайте образец и сравните.
+**15 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i14:s01; family: phrase_builder -->
+Цель: `Those are onions.`
 
-**16 · Послушайте и соберите три описания заказа**
-🔊 *These are grapes. Those are lemons. These are onions.* Плитки: `These` `are` `grapes` `Those` `are` `lemons` `These` `are` `onions` `This` `is` `an` → **These are grapes. Those are lemons. These are onions.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i14:s02; family: scripted_repeat_compare -->
+Цель: `Those onions, please.`
 
-**17 · Финал — проверьте продукты у второй стороны стола**
-🎙 **Those are grapes. These are lemons. Those onions, please.** — виноград и лук теперь находятся дальше, а лимоны — перед вами. Назовите две группы и попросите добавить лук, затем послушайте образец и сравните.
+**17 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i15; family: listen_build_dictation -->
+Цель: `Those are onions.`
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i16:s01; family: scripted_repeat_compare -->
+Цель: `These are grapes.`
+
+**19 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i16:s02; family: listen_build_dictation -->
+Цель: `Those are lemons.`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i16:s03; family: scripted_repeat_compare -->
+Цель: `These are onions.`
+
+**21 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i17:s01; family: phrase_builder -->
+Цель: `Those are grapes.`
+
+**22 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i17:s02; family: scripted_repeat_compare -->
+Цель: `These are lemons.`
+
+**23 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-39:i17:s03; family: phrase_builder -->
+Цель: `Those onions, please.`
 
 ## Для сборщика
 new_words: grape — виноградина — Небольшая круглая ягода, растущая гроздьями.
 new_words: lemon — лимон — Жёлтый цитрусовый фрукт с кислым соком.
 new_words: onion — луковица — Круглый овощ из нескольких плотных слоёв.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=phrase_builder, 22=scripted_repeat_compare, 23=phrase_builder

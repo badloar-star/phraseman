@@ -1,0 +1,47 @@
+{
+  "session": "en/l04/s01",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:38:16.2729341Z",
+  "sourceSha256": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+  "exactRuSha256": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+  "exactUkSha256": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89",
+  "practiceAtomicSha256": "04b766373d683d7eba946c2baacc027d26673bc31ec0eca1e8e43ef9e0a9e3f5",
+  "localeHashes": {
+    "ru": "d92366b50618aec79967c7cacf2b5565fe974ce4b53b74c97a8370b4fa7add4b",
+    "uk": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "localeSha256": "2ab23d888c9c142dbccaefe105157194ade6dc379072c2b8375a8a1e27750f89",
+  "role": "locale_ru_uk",
+  "sourceReport": "fresh independent read-only full RU/UK/atomic parity review",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "mustFix": [],
+      "must_fix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "semanticParity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "All three intros and 17 tasks match in order, mechanics, English targets, options and feedback intent.",
+        "Ukrainian scene, prompts, meanings and feedback are natural; no Russian leakage, untranslated prop/jargon or semantic addition was found."
+      ]
+    }
+  },
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "RU and UK learner-facing source and nested atomic locale fields are structurally identical and semantically aligned on the reviewed hashes."
+  ]
+}
+

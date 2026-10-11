@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-03:intro1:r2": {
+          "ru": "После `I` нужна форма `am`: `Yes, I am.`.",
+          "uk": "Після `I` потрібна форма `am`: `Yes, I am.`."
+        },
+        "en:lesson-02:session-03:intro1:r3": {
+          "ru": "Это порядок слов вопроса. В ответе сначала `I`, затем `am`.",
+          "uk": "Це порядок слів у запитанні. У відповіді спочатку `I`, потім `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-03:intro2:r2": {
+          "ru": "`Not` ставят после `am`: `I am not`.",
+          "uk": "`Not` ставлять після `am`: `I am not`."
+        },
+        "en:lesson-02:session-03:intro2:r3": {
+          "ru": "В ответе сначала `I am`, затем `not`.",
+          "uk": "У відповіді спочатку `I am`, потім `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-03:intro3:r2": {
+          "ru": "После `I` нужно `am`.",
+          "uk": "Після `I` потрібне `am`."
+        },
+        "en:lesson-02:session-03:intro3:r3": {
+          "ru": "В ответе порядок `I am`, а не `am I`.",
+          "uk": "У відповіді порядок `I am`, а не `am I`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "07f5b8b1a8f6447f11ec2151383c221d72b1d4eda4b8e542ef855444bfc1a002"
+}

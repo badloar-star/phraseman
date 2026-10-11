@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-34:i01",
-    "correctText": "",
+    "correctText": "blanket",
+    "correctResponseId": "en:lesson-03:session-34:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i03",
+    "correctText": "sheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i05",
+    "correctText": "duvet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-34:i02",
     "correctText": "blanket",
-    "correctResponseId": "en:lesson-03:session-34:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-34:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,33 +25,28 @@
     "correctResponseId": "en:lesson-03:session-34:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-34:i05",
-    "correctText": "",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-03:session-34:i06",
     "correctText": "duvet",
-    "correctResponseId": "en:lesson-03:session-34:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-34:i07",
-    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-34:i08",
-    "correctText": "Those sheets, please.",
+    "correctText": "blanket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-34:i09",
-    "correctText": "sheets",
+    "correctText": "sheet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-34:i10",
-    "correctText": "duvets",
+    "correctText": "duvet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i07",
+    "correctText": "en:lesson-03:session-34:i07:p1=blanket\nen:lesson-03:session-34:i07:p2=sheet\nen:lesson-03:session-34:i07:p3=duvet\nen:lesson-03:session-34:i07:p4=pillow",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-34:i17",
-    "correctText": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+    "interactionId": "en:lesson-03:session-34:i17:s01",
+    "correctText": "Those are blankets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i17:s02",
+    "correctText": "Those are sheets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i17:s03",
+    "correctText": "Those are duvets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-34:i17:s04",
+    "correctText": "Those blankets, please.",
     "correctResponseId": null
   }
 ]

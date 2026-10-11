@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-44:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "Здесь спрашивают о всей компании. На записи начало `Am I`: друг спрашивает о себе.",
               "uk": "Тут запитують про вас обох. У записі звучить початок `Am I`: друг запитує про себе."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-44:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "Это вопрос к вам. В записи друг говорит `I` — «я».",
               "uk": "Це запитання до вас. У записі друг говорить `I` — «я»."
@@ -124,12 +124,12 @@
             "text": "you"
           }
         ],
-        "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+        "testedDimension": "Вставте слово — друг перевіряє ваші речі",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+            "testedDimension": "Вставте слово — друг перевіряє ваші речі",
             "feedbackByLocale": {
               "ru": "Это «мы». Вы спрашиваете о себе, поэтому здесь нужно `I`.",
               "uk": "Це «ми». Ви запитуєте про себе, тому тут потрібне `I`."
@@ -138,7 +138,7 @@
           {
             "responseId": "en:lesson-02:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+            "testedDimension": "Вставте слово — друг перевіряє ваші речі",
             "feedbackByLocale": {
               "ru": "Это «ты» или «вы». Вопрос к другу о вашей готовности начинается с `Am I`.",
               "uk": "Це «ти» або «ви». Щоб запитати друга про свою готовність, почніть із `Am I`."
@@ -234,7 +234,7 @@
           {
             "responseId": "en:lesson-02:session-44:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал,",
+            "testedDimension": "Послухайте й виберіть — що друг сказав, ",
             "feedbackByLocale": {
               "ru": "Без `not` получается «Я уверен». На записи друг говорит, что не уверен.",
               "uk": "Без `not` вийде «Я впевнений». У записі друг говорить, що не впевнений."
@@ -243,7 +243,7 @@
           {
             "responseId": "en:lesson-02:session-44:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал,",
+            "testedDimension": "Послухайте й виберіть — що друг сказав, ",
             "feedbackByLocale": {
               "ru": "Это «Мы не уверены». На записи первое слово `I`: друг говорит о себе.",
               "uk": "Це «Ми не впевнені». Перше слово в записі — `I`: друг говорить про себе."
@@ -300,12 +300,12 @@
             "text": "early"
           }
         ],
-        "testedDimension": "Вставьте слово — вы проверили время в би",
+        "testedDimension": "Вставте слово — ви перевірили час у квит",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы проверили время в би",
+            "testedDimension": "Вставте слово — ви перевірили час у квит",
             "feedbackByLocale": {
               "ru": "Это «опоздал» или «опаздываю». Сейчас вы подтверждаете, что уверены во времени: `sure`.",
               "uk": "Це «запізнився» або «запізнююся». Зараз ви підтверджуєте, що впевнені щодо часу: `sure`."
@@ -314,7 +314,7 @@
           {
             "responseId": "en:lesson-02:session-44:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы проверили время в би",
+            "testedDimension": "Вставте слово — ви перевірили час у квит",
             "feedbackByLocale": {
               "ru": "Это «рано». Вы говорите об уверенности в ответе, поэтому нужно `I am sure`.",
               "uk": "Це «рано». Ви говорите про впевненість у відповіді, тому потрібне `I am sure`."
@@ -407,7 +407,7 @@
           {
             "responseId": "en:lesson-02:session-44:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "Это вопрос только о себе. В записи начало `Are we` — вопрос о вас обоих.",
               "uk": "Це запитання лише про себе. У записі звучить початок `Are we` — запитання про вас обох."
@@ -416,7 +416,7 @@
           {
             "responseId": "en:lesson-02:session-44:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "testedDimension": "Послухайте й виберіть — яке запитання др",
             "feedbackByLocale": {
               "ru": "В этом варианте последнее слово `late`. На записи звучит `early` — «рано».",
               "uk": "У цьому варіанті останнє слово `late`. У записі звучить `early` — «рано»."
@@ -473,12 +473,12 @@
             "text": "sure"
           }
         ],
-        "testedDimension": "Вставьте слово — вы собрались у двери и ",
+        "testedDimension": "Вставте слово — ви зібралися біля дверей",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы собрались у двери и ",
+            "testedDimension": "Вставте слово — ви зібралися біля дверей",
             "feedbackByLocale": {
               "ru": "Это вопрос о готовности. Вы уточняете время выхода, поэтому нужно `early`.",
               "uk": "Це запитання про готовність. Ви уточнюєте час виходу, тому потрібне `early`."
@@ -487,7 +487,7 @@
           {
             "responseId": "en:lesson-02:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы собрались у двери и ",
+            "testedDimension": "Вставте слово — ви зібралися біля дверей",
             "feedbackByLocale": {
               "ru": "Получится «Мы уверены?» Сейчас вы спрашиваете, опережаете ли намеченное время выхода: `Are we early?`",
               "uk": "Вийде «Ми впевнені?» Зараз ви запитуєте, чи випереджаєте запланований час виходу: `Are we early?`"
@@ -608,13 +608,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг зазирнув у вашу сумку; уточніть, чи ви самі готові до виходу",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг зазирнув у вашу сумку; уточніть, чи ви самі готові до виходу",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -680,12 +680,12 @@
             "text": "she"
           }
         ],
-        "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+        "testedDimension": "Вставте слово — ви обоє біля дверей і ди",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-44:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+            "testedDimension": "Вставте слово — ви обоє біля дверей і ди",
             "feedbackByLocale": {
               "ru": "Это «я». Вопрос о вас обоих требует `we`: `Are we early?`",
               "uk": "Це «я». Для запитання про вас обох потрібне `we`: `Are we early?`"
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-02:session-44:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+            "testedDimension": "Вставте слово — ви обоє біля дверей і ди",
             "feedbackByLocale": {
               "ru": "Это «она». Вы спрашиваете о себе вместе с другом, поэтому выбирайте `we`.",
               "uk": "Це «вона». Ви запитуєте і про себе, і про друга, тому виберіть `we`."
@@ -787,7 +787,7 @@
           {
             "responseId": "en:lesson-02:session-44:i14:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "testedDimension": "Послухайте й виберіть — яке запитання пр",
             "feedbackByLocale": {
               "ru": "Это вопрос о личной готовности. В записи звучит `Are we`: спрашивают обо всех вместе.",
               "uk": "Це запитання про особисту готовність. У записі звучить `Are we`: запитують про вас обох."
@@ -796,7 +796,7 @@
           {
             "responseId": "en:lesson-02:session-44:i14:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "testedDimension": "Послухайте й виберіть — яке запитання пр",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи сначала `Are we`: прозвучал вопрос.",
               "uk": "Це повідомлення. У записі спочатку звучить `Are we`: прозвучало запитання."
@@ -814,13 +814,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви дивитеся на годинник біля дверей; уточніть у друга, чи випереджаєте ви запланований час виходу",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви дивитеся на годинник біля дверей; уточніть у друга, чи випереджаєте ви запланований час виходу",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -847,13 +847,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви закінчили перевіряти свої речі; повідомте другові про власну готовність",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-44:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви закінчили перевіряти свої речі; повідомте другові про власну готовність",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -911,5 +911,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "da6572b3256bb8ab75e2ef23110df77d5e5effce3bf51c10a4e3ced269a47d77"
+  "learnerFingerprint": "02cfda3e38fe5763a0d29042e03e38228b254b114af52d885aa2d8a5e1240bb2"
 }

@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 26 — «It is» про погоду и время
+# Английский · Урок 1 · Занятие 26 — «It is» про погоду и время
 
-**Сцена сессии.** Утро в новой квартире. Вы стоите у окна с чашкой в руке, смотрите на улицу и на часы — и решаете, во сколько выходить.
-**Операция:** применение `It is` + погода и время
-**Новые слова:** rainy, windy
+**Ситуация.** Лена утром собирается на работу. Перед выходом она смотрит в окно и на часы, чтобы решить, брать ли зонт и пора ли собираться.
+**Как сказать:** `It is`, когда говорите о погоде или о времени.
+**Новые слова:** rainy, windy, early, late
 **Возвращаются:** cold, warm, dark, quiet, early, late (про время)
 
 ---
@@ -15,13 +15,13 @@
 
 По-русски хватает одного слова: «дождливо». По-английски перед ним нужны ещё два — `It is`.
 
-Это `it` ни на что не показывает — ни на небо, ни на улицу. Оно стоит там потому, что без него фраза не собирается.
+В таких фразах `it` не называют предмет: это обычное начало фразы о погоде.
 
 **Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду.**
 
 - ✅ **It is rainy.**
 - ❌ Is rainy. — *`It` пропало. Оно кажется лишним, но без него фраза начинается ниоткуда.*
-- ❌ It rainy. — *Скрепка `is` потерялась. По-русски её нет, по-английски без неё не говорят.*
+- ❌ It rainy. — *Между `it` и словом нужна форма `is`.*
 
 ---
 
@@ -31,7 +31,7 @@
 
 `windy` — «ветрено». Ветер гнёт деревья, дверь вырывается из рук — это `It is windy`.
 
-Хвост «-и» тут делает всю работу: `wind` — сам ветер, само явление; `windy` — какая на улице погода. Скажете `It is wind` — получится «оно есть ветер», и вас переспросят.
+`wind` — это сам ветер, а `windy` — описание погоды. Поэтому о погоде говорят `It is windy`.
 
 **Вы открыли форточку, и штору сдуло на пол. Скажите про погоду.**
 
@@ -47,90 +47,126 @@
 
 `early` — «рано». `late` — «поздно». Про часы говорят теми же двумя словами, что и про погоду: `It is early`, `It is late`.
 
-И вот тут ловушка. `I am late` — «я опаздываю», виноваты вы. `It is late` — «поздно», виноваты часы. Одно слово, два разных виноватых.
+`I am late` значит «я опаздываю», а `It is late` — «поздно». В первом случае речь о человеке, во втором — о времени.
 
 **Вы глянули на часы: полседьмого, выходить только через час. Скажите про время.**
 
 - ✅ **It is early.**
 - ❌ I am early. — *Это «я пришёл рано» — про вас. А тут вы говорите про часы: `It is early`.*
-- ❌ It early. — *Скрепка `is` снова выпала. Между `It` и словом — всегда `is`.*
+- ❌ It early. — *Между `It` и словом нужна форма `is`.*
 
 ---
 
 ## Практика (18 заданий, поддержка убывает)
 
 **1 · Карточка слова — rainy**
+<!-- interaction_id: en:lesson-01:session-26:i01; family: listen_choose -->
 > **rainy** — «дождливо». Не ливень и не потоп, а обычная серая морось, из-за которой берут зонт.
 
-**2 · Послушайте и выберите — rainy**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-26:i02; family: listen_choose -->
 🔊 *rainy* → **rainy** · rain · ready
-- rain — *Без хвоста «-и». Это «дождь» — сама вода с неба, а не погода.*
+- rainy — *В записи `rainy` после `rain` слышно «и»: это прилагательное о погоде, не `rain` и не `ready`.*
+- rain — *`rain` — «дождь». Чтобы описать погоду, нужно `rainy` — «дождливо».*
 - ready — *`rainy` начинается как русское «рейс». `ready` — коротко, «ре».*
 
 **3 · Карточка слова — windy**
+<!-- interaction_id: en:lesson-01:session-26:i03; family: listen_choose -->
 > **windy** — «ветрено». Не лёгкий ветерок, а такой, при котором хлопает форточка и зонт бесполезен.
 
-**4 · Послушайте и выберите — windy**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-26:i04; family: listen_choose -->
 🔊 *windy* → **windy** · wind · window
-- wind — *Без хвоста «-и». Это сам ветер, а не погода.*
+- windy — *В записи `windy` после `wind` слышно «и»: это погода, не `wind` и не `window`.*
+- wind — *`wind` — «ветер». Чтобы описать погоду, нужно `windy` — «ветрено».*
 - window — *«Окно». Второй кусок другой: «-доу» против «-ди».*
 
 **5 · Соберите фразу — за окном гнёт деревья**
+<!-- interaction_id: en:lesson-01:session-26:i05; family: phrase_builder -->
 Плитки: `windy` `It` `is` `not` → **It is windy.**
-- `not` — *Лишняя плитка. За окном действительно ветрено, отрицать нечего.*
+Лишняя плитка `not`: деревья гнёт ветром, поэтому `It is windy.`
 
 **6 · Карточка слова — early**
+<!-- interaction_id: en:lesson-01:session-26:i06; family: listen_choose -->
 > **early** — «рано». Часы показывают меньше, чем вы рассчитывали, и есть время посидеть.
 
 **7 · Карточка слова — late**
+<!-- interaction_id: en:lesson-01:session-26:i07; family: listen_choose -->
 > **late** — «поздно». Про время суток: часы ушли дальше, чем хотелось бы.
 
-**8 · Послушайте и выберите — early**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-26:i08; family: listen_choose -->
 🔊 *early* → **early** · ear · earn
+- early — *В записи `early` после «ёр» слышно `-ly`; это не `ear` и не `earn` с концом `-n`.*
 - ear — *«Ухо». Там гласная как в русском «и», у `early` — глухая, ближе к «ё».*
 - earn — *Начало то же самое, «ёр». Разница в конце: у `earn` там «н», у `early` — «-ли».*
 
 **9 · Послушайте и соберите — «поздно»**
+<!-- interaction_id: en:lesson-01:session-26:i09; family: listen_build_dictation -->
 🔊 *It is late.* Плитки: `late` `is` `It` `early` → **It is late.**
+Лишняя плитка `early`: в записи `It is late.` — «поздно».
 
 **10 · Вставьте слово — по стеклу течёт, во дворе лужи**
+<!-- interaction_id: en:lesson-01:session-26:i10; family: context_gap_grammar -->
 It is ___ . → **rainy** · windy · early
+- rainy — *По стеклу течёт вода и во дворе лужи, поэтому `rainy` — «дождливо», не ветрено и не рано.*
 - windy — *Ветра нет, есть вода. Про дождь — `rainy`.*
 - early — *Это про часы, а вы смотрите на погоду.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-26:i11; family: speed_match -->
 rainy — дождливо · windy — ветрено · early — рано · late — поздно
 
-**12 · Вставьте скрепку — про погоду за окном**
+**12 · Вставьте слово — про погоду за окном**
+<!-- interaction_id: en:lesson-01:session-26:i12; family: context_gap_grammar -->
 It ___ cold. → **is** · am · are
+- is — *Про погоду говорят `It`, поэтому в `It is cold.` нужна форма `is`.*
 - am — *`am` живёт только рядом с `I`. Про погоду — `is`.*
 - are — *Тоже не сюда. `It` берёт только `is`.*
 
-**13 · Вставьте слово — половина седьмого, выходить через час**
-It is ___ . → **early** · late · dark
-- late — *Наоборот: времени полно. Когда рано — `early`.*
-- dark — *«Темно» — про свет, а вопрос про часы.*
+**13 · Скажите вслух — половина седьмого, выходить через час**
+<!-- interaction_id: en:lesson-01:session-26:i13; family: scripted_repeat_compare -->
+🎙 **It is early.**
 
 **14 · Соберите фразу — окно открыто, а на улице зябко**
+<!-- interaction_id: en:lesson-01:session-26:i14; family: phrase_builder -->
 Плитки: `cold` `is` `It` `not` → **It is cold.**
-- `not` — *Лишняя плитка. На улице действительно холодно, отрицать нечего.*
+Лишняя плитка `not`: на улице зябко, поэтому `It is cold.`
 
 **15 · Вставьте слово — батарея греет, в комнате хорошо**
+<!-- interaction_id: en:lesson-01:session-26:i15; family: context_gap_grammar -->
 It is ___ . → **warm** · cold · rainy
+- warm — *Батарея греет, поэтому `warm` — «тепло», не холодно и не дождливо.*
 - cold — *Ровно наоборот. Когда тепло — `warm`.*
 - rainy — *Это про улицу и дождь, а вы говорите про комнату.*
 
 **16 · Послушайте и соберите — «тихо»**
+<!-- interaction_id: en:lesson-01:session-26:i16; family: listen_build_dictation -->
 🔊 *It is quiet.* Плитки: `quiet` `It` `is` `windy` → **It is quiet.**
-- `windy` — *Ветер шумит. Раз в доме ни звука — `quiet`.*
+Лишняя плитка `windy`: в записи `It is quiet.` — «тихо».
 
 **17 · Соберите фразу — в комнате натоплено**
+<!-- interaction_id: en:lesson-01:session-26:i17; family: phrase_builder -->
 Плитки: `warm` `It` `is` `am` → **It is warm.**
-- `am` — *Чужая скрепка. `am` идёт только с `I`, а тут `It is`.*
+Лишняя плитка `am`: с `It` ставят `is` — `It is warm.`
 
-**18 · Финал сцены — четыре фразы подряд о погоде и комнате**
-🎙 Вы у окна с чашкой. В доме ни звука, за окном темно, дует и идёт дождь. Скажите всё четыре раза подряд.
-**It is quiet. It is dark. It is windy. It is rainy.**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-26:i18:s01; family: scripted_repeat_compare -->
+🎙 **It is quiet.**
+
+**19 · Соберите фразу — в комнате темно**
+<!-- interaction_id: en:lesson-01:session-26:i18:s02; family: phrase_builder -->
+Плитки: `dark` `It` `is` `are` → **It is dark.**
+Лишняя плитка `are`: с `It` ставят `is` — `It is dark.`
+
+**20 · Послушайте и соберите — на улице ветрено**
+<!-- interaction_id: en:lesson-01:session-26:i18:s03; family: listen_build_dictation -->
+🔊 *It is windy.* Плитки: `windy` `It` `is` `are` → **It is windy.**
+Лишняя плитка `are`: с `It` ставят `is` — `It is windy.`
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-26:i18:s04; family: scripted_repeat_compare -->
+🎙 **It is rainy.**
 
 ---
 
@@ -142,7 +178,7 @@ windy — ветрено — «ветрено». Не лёгкий ветеро�
 early — рано — «рано». Часы показывают меньше, чем вы рассчитывали, и есть время посидеть.
 late — поздно — «поздно». Про время суток: часы ушли дальше, чем хотелось бы.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=phrase_builder, 20=listen_build_dictation, 21=scripted_repeat_compare
 
 ---
 

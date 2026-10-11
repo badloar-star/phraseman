@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-03:i01",
-    "correctText": "",
+    "correctText": "stool",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-03:i03",
-    "correctText": "",
+    "correctText": "mirror",
     "correctResponseId": null
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-03:i05",
-    "correctText": "A stool.",
+    "correctText": "It is a stool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-03:i06",
-    "correctText": "",
+    "correctText": "rug",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-03:i12",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-03:i12:p1=stool\nen:lesson-03:session-03:i12:p2=mirror\nen:lesson-03:session-03:i12:p3=rug\nen:lesson-03:session-03:i12:p4=lamp",
     "correctResponseId": null
   },
   {

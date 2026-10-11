@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro1:r2": {
+          "ru": "`is` уехало в конец. В этом вопросе оно идёт сразу за `What`.",
+          "uk": "`is` поїхало в кінець. У цьому запитанні воно йде одразу за `What`."
+        },
+        "en:lesson-02:session-30:intro1:r3": {
+          "ru": "`noisy` — «шумный», это описание. А сам звук называется `noise`.",
+          "uk": "`noisy` — «шумний», це опис. А сам звук зветься `noise`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro2:r2": {
+          "ru": "Начало сломано: `is` должно стоять между `What` и `the`.",
+          "uk": "Початок зламано: `is` має стояти між `What` і `the`."
+        },
+        "en:lesson-02:session-30:intro2:r3": {
+          "ru": "Это про звук. Вам нужно название места — `street`.",
+          "uk": "Це про звук. Вам потрібна назва місця — `street`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-30:intro3:r2": {
+          "ru": "`noise` — это шум. А перед вами люди, а не звук.",
+          "uk": "`noise` — це шум. А перед вами люди, а не звук."
+        },
+        "en:lesson-02:session-30:intro3:r3": {
+          "ru": "Тот же порядок, что и с шумом: `What`, `is`, `the`, слово.",
+          "uk": "Той самий порядок, що й із шумом: `What`, `is`, `the`, слово."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a9ec2fe0df1b85552f716480b7e1ec1fa70ab70b9ccdcf2bb0c62d433bd085cd"
+}

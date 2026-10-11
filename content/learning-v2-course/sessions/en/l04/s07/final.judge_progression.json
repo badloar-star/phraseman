@@ -1,0 +1,91 @@
+{
+  "session": "en/l04/s07",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:51:31.1413850Z",
+  "sourceSha256": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+  "exactRuSha256": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+  "exactUkSha256": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c",
+  "practiceAtomicSha256": "fe4704288bb4b7b987dde04fc9ca634fb07179a0ad475b89e0668f3cd0bf005e",
+  "localeHashes": {
+    "ru": "9ab0533aa65985977e2e701aec24da2c61589de8db36fb588847bcffa546dd0e",
+    "uk": "788c1262b6805fb8a99746240d00801bd2e384b3902348a45df79d6389f7293c"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review through en/l04/s06",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s06",
+  "newWords": [
+    "playground"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_retrieval: select singular/plural with reduced support; return building, shop and street",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 7 | извлечение | выбрать singular или plural с меньшей опорой и вернуть building, shop, street | playground | во дворе жилого комплекса отмечаем площадку и соседние здания |",
+  "curriculumEvidence": {
+    "grammar": "Tasks retrieve both There is and There are with reduced support and familiar building/shop/street.",
+    "newWords": [
+      "playground"
+    ],
+    "situation": "In a residential courtyard, the learner marks the playground and neighbouring buildings (final.ru.md:3)."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "playground"
+      ],
+      "sceneEvidence": "The courtyard introduces the place name playground.",
+      "correctAnswer": "playground",
+      "practiceTask": 3,
+      "practiceTarget": "playground",
+      "finalEvidence": "i12 independently builds `There is a playground near the buildings.`",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "playground"
+      ],
+      "sceneEvidence": "One playground is in the courtyard.",
+      "correctAnswer": "There is a playground in the courtyard.",
+      "practiceTask": 5,
+      "practiceTarget": "There is a playground near the shop.",
+      "finalEvidence": "i12 requires the same singular branch with a plural noun only in the location phrase.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "playground"
+      ],
+      "sceneEvidence": "Several buildings stand near the playground.",
+      "correctAnswer": "There are buildings near the playground.",
+      "practiceTask": 9,
+      "practiceTarget": "There are buildings on the street.",
+      "finalEvidence": "i12 tests the other branch of the same number-selection operation; a second final is not required.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "The exact grammar, playground, returned words and courtyard/nearby-buildings situation match the curriculum row.",
+    "Prior source through S06 does not declare playground as the current new primary target."
+  ]
+}

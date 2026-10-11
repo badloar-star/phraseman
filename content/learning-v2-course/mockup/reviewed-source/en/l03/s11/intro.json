@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "выбор `a/an` по первому звуку следующего слова, а не по первой букве: `an hour`, `a uniform`",
+    "uk": "вибір `a/an` за першим звуком наступного слова, а не за першою літерою: `an hour`, `a uniform`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не каждую букву нужно произносить",
+        "uk": "Не кожну літеру треба вимовляти"
+      },
+      "bodyByLocale": {
+        "ru": "`hour` — «час», 60 минут. Первая буква `h` не произносится, поэтому слово начинается с гласного звука и перед ним нужно `an`. Старательно прочитать все буквы здесь значит старательно ошибиться. Если называют срок сборки, достаточно короткого `An hour` — «Час».",
+        "uk": "`hour` — «година», 60 хвилин. Першу літеру `h` не вимовляють, тож слово починається з голосного звуку й перед ним потрібне `an`. Старанно прочитати тут усі літери — означає старанно помилитися. Коли називають час складання, досить короткого `An hour` — «Година»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник записывает срок сборки: ___ `hour`. Какое слово поставить перед названием часа?",
+          "uk": "Працівник записує час складання: ___ `hour`. Яке слово поставити перед назвою години?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r3",
+              "text": "is"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro1:r3",
+              "text": "is"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник записывает срок сборки: ___ `hour`. Какое слово поставить перед названием часа?",
+          "uk": "Працівник записує час складання: ___ `hour`. Яке слово поставити перед назвою години?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Гласная буква, согласный звук",
+        "uk": "Голосна літера, приголосний звук"
+      },
+      "bodyByLocale": {
+        "ru": "`uniform` — «форма», комплект рабочей одежды. Слово написано с `u`, но сначала слышится согласный «й», а уже за ним гласный. Поэтому перед названием ставим `a`. Чтобы назвать такой комплект полной фразой, скажите: `It is a uniform` — «Это форма».",
+        "uk": "`uniform` — «форма», комплект робочого одягу. Слово пишеться з `u`, але спочатку чути приголосний звук «й», а вже після нього — голосний. Тому перед назвою ставимо `a`. Щоб назвати цей комплект повною фразою, скажіть: `It is a uniform` — «Це форма»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг заметил рабочий комплект мастера у стойки. Назовите его полной фразой.",
+          "uk": "Друг помітив робочий комплект майстра біля стійки. Назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r1",
+              "text": "It is a uniform."
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r2",
+              "text": "It is an uniform."
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r3",
+              "text": "It is uniform."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r1",
+              "text": "It is a uniform."
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r2",
+              "text": "It is an uniform."
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro2:r3",
+              "text": "It is uniform."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг заметил рабочий комплект мастера у стойки. Назовите его полной фразой.",
+          "uk": "Друг помітив робочий комплект майстра біля стійки. Назвіть його повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать рабочую форму",
+        "uk": "Упізнати робочу форму"
+      },
+      "bodyByLocale": {
+        "ru": "`a uniform` — «форма». Обычная одежда и рабочая форма могут выглядеть похоже. Чтобы уточнить, что перед вами, поставьте `Is` перед `it`: `Is it a uniform?` — «Это форма?» Вопрос не меняет выбор перед названием: там остаётся `a`, ведь первым слышен согласный «й».",
+        "uk": "`a uniform` — «форма». Звичайний одяг і робоча форма можуть бути схожими. Щоб уточнити, що перед вами, поставте `Is` перед `it`: `Is it a uniform?` — «Це форма?» Питання не змінює вибір перед назвою: там лишається `a`, адже першим чути приголосний «й»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "На вешалке у стойки висит синий комплект одежды. Спросите у сотрудника «Это форма?».",
+          "uk": "На вішалці біля стійки висить синій комплект одягу. Запитайте працівника: «Це форма?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r1",
+              "text": "Is it a uniform?"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r2",
+              "text": "Is it an uniform?"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r3",
+              "text": "Is a uniform?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r1",
+              "text": "Is it a uniform?"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r2",
+              "text": "Is it an uniform?"
+            },
+            {
+              "responseId": "en:lesson-03:session-11:intro3:r3",
+              "text": "Is a uniform?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На вешалке у стойки висит синий комплект одежды. Спросите у сотрудника «Это форма?».",
+          "uk": "На вішалці біля стійки висить синій комплект одягу. Запитайте працівника: «Це форма?»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "80fc0863f53fbe0b081af12059b4125754e20e3279f63f1323bce7ac79c05bcc"
+}

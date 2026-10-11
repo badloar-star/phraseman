@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-22:i01",
-    "correctText": "",
+    "correctText": "asleep",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-22:i03",
-    "correctText": "",
+    "correctText": "awake",
     "correctResponseId": null
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-22:i06",
-    "correctText": "",
+    "correctText": "away",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-22:i07",
-    "correctText": "",
+    "correctText": "ill",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-22:i12",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-22:i12:p1=asleep\nen:lesson-01:session-22:i12:p2=awake\nen:lesson-01:session-22:i12:p3=away\nen:lesson-01:session-22:i12:p4=ill",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-22:i17",
-    "correctText": "He is asleep. She is awake. He is away. He is tired.",
+    "interactionId": "en:lesson-01:session-22:i17:s01",
+    "correctText": "He is asleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i17:s02",
+    "correctText": "She is awake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i17:s03",
+    "correctText": "He is away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i17:s04",
+    "correctText": "He is tired.",
     "correctResponseId": null
   }
 ]

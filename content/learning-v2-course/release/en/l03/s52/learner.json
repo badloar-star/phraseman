@@ -1,0 +1,895 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i01:r1",
+          "text": "round"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i01:audio",
+          "transcript": "round"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:i01:r1",
+            "targetText": "round",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "round",
+          "definitionByLocale": {
+            "ru": "«круглый». Такой стол у окна не имеет углов.",
+            "uk": "«круглий». Такий стіл біля вікна не має кутів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i03:audio",
+          "transcript": "square"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "square",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i05:audio",
+          "transcript": "wooden"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "wooden",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i02:audio",
+          "transcript": "round"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "round",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i04:r1",
+          "text": "square"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i04:audio",
+          "transcript": "square"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:i04:r1",
+            "targetText": "square",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "square",
+          "definitionByLocale": {
+            "ru": "«квадратный».",
+            "uk": "«квадратний»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i06:audio",
+          "transcript": "wooden"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "wooden",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i08:audio",
+          "transcript": "round"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "round",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i09",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i09:audio",
+          "transcript": "square"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "square",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i10",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i10:audio",
+          "transcript": "wooden"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "wooden",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — вспомните вещи после доставки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — вспомните вещи после доставки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-52:i07:p1",
+            "target": "round",
+            "meaningByLocale": {
+              "ru": "круглый",
+              "uk": "круглий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p2",
+            "target": "square",
+            "meaningByLocale": {
+              "ru": "квадратный",
+              "uk": "квадратний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p3",
+            "target": "wooden",
+            "meaningByLocale": {
+              "ru": "деревянный",
+              "uk": "дерев’яний"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p4",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p5",
+            "target": "mirror",
+            "meaningByLocale": {
+              "ru": "зеркало",
+              "uk": "дзеркало"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p6",
+            "target": "chair",
+            "meaningByLocale": {
+              "ru": "стул",
+              "uk": "стілець"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-52:i07:p7",
+            "target": "please",
+            "meaningByLocale": {
+              "ru": "пожалуйста",
+              "uk": "будь ласка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "round",
+          "square",
+          "wooden",
+          "table",
+          "mirror",
+          "chair",
+          "please"
+        ],
+        "rightColumn": [
+          "круглый",
+          "квадратный",
+          "деревянный",
+          "стол",
+          "зеркало",
+          "стул",
+          "пожалуйста"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите просьбу — выбираете круглый стол рядом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите просьбу — выбираете круглый стол рядом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This round table, please.",
+        "localizedMeaning": {
+          "ru": "Соберите просьбу — выбираете круглый стол рядом",
+          "uk": "Складіть прохання — вибираєте круглий стіл поруч"
+        },
+        "orderedTokens": [
+          "This",
+          "round",
+          "table,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — квадратное зеркало стоит дальше",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i12:r1",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i12:r2",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i12:r3",
+          "text": "It"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i12:r4",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — квадратное зеркало стоит дальше",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — квадратное зеркало стоит дальше",
+          "uk": "Вставте вказівне слово — квадратне дзеркало стоїть далі"
+        },
+        "gappedTargetPhrase": "___ square mirror, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r4",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — квадратное зеркало ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — квадратное зеркало ",
+            "feedbackByLocale": {
+              "ru": "`This` выбирает предмет рядом, а зеркало стоит дальше.",
+              "uk": "`This` вибирає предмет поруч, а дзеркало стоїть далі."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — квадратное зеркало ",
+            "feedbackByLocale": {
+              "ru": "`It square mirror` не образует короткую просьбу. Перед предметом нужен `That`.",
+              "uk": "`It square mirror` не утворює короткого прохання. Перед предметом потрібне `That`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i12:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — квадратное зеркало ",
+            "feedbackByLocale": {
+              "ru": "`Is square mirror` не подходит для просьбы. Здесь скажите `That square mirror, please`.",
+              "uk": "`Is square mirror` не підходить для прохання. Тут скажіть `That square mirror, please`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение просьбы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i13:r1",
+          "text": "То квадратное зеркало, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i13:r2",
+          "text": "Это квадратное зеркало, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i13:r3",
+          "text": "То круглое зеркало, пожалуйста."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i13:r4",
+          "text": "Тот квадратный стол, пожалуйста."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение просьбы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i13:audio",
+          "transcript": "That square mirror, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:i13:r1",
+            "targetText": "То квадратное зеркало, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i13:r2",
+            "targetText": "Это квадратное зеркало, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i13:r3",
+            "targetText": "То круглое зеркало, пожалуйста.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i13:r4",
+            "targetText": "Тот квадратный стол, пожалуйста.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи `That`, а этот вариант передаёт `This`.",
+              "uk": "У записі `That`, а цей варіант передає `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `square`, а не `round`.",
+              "uk": "У записі чути `square`, а не `round`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи назвали `mirror`, а не `table`.",
+              "uk": "У записі назвали `mirror`, а не `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму — круглый стул стоит дальше у стены",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i14:r1",
+          "text": "round"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i14:r2",
+          "text": "square"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i14:r3",
+          "text": "wooden"
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i14:r4",
+          "text": "this"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму — круглый стул стоит дальше у стены",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте форму — круглый стул стоит дальше у стены",
+          "uk": "Вставте форму — круглий стілець стоїть далі біля стіни"
+        },
+        "gappedTargetPhrase": "That ___ chair is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-52:i14:r1",
+            "text": "round"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i14:r2",
+            "text": "square"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i14:r3",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i14:r4",
+            "text": "this"
+          }
+        ],
+        "testedDimension": "Вставьте форму — круглый стул стоит даль",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте форму — круглый стул стоит даль",
+            "feedbackByLocale": {
+              "ru": "В сцене стул круглый, поэтому нужна форма `round`, а не `square`.",
+              "uk": "У сцені стілець круглий, тому потрібна форма `round`, а не `square`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте форму — круглый стул стоит даль",
+            "feedbackByLocale": {
+              "ru": "`Wooden` называет материал, а здесь выбирают круглую форму.",
+              "uk": "`Wooden` називає матеріал, а тут вибирають круглу форму."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i14:r4",
+            "correct": false,
+            "testedDimension": "Вставьте форму — круглый стул стоит даль",
+            "feedbackByLocale": {
+              "ru": "После `That` перед `chair` нужна форма предмета: `round`.",
+              "uk": "Після `That` перед `chair` потрібна форма предмета: `round`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i15:audio",
+          "transcript": "This wooden chair, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This wooden chair, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-52:i16:r1",
+          "text": "Это деревянное зеркало здесь."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i16:r2",
+          "text": "То деревянное зеркало здесь."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i16:r3",
+          "text": "Это квадратное зеркало здесь."
+        },
+        {
+          "responseId": "en:lesson-03:session-52:i16:r4",
+          "text": "Этот деревянный стул здесь."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-52:i16:audio",
+          "transcript": "This wooden mirror is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-52:i16:r1",
+            "targetText": "Это деревянное зеркало здесь.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i16:r2",
+            "targetText": "То деревянное зеркало здесь.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i16:r3",
+            "targetText": "Это квадратное зеркало здесь.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i16:r4",
+            "targetText": "Этот деревянный стул здесь.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-52:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи `This`, а этот вариант передаёт `That`.",
+              "uk": "У записі `This`, а цей варіант передає `That`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `wooden`, а не `square`.",
+              "uk": "У записі чути `wooden`, а не `square`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи назвали `mirror`, а не `chair`.",
+              "uk": "У записі назвали `mirror`, а не `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-52:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — мастер ждёт решения у дальней стены",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — мастер ждёт решения у дальней стены",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That wooden table, please.",
+        "localizedMeaning": {
+          "ru": "Финал — мастер ждёт решения у дальней стены",
+          "uk": "Фінал — майстер чекає рішення біля дальньої стіни"
+        },
+        "orderedTokens": [
+          "That",
+          "wooden",
+          "table,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "a"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5b0ea5cac6ac31791909817db1b76860ae26bc043b8d9e8756970af9bc89e737"
+}

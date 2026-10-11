@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-11:i02",
-    "correctText": "Yes, she is.",
+    "correctText": "Yes, she is cold.",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-11:i06",
-    "correctText": "Yes, he is.",
+    "correctText": "Yes, he is helpful.",
     "correctResponseId": null
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-11:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-11:i09:p1=cold\nen:lesson-02:session-11:i09:p2=hungry\nen:lesson-02:session-11:i09:p3=tired\nen:lesson-02:session-11:i09:p4=upset",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-11:i10",
-    "correctText": "No, she is not.",
+    "correctText": "No, she is not hungry.",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-11:i16",
-    "correctText": "Yes, she is. No, he is not.",
+    "interactionId": "en:lesson-02:session-11:i16:s01",
+    "correctText": "Yes, she is.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-11:i17",
-    "correctText": "Yes, he is. No, she is not. Yes, it is. No, he is not.",
+    "interactionId": "en:lesson-02:session-11:i16:s02",
+    "correctText": "No, he is not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-11:i17:s01",
+    "correctText": "Yes, he is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-11:i17:s02",
+    "correctText": "No, she is not ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-11:i17:s03",
+    "correctText": "Yes, it is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-11:i17:s04",
+    "correctText": "No, he is not hungry.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "смешанное повторение знакомых вопросов и коротких ответов",
+    "uk": "змішане повторення знайомих запитань і коротких відповідей"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответить о себе",
+        "uk": "Відповісти про себе"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, I am` — «Да», если вас спросили `Are you tired?` — «Вы устали?» Даже сообщить об усталости можно без лишних усилий: `tired` уже прозвучало, повторять его не нужно. В таком коротком ответе остаётся `I am`: говорим о себе, а с `I` нужна форма `am`, не `is`.",
+        "uk": "`Yes, I am` — «Так», якщо вас запитали `Are you tired?` — «Ви втомилися?» Навіть про втому можна сказати без зайвих зусиль: `tired` уже прозвучало, тож повторювати його не треба. У короткій відповіді залишається `I am`: говоримо про себе, а з `I` потрібне `am`, не `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, устали ли вы после насыщенной недели. Вы устали. Ответьте коротко.",
+          "uk": "Друг запитує, чи ви втомилися після насиченого тижня. Ви втомилися. Дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r2",
+              "text": "Yes, I is."
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r3",
+              "text": "Yes, am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r2",
+              "text": "Yes, I is."
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro1:r3",
+              "text": "Yes, am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, устали ли вы после насыщенной недели. Вы устали. Ответьте коротко.",
+          "uk": "Друг запитує, чи ви втомилися після насиченого тижня. Ви втомилися. Дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Человек или название",
+        "uk": "Людина чи назва"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» Так узнают, что это за человек. А `What is the name?` — «Какое название?» — спрашивают о месте, которое уже обсуждают. Сначала решите, что хотите узнать: кто перед вами или как называется место. От этого и выбирайте `Who` или `What`.",
+        "uk": "`Who is he?` — «Хто він?» Так дізнаються, що це за людина. А `What is the name?` — «Яка назва?» — запитують про місце, яке вже обговорюють. Спочатку вирішіть, що хочете дізнатися: хто перед вами чи як називається місце. Від цього й залежить вибір між `Who` та `What`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на незнакомого мужчину на фотографии. Вы хотите узнать, кто он. Спросите.",
+          "uk": "Друг показує на незнайомого чоловіка на фотографії. Ви хочете дізнатися, хто він. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r3",
+              "text": "What is the name?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro2:r3",
+              "text": "What is the name?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на незнакомого мужчину на фотографии. Вы хотите узнать, кто он. Спросите.",
+          "uk": "Друг показує на незнайомого чоловіка на фотографії. Ви хочете дізнатися, хто він. Запитайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где находится и далеко ли",
+        "uk": "Де розташована й чи близько"
+      },
+      "bodyByLocale": {
+        "ru": "`Where is the station?` — «Где станция?» Так узнают её место. `Is it near?` — «Это близко?» — уточняет расстояние, если понятно, о чём речь. Услышать «близко» приятно, но куда идти — всё ещё загадка. Поэтому для поиска станции нужен вопрос с `Where`.",
+        "uk": "`Where is the station?` — «Де станція?» Так дізнаються, де вона розташована. `Is it near?` — «Це близько?» — уточнює відстань, якщо зрозуміло, про що йдеться. Почути «близько» приємно, але куди йти — досі загадка. Тому, щоб знайти станцію, потрібне запитання з `Where`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг упомянул станцию, но не показал её на карте. Узнайте, где она.",
+          "uk": "Друг згадав станцію, але не показав її на карті. Дізнайтеся, де вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r2",
+              "text": "Is it near?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r3",
+              "text": "What is the station?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r2",
+              "text": "Is it near?"
+            },
+            {
+              "responseId": "en:lesson-02:session-49:intro3:r3",
+              "text": "What is the station?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг упомянул станцию, но не показал её на карте. Узнайте, где она.",
+          "uk": "Друг згадав станцію, але не показав її на карті. Дізнайтеся, де вона."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7222a135de30a8c1d61f24f21f133d7a59763899a4fdb3219a02faae6e4d2004"
+}

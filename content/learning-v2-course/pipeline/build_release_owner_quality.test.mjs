@@ -9,37 +9,89 @@ import test from "node:test";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
-const master = `# Проверка\n\n**Операция:** короткий ответ\n**Новые слова:** —\n\n## Интро 1\n\n### Форма\n\nТекст.\n\n**Ответьте коротко.**\n\n- ✅ **Yes, I am.**\n- ❌ Yes, I are. — *После I нужно am.*\n- ❌ Yes, am I. — *Это порядок вопроса.*\n\n---\n\n## Практика\n\n**1 · Вставьте слово — ответьте коротко**\nYes, I ___ . → **am** · are · is\n- are — *После I нужно am.*\n- is — *После I нужно am.*\n\nmodes: 1=context_gap_grammar\n`;
+const master = `# Проверка\n\n**Операция:** короткий ответ\n**Новые слова:** —\n\n## Интро 1\n\n### Форма\n\nТекст.\n\n**Ответьте коротко.**\n\n- ✅ **Yes, I am.**\n- ❌ Yes, I are. — *После I нужно am.*\n- ❌ Yes, am I. — *Это порядок вопроса.*\n\n---\n\n## Интро 2\n\n### Порядок слов\n\nВ коротком ответе сначала идёт \`Yes\`, затем местоимение и форма \`am\`.\n\n**Выберите короткий ответ на вопрос \`Are you ready?\`**\n\n- ✅ **Yes, I am.**\n- ❌ Yes, I is. — *С I нужна форма am.*\n- ❌ Am I yes. — *Это порядок вопроса, а не ответа.*\n\n---\n\n## Интро 3\n\n### Одна форма\n\nПосле \`I\` в этой модели всегда остаётся \`am\`.\n\n**Закончите ответ: \`Yes, I ___ .\`**\n\n- ✅ **am**\n- ❌ are — *Are сочетается с you, а не с I.*\n- ❌ is — *Is сочетается с he, she или it, а не с I.*\n\n---\n\n## Практика\n\n**1 · Вставьте слово — ответьте коротко**\nYes, I ___ . → **am** · are · is\n- are — *После I нужно am.*\n- is — *После I нужно am.*\n\nmodes: 1=context_gap_grammar\n`;
 
-function validTaste() {
+function exactBindings(dir) {
+  const digest = (name) => crypto.createHash("sha256").update(fs.readFileSync(path.join(dir, name))).digest("hex");
+  const ru = digest("final.ru.md");
+  const uk = digest("final.uk.md");
+  return { sourceSha256: ru, exactRuSha256: ru, exactUkSha256: uk, localeSha256: uk, practiceAtomicSha256: digest("practice.atomic.json") };
+}
+
+function completeMaster(session) {
+  const [language, lesson, sessionNumber] = session.split("/");
+  const interactionId = `${language}:lesson-${lesson.slice(1)}:session-${sessionNumber.slice(1)}:i01`;
+  return master
+    .replace("**Ответьте коротко.**", "**На вопрос `Are you ready?` ответьте коротко.**")
+    .replace("**1 · Вставьте слово — ответьте коротко**", `**1 · Вставьте слово — ответьте коротко**\n<!-- interaction_id: ${interactionId}; family: context_gap_grammar -->`);
+}
+
+function evidenceItem(locale, coverage) {
+  return {
+    fieldPath: `final.${locale}.md`,
+    quote: "Выберите короткий ответ на вопрос `Are you ready?`",
+    analysis: "Точная цитата подтверждает проверяемую форму и вопрос текущей учебной карточки.",
+    coverage: Array.isArray(coverage) ? coverage : [coverage],
+  };
+}
+
+function validTaste(session, bindings = {}) {
   return {
     sourceSha256: crypto.createHash("sha256").update(master).digest("hex"),
     pairwise: "equal",
     pairwise_reason: "Текст сравнили с эталоном по голосу и ясности; уровень сохранён.",
-    voice: { score: 4, evidence: ["«маленькая скрепка» — живой образ из правила"] },
-    humor: { present: true, on_topic: true, examples: ["«Ответьте коротко» — образ помогает форме"], misfires: [] },
+    voice: { score: 4, evidence: ["Выберите короткий ответ на вопрос `Are you ready?`"] },
+    humor: { present: true, on_topic: true, examples: ["Выберите короткий ответ на вопрос `Are you ready?`"], misfires: [] },
     ai_text_or_nonsense: [], must_fix: [], verdict: "PASS",
     verdict_reason: "Отчёт подтверждает живой голос и уместный юмор.",
+    ...bindings,
+    sessionId: session,
+    role: "judge_taste",
+    reviewer: `learning-v2-reviewer-v1|reviewerId=pipeline-judge_taste|sessionId=${session}|role=judge_taste`,
+    evidence: [evidenceItem("ru", "judge_taste")],
   };
 }
 
 function factory(session = "en/l02/s33") {
   const root = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "learning-v2-release-quality-"));
   fs.mkdirSync(path.join(root, "pipeline"));
-  for (const name of ["build_release.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  for (const name of ["build_release.mjs", "single_phrase_release.mjs", "session_readiness.mjs", "session_header.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "write_mockup_file.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
   const dir = path.join(root, "sessions", session);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "final.ru.md"), master);
-  fs.writeFileSync(path.join(dir, "final.uk.md"), master);
+  fs.writeFileSync(path.join(dir, "final.ru.md"), completeMaster(session));
+  fs.writeFileSync(path.join(dir, "final.uk.md"), completeMaster(session));
   const run = (...extra) => spawnSync(process.execPath, [path.join(root, "pipeline/build_release.mjs"), "--session", session, "--locales", "ru,uk", ...extra], { encoding: "utf8" });
   return { root, dir, run };
 }
 
-function makeReady(dir) {
-  for (const role of ["learner", "pedagogy", "nonsense", "reader"]) fs.writeFileSync(path.join(dir, `final.judge_${role}.json`), JSON.stringify({ verdict: "PASS" }));
-  fs.writeFileSync(path.join(dir, "final.judge_taste.json"), JSON.stringify(validTaste()));
-  fs.writeFileSync(path.join(dir, "locales.judge.json"), JSON.stringify({ locales: { uk: { verdict: "PASS" } } }));
-  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ converged: true, needsHumanReview: false }));
+function makeReady(dir, run) {
+  const seedRoot = path.join(path.dirname(path.dirname(path.dirname(path.dirname(dir)))), ".atomic-seed");
+  const seeded = run("--out", seedRoot, "--migration-composite-source");
+  assert.equal(seeded.status, 0, seeded.stderr + seeded.stdout);
+  const session = dir.replace(/^.*[\\/]sessions[\\/]/u, "").replaceAll("\\", "/");
+  const snapshotFile = path.join(seedRoot, ...session.split("/"), "source.snapshot.json");
+  const snapshot = JSON.parse(fs.readFileSync(snapshotFile, "utf8"));
+  snapshot.schemaVersion = "learning_v2_atomic_practice_source_v1";
+  fs.writeFileSync(path.join(dir, "practice.atomic.json"), `${JSON.stringify(snapshot, null, 2)}\n`);
+  const bindings = exactBindings(dir);
+  for (const role of ["learner", "pedagogy", "nonsense", "reader"]) {
+    const judgeRole = `judge_${role}`;
+    const evidence = [evidenceItem("ru", judgeRole)];
+    if (role === "learner") evidence.push(evidenceItem("uk", judgeRole));
+    fs.writeFileSync(path.join(dir, `final.${judgeRole}.json`), JSON.stringify({
+      verdict: "PASS", ...bindings, sessionId: session, role: judgeRole,
+      reviewer: `learning-v2-reviewer-v1|reviewerId=pipeline-${judgeRole}|sessionId=${session}|role=${judgeRole}`,
+      evidence,
+    }));
+  }
+  fs.writeFileSync(path.join(dir, "final.judge_taste.json"), JSON.stringify(validTaste(session, bindings)));
+  fs.writeFileSync(path.join(dir, "locales.judge.json"), JSON.stringify({
+    ...bindings, sessionId: session, role: "judge_locales",
+    reviewer: `learning-v2-reviewer-v1|reviewerId=pipeline-judge_locales|sessionId=${session}|role=judge_locales`,
+    evidence: [evidenceItem("ru", ["judge_locales", "ru"]), evidenceItem("uk", ["judge_locales", "uk"])],
+    localeHashes: { ru: bindings.exactRuSha256, uk: bindings.exactUkSha256 }, locales: { uk: { verdict: "PASS" } },
+  }));
+  fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ ...bindings, localeHashes: { ru: bindings.exactRuSha256, uk: bindings.exactUkSha256 }, converged: true, needsHumanReview: false }));
 }
 
 test("default release blocks before writing when current taste evidence is missing", () => {
@@ -80,22 +132,78 @@ test("private review output remains buildable before judges", () => {
   }
 });
 
+test("rejects a repository-root output path that would create a second nested course tree", () => {
+  const { root, run } = factory();
+  try {
+    // This test owns only output-path validation; the fixture is intentionally
+    // minimal and is not an actor-clarity specimen.
+    fs.writeFileSync(path.join(root, "pipeline/audit_actor_clarity.mjs"), "process.exit(0);\n");
+    const result = run("--out", "content/learning-v2-course/mockup/reviewed-source", "--migration-composite-source");
+    assert.notEqual(result.status, 0, result.stderr + result.stdout);
+    assert.match(result.stderr + result.stdout, /nested_course_output_path/);
+    assert.equal(fs.existsSync(path.join(root, "content/learning-v2-course/mockup/reviewed-source")), false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("release builds never rewrite the repository legacy admission ledger", () => {
+  const { root, run } = factory();
+  try {
+    const ledgerPath = path.join(root, "migration/canonical-binding-v1/legacy-admission-ledger.json");
+    fs.mkdirSync(path.dirname(ledgerPath), { recursive: true });
+    const ledger = `${JSON.stringify({
+      schemaVersion: "learning_v2_legacy_binding_ledger_v1",
+      admissionPolicy: "exact_pre_v1_source_evidence_and_release_bytes",
+      entries: {},
+    }, null, 2)}\n`;
+    fs.writeFileSync(ledgerPath, ledger);
+    const before = crypto.createHash("sha256").update(fs.readFileSync(ledgerPath)).digest("hex");
+    const result = run("--out", path.join(root, "private-review"));
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(ledgerPath)).digest("hex"), before);
+    assert.equal(fs.readFileSync(ledgerPath, "utf8"), ledger);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("complete current receipts allow a new default release build", () => {
   const { root, dir, run } = factory();
   try {
-    makeReady(dir);
+    makeReady(dir, run);
     const result = run();
     assert.equal(result.status, 0, result.stderr + result.stdout);
-    assert.equal(fs.existsSync(path.join(root, "release/en/l02/s33/learner.json")), true);
+    const learner = JSON.parse(fs.readFileSync(path.join(root, "release/en/l02/s33/learner.json"), "utf8"));
+    assert.equal(learner.sourceBindingSchemaVersion, undefined);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a versioned status makes the release retain the canonical binding boundary", () => {
+  const { root, dir, run } = factory();
+  try {
+    makeReady(dir, run);
+    const statusPath = path.join(dir, "status.json");
+    const status = JSON.parse(fs.readFileSync(statusPath, "utf8"));
+    status.bindingSchemaVersion = "learning_v2_canonical_source_binding_v1";
+    fs.writeFileSync(statusPath, JSON.stringify(status));
+    const result = run();
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    for (const name of ["intro.json", "learner.json", "learner.uk.json"]) {
+      const child = JSON.parse(fs.readFileSync(path.join(root, "release/en/l02/s33", name), "utf8"));
+      assert.equal(child.sourceBindingSchemaVersion, "learning_v2_canonical_source_binding_v1", name);
+    }
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
 
 test("canonical release cannot omit Ukrainian via --locales ru", () => {
-  const { root, dir } = factory();
+  const { root, dir, run } = factory();
   try {
-    makeReady(dir);
+    makeReady(dir, run);
     fs.unlinkSync(path.join(dir, "final.uk.md"));
     fs.unlinkSync(path.join(dir, "locales.judge.json"));
     const result = spawnSync(process.execPath, [path.join(root, "pipeline/build_release.mjs"), "--session", "en/l02/s33", "--locales", "ru"], { encoding: "utf8" });
@@ -110,7 +218,7 @@ test("canonical release cannot omit Ukrainian via --locales ru", () => {
 test("L3 default release rechecks each locale before writing despite ready receipts", () => {
   const { root, dir, run } = factory("en/l03/s01");
   try {
-    makeReady(dir);
+    makeReady(dir, run);
     const existing = path.join(root, "release/en/l03/s01/learner.json");
     fs.mkdirSync(path.dirname(existing), { recursive: true });
     fs.writeFileSync(existing, "published-sentinel");

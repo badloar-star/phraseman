@@ -1,0 +1,529 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите, что прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-05:i01:r1",
+          "text": "supermarket"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i01:r2",
+          "text": "supermodel"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i01:r3",
+          "text": "superhero"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите, что прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-05:i01:audio",
+          "transcript": "supermarket"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-05:i01:r1",
+            "targetText": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i01:r2",
+            "targetText": "supermodel",
+            "meaningByLocale": {
+              "ru": "супермодель",
+              "uk": "супермодель"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i01:r3",
+            "targetText": "superhero",
+            "meaningByLocale": {
+              "ru": "супергерой",
+              "uk": "супергерой"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-05:i01:r2",
+            "correct": false,
+            "testedDimension": "auditory_word_ending",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `supermarket`: после `super-` идёт `-market`, а не `-model`.",
+              "uk": "У записі чути `supermarket`: після `super-` іде `-market`, а не `-model`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i01:r3",
+            "correct": false,
+            "testedDimension": "auditory_word_ending",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `supermarket`: после `super-` идёт `-market`, а не `-hero`.",
+              "uk": "У записі чути `supermarket`: після `super-` іде `-market`, а не `-hero`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите новое слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-05:i02:audio",
+          "transcript": "supermarket"
+        },
+        "targetPhrase": "supermarket"
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На вывеске большого продуктового магазина выберите название",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-05:i03:r1",
+          "text": "supermarket"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i03:r2",
+          "text": "shop"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i03:r3",
+          "text": "house"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите новое слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i03:r1",
+            "text": "supermarket"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i03:r2",
+            "text": "shop"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i03:r3",
+            "text": "house"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`Shop` — обычный магазин; на вывеске большого продуктового магазина нужно `supermarket`.",
+              "uk": "`Shop` — звичайний магазин; на вивісці великого продуктового магазину потрібне `supermarket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`House` — дом, а не место для покупки продуктов.",
+              "uk": "`House` — будинок, а не місце для покупки продуктів."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение об одном супермаркете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение об одном супермаркете",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-05:i04:audio",
+          "transcript": "There is a supermarket near the house."
+        },
+        "hiddenTargetPhrase": "There is a supermarket near the house.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "supermarket",
+          "near",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение о магазинах рядом с домом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение о магазинах рядом с домом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are shops near the house.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "shops",
+          "near",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "a"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму для одного магазина",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-05:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму для одного магазина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There ___ a shop near the supermarket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i06:r3",
+            "text": "am"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "Магазин один, поэтому нужно `is`.",
+              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
+              "uk": "`Am` уживають лише з `I`; тут підмет — місце або місця."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите сообщение о магазинах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Произнесите сообщение о магазинах",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-05:i07:audio",
+          "transcript": "There are shops near a supermarket."
+        },
+        "targetPhrase": "There are shops near a supermarket."
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i08",
+      "ordinal": 11,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "supermarket",
+            "meaningByLocale": {
+              "ru": "супермаркет",
+              "uk": "супермаркет"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "магазин",
+              "uk": "магазин"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "рядом",
+              "uk": "поруч"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "house",
+            "meaningByLocale": {
+              "ru": "дом",
+              "uk": "будинок"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте форму для одного магазина",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-05:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-05:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте форму для одного магазина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There ___ a shop near the house.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-05:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i09:r3",
+            "text": "am"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "Магазин один, поэтому нужно `is`.",
+              "uk": "Магазин один, тому потрібне `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
+              "uk": "`Am` уживають з `I`; тут потрібна форма `is`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i10",
+      "ordinal": 13,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите сообщение о супермаркете рядом с магазином",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите сообщение о супермаркете рядом с магазином",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a supermarket near a shop.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "supermarket",
+          "near",
+          "a",
+          "shop"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-05:i11:audio",
+          "transcript": "There are shops near a house."
+        },
+        "hiddenTargetPhrase": "There are shops near a house.",
+        "orderedTokens": [
+          "There",
+          "are",
+          "shops",
+          "near",
+          "a",
+          "house"
+        ],
+        "authoredDistractorTokens": [
+          "is",
+          "the"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-05:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — соберите сообщение для листовки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — соберите сообщение для листовки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a supermarket near two shops.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "supermarket",
+          "near",
+          "two",
+          "shops"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ccd8b5102d4645c5d5737adcf59e36918ccdb21215447abfb1869f800b75f77d"
+}

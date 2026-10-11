@@ -1,0 +1,74 @@
+{
+  "session": "s52",
+  "sourceSha256": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+  "exactRuSha256": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+  "exactUkSha256": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_reader",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "evidence": [
+    "The delivery scene establishes near/far singular objects and each intro directly prepares a this/that adjective-noun request."
+  ],
+  "scope": "Fresh absolute-beginner clarity audit of the exact current RU/UK masters, all intros, and all 17 tasks.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "ee86c872867afb290a2b3dad24688441d0a575d1fd4f87b2353241cb944c795e",
+    "localeSha256": "261d5d250780ebcc0de236bc6b31726c06a66c44f7d21aa8095d195818a85ccc",
+    "practiceAtomicSha256": "9bf203e7f3576768fb162ae65d89fb76e1dd2c7c45a5e5f91496617f1a0beb1d"
+  },
+  "localeSha256": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674",
+  "practiceAtomicSha256": "6d265bc53dac94c50d031c6445bb5806ed7758c8cdd8430e7b1d43fcb7088fe5",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "500f7bfe76a437b7866088b66af29eec46a69ce01c7e2692351b975bc5c80676",
+    "localeSha256": "da7a548be9798f5876498c56c0998be250c9319dd7154fcfb7e9ea21b0ea5fd9",
+    "practiceAtomicSha256": "6d265bc53dac94c50d031c6445bb5806ed7758c8cdd8430e7b1d43fcb7088fe5",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+    "uk": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_reader",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+    "exactRuSha256": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+    "exactUkSha256": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674",
+    "localeSha256": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674",
+    "localeHashes": {
+      "ru": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+      "uk": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674"
+    },
+    "practiceAtomicSha256": "6d265bc53dac94c50d031c6445bb5806ed7758c8cdd8430e7b1d43fcb7088fe5",
+    "evidence": [
+      "The delivery scene establishes near/far singular objects and each intro directly prepares a this/that adjective-noun request."
+    ]
+  }
+}

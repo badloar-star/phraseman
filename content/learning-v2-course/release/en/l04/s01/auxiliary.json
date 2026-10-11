@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-01:intro1:r2": {
+          "ru": "В середине пропало `is`: начинаем с `There is` целиком.",
+          "uk": "У середині зникло `is`: починаємо з `There is` повністю."
+        },
+        "en:lesson-04:session-01:intro1:r3": {
+          "ru": "Перед одним новым местом нужен `a`: `a pharmacy`.",
+          "uk": "Перед одним новим місцем потрібне `a`: `a pharmacy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-01:intro2:r2": {
+          "ru": "`Library` начинается со звука /l/, поэтому нужен `a`, не `an`.",
+          "uk": "`Library` починається зі звуку /l/, тому потрібне `a`, а не `an`."
+        },
+        "en:lesson-04:session-01:intro2:r3": {
+          "ru": "В середине пропало `is`: начинаем с `There is` целиком.",
+          "uk": "Посередині зникло `is`: починаємо з `There is` повністю."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-01:intro3:r2": {
+          "ru": "`A` стоит перед названием места: `a bakery`.",
+          "uk": "`A` стоїть перед назвою місця: `a bakery`."
+        },
+        "en:lesson-04:session-01:intro3:r3": {
+          "ru": "`Bakery` начинается со звука /b/, поэтому нужен `a`, не `an`.",
+          "uk": "`Bakery` починається зі звуку /b/, тому потрібне `a`, а не `an`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8eb3e9222ad871ca0923578abb0dd7cb352b3c134e1a9b76d8738715f5b0723"
+}

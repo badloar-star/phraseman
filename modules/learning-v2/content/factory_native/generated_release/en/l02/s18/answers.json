@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-18:i01",
-    "correctText": "",
+    "correctText": "shops",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-18:i03",
-    "correctText": "",
+    "correctText": "toilets",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-18:i08",
-    "correctText": "",
+    "correctText": "crowded",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-18:i11",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-18:i11:p1=shops\nen:lesson-02:session-18:i11:p2=toilets\nen:lesson-02:session-18:i11:p3=crowded\nen:lesson-02:session-18:i11:p4=station",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-18:i17",
-    "correctText": "I am lost. Where are the shops? Where are the toilets?",
+    "interactionId": "en:lesson-02:session-18:i17:s01",
+    "correctText": "I am lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i17:s02",
+    "correctText": "Where are the shops?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i17:s03",
+    "correctText": "Where are the toilets?",
     "correctResponseId": null
   }
 ]

@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-41:i01",
-    "correctText": "",
+    "correctText": "receipt",
+    "correctResponseId": "en:lesson-03:session-41:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i03",
+    "correctText": "counter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i05",
+    "correctText": "cashier",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i02",
     "correctText": "receipt",
-    "correctResponseId": "en:lesson-03:session-41:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,33 +25,43 @@
     "correctResponseId": "en:lesson-03:session-41:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-41:i05",
-    "correctText": "",
+    "interactionId": "en:lesson-03:session-41:i06",
+    "correctText": "cashier",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i06",
+    "interactionId": "en:lesson-03:session-41:i08:s01",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i08:s02",
+    "correctText": "counter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i09:s02",
     "correctText": "cashier",
-    "correctResponseId": "en:lesson-03:session-41:i06:r1"
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-41:i07",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-41:i07:p1=receipt\nen:lesson-03:session-41:i07:p2=counter\nen:lesson-03:session-41:i07:p3=cashier\nen:lesson-03:session-41:i07:p4=sticker",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i08",
-    "correctText": "This is a receipt. The receipt is wrong.",
+    "interactionId": "en:lesson-03:session-41:i09:s01",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-41:i09:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i10:s01",
+    "correctText": "That is a receipt.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i09",
-    "correctText": "a; The",
-    "correctResponseId": "en:lesson-03:session-41:i09:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i10",
-    "correctText": "That is a receipt. The receipt is wrong.",
+    "interactionId": "en:lesson-03:session-41:i10:s02",
+    "correctText": "The receipt is wrong.",
     "correctResponseId": null
   },
   {
@@ -55,33 +70,83 @@
     "correctResponseId": "en:lesson-03:session-41:i11:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-41:i12",
-    "correctText": "She is a cashier. The cashier is here.",
+    "interactionId": "en:lesson-03:session-41:i12:s01",
+    "correctText": "She is a cashier.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i13",
-    "correctText": "a; The",
-    "correctResponseId": "en:lesson-03:session-41:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i14",
-    "correctText": "He is a cashier. The cashier is here.",
+    "interactionId": "en:lesson-03:session-41:i12:s02",
+    "correctText": "The cashier is here.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i15",
-    "correctText": "a; The",
-    "correctResponseId": "en:lesson-03:session-41:i15:r1"
+    "interactionId": "en:lesson-03:session-41:i13:s01",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-41:i13:s01:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-41:i16",
-    "correctText": "That is a counter. The counter is open.",
+    "interactionId": "en:lesson-03:session-41:i13:s02",
+    "correctText": "The cashier is here.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i17",
-    "correctText": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
+    "interactionId": "en:lesson-03:session-41:i14:s01",
+    "correctText": "He is a cashier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i14:s02",
+    "correctText": "The cashier is here.",
+    "correctResponseId": "en:lesson-03:session-41:i14:s02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i15:s01",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-41:i15:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i15:s02",
+    "correctText": "The counter is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i16:s01",
+    "correctText": "That is a counter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i16:s02",
+    "correctText": "The counter is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s01",
+    "correctText": "That is a receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s02",
+    "correctText": "The receipt is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s03",
+    "correctText": "He is a cashier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s04",
+    "correctText": "The cashier is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s05",
+    "correctText": "This is a counter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i17:s06",
+    "correctText": "The counter is open.",
     "correctResponseId": null
   }
 ]

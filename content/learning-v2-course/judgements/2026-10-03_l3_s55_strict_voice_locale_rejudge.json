@@ -1,0 +1,77 @@
+{
+  "session": "en/l03/s55",
+  "reviewedAt": "2026-10-03T22:08:04.979Z",
+  "exactRuSha256": "eee1c56e5b9722f8ccf528d2f0cea951bb690322be581574ebfd2cc40b2b18fa",
+  "exactUkSha256": "8cb1cba9f38f9ecfb4fb9cd2f13915238eab46350748ea5b217bdab281df3995",
+  "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+  "sourcePaths": [
+    "content/learning-v2-course/sessions/en/l03/s55/final.ru.md",
+    "content/learning-v2-course/sessions/en/l03/s55/final.uk.md",
+    "content/learning-v2-course/sessions/en/l03/s55/practice.atomic.json"
+  ],
+  "overallVerdict": "PASS",
+  "schemaVersion": "learning_v2_independent_voice_locale_judgement_v1",
+  "reviewer": "/root/s55_rejudge_voice_locale",
+  "scope": "Fresh read-only reader, taste, locale, and progression re-review after intro and Ukrainian copy repairs.",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "roles": {
+    "judge_reader": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "Each page opens with the new word and a plain translation, explains the exact phrase, then asks one clear question. The scene, object, and learner action are understandable in one pass."
+      ]
+    },
+    "judge_taste": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The old scene-first template is removed. The inspection-sheet marker explains knownness; the two-boss image explains why This and a cannot share the noun slot. Humor is brief and tied to the language action."
+      ]
+    },
+    "judge_locale": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The Ukrainian opening is natural: «разом з інспектором востаннє оглядаєте квартиру перед підписанням акта»; the operation uses «залежно від кількості, відстані й того, чи предмет уже відомий». RU and UK preserve the same 17 IDs, families, targets, distractors, answers, and feedback IDs."
+      ]
+    },
+    "judge_progression": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The exact curriculum row, three new words, inspection scene, intro-to-practice chains, and independent final remain intact. The progression gate from S25 passes."
+      ]
+    }
+  }
+}

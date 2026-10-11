@@ -31,13 +31,14 @@ const THERE_IS_ARE_OPERATION_ID = "en.grammar.existence_place.there_is_are";
 const EXISTENTIAL_QUESTIONS_OPERATION_ID = "en.grammar.existence_place.existential_questions";
 const EXISTENTIAL_SOME_ANY_OPERATION_ID = "en.grammar.existence_place.existential_some_any";
 const PLACE_PREPOSITIONS_OPERATION_ID = "en.grammar.existence_place.basic_place_prepositions";
+const EXISTENTIAL_NEGATIVES_OPERATION_ID = "en.grammar.existence_place.existential_negatives";
 
 const sense = (
   english: string,
   glossRu: string,
   partOfSpeech = "adjective",
 ): LearningV2EnglishSessionLexicalSenseAssignmentV2 => Object.freeze({
-  id: `en.${english}.${partOfSpeech}.01`,
+  id: `en.${english.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")}.${partOfSpeech}.01`,
   english,
   glossRu,
   partOfSpeech,
@@ -562,69 +563,77 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(163, DEMONSTRATIVES_OPERATION_ID, [sense("libraries", "библиотеки", "plural_noun")], [], ["These are libraries."]),
   assignment(164, DEMONSTRATIVES_OPERATION_ID, [sense("stations", "станции", "plural_noun")], [], ["Those are stations."]),
   assignment(165, DEMONSTRATIVES_OPERATION_ID, [sense("museum", "музей", "noun")], [], ["This is a museum."]),
-  assignment(166, DEMONSTRATIVES_OPERATION_ID, [sense("supermarket", "супермаркет", "noun")], [], ["That is a supermarket."]),
+  assignment(166, DEMONSTRATIVES_OPERATION_ID, [sense("striped", "полосатый")], [], ["That is a striped bag."]),
   assignment(167, DEMONSTRATIVES_OPERATION_ID, [sense("cafes", "кафе", "plural_noun")], [], ["These are cafes."]),
-  // Lesson 4 starts with existence in a place. All noun/article and plural
-  // prerequisites are already grounded in Lesson 3.
-  assignment(169, THERE_IS_ARE_OPERATION_ID, [sense("bank", "банк", "noun")], [], ["There is a bank here."]),
-  assignment(170, THERE_IS_ARE_OPERATION_ID, [sense("garden", "сад", "noun")], [], ["There is a garden here."]),
-  assignment(171, THERE_IS_ARE_OPERATION_ID, [sense("library", "библиотека", "noun")], [], ["There is a library here."]),
-  assignment(172, THERE_IS_ARE_OPERATION_ID, [sense("station", "станция", "noun")], [], ["There is a station here."]),
-  assignment(173, THERE_IS_ARE_OPERATION_ID, [sense("cafe", "кафе", "noun")], [], ["There is a cafe here."]),
-  assignment(174, THERE_IS_ARE_OPERATION_ID, [sense("lift", "лифт", "noun")], [], ["There is a lift here."]),
-  assignment(175, THERE_IS_ARE_OPERATION_ID, [sense("bridge", "мост", "noun")], [], ["There is a bridge here."]),
-  // The question chapter asks only about existence; some/any is withheld for
-  // its dedicated following operation.
-  assignment(177, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("pharmacy", "аптека", "noun")], [], ["Is there a pharmacy?"]),
-  assignment(178, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("doctor", "врач", "noun")], [], ["Is there a doctor?"]),
-  assignment(179, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("bus", "автобус", "noun")], [], ["Is there a bus?"]),
-  assignment(180, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("train", "поезд", "noun")], [], ["Is there a train?"]),
-  assignment(181, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("seats", "места", "plural_noun")], [], ["Are there seats?"]),
-  assignment(182, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("toilets", "туалеты", "plural_noun")], [], ["Are there toilets?"]),
-  assignment(183, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("taxis", "такси", "plural_noun")], [], ["Are there taxis?"]),
-  // Some/any is introduced only after existence questions; affirmative and
-  // negative statements make the contrast observable in a real location.
-  assignment(185, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("water", "вода", "noun")], [], ["There isn't any water."]),
-  assignment(186, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("shops", "магазины", "plural_noun")], [], ["There are some shops."]),
-  assignment(187, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("buses", "автобусы", "plural_noun")], [], ["There are some buses."]),
-  assignment(188, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("trees", "деревья", "plural_noun")], [], ["There are some trees."]),
-  assignment(189, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("milk", "молоко", "noun")], [], ["There isn't any milk."]),
-  assignment(190, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("trains", "поезда", "plural_noun")], [], ["There aren't any trains."]),
-  assignment(191, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("coffee", "кофе", "noun")], [], ["There isn't any coffee."]),
-  // The place-preposition chapter stays inside the exact approved inventory:
-  // in, on, under, next to, between, behind and near.
-  assignment(193, PLACE_PREPOSITIONS_OPERATION_ID, [sense("under", "под", "preposition")], [], ["The key is under the table."]),
-  assignment(194, PLACE_PREPOSITIONS_OPERATION_ID, [sense("in", "в", "preposition")], [], ["The bag is in the room."]),
-  assignment(195, PLACE_PREPOSITIONS_OPERATION_ID, [sense("on", "на", "preposition")], [], ["The book is on the table."]),
-  assignment(196, PLACE_PREPOSITIONS_OPERATION_ID, [sense("next", "рядом", "adjective")], [], ["The bank is next to the hotel."]),
-  assignment(197, PLACE_PREPOSITIONS_OPERATION_ID, [sense("between", "между", "preposition")], [], ["The cafe is between the banks."]),
-  assignment(198, PLACE_PREPOSITIONS_OPERATION_ID, [sense("behind", "за", "preposition")], [], ["The bus is behind the hotel."]),
-  assignment(199, PLACE_PREPOSITIONS_OPERATION_ID, [sense("near", "рядом с", "preposition")], [], ["The park is near the bank."]),
-  assignment(201, PLACE_PREPOSITIONS_OPERATION_ID, [sense("entrance", "вход", "noun")], [], ["The entrance is near the bank."]),
-  assignment(202, PLACE_PREPOSITIONS_OPERATION_ID, [sense("exit", "выход", "noun")], [], ["The exit is near the station."]),
-  assignment(203, PLACE_PREPOSITIONS_OPERATION_ID, [sense("platform", "платформа", "noun")], [], ["The platform is next to the train."]),
-  assignment(204, PLACE_PREPOSITIONS_OPERATION_ID, [sense("corner", "угол", "noun")], [], ["The corner is behind the cafe."]),
-  assignment(205, PLACE_PREPOSITIONS_OPERATION_ID, [sense("reception", "стойка регистрации", "noun")], [], ["The reception is in the hotel."]),
-  assignment(206, PLACE_PREPOSITIONS_OPERATION_ID, [sense("market", "рынок", "noun")], [], ["The market is near the park."]),
-  assignment(207, PLACE_PREPOSITIONS_OPERATION_ID, [sense("fountain", "фонтан", "noun")], [], ["The fountain is in the park."]),
-  assignment(209, PLACE_PREPOSITIONS_OPERATION_ID, [sense("crossing", "переход", "noun")], [], ["The crossing is near the station."]),
-  assignment(210, PLACE_PREPOSITIONS_OPERATION_ID, [sense("tunnel", "туннель", "noun")], [], ["The tunnel is behind the park."]),
-  assignment(211, PLACE_PREPOSITIONS_OPERATION_ID, [sense("aisle", "проход", "noun")], [], ["The aisle is in the market."]),
-  assignment(212, PLACE_PREPOSITIONS_OPERATION_ID, [sense("floor", "этаж", "noun")], [], ["The floor is in the hotel."]),
-  assignment(213, PLACE_PREPOSITIONS_OPERATION_ID, [sense("shelf", "полка", "noun")], [], ["The shelf is in the room."]),
-  assignment(214, PLACE_PREPOSITIONS_OPERATION_ID, [sense("gate", "выход на посадку", "noun")], [], ["The gate is near the airport."]),
-  assignment(215, PLACE_PREPOSITIONS_OPERATION_ID, [sense("queue", "очередь", "noun")], [], ["The queue is outside the cafe."]),
-  assignment(217, PLACE_PREPOSITIONS_OPERATION_ID, [sense("bench", "скамейка", "noun")], [], ["The bench is in the park."]),
-  assignment(218, PLACE_PREPOSITIONS_OPERATION_ID, [sense("path", "дорожка", "noun")], [], ["The path is near the garden."]),
-  assignment(219, PLACE_PREPOSITIONS_OPERATION_ID, [sense("lamp", "лампа", "noun")], [], ["The lamp is on the table."]),
-  assignment(220, PLACE_PREPOSITIONS_OPERATION_ID, [sense("mirror", "зеркало", "noun")], [], ["The mirror is in the bathroom."]),
-  assignment(221, PLACE_PREPOSITIONS_OPERATION_ID, [sense("stairs", "лестница", "plural_noun")], [], ["The stairs are near the lift."]),
-  assignment(222, PLACE_PREPOSITIONS_OPERATION_ID, [sense("roof", "крыша", "noun")], [], ["The roof is on the hotel."]),
-  assignment(223, PLACE_PREPOSITIONS_OPERATION_ID, [sense("wall", "стена", "noun")], [], ["The wall is behind the bench."]),
+  // Factory en/l04 is the detailed authoring contract for the existence-and-
+  // place material connected to scenario V2 E09. Runtime identity deliberately
+  // remains lesson-04. Every one of its 56 sessions has an exact lexical delta.
+  assignment(169, THERE_IS_ARE_OPERATION_ID, [sense("pharmacy", "аптека", "noun"), sense("library", "библиотека", "noun"), sense("bakery", "пекарня", "noun")], [], ["There is a pharmacy.", "There is a library.", "There is a bakery."]),
+  assignment(170, THERE_IS_ARE_OPERATION_ID, [sense("garden", "сад", "noun")], [], ["There is a garden behind the house."]),
+  assignment(171, THERE_IS_ARE_OPERATION_ID, [sense("bank", "банк", "noun")], [], ["There is a bank.", "There are banks nearby."]),
+  assignment(172, THERE_IS_ARE_OPERATION_ID, [sense("post office", "почта", "noun")], [], ["There is a post office nearby."]),
+  assignment(173, THERE_IS_ARE_OPERATION_ID, [sense("supermarket", "супермаркет", "noun")], [], ["There is a supermarket.", "There are shops nearby."]),
+  assignment(174, THERE_IS_ARE_OPERATION_ID, [sense("clinic", "клиника", "noun")], [], ["There is a clinic in the building."]),
+  assignment(175, THERE_IS_ARE_OPERATION_ID, [sense("playground", "детская площадка", "noun")], [], ["There is a playground behind the building."]),
+  assignment(176, THERE_IS_ARE_OPERATION_ID, [sense("neighbourhood", "район", "noun")], [], ["There are useful places in the neighbourhood."]),
+
+  assignment(177, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("dentist", "стоматолог", "noun")], [], ["Is there a dentist nearby?"]),
+  assignment(178, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("hotel", "отель", "noun")], [], ["Is there a hotel nearby?", "Yes, there is."]),
+  assignment(179, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("tram", "трамвай", "noun")], [], ["tram", "Are there trams nearby?"]),
+  assignment(180, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("platform", "платформа", "noun")], [], ["platform", "Are there platforms at the station?", "Yes, there are."]),
+  assignment(181, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("taxi", "такси", "noun")], [], ["Is there a taxi outside?", "Are there taxis outside?"]),
+  assignment(182, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("laundrette", "прачечная самообслуживания", "noun")], [], ["Is there a laundrette nearby?"]),
+  assignment(183, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("gym", "тренажёрный зал", "noun")], [], ["Is there a gym in the building?"]),
+  assignment(184, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("swimming pool", "бассейн", "noun")], [], ["Is there a swimming pool here?", "No, there isn't."]),
+
+  assignment(185, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("berry", "ягода", "noun")], [], ["There is a berry in the fridge.", "There are some berries in the fridge."]),
+  assignment(186, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("milk", "молоко", "noun")], [], ["There is some milk."]),
+  assignment(187, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("soup", "суп", "noun")], [], ["Is there any soup?"]),
+  assignment(188, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("mushroom", "гриб", "noun")], [], ["There is a mushroom in the drawer.", "Are there any mushrooms?"]),
+  assignment(189, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("juice", "сок", "noun")], [], ["There isn't any juice."]),
+  assignment(190, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("carrot", "морковь; морковка", "noun")], [], ["There is a carrot in the box.", "There aren't any carrots."]),
+  assignment(191, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("cheese", "сыр", "noun")], [], ["There is some cheese.", "Is there any cheese?"]),
+  assignment(192, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("yoghurt", "йогурт", "noun")], [], ["There is some yoghurt on the shelf."]),
+
+  assignment(193, PLACE_PREPOSITIONS_OPERATION_ID, [sense("sink", "раковина", "noun")], [], ["There is a sink in the utility room."]),
+  assignment(194, PLACE_PREPOSITIONS_OPERATION_ID, [sense("worktop", "кухонная столешница", "noun")], [], ["The cups are on the worktop."]),
+  assignment(195, PLACE_PREPOSITIONS_OPERATION_ID, [sense("awning", "навес", "noun")], [], ["The bench is under the awning."]),
+  assignment(196, PLACE_PREPOSITIONS_OPERATION_ID, [sense("alley", "переулок", "noun")], [], ["The courier is in the alley next to the hotel."]),
+  assignment(197, PLACE_PREPOSITIONS_OPERATION_ID, [sense("bus stop", "автобусная остановка", "noun")], [], ["The bus stop is between the bank and the library."]),
+  assignment(198, PLACE_PREPOSITIONS_OPERATION_ID, [sense("signpost", "указатель", "noun")], [], ["The signpost is near the bridge."]),
+  assignment(199, PLACE_PREPOSITIONS_OPERATION_ID, [sense("car park", "автостоянка", "noun")], [], ["There is a car park behind the supermarket.", "The car park is behind the supermarket."]),
+  assignment(200, PLACE_PREPOSITIONS_OPERATION_ID, [sense("fountain", "фонтан", "noun")], [], ["The fountain is between the clinic and the bakery."]),
+
+  assignment(201, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("doorbell", "дверной звонок", "noun")], [], ["There isn't a doorbell."]),
+  assignment(202, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("handrail", "поручень", "noun")], [], ["handrail", "There aren't any handrails."]),
+  assignment(203, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("ramp", "пандус", "noun")], [], ["There isn't a ramp."]),
+  assignment(204, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("smoke alarm", "датчик дыма", "noun")], [], ["smoke alarm", "There aren't any smoke alarms upstairs."]),
+  assignment(205, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("parcel locker", "почтовый шкаф для посылок", "noun")], [], ["There isn't a parcel locker here."]),
+  assignment(206, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("bike shed", "велосипедный сарай", "noun")], [], ["There isn't a bike shed behind the building."]),
+  assignment(207, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("boiler", "бойлер", "noun")], [], ["There isn't a boiler in the flat.", "The boiler isn't here."]),
+  assignment(208, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("thermostat", "термостат", "noun")], [], ["There isn't a thermostat."]),
+
+  assignment(209, THERE_IS_ARE_OPERATION_ID, [sense("cashpoint", "банкомат", "noun")], [], ["There's a cashpoint near the bank."]),
+  assignment(210, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("bus shelter", "павильон на остановке", "noun")], [], ["Is there a bus shelter?", "No, there isn't."]),
+  assignment(211, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("recycling bin", "контейнер для переработки", "noun")], [], ["recycling bin", "Are there any recycling bins nearby?"]),
+  assignment(212, PLACE_PREPOSITIONS_OPERATION_ID, [sense("freezer", "морозильник", "noun")], [], ["The freezer is next to the sink."]),
+  assignment(213, THERE_IS_ARE_OPERATION_ID, [sense("microwave", "микроволновая печь", "noun")], [], ["There is a microwave.", "There are microwaves."]),
+  assignment(214, THERE_IS_ARE_OPERATION_ID, [sense("pantry", "кладовая", "noun")], [], ["There is a pantry next to the shared kitchen."]),
+  assignment(215, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("leftover", "остаток еды", "noun")], [], ["There is a leftover in the fridge.", "There aren't any leftovers."]),
+  assignment(216, THERE_IS_ARE_OPERATION_ID, [sense("community kitchen", "общая кухня", "noun")], [], ["There is a community kitchen on this floor."]),
+
+  assignment(217, THERE_IS_ARE_OPERATION_ID, [sense("canal", "канал", "noun")], [], ["There is a canal on this route."]),
+  assignment(218, EXISTENTIAL_QUESTIONS_OPERATION_ID, [sense("river", "река", "noun")], [], ["Is there a river near the path?", "No, there isn't."]),
+  assignment(219, EXISTENTIAL_SOME_ANY_OPERATION_ID, [sense("community centre", "общественный центр", "noun")], [], ["Is there any community centre nearby?", "There is a community centre nearby."]),
+  assignment(220, EXISTENTIAL_NEGATIVES_OPERATION_ID, [sense("nursery", "детский сад", "noun")], [], ["There isn't a nursery on this street."]),
+  assignment(221, THERE_IS_ARE_OPERATION_ID, [sense("police station", "полицейский участок", "noun")], [], ["There is a police station here.", "The police station is next to the bank."]),
+  assignment(222, THERE_IS_ARE_OPERATION_ID, [sense("petrol station", "заправочная станция", "noun")], [], ["There is a petrol station on this road."]),
+  assignment(223, PLACE_PREPOSITIONS_OPERATION_ID, [sense("shortcut", "короткий путь", "noun")], [], ["There is a shortcut behind the community centre."]),
+  assignment(224, THERE_IS_ARE_OPERATION_ID, [sense("corner shop", "магазин у дома", "noun")], [], ["There is a corner shop near the new flat."]),
   // Lesson 5 / Session 2 is a prerequisite-safe retrieval packet. `hotel` is
   // introduced through its existing place-preposition example; the session
   // introduces no possession form beyond its declared review set.
-  assignment(226, PLACE_PREPOSITIONS_OPERATION_ID, [sense("hotel", "отель", "noun")], [], ["The bank is next to the hotel."]),
+  assignment(226, PLACE_PREPOSITIONS_OPERATION_ID, [], ["en.hotel.noun.01"], ["The bank is next to the hotel."]),
   assignment(227, PLACE_PREPOSITIONS_OPERATION_ID, [sense("desk", "письменный стол", "noun")], [], ["The key is on the desk."]),
   assignment(228, PLACE_PREPOSITIONS_OPERATION_ID, [sense("curtain", "занавеска", "noun")], [], ["The bag is behind the curtain."]),
   assignment(229, PLACE_PREPOSITIONS_OPERATION_ID, [sense("drawer", "ящик", "noun")], [], ["The key is in the drawer."]),
@@ -660,13 +669,13 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(263, "en.grammar.possession.whose_questions", [sense("violin", "скрипка", "noun")], [], ["Whose violin is this?"]),
   assignment(265, "en.grammar.existence_place.basic_place_prepositions", [sense("locker", "шкафчик", "noun")], [], ["The key is in the locker."]),
   assignment(266, "en.grammar.existence_place.basic_place_prepositions", [sense("scooter", "самокат", "noun")], [], ["The scooter is next to the hotel."]),
-  assignment(267, "en.grammar.existence_place.basic_place_prepositions", [sense("tram", "трамвай", "noun")], [], ["The tram is near the station."]),
+  assignment(267, "en.grammar.existence_place.basic_place_prepositions", [], ["en.tram.noun.01"], ["The tram is near the station."]),
   assignment(268, "en.grammar.existence_place.basic_place_prepositions", [sense("bicycle", "велосипед", "noun")], [], ["The bicycle is behind the hotel."]),
   assignment(269, "en.grammar.existence_place.basic_place_prepositions", [sense("motorbike", "мотоцикл", "noun")], [], ["The motorbike is near the hotel."]),
   assignment(270, "en.grammar.existence_place.basic_place_prepositions", [sense("ferry", "паром", "noun")], [], ["The ferry is near the station."]),
   assignment(271, "en.grammar.existence_place.basic_place_prepositions", [sense("subway", "метро", "noun")], [], ["The subway is near the station."]),
   assignment(273, "en.grammar.existence_place.basic_place_prepositions", [sense("garage", "гараж", "noun")], [], ["The bicycle is in the garage."]),
-  assignment(274, "en.grammar.existence_place.basic_place_prepositions", [sense("playground", "детская площадка", "noun")], [], ["The playground is near the park."]),
+  assignment(274, "en.grammar.existence_place.basic_place_prepositions", [], ["en.playground.noun.01"], ["The playground is near the park."]),
   assignment(275, "en.grammar.existence_place.basic_place_prepositions", [sense("stadium", "стадион", "noun")], [], ["The stadium is near the park."]),
   assignment(276, "en.grammar.existence_place.basic_place_prepositions", [sense("pool", "бассейн", "noun")], [], ["The pool is near the park."]),
   assignment(277, "en.grammar.existence_place.basic_place_prepositions", [sense("court", "корт", "noun")], [], ["The court is near the stadium."]),
@@ -1283,7 +1292,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   // Lesson 11 / Chapter 6: domestic locations provide a changed context for
   // past-state practice without introducing a second target in any packet.
   assignment(601, "en.grammar.past_be_existence.past_state_location", [sense("attic", "чердак", "noun")], [], ["We were in the attic yesterday."]),
-  assignment(602, "en.grammar.past_be_existence.past_state_location", [sense("pantry", "кладовая", "noun")], [], ["We were in the pantry yesterday."]),
+  assignment(602, "en.grammar.past_be_existence.past_state_location", [], ["en.pantry.noun.01"], ["We were in the pantry yesterday."]),
   assignment(603, "en.grammar.past_be_existence.past_state_location", [sense("porch", "крыльцо; веранда", "noun")], [], ["We were on the porch yesterday."]),
   assignment(604, "en.grammar.past_be_existence.past_state_location", [sense("cabin", "домик; хижина", "noun")], [], ["We were in the cabin yesterday."]),
   assignment(605, "en.grammar.past_be_existence.past_state_location", [sense("wardrobe", "шкаф для одежды", "noun")], [], ["We were by the wardrobe yesterday."]),
@@ -1296,7 +1305,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(610, "en.grammar.past_be_existence.past_state_location", [sense("campus", "университетский кампус", "noun")], [], ["We were on the campus yesterday."]),
   assignment(611, "en.grammar.past_be_existence.past_state_location", [sense("theater", "театр", "noun")], [], ["We were at the theater yesterday."]),
   assignment(612, "en.grammar.past_be_existence.past_state_location", [sense("laboratory", "лаборатория", "noun")], [], ["We were in the laboratory yesterday."]),
-  assignment(613, "en.grammar.past_be_existence.past_state_location", [sense("clinic", "клиника", "noun")], [], ["We were at the clinic yesterday."]),
+  assignment(613, "en.grammar.past_be_existence.past_state_location", [], ["en.clinic.noun.01"], ["We were at the clinic yesterday."]),
   assignment(614, "en.grammar.past_be_existence.past_state_location", [sense("gallery", "галерея", "noun")], [], ["We were in the gallery yesterday."]),
   assignment(615, "en.grammar.past_be_existence.past_state_location", [sense("courthouse", "здание суда", "noun")], [], ["We were at the courthouse yesterday."]),
   assignment(616, "en.grammar.past_be_existence.past_state_location", [], ["en.observatory.noun.01", "en.theater.noun.01", "en.clinic.noun.01", "en.courthouse.noun.01"], ["We were at the observatory yesterday.", "We were at the theater yesterday.", "We were at the clinic yesterday.", "We were at the courthouse yesterday."]),
@@ -1462,7 +1471,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(744, "en.grammar.past_continuous.negative_questions", [], ["en.ladder.noun.01", "en.cushion.noun.01", "en.visor.noun.01", "en.thermos.noun.01"], ["Were you carrying the ladder?", "Were you moving the cushion?", "Were you wearing the visor?", "Were you filling the thermos?"]),
   // Lesson 14 / Chapter 3: the changing location/object makes the ongoing
   // background action meaningful, with one new noun per packet.
-  assignment(745, "en.grammar.past_continuous.background_action", [sense("awning", "навес", "noun")], [], ["I was opening the awning."]),
+  assignment(745, "en.grammar.past_continuous.background_action", [], ["en.awning.noun.01"], ["I was opening the awning."]),
   assignment(746, "en.grammar.past_continuous.background_action", [sense("pavement", "тротуар", "noun")], [], ["I was crossing the pavement."]),
   assignment(747, "en.grammar.past_continuous.background_action", [sense("fence", "забор", "noun")], [], ["I was painting the fence."]),
   assignment(748, "en.grammar.past_continuous.background_action", [sense("pavilion", "павильон", "noun")], [], ["I was watching the pavilion."]),
@@ -1472,7 +1481,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(752, "en.grammar.past_continuous.background_action", [], ["en.awning.noun.01", "en.fence.noun.01", "en.railing.noun.01", "en.mailbox.noun.01"], ["I was opening the awning.", "I was painting the fence.", "I was holding the railing.", "I was checking the mailbox."]),
   // Lesson 14 / Chapter 4: a distinct interruption cue lets the learner
   // contrast the background action with one completed past event.
-  assignment(753, "en.grammar.past_continuous.interrupted_action", [sense("doorbell", "дверной звонок", "noun")], [], ["I was reading when the doorbell rang."]),
+  assignment(753, "en.grammar.past_continuous.interrupted_action", [], ["en.doorbell.noun.01"], ["I was reading when the doorbell rang."]),
   assignment(754, "en.grammar.past_continuous.interrupted_action", [sense("siren", "сирена", "noun")], [], ["I was walking when the siren sounded."]),
   assignment(755, "en.grammar.past_continuous.interrupted_action", [sense("thunder", "гром", "noun")], [], ["I was resting when thunder started."]),
   assignment(756, "en.grammar.past_continuous.interrupted_action", [sense("vibration", "вибрация", "noun")], [], ["I was working when the vibration began."]),
@@ -1503,7 +1512,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   // Lesson 14 / Chapter 7: final transfer selects public-place contexts while
   // holding the same when/while relation and one new sense per packet.
   assignment(777, "en.grammar.past_continuous.when_while", [sense("optician", "оптик", "noun")], [], ["I was waiting while the optician was open."]),
-  assignment(778, "en.grammar.past_continuous.when_while", [sense("bakery", "пекарня", "noun")], [], ["I was shopping while the bakery was busy."]),
+  assignment(778, "en.grammar.past_continuous.when_while", [], ["en.bakery.noun.01"], ["I was shopping while the bakery was busy."]),
   assignment(779, "en.grammar.past_continuous.when_while", [sense("barber", "парикмахер", "noun")], [], ["I was waiting while the barber was free."]),
   assignment(780, "en.grammar.past_continuous.when_while", [sense("bookstore", "книжный магазин", "noun")], [], ["I was reading while the bookstore was quiet."]),
   assignment(781, "en.grammar.past_continuous.when_while", [sense("boutique", "бутик", "noun")], [], ["I was browsing while the boutique was open."]),
@@ -1530,7 +1539,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(800, "en.grammar.planned_future.going_to_evidence", [], ["en.darkness.noun.01", "en.hail.noun.01", "en.drizzle.noun.01", "en.frost.noun.01"], ["The darkness is going to cover the road.", "The hail is going to hit the roof.", "The drizzle is going to wet the path.", "The frost is going to cover the grass."]),
   // Lesson 15 / Chapter 3: a calendar-like arrangement is grounded by one
   // distinct appointment noun rather than another future-form target.
-  assignment(801, "en.grammar.planned_future.continuous_arrangement", [sense("dentist", "стоматолог", "noun")], [], ["I'm seeing the dentist tomorrow."]),
+  assignment(801, "en.grammar.planned_future.continuous_arrangement", [], ["en.dentist.noun.01"], ["I'm seeing the dentist tomorrow."]),
   assignment(802, "en.grammar.planned_future.continuous_arrangement", [sense("plumber", "сантехник", "noun")], [], ["I'm meeting the plumber tomorrow."]),
   assignment(803, "en.grammar.planned_future.continuous_arrangement", [sense("mechanic", "механик", "noun")], [], ["I'm seeing the mechanic tomorrow."]),
   assignment(804, "en.grammar.planned_future.continuous_arrangement", [sense("landlord", "арендодатель", "noun")], [], ["I'm meeting the landlord tomorrow."]),
@@ -1831,7 +1840,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   // Lesson 19 / Chapter 5: polite requests introduce one concrete shared-space
   // noun each, while can/could carries the permission distinction.
   assignment(1041, "en.grammar.ability_permission.polite_permission", [sense("socket", "розетка", "noun")], [], ["Can I use the socket?"]),
-  assignment(1042, "en.grammar.ability_permission.polite_permission", [sense("thermostat", "термостат", "noun")], [], ["Could I adjust the thermostat?"]),
+  assignment(1042, "en.grammar.ability_permission.polite_permission", [], ["en.thermostat.noun.01"], ["Could I adjust the thermostat?"]),
   assignment(1043, "en.grammar.ability_permission.polite_permission", [sense("blinds", "жалюзи", "noun")], [], ["Could I close the blinds?"]),
   assignment(1044, "en.grammar.ability_permission.polite_permission", [sense("radiator", "радиатор", "noun")], [], ["Can I turn off the radiator?"]),
   assignment(1045, "en.grammar.ability_permission.polite_permission", [sense("whiteboard", "маркерная доска", "noun")], [], ["Could I use the whiteboard?"]),
@@ -2520,7 +2529,7 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
   assignment(1588, "en.grammar.defining_relative_clauses.where", [sense("atrium", "атриум", "noun")], [], ["This is the atrium where we met."]),
   assignment(1589, "en.grammar.defining_relative_clauses.where", [sense("studio", "студия", "noun")], [], ["I know a studio where you can record music."]),
   assignment(1590, "en.grammar.defining_relative_clauses.where", [sense("archive", "архив", "noun")], [], ["This is the archive where records are kept."]),
-  assignment(1591, "en.grammar.defining_relative_clauses.where", [sense("nursery", "питомник; ясли", "noun")], [], ["I know a nursery where plants grow."]),
+  assignment(1591, "en.grammar.defining_relative_clauses.where", [], ["en.nursery.noun.01"], ["I know a nursery where plants grow."]),
   assignment(1592, "en.grammar.defining_relative_clauses.where", [], ["en.theatre.noun.01", "en.canteen.noun.01", "en.studio.noun.01", "en.nursery.noun.01"], ["I know a theatre where you can sit quietly.", "I know a canteen where they serve soup.", "I know a studio where you can record music.", "I know a nursery where plants grow."]),
   // Lesson 29 / Chapter 4: subject and object relative roles contrast people
   // who act with people whom another person addresses or remembers.

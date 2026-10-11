@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-33:i01",
-    "correctText": "",
+    "correctText": "host",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i03",
-    "correctText": "",
+    "correctText": "guest",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-33:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-33:i10:p1=guests\nen:lesson-02:session-33:i10:p2=name\nen:lesson-02:session-33:i10:p3=cheerful\nen:lesson-02:session-33:i10:p4=corner",
     "correctResponseId": null
   },
   {

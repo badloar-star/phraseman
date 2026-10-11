@@ -1,8 +1,8 @@
 {
-  "sourceSha256": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+  "sourceSha256": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
   "localeHashes": {
-    "ru": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
-    "uk": "4acafe4d291844383e2c98f05fe31ec96e572f432307c37a3e1e69a086d94cd7"
+    "ru": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+    "uk": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855"
   },
   "locales": {
     "uk": {
@@ -10,12 +10,65 @@
       "blockers": [],
       "must_fix": [],
       "evidence": [
-        "Украинское начало естественно задаёт стол проверки и цель перед выходом.",
-        "Все 17 заданий и 17 режимов структурно совпадают с RU.",
-        "Значения аудио точны и не добавляют неслышимое расстояние.",
-        "Термин protective seal, определения, фонетический feedback и многочастные задания звучат естественно."
-      ]
+        "UK meanings for штрихкод/пломба/купон are natural, and atomic interaction order/count is 26/26."
+      ],
+      "mustFix": []
     }
   },
-  "verdict": "PASS"
+  "verdict": "PASS",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "e2dc5e80012c310fca5140650b5e33ed7e373ad56e9e9db2779a86976674ba0a",
+    "localeSha256": "26d59a754b2892f92a001ff235d352c377b503088b36fd449fe8e251a823ef94",
+    "practiceAtomicSha256": "a8b8c77a64031b4edd30cca6d7fb1f8f1b6fd99ee591b8f9546a820b88c98b85"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+  "exactUkSha256": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855",
+  "localeSha256": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855",
+  "practiceAtomicSha256": "7c148873f94af80e86f358112fae83955a472c4dfe95b483ef96fc422b737592",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "8f5d2b5390e4a41a7345f570f5ec4dd3ce22b0cd3c470a8ddc538727b99b4fbf",
+    "localeSha256": "cbafff44e2b136eb31395b00b5ad5ae012f78429fd0876a29a4d18648e769cc6",
+    "practiceAtomicSha256": "7c148873f94af80e86f358112fae83955a472c4dfe95b483ef96fc422b737592",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+    "exactRuSha256": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+    "exactUkSha256": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855",
+    "localeSha256": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855",
+    "localeHashes": {
+      "ru": "fb80cb9f7782556a752d07d00ca6342c67d9cc4f7e40e0eebc2e79f74029bb98",
+      "uk": "286bf0ccdb43b0303aea886ad6b92eb842b0a0981cb8c88a9cc66c509fb7f855"
+    },
+    "practiceAtomicSha256": "7c148873f94af80e86f358112fae83955a472c4dfe95b483ef96fc422b737592",
+    "evidence": [
+      "UK meanings for штрихкод/пломба/купон are natural, and atomic interaction order/count is 26/26."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": []
 }

@@ -23,6 +23,7 @@ import {
   hashCanonicalBody,
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
+import { LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 } from "./course_session_limits_v1";
 import { parseV2ExactLanguageTagV1 } from "../contracts/language_tag_v1";
 
 export const LEARNING_V2_COURSE_SESSION_DEVICE_RUN_SCHEMA_V1 =
@@ -552,7 +553,8 @@ export function parseLearningV2CourseSessionCompletedSummaryV1(
     parseV2ExactLanguageTagV1(input.learnerSourceLocale) === null ||
     !Array.isArray(input.interactionCompletions) ||
     input.interactionCompletions.length < 10 ||
-    input.interactionCompletions.length > 22 ||
+    input.interactionCompletions.length >
+      LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 ||
     input.interactionCount !== input.interactionCompletions.length ||
     input.answerPayload !== "absent" ||
     input.perAnswerTransport !== "none" ||

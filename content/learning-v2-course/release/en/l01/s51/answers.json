@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-51:i01",
-    "correctText": "",
+    "correctText": "there",
     "correctResponseId": null
   },
   {
@@ -11,12 +11,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i03",
-    "correctText": "",
+    "correctText": "outside",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i04",
-    "correctText": "",
+    "correctText": "inside",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i07",
-    "correctText": "",
+    "correctText": "upstairs",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-51:i11:p1=there\nen:lesson-01:session-51:i11:p2=outside\nen:lesson-01:session-51:i11:p3=inside\nen:lesson-01:session-51:i11:p4=upstairs",
     "correctResponseId": null
   },
   {
@@ -76,12 +76,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i16",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-51:i16:p1=here\nen:lesson-01:session-51:i16:p2=home\nen:lesson-01:session-51:i16:p3=tired\nen:lesson-01:session-51:i16:p4=cold",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-51:i17",
-    "correctText": "I am home. He is upstairs. I am not alone. I am tired.",
+    "interactionId": "en:lesson-01:session-51:i17:s01",
+    "correctText": "I am home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i17:s02",
+    "correctText": "He is upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i17:s03",
+    "correctText": "I am not alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i17:s04",
+    "correctText": "I am tired.",
     "correctResponseId": null
   }
 ]

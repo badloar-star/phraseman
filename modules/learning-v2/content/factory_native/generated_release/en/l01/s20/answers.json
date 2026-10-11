@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-20:i01",
-    "correctText": "",
+    "correctText": "married",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i03",
-    "correctText": "",
+    "correctText": "single",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i05",
-    "correctText": "",
+    "correctText": "funny",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i08",
-    "correctText": "",
+    "correctText": "famous",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i10",
-    "correctText": "",
+    "correctText": "rich",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-20:i14",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-20:i14:p1=married\nen:lesson-01:session-20:i14:p2=single\nen:lesson-01:session-20:i14:p3=famous\nen:lesson-01:session-20:i14:p4=rich",
     "correctResponseId": null
   },
   {

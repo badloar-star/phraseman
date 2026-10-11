@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro1:r2": {
+          "ru": "Речь об одной посылке, поэтому нужно единственное число `It is`, а не множественное `They are`.",
+          "uk": "Йдеться про одну посилку, тому потрібна форма однини `It is`, а не множина `They are`."
+        },
+        "en:lesson-03:session-29:intro1:r3": {
+          "ru": "Это вопрос. По ситуации вы сообщаете соседу, что уже названная посылка тяжёлая.",
+          "uk": "Це запитання. За ситуацією ви повідомляєте сусідові, що вже названа посилка важка."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro2:r2": {
+          "ru": "Речь об одном письме, поэтому нужно `It is wet`, а не множественное `They are wet`.",
+          "uk": "Йдеться про один лист, тому потрібне `It is wet`, а не множина `They are wet`."
+        },
+        "en:lesson-03:session-29:intro2:r3": {
+          "ru": "После `it` нужно `is`: `It is wet`.",
+          "uk": "Після `it` потрібне `is`: `It is wet`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-29:intro3:r2": {
+          "ru": "Марка уже названа. `That` укажет на другую дальнюю вещь, а `it` продолжит говорить о той же марке.",
+          "uk": "Марку вже названо. `That` укаже на іншу далеку річ, а `it` продовжить говорити про ту саму марку."
+        },
+        "en:lesson-03:session-29:intro3:r3": {
+          "ru": "После `a` не хватает названия вещи. Марка уже названа, поэтому говорим `It is small`.",
+          "uk": "Після `a` бракує назви речі. Марку вже названо, тому кажемо `It is small`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "45bd6a3162f3758f6316c5d8ac579eea81406ea33aa3b06b97d15dfd1474783a"
+}

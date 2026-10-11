@@ -1,11 +1,78 @@
 {
+  "reviewer": "economy-executor independent fresh rejudge",
+  "role": "judge_learner",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "session": "s31",
+  "sourceSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+  "exactRuSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+  "exactUkSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
   "verdict": "PASS",
-  "sourceSha256": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
   "blockers": [],
-  "must_fix": [],
+  "mustFix": [],
   "evidence": [
-    "Все 17 заданий имеют один проверяемый ответ; task 14 показывает локализованные значения.",
-    "Hat, belt и boot проходят word-first практику без будущего материала.",
-    "Финал меняет позиции всех трёх вещей и требует три самостоятельные просьбы."
-  ]
+    "Костюмерная, три детали и необходимость быстро выбрать близкое/дальнее создают понятную задачу."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "7a7a9070a6b3323e814385358fe43976f52ca4f17c7c40063adc8391a00a403c",
+    "localeSha256": "c4534955869a1cda6ea6b1fc6f65c7dc610cc390656ec9ae1b7aa62bf932cd72",
+    "practiceAtomicSha256": "b4ddd6cf0220c88f091e09c489688f7d5fc7b36128138ae22f3c9f5983fc7580"
+  },
+  "localeSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+  "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "484c33fc5d3193787f1f519d07d799c1cafe1c295a8482ab66f35a963654400a",
+    "localeSha256": "81336326ab26aafce6f6059fc6f531a5f355d4fc8ce18374ab52222be306ad1b",
+    "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "uk": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_learner",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "exactRuSha256": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+    "exactUkSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+    "localeSha256": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac",
+    "localeHashes": {
+      "ru": "c6108a3fe6728b240d5933b0c6938e5707e27c03668b3ee3424e4df3dcb24f99",
+      "uk": "121c82a103419f0192b2726961f174d9d34d8b3887def8b173db3440d40ea2ac"
+    },
+    "practiceAtomicSha256": "a5a63b7a8f16ead032b6615495e146eec0fcaf2bc42e564470f69527d922d292",
+    "evidence": [
+      "Костюмерная, три детали и необходимость быстро выбрать близкое/дальнее создают понятную задачу."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

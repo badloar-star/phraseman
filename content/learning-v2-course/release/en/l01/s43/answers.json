@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-43:i01",
-    "correctText": "",
+    "correctText": "bad",
     "correctResponseId": null
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i04",
-    "correctText": "",
+    "correctText": "real",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i06",
-    "correctText": "",
+    "correctText": "true",
     "correctResponseId": null
   },
   {
@@ -76,12 +76,22 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i16",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-43:i16:p1=bad\nen:lesson-01:session-43:i16:p2=real\nen:lesson-01:session-43:i16:p3=true\nen:lesson-01:session-43:i16:p4=ok",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-43:i17",
-    "correctText": "We're ready. They aren't late. It isn't bad.",
+    "interactionId": "en:lesson-01:session-43:i17:s01",
+    "correctText": "We're ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i17:s02",
+    "correctText": "They aren't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-43:i17:s03",
+    "correctText": "It isn't bad.",
     "correctResponseId": null
   }
 ]

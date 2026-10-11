@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 44 — «Сокращения на слух»
+# Английский · Урок 1 · Занятие 44 — «Сокращения на слух»
 
-**Сцена сессии.** Пятница, паб. Музыка громче разговора, и короткие фразы летят мимо ушей.
-**Операция:** повторение сокращений `I'm` / `he's` / `it's` / `they're` — на слух
+**Ситуация.** В кафе Мира, Лина и вы разговариваете после работы. Мира замечает, что вы устали, Лина просит проверить пиво, а за соседним столом спорят коллеги.
+**Сегодня.** Услышите и скажете короткие формы `I'm`, `he's`, `it's` и `they're`.
 **Новые слова:** —
 **Возвращаются:** tired, cold, wrong, free
 
@@ -50,77 +50,106 @@
 **За соседним столом спорят и явно говорят чушь. Скажите приятелю про них.**
 
 - ✅ **They're wrong.**
-- ❌ They wrong. — *Пропала скрепка. Чтобы сказать «они не правы», нужно `are` — хотя бы внутри `they're`.*
-- ❌ They're are wrong. — *`are` уже сидит внутри `they're`. Одной скрепки хватит.*
+- ❌ They wrong. — *После `they` нужно `are`: полная форма `They are wrong`, короткая — `They're wrong`.*
+- ❌ They're are wrong. — *`are` уже внутри `they're`. Второй раз его не ставят.*
 
 ---
 
-## Практика (16 заданий, поддержка убывает)
+## Практика (19 заданий, подсказок становится меньше)
 
 **1 · Послушайте и выберите — что вы услышали?**
+<!-- interaction_id: en:lesson-01:session-44:i01; family: listen_choose -->
 🔊 *I'm tired.* → **I'm tired.** · I tired. · Am tired.
 - I tired. — *Здесь `am` пропало совсем. В записи оно есть — спрятано внутри `I'm`.*
 - Am tired. — *Пропало `I`. Без него непонятно, кто устал.*
 
 **2 · Вставьте слово — вы зеваете весь вечер**
+<!-- interaction_id: en:lesson-01:session-44:i02; family: context_gap_grammar -->
 I'm ___ . → **tired** · free · wrong
 - free — *«Свободен». Про усталость это ничего не говорит.*
 - wrong — *«Не прав». Вы не спорите, вы зеваете.*
 
 **3 · Послушайте и выберите — про человека или про вещь?**
+<!-- interaction_id: en:lesson-01:session-44:i03; family: listen_choose -->
 🔊 *He's cold.* → **He's cold.** · It's cold. · They're cold.
 - It's cold. — *В записи первое слово другое — там `he's`.*
 - They're cold. — *В записи первое слово другое — там `he's`, про одного.*
 
 **4 · Соберите фразу — «пиво холодное»**
+<!-- interaction_id: en:lesson-01:session-44:i04; family: phrase_builder -->
 Плитки: `cold` `It's` `is` → **It's cold.**
 
 **5 · Послушайте и соберите — «они не правы»**
+<!-- interaction_id: en:lesson-01:session-44:i05; family: listen_build_dictation -->
 🔊 *They're wrong.* Плитки: `wrong` `They're` `are` `cold` → **They're wrong.**
 
 **6 · Вставьте слово — приятель весь вечер спорит и путает факты**
+<!-- interaction_id: en:lesson-01:session-44:i06; family: context_gap_grammar -->
 He's ___ . → **wrong** · cold · free
 - cold — *«Замёрз». Речь не о температуре, а о том, что он ошибается.*
 - free — *«Свободен». Не про спор.*
 
 **7 · Различите звуки — какое из двух про «холодно»?**
+<!-- interaction_id: en:lesson-01:session-44:i07; family: sound_contrast -->
 🔊 Два слова подряд.
 *cold · called* → **cold**
 - called — *В `called` губы округлены и звук тянется на одной ноте. В `cold` он съезжает: начинается как «о» и уходит к «у».*
 
 **8 · Вставьте слово — вас зовут за столик, дел у вас нет, вы свободны**
+<!-- interaction_id: en:lesson-01:session-44:i08; family: context_gap_grammar -->
 I'm ___ . → **free** · tired · cold
 - tired — *«Устал». Тогда бы вы уходили, а не садились.*
 - cold — *«Замёрз». Про занятость это ничего не говорит.*
 
 **9 · Соберите фразу — вас зовут за столик, и дел у вас нет**
+<!-- interaction_id: en:lesson-01:session-44:i09; family: phrase_builder -->
 Плитки: `free` `I'm` `am` → **I'm free.**
 
 **10 · Послушайте и выберите — что вы услышали?**
+<!-- interaction_id: en:lesson-01:session-44:i10; family: listen_choose -->
 🔊 *It's cold.* → **It's cold.** · He's cold. · It cold.
 - He's cold. — *В записи первое слово `it's` — про вещь, не про человека.*
-- It cold. — *Скрепка потерялась целиком, а в записи она есть.*
+- It cold. — *После `it` нужна форма `is`: в записи это короткая форма `it's`.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-44:i11; family: speed_match -->
 tired — устал · cold — холодный · wrong — не прав · free — свободен
 
-**12 · Вставьте скрепку — про компанию за соседним столом**
+**12 · Выберите форму после `They` — про компанию за соседним столом**
+<!-- interaction_id: en:lesson-01:session-44:i12; family: context_gap_grammar -->
 They ___ wrong. → **are** · is · am
 - is — *`is` работает с одним человеком или одной вещью. Их там несколько.*
 - am — *`am` бывает только с `I`.*
 
 **13 · Соберите фразу — «он замёрз», внимательно: про мужчину**
+<!-- interaction_id: en:lesson-01:session-44:i13; family: phrase_builder -->
 Плитки: `cold` `He's` `It's` → **He's cold.**
 
-**14 · Скажите вслух — вы устали и уходите**
-🎙 **I'm tired. It's cold.** — послушайте, повторите, сравните.
+**14 · Произнесите фразу — Мира замечает, что вы зеваете**
+<!-- interaction_id: en:lesson-01:session-44:i14:s01; family: scripted_repeat_compare -->
+🎙 **I'm tired.**
 
-**15 · Соберите фразу — они уверяют, что вы ошиблись, но правы вы**
-Плитки: `wrong` `They're` `They` → **They're wrong.**
+**15 · Произнесите фразу — друг проверяет пиво и просит сказать о нём**
+<!-- interaction_id: en:lesson-01:session-44:i14:s02; family: scripted_repeat_compare -->
+🎙 **It's cold.**
 
-**16 · Финал сцены — три фразы подряд**
-🎙 Вечер к концу. Скажите: пиво холодное, вы устали, а те, за столом, всё равно не правы.
-**It's cold. I'm tired. They're wrong.**
+**16 · Соберите фразу — Лина и её коллега говорят, что вы ошиблись, но правы вы**
+<!-- interaction_id: en:lesson-01:session-44:i15; family: phrase_builder -->
+Плитки: `They're` `wrong` `They` → **They're wrong.**
+
+**17 · Вставьте значок — друг спрашивает, холодное ли пиво**
+<!-- interaction_id: en:lesson-01:session-44:i16:s01; family: context_gap_grammar -->
+It___ cold. → **'s** · is · are
+- is — *`is` — полная форма; здесь нужно собрать краткую форму `it's`.*
+- are — *`are` употребляется с `you`, `we`, `they`, а с `it` — `is` или `'s`.*
+
+**18 · Соберите фразу — Мира спрашивает, почему вы зеваете**
+<!-- interaction_id: en:lesson-01:session-44:i16:s02; family: phrase_builder -->
+Плитки: `I'm` `tired` `are` → **I'm tired.**
+
+**19 · Произнесите фразу — Лина уточняет, кто назвал неверное время**
+<!-- interaction_id: en:lesson-01:session-44:i16:s03; family: scripted_repeat_compare -->
+🎙 **They're wrong.**
 
 ---
 
@@ -128,7 +157,7 @@ They ___ wrong. → **are** · is · am
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=listen_build_dictation, 6=context_gap_grammar, 7=sound_contrast, 8=context_gap_grammar, 9=phrase_builder, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=scripted_repeat_compare, 15=phrase_builder, 16=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=listen_build_dictation, 6=context_gap_grammar, 7=sound_contrast, 8=context_gap_grammar, 9=phrase_builder, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=context_gap_grammar, 18=phrase_builder, 19=scripted_repeat_compare
 
 ---
 

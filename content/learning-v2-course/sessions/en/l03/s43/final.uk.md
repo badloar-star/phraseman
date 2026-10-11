@@ -1,129 +1,135 @@
-# Англійська · Урок 3 · Сесія 43 — «Будь-які чи саме ці»
+# Англійська · Урок 3 · Заняття 43 — «Із спільної стопки»
 
-**Сцена сесії.** У читальній залі ви з помічником розбираєте спільну стопку друкованих видань. Спочатку вирішуєте, який вид видань підійде, потім указуєте на вже вибрані книжки, журнали й газети.
+**Ситуація.** Ви з помічником розбираєте одну спільну стопку друкованих видань. Спочатку обираєте вид видань узагалі, потім указуєте на конкретні відкладені примірники.
 
-**Операція:** назвати вид предметів іменником у множині без артикля, а конкретну зрозумілу обом групу — з `the`
-**Нові слова:** magazine, newspaper
-**Для повторення:** book, are, fine, here, the
+**Як сказати:** у множині називаємо вид предметів без артикля, а конкретну зрозумілу обом групу — з `the`.
+**Нові слова:** book, magazine, newspaper
+**Для повторення:** the, are, here, fine
 
 ---
 
 ## Інтро 1
 
-### Журнали взагалі
+### Журнали як вид видань
 
-`magazine` — «журнал», у множині `magazines` — «журнали». Фраза `Magazines are fine.` означає «Журнали підійдуть». Тут вибирають вид видань, а не конкретні журнали зі стопки, тому перед `magazines` нічого не ставлять. Коли слово у множині має загальне значення, `the` не потрібен.
+`magazine` — «журнал», у множині `magazines` — «журнали». У спільній стопці помічник питає, чи підійдуть журнали як вид видань. Коли обираємо вид узагалі, перед `magazines` нічого не ставимо. Скажіть: `Magazines are fine.`
 
-**Помічник запитує, який вид видань узяти зі спільної стопки. Скажіть, що журнали підійдуть.**
+**Помічник питає, чи підійдуть журнали. Оберіть вид видань узагалі.**
 
 - ✅ **Magazines are fine.**
-- ❌ The magazines are fine. — *`the magazines` означає конкретні журнали, уже зрозумілі обом. Тут вибирають вид видань узагалі, тому потрібно `Magazines` без артикля.*
-- ❌ A magazines are fine. — *`a` ставлять лише перед одним злічуваним предметом. `magazines` — множина, тому `a magazines` неможливо.*
+- ❌ The magazines are fine. — *`the magazines` — це вже конкретні журнали. Тут ви обираєте вид видань узагалі.*
+- ❌ A magazines are fine. — *Перед кількома журналами не можна ставити `a`; тут потрібна форма `Magazines`.*
 
 ---
 
 ## Інтро 2
 
-### Саме відкладені газети
+### Відкладені журнали
 
-`newspaper` — «газета», у множині `newspapers` — «газети». Фраза `The newspapers are here.` означає «Газети тут». Ідеться про конкретні газети, які помічник уже відклав зі стопки: обидва співрозмовники розуміють, які саме. Тому перед `newspapers` потрібен `the`.
+`magazine` — «журнал», у множині `magazines` — «журнали». Помічник уже відклав журнали з цієї стопки. Тому це конкретна група: перед `magazines` ставимо `the`. Без `the` ішлося б знову про журнали взагалі; `the` указує саме на відкладену групу. Скажіть: `The magazines are here.`
 
-**Помічник уже відклав газети зі спільної стопки. Скажіть, що ці газети тут.**
+**Помічник поклав вибрані журнали поруч зі стопкою. Укажіть на цю групу.**
 
-- ✅ **The newspapers are here.**
-- ❌ Newspapers are here. — *Без `the` фраза не вказує на вже відому обом групу. Тут обидва співрозмовники знають, про які газети йдеться.*
-- ❌ A newspapers are here. — *`newspapers` — кілька газет. Артикль `a` використовують лише з одним злічуваним предметом.*
+- ✅ **The magazines are here.**
+- ❌ Magazines are here. — *Без `the` фраза не вказує саме на ці вже відкладені журнали. Тут потрібна форма `The magazines`.*
+- ❌ A magazines are here. — *Журналів кілька, тому `a` тут не підходить.*
 
 ---
 
 ## Інтро 3
 
-### Узагалі й конкретно
+### Газети взагалі
 
-`Magazines are fine. The newspapers are here.` — спочатку вибирають вид видань узагалі, потім говорять про конкретні газети, зрозумілі обом. Тому перед `Magazines` артикля немає, а перед `newspapers` стоїть `the`. Газет більше не стало: `the` лише уточнює, про які саме йдеться.
+`newspaper` — «газета», у множині `newspapers` — «газети». Із спільної стопки ще обирають вид видань, а не вказують на відкладені газети. Тому перед `newspapers` артикля немає. Скажіть: `Newspapers are fine.` У помічника тепер є зрозумілий список.
 
-**Спочатку скажіть, що журнали підійдуть як вид видань. Потім укажіть на вже відкладені газети.**
+**Помічник питає, чи підійдуть газети як вид видань. Дайте відповідь про газети взагалі.**
 
-- ✅ **Magazines are fine. The newspapers are here.**
-- ❌ The magazines are fine. Newspapers are here. — *У першій фразі вибирають вид видань узагалі, тому `the` не потрібен. У другій говорять про вже відкладену групу, тому потрібен `the newspapers`.*
-- ❌ A magazines are fine. The newspaper are here. — *`a magazines` неможливо у множині. Після форми множини `newspapers` потрібна форма `are`.*
+- ✅ **Newspapers are fine.**
+- ❌ The newspapers are fine. — *`the newspapers` означає конкретну групу. Тут ви обираєте газети взагалі.*
+- ❌ A newspapers are fine. — *Перед кількома газетами не ставлять `a`.*
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — magazine**
-> **magazine** — «журнал». Видання зі статтями й фотографіями, яке виходить окремими номерами.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-43:i01; family: listen_choose -->
+Ціль: `book`
+Варіанти: `book`
 
-**2 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *magazine* → **magazine** · machine · gasoline · canteen
-Значення варіантів: magazine — журнал · machine — машина або механізм · gasoline — бензин · canteen — їдальня
-- machine — *У `machine` два склади й звук /ʃ/, а в `magazine` три склади й звук /ɡ/.*
-- gasoline — *`gasoline` починається звуком /ɡ/, а `magazine` — звуком /m/.*
-- canteen — *`canteen` починається звуком /k/ і має два склади; `magazine` починається /m/ і має три склади.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-43:i03; family: scripted_repeat_compare -->
+Ціль: `magazine`
 
-**3 · Картка слова — newspaper**
-> **newspaper** — «газета». Друковане або електронне видання з новинами й статтями.
+**3 · Вставте назву видання — у стосі потрібна газета**
+<!-- interaction_id: en:lesson-03:session-43:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `newspaper` · `magazine` · `book`
 
-**4 · Послухайте й виберіть — яке слово прозвучало**
-🔊 *newspaper* → **newspaper** · newsreader · newsagent · notebook
-Значення варіантів: newspaper — газета · newsreader — ведучий новин · newsagent — продавець газет · notebook — блокнот
-- newsreader — *Після `news` у `newsreader` звучить `reader`, а в `newspaper` — `paper`.*
-- newsagent — *Після `news` у `newsagent` звучить `agent`, а в `newspaper` — `paper`.*
-- notebook — *`notebook` починається словом `note`, а почуте `newspaper` — словом `news`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-43:i02; family: scripted_repeat_compare -->
+Ціль: `book`
 
-**5 · Складіть фразу — виберіть журнали як вид видань**
-Плитки: `Magazines` `are` `fine` `The` `is` → **Magazines are fine.**
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-43:i04; family: listen_choose -->
+Ціль: `magazine`
+Варіанти: `magazine`
 
-**6 · Послухайте й виберіть точне значення фрази**
-🔊 *The newspapers are here.* → **Газети тут** · Газети підійдуть · Журнал тут · Де газети?
-- Газети підійдуть — *У записі звучить `are here`: повідомляють, де перебуває конкретна група, а не вибирають вид видань.*
-- Журнал тут — *У записі звучить множинне `newspapers`, а не один `magazine`.*
-- Де газети? — *Це твердження, а не запитання з `where`.*
+**6 · Промовте слово — газета зі стосу**
+<!-- interaction_id: en:lesson-03:session-43:i06; family: scripted_repeat_compare -->
+Ціль: `newspaper`
 
-**7 · З’єднайте слова зі значеннями — друковані видання зі спільної стопки**
-book — книжка · magazine — журнал · newspaper — газета · letter — лист
+**7 · З’єднайте слово зі значенням — спільна стопка**
+<!-- interaction_id: en:lesson-03:session-43:i08; family: speed_match -->
+Пари: `book` — книжка · `magazine` — журнал · `newspaper` — газета · `receipt` — чек
+Ціль: `book · magazine · newspaper · receipt`
 
-**8 · Складіть фразу — виберіть книжки як вид видань**
-Плитки: `Books` `are` `fine` `The` `is` → **Books are fine.**
+**8 · Послухайте й складіть фразу — журнали підійдуть**
+<!-- interaction_id: en:lesson-03:session-43:i10; family: listen_build_dictation -->
+Ціль: `Magazines are fine.`
 
-**9 · Послухайте й складіть фразу — помічник говорить про журнали**
-🔊 *The magazines are fine.* Плитки: `The` `magazines` `are` `fine` `is` → **The magazines are fine.**
+**9 · Промовте фразу — відібрані книжки тут**
+<!-- interaction_id: en:lesson-03:session-43:i11; family: scripted_repeat_compare -->
+Ціль: `The books are here.`
 
-**10 · Послухайте й виберіть точне значення фрази**
-🔊 *The books are here.* → **Книжки тут** · Книжки взагалі підійдуть · Журнал тут · Де книжки?
-- Книжки взагалі підійдуть — *У записі є `the`: ідеться про конкретні книжки, а `are here` повідомляє, де вони.*
-- Журнал тут — *У записі звучить множинне `books`, а не один `magazine`.*
-- Де книжки? — *Це твердження `The books are here`, а не запитання з `where`.*
+**10 · Складіть фразу — ідеться про газети взагалі**
+<!-- interaction_id: en:lesson-03:session-43:i07; family: phrase_builder -->
+Ціль: `Newspapers are fine.`
 
-**11 · Складіть фразу — укажіть на вже вибрані журнали**
-Плитки: `The` `magazines` `are` `here` `a` `is` → **The magazines are here.**
+**11 · Вставте початок — помічник указує на відкладені книжки**
+<!-- interaction_id: en:lesson-03:session-43:i09; family: context_gap_grammar -->
+Ціль: `___ books are here.`
+Варіанти: `The` · `A` · `An` · `без артикля`
 
-**12 · Вставте слово — ідеться про вже вибрані газети**
-___ newspapers are here. → **The** · A · An · нічого
-- A — *`newspapers` — множина, тому `a` перед ним неможливе.*
-- An — *`an` також ставлять лише перед одним злічуваним предметом, а газет кілька.*
-- нічого — *Тут говорять про вже вибрані газети, зрозумілі обом, тому потрібна форма `The newspapers`.*
+**12 · Послухайте й складіть фразу**
+<!-- interaction_id: en:lesson-03:session-43:i13; family: listen_build_dictation -->
+Ціль: `The newspapers are here.`
 
-**13 · Скажіть уголос — газети підійдуть як вид видань**
-🎙 **Newspapers are fine.** — промовте фразу, потім послухайте зразок і порівняйте.
+**13 · Вставте початок — помічник обирає газети як вид видань**
+<!-- interaction_id: en:lesson-03:session-43:i12; family: context_gap_grammar -->
+Ціль: `___ newspapers are fine.`
+Варіанти: `без артикля` · `The` · `A` · `An`
 
-**14 · Послухайте й складіть фразу — укажіть на вибрані газети**
-🔊 *The newspapers are here.* Плитки: `The` `newspapers` `are` `here` `a` `fine` → **The newspapers are here.**
+**14 · Складіть фразу — укажіть на конкретні журнали біля стопки**
+<!-- interaction_id: en:lesson-03:session-43:i14; family: phrase_builder -->
+Ціль: `The magazines are here.`
 
-**15 · Вставте початок — виберіть вид видань узагалі**
-___ are fine. → **Books** · The books · A books · Book
-- The books — *`The books` указує на конкретну групу. Тут вибирають вид видань узагалі, тому потрібно `Books`.*
-- A books — *`a` не можна ставити перед множинним `books`.*
-- Book — *`Book` — форма однини: з нею тут були б потрібні `is` і визначник. З `are` потрібна множина `Books`.*
+**15 · Вставте початок — помічник обирає книжки взагалі**
+<!-- interaction_id: en:lesson-03:session-43:i15; family: context_gap_grammar -->
+Ціль: `___ books are fine.`
+Варіанти: `без артикля` · `The` · `A` · `An`
 
-**16 · Скажіть уголос — спочатку вид видань, потім конкретна група**
-🎙 **Magazines are fine. The newspapers are here.** — промовте дві фрази, потім послухайте зразок і порівняйте.
+**16 · Послухайте й виберіть точне значення фрази**
+<!-- interaction_id: en:lesson-03:session-43:i16; family: listen_choose -->
+Ціль: `Books are fine.`
+Варіанти: `Книжки підійдуть.` · `Ці книжки тут.` · `Журнали підійдуть.` · `Де книжки?`
 
-**17 · Фінал — спочатку книжки, потім журнали, далі газети; для кожного виду спочатку скажіть, що він підходить узагалі, а потім — що конкретна група тут**
-Плитки: `Books` `are` `fine` `The` `books` `are` `here` `Magazines` `are` `fine` `The` `magazines` `are` `here` `Newspapers` `are` `fine` `The` `newspapers` `are` `here` → **Books are fine. The books are here. Magazines are fine. The magazines are here. Newspapers are fine. The newspapers are here.**
+**17 · Вставте початок — помічник указує на відкладені газети**
+<!-- interaction_id: en:lesson-03:session-43:i17; family: context_gap_grammar -->
+Ціль: `___ newspapers are here.`
+Варіанти: `The` · `без артикля` · `A` · `An`
 
-## Для збирача
-new_words: magazine — журнал — Видання зі статтями й фотографіями, яке виходить окремими номерами.
-new_words: newspaper — газета — Друковане або електронне видання з новинами й статтями.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=listen_build_dictation, 10=listen_choose, 11=phrase_builder, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=listen_build_dictation, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=phrase_builder
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar
+

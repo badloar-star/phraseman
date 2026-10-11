@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-28:i07",
-    "correctText": "",
+    "correctText": "weather",
     "correctResponseId": null
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-28:i09",
-    "correctText": "",
+    "correctText": "street",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-28:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-28:i10:p1=price\nen:lesson-02:session-28:i10:p2=name\nen:lesson-02:session-28:i10:p3=time\nen:lesson-02:session-28:i10:p4=weather",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-28:i17",
-    "correctText": "What is this? What is the price? What is the time?",
+    "interactionId": "en:lesson-02:session-28:i17:s01",
+    "correctText": "What is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i17:s02",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i17:s03",
+    "correctText": "What is the time?",
     "correctResponseId": null
   }
 ]

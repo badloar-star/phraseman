@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — hot",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -171,17 +171,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «мне жарко»",
+      "prompt": "Соберите фразу — в комнате душно, и вы снимаете свитер",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «мне жарко»",
+      "accessibilityLabel": "Соберите фразу — в комнате душно, и вы снимаете свитер",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am hot.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «мне жарко»",
-          "uk": "Складіть фразу — «мені жарко»"
+          "ru": "Соберите фразу — в комнате душно, и вы снимаете свитер",
+          "uk": "Складіть фразу — у кімнаті душно, і ви знімаєте светр"
         },
         "orderedTokens": [
           "I",
@@ -261,7 +261,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-05:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — lost",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -380,7 +380,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-05:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — sick",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -456,7 +456,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — new",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -582,11 +582,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -745,7 +745,9 @@
           "not",
           "sure"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -884,11 +886,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "prompt": "Соедините пары — слова, которые уже ваши",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -952,26 +954,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-05:i18",
+      "interactionId": "en:lesson-01:session-05:i18:s01",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы опоздали на кухню к общему разговору",
+      "prompt": "Скажите вслух — вы задели коллегу в коридоре",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-05:i18:audio"
+        "en:lesson-01:session-05:i18:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы опоздали на кухню к общему разговору",
+      "accessibilityLabel": "Скажите вслух — вы задели коллегу в коридоре",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-05:i18:audio",
-          "transcript": "I am sorry. I am late."
+          "audioTargetId": "en:lesson-01:session-05:i18:s01:audio",
+          "transcript": "I am sorry."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am sorry. I am late.",
+        "targetPhrase": "I am sorry.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -985,26 +987,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-05:i19",
+      "interactionId": "en:lesson-01:session-05:i18:s02",
       "ordinal": 22,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа подряд про своё состояние",
+      "prompt": "Скажите вслух — встреча уже началась, а вы только вошли",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-05:i19:audio"
+        "en:lesson-01:session-05:i18:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа подряд про своё состояние",
+      "accessibilityLabel": "Скажите вслух — встреча уже началась, а вы только вошли",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-05:i19:audio",
-          "transcript": "I am hot. I am not sick. I am ready. I am not new."
+          "audioTargetId": "en:lesson-01:session-05:i18:s02:audio",
+          "transcript": "I am late."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am hot. I am not sick. I am ready. I am not new.",
+        "targetPhrase": "I am late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:i19:s01",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — окно закрыто, батарея греет, и вам жарко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:i19:s01:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — окно закрыто, батарея греет, и вам жарко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:i19:s01:audio",
+          "transcript": "I am hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:i19:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — врач сказал, что вы здоровы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:i19:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — врач сказал, что вы здоровы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:i19:s02:audio",
+          "transcript": "I am not sick."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not sick.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:i19:s03",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — встреча начинается, и ваши записи готовы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:i19:s03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — встреча начинается, и ваши записи готовы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:i19:s03:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:i19:s04",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы работаете здесь с прошлого года",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-05:i19:s04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы работаете здесь с прошлого года",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-05:i19:s04:audio",
+          "transcript": "I am not new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not new.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1018,11 +1152,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 23,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df2dd7305db276bcaea8b881045cc9a1e4cdbde1ba99f24bd09a72152d06d8e4"
+  "learnerFingerprint": "ac1fad30cfabb63d635d7b131c8eb5695f7d88c36a35923fe970020baff3a412"
 }

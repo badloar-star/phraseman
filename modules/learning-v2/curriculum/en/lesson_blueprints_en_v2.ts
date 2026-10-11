@@ -29,11 +29,17 @@ const operationIdsByLesson = new Map<number, readonly string[]>(
 const reviewOperationIdsForLesson = (lessonOrdinal: number): readonly string[] => {
   const sourceLessonOrdinals = [lessonOrdinal - 1, lessonOrdinal - 3]
     .filter((ordinal, index, values) => ordinal >= 1 && values.indexOf(ordinal) === index);
-  return Object.freeze(sourceLessonOrdinals.flatMap((sourceLessonOrdinal) => {
+  const reviewOperationIds = sourceLessonOrdinals.flatMap((sourceLessonOrdinal) => {
     const operationIds = operationIdsByLesson.get(sourceLessonOrdinal) ?? [];
     const lastOperationId = operationIds.at(-1);
     return lastOperationId ? [lastOperationId] : [];
-  }));
+  });
+  // Lesson 5 deliberately keeps the static-place contrast available after
+  // Lesson 4 adds its final existential-negatives chapter.
+  if (lessonOrdinal === 5) {
+    reviewOperationIds.unshift("en.grammar.existence_place.basic_place_prepositions");
+  }
+  return Object.freeze([...new Set(reviewOperationIds)]);
 };
 
 export const LEARNING_V2_ENGLISH_LESSON_BLUEPRINTS_V2: readonly LearningV2EnglishLessonBlueprintV2[] = Object.freeze(

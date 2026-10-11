@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro1:r2": {
+          "ru": "Скрепка `is` пропала. По-русски её нет, по-английски без неё фразы не существует.",
+          "uk": "Скріпка `is` зникла. Українською такого слова тут немає, англійською без нього фрази не існує."
+        },
+        "en:lesson-01:session-22:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про другого человека — `is`.",
+          "uk": "`am` живе тільки поруч із `I`. Про іншу людину — `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro2:r2": {
+          "ru": "Наоборот: `asleep` — спит. Здесь она как раз не спит — `awake`.",
+          "uk": "Навпаки: `asleep` — спить. Тут вона якраз не спить — `awake`."
+        },
+        "en:lesson-01:session-22:intro2:r3": {
+          "ru": "Без `is` фраза разваливается. Про третьего человека — всегда `is`.",
+          "uk": "Без `is` фраза розвалюється. Про третю людину — завжди `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-22:intro3:r2": {
+          "ru": "Это «он на месте». А его как раз нет — уберите `not`.",
+          "uk": "Це «він на місці». А його якраз немає — приберіть `not`."
+        },
+        "en:lesson-01:session-22:intro3:r3": {
+          "ru": "Опять без скрепки. `is` не выбрасывается никогда.",
+          "uk": "Знову без скріпки. `is` не пропускають ніколи."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e143072f2546aca3038a97cfc736ccf258f2e97b17742ceddc1d48f2429c0b5f"
+}

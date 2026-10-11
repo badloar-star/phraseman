@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro1:r2": {
+          "ru": "Пропал значок `'`. Он стоит там, где выпала буква `a`.",
+          "uk": "Зник значок `'`. Він стоїть там, звідки випала літера `a`."
+        },
+        "en:lesson-01:session-44:intro1:r3": {
+          "ru": "`am` уже спрятано внутри `I'm`. Второй раз оно не нужно.",
+          "uk": "`am` уже сховане всередині `I'm`. Удруге воно не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro2:r2": {
+          "ru": "Так говорят про человека. Бокал — это `it`.",
+          "uk": "Так кажуть про людину. Келих — це `it`."
+        },
+        "en:lesson-01:session-44:intro2:r3": {
+          "ru": "Без значка `'` получается «его», а не «оно холодное».",
+          "uk": "Без значка `'` це `its` — «його». Виходить не «воно холодне», а «його холодне» — і фраза обривається."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro3:r2": {
+          "ru": "Пропала скрепка. Чтобы сказать «они не правы», нужно `are` — хотя бы внутри `they're`.",
+          "uk": "Зникла скріпка. Щоб сказати «вони не мають рації», потрібне `are` — бодай усередині `they're`."
+        },
+        "en:lesson-01:session-44:intro3:r3": {
+          "ru": "`are` уже сидит внутри `they're`. Одной скрепки хватит.",
+          "uk": "`are` уже сидить усередині `they're`. Однієї скріпки досить."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0c203ccd38c7e038203ea048744d1c84df5c5057d46431b66959bb23a3436444"
+}

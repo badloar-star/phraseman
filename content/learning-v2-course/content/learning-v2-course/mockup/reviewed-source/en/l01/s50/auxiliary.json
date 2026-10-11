@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro1:r2": {
+          "ru": "Пропала связка. Значок `'` заменяет `i` из `is`, а не всё `is` целиком.",
+          "uk": "Зникла зв'язка. Апостроф ставлять замість `i`, а не замість усього `is`."
+        },
+        "en:lesson-01:session-50:intro1:r3": {
+          "ru": "Без значка `its` — это «его, чьё». А нужно `it's`, короткое `it is`.",
+          "uk": "Без апострофа `its` — це «його, чиє». А потрібне `it's`, коротке `it is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro2:r2": {
+          "ru": "Связка выпала. По-русски «он добрый» обходится без «есть», по-английски — нет.",
+          "uk": "Українською зв'язку взагалі не кажуть: «він добрий» — і все. Англійською без `is` фраза не тримається."
+        },
+        "en:lesson-01:session-50:intro2:r3": {
+          "ru": "Тут `is` дважды. Что-то одно: `He's kind` или `He isn't kind`.",
+          "uk": "Тут `is` двічі. Щось одне: `He's kind` або `He isn't kind`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro3:r2": {
+          "ru": "Без `is` или `'s` фраза не стоит. Одно из двух обязательно.",
+          "uk": "Без `is` чи `'s` фраза не стоїть. Одне з двох обов'язкове."
+        },
+        "en:lesson-01:session-50:intro3:r3": {
+          "ru": "Два раза `is` в одной короткой фразе. Либо `It's small`, либо `It isn't small`.",
+          "uk": "Двічі `is` в одній короткій фразі. Або `It's small`, або `It isn't small`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ce1a2fe7c44fd1d981f6946f324917e415a7c6c16a6a55d8753a6242023cdff"
+}

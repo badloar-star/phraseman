@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-10:intro1:r2": {
+          "ru": "`A hospital` — больница. Место для ночёвки — `a hotel`.",
+          "uk": "`A hospital` — лікарня. Місце для ночівлі — `a hotel`."
+        },
+        "en:lesson-04:session-10:intro1:r3": {
+          "ru": "`A hostel` — хостел. В вопросе нужен именно отель: `a hotel`.",
+          "uk": "`A hostel` — хостел. У питанні потрібен саме готель: `a hotel`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-10:intro2:r2": {
+          "ru": "После `there` сначала ставят `is`, затем `not`: `No, there is not.`.",
+          "uk": "Після `there` спочатку ставлять `is`, потім `not`: `No, there is not.`."
+        },
+        "en:lesson-04:session-10:intro2:r3": {
+          "ru": "Это порядок слов вопроса. В ответе порядок такой: `there is not`.",
+          "uk": "Це порядок слів питання. У відповіді порядок такий: `there is not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-10:intro3:r2": {
+          "ru": "После `there` пропущено `is`: `Yes, there is.`.",
+          "uk": "Після `there` пропущено `is`: `Yes, there is.`."
+        },
+        "en:lesson-04:session-10:intro3:r3": {
+          "ru": "В ответе сначала говорят `there`, потом `is`: `Yes, there is.`.",
+          "uk": "У відповіді спочатку кажуть `there`, потім `is`: `Yes, there is.`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cdab96b7400cce34401f111c43d34e539ff34d48eb2d8e85281ba71078c6fe55"
+}

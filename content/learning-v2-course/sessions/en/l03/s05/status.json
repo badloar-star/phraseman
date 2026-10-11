@@ -1,15 +1,26 @@
 {
   "session": "en/l03/s05",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "sourceSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactRuSha256": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+  "exactUkSha256": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8",
+  "practiceAtomicSha256": "90566163873b3ee36aacc69502ef44e356932965dd9a566ba3bf8ab5a7632483",
+  "localeHashes": {
+    "ru": "32d95df011c62784eb07255568ea214a5d11a1ef436557c79b652fe55ed30a61",
+    "uk": "15e05a4d48f48d619237bc1e32e8d66eefb1ed4ee3361d1867b293057cdf40d8"
+  },
   "converged": true,
   "needsHumanReview": false,
-  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
-  "localeSha256": {
-    "uk": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be"
-  },
-  "locales": {
-    "uk": "PASS"
-  },
-  "reviewedAt": "2026-09-08T19:24:09.082845+00:00",
-  "appExportCompatibility": "INCOMPATIBLE_UNRESOLVED",
-  "completionScope": "RU+UK independently reviewed for local preview only; app pairId export unresolved; other six locales/audio/browser review pending"
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "locale_uk": "PASS"
+  }
 }

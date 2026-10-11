@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro1:r2": {
+          "ru": "После `he` нужно `is`: `He is funny`.",
+          "uk": "Після `he` потрібне `is`: `He is funny`."
+        },
+        "en:lesson-01:session-24:intro1:r3": {
+          "ru": "С `he` нужна форма `is`, а не `are`.",
+          "uk": "З `he` потрібне `is`, а не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro2:r2": {
+          "ru": "Сначала нужно `is`, потом `not`: `She is not tired`.",
+          "uk": "Спершу потрібне `is`, потім `not`: `She is not tired`."
+        },
+        "en:lesson-01:session-24:intro2:r3": {
+          "ru": "`no` вместо `not`. Отрицание внутри фразы — всегда `not`.",
+          "uk": "`no` замість `not`. Заперечення всередині фрази — завжди `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-24:intro3:r2": {
+          "ru": "Про девушку — `she`. `he` — только про мужчину.",
+          "uk": "Про дівчину — `she`. `he` — тільки про чоловіка."
+        },
+        "en:lesson-01:session-24:intro3:r3": {
+          "ru": "Между `she` и словом о человеке нужно `is`: `She is kind`.",
+          "uk": "Між `she` і словом про людину потрібне `is`: `She is kind`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "30041c79c5f02dcb1c7f902b44c3c48beeeadd193b51f6d33c1b8ba1597a451e"
+}

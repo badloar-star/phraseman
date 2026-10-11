@@ -1,0 +1,98 @@
+{
+  "session": "en/l03/s55",
+  "reviewer": "/root/s55_voice_semantics_locale",
+  "reviewedAt": "2026-10-03T21:15:13.526Z",
+  "scope": "Fresh full independent review of the exact current RU+UK source and all 17 atomic interactions after the Intro 2 repair. Learner source, release, mockup, and pipeline were not edited.",
+  "sourcePaths": [
+    "sessions/en/l03/s55/final.ru.md",
+    "sessions/en/l03/s55/final.uk.md",
+    "sessions/en/l03/s55/practice.atomic.json"
+  ],
+  "exactRuSha256": "2ded85f5eede9fdfd54b0f6b25d70d35a6868816dc5a6b4a32b80d2fa43ece8d",
+  "exactUkSha256": "4ffd457325140fd5424adfceafdc8d15ed1a5ce35a1069e6da8c6af20ebf3323",
+  "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+  "staticSourceGates": {
+    "command": "node --input-type=module -e <assertSinglePhraseSource + familyChoreographyIssues + feedbackLocaleParityIssues + wordCardDefinitionIssues>",
+    "result": "PASS",
+    "evidence": "ru=17 uk=17 single_phrase=0 choreography=0 feedback_parity=0 word_cards=0"
+  },
+  "roles": {
+    "judge_nonsense": {
+      "verdict": "PASS",
+      "severity": { "P0": 0, "P1": 0, "P2": 0 },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "All 17 assessed targets are either one English word or one English sentence. i11 is exactly `The shape is round.`, i15 exactly `These patterns are pale.`, and i17 exactly `Those patterns are striped.`.",
+        "Each listen_choose transcript, answer, and localized meaning match: i01 `shape` → «форма», i06 `pattern` → «узор»/«візерунок», i08 `material` → «материал»/«матеріал», and i14 `The shape is square.` → «Форма квадратная.»/«Форма квадратна.».",
+        "The grammar and scene logic remain exact: i12 distinguishes a material property from a pattern or shape; i14 distinguishes square/round and singular/plural; i16 correctly requires `Those` for several distant materials.",
+        "Inspection-sheet scene labels describe why the learner needs the phrase, but do not add a fact or alternate answer to any audio target."
+      ]
+    },
+    "judge_reader": {
+      "verdict": "PASS",
+      "severity": { "P0": 0, "P1": 0, "P2": 0 },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The opening gives the location, companion, objects, and purpose before the rule: «Вы идёте с инспектором по квартире перед финальной подписью листа осмотра» and then names the mirror, upholstery sample, and wallpaper pattern.",
+        "Each intro gives a concrete reason for its target phrase: the known mirror form, one sample in hand, and one distant wallpaper pattern.",
+        "I re-read i01–i09 individually. Their generic action labels are clear word-first contacts after the relevant word was introduced in the current inspection scene; audio or the card supplies the single word. They do not ask the learner to infer an unstated phrase, answer, or scene condition.",
+        "Tasks i10–i17 name one concrete action and its inspection context, for example «Послушайте и соберите фразу о форме зеркала» and «Вставьте начало для нескольких дальних образцов»."
+      ]
+    },
+    "judge_taste": {
+      "verdict": "PASS",
+      "severity": { "P0": 0, "P1": 0, "P2": 0 },
+      "blockers": [],
+      "mustFix": [],
+      "pairwise": "equal",
+      "pairwise_reason": "The apartment inspection gives each phrase a real purpose; the current short explanations and target-linked jokes are at the approved quality bar without unrelated decoration.",
+      "voice": {
+        "score": 4,
+        "evidence": [
+          "«У формы нет характера, зато у неё всегда есть контур.»",
+          "«`This` уже сидит перед существительным, так что артиклю рядом места нет.»",
+          "«Два указателя на одном месте только толкаются локтями.»"
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "«У формы нет характера, зато у неё всегда есть контур.»",
+          "«`This` уже сидит перед существительным, так что артиклю рядом места нет.»",
+          "«Два указателя на одном месте только толкаются локтями.»"
+        ],
+        "misfires": []
+      },
+      "ai_text_or_nonsense": [],
+      "water": [],
+      "dead_language": [],
+      "best_lines": [
+        "«`This` уже сидит перед существительным, так что артиклю рядом места нет.»",
+        "«Два указателя на одном месте только толкаются локтями.»"
+      ],
+      "verdict_reason": "The prior bureaucratic flourish is gone. The replacement is short, natural, and explains the exact determiner-slot rule; humor now grows from the construction itself."
+    },
+    "judge_locale": {
+      "verdict": "PASS",
+      "severity": { "P0": 0, "P1": 0, "P2": 0 },
+      "blockers": [],
+      "mustFix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "semanticParity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "RU and UK preserve the same three intros, 17 task IDs, families, English targets, distractors, answers, and feedback response IDs.",
+        "The repaired slot joke is semantically aligned: `This` already occupies the position before the noun, so an article has no place beside it. Neither locale adds a grammar claim or a new scene fact.",
+        "UK learner-facing copy is Ukrainian. `Для сборщика` is a non-learner build marker; the UK word-card definitions and all learner prompts/feedback are Ukrainian.",
+        "Meanings and diagnostics are aligned across both locales, including i01 shape/форма, i08 material/материал|матеріал, i14 square/round and singular/plural, and i16 distance plus number."
+      ]
+    }
+  },
+  "overallVerdict": "PASS",
+  "overallReason": "All four fresh roles pass on the repaired exact hashes. No P0/P1/P2 finding remains in the reviewed source."
+}

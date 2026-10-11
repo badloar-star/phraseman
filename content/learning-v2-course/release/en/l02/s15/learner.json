@@ -28,8 +28,8 @@
             "responseId": "en:lesson-02:session-15:i01:r1",
             "targetText": "elegant",
             "meaningByLocale": {
-              "ru": "«элегантный». Ничего лишнего, всё подобрано: костюм по фигуре, цвета не спорят.",
-              "uk": "«елегантний». Нічого зайвого, все дібрано: костюм по фігурі, кольори не сперечаються."
+              "ru": "«элегантный, изящный». Стильный и продуманный, без лишних деталей; это не обязательно значит «дорогой».",
+              "uk": "«елегантний, вишуканий». Стильний і продуманий, без зайвих деталей; це не обов'язково означає «дорогий»."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "elegant",
           "definitionByLocale": {
-            "ru": "«элегантный». Ничего лишнего, всё подобрано: костюм по фигуре, цвета не спорят.",
-            "uk": "«елегантний». Нічого зайвого, все дібрано: костюм по фігурі, кольори не сперечаються."
+            "ru": "«элегантный, изящный». Стильный и продуманный, без лишних деталей; это не обязательно значит «дорогой».",
+            "uk": "«елегантний, вишуканий». Стильний і продуманий, без зайвих деталей; це не обов'язково означає «дорогий»."
           }
         }
       },
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — elegant",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -147,8 +147,8 @@
             "responseId": "en:lesson-02:session-15:i03:r1",
             "targetText": "plain",
             "meaningByLocale": {
-              "ru": "«простой, без украшений». Белая чашка, серая футболка, стена без картин.",
-              "uk": "«простий, без оздоблення». Біла чашка, сіра футболка, стіна без картин."
+              "ru": "«простой, без украшений». Без рисунка, узора или лишних деталей; о воде — обычная негазированная.",
+              "uk": "«простий, без оздоблення». Без малюнка, візерунка чи зайвих деталей; про воду — звичайна негазована."
             }
           }
         ],
@@ -158,8 +158,8 @@
         "wordCard": {
           "word": "plain",
           "definitionByLocale": {
-            "ru": "«простой, без украшений». Белая чашка, серая футболка, стена без картин.",
-            "uk": "«простий, без оздоблення». Біла чашка, сіра футболка, стіна без картин."
+            "ru": "«простой, без украшений». Без рисунка, узора или лишних деталей; о воде — обычная негазированная.",
+            "uk": "«простий, без оздоблення». Без малюнка, візерунка чи зайвих деталей; про воду — звичайна негазована."
           }
         }
       },
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-15:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — plain",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -655,11 +655,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -939,24 +939,26 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите ответ — на вопрос «Is she pretty?» вы согласны",
+      "prompt": "Соберите ответ — женщина в изящном платье; на вопрос `Is she elegant?` вы согласны",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите ответ — на вопрос «Is she pretty?» вы согласны",
+      "accessibilityLabel": "Соберите ответ — женщина в изящном платье; на вопрос `Is she elegant?` вы согласны",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Yes, she is.",
         "localizedMeaning": {
-          "ru": "Соберите ответ — на вопрос «Is she pretty?» вы согласны",
-          "uk": "Складіть відповідь — на запитання «Is she pretty?» ви погоджуєтесь"
+          "ru": "Соберите ответ — женщина в изящном платье; на вопрос `Is she elegant?` вы согласны",
+          "uk": "Складіть відповідь — жінка у вишуканій сукні; на запитання `Is she elegant?` ви погоджуєтесь"
         },
         "orderedTokens": [
           "Yes,",
           "she",
           "is"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -992,26 +994,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-15:i20",
+      "interactionId": "en:lesson-02:session-15:i20:s01",
       "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обед заканчивается, вы описываете зал спутнику",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-15:i20:audio"
+        "en:lesson-02:session-15:i20:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обед заканчивается, вы описываете зал спутнику",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-15:i20:audio",
-          "transcript": "Is he elegant? Is it plain? The cafe is noisy."
+          "audioTargetId": "en:lesson-02:session-15:i20:s01:audio",
+          "transcript": "Is he elegant?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is he elegant? Is it plain? The cafe is noisy.",
+        "targetPhrase": "Is he elegant?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-15:i20:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-15:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-15:i20:s02:audio",
+          "transcript": "Is it plain?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it plain?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-15:i20:s03",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-15:i20:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-15:i20:s03:audio",
+          "transcript": "The cafe is noisy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cafe is noisy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1025,11 +1093,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "88b14a1175f4d38c8cfa2e5456679e731607436f679945e30216c114bedf5205"
+  "learnerFingerprint": "a9522898ba5a07ad19f0b4fb184cea22187462d338a72558b084a53f9859c049"
 }

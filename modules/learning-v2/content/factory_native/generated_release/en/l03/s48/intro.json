@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "повторяем `a/an/the` и множественное число: `an` перед гласным звуком, `the` для уже понятного; несколько позиций — `items`.",
+    "uk": "повторюємо `a/an/the` і множину: `an` перед голосним звуком, `the` для вже зрозумілого; кілька позицій — `items`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна позиция в заказе",
+        "uk": "Одна позиція в замовленні"
+      },
+      "bodyByLocale": {
+        "ru": "`item` — «позиция заказа»: одна вещь в списке. Вы только открыли коробку и заметили незнакомую позицию: `An item is wrong.` Когда вы уже знаете, о какой позиции речь, говорите `The item is wrong.` В заказе может быть несколько позиций — тогда это `items`; у нескольких вещей своя форма.",
+        "uk": "`item` — «позиція замовлення»: одна річ у списку. Ви щойно відкрили коробку й помітили незнайому позицію: `An item is wrong.` Коли ви вже знаєте, про яку позицію йдеться, кажете `The item is wrong.` У замовленні може бути кілька позицій — тоді це `items`; для кількох речей потрібна інша форма."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы впервые заметили неверную позицию в коробке. Выберите фразу.",
+          "uk": "Ви вперше помітили неправильну позицію в коробці. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r1",
+              "text": "An item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r2",
+              "text": "The item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r3",
+              "text": "A item is wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r1",
+              "text": "An item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r2",
+              "text": "The item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro1:r3",
+              "text": "A item is wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы впервые заметили неверную позицию в коробке. Выберите фразу.",
+          "uk": "Ви вперше помітили неправильну позицію в коробці. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заказ уже дома",
+        "uk": "Замовлення вже вдома"
+      },
+      "bodyByLocale": {
+        "ru": "`order` — «заказ». Курьер оставил один заказ у двери: `An order is here.` Когда вы принесли его на кухню и говорите о нём, будет `The order is here.` Слово `order` помогает отличить весь заказ от одной позиции внутри него.",
+        "uk": "`order` — «замовлення». Кур’єр залишив одне замовлення біля дверей: `An order is here.` Коли ви принесли його на кухню й говорите про нього, буде `The order is here.` Слово `order` допомагає відрізнити все замовлення від однієї позиції всередині нього."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Курьер впервые оставил один заказ. Выберите фразу.",
+          "uk": "Кур’єр уперше залишив одне замовлення. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r1",
+              "text": "An order is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r2",
+              "text": "The order is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r3",
+              "text": "A order is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r1",
+              "text": "An order is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r2",
+              "text": "The order is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro2:r3",
+              "text": "A order is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер впервые оставил один заказ. Выберите фразу.",
+          "uk": "Кур’єр уперше залишив одне замовлення. Виберіть фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сверяем итоговую сумму",
+        "uk": "Звіряємо підсумкову суму"
+      },
+      "bodyByLocale": {
+        "ru": "`total` — «итоговая сумма». В чеке она уже есть, поэтому говорим `The total is wrong.` Это не отдельная вещь в коробке, а сумма всего заказа. Если цифра не сходится, коробка тут ни при чём: сначала сверяем total.",
+        "uk": "`total` — «підсумкова сума». У чеку вона вже є, тому кажемо `The total is wrong.` Це не окрема річ у коробці, а сума всього замовлення. Якщо цифра не сходиться, коробка тут ні до чого: спочатку звіряємо total."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы сверили чек и увидели неверную итоговую сумму. Выберите фразу.",
+          "uk": "Ви звірили чек і побачили неправильну підсумкову суму. Виберіть фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r1",
+              "text": "The total is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r2",
+              "text": "The item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r3",
+              "text": "The total are wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r1",
+              "text": "The total is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r2",
+              "text": "The item is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-48:intro3:r3",
+              "text": "The total are wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы сверили чек и увидели неверную итоговую сумму. Выберите фразу.",
+          "uk": "Ви звірили чек і побачили неправильну підсумкову суму. Виберіть фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "85dd35bb64dac617b1f58bc33bdc5eb6f6db598a8182359e3bd2af2ae0927f77"
+}

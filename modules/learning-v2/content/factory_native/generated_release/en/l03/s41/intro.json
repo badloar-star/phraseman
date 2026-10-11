@@ -21,42 +21,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "У вас в руках чек с лишней строкой. Какая пара сначала называет документ, а потом говорит о том же чеке?",
-          "uk": "У вас у руках чек із зайвим рядком. Яка пара спочатку називає документ, а потім говорить про той самий чек?"
+          "ru": "Вы уже сказали `This is a receipt.` Теперь сообщите об этом же чеке: в нём ошибка.",
+          "uk": "Ви вже сказали `This is a receipt.` Тепер повідомте про той самий чек: у ньому помилка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro1:r1",
-              "text": "This is a receipt. The receipt is wrong."
+              "text": "The receipt is wrong."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r2",
-              "text": "This is the receipt. A receipt is wrong."
+              "text": "A receipt is wrong."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r3",
-              "text": "This is receipt. Receipt is wrong."
+              "text": "Receipt is wrong."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro1:r1",
-              "text": "This is a receipt. The receipt is wrong."
+              "text": "The receipt is wrong."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r2",
-              "text": "This is the receipt. A receipt is wrong."
+              "text": "A receipt is wrong."
             },
             {
               "responseId": "en:lesson-03:session-41:intro1:r3",
-              "text": "This is receipt. Receipt is wrong."
+              "text": "Receipt is wrong."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У вас в руках чек с лишней строкой. Какая пара сначала называет документ, а потом говорит о том же чеке?",
-          "uk": "У вас у руках чек із зайвим рядком. Яка пара спочатку називає документ, а потім говорить про той самий чек?"
+          "ru": "Вы уже сказали `This is a receipt.` Теперь сообщите об этом же чеке: в нём ошибка.",
+          "uk": "Ви вже сказали `This is a receipt.` Тепер повідомте про той самий чек: у ньому помилка."
         }
       }
     },
@@ -75,42 +75,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Кассир стоит рядом и помогает исправить чек. Какая пара сначала называет её профессию, а потом говорит о той же женщине?",
-          "uk": "Касир стоїть поруч і допомагає виправити чек. Яка пара спочатку називає її професію, а потім говорить про ту саму жінку?"
+          "ru": "Вы уже сказали `She is a cashier.` Теперь сообщите о той же женщине: она здесь.",
+          "uk": "Ви вже сказали `She is a cashier.` Тепер повідомте про ту саму жінку: вона тут."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro2:r1",
-              "text": "She is a cashier. The cashier is here."
+              "text": "The cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r2",
-              "text": "She is the cashier. A cashier is here."
+              "text": "A cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r3",
-              "text": "She is cashier. Cashier is here."
+              "text": "Cashier is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro2:r1",
-              "text": "She is a cashier. The cashier is here."
+              "text": "The cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r2",
-              "text": "She is the cashier. A cashier is here."
+              "text": "A cashier is here."
             },
             {
               "responseId": "en:lesson-03:session-41:intro2:r3",
-              "text": "She is cashier. Cashier is here."
+              "text": "Cashier is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кассир стоит рядом и помогает исправить чек. Какая пара сначала называет её профессию, а потом говорит о той же женщине?",
-          "uk": "Касир стоїть поруч і допомагає виправити чек. Яка пара спочатку називає її професію, а потім говорить про ту саму жінку?"
+          "ru": "Вы уже сказали `She is a cashier.` Теперь сообщите о той же женщине: она здесь.",
+          "uk": "Ви вже сказали `She is a cashier.` Тепер повідомте про ту саму жінку: вона тут."
         }
       }
     },
@@ -129,42 +129,42 @@
       "question": {
         "interactionId": "en:lesson-03:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Стойка видна чуть дальше. Какая пара сначала называет её, а потом продолжает говорить о той же стойке?",
-          "uk": "Стійку видно трохи далі. Яка пара спочатку називає її, а потім продовжує говорити про ту саму стійку?"
+          "ru": "Вы уже сказали `That is a counter.` Теперь сообщите о той же стойке: она открыта.",
+          "uk": "Ви вже сказали `That is a counter.` Тепер повідомте про ту саму стійку: вона відкрита."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-03:session-41:intro3:r1",
-              "text": "That is a counter. The counter is open."
+              "text": "The counter is open."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r2",
-              "text": "That is a counter. A counter is open."
+              "text": "A counter is open."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r3",
-              "text": "That is the counter. Counter is open."
+              "text": "Counter is open."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-03:session-41:intro3:r1",
-              "text": "That is a counter. The counter is open."
+              "text": "The counter is open."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r2",
-              "text": "That is a counter. A counter is open."
+              "text": "A counter is open."
             },
             {
               "responseId": "en:lesson-03:session-41:intro3:r3",
-              "text": "That is the counter. Counter is open."
+              "text": "Counter is open."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Стойка видна чуть дальше. Какая пара сначала называет её, а потом продолжает говорить о той же стойке?",
-          "uk": "Стійку видно трохи далі. Яка пара спочатку називає її, а потім продовжує говорити про ту саму стійку?"
+          "ru": "Вы уже сказали `That is a counter.` Теперь сообщите о той же стойке: она открыта.",
+          "uk": "Ви вже сказали `That is a counter.` Тепер повідомте про ту саму стійку: вона відкрита."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b1ef82d2833a4c92da2a32c9be81d5097323a504bdabaf6435917dffd43cbc3c"
+  "introFingerprint": "3d10a7b9890b592d3650b6ca7b9c864a1aeb989bac284fe909d50dcd45822bea"
 }

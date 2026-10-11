@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`fuss` — «суета». Первым слышно «ф», а у `bus` — «б». Остальная часть звучит одинаково; различайте начало.",
               "uk": "`fuss` — «метушня». Спочатку чути «ф», а в `bus` — «б». Решта слова звучить однаково; розрізняйте початок."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`buzz` — «гудение». На конце звучит звонкое «з», а в `bus` — глухое «с». Дослушайте слово до конца.",
               "uk": "`buzz` — «гудіння». Наприкінці чути дзвінке «з», а в `bus` — глухе «с». Дослухайте слово до кінця."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-18:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`fish` — «рыба». В начале слышно «ф», а у `dish` — «д». Дальше слова звучат одинаково.",
               "uk": "`fish` — «риба». На початку чути «ф», а в `dish` — «д». Далі слова звучать однаково."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-18:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`wish` — «желание». В начале губы округляются, а в `dish` первым звучит «д». Конец слов совпадает.",
               "uk": "`wish` — «бажання». На початку губи округлюються, а в `dish` першим звучить «д». Кінець слів збігається."
@@ -339,7 +339,7 @@
           {
             "responseId": "en:lesson-03:session-18:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`wash` — «мыть». Конец звучит как «ш», а у `watch` — как «ч». Начало похоже, поэтому слушайте конец.",
               "uk": "`wash` — «мити». Наприкінці чути «ш», а у `watch` — «ч». Початок схожий, тому слухайте кінець."
@@ -348,7 +348,7 @@
           {
             "responseId": "en:lesson-03:session-18:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послухайте й оберіть — яке слово сказав ",
             "feedbackByLocale": {
               "ru": "`witch` — «ведьма». В британском `watch` губы округлены на гласном, а в `witch` нет. Начало и конец совпадают; различайте середину.",
               "uk": "`witch` — «відьма». У британській вимові в середині `watch` губи округлюються, а в `witch` — ні. Початок і кінець збігаються; розрізняйте середину."
@@ -458,7 +458,7 @@
           {
             "responseId": "en:lesson-03:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`fox` — «лиса». Первым слышно «ф», а в `box` — «б». Остальная часть совпадает, поэтому слушайте начало.",
               "uk": "`fox` — «лисиця». Спочатку чути «ф», а в `box` — «б». Решта слова збігається, тому слухайте початок."
@@ -467,7 +467,7 @@
           {
             "responseId": "en:lesson-03:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й оберіть — яке слово вимовив",
             "feedbackByLocale": {
               "ru": "`pox` — «оспа». В начале слышно «п», а в `box` — «б». Конец у слов одинаковый.",
               "uk": "`pox` — «віспа». На початку чути «п», а в `box` — «б». Кінець у слів однаковий."
@@ -514,7 +514,7 @@
           {
             "responseId": "en:lesson-03:session-18:i09:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — к остановке подъехали д",
+            "testedDimension": "Зберіть фразу — до зупинки під’їхали два",
             "feedbackByLocale": {
               "ru": "У остановки два автобуса. Нужна форма `buses`, с добавленным `es`.",
               "uk": "На зупинці два автобуси. Потрібна форма `buses`, із доданим `es`."
@@ -559,7 +559,7 @@
           {
             "responseId": "en:lesson-03:session-18:i10:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — друг держит два завёрн",
+            "testedDimension": "Зберіть питання — друг тримає два загорн",
             "feedbackByLocale": {
               "ru": "Вопрос о двух предметах посуды. Название для нескольких — `dishes`.",
               "uk": "Це питання про два предмети посуду. Назва для кількох — `dishes`."
@@ -614,12 +614,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте название — в конверте из малень",
+        "testedDimension": "Вставте назву — у конверті з маленької к",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — в конверте из малень",
+            "testedDimension": "Вставте назву — у конверті з маленької к",
             "feedbackByLocale": {
               "ru": "В конверте несколько билетов. В этой фразе нужно название с `s`: `tickets`.",
               "uk": "У конверті кілька квитків. У цій фразі потрібна назва з `s`: `tickets`."
@@ -628,7 +628,7 @@
           {
             "responseId": "en:lesson-03:session-18:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — в конверте из малень",
+            "testedDimension": "Вставте назву — у конверті з маленької к",
             "feedbackByLocale": {
               "ru": "После готового начала `They are` нужно назвать предметы: `tickets`. `is` билетами их не называет.",
               "uk": "Після готового початку `They are` треба назвати предмети: `tickets`. `is` квитками їх не називає."
@@ -677,7 +677,7 @@
           {
             "responseId": "en:lesson-03:session-18:i12:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — друг говорит о п",
+            "testedDimension": "Послухайте й зберіть — друг говорить про",
             "feedbackByLocale": {
               "ru": "В записи название нескольких часов — `watches`. После `not` оно сохраняет `es`.",
               "uk": "У записі назва кількох годинників — `watches`. Після `not` вона зберігає `es`."
@@ -732,12 +732,12 @@
             "text": "boxs"
           }
         ],
-        "testedDimension": "Вставьте название — друг указывает на тр",
+        "testedDimension": "Вставте назву — друг показує на три поро",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-18:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте название — друг указывает на тр",
+            "testedDimension": "Вставте назву — друг показує на три поро",
             "feedbackByLocale": {
               "ru": "Коробок три. Для нескольких нужно `boxes`, а не название одной коробки.",
               "uk": "Коробок три. Для кількох потрібне `boxes`, а не назва однієї коробки."
@@ -746,7 +746,7 @@
           {
             "responseId": "en:lesson-03:session-18:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте название — друг указывает на тр",
+            "testedDimension": "Вставте назву — друг показує на три поро",
             "feedbackByLocale": {
               "ru": "К `box` добавляем две буквы, `es`. Получается `boxes`; одной добавленной `s` здесь мало.",
               "uk": "До `box` додаємо дві літери, `es`. Виходить `boxes`; однієї доданої `s` тут замало."
@@ -884,7 +884,7 @@
           {
             "responseId": "en:lesson-03:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "testedDimension": "Послухайте й оберіть — що друг сказав бі",
             "feedbackByLocale": {
               "ru": "Здесь вопрос с началом `Are they`. В записи сначала звучит `They are`: друг называет предметы.",
               "uk": "Тут питання з початком `Are they`. У записі спочатку звучить `They are`: друг називає предмети."
@@ -893,7 +893,7 @@
           {
             "responseId": "en:lesson-03:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "testedDimension": "Послухайте й оберіть — що друг сказав бі",
             "feedbackByLocale": {
               "ru": "Этот вариант называет коробки: `boxes`. В записи звучит `dishes` — блюда для подачи еды.",
               "uk": "Цей варіант називає коробки: `boxes`. У записі звучить `dishes` — блюда для подавання їжі."
@@ -911,13 +911,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг сплутав квитки в конверті з паперовими етикетками; назвіть квитки повною фразою",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг сплутав квитки в конверті з паперовими етикетками; назвіть квитки повною фразою",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -973,7 +973,7 @@
           {
             "responseId": "en:lesson-03:session-18:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — друг спрашивает, что вы",
+            "testedDimension": "Складіть фразу — друг питає, що ви поста",
             "feedbackByLocale": {
               "ru": "Вы называете сразу три коробки. Для нескольких пишем `boxes`, с добавленным `es`.",
               "uk": "Ви називаєте одразу три коробки. Для кількох пишемо `boxes`, із доданим `es`."
@@ -990,5 +990,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f85163813d18fe8490ada089aea5cff7c366c4b88a7527f36d33ac39af68d976"
+  "learnerFingerprint": "66fae4dee24565cd45b35a14bf38ed20b91632227c9891f4c45a0ebed866ae7e"
 }

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-15:i01",
+    "correctText": "gym",
+    "correctResponseId": "en:lesson-04:session-15:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i02",
+    "correctText": "gym",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i03",
+    "correctText": "en:lesson-04:session-15:i03:p1=gym\nen:lesson-04:session-15:i03:p2=taxi\nen:lesson-04:session-15:i03:p3=laundrette\nen:lesson-04:session-15:i03:p4=platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i04",
+    "correctText": "Is there a gym near the laundrette?",
+    "correctResponseId": "en:lesson-04:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i05",
+    "correctText": "Is there a gym near the building?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i06",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i07",
+    "correctText": "There is a taxi near the gym.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i08",
+    "correctText": "There are rooms near the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i09",
+    "correctText": "Are there rooms near the building?",
+    "correctResponseId": "en:lesson-04:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i10",
+    "correctText": "Are there three rooms near the platform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i11",
+    "correctText": "There are two rooms near the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-15:i12",
+    "correctText": "Are there two rooms near the gym?",
+    "correctResponseId": null
+  }
+]

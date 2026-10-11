@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 31 — «Костюм нужен сейчас»
+# Английский · Урок 3 · Занятие 31 — «Костюм нужен сейчас»
 
-**Сцена сессии.** Перед репетицией вы вместе с костюмером ищете в театральной костюмерной шляпу, ремень и сапог. Вещи лежат в разных местах, актёры уже ждут, поэтому вам нужно быстро указать, что подать.
+**Сцена занятия.** Перед репетицией вы вместе с костюмером ищете в театральной костюмерной шляпу, ремень и сапог. Вещи лежат в разных местах, актёры уже ждут, поэтому вам нужно быстро указать, что подать.
 
-**Операция:** словарная отработка с быстрым переносом — `This/That + один предмет, please` в театральной костюмерной
+**Как сказать:** словарная отработка с быстрым переносом — `This/That + один предмет, please` в театральной костюмерной
 **Новые слова:** hat, belt, boot
 **Для повторения:** bag, box, key, this, that, please
 
@@ -58,82 +58,96 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — hat**
-> **hat** — «шляпа». Головной убор с полями, который надевают на голову.
+<!-- interaction_id: en:lesson-03:session-31:i01; family: listen_choose -->
+Цель: `hat`
 
-**2 · Послушайте и выберите — какое слово назвал костюмер**
-🔊 *hat* → **hat** · hot · heart · cat
-Значения вариантов: hat — шляпа · hot — горячий · heart — сердце · cat — кот
-- hot — *Начало одинаковое, но гласная другая: в `hat` звучит /æ/, а в `hot` — /ɒ~ɑ/.*
-- heart — *`heart` звучит /hɑːt/ или /hɑrt/ — зависит от акцента. В `hat` другая гласная: короткий /æ/.*
-- cat — *Гласная похожа, но `cat` начинается звуком `k`, а `hat` — звуком `h`.*
+**2 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-31:i03; family: scripted_repeat_compare -->
+Цель: `belt`
 
-**3 · Карточка слова — belt**
-> **belt** — «ремень». Полоса из кожи или ткани, которую носят на талии.
+**3 · Выберите название — на ближней полке стоит сапог**
+<!-- interaction_id: en:lesson-03:session-31:i05; family: context_gap_grammar -->
+Цель: `___`
+Варианты: `boot` · `belt` · `hat`
 
-**4 · Послушайте и выберите — какое слово назвал костюмер**
-🔊 *belt* → **belt** · built · bell · bolt
-Значения вариантов: belt — ремень · built — построил · bell — колокол · bolt — засов
-- built — *В `built` звучит /ɪ/, а в `belt` — /e/. Конечный `t` есть в обоих словах.*
-- bell — *Начало похоже, но у `bell` нет финального `t`, который слышен в `belt`.*
-- bolt — *В `bolt` середина звучит как /oʊ~əʊ/, а в `belt` — короткий /e/.*
+**4 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-31:i02; family: scripted_repeat_compare -->
+Цель: `hat`
 
-**5 · Карточка слова — boot**
-> **boot** — «сапог», один. Высокая обувь, закрывающая стопу и часть ноги.
+**5 · Послушайте и выберите — какое слово назвал костюмер**
+<!-- interaction_id: en:lesson-03:session-31:i04; family: listen_choose -->
+Значения вариантов: `belt` — ремень · `built` — построил · `bench` — скамья · `bolt` — засов
+Цель: `belt`
+Варианты: `belt` · `built` · `bench` · `bolt`
 
-**6 · Послушайте и выберите — какое слово назвал костюмер**
-🔊 *boot* → **boot** · book · boat · bought
-Значения вариантов: boot — сапог · book — книга · boat — лодка · bought — купил
-- book — *Оба слова начинаются `b`, но в `boot` долгий /uː/ и финальный `t`; в `book` короткий /ʊ/ и финальный `k`.*
-- boat — *В `boat` звучит /oʊ~əʊ/, а в `boot` — долгий /uː/.*
-- bought — *Финальный `t` совпадает, но гласный в `bought` — /ɔː~ɑ/, а в `boot` — /uː/.*
+**6 · Различите слово — boot или book**
+<!-- interaction_id: en:lesson-03:session-31:i06; family: sound_contrast -->
+Цель: `boot`
+Варианты: `boot` · `book`
 
 **7 · Соедините слова со значениями — театральный костюм**
-hat — шляпа · belt — ремень · boot — сапог · key — ключ
+<!-- interaction_id: en:lesson-03:session-31:i07; family: speed_match -->
+Пары: `hat` — шляпа · `belt` — ремень · `boot` — сапог · `key` — ключ
+Цель: `hat · belt · boot · key`
 
-**8 · Поставьте в ответ целое слово — головной убор с полями**
-Плитки: `hat` `hot` `heart` `cat` → **hat**
+**8 · Выберите форму — эта вещь лежит здесь**
+<!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
+Цель: `This ___ here.`
+Варианты: `is` · `are`
 
-**9 · Скажите вслух — полоса, которую носят на талии**
-🎙 **belt** — послушайте, повторите и сравните.
+**9 · Различите слово — This или That**
+<!-- interaction_id: en:lesson-03:session-31:i09; family: sound_contrast -->
+Цель: `This`
+Варианты: `This` · `That`
 
-**10 · Послушайте и поставьте в ответ целое слово — высокий ботинок**
-🔊 *boot* Плитки: `boot` `book` `boat` `bought` → **boot**
+**10 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i10; family: scripted_repeat_compare -->
+Цель: `This boot, please.`
 
 **11 · Соберите просьбу — шляпа лежит на столе перед вами**
-Плитки: `This` `hat` `please` `That` `a` → **This hat, please.**
+<!-- interaction_id: en:lesson-03:session-31:i11; family: phrase_builder -->
+Цель: `This hat, please.`
 
-**12 · Скажите вслух — ремень висит у дальней стены**
-🎙 **That belt, please.** — послушайте, повторите и сравните.
+**12 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i12; family: listen_build_dictation -->
+Цель: `That belt, please.`
 
 **13 · Вставьте указатель — сапог стоит прямо перед вами**
-___ boot, please. → **This** · That · It · Is
-- That — *`that` выбирает вещь вдали. Сапог перед вами, поэтому нужен `This`.*
-- It — *`it boot` не образует просьбу. Перед названием близкой вещи ставим `This`.*
-- Is — *`Is boot` — сломанное начало вопроса. Здесь нужна просьба `This boot, please`.*
+<!-- interaction_id: en:lesson-03:session-31:i13; family: context_gap_grammar -->
+Цель: `___ boot, please.`
+Варианты: `This` · `That` · `It` · `Is`
 
 **14 · Послушайте и выберите точное значение просьбы**
-🔊 *That hat, please.* → **Ту шляпу, пожалуйста.** · Эту шляпу, пожалуйста. · Тот ремень, пожалуйста. · Этот ремень, пожалуйста.
-- Эту шляпу, пожалуйста. — *В записи прозвучало `That`, а этот вариант передаёт `This`.*
-- Тот ремень, пожалуйста. — *Указатель передан верно, но в записи назвали `hat` — шляпу, а не `belt` — ремень.*
-- Этот ремень, пожалуйста. — *Здесь не совпадают оба ключевых слова: прозвучали `That hat`, а не `This belt`.*
+<!-- interaction_id: en:lesson-03:session-31:i14; family: listen_choose -->
+Цель: `That hat, please.`
+Варианты: `Ту шляпу, пожалуйста.` · `Эту шляпу, пожалуйста.` · `Тот ремень, пожалуйста.` · `Этот ремень, пожалуйста.`
 
 **15 · Соберите просьбу — сапог стоит у дальней стены**
-Плитки: `That` `boot` `please` `This` `is` → **That boot, please.**
+<!-- interaction_id: en:lesson-03:session-31:i15; family: phrase_builder -->
+Цель: `That boot, please.`
 
 **16 · Вставьте указатель — ремень уже положили на стол перед вами**
-___ belt, please. → **This** · That · It · Am
-- That — *Ремень уже рядом. После перемещения выбираем `This`, а не прежнее `That`.*
-- It — *`it belt` не образует просьбу. Перед названием выбранной вещи нужен указатель `This`.*
-- Am — *`am` используется с `I`, когда говорим о себе. Здесь выбираем ремень словом `This`.*
+<!-- interaction_id: en:lesson-03:session-31:i16; family: context_gap_grammar -->
+Цель: `___ belt, please.`
+Варианты: `This` · `That` · `It` · `Am`
 
-**17 · Финал — вещи переставили: шляпа теперь у стены, ремень перед вами, а сапог у двери вдали**
-🎙 Сначала попросите все три вещи по порядку, затем послушайте образец и сравните: **That hat, please. This belt, please. That boot, please.**
+**17 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s01; family: listen_build_dictation -->
+Цель: `That hat, please.`
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s02; family: scripted_repeat_compare -->
+Цель: `This belt, please.`
+
+**19 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-31:i17:s03; family: listen_build_dictation -->
+Цель: `That boot, please.`
 
 ## Для сборщика
 new_words: hat — шляпа — Головной убор с полями, который надевают на голову.
 new_words: belt — ремень — Полоса из кожи или ткани, которую носят на талии.
 new_words: boot — сапог — Высокая обувь, закрывающая стопу и часть ноги.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=context_gap_grammar, 9=sound_contrast, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=listen_build_dictation, 18=scripted_repeat_compare, 19=listen_build_dictation

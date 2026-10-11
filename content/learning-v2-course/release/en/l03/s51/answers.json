@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-51:i03",
+    "correctText": "violet",
+    "correctResponseId": "en:lesson-03:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i05",
+    "correctText": "navy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i07",
+    "correctText": "pink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i04",
+    "correctText": "violet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i06",
+    "correctText": "navy",
+    "correctResponseId": "en:lesson-03:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i08",
+    "correctText": "pink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i01",
+    "correctText": "violet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i02",
+    "correctText": "navy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i09",
+    "correctText": "pink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i11",
+    "correctText": "en:lesson-03:session-51:i11:p1=violet\nen:lesson-03:session-51:i11:p2=navy\nen:lesson-03:session-51:i11:p3=pink\nen:lesson-03:session-51:i11:p4=box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i10",
+    "correctText": "A",
+    "correctResponseId": "en:lesson-03:session-51:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i12",
+    "correctText": "Здесь есть тёмно-синее кресло.",
+    "correctResponseId": "en:lesson-03:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i13",
+    "correctText": "It is a navy chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i14",
+    "correctText": "A",
+    "correctResponseId": "en:lesson-03:session-51:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i15",
+    "correctText": "This is a pink chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i16",
+    "correctText": "A violet chair is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-51:i17",
+    "correctText": "A",
+    "correctResponseId": "en:lesson-03:session-51:i17:r1"
+  }
+]

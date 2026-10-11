@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro1:r2": {
+          "ru": "Между `The week` и словом о ней нужна форма `is`.",
+          "uk": "Між `The week` і словом про нього потрібна форма `is`."
+        },
+        "en:lesson-01:session-52:intro1:r3": {
+          "ru": "`are` идёт к «многим». Неделя одна — `is`.",
+          "uk": "`are` іде до «багатьох». Тиждень один — `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro2:r2": {
+          "ru": "Ночей несколько, а нужная форма взята для одной.",
+          "uk": "Ночей кілька, а потрібну форму взято для однієї."
+        },
+        "en:lesson-01:session-52:intro2:r3": {
+          "ru": "Наоборот: ночь одна, а нужная форма для многих.",
+          "uk": "Навпаки: ніч одна, а потрібна форма для багатьох."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-52:intro3:r2": {
+          "ru": "Получилось «я — утро». Про себя нужно слово о состоянии: `tired`.",
+          "uk": "Вийшло «я — ранок». Про себе потрібне слово про стан: `tired`."
+        },
+        "en:lesson-01:session-52:intro3:r3": {
+          "ru": "После `I` нужна форма `am`, куда бы ни уехал конец фразы.",
+          "uk": "Після `I` потрібна форма `am`, хоч куди б поїхав кінець фрази."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e72dded6ec9002b162e7b5c7b9731324defcf0e13c1b8bf08a2f1fe7a7d54bd1"
+}

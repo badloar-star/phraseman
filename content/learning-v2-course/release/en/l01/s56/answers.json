@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-56:i08",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-56:i08:p1=week\nen:lesson-01:session-56:i08:p2=tired\nen:lesson-01:session-56:i08:p3=kind\nen:lesson-01:session-56:i08:p4=warm",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-56:i16",
-    "correctText": "I am not alone. Everyone is kind.",
+    "interactionId": "en:lesson-01:session-56:i16:s01",
+    "correctText": "I am not alone.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-56:i17",
-    "correctText": "It is hard. I am tired. I am not alone. Everyone is kind.",
+    "interactionId": "en:lesson-01:session-56:i16:s02",
+    "correctText": "Everyone is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i17:s01",
+    "correctText": "It is hard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i17:s02",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i17:s03",
+    "correctText": "I am not alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i17:s04",
+    "correctText": "Everyone is kind.",
     "correctResponseId": null
   }
 ]

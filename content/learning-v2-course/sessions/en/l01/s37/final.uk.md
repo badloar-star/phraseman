@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 37 — «Кому яка скріпка»
+# Англійська · Урок 1 · Заняття 37 — «Хто втомився, кому холодно і що гаряче»
 
-**Сцена сесії.** Обід із командою. За столом зібралися всі: хтось щойно з вулиці, хтось з-за комп'ютера, і кожному потрібне своє слово-скріпка.
-**Операція:** повторення — усі п'ять скріпок (`I am` · `you are` · `he/she is` · `it is` · `we/they are`)
+**Ситуація.** Після дороги Іра втомилася, Олегові холодно біля вікна, а суп на столі гарячий. Ви розповідаєте про це за обідом.
+**Сьогодні.** Виберете правильну форму: `I am`, `you/we/they are`, `he/she/it is`.
 **Нові слова:** —
 **Повертаються:** tired, happy, cold, hot
 
@@ -9,29 +9,29 @@
 
 ## Інтро 1
 
-### П'ять скріпок, а сплутати легко
+### Після різних слів — різні форми
 
 `tired` — «втомлений». Саме слово ніколи не змінюється: `tired` і для одного, і для десятьох.
 
-Змінюється тільки скріпка перед ним. Про себе — `am`. Про одну людину — `is`. Про всіх інших — `are`.
+Перед `tired` змінюється лише форма: про себе — `am`, про одну людину — `is`, про кількох — `are`.
 
 Українською окремого слова тут немає: «я втомився», «вони втомилися». Англійською воно обов'язкове, тому його найчастіше й забувають.
 
-**За столом питають, як ви після дороги. Скажіть, що втомилися.**
+**Іра питає, як ви після дороги. Скажіть, що втомилися.**
 
 - ✅ **I am tired.**
 - ❌ I is tired. — *`is` — про когось одного збоку: `he is`, `she is`. Про себе завжди `am`.*
-- ❌ I tired. — *Скріпка випала. Українською її немає, англійською без `am` фрази не буде.*
+- ❌ I tired. — *Після `I` потрібне `am`: I am tired.*
 
 ---
 
 ## Інтро 2
 
-### Одна скріпка на всіх
+### `we` і `they` використовують `are`
 
 `happy` — «задоволений, радий». Не про щастя всього життя, а про те, що зараз добре.
 
-Коли вас кілька — `we are`. Коли мова про інших — `they are`. Скріпка та сама, змінюється тільки перше слово.
+Коли вас кілька — `we are`. Коли мова про інших — `they are`.
 
 `is` сюди не стає ніколи: воно працює лише на одну людину.
 
@@ -53,7 +53,7 @@
 
 За обідом `it` знадобиться десять разів: про їжу, про каву, про задуху в кімнаті.
 
-**Хтось торкається тарілки і відсмикує руку. Скажіть про суп.**
+**Олег торкається ложкою супу й обпікається. Скажіть про суп.**
 
 - ✅ **It is hot.**
 - ❌ He is hot. — *`he` — про чоловіка. Суп в англійській не чоловік і не жінка, він `it`.*
@@ -61,79 +61,110 @@
 
 ---
 
-## Практика (перші завдання)
+## Практика (20 завдань, підтримка поступово зменшується)
 
 **1 · Вставте слово — про себе після дороги**
+<!-- interaction_id: en:lesson-01:session-37:i01; family: context_gap_grammar -->
 I ___ tired. → **am** · is · are
 - is — *`is` — про когось одного збоку. Про себе тільки `am`.*
 - are — *`are` — для `you`, `we`, `they`. З `I` не стає ніколи.*
 
-**2 · Вставте слово — про всіх за столом**
-We ___ happy. → **are** · is · am
-- is — *Їх багато. `is` — тільки про одного.*
-- am — *`am` живе виключно поруч із `I`.*
+**2 · Складіть фразу — усі за столом задоволені**
+<!-- interaction_id: en:lesson-01:session-37:i02; family: phrase_builder -->
+Плитки: `happy` `We` `are` `is` → **We are happy.**
 
-**3 · Послухайте і виберіть — hot**
+**3 · Послухайте — у кімнаті душно. Яке слово ви почули?**
+<!-- interaction_id: en:lesson-01:session-37:i03; family: listen_choose -->
 🔊 *hot* → **hot** · hat · hut
 - hat — *Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік.*
 - hut — *«Хижка». У `hot` губи округлені, у `hut` рот розслаблений і губи не округлюються.*
 
-**4 · Складіть фразу — «їй холодно»**
+**4 · Складіть фразу — колега тремтить біля відчиненого вікна**
+<!-- interaction_id: en:lesson-01:session-37:i04; family: phrase_builder -->
 Плитки: `cold` `she` `is` → **She is cold.**
 
 **5 · Вставте слово — про суп у тарілці**
+<!-- interaction_id: en:lesson-01:session-37:i05; family: context_gap_grammar -->
 It ___ hot. → **is** · are · am
 - are — *Тарілка одна. `are` — коли їх кілька.*
 - am — *`am` буває тільки з `I`.*
 
-**6 · З'єднайте пари (Speed Match, 4 пари)**
+**6 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-37:i06; family: speed_match -->
 tired — втомлений · happy — задоволений · cold — змерз · hot — спекотно
 
-**7 · Послухайте і складіть — «вони втомилися»**
+**7 · Послухайте і складіть — після дороги ваші колеги втомилися**
+<!-- interaction_id: en:lesson-01:session-37:i07; family: listen_build_dictation -->
 🔊 *They are tired.* Плитки: `are` `tired` `they` `is` → **They are tired.**
 
 **8 · Вставте слово — колега навпроти весь обід мовчить і тре очі**
+<!-- interaction_id: en:lesson-01:session-37:i08; family: context_gap_grammar -->
 He ___ tired. → **is** · are · am
 - are — *Він один. `are` — про кількох.*
 - am — *`am` — тільки про себе.*
 
-**9 · Складіть фразу — вам кажуть «Cold?», а вам нормально**
+**9 · Складіть фразу — колега Міра питає: «Cold?», а вам нормально**
+<!-- interaction_id: en:lesson-01:session-37:i09; family: phrase_builder -->
 Плитки: `not` `I` `am` `cold` → **I am not cold.**
 
 **10 · Вставте слово — ви звертаєтеся до сусіда за столом**
+<!-- interaction_id: en:lesson-01:session-37:i10; family: context_gap_grammar -->
 You ___ happy. → **are** · is · am
 - is — *`is` — про третього, не про того, з ким говорите. До `you` іде `are`.*
 - am — *`am` не виходить за межі `I`.*
 
-**11 · Розрізніть звуки — hot / hat**
-🔊 Що прозвучало: **hot** чи **hat**? У `hot` губи округлені, у `hat` розтягнуті вбік.
+**11 · Розрізніть звуки — суп гарячий. Яке слово підходить?**
+<!-- interaction_id: en:lesson-01:session-37:i11; family: sound_contrast -->
+🔊 Два слова поспіль.
+*hot · hat* → **hot**
+- hat — *Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік.*
 
 **12 · Складіть фразу — надворі мороз, ви вдвох із колегою**
+<!-- interaction_id: en:lesson-01:session-37:i12; family: phrase_builder -->
 Плитки: `cold` `we` `are` `is` → **We are cold.**
 *(плитка `is` зайва: вас двоє)*
 
 **13 · Вставте слово — за вікном пекло**
+<!-- interaction_id: en:lesson-01:session-37:i13; family: context_gap_grammar -->
 It is ___ . → **hot** · tired · happy
 - tired — *Погода не втомлюється. `tired` — про людину.*
 - happy — *Вулиця не буває задоволеною. Про спеку — `hot`.*
 
 **14 · Складіть фразу — обід закінчився, усі задоволені, і ви теж**
+<!-- interaction_id: en:lesson-01:session-37:i14; family: phrase_builder -->
 Плитки: `happy` `am` `I` `are` → **I am happy.**
 *(плитка `are` зайва: мова про себе одного)*
 
-**15 · Скажіть уголос — про сусідку праворуч і про себе**
-🎙 **She is cold. I am not cold.** — послухайте, повторіть, порівняйте.
+**15 · Скажіть уголос — колезі холодно біля вікна**
+<!-- interaction_id: en:lesson-01:session-37:i15:s01; family: scripted_repeat_compare -->
+🎙 **She is cold.**
 
-**16 · Фінал сцени — чотири фрази поспіль про себе, про нього і про спеку**
-🎙 Про себе після дороги, про сусіда із заплющеними очима, про суп і про весь стіл.
-**I am tired. He is tired. It is hot. We are happy.**
+**16 · Скажіть уголос — надворі холодно, але вам не холодно**
+<!-- interaction_id: en:lesson-01:session-37:i15:s02; family: scripted_repeat_compare -->
+🎙 **I am not cold.**
+
+**17 · Скажіть уголос — після дороги ви втомилися**
+<!-- interaction_id: en:lesson-01:session-37:i16:s01; family: scripted_repeat_compare -->
+🎙 **I am tired.**
+
+**18 · Скажіть уголос — колега весь обід треть очі від утоми**
+<!-- interaction_id: en:lesson-01:session-37:i16:s02; family: scripted_repeat_compare -->
+🎙 **He is tired.**
+
+**19 · Скажіть уголос — суп щойно принесли, і він гарячий**
+<!-- interaction_id: en:lesson-01:session-37:i16:s03; family: scripted_repeat_compare -->
+🎙 **It is hot.**
+
+**20 · Скажіть уголос — вся команда задоволена результатом**
+<!-- interaction_id: en:lesson-01:session-37:i16:s04; family: scripted_repeat_compare -->
+🎙 **We are happy.**
 
 ---
 
 ## Для сборщика
 
 new_words: —
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=speed_match, 7=listen_build_dictation, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=phrase_builder, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=speed_match, 7=listen_build_dictation, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ## Самоперевірка
 
@@ -163,16 +194,3 @@ modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_b
 | cold | з минулих сесій | завдання 4 (складання), інтро 3 |
 | hot | з минулих сесій | завдання 3 (слух), завдання 5 (пропуск), інтро 3 |
 
----
-
-🟡 **Варто покращити**
-- Пояснення до `hut` спирається на розслаблений рот — якщо диктор дає британську вимову, варто перевірити на слух, що контраст із `hot` чутний.
-
-🧩 **Приховані зв'язки**
-- Блок «Для сборщика» лишився байт у байт, як у майстрі: це службовий рядок для складальника сесій, його не перекладаємо навмисно.
-
-**Підсумок**
-- Виправив єдине зауваження судді: заголовок розділу з вправами тепер українською.
-- Решту тексту лишив як був — до нього претензій не було.
-- Англійські слова, фрази, номери й порядок завдань не чіпав.
-- Технічний блок для складальника навмисно залишив без перекладу.

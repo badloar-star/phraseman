@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-14:i01",
-    "correctText": "",
+    "correctText": "sandwich",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-14:i03",
-    "correctText": "",
+    "correctText": "salad",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-14:i06",
-    "correctText": "",
+    "correctText": "egg",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-14:i11",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-14:i11:p1=sandwich\nen:lesson-03:session-14:i11:p2=salad\nen:lesson-03:session-14:i11:p3=egg\nen:lesson-03:session-14:i11:p4=clock",
     "correctResponseId": null
   },
   {

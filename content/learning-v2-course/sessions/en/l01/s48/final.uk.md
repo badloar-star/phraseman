@@ -1,8 +1,8 @@
-# Англійська · Урок 1 · Сесія 48 — «Вечір у двох словах»
+# Англійська · Урок 1 · Заняття 48 — «Вечір у двох словах»
 
-**Сцена сесії.** П'ятниця, паб. Вечір добігає кінця, друг збирає всіх до виходу і між ділом питає, хто як і хто де.
+**Ситуація.** У п'ятницю ввечері Міра й Олег збираються біля виходу з пабу. Олег питає вас, як минув вечір і хто вже пішов.
 
-**Операція:** повторення скорочень `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` + `isn't` / `aren't`
+**Сьогодні.** Повторите скорочення `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` та заперечення `isn't` / `aren't`.
 **Нові слова:** —
 **Повертаються:** tired, happy, loud, gone, great, home
 
@@ -65,71 +65,112 @@
 ## Практика (16 завдань, підтримка спадає)
 
 **1 · Послухайте і виберіть — `tired`**
+<!-- interaction_id: en:lesson-01:session-48:i01; family: listen_choose -->
 🔊 *tired* → **tired** · tide · tried
 - tide — *`tide` — це приплив у морі. Нам потрібно про людину, яка втомилася.*
 - tried — *Ті самі літери, інший порядок: `tried` — «спробував». Нам потрібно «втомлений».*
 
 **2 · Вставте слово — ви втомилися після тижня**
+<!-- interaction_id: en:lesson-01:session-48:i02; family: context_gap_grammar -->
 `I'm ___ .` → **tired** · happy · home
 - happy — *«Радий» — теж правда, але друг спитав про сили.*
 - home — *«Удома» — а ви ще в пабі.*
 
 **3 · Послухайте і виберіть — `gone`**
+<!-- interaction_id: en:lesson-01:session-48:i03; family: listen_choose -->
 🔊 *gone* → **gone** · go · gun
 - go — *`go` — «іти», `gone` — «пішов». Треба друге.*
 - gun — *«Рушниця». У пабі таке краще не казати.*
 
 **4 · Складіть фразу — «вона пішла»**
+<!-- interaction_id: en:lesson-01:session-48:i04; family: phrase_builder -->
 Плитки: `gone` `She's` `is` `home` → **She's gone.**
 
-**5 · Вставте скріпку — про друга, якого немає за столом**
+**5 · Виберіть форму після `He` — про друга, якого немає за столом**
+<!-- interaction_id: en:lesson-01:session-48:i05; family: context_gap_grammar -->
 `He ___ gone.` → **is** · am · are
 - am — *`am` живе поруч із `I`. Про «він» — `is`.*
 - are — *`are` — про «ви», «ми», «вони». Про одного — `is`.*
 
 **6 · Розрізніть звуки — яке з двох про «гучний»?**
+<!-- interaction_id: en:lesson-01:session-48:i06; family: sound_contrast -->
 🔊 Два слова поспіль.
 *loud · load* → **loud**
 - load — *У `loud` чути «ау», як в «ау, хто тут». У `load` — «оу».*
 
 **7 · Вставте слово — у пабі тихо, хоч і п'ятниця**
+<!-- interaction_id: en:lesson-01:session-48:i07; family: context_gap_grammar -->
 `It isn't ___ .` → **loud** · gone · great
 - gone — *«Пішов» — про людину, а не про шум у залі.*
 - great — *«Чудово» — цього б ви й не заперечували.*
 
 **8 · Складіть фразу — у пабі п’ятниця, а за сусіднім столом тихо**
+<!-- interaction_id: en:lesson-01:session-48:i08; family: phrase_builder -->
 Плитки: `loud` `They` `aren't` `They're` → **They aren't loud.**
 
 **9 · Послухайте і складіть — «я втомився»**
+<!-- interaction_id: en:lesson-01:session-48:i09; family: listen_build_dictation -->
 🔊 *I'm tired.* Плитки: `tired` `I'm` `I` `happy` → **I'm tired.**
 
 **10 · Вставте слово — друг питає, як вам вечір**
+<!-- interaction_id: en:lesson-01:session-48:i10; family: context_gap_grammar -->
 `It's ___ .` → **great** · loud · gone
 - loud — *«Гучний» — це про звук, а не про те, чи сподобалося.*
 - gone — *«Пішов» — про людину, яка поїхала.*
 
-**11 · З'єднайте пари (Speed Match, 4 пари)**
+**11 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-48:i11; family: speed_match -->
 tired — втомлений · gone — пішов · loud — гучний · great — чудово
 
 **12 · Вставте слово — друг питає, куди ви тепер**
+<!-- interaction_id: en:lesson-01:session-48:i12; family: context_gap_grammar -->
 `I'm going ___ .` → **home** · great · loud
 - great — *«Чудово» — це не місце, куди йдуть.*
 - loud — *«Гучний» — теж не місце.*
 
 **13 · Складіть фразу — друг питає, куди ви тепер; додому ви ще не повернулися**
+<!-- interaction_id: en:lesson-01:session-48:i13; family: phrase_builder -->
 Плитки: `home` `We` `aren't` `isn't` → **We aren't home.**
 
 **14 · Вставте слово — друг цілий вечір сміявся**
+<!-- interaction_id: en:lesson-01:session-48:i14; family: context_gap_grammar -->
 `He's ___ .` → **happy** · gone · home
 - gone — *Він нікуди не пішов, він поруч і сміється.*
 - home — *«Удома» — а він у пабі.*
 
-**15 · Скажіть уголос — ви втомилися, але йти зарано**
-🎙 **I'm tired. It isn't late.** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i15:s01; family: scripted_repeat_compare -->
+Після робочого тижня ви хочете піти раніше. Скажіть чому.
 
-**16 · Фінал сцени — переказати вечір у чотирьох фразах**
-🎙 Друг біля виходу просить коротко: як усе минуло. Скажіть, що ви втомилися, що той, хто сидів поруч, пішов, що було не гучно і що вечір чудовий.
-**I'm tired. He's gone. It isn't loud. It's great.**
+🎙 **I'm tired.**
+
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i15:s02; family: scripted_repeat_compare -->
+Міра дивиться на годинник: до закриття ще далеко. Скажіть про це.
+
+🎙 **It isn't late.**
+
+**17 · Складіть фразу — ви пояснюєте, чому хочете піти раніше**
+<!-- interaction_id: en:lesson-01:session-48:i16:s01; family: phrase_builder -->
+Плитки: `I'm` `tired` `are` → **I'm tired.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s02; family: scripted_repeat_compare -->
+Міра дивиться на порожній стілець Олега: він уже пішов. Скажіть про це.
+
+🎙 **He's gone.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s03; family: scripted_repeat_compare -->
+У пабі вимкнули музику, і тепер не гучно. Скажіть про це.
+
+🎙 **It isn't loud.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-48:i16:s04; family: scripted_repeat_compare -->
+Олег питає, чи сподобався вам вечір. Відповідайте.
+
+🎙 **It's great.**
 
 ---
 
@@ -137,7 +178,7 @@ tired — втомлений · gone — пішов · loud — гучний · 
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=sound_contrast, 7=context_gap_grammar, 8=phrase_builder, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -177,18 +218,3 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder
 
 ---
 
-🟡 **Варте уваги**
-- В інтро 1 українська опора могла б бути сильнішою: українець теж каже «я втомлений» без зв'язки, тобто пастка `I tired` для нього ще природніша. Текст цього прямо не проговорює — але й неправди про рідну мову не каже, тому лишив як є.
-- Пастка `Im tired` (загублений апостроф) для української аудиторії актуальна так само: апострофа в цій позиції в українській немає, тож замінювати не довелося.
-
-🧩 **Зв'язки**
-- Англійські слова, фрази, пастки, номери і порядок завдань, блок «Для сборщика» — байт у байт як у майстрі. Змінено лише пояснювальний текст, підписи таблиць самоперевірки і сцену.
-
----
-
-- Виправив усі п'ять зауважень судді-носія.
-- Службовий заголовок практики тепер українською.
-- «Буква» скрізь замінена на «літера» — так носій називає знак абетки.
-- Прибрав кальку «випалої о» і неіснуюче слово «жадібнічати» — тепер там звичайні живі формулювання.
-- Регіональне слово «шинквас» замінив на нейтральний «бар».
-- Усе англійське, номери завдань і службовий блок лишились недоторканими.

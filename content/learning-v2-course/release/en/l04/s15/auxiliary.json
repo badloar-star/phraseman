@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-15:intro1:r2": {
+          "ru": "`Garden` — сад. Нам нужна комната с тренажёрами: `gym`.",
+          "uk": "`Garden` — сад. Нам потрібна кімната з тренажерами: `gym`."
+        },
+        "en:lesson-04:session-15:intro1:r3": {
+          "ru": "`Building` — здание целиком. На карте отмечена комната для тренировок: `gym`.",
+          "uk": "`Building` — ціла будівля. На плані позначено кімнату для тренувань: `gym`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-15:intro2:r2": {
+          "ru": "`Gyms` — несколько залов. Здесь хозяин показывает одно место, поэтому нужны `Is` и `a gym`.",
+          "uk": "`Gyms` — кілька залів. Тут господар показує одне місце, тому потрібні `Is` і `a gym`."
+        },
+        "en:lesson-04:session-15:intro2:r3": {
+          "ru": "Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a gym here?`.",
+          "uk": "Це повідомлення, а не питання. Питання починається з `Is`: `Is there a gym here?`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-15:intro3:r2": {
+          "ru": "`A room` — одна комната. На плане несколько комнат, поэтому нужны `Are` и `rooms`.",
+          "uk": "`A room` — одна кімната. На плані кілька кімнат, тому потрібні `Are` і `rooms`."
+        },
+        "en:lesson-04:session-15:intro3:r3": {
+          "ru": "Это сообщение. Вопрос начинается с `Are`: `Are there rooms near the gym?`.",
+          "uk": "Це повідомлення. Питання починається з `Are`: `Are there rooms near the gym?`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "518d13c3ff53531117c7a6789f6f4503fe542417536ad5af0e1c854e15f8d45c"
+}

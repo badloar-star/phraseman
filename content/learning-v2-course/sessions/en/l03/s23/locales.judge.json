@@ -1,34 +1,36 @@
 {
-  "sourceSha256": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
-  "localeSha256": {"uk": "0bfb7dab761d007dce7a777186ba710d8ee35ad59361685aae72cf47c2832ed9"},
-  "reviewer": "/root/s17_uk_native",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "medium",
+  "schemaVersion": "learning_v2_fresh_locale_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s23",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "0e56f6e637b733c700ab25db47a1bc353946a1f8271da33fae9e99f572565dfb",
+  "exactRuSha256": "0e56f6e637b733c700ab25db47a1bc353946a1f8271da33fae9e99f572565dfb",
+  "exactUkSha256": "31001a1fe7773e8617430faa57be3089c57c2063f21da5d631e10cf8f33bb395",
+  "practiceAtomicSha256": "f5447d84e372140a800b2d73d7775a239d67b48c8e586142ab6753dbba3283b3",
+  "localeHashes": {
+    "ru": "0e56f6e637b733c700ab25db47a1bc353946a1f8271da33fae9e99f572565dfb",
+    "uk": "31001a1fe7773e8617430faa57be3089c57c2063f21da5d631e10cf8f33bb395"
+  },
   "locales": {
     "uk": {
       "verdict": "PASS",
-      "native_quality": "PASS",
-      "structure": "PASS: 3 intros and tasks 1–17 retained; English question key now matches RU",
-      "full_native_scope_retained": true,
-      "intro_raw_chars": [237,246,234],
-      "definitions": "PASS: spoon/fork/cup card meanings and repeated new_words text are natural and preserve exact boundaries; bowl return sense retained",
-      "number_referents": "PASS",
-      "phonetic_feedback": "PASS as text for spoon/soon/swoon, fork/pork/cork, cup/cap/cop; positive cues on both sides, no false Cyrillic identities or accent overclaim",
-      "listening_prompts_neutral": "PASS",
-      "humour": {"present": true,"on_topic": true,"examples": ["Це коли принесуть ложку, а не як її назвати."]},
-      "remaining_issues": []
+      "blockers": [],
+      "mustFix": [],
+      "must_fix": [],
+      "structureIdentical": true,
+      "englishTargetsIdentical": true,
+      "languagePurity": true,
+      "meaningAdditions": [],
+      "evidence": [
+        "The Ukrainian `soon`/spoon mnemonic carries the same scope; IDs, targets, options and audios align with RU."
+      ]
     }
   },
-  "delta": {
-    "ledger": "judgements/2026-09-12_l03_s23_uk_initial.json",
-    "groups": 11,
-    "occurrences": 13,
-    "each_old_count": 0,
-    "each_new_count_matches_expected": true,
-    "reverse_reconstructed_initial_sha256": "b84f72be20e52230d68dee1b0006b00adf8bb1d5c8165e4da2cc1f46097c17d8",
-    "no_other_edit": true
-  },
-  "actual_audio": "NOT_REVIEWED",
-  "receiptNormalization": "Actual reviewer PASS response mapped to required locale verdict and definitions fields; original response had a malformed definitions property separator. No verdict or claim inferred.",
-  "reviewHistory": [{"report": "judgements/2026-09-12_l03_s23_uk_initial.json","verdict": "REVISE","confirmedBySecondReading": true}]
+  "verdict": "PASS"
 }

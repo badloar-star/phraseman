@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro1:r2": {
+          "ru": "Пропущено `is`. По-русски его нет, а в английском после `it` оно нужно.",
+          "uk": "Пропущено `is`. Українською його немає, а в англійській після `it` воно потрібне."
+        },
+        "en:lesson-01:session-30:intro1:r3": {
+          "ru": "После `it` ставится только `is`, не `are`.",
+          "uk": "Після `it` ставимо тільки `is`, не `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro2:r2": {
+          "ru": "Ровно наоборот: `quiet` — это тишина, а в автобусе шум.",
+          "uk": "Рівно навпаки: `quiet` — це тиша, а в автобусі гамір."
+        },
+        "en:lesson-01:session-30:intro2:r3": {
+          "ru": "`It` потерялось, и непонятно, что громкое. Место надо назвать.",
+          "uk": "`It` загубилося, і незрозуміло, що гучне. Місце треба назвати."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-30:intro3:r2": {
+          "ru": "Пропущено `is`: после `it` оно нужно.",
+          "uk": "Пропущено `is`: після `it` воно потрібне."
+        },
+        "en:lesson-01:session-30:intro3:r3": {
+          "ru": "`busy` — это «занято», а столик как раз пустой.",
+          "uk": "`busy` — це «зайнято», а столик якраз порожній."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "05ca5feccbbfbb9fe7c2ec50ecd4514bc476168b31435f064035f716e017b1d4"
+}

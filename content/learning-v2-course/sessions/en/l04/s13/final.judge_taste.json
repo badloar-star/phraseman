@@ -1,0 +1,59 @@
+{
+  "session": "en/l04/s13",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T11:15:05.484Z",
+  "sourceSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactRuSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactUkSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "practiceAtomicSha256": "e5c68f6ebf96adc2220aaa619e6b4e75d1637a8dd24206b18dc979c5324a29b6",
+  "localeHashes": {
+    "ru": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+    "uk": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S13 quality/spec reviewers",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent read-only taste review against owner 2026-09-08 session-level humor rule",
+  "verdict": "PASS",
+  "pairwise": "equal",
+  "pairwise_reason": "Both locales use the same concise language-derived joke about a short answer stopping at the right time.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл.",
+      "Коротка відповідь уміє вчасно зупинитися: заощаджує слова, а не зміст."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "В вопросе Are выходит вперёд, будто первым подаёт сигнал на стоянке.",
+      "Вопрос начинается с Are: Are there taxis?."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "В вопросе Are выходит вперёд, будто первым подаёт сигнал на стоянке.",
+    "Вопрос начинается с Are: Are there taxis?."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "mustFix": [],
+  "blockers": [],
+  "evidence": [
+    "The exact humor examples and best lines are quoted verbatim from the current final.ru.md."
+  ],
+  "verdict_reason": "Clear human teaching voice with one natural language-derived humorous move preserved across locales.",
+  "at": "2026-10-08T11:15:05.484Z",
+  "localeSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "preauthoringSha256": "0e82244a8b45d56f898a5b69ad84500d8b10c8b7cc2e6c127fa2c18e02e74e25",
+  "converged": true,
+  "needsHumanReview": false
+}

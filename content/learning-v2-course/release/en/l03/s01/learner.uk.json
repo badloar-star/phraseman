@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-01:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Начало `share` похоже на «ш», а начало `chair` — на «ч». В записи `chair`.",
               "uk": "На початку `share` чути звук, ближчий до «ш», а на початку `chair` — до «ч». У записі — `chair`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-01:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `cheer` середина ближе к «и», в `chair` — к «э». В записи звучит `chair`.",
               "uk": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-01:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В `fable` первым слышно «ф», а в `table` — «т». В записи `table`.",
               "uk": "На початку `fable` чути «ф», а на початку `table` — «т». У записі — `table`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-01:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В `label` первым слышно «л», а в `table` — «т». В записи `table`.",
               "uk": "На початку `label` чути «л», а на початку `table` — «т». У записі — `table`."
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть назву — друг запитує `What is it?`; ви дістали стілець",
+      "prompt": "Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-01:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть назву — друг запитує `What is it?`; ви дістали стілець",
+      "accessibilityLabel": "Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A chair.",
+        "targetPhrase": "It is a chair.",
         "localizedMeaning": {
-          "ru": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
-          "uk": "Складіть назву — друг запитує `What is it?`; ви дістали стілець"
+          "ru": "Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой",
+          "uk": "Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "chair"
         ],
         "authoredDistractorTokens": [
@@ -275,10 +277,10 @@
           {
             "responseId": "en:lesson-03:session-01:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите название — друг спрашивает `Wha",
+            "testedDimension": "Складіть назву — друг запитує `What is i",
             "feedbackByLocale": {
-              "ru": "После `a` сразу называем предмет: `a chair`. Скрепка `am` здесь не нужна.",
-              "uk": "Після `a` одразу називаємо предмет: `a chair`. Слово-скріпка `am` тут не потрібне."
+              "ru": "После `It` здесь нужно `is`: полная фраза — `It is a chair`. Скрепка `am` относится к `I`.",
+              "uk": "Після `It` тут потрібне `is`: повна фраза — `It is a chair`. Слово-скріпка `am` уживається з `I`."
             }
           }
         ]
@@ -383,7 +385,7 @@
           {
             "responseId": "en:lesson-03:session-01:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `camp` первый звук — «к», в `lamp` — «л». В записи `lamp`.",
               "uk": "На початку `camp` чути «к», а на початку `lamp` — «л». У записі — `lamp`."
@@ -392,7 +394,7 @@
           {
             "responseId": "en:lesson-03:session-01:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `damp` первый звук — «д», в `lamp` — «л». В записи `lamp`.",
               "uk": "На початку `damp` чути «д», а на початку `lamp` — «л». У записі — `lamp`."
@@ -440,7 +442,7 @@
           {
             "responseId": "en:lesson-03:session-01:i08:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — из следующей упаковки п",
+            "testedDimension": "Складіть фразу — з наступної упаковки ви",
             "feedbackByLocale": {
               "ru": "После `It` уже стоит нужная скрепка `is`. Форма `am` относится к `I`, а не к `It`.",
               "uk": "Після `It` уже стоїть потрібне слово-скріпка `is`. `am` уживають з `I`, а не з `It`."
@@ -456,13 +458,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — ви показуєте квартиру родині у відеодзвінку; вас запитують, що це за місце; скажіть «Це квартира» (`flat` — «квартира»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — ви показуєте квартиру родині у відеодзвінку; вас запитують, що це за місце; скажіть «Це квартира» (`flat` — «квартира»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -633,12 +635,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Вставьте часть фразы — из коробки видна ",
+        "testedDimension": "Вставте частину фрази — з коробки видно ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-01:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — из коробки видна ",
+            "testedDimension": "Вставте частину фрази — з коробки видно ",
             "feedbackByLocale": {
               "ru": "С одним `is` получится `It is chair`: перед названием предмета не хватает `a`.",
               "uk": "З одним `is` вийде `It is chair`: перед назвою предмета бракує `a`."
@@ -647,7 +649,7 @@
           {
             "responseId": "en:lesson-03:session-01:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте часть фразы — из коробки видна ",
+            "testedDimension": "Вставте частину фрази — з коробки видно ",
             "feedbackByLocale": {
               "ru": "С одним `a` получится `It a chair`: после `It` пропало `is`. Здесь нужны оба слова: `is a`.",
               "uk": "З одним `a` вийде `It a chair`: після `It` зникло `is`. Тут потрібні обидва слова: `is a`."
@@ -693,7 +695,7 @@
           {
             "responseId": "en:lesson-03:session-01:i13:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — виден провод, но сам п",
+            "testedDimension": "Складіть запитання — видно дріт, але сам",
             "feedbackByLocale": {
               "ru": "С `it` вопрос начинается с `Is`: `Is it a lamp?`. Начало `Are it` не подходит.",
               "uk": "З `it` запитання починається з `Is`: `Is it a lamp?`. Початок `Are it` не підходить."
@@ -748,12 +750,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Дополните фразу — друг закрепил последню",
+        "testedDimension": "Доповніть фразу — друг прикрутив останню",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "Дополните фразу — друг закрепил последню",
+            "testedDimension": "Доповніть фразу — друг прикрутив останню",
             "feedbackByLocale": {
               "ru": "`ready` описывает состояние. Перед этим словом отдельно `a` не нужно: `It is ready`.",
               "uk": "`ready` описує стан. Окреме `a` перед цим словом не потрібне: `It is ready`."
@@ -762,7 +764,7 @@
           {
             "responseId": "en:lesson-03:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "Дополните фразу — друг закрепил последню",
+            "testedDimension": "Доповніть фразу — друг прикрутив останню",
             "feedbackByLocale": {
               "ru": "В `It a ready` пропало `is` и появилось лишнее `a`. О состоянии говорят `It is ready`.",
               "uk": "У `It a ready` зникло `is` і з’явилося зайве `a`. Про стан кажуть `It is ready`."
@@ -778,13 +780,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — друг збирає лампу; запитайте його «Вона готова?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — друг збирає лампу; запитайте його «Вона готова?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -811,13 +813,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — друг підняв кришку наступної упаковки; назвіть стіл",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-01:i16:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — друг підняв кришку наступної упаковки; назвіть стіл",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -875,7 +877,7 @@
           {
             "responseId": "en:lesson-03:session-01:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — друг решил, что в после",
+            "testedDimension": "Складіть фразу — друг вирішив, що в оста",
             "feedbackByLocale": {
               "ru": "После `It` нужна одна скрепка `is`. Перед `lamp` остаётся `a`: `It is not a lamp`.",
               "uk": "Після `It` потрібне одне слово-скріпка `is`. Перед `lamp` залишається `a`: `It is not a lamp`."
@@ -892,5 +894,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fddda68bd702043a48d0443da205a2fd6ba9987f9a8c8aee1b55d3eab61baeee"
+  "learnerFingerprint": "77cbbfc918daac1f08743f45dc77d6667221d6ed3ec67ac5ef4fbb9fee501728"
 }

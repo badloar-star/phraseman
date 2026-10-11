@@ -9,11 +9,11 @@
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -239,7 +239,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-40:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — kind",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -326,17 +326,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — за столиком спрашивают, давно ли вы тут работаете",
+      "prompt": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — за столиком спрашивают, давно ли вы тут работаете",
+      "accessibilityLabel": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are new.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — за столиком спрашивают, давно ли вы тут работаете",
-          "uk": "Складіть фразу — за столиком питають, чи давно ви тут працюєте"
+          "ru": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
+          "uk": "Складіть фразу — колега Ліна питає, чи давно ваша команда тут працює"
         },
         "orderedTokens": [
           "We",
@@ -496,7 +496,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-40:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — mean",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -720,7 +720,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — спрашивают, кто эти люди: вы видите их только в офисе",
+      "prompt": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i13:r1",
@@ -737,12 +737,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — спрашивают, кто эти люди: вы видите их только в офисе",
+      "accessibilityLabel": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спрашивают, кто эти люди: вы видите их только в офисе",
-          "uk": "Вставте слово — питають, хто ці люди: ви бачите їх лише в офісі"
+          "ru": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
+          "uk": "Вставте слово — Ліна питає, хто ці люди: ви бачите їх лише в офісі"
         },
         "gappedTargetPhrase": "They are my ___ .",
         "gapOptions": [
@@ -759,12 +759,12 @@
             "text": "guests"
           }
         ],
-        "testedDimension": "Вставьте слово — спрашивают, кто эти люд",
+        "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-40:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают, кто эти люд",
+            "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
             "feedbackByLocale": {
               "ru": "«Друзья» — а это люди с работы.",
               "uk": "«Друзі» — а це люди з роботи."
@@ -773,7 +773,7 @@
           {
             "responseId": "en:lesson-01:session-40:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — спрашивают, кто эти люд",
+            "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
             "feedbackByLocale": {
               "ru": "«Гости» — они не в гостях, они тут работают.",
               "uk": "«Гості» — вони не в гостях, вони тут працюють."
@@ -820,11 +820,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -918,26 +918,125 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-40:i17",
+      "interactionId": "en:lesson-01:session-40:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд про вас и про них",
+      "prompt": "Произнесите одну фразу — шаг 1 из 4",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-40:i17:audio"
+        "en:lesson-01:session-40:i17:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд про вас и про них",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-40:i17:audio",
-          "transcript": "We are new. We are kind. They are loud. They are not mean."
+          "audioTargetId": "en:lesson-01:session-40:i17:s01:audio",
+          "transcript": "We are new."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are new. We are kind. They are loud. They are not mean.",
+        "targetPhrase": "We are new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s02:audio",
+          "transcript": "We are kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are kind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s03:audio",
+          "transcript": "They are loud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i17:s04:audio",
+          "transcript": "They are not mean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are not mean.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -951,11 +1050,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b87603ff0b6410597eb4aa9f4e98631522a460be8553faa8bcd1619a187525d3"
+  "learnerFingerprint": "33566bcbc79c47d77f77b2d5625376dc8428f92bec4f43b28f9ec1a6f984152f"
 }

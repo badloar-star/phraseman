@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro1:r2": {
+          "ru": "Так вы сообщаете: «оно дешёвое». Вопрос начинают с `is`.",
+          "uk": "Так ви повідомляєте: «воно дешеве». Питання починають з `is`."
+        },
+        "en:lesson-02:session-14:intro1:r3": {
+          "ru": "Пропало `it`, и непонятно, о чём речь. После `is` идёт `it`.",
+          "uk": "Зникло `it`, і незрозуміло, про що мова. Після `is` іде `it`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro2:r2": {
+          "ru": "`it` уехало в конец. После `is` сразу `it`, и только потом слово.",
+          "uk": "`it` поїхало в кінець. Після `is` одразу `it`, і тільки потім слово."
+        },
+        "en:lesson-02:session-14:intro2:r3": {
+          "ru": "Пропало `is`. Без него это обрывок, а не вопрос.",
+          "uk": "Зникло `is`. Без нього це уривок, а не питання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-14:intro3:r2": {
+          "ru": "После `it` нужно `is`, затем `not`: `it is not sold`.",
+          "uk": "Після `it` потрібне `is`, потім `not`: `it is not sold`."
+        },
+        "en:lesson-02:session-14:intro3:r3": {
+          "ru": "После `No` нужен ответ `it is`, а порядок `is it` снова начинает вопрос.",
+          "uk": "Після `No` потрібна відповідь `it is`, а порядок `is it` знову починає питання."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3d2fe25f969fb75d169f182a8c5d3f5bef02368d441fc877fb98422927cf653b"
+}

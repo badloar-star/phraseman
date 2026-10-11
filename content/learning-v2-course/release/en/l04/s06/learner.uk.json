@@ -1,0 +1,539 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i01:r1",
+          "text": "clinic"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i01:r2",
+          "text": "cleaning"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i01:r3",
+          "text": "climate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть, що прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i01:audio",
+          "transcript": "clinic"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-06:i01:r1",
+            "targetText": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i01:r2",
+            "targetText": "cleaning",
+            "meaningByLocale": {
+              "ru": "уборка",
+              "uk": "прибирання"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i01:r3",
+            "targetText": "climate",
+            "meaningByLocale": {
+              "ru": "климат",
+              "uk": "клімат"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i01:r2",
+            "correct": false,
+            "testedDimension": "auditory word discrimination",
+            "feedbackByLocale": {
+              "ru": "В записи `clinic`: после начала `cli-` слышно короткое `-nic`, а не долгое `clean-`.",
+              "uk": "У записі `clinic`: після початку `cli-` чути коротке `-nic`, а не довге `clean-`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i01:r3",
+            "correct": false,
+            "testedDimension": "auditory word discrimination",
+            "feedbackByLocale": {
+              "ru": "В записи `clinic`: после `cli-` слышно `-nic`, а не `-mate`.",
+              "uk": "У записі `clinic`: після `cli-` чути `-nic`, а не `-mate`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте нове слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте нове слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i02:audio",
+          "transcript": "clinic"
+        },
+        "targetPhrase": "clinic"
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На вказівнику всередині будівлі позначено місце. Оберіть назву",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i03:r1",
+          "text": "clinic"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i03:r2",
+          "text": "library"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i03:r3",
+          "text": "bakery"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На вказівнику всередині будівлі позначено місце. Оберіть назву",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i03:r1",
+            "text": "clinic"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i03:r2",
+            "text": "library"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i03:r3",
+            "text": "bakery"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`Library` — библиотека. На указателе отмечена `clinic`.",
+              "uk": "`Library` — бібліотека. На вказівнику позначено `clinic`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "required word choice",
+            "feedbackByLocale": {
+              "ru": "`Bakery` — пекарня. На указателе отмечена `clinic`.",
+              "uk": "`Bakery` — пекарня. На вказівнику позначено `clinic`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення для вказівника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення для вказівника",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i04:audio",
+          "transcript": "There is a clinic inside the building."
+        },
+        "hiddenTargetPhrase": "There is a clinic inside the building.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "clinic",
+          "inside",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення про клініку всередині будівлі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть повідомлення про клініку всередині будівлі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a clinic in the building near the library.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "clinic",
+          "in",
+          "the",
+          "building",
+          "near",
+          "the",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте форму для однієї клініки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте форму для однієї клініки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There ___ a clinic in the building near the bakery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i06:r3",
+            "text": "am"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "Клиника одна, поэтому нужно `is`.",
+              "uk": "`Are` вживають із кількома місцями; у цьому завданні йдеться не про множину."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "singular there is agreement",
+            "feedbackByLocale": {
+              "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
+              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте повідомлення про клініку всередині будівлі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Промовте повідомлення про клініку всередині будівлі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i07:audio",
+          "transcript": "There is a clinic in the building near the pharmacy."
+        },
+        "targetPhrase": "There is a clinic in the building near the pharmacy."
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i08",
+      "ordinal": 11,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова з їхніми значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова з їхніми значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "clinic",
+            "meaningByLocale": {
+              "ru": "клиника",
+              "uk": "клініка"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "building",
+            "meaningByLocale": {
+              "ru": "здание",
+              "uk": "будівля"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте артикль перед однією клінікою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-06:i09:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i09:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-06:i09:r3",
+          "text": "the"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте артикль перед однією клінікою",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "There is ___ clinic in the big building.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-06:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r3",
+            "text": "the"
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "Перед `clinic` нужен `a`, потому что слово начинается со звука /k/.",
+              "uk": "Перед `clinic` потрібен `a`, бо слово починається зі звуку /k/."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "singular-form selection",
+            "feedbackByLocale": {
+              "ru": "Здесь впервые называем одну клинику, поэтому нужен `a`.",
+              "uk": "Тут уперше називаємо одну клініку, тому потрібен `a`."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i10",
+      "ordinal": 13,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення про клініку всередині будівлі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть повідомлення про клініку всередині будівлі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a clinic in the building near the supermarket.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "clinic",
+          "in",
+          "the",
+          "building",
+          "near",
+          "the",
+          "supermarket"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення про клініку всередині будівлі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення про клініку всередині будівлі",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-06:i11:audio",
+          "transcript": "There is a clinic inside the big building near the supermarket."
+        },
+        "hiddenTargetPhrase": "There is a clinic inside the big building near the supermarket.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "clinic",
+          "inside",
+          "the",
+          "big",
+          "building",
+          "near",
+          "the",
+          "supermarket"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-06:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фінал — складіть повідомлення для вказівника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — складіть повідомлення для вказівника",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a clinic in this building.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "clinic",
+          "in",
+          "this",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3fca45e1c161366da38dc5922d196372b27915f03992bc2b6bf038969828385"
+}

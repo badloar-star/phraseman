@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 38 — «Мы заблудились»
+# Английский · Урок 1 · Занятие 38 — «Мы заблудились»
 
-**Сцена сессии.** Прогулка по Дублину после обеда: свернули не туда, и теперь надо объяснить, где вы все оказались.
-**Операция:** перенос — `we are` / `they are` вне офиса
+**Ситуация.** После обеда Ира, Олег и вы свернули не туда в Дублине. Вы находите знакомую улицу и объясняете, что произошло.
+**Сегодня.** Скажете, где вы: `We are` / `They are` + слово.
 **Новые слова:** —
 **Возвращаются:** together, far, lost, safe, home, back
 
@@ -15,7 +15,7 @@
 
 Перед ним нужно `are`, и это не мелочь. Скажете `we lost` — получится «мы проиграли»: это уже другая фраза, прошедшее время от «терять».
 
-**Свернули с улицы, и никто не понимает куда. Скажите вслух за всех.**
+**Ира и Олег сворачивают с улицы, но никто из вас не узнаёт место. Скажите за всех.**
 
 - ✅ **We are lost.**
 - ❌ We lost. — *Это «мы проиграли, мы потеряли». Про своё состояние — `we are lost`.*
@@ -29,12 +29,12 @@
 
 `safe` — «в безопасности», «ничего не угрожает». Не «спасён из огня», а обычное: район нормальный, никто не пристаёт, идти можно.
 
-Скрепка та же: `we are safe`. Рядом живёт `save` — «спасать», «сохранять». Русское ухо на конце слова звонкую «в» глушит, так что оба слова слышатся одинаково: в `safe` на конце «ф», в `save` «в» надо дотянуть, а не проглотить.
+После `we` ставим `are`: `We are safe`. Не путайте с `save`: это «спасать, сохранять», действие, а `safe` описывает состояние.
 
-**Кто-то нервничает. Вокруг светло, людей полно. Успокойте всех.**
+**Олег нервничает, но Ира видит вокруг людей, свет и знакомый магазин. Успокойте Олега.**
 
 - ✅ **We are safe.**
-- ❌ We safe. — *Скрепка выпала. По-русски её нет, по-английски `are` обязательно.*
+- ❌ We safe. — *После `we` нужно `are`: We are safe.*
 - ❌ We are save. — *`save` — «спасать», действие. Нужно `safe`.*
 
 ---
@@ -58,66 +58,94 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — lost**
+<!-- interaction_id: en:lesson-01:session-38:i01; family: listen_choose -->
 > **lost** — «заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.
 
-**2 · Послушайте и выберите — lost**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-38:i02; family: listen_choose -->
 🔊 *lost* → **lost** · lot · last
 - lot — *Без «с» на конце. `lot` — «много», совсем про другое.*
 - last — *Похоже, но гласная другая. `last` — «последний».*
 
 **3 · Карточка слова — safe**
+<!-- interaction_id: en:lesson-01:session-38:i03; family: listen_choose -->
 > **safe** — «в безопасности». Ничего страшного не происходит и не собирается.
 
 **4 · Соберите фразу — «мы заблудились»**
+<!-- interaction_id: en:lesson-01:session-38:i04; family: phrase_builder -->
 Плитки: `lost` `are` `we` `is` → **We are lost.**
 
 **5 · Карточка слова — home**
+<!-- interaction_id: en:lesson-01:session-38:i05; family: listen_choose -->
 > **home** — «дома, домой». Место, куда возвращаются в конце дня.
 
 **6 · Карточка слова — back**
+<!-- interaction_id: en:lesson-01:session-38:i06; family: listen_choose -->
 > **back** — «обратно, назад». Туда, откуда вышли.
 
 **7 · Вставьте слово — вокруг спокойно, никто никуда не бежит**
+<!-- interaction_id: en:lesson-01:session-38:i07; family: context_gap_grammar -->
 We are ___ . → **safe** · lost · home
 - lost — *Заблудились вы раньше. Сейчас надо сказать, что вокруг спокойно.*
 - home — *Дома вас как раз нет — вы посреди чужой улицы.*
 
-**8 · Различите звуки — какое из двух про «в безопасности»?**
+**8 · Различите звуки — вы добрались домой без происшествий. Какое слово подходит?**
+<!-- interaction_id: en:lesson-01:session-38:i08; family: sound_contrast -->
 🔊 Два слова подряд.
 *safe · save* → **safe**
 - save — *Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.*
 
 **9 · Послушайте и соберите — «они дома»**
+<!-- interaction_id: en:lesson-01:session-38:i09; family: listen_build_dictation -->
 🔊 *They are home.* Плитки: `home` `are` `they` `safe` → **They are home.**
 
 **10 · Вставьте слово — все развернулись и идут той же дорогой**
+<!-- interaction_id: en:lesson-01:session-38:i10; family: context_gap_grammar -->
 We are ___ . → **back** · lost · safe
 - lost — *Заблудились вы раньше, а сейчас дорогу нашли и идёте обратно.*
 - safe — *«В безопасности» — правда, но здесь надо сказать про направление.*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-38:i11; family: speed_match -->
 lost — заблудился · safe — в безопасности · home — дома · back — обратно
 
 **12 · Карточка слова — together**
+<!-- interaction_id: en:lesson-01:session-38:i12; family: listen_choose -->
 > **together** — «вместе». Идёте одной кучкой и никого не потеряли по дороге.
 
 **13 · Вставьте слово — идёте всей толпой, не разбредаясь**
+<!-- interaction_id: en:lesson-01:session-38:i13; family: context_gap_grammar -->
 We are ___ . → **together** · home · back
 - home — *Дома вы окажетесь позже, сейчас вы посреди улицы.*
 - back — *«Обратно» — про направление. А сказать надо, что вы одной кучкой.*
 
 **14 · Карточка слова — far**
+<!-- interaction_id: en:lesson-01:session-38:i14; family: listen_choose -->
 > **far** — «далеко». До нужного места ещё идти и идти.
 
 **15 · Соберите фразу — до дома ещё ехать и ехать**
+<!-- interaction_id: en:lesson-01:session-38:i15; family: phrase_builder -->
 Плитки: `far` `we` `are` `is` → **We are far.**
 
 **16 · Послушайте и соберите — «они в безопасности»**
+<!-- interaction_id: en:lesson-01:session-38:i16; family: listen_build_dictation -->
 🔊 *They are safe.* Плитки: `safe` `they` `are` `home` → **They are safe.**
 
-**17 · Финал сцены — четыре фразы подряд: вы заблудились и снова вместе**
-🎙 Дошли до знакомой улицы. Расскажите телефону всё сразу: вы заблудились, но вы были вместе, всё было спокойно, и вот вы вернулись.
-**We are lost. We are together. We are safe. We are back.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-38:i17:s01; family: scripted_repeat_compare -->
+Вы с Олегом не узнаёте улицу. 🎙 **We are lost.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-38:i17:s02; family: scripted_repeat_compare -->
+Вы с Олегом идёте рядом и не разделяетесь. 🎙 **We are together.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-38:i17:s03; family: scripted_repeat_compare -->
+Ира находит вас у знакомого магазина, вокруг спокойно. 🎙 **We are safe.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-38:i17:s04; family: scripted_repeat_compare -->
+Вы с Олегом вернулись к станции. 🎙 **We are back.**
 
 ---
 
@@ -131,7 +159,7 @@ back — обратно, назад — «обратно, назад». Туда
 together — вместе — «вместе». Идёте одной кучкой и никого не потеряли по дороге.
 far — далеко — «далеко». До нужного места ещё идти и идти.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=word_card, 7=context_gap_grammar, 8=sound_contrast, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=context_gap_grammar, 14=word_card, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=word_card, 7=context_gap_grammar, 8=sound_contrast, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=context_gap_grammar, 14=word_card, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 

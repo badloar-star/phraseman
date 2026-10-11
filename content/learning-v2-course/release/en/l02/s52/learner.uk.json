@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-52:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "В этом вопросе звучит `we` — «мы». В записи сотрудник обращается к вам: `Are you`.",
               "uk": "У цьому запитанні звучить `we` — «ми». У записі працівник звертається до вас: `Are you`."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-52:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи первые слова стоят иначе: `Are you`.",
               "uk": "Це повідомлення. У записі перші слова стоять інакше: `Are you`."
@@ -163,7 +163,7 @@
           {
             "responseId": "en:lesson-02:session-52:i03:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о месте. В записи первое слово `Who` — «кто».",
               "uk": "Це запитання про місце. У записі перше слово — `Who`, «хто»."
@@ -172,7 +172,7 @@
           {
             "responseId": "en:lesson-02:session-52:i03:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос о женщине. В записи в конце звучит `he` — «он».",
               "uk": "Це запитання про жінку. Наприкінці запису звучить `he` — «він»."
@@ -258,12 +258,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — руководитель отошёл, и ",
+        "testedDimension": "Вставте слово — керівник відійшов, і ви ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-52:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — руководитель отошёл, и ",
+            "testedDimension": "Вставте слово — керівник відійшов, і ви ",
             "feedbackByLocale": {
               "ru": "В этом вопросе о мужчине нужно `is`: `Where is he?`.",
               "uk": "У цьому запитанні про чоловіка потрібне `is`: `Where is he?`."
@@ -272,7 +272,7 @@
           {
             "responseId": "en:lesson-02:session-52:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — руководитель отошёл, и ",
+            "testedDimension": "Вставте слово — керівник відійшов, і ви ",
             "feedbackByLocale": {
               "ru": "Форма `am` подходит к `I`. Здесь вопрос с `he`, поэтому выбираем `is`.",
               "uk": "Форма `am` поєднується з `I`. Тут запитання з `he`, тому обираємо `is`."
@@ -337,7 +337,7 @@
           {
             "responseId": "en:lesson-02:session-52:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "testedDimension": "Послухайте й виберіть — яка репліка прац",
             "feedbackByLocale": {
               "ru": "Это «Он снаружи». В записи последнее слово `inside` — «внутри».",
               "uk": "Це «Він зовні». Останнє слово в записі — `inside`, «усередині»."
@@ -346,7 +346,7 @@
           {
             "responseId": "en:lesson-02:session-52:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "testedDimension": "Послухайте й виберіть — яка репліка прац",
             "feedbackByLocale": {
               "ru": "Это вопрос. На записи сотрудница сообщает: сначала `He is`.",
               "uk": "Це запитання. У записі працівниця повідомляє: спочатку `He is`."
@@ -403,12 +403,12 @@
             "text": "sure"
           }
         ],
-        "testedDimension": "Вставьте слово — вы показываете на зал; ",
+        "testedDimension": "Вставте слово — ви показуєте на залу; за",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-52:i07:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы показываете на зал; ",
+            "testedDimension": "Вставте слово — ви показуєте на залу; за",
             "feedbackByLocale": {
               "ru": "Это вопрос о готовности. По условию вы уточняете, открыт ли зал: `open`.",
               "uk": "Це запитання про готовність. За умовою ви уточнюєте, чи відкрита зала: `open`."
@@ -417,7 +417,7 @@
           {
             "responseId": "en:lesson-02:session-52:i07:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы показываете на зал; ",
+            "testedDimension": "Вставте слово — ви показуєте на залу; за",
             "feedbackByLocale": {
               "ru": "Это «уверен». Для вопроса об открытом зале нужно `Is it open?`.",
               "uk": "Це «впевнений». Для запитання про відкриту залу потрібне `Is it open?`."
@@ -428,25 +428,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-52:i08",
+      "interactionId": "en:lesson-02:session-52:i08:s01",
       "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-52:i08:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-52:i08:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:i08:s02",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — другові теж потрібен квиток; зверніться до працівниці й запитайте ціну",
+      "prompt": "Складіть одну фразу — крок 2 із 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — другові теж потрібен квиток; зверніться до працівниці й запитайте ціну",
+      "accessibilityLabel": "Складіть одну фразу — крок 2 із 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Excuse me. What is the price?",
+        "targetPhrase": "What is the price?",
         "localizedMeaning": {
           "ru": "Соберите фразу — другу тоже нужен билет; обратитесь к сотруднице и спросите цену",
           "uk": "Складіть фразу — другові теж потрібен квиток; зверніться до працівниці й запитайте ціну"
         },
         "orderedTokens": [
-          "Excuse me.",
           "What",
           "is",
           "the",
@@ -459,7 +491,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i09",
-      "ordinal": 12,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -512,7 +544,7 @@
           {
             "responseId": "en:lesson-02:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи первые слова `Are we`: друг спрашивает.",
               "uk": "Це повідомлення. У записі перші слова — `Are we`: друг запитує."
@@ -521,7 +553,7 @@
           {
             "responseId": "en:lesson-02:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "testedDimension": "Послухайте й виберіть — яка репліка друг",
             "feedbackByLocale": {
               "ru": "Это вопрос с `you`. В записи звучит `we`, включающее вас обоих.",
               "uk": "Це запитання з `you`. У записі звучить `we`, що охоплює вас обох."
@@ -535,7 +567,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i10",
-      "ordinal": 13,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -578,12 +610,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг показал ваше место",
+        "testedDimension": "Вставте слово — друг показав ваше місце ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-52:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показал ваше место",
+            "testedDimension": "Вставте слово — друг показав ваше місце ",
             "feedbackByLocale": {
               "ru": "В этом коротком ответе с `we` нужна форма `are`: `Yes, we are`.",
               "uk": "У цій короткій відповіді з `we` потрібна форма `are`: `Yes, we are`."
@@ -592,7 +624,7 @@
           {
             "responseId": "en:lesson-02:session-52:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг показал ваше место",
+            "testedDimension": "Вставте слово — друг показав ваше місце ",
             "feedbackByLocale": {
               "ru": "Форма `am` сочетается с `I`. Здесь сохраняем `we are`.",
               "uk": "Форма `am` поєднується з `I`. Тут зберігаємо `we are`."
@@ -604,7 +636,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i11",
-      "ordinal": 14,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -677,7 +709,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i12",
-      "ordinal": 15,
+      "ordinal": 16,
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -708,7 +740,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i13",
-      "ordinal": 16,
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -761,7 +793,7 @@
           {
             "responseId": "en:lesson-02:session-52:i13:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая следующая ",
+            "testedDimension": "Послухайте й виберіть — яка наступна реп",
             "feedbackByLocale": {
               "ru": "Это сообщение. В записи сначала `Is he`: сотрудница задаёт вопрос.",
               "uk": "Це повідомлення. У записі спочатку `Is he`: працівниця ставить запитання."
@@ -770,7 +802,7 @@
           {
             "responseId": "en:lesson-02:session-52:i13:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая следующая ",
+            "testedDimension": "Послухайте й виберіть — яка наступна реп",
             "feedbackByLocale": {
               "ru": "Это вопрос о женщине. В записи после `Is` звучит `he`.",
               "uk": "Це запитання про жінку. У записі після `Is` звучить `he`."
@@ -784,7 +816,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i14",
-      "ordinal": 17,
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -813,17 +845,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i15",
-      "ordinal": 18,
+      "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви припускаєте, що вхід за вашим квитком розташований за іншими дверима; запитайте працівницю «Я помиляюся?» (`wrong` — «неправий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви припускаєте, що вхід за вашим квитком розташований за іншими дверима; запитайте працівницю «Я помиляюся?» (`wrong` — «неправий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -846,17 +878,17 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i16",
-      "ordinal": 19,
+      "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — працівниця закінчила пояснення й відвернулася; приверніть її увагу перед іще одним запитанням (`excuse me` — «перепрошую»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-52:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — працівниця закінчила пояснення й відвернулася; приверніть її увагу перед іще одним запитанням (`excuse me` — «перепрошую»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -879,7 +911,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-52:i17",
-      "ordinal": 20,
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -909,11 +941,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9f14c4c922bcc24a7ae125f579f9f9f991cd7939a5e58c42d3322ae13add34c5"
+  "learnerFingerprint": "33465941f09bb509965653c04f2c3e6740aaf51e4a524068518c847637e31484"
 }

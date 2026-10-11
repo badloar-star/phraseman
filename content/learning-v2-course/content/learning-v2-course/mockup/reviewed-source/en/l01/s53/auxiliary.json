@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro1:r2": {
+          "ru": "После `I` нужно `am`: `I am tired`.",
+          "uk": "Після `I` потрібне `am`: `I am tired`."
+        },
+        "en:lesson-01:session-53:intro1:r3": {
+          "ru": "`is` — не для `I`. Про себя — `am`.",
+          "uk": "`is` — не для `I`. Про себе — `am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro2:r2": {
+          "ru": "`is` — про одного. «Мы» — это уже двое, нужно `are`.",
+          "uk": "`is` — про одного. «Ми» — це вже двоє, потрібне `are`."
+        },
+        "en:lesson-01:session-53:intro2:r3": {
+          "ru": "После `we` нужно `are`: `We are busy`.",
+          "uk": "Після `we` потрібне `are`: `We are busy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-53:intro3:r2": {
+          "ru": "Сначала `is`, потом `not`.",
+          "uk": "Спершу `is`, потім `not`."
+        },
+        "en:lesson-01:session-53:intro3:r3": {
+          "ru": "`not` убежал в конец. Его место сразу после `is`.",
+          "uk": "`not` утік у кінець. Його місце одразу після `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3d4c56578d966330ff42097a4a1905d7f52f97b3801c25ac2ef0fcc637627399"
+}

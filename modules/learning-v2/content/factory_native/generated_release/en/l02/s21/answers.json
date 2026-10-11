@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-21:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-21:i09:p1=station\nen:lesson-02:session-21:i09:p2=street\nen:lesson-02:session-21:i09:p3=shops\nen:lesson-02:session-21:i09:p4=toilets",
     "correctResponseId": null
   },
   {
@@ -71,17 +71,32 @@
   },
   {
     "interactionId": "en:lesson-02:session-21:i15",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-21:i15:p1=where\nen:lesson-02:session-21:i15:p2=what\nen:lesson-02:session-21:i15:p3=near\nen:lesson-02:session-21:i15:p4=behind",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-21:i16",
-    "correctText": "Where is the station? It is near.",
+    "interactionId": "en:lesson-02:session-21:i16:s01",
+    "correctText": "Where is the station?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-21:i17",
-    "correctText": "Where is the station? Where are the toilets? Where are the shops?",
+    "interactionId": "en:lesson-02:session-21:i16:s02",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-21:i17:s01",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-21:i17:s02",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-21:i17:s03",
+    "correctText": "Where are the shops?",
     "correctResponseId": null
   }
 ]

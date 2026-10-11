@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-40:i01",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-40:i01:p1=friendly\nen:lesson-01:session-40:i01:p2=loud\nen:lesson-01:session-40:i01:p3=kind\nen:lesson-01:session-40:i01:p4=new",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i15",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-40:i15:p1=funny\nen:lesson-01:session-40:i15:p2=quiet\nen:lesson-01:session-40:i15:p3=colleagues\nen:lesson-01:session-40:i15:p4=mean",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-40:i17",
-    "correctText": "We are new. We are kind. They are loud. They are not mean.",
+    "interactionId": "en:lesson-01:session-40:i17:s01",
+    "correctText": "We are new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i17:s02",
+    "correctText": "We are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i17:s03",
+    "correctText": "They are loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i17:s04",
+    "correctText": "They are not mean.",
     "correctResponseId": null
   }
 ]

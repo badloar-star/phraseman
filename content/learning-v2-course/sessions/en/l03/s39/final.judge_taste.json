@@ -1,9 +1,9 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
+  "sourceSha256": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
   "localeHashes": {
-    "ru": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
-    "uk": "640892a2262c084b94532c3caffa0743153648f005dc5c9e281791e97d8f39d5"
+    "ru": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+    "uk": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110"
   },
   "pairwise": "equal",
   "pairwise_reason": "Русская и украинская версии одинаково ясно ведут от продуктов на упаковочном столе к проверке заказа; обе сохраняют лёгкие уместные шутки, не подменяя ими объяснение и не добавляя искусственной канцелярской интонации.",
@@ -25,5 +25,62 @@
   },
   "ai_text_or_nonsense": [],
   "must_fix": [],
-  "verdict_reason": "Юмор поддерживает сцену и правило; вкус и понятность выдержаны в обеих локалях."
+  "verdict_reason": "Юмор поддерживает сцену и правило; вкус и понятность выдержаны в обеих локалях.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "23ed014492ec4bdbde6ec57ac21edc7119bc5ad91bbcc583923f50e0c1fb0fb4",
+    "localeSha256": "f6341de586b79d17528b491b4daa83db14d69f3154ffe2298eae5246166019aa",
+    "practiceAtomicSha256": "0bc73e5c8061bb18c60bcf562bafad22ba9e6234827a0b02cfca3d19147aa265"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+  "exactUkSha256": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110",
+  "localeSha256": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110",
+  "practiceAtomicSha256": "e10cfc05071757f4a65b9a30ffee6966641221a5a2c9d4d37918f37f7b199790",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "b513eff7f147ce97f8bb830e9d194b3ea4c6d766b5a93edc2a5947019281c0be",
+    "localeSha256": "44625165555f5285675aa9eea447528982fa2c9318a38bf71e07e2fbff1bff33",
+    "practiceAtomicSha256": "e10cfc05071757f4a65b9a30ffee6966641221a5a2c9d4d37918f37f7b199790",
+    "findings": []
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Простая рыночная ситуация carries voice without stock filler or false claims."
+  ],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_taste",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+    "exactRuSha256": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+    "exactUkSha256": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110",
+    "localeSha256": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110",
+    "localeHashes": {
+      "ru": "1df3f64f473c69900b2ad484449e58345eadab9ea473cd92baa4a66945c0240a",
+      "uk": "645a543e7b69e6452084a80a8a82c6502ade749e4880a3377ffdfd541be34110"
+    },
+    "practiceAtomicSha256": "e10cfc05071757f4a65b9a30ffee6966641221a5a2c9d4d37918f37f7b199790",
+    "evidence": [
+      "Простая рыночная ситуация carries voice without stock filler or false claims."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

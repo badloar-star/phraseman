@@ -1,0 +1,92 @@
+{
+  "session": "en/l04/s04",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:38:16.2729341Z",
+  "sourceSha256": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+  "exactRuSha256": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+  "exactUkSha256": "c75dba1c5e99d289db2342bacd2d52c50c92609942f60a26d8b7d457a11569c3",
+  "practiceAtomicSha256": "e3e1e5a719079959602790f9b8b7254b86a1d1b51cf015d25b912d5b5dc1bdfe",
+  "localeHashes": {
+    "ru": "62a364d54db745129936955949b12b9e73af2d42675a960c2f932bd6cf43430e",
+    "uk": "c75dba1c5e99d289db2342bacd2d52c50c92609942f60a26d8b7d457a11569c3"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current source through en/l04/s03",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s03",
+  "newWords": [
+    "post office"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_voice_listening_application: select There is or There are from noun number",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 4 | голос/слух | выбрать `there is` или `there are` по числу существительного | post office | на аудиопрогулке проходим мимо одной почты |",
+  "curriculumEvidence": {
+    "grammar": "The three intros and tasks 4–17 require selection/application of full There is versus There are by singular/plural place noun.",
+    "newWords": [
+      "post office"
+    ],
+    "situation": "The learner follows an audio walk past one post office (final.ru.md:3)."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "post office"
+      ],
+      "sceneEvidence": "The audio walk passes one post office.",
+      "correctAnswer": "There is a post office.",
+      "practiceTask": 4,
+      "practiceTarget": "There is a post office here.",
+      "finalEvidence": "i17 independently builds `There is a post office near the house.`; same singular-number choice.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "post office"
+      ],
+      "sceneEvidence": "Several banks are located near the one post office.",
+      "correctAnswer": "There are banks near the post office.",
+      "practiceTask": 5,
+      "practiceTarget": "There are libraries near the post office.",
+      "finalEvidence": "i17 tests the singular branch of the same is/are-by-number operation; one final need not duplicate both branches.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "post office"
+      ],
+      "sceneEvidence": "The audio-walk landmark is one post office behind a building.",
+      "correctAnswer": "There is a post office behind the building.",
+      "practiceTask": 7,
+      "practiceTarget": "There is a quiet post office behind the building.",
+      "finalEvidence": "i17 retains the singular existential and changes only the familiar location to near the house.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Grammar, post office and the audio-walk/one-post-office situation exactly match the current curriculum row.",
+    "Prior S01–S03 do not declare post office as a new primary target; the audio-listening application is new in the planned sequence."
+  ]
+}
+

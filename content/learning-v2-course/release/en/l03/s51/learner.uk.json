@@ -1,0 +1,857 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-51:i03",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i03:r1",
+          "text": "violet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i03:audio",
+          "transcript": "violet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:i03:r1",
+            "targetText": "violet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "violet",
+          "definitionByLocale": {
+            "ru": "«фиолетовый». Цвет кресла с ценником на /v/.",
+            "uk": "«фіолетовий». Колір крісла з цінником на /v/."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i05",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i05:audio",
+          "transcript": "navy"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "navy",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i07",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i07:audio",
+          "transcript": "pink"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "pink",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i04:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i04:audio",
+          "transcript": "violet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "violet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i06",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i06:r1",
+          "text": "navy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i06:audio",
+          "transcript": "navy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:i06:r1",
+            "targetText": "navy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "navy",
+          "definitionByLocale": {
+            "ru": "«тёмно-синий».",
+            "uk": "«темно-синій»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i08",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i08:audio",
+          "transcript": "pink"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "pink",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i01",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i01:audio",
+          "transcript": "violet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "violet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i02",
+      "ordinal": 11,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i02:audio",
+          "transcript": "navy"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "navy",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i09:audio",
+          "transcript": "pink"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "pink",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i11",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-51:i11:p1",
+            "target": "violet",
+            "meaningByLocale": {
+              "ru": "фиолетовый",
+              "uk": "фіолетовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i11:p2",
+            "target": "navy",
+            "meaningByLocale": {
+              "ru": "тёмно-синий",
+              "uk": "темно-синій"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i11:p3",
+            "target": "pink",
+            "meaningByLocale": {
+              "ru": "розовый",
+              "uk": "рожевий"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-51:i11:p4",
+            "target": "box",
+            "meaningByLocale": {
+              "ru": "коробка",
+              "uk": "коробка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "violet",
+          "navy",
+          "pink",
+          "box"
+        ],
+        "rightColumn": [
+          "фіолетовий",
+          "темно-синій",
+          "рожевий",
+          "коробка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i10",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте артикль — на ціннику пурпуровий колір",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i10:r1",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i10:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i10:r3",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i10:r4",
+          "text": "Purple"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте артикль — на ціннику пурпуровий колір",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикль — на ценнике пурпурный цвет",
+          "uk": "Вставте артикль — на ціннику пурпуровий колір"
+        },
+        "gappedTargetPhrase": "___ purple chair is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i10:r1",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i10:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i10:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i10:r4",
+            "text": "Purple"
+          }
+        ],
+        "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
+            "feedbackByLocale": {
+              "ru": "Purple начинается со звука /p/, поэтому нужен `A`.",
+              "uk": "Purple починається зі звуку /p/, тому потрібен `A`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
+            "feedbackByLocale": {
+              "ru": "Кресло называют впервые, а здесь проверяется `A` перед /p/.",
+              "uk": "Крісло називають уперше, а тут перевіряється `A` перед /p/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i10:r4",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
+            "feedbackByLocale": {
+              "ru": "Purple уже стоит после пропуска; сюда ставят артикль.",
+              "uk": "Purple уже стоїть після пропуску; сюди ставлять артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i12:r1",
+          "text": "Здесь есть тёмно-синее кресло."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i12:r2",
+          "text": "Здесь есть фиолетовое кресло."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i12:r3",
+          "text": "Здесь есть тёмно-синие кресла."
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i12:r4",
+          "text": "Где тёмно-синее кресло?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i12:audio",
+          "transcript": "A navy chair is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-51:i12:r1",
+            "targetText": "Здесь есть тёмно-синее кресло.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r2",
+            "targetText": "Здесь есть фиолетовое кресло.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r3",
+            "targetText": "Здесь есть тёмно-синие кресла.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r4",
+            "targetText": "Где тёмно-синее кресло?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `navy`, а не `violet`.",
+              "uk": "У записі звучить `navy`, а не `violet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи одно кресло: `a chair`, а не несколько кресел.",
+              "uk": "У записі одне крісло: `a chair`, а не кілька крісел."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи утверждение, а не вопрос.",
+              "uk": "У записі твердження, а не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви відповідаєте про темно-синє крісло",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви відповідаєте про темно-синє крісло",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a navy chair.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы отвечаете о тёмно-синем кресле",
+          "uk": "Складіть фразу — ви відповідаєте про темно-синє крісло"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "navy",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте артикль — на ціннику рожевий колір",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i14:r1",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i14:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i14:r3",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i14:r4",
+          "text": "Pink"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте артикль — на ціннику рожевий колір",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикль — на ценнике розовый цвет",
+          "uk": "Вставте артикль — на ціннику рожевий колір"
+        },
+        "gappedTargetPhrase": "___ pink chair is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i14:r1",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r4",
+            "text": "Pink"
+          }
+        ],
+        "testedDimension": "Вставьте артикль — на ценнике розовый цв",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
+            "feedbackByLocale": {
+              "ru": "Pink начинается со звука /p/, поэтому нужен `A`.",
+              "uk": "Pink починається зі звуку /p/, тому потрібен `A`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
+            "feedbackByLocale": {
+              "ru": "Кресло называют впервые, а здесь проверяется `A` перед /p/.",
+              "uk": "Крісло називають уперше, а тут перевіряється `A` перед /p/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i14:r4",
+            "correct": false,
+            "testedDimension": "Вставьте артикль — на ценнике розовый цв",
+            "feedbackByLocale": {
+              "ru": "Pink уже стоит после пропуска; сюда ставят артикль.",
+              "uk": "Pink уже стоїть після пропуску; сюди ставлять артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви показуєте рожеве крісло",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви показуєте рожеве крісло",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a pink chair.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы показываете розовое кресло",
+          "uk": "Складіть фразу — ви показуєте рожеве крісло"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "pink",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-51:i16:audio",
+          "transcript": "A violet chair is here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "A violet chair is here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фінал — нове крісло в залі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-51:i17:r1",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i17:r2",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i17:r3",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-51:i17:r4",
+          "text": "Violet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — нове крісло в залі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — новое кресло в зале",
+          "uk": "Фінал — нове крісло в залі"
+        },
+        "gappedTargetPhrase": "___ violet chair is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i17:r1",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i17:r2",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i17:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i17:r4",
+            "text": "Violet"
+          }
+        ],
+        "testedDimension": "Финал — новое кресло в зале",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-51:i17:r2",
+            "correct": false,
+            "testedDimension": "Финал — новое кресло в зале",
+            "feedbackByLocale": {
+              "ru": "Violet начинается со звука /v/, поэтому нужен `A`.",
+              "uk": "Violet починається зі звуку /v/, тому потрібен `A`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i17:r3",
+            "correct": false,
+            "testedDimension": "Финал — новое кресло в зале",
+            "feedbackByLocale": {
+              "ru": "Это первое упоминание об одном кресле, поэтому здесь не `The`.",
+              "uk": "Це перша згадка про одне крісло, тому тут не `The`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i17:r4",
+            "correct": false,
+            "testedDimension": "Финал — новое кресло в зале",
+            "feedbackByLocale": {
+              "ru": "Violet уже стоит после пропуска; сюда нужен артикль.",
+              "uk": "Violet уже стоїть після пропуску; сюди потрібен артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8cd5134eff4a56cea73475a8890ea0bb11a8e3b7fda887f51fb6562cc04c8c72"
+}

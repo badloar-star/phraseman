@@ -1,1 +1,65 @@
-{"verdict":"PASS","blockers":[],"must_fix":[],"evidence":["Каждое интро объясняет точную фразу до вопроса тем же новым словом и в той же сцене.","Инструкции называют конкретное действие без внутреннего жаргона.","Все три действия интро отрабатываются в практике и обязательны в финале."]}
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_reader",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s42",
+  "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+  "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "d27c1c33cf65880165ecba6fcd10af571578876ca455f2a1d5448f2103c94837",
+    "localeSha256": "9f406d391099d4d8094d5868c02217f5f3bc4c12c6b41df6d925a1c867e9cef3",
+    "practiceAtomicSha256": "58c70bb86b937862ff4cb0c86f9b957d1985c388459a6279c65fa39166250131",
+    "findings": []
+  },
+  "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+  "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_reader",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+    "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+    "localeHashes": {
+      "ru": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+      "uk": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003"
+    },
+    "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+    "evidence": [
+      "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation."
+    ]
+  }
+}

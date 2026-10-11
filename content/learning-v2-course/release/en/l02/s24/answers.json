@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-24:i06",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-24:i06:p1=station\nen:lesson-02:session-24:i06:p2=bridge\nen:lesson-02:session-24:i06:p3=corner\nen:lesson-02:session-24:i06:p4=lost",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-24:i14",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-24:i14:p1=near\nen:lesson-02:session-24:i14:p2=behind\nen:lesson-02:session-24:i14:p3=tired\nen:lesson-02:session-24:i14:p4=thirsty",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-24:i16",
-    "correctText": "Where is the station? Are you tired?",
+    "interactionId": "en:lesson-02:session-24:i16:s01",
+    "correctText": "Where is the station?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-24:i17",
-    "correctText": "Are you lost? Where is the station? It is behind the shops. Are you thirsty?",
+    "interactionId": "en:lesson-02:session-24:i16:s02",
+    "correctText": "Are you tired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i17:s01",
+    "correctText": "Are you lost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i17:s02",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i17:s03",
+    "correctText": "It is behind the shops.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i17:s04",
+    "correctText": "Are you thirsty?",
     "correctResponseId": null
   }
 ]

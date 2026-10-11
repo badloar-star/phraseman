@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-10:intro1:r2": {
+          "ru": "После `you` нужно `are`: `You are early`.",
+          "uk": "Після `you` потрібне `are`: `You are early`."
+        },
+        "en:lesson-01:session-10:intro1:r3": {
+          "ru": "`am` живёт только с `I` и никуда от него не уходит. Для `you` — `are`.",
+          "uk": "`am` живе тільки з `I` і нікуди від нього не йде. Для `you` — `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-10:intro2:r2": {
+          "ru": "После `you` нужно `are`: `You are fast`.",
+          "uk": "Після `you` потрібне `are`: `You are fast`."
+        },
+        "en:lesson-01:session-10:intro2:r3": {
+          "ru": "`is` — не для `you`. `You are` ходят парой и не меняются.",
+          "uk": "`is` — не для `you`. `You are` ходять парою і не міняються."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-10:intro3:r2": {
+          "ru": "Молчит она, а не вы. Про человека напротив — `You are`.",
+          "uk": "Мовчить вона, а не ви. Про людину навпроти — `You are`."
+        },
+        "en:lesson-01:session-10:intro3:r3": {
+          "ru": "Опять сбежала `are`. Третий раз за занятие.",
+          "uk": "Після `you` потрібне `are`: `You are quiet`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fa20b65e9efaf424f7a23d2e16270e5e6ff291311d9dc6711a499e60c0fc429a"
+}

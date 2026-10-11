@@ -869,13 +869,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — спросите соседа, кто гость",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — спросите соседа, кто гость",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -961,5 +961,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3d5be93785b422468275b2137a47d25a3be47f8f10afe4f4c2eafaab43f621bc"
+  "learnerFingerprint": "97fc5980f12ab77e35ad96567a2a171355c2f201d046c281e96925d8cd15d989"
 }

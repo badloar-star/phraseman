@@ -791,13 +791,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг спрашивает, уверены ли вы в своём выборе квартиры; вы ещё сомневаетесь, скажите «Я не уверен» (`sure` — «уверен»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-54:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг спрашивает, уверены ли вы в своём выборе квартиры; вы ещё сомневаетесь, скажите «Я не уверен» (`sure` — «уверен»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -824,13 +824,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы хотите уточнить у друга, тепло ли в квартире; спросите «В квартире тепло?» (`warm` — «тёплая»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-54:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы хотите уточнить у друга, тепло ли в квартире; спросите «В квартире тепло?» (`warm` — «тёплая»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -852,25 +852,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-54:i17",
+      "interactionId": "en:lesson-02:session-54:i17:s01",
       "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i17:s01:audio",
+          "transcript": "Excuse me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i17:s02",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Excuse me. Is the landlord busy?",
+        "targetPhrase": "Is the landlord busy?",
         "localizedMeaning": {
           "ru": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
           "uk": "Складіть фразу — ви хочете поставити господареві ще одне запитання; зверніться до жінки, яка показувала квартиру, й уточніть, чи зайнятий зараз орендодавець"
         },
         "orderedTokens": [
-          "Excuse me.",
           "Is",
           "the",
           "landlord",
@@ -884,11 +916,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cad41c9e6ca1e543a07d64a3e224fbfc2b2fb93b39d55613e8ad27270d3074cf"
+  "learnerFingerprint": "176cd272d73f04f99418ec8808bf94c8a80e3041469d63c2d8226dd448fafc3d"
 }

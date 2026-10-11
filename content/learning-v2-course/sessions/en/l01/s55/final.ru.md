@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 55 — «Марафон: вся неделя одной кучей»
+# Английский · Урок 1 · Занятие 55 — «Повторяем am, is, are»
 
-**Сцена сессии.** Сосед по лестничной площадке зашёл за отвёрткой и застрял на пороге. Он расспрашивает обо всём подряд: про вас, про других жильцов, про квартиру, про вашего брата. Отвечать надо быстро — и каждый раз выбирать нужную скрепку.
+Сегодня сосед зашёл одолжить отвёртку. В коротком разговоре вы скажете о себе, о брате, о жильцах и о квартире.
 
-**Операция:** повторение всех семи скрепок — `I am`, `you are`, `he is`, `she is`, `it is`, `we are`, `they are` и отрицание после них
+**Что вы повторите:** `I am`, `you are`, `he is`, `she is`, `it is`, `we are`, `they are` и отрицание с `not`
 **Новые слова:** —
 **Возвращаются:** tired, quiet, kind, ready, safe, warm, busy, cold
 
@@ -12,7 +12,7 @@
 
 ### Три слова на все случаи: am, is, are
 
-Между «кто» и «какой» по-английски встаёт маленькое слово-скрепка. Она меняется: `I am`, `he is`, `we are`.
+В английской фразе между тем, о ком говорят, и его признаком обычно стоит форма `to be`. Она меняется: `I am`, `he is`, `we are`.
 
 `tired` — «устал». Про себя это всегда `I am tired`: рядом с `I` стоит только `am`, ни в одной фразе оно не заменяется на другое.
 
@@ -20,7 +20,7 @@
 
 - ✅ **I am tired.**
 - ❌ I is tired. — *`is` идёт к «он», «она», «оно». Про себя — `am`.*
-- ❌ I tired. — *Скрепка выпала. Между `I` и `tired` нужно `am`.*
+- ❌ I tired. — *Между `I` и `tired` нужно `am`.*
 
 ---
 
@@ -30,7 +30,7 @@
 
 `he is`, `she is`, `it is` — когда речь про одного. `we are`, `they are` — когда их много.
 
-`quiet` — «тихий». Про одного соседа это `he is quiet`, про всех жильцов сразу — `they are quiet`. Само слово при этом не меняется, меняется только скрепка перед ним.
+`quiet` — «тихий». Про одного соседа это `he is quiet`, про всех жильцов сразу — `they are quiet`. Само слово при этом не меняется; меняется форма `to be` перед ним.
 
 **Сосед спрашивает про жильцов сверху. Их несколько, и шума от них нет.**
 
@@ -42,9 +42,9 @@
 
 ## Интро 3
 
-### not встаёт сразу после скрепки
+### Где ставить not
 
-Чтобы сказать «не», ставим `not` — и место у него одно: сразу за скрепкой. `I am not`, `he is not`, `we are not`.
+Чтобы сказать «не», ставим `not` сразу после формы `to be`: `I am not`, `he is not`, `we are not`.
 
 Рука по привычке тянется поставить «не» перед словом, как по-русски. Тянуть не надо: `I not tired` — это уже не английский.
 
@@ -53,81 +53,130 @@
 **Сосед уверен, что в вашей квартире мёрзнут. Это не так.**
 
 - ✅ **It is not cold.**
-- ❌ It not cold. — *Скрепка пропала. `not` встаёт после `is`, а не вместо него.*
+- ❌ It not cold. — *После `It` нужна форма `is`. `not` ставят после `is`, а не вместо него.*
 - ❌ It is no cold. — *`no` тут не работает. Отрицание к слову о признаке — `not`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — 22 задания
 
-**1 · Вставьте скрепку — сосед спрашивает, как вы**
+**1 · Выберите форму — сосед спрашивает, как вы**
+<!-- interaction_id: en:lesson-01:session-55:i01; family: context_gap_grammar -->
 I ___ tired. → **am** · is · are
 - is — *`is` — про «он», «она», «оно». Про себя — `am`.*
 - are — *`are` идёт к «ты» и к «многим». Про себя — `am`.*
 
-**2 · Послушайте и выберите — kind**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-55:i02; family: listen_choose -->
 `kind` — «добрый». 🔊 *kind* → **kind** · kid · kite
 - kid — *Это «ребёнок». В `kind` перед «д» есть «н».*
 - kite — *Это «воздушный змей». Кончается на «т», а не на «д».*
 
 **3 · Вставьте слово — сосед спрашивает, добрый ли ваш начальник**
-`ready` — «готов». He is ___ . → **kind** · quiet · ready
+<!-- interaction_id: en:lesson-01:session-55:i03; family: context_gap_grammar -->
+He is ___ . → **kind** · quiet · ready
 - quiet — *«Тихий» — про громкость, а не про характер. Спрашивали про доброту.*
 - ready — *«Готов» — про того, кто собрался идти. Про доброту — `kind`.*
 
-**4 · Вставьте скрепку — про вашего брата, он всегда собран**
-He ___ ready. → **is** · am · are
-- am — *`am` живёт рядом с `I`. Про другого человека — `is`.*
-- are — *`are` — когда их несколько. Брат один.*
+**4 · Соберите фразу — про вашего брата, он всегда собран**
+<!-- interaction_id: en:lesson-01:session-55:i04; family: phrase_builder -->
+Плитки: `He` `is` `ready.` `are` → **He is ready.**
 
-**5 · Вставьте скрепку — про жильцов сверху**
+**5 · Выберите форму — про жильцов сверху**
+<!-- interaction_id: en:lesson-01:session-55:i05; family: context_gap_grammar -->
 They ___ quiet. → **are** · is · am
 - is — *Жильцов много. К «многим» идёт `are`.*
 - am — *`am` — только про себя.*
 
-**6 · Соедините пары (Speed Match, 4 пары)**
+**6 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-55:i06; family: speed_match -->
 tired — устал · quiet — тихий · kind — добрый · ready — готов
 
 **7 · Соберите фразу — «мы заняты»**
+<!-- interaction_id: en:lesson-01:session-55:i07; family: phrase_builder -->
 `busy` — «занят». Плитки: `are` `busy` `we` `is` → **We are busy.**
 
-**8 · Соберите фразу — «она не занята»**
-Плитки: `she` `not` `busy` `is` → **She is not busy.**
+**8 · Вставьте слово — сосед уточняет, занята ли она**
+<!-- interaction_id: en:lesson-01:session-55:i08; family: context_gap_grammar -->
+She is ___ busy. → **not** · no · am
+- no — *После `is` для отрицания нужно `not`, не `no`.*
+- am — *`am` бывает с `I`; здесь после `is` нужно `not`.*
 
 **9 · Различите звуки — какое из двух про «тепло»?**
+<!-- interaction_id: en:lesson-01:session-55:i09; family: sound_contrast -->
 `warm` — «тёплый». 🔊 Два слова подряд.
 *warm · worm* → **warm**
 - worm — *Это «червяк». Слово про тепло — `warm`, с «а» в написании.*
 
 **10 · Вставьте слово — сосед волнуется, как у вас зимой**
+<!-- interaction_id: en:lesson-01:session-55:i10; family: context_gap_grammar -->
 It is ___ . → **warm** · tired · ready
 - tired — *«Устал» — это про человека, а не про комнату.*
 - ready — *«Готов» — про того, кто собрался идти. Про тепло — `warm`.*
 
 **11 · Послушайте и соберите — «ты в безопасности»**
+<!-- interaction_id: en:lesson-01:session-55:i11; family: listen_build_dictation -->
 `safe` — «в безопасности». 🔊 *You are safe.* Плитки: `are` `safe` `you` `am` → **You are safe.**
 
-**12 · Вставьте скрепку — обманка на внимательность**
-Сосед спрашивает, спокойно ли у вас в подъезде. Спокойно.
+**12 · Выберите форму — в квартире тихо**
+<!-- interaction_id: en:lesson-01:session-55:i12; family: context_gap_grammar -->
 It ___ quiet here. → **is** · am · are
 - am — *`am` — только про себя. Про «оно» — `is`.*
 - are — *«Оно» — одно. К нему `is`.*
 
 **13 · Соберите фразу — «я не замёрз»**
+<!-- interaction_id: en:lesson-01:session-55:i13; family: phrase_builder -->
 `cold` — «холодно». Плитки: `not` `I` `cold` `am` → **I am not cold.**
 
-**14 · Соедините пары (Speed Match, 4 пары)**
+**14 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-55:i14; family: speed_match -->
 busy — занят · safe — в безопасности · warm — тёплый · cold — холодный
 
 **15 · Соберите фразу — они ещё собираются, выходить рано**
+<!-- interaction_id: en:lesson-01:session-55:i15; family: phrase_builder -->
 Плитки: `they` `ready` `not` `are` `is` → **They are not ready.**
 
-**16 · Скажите вслух — успокаиваете соседа**
-🎙 **I am fine. It is warm here. I am not cold.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i16:s01; family: scripted_repeat_compare -->
+Сосед спрашивает, всё ли у вас хорошо. Скажите, что хорошо.
 
-**17 · Финал сцены — четыре фразы подряд, вы успокаиваете соседа**
-🎙 Сосед напоследок спрашивает про всё сразу. Ответьте: вы устали, но вы в безопасности; жильцы сверху тихие; брат не занят.
-**I am tired. I am safe. They are quiet. He is not busy.**
+🎙 **I am fine.**
+
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i16:s02; family: scripted_repeat_compare -->
+Сосед спрашивает, тепло ли у вас дома. Скажите, что здесь тепло.
+
+🎙 **It is warm here.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i16:s03; family: scripted_repeat_compare -->
+Сосед спрашивает, не замёрзли ли вы. Скажите, что вам не холодно.
+
+🎙 **I am not cold.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i17:s01; family: scripted_repeat_compare -->
+Сосед спрашивает, устали ли вы. Скажите, что устали.
+
+🎙 **I am tired.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i17:s02; family: scripted_repeat_compare -->
+Сосед спрашивает, в безопасности ли вы. Скажите, что в безопасности.
+
+🎙 **I am safe.**
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i17:s03; family: scripted_repeat_compare -->
+Сосед спрашивает, тихо ли у жильцов сверху. Скажите, что тихо.
+
+🎙 **They are quiet.**
+
+**22 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-55:i17:s04; family: scripted_repeat_compare -->
+Сосед спрашивает, занят ли брат. Скажите, что брат не занят.
+
+🎙 **He is not busy.**
 
 ---
 
@@ -135,7 +184,7 @@ busy — занят · safe — в безопасности · warm — тёпл
 
 new_words: —
 
-modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=context_gap_grammar, 5=context_gap_grammar, 6=speed_match, 7=phrase_builder, 8=phrase_builder, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=speed_match, 7=phrase_builder, 8=context_gap_grammar, 9=sound_contrast, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
 
 ---
 

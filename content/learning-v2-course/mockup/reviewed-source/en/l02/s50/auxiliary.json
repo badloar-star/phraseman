@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro1:r2": {
+          "ru": "Вопрос начинается с `Are you`, но о себе вы отвечаете с `I am`: `Yes, I am`.",
+          "uk": "Запитання починається з `Are you`, але про себе ви відповідаєте з `I am`: `Yes, I am`."
+        },
+        "en:lesson-02:session-50:intro1:r3": {
+          "ru": "В этом коротком ответе после `I` не хватает `am`: `Yes, I am`.",
+          "uk": "У цій короткій відповіді після `I` бракує `am`: `Yes, I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro2:r2": {
+          "ru": "После `she` нужна форма `is`, а не `are`: `No, she is not`.",
+          "uk": "Після `she` потрібне `is`, а не `are`: `No, she is not`."
+        },
+        "en:lesson-02:session-50:intro2:r3": {
+          "ru": "Между `she` и `not` пропало `is`. Восстановите ответ: `No, she is not`.",
+          "uk": "Між `she` і `not` зникло `is`. Відновіть відповідь: `No, she is not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-50:intro3:r2": {
+          "ru": "После `I` нужна форма `am`, а не `is`: `No, I am not`.",
+          "uk": "Після `I` потрібне `am`, а не `is`: `No, I am not`."
+        },
+        "en:lesson-02:session-50:intro3:r3": {
+          "ru": "`not` поставлено перед `am`. В коротком ответе порядок другой: `No, I am not`.",
+          "uk": "`not` стоїть перед `am`. У короткій відповіді порядок інший: `No, I am not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ef93596d6f85943fb38305156d457a8a92d24bbdfa269d667d643da56157ff26"
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-15:i01",
+    "correctText": "polite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i02",
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-01:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i03",
+    "correctText": "serious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i04",
+    "correctText": "serious",
+    "correctResponseId": "en:lesson-01:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i05",
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-01:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i06",
+    "correctText": "I am not serious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i07",
+    "correctText": "lucky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i08",
+    "correctText": "lucky",
+    "correctResponseId": "en:lesson-01:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i09",
+    "correctText": "sad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i10",
+    "correctText": "sad",
+    "correctResponseId": "en:lesson-01:session-15:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i11",
+    "correctText": "en:lesson-01:session-15:i11:p1=polite\nen:lesson-01:session-15:i11:p2=serious\nen:lesson-01:session-15:i11:p3=lucky\nen:lesson-01:session-15:i11:p4=sad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i13",
+    "correctText": "You are not sad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i14",
+    "correctText": "calm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i15",
+    "correctText": "calm",
+    "correctResponseId": "en:lesson-01:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i16",
+    "correctText": "honest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i17:s01",
+    "correctText": "You are honest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i17:s02",
+    "correctText": "I am not sad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i18",
+    "correctText": "kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i19:s01",
+    "correctText": "You are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i19:s02",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-15:i20",
+    "correctText": "You are polite.",
+    "correctResponseId": null
+  }
+]

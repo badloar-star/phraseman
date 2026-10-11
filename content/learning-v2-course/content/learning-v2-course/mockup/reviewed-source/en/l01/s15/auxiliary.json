@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro1:r2": {
+          "ru": "После `you` нужно `are`: `You are polite`.",
+          "uk": "Після `you` потрібне `are`: `You are polite`."
+        },
+        "en:lesson-01:session-15:intro1:r3": {
+          "ru": "`am` живёт только рядом с `I`. Про собеседника — всегда `are`.",
+          "uk": "`am` живе тільки поруч із `I`. Про співрозмовника — завжди `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro2:r2": {
+          "ru": "`not` ставят после `am`: `I am not serious`.",
+          "uk": "`not` ставлять після `am`: `I am not serious`."
+        },
+        "en:lesson-01:session-15:intro2:r3": {
+          "ru": "Для отрицания здесь нужно `not`: `I am not serious`.",
+          "uk": "`no` тут не працює. Заперечення при скріпці — тільки `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-15:intro3:r2": {
+          "ru": "После `you` нужно `are`: `You are lucky`.",
+          "uk": "Після `you` потрібне `are`: `You are lucky`."
+        },
+        "en:lesson-01:session-15:intro3:r3": {
+          "ru": "`are` стоит сразу после `you`, а не в хвосте.",
+          "uk": "`are` стоїть одразу після `you`, а не в хвості."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e00d47cd149bc7da96b30e552714993c4df1aec4d49c66a61a6cb671e2d192ab"
+}

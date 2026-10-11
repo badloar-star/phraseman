@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-27:i01",
-    "correctText": "",
+    "correctText": "cheap",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i03",
-    "correctText": "",
+    "correctText": "far",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i06",
-    "correctText": "",
+    "correctText": "dark",
     "correctResponseId": null
   },
   {
@@ -36,12 +36,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i08",
-    "correctText": "",
+    "correctText": "easy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i09",
-    "correctText": "",
+    "correctText": "hard",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i11",
-    "correctText": "",
+    "correctText": "warm",
     "correctResponseId": null
   },
   {
@@ -61,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i13",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-27:i13:p1=cheap\nen:lesson-01:session-27:i13:p2=far\nen:lesson-01:session-27:i13:p3=easy\nen:lesson-01:session-27:i13:p4=hard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-27:i14",
-    "correctText": "",
+    "correctText": "small",
     "correctResponseId": null
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i17",
-    "correctText": "",
+    "correctText": "expensive",
     "correctResponseId": null
   },
   {
@@ -96,12 +96,27 @@
   },
   {
     "interactionId": "en:lesson-01:session-27:i20",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-27:i20:p1=small\nen:lesson-01:session-27:i20:p2=dark\nen:lesson-01:session-27:i20:p3=expensive\nen:lesson-01:session-27:i20:p4=warm",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-27:i21",
-    "correctText": "It is not cheap. It is not far. It is not easy. It is warm.",
+    "interactionId": "en:lesson-01:session-27:i21:s01",
+    "correctText": "It is not cheap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i21:s02",
+    "correctText": "It is not far.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i21:s03",
+    "correctText": "It is not easy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i21:s04",
+    "correctText": "It is warm.",
     "correctResponseId": null
   }
 ]

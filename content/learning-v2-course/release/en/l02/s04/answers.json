@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-04:i01",
-    "correctText": "",
+    "correctText": "curious",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-04:i03",
-    "correctText": "",
+    "correctText": "cheerful",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-04:i12",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-04:i12:p1=curious\nen:lesson-02:session-04:i12:p2=cheerful\nen:lesson-02:session-04:i12:p3=awake\nen:lesson-02:session-04:i12:p4=cold",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": "en:lesson-02:session-04:i15:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-04:i16",
-    "correctText": "Are you awake? Are you thirsty?",
+    "interactionId": "en:lesson-02:session-04:i16:s01",
+    "correctText": "Are you awake?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-04:i17",
-    "correctText": "Are you awake? Are you cold? Are you cheerful?",
+    "interactionId": "en:lesson-02:session-04:i16:s02",
+    "correctText": "Are you thirsty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-04:i17:s01",
+    "correctText": "Are you awake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-04:i17:s02",
+    "correctText": "Are you cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-04:i17:s03",
+    "correctText": "Are you cheerful?",
     "correctResponseId": null
   }
 ]

@@ -1,111 +1,33 @@
 {
-  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
-  "reviewer": "/root/s23_blind",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "medium",
-  "introAnswers": [
-    {
-      "step": 1,
-      "answer": "It is a ticket."
-    },
-    {
-      "step": 2,
-      "answer": "They are glasses."
-    },
-    {
-      "step": 3,
-      "answer": "They are stories."
-    }
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s24",
+  "role": "judge_learner",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
   ],
-  "practiceAnswers": [
-    {
-      "step": 1,
-      "answer": "a ticket"
-    },
-    {
-      "step": 2,
-      "answer": "They are tickets."
-    },
-    {
-      "step": 3,
-      "answer": "It is a dish."
-    },
-    {
-      "step": 4,
-      "answer": "is"
-    },
-    {
-      "step": 5,
-      "answer": "It is a glass."
-    },
-    {
-      "step": 6,
-      "answer": "dishes"
-    },
-    {
-      "step": 7,
-      "answer": "Are they glasses?"
-    },
-    {
-      "step": 8,
-      "answer": "stories"
-    },
-    {
-      "step": 9,
-      "answer": "They are tickets."
-    },
-    {
-      "step": 10,
-      "answer": "They are not stories."
-    },
-    {
-      "step": 11,
-      "answer": "glass"
-    },
-    {
-      "step": 12,
-      "answer": "They are not dishes."
-    },
-    {
-      "step": 13,
-      "answer": "are"
-    },
-    {
-      "step": 14,
-      "answer": {
-        "glasses": "стаканы",
-        "stories": "истории",
-        "tickets": "билеты",
-        "dishes": "блюда для подачи еды"
-      }
-    },
-    {
-      "step": 15,
-      "answer": "It is a story."
-    },
-    {
-      "step": 16,
-      "answer": "glasses"
-    },
-    {
-      "step": 17,
-      "answer": "They are stories."
-    }
-  ],
-  "learned_new": [
-    "Могу уверенно выбирать glasses, а не glass, когда речь о нескольких стаканах.",
-    "Могу уверенно выбирать stories, а не storys, когда историй несколько.",
-    "Могу переносить уже знакомые формы в утверждение, вопрос и отрицание без подсказки о нужной конструкции."
-  ],
-  "impossible_tasks": [],
-  "boring_or_water": [],
-  "scene_reason": "да: вся сессия держится на одной понятной проверке доставки с курьером — я достаю вещи, называю их и уточняю содержимое коробок, конвертов и книги.",
-  "would_continue": "да: это короткая проверка, где знакомые слова приходится узнавать, собирать и произносить в разных фразах, поэтому она не ощущается как перечитывание списка.",
-  "verdict_reason": "Это проходимый и полезный смешанный чекпоинт: ни один правильный ответ не требует скрытого нового слова или формы, а доставка даёт связный повод для всех реплик.",
+  "sourceSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactRuSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactUkSha256": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2",
+  "practiceAtomicSha256": "13df34ecf513b95d89a46a6751d3360098f45be7a2a1604dcc4624fdee17d9ca",
+  "localeHashes": {
+    "ru": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+    "uk": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2"
+  },
   "verdict": "PASS",
-  "audio": {
-    "substitute": "heardText transcripts",
-    "actual_audio": "NOT_REVIEWED"
-  }
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The three intros prepare singular envelope, plural question, and plural negation before the separate final voice actions."
+  ],
+  "verdictReason": "The three intros prepare singular envelope, plural question, and plural negation before the separate final voice actions."
 }
-

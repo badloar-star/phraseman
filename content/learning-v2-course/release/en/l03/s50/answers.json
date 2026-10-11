@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-50:i01",
+    "correctText": "black",
+    "correctResponseId": "en:lesson-03:session-50:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i03",
+    "correctText": "white",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i05",
+    "correctText": "grey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i02",
+    "correctText": "black",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i04",
+    "correctText": "white",
+    "correctResponseId": "en:lesson-03:session-50:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i06",
+    "correctText": "grey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i08",
+    "correctText": "black",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i10",
+    "correctText": "white",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i11",
+    "correctText": "grey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i07",
+    "correctText": "en:lesson-03:session-50:i07:p1=black\nen:lesson-03:session-50:i07:p2=white\nen:lesson-03:session-50:i07:p3=grey\nen:lesson-03:session-50:i07:p4=blue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i09",
+    "correctText": "black",
+    "correctResponseId": "en:lesson-03:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i12",
+    "correctText": "The grey tables are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i13",
+    "correctText": "tables",
+    "correctResponseId": "en:lesson-03:session-50:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i14",
+    "correctText": "White chairs are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i15",
+    "correctText": "The black sofas are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i16",
+    "correctText": "Чёрные диваны здесь.",
+    "correctResponseId": "en:lesson-03:session-50:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i17:s01",
+    "correctText": "A black sofa is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i17:s02",
+    "correctText": "white",
+    "correctResponseId": "en:lesson-03:session-50:i17:s02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-50:i17:s03",
+    "correctText": "The grey tables are here.",
+    "correctResponseId": null
+  }
+]

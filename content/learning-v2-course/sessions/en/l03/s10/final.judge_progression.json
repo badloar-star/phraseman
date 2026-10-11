@@ -1,0 +1,52 @@
+{
+  "reviewer": "/root/s10_rejudge_contract",
+  "role": "judge_progression",
+  "reviewedAt": "2026-10-03T15:52:26.933Z",
+  "session": "s10",
+  "sourceSha256": "fc21737a59c5a7b73130bdd4da15014112425feb0b411574625f2c861fa90970",
+  "exactRuSha256": "fc21737a59c5a7b73130bdd4da15014112425feb0b411574625f2c861fa90970",
+  "exactUkSha256": "620ed8065f2fea83192d7863df7e59f0b642c647c935fc46304870c248ae4e0c",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "comparedThrough": "en/l03/s09",
+  "newWords": [
+    "kettle",
+    "toaster",
+    "vacuum"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 10 | применение | `a` перед начальным согласным звуком | kettle, toaster, vacuum | идём по отделу техники |",
+  "curriculumEvidence": {
+    "grammar": "Применение `a` перед согласным звуком реализовано во всех трёх интро и практике.",
+    "newWords": [
+      "kettle",
+      "toaster",
+      "vacuum"
+    ],
+    "situation": "Выбор бытовой техники в магазине для дома."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:planned_application_of_a_before_consonant",
+  "introPracticeAligned": true,
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "singlePhraseRule": {
+    "verified": true,
+    "violations": []
+  },
+  "cattleAudit": {
+    "absentEarlier": true,
+    "plannedFutureVocabularyLeak": false,
+    "pronunciationEvidenceCurrent": true
+  },
+  "mustFix": [],
+  "evidence": [
+    "cattle отсутствует в S01–S09 и в будущем плане курса.",
+    "Pronunciation evidence содержит Cambridge-данные для kettle/cattle/settle.",
+    "Все три интро используют утверждение `It is a + noun` и готовят финал."
+  ]
+}

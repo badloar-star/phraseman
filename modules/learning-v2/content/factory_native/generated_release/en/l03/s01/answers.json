@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-01:i01",
-    "correctText": "",
+    "correctText": "chair",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-01:i03",
-    "correctText": "",
+    "correctText": "table",
     "correctResponseId": null
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-01:i05",
-    "correctText": "A chair.",
+    "correctText": "It is a chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-01:i06",
-    "correctText": "",
+    "correctText": "lamp",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-01:i11",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-01:i11:p1=chair\nen:lesson-03:session-01:i11:p2=table\nen:lesson-03:session-01:i11:p3=lamp\nen:lesson-03:session-01:i11:p4=flat",
     "correctResponseId": null
   },
   {

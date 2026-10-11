@@ -1,0 +1,948 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть, що прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i01:r1",
+          "text": "garden"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i01:r2",
+          "text": "guard"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i01:r3",
+          "text": "garment"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть, що прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i01:audio",
+          "transcript": "garden"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-02:i01:r1",
+            "targetText": "garden",
+            "meaningByLocale": {
+              "ru": "сад",
+              "uk": "сад"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i01:r2",
+            "targetText": "guard",
+            "meaningByLocale": {
+              "ru": "охрана",
+              "uk": "охорона"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i01:r3",
+            "targetText": "garment",
+            "meaningByLocale": {
+              "ru": "предмет одежды",
+              "uk": "предмет одягу"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i01:r2",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "В записи слышно garden: конец /dən/, а не слово guard.",
+              "uk": "У записі чути garden: кінець /dən/, а не слово guard."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i01:r3",
+            "correct": false,
+            "testedDimension": "услышанное слово",
+            "feedbackByLocale": {
+              "ru": "В garment после /gɑː/ слышно /mənt/; в записи garden — /dən/.",
+              "uk": "У garment після /gɑː/ чути /mənt/; у записі garden — /dən/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте нове слово «сад»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте нове слово «сад»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i02:audio",
+          "transcript": "garden"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "garden",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово «сад»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i03:r1",
+          "text": "garden"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i03:r2",
+          "text": "guarding"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i03:r3",
+          "text": "garage"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i03:r4",
+          "text": "garland"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово «сад»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово «сад»",
+          "uk": "Вставте слово «сад»"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i03:r1",
+            "text": "garden"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i03:r2",
+            "text": "guarding"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i03:r3",
+            "text": "garage"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i03:r4",
+            "text": "garland"
+          }
+        ],
+        "testedDimension": "точное слово для сада",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "точное слово для сада",
+            "feedbackByLocale": {
+              "ru": "`Guarding` — охрана. Для сада нужно `garden`.",
+              "uk": "`Guarding` — охорона. Для саду потрібне `garden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "точное слово для сада",
+            "feedbackByLocale": {
+              "ru": "`Garage` — гараж. Сад — `garden`.",
+              "uk": "`Garage` — гараж. Сад — `garden`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i03:r4",
+            "correct": false,
+            "testedDimension": "точное слово для сада",
+            "feedbackByLocale": {
+              "ru": "`Garland` — гирлянда. Здесь нужно слово `garden` — «сад».",
+              "uk": "`Garland` — гірлянда. Тут потрібне слово `garden` — «сад»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте слова екскурсії з їхніми значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте слова екскурсії з їхніми значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-02:i04:p1",
+            "target": "house",
+            "meaningByLocale": {
+              "ru": "дом",
+              "uk": "будинок"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-02:i04:p2",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "рядом",
+              "uk": "поруч"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-02:i04:p3",
+            "target": "behind",
+            "meaningByLocale": {
+              "ru": "за, позади",
+              "uk": "за, позаду"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-02:i04:p4",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          }
+        ],
+        "leftColumn": [
+          "house",
+          "near",
+          "behind",
+          "here"
+        ],
+        "rightColumn": [
+          "будинок",
+          "поруч",
+          "за, позаду",
+          "тут"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точний зміст повідомлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i05:r1",
+          "text": "There is a small garden behind the building."
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i05:r2",
+          "text": "There is a small garden near the house."
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i05:r3",
+          "text": "There is a quiet garden behind the building."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точний зміст повідомлення",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i05:audio",
+          "transcript": "There is a small garden behind the building."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-02:i05:r1",
+            "targetText": "There is a small garden behind the building.",
+            "meaningByLocale": {
+              "ru": "За зданием есть маленький сад.",
+              "uk": "За будівлею є маленький сад."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r2",
+            "targetText": "There is a small garden near the house.",
+            "meaningByLocale": {
+              "ru": "Рядом с домом есть маленький сад.",
+              "uk": "Поруч із будинком є маленький сад."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r3",
+            "targetText": "There is a quiet garden behind the building.",
+            "meaningByLocale": {
+              "ru": "За зданием есть тихий сад.",
+              "uk": "За будівлею є тихий сад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "положение сада",
+            "feedbackByLocale": {
+              "ru": "В записи звучит behind the building, а не near the house.",
+              "uk": "У записі звучить behind the building, а не near the house."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "признак сада",
+            "feedbackByLocale": {
+              "ru": "В записи сад small, а не quiet.",
+              "uk": "У записі сад small, а не quiet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте повідомлення про сад поруч із будинком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте повідомлення про сад поруч із будинком",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i06:audio",
+          "transcript": "There is a quiet garden near the house."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a quiet garden near the house.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сад розташований за будинком. Вставте точне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i07:r1",
+          "text": "behind"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i07:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i07:r3",
+          "text": "here"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сад розташований за будинком. Вставте точне слово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сад находится за домом. Вставьте точное слово",
+          "uk": "Сад розташований за будинком. Вставте точне слово"
+        },
+        "gappedTargetPhrase": "There is a garden ___ the house.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i07:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i07:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i07:r3",
+            "text": "here"
+          }
+        ],
+        "testedDimension": "положение сада",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i07:r2",
+            "correct": false,
+            "testedDimension": "положение сада",
+            "feedbackByLocale": {
+              "ru": "Near значит «рядом с». По условию сад за домом, поэтому нужно behind.",
+              "uk": "Near означає «поруч із». За умовою сад за будинком, тому потрібне behind."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i07:r3",
+            "correct": false,
+            "testedDimension": "положение сада",
+            "feedbackByLocale": {
+              "ru": "Here не ставят перед the house. Здесь нужна связка behind the house.",
+              "uk": "Here не ставлять перед the house. Тут потрібна сполука behind the house."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення про маленький сад",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення про маленький сад",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i08:audio",
+          "transcript": "There is a small garden near the building."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a small garden near the building.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "small",
+          "garden",
+          "near",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення про тихий сад за будинком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть повідомлення про тихий сад за будинком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a quiet garden behind the house.",
+        "localizedMeaning": {
+          "ru": "Соберите сообщение о тихом саде за домом",
+          "uk": "Складіть повідомлення про тихий сад за будинком"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "quiet",
+          "garden",
+          "behind",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Під час екскурсії показують новий сад поруч із будинком. Промовте повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Під час екскурсії показують новий сад поруч із будинком. Промовте повідомлення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i10:audio",
+          "transcript": "There is a new garden near the house."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a new garden near the house.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про один тихий сад. Вставте правильну форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i11:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i11:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про один тихий сад. Вставте правильну форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном тихом саде. Вставьте правильную форму",
+          "uk": "Йдеться про один тихий сад. Вставте правильну форму"
+        },
+        "gappedTargetPhrase": "There ___ a quiet garden behind the building.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i11:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i11:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "форма there is для одного сада",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "форма existential clause",
+            "feedbackByLocale": {
+              "ru": "После There нужна форма is. Артикль a уже стоит перед quiet garden.",
+              "uk": "Після There потрібна форма is. Артикль a вже стоїть перед quiet garden."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "форма existential clause",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I. Сообщение о наличии начинается с There is.",
+              "uk": "Am уживається з I. Повідомлення про наявність починається з There is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точний зміст повідомлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i12:r1",
+          "text": "There is a small garden near the house."
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i12:r2",
+          "text": "There is a small garden behind the house."
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i12:r3",
+          "text": "There is a new garden near the house."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точний зміст повідомлення",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i12:audio",
+          "transcript": "There is a small garden near the house."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-02:i12:r1",
+            "targetText": "There is a small garden near the house.",
+            "meaningByLocale": {
+              "ru": "Рядом с домом есть маленький сад.",
+              "uk": "Поруч із будинком є маленький сад."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r2",
+            "targetText": "There is a small garden behind the house.",
+            "meaningByLocale": {
+              "ru": "За домом есть маленький сад.",
+              "uk": "За будинком є маленький сад."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r3",
+            "targetText": "There is a new garden near the house.",
+            "meaningByLocale": {
+              "ru": "Рядом с домом есть новый сад.",
+              "uk": "Поруч із будинком є новий сад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "положение сада",
+            "feedbackByLocale": {
+              "ru": "В записи звучит near the house, а не behind the house.",
+              "uk": "У записі звучить near the house, а не behind the house."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "признак сада",
+            "feedbackByLocale": {
+              "ru": "В записи сад small, а не new.",
+              "uk": "У записі сад small, а не new."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення про сад поруч із будівлею",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть повідомлення про сад поруч із будівлею",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a garden near the building.",
+        "localizedMeaning": {
+          "ru": "Соберите сообщение о саде рядом со зданием",
+          "uk": "Складіть повідомлення про сад поруч із будівлею"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "garden",
+          "near",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вийшли у двір і побачили тихий сад. Промовте повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Ви вийшли у двір і побачили тихий сад. Промовте повідомлення",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i14:audio",
+          "transcript": "There is a quiet garden here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is a quiet garden here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поруч із будівлею розташований один новий сад. Вставте артикль",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-02:i15:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i15:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-02:i15:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поруч із будівлею розташований один новий сад. Вставте артикль",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рядом со зданием находится один новый сад. Вставьте артикль",
+          "uk": "Поруч із будівлею розташований один новий сад. Вставте артикль"
+        },
+        "gappedTargetPhrase": "There is ___ new garden near the building.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-02:i15:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i15:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i15:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "артикль перед new garden",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-02:i15:r2",
+            "correct": false,
+            "testedDimension": "начальный звук new",
+            "feedbackByLocale": {
+              "ru": "New начинается со звука /n/, поэтому нужен a, а не an.",
+              "uk": "New починається зі звука /n/, тому потрібне a, а не an."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-02:i15:r3",
+            "correct": false,
+            "testedDimension": "артикль перед singular noun",
+            "feedbackByLocale": {
+              "ru": "В этом месте нужен артикль перед new garden: a new garden.",
+              "uk": "У цьому місці потрібен артикль перед new garden: a new garden."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-02:i16:audio",
+          "transcript": "There is a new garden behind the house."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a new garden behind the house.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "new",
+          "garden",
+          "behind",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-02:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фінал — складіть точне повідомлення про місце саду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — складіть точне повідомлення про місце саду",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a quiet garden near the building.",
+        "localizedMeaning": {
+          "ru": "Финал — соберите точное сообщение о месте сада",
+          "uk": "Фінал — складіть точне повідомлення про місце саду"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "quiet",
+          "garden",
+          "near",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dc4115e3664ce6f6bfbbd9512001235f17cdcba70cce0d5487ae7bd87f3705e1"
+}

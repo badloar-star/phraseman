@@ -14,7 +14,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { auditSinglePhraseRelease } from "./single_phrase_release.mjs";
+import { parseSessionHeader } from "./session_header.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
+import { syncMockupReadiness } from "./sync_mockup_readiness.mjs";
+import { sourceReleaseFindings, syncMockupSourceReleaseFindings } from "./sync_mockup_source_release_findings.mjs";
+import { sourceQualityFindings } from "./sync_mockup_source_quality_findings.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -28,6 +33,41 @@ const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[
 // та папка, которую владелец реально открывает.
 const OUT = path.resolve(opt("out", path.join(ROOT, "mockup", "index.html")));
 const RELEASE = path.join(ROOT, "release");
+// Проверенный исходник не должен отображаться через устаревший релиз. Такие
+// проекции создаются отдельно только для просмотра в макете и никогда не
+// считаются выпуском.
+const REVIEWED_SOURCE = path.join(ROOT, "mockup", "reviewed-source");
+
+// The owner keeps this artifact open while source checks change.  Refresh its
+// per-card before/after evidence even if the release is correctly blocked
+// below, so it never describes an older state of the course.
+const readinessSync = await syncMockupReadiness({
+  mockupPath: OUT,
+  sessionsRoot: path.join(ROOT, "sessions"),
+  locales: ["uk"],
+});
+if (readinessSync.updated) LOG(`обновлено доказательство по карточкам: ${readinessSync.cards}`);
+const paritySync = await syncMockupSourceReleaseFindings({ mockupPath: OUT });
+if (paritySync.updated) LOG(`обновлены карточки с расхождениями: ${paritySync.findings}`);
+
+const report = auditSinglePhraseRelease(RELEASE);
+const releaseAuditHeld = Boolean(
+  report.violationCount || report.compositeGapAnswers || report.dictationAudioMismatches ||
+  report.answerContractViolations || report.preservationLedgerViolations || report.feedbackLocaleParityViolations,
+);
+if (releaseAuditHeld) {
+  const first = report.issues[0] ?? report.compositeGapIssues[0] ?? report.dictationIssues[0] ??
+    report.answerIssues[0] ?? report.preservationIssues[0] ?? report.feedbackLocaleParity[0];
+  // Макет — не выпуск. Даже при остановленном выпуске он обязан показать
+  // последнюю собранную версию занятия и статус блокировки, иначе владелец
+  // сравнивает исправленный исходник с устаревшим экраном.
+  WARN(`single_phrase_mockup_hold: ${JSON.stringify(first)}; макет строится только для проверки, выпуск остаётся остановлен`);
+} else {
+  // This examines the already-built release only.  It must not be presented
+  // as an approval of the editable source: source/release parity and the
+  // all-source preservation gate run separately and can still block release.
+  LOG(`структурная проверка уже собранного варианта: ${report.fileCount} learner, ${report.introFileCount} intro, ${report.interactionCount} practice interactions — PASS (не является допуском исходников к выпуску)`);
+}
 
 function curriculumLessonTitles(lang) {
   const file = path.join(ROOT, "curriculum", lang, "ПЛАН_КУРСА.md");
@@ -57,11 +97,17 @@ function collect() {
       const lessonDir = path.join(langDir, lesson);
       if (!fs.statSync(lessonDir).isDirectory()) continue;
       for (const session of fs.readdirSync(lessonDir).sort()) {
-        const d = path.join(lessonDir, session);
+        const releasedDir = path.join(lessonDir, session);
+        const reviewedDir = path.join(REVIEWED_SOURCE, lang, lesson, session);
+        const reviewedReady = ["learner.json", "intro.json"].every((name) => fs.existsSync(path.join(reviewedDir, name)));
+        const d = reviewedReady ? reviewedDir : releasedDir;
         const learner = path.join(d, "learner.json");
         const intro = path.join(d, "intro.json");
         if (!fs.existsSync(learner) || !fs.existsSync(intro)) { WARN(`${lang}/${lesson}/${session}: нет learner.json или intro.json — пропущена`); continue; }
         const answers = fs.existsSync(path.join(d, "answers.json")) ? JSON.parse(fs.readFileSync(path.join(d, "answers.json"), "utf8")) : [];
+        const auxiliary = fs.existsSync(path.join(d, "auxiliary.json"))
+          ? JSON.parse(fs.readFileSync(path.join(d, "auxiliary.json"), "utf8"))
+          : { entries: [] };
         const learnerByLocale = Object.fromEntries(fs.readdirSync(d).flatMap((name) => {
           const match = /^learner\.([a-z]{2}(?:-[A-Z]{2})?)\.json$/.exec(name);
           return match ? [[match[1], JSON.parse(fs.readFileSync(path.join(d, name), "utf8"))]] : [];
@@ -72,15 +118,19 @@ function collect() {
         if (fs.existsSync(srcMd)) {
           const md = fs.readFileSync(srcMd, "utf8");
           title = /^#\s+(.+)$/m.exec(md)?.[1]?.replace(/^Английский · /, "").trim() ?? title;
-          scene = /\*\*Сцена сессии\.\*\*\s*([\s\S]*?)\n\n/.exec(md)?.[1]?.replace(/\s+/g, " ").trim() ?? "";
+          scene = parseSessionHeader(md).scene;
         } else WARN(`${lang}/${lesson}/${session}: нет final.ru.md — заголовок и сцена будут пустыми`);
         out.push({
           key: `${lang}/${lesson}/${session}`, lang, lesson, session, title, scene,
+          // Явно несём источник отображения до интерфейса: зелёный статус
+          // означает, что открыта проверенная правка, не старый релиз.
+          viewSource: reviewedReady ? "reviewed_source" : "release",
           lessonTitle: lessonTitles.get(lesson) ?? "",
           intro: JSON.parse(fs.readFileSync(intro, "utf8")),
           learner: JSON.parse(fs.readFileSync(learner, "utf8")),
           learnerByLocale,
           answers,
+          auxiliary,
         });
       }
     }
@@ -94,6 +144,23 @@ LOG(`сессий в макете: ${sessions.length} — ${sessions.map((s) => 
 
 const locales = [...new Set(sessions.flatMap((s) => Object.keys(s.intro.pages?.[0]?.titleByLocale ?? { ru: 1 })))];
 LOG(`локали: ${locales.join(", ")}`);
+const sourceQuality = sourceQualityFindings({
+  root: ROOT,
+  sessionKeys: new Set(sessions.map((session) => session.key)),
+});
+LOG(`карточек с доказанными дефектами исходных заданий: ${Object.keys(sourceQuality).length}`);
+const sourceRelease = sourceReleaseFindings({
+  root: ROOT,
+  sessionKeys: new Set(sessions.map((session) => session.key)),
+});
+LOG(`карточек, где открываемый вариант расходится с исходником: ${Object.keys(sourceRelease).length}`);
+// A green card is evidence-based, not a calendar/ledger guess: it must open a
+// complete reviewed projection and have no outstanding source or projection
+// finding.  The preservation ledger remains a global release gate, but it is
+// not an adequate per-card receipt of what this UI actually opens.
+const reviewedCards = Object.fromEntries(sessions
+  .filter((session) => session.viewSource === "reviewed_source")
+  .map((session) => [session.key, true]));
 
 // ---------- HTML ----------
 const html = `<!doctype html>
@@ -102,7 +169,7 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#eef2e9">
-<title>Learning V2 · Пройти сессию</title>
+<title>Learning V2 · Пройти урок</title>
 <style>
 :root{
   color-scheme:light;
@@ -146,6 +213,8 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 .card{position:relative;text-align:left;padding:18px 18px 16px;border-radius:var(--r);
   background:var(--surface);box-shadow:var(--shadow-sm);
   transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+.card.needs-repair{background:#fff4c9;box-shadow:inset 0 0 0 2px #d99a11,var(--shadow-sm)}
+.card.source-fixed{background:#e4f5eb;box-shadow:inset 0 0 0 2px #16835f,var(--shadow-sm)}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .card:active{transform:translateY(-1px) scale(.995)}
 .card h3{margin:0 0 6px;font-size:16px;letter-spacing:-.02em;line-height:1.25}
@@ -155,6 +224,9 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 .chip{font-size:11px;font-weight:700;letter-spacing:.02em;padding:4px 9px;border-radius:999px;
   background:var(--surface-2);color:var(--muted)}
 .chip.k{background:rgba(11,130,100,.11);color:var(--target)}
+.chip.fixed{background:#bce8d1;color:#075b40}
+.chip.pending{background:#ffe9a6;color:#775200}
+.fix-summary{margin:10px 0 0;font-size:12px;line-height:1.42;color:#775200;font-weight:700}
 
 /* ---- прохождение ---- */
 .progress{display:flex;gap:4px;margin:0 0 22px}
@@ -259,7 +331,7 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 </head>
 <body>
 <div class="topbar">
-  <div class="brand">Learning V2<span>Пройти сессию</span></div>
+  <div class="brand">Learning V2<span>Пройти урок</span></div>
   <div class="topbar-right">
     <span class="build-stamp" id="buildStamp"></span>
     <select class="pill" id="locale" aria-label="Язык объяснений"></select>
@@ -272,6 +344,9 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 </div>
 
 <script id="data" type="application/json">${JSON.stringify(sessions).replace(/</g, "\\u003c")}</script>
+<script id="source-quality-findings" type="application/json">${JSON.stringify(sourceQuality).replace(/</g, "\\u003c")}</script>
+<script id="source-release-findings" type="application/json">${JSON.stringify(sourceRelease).replace(/</g, "\\u003c")}</script>
+<script id="reviewed-cards" type="application/json">${JSON.stringify(reviewedCards).replace(/</g, "\\u003c")}</script>
 <script>
 // зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
 // Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
@@ -281,13 +356,16 @@ window.addEventListener("error", (e) => {
   console.error("[mockup] ошибка запуска:", e.message, e.error);
 });
 const DATA = JSON.parse(document.getElementById("data").textContent);
+const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
+const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
+const REVIEWED_CARDS = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
 const LOCALES = ${JSON.stringify(locales)};
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
 const BUILT_AT = ${JSON.stringify(new Date().toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}))};
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
-document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
+document.getElementById("buildStamp").textContent = DATA.length + " занятий · " + BUILT_AT;
 
-const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
+const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairsDone: [], right: 0, wrong: 0 };
 const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
 
 const app = document.getElementById("app");
@@ -311,6 +389,9 @@ const h = (tag, attrs, kids) => {
   return e;
 };
 const loc = (byLocale) => !byLocale ? "" : (byLocale[S.locale] ?? byLocale.ru ?? Object.values(byLocale)[0] ?? "");
+// Служебное слово «сессия» не должно попадать в интерфейс ученика даже если
+// оно осталось в заголовке исходного файла. Номер занятия сохраняется.
+const displayTitle = (value) => String(value ?? "").replace(/(^|[^\p{L}])сессия(?=$|[^\p{L}])/giu, "$1Занятие");
 const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 // зачем: целевой язык размечен в тексте обратными кавычками — красим его
 // акцентом, чтобы английское сразу отличалось от объяснения на своём языке
@@ -390,15 +471,15 @@ const avoidAlignedPairs = (left, right) => {
   return right;
 };
 
-function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.pairSel = null; S.pairsDone = []; }
+function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairsDone = []; }
 
 // ---------- экраны ----------
 function renderHome() {
   homeBtn.hidden = true;
   app.replaceChildren(
     h("div", {class:"hero"}, [
-      h("h1", {text:"Пройдите любую написанную сессию"}),
-      h("p", {text:"Это то, что увидит ученик. Данные взяты из собранного релиза — что здесь работает, то откроется и в приложении."}),
+      h("h1", {text:"Пройдите любой подготовленный урок"}),
+      h("p", {text:"Открывайте занятия и проверяйте их глазами ученика. Зелёная карточка открывает уже проверенный исправленный текст; если выпуск отстаёт, это прямо отмечено на карточке."}),
     ]),
     ...groupByLesson(),
   );
@@ -410,14 +491,32 @@ function groupByLesson() {
   for (const [lesson, list] of Object.entries(byLesson)) {
     const lessonTitle = list[0].lessonTitle;
     out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
-    out.push(h("div", {class:"cards"}, list.map(s => h("button", {class:"card", onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
-      h("h3", {text:s.title}),
-      h("p", {class:"scene", text:s.scene}),
-      h("div", {class:"meta"}, [
-        h("span", {class:"chip k", text:"Сессия " + s.session.replace(/^s0?/, "")}),
-        h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
-      ]),
-    ]))));
+    out.push(h("div", {class:"cards"}, list.map(s => {
+      const findings = SOURCE_QUALITY[s.key] || [];
+      const releaseFindings = SOURCE_RELEASE[s.key] || [];
+      const sourceFixed = Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
+      const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
+      const findingTarget = hasUnnumberedFinding
+        ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
+        : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
+      const summary = sourceFixed && releaseFindings.length
+        ? "Выпуск ещё содержит старый текст; здесь открывается проверенная правка. Нажмите «Показать изменения», чтобы увидеть точную замену."
+        : findings.length
+        ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
+        : releaseFindings[0] || "";
+      return h("button", {class:"card" + (sourceFixed ? " source-fixed" : findings.length || releaseFindings.length ? " needs-repair" : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+        h("h3", {text:displayTitle(s.title)}),
+        h("p", {class:"scene", text:s.scene}),
+        h("div", {class:"meta"}, [
+          h("span", {class:"chip k", text:"Занятие " + s.session.replace(/^s0?/, "")}),
+          h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
+           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === "reviewed_source" ? "Показана проверенная правка" : "Исходник исправлен"}) : null,
+           releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
+        ]),
+        findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+      ]);
+    })));
   }
   return out;
 }
@@ -432,11 +531,11 @@ function renderSession() {
   const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
     h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
 
-  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(learner.interactions[S.step - 3]);
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step], s.auxiliary) : renderTask(learner.interactions[S.step - 3]);
   app.replaceChildren(bar, panel);
 }
 
-function renderIntro(page) {
+function renderIntro(page, auxiliary) {
   const KIND = {concept:"Понятие", formula:"Формула", trap:"Ловушка", tip:"Подсказка", example:"Пример"};
   // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
   // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
@@ -450,12 +549,16 @@ function renderIntro(page) {
     h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
     h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
     h("div", {class:"opts"}, choices.map((c, i) => h("button", {
-      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === i ? " wrong" : " dim")) : ""),
+      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === c.responseId ? " wrong" : " dim")) : ""),
       disabled: S.answered,
-      onClick: () => { S.answered = true; S.picked = i; S.ok = c.correct; render(); },
+      onClick: () => { S.answered = true; S.picked = c.responseId; S.ok = c.correct; render(); },
     }, [document.createTextNode(c.text)]))),
   ]);
-  if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Верный ответ: " + (choices.find(c => c.correct)?.text ?? "")}));
+  if (S.answered) {
+    const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
+    const wrongFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
+    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : (wrongFeedback || "Верный ответ: " + (choices.find(c => c.correct)?.text ?? ""))}));
+  }
   panel.append(nextRow());
   return panel;
 }
@@ -469,8 +572,9 @@ function nextRow(canNext = S.answered, label = "Дальше") {
 
 function renderTask(it) {
   const p = it.modePayload || {};
+  const taskNumber = Math.max(1, S.step - 2);
   const panel = h("div", {class:"panel"}, [
-    h("div", {class:"kind", text:familyName(it.family, p)}),
+    h("div", {class:"kind", text:"Задание " + taskNumber + " · " + familyName(it.family, p)}),
     h("div", {class:"task-prompt", html:tl(sanitizeLearnerPrompt(it.prompt))}),
   ]);
   if (p.isWordCard) { renderCard(panel, it, p); return panel; }
@@ -496,8 +600,18 @@ function renderCard(panel, it, p) {
 }
 
 function renderChoice(panel, it, p) {
-  const audio = p.referenceAudio?.transcript;
-  if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
+  if (it.family === "sound_contrast") {
+    const contrastAudio = [p.audioA?.transcript, p.audioB?.transcript];
+    if (contrastAudio.some(audio => !audio)) return WARNBOX(panel, "У задания на различение звуков нет двух аудиообразцов.");
+    panel.append(h("div", {class:"actions sound-contrast-audio"}, contrastAudio.map((audio, index) => h("button", {
+      class:"play",
+      onClick:() => speak(audio),
+      "aria-label":"Прослушать вариант " + (index ? "B" : "A"),
+    }, [document.createTextNode("▶  Прослушать " + (index ? "B" : "A"))]))));
+  } else {
+    const audio = p.referenceAudio?.transcript;
+    if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
+  }
   if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
   if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(sanitizeLearnerPrompt(loc(p.localizedScene)))}));
   const opts = shuffleChoices(it.responseOptions, it.interactionId + S.locale);
@@ -533,17 +647,23 @@ function renderBuilder(panel, it, p) {
   if (!ordered.length) return WARNBOX(panel, "У задания нет плиток — сборщик не нашёл целевую фразу.");
 
   const slot = h("div", {class:"slot", "data-hint":"Нажимайте плитки, чтобы собрать фразу"},
-    S.assembled.map((t, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); render(); }, text:t})));
+    S.assembled.map((tile, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); S.tileFeedback = null; render(); }, text:tile.text})));
   panel.append(h("div", {style:"margin-top:16px"}, [slot]));
 
-  const all = shuffle(ordered.concat(p.authoredDistractorTokens || []), it.interactionId);
-  const used = S.assembled.slice();
-  panel.append(h("div", {class:"tiles"}, all.map((t, i) => {
-    const idx = used.indexOf(t);
-    const isUsed = idx >= 0 && (used[idx] = null, true);
+  // Tile identity is independent from its visible text: two physical extra
+  // tiles may display the same word but require different explanations.
+  const feedbackByTileId = new Map((p.slotFeedback || []).map((row) => [row.responseId, loc(row.feedbackByLocale)]));
+  const all = shuffle([
+    ...ordered.map((text, index) => ({ tileId:it.interactionId + ":tile:t" + (index + 1), text, kind:"target" })),
+    ...(p.authoredDistractorTokens || []).map((text, index) => ({ tileId:it.interactionId + ":tile:d" + (index + 1), text, kind:"distractor" })),
+  ], it.interactionId);
+  const used = new Set(S.assembled.map((tile) => tile.tileId));
+  panel.append(h("div", {class:"tiles"}, all.map((tile) => {
+    const isUsed = used.has(tile.tileId);
     return h("button", {class:"tile" + (isUsed ? " used" : ""), disabled:S.answered || isUsed,
-      onClick:() => { S.assembled.push(t); render(); }, text:t});
+      onClick:() => { S.assembled.push(tile); S.tileFeedback = tile.kind === "distractor" ? feedbackByTileId.get(tile.tileId) || "Для этой лишней плитки нет объяснения." : null; render(); }, text:tile.text});
   })));
+  if (S.tileFeedback) panel.append(h("div", {class:"fb no", text:S.tileFeedback}));
 
   const ready = S.assembled.length === ordered.length;
   if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Правильно: " + target}));
@@ -552,7 +672,7 @@ function renderBuilder(panel, it, p) {
     S.answered
       ? h("button", {class:"btn primary spacer", onClick:() => { S.step++; resetStep(); render(); }, text:"Дальше"})
       : h("button", {class:"btn primary spacer", disabled:!ready, onClick:() => {
-          const got = S.assembled.join(" ").replace(/[.?!]$/, "").toLowerCase();
+          const got = S.assembled.map((tile) => tile.text).join(" ").replace(/[.?!]$/, "").toLowerCase();
           const want = ordered.join(" ").replace(/[.?!]$/, "").toLowerCase();
           S.answered = true; S.ok = got === want; S.ok ? S.right++ : S.wrong++; render();
         }, text:"Проверить"}),
@@ -603,14 +723,14 @@ function renderDone() {
   app.replaceChildren(h("div", {class:"panel"}, [
     h("div", {class:"done-wrap"}, [
       h("div", {class:"done-mark", text:"✓"}),
-      h("h2", {text:"Сессия пройдена"}),
+      h("h2", {text:"Урок пройден"}),
       h("p", {text:s.title}),
       h("div", {class:"stats"}, [
         h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:"верно"})]),
         h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:"ошибок"})]),
         h("div", {class:"stat"}, [h("b", {text:String(learner.interactions.length)}), h("span", {text:"заданий"})]),
       ]),
-      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку сессий"}),
+      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку уроков"}),
     ]),
   ]));
 }

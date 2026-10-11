@@ -1,0 +1,48 @@
+{
+  "session": "en/l04/s13",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "sourceSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactRuSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactUkSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "localeSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "practiceAtomicSha256": "e5c68f6ebf96adc2220aaa619e6b4e75d1637a8dd24206b18dc979c5324a29b6",
+  "localeHashes": {
+    "ru": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+    "uk": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b"
+  },
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS",
+    "locale_ru": "PASS"
+  },
+  "at": "2026-10-08T11:15:05.484Z",
+  "derivedFromFreshBatchReview": {
+    "reviewers": [
+      "/root/l04_current_s05_s12_review"
+    ],
+    "reviewedAt": "2026-10-07T22:06:36.3201321Z",
+    "reviewType": "independent read-only textual/current-source review",
+    "limitations": [
+      "physical or generated audio not tested",
+      "visual render not tested",
+      "native or release projection not tested",
+      "deployment and production release not approved"
+    ]
+  },
+  "reviewedAt": "2026-10-08T11:15:05.484Z",
+  "reviewer": "independent S13 quality/spec reviewers",
+  "preauthoringSha256": "0e82244a8b45d56f898a5b69ad84500d8b10c8b7cc2e6c127fa2c18e02e74e25",
+  "verdict": "PASS",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": []
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro1:r2": {
+          "ru": "Ровно та ошибка, которую делают все: `am` проглотили. Про себя — всегда `I am`.",
+          "uk": "Саме та помилка, яку роблять усі: `am` проковтнули. Про себе — завжди `I am`."
+        },
+        "en:lesson-01:session-05:intro1:r3": {
+          "ru": "Теперь пропал сам `I`. Англичане говорят, кто именно в порядке, даже если это очевидно.",
+          "uk": "Тепер зник сам `I`. Англійці кажуть, хто саме в порядку, навіть якщо це очевидно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro2:r2": {
+          "ru": "`no` годится только как ответ одним словом. В середину фразы он не лезет — там `not`.",
+          "uk": "`no` годиться лише як відповідь одним словом. У середину фрази він не лізе — там `not`."
+        },
+        "en:lesson-01:session-05:intro2:r3": {
+          "ru": "`not` убежал в конец. Его место — сразу после `am`, перед словом о вас.",
+          "uk": "`not` утік у кінець. Його місце — одразу після `am`, перед словом про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-05:intro3:r2": {
+          "ru": "Скрепка `am` снова осталась в кармане. `I am new` — три слова.",
+          "uk": "Скріпка `am` знову лишилася в кишені. `I am new` — три слова."
+        },
+        "en:lesson-01:session-05:intro3:r3": {
+          "ru": "Вы сказали обратное: «я тут не новенький». А вы как раз новенький.",
+          "uk": "Ви сказали протилежне: «я тут не новенький». А ви якраз новенький."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4696676d7956706a634ff9e78496a713b5253745ad01860655b42077bd462b86"
+}

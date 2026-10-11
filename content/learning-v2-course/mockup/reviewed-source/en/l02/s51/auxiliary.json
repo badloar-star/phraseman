@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro1:r2": {
+          "ru": "В готовом обращении второе слово — `me`: `Excuse me`. Запоминаем его целиком.",
+          "uk": "У готовому звертанні друге слово — `me`: `Excuse me`. Запам’ятовуємо його цілком."
+        },
+        "en:lesson-02:session-51:intro1:r3": {
+          "ru": "Перед этим готовым обращением не нужно добавлять `I am`. Достаточно `Excuse me`.",
+          "uk": "Перед цим готовим звертанням не треба додавати `I am`. Досить `Excuse me`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro2:r2": {
+          "ru": "Это «уверен», а не извинение. За то, что перебили, скажите `Sorry`.",
+          "uk": "Це «впевнений», а не вибачення. За те, що перебили, скажіть `Sorry`."
+        },
+        "en:lesson-02:session-51:intro2:r3": {
+          "ru": "Это «готов». Сейчас нужно извиниться за неудобство: `Sorry`.",
+          "uk": "Це «готовий». Зараз треба перепросити за незручність: `Sorry`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-51:intro3:r2": {
+          "ru": "После `Where` пропало `is`. Обращение не заменяет это слово в вопросе.",
+          "uk": "Після `Where` зникло `is`. Звертання не замінює цього слова в запитанні."
+        },
+        "en:lesson-02:session-51:intro3:r3": {
+          "ru": "Вам нужно место, поэтому начинаем вопрос с `Where`. Слово `Who` означает «кто».",
+          "uk": "Вам потрібне місце, тому починаємо запитання з `Where`. Слово `Who` означає «хто»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "81bdcf4b2a332acaebd26bd8ba79926cc35c245b41d2f27e5cb59e79875b8c09"
+}

@@ -1,7 +1,7 @@
-# Английский · Урок 1 · Сессия 29 — «It» про вещи
+# Английский · Урок 1 · Занятие 29 — «Вещи после поездки»
 
-**Сцена сессии.** Вечер в квартире: вы разбираете сумку, трогаете вещи и коротко говорите про каждую — что тяжёлое, что чистое, а что нет.
-**Операция:** применение `It is` про вещи и предметы
+**Ситуация.** Лена вернулась из поездки и разбирает сумку в квартире. Она описывает хозяину вещи: тяжёлая ли сумка, чистая ли рубашка и пуст ли холодильник.
+**Как сказать:** `It is`, когда описываете одну вещь.
 **Новые слова:** heavy, light, clean, dirty
 **Возвращаются:** small, new, empty, broken
 
@@ -21,7 +21,7 @@
 
 - ✅ **It is heavy.**
 - ❌ Is heavy. — *`It` пропало. Без него непонятно, кто тяжёлый.*
-- ❌ It heavy. — *Скрепка `is` потерялась. По-русски её нет, по-английски без неё не говорят.*
+- ❌ It heavy. — *Между `it` и словом нужна форма `is`.*
 
 ---
 
@@ -57,80 +57,107 @@
 
 - ✅ **It is dirty.**
 - ❌ It is clean. — *`clean` — это когда мыть нечего. Засохший кофе на дне — как раз есть что.*
-- ❌ It dirty. — *Скрепка `is` снова выпала. Между `It` и словом о вещи она стоит всегда.*
+- ❌ It dirty. — *Между `it` и словом нужна форма `is`.*
 
 ---
 
 ## Практика (18 заданий, поддержка убывает)
 
 **1 · Карточка слова — heavy**
+<!-- interaction_id: en:lesson-01:session-29:i01; family: listen_choose -->
 > **heavy** — «тяжёлый». Поднимаете и сразу ставите обратно.
 
-**2 · Послушайте и выберите — heavy**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *heavy* → **heavy** · happy · hairy
 - happy — *«Рад». Похоже началом, но в `heavy` середина другая: «хэ-ви».*
 - hairy — *Тоже на «х», но это не про вес. `heavy` — «хэ-ви».*
 
 **3 · Карточка слова — light**
+<!-- interaction_id: en:lesson-01:session-29:i03; family: listen_choose -->
 > **light** — «лёгкий». Берёте одной рукой и забываете, что несёте.
 
 **4 · Вставьте слово — коробка пустая, вы поднимаете её мизинцем**
+<!-- interaction_id: en:lesson-01:session-29:i04; family: context_gap_grammar -->
 It is ___ . → **light** · heavy · new
 - heavy — *Наоборот. Мизинцем тяжёлое не поднимают.*
 - new — *«Новая» — может быть, но сейчас вы говорите про вес, а не про то, новая она или нет.*
 
 **5 · Соберите фразу — «оно тяжёлое»**
+<!-- interaction_id: en:lesson-01:session-29:i05; family: phrase_builder -->
 Плитки: `heavy` `It` `is` `light` → **It is heavy.**
 
 **6 · Карточка слова — clean**
+<!-- interaction_id: en:lesson-01:session-29:i06; family: listen_choose -->
 > **clean** — «чистый». Как будто вещью ещё не пользовались.
 
-**7 · Послушайте и выберите — clean**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-29:i07; family: listen_choose -->
 🔊 *clean* → **clean** · clear · queen
 - clear — *Близко по звуку, но конец другой: в `clean` слышно «н» сразу после долгого «и».*
 - queen — *Конец похож, а начало нет. `clean` начинается с «кл».*
 
 **8 · Карточка слова — dirty**
+<!-- interaction_id: en:lesson-01:session-29:i08; family: listen_choose -->
 > **dirty** — «грязный». Мыть надо прямо сейчас, а не потом.
 
-**9 · Послушайте и выберите — dirty**
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-29:i09; family: listen_choose -->
 🔊 *dirty* → **dirty** · thirty · daddy
 - thirty — *Отличается только началом, но начало решает: `dirty` — с «д».*
 - daddy — *Тоже с «д», но внутри «дэ-ди», а в `dirty` тянется «дё».*
 
-**10 · Соедините пары (Speed Match, 4 пары)**
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-29:i10; family: speed_match -->
 heavy — тяжёлый · light — лёгкий · clean — чистый · dirty — грязный
 
 **11 · Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось**
+<!-- interaction_id: en:lesson-01:session-29:i11; family: context_gap_grammar -->
 It is ___ . → **empty** · dirty · heavy
 - dirty — *Внутри не грязь, внутри вообще ничего.*
 - heavy — *Пустая сумка тяжёлой не бывает. Вы говорите, что в ней пусто.*
 
-**12 · Вставьте скрепку — вы говорите про рубашку, которую только что постирали**
-It ___ clean. → **is** · are · am
-- are — *Чужая скрепка. С `it` — только `is`.*
-- am — *`am` бывает только про себя: `I am`. Про вещь — `is`.*
+**12 · Соберите фразу — рубашку только что постирали, она чистая**
+<!-- interaction_id: en:lesson-01:session-29:i12; family: phrase_builder -->
+Плитки: `clean` `It` `is` `are` → **It is clean.**
 
 **13 · Послушайте и соберите — «оно грязное»**
+<!-- interaction_id: en:lesson-01:session-29:i13; family: listen_build_dictation -->
 🔊 *It is dirty.* Плитки: `dirty` `is` `It` `clean` → **It is dirty.**
 
 **14 · Карточка слова — broken**
+<!-- interaction_id: en:lesson-01:session-29:i14; family: listen_choose -->
 > **broken** — «сломан». Было целое, стало не целое.
 
 **15 · Соберите фразу — чашка выпала из рук и раскололась**
+<!-- interaction_id: en:lesson-01:session-29:i15; family: phrase_builder -->
 Плитки: `broken` `It` `is` `he` → **It is broken.**
 
 **16 · Вставьте слово — квартира маленькая, две комнаты и всё**
+<!-- interaction_id: en:lesson-01:session-29:i16; family: context_gap_grammar -->
 It is ___ . → **small** · light · clean
 - light — *Про вес, а не про размер. Квартиру на руках не носят.*
 - clean — *Чистая — возможно, но вы говорите про размер.*
 
-**17 · Соедините пары — слова про вещи (Speed Match, 4 пары)**
+**17 · Соедините пары — слова про вещи**
+<!-- interaction_id: en:lesson-01:session-29:i17; family: speed_match -->
 small — маленький · new — новый · empty — пустой · broken — сломан
 
-**18 · Скажите вслух — вы прошли по квартире и рассказываете по телефону**
-🎙 Сумка тяжёлая, кружка грязная, холодильник пустой, а квартира новая.
-**It is heavy. It is dirty. It is empty. It is new.**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s01; family: scripted_repeat_compare -->
+🎙 **It is heavy.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s02; family: scripted_repeat_compare -->
+🎙 **It is dirty.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s03; family: scripted_repeat_compare -->
+🎙 **It is empty.**
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-29:i18:s04; family: scripted_repeat_compare -->
+🎙 **It is new.**
 
 ---
 
@@ -142,7 +169,7 @@ light — лёгкий — Берёте одной рукой и забывае�
 clean — чистый — Как будто вещью ещё не пользовались.
 dirty — грязный — Мыть надо прямо сейчас, а не потом.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=context_gap_grammar, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=phrase_builder, 16=context_gap_grammar, 17=speed_match, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=context_gap_grammar, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=speed_match, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

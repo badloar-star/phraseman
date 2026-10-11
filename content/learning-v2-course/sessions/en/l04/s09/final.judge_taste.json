@@ -1,0 +1,52 @@
+{
+  "session": "en/l04/s09",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:59:12.7287864Z",
+  "sourceSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactRuSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactUkSha256": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447",
+  "practiceAtomicSha256": "8b10280d28a7addbcf847ba5cbb86b7ab9e6a6982378a2f8e718c1a882d5448a",
+  "localeHashes": {
+    "ru": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+    "uk": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent post-exact-repeat-repair read-only taste review",
+  "verdict": "PASS",
+  "pairwise": "equal",
+  "pairwise_reason": "The toothache/information-desk voice remains concrete and the changed practice anchors vary naturally without artificial story additions.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Этот вопрос лучше успеть задать до того, как больной зуб начнёт отвечать за вас."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Этот вопрос лучше успеть задать до того, как больной зуб начнёт отвечать за вас."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "Этот вопрос лучше успеть задать до того, как больной зуб начнёт отвечать за вас."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "mustFix": [],
+  "blockers": [],
+  "evidence": [
+    "The quoted line remains a natural language-teaching humorous move tied to asking for a dentist (final.ru.md:24).",
+    "Near the library and in this building are concise genuine variations, not padded narrative; no forced joke, dead language or generic AI filler was introduced."
+  ],
+  "verdict_reason": "Clear human voice, on-topic humor and compact contextual variation support the new question operation."
+}

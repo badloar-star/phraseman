@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS",
+  "verdict_reason": "mock",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "sourceSha256": "257af6ae779fa05697a06eca7e554123d3ad9f2177732cee53dfde3472e39c10",
+  "exactRuSha256": "257af6ae779fa05697a06eca7e554123d3ad9f2177732cee53dfde3472e39c10",
+  "exactUkSha256": "861bcfcc010d9ac61baf279a2f00eb411f6660e4475c6e74666742d52c67514f",
+  "practiceAtomicSha256": "d2eacb587eac3834971e08b7e97b7433f65b8b7b61c7a6b5c147af5c62f6bd80",
+  "localeHashes": {
+    "ru": "257af6ae779fa05697a06eca7e554123d3ad9f2177732cee53dfde3472e39c10",
+    "uk": "861bcfcc010d9ac61baf279a2f00eb411f6660e4475c6e74666742d52c67514f"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ]
+}

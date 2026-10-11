@@ -1,4 +1,8 @@
 import { canonicalJsonV1 } from "../../policies/decision_registry";
+import {
+  resolveGermanLexicalItemEvidenceDeV1,
+  type GermanLexicalItemEvidenceRegistryDeV1,
+} from "./lexical_item_evidence_de_v1";
 import { GERMAN_RESEARCH_EVIDENCE_BINDINGS_DE_V1 } from "./research_evidence_bindings_de_v1";
 
 export type GermanGrammarConstructIdDeV1 = `de_gc_${string}`;
@@ -717,6 +721,47 @@ function assertEvidenceIds(value: unknown, path: string): asserts value is strin
   }
 }
 
+function assertLexicalEvidenceIds(
+  value: unknown,
+  path: string,
+  lexicalItemEvidence: GermanLexicalItemEvidenceRegistryDeV1 | undefined,
+  lexicalSense: Record<string, unknown>,
+): asserts value is string[] {
+  assertUniqueStrings(value, path, { nonEmpty: true });
+  for (const evidenceId of value) {
+    if (DECLARED_EVIDENCE_IDS.has(evidenceId)) continue;
+    if (lexicalItemEvidence !== undefined) {
+      const itemEvidence = resolveGermanLexicalItemEvidenceDeV1(
+        lexicalItemEvidence,
+        evidenceId,
+      );
+      if (itemEvidence !== undefined) {
+        if (itemEvidence.canonicalLexicalSenseId !== lexicalSense.id) {
+          fail(
+            "lexical_item_evidence_scope_mismatch",
+            `${String(lexicalSense.id)}:${evidenceId}`,
+          );
+        }
+        const claims = itemEvidence.curriculumClaims;
+        if (
+          lexicalSense.lemma !== claims.lemma ||
+          lexicalSense.senseGloss !== claims.senseGloss ||
+          lexicalSense.partOfSpeech !== claims.partOfSpeech ||
+          lexicalSense.nounGender !== claims.nounGender ||
+          lexicalSense.nounPlural !== claims.nounPlural
+        ) {
+          fail(
+            "lexical_item_evidence_claim_mismatch",
+            `${String(lexicalSense.id)}:${evidenceId}`,
+          );
+        }
+        continue;
+      }
+    }
+    fail("undeclared_evidence_id", evidenceId);
+  }
+}
+
 function assertGermanId(value: unknown, expectedPrefix: string, path: string): asserts value is string {
   if (
     typeof value !== "string" ||
@@ -766,7 +811,11 @@ function validateGrammarConstruct(value: unknown, path: string): void {
   assertEvidenceIds(value.evidenceIds, `${path}.evidenceIds`);
 }
 
-function validateLexicalSense(value: unknown, path: string): void {
+function validateLexicalSense(
+  value: unknown,
+  path: string,
+  lexicalItemEvidence?: GermanLexicalItemEvidenceRegistryDeV1,
+): void {
   assertRecord(value, path);
   assertClosedKeys(value, LEXICAL_KEYS, path);
   assertGermanId(value.id, "de_lex_", `${path}.id`);
@@ -819,7 +868,12 @@ function validateLexicalSense(value: unknown, path: string): void {
   } else if (value.region !== null) {
     fail("nonregional_lexical_region_must_be_null", `${path}.region`);
   }
-  assertEvidenceIds(value.evidenceIds, `${path}.evidenceIds`);
+  assertLexicalEvidenceIds(
+    value.evidenceIds,
+    `${path}.evidenceIds`,
+    lexicalItemEvidence,
+    value,
+  );
 }
 
 function validatePronunciationApplicability(
@@ -1900,7 +1954,58 @@ function deepFreeze<T>(value: T): T {
   return value;
 }
 
-export function parseGermanCourseBlueprintDeV1(input: unknown): GermanCourseBlueprintDeV1 {
+function parseGermanStandaloneRegistryDeV1<T extends Readonly<{ id: string }>>(
+  input: unknown,
+  validate: (value: unknown, path: string) => void,
+): readonly T[] {
+  let normalized: unknown;
+  try {
+    normalized = JSON.parse(canonicalJsonV1(input)) as unknown;
+  } catch (error: unknown) {
+    if (error instanceof GermanCourseBlueprintSchemaErrorDeV1) throw error;
+    const code =
+      error instanceof Error ? error.message : "canonical_json_invalid";
+    fail(code, "$");
+  }
+  assertArray(normalized, "$");
+  normalized.forEach((value, index) => validate(value, `$[${index}]`));
+  const parsed = normalized as T[];
+  assertNoDuplicateIds(parsed, new Set<string>());
+  return deepFreeze(parsed);
+}
+
+export function parseGermanLexicalSenseRegistryDeV1(
+  input: unknown,
+  lexicalItemEvidence?: GermanLexicalItemEvidenceRegistryDeV1,
+): readonly GermanLexicalSenseDeV1[] {
+  return parseGermanStandaloneRegistryDeV1<GermanLexicalSenseDeV1>(
+    input,
+    (value, path) => validateLexicalSense(value, path, lexicalItemEvidence),
+  );
+}
+
+export function parseGermanPhraseFrameRegistryDeV1(
+  input: unknown,
+): readonly GermanPhraseFrameDeV1[] {
+  return parseGermanStandaloneRegistryDeV1<GermanPhraseFrameDeV1>(
+    input,
+    validatePhraseFrame,
+  );
+}
+
+export function parseGermanPronunciationTargetRegistryDeV1(
+  input: unknown,
+): readonly GermanPronunciationTargetDeV1[] {
+  return parseGermanStandaloneRegistryDeV1<GermanPronunciationTargetDeV1>(
+    input,
+    validatePronunciationTarget,
+  );
+}
+
+export function parseGermanCourseBlueprintDeV1(
+  input: unknown,
+  lexicalItemEvidence?: GermanLexicalItemEvidenceRegistryDeV1,
+): GermanCourseBlueprintDeV1 {
   let normalized: unknown;
   try {
     normalized = JSON.parse(canonicalJsonV1(input)) as unknown;
@@ -1957,7 +2062,11 @@ export function parseGermanCourseBlueprintDeV1(input: unknown): GermanCourseBlue
   });
   assertArray(normalized.lexicalSenses, "$.lexicalSenses");
   normalized.lexicalSenses.forEach((value, index) => {
-    validateLexicalSense(value, `$.lexicalSenses[${index}]`);
+    validateLexicalSense(
+      value,
+      `$.lexicalSenses[${index}]`,
+      lexicalItemEvidence,
+    );
   });
   assertArray(normalized.communicativeOutcomes, "$.communicativeOutcomes");
   normalized.communicativeOutcomes.forEach((value, index) => {
@@ -1998,8 +2107,13 @@ export function parseGermanCourseBlueprintDeV1(input: unknown): GermanCourseBlue
   return deepFreeze(parsed);
 }
 
-export function canonicalGermanCourseBlueprintJsonDeV1(input: unknown): string {
-  return canonicalJsonV1(parseGermanCourseBlueprintDeV1(input));
+export function canonicalGermanCourseBlueprintJsonDeV1(
+  input: unknown,
+  lexicalItemEvidence?: GermanLexicalItemEvidenceRegistryDeV1,
+): string {
+  return canonicalJsonV1(
+    parseGermanCourseBlueprintDeV1(input, lexicalItemEvidence),
+  );
 }
 
 export const GERMAN_COURSE_BLUEPRINT_EMPTY_SKELETON_DE_V1 = parseGermanCourseBlueprintDeV1({

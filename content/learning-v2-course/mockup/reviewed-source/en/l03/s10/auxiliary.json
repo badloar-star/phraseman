@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro1:r2": {
+          "ru": "Первый звук в `kettle` — согласный «к». Между `a` и `an` перед этим названием выбираем `a`.",
+          "uk": "Перший звук у `kettle` — приголосний «к». Перед цією назвою обираємо `a`, а не `an`."
+        },
+        "en:lesson-03:session-10:intro1:r3": {
+          "ru": "В русском «Это чайник» перед названием ничего нет. В этой английской фразе нужно `a kettle`.",
+          "uk": "В українській фразі «Це чайник» перед назвою нічого немає. В англійській тут потрібне `a kettle`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro2:r2": {
+          "ru": "Первый звук в `toaster` — согласный «т», поэтому перед названием нужно `a`, а не `an`.",
+          "uk": "Перший звук у `toaster` — приголосний «т», тому перед назвою потрібне `a`, а не `an`."
+        },
+        "en:lesson-03:session-10:intro2:r3": {
+          "ru": "После `It is` перед одним предметом здесь нужно сочетание `a toaster`.",
+          "uk": "Після `It is` перед одним предметом тут потрібне сполучення `a toaster`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-10:intro3:r2": {
+          "ru": "Первый звук в `vacuum` — согласный «в», поэтому перед названием нужно `a`, а не `an`.",
+          "uk": "Перший звук у `vacuum` — приголосний «в», тому перед назвою потрібне `a`, а не `an`."
+        },
+        "en:lesson-03:session-10:intro3:r3": {
+          "ru": "После `It is` перед одним предметом здесь нужно сочетание `a vacuum`.",
+          "uk": "Після `It is` перед одним предметом тут потрібне сполучення `a vacuum`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cd95dba7d4b611ff053c0fae017565b317ccc0ea80ba43603bfe313022e7318b"
+}

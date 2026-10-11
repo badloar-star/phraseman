@@ -1,7 +1,6 @@
-# Английский · Урок 1 · Сессия 54 — «Собеседование по телефону»
+# Английский · Урок 1 · Занятие 54 — «Разговор по телефону»
 
-**Сцена сессии.** Телефонное собеседование. Голос в трубке просит рассказать о себе коротко — и каждое слово приходится выбирать честно.
-**Операция:** перенос — `I am` + слово о себе в новых словах
+**Ситуация.** Во время телефонного собеседования рекрутер просит коротко рассказать о себе.
 **Новые слова:** confident, nervous, fluent
 **Возвращаются:** honest, calm, ready
 
@@ -18,7 +17,7 @@
 **Голос в трубке: «Готовы начинать?» Вы честно говорите, что волнуетесь.**
 
 - ✅ **I am nervous.**
-- ❌ I nervous. — *Пропала скрепка `am`, без которой фраза не стоит.*
+- ❌ I nervous. — *После `I` перед `nervous` нужно `am`.*
 - ❌ I is nervous. — *`is` — не для `I`. Про себя — `am`.*
 
 ---
@@ -31,7 +30,7 @@
 
 Рядом стоит похожее `ready` — «готов». Но `ready` про этот момент: можно начинать. А `confident` — про вас вообще, независимо от минуты. Поэтому `I am ready` вы скажете в дверях, а `I am confident` — про всю свою работу.
 
-**Вас спрашивают, справитесь ли вы с новой работой. Скажите, что уверены в себе.**
+**Рекрутер спрашивает, справитесь ли вы с новой работой. Скажите, что уверены в себе.**
 
 - ✅ **I am confident.**
 - ❌ I am calm. — *`calm` — «спокоен», про нервы. Хорошее слово, но спросили про ваши силы.*
@@ -47,7 +46,7 @@
 
 Рядом стоит `confident` — но оно про вас целиком, а `fluent` — про один ваш язык. Можно быть `confident` и при этом не `fluent`, и наоборот.
 
-**Спрашивают про ваш английский. Вы говорите свободно — скажите это.**
+**Рекрутер спрашивает про ваш английский. Вы говорите свободно — скажите это.**
 
 - ✅ **I am fluent.**
 - ❌ I am honest. — *`honest` — «честен». Хорошее слово, но ответ не про характер, а про язык.*
@@ -58,71 +57,113 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — nervous**
+<!-- interaction_id: en:lesson-01:session-54:i01; family: listen_choose -->
 > **nervous** — «волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.
 
-**2 · Послушайте и выберите — nervous**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-54:i02; family: listen_choose -->
 🔊 *nervous* → **nervous** · nurse · number
 - nurse — *«Медсестра» — профессия, а не состояние человека.*
 - number — *«Число». Начинается с другого звука: `number` с «н-а», `nervous` — с «нёр».*
 
 **3 · Карточка слова — confident**
+<!-- interaction_id: en:lesson-01:session-54:i03; family: listen_choose -->
 > **confident** — «уверен в себе». Человек говорит о своих умениях ровно, без хвастовства и без оправданий.
 
-**4 · Послушайте и выберите — confident**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-54:i04; family: listen_choose -->
 🔊 *confident* → **confident** · comfort · content
 - comfort — *«Удобство» — про кресло и обстановку, а не про человека.*
 - content — *«Доволен» — близкая тема, но это про удовлетворённость, а не про уверенность в своих силах.*
 
-**5 · Вставьте слово — спрашивают, справитесь ли вы: вы делали это сто раз**
+**5 · Вставьте слово — Анна спрашивает, справитесь ли вы: вы делали это сто раз**
+<!-- interaction_id: en:lesson-01:session-54:i05; family: context_gap_grammar -->
 I am ___ . → **confident** · fluent · honest
 - fluent — *«Свободно говорю» — про язык, а спросили про ваши силы.*
 - honest — *«Честный» — про правдивость, а не про уверенность в деле.*
 
 **6 · Карточка слова — fluent**
+<!-- interaction_id: en:lesson-01:session-54:i06; family: listen_choose -->
 > **fluent** — «говорю свободно». Речь идёт сама, без пауз на поиск слова.
 
-**7 · Послушайте и выберите — fluent**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-54:i07; family: listen_choose -->
 🔊 *fluent* → **fluent** · flat · floor
 - flat — *«Квартира» — про жильё, а не про речь.*
 - floor — *«Пол». Обрывается сразу, а в `fluent` после первой части есть ещё одна.*
 
 **8 · Соберите фразу — «я волнуюсь»**
+<!-- interaction_id: en:lesson-01:session-54:i08; family: phrase_builder -->
 Плитки: `nervous` `I` `am` `is` → **I am nervous.**
 
-**9 · Вставьте слово — спрашивают про ваш английский**
+**9 · Вставьте слово — Анна спрашивает про ваш английский**
+<!-- interaction_id: en:lesson-01:session-54:i09; family: context_gap_grammar -->
 I am ___ . → **fluent** · nervous · honest
 - nervous — *«Волнуюсь» — про состояние, а вопрос был про язык.*
 - honest — *«Честен» — про характер. Про речь говорят `fluent`.*
 
-**10 · Вставьте скрепку — «я уверен в себе»**
-I ___ confident. → **am** · are · is
-- are — *Не для `I`. Про себя — `am`.*
-- is — *Чужая скрепка. `I am confident` — первые два слова не меняются.*
+**10 · Соберите фразу — «я уверен в себе»**
+<!-- interaction_id: en:lesson-01:session-54:i10; family: phrase_builder -->
+Плитки: `I` `am` `confident.` `are` `is` → **I am confident.**
 
 **11 · Послушайте и соберите — «я говорю свободно»**
+<!-- interaction_id: en:lesson-01:session-54:i11; family: listen_build_dictation -->
 🔊 *I am fluent.* Плитки: `fluent` `I` `am` `nervous` → **I am fluent.**
 
 **12 · Вставьте слово — вас спросили, всегда ли вы говорите правду**
+<!-- interaction_id: en:lesson-01:session-54:i12; family: context_gap_grammar -->
 I am ___ . → **honest** · calm · fluent
 - calm — *`calm` — «спокоен». Про нервы, а не про правду.*
 - fluent — *«Говорю свободно» — про то, как звучит речь, а не про честность.*
 
 **13 · Соберите фразу — вас спросили, не паникуете ли вы в трудный день**
+<!-- interaction_id: en:lesson-01:session-54:i13; family: phrase_builder -->
 Плитки: `calm` `I` `am` `not` → **I am calm.**
 *(Плитка `not` лишняя: вы отвечаете, что спокойны, а не наоборот.)*
 
-**14 · Скажите вслух — вы честно начинаете разговор**
-🎙 **I am nervous. I am honest.** — послушайте, повторите, сравните.
+**14 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i14:s01; family: scripted_repeat_compare -->
+Рекрутер спрашивает, волнуетесь ли вы перед разговором. Скажите, что волнуетесь.
 
-**15 · Соберите фразу — вас спросили, можно ли начинать**
+🎙 **I am nervous.**
+
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i14:s02; family: scripted_repeat_compare -->
+Рекрутер просит отвечать правдиво. Скажите, что вы честны.
+
+🎙 **I am honest.**
+
+**16 · Соберите фразу — рекрутер спрашивает, можно ли начинать**
+<!-- interaction_id: en:lesson-01:session-54:i15; family: phrase_builder -->
 Плитки: `ready` `I` `am` `are` → **I am ready.**
 
-**16 · Соедините пары (Speed Match, 4 пары)**
+**17 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-54:i16; family: speed_match -->
 nervous — волнуюсь · confident — уверен в себе · fluent — говорю свободно · honest — честен
 
-**17 · Финал сцены — четыре фразы подряд**
-🎙 Разговор подходит к концу. Вас просят коротко сказать о себе: вы уверены в себе, говорите свободно, спокойны и готовы.
-**I am confident. I am fluent. I am calm. I am ready.**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i17:s01; family: scripted_repeat_compare -->
+Рекрутер просит назвать ваше отношение к работе. Скажите, что уверены в себе.
+
+🎙 **I am confident.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i17:s02; family: scripted_repeat_compare -->
+Рекрутер спрашивает, как вы говорите по-английски. Скажите, что свободно.
+
+🎙 **I am fluent.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i17:s03; family: scripted_repeat_compare -->
+Рекрутер спрашивает, спокойны ли вы в трудный день. Скажите, что спокойны.
+
+🎙 **I am calm.**
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-54:i17:s04; family: scripted_repeat_compare -->
+Рекрутер спрашивает, готовы ли вы начать. Скажите, что готовы.
+
+🎙 **I am ready.**
 
 ---
 
@@ -133,7 +174,7 @@ confident — уверен в себе — «уверен в себе». Чел�
 nervous — волнуюсь — «волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.
 fluent — говорю свободно — «говорю свободно». Речь идёт сама, без пауз на поиск слова.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=scripted_repeat_compare, 15=phrase_builder, 16=speed_match, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=scripted_repeat_compare, 15=scripted_repeat_compare, 16=phrase_builder, 17=speed_match, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

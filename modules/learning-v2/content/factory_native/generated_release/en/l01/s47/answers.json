@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-47:i01",
-    "correctText": "",
+    "correctText": "drunk",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i03",
-    "correctText": "",
+    "correctText": "sober",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i05",
-    "correctText": "",
+    "correctText": "sleepy",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i07",
-    "correctText": "",
+    "correctText": "awake",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i09",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-47:i09:p1=drunk\nen:lesson-01:session-47:i09:p2=sober\nen:lesson-01:session-47:i09:p3=sleepy\nen:lesson-01:session-47:i09:p4=awake",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i11",
-    "correctText": "",
+    "correctText": "tired",
     "correctResponseId": null
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-47:i15",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {
@@ -90,8 +90,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-47:i19",
-    "correctText": "I'm sober. He's sleepy. They aren't sleepy. I'm tired.",
+    "interactionId": "en:lesson-01:session-47:i19:s01",
+    "correctText": "I'm sober.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i19:s02",
+    "correctText": "He's sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i19:s03",
+    "correctText": "They aren't sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i19:s04",
+    "correctText": "I'm tired.",
     "correctResponseId": null
   }
 ]

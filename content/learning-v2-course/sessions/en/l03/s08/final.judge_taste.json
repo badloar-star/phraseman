@@ -1,13 +1,38 @@
 {
-  "sourceSha256":"db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
-  "reviewer":"/root/s08_taste",
-  "pairwise":"equal",
-  "pairwise_reason":"По сравнению с ближайшим эталоном №2 сессия столь же ясная и человеческая, но компактнее: контрольное повторение держится на одном понятном списке находок, а отсутствие новых слов здесь намеренно. После перестановки каждая страница сначала объясняет нужные части конструкции и только затем показывает итоговую фразу; эталон щедрее на образы, но сохранённая шутка про экономию на `a` даёт сопоставимый живой голос.",
-  "voice":{"score":4,"evidence":["«Можно купить самую дорогую лампу в магазине, но на маленьком `a` в этой фразе сэкономить всё равно не получится» — естественное заигрывание с читателем одновременно закрепляет обязательность артикля.","«Вы отрицаете, что предмет — табурет, а не говорите, что табуретов вообще не существует» — человеческая формулировка снимает неверное обобщение без учебного термина."]},
-  "humor":{"present":true,"on_topic":true,"examples":["Можно купить самую дорогую лампу в магазине, но на маленьком `a` в этой фразе сэкономить всё равно не получится.","Вы отрицаете, что предмет — табурет, а не говорите, что табуретов вообще не существует."],"misfires":[]},
-  "scene":{"present":true,"gives_reason_to_speak":true,"note":"Единая сцена со списком вещей после переезда естественно вызывает три нужных действия: назвать предмет, уточнить догадку и исправить неверную запись. Та же ситуация последовательно поддерживает практику."},
-  "ai_text_or_nonsense":[],"water":[],"dead_language":[],
-  "best_lines":["Можно купить самую дорогую лампу в магазине, но на маленьком `a` в этой фразе сэкономить всё равно не получится.","`mirror` — «зеркало». Если вы ещё не уверены, что за предмет перед вами, задайте вопрос: начните с `Is it`, а название `a mirror` оставьте вместе.","Вы отрицаете, что предмет — табурет, а не говорите, что табуретов вообще не существует."],
-  "must_fix":[],"verdict":"PASS",
-  "verdict_reason":"Перестановка исправила порядок чтения во всех трёх интро, сохранив ясность, единую сцену и естественный языковой юмор; `ai_text_or_nonsense` пуст."
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_taste",
+  "sourceSha256": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+  "exactRuSha256": "e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb",
+  "exactUkSha256": "f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad",
+  "practiceAtomicSha256": "cbd4a8cf4f89871efe6740958fbaacee20b743146f6bd9a16e1f3d4497242a35",
+  "pairwise": "equal",
+  "pairwise_reason": "The article reminder is tied to `a shelf` and helps the current naming task.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "На маленьком"
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "На маленьком"
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "На маленьком"
+  ],
+  "ai_text_or_nonsense": [],
+  "must_fix": [],
+  "verdict": "PASS",
+  "evidence": [
+    "The article reminder is tied to `a shelf` and helps the current naming task."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "verdict_reason": "The current text keeps a clear everyday teaching voice; the cited line supports the language point and no AI-like padding was found."
 }

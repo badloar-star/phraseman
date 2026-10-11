@@ -97,7 +97,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-56:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — week",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -424,11 +424,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -515,7 +515,9 @@
           "not",
           "alone"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -699,7 +701,9 @@
           "not",
           "hard"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -797,32 +801,34 @@
           "not",
           "tired"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "no"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-56:i16",
+      "interactionId": "en:lesson-01:session-56:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — успокаиваете брата",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-56:i16:audio"
+        "en:lesson-01:session-56:i16:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — успокаиваете брата",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-56:i16:audio",
-          "transcript": "I am not alone. Everyone is kind."
+          "audioTargetId": "en:lesson-01:session-56:i16:s01:audio",
+          "transcript": "I am not alone."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am not alone. Everyone is kind.",
+        "targetPhrase": "I am not alone.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -836,26 +842,158 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-56:i17",
+      "interactionId": "en:lesson-01:session-56:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд: вам тяжело, но вы не один",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-56:i17:audio"
+        "en:lesson-01:session-56:i16:s02:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд: вам тяжело, но вы не один",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-56:i17:audio",
-          "transcript": "It is hard. I am tired. I am not alone. Everyone is kind."
+          "audioTargetId": "en:lesson-01:session-56:i16:s02:audio",
+          "transcript": "Everyone is kind."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is hard. I am tired. I am not alone. Everyone is kind.",
+        "targetPhrase": "Everyone is kind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:i17:s01:audio",
+          "transcript": "It is hard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is hard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:i17:s02:audio",
+          "transcript": "I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:i17:s03:audio",
+          "transcript": "I am not alone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not alone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:i17:s04",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-56:i17:s04:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-56:i17:s04:audio",
+          "transcript": "Everyone is kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Everyone is kind.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -869,11 +1007,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a0875165e2e87527a1e6b5beb0421d6783b889080505ba2700e9bd4e2daf163f"
+  "learnerFingerprint": "f185933d3549101cd51b14ada094314c0eba0b97d6c8decb8c2d5c00286e98e0"
 }

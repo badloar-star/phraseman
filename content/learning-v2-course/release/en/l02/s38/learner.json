@@ -750,13 +750,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — незнакомая женщина присоединилась к команде; узнайте у коллеги, кто она",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — незнакомая женщина присоединилась к команде; узнайте у коллеги, кто она",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -783,13 +783,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вам нужен руководитель, но вы его не видите; спросите коллегу, где он",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вам нужен руководитель, но вы его не видите; спросите коллегу, где он",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -848,5 +848,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fc7798ab285194e9b8acb81973cdc2c4daaef1cfd12c8f4dc24fe98c9557aa3a"
+  "learnerFingerprint": "ca6fe97e6254cbb95075a656c3ce89901d1f198e9e3a538963622be9246c5a67"
 }

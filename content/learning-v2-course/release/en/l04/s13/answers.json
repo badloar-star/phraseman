@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "en:lesson-04:session-13:i01",
+    "correctText": "taxi",
+    "correctResponseId": "en:lesson-04:session-13:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i02",
+    "correctText": "taxi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i03",
+    "correctText": "en:lesson-04:session-13:i03:p1=taxi\nen:lesson-04:session-13:i03:p2=platform\nen:lesson-04:session-13:i03:p3=station\nen:lesson-04:session-13:i03:p4=tram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i04",
+    "correctText": "Are there taxis near the station?",
+    "correctResponseId": "en:lesson-04:session-13:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i05",
+    "correctText": "Is there a taxi near the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i06",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i07",
+    "correctText": "There are taxis near the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i08",
+    "correctText": "There is a taxi near the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i09",
+    "correctText": "There are taxis on the street near the building.",
+    "correctResponseId": "en:lesson-04:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i10",
+    "correctText": "Are there two taxis near the platform?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-04:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-13:i12",
+    "correctText": "Are there taxis near the tram?",
+    "correctResponseId": null
+  }
+]

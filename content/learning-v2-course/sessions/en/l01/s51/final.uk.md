@@ -1,8 +1,8 @@
-# Англійська · Урок 1 · Сесія 51 — «Хто де»
+# Англійська · Урок 1 · Заняття 51 — «Хто де перебуває»
 
-**Сцена сесії.** Неділя, дзвінок додому. Мама вже розпитала про роботу й сусідів — тепер їй важливо зрозуміти, хто де зараз: ви, ваші речі, ваші люди.
+**Ситуація.** У неділю ви телефонуєте мамі з дому. Вона питає, де ви, де сусід і хто перебуває всередині або надворі.
 
-**Операція:** місце одним словом — `here`, `there`, `home`, `outside`, `inside`, `upstairs`
+**Сьогодні.** Скажіть одним англійським словом, де перебуває людина.
 **Нові слова:** there, upstairs, outside, inside
 **Повертаються:** here, home, alone, cold, tired
 
@@ -14,12 +14,12 @@
 
 `here` — «тут». `there` — «там». Між ними буває і телефонний дзвінок, і півтори тисячі кілометрів.
 
-Кажуть просто: `I am here`. Жодного «в», «на» чи «у» перед `here` ставити не треба — слово йде голе.
+Кажуть просто: `I am here`. Перед `here` не потрібно додавати `in`, `on` чи `at`.
 
 **Мама питає, чи ви вже вдома. Ви в себе. Скажіть: «я тут».**
 
 - ✅ **I am here.**
-- ❌ I here. — *Скріпка `am` випала. Без неї між `I` і `here` порожнеча, і фраза розсипається.*
+- ❌ I here. — *Після `I` бракує `am`. Потрібно `I am here`.*
 - ❌ I am in here. — *Зайве `in`. `here` працює саме: `I am here`.*
 
 ---
@@ -56,74 +56,109 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика (20 завдань, підтримка спадає)
 
 **1 · Картка слова — there**
+<!-- interaction_id: en:lesson-01:session-51:i01; family: listen_choose -->
 > **there** — «там». Не тут, а десь в іншому місці — хоч у сусідній кімнаті, хоч в іншій країні.
 
-**2 · Послухайте і виберіть — there**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-51:i02; family: listen_choose -->
 🔊 *there* → **there** · three · them
 - three — *Це «три», починається з «тр». У `there` на початку звук між «з» і «д»: язик між зубами.*
 - them — *Це «їх, їм», про людей. `there` — про місце.*
 
 **3 · Картка слова — outside**
+<!-- interaction_id: en:lesson-01:session-51:i03; family: listen_choose -->
 > **outside** — «надворі, зовні». Двері за спиною, а ви вже ні.
 
 **4 · Картка слова — inside**
+<!-- interaction_id: en:lesson-01:session-51:i04; family: listen_choose -->
 > **inside** — «усередині». Під дахом, за дверима, де не дме.
 
-**5 · Послухайте і виберіть — inside**
+**5 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-51:i05; family: listen_choose -->
 🔊 *inside* → **inside** · outside · aside
 - outside — *Це «зовні», протилежне. Початок інший: `in` проти `out`.*
 - aside — *Інше слово й інший початок: `a`, а не `in`.*
 
 **6 · Складіть фразу — «я надворі»**
+<!-- interaction_id: en:lesson-01:session-51:i06; family: phrase_builder -->
 Плитки: `outside` `I` `am` → **I am outside.**
 
 **7 · Картка слова — upstairs**
+<!-- interaction_id: en:lesson-01:session-51:i07; family: listen_choose -->
 > **upstairs** — «нагорі». Там, куди ведуть сходи в будинку.
 
-**8 · Послухайте і виберіть — upstairs**
+**8 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-51:i08; family: listen_choose -->
 🔊 *upstairs* → **upstairs** · stairs · upset
 - stairs — *Це самі сходи, без `up` на початку.*
 - upset — *Починається так само, але далі `set`, а не `stairs`.*
 
 **9 · Вставте слово — мама питає, де сусід; він піднявся до себе**
+<!-- interaction_id: en:lesson-01:session-51:i09; family: context_gap_grammar -->
 He is ___ . → **upstairs** · outside · here
 - outside — *Це «надворі». Він не вийшов, він піднявся.*
 - here — *«Тут» — поруч із вами. А він поверхом вище.*
 
-**10 · Вставте слово — мама кличе сусіда до телефона, а він поруч із вами**
-He is ___ . → **here** · there · upstairs
-- there — *«Там», в іншому місці. А він стоїть поруч.*
-- upstairs — *«Нагорі». Він уже спустився й нікуди не йшов.*
+**10 · Складіть фразу — сусід стоїть поруч із вами**
+<!-- interaction_id: en:lesson-01:session-51:i10; family: phrase_builder -->
+Плитки: `He` `is` `here.` `there.` `are` → **He is here.**
 
-**11 · З'єднайте пари (Speed Match, 4 пари)**
+**11 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-51:i11; family: speed_match -->
 there — там · outside — зовні · inside — усередині · upstairs — нагорі
 
-**12 · Вставте скріпку — мама уточнює, чи ви вдома**
+**12 · Оберіть форму — мама уточнює, чи ви вдома**
+<!-- interaction_id: en:lesson-01:session-51:i12; family: context_gap_grammar -->
 I ___ home. → **am** · is · are
-- is — *Чужа скріпка, вона йде до когось третього. Про себе — `am`.*
-- are — *Не для `I`. `I am home` — три слова, перші два не змінюються.*
+- is — *З `I` кажуть `am`, а не `is`.*
+- are — *З `I` кажуть `am`, а не `are`.*
 
 **13 · Послухайте і складіть — «він там»**
+<!-- interaction_id: en:lesson-01:session-51:i13; family: listen_build_dictation -->
 🔊 *He is there.* Плитки: `there` `is` `He` `in` → **He is there.**
 *(плитка `in` зайва: перед `there` вона не потрібна)*
 
 **14 · Складіть фразу — «я не сам, усі всередині»**
+<!-- interaction_id: en:lesson-01:session-51:i14; family: phrase_builder -->
 Плитки: `alone` `not` `I` `am` → **I am not alone.**
 *(`alone` — «сам, один»)*
 
-**15 · Складіть фразу — надворі холодно, і ви це відчуваєте**
-Плитки: `cold` `I` `am` `outside` `in` → **I am cold.**
-*(`cold` — «змерз»; плитки `outside` та `in` зайві: мама спитала не про місце, а про вас)*
+**15 · Вставте слово — надворі холодно, і ви це відчуваєте**
+<!-- interaction_id: en:lesson-01:session-51:i15; family: context_gap_grammar -->
+I am ___. → **cold** · tired · outside
+- tired — *`Tired` — «втомився». Тут ідеться про холод.*
+- outside — *`Outside` — «надворі». Це місце, а потрібне відчуття.*
 
-**16 · З'єднайте пари — слова, які вже звучали (Speed Match, 4 пари)**
+**16 · З'єднайте пари — слова, які вже звучали**
+<!-- interaction_id: en:lesson-01:session-51:i16; family: speed_match -->
 here — тут · home — вдома · tired — втомився · cold — змерз
 
-**17 · Скажіть уголос — чотири відповіді мамі поспіль**
-🎙 «Ти де? А сусід? Ти не сам? Втомився?» Відповідайте: я вдома, він нагорі, я не сам, і так — втомився.
-**I am home. He is upstairs. I am not alone. I am tired.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-51:i17:s01; family: scripted_repeat_compare -->
+Мама питає, де ви. Скажіть, що ви вдома.
+
+🎙 **I am home.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-51:i17:s02; family: scripted_repeat_compare -->
+Мама питає про сусіда. Скажіть, що він нагорі.
+
+🎙 **He is upstairs.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-51:i17:s03; family: scripted_repeat_compare -->
+Мама питає, чи ви самі вдома. Скажіть, що ні.
+
+🎙 **I am not alone.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-51:i17:s04; family: scripted_repeat_compare -->
+Мама питає, чи ви втомилися. Скажіть, що втомилися.
+
+🎙 **I am tired.**
 
 ---
 
@@ -135,7 +170,7 @@ outside — надворі, зовні — «надворі, зовні». Дв�
 inside — усередині — «усередині». Під дахом, за дверима, де не дме.
 upstairs — нагорі — «нагорі». Там, куди ведуть сходи в будинку.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=word_card, 5=listen_choose, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=phrase_builder, 16=speed_match, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=word_card, 5=listen_choose, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -172,18 +207,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=word_card, 5=listen_choose, 
 | tired (дошка 16) | з минулих сесій | фінал 17 |
 | cold (дошка 16) | з минулих сесій | завдання 15 (складання фрази) |
 
----
-
-🟡 **Стоит улучшить**
-- Подсказки к заданиям 7 и 8 теперь описывают «сходи» двумя разными способами («куди ведуть сходи в будинку» и «самі сходи»), но слово одно и то же. Если понадобится развести их сильнее — менять надо оба места сразу.
-
-🧩 **Скрытые связи**
-- Карточка 7 (`upstairs`) и подсказка 8 (`stairs`) объясняют родственные слова. Правка одной формулировки требует взгляда на вторую.
-
----
-
-- Убрал русскую строку в заголовке практики — теперь весь текст украинский.
-- Переписал подсказку про звук в слове `there`: раньше объяснение было списано с русского и украинцу ничего не давало, теперь описан реальный звук с языком между зубами.
-- Убрал кальку в описании сцены — фраза про маму звучит теперь естественно.
-- Заодно поправил «драбину» на сходи в доме и подчистил соседнюю подсказку, чтобы два объяснения не спорили друг с другом.
-- Английские слова, порядок и номера заданий, ловушки и служебный блок не трогал вообще.

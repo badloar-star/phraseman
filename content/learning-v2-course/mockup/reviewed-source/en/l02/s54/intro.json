@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "знакомые вопросы с `be` при обсуждении аренды",
+    "uk": "знайомі запитання з `be` під час розмови про оренду"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто сдаёт квартиру",
+        "uk": "Хто здає квартиру"
+      },
+      "bodyByLocale": {
+        "ru": "`landlord` — «арендодатель»: владелец, который сдаёт жильё. `Who is the landlord?` — «Кто арендодатель?» Так вы узнаёте, кто именно сдаёт квартиру. Начните с `Who is`, затем добавьте `the landlord`. Если человек уже известен и нужно его найти, пригодится вопрос с `Where`.",
+        "uk": "`landlord` — «орендодавець»: власник, який здає житло. `Who is the landlord?` — «Хто орендодавець?» Так ви дізнаєтеся, хто саме здає квартиру. Почніть із `Who is`, потім додайте `the landlord`. Якщо людина вже відома й треба її знайти, стане в пригоді запитання з `Where`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Женщина проводит просмотр, а мужчина отвечает на вопросы о квартире. Узнайте у друга, кто арендодатель.",
+          "uk": "Жінка показує квартиру, а чоловік відповідає на запитання про неї. Дізнайтеся в друга, хто орендодавець."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r1",
+              "text": "Who is the landlord?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r2",
+              "text": "Who the landlord?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r3",
+              "text": "Where is the landlord?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r1",
+              "text": "Who is the landlord?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r2",
+              "text": "Who the landlord?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro1:r3",
+              "text": "Where is the landlord?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина проводит просмотр, а мужчина отвечает на вопросы о квартире. Узнайте у друга, кто арендодатель.",
+          "uk": "Жінка показує квартиру, а чоловік відповідає на запитання про неї. Дізнайтеся в друга, хто орендодавець."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Плата за аренду",
+        "uk": "Орендна плата"
+      },
+      "bodyByLocale": {
+        "ru": "`rent` — «арендная плата»: деньги, которые регулярно платят за съём жилья. `What is the rent?` — «Какая арендная плата?» Слово `price` значит «цена» и подходит для разных покупок и услуг. А с `rent` вы сразу уточняете, что спрашиваете именно о плате за аренду.",
+        "uk": "`rent` — «орендна плата»: гроші, які регулярно платять за оренду житла. `What is the rent?` — «Яка орендна плата?» `price` означає «ціна» й підходить для різних покупок і послуг. А з `rent` ви одразу уточнюєте, що питаєте саме про плату за оренду."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы рассматриваете квартиру для аренды. Узнайте у хозяина размер арендной платы.",
+          "uk": "Ви розглядаєте квартиру для оренди. Дізнайтеся в господаря розмір орендної плати."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r1",
+              "text": "What is the rent?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r2",
+              "text": "What are the rent?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r3",
+              "text": "Where is the rent?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r1",
+              "text": "What is the rent?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r2",
+              "text": "What are the rent?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro2:r3",
+              "text": "Where is the rent?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы рассматриваете квартиру для аренды. Узнайте у хозяина размер арендной платы.",
+          "uk": "Ви розглядаєте квартиру для оренди. Дізнайтеся в господаря розмір орендної плати."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать правила",
+        "uk": "Дізнатися правила"
+      },
+      "bodyByLocale": {
+        "ru": "`rules` — «правила». `What are the rules?` — «Какие правила?» Желание услышать поменьше правил не повод менять `are` на `is`: здесь вы спрашиваете о них вместе. Начните с `What are`, затем добавьте `the rules`. Так вы узнаете сами правила, а не то, где лежит список.",
+        "uk": "`rules` — «правила». `What are the rules?` — «Які правила?» Бажання почути менше правил — ще не привід міняти `are` на `is`: тут ви запитуєте про них разом. Почніть із `What are`, потім додайте `the rules`. Так ви дізнаєтеся самі правила, а не місце, де лежить їхній список."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Перед решением об аренде спросите хозяина, какие правила действуют в квартире.",
+          "uk": "Перед рішенням про оренду запитайте господаря, які правила діють у квартирі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r1",
+              "text": "What are the rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r2",
+              "text": "What is the rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r3",
+              "text": "Where are the rules?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r1",
+              "text": "What are the rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r2",
+              "text": "What is the rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-54:intro3:r3",
+              "text": "Where are the rules?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед решением об аренде спросите хозяина, какие правила действуют в квартире.",
+          "uk": "Перед рішенням про оренду запитайте господаря, які правила діють у квартирі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "92b0aa72ae9caa18474f6266ff5ac30d5fba6935a348210efb5a1f1060f4110c"
+}

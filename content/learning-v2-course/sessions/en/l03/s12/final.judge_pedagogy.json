@@ -1,1 +1,17 @@
-{"sourceSha256":"96740f70090bc3e488826de4763ffeb9b9505e75904deae3785585f0efd4ac99","reviewer":"/root/s10_pedagogy","model":"gpt-5.6-terra","reasoningEffort":"medium","machineFactsHard":[],"plan_fidelity":{"operation_matches":true,"new_words_match":["vase","clock","radio"],"missing":[],"extra_grammar_smuggled":[]},"answer_semantics":[],"boundary":{"unknown_in_explanations":[],"unknown_in_targets":[]},"traps":{"silly":[],"feedback_teaches_unknown_form":[]},"feedback":{"missing_per_option":[],"duplicated":[]},"structure":{"task_count":17,"below_12":false,"word_first_respected":true,"support_fades":true,"speed_match_boards":[["vase","clock","radio","uniform"]],"speed_match_overlap":false,"repeated_targets":[],"generic_instructions":[],"builders":[5,8,11,13,15,17]},"time_references":[],"cross_session_repeats":[],"textbook_formulas":[],"verdict":"PASS","verdict_reason":"Every keyed intro, gap, and builder answer has a unique grammatical and scene-supported referent; the live-phrase a/an listening operation, word-first contacts, returns, and final independence conform to L3S12.","actualAudioReviewed":false}
+{
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_pedagogy",
+  "sourceSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactRuSha256": "6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f",
+  "exactUkSha256": "938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7",
+  "practiceAtomicSha256": "c93852a62708b8f668c4170b4e333b0c9c7bee3ba588094b061e8af51d45fcbb",
+  "verdict": "PASS",
+  "evidence": [
+    "The listening checkpoint consolidates the `a/an` sound distinction through exact current full targets.",
+    "No diagnostic check asks the learner to process more than one target-language phrase."
+  ],
+  "blockers": [],
+  "mustFix": []
+}

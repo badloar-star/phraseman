@@ -7,68 +7,42 @@
       "interactionId": "en:lesson-01:session-45:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — «я не готов»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-45:i01:r1",
-          "text": "not"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i01:r2",
-          "text": "amn't"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i01:r3",
-          "text": "isn't"
-        }
-      ],
+      "prompt": "Карточка слова — satisfied",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — «я не готов»",
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — satisfied",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — «я не готов»",
-          "uk": "Вставте слово — «я не готовий»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i01:audio",
+          "transcript": "satisfied"
         },
-        "gappedTargetPhrase": "I'm ___ ready.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-45:i01:r1",
-            "text": "not"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i01:r2",
-            "text": "amn't"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i01:r3",
-            "text": "isn't"
+            "targetText": "satisfied",
+            "meaningByLocale": {
+              "ru": "«довольный результатом». Больше ничего не хочется менять.",
+              "uk": "«задоволений результатом». Більше нічого не хочеться змінювати."
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — «я не готов»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-45:i01:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — «я не готов»",
-            "feedbackByLocale": {
-              "ru": "Так не говорят. Правильно `I'm not`.",
-              "uk": "Так не кажуть. Правильно `I'm not`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i01:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — «я не готов»",
-            "feedbackByLocale": {
-              "ru": "Это про `he`, `she`, `it`. Про себя — `I'm not`.",
-              "uk": "Це про `he`, `she`, `it`. Про себе — `I'm not`."
-            }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "satisfied",
+          "definitionByLocale": {
+            "ru": "«довольный результатом». Больше ничего не хочется менять.",
+            "uk": "«задоволений результатом». Більше нічого не хочеться змінювати."
           }
-        ]
+        }
       },
       "scriptedAlternate": null
     },
@@ -76,27 +50,75 @@
       "interactionId": "en:lesson-01:session-45:i02",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «он не занят», сжав конец",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «он не занят», сжав конец",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He isn't busy.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «он не занят», сжав конец",
-          "uk": "Складіть фразу — «він не зайнятий», стиснувши кінець"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — satisfied",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i02:r1",
+          "text": "satisfied"
         },
-        "orderedTokens": [
-          "He",
-          "isn't",
-          "busy"
+        {
+          "responseId": "en:lesson-01:session-45:i02:r2",
+          "text": "exhausted"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i02:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — satisfied",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i02:audio",
+          "transcript": "satisfied"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i02:r1",
+            "targetText": "satisfied",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r2",
+            "targetText": "exhausted",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r3",
+            "targetText": "ready",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — satisfied",
+            "feedbackByLocale": {
+              "ru": "Exhausted означает «крайне устал», а satisfied — «доволен результатом».",
+              "uk": "Exhausted означає «украй втомлений», а satisfied — «задоволений результатом»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — satisfied",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов», а satisfied — «доволен результатом».",
+              "uk": "Ready означає «готовий», а satisfied — «задоволений результатом»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -104,68 +126,42 @@
       "interactionId": "en:lesson-01:session-45:i03",
       "ordinal": 6,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — «они не заняты»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-45:i03:r1",
-          "text": "aren't"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i03:r2",
-          "text": "isn't"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i03:r3",
-          "text": "amn't"
-        }
-      ],
+      "prompt": "Карточка слова — exhausted",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — «они не заняты»",
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exhausted",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — «они не заняты»",
-          "uk": "Вставте слово — «вони не зайняті»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i03:audio",
+          "transcript": "exhausted"
         },
-        "gappedTargetPhrase": "They ___ busy.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-45:i03:r1",
-            "text": "aren't"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i03:r2",
-            "text": "isn't"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i03:r3",
-            "text": "amn't"
+            "targetText": "exhausted",
+            "meaningByLocale": {
+              "ru": "«крайне устал, изнурён». Сил почти не осталось.",
+              "uk": "«украй втомлений, виснажений». Сил майже не лишилося."
+            }
           }
         ],
-        "testedDimension": "Вставьте слово — «они не заняты»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-45:i03:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — «они не заняты»",
-            "feedbackByLocale": {
-              "ru": "`isn't` про одного. Про нескольких — `aren't`.",
-              "uk": "`isn't` про одного. Про кількох — `aren't`."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i03:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — «они не заняты»",
-            "feedbackByLocale": {
-              "ru": "Так не говорят.",
-              "uk": "Так не кажуть."
-            }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exhausted",
+          "definitionByLocale": {
+            "ru": "«крайне устал, изнурён». Сил почти не осталось.",
+            "uk": "«украй втомлений, виснажений». Сил майже не лишилося."
           }
-        ]
+        }
       },
       "scriptedAlternate": null
     },
@@ -175,42 +171,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Выберите написание — вы пишете другу, что дело закончено",
+      "prompt": "Послушайте и выберите — exhausted",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i04:r1",
-          "text": "It's"
+          "text": "exhausted"
         },
         {
           "responseId": "en:lesson-01:session-45:i04:r2",
-          "text": "Its"
+          "text": "satisfied"
         },
         {
           "responseId": "en:lesson-01:session-45:i04:r3",
-          "text": "It"
+          "text": "ready"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Выберите написание — вы пишете другу, что дело закончено",
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — exhausted",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i04:audio",
+          "transcript": "exhausted"
+        },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-45:i04:r1",
-            "targetText": "It's",
+            "targetText": "exhausted",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r2",
-            "targetText": "Its",
+            "targetText": "satisfied",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r3",
-            "targetText": "It",
+            "targetText": "ready",
             "meaningByLocale": null
           }
         ],
@@ -219,19 +220,19 @@
           {
             "responseId": "en:lesson-01:session-45:i04:r2",
             "correct": false,
-            "testedDimension": "Выберите написание — вы пишете другу, чт",
+            "testedDimension": "Послушайте и выберите — exhausted",
             "feedbackByLocale": {
-              "ru": "Без чёрточки это «его». Проверьте: подставляется `is` — значит нужна чёрточка.",
-              "uk": "Без риски це «його». Перевірте: підставляється `is` — отже потрібна риска."
+              "ru": "Satisfied означает «доволен результатом», а exhausted — «крайне устал».",
+              "uk": "Satisfied означає «задоволений результатом», а exhausted — «украй втомлений»."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r3",
             "correct": false,
-            "testedDimension": "Выберите написание — вы пишете другу, чт",
+            "testedDimension": "Послушайте и выберите — exhausted",
             "feedbackByLocale": {
-              "ru": "Потерялось `is`. Без него фраза рассыпается.",
-              "uk": "Загубилося `is`. Без нього фраза розсипається."
+              "ru": "Ready означает «готов», а exhausted — «крайне устал».",
+              "uk": "Ready означає «готовий», а exhausted — «украй втомлений»."
             }
           }
         ],
@@ -244,29 +245,42 @@
       "interactionId": "en:lesson-01:session-45:i05",
       "ordinal": 8,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я не закончил»",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — settled",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я не закончил»",
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — settled",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I'm not done.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «я не закончил»",
-          "uk": "Складіть фразу — «я не закінчив»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i05:audio",
+          "transcript": "settled"
         },
-        "orderedTokens": [
-          "I'm",
-          "not",
-          "done"
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i05:r1",
+            "targetText": "settled",
+            "meaningByLocale": {
+              "ru": "«решено, договорились». Вопрос больше не открыт.",
+              "uk": "«вирішено, домовилися». Питання більше не відкрите."
+            }
+          }
         ],
-        "authoredDistractorTokens": [
-          "amn't"
-        ],
-        "slotFeedback": []
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "settled",
+          "definitionByLocale": {
+            "ru": "«решено, договорились». Вопрос больше не открыт.",
+            "uk": "«вирішено, домовилися». Питання більше не відкрите."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -276,111 +290,68 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — full",
-      "responseOptions": [],
+      "prompt": "Послушайте и выберите — settled",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i06:r1",
+          "text": "settled"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i06:r2",
+          "text": "satisfied"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i06:r3",
+          "text": "ready"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-45:i06:audio"
       ],
-      "accessibilityLabel": "Карточка слова — full",
+      "accessibilityLabel": "Послушайте и выберите — settled",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-45:i06:audio",
-          "transcript": "full"
+          "transcript": "settled"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-45:i06:r1",
-            "targetText": "full",
-            "meaningByLocale": {
-              "ru": "«полный». Стакан налит до края, добавить некуда.",
-              "uk": "«повний». Склянка налита по вінця, доливати нікуди."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "full",
-          "definitionByLocale": {
-            "ru": "«полный». Стакан налит до края, добавить некуда.",
-            "uk": "«повний». Склянка налита по вінця, доливати нікуди."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-45:i07",
-      "ordinal": 10,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-45:i07:r1",
-          "text": "full"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i07:r2",
-          "text": "fall"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i07:r3",
-          "text": "fill"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-45:i07:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — full",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-45:i07:audio",
-          "transcript": "full"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-01:session-45:i07:r1",
-            "targetText": "full",
+            "targetText": "settled",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-45:i07:r2",
-            "targetText": "fall",
+            "responseId": "en:lesson-01:session-45:i06:r2",
+            "targetText": "satisfied",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-45:i07:r3",
-            "targetText": "fill",
+            "responseId": "en:lesson-01:session-45:i06:r3",
+            "targetText": "ready",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i07:r2",
+            "responseId": "en:lesson-01:session-45:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — full",
+            "testedDimension": "Послушайте и выберите — settled",
             "feedbackByLocale": {
-              "ru": "Это «падать». Прозвучало другое слово — `full`, «полный».",
-              "uk": "Це «падати». Прозвучало інше слово — `full`, «повний»."
+              "ru": "Satisfied означает «доволен результатом», а settled здесь значит «решено, договорились».",
+              "uk": "Satisfied означає «задоволений результатом», а settled тут означає «вирішено, домовилися»."
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i07:r3",
+            "responseId": "en:lesson-01:session-45:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — full",
+            "testedDimension": "Послушайте и выберите — settled",
             "feedbackByLocale": {
-              "ru": "Это «наполнять». Прозвучало `full` — «полный», про уже полный стакан.",
-              "uk": "Це «наповнювати». Прозвучало `full` — «повний», про вже повну склянку."
+              "ru": "Ready означает «готов», а settled здесь значит «решено, договорились».",
+              "uk": "Ready означає «готовий», а settled тут означає «вирішено, домовилися»."
             }
           }
         ],
@@ -390,132 +361,63 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-45:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — стакан налит до края",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-45:i08:r1",
-          "text": "full"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i08:r2",
-          "text": "done"
-        },
-        {
-          "responseId": "en:lesson-01:session-45:i08:r3",
-          "text": "busy"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — стакан налит до края",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — стакан налит до края",
-          "uk": "Вставте слово — склянка налита по вінця"
-        },
-        "gappedTargetPhrase": "It's ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-45:i08:r1",
-            "text": "full"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i08:r2",
-            "text": "done"
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i08:r3",
-            "text": "busy"
-          }
-        ],
-        "testedDimension": "Вставьте слово — стакан налит до края",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-45:i08:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — стакан налит до края",
-            "feedbackByLocale": {
-              "ru": "«Готово» — про дело, а не про стакан.",
-              "uk": "«Готово» — про справу, а не про склянку."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-45:i08:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — стакан налит до края",
-            "feedbackByLocale": {
-              "ru": "«Занят» — про человека, у которого дела.",
-              "uk": "«Зайнятий» — про людину, у якої справи."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-45:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-01:session-45:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините слова и значения",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините слова и значения",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-45:i09:p1",
+            "pairId": "en:lesson-01:session-45:i07:p1",
+            "target": "satisfied",
+            "meaningByLocale": {
+              "ru": "доволен",
+              "uk": "задоволений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i07:p2",
+            "target": "exhausted",
+            "meaningByLocale": {
+              "ru": "изнурён",
+              "uk": "виснажений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i07:p3",
+            "target": "settled",
+            "meaningByLocale": {
+              "ru": "решено",
+              "uk": "вирішено"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i07:p4",
             "target": "ready",
             "meaningByLocale": {
               "ru": "готов",
               "uk": "готовий"
             }
-          },
-          {
-            "pairId": "en:lesson-01:session-45:i09:p2",
-            "target": "busy",
-            "meaningByLocale": {
-              "ru": "занят",
-              "uk": "зайнятий"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-45:i09:p3",
-            "target": "done",
-            "meaningByLocale": {
-              "ru": "готово",
-              "uk": "готово"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-45:i09:p4",
-            "target": "full",
-            "meaningByLocale": {
-              "ru": "полный",
-              "uk": "повний"
-            }
           }
         ],
         "leftColumn": [
-          "ready",
-          "busy",
-          "done",
-          "full"
+          "satisfied",
+          "exhausted",
+          "settled",
+          "ready"
         ],
         "rightColumn": [
-          "готов",
-          "занят",
-          "готово",
-          "полный"
+          "доволен",
+          "изнурён",
+          "решено",
+          "готов"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -532,68 +434,166 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ужин удался",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i08:r1",
+          "text": "satisfied"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i08:r2",
+          "text": "exhausted"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i08:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ужин удался",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ужин удался, и вы довольны.",
+          "uk": "Вечеря вдалася, і ви задоволені."
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r1",
+            "text": "satisfied"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "text": "exhausted"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ужин удался",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ужин удался",
+            "feedbackByLocale": {
+              "ru": "Exhausted описывает крайнюю усталость, а здесь человек доволен результатом.",
+              "uk": "Exhausted описує крайню втому, а тут людина задоволена результатом."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ужин удался",
+            "feedbackByLocale": {
+              "ru": "Ready значит «готов»; здесь спрашивают о довольстве результатом.",
+              "uk": "Ready означає «готовий»; тут ідеться про задоволення результатом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я доволен",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я доволен",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm satisfied.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вы довольны.",
+          "uk": "Скажіть, що ви задоволені."
+        },
+        "orderedTokens": [
+          "I'm",
+          "satisfied."
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-45:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — «она не готова»",
+      "prompt": "Вставьте слово — после двух смен сил почти нет",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i10:r1",
-          "text": "isn't"
+          "text": "exhausted"
         },
         {
           "responseId": "en:lesson-01:session-45:i10:r2",
-          "text": "aren't"
+          "text": "satisfied"
         },
         {
           "responseId": "en:lesson-01:session-45:i10:r3",
-          "text": "amn't"
+          "text": "ready"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — «она не готова»",
+      "accessibilityLabel": "Вставьте слово — после двух смен сил почти нет",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — «она не готова»",
-          "uk": "Вставте слово — «вона не готова»"
+          "ru": "После двух смен сил почти не осталось.",
+          "uk": "Після двох змін сил майже не лишилося."
         },
-        "gappedTargetPhrase": "She ___ ready.",
+        "gappedTargetPhrase": "I'm ___ .",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i10:r1",
-            "text": "isn't"
+            "text": "exhausted"
           },
           {
             "responseId": "en:lesson-01:session-45:i10:r2",
-            "text": "aren't"
+            "text": "satisfied"
           },
           {
             "responseId": "en:lesson-01:session-45:i10:r3",
-            "text": "amn't"
+            "text": "ready"
           }
         ],
-        "testedDimension": "Вставьте слово — «она не готова»",
+        "testedDimension": "Вставьте слово — после двух смен сил почти нет",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-45:i10:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — «она не готова»",
+            "testedDimension": "Вставьте слово — после двух смен сил почти нет",
             "feedbackByLocale": {
-              "ru": "`aren't` про нескольких. Про одну — `isn't`.",
-              "uk": "`aren't` про кількох. Про одну — `isn't`."
+              "ru": "Satisfied значит «доволен», но отсутствие сил описывает exhausted.",
+              "uk": "Satisfied означає «задоволений», але брак сил описує exhausted."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i10:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — «она не готова»",
+            "testedDimension": "Вставьте слово — после двух смен сил почти нет",
             "feedbackByLocale": {
-              "ru": "Так не говорят; и с `she` в любом случае `is`.",
-              "uk": "Так не кажуть; і з `she` у будь-якому разі `is`."
+              "ru": "Ready значит «готов»; отсутствие сил описывает exhausted.",
+              "uk": "Ready означає «готовий»; брак сил описує exhausted."
             }
           }
         ]
@@ -606,25 +606,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «оно не полное»",
+      "prompt": "Соберите фразу — я крайне устал",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «оно не полное»",
+      "accessibilityLabel": "Соберите фразу — я крайне устал",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It isn't full.",
+        "targetPhrase": "I'm exhausted.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «оно не полное»",
-          "uk": "Складіть фразу — «воно не повне»"
+          "ru": "Скажите, что вы крайне устали.",
+          "uk": "Скажіть, що ви вкрай втомилися."
         },
         "orderedTokens": [
-          "It",
-          "isn't",
-          "full"
+          "I'm",
+          "exhausted."
         ],
         "authoredDistractorTokens": [
-          "its"
+          "not"
         ],
         "slotFeedback": []
       },
@@ -633,10 +632,10 @@
     {
       "interactionId": "en:lesson-01:session-45:i12",
       "ordinal": 15,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте чёрточку или нет — «оно готово»",
+      "prompt": "Вставьте написание — все договорились",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i12:r1",
@@ -653,14 +652,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте чёрточку или нет — «оно готово»",
+      "accessibilityLabel": "Вставьте написание — все договорились",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте чёрточку или нет — «оно готово»",
-          "uk": "Поставте риску чи ні — «воно готове»"
+          "ru": "Все согласовали время и место.",
+          "uk": "Усі погодили час і місце."
         },
-        "gappedTargetPhrase": "___ done.",
+        "gappedTargetPhrase": "___ settled.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i12:r1",
@@ -675,24 +674,24 @@
             "text": "It"
           }
         ],
-        "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+        "testedDimension": "Вставьте написание — все договорились",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-45:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+            "testedDimension": "Вставьте написание — все договорились",
             "feedbackByLocale": {
-              "ru": "Без чёрточки это «его». Подставляется `is` — значит `it's`.",
-              "uk": "Без риски це «його». Підставляється `is` — отже `it's`."
+              "ru": "Its без апострофа показывает принадлежность; здесь нужно сокращение It is.",
+              "uk": "Its без апострофа показує належність; тут потрібне скорочення It is."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+            "testedDimension": "Вставьте написание — все договорились",
             "feedbackByLocale": {
-              "ru": "Пропало `is`. Нужно `It's`.",
-              "uk": "Зникло `is`. Потрібно `It's`."
+              "ru": "В `It settled` пропущено is; правильно `It’s settled.`",
+              "uk": "У `It settled` пропущено is; правильно `It’s settled.`"
             }
           }
         ]
@@ -702,31 +701,30 @@
     {
       "interactionId": "en:lesson-01:session-45:i13",
       "ordinal": 16,
-      "purpose": "retrieval_practice",
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — «мы не готовы»",
+      "prompt": "Послушайте и соберите — вопрос решён",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — «мы не готовы»",
+      "accessibilityLabel": "Послушайте и соберите — вопрос решён",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-45:i13:audio",
-          "transcript": "We aren't ready."
+          "transcript": "It's settled."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We aren't ready.",
+        "hiddenTargetPhrase": "It's settled.",
         "orderedTokens": [
-          "We",
-          "aren't",
-          "ready"
+          "It's",
+          "settled."
         ],
         "authoredDistractorTokens": [
-          "isn't"
+          "Its"
         ],
         "slotFeedback": []
       },
@@ -738,63 +736,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
+      "prompt": "Выберите правильное отрицание — результат вас не устраивает",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i14:r1",
-          "text": "I'm not"
+          "text": "I'm not satisfied."
         },
         {
           "responseId": "en:lesson-01:session-45:i14:r2",
-          "text": "isn't"
+          "text": "I not satisfied."
         },
         {
           "responseId": "en:lesson-01:session-45:i14:r3",
-          "text": "aren't"
+          "text": "I'm isn't satisfied."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
+      "accessibilityLabel": "Выберите правильное отрицание — результат вас не устраивает",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
-          "uk": "Вставте слово — друг питає, чи ви зараз вільні"
+          "ru": "Результат вас не устраивает.",
+          "uk": "Результат вас не влаштовує."
         },
-        "gappedTargetPhrase": "___ busy.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i14:r1",
-            "text": "I'm not"
+            "text": "I'm not satisfied."
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r2",
-            "text": "isn't"
+            "text": "I not satisfied."
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r3",
-            "text": "aren't"
+            "text": "I'm isn't satisfied."
           }
         ],
-        "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+        "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+            "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
             "feedbackByLocale": {
-              "ru": "`isn't` про одного человека со стороны: `He isn't busy`. Про себя — `I'm not`.",
-              "uk": "`isn't` про одну людину збоку: `He isn't busy`. Про себе — `I'm not`."
+              "ru": "После I нужна форма am; отрицание строится `I’m not`.",
+              "uk": "Після I потрібна форма am; заперечення будується `I’m not`."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+            "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
             "feedbackByLocale": {
-              "ru": "`aren't` про нескольких: `They aren't busy`. Про себя одного — `I'm not`.",
-              "uk": "`aren't` про кількох: `They aren't busy`. Про себе одного — `I'm not`."
+              "ru": "Нельзя соединять `I’m` и `isn’t`: для I нужно `I’m not`.",
+              "uk": "Не можна поєднувати `I’m` та `isn’t`: для I потрібно `I’m not`."
             }
           }
         ]
@@ -804,28 +802,28 @@
     {
       "interactionId": "en:lesson-01:session-45:i15",
       "ordinal": 18,
-      "purpose": "independent_check",
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «они не закончили»",
+      "prompt": "Соберите фразу — вопрос ещё не решён",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «они не закончили»",
+      "accessibilityLabel": "Соберите фразу — вопрос ещё не решён",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They aren't done.",
+        "targetPhrase": "It isn't settled.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «они не закончили»",
-          "uk": "Складіть фразу — «вони не закінчили»"
+          "ru": "Вопрос ещё не решён.",
+          "uk": "Питання ще не вирішено."
         },
         "orderedTokens": [
-          "They",
-          "aren't",
-          "done"
+          "It",
+          "isn't",
+          "settled."
         ],
         "authoredDistractorTokens": [
-          "amn't"
+          "its"
         ],
         "slotFeedback": []
       },
@@ -837,68 +835,165 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
+      "prompt": "Соберите фразу — двое друзей ещё не готовы",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
+      "accessibilityLabel": "Соберите фразу — двое друзей ещё не готовы",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I'm ready.",
+        "targetPhrase": "They aren't ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
-          "uk": "Складіть фразу — друг питає, чи чекати на вас. Ви готові"
+          "ru": "Двое друзей ещё не готовы.",
+          "uk": "Двоє друзів ще не готові."
         },
         "orderedTokens": [
-          "I'm",
-          "ready"
+          "They",
+          "aren't",
+          "ready."
         ],
         "authoredDistractorTokens": [
-          "not"
+          "isn't"
         ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-45:i17",
+      "interactionId": "en:lesson-01:session-45:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — три ответа подряд за столом",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте фразу — ужин вас разочаровал",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i17:s01:r1",
+          "text": "I'm not satisfied."
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i17:s01:r2",
+          "text": "I not satisfied."
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i17:s01:r3",
+          "text": "I'm isn't satisfied."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте фразу — ужин вас разочаровал",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ужин вас разочаровал.",
+          "uk": "Вечеря вас розчарувала."
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i17:s01:r1",
+            "text": "I'm not satisfied."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s01:r2",
+            "text": "I not satisfied."
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s01:r3",
+            "text": "I'm isn't satisfied."
+          }
+        ],
+        "testedDimension": "Вставьте фразу — ужин вас разочаровал",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i17:s01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте фразу — ужин вас разочаровал",
+            "feedbackByLocale": {
+              "ru": "После I нужна форма am: правильно `I’m not satisfied.`.",
+              "uk": "Після I потрібна форма am: правильно `I’m not satisfied.`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s01:r3",
+            "correct": false,
+            "testedDimension": "Выберите фразу — ужин вас разочаровал",
+            "feedbackByLocale": {
+              "ru": "После `I’m` уже есть am, поэтому `isn’t` здесь лишнее.",
+              "uk": "У `I’m` уже є am, тому `isn’t` тут зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — время встречи ещё не согласовали",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-45:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — три ответа подряд за столом",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — время встречи ещё не согласовали",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-45:i17:audio",
-          "transcript": "I'm not ready. I'm not busy. It's done."
+        "family": "phrase_builder",
+        "targetPhrase": "It isn't settled.",
+        "localizedMeaning": {
+          "ru": "Время встречи ещё не согласовали.",
+          "uk": "Час зустрічі ще не погодили."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I'm not ready. I'm not busy. It's done.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "It",
+          "isn't",
+          "settled."
+        ],
+        "authoredDistractorTokens": [
+          "aren't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — двое друзей полны сил после отдыха. Скажите, что они не изнурены.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — двое друзей полны сил после отдыха. Скажите, что они не изнурены.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They aren't exhausted.",
+        "localizedMeaning": {
+          "ru": "Двое друзей полны сил после отдыха.",
+          "uk": "Двоє друзів сповнені сил після відпочинку."
+        },
+        "orderedTokens": [
+          "They",
+          "aren't",
+          "exhausted."
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": []
       },
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "859e2ba7bfcb13b518614a1fddcfe5eb905f0391cd058e92478b28a9347aed16"
+  "learnerFingerprint": "f9143fcf779d871b4e7b7227d18d31075bff0d8b29e931b905a14c6bafb99f47"
 }

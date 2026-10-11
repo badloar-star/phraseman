@@ -799,13 +799,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — преподаватель спрашивает точное время вашей записи, а вы не помните его наверняка",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — преподаватель спрашивает точное время вашей записи, а вы не помните его наверняка",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -832,13 +832,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — преподаватель нашёл вашу запись; спросите, опоздали ли вы",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-45:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — преподаватель нашёл вашу запись; спросите, опоздали ли вы",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -897,5 +897,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0515143b93d830cc76164e68389362a7f59d31383fefd6d3f2541362f3a763ce"
+  "learnerFingerprint": "5a67c1ac79ede1395adbd82678f408ee516cfc7b4b6a20cf7fd23fd836c0c2cf"
 }

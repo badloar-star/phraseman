@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-04:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Первый звук в `tea` — «т», а в `key` — «к». В записи `key`.",
               "uk": "Перший звук у `tea` — «т», а в `key` — «к». У записі — `key`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-04:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Первый звук в `fee` — «ф», а в `key` — «к». Здесь звучит `key`.",
               "uk": "Перший звук у `fee` — «ф», а в `key` — «к». Тут звучить `key`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-04:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В `four` первым слышно «ф», а в `door` — «д». В записи `door`.",
               "uk": "На початку `four` чути «ф», а в `door` — «д». У записі — `door`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-04:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "В `more` первым слышно «м», а в `door` — «д». Здесь звучит `door`.",
               "uk": "На початку `more` чути «м», а в `door` — «д». Тут звучить `door`."
@@ -278,7 +278,7 @@
           {
             "responseId": "en:lesson-03:session-04:i05:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — хозяин коротко н",
+            "testedDimension": "Послухайте й складіть — господар коротко",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `key`, а не `door`. Короткое название — `A key`.",
               "uk": "У записі прозвучало `key`, а не `door`. Коротка назва — `A key`."
@@ -386,7 +386,7 @@
           {
             "responseId": "en:lesson-03:session-04:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В середине `willow` слышно «л», а в `window` — сочетание «н» и «д». В записи `window`.",
               "uk": "У середині `willow` чути «л», а в `window` — сполучення «н» і «д». У записі — `window`."
@@ -395,7 +395,7 @@
           {
             "responseId": "en:lesson-03:session-04:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Во второй части `winter` слышно «т», а в `window` — «д». Здесь звучит `window`.",
               "uk": "У другій частині `winter` чути «т», а в `window` — «д». Тут звучить `window`."
@@ -413,21 +413,22 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — господар просить назвати предмет за шторою; скажіть «Це вікно»",
+      "prompt": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — господар просить назвати предмет за шторою; скажіть «Це вікно»",
+      "accessibilityLabel": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a window.",
+        "targetPhrase": "It is not a window.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
-          "uk": "Складіть фразу — господар просить назвати предмет за шторою; скажіть «Це вікно»"
+          "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+          "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
         },
         "orderedTokens": [
           "It",
           "is",
+          "not",
           "a",
           "window"
         ],
@@ -442,13 +443,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — господар показує на предмет біля входу; назвіть дзеркало (`mirror` — «дзеркало»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — господар показує на предмет біля входу; назвіть дзеркало (`mirror` — «дзеркало»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -508,7 +509,7 @@
           {
             "responseId": "en:lesson-03:session-04:i10:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — хозяин обращаетс",
+            "testedDimension": "Послухайте й складіть — господар звертає",
             "feedbackByLocale": {
               "ru": "В записи прозвучало `door`, а не `window`: `Is it a door?`.",
               "uk": "У записі прозвучало `door`, а не `window`: `Is it a door?`."
@@ -628,7 +629,7 @@
           {
             "responseId": "en:lesson-03:session-04:i12:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — хозяин принял металличе",
+            "testedDimension": "Складіть фразу — господар прийняв метале",
             "feedbackByLocale": {
               "ru": "После `It` здесь нужна форма `is`. Отрицание и название идут дальше: `It is not a key`.",
               "uk": "Після `It` тут потрібне `is`. Заперечення й назва стоять далі: `It is not a key`."
@@ -644,13 +645,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — господар притримує вхідні двері; назвіть їх повною фразою",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i13:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — господар притримує вхідні двері; назвіть їх повною фразою",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -707,7 +708,7 @@
           {
             "responseId": "en:lesson-03:session-04:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — хозяин показывает на б",
+            "testedDimension": "Складіть запитання — господар показує на",
             "feedbackByLocale": {
               "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a mirror?`.",
               "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a mirror?`."
@@ -723,13 +724,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — господар дістає з кишені невеликий предмет; запитайте «Це ключ?»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i15:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — господар дістає з кишені невеликий предмет; запитайте «Це ключ?»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -756,13 +757,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте вголос — господар вирішив, що ви вказуєте на двері, але ви показуєте на шафу; заперечте: «Це не двері»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-04:i16:audio"
       ],
-      "accessibilityLabel": "Промовте вголос — господар вирішив, що ви вказуєте на двері, але ви показуєте на шафу; заперечте: «Це не двері»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -819,7 +820,7 @@
           {
             "responseId": "en:lesson-03:session-04:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — перед уходом хозяин спр",
+            "testedDimension": "Складіть фразу — перед виходом господар ",
             "feedbackByLocale": {
               "ru": "Форма `am` относится к `I`. Здесь называем предмет через `It is`: `It is a key`.",
               "uk": "`am` уживають з `I`. Тут називаємо предмет через `It is`: `It is a key`."
@@ -836,5 +837,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a0460a9f213e481bb7d22446e5543d0737bc5981a1d0f61dba25a669d2d85ecb"
+  "learnerFingerprint": "9c4019f7007f2494c1c52ca564881acdfc463693d3eccf025d3b487079081883"
 }

@@ -1,7 +1,7 @@
-# Английский · Урок 2 · Сессия 7 — «anxious и relaxed»
+# Английский · Урок 2 · Занятие 7 — «anxious и relaxed»
 
-**Сцена сессии.** Суббота набирает ход: во дворе хостела народ собирается ехать за город, кто-то нервничает из-за автобуса, кто-то развалился на скамейке с кофе.
-**Операция:** повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`
+**Сцена занятия.** Во дворе хостела Том ждёт автобус за город и нервничает, что опоздает. Мира спокойно сидит на скамейке с кофе. Вы спрашиваете каждого, как он себя чувствует.
+**Как сказать:** повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`
 **Новые слова:** anxious, relaxed
 **Возвращаются:** cold, thirsty, ok, hungry
 
@@ -15,7 +15,7 @@
 
 Спрашивают об этом так же, как про всё остальное: `are` первым, `you` следом, слово в конце — `Are you anxious?` Отдельного «тревожишься?» одним словом в английском не выйдет.
 
-**Парень у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.**
+**Том у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.**
 
 - ✅ **Are you anxious?**
 - ❌ You are anxious? — *Так вы сообщаете ему новость. Вопрос начинается с `are`.*
@@ -31,7 +31,7 @@
 
 Хвост «-ed» тут обязателен. Без него получится `relax` — «расслабься», то есть совет вместо вопроса о человеке. И `are` в вопросе всё так же стоит первым: `Are you relaxed?`
 
-**Девушка на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.**
+**Мира на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.**
 
 - ✅ **Are you relaxed?**
 - ❌ Are you relax? — *Хвост «-ed» оторвали. Про состояние человека — `relaxed`.*
@@ -55,76 +55,94 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — anxious**
-> **anxious** — «тревожный, на нервах». Когда ничего плохого не случилось, а внутри всё равно крутится «а вдруг».
+<!-- interaction_id: en:lesson-02:session-07:i01; family: listen_choose -->
+Цель: `anxious`
 
-**2 · Послушайте и выберите — anxious**
-🔊 *anxious* → **anxious** · angry · ankle
-- angry — *Это «злой» — другое состояние. Начало `an-` совпадает, дальше слова расходятся.*
-- ankle — *Это «щиколотка». Совпадает только начало.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-07:i02; family: listen_choose -->
+Цель: `anxious`
+Варианты: `anxious` · `angry` · `ankle`
 
 **3 · Карточка слова — relaxed**
-> **relaxed** — «расслаблен, спокоен». Никуда не спешит, плечи опущены.
+<!-- interaction_id: en:lesson-02:session-07:i03; family: listen_choose -->
+Цель: `relaxed`
 
-**4 · Послушайте и выберите — relaxed**
-🔊 *relaxed* → **relaxed** · relax · related
-- relax — *Без хвоста «-ed». Это «расслабься», а про состояние человека — `relaxed`.*
-- related — *Другое слово, «связанный». Совпадает только начало.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-07:i04; family: listen_choose -->
+Цель: `relaxed`
+Варианты: `relaxed` · `relax` · `related`
 
-**5 · Соберите фразу — спросите парня у ворот про нервы**
-Плитки: `you` `anxious` `are` `is` → **Are you anxious?**
+**5 · Соберите фразу — спросите Тома у ворот про нервы**
+<!-- interaction_id: en:lesson-02:session-07:i05; family: phrase_builder -->
+Цель: `Are you anxious?`
 
-**6 · Вставьте слово — девушка на скамейке никуда не спешит**
-Are you ___ ? → **relaxed** · hungry · cold
-- hungry — *Это «голоден». Про еду она ничего не показывала — она просто сидит и не торопится.*
-- cold — *Это «замёрз». Речь о спокойствии, а не о температуре.*
+**6 · Вставьте слово — Мира на скамейке никуда не спешит**
+<!-- interaction_id: en:lesson-02:session-07:i06; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `relaxed` · `hungry` · `cold`
 
-**7 · Вставьте слово — сосед допил бутылку до дна и спрашивает, где кран**
-Are you ___ ? → **thirsty** · anxious · relaxed
-- anxious — *Это «на нервах». Человек ищет воду, а не переживает.*
-- relaxed — *Это «спокоен». Такое не спрашивают у человека, который бежит к крану.*
+**7 · Соберите вопрос — сосед допил бутылку до дна и спрашивает, где кран**
+<!-- interaction_id: en:lesson-02:session-07:i07; family: phrase_builder -->
+Цель: `Are you thirsty?`
 
 **8 · Послушайте и соберите — «ты спокоен?»**
-🔊 *Are you relaxed?* Плитки: `relaxed` `are` `you` `anxious` → **Are you relaxed?**
+<!-- interaction_id: en:lesson-02:session-07:i08; family: listen_build_dictation -->
+Цель: `Are you relaxed?`
 
-**9 · Вставьте скрепку — ответ «да» про себя**
-Yes, I ___ . → **am** · are · is
-- are — *`are` идёт с `you`. Про себя — `am`.*
-- is — *Чужая скрепка. Про себя — `am`, в любом ответе.*
+**9 · Вставьте слово — ответ «да» про себя**
+<!-- interaction_id: en:lesson-02:session-07:i09; family: context_gap_grammar -->
+Цель: `Yes, I ___ .`
+Варианты: `am` · `are` · `is`
 
 **10 · Соберите ответ — вас спросили «`Are you cold?`», а вам не холодно**
-Плитки: `not` `I` `No,` `am` → **No, I am not.**
+<!-- interaction_id: en:lesson-02:session-07:i10; family: phrase_builder -->
+Цель: `No, I am not.`
 
-**11 · Соедините пары (Speed Match, 4 пары)**
-anxious — тревожный · relaxed — спокойный · thirsty — хочу пить · cold — холодно
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-07:i11; family: speed_match -->
+Пары: `anxious` — тревожный · `relaxed` — спокойный · `thirsty` — хочу пить · `cold` — холодно
+Цель: `anxious · relaxed · thirsty · cold`
 
-**12 · Вставьте слово — во дворе ветер, парень стоит в одной футболке и обхватил себя руками**
-Are you ___ ? → **cold** · relaxed · thirsty
-- relaxed — *Это «спокоен». Человек, который обхватил себя руками на ветру, выглядит как угодно, но не расслабленно.*
-- thirsty — *Это «хочу пить». Про воду тут ничего не говорит.*
+**12 · Вставьте слово — во дворе ветер, Том стоит в одной футболке и обхватил себя руками**
+<!-- interaction_id: en:lesson-02:session-07:i12; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `cold` · `relaxed` · `thirsty`
 
-**13 · Обманка на внимательность — вам действительно хочется есть**
-Плитки: `am` `I` `Yes,` `not` → **Yes, I am.**
-*Плитка `not` лишняя: вы соглашаетесь, а не отрицаете.*
+**13 · вам действительно хочется есть**
+<!-- interaction_id: en:lesson-02:session-07:i13; family: phrase_builder -->
+Цель: `Yes, I am.`
 
 **14 · Вставьте слово — приятель споткнулся на ступеньках и держится за колено**
-Are you ___ ? → **ok** · hungry · thirsty
-- hungry — *Это «голоден». Человека, который держится за колено, спрашивают не про еду.*
-- thirsty — *Это «хочу пить». Про воду в этот момент никто не думает.*
+<!-- interaction_id: en:lesson-02:session-07:i14; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `ok` · `hungry` · `thirsty`
 
 **15 · Соберите фразу — спросите приятеля, не голоден ли он**
-Плитки: `hungry` `are` `you` `am` → **Are you hungry?**
+<!-- interaction_id: en:lesson-02:session-07:i15; family: phrase_builder -->
+Цель: `Are you hungry?`
 
-**16 · Скажите вслух — вопрос и ответ подряд**
-🎙 **Are you anxious? No, I am not.** — послушайте, повторите, сравните.
+**16 · У автобуса ваш друг всё время смотрит на табло и мнёт билет. Скажите ему по-английски, что хотите узнать, тревожится ли он.**
+<!-- interaction_id: en:lesson-02:session-07:i16:s01; family: scripted_repeat_compare -->
+Цель: `Are you anxious?`
 
-**17 · Финал сцены — два вопроса и ответ на один из них**
-🎙 Автобус подъехал. Спросите соседа, спокоен ли он; спросите, не голоден ли он; а на его вопрос «`Are you ok?`» ответьте «да».
-**Are you relaxed? Are you hungry? Yes, I am.**
+**17 · Окно закрыто, на вас тёплая куртка. Скажите, что вам не холодно.**
+<!-- interaction_id: en:lesson-02:session-07:i16:s02; family: scripted_repeat_compare -->
+Цель: `No, I am not cold.`
 
----
+**18 · Друг спокойно пьёт чай и никуда не спешит. Скажите ему по-английски, что хотите узнать, расслаблен ли он.**
+<!-- interaction_id: en:lesson-02:session-07:i17:s01; family: scripted_repeat_compare -->
+Цель: `Are you relaxed?`
+
+**19 · Друг не ел с утра и смотрит на меню. Скажите ему по-английски, что хотите узнать, голоден ли он.**
+<!-- interaction_id: en:lesson-02:session-07:i17:s02; family: scripted_repeat_compare -->
+Цель: `Are you hungry?`
+
+**20 · После завтрака и короткой прогулки вы спокойны. Скажите, что вы расслаблены.**
+<!-- interaction_id: en:lesson-02:session-07:i17:s03; family: scripted_repeat_compare -->
+Цель: `Yes, I am relaxed.`
 
 ## Для сборщика
 
@@ -132,7 +150,7 @@ new_words:
 anxious — тревожный, на нервах — «тревожный, на нервах». Когда ничего плохого не случилось, а внутри всё равно крутится «а вдруг».
 relaxed — расслаблен, спокоен — «расслаблен, спокоен». Никуда не спешит, плечи опущены.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=listen_build_dictation, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=listen_build_dictation, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ## Самопроверка
 
@@ -159,7 +177,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | anxious | 1 | 2 (слух), 5 (сборка), 7 (ловушка) |
 | relaxed | 3 | 4 (слух), 6 (выбор), 8 (сборка) |
-| thirsty | из прошлых сессий | 7 (выбор), Интро 3 |
-| cold | из прошлых сессий | 6 (ловушка), 10 (реплика задания) |
+| thirsty | из прошлых занятий | 7 (выбор), Интро 3 |
+| cold | из прошлых занятий | 6 (ловушка), 10 (реплика задания) |
 
 ---

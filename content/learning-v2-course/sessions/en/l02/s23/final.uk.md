@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 23 — «Ріг і міст»
+# Англійська · Урок 2 · Заняття 23 — «Ріг і міст»
 
-**Сцена сесії.** Дублін надвечір. Ви йдете пішки до річки, питаєте дорогу в перехожих і з відповідей складаєте місто: де ріг, де міст, де все інше.
+**Сцена заняття.** Дублін надвечір. Ви йдете пішки до річки, питаєте дорогу в перехожих і з відповідей складаєте місто: де ріг, де міст, де все інше.
 
-**Операція:** повторення `Where is + місце` та відповіді `it is + прийменник місця`
+**Як сказати:** повторення `Where is + місце` та відповіді `it is + прийменник місця`
 **Нові слова:** corner, bridge
 **Повертаються:** street, near, behind, shops, station
 
@@ -56,75 +56,90 @@
 
 ---
 
-## Практика (перші завдання)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — corner**
-> **corner** — «ріг». Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`.
+<!-- interaction_id: en:lesson-02:session-23:i01; family: listen_choose -->
+Ціль: `corner`
 
-**2 · Послухайте й оберіть — corner**
-🔊 *corner* → **corner** · corn · cover
-- corn — *Це «кукурудза». Коротше на склад: у `corner` два, у `corn` один.*
-- cover — *«Накривати». З цієї трійки про ріг вулиці лише `corner`.*
+**2 · Послухайте й оберіть**
+<!-- interaction_id: en:lesson-02:session-23:i02; family: listen_choose -->
+Ціль: `corner`
+Варіанти: `corner` · `corn` · `cover`
 
 **3 · Картка слова — bridge**
-> **bridge** — «міст». Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете.
+<!-- interaction_id: en:lesson-02:session-23:i03; family: listen_choose -->
+Ціль: `bridge`
 
-**4 · Послухайте й оберіть — bridge**
-🔊 *bridge* → **bridge** · fridge · bread
-- fridge — *«Холодильник». Відрізняється першим звуком: `f` проти `b`.*
-- bread — *«Хліб». Голосний інший: у `bridge` чути «і», у `bread` — «е».*
+**4 · Послухайте й оберіть**
+<!-- interaction_id: en:lesson-02:session-23:i04; family: listen_choose -->
+Ціль: `bridge`
+Варіанти: `bridge` · `fridge` · `bread`
 
 **5 · Вставте слово — вам сказали «чекайте на розі», а ви не зрозуміли на якому**
-Where is the ___ ? → **corner** · station · shops
-- station — *«Вокзал» — про нього вас не просили, зустріч призначено на розі.*
-- shops — *«Магазини» — теж не те місце, вам назвали ріг.*
+<!-- interaction_id: en:lesson-02:session-23:i05; family: context_gap_grammar -->
+Ціль: `Where is the ___ ?`
+Варіанти: `corner` · `station` · `shops`
 
 **6 · Складіть фразу — «де міст?»**
-Плитки: `the` `bridge` `where` `is` → **Where is the bridge?**
+<!-- interaction_id: en:lesson-02:session-23:i06; family: phrase_builder -->
+Ціль: `Where is the bridge?`
 
 **7 · Послухайте й складіть — «він поруч»**
-🔊 *It is near.* Плитки: `is` `near` `It` `behind` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-23:i07; family: listen_build_dictation -->
+Ціль: `It is near.`
 
 **8 · Вставте слово — вокзал стоїть просто за рядом магазинів**
-The station is ___ the shops. → **behind** · near · corner
-- near — *«Поруч» — але вам сказали конкретніше: вокзал саме за магазинами.*
-- corner — *Це «ріг», а не слово про те, де що стоїть.*
+<!-- interaction_id: en:lesson-02:session-23:i08; family: context_gap_grammar -->
+Ціль: `The station is ___ the shops.`
+Варіанти: `behind` · `near` · `corner`
 
 **9 · Розрізніть звуки — яке з двох про «міст»?**
-🔊 Два слова поспіль.
-*bridge · fridge* → **bridge**
-- fridge — *Це «холодильник». Перший звук інший: `f` замість `b`.*
+<!-- interaction_id: en:lesson-02:session-23:i09; family: sound_contrast -->
+Варіанти: `bridge` · `fridge`
 
-**10 · З'єднайте пари (Speed Match, 4 пари)**
-corner — ріг · bridge — міст · near — поруч · behind — за
+**10 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-23:i10; family: speed_match -->
+Пари: `corner` — ріг · `bridge` — міст · `near` — поруч · `behind` — за
+Ціль: `corner · bridge · near · behind`
 
 **11 · Вставте слово — магазини видно, тільки коли перейдеш міст**
-The shops are ___ the bridge. → **behind** · near · station
-- near — *Тоді б ви їх побачили з цього берега. Магазини відкриваються тільки за мостом.*
-- station — *«Вокзал» — це місце, а не слово про те, де воно.*
+<!-- interaction_id: en:lesson-02:session-23:i11; family: context_gap_grammar -->
+Ціль: `The shops are ___ the bridge.`
+Варіанти: `behind` · `near` · `station`
 
 **12 · Складіть запитання — у руці записка з назвою вулиці, а навколо незнайомий район**
-Плитки: `street` `where` `the` `is` `it` → **Where is the street?**
+<!-- interaction_id: en:lesson-02:session-23:i12; family: phrase_builder -->
+Ціль: `Where is the street?`
 
 **13 · Вставте слово — ви питаєте, як пройти до поїздів**
-Where is the ___ ? → **station** · corner · bridge
-- corner — *«Ріг» — до поїздів він не веде.*
-- bridge — *«Міст» — теж не те місце, де ходять поїзди.*
+<!-- interaction_id: en:lesson-02:session-23:i13; family: context_gap_grammar -->
+Ціль: `Where is the ___ ?`
+Варіанти: `station` · `corner` · `bridge`
 
 **14 · Послухайте й складіть — «магазини за вокзалом»**
-🔊 *The shops are behind the station.* Плитки: `behind` `The` `station` `shops` `the` `are` → **The shops are behind the station.**
+<!-- interaction_id: en:lesson-02:session-23:i14; family: listen_build_dictation -->
+Ціль: `The shops are behind the station.`
 
 **15 · Складіть відповідь — у вас запитали про вокзал, а він за два кроки**
-Плитки: `near` `It` `is` `are` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-23:i15; family: phrase_builder -->
+Ціль: `It is near.`
 
-**16 · Складіть фразу — «вулиця за вокзалом»**
-Плитки: `the` `street` `is` `behind` `The` `station` → **The street is behind the station.**
+**16 · Послухайте й складіть — працівник біля схеми пояснює, де розташована вулиця**
+<!-- interaction_id: en:lesson-02:session-23:i16; family: listen_build_dictation -->
+Ціль: `The street is behind the station.`
 
-**17 · Скажіть уголос — ви біля річки, питаєте дорогу й отримуєте відповідь**
-🎙 Спитайте про міст і відповідайте собі, де він.
-**Where is the bridge? It is near. It is behind the shops.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-23:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Where is the bridge?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-23:i17:s02; family: scripted_repeat_compare -->
+Ціль: `It is near.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-23:i17:s03; family: scripted_repeat_compare -->
+Ціль: `It is behind the shops.`
 
 ## Для сборщика
 
@@ -132,7 +147,7 @@ new_words:
 corner — ріг — Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`.
 bridge — міст — Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_build_dictation, 8=context_gap_grammar, 9=sound_contrast, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=phrase_builder, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_build_dictation, 8=context_gap_grammar, 9=sound_contrast, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=context_gap_grammar, 14=listen_build_dictation, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ## Самоперевірка
 
@@ -160,23 +175,11 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 |---|---|---|
 | corner | 1 | 2 (слух), 5 (вибір) |
 | bridge | 3 | 4 (слух), 6 (складання), 9 (звуки) |
-| near | з минулих сесій | 7 (складання на слух), 8 (варіант вибору) |
-| behind | з минулих сесій | 7 (плитка), 8 (правильна відповідь) |
+| near | з минулих занять | 7 (складання на слух), 8 (варіант вибору) |
+| behind | з минулих занять | 7 (плитка), 8 (правильна відповідь) |
 
 ---
 
 🟡 **Варто врахувати**
 - Пастка `Where the corner is?` для українців природна так само, як для росіян — у нас теж «де ріг?» без дієслова-зв'язки. Залишив без заміни.
 - Пастка з пропуском `the` працює сильніше, ніж у російського майстра: артиклів в українській немає взагалі.
-
-🧩 **Приховані зв'язки**
-- Англійські слова, фрази, пастки, номери й порядок завдань, блок «Для сборщика» — байт у байт як у майстрі.
-- Правка інтро 1 змінила опору, але не змінила ✅ і ❌ відповіді, тож таблиця самоперевірки лишилась чинною.
-
----
-
-- Виправив усі чотири зауваження судді.
-- Службовий заголовок практики більше не російською.
-- Пояснення про ріг тепер спирається на українську мову: у нас два слова — «кут» і «ріг», а в англійській одне на обидва.
-- Прибрав кальку «саме near» і незграбне «те, чим переходять річку» — замінив на природні українські формулювання.
-- Англійська частина, номери завдань і блок для збірника не змінювалися.

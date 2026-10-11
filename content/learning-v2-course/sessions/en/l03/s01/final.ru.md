@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 1 — «Первая коробка»
+# Английский · Урок 3 · Занятие 1 — «Первая коробка»
 
-**Сцена сессии.** Вы обустраиваете новую квартиру. Друг помогает открыть первую коробку, а вы по очереди называете вещи, которые достаёте.
+**Сцена занятия.** Вы обустраиваете новую квартиру. Друг помогает открыть первую коробку, а вы по очереди называете вещи, которые достаёте.
 
-**Новая операция:** назвать один предмет: `a + noun`  
+**Как сказать:** назвать один предмет: `a + noun`  
 **Новые слова:** chair, table, lamp  
 **Возвращаются:** it is, flat, ready
 
@@ -18,7 +18,7 @@
 
 - ✅ **It is a chair.**
 - ❌ It is chair. — *Перед названием одного предмета пропало `a`: `It is a chair`.*
-- ❌ It a chair. — *После `It` нужна скрепка `is`: `It is a chair`.*
+- ❌ It a chair. — *После `It` нужно `is`: `It is a chair`.*
 
 ---
 
@@ -32,7 +32,7 @@
 
 - ✅ **It is a table.**
 - ❌ It is table. — *Даже когда стол виден, перед названием одного предмета нужно `a`: `a table`.*
-- ❌ It am a table. — *С `It` работает скрепка `is`, а не `am`: `It is a table`.*
+- ❌ It am a table. — *С `It` используется `is`, а не `am`: `It is a table`.*
 
 ---
 
@@ -46,82 +46,89 @@
 
 - ✅ **It is a lamp.**
 - ❌ It is lamp. — *Перед названием одного предмета пропало `a`: `It is a lamp`.*
-- ❌ It are a lamp. — *С `It` нужна скрепка `is`: `It is a lamp`.*
+- ❌ It are a lamp. — *С `It` нужно `is`: `It is a lamp`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — chair**  
-> **chair** — «стул». Предмет мебели, на котором сидят.
+**1 · Карточка слова — chair**
+<!-- interaction_id: en:lesson-03:session-01:i01; family: listen_choose -->
+Цель: `chair`
 
-**2 · Послушайте и выберите — какое слово произнёс помощник**  
-🔊 *chair* → **chair** · share · cheer
-- share — *Начало `share` похоже на «ш», а начало `chair` — на «ч». В записи `chair`.*
-- cheer — *В `cheer` середина ближе к «и», в `chair` — к «э». В записи звучит `chair`.*
+**2 · Послушайте и выберите — какое слово произнёс помощник**
+<!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
+Цель: `chair`
+Варианты: `chair` · `share` · `cheer`
 
-**3 · Карточка слова — table**  
-> **table** — «стол». На него ставят вещи, за ним едят или работают.
+**3 · Карточка слова — table**
+<!-- interaction_id: en:lesson-03:session-01:i03; family: listen_choose -->
+Цель: `table`
 
-**4 · Послушайте и выберите — какое слово прозвучало у второй коробки**  
-🔊 *table* → **table** · fable · label
-- fable — *В `fable` первым слышно «ф», а в `table` — «т». В записи `table`.*
-- label — *В `label` первым слышно «л», а в `table` — «т». В записи `table`.*
+**4 · Послушайте и выберите — какое слово прозвучало у второй коробки**
+<!-- interaction_id: en:lesson-03:session-01:i04; family: listen_choose -->
+Цель: `table`
+Варианты: `table` · `fable` · `label`
 
-**5 · Соберите название — друг спрашивает `What is it?`; вы достали стул**  
-Плитки: `chair` `A` `am` → **A chair.**  
-Лишняя плитка: `am`.
-- am — *После `a` сразу называем предмет: `a chair`. Скрепка `am` здесь не нужна.*
+**5 · Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой**
+<!-- interaction_id: en:lesson-03:session-01:i05; family: phrase_builder -->
+Цель: `It is a chair.`
+Варианты: `am`
 
-**6 · Карточка слова — lamp**  
-> **lamp** — «лампа». Её включают, когда в комнате темно.
+**6 · Карточка слова — lamp**
+<!-- interaction_id: en:lesson-03:session-01:i06; family: listen_choose -->
+Цель: `lamp`
 
-**7 · Послушайте и выберите — какое слово произнёс друг**  
-🔊 *lamp* → **lamp** · camp · damp
-- camp — *В `camp` первый звук — «к», в `lamp` — «л». В записи `lamp`.*
-- damp — *В `damp` первый звук — «д», в `lamp` — «л». В записи `lamp`.*
+**7 · Послушайте и выберите — какое слово произнёс друг**
+<!-- interaction_id: en:lesson-03:session-01:i07; family: listen_choose -->
+Цель: `lamp`
+Варианты: `lamp` · `camp` · `damp`
 
-**8 · Соберите фразу — из следующей упаковки показался стол**  
-Плитки: `table` `It` `a` `is` `am` → **It is a table.**  
-Лишняя плитка: `am`.
-- am — *После `It` уже стоит нужная скрепка `is`. Форма `am` относится к `I`, а не к `It`.*
+**8 · Соберите фразу — из следующей упаковки показался стол**
+<!-- interaction_id: en:lesson-03:session-01:i08; family: phrase_builder -->
+Цель: `It is a table.`
+Варианты: `am`
 
-**9 · Скажите вслух — вы показываете квартиру семье по видеосвязи; вас спрашивают, что это за место; скажите «Это квартира» (`flat` — «квартира»)**  
-🎙️ **It is a flat.**
+**9 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-01:i09; family: scripted_repeat_compare -->
+Цель: `It is a flat.`
 
-**10 · Послушайте и соберите — друг называет ещё одну вещь из коробки**  
-🔊 *It is a lamp.* Плитки: `lamp` `It` `a` `is` → **It is a lamp.**
+**10 · Послушайте и соберите — друг называет ещё одну вещь из коробки**
+<!-- interaction_id: en:lesson-03:session-01:i10; family: listen_build_dictation -->
+Цель: `It is a lamp.`
 
-**11 · Соедините пары — вещи из квартиры (Speed Match, 4 пары)**  
-chair — стул · table — стол · lamp — лампа · flat — квартира
+**11 · Соедините пары — вещи из квартиры**
+<!-- interaction_id: en:lesson-03:session-01:i11; family: speed_match -->
+Пары: `chair` — стул · `table` — стол · `lamp` — лампа · `flat` — квартира
+Цель: `chair · table · lamp · flat`
 
-**12 · Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»**  
-It ___ chair. → **is a** · is · a
-- is — *С одним `is` получится `It is chair`: перед названием предмета не хватает `a`.*
-- a — *С одним `a` получится `It a chair`: после `It` пропало `is`. Здесь нужны оба слова: `is a`.*
+**12 · Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»**
+<!-- interaction_id: en:lesson-03:session-01:i12; family: context_gap_grammar -->
+Цель: `It ___ chair.`
+Варианты: `is a` · `is` · `a`
 
-**13 · Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это**  
-Плитки: `lamp` `a` `it` `Is` `Are` → **Is it a lamp?**  
-Лишняя плитка: `Are`.
-- Are — *С `it` вопрос начинается с `Is`: `Is it a lamp?`. Начало `Are it` не подходит.*
+**13 · Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это**
+<!-- interaction_id: en:lesson-03:session-01:i13; family: phrase_builder -->
+Цель: `Is it a lamp?`
+Варианты: `Are`
 
-**14 · Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)**  
-It ___ ready. → **is** · is a · a
-- is a — *`ready` описывает состояние. Перед этим словом отдельно `a` не нужно: `It is ready`.*
-- a — *В `It a ready` пропало `is` и появилось лишнее `a`. О состоянии говорят `It is ready`.*
+**14 · Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)**
+<!-- interaction_id: en:lesson-03:session-01:i14; family: context_gap_grammar -->
+Цель: `It ___ ready.`
+Варианты: `is` · `is a` · `a`
 
-**15 · Скажите вслух — друг собирает лампу; спросите его «Она готова?»**  
-🎙️ **Is it ready?**
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-01:i15; family: scripted_repeat_compare -->
+Цель: `Is it ready?`
 
-**16 · Скажите вслух — друг поднял крышку следующей упаковки; назовите стол**  
-🎙️ **It is a table.**
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-01:i16; family: scripted_repeat_compare -->
+Цель: `It is a table.`
 
-**17 · Соберите фразу — друг решил, что в последней коробке лампа; вы открыли её и возражаете: «Это не лампа»**  
-Плитки: `lamp` `not` `a` `It` `is` `am` → **It is not a lamp.**  
-Лишняя плитка: `am`.
-- am — *После `It` нужна одна скрепка `is`. Перед `lamp` остаётся `a`: `It is not a lamp`.*
-
----
+**17 · Соберите фразу — друг решил, что в последней коробке лампа; вы открыли её и возражаете: «Это не лампа»**
+<!-- interaction_id: en:lesson-03:session-01:i17; family: phrase_builder -->
+Цель: `It is not a lamp.`
+Варианты: `am`
 
 ## Для сборщика
 
@@ -130,7 +137,7 @@ chair — стул — предмет мебели, на котором сидя
 table — стол — поверхность, на которую ставят вещи и за которой едят или работают  
 lamp — лампа — предмет, который включают, когда в комнате темно
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 
 ## Самопроверка

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "article и demonstrative не ставятся вместе: `this/that/these/those + adjective + noun` без `a/an/the`.",
+    "uk": "article і demonstrative не ставляться разом: `this/that/these/those + adjective + noun` без `a/an/the`."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Яркая лампа рядом",
+        "uk": "Яскрава лампа поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`bright` — «яркий». Полная фраза здесь — `This bright lamp is here.` Слово `This` уже показывает на одну лампу рядом, поэтому между ним и `bright lamp` не добавляют `a`. Лампа от лишнего артикля ярче не станет — подпись только сломается.",
+        "uk": "`bright` — «яскравий». Повна фраза тут — `This bright lamp is here.` Слово `This` уже вказує на одну лампу поруч, тому між ним і `bright lamp` не додають `a`. Лампа від зайвого артикля яскравішою не стане — підпис лише зламається."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Яркая лампа стоит рядом. Выберите исправленную подпись.",
+          "uk": "Яскрава лампа стоїть поруч. Оберіть виправлений підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r1",
+              "text": "This bright lamp is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r2",
+              "text": "This a bright lamp is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r3",
+              "text": "A this bright lamp is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r1",
+              "text": "This bright lamp is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r2",
+              "text": "This a bright lamp is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro1:r3",
+              "text": "A this bright lamp is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Яркая лампа стоит рядом. Выберите исправленную подпись.",
+          "uk": "Яскрава лампа стоїть поруч. Оберіть виправлений підпис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бледный коврик у стены",
+        "uk": "Блідий килимок біля стіни"
+      },
+      "bodyByLocale": {
+        "ru": "`pale` — «бледный». Коврик лежит дальше, поэтому подпись — `That pale rug is here.` Слово `That` указывает на один дальний предмет и само занимает место перед `pale rug`; `the` рядом не ставят. Два указателя в одной короткой подписи тянут коврик в разные стороны.",
+        "uk": "`pale` — «блідий». Килимок лежить далі, тому підпис — `That pale rug is here.` Слово `That` указує на один дальній предмет і саме займає місце перед `pale rug`; `the` поруч не ставлять. Два вказівники в одному короткому підписі тягнуть килимок у різні боки."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Бледный коврик лежит у дальней стены. Выберите исправленную подпись.",
+          "uk": "Блідий килимок лежить біля дальньої стіни. Оберіть виправлений підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r1",
+              "text": "That pale rug is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r2",
+              "text": "That the pale rug is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r3",
+              "text": "This pale rug is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r1",
+              "text": "That pale rug is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r2",
+              "text": "That the pale rug is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro2:r3",
+              "text": "This pale rug is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Бледный коврик лежит у дальней стены. Выберите исправленную подпись.",
+          "uk": "Блідий килимок лежить біля дальньої стіни. Оберіть виправлений підпис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полосатые подушки на диване",
+        "uk": "Смугасті подушки на дивані"
+      },
+      "bodyByLocale": {
+        "ru": "`striped` — «полосатый». Для нескольких дальних подушек подходит `Those striped cushions are here.` Слово `Those` уже показывает на группу, поэтому перед `striped cushions` не добавляют `the`. Полос на подушках хватает; ещё одна служебная полоска из слов им не нужна.",
+        "uk": "`striped` — «смугастий». Для кількох дальніх подушок підходить `Those striped cushions are here.` Слово `Those` уже вказує на групу, тому перед `striped cushions` не додають `the`. Смуг на подушках вистачає; ще одна службова смужка зі слів їм не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Полосатые подушки лежат дальше на диване. Выберите исправленную подпись.",
+          "uk": "Смугасті подушки лежать далі на дивані. Оберіть виправлений підпис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r1",
+              "text": "Those striped cushions are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r2",
+              "text": "Those the striped cushions are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r3",
+              "text": "That striped cushions are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r1",
+              "text": "Those striped cushions are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r2",
+              "text": "Those the striped cushions are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-54:intro3:r3",
+              "text": "That striped cushions are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Полосатые подушки лежат дальше на диване. Выберите исправленную подпись.",
+          "uk": "Смугасті подушки лежать далі на дивані. Оберіть виправлений підпис."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "009f1e1ef549a9adf3317b31c04d7016f647638ddec138eef6ce3819a4b99a9c"
+}

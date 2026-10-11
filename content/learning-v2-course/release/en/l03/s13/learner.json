@@ -908,13 +908,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг не расслышал название прибора на соседнем прилавке; скажите «Это радиоприёмник»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-13:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг не расслышал название прибора на соседнем прилавке; скажите «Это радиоприёмник»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -988,5 +988,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "db00510f53b02e326a6be1fc4adbc23fbb5c63df95a08b78e8a65f4b74656699"
+  "learnerFingerprint": "82ff78a90c7b5b603297d0df5c1163cc06b8e81506bea35a5b5a9521b34b2f10"
 }

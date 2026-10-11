@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-02:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "Это «посыльный». Переслушайте первый слог: у `messenger` он другой, а в записи звучит `manager`.",
               "uk": "Це «посланець». Прослухайте ще раз перший склад: у `messenger` він інший, а в записі звучить `manager`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-02:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "Это «пассажир». Переслушайте самый первый звук: `passenger` начинается иначе, а в записи звучит `manager`.",
               "uk": "Це «пасажир». Прослухайте ще раз перший звук: `passenger` починається інакше, а в записі звучить `manager`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-02:session-38:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "Это «зима». Переслушайте самый первый звук: у `winter` перед гласным слышится согласный, а слово в записи начинается сразу с гласного — `intern`.",
               "uk": "Це «зима». Прослухайте ще раз перший звук: у `winter` перед голосним чути приголосний, а слово в записі починається одразу з голосного — `intern`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-02:session-38:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
               "ru": "Это «возвращаться». Переслушайте первый слог: у `return` он другой, а в записи звучит `intern`.",
               "uk": "Це «повертатися». Прослухайте ще раз перший склад: у `return` він інший, а в записі звучить `intern`."
@@ -315,12 +315,12 @@
             "text": "here"
           }
         ],
-        "testedDimension": "Вставьте слово — коллега спрашивает о му",
+        "testedDimension": "Вставте слово — колега запитує про чолов",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега спрашивает о му",
+            "testedDimension": "Вставте слово — колега запитує про чолов",
             "feedbackByLocale": {
               "ru": "Получится «Он уверен». Нужно сказать, что он недавно пришёл работать: `He is new`.",
               "uk": "Вийде «Він упевнений». Треба сказати, що він недавно прийшов працювати: `He is new`."
@@ -329,7 +329,7 @@
           {
             "responseId": "en:lesson-02:session-38:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега спрашивает о му",
+            "testedDimension": "Вставте слово — колега запитує про чолов",
             "feedbackByLocale": {
               "ru": "Это «здесь». Вы сообщаете, что он новенький, поэтому нужно `new`.",
               "uk": "Це «тут». Ви повідомляєте, що він новенький, тому потрібне `new`."
@@ -394,7 +394,7 @@
           {
             "responseId": "en:lesson-02:session-38:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что коллега спро",
+            "testedDimension": "Послухайте й виберіть — що колега запита",
             "feedbackByLocale": {
               "ru": "Это «Где стажёр?». На записи вопрос начинается с `Who`: коллега хочет узнать, кто стажёр.",
               "uk": "Це «Де стажер?». У записі запитання починається з `Who`: колега хоче дізнатися, хто стажер."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-02:session-38:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что коллега спро",
+            "testedDimension": "Послухайте й виберіть — що колега запита",
             "feedbackByLocale": {
               "ru": "Это вопрос о руководителе. На записи последнее слово — `intern`, «стажёр».",
               "uk": "Це запитання про керівника. Останнє слово в записі — `intern`, «стажер»."
@@ -489,12 +489,12 @@
             "text": "here"
           }
         ],
-        "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+        "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+            "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
             "feedbackByLocale": {
               "ru": "Получится «Я новенький». Нужно подтвердить, что вы точно знаете ответ: `I am sure`.",
               "uk": "Вийде «Я новенький». Треба підтвердити, що ви точно знаєте відповідь: `I am sure`."
@@ -503,7 +503,7 @@
           {
             "responseId": "en:lesson-02:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+            "testedDimension": "Вставте слово — ви точно знаєте, хто кер",
             "feedbackByLocale": {
               "ru": "Это «здесь». Для уверенности в ответе нужно слово `sure`.",
               "uk": "Це «тут». Щоб висловити впевненість у відповіді, потрібне слово `sure`."
@@ -660,12 +660,12 @@
             "text": "Where"
           }
         ],
-        "testedDimension": "Вставьте слово — женщина разговаривает с",
+        "testedDimension": "Вставте слово — жінка розмовляє з керівн",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-38:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — женщина разговаривает с",
+            "testedDimension": "Вставте слово — жінка розмовляє з керівн",
             "feedbackByLocale": {
               "ru": "Это слово для вопроса «чей?». Вы узнаёте, кто эта женщина, поэтому нужно `Who`.",
               "uk": "Це слово для запитання «чий?». Ви хочете дізнатися, хто ця жінка, тому потрібне `Who`."
@@ -674,7 +674,7 @@
           {
             "responseId": "en:lesson-02:session-38:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — женщина разговаривает с",
+            "testedDimension": "Вставте слово — жінка розмовляє з керівн",
             "feedbackByLocale": {
               "ru": "Получится «Где она?». Женщину вы видите; сейчас хотите узнать, кто она.",
               "uk": "Вийде «Де вона?». Жінку ви бачите; зараз хочете дізнатися, хто вона."
@@ -750,13 +750,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — незнайома жінка приєдналася до команди; дізнайтеся в колеги, хто вона",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — незнайома жінка приєдналася до команди; дізнайтеся в колеги, хто вона",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -783,13 +783,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вам потрібен керівник, але ви його не бачите; запитайте колегу, де він",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-38:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вам потрібен керівник, але ви його не бачите; запитайте колегу, де він",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -848,5 +848,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4cce2942e4eecade5bc0c6b9af26029f86a89292f054f89b134052324d899e7e"
+  "learnerFingerprint": "be7d46eebb820563d4c761a76ffe4ba82781337b0015f458bc91ce8cc17afc30"
 }

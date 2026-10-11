@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-51:i01",
-    "correctText": "",
+    "correctText": "excuse me",
     "correctResponseId": null
   },
   {
@@ -10,8 +10,13 @@
     "correctResponseId": "en:lesson-02:session-51:i02:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-51:i03",
-    "correctText": "Excuse me. Is it far?",
+    "interactionId": "en:lesson-02:session-51:i03:s01",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:i03:s02",
+    "correctText": "Is it far?",
     "correctResponseId": null
   },
   {
@@ -41,13 +46,18 @@
   },
   {
     "interactionId": "en:lesson-02:session-51:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-51:i09:p1=sorry\nen:lesson-02:session-51:i09:p2=station\nen:lesson-02:session-51:i09:p3=near\nen:lesson-02:session-51:i09:p4=sure",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-51:i10",
+    "interactionId": "en:lesson-02:session-51:i10:s01",
     "correctText": "Excuse me",
-    "correctResponseId": "en:lesson-02:session-51:i10:r1"
+    "correctResponseId": "en:lesson-02:session-51:i10:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:i10:s02",
+    "correctText": "Are you sure?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-51:i11",
@@ -65,9 +75,14 @@
     "correctResponseId": "en:lesson-02:session-51:i13:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-51:i14",
+    "interactionId": "en:lesson-02:session-51:i14:s01",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:i14:s02",
     "correctText": "busy",
-    "correctResponseId": "en:lesson-02:session-51:i14:r1"
+    "correctResponseId": "en:lesson-02:session-51:i14:s02:r1"
   },
   {
     "interactionId": "en:lesson-02:session-51:i15",
@@ -80,8 +95,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-51:i17",
-    "correctText": "Excuse me. Is the station open?",
+    "interactionId": "en:lesson-02:session-51:i17:s01",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-51:i17:s02",
+    "correctText": "Is the station open?",
     "correctResponseId": null
   }
 ]

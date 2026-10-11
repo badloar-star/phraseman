@@ -750,13 +750,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг принял людей у выхода за незнакомцев, но вы оба с ними знакомы; поправьте его: «Они не незнакомцы»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-39:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг принял людей у выхода за незнакомцев, но вы оба с ними знакомы; поправьте его: «Они не незнакомцы»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -783,13 +783,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — знакомая пара вышла из комнаты, и вы хотите попрощаться; спросите друга, где она",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-39:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — знакомая пара вышла из комнаты, и вы хотите попрощаться; спросите друга, где она",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -848,5 +848,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "50c72b5836875f1700ea7a3b9c5d87da1a61ec6be2aad5615008bef69d3ad817"
+  "learnerFingerprint": "576862757c7216ab20b40607a3e8107bcef679f7808db552413a53cca43d77fa"
 }

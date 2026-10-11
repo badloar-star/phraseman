@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `You are` и `You are not`",
+    "uk": "повторення `You are` і `You are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "С человеком напротив — `are`",
+        "uk": "З людиною навпроти — `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`kind` — «добрый». Про человека напротив это будет `You are kind`.\n\nВ английском после `you` нужна форма `are`. Поэтому говорят `You are kind`, а не `You kind`.",
+        "uk": "`kind` — «добрий». Про людину навпроти це буде `You are kind`.\n\nВ англійській після `you` потрібна форма `are`. Тому кажуть `You are kind`, а не `You kind`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый».",
+          "uk": "Колега поскаржився, що допомагає всім, а ніхто цього не цінує. Скажіть йому: «ти добрий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r1",
+              "text": "You are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r2",
+              "text": "You kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r3",
+              "text": "You is kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r1",
+              "text": "You are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r2",
+              "text": "You kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r3",
+              "text": "You is kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый».",
+          "uk": "Колега поскаржився, що допомагає всім, а ніхто цього не цінує. Скажіть йому: «ти добрий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`not` — сразу после `are`",
+        "uk": "`not` — одразу після `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`not` — «не». Место у него одно: между `are` и словом. `You are not tired` — «ты не устал».\n\nВ английском `not` не ставят перед `you`: `You not tired` неверно. После `you` сначала нужна форма `are`.\n\n`wrong` — «неправ». Пригодится, когда человек винит себя зря.",
+        "uk": "`not` — «не». Місце в нього одне: між `are` і словом. `You are not tired` — «ти не втомився».\n\nВ англійській `not` не ставлять перед `you`: `You not tired` неправильно. Після `you` спочатку потрібна форма `are`.\n\n`wrong` — «неправий». Знадобиться, коли людина винить себе даремно."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься».",
+          "uk": "Колега впевнений, що в усьому помилився. Заперечте: «ти не помиляєшся»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r1",
+              "text": "You are not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r2",
+              "text": "You not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r3",
+              "text": "You are wrong not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r1",
+              "text": "You are not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r2",
+              "text": "You not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r3",
+              "text": "You are wrong not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься».",
+          "uk": "Колега впевнений, що в усьому помилився. Заперечте: «ти не помиляєшся»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мягче через `not`",
+        "uk": "М'якше через `not`"
+      },
+      "bodyByLocale": {
+        "ru": "`brave` — «смелый», `calm` — «спокойный», `honest` — «честный».\n\n`You are not wrong` означает «ты не ошибаешься». Это мягкий способ не согласиться с человеком, который слишком строго судит себя.\n\nПорядок железный: `are`, потом `not`, потом слово.",
+        "uk": "`brave` — «сміливий», `calm` — «спокійний», `honest` — «чесний».\n\n`You are not wrong` означає «ти не помиляєшся». Це м'який спосіб не погодитися з людиною, яка надто суворо судить себе.\n\nПорядок залізний: `are`, потім `not`, потім слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый».",
+          "uk": "Колега боявся сказати начальнику про помилку, але сказав. Похваліть його прямо: «ти сміливий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r2",
+              "text": "You brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r3",
+              "text": "You am brave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r2",
+              "text": "You brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r3",
+              "text": "You am brave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый».",
+          "uk": "Колега боявся сказати начальнику про помилку, але сказав. Похваліть його прямо: «ти сміливий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "df74169463985502487965624449a484e43628410640deb7cc752af86d88050d"
+}

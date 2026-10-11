@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-21:i01",
-    "correctText": "",
+    "correctText": "short",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i03",
-    "correctText": "",
+    "correctText": "thin",
     "correctResponseId": null
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i07",
-    "correctText": "",
+    "correctText": "blond",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-21:i08",
-    "correctText": "",
+    "correctText": "young",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-21:i11:p1=short\nen:lesson-01:session-21:i11:p2=thin\nen:lesson-01:session-21:i11:p3=young\nen:lesson-01:session-21:i11:p4=tall",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-21:i13",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,18 @@
     "correctResponseId": "en:lesson-01:session-21:i17:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-21:i18",
-    "correctText": "I am tired. You are new. He is quiet.",
+    "interactionId": "en:lesson-01:session-21:i18:s01",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i18:s02",
+    "correctText": "You are new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i18:s03",
+    "correctText": "He is quiet.",
     "correctResponseId": null
   }
 ]

@@ -1,43 +1,33 @@
 {
-  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
-  "reviewer": "/root/s22_truth",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "medium",
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s22",
+  "role": "judge_nonsense",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "3ae405403b39962f000e5f0f302f8f1cf37ce297a17d8c64f91a4f923be4cdbe",
+  "exactRuSha256": "3ae405403b39962f000e5f0f302f8f1cf37ce297a17d8c64f91a4f923be4cdbe",
+  "exactUkSha256": "1c733d5bdd29d2da3ef40ae81d05f7a6d0254bb7a8c996392111ad422d433f45",
+  "practiceAtomicSha256": "6800e4e66fe2806f3d37b44f80f38781a92413a20804833236563ce01ba3da18",
+  "localeHashes": {
+    "ru": "3ae405403b39962f000e5f0f302f8f1cf37ce297a17d8c64f91a4f923be4cdbe",
+    "uk": "1c733d5bdd29d2da3ef40ae81d05f7a6d0254bb7a8c996392111ad422d433f45"
+  },
   "verdict": "PASS",
-  "problems": [],
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
   "evidence": [
-    "Cambridge bottle/battle/beetle vowel contrasts UK/US support positive cues.",
-    "Cambridge bowl/bull/ball diphthong versus steady vowels; no one ball mouth shape across accents.",
-    "plate/slate/late onsets and shared leɪt accurate.",
-    "Definitions support container/shape/sense boundaries; known regular written plurals.",
-    "Intro1 one word scoped to plural list label, artificial repetition line taste only.",
-    "Listening 2/4/8 and dictation11 neutral, dish serving-tableware positive contacts10/14/15."
+    "Bottles, nested bowls, plates and returning dishes are consistent inventory checks."
   ],
-  "verdict_reason": "Новая строка точно описывает bottle → bottles как письменное добавление s; фраза про остальные бутылки — прозрачный юмор, а не буквальное языковое утверждение. Весь остальной ранее проверенный объём неизменён: нейтральные аудиопромпты, двусторонние фонетические признаки, значения и единый смысл dish/dishes в контактах 10, 14 и 15 сохраняют PASS. Фактическое аудио проверенным не объявляется.",
-  "actualAudio": "NOT_REVIEWED",
-  "baseSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
-  "changedLines": [
-    15
-  ],
-  "remainingIssues": [],
-  "reviewHistory": [
-    {
-      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
-      "reviewer": "/root/s22_truth",
-      "model": "gpt-5.6-sol",
-      "reasoningEffort": "medium",
-      "verdict": "PASS",
-      "problems": [],
-      "evidence": [
-        "Cambridge bottle/battle/beetle vowel contrasts UK/US support positive cues.",
-        "Cambridge bowl/bull/ball diphthong versus steady vowels; no one ball mouth shape across accents.",
-        "plate/slate/late onsets and shared leɪt accurate.",
-        "Definitions support container/shape/sense boundaries; known regular written plurals.",
-        "Intro1 one word scoped to plural list label, artificial repetition line taste only.",
-        "Listening 2/4/8 and dictation11 neutral, dish serving-tableware positive contacts10/14/15."
-      ],
-      "verdict_reason": "Все языковые, смысловые и фонетические утверждения исходника подтверждаются первичными источниками; фактическое аудио не проверено.",
-      "actualAudio": "NOT_REVIEWED"
-    }
-  ]
+  "verdictReason": "Bottles, nested bowls, plates and returning dishes are consistent inventory checks."
 }

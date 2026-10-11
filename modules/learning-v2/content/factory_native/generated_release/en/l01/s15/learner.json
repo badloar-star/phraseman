@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — polite",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — serious",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -407,7 +407,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — lucky",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -526,7 +526,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — sad",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -583,11 +583,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -909,19 +909,19 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-15:i17",
+      "interactionId": "en:lesson-01:session-15:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ты честный, я не грустный»",
+      "prompt": "Соберите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ты честный, я не грустный»",
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are honest. I am not sad.",
+        "targetPhrase": "You are honest.",
         "localizedMeaning": {
           "ru": "Соберите фразу — «ты честный, я не грустный»",
           "uk": "Складіть фразу — «ти чесний, я не сумний»"
@@ -929,7 +929,34 @@
         "orderedTokens": [
           "You",
           "are",
-          "honest.",
+          "honest."
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not sad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты честный, я не грустный»",
+          "uk": "Складіть фразу — «ти чесний, я не сумний»"
+        },
+        "orderedTokens": [
           "I",
           "am",
           "not",
@@ -944,7 +971,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-15:i18",
-      "ordinal": 21,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -986,19 +1013,19 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-15:i19",
-      "ordinal": 22,
+      "interactionId": "en:lesson-01:session-15:i19:s01",
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
+      "prompt": "Соберите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are kind. I am tired.",
+        "targetPhrase": "You are kind.",
         "localizedMeaning": {
           "ru": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
           "uk": "Складіть дві фрази — подякуйте їй за доброту і зізнайтеся, що втомилися"
@@ -1006,7 +1033,32 @@
         "orderedTokens": [
           "You",
           "are",
-          "kind.",
+          "kind."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i19:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
+          "uk": "Складіть дві фрази — подякуйте їй за доброту і зізнайтеся, що втомилися"
+        },
+        "orderedTokens": [
           "I",
           "am",
           "tired"
@@ -1017,26 +1069,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-15:i20",
-      "ordinal": 23,
+      "interactionId": "en:lesson-01:session-15:i20:s01",
+      "ordinal": 25,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — финал разговора",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-15:i20:audio"
+        "en:lesson-01:session-15:i20:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — финал разговора",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-15:i20:audio",
-          "transcript": "You are polite. You are calm. You are lucky."
+          "audioTargetId": "en:lesson-01:session-15:i20:s01:audio",
+          "transcript": "You are polite."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "You are polite. You are calm. You are lucky.",
+        "targetPhrase": "You are polite.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i20:s02",
+      "ordinal": 26,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i20:s02:audio",
+          "transcript": "You are calm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are calm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i20:s03",
+      "ordinal": 27,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i20:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i20:s03:audio",
+          "transcript": "You are lucky."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are lucky.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1050,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 24,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a2a23bf7fa63f1c1dc4e76edad2b0282117bc4301cf898314530be42be8de1b2"
+  "learnerFingerprint": "5bee975c63054e9a29818989d202840813889fe39e7648db338f9e1a8b9cf242"
 }

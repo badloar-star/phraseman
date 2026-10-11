@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-32:i08",
-    "correctText": "",
+    "correctText": "corner",
     "correctResponseId": null
   },
   {
@@ -51,12 +51,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-32:i11",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-32:i11:p1=menu\nen:lesson-02:session-32:i11:p2=cheap\nen:lesson-02:session-32:i11:p3=price\nen:lesson-02:session-32:i11:p4=corner",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-32:i12",
-    "correctText": "",
+    "correctText": "bill",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-32:i18",
-    "correctText": "What is the bill? Where is the toilet?",
+    "interactionId": "en:lesson-02:session-32:i18:s01",
+    "correctText": "What is the bill?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i18:s02",
+    "correctText": "Where is the toilet?",
     "correctResponseId": null
   }
 ]

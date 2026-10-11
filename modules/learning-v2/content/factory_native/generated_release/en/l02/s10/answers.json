@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-10:i01",
-    "correctText": "",
+    "correctText": "crowded",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-10:i03",
-    "correctText": "",
+    "correctText": "noisy",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-10:i09",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-10:i09:p1=crowded\nen:lesson-02:session-10:i09:p2=noisy\nen:lesson-02:session-10:i09:p3=cold\nen:lesson-02:session-10:i09:p4=comfortable",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,28 @@
     "correctResponseId": "en:lesson-02:session-10:i15:r1"
   },
   {
-    "interactionId": "en:lesson-02:session-10:i16",
-    "correctText": "Is it crowded? Is it noisy?",
+    "interactionId": "en:lesson-02:session-10:i16:s01",
+    "correctText": "Is it crowded?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-10:i17",
-    "correctText": "It is crowded. It is noisy. It is ok.",
+    "interactionId": "en:lesson-02:session-10:i16:s02",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i17:s01",
+    "correctText": "It is crowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i17:s02",
+    "correctText": "It is noisy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i17:s03",
+    "correctText": "It is ok.",
     "correctResponseId": null
   }
 ]

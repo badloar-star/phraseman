@@ -1,11 +1,17 @@
 {
-  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
-  "reviewer":"/root/s09_reader",
-  "pages":[
-    {"page":1,"retelling":"Чтобы назвать кресло, перед `armchair` нужно поставить `an`, а для полной фразы «Это кресло» добавить в начале `It is`.","what_i_do_now":"Теперь я скажу `It is an armchair`, а не просто `armchair` и не `It is a armchair`.","understood":true,"problems":[]},
-    {"page":2,"retelling":"Чтобы спросить, духовка ли передо мной, нужно начать с `Is it`, затем поставить `an` и назвать `oven`.","what_i_do_now":"Теперь я спрошу `Is it an oven?`, когда хочу узнать, духовка ли это.","understood":true,"problems":[]},
-    {"page":3,"retelling":"Чтобы сказать, что предмет не зонт, нужно поставить `not` после `It is`, а сочетание `an umbrella` оставить прежним.","what_i_do_now":"Теперь я скажу `It is not an umbrella`, когда хочу возразить, что это не зонт.","understood":true,"problems":[]}
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_reader",
+  "sourceSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactRuSha256": "44e03c9df8ca9f35ac5c99824609ffa6ae7273eddebd56c5d4994aa25167507c",
+  "exactUkSha256": "3bfe9ae141b060ee10831801b542ec84f6fc46903ca3f385f7326f7eca45c3f1",
+  "practiceAtomicSha256": "914ec75d6521ed4215c9716dcb81a202d8a17dc84d6b4fc0f873c2d36692ec4f",
+  "verdict": "PASS",
+  "evidence": [
+    "The full negative requested on Intro 3 is now the full answer assessed in practice, so prompt and response scope match.",
+    "All three intro answers are exact current assessed targets, not merely nearby fragments."
   ],
-  "pages_understood":3,"verdict":"PASS",
-  "verdict_reason":"Все три страницы понятны после одного чтения сверху вниз. На каждой сначала объяснено, что именно нужно добавить или сохранить, а затем показана полная фраза. Я могу своими словами пересказать смысл каждой страницы и точно знаю, что теперь сказать."
+  "blockers": [],
+  "mustFix": []
 }

@@ -1,74 +1,33 @@
 {
-  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
-  "reviewer": "/root/s10_pedagogy",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "medium",
-  "machineFactsHard": [],
-  "plan_fidelity": {
-    "operation_matches": true,
-    "new_words_match": [
-      "candle",
-      "cushion",
-      "plant"
-    ],
-    "missing": [],
-    "extra_grammar_smuggled": []
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s15",
+  "role": "judge_pedagogy",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+  "exactRuSha256": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+  "exactUkSha256": "67cfee68c4af33540348ea016385983079ef735d9951a263061f70cfe71c4329",
+  "practiceAtomicSha256": "5d64bcd7018fa3ece0079fe28d14b81a6a292e6503d19193eade83b3c4e14187",
+  "localeHashes": {
+    "ru": "bf37954aff1dac083e3c8e7fb19c4fce2f110b29089f26a39012dca885293c4a",
+    "uk": "67cfee68c4af33540348ea016385983079ef735d9951a263061f70cfe71c4329"
   },
-  "answer_semantics": [],
-  "boundary": {
-    "unknown_in_explanations": [],
-    "unknown_in_targets": []
-  },
-  "traps": {
-    "silly": [],
-    "feedback_teaches_unknown_form": []
-  },
-  "feedback": {
-    "missing_per_option": [],
-    "duplicated": [],
-    "sound_cues_usable": true
-  },
-  "structure": {
-    "task_count": 17,
-    "below_12": false,
-    "word_first_respected": true,
-    "support_fades": true,
-    "speed_match_boards": [
-      [
-        "candle",
-        "cushion",
-        "plant",
-        "armchair"
-      ]
-    ],
-    "speed_match_overlap": false,
-    "repeated_targets": [],
-    "generic_instructions": [],
-    "combinedBuilders": [
-      3,
-      10,
-      12,
-      14,
-      16,
-      17
-    ]
-  },
-  "returns": {
-    "armchair": [
-      6,
-      11,
-      15
-    ],
-    "oven": [
-      9,
-      10
-    ]
-  },
-  "time_references": [],
-  "cross_session_repeats": [],
-  "textbook_formulas": [],
   "verdict": "PASS",
-  "verdict_reason": "All choices have one scene-supported answer, word-first sequencing and return contacts are intact, and the audio prompts do not disclose targets.",
-  "actualAudioReviewed": false,
-  "substitutionEvidence": "Intro candle/cushion/plant and practice6 armchair9oven12cushion14notcandle17cushion each uniquely grounded. Alternatives fail article/order/declared referent."
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "The session repeatedly distinguishes sound-led a/an choices with one production target per action."
+  ],
+  "verdictReason": "The session repeatedly distinguishes sound-led a/an choices with one production target per action."
 }

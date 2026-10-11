@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 46 — «Короткі форми в чаті»
+# Англійська · Урок 1 · Заняття 46 — «Короткі форми в чаті»
 
-**Сцена сесії.** Чат із друзями: ви пишете з телефона, відповідаєте на ходу, і все стискається до коротких форм.
-**Операція:** короткі форми `I'm` / `he's` / `it's` / `they're` та `isn't` у листуванні
+**Ситуація.** Чат із друзями: ви пишете з телефона, відповідаєте на ходу, і все стискається до коротких форм.
+**Сьогодні.** Короткі форми `I'm` / `he's` / `it's` / `they're` та `isn't` у листуванні.
 **Нові слова:** fun, boring, cool, weird
 **Повертаються:** quiet, new, tired
 
@@ -60,74 +60,112 @@
 ## Практика (17 завдань, підтримка спадає)
 
 **1 · Картка слова — fun**
+<!-- interaction_id: en:lesson-01:session-46:i01; family: listen_choose -->
 > **fun** — «весело». Не про сміх, а про те, від чого вечір минув непомітно.
 
-**2 · Послухайте і виберіть — fun**
+🔊 *fun*
+
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-46:i02; family: listen_choose -->
 🔊 *fun* → **fun** · fan · phone
 - fan — *Це «вентилятор». У `fan` рот відкритий ширше, звук тягнеться довше.*
 - phone — *Інше слово, «телефон». У `fun` голосний короткий, без призвуку на кінці.*
 
 **3 · Картка слова — boring**
+<!-- interaction_id: en:lesson-01:session-46:i03; family: listen_choose -->
 > **boring** — «нудний». Про фільм, урок, розмову, після яких хочеться в телефон.
 
-**4 · Послухайте і виберіть — boring**
+🔊 *boring*
+
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-46:i04; family: listen_choose -->
 🔊 *boring* → **boring** · morning · born
 - morning — *Схоже за кінцівкою, але починається з «м» і означає «ранок».*
 - born — *Коротке, суцільне. У `boring` чути дві частини: `bo-ring`. Слухайте, чи є хвіст після «р».*
 
 **5 · Складіть фразу — «це весело»**
+<!-- interaction_id: en:lesson-01:session-46:i05; family: phrase_builder -->
 Плитки: `It's` `fun` `is` → **It's fun.**
 - зайве `is` — *`is` уже сховане всередині `It's`. Удруге воно не потрібне.*
 
 **6 · Вставте слово — ви тричі глянули на годинник за першу півгодину лекції**
+<!-- interaction_id: en:lesson-01:session-46:i06; family: context_gap_grammar -->
 It's ___ . → **boring** · fun · new
 - fun — *«Весело» — але ви скаржитеся на лекцію, а не хвалите її.*
 - new — *`new` — «новий». Лекція може бути новою і водночас смертельно нудною.*
 
 **7 · Картка слова — cool**
+<!-- interaction_id: en:lesson-01:session-46:i07; family: listen_choose -->
 > **cool** — «класний». Так у чаті схвалюють усе: план, фото, людину.
 
+🔊 *cool*
+
 **8 · Картка слова — weird**
+<!-- interaction_id: en:lesson-01:session-46:i08; family: listen_choose -->
 > **weird** — «дивний». Не страшний, а такий, що не розумієш, навіщо так робити.
 
-**9 · Послухайте і виберіть — weird**
+🔊 *weird*
+
+**9 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-46:i09; family: listen_choose -->
 🔊 *weird* → **weird** · word · we
 - word — *Це «слово». Голосний посередині інший.*
 - we — *Це «ми», голосний там довгий і чистий. У `weird` голосний із призвуком і є приголосний на кінці.*
 
 **10 · Складіть фразу — про сусідів: «вони дивні»**
+<!-- interaction_id: en:lesson-01:session-46:i10; family: phrase_builder -->
 Плитки: `They're` `weird` `are` `He's` → **They're weird.**
 - `are` — *Уже всередині `They're`.*
 - `He's` — *Це про одну людину.*
 
 **11 · Вставте коротку форму — ви пишете другові, що втомилися (`tired`)**
+<!-- interaction_id: en:lesson-01:session-46:i11; family: context_gap_grammar -->
 ___ tired. → **I'm** · Im · I'am
 - Im — *Загубився значок. Він стоїть замість зниклої `a` з `am`.*
 - I'am — *Значок ставлять замість зниклої букви. Тут `a` нікуди не поділася, отже значок не потрібен: або `I am`, або `I'm`.*
 
 **12 · Послухайте і складіть — «він класний»**
+<!-- interaction_id: en:lesson-01:session-46:i12; family: listen_build_dictation -->
 🔊 *He's cool.* Плитки: `He's` `cool` `They're` `weird` → **He's cool.**
 
-**13 · З'єднайте пари (Speed Match, 4 пари)**
+**13 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-46:i13; family: speed_match -->
 fun — весело · boring — нудний · cool — класний · weird — дивний
 
 **14 · Вставте слово — у чаті обговорюють новенького, який цілий день мовчить (`quiet` — «тихий»)**
+<!-- interaction_id: en:lesson-01:session-46:i14; family: context_gap_grammar -->
 He's ___ . → **quiet** · funny · fun
 - funny — *`funny` — «смішний». Смішна людина якраз не мовчить.*
 - fun — *`fun` — про заняття, а не про вдачу людини.*
 
 **15 · Складіть фразу — «серіал не нудний», `not` усередині слова**
+<!-- interaction_id: en:lesson-01:session-46:i15; family: phrase_builder -->
 Плитки: `It` `isn't` `boring` `not` → **It isn't boring.**
 - `not` — *Воно вже сховане в `isn't`. Удруге не потрібне.*
 
 **16 · Вставте слово — друг питає про кав'ярню, куди ви зайшли вперше**
+<!-- interaction_id: en:lesson-01:session-46:i16; family: context_gap_grammar -->
 It's ___ . → **new** · tired · weird
 - tired — *`tired` — «втомлений», це про людину. Кав'ярня не втомлюється.*
 - weird — *«Дивна» — можна, але друг спитав саме про те, що ви там раніше не були: `new`.*
 
-**17 · Скажіть уголос — три повідомлення поспіль, як у чаті**
-🎙 Друзі кличуть у нове місце. Відповідайте: ви втомилися, але місце класне і вечір обіцяє бути веселим.
-**I'm tired. It's cool. It's fun.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s01; family: scripted_repeat_compare -->
+Друг кличе вас у нове місце, а ви втомилися. Відповідайте йому.
+
+🎙 **I'm tired.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s02; family: scripted_repeat_compare -->
+Ви побачили нове місце й хочете схвалити його в чаті.
+
+🎙 **It's cool.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-46:i17:s03; family: scripted_repeat_compare -->
+Друг питає після зустрічі, чи сподобався вам вечір.
+
+🎙 **It's fun.**
 
 ---
 
@@ -139,7 +177,7 @@ boring — нудний — «нудний». Про фільм, урок, ро�
 cool — класний — «класний». Так у чаті схвалюють усе: план, фото, людину.
 weird — дивний — «дивний». Не страшний, а такий, що не розумієш, навіщо так робити.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=word_card, 8=word_card, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=phrase_builder, 11=context_gap_grammar, 12=listen_build_dictation, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -186,18 +224,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 ---
 
-🟡 **Стоит улучшить**
-- Пастка `They weird.` для українця так само природна, як для російськомовного: зв'язка в теперішньому часі пропускається і в українській. Залишена без змін.
-- Блок `## Для сборщика` навмисно залишений як у майстрі — це службовий заголовок для збирача, він має збігатися байт у байт.
-
-🧩 **Скрытые связи**
-- Списки `new_words` і `modes` збирач читає однаково для всіх локалей: зміняться номери завдань у майстрі — українську версію треба перегенерувати разом із ним.
-
----
-
-- Переписал украинскую версию, закрыв все пять замечаний носителя.
-- Убрал кальку «випалої» — теперь везде «зниклої».
-- Заменил «разом вони не йдуть» на нормальное «змішувати їх не можна».
-- Убрал механическое «шматок» из объяснения `isn't` и из подсказки про звучание `born`.
-- Ловушке `Its fun` дал свою украинскую опору: апостроф в украинском разделяет звуки, в английском стоит вместо исчезнувшей буквы.
-- Английские слова, фразы, номера заданий и служебный блок для сборщика не трогал.

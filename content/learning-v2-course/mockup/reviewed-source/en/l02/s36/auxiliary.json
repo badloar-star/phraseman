@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro1:r2": {
+          "ru": "Это «Где он?». Мужчину вы видите; чтобы узнать, кто он, начните с `Who`.",
+          "uk": "Це «Де він?». Чоловіка ви бачите; щоб дізнатися, хто він, почніть із `Who`."
+        },
+        "en:lesson-02:session-36:intro1:r3": {
+          "ru": "Это «Он здесь?». Вам нужно узнать человека, а не проверить, здесь ли он: `Who is he?`",
+          "uk": "Це «Він тут?». Вам треба дізнатися, хто ця людина, а не перевірити, чи вона тут: `Who is he?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro2:r2": {
+          "ru": "С `he` получится «Кто он?». Здесь вопрос о женщине, поэтому нужно `she`.",
+          "uk": "З `he` вийде «Хто він?». Тут запитання про жінку, тому потрібне `she`."
+        },
+        "en:lesson-02:session-36:intro2:r3": {
+          "ru": "В этом отдельном вопросе `is` стоит перед `she`: `Who is she?`",
+          "uk": "В окремому запитанні `is` стоїть перед `she`: `Who is she?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-36:intro3:r2": {
+          "ru": "Из полного английского вопроса выпало `is`. Оно нужно после `Who`.",
+          "uk": "У повному англійському запитанні пропущено `is`. Воно потрібне після `Who`."
+        },
+        "en:lesson-02:session-36:intro3:r3": {
+          "ru": "Это «Где хозяин?». Здесь вы хотите узнать, кто из людей хозяин, поэтому начните с `Who`.",
+          "uk": "Це «Де господар?». Тут ви хочете дізнатися, хто з людей господар, тому почніть із `Who`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc54d89238729e40ffe96055c4a1f0b67569dd147cdef129281bf810611025db"
+}

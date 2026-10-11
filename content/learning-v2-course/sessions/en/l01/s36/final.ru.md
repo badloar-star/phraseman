@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 36 — «Кто все эти люди»
+# Английский · Урок 1 · Занятие 36 — «Кто все эти люди»
 
-**Сцена сессии.** Обед с командой. За столом сидят люди, которых вы видите второй день, и кто-то вполголоса объясняет, кто здесь кто: эти вместе работают, те просто друзья, а вон те вообще с соседнего этажа.
+**Ситуация.** На обеде Ира знакомит вас с Олегом, Мией и соседями по офису. Она объясняет, кто с кем работает, дружит или живёт рядом.
 
-**Операция:** повторение `We are` / `They are` вслух
+**Сегодня.** Скажете, кто вы друг другу: `We are` и `They are` + название группы.
 **Новые слова:** colleagues, friends, neighbours, guests
 **Возвращаются:** together, funny, quiet, kind
 
@@ -16,7 +16,7 @@
 
 Слово длинное, но пугает только на письме. В конце пишем `-gues`, а слышно «гз»: «ко́лигз». Буква `u` там не звучит совсем. И `-s` на конце обязательна: коллега один не бывает.
 
-**За столом спрашивают, вы с соседом друзья или как. Вы вместе работаете.**
+**Мия спрашивает, вы с Олегом друзья или как. Вы вместе работаете.**
 
 - ✅ **We are colleagues.**
 - ❌ We colleagues. — *Английская фраза не стоит без глагола. Русский пропускает «есть», английский — нет: `we are` + кто вы.*
@@ -59,71 +59,101 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — colleagues**
+<!-- interaction_id: en:lesson-01:session-36:i01; family: listen_choose -->
 > **colleagues** — «коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.
 
-**2 · Послушайте и выберите — colleagues**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *colleagues* → **colleagues** · college · call
 - college — *Похоже началом, но это «колледж», и на конце нет звука «з».*
 - call — *Только первый кусок. `colleagues` длиннее: «ко-лигз».*
 
 **3 · Карточка слова — friends**
+<!-- interaction_id: en:lesson-01:session-36:i03; family: listen_choose -->
 > **friends** — «друзья». Те, с кем вы видитесь не потому, что надо.
 
-**4 · Послушайте и выберите — friends**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-36:i04; family: listen_choose -->
 🔊 *friends* → **friends** · trends · friend
 - trends — *Начало другое: тут «тр-», а в `friends` — «фр-».*
 - friend — *Один. Вы слышали `friends`, с «з» на конце — их несколько.*
 
 **5 · Соберите фразу — «мы коллеги»**
+<!-- interaction_id: en:lesson-01:session-36:i05; family: phrase_builder -->
 Плитки: `colleagues` `we` `are` `is` → **We are colleagues.**
 
 **6 · Карточка слова — neighbours**
+<!-- interaction_id: en:lesson-01:session-36:i06; family: listen_choose -->
 > **neighbours** — «соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.
 
 **7 · Карточка слова — guests**
+<!-- interaction_id: en:lesson-01:session-36:i07; family: listen_choose -->
 > **guests** — «гости». Пришли ненадолго: поели, поговорили, ушли.
 
-**8 · Послушайте и выберите — guests**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-36:i08; family: listen_choose -->
 🔊 *guests* → **guests** · guess · gets
 - guess — *«Догадка», и на конце только «с». В `guests` слышно «стс».*
 - gets — *«Гетс», без «с» в середине. В `guests` перед «т» есть «с»: «гэстс».*
 
 **9 · Вставьте слово — эти люди пришли на час и уйдут**
+<!-- interaction_id: en:lesson-01:session-36:i09; family: context_gap_grammar -->
 They are ___ . → **guests** · neighbours · colleagues
 - neighbours — *Соседи никуда не уходят, в том и смысл.*
 - colleagues — *Коллеги — с вашей работы. Эти вообще не отсюда.*
 
 **10 · Соберите фразу — вы живёте в соседних квартирах**
+<!-- interaction_id: en:lesson-01:session-36:i10; family: phrase_builder -->
 Плитки: `neighbours` `are` `we` `am` → **We are neighbours.**
 
 **11 · Послушайте и соберите — «они друзья»**
+<!-- interaction_id: en:lesson-01:session-36:i11; family: listen_build_dictation -->
 🔊 *They are friends.* Плитки: `friends` `are` `They` `is` → **They are friends.**
 
-**12 · Вставьте слово — вы обедаете всей командой, вас спрашивают, почему все за одним столом**
+**12 · Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом**
+<!-- interaction_id: en:lesson-01:session-36:i12; family: context_gap_grammar -->
 We are ___ . → **together** · alone · quiet
 - alone — *«Один». Вас за столом восемь человек.*
 - quiet — *«Тихие». Может, и так, но спросили не про шум, а про то, что вы вместе.*
 
-**13 · Вставьте слово — за соседним столом никто не разговаривает**
-They are ___ . → **quiet** · funny · kind
-- funny — *«Смешные». Молчащие люди редко смешат.*
-- kind — *«Добрые». Может быть, но по молчанию этого не понять.*
+**13 · Соберите фразу — за соседним столом никто не разговаривает**
+<!-- interaction_id: en:lesson-01:session-36:i13; family: phrase_builder -->
+Плитки: `quiet` `They` `are` `is` → **They are quiet.**
 
-**14 · Соедините пары (Speed Match, 4 пары)**
+**14 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-36:i14; family: speed_match -->
 colleagues — коллеги · friends — друзья · neighbours — соседи · guests — гости
 
 **15 · Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех**
+<!-- interaction_id: en:lesson-01:session-36:i15; family: context_gap_grammar -->
 They are ___ . → **funny** · kind · loud · lost
 - kind — *«Добрые». Про доброту речи не было, речь про смех.*
 - loud — *«Громкие». Смешить и шуметь — не одно и то же.*
 - lost — *«Потерялись». Они за столом, всё в порядке.*
 
-**16 · Скажите вслух — вы объясняете, кто есть кто**
-🎙 **We are colleagues. They are guests.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i16:s01; family: scripted_repeat_compare -->
+Ира спрашивает, как вы с Олегом связаны на работе. 🎙 **We are colleagues.**
 
-**17 · Финал сцены — четыре фразы подряд: кто вы друг другу и кто они**
-🎙 Обед заканчивается. Вас просят коротко сказать, кто за вашим столом: вы с ними работаете, вы сидите вместе, вон те — друзья, а те двое у окна — гости.
-**We are colleagues. We are together. They are friends. They are guests.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i16:s02; family: scripted_repeat_compare -->
+Ира спрашивает, кто пришёл на встречу ненадолго. 🎙 **They are guests.**
+
+**18 · Послушайте и соберите — вы работаете в одной компании**
+<!-- interaction_id: en:lesson-01:session-36:i17:s01; family: listen_build_dictation -->
+🔊 *We are colleagues.* Плитки: `colleagues` `We` `are` `is` → **We are colleagues.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i17:s02; family: scripted_repeat_compare -->
+Вы с Олегом стоите у одного стола. 🎙 **We are together.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i17:s03; family: scripted_repeat_compare -->
+Мия показывает на Лену и Дашу, которые смеются вместе. 🎙 **They are friends.**
+
+**21 · Соберите фразу — эти люди пришли ненадолго**
+<!-- interaction_id: en:lesson-01:session-36:i17:s04; family: phrase_builder -->
+Плитки: `guests` `They` `are` `is` → **They are guests.**
 
 ---
 
@@ -135,7 +165,7 @@ friends — друзья — «друзья». Те, с кем вы видите
 neighbours — соседи — «соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.
 guests — гости — «гости». Пришли ненадолго: поели, поговорили, ушли.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=context_gap_grammar, 14=speed_match, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=phrase_builder
 
 ---
 

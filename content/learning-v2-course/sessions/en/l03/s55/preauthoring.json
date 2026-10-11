@@ -1,0 +1,682 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-10-03T20:45:50.936Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "session": "en/l03/s55",
+  "curriculumRow": "| 55 | перенос | выбор всей системы по числу, расстоянию и известности | shape, material, pattern | проводим финальный осмотр квартиры |",
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "da702a4fd1f551b96222163913f82f0ff509a0251c3900ba38b17dd8c5b43c70",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "d06daf4284d173edc54ae576d3cee0a1ed14b728a7f14cf51e1830669b393220",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": "8b55b2a2b00c1aa1a3c2cfdd089e841cc412e845ca60ebdf6f45fb2d5c65fb25"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "Если владелец сказал тебе «посмотри папку Codex на рабочем столе» —",
+      "applied": "Re-established the mandatory Desktop Codex route before inspecting any S55 content evidence."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "- Одинаковая структура трёх абзацев подряд.",
+      "applied": "Applied the plain, human, factually honest voice boundary to the planned apartment inspection and rejected decorative jokes."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "├── judgements/owner/              дословные вердикты владельца",
+      "applied": "Applied the full factory reading order, the 12–20 interaction band, and the requirement to bind the exact course row."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "### Stack navigation (no black frames)",
+      "applied": "Applied the independent guardian boundary and the mandatory HOLD rule when any previous required session is not release-ready."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "`assertLearningV2CurrentGrammarGetsFullSessionV1` и",
+      "applied": "Applied lexical novelty, new-scene, exact-audio-meaning, fading-support, and continuous LOCKED-range admission rules."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "Каждая learner interaction несёт versioned discriminator `modePayload` своей",
+      "applied": "Restricted the provisional S55 sequence to the six active mode-native families and one target phrase per interaction."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "> остаётся прежним: новая operation либо явный review set с learning delta.",
+      "applied": "Treated S55 as transfer with changed-context and support-fade delta, while preserving S56 checkpoint material."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "> изменением или проверкой любой Learning V2 session.",
+      "applied": "Checked exact packet prerequisites, owner-approved blueprint state, lexical first-introduction, and transfer boundary."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "- `allowedLexicalSlotSenseIds` — разрешённые senses для slots;",
+      "applied": "Kept the planned session inside the 32×56 progression and the lesson-level nouns/articles/demonstratives arc."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "- `ru/uk/pl`: возможны zero-copula transfer, свободнее word order, aspect и",
+      "applied": "Applied the English B1 scope and prerequisite discipline without expanding S55 beyond the planned noun system."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "  alone; corpus evidence can inform level estimates.",
+      "applied": "Used source-backed Cambridge grammar claims and avoided inventing language rules from intuition."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "Такой fingerprint переведён в `SUPERSEDED` и больше не разрешает authoring.",
+      "applied": "Confirmed the current English blueprint authority and kept the exact S55 row subordinate to its approved scope."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "лишняя история и попытка сделать текст “красивым” вместо понятного запрещены.",
+      "applied": "Required native RU and UK wording, concrete learner purpose, and no internal QA terminology in learner-facing text."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "## 2. Границы уроков берутся из спецификации, а не придумываются",
+      "applied": "Planned one coherent inspection scene, three aligned intro chains, diagnostic traps, and an independent final."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "research/evidence → 32 lesson boundaries → registries/DAG → 224 chapters →",
+      "applied": "Applied release sequencing and refused authoring because the authoritative prior-range readiness gate is red."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "- Одинаковая структура трёх абзацев подряд.",
+      "applied": "Applied the plain, human, factually honest voice boundary to the planned apartment inspection and rejected decorative jokes."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "da702a4fd1f551b96222163913f82f0ff509a0251c3900ba38b17dd8c5b43c70",
+      "quote": "русская не работает. Механический перевод, чужой язык в поле локали и",
+      "applied": "Applied one coherent scene, one assessed English phrase per interaction, honest feedback, and useful language-bound humor."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "| `РЕШЕНИЕ_ВЛАДЕЛЬЦА_ЮМОР.md` | Почему шутка больше не обязательна |",
+      "applied": "Used machine evidence plus current source bytes; a historical LOCKED label did not override failing readiness gates."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+      "quote": "1. Открыть оба слова на dictionary.cambridge.org и посмотреть **транскрипцию**.",
+      "applied": "Verified countability and determiner boundaries: shape/pattern are count nouns; material is count or uncount by sense; demonstratives encode number/distance and exclude articles."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "   переворачивается** (анимация 180 мс) — на обороте перевод и определение.",
+      "applied": "Placed each first lexical contact behind the native word-card overlay before any assessed phrase use."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "**17 · Скажите три фразы подряд — финал сцены**",
+      "applied": "Applied the approved scene-led opening, diagnostic distractors, and clear reasons to say each target."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "**10 · Послушайте и соберите — «я устал»**",
+      "applied": "Applied review with reduced support and useful retrieval rather than duplicating an earlier interaction."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "Вам задали вопрос, а вы не знаете ответа. Молчать неловко, выдумывать",
+      "applied": "Applied three distinct intro angles and realistic transfer traps while keeping one phrase per interaction."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "d06daf4284d173edc54ae576d3cee0a1ed14b728a7f14cf51e1830669b393220",
+      "quote": "| 20 | Must, have to, should, mustn't | Советы и обязанности: врач, начальник, друг | здоровье, обязанности, советы | 🟢 |",
+      "applied": "Bound the plan to exact row 55: full-system transfer, shape/material/pattern, and final apartment inspection."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "> Калибровочная запись. Судьи конвейера читают эту папку целиком, чтобы",
+      "applied": "Applied the approved scene-led opening, diagnostic distractors, and clear reasons to say each target."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "**Общий вердикт:** «всё хорошо» → ЗОЛОТОЙ ЭТАЛОН после правок.",
+      "applied": "Applied review with reduced support and useful retrieval rather than duplicating an earlier interaction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "**Сессия:** `exemplars/en/l01_s03.ru.md` («I am not», новая операция",
+      "applied": "Applied three distinct intro angles and realistic transfer traps while keeping one phrase per interaction."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03",
+      "applied": "Applied this owner judgement directly to S55 planning, evidence, and the HOLD admission decision."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "Судьи сравнивают новые сессии с ними. Прежняя калибровка «450–500 знаков —",
+      "applied": "Applied this owner judgement directly to S55 planning, evidence, and the HOLD admission decision."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными",
+      "applied": "Required genuinely confusable sound choices for isolated-word listening contacts."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "2026-09-08. Скриншот: английский L2/S49, интро1 «Ответить о себе».",
+      "applied": "Kept humor tied to the language and required option-specific diagnostics instead of merely changing meaning."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "  интро, затем читает все три интро один раз.",
+      "applied": "Required the first two scene sentences to establish the apartment, inspector, and concrete inspection purpose."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "   эталоны, все решения владельца, строку плана и применимый Cambridge-свод.",
+      "applied": "Proved the three English lexical items absent from all 108 prior RU/UK masters and reserved S56 integration."
+    },
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": {
+      "sha256": "8b55b2a2b00c1aa1a3c2cfdd089e841cc412e845ca60ebdf6f45fb2d5c65fb25",
+      "quote": "- `listen_build_dictation` озвучивает и собирает одну фразу.",
+      "applied": "Designed every assessed interaction with one English target/audio/build/gap/voice phrase and one concrete answer."
+    }
+  },
+  "priorLearnerFacingScan": {
+    "through": "en/l03/s54",
+    "evidence": "Fresh independent case-insensitive whole-word scan of all 108 current RU and UK learner-facing masters through L3S54, including visible intros, targets, choices, distractors, feedback and metadata, found shape=0, material=0 and pattern=0. Current hashes for every master are bound below; all 54 sessionReadiness checks returned ready=true with issues=[].",
+    "conflicts": [],
+    "hashes": {
+      "en/l03/s01/final.ru.md": "f8a247640023bf235d6c5f4222133fad436a9ebe7ea359a892e6ecc68f731742",
+      "en/l03/s01/final.uk.md": "9f3bec266cf502e88cf99f758be181702d7c1f207157d42f03137d40ff5aaba5",
+      "en/l03/s02/final.ru.md": "7e98f79e63e20873cbf36f4f4e1c21ac0d6754756f554f984765644a339d7be6",
+      "en/l03/s02/final.uk.md": "69994d5a169bfa8c722bd7615c158d233f6779d787bf93e9b5cb1a0d7662b9ca",
+      "en/l03/s03/final.ru.md": "b6a05b1dd8f223f7ca48f9c66a4d8e759322d83be41354e2698f9b0afc7e1ceb",
+      "en/l03/s03/final.uk.md": "b6d7faa28750a3a0e1916604898bb275850564c88d9413e0e385bda0607ef75d",
+      "en/l03/s04/final.ru.md": "980d83b2077ebbd0b11b518259fd9a9f9edfde41a3c197393cee929446a4f923",
+      "en/l03/s04/final.uk.md": "9e42bee1780bb956c3f8feef30f7de68e958c803132e8778e924249d9f038a2c",
+      "en/l03/s05/final.ru.md": "ba862b2fc3fa411c85a3b003b45ee37b40b13ecb4156ae212b0e9c10cdff585e",
+      "en/l03/s05/final.uk.md": "aba5b029ddde1b21687adba41bf5693ff5561c677a70dd0c2cea38e275889d9e",
+      "en/l03/s06/final.ru.md": "f494d75bfd4ac76aaf99cfd965c91cc50989b5fea59c5640a4c6a5d225bf818e",
+      "en/l03/s06/final.uk.md": "7c682fedcf9af556935893e88c7dd858003982f135ff376e10e6694f6e6dd304",
+      "en/l03/s07/final.ru.md": "9fa1ad28f7e1fc1c1649b2c59fb961d184c82ddc9bf592135c9451492503954b",
+      "en/l03/s07/final.uk.md": "a71009df15260e96f0f73783d363bf6a0bce86593a16236dee4e2f79871ae73c",
+      "en/l03/s08/final.ru.md": "c1023792dc7f68ee0a24a3a6021ac0dfcba56d76097bca7cc2407d4ab91f5ffd",
+      "en/l03/s08/final.uk.md": "b4e71203a2c3012badea838d0fb4665a1c122a130db7994515d229dc4a05de7c",
+      "en/l03/s09/final.ru.md": "0a44e3cf048a21c0d36015ee42b0adf337fdc611fab59bf90b12238fd71585a8",
+      "en/l03/s09/final.uk.md": "d81dba2f7bb1fb2ffa31b487d5528b555f0855411580b36a78456f1897a5fc2b",
+      "en/l03/s10/final.ru.md": "cb93e111055199f6c93e7217000f4ab627ace5a2a2493f20dda3d34ddc2efda1",
+      "en/l03/s10/final.uk.md": "440babac71c188e5303c52bad1c85e046ab921e1b70add8fa387f812d2cb5c24",
+      "en/l03/s11/final.ru.md": "704560b19c766ead55c9abfc3edf4d5e1b333e80f3de935cfdbc15d57e24424c",
+      "en/l03/s11/final.uk.md": "0661440019d345a5151a08ea20f6689808bee2d0352f88779a934cfe6c3ca09b",
+      "en/l03/s12/final.ru.md": "041cf67347a7cb6d6930a17efcb499ae2506bd28a02a990fee709c9641bade97",
+      "en/l03/s12/final.uk.md": "f44ab4ad80cdf65dfe6dec86383ed53ecbe612fcc86794aa761a4067fbda0ae9",
+      "en/l03/s13/final.ru.md": "7f587549d63f436b3937784a7837142a1c4957d0276e8a076c579b2efe17b52a",
+      "en/l03/s13/final.uk.md": "ec528e3b946e9fd6d341a1486a8e1322062f92f48e953fc8c587c2f694231794",
+      "en/l03/s14/final.ru.md": "02226e1152235c0b59f9a4f482e95469558926ca70bec272d874fdafd96c68b5",
+      "en/l03/s14/final.uk.md": "954e7c43de685c18e5c3f5f8a7677f22d8e83daf23cd3b877997e764b9c24d23",
+      "en/l03/s15/final.ru.md": "0ced95f08977f03ed03613425111b92340f3b9444a4efd338c60704c18398ec4",
+      "en/l03/s15/final.uk.md": "9d441f88436ff81a6c0ea580cc770db88b5b38121eedbb451d50b91f60cdca12",
+      "en/l03/s16/final.ru.md": "9ca7284b663adf51ff5a2f408613c0446a0be841d10e60808be89296a71696f8",
+      "en/l03/s16/final.uk.md": "f824a5b40ea672259b353f3762e83c745a5a62953beebef4543cbf4632581597",
+      "en/l03/s17/final.ru.md": "a8f243e56058c2baaad0a470f92dcbf9ce2a851d5915e2d7dce3de8fd3824060",
+      "en/l03/s17/final.uk.md": "867b541d7675e7f9a7e90804a9eabb6db5446bea8bdea2108ac6f99283f3a09b",
+      "en/l03/s18/final.ru.md": "5c1f9756be462972c1623f31467f3f89cc900dcf208a4f6ba11d205d78d665dd",
+      "en/l03/s18/final.uk.md": "021cdc3c01663664c23a76e7ddfb35c01b0051af7830a84b725e2de14a386449",
+      "en/l03/s19/final.ru.md": "7930eb31142cb696b2ca01da1c0158e7fe6e7e3400e8cefa96a701d968c87976",
+      "en/l03/s19/final.uk.md": "5d520a4acc91a70664ec5751f172762d20fb612ac41598c4506f814e87b3daf6",
+      "en/l03/s20/final.ru.md": "786b9bf4e22ce0907b5e7931012e3060a364481d9f6331515e62b3155920ccb3",
+      "en/l03/s20/final.uk.md": "6718f3d18d4fd7c48a2a59c37578bdc65d010dd38641b0887874c5dc03755b0e",
+      "en/l03/s21/final.ru.md": "7079a9e3c26ae6dccab6e8133b23b8a95c6d6b546994e8ed7d4061451136f980",
+      "en/l03/s21/final.uk.md": "0b45e01b5c083469a19e18b20ed123dfa7e420a450e0553e384ae5818e8ee443",
+      "en/l03/s22/final.ru.md": "c14552dc7c979553b971a8a6b834d942d4e9b73500555aea8dc8f094e47c2fac",
+      "en/l03/s22/final.uk.md": "3d0060fb585ba69c536b278bcdf282f5cad44d44e481ff83878413e36aa57228",
+      "en/l03/s23/final.ru.md": "50f50d3b9368d7a422a58d227e5e6166421f40ae9a073d62bf1173291a84ed7a",
+      "en/l03/s23/final.uk.md": "3decb9f174f8f272c648170470fd8108a7767a6705e1bb6d0a0ea2ecc11e6c3c",
+      "en/l03/s24/final.ru.md": "292707639c225713d4d44e06fba4c0ff25f849796b093ff2420cdd4b5b99d3a3",
+      "en/l03/s24/final.uk.md": "579fb3269df5b3722892b915bda07c8ac6b477d84e74d9cc0c11761bb2c0d1af",
+      "en/l03/s25/final.ru.md": "dc5380c67fd10839739fcbd9f45860737bc91ac0663fa0e27370db3d4d62aadd",
+      "en/l03/s25/final.uk.md": "b671b6e4070536e8f8fb5c23d0ed34d66b6787ec62e5942a4e4f3ff3324ba318",
+      "en/l03/s26/final.ru.md": "f2a7803f10715bc8c27fea95bff5e73a6b639f6d1e95f91aae3dcf466191f858",
+      "en/l03/s26/final.uk.md": "86316bb29a7cb20ad525920b600dec42b7dbfeaa7d57bd8a53bee7b093507f17",
+      "en/l03/s27/final.ru.md": "916e12177b008663907c365b4dc5d3df680427f24c282e508bb19d23e97e975e",
+      "en/l03/s27/final.uk.md": "06352b2319ff4a3346d1cc6ccc6368179e772e49f5b7297fa95e10f9ffa3b353",
+      "en/l03/s28/final.ru.md": "7f854982ccf173981c3f9014629400d9e87e1f36e2fd7fab41194431a0ceafee",
+      "en/l03/s28/final.uk.md": "859d0d5757a3abc976bedadc968d12be48f17c6cfced1f91b270f8ec99b0db25",
+      "en/l03/s29/final.ru.md": "86a007449b83351d3461d9a510a03cc18d3569034e114b9f6c9b43de4e3f25d5",
+      "en/l03/s29/final.uk.md": "b081f0af025565de62285445e2293b9f6b80c75f2e0cfb36236c70fa34cf464e",
+      "en/l03/s30/final.ru.md": "ba285f26d172ccc8024f3bc8cbb74f84ed8f06c917354157644ff78818a90ff7",
+      "en/l03/s30/final.uk.md": "f0e94c8048fd5ebf99b5221ced88b9bb79a508485da8e14af0bbd82c216bc04b",
+      "en/l03/s31/final.ru.md": "484c33fc5d3193787f1f519d07d799c1cafe1c295a8482ab66f35a963654400a",
+      "en/l03/s31/final.uk.md": "81336326ab26aafce6f6059fc6f531a5f355d4fc8ce18374ab52222be306ad1b",
+      "en/l03/s32/final.ru.md": "947eb49a22ef6fdb5eefb55e800a679e4573087add7ed3e355cc48b248e425d4",
+      "en/l03/s32/final.uk.md": "24c0a3db38b14d85c2897a4b7dbc14c079bb0af74aeb990ad5b3632511c7aad8",
+      "en/l03/s33/final.ru.md": "84d2b650badf61cbf330ca39372e32c83ab8b10dcd472d0fe14802af3456547c",
+      "en/l03/s33/final.uk.md": "e335b408cfbd36b4b5fe415446af0b57b36fde94e32fa858a5928e88f521aa8a",
+      "en/l03/s34/final.ru.md": "33bf018a78999e86b261269263da91d98f25bb0f7c7621d82b83b568f0a91866",
+      "en/l03/s34/final.uk.md": "5cfad2e2f395ee5e18d643a82db0e8fc9f327a5e732ef91a280b7a57f17d156c",
+      "en/l03/s35/final.ru.md": "d62acfa2612997eccd3d089b11ee3cd4f6c6ce0a6501e8c5d0c23c2462a91f8d",
+      "en/l03/s35/final.uk.md": "6213b2b101c00ec2b75ecf1898434ec5e01b3890b595ff930c22c6c95a30c580",
+      "en/l03/s36/final.ru.md": "4a16c1502764be395a6f7eb67eab80bd99ac4b9d64c552db214a2ba3676b82b9",
+      "en/l03/s36/final.uk.md": "b00bce5c3ced409b9873ded10c82bbf65f24a088415dbccab0732081fd2bc31d",
+      "en/l03/s37/final.ru.md": "8ce54080eb537110c150d9495d6149e21a67089641130225f088553cbdbb9cf8",
+      "en/l03/s37/final.uk.md": "bbf4408e2c3a748d303f50e4ba8a9f8e39df231f066240ad567155f5d56f58e2",
+      "en/l03/s38/final.ru.md": "45dca78958aeab7b7642b3be94ca49d8c11e14176b3821440af2c9f120d5c109",
+      "en/l03/s38/final.uk.md": "7b6731d68081bbb9185b93a4d9e8ea56326aa9f96f8770723d3ee0b9b2e009cd",
+      "en/l03/s39/final.ru.md": "b513eff7f147ce97f8bb830e9d194b3ea4c6d766b5a93edc2a5947019281c0be",
+      "en/l03/s39/final.uk.md": "44625165555f5285675aa9eea447528982fa2c9318a38bf71e07e2fbff1bff33",
+      "en/l03/s40/final.ru.md": "8f5d2b5390e4a41a7345f570f5ec4dd3ce22b0cd3c470a8ddc538727b99b4fbf",
+      "en/l03/s40/final.uk.md": "cbafff44e2b136eb31395b00b5ad5ae012f78429fd0876a29a4d18648e769cc6",
+      "en/l03/s41/final.ru.md": "5b92bb223169cb9dab0e9b94cfc3a6e2d878e401f5bb9c3ccc57d41b6eb449b1",
+      "en/l03/s41/final.uk.md": "45fe3d185d7864ff49828d6974bd80160bc66a18ffefb448dbd2bf2b349d2088",
+      "en/l03/s42/final.ru.md": "d27c1c33cf65880165ecba6fcd10af571578876ca455f2a1d5448f2103c94837",
+      "en/l03/s42/final.uk.md": "9f406d391099d4d8094d5868c02217f5f3bc4c12c6b41df6d925a1c867e9cef3",
+      "en/l03/s43/final.ru.md": "600ff4a92d4ca606834d429eecd549e0294e36828bb6b1744168070aaf538e86",
+      "en/l03/s43/final.uk.md": "8f2ccc36f79e0470b02c9d3c6fb582fcc033e0cf47656d63f883464630f78f4e",
+      "en/l03/s44/final.ru.md": "7f31b177fe2f445cf4b0abff7ac4941c23323e4351e07144f62425591b56c38b",
+      "en/l03/s44/final.uk.md": "0caa5606accf56a9f5ad90f570169ea954a15c32752bec011aeb03584bb2f711",
+      "en/l03/s45/final.ru.md": "f2780cc53e8ead36428742100910d547a0cd2d55e2373da07aff5328c95644ef",
+      "en/l03/s45/final.uk.md": "54137c9c63bb9730bd843ff1d9c0421dcea95919b1e53b87872adb50a15e6cb3",
+      "en/l03/s46/final.ru.md": "5ae61def4d87c8c49a3d981c45766b082a11ef76d61b51d7c15cb08b5af5047c",
+      "en/l03/s46/final.uk.md": "4648da664c15342d26d109fbfe3b730cbc2d17b5cabd41c1c4c7182187d2ecf8",
+      "en/l03/s47/final.ru.md": "99ef42491f05a9fb17e50ba92fa4fbefd755f54d053fc231e6ac52047e462dd6",
+      "en/l03/s47/final.uk.md": "51228eb217387925e1a6112244b2cafc061feeecc9404e916174a76de5192de2",
+      "en/l03/s48/final.ru.md": "ba8e538fce92f33f06040046f036c48007621c32a521fe86eef8256685f960e9",
+      "en/l03/s48/final.uk.md": "f0a029df27313e9db04e9f1b781ccc3d0bea286af7899dd0e20a5496fcb22d0d",
+      "en/l03/s49/final.ru.md": "8efe1af65a056c0642b8c85134b408243e36a6e920045c80ca79550ad8619d18",
+      "en/l03/s49/final.uk.md": "7f9d10232bc33f0acf90aa1ff8fbb70c195294f470129c433cd07d4603d2e9ec",
+      "en/l03/s50/final.ru.md": "874840d059f5c08dc1b8f0fc324eb054ca1938003770926b95071ddf2cab7c23",
+      "en/l03/s50/final.uk.md": "58045bd320eeee2703bf7c6de4650bab7e26568bd5e151bdbfc74c5c97c0e858",
+      "en/l03/s51/final.ru.md": "d6d921b1cd188f79fa8d26c9835a3a1a5636e789ca66738f0d5cf530aa2df034",
+      "en/l03/s51/final.uk.md": "64d5a38fa63427388e4a7579c1bf450ff12c00fb7d2f7de461b1177b04d2beb4",
+      "en/l03/s52/final.ru.md": "500f7bfe76a437b7866088b66af29eec46a69ce01c7e2692351b975bc5c80676",
+      "en/l03/s52/final.uk.md": "da7a548be9798f5876498c56c0998be250c9319dd7154fcfb7e9ea21b0ea5fd9",
+      "en/l03/s53/final.ru.md": "7c328c958e8121374fff4e4143593535d495db51449917fe9a4f7619e6da90a7",
+      "en/l03/s53/final.uk.md": "542b60606a62c1e47ad9565166bddc18f7f75fffcdcbdf6f7467f14879b29661",
+      "en/l03/s54/final.ru.md": "862d039d02f071f5cff021427d0cb8fc14a81d3fcccd56bf96a2e89f854a6077",
+      "en/l03/s54/final.uk.md": "a5f21a19d4dfbc646510a90706b6de7012ac4ad9d2134cef88ecfa82bad2a218"
+    }
+  },
+  "newWords": [
+    "shape",
+    "material",
+    "pattern"
+  ],
+  "retrievalWords": [
+    "a",
+    "the",
+    "this",
+    "that",
+    "these",
+    "those",
+    "round",
+    "square",
+    "wooden",
+    "metal",
+    "plastic",
+    "soft",
+    "pale",
+    "striped"
+  ],
+  "cambridgeEvidence": "Cambridge facts applied from the factory summary and noun checks: shape and pattern are count nouns in the intended senses, so one first-mentioned item can take a/an and identifiable items can take the; material is countable for kinds/samples and uncountable for substance, so this/the material and plural materials require scene-controlled senses. This/that take singular count or uncountable nouns; these/those take plurals; distance selects this/these versus that/those; a/an marks one not-yet-identified count referent; the marks an identifiable referent; an article cannot co-occur with a demonstrative.",
+  "scene": "Владелец квартиры и инспектор проводят финальный осмотр: у входа сверяют форму зеркала, рядом трогают образец обивки, а у дальней стены проверяют рисунки на обоях по листу осмотра.",
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "The shape is round.",
+      "practiceLink": "T1–T2 ground shape; T8 scores the exact known-feature phrase; T11 and T16 vary distance and knownness; that decision feeds the unseen T17 selector."
+    },
+    {
+      "intro": 2,
+      "target": "This material is soft.",
+      "practiceLink": "T3–T4 ground material; T9 scores the exact nearby-sample phrase; T12 and T15 change knownness and number before T17 removes support."
+    },
+    {
+      "intro": 3,
+      "target": "That pattern is striped.",
+      "practiceLink": "T5–T6 ground pattern; T10 checks the exact spoken meaning; T13 and T14 contrast first mention and near plural; T17 independently selects far plural."
+    }
+  ],
+  "independentFinal": {
+    "target": "Those patterns are striped.",
+    "independence": "T17 is an unseen one-phrase builder for several already visible patterns at the far wall. No earlier interaction uses this exact target; the learner must select plural those from number and distance and omit an article."
+  },
+  "proposedSequence": [
+    {
+      "task": 1,
+      "family": "listen_choose",
+      "target": "shape",
+      "purpose": "word-card overlay then phonetic recognition; one correct whole-word choice"
+    },
+    {
+      "task": 2,
+      "family": "scripted_repeat_compare",
+      "target": "shape",
+      "purpose": "independent form retrieval and spoken comparison"
+    },
+    {
+      "task": 3,
+      "family": "listen_choose",
+      "target": "material",
+      "purpose": "word-card overlay then phonetic recognition"
+    },
+    {
+      "task": 4,
+      "family": "scripted_repeat_compare",
+      "target": "material",
+      "purpose": "independent form retrieval and spoken comparison"
+    },
+    {
+      "task": 5,
+      "family": "listen_choose",
+      "target": "pattern",
+      "purpose": "word-card overlay then phonetic recognition"
+    },
+    {
+      "task": 6,
+      "family": "scripted_repeat_compare",
+      "target": "pattern",
+      "purpose": "independent form retrieval and spoken comparison"
+    },
+    {
+      "task": 7,
+      "family": "speed_match",
+      "target": "shape/material/pattern plus round/soft/striped",
+      "purpose": "meaning retrieval with no sentence bundle"
+    },
+    {
+      "task": 8,
+      "family": "listen_build_dictation",
+      "target": "The shape is round.",
+      "purpose": "known singular feature; exact audio and hidden target match"
+    },
+    {
+      "task": 9,
+      "family": "phrase_builder",
+      "target": "This material is soft.",
+      "purpose": "near material sample; demonstrative without article"
+    },
+    {
+      "task": 10,
+      "family": "listen_choose",
+      "target": "That pattern is striped.",
+      "purpose": "exact spoken meaning for one distant pattern"
+    },
+    {
+      "task": 11,
+      "family": "context_gap_grammar",
+      "target": "This shape is square.",
+      "purpose": "single near/far determiner gap"
+    },
+    {
+      "task": 12,
+      "family": "phrase_builder",
+      "target": "The material is metal.",
+      "purpose": "return to an already identified sample"
+    },
+    {
+      "task": 13,
+      "family": "context_gap_grammar",
+      "target": "It is a striped pattern.",
+      "purpose": "single a/the/demonstrative choice for a first-mentioned count noun"
+    },
+    {
+      "task": 14,
+      "family": "listen_build_dictation",
+      "target": "These patterns are pale.",
+      "purpose": "near plural retrieval with exact dictation audio"
+    },
+    {
+      "task": 15,
+      "family": "context_gap_grammar",
+      "target": "Those materials are soft.",
+      "purpose": "far plural choice for visible fabric samples"
+    },
+    {
+      "task": 16,
+      "family": "listen_choose",
+      "target": "The shape is square.",
+      "purpose": "knownness contrast with exact localized meaning"
+    },
+    {
+      "task": 17,
+      "family": "phrase_builder",
+      "target": "Those patterns are striped.",
+      "purpose": "independent final selecting plural, distance and a demonstrative without article"
+    }
+  ],
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "\n---\n\n## 2. Что прочитать перед первой сессией\n\nРовно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/КОНСТИТУЦИЯ.md` — единственный документ правил.\n2. `фабрика/exemplars/en/l01_s01.ru.md`, `l01_s",
+      "evidence": "All three Desktop Codex start files were reread before audit; the full factory route, exemplars, owner judgements, row and word-card contract were then inspected."
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": " дословные owner-вердикты при написании текста.\nПосле compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпроходится заново. Пропуск любого пункта означает `HOLD`: новую сессию нельзя\nвыпускать или доба",
+      "evidence": "Repository and V2 routes were reread, including the four ORBIT bootstrap documents; the mandatory prior-range gate controls this HOLD."
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": "меняет объём работы — спроси, не решай сам.\r\n4. Правило = текст в промпте + машинная проверка. Одного текста мало.\r\n5. Проверь сторож на файле с дефектом И на эталоне. «Молчит» ≠ «работает».\r\n6. Введя пр",
+      "evidence": "Constitution and method require one phrase per interaction, one coherent scene, machine evidence, and no self-issued author PASS; the plan follows those limits."
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что\n> видит ученик (локаль ru). Все судьи конвейера сравнивают нов",
+      "evidence": "All three exemplars were reread and applied for scene-led openings, word-first grounding, realistic traps, support fade, and distinct intro angles."
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "al growth или повтор\nтого же учебного шага.\n\n1. Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n   полезных lexical senses. Пустой `new_words`, повтор ранее введённого слова\n",
+      "evidence": "Every current owner judgement was reread; current rules require new senses, a new scene, exact audio meaning, live voice, and one phrase per interaction."
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 55 | перенос | выбор всей системы по числу, расстоянию и известности | shape, material, pattern | проводим финальный осмотр квартиры |",
+      "evidence": "The exact current S55 row specifies transfer across number, distance and knownness with shape, material and pattern in a final apartment inspection."
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "и любой модели** — Claude, Codex,\n> кто угодно. Перед написанием сессии откройте этот файл, найдите её грамматику\n> и пишите по формулировкам отсюда. Темы тут нет — проверьте по\n> `",
+      "evidence": "Cambridge-backed factory summary confirms a/an for one unknown count noun, the for an identifiable referent, this/that singular or uncountable, these/those plural, and no article plus demonstrative."
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "тдельный свежий\n   `judge_progression`, который сравнивает текущие байты со всеми предыдущими\n   сессиями урока и проверяет новую лексику, честность grammar progression,\n   новую ситуацию и отсутствие по",
+      "evidence": "All 108 current final.ru.md/final.uk.md masters from S01 through S54 were scanned case-insensitively across visible text, targets, choices, distractors, feedback and metadata."
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "аждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  изменён: одна новая операция либ",
+      "evidence": "Whole-word counts across the 108 prior learner-facing masters are shape=0, material=0, pattern=0; localized category words do not constitute prior English lexical-sense introductions."
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "действительно новых\n  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  изменён: одна новая операция либо явный review set с измеримым learning delta.\n- Пусто",
+      "evidence": "The planned scene is an end-of-work apartment walk-through with an inspector checking a mirror outline, upholstery sample and wall pattern against a room sheet."
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ён: одна новая операция либо явный review set с измеримым learning delta.\n- Пустой `new_words`, повтор ранее введённого слова как нового, прежняя\n  конструкция под другой механикой и",
+      "evidence": "S55 adds no grammar operation; its measured delta is changed-context transfer and support fade across number, distance and knownness before one independent selector."
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "`/`bell`).\n\n---\n\n## ПОРЯДОК ПОДАЧИ НА СТРАНИЦЕ: слово → перевод → фраза\n\n**Источник:** [Teaching vocabulary](https://dictionary.cambridge.org/grammar/british-grammar/) —\nпринцип, об",
+      "evidence": "Each new noun first appears through its native overlay and isolated recognition/repeat contact before any scored sentence uses it."
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "нции после изменения\n   байтов аннулируются.\n9. Все три интро используют новые слова и конкретную ситуацию текущей сессии.\n   Правильный ответ каждой страницы сначала прямо разбирается над вопро",
+      "evidence": "The three intros ground shape, material and pattern in the same apartment inspection and each supplies an exact later practice target."
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": "ning V2, все локали.\n\nПрямое решение владельца: начало каждой сессии должно ощущаться как начало\nнормального урока. Ученик с первого чтения понимает, где он оказался, что\nпроисходит, зачем ему нужна текущая",
+      "evidence": "The opening can immediately state place, participants and purpose: learner and inspector perform a final apartment walk-through and complete the inspection sheet."
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": " новых слов, сцены и practice текущей сессии.\n  Для каждой из трёх страниц он отдельно доказывает цепочку: новое слово и\n  текущая сцена → правильный scored target в заданиях 1–16 → то",
+      "evidence": "Shape runs to T8/T11/T16, material to T9/T12/T15, and pattern to T10/T13/T14, with all determiner decisions feeding the unseen T17 final."
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": "алендарь ученика.\r\n- **Сцена.** У каждой сессии одна сквозная ситуация (владелец, 03.09: «это\r\n  надо делать»). Все вопросы интро и инструкции к заданиям живут внутри неё:\r\n  учени",
+      "evidence": "Every planned interaction concerns the same final apartment inspection; no store, delivery, pickup point, label-repair or furniture-shopping subplot is introduced."
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "ет: диалог, печать, «найди ошибку» отложены |\n| Заданий 12–20, ориентир 17 | |\n| Возвращаемое слово ≥2 касаний | И хотя бы раз правильным ответом |\n| Без грамматических те",
+      "evidence": "The provisional plan contains exactly 17 purposeful interactions, inside the required 12–20 range and without padding."
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "peech` и подписали именем нужной family.\n\n## 2. Единственные шесть активных режимов\n\n| Family | Канонический owner-макет | Неподменяемая учебная операция |\n|---|---|---|\n| `phrase_builder` | `m",
+      "evidence": "The sequence uses only listen_choose, scripted_repeat_compare, speed_match, listen_build_dictation, phrase_builder and context_gap_grammar."
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "hoose` не окрашиваются как английские.\r\n\r\n## 7. Строгий контракт дистракторов\r\n\r\nДистрактор — не случайный неправильный вариант. Он должен быть максимально\r\nблизкой и правдоподобной ловуш",
+      "evidence": "Each choice/gap has one scene-conditioned answer; distractors isolate sound, singular/plural, near/far or a/the/demonstrative errors without multiple valid readings."
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ён.\n7. В `listen_choose` локализованный вариант передаёт только смысл услышанной\n   фразы. Нельзя дописывать `рядом`, `поруч`, `вдали`, `вдалині` или другую\n   информацию, которой нет в targ",
+      "evidence": "Sentence-level listen_choose options translate only the spoken sentence; distance or knownness explanations appear only in option-specific feedback."
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "## Объяснение после ошибки раскрывает уловку\r\n\r\nFeedback обязан назвать выбранный вариант и объяснить:\r\n\r\n1. почему он кажется похожим/подходящим;\r\n2. точную ошибку — звук, значение, лицо, число, вре",
+      "evidence": "Every planned wrong choice names the selected form and explains its exact mismatch with sound, count, distance or discourse status."
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "back объясняет конкретную выбранную ловушку;\r\n- поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI не показывает внутренние названия families и QA-поля.\r\n\r\nВердикт только `ON TRACK` или `HOLD`.",
+      "evidence": "Support moves from overlay and isolated word recognition to exact guided phrases, then mixed determiner retrieval, then an unseen one-phrase final."
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "\nурока видны только уже разблокированные слова; будущие слова не показываются.\nСохранение использует `bookmark-outline` / `bookmark`, а не сердце/лайк, и одно\nсостояние синхронно отражает",
+      "evidence": "The plan stops before S56 checkpoint integration: no full nouns/plurals/articles/demonstratives checkpoint, multi-purchase description or apartment-ready finale."
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "АЦИЮ.\n\n## ВСЕ ТЕКСТЫ ДОЛЖНЫ БЫТЬ ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри требования выше — не стиль и не пожелание. Это условие, при котором\nтекст вообщ",
+      "evidence": "Humor is limited to a natural inspection-sheet misunderstanding tied to pattern/shape choice; no object acts impossibly and no joke is appended for decoration."
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "роке, сессии, прошлом или будущем материале;\r\n- все восемь локалей самостоятельны и не объясняются через русский;\r\n- фразы живые, самостоятельные и не являются filler ради количества;\r\n- дист",
+      "evidence": "RU and UK must be authored independently with exact local meanings; neither locale may explain English through the other."
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": " непрерывного диапазона\r\n`LOCKED`. Сессия `N+1` не может собираться, показываться как готовая или получать\r\nlearner-facing изменения, пока `N` не `LOCKED`. Изменение source уже `LOCKED`\r\nсессии даёт неме",
+      "evidence": "Fresh independent recomputation of sessionReadiness(...,['uk']) for every en/l03/s01 through en/l03/s54 returned ready=true and issues=[]: 54/54 current sessions are release-ready."
+    }
+  ],
+  "mustFix": [],
+  "previousReleaseEvidence": {
+    "readiness": "Fresh independent sessionReadiness(en/l03/s01..s54, [uk]) recomputation checked all 54 directories: 54 ready, 0 not ready, every issues array empty.",
+    "readinessFailures": [],
+    "vocabularyScan": "Exact English whole-word counts across 108 current RU/UK masters: shape=0, material=0, pattern=0; this includes distractors and visible QA metadata in the learner-facing Markdown.",
+    "recentNonRepetition": "S49 furniture colour shopping, S50 room comparison, S51 chair price tags, S52 post-delivery singular choice, S53 pickup-point plural choice, and S54 mixed-label repair were reviewed. S55 instead uses an inspector, an inspection sheet, a mirror outline, upholstery samples and wallpaper patterns.",
+    "futureBoundary": "S56 is the apartment-ready checkpoint integrating nouns, plurals, articles and demonstratives. S55 remains a bounded transfer over number, distance and knownness and does not stage that checkpoint.",
+    "priorRange": "All 108 current RU/UK final masters through L3S54 are bound to exact SHA-256 values in priorLearnerFacingScan.hashes."
+  },
+  "orbitBootstrap": {
+    "documents": [
+      "docs/v2/HANDOVER.md",
+      "docs/v2/README.md",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md",
+      "docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md"
+    ],
+    "applied": "Previously reread as additional execution context; current factory document hashes remain exact and the fresh 54/54 readiness evidence now admits S55 planning."
+  }
+}
+

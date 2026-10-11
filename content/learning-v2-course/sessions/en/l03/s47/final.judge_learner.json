@@ -1,0 +1,74 @@
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_learner",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s47",
+  "sourceSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+  "exactRuSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+  "exactUkSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Hardware-shop repair task gives a new situation and word-first article practice; no composite assessed phrase is present."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "c362182e83c4aa4917a955089143dfdfab99998e0c3801bf71dc2d308b0399c8",
+    "localeSha256": "b2ea9268635a80c8b6d189b4bf48afb73ff6ab9535e150f7b2a0384c5108bb58",
+    "practiceAtomicSha256": "9f50d224b46a7003adf22bd3d8bbfd89b164feba1415617e8bafd15de3ab7543"
+  },
+  "localeSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+  "practiceAtomicSha256": "c88a3bf6da7d0c1d0a1d98ee18db2a4df5dacbc48f66de34bdf7604a8ebe25ea",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "99ef42491f05a9fb17e50ba92fa4fbefd755f54d053fc231e6ac52047e462dd6",
+    "localeSha256": "51228eb217387925e1a6112244b2cafc061feeecc9404e916174a76de5192de2",
+    "practiceAtomicSha256": "db43c476b0712fa49955fabb7a474865fbb4bcb5e05ec9fdca791a480e8bc05b",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "uk": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_learner",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "exactRuSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+    "exactUkSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+    "localeSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+    "localeHashes": {
+      "ru": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+      "uk": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be"
+    },
+    "practiceAtomicSha256": "c88a3bf6da7d0c1d0a1d98ee18db2a4df5dacbc48f66de34bdf7604a8ebe25ea",
+    "evidence": [
+      "Hardware-shop repair task gives a new situation and word-first article practice; no composite assessed phrase is present."
+    ]
+  }
+}

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 33 — «Кілька речей перед вами»
+# Англійська · Урок 3 · Заняття 33 — «Кілька речей перед вами»
 
-**Сцена сесії.** Перед відкриттям благодійного ярмарку ви з волонтером розкладаєте пожертвувані речі. На столі перед вами туфлі, шкарпетки й сорочки: треба назвати кожну групу та попросити відкласти сорочки для продажу.
+**Сцена заняття.** Перед відкриттям благодійного ярмарку ви з волонтером розкладаєте пожертвувані речі. На столі перед вами туфлі, шкарпетки й сорочки: треба назвати кожну групу та попросити відкласти сорочки для продажу.
 
-**Операція:** `these + plural noun` і `These are…` для кількох предметів поруч
+**Як сказати:** `these + plural noun` і `These are…` для кількох предметів поруч
 **Нові слова:** shoe, sock, shirt
 **Для повторення:** this, is, are, hat, please
 
@@ -50,79 +50,96 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — shoe**
-> **shoe** — «туфля». Предмет взуття, що закриває стопу й зазвичай чекає поруч на другу туфлю.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-33:i01; family: listen_choose -->
+Ціль: `shoe`
+Варіанти: `shoe`
 
-**2 · Послухайте й виберіть — яке слово назвав волонтер**
-🔊 *shoe* → **shoe** · show · chew · she
-Значення варіантів: shoe — туфля · show — вистава · chew — жувати · she — вона
-- show — *Обидва слова починаються з `sh`, але в `show` інший голосний і слово закінчується звуком /oʊ/. У записі прозвучало `shoe`.*
-- chew — *Голосний збігається, але `chew` починається зі звука /tʃ/, а `shoe` — з /ʃ/.*
-- she — *Обидва слова починаються з /ʃ/, але `she` закінчується голосним /iː/, а в записі прозвучало /uː/ у `shoe`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-33:i03; family: scripted_repeat_compare -->
+Ціль: `sock`
 
-**3 · Картка слова — sock**
-> **sock** — «шкарпетка». М’яка річ для стопи, яка особливо впевнено вміє губити свою пару.
+**3 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-33:i05; family: listen_choose -->
+Ціль: `shirt`
+Варіанти: `shirt` · `shoe` · `sock`
 
-**4 · Послухайте й виберіть — яке слово назвав волонтер**
-🔊 *sock* → **sock** · sack · sick · shock
-Значення варіантів: sock — шкарпетка · sack — мішок · sick — хворий · shock — потрясіння
-- sack — *Початок і кінець схожі, але в `sack` голосний /æ/, а в записі прозвучав `sock` із /ɒ/ або /ɑː/.*
-- sick — *У `sick` голосний /ɪ/, а в записі прозвучав інший голосний у `sock`.*
-- shock — *Голосний і кінець близькі, але `shock` починається з /ʃ/, а `sock` — з /s/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-33:i02; family: scripted_repeat_compare -->
+Ціль: `shoe`
 
-**5 · Картка слова — shirt**
-> **shirt** — «сорочка». Одяг із коміром і рукавами, який надягають на верхню частину тіла.
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-33:i04; family: listen_choose -->
+Ціль: `sock`
+Варіанти: `sock`
 
-**6 · Послухайте й виберіть — яке слово назвав волонтер**
-🔊 *shirt* → **shirt** · short · skirt · shorts
-Значення варіантів: shirt — сорочка · short — короткий · skirt — спідниця · shorts — шорти
-- short — *Початок і кінець схожі, але в `short` інший голосний. У записі прозвучало `shirt`.*
-- skirt — *`skirt` починається зі сполучення /sk/, а `shirt` — з одного звука /ʃ/.*
-- shorts — *У `shorts` наприкінці чути додатковий /s/, якого немає в `shirt`.*
+**6 · Розрізніть слово — shirt або shoe**
+<!-- interaction_id: en:lesson-03:session-33:i06; family: sound_contrast -->
+Ціль: `shirt`
+Варіанти: `shirt` · `shoe`
 
-**7 · З’єднайте слова зі значеннями — стіл ярмарку**
-shoe — туфля · sock — шкарпетка · shirt — сорочка · hat — капелюх
+**7 · Складіть коротке прохання — ви вибираєте кілька туфель зі столу**
+<!-- interaction_id: en:lesson-03:session-33:i08; family: phrase_builder -->
+Ціль: `These shoes, please.`
 
-**8 · Складіть коротке прохання — волонтер питає, які туфлі відкласти**
-Плитки: `These` `shoes` `please` `This` `shoe` `are` → **These shoes, please.**
+**8 · Послухайте та складіть коротке прохання**
+<!-- interaction_id: en:lesson-03:session-33:i09; family: listen_build_dictation -->
+Ціль: `These socks, please.`
 
-**9 · Скажіть уголос — кілька шкарпеток на столі**
-🎙 **socks** — послухайте, повторіть і порівняйте.
+**9 · З’єднайте слова зі значеннями — стіл ярмарку**
+<!-- interaction_id: en:lesson-03:session-33:i07; family: speed_match -->
+Пари: `shoe` — туфля · `sock` — шкарпетка · `shirt` — сорочка · `hat` — капелюх
+Ціль: `shoe · sock · shirt · hat`
 
-**10 · Послухайте й поставте у відповідь ціле слово — кілька сорочок**
-🔊 *shirts* Плитки: `shirts` `shirt` `shorts` `skirts` → **shirts**
+**10 · Промовте коротке прохання**
+<!-- interaction_id: en:lesson-03:session-33:i10; family: scripted_repeat_compare -->
+Ціль: `This hat, please.`
 
 **11 · Складіть твердження — кілька туфель стоять перед вами**
-Плитки: `These` `are` `shoes` `This` `is` `shoe` → **These are shoes.**
+<!-- interaction_id: en:lesson-03:session-33:i11; family: phrase_builder -->
+Ціль: `These are shoes.`
 
 **12 · Послухайте й виберіть точне значення фрази**
-🔊 *These are hats.* → **Це капелюхи** · Це капелюх · Це туфлі · Ці капелюхи, будь ласка
-- Це капелюх — *Так називають один предмет. У записі `these are` і форма `hats` показують кілька капелюхів.*
-- Це туфлі — *Число збігається, але в записі назвали `hats` — капелюхи, а не туфлі.*
-- Ці капелюхи, будь ласка — *Це прохання вибрати капелюхи. У записі їх просто називають: `These are hats`.*
+<!-- interaction_id: en:lesson-03:session-33:i12; family: listen_choose -->
+Ціль: `These are hats.`
+Варіанти: `Це капелюхи` · `Це капелюх` · `Це туфлі` · `Ці капелюхи, будь ласка`
 
 **13 · Вставте вказівне слово — перед вами кілька сорочок**
-___ are shirts. → **These** · This · That · Is
-- This — *`this` показує на один предмет і поєднується з `is`. Для кількох сорочок потрібне `these`.*
-- That — *`that` показує на один предмет. Тут названо кілька сорочок: `These are shirts`.*
-- Is — *`Is are shirts` не утворює фразу. На початку потрібне вказівне слово `These`.*
+<!-- interaction_id: en:lesson-03:session-33:i13; family: context_gap_grammar -->
+Ціль: `___ are shirts.`
+Варіанти: `These` · `This` · `That` · `Is`
 
-**14 · Скажіть уголос — назвіть кілька шкарпеток перед вами**
-🎙 **These are socks.** — вимовте фразу, потім послухайте зразок і порівняйте.
+**14 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i14; family: scripted_repeat_compare -->
+Ціль: `These are socks.`
 
 **15 · Послухайте й складіть фразу про кілька сорочок**
-🔊 *These are shirts.* Плитки: `These` `are` `shirts` `This` `is` `shirt` → **These are shirts.**
+<!-- interaction_id: en:lesson-03:session-33:i15; family: listen_build_dictation -->
+Ціль: `These are shirts.`
 
 **16 · Складіть коротке прохання — ви вибираєте кілька сорочок зі столу**
-Плитки: `These` `shirts` `please` `are` `This` `shirt` → **These shirts, please.**
+<!-- interaction_id: en:lesson-03:session-33:i16; family: phrase_builder -->
+Ціль: `These shirts, please.`
 
-**17 · Фінал — допоможіть другові біля столу ярмарку**
-🎙 Ярмарок відкрився. Друг питає, що лежить у трьох секціях столу. Назвіть туфлі, шкарпетки й сорочки, потім попросіть у волонтера ці сорочки: **These are shoes. These are socks. These are shirts. These shirts, please.** — скажіть фрази, потім послухайте зразок і порівняйте.
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s01; family: scripted_repeat_compare -->
+Ціль: `These are shoes.`
 
-## Для збирача
-new_words: shoe — туфля — Предмет взуття, що закриває стопу й зазвичай чекає поруч на другу туфлю.
-new_words: sock — шкарпетка — М’яка річ для стопи, яка особливо впевнено вміє губити свою пару.
-new_words: shirt — сорочка — Одяг із коміром і рукавами, який надягають на верхню частину тіла.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+**18 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s02; family: phrase_builder -->
+Ціль: `These are socks.`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s03; family: scripted_repeat_compare -->
+Ціль: `These are shirts.`
+
+**20 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s04; family: listen_build_dictation -->
+Ціль: `These shirts, please.`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=phrase_builder, 8=listen_build_dictation, 9=speed_match, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation
+

@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-40:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-40:i10:p1=host\nen:lesson-02:session-40:i10:p2=manager\nen:lesson-02:session-40:i10:p3=intern\nen:lesson-02:session-40:i10:p4=twins",
     "correctResponseId": null
   },
   {

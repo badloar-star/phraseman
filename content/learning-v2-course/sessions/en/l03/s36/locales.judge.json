@@ -1,8 +1,8 @@
 {
-  "sourceSha256": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
+  "sourceSha256": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
   "localeHashes": {
-    "ru": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
-    "uk": "a1c2ed1e5d3213cf68cc8a2f8cfd33e9bd4936e2db07342411c9bd783b671650"
+    "ru": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+    "uk": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077"
   },
   "locales": {
     "uk": {
@@ -10,12 +10,65 @@
       "blockers": [],
       "must_fix": [],
       "evidence": [
-        "Украинское начало естественно задаёт место, предметы и слуховую задачу.",
-        "Все три определения и исправленные формулировки естественны и самостоятельны.",
-        "Free, power и cycle имеют по одному атомарному значению; listen meanings точны и нейтральны по расстоянию.",
-        "Русизмов, утечки RU и декоративного ИИ-текста не обнаружено."
-      ]
+        "UK localized meanings retain only audio meaning; atomic parity 20/20."
+      ],
+      "mustFix": []
     }
   },
-  "verdict": "PASS"
+  "verdict": "PASS",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "3dc86a0e19fc7cc5f1a0e366e397ae297402dd2cc2de482cdc5532729ffb807b",
+    "localeSha256": "09c4fbfa80667ad0547f4c6d8918746e311fa995684517f3478f1022232f6f18",
+    "practiceAtomicSha256": "a1c1a4da365b6608c48488942b6c2d53a59a7c9cc02b010dffbd23d6e46a3d00"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+  "exactUkSha256": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077",
+  "localeSha256": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077",
+  "practiceAtomicSha256": "532c3b033ff09e5997c035e78696d90ddf12515505d360b49576a1c7efa73328",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "4a16c1502764be395a6f7eb67eab80bd99ac4b9d64c552db214a2ba3676b82b9",
+    "localeSha256": "b00bce5c3ced409b9873ded10c82bbf65f24a088415dbccab0732081fd2bc31d",
+    "practiceAtomicSha256": "532c3b033ff09e5997c035e78696d90ddf12515505d360b49576a1c7efa73328",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+    "exactRuSha256": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+    "exactUkSha256": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077",
+    "localeSha256": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077",
+    "localeHashes": {
+      "ru": "84157ca064d668a46dde17faa26d0860e13fa1dcf2f38644b90f09e1b3161fb7",
+      "uk": "0c501af53c4b43f04ae6da5cf4581d44a0ce54aa8e5f1dd9053a68a83890b077"
+    },
+    "practiceAtomicSha256": "532c3b033ff09e5997c035e78696d90ddf12515505d360b49576a1c7efa73328",
+    "evidence": [
+      "UK localized meanings retain only audio meaning; atomic parity 20/20."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": []
 }

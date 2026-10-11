@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "применение `a` перед начальным согласным звуком названия предмета в знакомых утверждениях, вопросах и отрицаниях; возврат `an` перед начальным гласным звуком",
+    "uk": "уживання `a` перед початковим приголосним звуком у назві предмета в знайомих твердженнях, питаннях і запереченнях; повернення `an` перед початковим голосним звуком"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать чайник",
+        "uk": "Назвати чайник"
+      },
+      "bodyByLocale": {
+        "ru": "`kettle` — «чайник». В русском «Это чайник» всего два слова, а в полной английской фразе их четыре. После `It is` добавьте `a`, потому что название начинается с согласного «к», и само название: `It is a kettle` — «Это чайник».",
+        "uk": "`kettle` — «чайник». Українською «Це чайник» — два слова, а повна англійська фраза має чотири. Після `It is` додайте `a`, бо назва починається з приголосного звуку «к», а потім саму назву: `It is a kettle` — «Це чайник»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Продавец показывает чайник, который вы выбрали. Назовите его полной фразой.",
+          "uk": "Продавець показує чайник, який ви обрали. Назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r1",
+              "text": "It is a kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r2",
+              "text": "It is an kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r3",
+              "text": "It is kettle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r1",
+              "text": "It is a kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r2",
+              "text": "It is an kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r3",
+              "text": "It is kettle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец показывает чайник, который вы выбрали. Назовите его полной фразой.",
+          "uk": "Продавець показує чайник, який ви обрали. Назвіть його повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать тостер",
+        "uk": "Назвати тостер"
+      },
+      "bodyByLocale": {
+        "ru": "`toaster` — «тостер». На соседней полке стоит прибор для хлеба. Назовите его полной фразой `It is a toaster` — «Это тостер». После `It is` поставьте `a`: слово `toaster` начинается с согласного звука «т». Тост уже почти готов, но артикль пропускать рано.",
+        "uk": "`toaster` — «тостер». На сусідній полиці стоїть прилад для хліба. Назвіть його повною фразою `It is a toaster` — «Це тостер». Після `It is` поставте `a`: слово `toaster` починається з приголосного звука «т». Тост майже готовий, але артикль пропускати рано."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на тостер в глубине полки. Назовите прибор полной фразой.",
+          "uk": "Друг показує на тостер у глибині полиці. Назвіть прилад повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r1",
+              "text": "It is a toaster."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r2",
+              "text": "It is an toaster."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r3",
+              "text": "It is toaster."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r1",
+              "text": "It is a toaster."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r2",
+              "text": "It is an toaster."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r3",
+              "text": "It is toaster."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на тостер в глубине полки. Назовите прибор полной фразой.",
+          "uk": "Друг показує на тостер у глибині полиці. Назвіть прилад повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать пылесос",
+        "uk": "Назвати пилосос"
+      },
+      "bodyByLocale": {
+        "ru": "`vacuum` — «пылесос». На нижней полке стоит прибор для уборки. Назовите его полной фразой `It is a vacuum` — «Это пылесос». После `It is` снова нужно `a`, потому что `vacuum` начинается с согласного звука «в». Пыль можно убрать, а `a` из этой фразы — нельзя.",
+        "uk": "`vacuum` — «пилосос». На нижній полиці стоїть прилад для прибирання. Назвіть його повною фразою `It is a vacuum` — «Це пилосос». Після `It is` знову потрібне `a`, бо `vacuum` починається з приголосного звука «в». Пил можна прибрати, а `a` із цієї фрази — ні."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Продавец показывает выбранный пылесос. Назовите прибор полной фразой.",
+          "uk": "Продавець показує обраний пилосос. Назвіть прилад повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r1",
+              "text": "It is a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r2",
+              "text": "It is an vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r3",
+              "text": "It is vacuum."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r1",
+              "text": "It is a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r2",
+              "text": "It is an vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r3",
+              "text": "It is vacuum."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец показывает выбранный пылесос. Назовите прибор полной фразой.",
+          "uk": "Продавець показує обраний пилосос. Назвіть прилад повною фразою."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6f3f8d3d5e19c4a2b27bd70a88e77b8bdd3b1664836d18b293ec98b07e5041a"
+}

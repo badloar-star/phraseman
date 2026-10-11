@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 30 — «Что это за звук»
+# Английский · Урок 2 · Занятие 30 — «Что это за звук»
 
-**Сцена сессии.** Выходной в Дублине. Вы идёте по улице, и город сам задаёт вам вопросы: откуда-то тянется гул, а у входа стоят люди друг за другом.
+**Сцена занятия.** Выходной в Дублине. Вы идёте по улице, и город сам задаёт вам вопросы: откуда-то тянется гул, а у входа стоят люди друг за другом.
 
-**Операция:** повторение `What is + вещь` — на новых словах города
+**Как сказать:** повторение `What is + вещь` — на новых словах города
 **Новые слова:** queue, noise
 **Возвращаются:** street, name, noisy, crowded
 
@@ -58,77 +58,91 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — noise**
-> **noise** — «шум». Звук, из-за которого приходится повышать голос: дрель за стеной, гул толпы, сирена.
+<!-- interaction_id: en:lesson-02:session-30:i01; family: listen_choose -->
+Цель: `noise`
 
 **2 · Послушайте и выберите — про что спросили**
-🔊 *What is the noise?* → **про звук** · про название · про улицу
-- про название — *Прозвучало `noise` — это шум. Название — это `name`.*
-- про улицу — *Прозвучало `noise`. Улица — это `street`.*
+<!-- interaction_id: en:lesson-02:session-30:i02; family: listen_choose -->
+Цель: `What is the noise?`
+Варианты: `про звук` · `про название` · `про улицу`
 
 **3 · Карточка слова — queue**
-> **queue** — «очередь». Люди друг за другом у двери, у кассы, у окошка. Читается «кью» — не так, как выглядит на письме.
+<!-- interaction_id: en:lesson-02:session-30:i03; family: listen_choose -->
+Цель: `queue`
 
-**4 · Послушайте и выберите — queue**
-🔊 *queue* → **queue** · street · noise
-- street — *«Улица». Прозвучало `queue` — это про людей у двери, а не про место.*
-- noise — *«Шум». Это про звук, а не про людей у двери.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-30:i04; family: listen_choose -->
+Цель: `queue`
+Варианты: `queue` · `street` · `noise`
 
 **5 · Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это**
-What is the ___ ? → **noise** · queue · street
-- queue — *«Очередь». За стеной никто не стоит в очереди, там гудит.*
-- street — *«Улица». Вы спрашиваете не где вы, а что за звук.*
+<!-- interaction_id: en:lesson-02:session-30:i05; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `noise` · `queue` · `street`
 
 **6 · Соберите фразу — вы спрашиваете, что это гудит**
-Плитки: `the` `What` `noise` `is` → **What is the noise?**
+<!-- interaction_id: en:lesson-02:session-30:i06; family: phrase_builder -->
+Цель: `What is the noise?`
 
 **7 · Вставьте слово — у входа люди стоят друг за другом**
-What is the ___ ? → **queue** · noise · name
-- noise — *`noise` — это шум. А перед вами люди друг за другом — `queue`.*
-- name — *«Имя, название». Люди у двери — это `queue`.*
+<!-- interaction_id: en:lesson-02:session-30:i07; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `queue` · `noise` · `name`
 
 **8 · Карточка слова — crowded**
-> **crowded** — «людно, тесно». Место, где людей столько, что не пройти.
+<!-- interaction_id: en:lesson-02:session-30:i08; family: listen_choose -->
+Цель: `crowded`
 
 **9 · Вставьте слово — вопрос собран, но в нём дыра**
-What ___ the noise? → **is** · the · noise
-- the — *`the` в этом вопросе уже стоит — дальше, перед словом `noise`. Тут нужно другое.*
-- noise — *`noise` стоит в конце вопроса. Второй раз оно не нужно.*
+<!-- interaction_id: en:lesson-02:session-30:i09; family: context_gap_grammar -->
+Цель: `What ___ the noise?`
+Варианты: `is` · `the` · `noise`
 
 **10 · Послушайте и соберите — «что это за шум?»**
-🔊 *What is the noise?* Плитки: `is` `noise` `What` `the` `street` → **What is the noise?**
+<!-- interaction_id: en:lesson-02:session-30:i10; family: listen_build_dictation -->
+Цель: `What is the noise?`
 
-**11 · Соедините пары (Speed Match, 4 пары)**
-noise — шум · queue — очередь · street — улица · name — название
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-30:i11; family: speed_match -->
+Пары: `noise` — шум · `queue` — очередь · `street` — улица · `name` — название
+Цель: `noise · queue · street · name`
 
 **12 · Вставьте слово — вы заблудились, спросите у прохожего название улицы**
-What is the ___ ? → **street** · crowded · noise
-- crowded — *`crowded` — «людно», это описание. А вам нужно название места.*
-- noise — *Про звук вы не спрашивали: вам нужно название улицы.*
+<!-- interaction_id: en:lesson-02:session-30:i12; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `street` · `crowded` · `noise`
 
 **13 · Соберите фразу — вы спрашиваете название**
-Плитки: `name` `What` `the` `is` → **What is the name?**
+<!-- interaction_id: en:lesson-02:session-30:i13; family: phrase_builder -->
+Цель: `What is the name?`
 
 **14 · Вставьте слово — под окнами долбит отбойный молоток**
-The street is ___ . → **noisy** · noise · queue
-- noise — *`noise` — это сам шум, вещь. А улица, на которой шумно, — `noisy`.*
-- queue — *`queue` — очередь, люди друг за другом. Про шумное место — `noisy`.*
+<!-- interaction_id: en:lesson-02:session-30:i14; family: context_gap_grammar -->
+Цель: `The street is ___ .`
+Варианты: `noisy` · `noise` · `queue`
 
-**15 · Вставьте слово — тихая улица, но людей столько, что не пройти**
-The street is ___ . → **crowded** · queue · noisy
-- queue — *`queue` — сама очередь, вещь. А тут нужно слово про тесноту.*
-- noisy — *«Шумно» — про звук. А речь о том, что людей слишком много.*
+**15 · Произнесите фразу — тихая улица, но людей столько, что не пройти**
+<!-- interaction_id: en:lesson-02:session-30:i15; family: scripted_repeat_compare -->
+Цель: `The street is crowded.`
 
 **16 · Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица**
-Плитки: `street` `is` `the` `What` `noise` → **What is the street?**
+<!-- interaction_id: en:lesson-02:session-30:i16; family: phrase_builder -->
+Цель: `What is the street?`
 
-**17 · Скажите вслух — финал прогулки**
-🎙 Вы остановились посреди улицы: гудит непонятно что, у двери стоят люди, а название места вы не знаете. Спросите про всё три раза подряд.
-**What is the noise? What is the queue? What is the street?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-30:i17:s01; family: scripted_repeat_compare -->
+Цель: `What is the noise?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-30:i17:s02; family: scripted_repeat_compare -->
+Цель: `What is the queue?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-30:i17:s03; family: scripted_repeat_compare -->
+Цель: `What is the street?`
 
 ## Для сборщика
 
@@ -136,7 +150,7 @@ new_words:
 queue — очередь — «очередь». Люди друг за другом у двери, у кассы, у окошка. Читается «кью» — не так, как выглядит на письме.
 noise — шум — «шум». Звук, из-за которого приходится повышать голос: дрель за стеной, гул толпы, сирена.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_choose, 9=context_gap_grammar, 10=listen_build_dictation, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ## Самопроверка
 
@@ -163,7 +177,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap
 |---|---|---|
 | noise | 1 | 2, 5, 6, 9, 10 |
 | queue | 3 | 4, 7, 17 |
-| street | из прошлых сессий | 5, 10 (ловушка), интро 3 |
-| name | из прошлых сессий | 7 (ловушка), интро 3 |
+| street | из прошлых занятий | 5, 10 (ловушка), интро 3 |
+| name | из прошлых занятий | 7 (ловушка), интро 3 |
 
 ---

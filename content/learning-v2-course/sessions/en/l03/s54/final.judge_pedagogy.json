@@ -1,0 +1,74 @@
+{
+  "session": "s54",
+  "sourceSha256": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+  "exactRuSha256": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+  "exactUkSha256": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_pedagogy",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "evidence": [
+    "The repair-label scene directly motivates removal of a/the next to this/that/these/those; humour remains tied to the article collision rather than decoration."
+  ],
+  "scope": "Fresh pedagogy audit of plan, preauthoring, both locales, every return, and all tasks.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "c727ad30fcca9547db0f8e076a3d62bf785b351874425914fd687a3698e85e93",
+    "localeSha256": "2284be6a9b8168c4256397d777ed99e66d6f1fd4eb2dcabf55df77f9278d1d2a",
+    "practiceAtomicSha256": "663b1e37e602bac74d5927c43097a1c27b4de8053f5ec0bca297a2ee2e6a7f9b"
+  },
+  "localeSha256": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c",
+  "practiceAtomicSha256": "0b452c3cd462816a2d40602115ac400151f2a25e02df348e67b9f2336623769a",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "862d039d02f071f5cff021427d0cb8fc14a81d3fcccd56bf96a2e89f854a6077",
+    "localeSha256": "a5f21a19d4dfbc646510a90706b6de7012ac4ad9d2134cef88ecfa82bad2a218",
+    "practiceAtomicSha256": "0b452c3cd462816a2d40602115ac400151f2a25e02df348e67b9f2336623769a",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+    "uk": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+    "exactRuSha256": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+    "exactUkSha256": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c",
+    "localeSha256": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c",
+    "localeHashes": {
+      "ru": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+      "uk": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c"
+    },
+    "practiceAtomicSha256": "0b452c3cd462816a2d40602115ac400151f2a25e02df348e67b9f2336623769a",
+    "evidence": [
+      "The repair-label scene directly motivates removal of a/the next to this/that/these/those; humour remains tied to the article collision rather than decoration."
+    ]
+  }
+}

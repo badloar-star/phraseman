@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro1:r2": {
+          "ru": "Сначала нужно `am`, затем `not`: `I am not tired`.",
+          "uk": "Спершу потрібне `am`, потім `not`: `I am not tired`."
+        },
+        "en:lesson-01:session-03:intro1:r3": {
+          "ru": "Not убежал в конец. По-английски он стоит сразу после am, ещё до слова о вас.",
+          "uk": "Not утік у кінець. Англійською він стоїть одразу після am, ще до слова про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro2:r2": {
+          "ru": "«No» — это ответ «нет» на вопрос. Внутри фразы «не» по-английски — not. И am потерялось.",
+          "uk": "«No» — це відповідь «ні» на питання. Усередині фрази «не» англійською — not. І am загубилося."
+        },
+        "en:lesson-01:session-03:intro2:r3": {
+          "ru": "Почти. Но после am стоит именно not, а не no. Not — для фразы, no — для ответа одним словом.",
+          "uk": "Майже. Але після am стоїть саме not, а не no. Not — для фрази, no — для відповіді одним словом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro3:r2": {
+          "ru": "Not опять сбежал в конец. Его место — сразу после am, перед sure.",
+          "uk": "Not знову втік у кінець. Його місце — одразу після am, перед sure."
+        },
+        "en:lesson-01:session-03:intro3:r3": {
+          "ru": "Сначала нужно `am`, затем `not`: `I am not sure`.",
+          "uk": "Спершу потрібне `am`, потім `not`: `I am not sure`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eded63f4e8866f2a19ca0817edc3e72de4ddbf8ec68bbdf7dc7209844c34977c"
+}

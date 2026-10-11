@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "e2d273d217399d9f5691027c456cb15a6d246051407b6e3c794f57f16972c04d",
+  "localeSha256": "12e21af5e7a9424dfbeb9711ee278ac6a4e4d54f8987c7db4d3f496c093b857e",
+  "comparedThrough": "en/l03/s04",
+  "newWords": [
+    "wall",
+    "floor",
+    "ceiling"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 5 | контраст | `It is a + singular count noun` при первом назывании одного пока не уточнённого предмета | wall, floor, ceiling | ремонтируем типичную ошибку |",
+  "curriculumEvidence": {
+    "grammar": "контраст при назывании одного предмета: `It is a + noun`; отличаем название от сообщения о состоянии",
+    "newWords": [
+      "wall",
+      "floor",
+      "ceiling"
+    ],
+    "situation": "Вы с подругой рассматриваете фотографии квартиры и пытаетесь разобраться, какие поверхности попали в кадр. На крупных планах трудно понять, что снято, поэтому вы называете поверхности и уточняете детали."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

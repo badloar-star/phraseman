@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "3e9504ed013603de1eac9366a94a334d6573750a138d5b741acf1bc18cd4eb40",
+  "localeSha256": "7b1362b5656af074907c1aacc0c15e50cfe02788ed8dd980bab4a22401cb6566",
+  "comparedThrough": "en/l03/s00",
+  "newWords": [
+    "chair",
+    "table",
+    "lamp"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 1 | новая | назвать один неуточнённый исчисляемый предмет: `a + noun` | chair, table, lamp | открываем первую коробку |",
+  "curriculumEvidence": {
+    "grammar": "",
+    "newWords": [
+      "chair",
+      "table",
+      "lamp"
+    ],
+    "situation": "Вы обустраиваете новую квартиру. Друг помогает открыть первую коробку, а вы по очереди называете вещи, которые достаёте."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 20 — «Where is — крізь шум»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 20 — «Where is — крізь шум»
 
-**Сцена сесії.** Біля метро гудуть машини, поряд грає вуличний музикант. Ви питаєте дорогу, і перепитувати доводиться всім — і вам, і вам у відповідь.
+**Сцена заняття.** Біля метро гудуть машини, поряд грає вуличний музикант. Ви питаєте дорогу, і перепитувати доводиться всім — і вам, і вам у відповідь.
 
-**Операція:** повторення `Where is` + місце — на слух
+**Як сказати:** повторення `Where is` + місце — на слух
 **Нові слова:** —
 **Повертаються:** station, street, near, behind, crowded
 
@@ -56,84 +57,96 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
-**1 · Послухайте і виберіть — station**
-🔊 *station* → **station** · street · standing
-- street — *Це «вулиця». Третій звук там «р», а в `station` — «ей».*
-- standing — *Початок спільний, а далі розходяться: у `station` іде «ей», у `standing` — «ен».*
+**1 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-20:i01; family: listen_choose -->
+Ціль: `station`
+Варіанти: `station` · `street` · `standing`
 
-**2 · Послухайте і виберіть — near**
-🔊 *near* → **near** · name · nine
-- name — *Починається так само, але голосний інший: у `name` чути «ей».*
-- nine — *У `nine` голосний «ай». У `near` — «іе».*
+**2 · Складіть повідомлення — на карті об’єкт поруч із вами**
+<!-- interaction_id: en:lesson-02:session-20:i02; family: phrase_builder -->
+Ціль: `It is near.`
 
 **3 · Розрізніть звуки — яке з двох про «поряд»?**
-🔊 Два слова поспіль.
-*near · nine* → **near**
-- nine — *Це «дев'ять». Перший звук один, а голосний різний: «ай» проти «іе».*
+<!-- interaction_id: en:lesson-02:session-20:i03; family: sound_contrast -->
+Варіанти: `near` · `nine`
 
-**4 · Послухайте і виберіть — behind**
-🔊 *behind* → **behind** · bell · behave
-- bell — *Один склад, коротко. `behind` тягнеться на два.*
-- behave — *Початок той самий, кінець інший: у `behind` чути «айнд».*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-20:i04; family: listen_choose -->
+Ціль: `behind`
+Варіанти: `behind` · `bell` · `behave`
 
 **5 · Картка слова — crowded**
-> **crowded** — «людно, напхом». Стільки народу, що йдеш боком. Про вулицю, про вагон, про кав'ярню в обід.
+<!-- interaction_id: en:lesson-02:session-20:i05; family: listen_choose -->
+Ціль: `crowded`
 
-**6 · Послухайте і виберіть — crowded**
-🔊 *crowded* → **crowded** · cloud · crow
-- cloud — *«Хмара». Перший звук спільний, але далі «л», а в `crowded` — «р».*
-- crow — *Це «ворона», і слово коротше: у `crowded` два склади, у `crow` один.*
+**6 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-20:i06; family: listen_choose -->
+Ціль: `crowded`
+Варіанти: `crowded` · `cloud` · `crow`
 
-**7 · З'єднайте пари (Speed Match, 4 пари)**
-station — вокзал · street — вулиця · near — поряд · behind — за
+**7 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-20:i07; family: speed_match -->
+Пари: `station` — вокзал · `street` — вулиця · `near` — поряд · `behind` — за
+Ціль: `station · street · near · behind`
 
 **8 · Послухайте і зберіть — «де вокзал?»**
-🔊 *Where is the station?* Плитки: `is` `the` `Where` `station` `street` → **Where is the station?**
+<!-- interaction_id: en:lesson-02:session-20:i08; family: listen_build_dictation -->
+Ціль: `Where is the station?`
 
 **9 · Вставте слово — перехожий показує: іти пару хвилин**
-It is ___ . → **near** · behind · crowded
-- behind — *«За, позаду» — тоді б показали назад, а не вперед.*
-- crowded — *«Людно» — це про натовп, а не про відстань.*
+<!-- interaction_id: en:lesson-02:session-20:i09; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `behind` · `crowded`
 
 **10 · Послухайте і зберіть — «де вулиця?»**
-🔊 *Where is the street?* Плитки: `street` `Where` `the` `is` `station` → **Where is the street?**
+<!-- interaction_id: en:lesson-02:session-20:i10; family: listen_build_dictation -->
+Ціль: `Where is the street?`
 
 **11 · Вставте слово — ви шукаєте вулицю, а не вокзал**
-Where is the ___ ? → **street** · station · near
-- station — *Це «вокзал». Вулиця — `street`.*
-- near — *«Поряд» — це відповідь, а не місце, яке ви шукаєте.*
+<!-- interaction_id: en:lesson-02:session-20:i11; family: context_gap_grammar -->
+Ціль: `Where is the ___ ?`
+Варіанти: `street` · `station` · `near`
 
 **12 · Послухайте і виберіть — що саме спитали?**
-🔊 *Where is the station?* → **де вокзал** · де вулиця · вокзал поряд
-- де вулиця — *Прозвучало `station`, а «вулиця» — це `street`.*
-- вокзал поряд — *Фраза почалася з `where` — отже це питання.*
+<!-- interaction_id: en:lesson-02:session-20:i12; family: listen_choose -->
+Ціль: `Where is the station?`
+Варіанти: `де вокзал` · `де вулиця` · `вокзал поряд`
 
 **13 · Вставте слово — біля виходу натовп, ідете боком**
-The street is ___ . → **crowded** · near · behind
-- near — *«Поряд» — про відстань, а ви кажете про людей.*
-- behind — *«Позаду» — теж про місце, а не про натовп.*
+<!-- interaction_id: en:lesson-02:session-20:i13; family: context_gap_grammar -->
+Ціль: `The street is ___ .`
+Варіанти: `crowded` · `near` · `behind`
 
-**14 · Зберіть фразу — перехожий показує назад: вхід з іншого боку**
-Плитки: `behind` `is` `It` `where` → **It is behind.**
+**14 · Складіть фразу — перехожий показує за вокзал: вхід розташований там**
+<!-- interaction_id: en:lesson-02:session-20:i14; family: phrase_builder -->
+Ціль: `It is behind the station.`
 
 **15 · Послухайте і зберіть — відповідь перехожого**
-🔊 *It is near.* Плитки: `near` `It` `is` `behind` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-20:i15; family: listen_build_dictation -->
+Ціль: `It is near.`
 
-**16 · Зберіть фразу — спитайте про вулицю, серед плиток зайва**
-Плитки: `the` `street` `Where` `is` `It` → **Where is the street?**
+**16 · Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю**
+<!-- interaction_id: en:lesson-02:session-20:i16; family: phrase_builder -->
+Ціль: `Where is the street?`
 
-**17 · Фінал сцени — три фрази поспіль, без підказок**
-🎙 Шум біля метро. Спитайте, де вокзал; спитайте, де вулиця; і скажіть, що вулиця людна.
-**Where is the station? Where is the street? The street is crowded.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s01; family: scripted_repeat_compare -->
+Ціль: `Where is the station?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Where is the street?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-20:i17:s03; family: scripted_repeat_compare -->
+Ціль: `The street is crowded.`
 
 ## Для сборщика
 
 new_words: —
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=phrase_builder, 3=sound_contrast, 4=listen_choose, 5=listen_choose, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -161,26 +174,7 @@ modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_choose, 5=wo
 
 | слово | картка | відпрацювання ДО дошки |
 |---|---|---|
-| station | з минулих сесій (l02_s17) | завдання 1 — вибір на слух |
-| street | з минулих сесій (l02_s17) | інтро 2 — питання сторінки |
-| near | з минулих сесій (l02_s19) | завдання 2 і 3 — вибір і розрізнення |
-| behind | з минулих сесій (l02_s19) | завдання 4 — вибір на слух |
-
----
-
-🟡 **Стоит улучшить**
-- В задании 3 украинское «дев'ять» использует апостроф — если сборщик рендерит текст через шрифт без поддержки U+2019, символ может отвалиться. Стоит проверить один раз на этой сессии.
-- Транскрипция звуков дана кириллицей («стей», «іе»). Для украинского это работает, но если позже добавятся локали с другой письменностью (vi, id), схему записи звуков придётся унифицировать заранее.
-
-🧩 **Скрытые связи**
-- Ссылки на прошлые сессии `l02_s17` и `l02_s19` — украинские версии этих сессий должны существовать с теми же словами (station, street, near, behind), иначе таблица самопроверки будет врать.
-- Блок «Для сборщика» оставлен на русском (заголовок) намеренно — это служебная строка, идентичная во всех локалях; если сборщик парсит по заголовку, менять его нельзя.
-
----
-
-- Сделана украинская версия сессии 20 второго урока.
-- Английские слова, фразы, ошибки-ловушки, номера и порядок заданий не тронуты — они точно такие же, как в русском оригинале.
-- Все объяснения переписаны живым украинским: не перевод слово в слово, а пересказ так, как объяснял бы носитель.
-- Звуковые подсказки («стей», «стр», «айнд») пересобраны под украинское произношение.
-- Служебный блок для сборщика и все таблицы проверки сохранены полностью.
-- Стоит убедиться, что украинские версии сессий 17 и 19 этого урока уже готовы — на них ссылается таблица в конце.
+| station | з минулих занять (l02_s17) | завдання 1 — вибір на слух |
+| street | з минулих занять (l02_s17) | інтро 2 — питання сторінки |
+| near | з минулих занять (l02_s19) | завдання 2 і 3 — вибір і розрізнення |
+| behind | з минулих занять (l02_s19) | завдання 4 — вибір на слух |

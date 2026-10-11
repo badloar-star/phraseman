@@ -57,7 +57,7 @@
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-04.md",
-      "sha256": "2919f71309c1615be9e9ad54d7a4fac90e60a10d8cebfae0032766265e730d6d"
+      "sha256": "0e207319771a0a5c76f2d458267459e6babf1b01c22c3b8cccfd1845ba21bd08"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
@@ -189,7 +189,7 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale_batch.md",
-      "sha256": "2d1f2df6be7dadc221ee139aefea6ab4db0c4d9246aae98de362f51a481a0d45"
+      "sha256": "7c75761015964913d1d6ed4ad0aca0c8fcbe0f05cb3851f0ff3768f9844af02a"
     },
     {
       "sourcePath": "factory/pipeline/prompts/localize.md",
@@ -950,7 +950,7 @@
       "phase": ["RELEASE_PROJECTION"],
       "applicability": "always",
       "severity": "HOLD",
-      "assertion": "RU и UK проходят независимый locale judge одним согласованным пакетом без утраты немецкого target и diagnostic intent.",
+      "assertion": "RU и UK проходят независимый locale judge одним согласованным пакетом без утраты немецкого target и diagnostic intent. Каждый видимый responseOption и каждое selectable localized meaning сохраняют ровно одно слово, одну фразу или одно значение: пакеты через ;, ；, |, переносы строк, маркеры списка, повторные пары word — meaning или трёхсловные словарные bundles дают HOLD. Многострочное объяснение допустимо только в отдельной non-selectable word-card; Markdown и atomic source обязаны точно совпадать по learner-facing target, options и audio. English-specific редакторская cadence-цель Codex L2/S33+ не становится числовой German humor-квотой: German judge сохраняет естественный, полезный и неприклеенный голос по DE-OWNER-007, DE-OPENING-005, DE-JUDGES-001 и target-adaptation по DE-RESEARCH-003.",
       "family": "locales_ru_uk"
     },
     {

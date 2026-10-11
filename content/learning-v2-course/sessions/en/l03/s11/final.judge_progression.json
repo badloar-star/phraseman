@@ -1,0 +1,31 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "b7fab4b207f223620b1ef2b079c5c400db22f8a2056be6ed71eb839a26f021b8",
+  "localeSha256": "96d50843385d5c44a280413858b1a9028186da95344bced2df741be19d8cbea5",
+  "comparedThrough": "en/l03/s10",
+  "newWords": [
+    "hour",
+    "uniform"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 11 | тонкость | выбирать `a/an` по первому звуку следующего слова, а не по первой букве: `an hour`, `a uniform` | hour, uniform | после карточек обоих слов в сервисном отделе уточняем срок сборки и узнаём монтажника по форме |",
+  "curriculumEvidence": {
+    "grammar": "выбор `a/an` по первому звуку следующего слова, а не по первой букве: `an hour`, `a uniform`",
+    "newWords": [
+      "hour",
+      "uniform"
+    ],
+    "situation": "Вы с другом подошли к стойке сборки в магазине для дома. Уточняете, сколько ждать мастера, замечаете его рабочую форму и называете технику, которую покупатели принесли в сервис."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

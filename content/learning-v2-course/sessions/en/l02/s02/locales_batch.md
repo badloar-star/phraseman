@@ -1,8 +1,9 @@
-# Англійська · Урок 2 · Сесія 2 — «Are you comfortable?»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 2 — «Are you comfortable?»
 
-**Сцена сесії.** Суботній ранок у хостелі. Спільна кухня, чайник, хтось смажить тости. Люди за столом малознайомі, і цілий ранок ви питаєте кожного, як він.
+**Сцена заняття.** Суботній ранок у хостелі. Сусід Том смажить тости, а сусідка Міра сидить за спільним столом із чаєм. Ви знайомитеся з ними й по черзі питаєте, як вони почуваються.
 
-**Операція:** `Are you` + слово про людину
+**Як сказати:** `Are you` + слово про людину
 **Нові слова:** comfortable, upset
 **Повертаються:** cold, ok
 
@@ -56,120 +57,99 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — comfortable**
-> **comfortable** — «зручно». Про стілець, ліжко, взуття, місце біля вікна. Тілу добре, ніщо не тисне й не муляє.
+<!-- interaction_id: en:lesson-02:session-02:i01; family: listen_choose -->
+Ціль: `comfortable`
 
-**2 · Послухайте і виберіть — comfortable**
-🔊 *comfortable* → **comfortable** · comfort · company
-- comfort — *`comfort` — саме по собі слово, «затишок». У `comfortable` після нього є хвіст.*
-- company — *Це «компанія». Початок схожий, далі все інше.*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-02:i02; family: listen_choose -->
+Ціль: `comfortable`
+Варіанти: `comfortable` · `comfort` · `company`
 
 **3 · Картка слова — upset**
-> **upset** — «засмучений». Людині зіпсували настрій: погана новина, чужі слова, скасовані плани.
+<!-- interaction_id: en:lesson-02:session-02:i03; family: listen_choose -->
+Ціль: `upset`
 
-**4 · Послухайте і виберіть — upset**
-🔊 *upset* → **upset** · up · set
-- up — *Тільки перша половина слова.*
-- set — *Тільки друга половина, початок загубився.*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-02:i04; family: listen_choose -->
+Ціль: `upset`
+Варіанти: `upset` · `up` · `set`
 
 **5 · Складіть фразу — запитайте гостя про стілець**
-Плитки: `you` `comfortable` `are` → **Are you comfortable?**
+<!-- interaction_id: en:lesson-02:session-02:i05; family: phrase_builder -->
+Ціль: `Are you comfortable?`
 
 **6 · Вставте слово — сусід у куртці гріє руки об горнятко**
-Are you ___ ? → **cold** · comfortable · upset
-- comfortable — *«Зручно?» — але людина мерзне, а не влаштовується на стільці.*
-- upset — *«Засмучений?» — куртка й гаряче горнятко кажуть про холод, а не про настрій.*
+<!-- interaction_id: en:lesson-02:session-02:i06; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `cold` · `comfortable` · `upset`
 
-**7 · Вставте слово — початок питання**
-___ you upset? → **Are** · Is · Am
-- Is — *`is` не ходить поруч із `you`.*
-- Am — *`am` іде тільки зі словом «я». Тут ви питаєте іншу людину.*
+**7 · Складіть запитання — сусід прочитав повідомлення і хоче зрозуміти, що з вами**
+<!-- interaction_id: en:lesson-02:session-02:i07; family: phrase_builder -->
+Ціль: `Are you upset?`
+Плитки: `Are` · `you` · `upset` · `is`
 
-**8 · З'єднайте пари (Speed Match, 4 пари)**
-comfortable — зручно · upset — засмучений · cold — змерз · ok — нормально
+**8 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-02:i08; family: speed_match -->
+Пари: `comfortable` — зручно · `upset` — засмучений · `cold` — змерз · `ok` — нормально
+Ціль: `comfortable · upset · cold · ok`
 
 **9 · Послухайте і складіть — «тобі зручно?»**
-🔊 *Are you comfortable?* Плитки: `comfortable` `are` `you` `upset` → **Are you comfortable?**
+<!-- interaction_id: en:lesson-02:session-02:i09; family: listen_build_dictation -->
+Ціль: `Are you comfortable?`
 
 **10 · Вставте слово — сусід прочитав повідомлення і замовк**
-Are you ___ ? → **upset** · cold · comfortable
-- cold — *«Змерз?» — на кухні тепло, річ у повідомленні.*
-- comfortable — *«Зручно?» — про стілець тут ніхто не думає.*
+<!-- interaction_id: en:lesson-02:session-02:i10; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `upset` · `cold` · `comfortable`
 
 **11 · Розрізніть звуки — яке з двох про «засмучений»?**
-🔊 Два слова поспіль.
-*upset · up* → **upset**
-- up — *`up` — «вгору», і на цьому слово закінчується. У `upset` далі є друга половина.*
+<!-- interaction_id: en:lesson-02:session-02:i11; family: sound_contrast -->
+Варіанти: `upset` · `up`
 
 **12 · Складіть фразу — ви хочете дізнатися, чи все в людини нормально**
-Плитки: `ok` `are` `you` → **Are you ok?**
+<!-- interaction_id: en:lesson-02:session-02:i12; family: phrase_builder -->
+Ціль: `Are you ok?`
 
 **13 · Вставте слово — гість совається на хиткому стільці**
-Are you ___ ? → **comfortable** · ok · cold
-- ok — *«Нормально?» — надто загально, а ви питаєте саме про стілець.*
-- cold — *«Змерз?» — він не мерзне, йому незручно сидіти.*
+<!-- interaction_id: en:lesson-02:session-02:i13; family: context_gap_grammar -->
+Ціль: `Are you ___ ?`
+Варіанти: `comfortable` · `ok` · `cold`
 
-**14 · Складіть фразу — серед плиток зайва**
-Плитки: `cold` `are` `you` `is` → **Are you cold?**
+**14 · Складіть запитання — гість сидить в одній сорочці біля відчиненого вікна; запитайте, чи йому не холодно**
+<!-- interaction_id: en:lesson-02:session-02:i14; family: phrase_builder -->
+Ціль: `Are you cold?`
 
 **15 · Послухайте і складіть — «ти засмучений?»**
-🔊 *Are you upset?* Плитки: `upset` `you` `are` `cold` → **Are you upset?**
+<!-- interaction_id: en:lesson-02:session-02:i15; family: listen_build_dictation -->
+Ціль: `Are you upset?`
 
-**16 · Скажіть уголос — ви обходите стіл і питаєте двох**
-🎙 **Are you cold? Are you ok?** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i16:s01; family: scripted_repeat_compare -->
+Ціль: `Are you cold?`
 
-**17 · Фінал сцени — чотири питання поспіль, без підказок**
-🎙 Сніданок закінчується, ви обходите кухню востаннє. Запитайте: чи не змерзла людина, чи зручно їй, чи не засмучена вона, чи все нормально.
-**Are you cold? Are you comfortable? Are you upset? Are you ok?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i16:s02; family: scripted_repeat_compare -->
+Ціль: `Are you ok?`
 
----
+**18 · Послухайте і складіть — «вам холодно?»**
+<!-- interaction_id: en:lesson-02:session-02:i17:s01; family: listen_build_dictation -->
+Ціль: `Are you cold?`
 
-## Для складача
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i17:s02; family: scripted_repeat_compare -->
+Ціль: `Are you comfortable?`
 
-new_words:
-comfortable — зручно — «зручно». Про стілець, ліжко, взуття, місце біля вікна. Тілу добре, ніщо не тисне й не муляє.
-upset — засмучений — «засмучений». Людині зіпсували настрій: погана новина, чужі слова, скасовані плани.
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i17:s03; family: scripted_repeat_compare -->
+Ціль: `Are you upset?`
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=speed_match, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+**21 · Послухайте і складіть — «з вами все гаразд?»**
+<!-- interaction_id: en:lesson-02:session-02:i17:s04; family: listen_build_dictation -->
+Ціль: `Are you ok?`
 
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| cold | 6, 8, 10, 14, 15, 16, 17 | 6, 14, 16, 17 |
-| ok | 8, 12, 13, 16, 17 | 12, 16, 17 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у ✅ відповіді | чи стоїть це слово в тексті НАД питанням |
-|---|---|---|
-| Інтро 1 | cold | так — перший рядок, там же перекладено й `ok` |
-| Інтро 2 | comfortable | так — визначення і приклад |
-| Інтро 3 | upset | так — визначення і приклад |
-
-**3. Дошка пар (завдання 8)**
-
-| слово | переклад дано до дошки | відпрацювання ДО дошки |
-|---|---|---|
-| comfortable | картка 1 | 2 (слух), 5 (складання) |
-| upset | картка 3 | 4 (слух), 7 (вставка) |
-| cold | інтро 1 | 6 (вставка) |
-| ok | інтро 1 | інтро 1 (приклад `Are you ok?`) |
-
----
-
-🟡 **Варто покращити**
-- В Інтро 1 фраза про «питання роблять голосом» для української працює так само, як для російської — це правда мови, а не калька, тому залишена. Якщо в майбутньому в курсі з'явиться локаль, де питання будується інакше (турецька з часткою `mı`), там цей абзац треба переписувати, а не перекладати.
-
-🧩 **Приховані зв'язки**
-- Блок «Для складача», номери завдань, англійські слова та плитки збережені байт у байт — збірник сесій зчитує їх однаково для всіх локалей.
-
-- Зробив українську версію уроку — одну, як і просили.
-- Англійські слова, фрази, номери завдань і службовий блок для збірника не чіпав: вони скрізь однакові.
-- Переклав тільки пояснення, підказки й описи сцен — живою українською, без кальки з російської.
-- Помилкові варіанти й розбори до них залишив ті самі: вони типові й для українців (пропуск `are`, `is` замість `are`).
-- Таблиці самоперевірки теж українською, щоб редактор міг звіритися без переходу на іншу мову.
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=speed_match, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=listen_build_dictation

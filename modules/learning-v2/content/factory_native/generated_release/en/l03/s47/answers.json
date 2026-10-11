@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-47:i01",
+    "correctText": "screw",
+    "correctResponseId": "en:lesson-03:session-47:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i03",
+    "correctText": "nail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i05",
+    "correctText": "hammer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i02",
+    "correctText": "screw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i04",
+    "correctText": "nail",
+    "correctResponseId": "en:lesson-03:session-47:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i06",
+    "correctText": "hammer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i07",
+    "correctText": "screw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i09",
+    "correctText": "nail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i10",
+    "correctText": "hammer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i11",
+    "correctText": "en:lesson-03:session-47:i11:p1=screw\nen:lesson-03:session-47:i11:p2=nail\nen:lesson-03:session-47:i11:p3=hammer\nen:lesson-03:session-47:i11:p4=box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i08",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i12",
+    "correctText": "Here is a hammer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i13",
+    "correctText": "Вот винт",
+    "correctResponseId": "en:lesson-03:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i14",
+    "correctText": "Here is a nail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i15",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i16",
+    "correctText": "Этот молоток здесь",
+    "correctResponseId": "en:lesson-03:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i17:s01",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-47:i17:s01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i17:s02",
+    "correctText": "Here is a nail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-47:i17:s03",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-47:i17:s03:r1"
+  }
+]

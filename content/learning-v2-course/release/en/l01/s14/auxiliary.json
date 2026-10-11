@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-14:intro1:r2": {
+          "ru": "Скрепка выпала. По-русски она не нужна, по-английски без `are` фраза разваливается.",
+          "uk": "Скріпка випала. Українською вона не потрібна, англійською без `are` фраза розсипається."
+        },
+        "en:lesson-01:session-14:intro1:r3": {
+          "ru": "`am` бывает только рядом с `I`. Про собеседника — всегда `are`.",
+          "uk": "`am` буває тільки поруч з `I`. Про співрозмовника — завжди `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-14:intro2:r2": {
+          "ru": "«Тебе тепло» — но зонт греет плохо. Он спас от воды: `dry`.",
+          "uk": "«Тобі тепло» — але парасолька гріє погано. Вона врятувала від води: `dry`."
+        },
+        "en:lesson-01:session-14:intro2:r3": {
+          "ru": "Без `are` это не фраза. Про собеседника — `You are`, и только потом слово.",
+          "uk": "Без `are` це не фраза. Про співрозмовника — `You are`, і аж потім слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-14:intro3:r2": {
+          "ru": "`not` переворачивает фразу в «ты не готов» — а он застегнулся и кивнул.",
+          "uk": "`not` перевертає фразу на «ти не готовий» — а він застібнувся і кивнув."
+        },
+        "en:lesson-01:session-14:intro3:r3": {
+          "ru": "Скрепка `are` потерялась. Без неё фраза не стоит.",
+          "uk": "Скріпка `are` загубилася. Без неї фраза не стоїть."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d2c95ac2055ae3f8d7e718adc79eca0ff3240dc5c9f779584c77efd3b96fbad"
+}

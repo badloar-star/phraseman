@@ -1,49 +1,42 @@
 {
-  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
-  "reviewer": "/root/s18_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
-  "previousReviewPath": "judgements/2026-09-12_l03_s18_taste_initial.json",
-  "previousReview": {
-    "sourceSha256": "40443efc388ffe7426404721341ff61d38a72556af8a395b72d20f5a7ed4506d",
-    "verdict": "REVISE",
-    "substantiveFindingsResolved": true,
-    "must_fix": [
-      "Remove single redundant period after Russian question quote in intro2."
-    ]
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s18",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+  "exactRuSha256": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+  "exactUkSha256": "55b551927cc02baabd97da5b6ba9681d08fd4ba4e581922ee7f0f4e270f30473",
+  "practiceAtomicSha256": "62e8500f4f46e08c9324b23ecafdeb8479bee0bd4a9ee4f1845e66829fe41c3d",
+  "localeHashes": {
+    "ru": "8f861c6c32d8eaf13c271b22d16a89fc7a025ba35eece85f56ea903c61de8b52",
+    "uk": "55b551927cc02baabd97da5b6ba9681d08fd4ba4e581922ee7f0f4e270f30473"
   },
   "pairwise": "equal",
-  "pairwise_reason": "Текущий мастер соблюдает действующее §1а строже старого эталона: значение и форма даны сразу, а конкретные люди и события остаются в вопросах. При этом сессия сохраняет сопоставимую ясность, живой голос и естественный юмор; исправленные интро 2 и задание 9 теперь звучат связно и не создают искусственных поводов для ответа.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
-    "score": 5,
+    "score": 4,
     "evidence": [
-      "`dish` — «блюдо», посуда для подачи еды. Одно блюдо — `dish`, а несколько — `dishes`: после `sh` в этом слове дописываем `es`. — ясная, простая и связная подача без лишней сцены в объяснении.",
-      "По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь. — живой, понятный голос и уместное заигрывание с устройством языка."
+      "Current RU voice quote: «По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь.» It prepares the genuine English singular/plural distinction."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь.",
-      "`is` билетами их не называет."
+      "«По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Переезд, коробки, часы, билеты и остановка образуют одну понятную ситуацию. Друг естественно спрашивает, какой транспорт подъехал; вопрос интро2 коротко просит уточнить предметы."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь.",
-    "Два ремешка с циферблатами — уже `watches`.",
-    "`is` билетами их не называет."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Все три содержательные претензии и единственная пунктуационная регрессия исправлены, естественный юмор сохранён, ИИ-текста, воды и мёртвого языка в текущем мастере не осталось."
+  "verdict_reason": "Current RU voice quote: «По-русски «часы» — хоть целая коллекция, хоть одни на руке: по слову богатство не оценишь.» It prepares the genuine English singular/plural distinction."
 }

@@ -51,6 +51,7 @@ const OPERATION_SEEDS: readonly OperationSeed[] = Object.freeze([
   operation(4, "existence_place", "existential_questions", "Спросить о наличии.", "Перенеси is или are перед there.", "is|are + there + noun?", "Is there a pharmacy?", "Are there seats?"),
   operation(4, "existence_place", "existential_some_any", "Указать неопределённое количество при наличии или вопросе.", "Обычно используй some в утверждении и any в вопросе или отрицании.", "some in affirmative; any in question or negative", "There are some shops.", "There isn't any water."),
   operation(4, "existence_place", "basic_place_prepositions", "Точно расположить предмет.", "Ставь in, on, under, next to или between перед местом.", "be + place preposition + noun", "The key is under the table.", "The bank is next to the hotel."),
+  operation(4, "existence_place", "existential_negatives", "Сообщить, что одного или нескольких предметов нет.", "Для одного используй there isn't a/an; для нескольких — there aren't any.", "there isn't a|an + singular; there aren't any + plural", "There isn't a doorbell.", "There aren't any handrails."),
 
   operation(5, "possession", "have_has", "Сообщить о наличии или принадлежности.", "С he/she/it выбирай has, с остальными подлежащими — have.", "subject + have|has + object", "I have a ticket.", "She has a car."),
   operation(5, "possession", "possessive_determiners", "Показать владельца перед существительным.", "Ставь my/your/his/her/its/our/their перед предметом.", "possessive determiner + noun", "This is my phone.", "Their room is ready."),
@@ -242,7 +243,10 @@ export const LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2: readonly LearningV2Engli
           exampleTwo,
           ...LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2
             .filter((assignment) => assignment.grammarOperationId === id)
-            .flatMap((assignment) => assignment.canonicalExamples),
+            .flatMap((assignment) => [
+              ...assignment.newSenses.map((sense) => sense.english),
+              ...assignment.canonicalExamples,
+            ]),
         ]),
       ]),
       diagnosticErrorIds: Object.freeze([`${id}.wrong_form_or_meaning`]),

@@ -1,7 +1,7 @@
-# Английский · Урок 2 · Сессия 28 — «What is на слух»
+# Английский · Урок 2 · Занятие 28 — «What is на слух»
 
-**Сцена сессии.** Час пик в дублинском кафе. Официант говорит быстро, и вопросы приходится и задавать, и узнавать на слух.
-**Операция:** повторение `What is + вещь` — на слух, в быстрой речи
+**Сцена занятия.** Час пик в дублинском кафе. Официант говорит быстро, и вопросы приходится и задавать, и узнавать на слух.
+**Как сказать:** повторение `What is + вещь` — на слух, в быстрой речи
 **Новые слова:** —
 **Возвращаются:** price, name, weather, time, street
 
@@ -55,85 +55,97 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — что прозвучало**
-🔊 *what* → **what** · water · walk
-- water — *«Вода». Длиннее: в `water` два слога, в `what` один.*
-- walk — *«Идти пешком». Гласная другая: у `what` слышно «о» коротко, у `walk` — округлое «оо».*
+<!-- interaction_id: en:lesson-02:session-28:i01; family: listen_choose -->
+Цель: `what`
+Варианты: `what` · `water` · `walk`
 
-**2 · Послушайте и выберите — что прозвучало**
-🔊 *price* → **price** · pray · rice
-- pray — *«Молиться». Гласная другая: у `price` слышно «ай», у `pray` — «эй».*
-- rice — *«Рис». Слушайте начало: у `price` там сцепка «пр», у `rice` — один согласный.*
+**2 · Карточка слова — price**
+<!-- interaction_id: en:lesson-02:session-28:i02; family: listen_choose -->
+Цель: `price`
+> **price** — «цена». Цифра на ценнике или в счёте — это `price`.
 
 **3 · Различите звуки — какое из двух про «цену»?**
-🔊 Два слова подряд.
-*price · nice* → **price**
-- nice — *Это «приятный». Разница в первом звуке: «пр» против «н».*
+<!-- interaction_id: en:lesson-02:session-28:i03; family: sound_contrast -->
+Варианты: `price` · `nice`
 
 **4 · Послушайте и соберите — «что это?»**
-🔊 *What is this?* Плитки: `is` `this` `What` `the` → **What is this?**
+<!-- interaction_id: en:lesson-02:session-28:i04; family: listen_build_dictation -->
+Цель: `What is this?`
 
 **5 · Послушайте и выберите — про что спросили**
-🔊 *What is the price?* → **цена** · название · время
-- название — *Прозвучало `price`. `name` — это «название».*
-- время — *Прозвучало `price`. `time` — «время», и звучит совсем иначе.*
+<!-- interaction_id: en:lesson-02:session-28:i05; family: listen_choose -->
+Цель: `What is the price?`
+Варианты: `цена` · `название` · `время`
 
-**6 · Послушайте и выберите — что прозвучало**
-🔊 *time* → **time** · team · dime
-- team — *«Команда». Гласная другая: у `time` слышно «ай», у `team` — «и».*
-- dime — *Начинается с «д», а не с «т».*
+**6 · Карточка слова — time**
+<!-- interaction_id: en:lesson-02:session-28:i06; family: listen_choose -->
+Цель: `time`
+> **time** — «время». Его смотрят на часах, когда нужно узнать, который час.
 
 **7 · Карточка слова — weather**
-> **weather** — «погода». Дождь, солнце, ветер — всё, что снаружи и на что вы не влияете.
+<!-- interaction_id: en:lesson-02:session-28:i07; family: listen_choose -->
+Цель: `weather`
 
 **8 · Послушайте и выберите — что прозвучало**
-🔊 *weather* → **weather** · water · winter
-- water — *«Вода». В середине разные согласные: у `weather` язык между зубами, у `water` — «т».*
-- winter — *«Зима». Гласная другая: у `weather` слышно «э», у `winter` — «и».*
+<!-- interaction_id: en:lesson-02:session-28:i08; family: listen_choose -->
+Цель: `weather`
+Варианты: `weather` · `water` · `winter`
 
 **9 · Карточка слова — street**
-> **street** — «улица». Ряд домов, вывески, люди идут мимо. У каждой есть название — по нему и находят кафе.
+<!-- interaction_id: en:lesson-02:session-28:i09; family: listen_choose -->
+Цель: `street`
 
-**10 · Соедините пары (Speed Match, 4 пары)**
-price — цена · name — название · time — время · weather — погода
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-28:i10; family: speed_match -->
+Пары: `price` — цена · `name` — название · `time` — время · `weather` — погода
+Цель: `price · name · time · weather`
 
 **11 · Вставьте слово — вы не поняли, как называется блюдо**
-What is the ___ ? → **name** · price · weather
-- price — *«Цена». Цифру вы видите, а вот слово в меню непонятное.*
-- weather — *«Погода». Про погоду в меню не пишут.*
+<!-- interaction_id: en:lesson-02:session-28:i11; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `name` · `price` · `weather`
 
-**12 · Вставьте слово — вы записываете адрес кафе, но не знаете, какая это улица**
-What is the ___ ? → **street** · time · price
-- time — *«Время». Часы вам не нужны, вам нужно название улицы.*
-- price — *«Цена». За адрес денег не берут.*
+**12 · Соберите вопрос — вы записываете адрес кафе и просите официанта назвать улицу**
+<!-- interaction_id: en:lesson-02:session-28:i12; family: phrase_builder -->
+Цель: `What is the street?`
 
 **13 · Послушайте и соберите — «сколько времени?»**
-🔊 *What is the time?* Плитки: `the` `What` `time` `is` `price` → **What is the time?**
+<!-- interaction_id: en:lesson-02:session-28:i13; family: listen_build_dictation -->
+Цель: `What is the time?`
 
 **14 · Соберите вопрос — на витрине нет ни одного ценника; спросите про цену**
-Плитки: `the` `price` `What` `is` `name` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-28:i14; family: phrase_builder -->
+Цель: `What is the price?`
 
 **15 · Вставьте слово — за окном ливень, спутник спрашивает, что там снаружи**
-What is the ___ ? → **weather** · street · name
-- street — *«Улица». Улицу вы знаете, вам непонятно, что с небом.*
-- name — *«Название». У дождя названия нет.*
+<!-- interaction_id: en:lesson-02:session-28:i15; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `weather` · `street` · `name`
 
 **16 · Соберите вопрос — на витрине нет ни одного ценника; спросите про цену**
-Плитки: `the` `name` `What` `is` `price` → **What is the name?**
+<!-- interaction_id: en:lesson-02:session-28:i16; family: phrase_builder -->
+Цель: `What is the name?`
 
-**17 · Финал сцены — три вопроса подряд, голосом**
-🎙 Официант наконец подошёл. Спросите его, что это за строчка, сколько она стоит и который час.
-**What is this? What is the price? What is the time?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s01; family: scripted_repeat_compare -->
+Цель: `What is this?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s02; family: scripted_repeat_compare -->
+Цель: `What is the price?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s03; family: scripted_repeat_compare -->
+Цель: `What is the time?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictation, 5=listen_choose, 6=listen_choose, 7=word_card, 8=listen_choose, 9=word_card, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictation, 5=listen_choose, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 

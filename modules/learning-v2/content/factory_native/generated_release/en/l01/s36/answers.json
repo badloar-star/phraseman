@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-36:i01",
-    "correctText": "",
+    "correctText": "colleagues",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i03",
-    "correctText": "",
+    "correctText": "friends",
     "correctResponseId": null
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i06",
-    "correctText": "",
+    "correctText": "neighbours",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-36:i07",
-    "correctText": "",
+    "correctText": "guests",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i14",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-36:i14:p1=colleagues\nen:lesson-01:session-36:i14:p2=friends\nen:lesson-01:session-36:i14:p3=neighbours\nen:lesson-01:session-36:i14:p4=guests",
     "correctResponseId": null
   },
   {
@@ -75,13 +75,33 @@
     "correctResponseId": "en:lesson-01:session-36:i15:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-36:i16",
-    "correctText": "We are colleagues. They are guests.",
+    "interactionId": "en:lesson-01:session-36:i16:s01",
+    "correctText": "We are colleagues.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-36:i17",
-    "correctText": "We are colleagues. We are together. They are friends. They are guests.",
+    "interactionId": "en:lesson-01:session-36:i16:s02",
+    "correctText": "They are guests.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i17:s01",
+    "correctText": "We are colleagues.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i17:s02",
+    "correctText": "We are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i17:s03",
+    "correctText": "They are friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i17:s04",
+    "correctText": "They are guests.",
     "correctResponseId": null
   }
 ]

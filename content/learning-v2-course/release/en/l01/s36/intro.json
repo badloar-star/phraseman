@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-01:session-36",
   "learningOutcomeByLocale": {
     "ru": "повторение `We are` / `They are` вслух",
-    "uk": ""
+    "uk": "повторення `We are` / `They are` вголос"
   },
   "pages": [
     {
@@ -21,8 +21,8 @@
       "question": {
         "interactionId": "en:lesson-01:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "За столом спрашивают, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "За столом питають, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
+          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "За столом спрашивают, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "За столом питають, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
+          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
         }
       }
     },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9fbd8f265fae030482d5a1ab943d7891e2f99a01e371a3295f5fd9b84789fb47"
+  "introFingerprint": "8e599b062dd58ff0419c1f0dadf6aaf0c41f886022eec8bd34cb90ae58d7f79a"
 }

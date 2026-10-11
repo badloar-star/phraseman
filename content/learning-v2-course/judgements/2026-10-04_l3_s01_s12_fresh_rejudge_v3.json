@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_fresh_content_rejudge_v1",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v3",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "scope": "Fresh independent current-byte re-judgement of en/l03/s01 through s12. No earlier BLOCK/PASS report or per-session receipt was accepted as evidence.",
+  "authoritiesRead": [
+    "content/learning-v2-course/КОНСТИТУЦИЯ.md",
+    "content/learning-v2-course/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+    "content/learning-v2-course/МЕТОД_РАБОТЫ.md",
+    "content/learning-v2-course/judgements/owner/2026-10-03_single_phrase_per_interaction.md",
+    "content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md"
+  ],
+  "deterministicEvidence": {
+    "verify_all_single_phrase_sources": "PASS: 167 sessions, 3246 interactions, 3246 preservation rows, 0 preservation violations",
+    "progression_quality_gate": "PASS: node content/learning-v2-course/pipeline/progression_quality_gate.mjs --lesson en/l03 --from s01",
+    "target_audio_exactness": "PASS: S01-S12 had 0 target/audio mismatches and 0 Cyrillic target/audio strings",
+    "manualIntroExactTargetAudit": "BLOCK: S01, S05 and S11 each retain one exact introduced intro answer with no current assessed practice target."
+  },
+  "sessions": [
+    {
+      "session": "s01",
+      "sha256": {"ru":"09e287459bd10203dfb78c61a8b707bbd588665ade1693b4d99e26672b1e3a00","uk":"739906891df73ef971221ee831ac8cb89e89b465483f233e444b0e8544bf8b11","atomic":"4eb969e85669e61d6e4e9f928ae039be02e23291a2c7a5d6d2174a7e41899739"},
+      "roles": {
+        "judge_learner":{"verdict":"BLOCK","evidence":["Intro 1 teaches the exact usable answer `It is a chair.`, while current assessed practice offers only `A chair.` for that chain."],"blockers":["Exact intro answer has no assessed practice target."],"mustFix":["Make one assessed interaction target `It is a chair.` and keep RU/UK/atomic parity."]},
+        "judge_pedagogy":{"verdict":"BLOCK","evidence":["The first taught full sentence is reduced to a noun phrase before retrieval."],"blockers":["Intro-to-practice operation is not exact."],"mustFix":["Score the complete introduced sentence."]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Opening a box and identifying furniture remains a concrete coherent scene; every existing interaction is atomic."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"BLOCK","evidence":["The learner sees a full sentence in Intro 1 but is assessed on a different, shortened form."],"blockers":["Prepared answer and assessed answer diverge."],"mustFix":["Align the practice target exactly with the intro answer."]},
+        "judge_taste":{"verdict":"PASS","evidence":["The small-word joke stays attached to `a` and the room scene; no detached gag was found."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK interaction IDs, English targets, options and audio contracts are structurally aligned."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"BLOCK"
+    },
+    {
+      "session": "s02",
+      "sha256": {"ru":"ce8886f77213f9a2b7e6c68c857c1a2f8018653432b302c94ca4d9d4cf3280d9","uk":"d0bbd5b2c13967a28b7d58cdfab5d4f7fcfdc5cb5254d77997760446a2ea5809","atomic":"2cfda1a1b2ddcdab19177fb55e5443c46541a48dfe0a3a7e723a9d61d91e3a5f"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Sofa, bed and desk each receive an exact prepared full-sentence target before later retrieval."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["The session applies `It is a + noun` to three new furniture words without adding a hidden operation."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["The furniture-identification scene stays ordinary and referents remain singular."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["Every assessed item has one word or phrase and one clear answer."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The sofa-count aside explains the actual countable-object point."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK retain identical English contracts and natural local scene wording."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s03",
+      "sha256":{"ru":"542df42f09ba4053b0cec1bc98a3383becdaa672ed8d18bdaa0a49a3cf474dec","uk":"5f528e09aa4d6100804f8dcefe0e07cce61939a881468e6a24620c49469c4f90","atomic":"06aa840c0260e99e3293dbf4957f961e8a0bfead15c557f162553f912c2e9512"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Stool, mirror and rug exact intro answers all appear as assessed targets."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["The article operation is explicit and uses one object at a time."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Placement decisions in one room give each item a concrete referent."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["Prompts and audio targets are one phrase each with unambiguous answers."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The mirror-count aside supports the intended indefinite-article meaning."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["All RU/UK IDs, English targets and audio contracts align."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s04",
+      "sha256":{"ru":"1f9433b606c9fcc6b375819a8940240312c6c0d15038f1a7690041de150c0c83","uk":"73dd1d8bfd444c60321129c279b5cab81174a1d45cc1ce019e4b8c613717a9d3","atomic":"d18085b5864bc50a7b6b70da2cbc0f9bca6de797e8071138e896701df63bcb64"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Key, question-door and negative-window forms are each prepared then assessed exactly."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["Statement, question and negation are isolated instead of bundled."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Keys, doors and windows form one clear apartment scene."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["All target/audio strings are atomic and choices have one answer."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The lost-`a` joke is brief and teaches the actual missing-word error."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK parity holds for every interaction and English contract."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s05",
+      "sha256":{"ru":"a4bea4f5730e50818d95d47c6683f415474cea891a325a0dbd3e83aee1bae11f","uk":"032ceca4a217d5816a32f2a772baf376b55be67d36a208724f5a51abc195472e","atomic":"fef0313d682e477688eb07df89a016e9d082dbfe6bd206c504d5bea88ef4161f"},
+      "roles": {
+        "judge_learner":{"verdict":"BLOCK","evidence":["Intro 3 teaches `It is a ceiling.`, but the current practice target is only `A ceiling.`."],"blockers":["Exact intro answer has no assessed practice target."],"mustFix":["Make one assessed interaction target `It is a ceiling.` and keep RU/UK/atomic parity."]},
+        "judge_pedagogy":{"verdict":"BLOCK","evidence":["The modelled complete sentence loses its operation before assessment."],"blockers":["Intro-to-practice operation is not exact."],"mustFix":["Score the complete introduced sentence."]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Wall, floor and ceiling form a coherent repair scene."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"BLOCK","evidence":["The prepared full answer and current assessed noun phrase do not match."],"blockers":["Prepared answer and assessed answer diverge."],"mustFix":["Align the practice target exactly with the intro answer."]},
+        "judge_taste":{"verdict":"PASS","evidence":["The broom aside remains attached to the floor naming contrast."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK interaction shape and English contracts match."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"BLOCK"
+    },
+    {
+      "session":"s06",
+      "sha256":{"ru":"56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce","uk":"7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca","atomic":"a2d5a55e09181a3df481043eaa27d4b547abedf6f97489c670bbdf5b83aaadbe"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Basket, trolley and tag full phrases are prepared before exact practice targets."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["The known article frame transfers to a new shop scene without hidden grammar."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["The shopping choice and labels have concrete ordinary referents."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["Each assessed answer and audio target is one phrase."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The empty-basket line supports the one-item naming point."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK stay structurally and contractually aligned."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s07",
+      "sha256":{"ru":"05d027f945e750845cacfc999d929edc31f02447c4cc42b8cd498d57ea3d2b31","uk":"ded1d9cbf081f526f9aa211e3dc6a52f467f56aad7695cbdf76278da053a1bc8","atomic":"f69986ff25a9b7c98f830a4967444f28003a099f2bf0a5104b00348e0db63083"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Drawer, cupboard and wardrobe are introduced before exact target use."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["Furniture distinctions and article frame are progressively rehearsed."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Unpacking furniture is a consistent concrete scene."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["No interaction presents a multi-phrase task or ambiguous answer."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The clothes-on-chair observation stays tied to the word distinction."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK English target and audio contracts align."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s08",
+      "sha256":{"ru":"e081a718d4d5c6e64724bd409dfec1c32c5d547c9bdbad0d2bb09fc7e1a430cb","uk":"f9177a0acb494400e1c45532f9fa60e5f498723fd7476e74f31f3b2506ca06ad","atomic":"cbd4a8cf4f89871efe6740958fbaacee20b743146f6bd9a16e1f3d4497242a35"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["The shelf statement, question and negation each appear as separate assessed targets."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["Checkpoint practices known operations without a hidden new grammar step."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["One shelf/list scene gives each form a natural purpose."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["The former final is correctly split into three atomic interactions."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The saving-on-`a` line supports the exact article cue."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["Both locales preserve 19 aligned atomic interactions."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s09",
+      "sha256":{"ru":"9bfa707b4de56158da43c637246b8341e24f06a4f08fb89937c3626994ece567","uk":"9f0c8bf448d4c8c498f0c92f778b91d24e0276b602c1c2c090f12953442f78a7","atomic":"db8d1511dc39f53a62f42af9c61adcfa03f16fdb4b67252661a31836e085bcd7"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Armchair, oven and umbrella exact forms are introduced and later assessed."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["`an` is tied to the first sound, with one object and one phrase per action."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Store-entry items give the article decisions clear referents."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["Prompts make article, count and answer operation clear."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The single-chair observation supports the sound-led `an` decision."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK contracts and English target/audio strings are identical."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s10",
+      "sha256":{"ru":"d6330c9310a7ec6a8e36b968d7dd8e9118357839104d0ab34060a338758eb4db","uk":"401fa51ee359f336bda948ddde2a5c7121efc69ea92cc42cdb42e535f42ac122","atomic":"e54af6c5240b986db6319c057c77ec6dadf057eadc7468236b324d73671b0616"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Kettle, toaster and vacuum full phrases each receive exact assessed use."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["The session applies the consonant-sound `a` operation consistently."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["A kitchen-appliance department gives ordinary object contexts."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["One target/audio phrase is present in every assessed action."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The toast joke remains a brief cue for the appliance name."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK locale structure and English contracts match."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    },
+    {
+      "session":"s11",
+      "sha256":{"ru":"d40e88bd16fbf6fd82314de7428863c3ac592c32eb56db7e3bdef5d9a1e34ad7","uk":"d05b4f60357050a3beba13dfffcf4fa26d44234079c336d4235d53bfd5b37b9d","atomic":"0e3f11cb7cb02215197ae6f0e03f5ba3e438c2f6ae71ca8198e8923705bd99d9"},
+      "roles": {
+        "judge_learner":{"verdict":"BLOCK","evidence":["Intro 3 teaches the exact question `Is it a uniform?`; current i13 assesses only the fragment `a`."],"blockers":["Exact intro answer has no assessed practice target."],"mustFix":["Make one assessed interaction target `Is it a uniform?` and keep RU/UK/atomic parity."]},
+        "judge_pedagogy":{"verdict":"BLOCK","evidence":["The introduced word-order operation is reduced to an article-only choice before retrieval."],"blockers":["Intro-to-practice operation is not exact."],"mustFix":["Score the complete introduced question."]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["Service-counter timing and work uniform are coherent everyday referents."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"BLOCK","evidence":["The learner is taught a full question but is assessed on a single token instead."],"blockers":["Prepared answer and assessed answer diverge."],"mustFix":["Align the practice target exactly with the intro answer."]},
+        "judge_taste":{"verdict":"PASS","evidence":["The silent-h explanation is attached to the relevant sound contrast."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK IDs, English targets and audio contracts remain aligned."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"BLOCK"
+    },
+    {
+      "session":"s12",
+      "sha256":{"ru":"6f32e335a91e4d9893be4436f31edd16f87380cc7b8705835c0c2e22d28d439f","uk":"938c29fba6c143a1023f4b6d5c28f7e25b4e2e1dc3fcd5596e28b388fecc7df7","atomic":"c93852a62708b8f668c4170b4e333b0c9c7bee3ba588094b061e8af51d45fcbb"},
+      "roles": {
+        "judge_learner":{"verdict":"PASS","evidence":["Vase, clock question and radio exact targets are introduced before assessed practice."],"blockers":[],"mustFix":[]},
+        "judge_pedagogy":{"verdict":"PASS","evidence":["Listening keeps the `a/an` sound distinction scoped to named words."],"blockers":[],"mustFix":[]},
+        "judge_nonsense":{"verdict":"PASS","evidence":["The display-window scene holds the named objects together naturally."],"blockers":[],"mustFix":[]},
+        "judge_reader":{"verdict":"PASS","evidence":["The question and each target/audio string are singular and unbundled."],"blockers":[],"mustFix":[]},
+        "judge_taste":{"verdict":"PASS","evidence":["The small-word sound reminder returns to the immediate listening decision."],"blockers":[],"mustFix":[]},
+        "locale_uk":{"verdict":"PASS","evidence":["RU/UK preserve matching English contracts and local learner copy."],"blockers":[],"mustFix":[]}
+      },
+      "overall":"PASS"
+    }
+  ],
+  "overall":"BLOCK",
+  "overallReason":"S01, S05 and S11 violate the exact intro-to-assessed-practice chain. Nine sessions pass; no PASS receipts or status files were written for this range.",
+  "limitations":["Static-source review only; generated audio was checked against target transcript fields, not acoustically listened to."]
+}

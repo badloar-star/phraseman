@@ -1,9 +1,8 @@
-# Английский · Урок 1 · Сессия 30 — «It is про место»
+# Английский · Урок 1 · Занятие 30 — «Как описать место»
 
-**Сцена сессии.** Кафе на углу, потом улица и автобус. Спутник спрашивает, как вам тут, — и каждый раз нужно ответить одной фразой про место вокруг.
-
-**Операция:** перенос `It is` на места вне дома
-**Новые слова:** —
+**Ситуация.** Лена встретилась с Марком у кафе. Они выбирают столик, идут к автобусу и описывают, где шумно, тихо или свободно.
+**Как сказать:** `It is`, когда описываете место вокруг себя.
+**Новые слова:** busy, quiet, loud, free
 **Возвращаются:** small, warm, open, closed, busy, quiet, loud, free
 
 ---
@@ -16,13 +15,13 @@
 
 `It` — «оно», и место тоже `it`. Кафе, улица, автобус — всё `it`, род выдумывать не надо.
 
-По-русски «тут людно» обходится без «есть», и рука сама пишет `It busy`. Скрепка `is` обязательна.
+По-русски «тут людно» обходится без глагола. По-английски между `it` и словом нужна форма `is`.
 
 **В кафе ни одного свободного столика. Спутник спрашивает, что там. Ответьте.**
 
 - ✅ **It is busy.**
-- ❌ It busy. — *Скрепка `is` пропала. По-русски её нет, по-английски без неё фраза не стоит.*
-- ❌ It are busy. — *Чужая скрепка. С `it` — только `is`, всегда.*
+- ❌ It busy. — *Между `it` и словом нужна форма `is`.*
+- ❌ It are busy. — *С `it` используют `is`, а не `are`.*
 
 ---
 
@@ -34,7 +33,7 @@
 
 `It is loud` — три слова в этом порядке. Скажете просто `Is loud` — и спутник не поймёт, что вы про автобус, а не про его телефон.
 
-**Автобус гудит, все говорят разом, музыка сверху. Спутник кричит вам в ухо: «Ну как?»**
+**Марк и Лена едут в шумном автобусе: вокруг разговоры и музыка. Лена описывает автобус.**
 
 - ✅ **It is loud.**
 - ❌ It is quiet. — *Ровно наоборот: `quiet` — это тишина, а в автобусе шум.*
@@ -53,7 +52,7 @@
 **Спутник кивает на пустой столик у окна: занят или нет? Ответьте.**
 
 - ✅ **It is free.**
-- ❌ It free. — *Без `is` фраза рассыпается. По-английски скрепка обязательна.*
+- ❌ It free. — *Между `it` и словом нужна форма `is`.*
 - ❌ It is busy. — *`busy` — это «занято», а столик как раз пустой.*
 
 ---
@@ -61,72 +60,90 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — busy**
+<!-- interaction_id: en:lesson-01:session-30:i01; family: listen_choose -->
 > **busy** — «занято, людно». Про место — очередь, гул, ни одного свободного стула.
 
-**2 · Послушайте и выберите — busy**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-30:i02; family: listen_choose -->
 🔊 *busy* → **busy** · bus · bee
 - bus — *«Автобус». Хвост «-зи» обрублен.*
 - bee — *Один слог. `busy` — два: «би-зи».*
 
 **3 · Карточка слова — quiet**
+<!-- interaction_id: en:lesson-01:session-30:i03; family: listen_choose -->
 > **quiet** — «тихо». Никто не кричит, слышно, как закрывается дверь.
 
-**4 · Послушайте и выберите — quiet**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-30:i04; family: listen_choose -->
 🔊 *quiet* → **quiet** · white · queen
 - white — *Похожий хвост, но начало другое. `quiet` начинается на «ку».*
 - queen — *Начало то же, дальше расходятся. `quiet` — два слога.*
 
-**5 · Вставьте слово — спутник спрашивает про кафе, а там очередь до двери**
+**5 · Вставьте слово — в кафе очередь до двери и гул голосов**
+<!-- interaction_id: en:lesson-01:session-30:i05; family: context_gap_grammar -->
 It is ___ . → **busy** · quiet · small
 - quiet — *«Тихо» — но там очередь и гул.*
 - small — *«Маленькое» — про размер, а вы говорите про толпу.*
 
 **6 · Соберите фразу — «тут тихо»**
+<!-- interaction_id: en:lesson-01:session-30:i06; family: phrase_builder -->
 Плитки: `quiet` `is` `It` `are` → **It is quiet.**
 
 **7 · Карточка слова — loud**
+<!-- interaction_id: en:lesson-01:session-30:i07; family: listen_choose -->
 > **loud** — «громко». Приходится повышать голос, чтобы вас услышали рядом.
 
-**8 · Послушайте и выберите — loud**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-30:i08; family: listen_choose -->
 🔊 *loud* → **loud** · lot · low
 - lot — *Конец другой. В `loud` слышно «-ауд».*
 - low — *Без «-д» на конце. `loud` заканчивается на «д».*
 
 **9 · Карточка слова — free**
+<!-- interaction_id: en:lesson-01:session-30:i09; family: listen_choose -->
 > **free** — «свободно». А ещё «бесплатно» — то же слово, два значения.
 
-**10 · Послушайте и выберите — free**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-30:i10; family: listen_choose -->
 🔊 *free* → **free** · three · tree
 - three — *Начинается не так: язык между зубами, а в `free` — губы и «ф».*
 - tree — *«Дерево». Первый звук «т», а нужен «ф».*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-30:i11; family: speed_match -->
 busy — людно · quiet — тихо · loud — громко · free — свободно
 
 **12 · Вставьте слово — в кафе никого, играет одна тихая песня**
+<!-- interaction_id: en:lesson-01:session-30:i12; family: context_gap_grammar -->
 It is ___ . → **quiet** · loud · warm
 - loud — *«Громко» — а там одна тихая песня и пустой зал.*
 - warm — *«Тепло» — про печку, а вы говорите про тишину.*
 
 **13 · Соберите фразу — за столиком никого, он свободен**
+<!-- interaction_id: en:lesson-01:session-30:i13; family: phrase_builder -->
 Плитки: `free` `It` `is` `are` → **It is free.**
 
-**14 · Вставьте слово — спутник спрашивает, работает ли кафе. Дверь нараспашку**
+**14 · Вставьте слово — кафе работает, дверь открыта и горит вывеска**
+<!-- interaction_id: en:lesson-01:session-30:i14; family: context_gap_grammar -->
 It is ___ . → **open** · closed · free
 - closed — *«Закрыто» — а дверь как раз открыта.*
 - free — *«Свободно» — про столик, а вы говорите про само кафе.*
 
-**15 · Вставьте слово — в кафе всего четыре стола, и они стоят вплотную**
-It is ___ . → **small** · loud · free
-- loud — *Про шум, а вы говорите про размер.*
-- free — *«Свободно» — про то, есть ли место за столиком. А тут про само кафе.*
+**15 · Соберите фразу — в кафе всего четыре стола, и они стоят вплотную**
+<!-- interaction_id: en:lesson-01:session-30:i15; family: phrase_builder -->
+Плитки: `small` `It` `is` `are` → **It is small.**
 
 **16 · Послушайте и соберите — «уже закрыто»**
+<!-- interaction_id: en:lesson-01:session-30:i16; family: listen_build_dictation -->
 🔊 *It is closed.* Плитки: `closed` `is` `It` `open` → **It is closed.**
 
-**17 · Скажите вслух — вы стоите в дверях кафе**
-🎙 Позади зал и гул голосов, впереди пустая улица. Спутник ждёт: скажите про то и про другое.
-**It is loud. It is quiet.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-30:i17:s01; family: scripted_repeat_compare -->
+🎙 **It is loud.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-30:i17:s02; family: scripted_repeat_compare -->
+🎙 **It is quiet.**
 
 ---
 
@@ -138,7 +155,7 @@ quiet — тихо — «тихо». Никто не кричит, слышно,
 loud — громко — «громко». Приходится повышать голос, чтобы вас услышали рядом.
 free — свободно — «свободно». А ещё «бесплатно» — то же слово, два значения.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=listen_choose, 9=word_card, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=context_gap_grammar, 16=listen_build_dictation, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=listen_build_dictation, 17=scripted_repeat_compare, 18=scripted_repeat_compare
 
 ---
 

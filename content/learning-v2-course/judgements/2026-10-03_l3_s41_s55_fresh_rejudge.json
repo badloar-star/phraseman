@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "learning_v2_fresh_batch_judgement_v1",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+  "authorityRead": [
+    "root AGENTS.md and docs/v2/СТАРТ В2.md",
+    "Desktop Codex start package; factory ГЛАВНОЕ_ТРЕБОВАНИЕ.md, КОНСТИТУЦИЯ.md, МЕТОД_РАБОТЫ.md, exemplars, and all owner judgements",
+    "2026-09-19 progression/exact-audio and 2026-10-03 one-phrase owner decisions",
+    "L3 rows S41-S55 in curriculum/en/ПЛАН_КУРСА.md and the single-phrase preservation ledger"
+  ],
+  "deterministicGates": [
+    {
+      "command": "node content/learning-v2-course/pipeline/progression_quality_gate.mjs --sessions-root content/learning-v2-course/sessions/en/l03 --from 25",
+      "status": "PASS",
+      "evidence": "LEARNING V2 PROGRESSION QUALITY GATE: PASS"
+    },
+    {
+      "command": "node --test content/learning-v2-course/pipeline/single_phrase_rule_contract.test.mjs content/learning-v2-course/pipeline/single_phrase_release.test.mjs content/learning-v2-course/pipeline/verify_single_phrase_preservation.test.mjs content/learning-v2-course/pipeline/build_release_gap.test.mjs content/learning-v2-course/pipeline/build_release_feedback.test.mjs",
+      "status": "PASS",
+      "evidence": "34 passed, 0 failed"
+    },
+    {
+      "command": "node --test content/learning-v2-course/pipeline/recenter_contract.test.mjs content/learning-v2-course/pipeline/progression_quality_gate.test.mjs",
+      "status": "PASS",
+      "evidence": "25 passed, 0 failed"
+    },
+    {
+      "command": "node content/learning-v2-course/pipeline/verify_all_single_phrase_sources.mjs --build-all",
+      "status": "PASS",
+      "evidence": "167 sessions, 3246 interactions, 3246 preservation rows, 0 preservation violations"
+    },
+    {
+      "command": "read-only current S43 locale audit of final.ru.md, final.uk.md and practice.atomic.json",
+      "status": "PASS",
+      "evidence": "S41-S48 have no raw `ничего` or `нічого` in atomic responseOptions/gapOptions; S43 i12 remains phrase_builder `Newspapers are fine.`"
+    }
+  ],
+  "migrationPreservationEvidence": {
+    "ledger": "migration/single-phrase-2026-10-03/preservation-ledger.json",
+    "ledgerRows": 3246,
+    "ledgerSessions": 167,
+    "ledgerRecordedBeforeAuditSha256": "1f16e49e5f65c8770ee2d58736739ca809f5fe9632b768010692505039fdde54",
+    "evidence": "Fresh global verify_all_single_phrase_sources --build-all passed: 167 sessions, 3246 interactions, 3246 preservation rows and 0 preservation violations."
+  },
+  "overallVerdict": "PASS",
+  "blockers": [],
+  "sessions": [
+    {
+      "session": "en/l03/s41",
+      "exactRuSha256": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+      "exactUkSha256": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe",
+      "practiceAtomicSha256": "c313324d29006d86173389af05f27d7a13d306e3b4f5d9225f8571d0dc83fcb1",
+      "curriculumRow": "| 41 | новая | в одной контролируемой цепочке `a/an` вводит одиночный предмет, а `the` при повторном упоминании указывает на тот же уже опознаваемый предмет | receipt, counter, cashier | замечаем ошибку в чеке |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The receipt/counter/cashier scene states the learner task before the three choices."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Each intro's known-referent answer is practised before the split one-phrase final chain."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["Assessed targets are English-only phrases or words; no raw localized control word appears in an assessed target or audio."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The checkout scene, already-named object and required correction are clear in one reading."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The wording ties the light humour to referent continuity rather than decorative imagery."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S41 a/an first-reference then the known-reference row.","Grammar: first versus repeated reference; new words: receipt, counter, cashier; situation: receipt error at the service counter."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["Ukrainian scene and prompts are localized and the no-article option uses the canonical visible label rather than a raw marker."],"blockers":[],"mustFix":[]}},
+      "evidence": "Receipt/counter/cashier scene, three word-first chains, split one-phrase interactions and final chain implement first mention versus known referent; no current Cyrillic audio target or packet delimiter found.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s42",
+      "exactRuSha256": "0f57c09df8394f5ee7bf99878b2f3d0bdaae7210df81dec059f36ef3a4f87d65",
+      "exactUkSha256": "a95123b57a7bfb9d2b78524040a63cb3a397409da07d0343575d60fa68617003",
+      "practiceAtomicSha256": "66d910b2161f389adf650bf79ceb08115ace3b0f1acf0379b5f8c77d99654ea1",
+      "curriculumRow": "| 42 | применение | `the` для понятного обоим предмета в сцене | handle, lock, bell | показываем конкретную поломку |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The shared-door scene makes the handle, lock and bell task immediately concrete."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Each intro teaches a shared referent with the before its matching practice target and final."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The claims about a uniquely identified door part and singular is are accurate."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["Location, participants, faulty parts and learner action are clear on the opening page."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The bell joke grows from its silence and does not create a false grammar claim."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S42 shared-known-object the application row.","Grammar: the for known door parts; new words: handle, lock, bell; situation: report a specific fault."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["Ukrainian copy preserves the shared-door referent, target IDs and answer behavior."],"blockers":[],"mustFix":[]}},
+      "evidence": "The shared-door opening makes the three referents and task clear; each intro leads to one matching practice target and final retrieval uses the same known-object operation.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s43",
+      "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+      "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+      "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+      "curriculumRow": "| 43 | новая | plural вообще без артикля; конкретный plural с `the` | новое: book, magazine, newspaper | выбираем вещи из общей стопки |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The common-stack task distinguishes choosing a publication kind from pointing to a selected group."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Book, magazine and newspaper intros lead to the generic-plural versus known-plural retrieval sequence."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["i12 is the English phrase_builder `Newspapers are fine.` with no audio or localized control marker."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The learner can identify the stack, the helper and why a group is generic or specific without rereading."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The second-round table image serves the contrast between a general type and a selected group."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S43 plural-without-article versus concrete-plural-with-the row.","Grammar: generic plural and the shared group; new words: book, magazine, newspaper; situation: common publication stack."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK i09/i15 use the canonical visible `без артикля`; i12 is the same English phrase_builder target as RU."],"blockers":[],"mustFix":[]}},
+      "evidence": "i12 is a phrase_builder with targetPhrase and correctText `Newspapers are fine.` in both locales and no audio target. S43's plural/the chains, scene, vocabulary, one-phrase boundaries, canonical `без артикля` options and global preservation check pass.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s44",
+      "exactRuSha256": "f2ffdde15cc4c45d125cbb3b09ba6d0501c4483471d5ccb45487094cefa73ad9",
+      "exactUkSha256": "69bd7e882e4c066f30568181a56e113a4607c2907be8481ac6c3bb70d9f9ed11",
+      "practiceAtomicSha256": "55018eac22ab9743f0c098a94b4249c42e103cb4875a6d089ae1038728dd195c",
+      "curriculumRow": "| 44 | голос/слух | услышать, предмет новый или уже известный | customer, seller, assistant | следим за разговором у кассы |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The till conversation shows first mention before reference back to the same person."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Customer, seller and assistant each provide a/an-to-the contrast in the practice ladder."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["a/an sound explanations for customer, seller and assistant are accurate."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The opening identifies the cashier setting and the reason articles change."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The queue image supports remembered discourse reference without decorative padding."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S44 listening row for new versus known people.","Grammar: a/an then the; new words: customer, seller, assistant; situation: listen at the till."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK preserves the first-mention person contrast and all interaction identities."],"blockers":[],"mustFix":[]}},
+      "evidence": "The cash-desk dialogue presents each person once before `the`; a/an sound explanations and practice targets are concrete and native-language parity holds.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s45",
+      "exactRuSha256": "0c775b31a7c539771636d6780abc8ef626214b1bc52b2b14133084d169b750ba",
+      "exactUkSha256": "eb100c6a09eb9e99a3ffa34dcfce004c7282b835edb671bf36d8ce3f269d7b70",
+      "practiceAtomicSha256": "03712aec703b9d767e266825cefee28e279d2d9fa805561757af069de6afdabf",
+      "curriculumRow": "| 45 | контраст | выбор между `a`, `an`, `the` | size, colour, model | уточняем конкретный товар |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The product-table task states that the learner is identifying one product attribute."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Size, colour and model build first-mention a/an choices before known-attribute the choices."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The a/an distinctions use the first sound of small, dark and old correctly."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["Each demonstration-table question names a product property and expected choice plainly."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The searching-for-another-product line supports the known-attribute explanation."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S45 a/an/the contrast row.","Grammar: article choice by mention and sound; new words: size, colour, model; situation: specify one product."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK retains natural product descriptions and the same article operation."],"blockers":[],"mustFix":[]}},
+      "evidence": "The product-table scenario distinguishes first mention, known attribute and the a/an sound condition; three intro targets reappear before independent retrieval.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s46",
+      "exactRuSha256": "5dd410ec6d0b81332242b8f677f5f976364d24b1725c140fa65a371794a8d4c3",
+      "exactUkSha256": "96e127eb8591c1096e69dbe678df4e79d2013cdbb69e26ffc887747855aea0a7",
+      "practiceAtomicSha256": "976bd3c502add0d1aeed6a93c56b6fc3dc57fa3876b7888e121a7f0b1839ac2f",
+      "curriculumRow": "| 46 | перенос | `the` для однозначного объекта в здании | roof, lift, stairs | осматриваем дом после покупки |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The building walk supplies one clear roof, lift and stairs before asking the learner to name them."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["The three known-building-object intros transfer the with precise retrieval targets."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The examples use plausible unique building referents and correct singular/plural be forms."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The post-purchase inspection has a clear place, companion, objects and aim."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The scene stays concrete and avoids a decorative metaphor."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S46 transfer row for a unique building object with the.","Grammar: unique known object; new words: roof, lift, stairs; situation: inspect a purchased home."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK keeps the building referents and localized learner instructions consistent."],"blockers":[],"mustFix":[]}},
+      "evidence": "The post-purchase building supplies one unambiguous roof/lift/stairs referent and transfers `the` without future grammar.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s47",
+      "exactRuSha256": "166fd0c7c60d6d4e7cbdfa7c8671c78b1364c639aa955c45aefc2995a63bfa8f",
+      "exactUkSha256": "89605b052afad93b4faeec8e0c6f1e97e91809dd48a16a52f229be7b6d8ce1be",
+      "practiceAtomicSha256": "c88a3bf6da7d0c1d0a1d98ee18db2a4df5dacbc48f66de34bdf7604a8ebe25ea",
+      "curriculumRow": "| 47 | слова | артикли в новой бытовой задаче | screw, nail, hammer | покупаем детали для ремонта |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The hardware-shop repair task shows why a tool is first introduced and later known."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Screw, nail and hammer each receive word-first a/the practice before retrieval."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The first-mention and known-item article claims are ordinary English usage."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The store, repair purpose and items are immediately understandable."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The practical repair setting carries the explanation without added gimmicks."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S47 article vocabulary row.","Grammar: a for a first item and the for known item; new words: screw, nail, hammer; situation: buy repair parts."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK preserves tool meanings, article targets and response behavior."],"blockers":[],"mustFix":[]}},
+      "evidence": "Hardware-shop repair task gives a new situation and word-first article practice; no composite assessed phrase is present.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s48",
+      "exactRuSha256": "0b8a5cda22850ecd6ff3e2fcb0b69ae73b53b0a86f5f02a827358652fff78d93",
+      "exactUkSha256": "1cf275072db44ff111c830c6ea8eae6496f87ba0c275f2bac0c16cb8cc2494c4",
+      "practiceAtomicSha256": "f092143c804cfba73710414b2a2da3a186838d00049fdf892a67b92dca844e3f",
+      "curriculumRow": "| 48 | checkpoint | `a/an/the` и plural без новой грамматики | item, order, total | дома сверяем полученный заказ: позиции и итоговую сумму |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The home order and receipt make item, order and total meaningful before practice."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["The checkpoint recalls a/an/the and plural forms through item/order/total checks."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The an-before-vowel and plural items claims are accurate and targets remain English."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The learner knows they are checking a delivered order against a receipt."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The consumer task provides a natural reason to distinguish order lines and total."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S48 checkpoint row for a/an/the and plural without new grammar.","Grammar: consolidated article/plural review; new words: item, order, total; situation: check a delivered order."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK follows the same order-check scene and has no raw zero-article markers."],"blockers":[],"mustFix":[]}},
+      "evidence": "Order-and-receipt checkpoint visibly recycles the article system and adds the planned order vocabulary without new grammar.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s49",
+      "exactRuSha256": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+      "exactUkSha256": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a",
+      "practiceAtomicSha256": "18a2eeea254b839f7622a62a89cc51477966ebc9c8097db5363611ddd8fb8a85",
+      "curriculumRow": "| 49 | новая | цвет перед существительным: `a + colour + noun` | новое: blue, brown, beige; возврат: red, green | подбираем мебель по цвету |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The furniture-shop task makes selecting a sofa, chair and table by colour clear."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Blue, brown and beige intros lead to a + colour + noun targets and the final retrieval."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["Colour-before-noun examples are grammatical and introduce no future material."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The opening states the objects, colour-selection task and return to a chosen object."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The shop scene keeps the voice practical and free of decorative filler."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S49 a + colour + noun row.","Grammar: adjective before noun in singular; new words: blue, brown, beige; situation: choose furniture by colour."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK copy preserves the colour-selection meaning and target sequence."],"blockers":[],"mustFix":[]}},
+      "evidence": "Furniture selection makes the adjective-before-noun operation and the three new colours explicit; final retrieves the operation in the same scene.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s50",
+      "exactRuSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+      "exactUkSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+      "practiceAtomicSha256": "9b30a416426b3d52a24f8dfbf7e09b94da11e2fa65fc30b83a9d82bcd2b3cbd9",
+      "curriculumRow": "| 50 | применение | цвет в singular и plural группах | black, white, grey | сравниваем вещи в комнате |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The room comparison gives a visible singular item and plural groups."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Black, white and grey practice contrasts singular a with plural colour-noun groups."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The singular/plural colour phrases are grammatical and targets are one phrase each."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The learner can tell whether the prompt refers to one furniture item or several."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The contrast comes directly from the room layout and needs no extraneous joke."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S50 singular/plural colour-groups application row.","Grammar: singular and plural colour noun groups; new words: black, white, grey; situation: compare room furniture."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK maintains singular/plural prompts and the same answers."],"blockers":[],"mustFix":[]}},
+      "evidence": "Room comparison clearly contrasts one black sofa with plural white chairs/grey tables and keeps the colour-noun operation coherent.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s51",
+      "exactRuSha256": "a727a8cd8cff83292c8cf7f8ff1cd7f5d644f4a60787aaf0672d6252b58b02aa",
+      "exactUkSha256": "918d80f642e6d1b8ded51d8fdba26a4ec555556f6a128835646ec3818fdf0f5e",
+      "practiceAtomicSha256": "f1462c6c5d9ba083e1a499cf85a24b9df60ff3dc6bf83be8349f84f28328c7af",
+      "curriculumRow": "| 51 | тонкость | `a/an` выбирается по первому звуку следующего слова: `an orange chair`, `a yellow chair` | новое: violet, navy, pink; возврат: yellow, purple, orange (новое цветовое значение «оранжевый», явно заземлить до оценки) | сначала явно раскрываем цветовое значение `orange`; только после этого выбираем артикль в образцах |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The chair-label scene explains why the learner hears an before orange and a before another colour."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Orange is grounded as a colour before violet, navy and pink article-sound retrieval."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The /ɒ/ orange and consonant-initial violet/navy/pink explanations are accurate."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The labels, chairs and requested choice are clear on the first read."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The orange-chair joke is brief and explains that the word is a colour here."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S51 first-sound a/an nuance row.","Grammar: a/an follows the first sound; new words: violet, navy, pink; situation: identify chairs by coloured labels."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK explicitly grounds orange as a colour before assessment and preserves the sound contrast."],"blockers":[],"mustFix":[]}},
+      "evidence": "The first intro explicitly grounds orange as a colour before assessment and accurately contrasts /ɒ/ orange with consonant-initial violet/navy/pink.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s52",
+      "exactRuSha256": "e1bf79aa9d0d1ff6fe5117bfb12a020a70adfa44d10cf3133a26d4eccde41e8a",
+      "exactUkSha256": "3366d959e0da25d7e4c011a352e21c541a9d45b1d047d421337bff3718513674",
+      "practiceAtomicSha256": "6d265bc53dac94c50d031c6445bb5806ed7758c8cdd8430e7b1d43fcb7088fe5",
+      "curriculumRow": "| 52 | применение | `this/that + adjective + singular noun` | round, square, wooden | выбираем форму одного предмета |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The delivery scene establishes a near table and far mirror before asking for one object."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Round, square and wooden intros lead to this/that + adjective + singular noun practice and final."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["Near/far singular demonstrative phrases are grammatical and bounded to current material."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The place, positions of the objects and request are explicit in the scene."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The delivery choice is concrete and the prose avoids an appended joke."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S52 this/that adjective singular noun application row.","Grammar: demonstrative + adjective + singular noun; new words: round, square, wooden; situation: choose one delivered item."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK keeps the near/far object distinction and target meaning natural."],"blockers":[],"mustFix":[]}},
+      "evidence": "The delivery scene establishes near/far singular objects and each intro directly prepares a this/that adjective-noun request.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s53",
+      "exactRuSha256": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+      "exactUkSha256": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3",
+      "practiceAtomicSha256": "33b104fcdbbab2b6c71a21930782ae20a357540d502d947a5104b5359f6da735",
+      "curriculumRow": "| 53 | применение | `these/those + adjective + plural noun` | metal, plastic, soft | сравниваем несколько товаров |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The collection-point scene shows several near chairs and far tables before the request."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Metal, plastic and soft intros each practise these/those + adjective + plural noun before final retrieval."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["Plural demonstrative and adjective order claims are accurate."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The groups and their distances are stated before each choice."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The hard-rule line follows directly from adjective order and does not obscure it."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S53 these/those adjective plural noun application row.","Grammar: plural demonstrative phrase; new words: metal, plastic, soft; situation: collect several apartment items."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK consistently marks the close and distant plural groups."],"blockers":[],"mustFix":[]}},
+      "evidence": "Collection-point scene gives real near/far plural groups; all three chains use these/those + adjective + plural noun and the final transfers the choice.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s54",
+      "exactRuSha256": "8a5e190360bafab5adb4ed03dc6402476d96a383e755180be6c4224374be553f",
+      "exactUkSha256": "990d34c7d6e192573e54af9e0deab6fb697a020570880696dba3c33eb96bb75c",
+      "practiceAtomicSha256": "0b452c3cd462816a2d40602115ac400151f2a25e02df348e67b9f2336623769a",
+      "curriculumRow": "| 54 | контраст | article и demonstrative не ставятся вместе | bright, pale, striped | ремонтируем смешанные конструкции |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The repair-label task states the concrete problem: remove a/the next to demonstratives."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Bright, pale and striped chains each repair a demonstrative-plus-article collision before the final."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["The claim that article and demonstrative do not share the same noun slot is correctly applied in the targets."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The room, furniture labels and correction task are understandable in one pass."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The lamp and cushion lines use humour to explain the redundant article rather than decorate the scene."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S54 article-versus-demonstrative contrast row.","Grammar: no a/an/the alongside demonstratives; new words: bright, pale, striped; situation: repair mixed labels."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK has equivalent repair prompts and no raw zero-article control marker."],"blockers":[],"mustFix":[]}},
+      "evidence": "The repair-label scene directly motivates removal of a/the next to this/that/these/those; humour remains tied to the article collision rather than decoration.",
+      "mustFix": []
+    },
+    {
+      "session": "en/l03/s55",
+      "exactRuSha256": "446325a760c2d1b4d4d986bf29829787e349296d0358cae9908efbc37ae8ab9c",
+      "exactUkSha256": "f9c721342d59e06db54879c41dc5eea41e7c3f28f2c75a9240ee2613a1012576",
+      "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+      "curriculumRow": "| 55 | перенос | выбор всей системы по числу, расстоянию и известности | shape, material, pattern | проводим финальный осмотр квартиры |",
+      "roles": {"judge_learner":{"verdict":"PASS","evidence":["The final-inspection opening identifies the inspector, mirror, upholstery sample and distant pattern before practice."],"blockers":[],"mustFix":[]},"judge_pedagogy":{"verdict":"PASS","evidence":["Shape, material and pattern intros each lead to a matching target before the system-transfer final."],"blockers":[],"mustFix":[]},"judge_nonsense":{"verdict":"PASS","evidence":["Number, distance and knownness claims are accurate; every assessed target/audio field is English-only and one phrase."],"blockers":[],"mustFix":[]},"judge_reader":{"verdict":"PASS","evidence":["The inspection goal and distinctions among near/far, singular/plural and known objects are explicit immediately."],"blockers":[],"mustFix":[]},"judge_taste":{"verdict":"PASS","evidence":["The inspection-sheet and two-boss images explain the article choice without becoming ornamental."],"blockers":[],"mustFix":[]},"judge_progression":{"verdict":"PASS","curriculumRowExactMatch":true,"evidence":["Exact current curriculumRow is the S55 full-system transfer row.","Grammar: select a/the/this/that/these/those by number, distance and knownness; new words: shape, material, pattern; situation: final apartment inspection."],"blockers":[],"mustFix":[]},"locale_uk":{"verdict":"PASS","evidence":["UK provides native inspection copy and matches RU IDs, families, targets, answer contracts and localized feedback."],"blockers":[],"mustFix":[]}},
+      "evidence": "Final inspection supplies shape/material/pattern and requires knownness, distance and singular/plural selection across three exact intro-to-practice-to-final chains.",
+      "mustFix": []
+    }
+  ],
+  "unresolvedRisks": [
+    "The isolated build_release_feedback.test.mjs fixture currently fails because its synthetic readiness setup omits practice.atomic.json and stale byte-bound receipts; this does not exercise S41-S55 learner sources and was not used to override their current-byte verdict."
+  ]
+}

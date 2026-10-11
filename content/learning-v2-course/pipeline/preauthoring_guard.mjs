@@ -105,6 +105,92 @@ const fileForManifestKey = (name) => name.startsWith("DesktopCodex/")
     ? path.join(ROOT, name.slice("factory/".length))
     : path.join(REPO, name.slice("repo/".length));
 
+const blueprintAuthorityDocumentKeys = Object.freeze([
+  "repo/docs/v2/СТАРТ В2.md",
+  "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md",
+]);
+
+const lineNumberAt = (text, index) => text.slice(0, index).split(/\r?\n/u).length;
+const statusClass = (status) => {
+  const normalized = String(status).trim().toUpperCase().replace(/\s+/gu, " ");
+  if (normalized.includes("SUPERSEDED")) return "SUPERSEDED";
+  if (normalized.includes("PENDING") || normalized.includes("REVIEW REQUIRED") || normalized.includes("HOLD")) return "PENDING";
+  if (normalized.includes("APPROVED")) return "APPROVED";
+  return normalized;
+};
+
+const authorityClaims = ({ name, text }) => {
+  const source = String(name || "<без имени>");
+  const bytes = String(text || "");
+  const claims = [];
+  const add = (fingerprint, status, index) => claims.push({
+    source,
+    line: lineNumberAt(bytes, index),
+    fingerprint: fingerprint.toLowerCase(),
+    status: String(status).trim(),
+  });
+
+  for (const match of bytes.matchAll(/(?:Текущий|Current)\s+canonical\s+fingerprint:\s*\r?\n?\s*`([0-9a-f]{64})`[\s\S]{0,300}?(?:Статус|Status):\s*`([^`]+)`/giu)) {
+    add(match[1], match[2], match.index);
+  }
+
+  const headerFingerprint = /\*\*Canonical fingerprint:\*\*\s*\r?\n?\s*`([0-9a-f]{64})`/iu.exec(bytes);
+  const headerStatus = /\*\*(?:Статус|Status):\*\*\s*`([^`]+)`/iu.exec(bytes);
+  if (headerFingerprint && headerStatus) add(headerFingerprint[1], headerStatus[1], headerFingerprint.index);
+
+  if (headerFingerprint) {
+    for (const match of bytes.matchAll(/Новый\s+exact\s+fingerprint\s+выше\s+имеет\s*\r?\n?\s*`ownerApproval\s*=\s*([^`]+)`/giu)) {
+      add(headerFingerprint[1], match[1], match.index);
+    }
+  }
+
+  for (const match of bytes.matchAll(/owner\s+review\s+exact\s+fingerprint\s*\r?\n?\s*`([0-9a-f]{64})`[\s\S]{0,180}?До\s+явного\s+approval/giu)) {
+    add(match[1], "OWNER REVIEW REQUIRED", match.index);
+  }
+
+  return claims.filter((claim, index, all) => all.findIndex((candidate) => (
+    candidate.source === claim.source
+    && candidate.line === claim.line
+    && candidate.fingerprint === claim.fingerprint
+    && candidate.status === claim.status
+  )) === index);
+};
+
+export function preauthoringAuthorityConflictIssues(documents) {
+  if (!Array.isArray(documents) || documents.length === 0) {
+    return ["PREAUTHORING: обязательные blueprint authority-документы не переданы для перекрёстной проверки"];
+  }
+  const claims = documents.flatMap(authorityClaims);
+  const missing = documents
+    .filter((document) => !claims.some((claim) => claim.source === String(document?.name || "<без имени>")))
+    .map((document) => String(document?.name || "<без имени>"));
+  if (missing.length > 0) {
+    return [`PREAUTHORING: обязательный blueprint authority не содержит однозначной пары fingerprint/status: ${missing.join(", ")}`];
+  }
+
+  const fingerprints = new Set(claims.map((claim) => claim.fingerprint));
+  const statusesByFingerprint = new Map();
+  for (const claim of claims) {
+    const statuses = statusesByFingerprint.get(claim.fingerprint) || new Set();
+    statuses.add(statusClass(claim.status));
+    statusesByFingerprint.set(claim.fingerprint, statuses);
+  }
+  const conflictingStatus = [...statusesByFingerprint.values()].some((statuses) => statuses.size > 1);
+  if (fingerprints.size === 1 && !conflictingStatus) return [];
+
+  const evidence = claims
+    .map((claim) => `${claim.source}:L${claim.line} fingerprint=${claim.fingerprint} status=${claim.status}`)
+    .join("; ");
+  return [`PREAUTHORING: конфликт обязательных blueprint authority: ${evidence}. Единого exact fingerprint/status нет; PASS запрещён до явного разрешения конфликта владельцем.`];
+}
+
+const mandatoryBlueprintAuthorityConflictIssues = () => preauthoringAuthorityConflictIssues(
+  blueprintAuthorityDocumentKeys.map((name) => ({
+    name,
+    text: fs.readFileSync(fileForManifestKey(name), "utf8"),
+  })),
+);
+
 export function priorLearnerFacingManifest(previousSession) {
   const match = /^([a-z]{2})\/l(\d+)\/s(\d+)$/i.exec(String(previousSession || ""));
   if (!match) return {};
@@ -138,6 +224,11 @@ export function preauthoringDocumentManifest() {
 export function preauthoringReceiptIssues(receipt, { session, curriculumRow, previousSession, expectedNewWords = null, priorRangeReady = true, priorRangeIssues = [] }) {
   const issues = [];
   if (!receipt || typeof receipt !== "object" || Array.isArray(receipt)) return ["нет читаемой PREAUTHORING-квитанции"];
+  try {
+    issues.push(...mandatoryBlueprintAuthorityConflictIssues());
+  } catch (error) {
+    issues.push(`PREAUTHORING: обязательные blueprint authority-документы не удалось проверить: ${error.message}`);
+  }
   if (receipt.verdict !== "PASS") issues.push(`PREAUTHORING verdict=${receipt.verdict || "нет"}`);
   const issuedAt = Date.parse(receipt.issuedAt);
   if (!Number.isFinite(issuedAt)) issues.push("PREAUTHORING: issuedAt не является корректным временем свежего вердикта");

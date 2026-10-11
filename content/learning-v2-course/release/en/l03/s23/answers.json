@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-23:i01",
-    "correctText": "",
+    "correctText": "spoon",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-23:i03",
-    "correctText": "",
+    "correctText": "fork",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-23:i07",
-    "correctText": "",
+    "correctText": "cup",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-23:i14",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-23:i14:p1=spoons\nen:lesson-03:session-23:i14:p2=forks\nen:lesson-03:session-23:i14:p3=cups\nen:lesson-03:session-23:i14:p4=bowls",
     "correctResponseId": null
   },
   {

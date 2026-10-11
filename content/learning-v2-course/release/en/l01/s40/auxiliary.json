@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro1:r2": {
+          "ru": "Скрепка выпала. По-русски «мы дружелюбные» держится само, по-английски между `we` и словом нужно `are`.",
+          "uk": "Скріпка випала. Українською «ми привітні» тримається саме, англійською між `we` і словом потрібне `are`."
+        },
+        "en:lesson-01:session-40:intro1:r3": {
+          "ru": "`is` — про одного человека со стороны. Про «мы» — `are`.",
+          "uk": "`is` — про одну людину збоку. Про «ми» — `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro2:r2": {
+          "ru": "`is` — когда человек один. `they` — это несколько, значит `are`.",
+          "uk": "`is` — коли людина одна. `they` — це кілька, отже `are`."
+        },
+        "en:lesson-01:session-40:intro2:r3": {
+          "ru": "Для англичанина это обрывок: он ждёт продолжения, а фраза уже кончилась.",
+          "uk": "Для англійця це уривок: він чекає продовження, а фраза вже скінчилася."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-40:intro3:r2": {
+          "ru": "`not` идёт после `are`, а не перед ним.",
+          "uk": "`not` іде після `are`, а не перед ним."
+        },
+        "en:lesson-01:session-40:intro3:r3": {
+          "ru": "`no` — это «нет», отказ целиком. Отрицание внутри фразы — `not`, и держится оно за `are`.",
+          "uk": "`no` — це «ні», відмова цілком. Заперечення всередині фрази — `not`, і тримається воно за `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "50a1d174c53ca0ec3c994ec4c955fd4614db65c364235699c77a4cb2a0974341"
+}

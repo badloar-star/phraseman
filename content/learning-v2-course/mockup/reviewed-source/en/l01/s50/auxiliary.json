@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro1:r2": {
+          "ru": "После `it` не хватает `is`. В короткой форме оно прячется в `It's`.",
+          "uk": "Після `it` бракує `is`. У короткій формі воно ховається в `It's`."
+        },
+        "en:lesson-01:session-50:intro1:r3": {
+          "ru": "Без апострофа `its` значит «его» или «её». Здесь нужно `it's`: короткое `it is`.",
+          "uk": "Без апострофа `its` означає «його» або «її». Тут потрібно `it's`: коротке `it is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro2:r2": {
+          "ru": "После `he` не хватает `is`. По-английски нужно `He is kind` или `He's kind`.",
+          "uk": "Після `he` бракує `is`. Англійською потрібно `He is kind` або `He's kind`."
+        },
+        "en:lesson-01:session-50:intro2:r3": {
+          "ru": "Тут `is` дважды. Что-то одно: `He's kind` или `He isn't kind`.",
+          "uk": "Тут `is` двічі. Щось одне: `He's kind` або `He isn't kind`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-50:intro3:r2": {
+          "ru": "Без `is` или `'s` фраза не стоит. Одно из двух обязательно.",
+          "uk": "Без `is` чи `'s` фраза не стоїть. Одне з двох обов'язкове."
+        },
+        "en:lesson-01:session-50:intro3:r3": {
+          "ru": "Два раза `is` в одной короткой фразе. Либо `It's small`, либо `It isn't small`.",
+          "uk": "Двічі `is` в одній короткій фразі. Або `It's small`, або `It isn't small`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1a1723cd00fd9cf697c0f3fb16790d7b4a11515f148d3a2c5aa701c8707b74c9"
+}

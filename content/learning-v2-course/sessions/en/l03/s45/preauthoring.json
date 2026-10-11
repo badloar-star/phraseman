@@ -1,0 +1,558 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-10-03T10:34:36.812Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "session": "en/l03/s45",
+  "curriculumRow": "| 45 | контраст | выбор между `a`, `an`, `the` | size, colour, model | уточняем конкретный товар |",
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "d9eaa2139e3a7397c0f5035b8974d528cc272209d52f9b80324081b5375ddd8c",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "ФАБРИКА КУРСА PHRASEMAN\n=======================\n\nЕсли владелец сказал тебе «посмотри папку Codex на ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда\n\n> ⛔ СНАЧАЛА ПРОЧИТАЙ 00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md — ОНО ВЫШЕ В",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "# Project Rules\n\n## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "# СТАРТ В2\n\n## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТСЯ КАК ПОНЯТНЫЙ ЖИВОЙ УРОК\n\n- В первы",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие макетам\n\n**Статус:** `NORMATIVE`, обязат",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии\n\n> **Owner override 2026-09-19.** Каждая с",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT\r\n\r\n> Обязательный маршрут перед исследованием, планированием, написание",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56\n\n**Статус:** дизайн утверждён владельцем 2026-0",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier\n\n**Статус:** `REBUILD V2 / OWNER-APPROVED SCOPE`, prerequis",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger\n\n**Status:** draft research authority for the English",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt\r\n\r\n**Дата:** 2026-08-30  \r\n**Статус:** `OWNER A",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2\r\n\r\n> Владелец, 2026-08-27: «составь напиши библию Learning V2, по прави",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2\n\n> **Приоритет владельца 2026-09-19:** каждая нумерованная с",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась\n\n> Владелец, 2026-08-27: «ты можешь ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41",
+      "quote": "# Конституция курса Learning V2\r\n\r\n> **АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 08.09 — короткие ответы и живой ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике\r\n\r\n> **АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 08.09 — ко",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ\n\n> **Правило владельца 13.09.2026, дословно:** «Каждая с",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении\n\n> Записано 2026-09-03, чтобы авторы сессий и",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** ",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния\n\n> **ЗОЛОТОЙ ЭТАЛОН №2 — одобрен владельцем 202",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»\n\n> **ЗОЛОТОЙ ЭТАЛОН №3 — одобрен владельцем 2026-09-03",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "d9eaa2139e3a7397c0f5035b8974d528cc272209d52f9b80324081b5375ddd8c",
+      "quote": "# Английский · План курса 32 × 56\n\n> **Утверждён владельцем 2026-09-03** (арка-сериал, `not` в уроке",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03\n\n> Калибровочная запись. Судьи конвейера читают эту па",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s02.ru.md` (сессия-повт",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s03.ru.md` («I am not»,",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03\n\n**Сессия:** `sessions/en/l01/s04/final.ru.md` — перва",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03\n\n**Что проверялось:** четыре сессии (",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными\r\n\r\n2026-09-08. На скриншоте Learning V",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора\r\n\r\n2026-09-08. Скриншот: английский L2/",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию\n\n**Статус:** NORMATIVE  \n**Дата:** 2",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный смысл аудио в каждой сессии\n",
+      "applied": "Свежая guardian-проверка применена к точной строке S44, prior range и authoring design."
+    }
+  },
+  "priorLearnerFacingScan": {
+    "through": "en/l03/s44",
+    "evidence": "Просканированы 88 current learner-facing файлов S01–S44; whole-word size, colour, model дали 0 совпадений.",
+    "conflicts": [],
+    "hashes": {
+      "en/l03/s01/final.ru.md": "3e9504ed013603de1eac9366a94a334d6573750a138d5b741acf1bc18cd4eb40",
+      "en/l03/s01/final.uk.md": "7b1362b5656af074907c1aacc0c15e50cfe02788ed8dd980bab4a22401cb6566",
+      "en/l03/s02/final.ru.md": "fc02bc34749ed96ee890e99119714b7ce5043c5e815b995b0070b80b8f3473e6",
+      "en/l03/s02/final.uk.md": "641040cf08e0fed3b31713344b9525ca49c454242969ce6cc1a1ee97a978c5c8",
+      "en/l03/s03/final.ru.md": "6de6c64a591fe77dc3351d2692be9f01e822177afa5a145bf59cd82698eab09a",
+      "en/l03/s03/final.uk.md": "607c4cd7ed9bc9fdd5ad3695af1010fb2f2099f8c12fcba80c903b546952e8d1",
+      "en/l03/s04/final.ru.md": "f86f9ad67d713feb61b79936855607762fa6160e78bb5cf1025faef213da0426",
+      "en/l03/s04/final.uk.md": "30a60c8b7426034584297e309c12044d0f3956bb39f234d5647a82d52a88eb59",
+      "en/l03/s05/final.ru.md": "e2d273d217399d9f5691027c456cb15a6d246051407b6e3c794f57f16972c04d",
+      "en/l03/s05/final.uk.md": "12e21af5e7a9424dfbeb9711ee278ac6a4e4d54f8987c7db4d3f496c093b857e",
+      "en/l03/s06/final.ru.md": "19d42ddea58742443eb07d8b5a8c207b9edf508c4bfb4ccf198c030d6a7ed9a9",
+      "en/l03/s06/final.uk.md": "ecdcbc346c6fc1c0eece496318b809231eb89e099e6598372e4ae848e4ab6b41",
+      "en/l03/s07/final.ru.md": "0347e5769ec6402a30935010431a2b511f05441d4a6b093071e90dd0b15afe75",
+      "en/l03/s07/final.uk.md": "debf9afa703500259ae8dd655491128d374b824fa43c92e3d511d170322ff25f",
+      "en/l03/s08/final.ru.md": "09618ca70a8eb77ec7ae0c1a71630c415f25597deb686c2aa5979485ad1d76d2",
+      "en/l03/s08/final.uk.md": "87d89f28cceba9e218c6e03d7ca81e18295383d4d4754616aaf1cf58021416fd",
+      "en/l03/s09/final.ru.md": "bfd69dcb402eba856eaa7345d74b023404cc7e55877d6cac2eaae065d79c502e",
+      "en/l03/s09/final.uk.md": "951cc6d5d25935ca5dcf8ac9860deec75b453e0c33755d22115847038541dd51",
+      "en/l03/s10/final.ru.md": "2dd7d920d99cbba41e34dec5559bc4591d433dae9c1e808ff9a4a8316f132776",
+      "en/l03/s10/final.uk.md": "b2b101a5799a015903f5127239b09bc6fe263a4639efe2a0167036eee96a874a",
+      "en/l03/s11/final.ru.md": "b7fab4b207f223620b1ef2b079c5c400db22f8a2056be6ed71eb839a26f021b8",
+      "en/l03/s11/final.uk.md": "96d50843385d5c44a280413858b1a9028186da95344bced2df741be19d8cbea5",
+      "en/l03/s12/final.ru.md": "37cceb926df5118339be067fdd1c88141d73df838bcedba623aae6ce6d8fad9f",
+      "en/l03/s12/final.uk.md": "46fa20d9c5eaad8111e52f04a05684fb83d2ee3abebe44d3c46c5a373a1bc4be",
+      "en/l03/s13/final.ru.md": "80ca613055ba822875e5cd0a3ca996473a1b391e4edfea52d482ab63ce65ff94",
+      "en/l03/s13/final.uk.md": "86060c9f5ba97c6584f0cd5027acda67a78dcafe483430430a2f505e1a965457",
+      "en/l03/s14/final.ru.md": "73f4eb745fa9d3148ac0daa12e8ffa6411ac40357785e52819970e4ead560303",
+      "en/l03/s14/final.uk.md": "935cd39bf9ab2d547fb00b3a90747d3210d253ca0c0561e3d38d61193a15f3a7",
+      "en/l03/s15/final.ru.md": "536817b6308428d8132ab653b3cdb75bea6a50c368c860bec52571a28668bda2",
+      "en/l03/s15/final.uk.md": "f61f8ba7176a91a7608c6bab824252ff220c1841a83d119eba03ddd4a70fe641",
+      "en/l03/s16/final.ru.md": "26355877faecac1a3cbfe8e67a0698188f31557217cda9e3dc8a569e75dad03a",
+      "en/l03/s16/final.uk.md": "47e230e2df91526a723aa3c55e2f0be0319cfbc9ad270baaa313ff3e1770a296",
+      "en/l03/s17/final.ru.md": "8965535fdc0783a9b6c2c710a9aa75ab68e1be54b59b98b44a2e7b03b5ffc4fd",
+      "en/l03/s17/final.uk.md": "10d91b023ab6ad2c78eabdf0fd04f462d463b5ba97f6f4e8682c964990f939dc",
+      "en/l03/s18/final.ru.md": "8d15e5e8d2af19bd9a7eaa989ed355aa8e2ee0092f677d5f7d17d84eb8cc74ae",
+      "en/l03/s18/final.uk.md": "ff38ea376fb9242d6c45ea85eeac0b72bea9469b2e05da5f81d0f1f323da9a58",
+      "en/l03/s19/final.ru.md": "8678527c384655b9cf8089a4846921bbb44865578a37b8cdbfbea6206c175c2b",
+      "en/l03/s19/final.uk.md": "077215e80840450956a2cad847d5aa83f57b1a3e7561e3b038291bfe3aa7154b",
+      "en/l03/s20/final.ru.md": "37a5712b712d035a6a140707ad038daf85da76686180d07e2001a4c5d58e114e",
+      "en/l03/s20/final.uk.md": "660ea59f8806b0234a7c33354daa959e9853b79c1c68086abc697d2504a0ea03",
+      "en/l03/s21/final.ru.md": "4746618d514dc458148cdb7fbf50d8d226fdc14b31c466f08843c50d5316148f",
+      "en/l03/s21/final.uk.md": "b1f1f7bb1222e3f667bf192bc78660d6ba4ed747941caf7d3d2cbdbdd288c54b",
+      "en/l03/s22/final.ru.md": "be8ed40cbaf7f372723520bc7e918c7cee124de0e746bd1821113ed236ca15f1",
+      "en/l03/s22/final.uk.md": "1713ecd6b6a560b9736805df69369b5bd323cf0b8f89aa748650993757f3bd2e",
+      "en/l03/s23/final.ru.md": "8731376b4b44a22107f868e169dae6381d6a5e340552c55a15396b3d872b1dfa",
+      "en/l03/s23/final.uk.md": "e57939d8d2c7e95838e0c11ad0f1635500e6788485adc09289558de242404428",
+      "en/l03/s24/final.ru.md": "2f048ef26836459b3426385d77c2fd68ef8aabfbb29f271c7b3b07f0b1314174",
+      "en/l03/s24/final.uk.md": "91a08874071dcefad8eb25fece4e5a52eaa0b55bc0e2baaaf03676e91165e628",
+      "en/l03/s25/final.ru.md": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+      "en/l03/s25/final.uk.md": "85e368d66862b5ac9c0c508390d4a8f1832a1e90bbd5d4017dd792503c2f1484",
+      "en/l03/s26/final.ru.md": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+      "en/l03/s26/final.uk.md": "376c299656989d2548232af181bebba8a83b8d8f60bbe460847d45a599832567",
+      "en/l03/s27/final.ru.md": "529195601a5564213bc40687dd3d451a9b866c9099fd4b24c82afbcd48cd725a",
+      "en/l03/s27/final.uk.md": "47d017672404f26cb3fe31e366e7221e14c1d81dd0c9f8bf0e8c5706b46eb5bf",
+      "en/l03/s28/final.ru.md": "a10c7858ba29c053bdd641e2af54d1ba9ef37e9a385507325a838127d71be237",
+      "en/l03/s28/final.uk.md": "198bee48cbaf2525d08570dbbb1df1e0bfdf6ad8bf5108d0769c357c402e9df1",
+      "en/l03/s29/final.ru.md": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+      "en/l03/s29/final.uk.md": "b92942e5706626ac18b2c9eb14a56f59b44504208e0f5d63fe6e774561202f15",
+      "en/l03/s30/final.ru.md": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+      "en/l03/s30/final.uk.md": "8c2e326780e96873526e10c145706259130a00bb563f757460dc862ba55a7580",
+      "en/l03/s31/final.ru.md": "95d307332ef6975f3aa2b0296872df623c5a93803ba736e5fa65e29fddef39c4",
+      "en/l03/s31/final.uk.md": "c80e7fc683fe472918f90bb5db904905d9fadaad63535d22e60d459bc9e908f8",
+      "en/l03/s32/final.ru.md": "e6df4ebdb63b1cccd1052c235456d90e42df0d82a0bf9c34ea1740b88b57f1f0",
+      "en/l03/s32/final.uk.md": "941145c311c0c3e9d3a3ec56829c563c89eaa6433b3d46ecd8a86ed453b6bf23",
+      "en/l03/s33/final.ru.md": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+      "en/l03/s33/final.uk.md": "4332cd2bd7c0a892184bb55465cffbd6d122bcc1044344c2ceb70276ef13846d",
+      "en/l03/s34/final.ru.md": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
+      "en/l03/s34/final.uk.md": "d6a948317acf60a34a8eadec9c70c067580406c126b0f826b74cd254d718ab98",
+      "en/l03/s35/final.ru.md": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+      "en/l03/s35/final.uk.md": "b390d230703a76c3fef883ea09ceedad125b8918ec830679e7315b58dd0562c1",
+      "en/l03/s36/final.ru.md": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
+      "en/l03/s36/final.uk.md": "a1c2ed1e5d3213cf68cc8a2f8cfd33e9bd4936e2db07342411c9bd783b671650",
+      "en/l03/s37/final.ru.md": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+      "en/l03/s37/final.uk.md": "13a9969ca4a59c5c95db7000dc0099a3d1562449e628f76d2f340347bbb4b3f7",
+      "en/l03/s38/final.ru.md": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+      "en/l03/s38/final.uk.md": "25808936bd81a08fe162ecd7f0975513d84b9760cc928869f5c3a44e51f7a64c",
+      "en/l03/s39/final.ru.md": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
+      "en/l03/s39/final.uk.md": "640892a2262c084b94532c3caffa0743153648f005dc5c9e281791e97d8f39d5",
+      "en/l03/s40/final.ru.md": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+      "en/l03/s40/final.uk.md": "4acafe4d291844383e2c98f05fe31ec96e572f432307c37a3e1e69a086d94cd7",
+      "en/l03/s41/final.ru.md": "72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195",
+      "en/l03/s41/final.uk.md": "64dda3020405379f70cf9928fbaf5f7aa43d865d7e6d6e824a8426f4d1d5c443",
+      "en/l03/s42/final.ru.md": "e2faa38b91c190f038b8c7b376676f8285476f3e658ff53f82a75f479d70d151",
+      "en/l03/s42/final.uk.md": "f8cf24fd80dc9e545b4707100e6fb4d61e32790662b6dde3020aefda47de75ef",
+      "en/l03/s43/final.ru.md": "ca0db09600a4069dfafc46f8939c9560c34b47c231883e2cf4993ad1cf778b48",
+      "en/l03/s43/final.uk.md": "e52921b3418e5f4d93f1855e2b84ee6b0ee0910b331b91b558d20b30416e1ae4",
+      "en/l03/s44/final.ru.md": "238952437d9c32903346bf8ddbe7a85a461e8ad7fad1206f5597a7b8e5f2d0d4",
+      "en/l03/s44/final.uk.md": "897ea449f10a87c6e9a3d8f11c9446269beef6cf00d6f9ffc2b58d93041a7cd1"
+    }
+  },
+  "newWords": [
+    "size",
+    "colour",
+    "model"
+  ],
+  "retrievalWords": [
+    "a",
+    "an",
+    "the",
+    "is",
+    "this",
+    "that"
+  ],
+  "cambridgeEvidence": "Cambridge: a/an вводит один исчисляемый предмет или человека, который ещё не известен как конкретный референт; the возвращает уже известный и опознаваемый референт. В S44 это проверяется на слух в обмене у кассы.",
+  "scene": "В магазине ученик уточняет у продавца размер, цвет и модель одного конкретного товара: сначала называет неизвестный вариант, затем возвращается к выбранному варианту.",
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "size: a size → the size.",
+      "practiceLink": "word_card size → listen_choose size → a/the choice → final audio choice."
+    },
+    {
+      "intro": 2,
+      "target": "colour: a colour → the colour.",
+      "practiceLink": "word_card colour → listen_choose colour → a/the choice → final audio choice."
+    },
+    {
+      "intro": 3,
+      "target": "model: a model / an available model → the model.",
+      "practiceLink": "word_card model → listen_choose model → a/an/the contrast → final audio choice."
+    }
+  ],
+  "independentFinal": {
+    "target": "В новом аудио-обмене о товаре выбрать a, an или the для size, colour и model и точное локализованное значение.",
+    "independence": "Canonical listen_choose и context_gap_grammar: новый аудио-контекст без готовой target phrase или плиток; диагностический единственный ответ и feedback."
+  },
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "Ровно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/КОНСТИТУЦИЯ.md` — ед",
+      "evidence": "Проверено для S44: desktop_codex_route_read; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "После compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпроходится заново. Пр",
+      "evidence": "Проверено для S44: repo_agents_and_v2_route_read; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": "Правило = текст в промпте + машинная проверка. Одного текста мало.\r\n5. Проверь с",
+      "evidence": "Проверено для S44: factory_constitution_method_read; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то,",
+      "evidence": "Проверено для S44: three_exemplars_read; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n   ",
+      "evidence": "Проверено для S44: all_owner_judgements_read; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 45 | контраст | выбор между `a`, `an`, `the` | size, colour, model | уточняем конкретный товар |",
+      "evidence": "Точная строка S45 применена к контрасту a/an/the и словам size, colour, model."
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "Перед написанием сессии откройте этот файл, найдите её грамм",
+      "evidence": "Проверено для S44: cambridge_rule_verified; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "сравнивает текущие байты со всеми предыдущими\n   сессиями урока и проверяет нову",
+      "evidence": "Проверено для S44: prior_learner_facing_range_scanned; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "1–5 действительно новых\n  полезных lexical senses и новую ко",
+      "evidence": "Проверено для S44: one_to_five_truly_new_words; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "новую конкретную ситуацию. Grammar-контракт не\n  изменён: од",
+      "evidence": "Проверено для S44: new_concrete_situation; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "измеримым learning delta.\n- Пустой `new_words`, повтор ранее",
+      "evidence": "Проверено для S44: honest_grammar_delta_or_review_delta; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "слово → перевод → фраза\n\n**Источник:** [Teaching vocabulary]",
+      "evidence": "Проверено для S44: word_before_phrase; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "Все три интро используют новые слова и конкретную ситуацию текущей сесс",
+      "evidence": "Проверено для S44: three_intros_use_current_words_and_scene; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": "начало каждой сессии должно ощущаться как начало\nнормального урока. Ученик с первог",
+      "evidence": "Проверено для S44: clear_lesson_opening_and_vibe; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "Для каждой из трёх страниц он отдельно доказывает цепочку: но",
+      "evidence": "Проверено для S44: three_intro_practice_final_chains; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": "одна сквозная ситуация (владелец, 03.09: «это\r\n  надо делать",
+      "evidence": "Проверено для S44: single_coherent_scene; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "Заданий 12–20, ориентир 17 | |\n| Возвращаемое слово ≥2 касан",
+      "evidence": "Проверено для S44: twelve_to_twenty_tasks; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "Единственные шесть активных режимов\n\n| Family | Канонический owner-мак",
+      "evidence": "Проверено для S44: only_supported_activity_families; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "Строгий контракт дистракторов\r\n\r\nДистрактор — не случайный непра",
+      "evidence": "Проверено для S44: diagnostic_single_answer_distractors; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "передаёт только смысл услышанной\n   фразы. Нельзя дописывать `рядом",
+      "evidence": "Проверено для S44: listen_choose_exact_spoken_meaning; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "Feedback обязан назвать выбранный вариант и объяснить:\r\n\r\n1. почему он кажет",
+      "evidence": "Проверено для S44: choice_specific_feedback; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI не показывает внутр",
+      "evidence": "Проверено для S44: support_fades_to_independent_final; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "будущие слова не показываются.\nСохранение использует `bookmark-o",
+      "evidence": "Проверено для S44: no_future_material; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри требования выш",
+      "evidence": "Проверено для S44: no_ai_voice_nonsense_or_decorative_jokes; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "все восемь локалей самостоятельны и не объясняются через русский;\r\n-",
+      "evidence": "Проверено для S44: locale_native_ru_and_uk; применено к слуховой сцене у кассы и word-first дизайну."
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "не может собираться, показываться как готовая или получать\r\nlearner-facing измен",
+      "evidence": "Проверено для S44: previous_required_range_release_ready; применено к слуховой сцене у кассы и word-first дизайну."
+    }
+  ],
+  "mustFix": [],
+  "previousReleaseEvidence": {
+    "readiness": "sessionReadiness S01–S44: 44 ready, BAD=0.",
+    "novelty": "whole-word size/colour/model=0."
+  },
+  "authoringPlan": {
+    "taskCount": 17,
+    "wordFirst": "1/2 size, 3/4 colour, 5/6 model: word_card then listen_choose.",
+    "exactLocalizedAudioMeanings": [
+      {
+        "spoken": "The size is here.",
+        "ru": "Нужный размер здесь.",
+        "uk": "Потрібний розмір тут."
+      },
+      {
+        "spoken": "The colour is here.",
+        "ru": "Нужный цвет здесь.",
+        "uk": "Потрібний колір тут."
+      },
+      {
+        "spoken": "The model is here.",
+        "ru": "Нужная модель здесь.",
+        "uk": "Потрібна модель тут."
+      },
+      {
+        "spoken": "An available model is here.",
+        "ru": "Здесь есть доступная модель.",
+        "uk": "Тут є доступна модель."
+      }
+    ],
+    "tasks": "7 speed_match; 8 phrase_builder; 9 context_gap a/the; 10 listen_choose exact meaning; 11 dictation; 12 context_gap; 13 listen_choose a/an; 14 phrase_builder; 15 context_gap a/an/the; 16 listen_choose exact meaning; 17 independent listen_choose + context_gap.",
+    "distractors": "Диагностируют начальный звук для a/an либо новый/известный референт для a/the; значения передают только услышанное."
+  }
+}

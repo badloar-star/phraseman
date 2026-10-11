@@ -1,17 +1,22 @@
 [
   {
     "interactionId": "en:lesson-03:session-40:i01",
-    "correctText": "",
+    "correctText": "barcode",
+    "correctResponseId": "en:lesson-03:session-40:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i03",
+    "correctText": "seal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i05",
+    "correctText": "coupon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i02",
     "correctText": "barcode",
-    "correctResponseId": "en:lesson-03:session-40:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-40:i03",
-    "correctText": "",
     "correctResponseId": null
   },
   {
@@ -20,24 +25,29 @@
     "correctResponseId": "en:lesson-03:session-40:i04:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-40:i05",
-    "correctText": "",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-03:session-40:i06",
     "correctText": "coupon",
-    "correctResponseId": "en:lesson-03:session-40:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-40:i07",
-    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i08",
-    "correctText": "Это штрихкод",
-    "correctResponseId": "en:lesson-03:session-40:i08:r1"
+    "correctText": "barcode",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i10",
+    "correctText": "seal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i11",
+    "correctText": "coupon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i07",
+    "correctText": "en:lesson-03:session-40:i07:p1=barcode\nen:lesson-03:session-40:i07:p2=seal\nen:lesson-03:session-40:i07:p3=coupon\nen:lesson-03:session-40:i07:p4=package",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i09",
@@ -45,18 +55,13 @@
     "correctResponseId": "en:lesson-03:session-40:i09:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-40:i10",
-    "correctText": "These are barcodes.",
+    "interactionId": "en:lesson-03:session-40:i12:s01",
+    "correctText": "This is a seal.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-40:i11",
-    "correctText": "Это защитная пломба",
-    "correctResponseId": "en:lesson-03:session-40:i11:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-40:i12",
-    "correctText": "This is a seal. Those are seals.",
+    "interactionId": "en:lesson-03:session-40:i12:s02",
+    "correctText": "Those are seals.",
     "correctResponseId": null
   },
   {
@@ -65,23 +70,63 @@
     "correctResponseId": "en:lesson-03:session-40:i13:r1"
   },
   {
-    "interactionId": "en:lesson-03:session-40:i14",
-    "correctText": "That is a coupon. These are coupons.",
+    "interactionId": "en:lesson-03:session-40:i14:s01",
+    "correctText": "That is a coupon.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-40:i15",
-    "correctText": "This is a barcode. Those are coupons.",
+    "interactionId": "en:lesson-03:session-40:i14:s02",
+    "correctText": "These are coupons.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-40:i16",
-    "correctText": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
+    "interactionId": "en:lesson-03:session-40:i15:s01",
+    "correctText": "This is a barcode.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-40:i17",
-    "correctText": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+    "interactionId": "en:lesson-03:session-40:i15:s02",
+    "correctText": "Those are coupons.",
     "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i16:s01",
+    "correctText": "This is a barcode.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i16:s02",
+    "correctText": "That is a seal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i16:s03",
+    "correctText": "These are coupons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i16:s04",
+    "correctText": "Those are barcodes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i17:s01",
+    "correctText": "That is a barcode.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i17:s02",
+    "correctText": "This is a seal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i17:s03",
+    "correctText": "Those are barcodes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i17:s04",
+    "correctText": "These are coupons.",
+    "correctResponseId": "en:lesson-03:session-40:i17:s04:r1"
   }
 ]

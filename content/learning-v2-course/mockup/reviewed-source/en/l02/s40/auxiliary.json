@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-40:intro1:r2": {
+          "ru": "Это «Она стажёр». Мира руководит командой, поэтому здесь нужно `manager`.",
+          "uk": "Це «Вона стажерка». Міра керує командою, тому тут потрібне `manager`."
+        },
+        "en:lesson-02:session-40:intro1:r3": {
+          "ru": "Это вопрос «Где руководитель?». Вас спросили о Мире, и сейчас нужен ответ о ней.",
+          "uk": "Це запитання «Де керівниця?». Вас запитали про Міру, тож зараз треба відповісти, хто вона."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-40:intro2:r2": {
+          "ru": "Здесь `these people` — несколько людей. Для этого вопроса нужно `are`.",
+          "uk": "Тут `these people` — кілька людей. У цьому запитанні потрібне `are`."
+        },
+        "en:lesson-02:session-40:intro2:r3": {
+          "ru": "Это «Где эти люди?». Вы их видите и хотите узнать, кто они: начните с `Who`.",
+          "uk": "Це «Де ці люди?». Ви їх бачите й хочете дізнатися, хто вони: почніть із `Who`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-40:intro3:r2": {
+          "ru": "Это «Кто это?». Вы спрашиваете о владельце шарфа, поэтому нужно `Whose`.",
+          "uk": "Це «Хто це?». Ви запитуєте про власника шарфа, тому потрібне `Whose`."
+        },
+        "en:lesson-02:session-40:intro3:r3": {
+          "ru": "В полном вопросе пропущено `is`: `Whose is it?`",
+          "uk": "У повному запитанні пропущене `is`: `Whose is it?`"
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5310e4817d2fd40a10c0e2efac460c682a9547bcc0b06b4c2fa465fb49065f91"
+}

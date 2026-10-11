@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `You are + слово`",
+    "uk": "повторення `You are + слово`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Safe — «в безопасности»",
+        "uk": "Safe — «у безпеці»"
+      },
+      "bodyByLocale": {
+        "ru": "`safe` — «в безопасности». Человеку больше ничего не грозит: он под крышей, рядом свои.\n\nПро другого человека это будет `You are safe`. После `you` в этой фразе нужно `are`.",
+        "uk": "`safe` — «у безпеці». Людині більше нічого не загрожує: вона під дахом, поруч свої.\n\nПро іншу людину це буде `You are safe`. Після `you` у цій фразі потрібне `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Сотрудник вокзала проводил туриста Алекса под крышу и нашёл его группу. Успокойте Алекса.",
+          "uk": "Працівник вокзалу провів туриста Алекса під дах і знайшов його групу. Заспокойте Алекса."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r1",
+              "text": "You are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r2",
+              "text": "You safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r3",
+              "text": "You am safe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r1",
+              "text": "You are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r2",
+              "text": "You safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro1:r3",
+              "text": "You am safe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник вокзала проводил туриста Алекса под крышу и нашёл его группу. Успокойте Алекса.",
+          "uk": "Працівник вокзалу провів туриста Алекса під дах і знайшов його групу. Заспокойте Алекса."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Warm и dry",
+        "uk": "Warm і dry"
+      },
+      "bodyByLocale": {
+        "ru": "`warm` — «тепло», `dry` — «сухой». Слова про разное: одно про тепло, другое про воду.\n\nПод дождём это заметно: можно быть сухим и всё равно мёрзнуть. Тогда `cold`, а не `dry`.\n\nМеняется только последнее слово, а `You are` стоит на месте.",
+        "uk": "`warm` — «тепло», `dry` — «сухий». Слова про різне: одне про тепло, друге про воду.\n\nПід дощем це помітно: можна бути сухим і все одно мерзнути. Тоді `cold`, а не `dry`.\n\nЗмінюється тільки останнє слово, а `You are` стоїть на місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "В кафе турист высушил куртку. Теперь она не мокрая. Скажите ему об этом.",
+          "uk": "У кафе турист висушив куртку. Тепер вона не мокра. Скажіть йому про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r1",
+              "text": "You are dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r2",
+              "text": "You are warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r3",
+              "text": "You dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r1",
+              "text": "You are dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r2",
+              "text": "You are warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro2:r3",
+              "text": "You dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В кафе турист высушил куртку. Теперь она не мокрая. Скажите ему об этом.",
+          "uk": "У кафе турист висушив куртку. Тепер вона не мокра. Скажіть йому про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ready — «готов»",
+        "uk": "Ready — «готовий»"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». Не «умелый» и не «согласен», а про эту самую секунду: можно идти.\n\n`You are ready` говорят тому, кто уже собрался и стоит у двери. Умение тут ни при чём.\n\nПро себя то же слово, но с `am`: `I am ready`.",
+        "uk": "`ready` — «готовий». Не «умілий» і не «згоден», а про цю саму секунду: можна йти.\n\n`You are ready` кажуть тому, хто вже зібрався і стоїть біля дверей. Уміння тут ні до чого.\n\nПро себе те саме слово, але з `am`: `I am ready`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Турист застегнул куртку, взял сумку и кивнул. Скажите, что он готов идти.",
+          "uk": "Турист застібнув куртку, узяв сумку і кивнув. Скажіть, що він готовий іти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r1",
+              "text": "You are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r2",
+              "text": "You are not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r3",
+              "text": "You ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r1",
+              "text": "You are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r2",
+              "text": "You are not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-14:intro3:r3",
+              "text": "You ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Турист застегнул куртку, взял сумку и кивнул. Скажите, что он готов идти.",
+          "uk": "Турист застібнув куртку, узяв сумку і кивнув. Скажіть, що він готовий іти."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "42bd16b9be17e5782d20ae4eb65dbd3de6b10498eb550a46efc6a662b2cbd2f9"
+}

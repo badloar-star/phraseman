@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+  "sourceSha256": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Сцена и первое интро сразу объясняют где, что происходит и зачем нужна фраза.",
-    "Три интро готовят три цепочки This/That + noun → It is + property.",
-    "Поддержка снижается к переносу всех трёх цепочек в новой расстановке."
-  ]
+    "Плановый contrast demonstrative→it показан через This/That is … затем It is heavy/wet/small; single interactions сохраняют обе части отдельно."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "b5e0daa389ae0fde1817eb1577042f39ef7445e86189b9d1c5de93b85551772f",
+    "localeSha256": "1cef78f39d3277fbb0144e2129eba1d98d840ace2a3f7ee22d03af3082c2a0f3",
+    "practiceAtomicSha256": "ac6421ce6035d469aae3d39c0cadb58c7ad73e8c05403476b29e2d71138b4b67"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+  "exactUkSha256": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d",
+  "localeSha256": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d",
+  "practiceAtomicSha256": "7f019ce86bba35a2df567188744791fed5febe0c5ac5e8d916a32f392c244b44",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "86a007449b83351d3461d9a510a03cc18d3569034e114b9f6c9b43de4e3f25d5",
+    "localeSha256": "b081f0af025565de62285445e2293b9f6b80c75f2e0cfb36236c70fa34cf464e",
+    "practiceAtomicSha256": "7f019ce86bba35a2df567188744791fed5febe0c5ac5e8d916a32f392c244b44",
+    "findings": []
+  },
+  "mustFix": [],
+  "localeHashes": {
+    "ru": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+    "uk": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_pedagogy",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+    "exactRuSha256": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+    "exactUkSha256": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d",
+    "localeSha256": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d",
+    "localeHashes": {
+      "ru": "4587b104fc69dbcb9342d6fa169a143b7202d54cd54da68787154b979da6d426",
+      "uk": "aea8b9058c46ec1082ad14ae768e73b728cdc38d11e1c40b14a2c1c15cdfe39d"
+    },
+    "practiceAtomicSha256": "7f019ce86bba35a2df567188744791fed5febe0c5ac5e8d916a32f392c244b44",
+    "evidence": [
+      "Плановый contrast demonstrative→it показан через This/That is … затем It is heavy/wet/small; single interactions сохраняют обе части отдельно."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

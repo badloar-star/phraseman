@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "learning_v2_spanish_universal_skill_link_v1",
+  "targetLanguage": "es",
+  "languageProfile": "es-ES",
+  "skillEntry": "C:/Users/badlo/.codex/skills/language-lesson-authoring/SKILL.md",
+  "languageProfileEntry": "C:/Users/badlo/.codex/skills/language-lesson-authoring/references/profiles/es-ES.md",
+  "sessionSource": "modules/learning-v2/content/source/es_episode_01_session_01_v1.ts",
+  "sessionSourceSha256": "9876db917f5f73ad71ad5ed783b225ace1a834a1c251a62b45819a48a4490bce",
+  "targetVariety": "es-ES",
+  "explanationLocales": ["ru", "en"],
+  "requiredEvidence": {
+    "sourceBoundFacts": true,
+    "blindLearnerAttempt": true,
+    "finalVersionReviewCoverage": true,
+    "audioListeningWhenAudioExists": true
+  },
+  "releaseAuthority": false,
+  "nextPermittedAction": "Create one bounded es-ES candidate from the linked source with retained source excerpts, then run structural checking and an answer-free blind learner attempt.",
+  "status": "HOLD",
+  "holdReason": "The profile is now bound to the exact source revision, but there is no final-version source-evidence packet, blind learner attempt, final-version review coverage, or listened-audio evidence."
+}

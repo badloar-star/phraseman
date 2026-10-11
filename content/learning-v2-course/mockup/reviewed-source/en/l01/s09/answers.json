@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-09:i01",
+    "correctText": "welcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i02",
+    "correctText": "welcome",
+    "correctResponseId": "en:lesson-01:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i03",
+    "correctText": "kind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i04",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i05",
+    "correctText": "You are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i07",
+    "correctText": "right",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i08",
+    "correctText": "right",
+    "correctResponseId": "en:lesson-01:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i09",
+    "correctText": "You are welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i10",
+    "correctText": "funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i11",
+    "correctText": "funny",
+    "correctResponseId": "en:lesson-01:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i12",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i13",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i14",
+    "correctText": "You are early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i15",
+    "correctText": "en:lesson-01:session-09:i15:p1=welcome\nen:lesson-01:session-09:i15:p2=kind\nen:lesson-01:session-09:i15:p3=right\nen:lesson-01:session-09:i15:p4=funny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i16",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i17",
+    "correctText": "sorry",
+    "correctResponseId": "en:lesson-01:session-09:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s01",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s02",
+    "correctText": "I am new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s03",
+    "correctText": "I am not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-09:i18:s04",
+    "correctText": "You are kind.",
+    "correctResponseId": null
+  }
+]

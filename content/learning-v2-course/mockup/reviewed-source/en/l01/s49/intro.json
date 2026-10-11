@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "О ком речь — такая форма",
+        "uk": "Про кого мова — така й форма"
+      },
+      "bodyByLocale": {
+        "ru": "`I am tired` — «я устал». По-русски мы говорим просто «я занят», «я готов», без отдельного слова посередине. По-английски после `I` обязательно ставят `am`.\n\nТаких слов три: `am`, `is`, `are`. Их выбирают не наугад, а по тому, о ком речь. Про себя всегда говорят `am`.",
+        "uk": "`I am tired` — «я втомився». Українською ми кажемо просто «я зайнятий», «я готовий», без окремого слова посередині. Англійською після `I` обов'язково ставлять `am`.\n\nТаких слів три: `am`, `is`, `are`. Їх вибирають не навмання, а за тим, про кого йдеться. Про себе завжди кажуть `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, как вы после недели. Скажите честно, что сил уже нет.",
+          "uk": "Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r2",
+              "text": "I is tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r3",
+              "text": "I tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r2",
+              "text": "I is tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro1:r3",
+              "text": "I tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, как вы после недели. Скажите честно, что сил уже нет.",
+          "uk": "Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После everyone — is",
+        "uk": "Після everyone — is"
+      },
+      "bodyByLocale": {
+        "ru": "`everyone` — «все». `kind` — «добрый», про того, кто помогает без просьбы. Все такие — `everyone is kind`.\n\nПосле `everyone` говорят `is`, хотя по-русски «все» звучит как несколько людей. В английском `everyone` требует форму для одного.",
+        "uk": "`everyone` — «всі». `kind` — «добрий», про того, хто допомагає без прохання. Усі такі — `everyone is kind`.\n\nПісля `everyone` кажуть `is`, хоча українське «всі» звучить як кілька людей. В англійській `everyone` потребує форми для одного."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает про ваших новых коллег. Скажите, что каждый из них доброжелателен.",
+          "uk": "Мама питає про ваших нових колег. Скажіть, що кожен із них доброзичливий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r1",
+              "text": "Everyone is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r2",
+              "text": "Everyone are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r3",
+              "text": "Everyone kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r1",
+              "text": "Everyone is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r2",
+              "text": "Everyone are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro2:r3",
+              "text": "Everyone kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает про ваших новых коллег. Скажите, что каждый из них доброжелателен.",
+          "uk": "Мама питає про ваших нових колег. Скажіть, що кожен із них доброзичливий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "People — много, family — одна",
+        "uk": "People — багато, family — одна"
+      },
+      "bodyByLocale": {
+        "ru": "`people` — «люди». Их много, поэтому после `people` говорят `are`. `loud` — «громкий»: `people are loud`.\n\nА `family` — «семья». В английском семью считают одним целым, поэтому после `family` говорят `is`, хотя людей в семье много: `my family is fine` — «у меня в семье всё хорошо».",
+        "uk": "`people` — «люди». Їх багато, тому після `people` кажуть `are`. `loud` — «гучний»: `people are loud`.\n\nА `family` — «сім'я». В англійській сім'ю вважають одним цілим, тому після `family` кажуть `is`, хоча людей у сім'ї багато: `my family is fine` — «у мене в сім'ї все добре»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает про соседей за стеной. Скажите, что их слышно весь вечер.",
+          "uk": "Мама питає про сусідів за стіною. Скажіть, що їх чути весь вечір."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r1",
+              "text": "People are loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r2",
+              "text": "People is loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r3",
+              "text": "People am loud."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r1",
+              "text": "People are loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r2",
+              "text": "People is loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-49:intro3:r3",
+              "text": "People am loud."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает про соседей за стеной. Скажите, что их слышно весь вечер.",
+          "uk": "Мама питає про сусідів за стіною. Скажіть, що їх чути весь вечір."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "91aab3725cabb66079054186cd5e50b8b5f16aa5da72c34972abb55cd92a01fc"
+}

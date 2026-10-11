@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro1:r2": {
+          "ru": "После `I` нужно `am`: `I am here`.",
+          "uk": "Після `I` потрібне `am`: `I am here`."
+        },
+        "en:lesson-01:session-01:intro1:r3": {
+          "ru": "Нужно назвать того, о ком речь: `I am here`.",
+          "uk": "Треба назвати того, про кого йдеться: `I am here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro2:r2": {
+          "ru": "Порядок такой: сначала `I`, потом `am`, затем слово о вас: `I am ready`.",
+          "uk": "Порядок такий: спершу `I`, потім `am`, далі слово про вас: `I am ready`."
+        },
+        "en:lesson-01:session-01:intro2:r3": {
+          "ru": "Так говорит магистр Йода. Человек в офисе говорит I am ready.",
+          "uk": "Так говорить магістр Йода. Людина в офісі каже I am ready."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro3:r2": {
+          "ru": "После `I` нужно `am`: `I am fine`.",
+          "uk": "Після `I` потрібне `am`: `I am fine`."
+        },
+        "en:lesson-01:session-01:intro3:r3": {
+          "ru": "С `I` используется `am`, не `is`: `I am fine`.",
+          "uk": "З `I` використовується `am`, а не `is`: `I am fine`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8a77d9e8229b6c9b83440b235fbe50c024f7eeb3d87aa01fe7ff92a733d5439"
+}

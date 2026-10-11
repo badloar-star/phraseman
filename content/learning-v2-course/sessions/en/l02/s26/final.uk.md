@@ -1,8 +1,8 @@
-# Англійська · Урок 2 · Сесія 26 — «What is the weather?»
+# Англійська · Урок 2 · Заняття 26 — «What is the weather?»
 
-**Сцена сесії.** Ранок вихідного в Дубліні. Ви стоїте біля вікна готелю, попутник ще не встав, і все, що треба з'ясувати, — котра година і що там надворі.
+**Сцена заняття.** Ранок вихідного в Дубліні. Ви стоїте біля вікна готелю, попутник ще не встав, і все, що треба з'ясувати, — котра година і що там надворі.
 
-**Операція:** `What is + річ` (час і погода)
+**Як сказати:** `What is + річ` (час і погода)
 **Нові слова:** weather, time
 **Повертаються:** cold, near, station
 
@@ -56,84 +56,95 @@
 
 ---
 
-## Практика (перші завдання)
-
-**17 завдань, підтримка спадає**
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — weather**
-> **weather** — «погода». Те, що за вікном: дощ, сонце, вітер.
+<!-- interaction_id: en:lesson-02:session-26:i01; family: listen_choose -->
+Ціль: `weather`
 
-**2 · Послухайте і виберіть — weather**
-🔊 *weather* → **weather** · water · walk
-- water — *Це «вода». До погоди стосунку не має.*
-- walk — *Це «іти пішки». Слово про ноги, а не про небо.*
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
+Ціль: `weather`
+Варіанти: `weather` · `water` · `walk`
 
 **3 · Картка слова — time**
-> **time** — «час». Котра зараз на годиннику і скільки його у вас лишилося.
+<!-- interaction_id: en:lesson-02:session-26:i03; family: listen_choose -->
+Ціль: `time`
 
-**4 · Послухайте і виберіть — time**
-🔊 *time* → **time** · team · toy
-- team — *Це «команда». Голосна звучить як «і», а в `time` — «ай».*
-- toy — *Це «іграшка». Початок той самий, а далі «ой» замість «ай».*
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-26:i04; family: listen_choose -->
+Ціль: `time`
+Варіанти: `time` · `team` · `toy`
 
 **5 · Складіть фразу — запитайте про погоду**
-Плитки: `weather` `what` `the` `is` → **What is the weather?**
+<!-- interaction_id: en:lesson-02:session-26:i05; family: phrase_builder -->
+Ціль: `What is the weather?`
 
 **6 · Вставте слово — годинника немає, запитайте попутника**
-What is the ___ ? → **time** · weather · street
-- weather — *Це «погода». Ви питаєте не про вулицю, а про годинник.*
-- street — *Це «вулиця». Про неї ви й так знаєте, де стоїте.*
+<!-- interaction_id: en:lesson-02:session-26:i06; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `time` · `weather` · `street`
 
 **7 · Послухайте і складіть — «котра година»**
-🔊 *What is the time?* Плитки: `the` `what` `time` `is` → **What is the time?**
+<!-- interaction_id: en:lesson-02:session-26:i07; family: listen_build_dictation -->
+Ціль: `What is the time?`
 
 **8 · Картка слова — cold**
-> **cold** — «холодно». Про погоду за вікном, про воду в крані, про руки без рукавичок.
+<!-- interaction_id: en:lesson-02:session-26:i08; family: listen_choose -->
+Ціль: `cold`
 
 **9 · Вставте слово — рука у вікні мерзне за п'ять секунд**
-It is ___ . → **cold** · near · time
-- near — *Це «близько». Про відстань, а не про мороз.*
-- time — *Це «час». На питання про погоду воно не відповідає.*
+<!-- interaction_id: en:lesson-02:session-26:i09; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `cold` · `near` · `time`
 
 **10 · Розрізніть звуки — яке з двох про «холодно»?**
-🔊 Два слова поспіль.
-*cold · gold* → **cold**
-- gold — *Це «золото». Різниця в найпершому звуці: `cold` починається з «к», `gold` — з «ґ».*
+<!-- interaction_id: en:lesson-02:session-26:i10; family: sound_contrast -->
+Варіанти: `cold` · `gold`
 
 **11 · Картка слова — near**
-> **near** — «близько». Іти пару хвилин, видно від дверей.
+<!-- interaction_id: en:lesson-02:session-26:i11; family: listen_choose -->
+Ціль: `near`
 
 **12 · Вставте слово — попутник питає, чи далеко до вокзалу; він за два кроки**
-It is ___ . → **near** · cold · time
-- cold — *Це «холодно». Про погоду, а не про відстань.*
-- time — *Це «час». Відповіді про дорогу воно не дає.*
+<!-- interaction_id: en:lesson-02:session-26:i12; family: context_gap_grammar -->
+Ціль: `It is ___ .`
+Варіанти: `near` · `cold` · `time`
 
 **13 · Картка слова — station**
-> **station** — «вокзал, станція». Місце, звідки вирушають потяги.
+<!-- interaction_id: en:lesson-02:session-26:i13; family: listen_choose -->
+Ціль: `station`
 
-**14 · Послухайте і виберіть — station**
-🔊 *station* → **station** · stay · sun
-- stay — *Це «лишитися». Коротше: у `station` два склади, у `stay` один.*
-- sun — *Це «сонце». Голосна інша: у `sun` чути «а», у `station` — «ей».*
+**14 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-02:session-26:i14; family: listen_choose -->
+Ціль: `station`
+Варіанти: `station` · `stay` · `sun`
 
-**15 · З'єднайте пари (Speed Match, 4 пари)**
-weather — погода · time — час · cold — холодно · near — близько
+**15 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-26:i15; family: speed_match -->
+Пари: `weather` — погода · `time` — час · `cold` — холодно · `near` — близько
+Ціль: `weather · time · cold · near`
 
 **16 · Вставте слово — попутник питає, де кафе; воно поруч із вокзалом**
-It is near the ___ . → **station** · weather · time
-*(`station` — «вокзал»)*
-- weather — *Це «погода». Місцем вона бути не може.*
-- time — *Це «час». Іти можна до вокзалу, а не до часу.*
+<!-- interaction_id: en:lesson-02:session-26:i16; family: context_gap_grammar -->
+Ціль: `It is near the ___ .`
+Варіанти: `station` · `weather` · `time`
 
 **17 · Складіть фразу — скажіть, що надворі мороз**
-Плитки: `cold` `is` `it` `what` → **It is cold.**
-*(`what` тут зайвий: ви відповідаєте, а не питаєте)*
+<!-- interaction_id: en:lesson-02:session-26:i17; family: phrase_builder -->
+Ціль: `It is cold.`
 
-**18 · Фінал сцени — три фрази поспіль: час, мороз і дорога**
-🎙 Попутник нарешті сів на ліжку й питає, що там надворі. Запитайте, котра година, і скажіть, що холодно і що вокзал близько.
-**What is the time? It is cold. It is near the station.**
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s01; family: scripted_repeat_compare -->
+Ціль: `What is the time?`
 
----
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s02; family: scripted_repeat_compare -->
+Ціль: `It is cold.`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s03; family: scripted_repeat_compare -->
+Ціль: `It is near the station.`
 
 ## Для сборщика
 
@@ -141,7 +152,7 @@ new_words:
 weather — погода — «погода». Те, що за вікном: дощ, сонце, вітер.
 time — час — «час». Котра зараз на годиннику і скільки його у вас лишилося.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=word_card, 9=context_gap_grammar, 10=sound_contrast, 11=word_card, 12=context_gap_grammar, 13=word_card, 14=listen_choose, 15=speed_match, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=sound_contrast, 11=listen_choose, 12=context_gap_grammar, 13=listen_choose, 14=listen_choose, 15=speed_match, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -174,7 +185,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 **4. Слова в цільових відповідях**
 
-Усі слова цільових фраз (`what`, `is`, `the`, `weather`, `time`, `it`, `cold`, `near`, `station`) введені в цій сесії або пройдені раніше. `station` отримує картку (13) і впізнавання на слух (14) до першого вживання у фразі.
+Усі слова цільових фраз (`what`, `is`, `the`, `weather`, `time`, `it`, `cold`, `near`, `station`) введені в цій заняття або пройдені раніше. `station` отримує картку (13) і впізнавання на слух (14) до першого вживання у фразі.
 
 **5. Довжина інтро**
 
@@ -183,19 +194,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 | Інтро 1 | 296 |
 | Інтро 2 | 274 |
 | Інтро 3 | 281 |
-
----
-
-🟡 **Стоит улучшить**
-- Больше замечаний по этой локали не осталось: оба пункта судьи закрыты точечно, остальной текст не трогал, чтобы не плодить новых расхождений с мастером.
-
-🧩 **Скрытые связи**
-- Слово «попутник» встречается теперь в пяти местах (сцена, интро 1, интро 2, интро 3, задания 6, 12, 18) — если в следующих сессиях украинской локали останется «супутник», будет разнобой между сессиями одного урока.
-
----
-
-- Поправил два места, на которые указал судья-носитель.
-- Русский заголовок «Практика (первые задания)» стал украинским; строка про 17 заданий осталась отдельной подписью под ним.
-- Везде, где речь о человеке рядом в поездке, «супутник» заменил на «попутник» — иначе украинец читает это как спутник в небе.
-- Английские слова, фразы, ловушки, номера и порядок заданий, блок для сборщика и самопроверка остались без изменений.
-- На будущее: в остальных украинских сессиях этого урока стоит использовать то же слово «попутник», чтобы не было разнобоя.

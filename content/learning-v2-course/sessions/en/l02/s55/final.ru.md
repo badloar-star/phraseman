@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 55 — «По дороге в гости»
+# Английский · Урок 2 · Занятие 55 — «По дороге в гости»
 
-**Сцена сессии.** В воскресенье вечером вы с другом идёте в гости в Дублине. По дороге решаете, где перекусить, уточняете путь через станцию и делаете небольшую покупку. В квартире нужно найти хозяина, который вас пригласил.
+**Сцена занятия.** В воскресенье вечером вы с другом идёте в гости в Дублине. По дороге решаете, где перекусить, уточняете путь через станцию и делаете небольшую покупку. В квартире нужно найти хозяина, который вас пригласил.
 
-**Операция:** отложенный возврат слов из семи глав в знакомых вопросах и сообщениях  
+**Как сказать:** отложенный возврат слов из семи глав в знакомых вопросах и сообщениях  
 **Новые слова:** —  
 **Возвращаются:** hungry, crowded, station, price, host, wrong, excuse me
 
@@ -42,107 +42,108 @@
 
 `Excuse me` — «Извините», обращение для привлечения внимания. Дальше можно спросить `What is the price?` — «Какая цена?» Слово `price` значит «цена». Вся реплика: `Excuse me. What is the price?` Вы сначала обращаетесь к человеку, а затем объясняете, что хотите узнать.
 
-**Вы выбрали еду, но не видите ценника. Привлеките внимание продавца и спросите цену.**
+**Вы уже сказали продавцу `Excuse me.` Теперь спросите цену.**
 
-- ✅ **Excuse me. What is the price?**
-- ❌ Excuse me. Where is the price? — *Так можно спросить, где указана цена. Сейчас вы хотите узнать саму сумму: `What is the price?`.*
-- ❌ Excuse me. What are the price? — *С `the price` в этом вопросе нужно `is`: `What is the price?`.*
-
----
-
-## Практика (17 заданий, поддержка убывает)
-
-**1 · Вставьте слово — вам хочется есть; скажите другу «Я голоден»**  
-*(`hungry` — «голодный»)*  
-I am ___ . → **hungry** · crowded · station
-- crowded — *Это «многолюдный, переполненный». О своём голоде скажите `I am hungry`.*
-- station — *Это «станция». Чтобы сообщить, что вы хотите есть, нужно `hungry`.*
-
-**2 · Послушайте и выберите — какая реплика друга прозвучала во время прогулки**  
-🔊 *Are we hungry?* → **Are we hungry?** · Are you hungry? · We are hungry.
-- Are you hungry? — *Здесь звучит `you` — «вы». В записи друг произносит `we` — «мы».*
-- We are hungry. — *Это сообщение с началом `We are`. В записи слова стоят в порядке `Are we`.*
-
-**3 · Соберите фразу — вы заглянули в два магазина, и оба полны людей; сообщите другу «В магазинах многолюдно»**  
-*(`shops` — «магазины»; `crowded` — «многолюдный, переполненный»)*  
-Плитки: `crowded` `shops` `are` `The` → **The shops are crowded.**
-
-**4 · Послушайте и выберите — какая следующая реплика друга прозвучала на улице**  
-*(`station` — «станция»)*  
-🔊 *Is the station near?* → **Is the station near?** · The station is near. · Is the station far?
-- The station is near. — *Здесь сначала идёт `The station`. В записи реплика начинается с `Is the station`.*
-- Is the station far? — *В этом варианте `far` — «далеко». В записи звучит `near` — «близко».*
-
-**5 · Соберите фразу — маршрут к дому проходит через станцию; спросите друга, где она находится**  
-*(`station` — «станция»)*  
-Плитки: `station` `Where` `the` `is` → **Where is the station?**
-
-**6 · Вставьте слово — по дороге друг показывает фотографию мужчины, который пригласил вас к себе; скажите «Он хозяин»**  
-*(`host` — «хозяин, принимающий гостей»)*  
-He is the ___ . → **host** · guest · station
-- guest — *Это «гость». Мужчина сам принимает вас у себя, поэтому здесь нужно `host`.*
-- station — *Это «станция». Вы называете роль человека: `He is the host`.*
-
-**7 · Вставьте слово — вы всё-таки зашли за едой; покажите продавцу выбранный товар и спросите его цену**  
-*(`price` — «цена»)*  
-What is the ___ ? → **price** · host · station
-- host — *Это «хозяин, принимающий гостей». Сейчас вы узнаёте стоимость товара: `price`.*
-- station — *Это «станция». Чтобы спросить цену, выберите `price`.*
-
-**8 · Соберите фразу — после покупки вы предлагаете повернуть налево, но сомневаетесь; спросите друга «Я ошибаюсь?»**  
-*(`wrong` — «неправый, ошибающийся»)*  
-Плитки: `wrong` `I` `Am` → **Am I wrong?**
-
-**9 · Соедините пары — слова для дороги и остановок (Speed Match, 4 пары)**  
-hungry — голодный · crowded — многолюдный · station — станция · price — цена
-
-**10 · Послушайте и выберите — какая реплика прозвучала при обращении к прохожему**  
-*(`excuse me` — «извините», чтобы привлечь внимание)*  
-🔊 *Excuse me. Are you busy?* → **Excuse me. Are you busy?** · Excuse me. Are you ready? · Excuse me. Are we busy?
-- Excuse me. Are you ready? — *Здесь `ready` — «готовы». В записи после `you` звучит `busy` — «заняты».*
-- Excuse me. Are we busy? — *В этом варианте вопрос начинается с `Are we`. В записи звучит `Are you`.*
-
-**11 · Вставьте слово — друг спрашивает, многолюдно ли в первом магазине; вы видели, что он полон людей, ответьте коротко «Да»**  
-Yes, it ___ . → **is** · are · am
-- are — *В коротком ответе с `it` нужна форма `is`: `Yes, it is`.*
-- am — *Форма `am` подходит к `I`. Здесь ответ о магазине: `Yes, it is`.*
-
-**12 · Послушайте и соберите — друг сверил сумму в чеке с ценником и сообщает результат**  
-🔊 *The price is right.* Плитки: `right` `is` `price` `The` → **The price is right.**  
-*(`price` — «цена»; `right` — «верная»)*
-
-**13 · Вставьте слово — вы дошли до станции, людей там мало; скажите о ней «Там не многолюдно»**  
-It is not ___ . → **crowded** · hungry · wrong
-- hungry — *Это «голодный». Вы описываете количество людей на станции, поэтому нужно `crowded`.*
-- wrong — *Это «неправый, неверный». Чтобы сказать, что людей немного, выберите `not crowded`.*
-
-**14 · Соберите фразу — вы пришли в квартиру и видите нескольких незнакомых людей; спросите друга, кто они**  
-*(`these people` — «эти люди»)*  
-Плитки: `people` `are` `Who` `these` → **Who are these people?**
-
-**15 · Скажите вслух — вы неверно назвали имя хозяина, а друг поправил вас; признайте «Я неправ» (`wrong` — «неправ»)**  
-🎙️ **I am wrong.**
-
-**16 · Скажите вслух — вы хотите обратиться к одному из гостей; привлеките его внимание словом «Извините» (`excuse me`)**  
-🎙️ **Excuse me.**
-
-**17 · Соберите вопрос — гость вас слушает; вы знаете, кто хозяин, но пока его не видите, спросите, где он**  
-Плитки: `host` `Who` `the` `is` `Where` → **Where is the host?**  
-Лишняя плитка: `Who`.
-- Who — *С `Who` вы спросите, кто хозяин. Его личность вам уже известна; чтобы найти его, нужен вопрос с `Where`.*
+- ✅ **What is the price?**
+- ❌ Where is the price? — *Так можно спросить, где указана цена. Сейчас вы хотите узнать саму сумму: `What is the price?`.*
+- ❌ What are the price? — *С `the price` в этом вопросе нужно `is`: `What is the price?`.*
 
 ---
+
+## Практика — по одной целевой фразе
+
+**1 · Вставьте слово — вам хочется есть; скажите другу «Я голоден»**
+<!-- interaction_id: en:lesson-02:session-55:i01; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `hungry` · `crowded` · `station`
+
+**2 · Послушайте и выберите — какая реплика друга прозвучала во время прогулки**
+<!-- interaction_id: en:lesson-02:session-55:i02; family: listen_choose -->
+Цель: `Are we hungry?`
+Варианты: `Are we hungry?` · `Are you hungry?` · `We are hungry.`
+
+**3 · Соберите фразу — вы заглянули в два магазина, и оба полны людей; сообщите другу «В магазинах многолюдно»**
+<!-- interaction_id: en:lesson-02:session-55:i03; family: phrase_builder -->
+Цель: `The shops are crowded.`
+
+**4 · Послушайте и выберите — какая следующая реплика друга прозвучала на улице**
+<!-- interaction_id: en:lesson-02:session-55:i04; family: listen_choose -->
+Цель: `Is the station near?`
+Варианты: `Is the station near?` · `The station is near.` · `Is the station far?`
+
+**5 · Соберите фразу — маршрут к дому проходит через станцию; спросите друга, где она находится**
+<!-- interaction_id: en:lesson-02:session-55:i05; family: phrase_builder -->
+Цель: `Where is the station?`
+
+**6 · Вставьте слово — по дороге друг показывает фотографию мужчины, который пригласил вас к себе; скажите «Он хозяин»**
+<!-- interaction_id: en:lesson-02:session-55:i06; family: context_gap_grammar -->
+Цель: `He is the ___ .`
+Варианты: `host` · `guest` · `station`
+
+**7 · Произнесите фразу — вы показываете продавцу выбранный товар и спрашиваете его цену**
+<!-- interaction_id: en:lesson-02:session-55:i07; family: scripted_repeat_compare -->
+Цель: `What is the price?`
+Ряд: `What` · `is` · `the` · `price`
+
+**8 · Соберите фразу — после покупки вы предлагаете повернуть налево, но сомневаетесь; спросите друга «Я ошибаюсь?»**
+<!-- interaction_id: en:lesson-02:session-55:i08; family: phrase_builder -->
+Цель: `Am I wrong?`
+
+**9 · Соедините пары — слова для дороги и остановок**
+<!-- interaction_id: en:lesson-02:session-55:i09; family: speed_match -->
+Пары: `hungry` — голодный · `crowded` — многолюдный · `station` — станция · `price` — цена
+Цель: `hungry · crowded · station · price`
+
+**10 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-55:i10:s01; family: scripted_repeat_compare -->
+Цель: `Excuse me.`
+
+**11 · Послушайте одну фразу и выберите ответ**
+<!-- interaction_id: en:lesson-02:session-55:i10:s02; family: listen_choose -->
+Цель: `Are you busy?`
+Варианты: `Are you busy?` · `Are you ready?` · `Are we busy?`
+
+**12 · Вставьте слово — друг спрашивает, многолюдно ли в первом магазине; вы видели, что он полон людей, ответьте коротко «Да»**
+<!-- interaction_id: en:lesson-02:session-55:i11; family: context_gap_grammar -->
+Цель: `Yes, it ___ .`
+Варианты: `is` · `are` · `am`
+
+**13 · Послушайте и соберите — друг сверил сумму в чеке с ценником и сообщает результат**
+<!-- interaction_id: en:lesson-02:session-55:i12; family: listen_build_dictation -->
+Цель: `The price is right.`
+
+**14 · Вставьте слово — вы дошли до станции, людей там мало; скажите о ней «Там не многолюдно»**
+<!-- interaction_id: en:lesson-02:session-55:i13; family: context_gap_grammar -->
+Цель: `It is not ___ .`
+Варианты: `crowded` · `hungry` · `wrong`
+
+**15 · Соберите фразу — вы пришли в квартиру и видите нескольких незнакомых людей; спросите друга, кто они**
+<!-- interaction_id: en:lesson-02:session-55:i14; family: phrase_builder -->
+Цель: `Who are these people?`
+
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-55:i15; family: scripted_repeat_compare -->
+Цель: `I am wrong.`
+
+**17 · Послушайте и соберите — вы подошли к продавцу, чтобы задать вопрос вежливо**
+<!-- interaction_id: en:lesson-02:session-55:i16; family: listen_build_dictation -->
+Цель: `Excuse me.`
+
+**18 · Соберите вопрос — гость вас слушает; вы знаете, кто хозяин, но пока его не видите, спросите, где он**
+<!-- interaction_id: en:lesson-02:session-55:i17; family: phrase_builder -->
+Цель: `Where is the host?`
+Варианты: `Who`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=context_gap_grammar, 2=listen_choose, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=context_gap_grammar, 2=listen_choose, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=scripted_repeat_compare, 8=phrase_builder, 9=speed_match, 10=scripted_repeat_compare, 11=listen_choose, 12=context_gap_grammar, 13=listen_build_dictation, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=listen_build_dictation, 18=phrase_builder
 
 ### Самопроверка 1 — возвраты из семи глав
 
-| Возврат | Опора в главе урока 2 | Явное значение в сессии | Контакты в практике | Правильное употребление |
+| Возврат | Опора в главе урока 2 | Явное значение в занятия | Контакты в практике | Правильное употребление |
 |---|---|---|---|---|
 | hungry | Глава 1, S1 | Интро 1, №1 | №1, 2, 9; дистрактор №13 | №1, 2, 9 |
 | crowded | Глава 2, S10 | Интро 2, №3 | №3, 9, 13; дистрактор №1 | №3, 9, 13 |

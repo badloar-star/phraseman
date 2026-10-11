@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro1:r2": {
+          "ru": "Это вопрос о готовности друга. Чтобы включить себя, начните с `Are we`.",
+          "uk": "Це запитання про готовність друга. Щоб включити себе, почніть з `Are we`."
+        },
+        "en:lesson-02:session-52:intro1:r3": {
+          "ru": "Это вопрос только о себе. Сейчас вы проверяете готовность вас обоих.",
+          "uk": "Це запитання лише про себе. Зараз ви перевіряєте готовність вас обох."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro2:r2": {
+          "ru": "Это вопрос о месте. Женщину вы видите; хотите узнать, кто она.",
+          "uk": "Це запитання про місце. Жінку ви бачите, а хочете дізнатися, хто вона."
+        },
+        "en:lesson-02:session-52:intro2:r3": {
+          "ru": "Это «Кто он?» Здесь вы спрашиваете о женщине, поэтому нужно `she`.",
+          "uk": "Це «Хто він?» Тут ви запитуєте про жінку, тому потрібне `she`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-52:intro3:r2": {
+          "ru": "В полном вопросе нужно `Is it open?`: после обращения сначала `Is`, затем `it`.",
+          "uk": "У повному запитанні потрібно `Is it open?`: після звертання спочатку `Is`, потім `it`."
+        },
+        "en:lesson-02:session-52:intro3:r3": {
+          "ru": "Это «Закрыто?» Вам нужно спросить, открыт ли зал: `open`.",
+          "uk": "Це «Зачинено?» Вам треба запитати, чи відкрита зала: `open`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f4f4872c0b175f0f3e138929cef91e2774d5ddf2adb9e722be8caf8a85bd1a57"
+}

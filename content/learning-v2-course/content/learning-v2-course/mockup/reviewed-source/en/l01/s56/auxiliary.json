@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro1:r2": {
+          "ru": "`are` — для нескольких. Неделя одна, ей нужно `is`.",
+          "uk": "`are` — для кількох. Тиждень один, йому потрібне `is`."
+        },
+        "en:lesson-01:session-56:intro1:r3": {
+          "ru": "После `It` нужна форма `is`: `It is hard`.",
+          "uk": "Після `It` потрібна форма `is`: `It is hard`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro2:r2": {
+          "ru": "Людей много, но `everyone` означает «каждый», поэтому нужна форма `is`.",
+          "uk": "Людей багато, але `everyone` означає «кожен», тому потрібна форма `is`."
+        },
+        "en:lesson-01:session-56:intro2:r3": {
+          "ru": "После `Everyone` нужна форма `is`: `Everyone is kind`.",
+          "uk": "Після `Everyone` потрібна форма `is`: `Everyone is kind`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-56:intro3:r2": {
+          "ru": "После `I` нужна форма `am`: `I am not alone`.",
+          "uk": "Після `I` потрібна форма `am`: `I am not alone`."
+        },
+        "en:lesson-01:session-56:intro3:r3": {
+          "ru": "В этой фразе нужно `not`: `I am not alone`.",
+          "uk": "У цій фразі потрібне `not`: `I am not alone`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e33f537dbc4b5fd88a29cad9b94f1ae65f3c16123d087651de098462c22bc6e2"
+}

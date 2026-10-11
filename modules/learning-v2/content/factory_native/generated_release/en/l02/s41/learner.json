@@ -815,13 +815,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы думаете, что хозяин ждёт ещё одного гостя; уточните у друга, не ошибаетесь ли",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы думаете, что хозяин ждёт ещё одного гостя; уточните у друга, не ошибаетесь ли",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -848,13 +848,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — хозяин назвал время завтрака, и вы поняли, что пришли раньше; скажите об этом",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-41:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — хозяин назвал время завтрака, и вы поняли, что пришли раньше; скажите об этом",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -913,5 +913,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fd6c0856153bcd6c36aa8ecca80d9fc402ca94de5d80f699f5a740e004b8db0d"
+  "learnerFingerprint": "4c1dc2b006bd2b3dd2b57d8520a803d734ce80ea638cb84cc9b3e223c0d131a6"
 }

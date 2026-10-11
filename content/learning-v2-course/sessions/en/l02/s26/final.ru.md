@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 26 — «What is the weather?»
+# Английский · Урок 2 · Занятие 26 — «What is the weather?»
 
-**Сцена сессии.** Утро выходного в Дублине. Вы стоите у окна гостиницы, спутник ещё не встал, и всё, что нужно выяснить, — сколько сейчас и что там на улице.
+**Сцена занятия.** Утро выходного в Дублине. Вы стоите у окна гостиницы, спутник ещё не встал, и всё, что нужно выяснить, — сколько сейчас и что там на улице.
 
-**Операция:** `What is + вещь` (время и погода)
+**Как сказать:** `What is + вещь` (время и погода)
 **Новые слова:** weather, time
 **Возвращаются:** cold, near, station
 
@@ -56,82 +56,95 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — weather**
-> **weather** — «погода». То, что за окном: дождь, солнце, ветер.
+<!-- interaction_id: en:lesson-02:session-26:i01; family: listen_choose -->
+Цель: `weather`
 
-**2 · Послушайте и выберите — weather**
-🔊 *weather* → **weather** · water · walk
-- water — *Это «вода». К погоде отношения не имеет.*
-- walk — *Это «идти пешком». Слово про ноги, а не про небо.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
+Цель: `weather`
+Варианты: `weather` · `water` · `walk`
 
 **3 · Карточка слова — time**
-> **time** — «время». Сколько сейчас на часах и сколько у вас его осталось.
+<!-- interaction_id: en:lesson-02:session-26:i03; family: listen_choose -->
+Цель: `time`
 
-**4 · Послушайте и выберите — time**
-🔊 *time* → **time** · team · toy
-- team — *Это «команда». Гласная звучит «и», а в `time` — «ай».*
-- toy — *Это «игрушка». Начало то же, а дальше «ой» вместо «ай».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-26:i04; family: listen_choose -->
+Цель: `time`
+Варианты: `time` · `team` · `toy`
 
 **5 · Соберите фразу — спросите про погоду**
-Плитки: `weather` `what` `the` `is` → **What is the weather?**
+<!-- interaction_id: en:lesson-02:session-26:i05; family: phrase_builder -->
+Цель: `What is the weather?`
 
 **6 · Вставьте слово — часов нет, спросите спутника**
-What is the ___ ? → **time** · weather · street
-- weather — *Это «погода». Вы спрашиваете не про улицу, а про часы.*
-- street — *Это «улица». Про неё вы и так знаете, где стоите.*
+<!-- interaction_id: en:lesson-02:session-26:i06; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `time` · `weather` · `street`
 
 **7 · Послушайте и соберите — «сколько сейчас»**
-🔊 *What is the time?* Плитки: `the` `what` `time` `is` → **What is the time?**
+<!-- interaction_id: en:lesson-02:session-26:i07; family: listen_build_dictation -->
+Цель: `What is the time?`
 
 **8 · Карточка слова — cold**
-> **cold** — «холодно». Про погоду за окном, про воду в кране, про руки без перчаток.
+<!-- interaction_id: en:lesson-02:session-26:i08; family: listen_choose -->
+Цель: `cold`
 
 **9 · Вставьте слово — рука в окне мёрзнет за пять секунд**
-It is ___ . → **cold** · near · time
-- near — *Это «близко». Про расстояние, а не про мороз.*
-- time — *Это «время». На вопрос о погоде оно не отвечает.*
+<!-- interaction_id: en:lesson-02:session-26:i09; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `cold` · `near` · `time`
 
 **10 · Различите звуки — какое из двух про «холодно»?**
-🔊 Два слова подряд.
-*cold · gold* → **cold**
-- gold — *Это «золото». Отличие в самом первом звуке: `cold` начинается с «к», `gold` — с «г».*
+<!-- interaction_id: en:lesson-02:session-26:i10; family: sound_contrast -->
+Варианты: `cold` · `gold`
 
 **11 · Карточка слова — near**
-> **near** — «близко». Идти пару минут, видно от двери.
+<!-- interaction_id: en:lesson-02:session-26:i11; family: listen_choose -->
+Цель: `near`
 
 **12 · Вставьте слово — спутник спрашивает, далеко ли до вокзала; он в двух шагах**
-It is ___ . → **near** · cold · time
-- cold — *Это «холодно». Про погоду, а не про расстояние.*
-- time — *Это «время». Ответ про дорогу оно не даёт.*
+<!-- interaction_id: en:lesson-02:session-26:i12; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `near` · `cold` · `time`
 
 **13 · Карточка слова — station**
-> **station** — «вокзал, станция». Место, откуда уходят поезда.
+<!-- interaction_id: en:lesson-02:session-26:i13; family: listen_choose -->
+Цель: `station`
 
-**14 · Послушайте и выберите — station**
-🔊 *station* → **station** · stay · sun
-- stay — *Это «остаться». Короче: в `station` два слога, в `stay` один.*
-- sun — *Это «солнце». Гласная другая: в `sun` слышно «а», в `station` — «эй».*
+**14 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-26:i14; family: listen_choose -->
+Цель: `station`
+Варианты: `station` · `stay` · `sun`
 
-**15 · Соедините пары (Speed Match, 4 пары)**
-weather — погода · time — время · cold — холодно · near — близко
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-26:i15; family: speed_match -->
+Пары: `weather` — погода · `time` — время · `cold` — холодно · `near` — близко
+Цель: `weather · time · cold · near`
 
 **16 · Вставьте слово — спутник спрашивает, где кафе; оно рядом с вокзалом**
-It is near the ___ . → **station** · weather · time
-*(`station` — «вокзал»)*
-- weather — *Это «погода». Местом она быть не может.*
-- time — *Это «время». Идти можно к вокзалу, а не ко времени.*
+<!-- interaction_id: en:lesson-02:session-26:i16; family: context_gap_grammar -->
+Цель: `It is near the ___ .`
+Варианты: `station` · `weather` · `time`
 
 **17 · Соберите фразу — ответьте, что на улице мороз**
-Плитки: `cold` `is` `it` `what` → **It is cold.**
-*(`what` здесь лишний: вы отвечаете, а не спрашиваете)*
+<!-- interaction_id: en:lesson-02:session-26:i17; family: phrase_builder -->
+Цель: `It is cold.`
 
-**18 · Финал сцены — три фразы подряд: время, мороз и дорога**
-🎙 Спутник наконец сел на кровати и спрашивает, что там снаружи. Спросите, сколько сейчас, и скажите, что холодно и что вокзал близко.
-**What is the time? It is cold. It is near the station.**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s01; family: scripted_repeat_compare -->
+Цель: `What is the time?`
 
----
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s02; family: scripted_repeat_compare -->
+Цель: `It is cold.`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-26:i18:s03; family: scripted_repeat_compare -->
+Цель: `It is near the station.`
 
 ## Для сборщика
 
@@ -139,7 +152,7 @@ new_words:
 weather — погода — «погода». То, что за окном: дождь, солнце, ветер.
 time — время — «время». Сколько сейчас на часах и сколько у вас его осталось.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=word_card, 9=context_gap_grammar, 10=sound_contrast, 11=word_card, 12=context_gap_grammar, 13=word_card, 14=listen_choose, 15=speed_match, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_build_dictation, 8=listen_choose, 9=context_gap_grammar, 10=sound_contrast, 11=listen_choose, 12=context_gap_grammar, 13=listen_choose, 14=listen_choose, 15=speed_match, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -172,7 +185,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 **4. Слова в целевых ответах**
 
-Все слова целевых фраз (`what`, `is`, `the`, `weather`, `time`, `it`, `cold`, `near`, `station`) введены в этой сессии либо пройдены раньше. `station` получает карточку (13) и узнавание на слух (14) до первого использования во фразе.
+Все слова целевых фраз (`what`, `is`, `the`, `weather`, `time`, `it`, `cold`, `near`, `station`) введены в этой занятия либо пройдены раньше. `station` получает карточку (13) и узнавание на слух (14) до первого использования во фразе.
 
 **5. Длина интро**
 

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-10:i01",
-    "correctText": "",
+    "correctText": "kettle",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-10:i03",
-    "correctText": "",
+    "correctText": "toaster",
     "correctResponseId": null
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-10:i05",
-    "correctText": "A kettle.",
+    "correctText": "It is a kettle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-10:i06",
-    "correctText": "",
+    "correctText": "vacuum",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-10:i10",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-10:i10:p1=kettle\nen:lesson-03:session-10:i10:p2=toaster\nen:lesson-03:session-10:i10:p3=vacuum\nen:lesson-03:session-10:i10:p4=oven",
     "correctResponseId": null
   },
   {

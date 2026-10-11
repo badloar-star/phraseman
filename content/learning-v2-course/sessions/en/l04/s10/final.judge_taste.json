@@ -1,0 +1,52 @@
+{
+  "session": "en/l04/s10",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T22:05:04.5880458Z",
+  "sourceSha256": "d1f4f7ffa83b4c5347a7afe07082eb9f9dba9194da704c587f0f36bedb563bb1",
+  "exactRuSha256": "d1f4f7ffa83b4c5347a7afe07082eb9f9dba9194da704c587f0f36bedb563bb1",
+  "exactUkSha256": "c393206424b3b666be67347a98c674ec2752d95ca29fc9c9403e8c849c6e6c35",
+  "practiceAtomicSha256": "e4c81d33fa04901700e0e613b1256880ad7b940f9d312e1567fd2d903fe8aa75",
+  "localeHashes": {
+    "ru": "d1f4f7ffa83b4c5347a7afe07082eb9f9dba9194da704c587f0f36bedb563bb1",
+    "uk": "c393206424b3b666be67347a98c674ec2752d95ca29fc9c9403e8c849c6e6c35"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent post-canonical-repeat-repair read-only taste review",
+  "verdict": "PASS",
+  "pairwise": "equal",
+  "pairwise_reason": "The visitor-desk lesson stays direct and human; the revised negative explanation is compact, and the strongest joke grows from the hotel word itself.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Чемодану отель не нужен: он и на полу неплохо устроился. А вам нужна комната."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Чемодану отель не нужен: он и на полу неплохо устроился. А вам нужна комната."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "Чемодану отель не нужен: он и на полу неплохо устроился. А вам нужна комната."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "mustFix": [],
+  "blockers": [],
+  "evidence": [
+    "The quote remains a natural humorous move tied to the word hotel and the learner's need (final.ru.md:12).",
+    "The revised Intro2 explains full/contracted forms without filler, forced metaphor, dead jargon or generic AI cadence."
+  ],
+  "verdict_reason": "Clear human teaching voice, concise form explanation and on-topic humor support the task."
+}

@@ -1,0 +1,35 @@
+{
+  "session": "en/l04/s09",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:59:12.7287864Z",
+  "sourceSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactRuSha256": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+  "exactUkSha256": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447",
+  "practiceAtomicSha256": "8b10280d28a7addbcf847ba5cbb86b7ab9e6a6982378a2f8e718c1a882d5448a",
+  "localeHashes": {
+    "ru": "e8c7b13e9c2bda4367b10cc06835e7e69be51cc82b67703a96fbf140ca493d75",
+    "uk": "bf749c6a3314962b5dd6d5438786a42978c762cacebd9f3c5dc9be454156b447"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_nonsense",
+  "sourceReport": "fresh independent post-exact-repeat-repair read-only seven-role textual review; audio claims textual only",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "A person with tooth pain asking an information desk for a dentist is coherent and practical.",
+    "Near the library, in this building, in the neighbourhood and near the pharmacy are distinct, ordinary search anchors and all match their displayed targets.",
+    "No false rule, invented causal relation, contradictory scene, semantic mismatch or empty forced variation was found."
+  ]
+}

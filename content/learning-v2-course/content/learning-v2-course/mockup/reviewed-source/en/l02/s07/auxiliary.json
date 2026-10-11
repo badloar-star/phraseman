@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-07:intro1:r2": {
+          "ru": "Так вы сообщаете ему новость. Вопрос начинается с `are`.",
+          "uk": "Так ви повідомляєте йому новину. Питання починається з `are`."
+        },
+        "en:lesson-02:session-07:intro1:r3": {
+          "ru": "`you` оторвали от `are`. Эти двое идут парой: `are you`, и только потом слово.",
+          "uk": "`you` відірвали від `are`. Ці двоє йдуть парою: `are you`, і лише потім слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-07:intro2:r2": {
+          "ru": "Хвост «-ed» оторвали. Про состояние человека — `relaxed`.",
+          "uk": "Хвостик «-ed» відірвали. Про стан людини — `relaxed`."
+        },
+        "en:lesson-02:session-07:intro2:r3": {
+          "ru": "`are` потерялось. Без него это обрывок, а не вопрос.",
+          "uk": "`are` загубилося. Без нього це уривок, а не питання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-07:intro3:r2": {
+          "ru": "`am` выпало. Про себя — `I am`, и `not` встаёт после него.",
+          "uk": "`am` випало. Про себе — `I am`, і `not` стає після нього."
+        },
+        "en:lesson-02:session-07:intro3:r3": {
+          "ru": "`no` отвечает на вопрос, а внутри фразы работает `not`.",
+          "uk": "`no` відповідає на питання, а всередині фрази працює `not`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1938361c7f9166a270610d6d3951b188a6bc2d8124308bc8424ff06108b4f8c7"
+}

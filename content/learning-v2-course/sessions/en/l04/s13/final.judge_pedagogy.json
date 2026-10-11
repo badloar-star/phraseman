@@ -1,0 +1,40 @@
+{
+  "session": "en/l04/s13",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T11:15:05.483Z",
+  "sourceSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactRuSha256": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+  "exactUkSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "practiceAtomicSha256": "e5c68f6ebf96adc2220aaa619e6b4e75d1637a8dd24206b18dc979c5324a29b6",
+  "localeHashes": {
+    "ru": "9dd3bb6a098a550882983cf63044414e23099002df0ca4451f3dd572541e040a",
+    "uk": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S13 quality/spec reviewers",
+  "role": "judge_pedagogy",
+  "sourceReport": "fresh independent read-only seven-role textual review after canonical-repeat repair; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The session teaches one operation family only: choosing a plural short answer to Are there...? by polarity and plural agreement.",
+    "i06 gives positive guided practice with same-polarity word-order/repetition distractors; i11 gives guided negative construction with is as the number-agreement distractor; i12 independently combines polarity and number discrimination.",
+    "No, there are not. is a grammatical full-form negative response and is explicitly connected to the planned contracted No, there aren't. in Intro 3; it avoids prohibited literal target repetition while preserving the operation."
+  ],
+  "at": "2026-10-08T11:15:05.483Z",
+  "localeSha256": "2950006dcc0b2a8c8fd751dddef720cbcd0f63e36af010d15a8aa3e28af3e89b",
+  "preauthoringSha256": "0e82244a8b45d56f898a5b69ad84500d8b10c8b7cc2e6c127fa2c18e02e74e25",
+  "converged": true,
+  "needsHumanReview": false
+}

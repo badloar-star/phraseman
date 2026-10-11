@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro1:r2": {
+          "ru": "После `I` не хватает `am`. Нужно `I am here`.",
+          "uk": "Після `I` бракує `am`. Потрібно `I am here`."
+        },
+        "en:lesson-01:session-51:intro1:r3": {
+          "ru": "Лишнее `in`. `here` работает само: `I am here`.",
+          "uk": "Зайве `in`. `here` працює саме: `I am here`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro2:r2": {
+          "ru": "`in` тут лишнее: `outside` уже значит «снаружи».",
+          "uk": "`in` тут зайве: `outside` вже означає «зовні»."
+        },
+        "en:lesson-01:session-51:intro2:r3": {
+          "ru": "Это «я внутри», ровно наоборот. Снаружи — `outside`.",
+          "uk": "Це «я всередині», рівно навпаки. Надворі — `outside`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-51:intro3:r2": {
+          "ru": "`am` бывает только про себя. Про него — `is`.",
+          "uk": "`am` буває тільки про себе. Про нього — `is`."
+        },
+        "en:lesson-01:session-51:intro3:r3": {
+          "ru": "`on` не нужно: `upstairs` само значит место.",
+          "uk": "`on` не потрібне: `upstairs` саме означає місце."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9db866bebe1d51a97c772b425beaa2d7ea28e00ca7180f39dcbb2fedda88ff81"
+}

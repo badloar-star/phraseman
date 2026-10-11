@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro1:r2": {
+          "ru": "`shops` не один, значит `is` не подходит. Несколько — `are`.",
+          "uk": "`shops` не один, отже `is` не підходить. Кілька — `are`."
+        },
+        "en:lesson-02:session-18:intro1:r3": {
+          "ru": "`are` уехало в конец. Его место сразу после `where`.",
+          "uk": "`are` поїхало в кінець. Його місце одразу після `where`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro2:r2": {
+          "ru": "Пропало `the`. Перед местом оно нужно: `the toilets`.",
+          "uk": "Зникло `the`. Перед місцем воно потрібне: `the toilets`."
+        },
+        "en:lesson-02:session-18:intro2:r3": {
+          "ru": "`toilets` больше одного, тут работает `are`.",
+          "uk": "`toilets` більше ніж один, тут працює `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-18:intro3:r2": {
+          "ru": "Улица одна, а `are` — про несколько. Про одну — `is`.",
+          "uk": "Вулиця одна, а `are` — про кілька. Про одну — `is`."
+        },
+        "en:lesson-02:session-18:intro3:r3": {
+          "ru": "`is` встаёт сразу за `where`, а не в конец.",
+          "uk": "`is` стає одразу за `where`, а не в кінець."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "563bfe687750563eedf68b4c241f2bc2944a412e665e8a9801ad47f6a1dbef86"
+}

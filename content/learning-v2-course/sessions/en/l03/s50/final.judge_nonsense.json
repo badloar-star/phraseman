@@ -1,0 +1,64 @@
+{
+  "sourceSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "Проверены порядок a + colour + noun, различие одного нового предмета, bare plural и конкретной знакомой группы с the, буквальная исполнимость Task 17, значения black/white/grey, реальные различимые фонетические варианты, аудиосмысл и RU/UK локали. Ложных фактов, противоречий и утечек ответа не найдено.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "0f1b11c8e5e630718d9a19fd39d714cfe927f19291b954d7e719dfa4ca4f9fac",
+    "localeSha256": "5b7caad16d4624dc1523bd4bab3451f8af3cc261216626e6fd7b17d63b7928b5",
+    "practiceAtomicSha256": "e23cc2601af5926d7c4d6946b241b7207be042d653b7a7ea53d584aba68936ec"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+  "exactUkSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+  "localeSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+  "practiceAtomicSha256": "9b30a416426b3d52a24f8dfbf7e09b94da11e2fa65fc30b83a9d82bcd2b3cbd9",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "874840d059f5c08dc1b8f0fc324eb054ca1938003770926b95071ddf2cab7c23",
+    "localeSha256": "58045bd320eeee2703bf7c6de4650bab7e26568bd5e151bdbfc74c5c97c0e858",
+    "practiceAtomicSha256": "9b30a416426b3d52a24f8dfbf7e09b94da11e2fa65fc30b83a9d82bcd2b3cbd9",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "mustFix": [],
+  "evidence": [
+    "Room comparison clearly contrasts one black sofa with plural white chairs/grey tables and keeps the colour-noun operation coherent."
+  ],
+  "localeHashes": {
+    "ru": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+    "uk": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_nonsense",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+    "exactRuSha256": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+    "exactUkSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+    "localeSha256": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288",
+    "localeHashes": {
+      "ru": "5dbc2f64642492690ab6ba9e6f3f46022e1ca24f5199739c979f36111484d791",
+      "uk": "93d8017172a9cf73598a7ff8fd4e4cea7a1e75057d2774e253ae385ff5eb8288"
+    },
+    "practiceAtomicSha256": "9b30a416426b3d52a24f8dfbf7e09b94da11e2fa65fc30b83a9d82bcd2b3cbd9",
+    "evidence": [
+      "Room comparison clearly contrasts one black sofa with plural white chairs/grey tables and keeps the colour-noun operation coherent."
+    ]
+  }
+}

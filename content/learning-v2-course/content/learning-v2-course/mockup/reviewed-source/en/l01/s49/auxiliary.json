@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro1:r2": {
+          "ru": "`is` уходит к кому-то третьему. Про себя — `am`.",
+          "uk": "`is` іде до когось третього. Про себе — `am`."
+        },
+        "en:lesson-01:session-49:intro1:r3": {
+          "ru": "Пропущено `am`. В английском после `I` оно обязательно.",
+          "uk": "Пропущено `am`. В англійській після `I` воно обов'язкове."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro2:r2": {
+          "ru": "`everyone` означает «каждый», поэтому с ним нужна форма `is`.",
+          "uk": "`everyone` означає «кожен», тому з ним потрібна форма `is`."
+        },
+        "en:lesson-01:session-49:intro2:r3": {
+          "ru": "Пропущено `is`: после `everyone` оно нужно.",
+          "uk": "Пропущено `is`: після `everyone` воно потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-49:intro3:r2": {
+          "ru": "`people` — это уже много людей, к ним идёт `are`.",
+          "uk": "`people` — це вже багато людей, до них іде `are`."
+        },
+        "en:lesson-01:session-49:intro3:r3": {
+          "ru": "`am` бывает только про себя, к соседям оно не идёт.",
+          "uk": "`am` буває тільки про себе, до сусідів воно не йде."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "47d8e6c3c7f483904c1f69735b19958c1e861a3513df5b48146d39090166b5d0"
+}

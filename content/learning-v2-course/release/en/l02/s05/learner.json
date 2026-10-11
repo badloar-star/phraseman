@@ -355,11 +355,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -497,17 +497,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
+      "prompt": "Соберите фразу — Том тянется к бутерброду Миры. Спросите Тома, голоден ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
+      "accessibilityLabel": "Соберите фразу — Том тянется к бутерброду Миры. Спросите Тома, голоден ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you hungry?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
-          "uk": "Складіть фразу — за столом хтось тягнеться до чужого бутерброда. Спитайте, чи він голодний"
+          "ru": "Соберите фразу — Том тянется к бутерброду Миры. Спросите Тома, голоден ли он",
+          "uk": "Складіть фразу — Том тягнеться до бутерброда Міри. Спитайте Тома, чи він голодний"
         },
         "orderedTokens": [
           "Are",
@@ -802,11 +802,11 @@
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -870,26 +870,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-05:i17",
+      "interactionId": "en:lesson-02:session-05:i17:s01",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — у двери, три реплики подряд",
+      "prompt": "Произнесите одну фразу — шаг 1 из 3",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-05:i17:audio"
+        "en:lesson-02:session-05:i17:s01:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — у двери, три реплики подряд",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-05:i17:audio",
-          "transcript": "Are you ready? Are you thirsty? You are lost."
+          "audioTargetId": "en:lesson-02:session-05:i17:s01:audio",
+          "transcript": "Are you ready?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are you ready? Are you thirsty? You are lost.",
+        "targetPhrase": "Are you ready?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i17:s02:audio",
+          "transcript": "Are you thirsty?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you thirsty?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i17:s03:audio",
+          "transcript": "You are lost."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are lost.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -903,11 +969,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 19,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "abaf2053df260b4534478225d9cb47d8369e5c54494f6a7e28166713a6247186"
+  "learnerFingerprint": "59dd8cc01ed0f5a56b8e684d2379769ba2cb8e8d8e4597c844e00d6fdf4097ab"
 }

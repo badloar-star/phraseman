@@ -1,0 +1,67 @@
+{
+  "session": "en/l03/s55",
+  "reviewedAt": "2026-10-03T22:08:04.979Z",
+  "exactRuSha256": "eee1c56e5b9722f8ccf528d2f0cea951bb690322be581574ebfd2cc40b2b18fa",
+  "exactUkSha256": "8cb1cba9f38f9ecfb4fb9cd2f13915238eab46350748ea5b217bdab281df3995",
+  "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+  "sourcePaths": [
+    "content/learning-v2-course/sessions/en/l03/s55/final.ru.md",
+    "content/learning-v2-course/sessions/en/l03/s55/final.uk.md",
+    "content/learning-v2-course/sessions/en/l03/s55/practice.atomic.json"
+  ],
+  "overallVerdict": "PASS",
+  "schemaVersion": "learning_v2_independent_content_judgement_v1",
+  "reviewer": "/root/s55_rejudge_content",
+  "scope": "Fresh read-only re-review after strict one-phrase, intro-boundary, and Markdown-atomic parity repairs.",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "roles": {
+    "judge_learner": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The apartment inspection, inspector, sheet, and purpose are clear immediately. Each intro starts with the new word and translation, then explains the same phrase it tests.",
+        "All 17 RU and 17 UK interactions are executable and have one assessed word, phrase, gap, or permitted pair grid. The independent final Those patterns are striped. is unambiguous."
+      ]
+    },
+    "judge_pedagogy": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The previous BLOCK is closed: all three explanations start with shape/material/pattern plus translation, while people and action remain only in the one-line questions.",
+        "Intro targets align with i11-i13; i15-i17 fade support into plural and distance transfer. Each gap has one blank and the four-pair speed board is permitted."
+      ]
+    },
+    "judge_nonsense": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The claims about the, this, that, number, distance, and article exclusion are accurate. No invented Russian-English contrast, false rule, or contradiction remains.",
+        "Deterministic single-phrase, gap, dictation, answer-contract, locale-feedback, word-card, and Markdown-atomic checks report no issue."
+      ]
+    }
+  }
+}

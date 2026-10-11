@@ -1,0 +1,492 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-10-04T20:40:45.294Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "reviewer": "fresh independent English L4 S05 preauthoring guardian",
+  "reviewDate": "2026-10-04",
+  "sourceReport": "Fresh independent narrow-repair renewal: current S05 source was inspected only to bind the requested taste correction. Curriculum row, grammar boundary, new word, scene, and prior L4 S01–S04 range remain unchanged.",
+  "session": "en/l04/s05",
+  "curriculumRow": "Урок 4, сессия 5 · тип: контраст · грамматика: выбрать is/are и a + singular или plural без артикля · новые слова: supermarket · момент сцены: по листовке доставки отличаем один супермаркет от нескольких магазинов",
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "626bae2957b356128d0fcf3b1c3a4e7251d963b6b5a144753dc497fdcf38e133",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+    "factory/exemplars/en/l01_s02.ru.md": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+    "factory/exemplars/en/l01_s03.ru.md": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "ФАБРИКА КУРСА PHRASEMAN\n=======================\n\nЕсли владелец сказал тебе «посмотри папку Codex на рабочем столе» —\nотк",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: «ХОЧУ ДОБАВИТЬ ЖЁСТК",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда\n\n> ⛔ СНАЧАЛА ПРОЧИТАЙ 00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md — ОНО ВЫШЕ ВСЕГО ОСТАЛЬНОГО В ЭТ",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "# Project Rules\n\n## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09-19)\n\nПри любом напи",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "# СТАРТ В2\n\n## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТСЯ КАК ПОНЯТНЫЙ ЖИВОЙ УРОК\n\n- В первых двух предложениях ",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие макетам\n\n**Статус:** `NORMATIVE`, обязательный owner contrac",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии\n\n> **Owner override 2026-09-19.** Каждая сессия, включая check",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT\r\n\r\n> Обязательный маршрут перед исследованием, планированием, написанием,\r\n> изменением или",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56\n\n**Статус:** дизайн утверждён владельцем 2026-08-28; реализация blu",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier\n\n**Статус:** `REBUILD V2 / OWNER-APPROVED SCOPE`, prerequisite для полного Engl",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger\n\n**Status:** draft research authority for the English 32 × 56 blueprint. ",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt\r\n\r\n**Дата:** 2026-08-30  \r\n**Статус:** `OWNER APPROVED`\n**Canonical",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2\r\n\r\n> Владелец, 2026-08-27: «составь напиши библию Learning V2, по правилам которой\r\n> будут",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2\n\n> **Приоритет владельца 2026-09-19:** каждая нумерованная сессия вводит новые\n>",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась\n\n> Владелец, 2026-08-27: «ты можешь себе добавить к доку",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА\n\n> Владелец, 2026-09-03, дословно: «ХОЧУ ДОБАВИТЬ ЖЁСТК",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2",
+      "quote": "# Конституция курса Learning V2\r\n\n> ## ⛔ АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 03.10: ОДНО ВЗАИМОДЕЙСТВИЕ — ОДНА ФРАЗА ЦЕЛЕВОГО Я",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике\r\n\r\n> **АКТУАЛЬНОЕ РЕШЕНИЕ ВЛАДЕЛЬЦА 08.09 — короткие ответы и живо",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "626bae2957b356128d0fcf3b1c3a4e7251d963b6b5a144753dc497fdcf38e133",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ\n\n> **Правило владельца 13.09.2026, дословно:** «Каждая сессия, проверять все",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении\n\n> Записано 2026-09-03, чтобы авторы сессий и будущий сборщик зна",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что\n> видит ",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния\n\n> **ЗОЛОТОЙ ЭТАЛОН №2 — одобрен владельцем 2026-09-03** с правками",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»\n\n> **ЗОЛОТОЙ ЭТАЛОН №3 — одобрен владельцем 2026-09-03 без правок.** Сесси",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+      "quote": "# Английский · План курса 32 × 56\n\n> **Утверждён владельцем 2026-09-03** (арка-сериал, `not` в уроке 1,\n> перекройка уро",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03\n\n> Калибровочная запись. Судьи конвейера читают эту папку целиком, чтобы\n>",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s02.ru.md` (сессия-повторение, версия до\nпр",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03\n\n**Сессия:** `exemplars/en/l01_s03.ru.md` («I am not», новая операция\nпове",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03\n\n**Сессия:** `sessions/en/l01/s04/final.ru.md` — первая сессия, написанная",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03\n\n**Что проверялось:** четыре сессии (эталоны 1–3 + сессия",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными\r\n\r\n2026-09-08. На скриншоте Learning V2, английский L2/S38",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора\r\n\r\n2026-09-08. Скриншот: английский L2/S49, интро1 «Ответит",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию\n\n**Статус:** NORMATIVE  \n**Дата:** 2026-09-19  \n**Област",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный смысл аудио в каждой сессии\n\nЭто решение имеет п",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    },
+    "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md": {
+      "sha256": "688973c7ae9fb1fdb83877b8aa10d0f6682dfbad83516393d9ef08c386c1961d",
+      "quote": "# Вердикт владельца: одна английская фраза на одно взаимодействие\n\nДата: 2026-10-03.\n\nВладелец запретил задания, в котор",
+      "applied": "Fresh guardian reread this current document and applied it to the narrow S05 taste-repair constraint."
+    }
+  },
+  "cambridgeEvidence": "Cambridge summary for existential there: singular count noun requires There is + a/an; plural noun requires There are with no a/an. S05 contrasts exactly those already introduced forms and does not introduce questions, negation, some/any, or a future preposition.",
+  "newWords": [
+    "supermarket"
+  ],
+  "retrievalWords": [
+    "pharmacy",
+    "library",
+    "bakery",
+    "garden",
+    "bank",
+    "post office",
+    "shop"
+  ],
+  "scene": "Честная листовка доставки показывает один supermarket и несколько shops: ученик сообщает ровно то, что напечатано, различая один новый supermarket от нескольких уже знакомых shops без выдуманного сюжета или несуществующей ошибки собеседника.",
+  "priorLearnerFacingScan": {
+    "through": "en/l04/s04",
+    "evidence": "Fresh current-byte scan covers final.ru.md and final.uk.md for L4 S01–S04. Their targets remain pharmacy/library/bakery, garden, bank and post office; supermarket remains new to S05. S04 sessionReadiness had ready=true and no issues in the prior guardian check.",
+    "conflicts": [],
+    "hashes": {
+      "en/l04/s01/final.ru.md": "cb115832c38e013b927620c7a3fd553e6568017bb58214a0829ba714decedd53",
+      "en/l04/s01/final.uk.md": "34f6972a26f12c121fcd46f504f934eabf8ad01624d8fe1dac1dd22d94b08788",
+      "en/l04/s02/final.ru.md": "da01688c59d2b7e8985285fce982c239c63d6d710fae6281d77cc5735b2cfb9e",
+      "en/l04/s02/final.uk.md": "e3767cbaf9b739d74b238cc15aea61e87e768ea8251292a20ccdc389f46f7be8",
+      "en/l04/s03/final.ru.md": "1c9a9d9dae858edc97160c2dc59a7c31f666f3dfe50fefcaf0e7253cbef7f4f5",
+      "en/l04/s03/final.uk.md": "e941ed8e8cf5cde07c8431bc5bce4920c7989bcd9df32aedfc6be06ed2798598",
+      "en/l04/s04/final.ru.md": "ef44d1d0f228767a3bb542c4bf1104d0646b82b412f4a4fab377d48b26d608fe",
+      "en/l04/s04/final.uk.md": "08cc2cd3ec7b93336cf3cedf83975f35556aa795ebe2ed06da2ac327addbd498"
+    }
+  },
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "There is a supermarket.",
+      "practiceLink": "Intro only contrasts one supermarket with missing a/is variants; later scored practice uses the distinct target There is a new supermarket."
+    },
+    {
+      "intro": 2,
+      "target": "There are shops.",
+      "practiceLink": "Intro only establishes plural shops without a; later scored practice uses the distinct target There are small shops."
+    },
+    {
+      "intro": 3,
+      "target": "There is a supermarket near the house.",
+      "practiceLink": "Intro explains singular article plus retrieval near; later scored practice uses the distinct target There is a quiet supermarket near the house."
+    }
+  ],
+  "independentFinal": {
+    "target": "There are shops near the supermarket.",
+    "independence": "Proposed final is one standalone phrase_builder only. It combines plural shops with the new supermarket reference, has not appeared verbatim earlier, follows a non-phrase-builder interaction, and requires selection of are plus plural without a."
+  },
+  "mustFix": [],
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped desktop_codex_route_read to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "ред первой сессией\n\nРовно эти файлы, целиком, не по диагонали:\n\n1. `фабрика/КОНСТИТУЦИЯ.md` — единственный документ правил.\n2. `фабрика/exemp"
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped repo_agents_and_v2_route_read to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "и написании текста.\nПосле compaction, restart, handoff и перед каждой новой сессией этот маршрут\nпроходится заново. Пропуск любого пункта означает `HOLD`: новую се"
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped factory_constitution_method_read to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": ", не решай сам.\r\n4. Правило = текст в промпте + машинная проверка. Одного текста мало.\r\n5. Проверь сторож на файле с дефектом И на эталоне. «Молч"
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped three_exemplars_read to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "сия 1 — «I am»\n\n> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что\n> видит ученик (локаль ru). Все "
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped all_owner_judgements_read to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": " учебного шага.\n\n1. Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых\n   полезных lexical senses. Пустой `new_words`, "
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped exact_curriculum_row to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 5 | контраст | выбрать `is/are` и `a + singular` или plural без артикля | supermarket | по листовке доставки отличаем один супермаркет от нескольких магазинов |"
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped cambridge_rule_verified to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "odex,\n> кто угодно. Перед написанием сессии откройте этот файл, найдите её грамматику\n> и пишите по формулировкам отсюда. Т"
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped prior_learner_facing_range_scanned to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ogression`, который сравнивает текущие байты со всеми предыдущими\n   сессиями урока и проверяет новую лексику, честность grammar progression,\n   "
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped one_to_five_truly_new_words to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "acing сессия вводит 1–5 действительно новых\n  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  из"
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped new_concrete_situation to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "ых lexical senses и новую конкретную ситуацию. Grammar-контракт не\n  изменён: одна новая операция либо явный review set с изм"
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped honest_grammar_delta_or_review_delta to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": " явный review set с измеримым learning delta.\n- Пустой `new_words`, повтор ранее введённого слова как нового, прежняя\n  конс"
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped word_before_phrase to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "ПОДАЧИ НА СТРАНИЦЕ: слово → перевод → фраза\n\n**Источник:** [Teaching vocabulary](https://dictionary.cambridge.org/grammar/b"
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped three_intros_use_current_words_and_scene to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ов аннулируются.\n9. Все три интро используют новые слова и конкретную ситуацию текущей сессии.\n   Правильный ответ каждой страницы снача"
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped clear_lesson_opening_and_vibe to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": " решение владельца: начало каждой сессии должно ощущаться как начало\nнормального урока. Ученик с первого чтения понимает, где он оказался, что\nпроис"
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped three_intro_practice_final_chains to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "e текущей сессии.\n  Для каждой из трёх страниц он отдельно доказывает цепочку: новое слово и\n  текущая сцена → правильный scor"
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped single_coherent_scene to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": ".** У каждой сессии одна сквозная ситуация (владелец, 03.09: «это\r\n  надо делать»). Все вопросы интро и инструкции к задан"
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped twelve_to_twenty_tasks to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "шибку» отложены |\n| Заданий 12–20, ориентир 17 | |\n| Возвращаемое слово ≥2 касаний | И хотя бы раз правильным отв"
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped only_supported_activity_families to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "жной family.\n\n## 2. Единственные шесть активных режимов\n\n| Family | Канонический owner-макет | Неподменяемая учебная операция |\n|---|--"
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped diagnostic_single_answer_distractors to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "нглийские.\r\n\r\n## 7. Строгий контракт дистракторов\r\n\r\nДистрактор — не случайный неправильный вариант. Он должен быть максимально\r\n"
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped listen_choose_exact_spoken_meaning to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "ализованный вариант передаёт только смысл услышанной\n   фразы. Нельзя дописывать `рядом`, `поруч`, `вдали`, `вдалині` или другую\n   "
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped choice_specific_feedback to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "аскрывает уловку\r\n\r\nFeedback обязан назвать выбранный вариант и объяснить:\r\n\r\n1. почему он кажется похожим/подходящим;\r\n2. точную ошибку — зв"
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped support_fades_to_independent_final to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "бранную ловушку;\r\n- поддержка убывает к retrieval/transfer/independent check;\r\n- learner UI не показывает внутренние названия families и QA-поля.\r\n\r\nВердикт"
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped no_future_material to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "локированные слова; будущие слова не показываются.\nСохранение использует `bookmark-outline` / `bookmark`, а не сердце/лайк, и одн"
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped no_ai_voice_nonsense_or_decorative_jokes to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "БЫТЬ ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО.\n\n---\n\nТри требования выше — не стиль и не пожелание. Это ус"
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped locale_native_ru_and_uk to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "дущем материале;\r\n- все восемь локалей самостоятельны и не объясняются через русский;\r\n- фразы живые, самостоятельные и не являются f"
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "evidence": "Fresh independent guardian mapped previous_required_range_release_ready to the exact S05 row, current prior-range bytes, and owner-correction design without remaining conflicts.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "CKED`. Сессия `N+1` не может собираться, показываться как готовая или получать\r\nlearner-facing изменения, пока `N` не `LOCKED`. Изменение source "
+    }
+  ],
+  "blueprintFingerprint": "S05-narrow-taste-repair-renewal-current-documents-and-L4-S01-S04-scan",
+  "curriculumSha256": "0c26c00ff6783255dcb54d9ba53714141875842deb48eb8b8be42cb47ba7d9a8",
+  "activeFamilyContract": {
+    "allowed": [
+      "phrase_builder",
+      "listen_choose",
+      "listen_build_dictation",
+      "context_gap_grammar",
+      "speed_match",
+      "scripted_repeat_compare"
+    ],
+    "forbidden": [
+      "sound_contrast"
+    ],
+    "wordFirst": "Supermarket must receive three distinct pre-phrase contacts before scored phrase use.",
+    "listenChoose": "Each localized choice must express only the exact spoken meaning."
+  },
+  "ownerCorrectionDesign": {
+    "sceneIntegrity": "Use only a plausible delivery leaflet: a listing can state one supermarket or several shops. Do not invent a courier, customer, or misread sign merely to force a reply.",
+    "wordFirstContacts": [
+      "listen_choose: supermarket versus sound-near real words",
+      "scripted_repeat_compare: supermarket",
+      "context_gap_grammar: supermarket as one selectable answer"
+    ],
+    "wordFirstRule": "Exactly three distinct standalone contacts for supermarket occur before any full phrase containing supermarket; each is one interaction and none bundles another target.",
+    "targetUniqueness": "Every practice interaction has a unique primary target. Intro exact targets are not reused verbatim in practice or final; variation must change the assessed phrase, not just task-family label.",
+    "sequencing": "No adjacent phrase_builder interactions. Alternate supported families and keep the final after fading support.",
+    "vocabularyBoundary": "Only supermarket is new. pharmacy, library, bakery, garden, bank, post office, shop(s), house, near, small, quiet and new are retrieval/support only; no future vocabulary or grammar is introduced.",
+    "parity": "Author must maintain exact RU/UK and atomic-source parity for interaction order, targets, options, audio transcript, correctText and response-specific feedback before release.",
+    "tasteRepair": "Mandatory narrow repair: include the requiredTasteRepair line once in each locale’s plural-shops intro explanation. It is a language-based joke about a fitting only one item, tied directly to the leaflet’s singular/plural contrast; do not invent any decorative scene detail."
+  },
+  "requiredTasteRepair": {
+    "scope": "Exactly one natural, on-scene, non-decorative humorous line is required in both RU and UK intro explanation prose. It repairs taste only and must not change curriculum, grammar, new-word scope, target inventory, task count, or scene.",
+    "ru": "Если в листовке написано `shops`, не пытайтесь пристроить к ним `a`: одному магазину оно нужно, нескольким — уже тесно.",
+    "uk": "Якщо в листівці написано `shops`, не намагайтеся прилаштувати до них `a`: одному магазину воно потрібне, кільком — уже тісно.",
+    "placement": "Use once in the plural `shops` intro explanation, immediately after the article/number contrast; do not place it in the prompt, feedback, final, or a standalone joke.",
+    "acceptance": "Both locales must preserve the same language-based joke and delivery-leaflet context. The line must explain why plural shops have no a; it cannot add a person, a made-up event, or an unrelated comic detail."
+  }
+}

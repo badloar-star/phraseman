@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro1:r2": {
+          "ru": "В этом самостоятельном вопросе `is` стоит после `Who`, перед `the host`.",
+          "uk": "У самостійному питанні `is` стоїть після `Who`, перед `the host`."
+        },
+        "en:lesson-02:session-33:intro1:r3": {
+          "ru": "Пропало `is`. Полный вопрос: `Who is the host?`",
+          "uk": "Зникло `is`. Повне питання: `Who is the host?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro2:r2": {
+          "ru": "Так вы спросите про хозяина. Вам нужен гость — `guest`.",
+          "uk": "Так ви запитаєте про господаря. Вам потрібен гість — `guest`."
+        },
+        "en:lesson-02:session-33:intro2:r3": {
+          "ru": "Здесь речь об одном госте: `Who is the guest?`",
+          "uk": "Йдеться про одного гостя: `Who is the guest?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-33:intro3:r2": {
+          "ru": "Это «Где он?». Алекса вы видите; узнать хотите, кто он.",
+          "uk": "Це «Де він?». Алекса ви бачите; дізнатися хочете, хто він."
+        },
+        "en:lesson-02:session-33:intro3:r3": {
+          "ru": "Для самостоятельного вопроса нужен порядок `Who is he?`: `is` перед `he`.",
+          "uk": "У самостійному питанні потрібен порядок `Who is he?`: `is` перед `he`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c267f89a72669e05be847f42735a9604c6d831fb67bc6c71562c648a1ae386dc"
+}

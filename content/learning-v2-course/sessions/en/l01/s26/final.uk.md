@@ -1,8 +1,8 @@
-# Англійська · Урок 1 · Сесія 26 — «It is» про погоду й час
+# Англійська · Урок 1 · Заняття 26 — «It is» про погоду й час
 
-**Сцена сесії.** Ранок у новій квартирі. Ви стоїте біля вікна з чашкою в руці, дивитесь на вулицю і на годинник — і вирішуєте, коли виходити.
-**Операція:** застосування `It is` + погода й час
-**Нові слова:** rainy, windy, early, late (про час)
+**Ситуація.** Лена вранці збирається на роботу. Перед виходом вона дивиться у вікно й на годинник, щоб вирішити, чи брати парасольку і чи вже час збиратися.
+**Як сказати:** `It is`, коли говорите про погоду або час.
+**Нові слова:** rainy, windy, early, late
 **Повертаються:** cold, warm, dark, quiet
 
 ---
@@ -15,13 +15,13 @@
 
 Українською вистачає одного слова: «дощово». Англійською перед ним потрібні ще два — `It is`.
 
-Це `it` ні на що не вказує — ні на небо, ні на вулицю. Воно стоїть там тому, що без нього фраза не збирається.
+У таких фразах `it` не називає предмет: це звичайний початок фрази про погоду.
 
 **Ранок, ви відсунули штору: по склу тече. Скажіть про погоду.**
 
 - ✅ **It is rainy.**
 - ❌ Is rainy. — *`It` зникло. Воно здається зайвим, але без нього фраза починається нізвідки.*
-- ❌ It rainy. — *Загубилася скріпка `is`. Українською її немає, англійською без неї не говорять.*
+- ❌ It rainy. — *Між `it` і словом потрібна форма `is`.*
 
 ---
 
@@ -31,7 +31,7 @@
 
 `windy` — «вітряно». Вітер гне дерева, двері вириваються з рук — це `It is windy`.
 
-Хвостик «-і» тут робить усю роботу: `wind` — сам вітер, саме явище; `windy` — яка на вулиці погода. Скажете `It is wind` — вийде «воно є вітер», і вас перепитають.
+`wind` — це сам вітер, а `windy` — опис погоди. Тому про погоду кажуть `It is windy`.
 
 **Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду.**
 
@@ -47,90 +47,126 @@
 
 `early` — «рано». `late` — «пізно». Про годинник говорять тими самими двома словами, що й про погоду: `It is early`, `It is late`.
 
-І ось тут пастка. `I am late` — «я запізнююсь», винні ви. `It is late` — «пізно», винний годинник. Одне слово, двоє різних винних.
+`I am late` означає «я запізнююсь», а `It is late` — «пізно». У першому випадку йдеться про людину, у другому — про час.
 
 **Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час.**
 
 - ✅ **It is early.**
 - ❌ I am early. — *Це «я прийшов рано» — про вас. А тут ви говорите про годинник: `It is early`.*
-- ❌ It early. — *Скріпка `is` знову випала. Між `It` і словом — завжди `is`.*
+- ❌ It early. — *Між `It` і словом потрібна форма `is`.*
 
 ---
 
 ## Практика (18 завдань, підтримка спадає)
 
 **1 · Картка слова — rainy**
+<!-- interaction_id: en:lesson-01:session-26:i01; family: listen_choose -->
 > **rainy** — «дощово». Не злива і не потоп, а звичайна сіра мжичка, через яку беруть парасольку.
 
-**2 · Послухайте і виберіть — rainy**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-26:i02; family: listen_choose -->
 🔊 *rainy* → **rainy** · rain · ready
-- rain — *Без хвостика «-і». Це «дощ» — сама вода з неба, а не погода.*
+- rainy — *У записі `rainy` після `rain` чути «і»: це прикметник про погоду, не `rain` і не `ready`.*
+- rain — *`rain` — «дощ». Щоб описати погоду, потрібне `rainy` — «дощово».*
 - ready — *`rainy` починається як українське «рейка». `ready` — коротко, «ре».*
 
 **3 · Картка слова — windy**
+<!-- interaction_id: en:lesson-01:session-26:i03; family: listen_choose -->
 > **windy** — «вітряно». Не легкий вітерець, а такий, коли грюкає кватирка і парасолька марна.
 
-**4 · Послухайте і виберіть — windy**
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-26:i04; family: listen_choose -->
 🔊 *windy* → **windy** · wind · window
-- wind — *Без хвостика «-і». Це сам вітер, а не погода.*
+- windy — *У записі `windy` після `wind` чути «і»: це погода, не `wind` і не `window`.*
+- wind — *`wind` — «вітер». Щоб описати погоду, потрібне `windy` — «вітряно».*
 - window — *«Вікно». Другий шматок інший: «-доу» проти «-ді».*
 
 **5 · Складіть фразу — за вікном гне дерева**
+<!-- interaction_id: en:lesson-01:session-26:i05; family: phrase_builder -->
 Плитки: `windy` `It` `is` `not` → **It is windy.**
-- `not` — *Зайва плитка. За вікном справді вітряно, заперечувати нічого.*
+Зайва плитка `not`: дерева гне вітром, тому `It is windy`.
 
 **6 · Картка слова — early**
+<!-- interaction_id: en:lesson-01:session-26:i06; family: listen_choose -->
 > **early** — «рано». Годинник показує менше, ніж ви розраховували, і є час посидіти.
 
 **7 · Картка слова — late**
+<!-- interaction_id: en:lesson-01:session-26:i07; family: listen_choose -->
 > **late** — «пізно». Про час доби: годинник пішов далі, ніж хотілося б.
 
-**8 · Послухайте і виберіть — early**
+**8 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-26:i08; family: listen_choose -->
 🔊 *early* → **early** · ear · earn
+- early — *У записі `early` після «ер» чути `-ly`; це не `ear` і не `earn` із кінцем `-n`.*
 - ear — *«Вухо». Там голосна як українське «і», у `early` — глуха, ближча до «е» з натяком на «о».*
 - earn — *Початок той самий, «ер». Різниця в кінці: у `earn` там «н», у `early` — «-лі».*
 
 **9 · Послухайте і складіть — «пізно»**
+<!-- interaction_id: en:lesson-01:session-26:i09; family: listen_build_dictation -->
 🔊 *It is late.* Плитки: `late` `is` `It` `early` → **It is late.**
+Зайва плитка `early`: у записі `It is late.` — «пізно».
 
 **10 · Вставте слово — по склу тече, у дворі калюжі**
+<!-- interaction_id: en:lesson-01:session-26:i10; family: context_gap_grammar -->
 It is ___ . → **rainy** · windy · early
+- rainy — *По склу тече вода й у дворі калюжі, тому `rainy` — «дощово», не вітряно і не рано.*
 - windy — *Вітру немає, є вода. Про дощ — `rainy`.*
 - early — *Це про годинник, а ви дивитесь на погоду.*
 
-**11 · З'єднайте пари (Speed Match, 4 пари)**
+**11 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-26:i11; family: speed_match -->
 rainy — дощово · windy — вітряно · early — рано · late — пізно
 
-**12 · Вставте скріпку — про погоду за вікном**
+**12 · Вставте слово — про погоду за вікном**
+<!-- interaction_id: en:lesson-01:session-26:i12; family: context_gap_grammar -->
 It ___ cold. → **is** · am · are
+- is — *Про погоду кажуть `It`, тому у `It is cold.` потрібна форма `is`.*
 - am — *`am` живе тільки поруч з `I`. Про погоду — `is`.*
 - are — *Теж не сюди. `It` бере тільки `is`.*
 
-**13 · Вставте слово — пів на сьому, виходити за годину**
-It is ___ . → **early** · late · dark
-- late — *Навпаки: часу вдосталь. Коли рано — `early`.*
-- dark — *«Темно» — про світло, а питання про годинник.*
+**13 · Скажіть уголос — пів на сьому, виходити за годину**
+<!-- interaction_id: en:lesson-01:session-26:i13; family: scripted_repeat_compare -->
+🎙 **It is early.**
 
 **14 · Складіть фразу — вікно відчинене, а надворі зимно**
+<!-- interaction_id: en:lesson-01:session-26:i14; family: phrase_builder -->
 Плитки: `cold` `is` `It` `not` → **It is cold.**
-- `not` — *Зайва плитка. Надворі справді холодно, заперечувати нічого.*
+Зайва плитка `not`: надворі зимно, тому `It is cold`.
 
 **15 · Вставте слово — батарея гріє, у кімнаті добре**
+<!-- interaction_id: en:lesson-01:session-26:i15; family: context_gap_grammar -->
 It is ___ . → **warm** · cold · rainy
+- warm — *Батарея гріє, тому `warm` — «тепло», не холодно і не дощово.*
 - cold — *Рівно навпаки. Коли тепло — `warm`.*
 - rainy — *Це про вулицю і дощ, а ви говорите про кімнату.*
 
 **16 · Послухайте і складіть — «тихо»**
+<!-- interaction_id: en:lesson-01:session-26:i16; family: listen_build_dictation -->
 🔊 *It is quiet.* Плитки: `quiet` `It` `is` `windy` → **It is quiet.**
-- `windy` — *Вітер шумить. Раз у домі ні звуку — `quiet`.*
+Зайва плитка `windy`: у записі `It is quiet.` — «тихо».
 
 **17 · Складіть фразу — у кімнаті натоплено**
+<!-- interaction_id: en:lesson-01:session-26:i17; family: phrase_builder -->
 Плитки: `warm` `It` `is` `am` → **It is warm.**
-- `am` — *Чужа скріпка. `am` іде тільки з `I`, а тут `It is`.*
+Зайва плитка `am`: з `It` ставлять `is` — `It is warm`.
 
-**18 · Фінал сцени — чотири фрази поспіль про погоду й кімнату**
-🎙 Ви біля вікна з чашкою. У домі ні звуку, за вікном темно, віє і йде дощ. Скажіть усе чотири рази поспіль.
-**It is quiet. It is dark. It is windy. It is rainy.**
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-26:i18:s01; family: scripted_repeat_compare -->
+🎙 **It is quiet.**
+
+**19 · Складіть фразу — у кімнаті темно**
+<!-- interaction_id: en:lesson-01:session-26:i18:s02; family: phrase_builder -->
+Плитки: `dark` `It` `is` `are` → **It is dark.**
+Зайва плитка `are`: з `It` ставлять `is` — `It is dark`.
+
+**20 · Послухайте і складіть — надворі вітряно**
+<!-- interaction_id: en:lesson-01:session-26:i18:s03; family: listen_build_dictation -->
+🔊 *It is windy.* Плитки: `windy` `It` `is` `are` → **It is windy.**
+Зайва плитка `are`: з `It` ставлять `is` — `It is windy`.
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-26:i18:s04; family: scripted_repeat_compare -->
+🎙 **It is rainy.**
 
 ---
 
@@ -142,7 +178,7 @@ windy — вітряно — «вітряно». Не легкий вітере�
 early — рано — «рано». Годинник показує менше, ніж ви розраховували, і є час посидіти.
 late — пізно — «пізно». Про час доби: годинник пішов далі, ніж хотілося б.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_build_dictation, 10=context_gap_grammar, 11=speed_match, 12=context_gap_grammar, 13=scripted_repeat_compare, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=phrase_builder, 20=listen_build_dictation, 21=scripted_repeat_compare
 
 ---
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro1:r2": {
+          "ru": "Пропущено `is`. `not` не заменяет его: `not` ставится после `is`.",
+          "uk": "Пропущено `is`. `not` його не замінює: `not` ставимо після `is`."
+        },
+        "en:lesson-01:session-27:intro1:r3": {
+          "ru": "`not` убежал в конец. Его место — сразу после `is`, до самого слова.",
+          "uk": "`not` утік у кінець. Його місце — одразу після `is`, до самого слова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro2:r2": {
+          "ru": "После `is` перед признаком стоит `not`. `no` сюда не подходит.",
+          "uk": "Після `is` перед ознакою стоїть `not`. `no` сюди не підходить."
+        },
+        "en:lesson-01:session-27:intro2:r3": {
+          "ru": "Без `is` фразы нет. Сначала `It is`, потом `not`.",
+          "uk": "Без `is` фрази немає. Спочатку `It is`, потім `not`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-27:intro3:r2": {
+          "ru": "Так получается «легко нет» — набор слов. `not` идёт раньше признака: `It is not easy`.",
+          "uk": "`not` не ставлять у кінець. Його місце — перед ознакою: `It is not easy`."
+        },
+        "en:lesson-01:session-27:intro3:r3": {
+          "ru": "`It` потерялось. Без него фраза начинается ниоткуда.",
+          "uk": "`It` загубилося. Без нього фраза починається нізвідки."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97fdbda5c93c47ac4598d40c403692946713c752e5eb007a664ebcdae2986834"
+}

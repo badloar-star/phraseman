@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro1:r2": {
+          "ru": "В утверждении о погоде сначала ставится `It`, затем `is`: `It is rainy`.",
+          "uk": "У твердженні про погоду спочатку ставимо `It`, потім `is`: `It is rainy`."
+        },
+        "en:lesson-01:session-26:intro1:r3": {
+          "ru": "Пропущено `is`. По-русски его нет, а в английском после `It` оно нужно.",
+          "uk": "Пропущено `is`. Українською його немає, а в англійській після `It` воно потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro2:r2": {
+          "ru": "`wind` — «ветер». Чтобы описать погоду, нужно `windy` — «ветрено».",
+          "uk": "`wind` — «вітер». Щоб описати погоду, потрібне `windy` — «вітряно»."
+        },
+        "en:lesson-01:session-26:intro2:r3": {
+          "ru": "В утверждении о погоде сначала ставится `It`, затем `is`: `It is windy`.",
+          "uk": "У твердженні про погоду спочатку ставимо `It`, потім `is`: `It is windy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-26:intro3:r2": {
+          "ru": "Это «я пришёл рано» — про вас. А тут вы говорите про часы: `It is early`.",
+          "uk": "Це «я прийшов рано» — про вас. А тут ви говорите про годинник: `It is early`."
+        },
+        "en:lesson-01:session-26:intro3:r3": {
+          "ru": "Пропущено `is`. После `It` ставится `is`.",
+          "uk": "Пропущено `is`. Після `It` ставимо `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c59f29bb62da6f5bd77e4e831a263d81fb80588ff3e013dbcda959ef2c2b1d74"
+}

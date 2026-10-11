@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-17:i01",
-    "correctText": "",
+    "correctText": "tall",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i03",
-    "correctText": "",
+    "correctText": "nice",
     "correctResponseId": null
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i07",
-    "correctText": "",
+    "correctText": "friendly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i08",
-    "correctText": "",
+    "correctText": "new",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i11",
-    "correctText": "",
+    "correctText": "tired",
     "correctResponseId": null
   },
   {
@@ -61,12 +61,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i13",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-17:i13:p1=tall\nen:lesson-01:session-17:i13:p2=nice\nen:lesson-01:session-17:i13:p3=new\nen:lesson-01:session-17:i13:p4=friendly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i14",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {

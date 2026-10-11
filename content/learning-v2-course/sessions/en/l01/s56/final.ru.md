@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 56 — «Неделя»
+# Английский · Урок 1 · Занятие 56 — «Разговор о неделе»
 
-**Сцена сессии.** Вы моете посуду после ужина, телефон лежит на столе на громкой связи. На том конце брат, который весь месяц не звонил, и теперь спрашивает всё сразу: как неделя, как соседи по офису, как квартира, не скучно ли одному.
+После ужина вам звонит брат. В разговоре вы скажете о своей неделе, коллегах и квартире.
 
-**Операция:** повторение — `am` / `is` / `are` и `not` после скрепки
+**Что вы повторите:** `am`, `is`, `are` и отрицание с `not`
 **Новые слова:** —
 **Возвращаются:** week, tired, everyone, kind, flat, warm, alone
 
@@ -20,7 +20,7 @@
 
 - ✅ **It is hard.**
 - ❌ It are hard. — *`are` — для нескольких. Неделя одна, ей нужно `is`.*
-- ❌ It hard. — *Скрепка `is` пропала. Между `it` и словом-признаком она нужна.*
+- ❌ It hard. — *Между `it` и словом-признаком нужна форма `is`.*
 
 ---
 
@@ -35,8 +35,8 @@
 **Брат спрашивает про новых коллег. Они хорошие — скажите про всех.**
 
 - ✅ **Everyone is kind.**
-- ❌ Everyone are kind. — *Слово про многих, а скрепка при нём `is`. Английский слышит здесь «каждый».*
-- ❌ Everyone kind. — *Скрепка пропала совсем. Между `everyone` и словом-признаком нужна `is`.*
+- ❌ Everyone are kind. — *Людей много, но `everyone` означает «каждый», поэтому нужна форма `is`.*
+- ❌ Everyone kind. — *Между `everyone` и словом-признаком нужна форма `is`.*
 
 ---
 
@@ -44,87 +44,129 @@
 
 ### `alone` — «один»
 
-`alone` — «один, в одиночестве». Про себя это `I am alone`: скрепку `am` берут только с `I`, с другими словами она не идёт.
+`alone` — «один, в одиночестве». Про себя это `I am alone`: форму `am` берут только с `I`, с другими словами она не идёт.
 
 Чтобы сказать обратное, `not` ставят после `am`: `I am not alone`. По-русски «я не один» обходится двумя словами, и третье кажется лишним — но выбросишь `am`, и фраза рассыпется.
 
 **Брат волнуется, что вы там совсем один. Успокойте его.**
 
 - ✅ **I am not alone.**
-- ❌ I not alone. — *Пропала скрепка `am`. Без неё фраза не стоит.*
-- ❌ I am no alone. — *`no` вместо `not` — так тянет сказать с русского. После скрепки идёт `not`.*
+- ❌ I not alone. — *После `I` нужна форма `am`.*
+- ❌ I am no alone. — *После `am` для отрицания ставят `not`, не `no`.*
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — 21 задание
 
 **1 · Вставьте слово — брат звонит в одиннадцать вечера, вы зеваете в трубку**
+<!-- interaction_id: en:lesson-01:session-56:i01; family: context_gap_grammar -->
 I am ___ . → **tired** · alone · warm
 - alone — *«Один». Про компанию, а вы зеваете от усталости.*
 - warm — *«Тепло». Про температуру, а не про то, что вас клонит в сон.*
 
-**2 · Послушайте и выберите — week**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
 🔊 *week* → **week** · wick · walk
 - wick — *Другая гласная и другое слово — «фитиль».*
 - walk — *Совсем другое слово — «идти пешком». В нём слышно «уок».*
 
 **3 · Вставьте слово — брат спрашивает про новых коллег, они хорошие**
+<!-- interaction_id: en:lesson-01:session-56:i03; family: context_gap_grammar -->
 Everyone is ___ . → **kind** · tired · alone
 - tired — *«Устал». Вы говорите не про их состояние, а про характер.*
 - alone — *«Один». Про всех сразу это не сказать.*
 
 **4 · Соберите фразу — «неделя тяжёлая», про неделю через `it`**
+<!-- interaction_id: en:lesson-01:session-56:i04; family: phrase_builder -->
 Плитки: `hard` `is` `It` `are` → **It is hard.**
 
-**5 · Вставьте скрепку — про всех коллег сразу**
+**5 · Выберите форму — про всех коллег сразу**
+<!-- interaction_id: en:lesson-01:session-56:i05; family: context_gap_grammar -->
 Everyone ___ kind. → **is** · are · am
-- are — *Людей много, но `everyone` — «каждый», и скрепка при нём `is`.*
+- are — *Людей много, но `everyone` означает «каждый», поэтому нужна форма `is`.*
 - am — *`am` берут только с `I`. Здесь речь не о вас.*
 
 **6 · Послушайте и соберите — «я устал»**
+<!-- interaction_id: en:lesson-01:session-56:i06; family: listen_build_dictation -->
 🔊 *I am tired.* Плитки: `tired` `am` `I` `is` → **I am tired.**
 
 **7 · Вставьте слово — брат спрашивает про квартиру, там тепло**
+<!-- interaction_id: en:lesson-01:session-56:i07; family: context_gap_grammar -->
 The flat is ___ . → **warm** · kind · tired
 - kind — *`kind` — про характер человека, не про комнату.*
 - tired — *«Устал». Про квартиру так не говорят.*
 
-**8 · Соедините пары (Speed Match, 4 пары)**
+**8 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-56:i08; family: speed_match -->
 week — неделя · tired — устал · kind — добрый · warm — тепло
 
 **9 · Соберите фразу — рядом с вами друзья; скажите, что вы не один**
+<!-- interaction_id: en:lesson-01:session-56:i09; family: phrase_builder -->
 Плитки: `alone` `not` `I` `am` `no` → **I am not alone.**
 
 **10 · Вставьте слово — брат спрашивает, не скучно ли вам в пустой квартире**
+<!-- interaction_id: en:lesson-01:session-56:i10; family: context_gap_grammar -->
 I am not ___ . → **alone** · warm · kind
 - warm — *«Тепло». Он спросил не про батареи.*
 - kind — *«Добрый». О себе так себя не успокаивают.*
 
 **11 · Различите звуки — какое из двух про «тепло»?**
+<!-- interaction_id: en:lesson-01:session-56:i11; family: sound_contrast -->
 🔊 Два слова подряд.
 *warm · worm* → **warm**
 - worm — *Это «червяк». Про квартиру и погоду говорят `warm`.*
 
 **12 · Послушайте и соберите — «квартира тёплая»**
+<!-- interaction_id: en:lesson-01:session-56:i12; family: listen_build_dictation -->
 🔊 *The flat is warm.* Плитки: `warm` `flat` `is` `The` `are` → **The flat is warm.**
 
 **13 · Соберите фразу — «неделя не тяжёлая»**
+<!-- interaction_id: en:lesson-01:session-56:i13; family: phrase_builder -->
 Плитки: `hard` `not` `is` `It` `no` → **It is not hard.**
 
-**14 · Вставьте скрепку — про неделю, которая была лёгкой**
+**14 · Выберите форму — про неделю, которая была лёгкой**
+<!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->
 It ___ not hard. → **is** · are · am
 - are — *Неделя одна. `are` берут, когда речь о нескольких.*
 - am — *`am` идёт только с `I`. Неделя — не вы.*
 
 **15 · Соберите фразу — брат: «Ты там устал?» Ответьте, что нет**
+<!-- interaction_id: en:lesson-01:session-56:i15; family: phrase_builder -->
 Плитки: `tired` `am` `I` `not` `no` → **I am not tired.**
 
-**16 · Скажите вслух — успокаиваете брата**
-🎙 **I am not alone. Everyone is kind.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i16:s01; family: scripted_repeat_compare -->
+Брат беспокоится, что вы одни. Скажите, что вы не одни.
 
-**17 · Соберите фразу — рядом с вами друзья; скажите, что вы не один**
-🎙 Брат просит подвести итог недели. Скажите: неделя тяжёлая, вы устали, но вы не один и все вокруг добрые.
-**It is hard. I am tired. I am not alone. Everyone is kind.**
+🎙 **I am not alone.**
+
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i16:s02; family: scripted_repeat_compare -->
+Расскажите брату о коллегах: они добрые.
+
+🎙 **Everyone is kind.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i17:s01; family: scripted_repeat_compare -->
+Брат спрашивает, каким был ваш рабочий день. Скажите, что тяжёлым.
+
+🎙 **It is hard.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-56:i17:s02; family: scripted_repeat_compare -->
+Брат спрашивает, устали ли вы. Скажите, что устали.
+
+🎙 **I am tired.**
+
+**20 · Вставьте слово — друг спрашивает, одни ли вы сейчас**
+<!-- interaction_id: en:lesson-01:session-56:i17:s03; family: context_gap_grammar -->
+I ___ not alone. → **am** · is · are
+- is — *`is` ставят после he, she или it. После `I` нужно `am`.*
+- are — *`are` ставят после you, we или they. После `I` нужно `am`.*
+
+**21 · Соберите фразу — вы говорите о доброжелательных людях вокруг**
+<!-- interaction_id: en:lesson-01:session-56:i17:s04; family: phrase_builder -->
+Плитки: `Everyone` `is` `kind.` `are` → **Everyone is kind.**
 
 ---
 
@@ -132,7 +174,7 @@ It ___ not hard. → **is** · are · am
 
 new_words: —
 
-modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=context_gap_grammar, 2=listen_choose, 3=context_gap_grammar, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=speed_match, 9=phrase_builder, 10=context_gap_grammar, 11=sound_contrast, 12=listen_build_dictation, 13=phrase_builder, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=context_gap_grammar, 21=phrase_builder
 
 ---
 

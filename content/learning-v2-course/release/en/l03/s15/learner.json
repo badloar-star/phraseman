@@ -60,7 +60,7 @@
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r2",
-          "text": "handle"
+          "text": "candy"
         },
         {
           "responseId": "en:lesson-03:session-15:i02:r3",
@@ -87,7 +87,7 @@
           },
           {
             "responseId": "en:lesson-03:session-15:i02:r2",
-            "targetText": "handle",
+            "targetText": "candy",
             "meaningByLocale": null
           },
           {
@@ -103,8 +103,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово прои",
             "feedbackByLocale": {
-              "ru": "`handle` — «ручка», за которую берутся, например у двери. В начале слышен лёгкий выдох, а в `candle` — «к». Остальная часть звучит одинаково.",
-              "uk": "`handle` — «ручка», за яку беруться, наприклад, щоб відчинити двері. На початку чути легкий видих, а в `candle` — «к». Решта слова звучить однаково."
+              "ru": "`candy` — «конфета». `candy` начинается так же, /kæn/, но заканчивается /di/; `candle` заканчивается /dəl/.",
+              "uk": "`candy` — «цукерка». `candy` починається так само, /kæn/, але закінчується /di/; `candle` закінчується /dəl/."
             }
           },
           {
@@ -839,13 +839,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг просит назвать мебель, которую вы выбрали; скажите «Это кресло»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг просит назвать мебель, которую вы выбрали; скажите «Это кресло»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -968,5 +968,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4b0a9e84a90fb0649928fedd8ae5a126924441b2e28f11f6ce7de9d44d29ac6a"
+  "learnerFingerprint": "b821c79c64794cf3eaa9816fd6f4a5d02e770e399f5c78ce1a21613e7767d58e"
 }

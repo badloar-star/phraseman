@@ -1,78 +1,42 @@
 {
-  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
-  "reviewer": "/root/s16_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s16",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+  "exactRuSha256": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+  "exactUkSha256": "c16b9bfe5ca41f9d3892c9bef9e66f32cf0309a0a2a82ea73da5ca26b3d5d498",
+  "practiceAtomicSha256": "1ae043acd69b3fc918e09f2c4b2c5acc4a86db96b5952201a94f47d26dde837f",
+  "localeHashes": {
+    "ru": "1bc7e57958f5263f99576d0fa646875edaa29c1483ada3f0db0fa8d4acc9d6cc",
+    "uk": "c16b9bfe5ca41f9d3892c9bef9e66f32cf0309a0a2a82ea73da5ca26b3d5d498"
+  },
   "pairwise": "equal",
-  "pairwise_reason": "Эталон l01_s02.ru.md ярче за счёт нескольких запоминающихся образов, но местами заметно более многословен. Текущая сессия компенсирует меньшую образность предельно ясным объяснением выбора по первому звуку, естественной сценой магазина и одним уместным юмористическим ходом без приклеенной шутки.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
-    "score": 5,
+    "score": 4,
     "evidence": [
-      "Сравнивайте первые звуки, а не буквы. — рабочее правило.",
-      "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро. — уместная самоирония."
+      "Current RU voice quote: «Угадать по первой букве иногда хочется, но здесь правило честное: слышим гласный — ставим `an`.» It is a useful, non-detached mnemonic."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро."
+      "«Угадать по первой букве иногда хочется, но здесь правило честное: слышим гласный — ставим `an`.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Новое Интро3 прямо объясняет как сказать «не», без формального термина; заголовок соответствует содержанию. Сцена остаётся в вопросе."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "Сравнивайте первые звуки, а не буквы.",
-    "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро.",
-    "`not` отрицает название, но не заменяет маленькое слово перед ним."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Новая версия Интро3 ясна, логично объясняет not через значение «не», не использует формальный термин и имеет236знаков; остальные основания исходногоPASS сохранены, ai_text_or_nonsense пуст.",
-  "previousReview": {
-    "sourceSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
-    "reviewer": "/root/s16_taste",
-    "model": "gpt-5.6-sol",
-    "reasoningEffort": "high",
-    "pairwise": "equal",
-    "pairwise_reason": "Эталон l01_s02.ru.md ярче за счёт нескольких запоминающихся образов, но местами заметно более многословен. Текущая сессия компенсирует меньшую образность предельно ясным объяснением выбора по первому звуку, естественной сценой магазина и одним уместным юмористическим ходом без приклеенной шутки.",
-    "voice": {
-      "score": 5,
-      "evidence": [
-        "Сравнивайте первые звуки, а не буквы. — рабочее правило.",
-        "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро. — уместная самоирония."
-      ]
-    },
-    "humor": {
-      "present": true,
-      "on_topic": true,
-      "examples": [
-        "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро."
-      ],
-      "misfires": []
-    },
-    "scene": {
-      "present": true,
-      "gives_reason_to_speak": true,
-      "note": "Проверка покупок и срока сборки перед оплатой; люди и действия только в вопросах и инструкциях."
-    },
-    "ai_text_or_nonsense": [],
-    "water": [],
-    "dead_language": [],
-    "best_lines": [
-      "Сравнивайте первые звуки, а не буквы.",
-      "Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро.",
-      "`not` отрицает название, но не заменяет маленькое слово перед ним."
-    ],
-    "must_fix": [],
-    "verdict": "PASS",
-    "verdict_reason": "Текст ясен, интро210–320, новых слов/карточек нет, контраст an hour/a uniform точен, юмор естественный, ai_text_or_nonsense пуст."
-  }
+  "verdict_reason": "Current RU voice quote: «Угадать по первой букве иногда хочется, но здесь правило честное: слышим гласный — ставим `an`.» It is a useful, non-detached mnemonic."
 }

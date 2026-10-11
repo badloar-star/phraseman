@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-48:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос о нескольких людях. В записи начало `Am I`: человек спрашивает только о себе.",
               "uk": "Це запитання про кількох людей. Запис починається з `Am I`: людина запитує лише про себе."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-48:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это «Я рано?» На записи последнее слово `late` — «опоздал».",
               "uk": "Це «Я прийшов рано?» Останнє слово в записі — `late`, «із запізненням»."
@@ -124,12 +124,12 @@
             "text": "late"
           }
         ],
-        "testedDimension": "Вставьте слово — вы с другом видите, что",
+        "testedDimension": "Вставте слово — ви з другом бачите, що з",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы с другом видите, что",
+            "testedDimension": "Вставте слово — ви з другом бачите, що з",
             "feedbackByLocale": {
               "ru": "Это вопрос о готовности. Сейчас вы уточняете время вашего прихода: `early`.",
               "uk": "Це запитання про готовність. Зараз ви уточнюєте час вашого приходу: `early`."
@@ -138,7 +138,7 @@
           {
             "responseId": "en:lesson-02:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы с другом видите, что",
+            "testedDimension": "Вставте слово — ви з другом бачите, що з",
             "feedbackByLocale": {
               "ru": "Это вопрос об опоздании. Вы хотите узнать, не пришли ли раньше нужного времени.",
               "uk": "Це запитання про запізнення. Ви хочете дізнатися, чи прийшли раніше запланованого часу."
@@ -250,12 +250,12 @@
             "text": "polite"
           }
         ],
-        "testedDimension": "Вставьте слово — вы назвали время выступ",
+        "testedDimension": "Вставте слово — ви назвали час виступу, ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i05:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы назвали время выступ",
+            "testedDimension": "Вставте слово — ви назвали час виступу, ",
             "feedbackByLocale": {
               "ru": "Это вопрос о понятности или разборчивости. Сейчас вы проверяете, не ошиблись ли во времени: `wrong`.",
               "uk": "Це запитання про зрозумілість або розбірливість. Зараз ви перевіряєте, чи не помилилися щодо часу: `wrong`."
@@ -264,7 +264,7 @@
           {
             "responseId": "en:lesson-02:session-48:i05:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы назвали время выступ",
+            "testedDimension": "Вставте слово — ви назвали час виступу, ",
             "feedbackByLocale": {
               "ru": "Это «вежливый». Вы уточняете правильность своих сведений, а не манеру общения.",
               "uk": "Це «ввічливий». Ви уточнюєте правильність своїх відомостей, а не манеру спілкування."
@@ -319,12 +319,12 @@
             "text": "here"
           }
         ],
-        "testedDimension": "Вставьте слово — вы с другом выбрали пор",
+        "testedDimension": "Вставте слово — ви з другом вибрали поря",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы с другом выбрали пор",
+            "testedDimension": "Вставте слово — ви з другом вибрали поря",
             "feedbackByLocale": {
               "ru": "Это вопрос о слышимости. Сейчас вы проверяете уверенность в общем решении: `sure`.",
               "uk": "Це запитання про чутність. Зараз ви перевіряєте впевненість у спільному рішенні: `sure`."
@@ -333,7 +333,7 @@
           {
             "responseId": "en:lesson-02:session-48:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы с другом выбрали пор",
+            "testedDimension": "Вставте слово — ви з другом вибрали поря",
             "feedbackByLocale": {
               "ru": "Это «здесь». Вы уточняете не место, а уверенность: `Are we sure?`",
               "uk": "Це «тут». Ви уточнюєте не місце, а впевненість: `Are we sure?`"
@@ -471,7 +471,7 @@
           {
             "responseId": "en:lesson-02:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос о разборчивости. В записи последнее слово `audible` — проверка слышимости.",
               "uk": "Це запитання про розбірливість. Останнє слово в записі — `audible`: перевіряють чутність."
@@ -480,7 +480,7 @@
           {
             "responseId": "en:lesson-02:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос к собеседнику. В записи человек начинает с `Am I` и проверяет собственный голос.",
               "uk": "Це запитання до співрозмовника. У записі людина починає з `Am I` й перевіряє власний голос."
@@ -638,12 +638,12 @@
             "text": "sure"
           }
         ],
-        "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+        "testedDimension": "Вставте слово — ви хочете дізнатися думк",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-48:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Вставте слово — ви хочете дізнатися думк",
             "feedbackByLocale": {
               "ru": "Это «грубый». Вы спрашиваете именно о вежливости, поэтому нужно `polite`.",
               "uk": "Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`."
@@ -652,7 +652,7 @@
           {
             "responseId": "en:lesson-02:session-48:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+            "testedDimension": "Вставте слово — ви хочете дізнатися думк",
             "feedbackByLocale": {
               "ru": "Это вопрос об уверенности. Здесь вы просите оценить вашу манеру общения.",
               "uk": "Це запитання про впевненість. Тут ви просите оцінити вашу манеру спілкування."
@@ -749,7 +749,7 @@
           {
             "responseId": "en:lesson-02:session-48:i13:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Это вопрос. В записи сначала `You are`: собеседник даёт оценку.",
               "uk": "Це запитання. Запис починається з `You are`: співрозмовник дає оцінку."
@@ -758,7 +758,7 @@
           {
             "responseId": "en:lesson-02:session-48:i13:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "testedDimension": "Послухайте й виберіть — яка репліка проз",
             "feedbackByLocale": {
               "ru": "Отрицание `not` меняет смысл. В записи его нет: речь организатора разборчива.",
               "uk": "Заперечення `not` змінює зміст. У записі його немає: мовлення організатора розбірливе."
@@ -776,13 +776,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — запитайте організатора, чи грубо ваша команда зазвичай відповідає на зауваження: «Ми грубі?» (`rude` — «грубий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i14:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — запитайте організатора, чи грубо ваша команда зазвичай відповідає на зауваження: «Ми грубі?» (`rude` — «грубий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -809,13 +809,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви перевірили свої нотатки й повідомляєте другові: «Я готовий» (`ready` — «готовий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви перевірили свої нотатки й повідомляєте другові: «Я готовий» (`ready` — «готовий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -842,13 +842,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг хвилюється через свою манеру спілкування, а ви вважаєте його ввічливим; скажіть йому про це (`polite` — «ввічливий»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг хвилюється через свою манеру спілкування, а ви вважаєте його ввічливим; скажіть йому про це (`polite` — «ввічливий»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -906,5 +906,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "91a179a1a94099a549b7bc00529631fd46071d17a85ba1fed221cbe39602d8b6"
+  "learnerFingerprint": "e72b9afd994ec99b522c870f0697d0ebc49cf99de475c97011f40c9087d3b2c5"
 }

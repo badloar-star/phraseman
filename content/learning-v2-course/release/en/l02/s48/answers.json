@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-48:i07",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-48:i07:p1=late\nen:lesson-02:session-48:i07:p2=early\nen:lesson-02:session-48:i07:p3=wrong\nen:lesson-02:session-48:i07:p4=sure",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-48:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-48:i10:p1=ready\nen:lesson-02:session-48:i10:p2=audible\nen:lesson-02:session-48:i10:p3=clear\nen:lesson-02:session-48:i10:p4=polite",
     "correctResponseId": null
   },
   {

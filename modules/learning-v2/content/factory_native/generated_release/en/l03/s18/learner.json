@@ -911,13 +911,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг перепутал билеты в конверте с бумажными этикетками; назовите билеты полной фразой",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-18:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг перепутал билеты в конверте с бумажными этикетками; назовите билеты полной фразой",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -990,5 +990,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ae8dad97157fbd5e36f68cb37d2e8b3f1a936406769528a01f625a0b609c8b4b"
+  "learnerFingerprint": "8979951b9247e2f4ca3485fe96f90d4c94d308d6da14da8c26a7a9851c91f189"
 }

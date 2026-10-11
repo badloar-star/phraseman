@@ -1,0 +1,92 @@
+{
+  "session": "en/l04/s11",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:41:49.3857187Z",
+  "sourceSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactRuSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactUkSha256": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2",
+  "practiceAtomicSha256": "d3f2d3f20d1afa6b404e5b9a30b46916083789ca7dc71c8bede193646a246b18",
+  "localeHashes": {
+    "ru": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+    "uk": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s10",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s10",
+  "newWords": [
+    "tram"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation: Are there + plural noun?",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 11 | новая | вопрос о нескольких предметах или местах: `Are there + plural noun?` | tram | на транспортной карте ищем трамваи |",
+  "curriculumEvidence": {
+    "grammar": "Intros 2–3 and tasks 4–12 introduce and retrieve Are there + plural noun? without short answers or another new operation.",
+    "newWords": [
+      "tram"
+    ],
+    "situation": "At a transport map, the learner asks whether trams run near familiar places (final.ru.md:3)."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "tram"
+      ],
+      "sceneEvidence": "The map task first grounds the singular lexical form a tram.",
+      "correctAnswer": "a tram",
+      "practiceTask": 1,
+      "practiceTarget": "tram",
+      "finalEvidence": "i12 independently retrieves plural trams inside `Are there trams near the clinic?`.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "tram"
+      ],
+      "sceneEvidence": "The learner asks the basic plural transport-map question.",
+      "correctAnswer": "Are there trams?",
+      "practiceTask": 4,
+      "practiceTarget": "Are there trams near the garden?",
+      "finalEvidence": "i12 uses the same Are there + plural noun operation with a different familiar landmark.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "tram"
+      ],
+      "sceneEvidence": "The learner asks about trams near the hotel on the map.",
+      "correctAnswer": "Are there trams near the hotel?",
+      "practiceTask": 5,
+      "practiceTarget": "Are there trams near the library?",
+      "finalEvidence": "i12 independently preserves the same plural-question operation and changes only the landmark to clinic.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "The exact curriculum grammar, tram and transport-map situation are present in current RU/UK/atomic.",
+    "Prior sources through S10 introduce singular Is there and singular short answers, not the planned plural Are there question or tram as a new target."
+  ]
+}
+

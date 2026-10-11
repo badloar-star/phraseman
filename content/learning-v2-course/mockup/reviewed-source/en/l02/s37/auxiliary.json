@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro1:r2": {
+          "ru": "Это «Чьё это?». Сейчас вы знакомитесь с человеком, а не ищете владельца вещи.",
+          "uk": "Це «Чиє це?». Зараз ви знайомитеся з людиною, а не шукаєте власника речі."
+        },
+        "en:lesson-02:session-37:intro1:r3": {
+          "ru": "Это «Где он?». Мужчина перед вами; вы хотите узнать, кто он.",
+          "uk": "Це «Де він?». Чоловік перед вами; ви хочете дізнатися, хто він."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro2:r2": {
+          "ru": "Это «Кто это?». Чтобы узнать, кому принадлежит шарф, нужно начать с `Whose`.",
+          "uk": "Це «Хто це?». Щоб дізнатися, кому належить шарф, почніть із `Whose`."
+        },
+        "en:lesson-02:session-37:intro2:r3": {
+          "ru": "Из полного вопроса выпало `is`. Здесь нужны все три слова: `Whose is it?`",
+          "uk": "Із повного питання випало `is`. Тут потрібні всі три слова: `Whose is it?`"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-37:intro3:r2": {
+          "ru": "Вы хотите узнать, кто эти люди. Для такого вопроса нужно `Who`, а не слово «чьи» — `Whose`.",
+          "uk": "Ви хочете дізнатися, хто ці люди. Для такого питання потрібне `Who`, а не «чиї» — `Whose`."
+        },
+        "en:lesson-02:session-37:intro3:r3": {
+          "ru": "Сочетание `these people` означает нескольких людей. В этом вопросе нужно `are`.",
+          "uk": "Сполука `these people` означає кількох людей. У цьому питанні потрібне `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "60501929165280dc5c958301a7a05ceaa98c11fc39c028c07cb05395c46a0547"
+}

@@ -1,7 +1,7 @@
-# Англійська · Урок 1 · Сесія 49 — «Про кого мова — така й скріпка»
+# Англійська · Урок 1 · Заняття 49 — «Хто говорить — така й форма»
 
-**Сцена сесії.** Неділя, дзвінок додому. Мама розпитує про перший тиждень у Дубліні — про роботу, про сусідів, про те, чи всі живі.
-**Операція:** вибір `am` / `is` / `are` за тим, про кого мова
+**Ситуація.** У неділю ви телефонуєте мамі з Дубліна. Вона питає про вашу роботу, колег, сусідів і сім'ю.
+**Сьогодні.** Вибирайте `am`, `is` або `are` за тим, про кого йдеться.
 **Нові слова:** everyone, nobody, people, family
 **Повертаються:** kind, busy, tired, loud, fine
 
@@ -9,33 +9,33 @@
 
 ## Інтро 1
 
-### Про кого мова — така й скріпка
+### Про кого мова — така й форма
 
-`I am tired` — «я втомився». Українською ми кажемо просто «я зайнятий», «я готовий», без зайвого слова посередині. Англійською там обов'язково стоїть `am` — скріпка.
+`I am tired` — «я втомився». Українською ми кажемо просто «я зайнятий», «я готовий», без окремого слова посередині. Англійською після `I` обов'язково ставлять `am`.
 
-Скріпка не одна, їх три: `am`, `is`, `are`. І вибираєте ви не навмання, а за тим, про кого мова. Про себе — завжди `am`, це єдина легка частина сьогодні.
+Таких слів три: `am`, `is`, `are`. Їх вибирають не навмання, а за тим, про кого йдеться. Про себе завжди кажуть `am`.
 
 **Мама питає, як ви після тижня. Скажіть чесно, що сил уже немає.**
 
 - ✅ **I am tired.**
 - ❌ I is tired. — *`is` іде до когось третього. Про себе — `am`.*
-- ❌ I tired. — *Скріпка випала. Українською так можна, англійською фраза розсипається.*
+- ❌ I tired. — *Після `I` бракує `am`. Англійською потрібно `I am tired`.*
 
 ---
 
 ## Інтро 2
 
-### Everyone рахується за одного
+### Після everyone — is
 
 `everyone` — «всі». `kind` — «добрий», про того, хто допомагає без прохання. Усі такі — `everyone is kind`.
 
-Помітили `is`? Тут спотикається кожен: «всі» ж не один, рука сама тягне `are`. Але англійська рахує `everyone` за одну пачку людей, а до пачки скріпка йде як до одного.
+Після `everyone` кажуть `is`, хоча українське «всі» звучить як кілька людей. В англійській `everyone` потребує форми для одного.
 
-**Мама питає про нових колег. Скажіть, що там усі допомагають і ніхто не гарчить.**
+**Мама питає про ваших нових колег. Скажіть, що кожен із них доброзичливий.**
 
 - ✅ **Everyone is kind.**
-- ❌ Everyone are kind. — *Та сама пастка на слово «всі». `everyone` бере `is`.*
-- ❌ Everyone kind. — *Без скріпки це не речення, а два слова поряд.*
+- ❌ Everyone are kind. — *`are` ставлять після `we`, `you` або `they`. Після `everyone` потрібно `is`.*
+- ❌ Everyone kind. — *Між `everyone` і `kind` потрібно `is`.*
 
 ---
 
@@ -43,88 +43,137 @@
 
 ### People — багато, family — одна
 
-`people` — «люди». Їх багато, і скріпка для багатьох своя: `are`. `loud` — «гучний», про тих, кого чути крізь стіну: `people are loud`.
+`people` — «люди». Їх багато, тому після `people` кажуть `are`. `loud` — «гучний»: `people are loud`.
 
-А `family` — «сім'я». Народу всередині не менше, але про свою сім'ю загалом кажуть `my family is fine` — «у мене в сім'ї все добре». Так і робитимемо.
+А `family` — «сім'я». В англійській сім'ю вважають одним цілим, тому після `family` кажуть `is`, хоча людей у сім'ї багато: `my family is fine` — «у мене в сім'ї все добре».
 
-**Мама питає про сусідів за стіною. Скажіть, що крізь стіну їх чути цілий вечір.**
+**Мама питає про сусідів за стіною. Скажіть, що їх чути весь вечір.**
 
 - ✅ **People are loud.**
-- ❌ People is loud. — *`people` — це вже багато людей, до них іде `are`.*
-- ❌ People am loud. — *`am` буває тільки про себе, до сусідів воно не йде.*
+- ❌ People is loud. — *`is` кажуть про одну людину або предмет. `people` — це кілька людей, тому потрібно `are`.*
+- ❌ People am loud. — *`am` буває тільки після `I`. Тут ідеться про сусідів.*
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика (21 завдання, підтримка спадає)
 
 **1 · Картка слова — everyone**
+<!-- interaction_id: en:lesson-01:session-49:i01; family: listen_choose -->
 > **everyone** — «всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі.
 
-**2 · Послухайте і виберіть — everyone**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
 🔊 *everyone* → **everyone** · every · everything
 - every — *«Кожен» — про одного за раз. `everyone` — про всіх одразу.*
 - everything — *Це «все» про речі, а не про людей.*
 
 **3 · Картка слова — nobody**
+<!-- interaction_id: en:lesson-01:session-49:i03; family: listen_choose -->
 > **nobody** — «ніхто». Жодної людини: кімната порожня, дзвонити нікому.
 
-**4 · Послухайте і виберіть — nobody**
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-49:i04; family: listen_choose -->
 🔊 *nobody* → **nobody** · body · nobly
 - body — *«Тіло». Слово про людину, але про одну й живу, а ви кажете, що немає нікого.*
 - nobly — *«Шляхетно» — оцінка вчинку, а `nobody` — про людей, яких немає.*
 
-**5 · Вставте скріпку — усі на роботі добрі**
+**5 · Вставте слово — усі на роботі добрі**
+<!-- interaction_id: en:lesson-01:session-49:i05; family: context_gap_grammar -->
 Everyone ___ kind. → **is** · are · am
 - are — *Тягне слово «всі». Але `everyone` іде з `is`.*
 - am — *`am` буває тільки про себе.*
 
 **6 · Картка слова — people**
+<!-- interaction_id: en:lesson-01:session-49:i06; family: listen_choose -->
 > **people** — «люди». Просто багато людей: в автобусі, у черзі, за стіною.
 
 **7 · Картка слова — family**
+<!-- interaction_id: en:lesson-01:session-49:i07; family: listen_choose -->
 > **family** — «сім'я». Мама, тато, брати-сестри — усі разом, одним словом.
 
-**8 · Послухайте і виберіть — family**
+**8 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-49:i08; family: listen_choose -->
 🔊 *family* → **family** · funny · fairly
 - funny — *«Смішний». Про жарт, а не про рідню.*
 - fairly — *«Доволі» — слово-оцінка, не про людей.*
 
-**9 · Вставте скріпку — люди за стіною шумлять**
+**9 · Вставте слово — люди за стіною шумлять**
+<!-- interaction_id: en:lesson-01:session-49:i09; family: context_gap_grammar -->
 People ___ loud. → **are** · is · am
 - is — *`people` — це вже багато, до них `are`.*
 - am — *`am` — тільки про себе, а ви про сусідів.*
 
 **10 · Складіть фразу — «у сім'ї все добре»**
-Плитки: `is` `family` `my` `are` → **My family is fine.**
+<!-- interaction_id: en:lesson-01:session-49:i10; family: phrase_builder -->
+Мама питає, як справи у вашій сім'ї. Складіть відповідь.
+
+Плитки: `is` `family` `My` `fine` `are` → **My family is fine.**
 *(`my` — «мій»; одна плитка зайва)*
 
 **11 · Вставте слово — в офісі о шостій вечора порожньо**
+<!-- interaction_id: en:lesson-01:session-49:i11; family: context_gap_grammar -->
+Мама питає, чи є в офісі люди о шостій вечора. Відповідайте, що там нікого немає.
+
 ___ is here. → **Nobody** · Everyone · People
 - Everyone — *Це «всі», а в офісі не лишилося нікого.*
 - People — *«Люди» — теж про тих, хто є, а ви кажете, що їх немає.*
 
-**12 · З'єднайте пари (Speed Match, 4 пари)**
+**12 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-49:i12; family: speed_match -->
 everyone — всі · nobody — ніхто · people — люди · family — сім'я
 
 **13 · Послухайте і складіть — «усі зайняті»**
+<!-- interaction_id: en:lesson-01:session-49:i13; family: listen_build_dictation -->
+Мама питає про колег. Послухайте й складіть відповідь: усі зайняті.
+
 🔊 *Everyone is busy.* Плитки: `is` `busy` `everyone` `are` → **Everyone is busy.**
 *(`busy` — «зайнятий»)*
 
 **14 · Складіть фразу — робочий день скінчився, і сил не лишилося**
+<!-- interaction_id: en:lesson-01:session-49:i14; family: phrase_builder -->
+Мама питає, як ви після робочого дня. Складіть відповідь.
+
 Плитки: `tired` `I` `is` `am` → **I am tired.**
 
-**15 · Вставте скріпку — про себе після тижня**
+**15 · Вставте слово — про себе після тижня**
+<!-- interaction_id: en:lesson-01:session-49:i15; family: context_gap_grammar -->
 I ___ fine. → **am** · is · are
 - is — *`is` іде до когось третього.*
 - are — *`are` — про кількох. Про себе `am`.*
 
-**16 · Скажіть уголос — звіт мамі про роботу**
-🎙 **Everyone is kind. Nobody is loud.** — послухайте, повторіть, порівняйте.
-*(`kind` — «добрий», `loud` — «гучний»)*
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-49:i16:s01; family: scripted_repeat_compare -->
+Мама питає про нових колег. Скажіть, що кожен із них доброзичливий.
 
-**17 · Складіть фразу — робочий день скінчився, і сил не лишилося**
-🎙 Мама просить розповісти все одразу. Скажіть: люди гучні, всі добрі, у сім'ї все добре, а ви втомилися.
-**People are loud. Everyone is kind. My family is fine. I am tired.**
+🎙 **Everyone is kind.**
+
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-49:i16:s02; family: scripted_repeat_compare -->
+Мама питає про сусідів. Скажіть, що зараз ніхто не шумить.
+
+🎙 **Nobody is loud.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-49:i17:s01; family: scripted_repeat_compare -->
+Мама питає про сусідів за стіною. Скажіть, що вони гучні.
+
+🎙 **People are loud.**
+
+**19 · Складіть фразу — ви описуєте всю дружню команду**
+<!-- interaction_id: en:lesson-01:session-49:i17:s02; family: phrase_builder -->
+Плитки: `Everyone` `is` `kind` `are` → **Everyone is kind.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-49:i17:s03; family: scripted_repeat_compare -->
+Мама питає, як справи у вашій сім'ї. Відповідайте, що все добре.
+
+🎙 **My family is fine.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-49:i17:s04; family: scripted_repeat_compare -->
+Мама питає, як ви після першого тижня. Скажіть, що втомилися.
+
+🎙 **I am tired.**
 
 ---
 
@@ -136,7 +185,7 @@ nobody — ніхто — «ніхто». Жодної людини: кімна�
 people — люди — «люди». Просто багато людей: в автобусі, у черзі, за стіною.
 family — сім'я — «сім'я». Мама, тато, брати-сестри — усі разом, одним словом.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=context_gap_grammar, 12=speed_match, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=context_gap_grammar, 12=speed_match, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "learning_v2_independent_content_judgement_v1",
+  "session": "en/l03/s55",
+  "reviewedAt": "2026-10-03T22:14:02.6756109+01:00",
+  "reviewer": "/root/s55_learner_pedagogy_progression",
+  "scope": "Fresh independent learner, pedagogy, and progression review of exact current RU/UK masters, all 17 current interactions, current PREAUTHORING PASS, the exact L3 curriculum row, and deterministic comparison through L3S54. No learner source, release, mockup, ledger, receipt, or status file was changed.",
+  "sourceSha256": "2ded85f5eede9fdfd54b0f6b25d70d35a6868816dc5a6b4a32b80d2fa43ece8d",
+  "exactRuSha256": "2ded85f5eede9fdfd54b0f6b25d70d35a6868816dc5a6b4a32b80d2fa43ece8d",
+  "exactUkSha256": "4ffd457325140fd5424adfceafdc8d15ed1a5ce35a1069e6da8c6af20ebf3323",
+  "practiceAtomicSha256": "7836d0694c7ea1af3cbef0895c9677df4cbfae79eaddf4e75b160ff61784bfc8",
+  "sourcePaths": [
+    "content/learning-v2-course/sessions/en/l03/s55/final.ru.md",
+    "content/learning-v2-course/sessions/en/l03/s55/final.uk.md",
+    "content/learning-v2-course/sessions/en/l03/s55/practice.atomic.json"
+  ],
+  "overallVerdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "staticEvidence": {
+    "preauthoringReceipt": "PASS: preauthoringReceiptIssues returned 0 issues for en/l03/s55, exact row, prior en/l03/s54, and expected shape/material/pattern.",
+    "progressionQualityGate": "PASS: node content/learning-v2-course/pipeline/progression_quality_gate.mjs --sessions-root content/learning-v2-course/sessions/en/l03 --from 25",
+    "singlePhraseCorpusGate": "PASS: node content/learning-v2-course/pipeline/verify_all_single_phrase_sources.mjs reported 167 sessions, 3246 interactions, 3246 preservation rows, 0 preservation violations.",
+    "sourceFamilyAndPhraseChecks": "PASS: 17 interactions in each locale; assertSinglePhraseSource and familyChoreographyIssues returned no issue for RU or UK; feedbackLocaleParityIssues and wordCardDefinitionIssues returned no issue.",
+    "priorLexicalScan": "PASS: recursive learner-facing scan of final.ru.md, final.uk.md, and practice.atomic.json through L3S54 returned no shape/material/pattern stem match.",
+    "readinessBeforeJudgements": "Expected HOLD only: sessionReadiness reports absent fresh judge/status/locale receipts. This report supplies three review verdicts but does not materialize the release receipts."
+  },
+  "roles": {
+    "judge_learner": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+      "The first two sentences put the learner with an inspector in an apartment before a final inspection signature, then name the three visible tasks: mirror shape, upholstery sample, and wallpaper pattern. The purpose of speaking is clear on first reading.",
+        "Each intro gives one new word and a concrete reason for its exact phrase: known single mirror form uses The shape is round; one near sample uses This material is soft; one distant wallpaper pattern uses That pattern is striped.",
+        "All 17 interactions were read in RU and UK. Each one has one assessable word, phrase, gap, or pair-grid action. Listening prompts offer localized meanings, not competing English sentences; the audio targets are shape, pattern, material, The shape is square, and one dictation phrase per task.",
+        "The three word-first contacts are distinct and complete before phrase practice: shape at 4/7/10, material at 5/8/11, pattern at 6/9/12, using listen/repeat/build or repeat/build/listen without adjacent identical families.",
+        "Distractors diagnose a single usable distinction: close sound (shape/ship/shade; pattern/patent/patter; material/matter/mature), form versus material versus pattern, singular versus plural, and number plus distance. The response-specific feedback states that distinction in both locales.",
+        "The final Those patterns are striped is a new target, farther-wall plural transfer, and is not an exact prior practice target. S56 checkpoint content does not appear."
+      ]
+    },
+    "judge_pedagogy": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "evidence": [
+        "The exact curriculum operation is a transfer across a/the/this/that/these/those by knownness, number, and distance. S55 exercises known singular The shape, near singular This material, distant singular That pattern, near plural These patterns, and distant plural Those patterns.",
+        "Grammar is accurate in context: a demonstrative replaces the article slot; The marks the named mirror form; plural forms use patterns/materials with are; distance contrasts are explicitly supplied by the prompt where That/Those is assessed.",
+        "The support curve is observable: isolated word contacts (4–12), a four-pair property grid (13), guided phrase dictation/gap/build/listen (14–17), then independent plural dictation, gap, and final build (18–20).",
+        "Every word card has a quoted native gloss and a short definition. All six active families are used with their prescribed input modes; no same family is adjacent and no target-family pair repeats.",
+        "No interaction asks the learner to process multiple English phrases. The Speed Match board is a permitted four-word pairing board, while each assessed phrase/audio interaction contains exactly one English phrase."
+      ]
+    },
+    "judge_progression": {
+      "verdict": "PASS",
+      "severity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "blockers": [],
+      "mustFix": [],
+      "sourceSha256": "2ded85f5eede9fdfd54b0f6b25d70d35a6868816dc5a6b4a32b80d2fa43ece8d",
+      "comparedThrough": "en/l03/s54",
+      "newWords": [
+        "shape",
+        "material",
+        "pattern"
+      ],
+      "sceneNovel": true,
+      "grammarProgression": "Transfer: choose the whole existing article/demonstrative system according to number, distance, and knownness; S55 combines the singular/plural and near/far contrasts introduced in S52–S54 instead of introducing the S56 checkpoint.",
+      "introPracticeAligned": true,
+      "curriculumExactMatch": true,
+      "curriculumRow": "| 55 | перенос | выбор всей системы по числу, расстоянию и известности | shape, material, pattern | проводим финальный осмотр квартиры |",
+      "curriculumEvidence": {
+        "grammar": "Tasks 11–17 and independent tasks 18–20 cover The/This/That/These/Those against knownness, singular/plural, and near/far scene cues.",
+        "newWords": [
+          "shape",
+          "material",
+          "pattern"
+        ],
+        "situation": "The learner performs a final apartment inspection with an inspector, checking a mirror, upholstery sample, and wallpaper pattern before signing the inspection sheet."
+      },
+      "introAlignment": [
+        {
+          "intro": 1,
+          "newWord": "shape",
+          "sceneEvidence": "At the entrance the inspector checks the already listed shape of one mirror.",
+          "correctAnswer": "The shape is round.",
+          "practiceLink": "Task 14 dictation builds The shape is round; task 17 listening contrasts The shape is square against round and plural shapes.",
+          "finalContribution": "The final requires the same learned determiner system to select plural distant patterns without an article."
+        },
+        {
+          "intro": 2,
+          "newWord": "material",
+          "sceneEvidence": "The inspector puts one upholstery sample in the learner's hand.",
+          "correctAnswer": "This material is soft.",
+          "practiceLink": "Task 15 gaps This material is ___ and task 19 independently selects Those for several distant materials.",
+          "finalContribution": "The final transfers number and distance after support has faded."
+        },
+        {
+          "intro": 3,
+          "newWord": "pattern",
+          "sceneEvidence": "One wallpaper pattern is visible by the distant wall.",
+          "correctAnswer": "That pattern is striped.",
+          "practiceLink": "Task 16 builds That pattern is striped; task 18 dictates These patterns are pale before the final distant-plural build.",
+          "finalContribution": "Task 20 independently builds Those patterns are striped, changing the intro's singular distant pattern to plural distant patterns."
+        }
+      ],
+      "foreignIntroExamples": [],
+      "repeatedPrimaryTargets": [],
+      "evidence": [
+        "A deterministic recursive scan of every learner-facing RU/UK master and atomic source available through L3S54 found zero prior occurrences of the three new-word stems.",
+        "The progression quality gate passed for L3S25 onward, including novelty, scene, intro/practice alignment, and no hidden spatial addition to localized listening meanings.",
+        "Manual comparison of S49–S54 confirms the delta: furniture colour/adjective work, a/an sound choice, singular and plural demonstratives, and article-demonstrative repair culminate here in a new apartment-inspection transfer scene."
+      ]
+    }
+  }
+}

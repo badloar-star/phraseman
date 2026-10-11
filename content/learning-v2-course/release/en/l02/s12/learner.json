@@ -58,7 +58,7 @@
           {
             "responseId": "en:lesson-02:session-12:i01:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "testedDimension": "Послушайте и выберите — вопрос или сообщение",
             "feedbackByLocale": {
               "ru": "В записи первым идёт `is`, а не `he`. Значит спрашивают.",
               "uk": "У записі першим іде `is`, а не `he`. Отже, питають."
@@ -67,7 +67,7 @@
           {
             "responseId": "en:lesson-02:session-12:i01:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "testedDimension": "Послушайте и выберите — вопрос или сообщение",
             "feedbackByLocale": {
               "ru": "«Ш» в записи не слышно — значит `is he`, про мужчину.",
               "uk": "«Ш» у записі не чути — отже, це `is he`, про чоловіка."
@@ -192,15 +192,15 @@
           "audioTargetId": "en:lesson-02:session-12:i03:audioB",
           "transcript": "is she"
         },
-        "testedPhoneticContrast": "Различите звуки — где начало вопроса про",
+        "testedPhoneticContrast": "Различите звуки — где начало вопроса про женщину?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i03:r1",
             "correct": false,
-            "testedDimension": "Различите звуки — где начало вопроса про",
+            "testedDimension": "Различите звуки — где начало вопроса про женщину?",
             "feedbackByLocale": {
-              "ru": "Это про мужчину: «х» проглатывается, и слова сливаются. У `is she` слышно «ш».",
-              "uk": "Це про чоловіка: «г» ковтається, і слова зливаються. У `is she` чути «ш»."
+              "ru": "Это про мужчину: у `is he` нет звука «ш». В `is she` он слышен.",
+              "uk": "Це про чоловіка: у `is he` немає звуку «ш». У `is she` він чути."
             }
           }
         ]
@@ -252,12 +252,12 @@
             "text": "it"
           }
         ],
-        "testedDimension": "Вставьте слово — мужчина у окна кутается",
+        "testedDimension": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i04:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — мужчина у окна кутается",
+            "testedDimension": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
             "feedbackByLocale": {
               "ru": "Это вопрос про женщину. У окна сидит мужчина.",
               "uk": "Це питання про жінку. Біля вікна сидить чоловік."
@@ -266,10 +266,10 @@
           {
             "responseId": "en:lesson-02:session-12:i04:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — мужчина у окна кутается",
+            "testedDimension": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
             "feedbackByLocale": {
-              "ru": "`it` — про вещь или погоду, не про человека за столиком.",
-              "uk": "`it` — про річ або погоду, не про людину за столиком."
+              "ru": "`it` — про вещь или погоду, не про человека у окна.",
+              "uk": "`it` — про річ або погоду, не про людину біля вікна."
             }
           }
         ]
@@ -302,7 +302,9 @@
           "she",
           "hungry"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "he"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -332,8 +334,8 @@
             "responseId": "en:lesson-02:session-12:i06:r1",
             "targetText": "lost",
             "meaningByLocale": {
-              "ru": "«заблудился». Человек не знает, где он и куда идти: вертит карту, сверяет вывеску с адресом.",
-              "uk": "«заблукав». Людина не знає, де вона і куди йти: крутить карту, звіряє вивіску з адресою."
+              "ru": "«заблудился». Человек не знает, где он и куда идти.",
+              "uk": "«заблукав». Людина не знає, де вона і куди йти."
             }
           }
         ],
@@ -343,8 +345,8 @@
         "wordCard": {
           "word": "lost",
           "definitionByLocale": {
-            "ru": "«заблудился». Человек не знает, где он и куда идти: вертит карту, сверяет вывеску с адресом.",
-            "uk": "«заблукав». Людина не знає, де вона і куди йти: крутить карту, звіряє вивіску з адресою."
+            "ru": "«заблудился». Человек не знает, где он и куда идти.",
+            "uk": "«заблукав». Людина не знає, де вона і куди йти."
           }
         }
       },
@@ -405,7 +407,7 @@
           {
             "responseId": "en:lesson-02:session-12:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "testedDimension": "Послушайте и выберите — вопрос или сообщение",
             "feedbackByLocale": {
               "ru": "В записи первым идёт `he`, а не `is`. Значит это сообщение, а не вопрос.",
               "uk": "У записі першим іде `he`, а не `is`. Отже, це повідомлення, а не питання."
@@ -414,7 +416,7 @@
           {
             "responseId": "en:lesson-02:session-12:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "testedDimension": "Послушайте и выберите — вопрос или сообщение",
             "feedbackByLocale": {
               "ru": "Это вопрос, да ещё про женщину. В записи же сообщение про мужчину.",
               "uk": "Це питання, та ще й про жінку. А в записі — повідомлення про чоловіка."
@@ -432,11 +434,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -711,7 +713,7 @@
           "curious"
         ],
         "authoredDistractorTokens": [
-          "she"
+          "he"
         ],
         "slotFeedback": []
       },
@@ -786,7 +788,9 @@
           "she",
           "upset"
         ],
-        "authoredDistractorTokens": [],
+        "authoredDistractorTokens": [
+          "she"
+        ],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -836,12 +840,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+        "testedDimension": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-02:session-12:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+            "testedDimension": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
             "feedbackByLocale": {
               "ru": "`No` — это несогласие. Вы согласны.",
               "uk": "`No` — це незгода. А ви згодні."
@@ -850,7 +854,7 @@
           {
             "responseId": "en:lesson-02:session-12:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+            "testedDimension": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
             "feedbackByLocale": {
               "ru": "С `is` получается снова вопрос, а вас просят ответить.",
               "uk": "З `is` виходить знову питання, а вас просять відповісти."
@@ -1011,14 +1015,14 @@
     {
       "interactionId": "en:lesson-02:session-12:i19",
       "ordinal": 22,
-      "purpose": "independent_check",
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -1112,26 +1116,59 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-02:session-12:i21",
+      "interactionId": "en:lesson-02:session-12:i21:s01",
       "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — спросите и ответьте",
+      "prompt": "Произнесите одну фразу — шаг 1 из 2. Финал сцены — спросите и ответьте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-02:session-12:i21:audio"
+        "en:lesson-02:session-12:i21:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — спросите и ответьте",
+      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2. Финал сцены — спросите и ответьте",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-02:session-12:i21:audio",
-          "transcript": "Is he tired? Yes, he is."
+          "audioTargetId": "en:lesson-02:session-12:i21:s01:audio",
+          "transcript": "Is he tired?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is he tired? Yes, he is.",
+        "targetPhrase": "Is he tired?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i21:s02",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу — шаг 2 из 2. Финал сцены — спросите и ответьте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i21:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2. Финал сцены — спросите и ответьте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i21:s02:audio",
+          "transcript": "Yes, he is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, he is.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1145,11 +1182,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "10780f17b308f60b65733b21431177a196206d638cb6cdbdfd84f6b62a0d22c9"
+  "learnerFingerprint": "e68ece340e6137f90776a2366e63b3acc419cf306ec214691ef97eb8d8ae40d3"
 }

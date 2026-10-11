@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что произнёс дру",
+            "testedDimension": "Послухайте й виберіть — що вимовив друг,",
             "feedbackByLocale": {
               "ru": "В `drier` гласный после начала меняется в ходе звучания; в `drawer` он звучит ровнее, с округлёнными губами. В записи — `drawer`.",
               "uk": "У `drier` чути рухомий голосний, схожий на «ай». У `drawer` голосний звучить рівніше й з округленими губами. У записі — `drawer`."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что произнёс дру",
+            "testedDimension": "Послухайте й виберіть — що вимовив друг,",
             "feedbackByLocale": {
               "ru": "В `dream` гласный произносят с растянутыми губами, в `drawer` — с округлёнными. Здесь звучит `drawer`.",
               "uk": "У `dream` голосний вимовляють із розтягнутими губами, а в `drawer` — з округленими. Тут звучить `drawer`."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-07:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В середине `covered` для `v` нижняя губа касается верхних зубов. В `cupboard` для `b` смыкаются обе губы. В записи — `cupboard`.",
               "uk": "У середині `covered` для звука `v` нижня губа торкається верхніх зубів. У `cupboard` для `b` змикаються обидві губи. У записі — `cupboard`."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-07:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `coward` первый гласный заметно скользит и заканчивается округлением губ. В `cupboard` он короткий, а затем губы смыкаются для `b`. Здесь — `cupboard`.",
               "uk": "На початку `coward` голосний помітно ковзає, наче в «ау». У `cupboard` він короткий, а потім губи змикаються для `b`. Тут — `cupboard`."
@@ -247,7 +247,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — друг запитує, куди ви кладете дрібниці; назвіть висувну шухляду двома словами",
+      "prompt": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i05:r1",
@@ -256,16 +256,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — друг запитує, куди ви кладете дрібниці; назвіть висувну шухляду двома словами",
+      "accessibilityLabel": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A drawer.",
+        "targetPhrase": "It is a drawer.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — друг спрашивает, куда вы кладёте мелочи; назовите выдвижной ящик двумя словами",
-          "uk": "Складіть коротку назву — друг запитує, куди ви кладете дрібниці; назвіть висувну шухляду двома словами"
+          "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+          "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
         },
         "orderedTokens": [
-          "A",
+          "It",
+          "is",
+          "a",
           "drawer"
         ],
         "authoredDistractorTokens": [
@@ -275,10 +277,10 @@
           {
             "responseId": "en:lesson-03:session-07:i05:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — друг спраши",
+            "testedDimension": "Складіть коротку назву — друг запитує, к",
             "feedbackByLocale": {
-              "ru": "Нужна короткая часть `a drawer`. Между `a` и названием предмета `is` не ставим.",
-              "uk": "Потрібна коротка назва `a drawer`. Між `a` й назвою предмета `is` не ставимо."
+              "ru": "После `It` нужна форма `is`, а перед одним ящиком — `a`: `It is a drawer`.",
+              "uk": "Після `It` потрібна форма `is`, а перед однією шухлядою — `a`: `It is a drawer`."
             }
           }
         ]
@@ -383,7 +385,7 @@
           {
             "responseId": "en:lesson-03:session-07:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "После общей первой части в `warble` сразу слышится `b`, а в `wardrobe` — сочетание `d` + `r`. В записи — `wardrobe`.",
               "uk": "У `warble` далі чути `b`, а в `wardrobe` — `d` та англійське `/r/`: язик не торкається піднебіння, на відміну від українського «р». Тут — `wardrobe`."
@@ -392,7 +394,7 @@
           {
             "responseId": "en:lesson-03:session-07:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "После общей первой части в `warlock` слышится `l`, а в `wardrobe` — сочетание `d` + `r`. Здесь — `wardrobe`.",
               "uk": "Після схожого початку в `warlock` чути `l`, а в `wardrobe` — `d` та англійське `/r/`. Тут — `wardrobe`."
@@ -443,7 +445,7 @@
           {
             "responseId": "en:lesson-03:session-07:i08:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — друг говорит о м",
+            "testedDimension": "Послухайте й складіть — друг говорить пр",
             "feedbackByLocale": {
               "ru": "В записи назван `cupboard`, поэтому собираем `It is a cupboard`.",
               "uk": "У записі названо `cupboard`, тому складаємо `It is a cupboard`."
@@ -459,13 +461,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг дістав із коробки предмет для освітлення; назвіть лампу (`lamp` — «лампа»)",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг дістав із коробки предмет для освітлення; назвіть лампу (`lamp` — «лампа»)",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -594,7 +596,7 @@
           {
             "responseId": "en:lesson-03:session-07:i11:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — друг стоит у шкафа; сп",
+            "testedDimension": "Складіть запитання — друг стоїть біля ша",
             "feedbackByLocale": {
               "ru": "Вопрос об этом шкафе начинаем с `Is it`, а затем добавляем `open`.",
               "uk": "Запитання про цю шафу починаємо з `Is it`, а потім додаємо `open`."
@@ -649,12 +651,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг не видит дверцы из",
+        "testedDimension": "Вставте слово — друг не бачить дверцят з",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг не видит дверцы из",
+            "testedDimension": "Вставте слово — друг не бачить дверцят з",
             "feedbackByLocale": {
               "ru": "Для этой фразы нужно `It is closed`. `are` с `It` не сочетается.",
               "uk": "Для цієї фрази потрібне `It is closed`. Форма `are` з `It` не вживається."
@@ -663,7 +665,7 @@
           {
             "responseId": "en:lesson-03:session-07:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг не видит дверцы из",
+            "testedDimension": "Вставте слово — друг не бачить дверцят з",
             "feedbackByLocale": {
               "ru": "`am` подходит к `I`. О шкафе здесь говорим `It is closed`.",
               "uk": "Форма `am` підходить до `I`. Про шафу тут говоримо `It is closed`."
@@ -679,13 +681,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ви вже вийшли з кухні; запитайте друга, чи зачинена шафа",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ви вже вийшли з кухні; запитайте друга, чи зачинена шафа",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -743,7 +745,7 @@
           {
             "responseId": "en:lesson-03:session-07:i14:r1",
             "correct": false,
-            "testedDimension": "Соберите отрицание — друг хочет повесить",
+            "testedDimension": "Складіть заперечення — друг хоче повісит",
             "feedbackByLocale": {
               "ru": "После `It` нужно `is`, дальше — `not a wardrobe`. `am` осталось бы без подходящего `I`.",
               "uk": "Після `It` потрібне `is`, далі — `not a wardrobe`. Для `am` тут немає потрібного `I`."
@@ -798,12 +800,12 @@
             "text": "Am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг спрашивает о выдви",
+        "testedDimension": "Вставте слово — друг запитує про висувну",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-07:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает о выдви",
+            "testedDimension": "Вставте слово — друг запитує про висувну",
             "feedbackByLocale": {
               "ru": "`is` уже стоит перед `open`. Сначала назовите предмет через `It`.",
               "uk": "`is` уже стоїть перед `open`. Спочатку вкажіть на предмет за допомогою `It`."
@@ -812,7 +814,7 @@
           {
             "responseId": "en:lesson-03:session-07:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг спрашивает о выдви",
+            "testedDimension": "Вставте слово — друг запитує про висувну",
             "feedbackByLocale": {
               "ru": "Для фразы о ящике нужно `It is open`; начинать её с `Am` здесь нельзя.",
               "uk": "Для фрази про шухляду потрібне `It is open`; починати її з `Am` тут не можна."
@@ -828,13 +830,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг показує на високі меблі в спальні; назвіть шафу для одягу",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-07:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг показує на високі меблі в спальні; назвіть шафу для одягу",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -891,7 +893,7 @@
           {
             "responseId": "en:lesson-03:session-07:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — под крышкой нового сто",
+            "testedDimension": "Складіть запитання — під кришкою нового ",
             "feedbackByLocale": {
               "ru": "Вопрос об этом предмете начинаем с `Is it`, затем добавляем `a drawer`.",
               "uk": "Запитання про цей предмет починаємо з `Is it`, а потім додаємо `a drawer`."
@@ -908,5 +910,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7f51233f996a8349a7c8b5068dbc257609bd5f8aba2a5eeffab5648088e538e6"
+  "learnerFingerprint": "26407c6b2beb8a1899913f5c361d7e49c0bf15a64a4b877e1d604ae80a88cee0"
 }

@@ -79,7 +79,8 @@ function operationSignature(target) {
   const raw = unmark(target);
   const normalized = plainText(raw)
     .replace(/\b(?:this|that)\b/giu, "demsg")
-    .replace(/\b(?:these|those)\b/giu, "dempl");
+    .replace(/\b(?:these|those)\b/giu, "dempl")
+    .replace(/\bnear the\b/giu, "near");
   const kind = /\?/u.test(raw)
     ? "question"
     : /\b(?:please|give me)\b/iu.test(normalized)
@@ -130,7 +131,39 @@ function targetSignatures(source) {
   return signatures;
 }
 
-function introAlignmentIssues(source, words, id) {
+function atomicTarget(interaction, answer) {
+  const payload = interaction?.modePayload ?? {};
+  let target = payload.targetPhrase ?? payload.hiddenTargetPhrase ?? payload.gappedTargetPhrase ?? payload.referenceAudio?.transcript ?? "";
+  if (/___/u.test(target) && answer?.correctText) target = target.replace(/___(?:\s+___)*/gu, answer.correctText);
+  return unmark(target);
+}
+
+function interactionOrdinal(interactionId) {
+  const match = /:i(\d+)(?::|$)/u.exec(String(interactionId ?? ""));
+  return match ? Number(match[1]) : null;
+}
+
+function isAtomicFinalInteraction(interaction) {
+  return interaction?.purpose === "independent_check" || /:i17(?::|$)/u.test(String(interaction?.interactionId ?? ""));
+}
+
+function scoredPracticeRange(practiceSource, atomicInteractions) {
+  const atomicFinalOrdinals = atomicInteractions
+    .filter(isAtomicFinalInteraction)
+    .map((interaction) => interactionOrdinal(interaction.interactionId))
+    .filter(Number.isFinite);
+  const sourceFinalOrdinal = Number(/^\*\*(\d+)\s*·\s*(?:Финал|Фінал)/miu.exec(practiceSource)?.[1]);
+  const firstFinalOrdinal = atomicFinalOrdinals.length
+    ? Math.min(...atomicFinalOrdinals)
+    : Number.isFinite(sourceFinalOrdinal) && sourceFinalOrdinal > 0
+      ? sourceFinalOrdinal
+      : null;
+  if (firstFinalOrdinal && firstFinalOrdinal > 1) return `1–${firstFinalOrdinal - 1}`;
+  const authoredOrdinals = [...practiceSource.matchAll(/^\*\*(\d+)\s*·/gmiu)].map((match) => Number(match[1]));
+  return authoredOrdinals.length ? `1–${Math.max(...authoredOrdinals)}` : "до финала";
+}
+
+function introAlignmentIssues(source, words, id, atomic = null, locale = "ru") {
   const findings = [];
   const practiceAt = source.search(/^##\s+Практика(?:\s|\()/miu);
   const beforePractice = practiceAt >= 0 ? source.slice(0, practiceAt) : source;
@@ -138,10 +171,23 @@ function introAlignmentIssues(source, words, id) {
   if (introAt < 0) return [`${id}: нет интро, которое готовит текущие новые слова`];
   const introSource = beforePractice.slice(introAt);
   const practiceSource = practiceAt >= 0 ? source.slice(practiceAt) : "";
-  const scoredTargets = scoredPracticeTargets(practiceBeforeFinal(practiceSource));
+  const atomicInteractions = atomic?.interactionsByLocale?.[locale] ?? [];
+  const answerById = new Map((atomic?.answers ?? []).map((answer) => [answer.interactionId, answer]));
+  const atomicTargets = atomicInteractions.map((interaction) => ({
+    interactionId: interaction.interactionId,
+    final: isAtomicFinalInteraction(interaction),
+    target: atomicTarget(interaction, answerById.get(interaction.interactionId)),
+  })).filter((item) => item.target);
+  const scoredTargets = atomicTargets.length
+    ? atomicTargets.filter((item) => !item.final).map((item) => item.target)
+    : scoredPracticeTargets(practiceBeforeFinal(practiceSource));
   const scoredSignatures = scoredTargets.map(operationSignature);
-  const finalSource = finalTaskSource(practiceSource);
-  const finalActions = targetSignatures(finalSource).map((signature) => signature.split("|", 1)[0]);
+  const atomicFinalTargets = atomicTargets.filter((item) => item.final).map((item) => item.target);
+  const finalSource = atomicFinalTargets.length ? atomicFinalTargets.join("\n") : finalTaskSource(practiceSource);
+  const finalActions = atomicFinalTargets.length
+    ? atomicFinalTargets.map(actionKind)
+    : targetSignatures(finalSource).map((signature) => signature.split("|", 1)[0]);
+  const practiceRange = scoredPracticeRange(practiceSource, atomicInteractions);
   if (words.length > 0 && !words.some((word) => containsLexeme(finalSource, word))) {
     findings.push(`${id}: финал не требует ни одного нового слова текущей сессии`);
   }
@@ -157,7 +203,13 @@ function introAlignmentIssues(source, words, id) {
     const target = correctIntroTarget(blocks[index]);
     if (!target) continue;
     const cleanTarget = unmark(target);
-    if (!words.some((word) => containsLexeme(cleanTarget, word))) {
+    const anaphoricContinuation = /^it\b/iu.test(plainText(cleanTarget)) && words.some((word) => containsLexeme(blocks[index], word));
+    const shortExistentialReply = /^(?:yes|no),?\s+there\s+(?:is|are)(?:n't|\s+not)?\.?$/iu.test(plainText(cleanTarget));
+    // A short existential answer deliberately omits the noun: the new word is
+    // carried by the question in the same intro and by the final scene. Do not
+    // reject that valid pedagogical shape merely because the reply is elliptical.
+    const replyUsesIntroWord = shortExistentialReply && words.some((word) => containsLexeme(blocks[index], word));
+    if (!words.some((word) => containsLexeme(cleanTarget, word)) && !anaphoricContinuation && !replyUsesIntroWord) {
       findings.push(`${id}: интро ${index + 1}: правильный ответ ${target} не использует новое слово текущей сессии`);
     }
     const questionAt = introQuestionOffset(blocks[index]);
@@ -169,8 +221,11 @@ function introAlignmentIssues(source, words, id) {
       findings.push(`${id}: интро ${index + 1}: правильный ответ ${target} не разобран над вопросом`);
     }
     const signature = operationSignature(cleanTarget);
-    if (!scoredSignatures.includes(signature)) {
-      findings.push(`${id}: интро ${index + 1}: операция ${signature} не является правильным target в заданиях 1–16`);
+    const shortReplyOperationCovered = signature === "statement|is"
+      && shortExistentialReply
+      && scoredSignatures.some((candidate) => candidate.startsWith("statement|is "));
+    if (!scoredSignatures.includes(signature) && !shortReplyOperationCovered) {
+      findings.push(`${id}: интро ${index + 1}: операция ${signature} не является правильным target в заданиях ${practiceRange}`);
     }
     const requiredAction = actionKind(cleanTarget);
     if (!finalActions.includes(requiredAction)) {
@@ -217,6 +272,12 @@ export function progressionIssues(sessionsRoot, from = 25) {
     const scene = /^\*\*Сцена сессии\.\*\*\s*(.+)$/mi.exec(source)?.[1]?.trim().toLowerCase();
     const ukFile = path.join(sessionsRoot, entry.name, "final.uk.md");
     const ukSource = fs.existsSync(ukFile) ? fs.readFileSync(ukFile, "utf8") : null;
+    const atomicFile = path.join(sessionsRoot, entry.name, "practice.atomic.json");
+    let atomic = null;
+    if (fs.existsSync(atomicFile)) {
+      try { atomic = JSON.parse(fs.readFileSync(atomicFile, "utf8")); }
+      catch { findings.push(`${entry.name}: practice.atomic.json нечитаем`); }
+    }
 
     if (n >= from && words.length === 0) findings.push(`${entry.name}: нет новых слов`);
     for (const word of words) {
@@ -233,10 +294,10 @@ export function progressionIssues(sessionsRoot, from = 25) {
       else if (!seenScenes.has(scene)) seenScenes.set(scene, entry.name);
     }
     if (n >= from) {
-      findings.push(...introAlignmentIssues(source, words, `${entry.name}/final.ru.md`));
+      findings.push(...introAlignmentIssues(source, words, `${entry.name}/final.ru.md`, atomic, "ru"));
       findings.push(...spatialMeaningIssues(source, `${entry.name}/final.ru.md`));
       if (ukSource) {
-        findings.push(...introAlignmentIssues(ukSource, words, `${entry.name}/final.uk.md`));
+        findings.push(...introAlignmentIssues(ukSource, words, `${entry.name}/final.uk.md`, atomic, "uk"));
         findings.push(...spatialMeaningIssues(ukSource, `${entry.name}/final.uk.md`));
       }
     }

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-21:i01",
-    "correctText": "",
+    "correctText": "towel",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-21:i03",
-    "correctText": "",
+    "correctText": "curtain",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-21:i07",
-    "correctText": "",
+    "correctText": "pillow",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-21:i14",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-21:i14:p1=towels\nen:lesson-03:session-21:i14:p2=curtains\nen:lesson-03:session-21:i14:p3=pillows\nen:lesson-03:session-21:i14:p4=glasses",
     "correctResponseId": null
   },
   {

@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 40 — «Чотири вказівні слова біля виходу»
+# Англійська · Урок 3 · Заняття 40 — «Чотири вказівні слова біля виходу»
 
-**Сцена сесії.** Ви з другом зупинилися біля столу перевірки поруч із виходом із критого ринку; працівник розклав ближче й далі пакет зі штрихкодом, коробку із захисною пломбою та кілька купонів. Треба звірити покупки перед виходом і назвати кожен предмет або групу, уживаючи правильне вказівне слово.
+**Сцена заняття.** Ви з другом зупинилися біля столу перевірки поруч із виходом із критого ринку; працівник розклав ближче й далі пакет зі штрихкодом, коробку із захисною пломбою та кілька купонів. Треба звірити покупки перед виходом і назвати кожен предмет або групу, уживаючи правильне вказівне слово.
 
-**Операція:** вибирати `this/that/these/those` за кількістю й відстанню
+**Як сказати:** вибирати `this/that/these/those` за кількістю й відстанню
 **Нові слова:** barcode, seal, coupon
 **Для повторення:** is, are, this, that, these, those
 
@@ -50,85 +50,120 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
-**1 · Картка слова — barcode**
-> **barcode** — «штрихкод». Ряд темних смуг і цифр на упаковці, за яким визначають товар.
+**1 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-40:i01; family: listen_choose -->
+Ціль: `barcode`
+Варіанти: `barcode`
 
-**2 · Послухайте й виберіть — яке слово назвав працівник**
-🔊 *barcode* → **barcode** · backboard · bargain · card
-Значення варіантів: barcode — штрихкод · backboard — щит · bargain — вигідна покупка · card — картка
-- backboard — *У `backboard` після `back` чути /bɔːrd/, а в `barcode` чітко чути дві частини: /bɑːr/ і /koʊd/.*
-- bargain — *`bargain` закінчується складом /ɡən/, а в `barcode` чути `code` /koʊd/.*
-- card — *`card` — односкладове слово, а в `barcode` чути дві частини: `bar` і `code`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-40:i03; family: scripted_repeat_compare -->
+Ціль: `seal`
 
-**3 · Картка слова — seal**
-> **seal** — «захисна пломба». Смужка або наліпка на упаковці, що показує, чи відкривали упаковку.
+**3 · Послухайте та виберіть товар — купони лежать з іншого боку**
+<!-- interaction_id: en:lesson-03:session-40:i05; family: listen_choose -->
+Ціль: `coupon`
+Варіанти: `coupon`
 
-**4 · Послухайте й виберіть — яке слово назвав працівник**
-🔊 *seal* → **seal** · seat · silk · sale
-Значення варіантів: seal — захисна пломба · seat — сидіння · silk — шовк · sale — розпродаж
-- seat — *Обидва слова починаються з /siː/, але `seat` закінчується звуком /t/, а `seal` — /l/.*
-- silk — *У `silk` чути короткий /ɪ/ і кінцевий /k/, а в `seal` — довгий /iː/ і /l/.*
-- sale — *`sale` вимовляється з /eɪ/, а в `seal` чути довгий /iː/.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-40:i02; family: scripted_repeat_compare -->
+Ціль: `barcode`
 
-**5 · Картка слова — coupon**
-> **coupon** — «купон». Паперовий або електронний талон, що дає знижку на покупку.
+**5 · Послухайте та виберіть слово**
+<!-- interaction_id: en:lesson-03:session-40:i04; family: listen_choose -->
+Ціль: `seal`
+Варіанти: `seal`
 
-**6 · Послухайте й виберіть — яке слово назвав працівник**
-🔊 *coupon* → **coupon** · cabin · cotton · cube
-Значення варіантів: coupon — купон · cabin — кабіна · cotton — бавовна · cube — куб
-- cabin — *`cabin` починається з /kæ/, а `coupon` — з довгого /kuː/.*
-- cotton — *У `cotton` перший голосний /ɒ/, а в `coupon` чути /uː/.*
-- cube — *`cube` — односкладове слово з кінцевим /b/, а `coupon` складається з двох складів і закінчується /pɒn/.*
+**6 · Промовте слово — купони лежать далі**
+<!-- interaction_id: en:lesson-03:session-40:i06; family: scripted_repeat_compare -->
+Ціль: `coupon`
 
 **7 · З'єднайте слова зі значеннями — перевірка упаковки**
-barcode — штрихкод · seal — захисна пломба · coupon — купон · package — упаковка
+<!-- interaction_id: en:lesson-03:session-40:i08; family: speed_match -->
+Пари: `barcode` — штрихкод · `seal` — захисна пломба · `coupon` — купон · `package` — упаковка
+Ціль: `barcode · seal · coupon · package`
 
-**8 · Послухайте й виберіть точне значення фрази**
-🔊 *This is a barcode.* → **Це штрихкод** · Це штрихкоди · Це захисна пломба · Це купони
-- Це штрихкоди — *У записі чути `this is` і `a barcode`: називають один штрихкод.*
-- Це захисна пломба — *Названо `barcode` — штрихкод, а захисна пломба — `seal`.*
-- Це купони — *Названо один `barcode`, а не кілька `coupons`.*
+**8 · Послухайте та складіть фразу — пломба з іншого боку**
+<!-- interaction_id: en:lesson-03:session-40:i10; family: listen_build_dictation -->
+Ціль: `That is a seal.`
 
-**9 · Вставте вказівне слово — кілька штрихкодів лежать з іншого боку**
-___ are barcodes. → **Those** · These · That · This
-- These — *`These are barcodes` підходить для штрихкодів поруч. Ця група далі, тому потрібне `Those`.*
-- That — *`That` стосується одного предмета й потребує `is`. Тут штрихкодів кілька.*
-- This — *`This` стосується одного предмета поруч. Тут називають віддалену групу.*
+**9 · Промовте фразу — штрихкод поруч**
+<!-- interaction_id: en:lesson-03:session-40:i11; family: scripted_repeat_compare -->
+Ціль: `This is a barcode.`
 
-**10 · Складіть опис — кілька штрихкодів тепер перед вами**
-Плитки: `These` `are` `barcodes` `Those` `is` `a` `barcode` → **These are barcodes.**
+**10 · Складіть фразу — кілька купонів з іншого боку**
+<!-- interaction_id: en:lesson-03:session-40:i07; family: phrase_builder -->
+Ціль: `Those are coupons.`
 
-**11 · Послухайте й виберіть точне значення фрази**
-🔊 *That is a seal.* → **Це захисна пломба** · Це захисні пломби · Це штрихкод · Це купон
-- Це захисні пломби — *У записі чути `that is` і `a seal`: називають одну захисну пломбу.*
-- Це штрихкод — *У записі `seal` — «захисна пломба», а не `barcode` — «штрихкод».*
-- Це купон — *Названо `seal`, а купон англійською — `coupon`.*
+**11 · Вставте вказівне слово — кілька штрихкодів лежать з іншого боку**
+<!-- interaction_id: en:lesson-03:session-40:i09; family: context_gap_grammar -->
+Ціль: `___ are barcodes.`
+Варіанти: `Those` · `These` · `That` · `This`
 
-**12 · Складіть два описи — пломба поруч, кілька пломб далі**
-Плитки: `This` `is` `a` `seal` `Those` `are` `seals` `These` `that` → **This is a seal. Those are seals.**
+**12 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i12:s01; family: phrase_builder -->
+Ціль: `This is a seal.`
 
-**13 · Послухайте й виберіть точне значення фрази**
-🔊 *Those are coupons.* → **Це купони** · Це купон · Це штрихкоди · Це захисні пломби
-- Це купон — *У записі чути `those are` і `coupons`: називають кілька купонів.*
-- Це штрихкоди — *Названо `coupons` — купони, а не `barcodes` — штрихкоди.*
-- Це захисні пломби — *Названо `coupons`, а захисні пломби — `seals`.*
+**13 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i12:s02; family: scripted_repeat_compare -->
+Ціль: `Those are seals.`
 
-**14 · Складіть два описи — один купон далі, кілька поруч**
-Плитки: `That` `is` `a` `coupon` `These` `are` `coupons` `Those` `this` → **That is a coupon. These are coupons.**
+**14 · Послухайте й виберіть точне значення фрази**
+<!-- interaction_id: en:lesson-03:session-40:i13; family: listen_choose -->
+Ціль: `Those are coupons.`
+Варіанти: `Он ті купони.` · `Це купон.` · `Це штрихкоди.` · `Це захисні пломби.`
 
-**15 · Скажіть уголос — перевірте штрихкод і купони**
-🎙 **This is a barcode. Those are coupons.** — назвіть один штрихкод поруч і кілька купонів далі, потім послухайте зразок і порівняйте.
+**15 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i14:s01; family: phrase_builder -->
+Ціль: `That is a coupon.`
 
-**16 · Послухайте й складіть чотири описи**
-🔊 *This is a barcode. That is a seal. These are coupons. Those are barcodes.* Плитки: `This` `is` `a` `barcode` `That` `is` `a` `seal` `These` `are` `coupons` `Those` `are` `barcodes` `coupon` → **This is a barcode. That is a seal. These are coupons. Those are barcodes.**
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i14:s02; family: scripted_repeat_compare -->
+Ціль: `These are coupons.`
 
-**17 · Фінал — працівник поміняв предмети місцями**
-🎙 **That is a barcode. This is a seal. Those are barcodes. These are coupons.** — один штрихкод тепер далі, пломба поруч, кілька штрихкодів далі, а купони перед вами. Назвіть усе по черзі, потім послухайте зразок і порівняйте.
+**17 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i15:s01; family: phrase_builder -->
+Ціль: `This is a barcode.`
 
-## Для збирача
-new_words: barcode — штрихкод — Ряд темних смуг і цифр на упаковці, за яким визначають товар.
-new_words: seal — захисна пломба — Смужка або наліпка на упаковці, що показує, чи відкривали упаковку.
-new_words: coupon — купон — Паперовий або електронний талон, що дає знижку на покупку.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_choose, 12=phrase_builder, 13=listen_choose, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=scripted_repeat_compare
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i15:s02; family: scripted_repeat_compare -->
+Ціль: `Those are coupons.`
+
+**19 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i16:s01; family: listen_build_dictation -->
+Ціль: `This is a barcode.`
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i16:s02; family: scripted_repeat_compare -->
+Ціль: `That is a seal.`
+
+**21 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i16:s03; family: listen_build_dictation -->
+Ціль: `These are coupons.`
+
+**22 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i16:s04; family: scripted_repeat_compare -->
+Ціль: `Those are barcodes.`
+
+**23 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i17:s01; family: phrase_builder -->
+Ціль: `That is a barcode.`
+
+**24 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i17:s02; family: scripted_repeat_compare -->
+Ціль: `This is a seal.`
+
+**25 · Складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i17:s03; family: phrase_builder -->
+Ціль: `Those are barcodes.`
+
+**26 · Послухайте одну фразу**
+<!-- interaction_id: en:lesson-03:session-40:i17:s04; family: listen_choose -->
+Ціль: `These are coupons.`
+Варіанти: `These are coupons.` · `barcode` · `seal` · `coupon`
+
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=scripted_repeat_compare, 7=speed_match, 8=listen_build_dictation, 9=scripted_repeat_compare, 10=phrase_builder, 11=context_gap_grammar, 12=phrase_builder, 13=scripted_repeat_compare, 14=listen_choose, 15=phrase_builder, 16=scripted_repeat_compare, 17=phrase_builder, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare, 21=listen_build_dictation, 22=scripted_repeat_compare, 23=phrase_builder, 24=scripted_repeat_compare, 25=phrase_builder, 26=listen_choose
+

@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 8 — «Десять вопросов за завтраком»
+# Английский · Урок 2 · Занятие 8 — «Десять вопросов за завтраком»
 
-**Сцена сессии.** Утро субботы, кухня хостела. За столом сосед, который вчера вернулся заполночь, и разговор идёт короткими вопросами: голодный? хочешь пить? замёрз?
+**Сцена занятия.** Утро субботы, кухня хостела. За столом сосед, который вчера вернулся заполночь, и разговор идёт короткими вопросами: голодный? хочешь пить? замёрз?
 
-**Операция:** повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`
+**Как сказать:** повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`
 **Новые слова:** —
 **Возвращаются:** awake, hungry, thirsty, cold, lost
 
@@ -56,85 +56,106 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Соедините пары (Speed Match, 4 пары)**
-awake — проснулся · hungry — голодный · thirsty — хочет пить · cold — замёрз
+**1 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-08:i01; family: speed_match -->
+Пары: `awake` — проснулся · `hungry` — голодный · `thirsty` — хочет пить · `cold` — замёрз
+Цель: `awake · hungry · thirsty · cold`
 
 **2 · Вставьте слово — сосед спит лицом в стол, вы будите**
-___ you awake? → **Are** · You · Am
-- You — *С этого начинается сообщение, а не вопрос: `You are awake`. В вопросе первым стоит `are`.*
-- Am — *`am` — форма для `I`. Вы спрашиваете соседа, а к `you` идёт `are`.*
+<!-- interaction_id: en:lesson-02:session-08:i02; family: context_gap_grammar -->
+Цель: `___ you awake?`
+Варианты: `Are` · `You` · `Am`
 
-**3 · Послушайте и выберите — awake**
-🔊 *awake* → **awake** · away · alone
-- away — *`away` — «прочь». Начало общее, а дальше расходятся: в `awake` слышно «к», в `away` — «у».*
-- alone — *`alone` — «один». Тоже начинается с «э-», но дальше «л», а не «у».*
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-08:i03; family: listen_choose -->
+Цель: `awake`
+Варианты: `awake` · `away` · `alone`
 
 **4 · Соберите фразу — спросить соседа, не голоден ли он**
-Плитки: `hungry` `you` `Are` `am` → **Are you hungry?**
+<!-- interaction_id: en:lesson-02:session-08:i04; family: phrase_builder -->
+Цель: `Are you hungry?`
 
 **5 · Вставьте слово — сосед третий раз тянется к графину с водой**
-Are you ___ ? → **thirsty** · lost · awake
-- lost — *«Заблудился». За кухонным столом заблудиться сложно.*
-- awake — *«Проснулся». Он явно не спит — он пьёт.*
+<!-- interaction_id: en:lesson-02:session-08:i05; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `thirsty` · `lost` · `awake`
 
 **6 · Послушайте и соберите — «да, я голоден» коротко**
-🔊 *Yes, I am.* Плитки: `am` `Yes` `I` `not` → **Yes, I am.**
+<!-- interaction_id: en:lesson-02:session-08:i06; family: listen_build_dictation -->
+Цель: `Yes, I am.`
 
 **7 · Вставьте слово — вы отказываетесь от добавки**
-No, I am ___ . → **not** · no · am
-- no — *`no` стоит в начале ответа, а внутри фразы работает `not`.*
-- am — *`am` уже сказано один раз. Отрицание делает `not`.*
+<!-- interaction_id: en:lesson-02:session-08:i07; family: context_gap_grammar -->
+Цель: `No, I am ___ .`
+Варианты: `not` · `no` · `am`
 
 **8 · Соберите фразу — окно открыто всю ночь, спросите соседа, не замёрз ли он**
-Плитки: `cold` `Are` `you` `not` → **Are you cold?**
-*(Плитка `not` не нужна: вы спрашиваете, а не отрицаете.)*
+<!-- interaction_id: en:lesson-02:session-08:i08; family: phrase_builder -->
+Цель: `Are you cold?`
 
 **9 · Различите звуки — какое из двух про «замёрз»?**
-🔊 Два слова подряд.
-*cold · gold* → **cold**
-- gold — *Это «золото». Первый звук другой: `cold` начинается как «к», `gold` — как «г».*
+<!-- interaction_id: en:lesson-02:session-08:i09; family: sound_contrast -->
+Варианты: `cold` · `gold`
 
-**10 · Послушайте и выберите — thirsty**
-🔊 *thirsty* → **thirsty** · thirty · dirty
-- thirty — *«Тридцать». В `thirsty` перед концом слышно «с», в `thirty` его нет.*
-- dirty — *«Грязный». Первый звук другой: `thirsty` начинается с шепелявого «th», `dirty` — с «д».*
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-08:i10; family: listen_choose -->
+Цель: `thirsty`
+Варианты: `thirsty` · `thirty` · `dirty`
 
 **11 · Вставьте слово — сосед вернулся к хостелу с другой стороны и не понимает, куда попал**
-Are you ___ ? → **lost** · hungry · cold
-- hungry — *«Голодный». Он не про еду — он не понял, где находится.*
-- cold — *«Замёрз». Про растерянность это не говорит.*
+<!-- interaction_id: en:lesson-02:session-08:i11; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `lost` · `hungry` · `cold`
 
 **12 · Послушайте и соберите — «нет, я не голоден»**
-🔊 *No, I am not.* Плитки: `not` `am` `No` `I` → **No, I am not.**
+<!-- interaction_id: en:lesson-02:session-08:i12; family: listen_build_dictation -->
+Цель: `No, I am not.`
 
 **13 · Вставьте слово — сосед сидит в куртке и прячет руки в рукава**
-Are you ___ ? → **cold** · awake · hungry
-- awake — *«Проснулся». Он и не спал, он мёрзнет.*
-- hungry — *«Голоден». Куртка и спрятанные руки — это про холод, а не про еду.*
+<!-- interaction_id: en:lesson-02:session-08:i13; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `cold` · `awake` · `hungry`
 
 **14 · Соберите фразу — сосед спросил «Are you lost?», а вы заблудились**
-Плитки: `am` `Yes` `I` `lost` → **Yes, I am.**
-*(Плитка `lost` не нужна: слово из вопроса в коротком ответе не повторяют.)*
+<!-- interaction_id: en:lesson-02:session-08:i14; family: phrase_builder -->
+Цель: `Yes, I am lost.`
 
-**15 · Соедините пары (Speed Match, 4 пары)**
-lost — заблудился · not — не · yes — да · no — нет
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-08:i15; family: speed_match -->
+Пары: `lost` — заблудился · `not` — не · `yes` — да · `no` — нет
+Цель: `lost · not · yes · no`
 
-**16 · Скажите вслух — спросите и ответьте за двоих**
-🎙 **Are you awake? Yes, I am.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i16:s01; family: scripted_repeat_compare -->
+Цель: `Are you awake?`
 
-**17 · Финал сцены — спросите двоих и ответьте за них: да и нет**
-🎙 Завтрак заканчивается. Спросите соседа, не замёрз ли он и не хочет ли пить, а потом ответьте за себя: голодны вы да, а заблудились нет.
-**Are you cold? Are you thirsty? Yes, I am. No, I am not.**
+**17 · Вы только что открыли глаза и сели за стол. Скажите, что вы уже проснулись.**
+<!-- interaction_id: en:lesson-02:session-08:i16:s02; family: scripted_repeat_compare -->
+Цель: `Yes, I am awake.`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i17:s01; family: scripted_repeat_compare -->
+Цель: `Are you cold?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-08:i17:s02; family: scripted_repeat_compare -->
+Цель: `Are you thirsty?`
+
+**20 · После долгой прогулки вы хотите воды. Скажите, что вы хотите пить.**
+<!-- interaction_id: en:lesson-02:session-08:i17:s03; family: scripted_repeat_compare -->
+Цель: `Yes, I am thirsty.`
+
+**21 · На вас тёплый свитер, и в комнате тепло. Скажите, что вам не холодно.**
+<!-- interaction_id: en:lesson-02:session-08:i17:s04; family: scripted_repeat_compare -->
+Цель: `No, I am not cold.`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=phrase_builder, 9=sound_contrast, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_build_dictation, 7=context_gap_grammar, 8=phrase_builder, 9=sound_contrast, 10=listen_choose, 11=context_gap_grammar, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=speed_match, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 
@@ -162,11 +183,11 @@ modes: 1=speed_match, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| awake (доска 1) | из прошлых сессий | из прошлых сессий |
-| hungry (доска 1) | из прошлых сессий | из прошлых сессий |
-| thirsty (доска 1) | из прошлых сессий | из прошлых сессий |
-| cold (доска 1) | из прошлых сессий | из прошлых сессий |
-| lost (доска 15) | из прошлых сессий | задания 5, 11 |
+| awake (доска 1) | из прошлых занятий | из прошлых занятий |
+| hungry (доска 1) | из прошлых занятий | из прошлых занятий |
+| thirsty (доска 1) | из прошлых занятий | из прошлых занятий |
+| cold (доска 1) | из прошлых занятий | из прошлых занятий |
+| lost (доска 15) | из прошлых занятий | задания 5, 11 |
 
 | not (доска 15) | Интро 3 | Интро 3, задания 12, 14 |
 | yes (доска 15) | Интро 2 | Интро 2, задания 4, 14 |

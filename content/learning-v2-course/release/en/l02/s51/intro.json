@@ -129,42 +129,42 @@
       "question": {
         "interactionId": "en:lesson-02:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Обратитесь к прохожему и спросите, где станция.",
-          "uk": "Зверніться до перехожого й запитайте, де станція."
+          "ru": "Вы уже сказали прохожему `Excuse me.` Теперь спросите, где станция.",
+          "uk": "Ви вже сказали перехожому `Excuse me.` Тепер запитайте, де станція."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-02:session-51:intro3:r1",
-              "text": "Excuse me. Where is the station?"
+              "text": "Where is the station?"
             },
             {
               "responseId": "en:lesson-02:session-51:intro3:r2",
-              "text": "Excuse me. Where the station?"
+              "text": "Where the station?"
             },
             {
               "responseId": "en:lesson-02:session-51:intro3:r3",
-              "text": "Excuse me. Who is the station?"
+              "text": "Who is the station?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-02:session-51:intro3:r1",
-              "text": "Excuse me. Where is the station?"
+              "text": "Where is the station?"
             },
             {
               "responseId": "en:lesson-02:session-51:intro3:r2",
-              "text": "Excuse me. Where the station?"
+              "text": "Where the station?"
             },
             {
               "responseId": "en:lesson-02:session-51:intro3:r3",
-              "text": "Excuse me. Who is the station?"
+              "text": "Who is the station?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Обратитесь к прохожему и спросите, где станция.",
-          "uk": "Зверніться до перехожого й запитайте, де станція."
+          "ru": "Вы уже сказали прохожему `Excuse me.` Теперь спросите, где станция.",
+          "uk": "Ви вже сказали перехожому `Excuse me.` Тепер запитайте, де станція."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fdcd2d473017afc77c642c9997293dbedb4a5569a7153795dccff3a4f22f00a8"
+  "introFingerprint": "2889090831cbc78d041f4b5452df8445c08c08a78481246f9adfb2d1238a61e4"
 }

@@ -1,0 +1,96 @@
+{
+  "session": "en/l04/s15",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T12:04:28.935Z",
+  "sourceSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactRuSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactUkSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "practiceAtomicSha256": "4ef34bdda3c59880e0d53f1b333b7ebe94ddbd390aae50a557095c134b1d0ff9",
+  "localeHashes": {
+    "ru": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+    "uk": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S15 quality/spec reviewers",
+  "role": "judge_progression",
+  "sourceReport": "fresh independent semantic progression review of current sources through en/l04/s11",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "comparedThrough": "en/l04/s14",
+  "newWords": [
+    "gym"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "extract and mix Is there…? and Are there…? without a ready-made frame",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 15 | извлечение | смешать `Is there…?` и `Are there…?` без готового каркаса | gym | во время экскурсии по дому спрашиваем о тренажёрном зале и комнатах |",
+  "curriculumEvidence": {
+    "grammar": "The row requires mixing Is there…? and Are there…? without a ready-made frame.",
+    "newWords": [
+      "gym"
+    ],
+    "situation": "During a house tour, ask about a gym and rooms."
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "gym"
+      ],
+      "correctAnswer": "gym",
+      "sceneEvidence": "The house tour introduces one gym.",
+      "practiceTask": 1,
+      "practiceTarget": "gym",
+      "finalEvidence": "The current final practices gym.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "gym"
+      ],
+      "correctAnswer": "Is there a gym here?",
+      "sceneEvidence": "One gym is identified in the house.",
+      "practiceTask": 8,
+      "practiceTarget": "Is there a gym here?",
+      "finalEvidence": "The current final tests the singular question.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "gym"
+      ],
+      "correctAnswer": "Are there rooms near the gym?",
+      "sceneEvidence": "Several rooms are identified near the gym.",
+      "practiceTask": 12,
+      "practiceTarget": "Are there rooms near the gym?",
+      "finalEvidence": "The current final tests the plural question.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "evidence": [
+    "Exact curriculum grammar, platform vocabulary, and station situation all occur in RU/UK/atomic.",
+    "The full-form i11 is a distinct guided interaction for the negative branch, while i06 is the distinct guided affirmative interaction and i12 remains the sole independent check; no authority requires a second independent check."
+  ],
+  "at": "2026-10-08T12:04:28.935Z",
+  "localeSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "preauthoringSha256": "4144f7b694438a4d536af3ca37b4241cd5b729bd5d2d5de43555567981de1b23",
+  "converged": true,
+  "needsHumanReview": false
+}

@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-35:i01",
-    "correctText": "",
+    "correctText": "sure",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i03",
-    "correctText": "",
+    "correctText": "wrong",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i06",
-    "correctText": "",
+    "correctText": "free",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i08",
-    "correctText": "",
+    "correctText": "alone",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-35:i12",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-35:i12:p1=sure\nen:lesson-01:session-35:i12:p2=wrong\nen:lesson-01:session-35:i12:p3=free\nen:lesson-01:session-35:i12:p4=alone",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,28 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-35:i17",
-    "correctText": "We are not late. We are hungry. We are not busy. We are not sure. We are ready.",
+    "interactionId": "en:lesson-01:session-35:i17:s01",
+    "correctText": "We are not late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:i17:s02",
+    "correctText": "We are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:i17:s03",
+    "correctText": "We are not busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:i17:s04",
+    "correctText": "We are not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-35:i17:s05",
+    "correctText": "We are ready.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro1:r2": {
+          "ru": "Пропало `it`. Фраза о погоде всегда начинается с него, даже если по-русски там ничего нет.",
+          "uk": "Зникло `it`. Фраза про погоду завжди починається з нього, навіть якщо українською там нічого немає."
+        },
+        "en:lesson-01:session-31:intro1:r3": {
+          "ru": "Между `it` и словом о погоде нужна форма `is`.",
+          "uk": "Між `it` і словом про погоду потрібна форма `is`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro2:r2": {
+          "ru": "Слишком сильно. `hot` — это когда хочется в тень, а тут просто приятно.",
+          "uk": "Занадто сильно. `hot` — це коли хочеться в тінь, а тут просто приємно."
+        },
+        "en:lesson-01:session-31:intro2:r3": {
+          "ru": "Наоборот. `cold` — «холодно», а куртка не понадобилась.",
+          "uk": "Навпаки. `cold` — «холодно», а куртка не знадобилася."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-31:intro3:r2": {
+          "ru": "Это про мокро, а дождь как раз кончился. Сухо — `dry`.",
+          "uk": "Це про мокро, а дощ якраз скінчився. Сухо — `dry`."
+        },
+        "en:lesson-01:session-31:intro3:r3": {
+          "ru": "Слова перевернулись. Сначала `It is`, потом слово о погоде — порядок не меняется.",
+          "uk": "Слова перевернулися. Спочатку `It is`, потім слово про погоду — порядок не міняється."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97fd53158bb74c794497ac84aa9a15a1528b77b62419741659d7d4be02be466e"
+}

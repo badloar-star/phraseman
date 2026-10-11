@@ -1,103 +1,17 @@
 {
-  "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
-  "introAnswers": [
-    {
-      "step": 1,
-      "answer": "It is a chair."
-    },
-    {
-      "step": 2,
-      "answer": "It is a table."
-    },
-    {
-      "step": 3,
-      "answer": "It is a lamp."
-    }
-  ],
-  "practiceAnswers": [
-    {
-      "step": 1,
-      "answer": "acknowledgeword: chair"
-    },
-    {
-      "step": 2,
-      "answer": "chair"
-    },
-    {
-      "step": 3,
-      "answer": "acknowledgeword: table"
-    },
-    {
-      "step": 4,
-      "answer": "table"
-    },
-    {
-      "step": 5,
-      "answer": "A chair."
-    },
-    {
-      "step": 6,
-      "answer": "acknowledgeword: lamp"
-    },
-    {
-      "step": 7,
-      "answer": "lamp"
-    },
-    {
-      "step": 8,
-      "answer": "It is a table."
-    },
-    {
-      "step": 9,
-      "answer": "It is a flat."
-    },
-    {
-      "step": 10,
-      "answer": "It is a lamp."
-    },
-    {
-      "step": 11,
-      "answer": "lamp:лампа; table:стол; chair:стул; flat:квартира"
-    },
-    {
-      "step": 12,
-      "answer": "is a"
-    },
-    {
-      "step": 13,
-      "answer": "Is it a lamp?"
-    },
-    {
-      "step": 14,
-      "answer": "is"
-    },
-    {
-      "step": 15,
-      "answer": "Is it ready?"
-    },
-    {
-      "step": 16,
-      "answer": "It is a table."
-    },
-    {
-      "step": 17,
-      "answer": "It is not a lamp."
-    }
-  ],
-  "confusions": [],
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_learner",
+  "sourceSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactRuSha256": "582a506f0e464d610d6521b27f220e8fd6053f8668273488e1f6f15908e9d8e7",
+  "exactUkSha256": "0ff3ee539f855bd8073ec5c7913984de6890e86a3d844ceddf23b9fb904c09d7",
+  "practiceAtomicSha256": "c74a9586a2cb3c24d31cee7ac4158a18d48a78fbe3c32a3beb61ed0d5f1ce06f",
   "verdict": "PASS",
-  "answerComparison": {
-    "intro": 3,
-    "practice": 17,
-    "matched": true,
-    "scope": "text only; current absolute-path private projection"
-  },
-  "freshReview20260919": {
-    "reviewedAt": "2026-09-19T17:35:00.3718949Z",
-    "exactRuSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
-    "exactUkSha256": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
-    "verdict": "PASS",
-    "evidence": "Task 4 has one correct answer table; fable is a real onset contrast and does not reveal the answer.",
-    "mustFix": []
-  }
+  "evidence": [
+    "The first-box scene makes each full naming answer concrete before the learner builds or hears it.",
+    "Exact intro answers assessed: It is a chair. | It is a table. | It is a lamp.."
+  ],
+  "blockers": [],
+  "mustFix": []
 }

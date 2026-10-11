@@ -1,37 +1,38 @@
 {
-  "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+  "reviewer": "/root/l3_s01_s12_fresh_rejudge_v5",
+  "reviewedAt": "2026-10-04T12:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s01_s12_fresh_rejudge_v5.json",
+  "role": "judge_taste",
+  "sourceSha256": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+  "exactRuSha256": "56925dc6807737acd1df38f4efb2bdda7b83439fb1bc3a686ac2a4dfa25d65ce",
+  "exactUkSha256": "7ccdb229ff971c7246bb24a7baa13d08547079ba2086f16261a0277f26e083ca",
+  "practiceAtomicSha256": "a2d5a55e09181a3df481043eaa27d4b547abedf6f97489c670bbdf5b83aaadbe",
   "pairwise": "equal",
-  "pairwise_reason": "Эталоны местами ярче образами, но S6 держит ту же планку ясности, цельной сцены и живого объяснения. Юмор связан с предметами и языковой задачей, а не приклеен к готовому правилу.",
+  "pairwise_reason": "The joke belongs to the empty-basket example and reinforces that it is still one basket.",
   "voice": {
     "score": 4,
     "evidence": [
-      "«Покупать что-нибудь ради правильной английской фразы не придётся.» — естественная человеческая реплика, которая одновременно закрепляет смысл пустой корзины.",
-      "«Вам не нужно читать всё мелким шрифтом: эта фраза называет саму бирку, а не пересказывает написанное.» — живое и точное объяснение границы значения."
+      "Покупать что-нибудь ради правильной английской фразы не придётся."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "Покупать что-нибудь ради правильной английской фразы не придётся.",
-      "Вам не нужно читать всё мелким шрифтом: эта фраза называет саму бирку, а не пересказывает написанное."
+      "Покупать что-нибудь ради правильной английской фразы не придётся."
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Поход с другом в магазин последовательно мотивирует называние корзины, тележки, ярлыка и возвращённых предметов."
-  },
-  "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
   "best_lines": [
-    "А можно пока ничего не класть: пустая корзина тоже `a basket`.",
-    "Покупать что-нибудь ради правильной английской фразы не придётся.",
-    "Вам не нужно читать всё мелким шрифтом: эта фраза называет саму бирку, а не пересказывает написанное."
+    "Покупать что-нибудь ради правильной английской фразы не придётся."
   ],
+  "ai_text_or_nonsense": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Текст ясный, живой и цельный, уместный юмор подтверждён цитатами; `ai_text_or_nonsense` проверен и пуст."
+  "evidence": [
+    "The joke belongs to the empty-basket example and reinforces that it is still one basket."
+  ],
+  "blockers": [],
+  "mustFix": [],
+  "verdict_reason": "The current text keeps a clear everyday teaching voice; the cited line supports the language point and no AI-like padding was found."
 }

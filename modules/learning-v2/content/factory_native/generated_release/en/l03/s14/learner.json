@@ -886,13 +886,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг спрашивает, что висит на стене кафе; скажите «Это часы»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-14:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг спрашивает, что висит на стене кафе; скажите «Это часы»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -966,5 +966,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0177c3b5355e211fcadfe582f95aae08fed43fbeec87b95efefcd8aaf11ba06a"
+  "learnerFingerprint": "17801a4fb5c7c7bfc2a1a894e40116c98472f96b0ef3b79659af0c518fb18998"
 }

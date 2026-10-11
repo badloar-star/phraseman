@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 32 — «Ужин одними вопросами»
+# Английский · Урок 2 · Занятие 32 — «Ужин одними вопросами»
 
-**Сцена сессии.** Вечер в дублинском кафе. Вы сели за столик, английского почти нет, но заказать ужин надо — и всё делается вопросами: что это, где то, дорого ли.
+**Сцена занятия.** Вечер в дублинском кафе. Вы сели за столик, английского почти нет, но заказать ужин надо — и всё делается вопросами: что это, где то, дорого ли.
 
-**Операция:** повторение — `What is…?`, `Where is…?`, `Is it…?`, `It is + место`
+**Как сказать:** повторение — `What is…?`, `Where is…?`, `Is it…?`, `It is + место`
 **Новые слова:** —
 **Возвращаются:** menu, bill, price, toilet, corner, cheap, near
 
@@ -56,92 +56,98 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — menu**
-🔊 *menu* → **menu** · money · many
-- money — *Это «деньги». Меню приносят в начале ужина, деньги отдают в конце.*
-- many — *Это «много». Слово-описание, а не вещь на столе.*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-32:i01; family: listen_choose -->
+Цель: `menu`
+Варианты: `menu` · `money` · `many`
 
 **2 · Вставьте слово — вы спрашиваете название книжечки с едой**
-What is the ___ ? → **menu** · bill · corner
-- bill — *Это счёт, бумажка в конце ужина. Еду по ней не выбирают.*
-- corner — *Это «угол» — про место, а не про то, что лежит на столе.*
+<!-- interaction_id: en:lesson-02:session-32:i02; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `menu` · `bill` · `corner`
 
 **3 · Соберите фразу — спросите про цену**
-Плитки: `the` `What` `price` `is` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-32:i03; family: phrase_builder -->
+Цель: `What is the price?`
 
-**4 · Послушайте и выберите — cheap**
-🔊 *cheap* → **cheap** · sheep · shop
-- sheep — *Это «овца». Первый звук как в русском «шаль», а в `cheap` — как в «чай».*
-- shop — *Это «магазин». Прозвучало `cheap` — это про цену, а не про место.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-32:i04; family: listen_choose -->
+Цель: `cheap`
+Варианты: `cheap` · `sheep` · `shop`
 
 **5 · Вставьте слово — блюдо стоит два евро**
-It is ___ . → **cheap** · near · lost
-- near — *Это «рядом», про расстояние. Два евро — это про цену.*
-- lost — *Это «потерялся». К тарелке с едой не относится.*
+<!-- interaction_id: en:lesson-02:session-32:i05; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `cheap` · `near` · `lost`
 
 **6 · Соберите фразу — спросите, дешёвое ли это**
-Плитки: `it` `Is` `cheap` → **Is it cheap?**
+<!-- interaction_id: en:lesson-02:session-32:i06; family: phrase_builder -->
+Цель: `Is it cheap?`
 
 **7 · Различите звуки — какое из двух про «дешёвый»?**
-🔊 Два слова подряд.
-*cheap · jeep* → **cheap**
-- jeep — *Это «джип». Первый звук другой: `jeep` начинается с `j`, `cheap` — с `ch`.*
+<!-- interaction_id: en:lesson-02:session-32:i07; family: sound_contrast -->
+Варианты: `cheap` · `jeep`
 
 **8 · Карточка слова — corner**
-> **corner** — «угол». Место, где сходятся две стены или две улицы. «Столик в углу», «магазин на углу».
+<!-- interaction_id: en:lesson-02:session-32:i08; family: listen_choose -->
+Цель: `corner`
 
-**9 · Послушайте и выберите — corner**
-🔊 *corner* → **corner** · coffee · cover
-- coffee — *Это «кофе». Прозвучало `corner` — это про место, а не про напиток.*
-- cover — *Это «обложка». Прозвучало `corner` — это про угол зала, а не про предмет.*
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
+Цель: `corner`
+Варианты: `corner` · `coffee` · `cover`
 
 **10 · Вставьте слово — вы хотите узнать, сколько это стоит**
-What is the ___ ? → **price** · cheap · near
-*(`price` — «цена», сама цифра на ценнике)*
-- cheap — *Это описание, «дешёвый». А цифру на ценнике зовут `price`.*
-- near — *Это «рядом», про место. К стоимости отношения не имеет.*
+<!-- interaction_id: en:lesson-02:session-32:i10; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `price` · `cheap` · `near`
 
-**11 · Соедините пары (Speed Match, 4 пары)**
-menu — меню · cheap — дешёвый · price — цена · corner — угол
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-32:i11; family: speed_match -->
+Пары: `menu` — меню · `cheap` — дешёвый · `price` — цена · `corner` — угол
+Цель: `menu · cheap · price · corner`
 
 **12 · Карточка слова — bill**
-> **bill** — «счёт». Бумажка с суммой, которую приносят в конце ужина.
+<!-- interaction_id: en:lesson-02:session-32:i12; family: listen_choose -->
+Цель: `bill`
 
 **13 · Вставьте слово — вы поели и хотите расплатиться**
-What is the ___ ? → **bill** · menu · toilet
-*(`bill` — «счёт»)*
-- menu — *Меню вам уже принесли в начале. Платят по счёту.*
-- toilet — *Это место, а не бумажка с суммой.*
+<!-- interaction_id: en:lesson-02:session-32:i13; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `bill` · `menu` · `toilet`
 
 **14 · Соберите фразу — спросите, где туалет**
-Плитки: `the` `is` `toilet` `Where` → **Where is the toilet?**
+<!-- interaction_id: en:lesson-02:session-32:i14; family: phrase_builder -->
+Цель: `Where is the toilet?`
 
 **15 · Вставьте слово — официант показывает рукой: туалет в двух шагах**
-It is ___ . → **near** · cheap · bill
-*(`near` — «рядом»)*
-- cheap — *`cheap` — про цену. А тут речь о том, далеко ли идти.*
-- bill — *Это счёт, вещь. А тут нужно слово про расстояние.*
+<!-- interaction_id: en:lesson-02:session-32:i15; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `near` · `cheap` · `bill`
 
 **16 · Послушайте и соберите — «это рядом»**
-🔊 *It is near.* Плитки: `near` `It` `is` `Where` → **It is near.**
+<!-- interaction_id: en:lesson-02:session-32:i16; family: listen_build_dictation -->
+Цель: `It is near.`
 
 **17 · Соберите вопрос — вы поели и зовёте официанта; спросите про счёт**
-Плитки: `the` `What` `bill` `is` `Where` → **What is the bill?**
-*(плитка `Where` лишняя: счёт вы не ищете, вы спрашиваете сумму)*
+<!-- interaction_id: en:lesson-02:session-32:i17; family: phrase_builder -->
+Цель: `What is the bill?`
 
-**18 · Скажите вслух — конец ужина**
-🎙 Вы доели, зовёте официанта и говорите две фразы подряд: просите счёт и спрашиваете, где туалет.
-**What is the bill? Where is the toilet?**
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-32:i18:s01; family: scripted_repeat_compare -->
+Цель: `What is the bill?`
 
----
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-32:i18:s02; family: scripted_repeat_compare -->
+Цель: `Where is the toilet?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=sound_contrast, 8=word_card, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=word_card, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=sound_contrast, 8=listen_choose, 9=listen_choose, 10=context_gap_grammar, 11=speed_match, 12=listen_choose, 13=context_gap_grammar, 14=phrase_builder, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ## Самопроверка
 

@@ -1,0 +1,40 @@
+{
+  "session": "en/l04/s17",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T13:32:57.086Z",
+  "sourceSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactRuSha256": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+  "exactUkSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "practiceAtomicSha256": "b3d9af1391da1cbd09a42b170d9d5a693a5c9a161a2e1229d1d27c8d6ac90546",
+  "localeHashes": {
+    "ru": "4d0e95c074d2fe84481b49a89face8cef21e129be20375423015455751baa372",
+    "uk": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_s14_quality_review",
+  "role": "judge_pedagogy",
+  "sourceReport": "fresh independent read-only seven-role textual review after canonical-repeat repair; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The session teaches one operation family only: choosing a plural short answer to Are there...? by polarity and plural agreement.",
+    "i06 gives positive guided practice with same-polarity word-order/repetition distractors; i11 gives guided negative construction with is as the number-agreement distractor; i12 independently combines polarity and number discrimination.",
+    "No, there are not. is a grammatical full-form negative response and is explicitly connected to the planned contracted No, there aren't. in Intro 3; it avoids prohibited literal target repetition while preserving the operation."
+  ],
+  "at": "2026-10-08T13:32:57.086Z",
+  "localeSha256": "415c291202ef5fd08df0cde269047a822d77ab5cd5ec2389f0910216760a4a63",
+  "preauthoringSha256": "fb19c4883d799f206a8753b1c5e6267c83f6212e2b7de112a3ae072d131547ee",
+  "converged": true,
+  "needsHumanReview": false
+}

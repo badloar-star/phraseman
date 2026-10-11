@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-03:session-09:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `armchair` прямо перед «ч» слышно «м». В `archer` перед «ч» этого звука нет. Прислушайтесь к середине слова.",
               "uk": "В `armchair` безпосередньо перед звуком «ч» чути «м». В `archer` цього звука немає. Прислухайтеся до середини слова."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-03:session-09:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "Начальная часть у слов общая. Дальше в `armband` звучит «б», а в `armchair` — «ч». Слушайте сразу после «м».",
               "uk": "Початок у слів спільний. Далі в `armband` чути «б», а в `armchair` — «ч». Слухайте звук одразу після «м»."
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-03:session-09:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `even` первая гласная долгая, рот почти закрыт. В `oven` она короткая и более открытая: различаются и звук, и длина.",
               "uk": "В `even` перший голосний довгий, а рот майже закритий. В `oven` він короткий і відкритіший: відрізняються і звук, і тривалість."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-03:session-09:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `coven` сначала слышно «к», а затем гласный. В записи слово начинается прямо с гласного: `oven`.",
               "uk": "У `coven` спочатку чути «к», а вже потім голосний. Потрібне слово починається відразу з голосного: `oven`."
@@ -339,7 +339,7 @@
           {
             "responseId": "en:lesson-03:session-09:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `umbra` два слога, ударение на первом. В `umbrella` три слога, сильнее звучит средний. Не останавливайтесь на похожем начале.",
               "uk": "В `umbra` два склади, наголос падає на перший. В `umbrella` три склади, сильніше звучить середній. Не зупиняйтеся на схожому початку."
@@ -348,7 +348,7 @@
           {
             "responseId": "en:lesson-03:session-09:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "testedDimension": "Послухайте й виберіть — яке слово вимови",
             "feedbackByLocale": {
               "ru": "В `embrace` два слога, ударение на последнем. В `umbrella` три слога: после ударного среднего слышен ещё один.",
               "uk": "В `embrace` два склади, наголос падає на останній. В `umbrella` три склади: після наголошеного середнього чути ще один."
@@ -405,12 +405,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте слово — рядом стоит стул; назов",
+        "testedDimension": "Вставте слово — поруч стоїть стілець; на",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i07:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — рядом стоит стул; назов",
+            "testedDimension": "Вставте слово — поруч стоїть стілець; на",
             "feedbackByLocale": {
               "ru": "`chair` начинается со звука «ч», он согласный. Для этого названия нужно `a chair`.",
               "uk": "`chair` починається зі звука «ч», він приголосний. Для цієї назви потрібне `a chair`."
@@ -419,7 +419,7 @@
           {
             "responseId": "en:lesson-03:session-09:i07:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — рядом стоит стул; назов",
+            "testedDimension": "Вставте слово — поруч стоїть стілець; на",
             "feedbackByLocale": {
               "ru": "`is` уже стоит после `It`. Перед названием одного стула здесь нужно `a`.",
               "uk": "`is` уже стоїть після `It`. Перед назвою одного стільця тут потрібне `a`."
@@ -435,7 +435,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть коротку назву — друг запитує, що стоїть поруч зі стільцем; дайте двослівну відповідь: «крісло»",
+      "prompt": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i08:r1",
@@ -444,16 +444,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть коротку назву — друг запитує, що стоїть поруч зі стільцем; дайте двослівну відповідь: «крісло»",
+      "accessibilityLabel": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "An armchair.",
+        "targetPhrase": "It is an armchair.",
         "localizedMeaning": {
-          "ru": "Соберите короткое название — друг спрашивает, что стоит рядом со стулом; ответьте двумя словами «кресло»",
-          "uk": "Складіть коротку назву — друг запитує, що стоїть поруч зі стільцем; дайте двослівну відповідь: «крісло»"
+          "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+          "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
         },
         "orderedTokens": [
-          "An",
+          "It",
+          "is",
+          "an",
           "armchair"
         ],
         "authoredDistractorTokens": [
@@ -463,10 +465,10 @@
           {
             "responseId": "en:lesson-03:session-09:i08:r1",
             "correct": false,
-            "testedDimension": "Соберите короткое название — друг спраши",
+            "testedDimension": "Складіть коротку назву — друг запитує, щ",
             "feedbackByLocale": {
-              "ru": "Название `armchair` начинается с гласного звука. Перед ним нужно `An`, поэтому `A` остаётся лишним.",
-              "uk": "Назва `armchair` починається з голосного звука. Перед нею потрібне `An`, тому `A` залишається зайвим."
+              "ru": "После `It` нужна форма `is`, а перед `armchair` — `an`: `It is an armchair`.",
+              "uk": "Після `It` потрібна форма `is`, а перед `armchair` — `an`: `It is an armchair`."
             }
           }
         ]
@@ -518,12 +520,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте слово — друг указывает на лампу",
+        "testedDimension": "Вставте слово — друг указує на лампу; на",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг указывает на лампу",
+            "testedDimension": "Вставте слово — друг указує на лампу; на",
             "feedbackByLocale": {
               "ru": "Перед `lamp` уже есть `a`. Сейчас не хватает слова после `It`: полное начало — `It is`.",
               "uk": "Перед `lamp` уже є `a`. Зараз бракує слова після `It`: повний початок — `It is`."
@@ -532,7 +534,7 @@
           {
             "responseId": "en:lesson-03:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг указывает на лампу",
+            "testedDimension": "Вставте слово — друг указує на лампу; на",
             "feedbackByLocale": {
               "ru": "`am` подходит к `I`. Здесь говорим о предмете, поэтому начало — `It is`.",
               "uk": "`am` підходить до `I`. Тут говоримо про предмет, тому початок — `It is`."
@@ -654,7 +656,7 @@
           {
             "responseId": "en:lesson-03:session-09:i11:r1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите — продавец говорит",
+            "testedDimension": "Послухайте й складіть — продавець говори",
             "feedbackByLocale": {
               "ru": "В записи перед `oven` звучит `an`: название начинается с гласного звука. Плитка `a` здесь лишняя.",
               "uk": "У записі перед `oven` звучить `an`: назва починається з голосного звука. Плитка `a` тут зайва."
@@ -668,65 +670,43 @@
       "interactionId": "en:lesson-03:session-09:i12",
       "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — друг прийняв тростину за парасолю; скажіть «Це не парасоля»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть заперечення — друг прийняв тростину за парасолю; скажіть «Це не парасоля»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-09:i12:r1",
-          "text": "an"
-        },
-        {
-          "responseId": "en:lesson-03:session-09:i12:r2",
           "text": "a"
-        },
-        {
-          "responseId": "en:lesson-03:session-09:i12:r3",
-          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — друг прийняв тростину за парасолю; скажіть «Це не парасоля»",
+      "accessibilityLabel": "Складіть заперечення — друг прийняв тростину за парасолю; скажіть «Це не парасоля»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — друг принял трость за зонт; скажите «Это не зонт»",
-          "uk": "Вставте слово — друг прийняв тростину за парасолю; скажіть «Це не парасоля»"
+        "family": "phrase_builder",
+        "targetPhrase": "It is not an umbrella.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — друг принял трость за зонт; скажите «Это не зонт»",
+          "uk": "Складіть заперечення — друг прийняв тростину за парасолю; скажіть «Це не парасоля»"
         },
-        "gappedTargetPhrase": "It is not ___ umbrella.",
-        "gapOptions": [
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "an",
+          "umbrella"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
           {
             "responseId": "en:lesson-03:session-09:i12:r1",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r2",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r3",
-            "text": "is"
-          }
-        ],
-        "testedDimension": "Вставьте слово — друг принял трость за з",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-09:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — друг принял трость за з",
+            "testedDimension": "Складіть заперечення — друг прийняв тростину за парасолю",
             "feedbackByLocale": {
-              "ru": "`umbrella` начинается с гласного звука. В отрицании перед названием тоже нужно `an`.",
-              "uk": "`umbrella` починається з голосного звука. У запереченні перед назвою теж потрібне `an`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-09:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — друг принял трость за з",
-            "feedbackByLocale": {
-              "ru": "`is` уже стоит перед `not`. После `not` здесь идёт название `an umbrella`.",
-              "uk": "`is` уже стоїть перед `not`. Після `not` тут іде назва `an umbrella`."
+              "ru": "Перед `umbrella` нужен `an`: слово начинается с гласного звука.",
+              "uk": "Перед `umbrella` потрібне `an`: слово починається з голосного звука."
             }
           }
         ]
@@ -769,7 +749,7 @@
           {
             "responseId": "en:lesson-03:session-09:i13:r1",
             "correct": false,
-            "testedDimension": "Соберите вопрос — друг заметил ещё один ",
+            "testedDimension": "Складіть запитання — друг помітив за віт",
             "feedbackByLocale": {
               "ru": "Вопрос начинается с `Is it`, а перед `armchair` сохраняется `an`: первый звук названия гласный.",
               "uk": "Запитання починається з `Is it`, а перед `armchair` залишається `an`: перший звук назви голосний."
@@ -834,7 +814,7 @@
           {
             "responseId": "en:lesson-03:session-09:i14:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал друг ",
+            "testedDimension": "Послухайте й виберіть — що друг сказав п",
             "feedbackByLocale": {
               "ru": "Этот вариант начинается с `It is`. В записи порядок другой: сначала `Is`, затем `it` — звучит вопрос.",
               "uk": "Цей варіант починається з `It is`. У записі порядок інший: спочатку `Is`, потім `it` — це запитання."
@@ -843,7 +823,7 @@
           {
             "responseId": "en:lesson-03:session-09:i14:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — что сказал друг ",
+            "testedDimension": "Послухайте й виберіть — що друг сказав п",
             "feedbackByLocale": {
               "ru": "Начало вопроса совпадает. Но в конце записи звучит двухсложное `oven`, а не трёхсложное `umbrella`.",
               "uk": "Початок запитання збігається. Але наприкінці запису звучить двоскладове `oven`, а не трискладове `umbrella`."
@@ -892,7 +872,7 @@
           {
             "responseId": "en:lesson-03:session-09:i15:r1",
             "correct": false,
-            "testedDimension": "Соберите отрицание — друг указывает на м",
+            "testedDimension": "Складіть заперечення — друг указує на ма",
             "feedbackByLocale": {
               "ru": "Отрицание не меняет выбор перед `oven`: название начинается с гласного звука, поэтому нужно `an`.",
               "uk": "Заперечення не змінює вибір перед `oven`: назва починається з голосного звука, тому потрібне `an`."
@@ -908,13 +888,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — друг не зрозумів, на що ви показуєте поруч із кріслом; скажіть «Це лампа»",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-09:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — друг не зрозумів, на що ви показуєте поруч із кріслом; скажіть «Це лампа»",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -971,7 +951,7 @@
           {
             "responseId": "en:lesson-03:session-09:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу — друг показывает на раск",
+            "testedDimension": "Складіть фразу — друг показує на розкрит",
             "feedbackByLocale": {
               "ru": "Перед `umbrella` здесь нужно `an`, поскольку первый звук названия гласный. Соберите `It is`, затем `an umbrella`.",
               "uk": "Перед `umbrella` тут потрібне `an`, бо перший звук назви голосний. Складіть `It is`, а потім `an umbrella`."
@@ -988,5 +968,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "14a1aaa73c20dae2c7aa28ae35404ecd5520f19a2d833e0084662d2977077619"
+  "learnerFingerprint": "ea10118f9bfe860915c22f46a7b60dcba348eaa0f7aa1823f7becc06f1d7fbcb"
 }

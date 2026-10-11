@@ -1,43 +1,42 @@
 {
-  "reviewer": "/root/s24_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
-  "freshContext": true,
-  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
-  "actual_exemplar": "exemplars/en/l01_s02.ru.md",
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s24",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactRuSha256": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+  "exactUkSha256": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2",
+  "practiceAtomicSha256": "13df34ecf513b95d89a46a6751d3360098f45be7a2a1604dcc4624fdee17d9ca",
+  "localeHashes": {
+    "ru": "89316092a51131c0d78515f52307912fc4d8f6b0c22696f139b94e3b17ab869e",
+    "uk": "4eac6cd57e8bf33c3fd21ce2297713cf50daec313265d1baf8823bc16dd59ec2"
+  },
   "pairwise": "equal",
-  "pairwise_reason": "Эталон заметно ярче по количеству образов, но S24 достигает той же редакторской планки по нынешней структуре: сразу называет формы и значения, последовательно объясняет число и не затаскивает предысторию в объяснения. Единственный юмористический ход точный, понятный и растёт из написания `glass/glasses`, поэтому более сдержанный голос не превращается в сухую справку.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
     "score": 4,
     "evidence": [
-      "`ticket` — «билет», `tickets` — «билеты». — прямое и понятное новичку начало без разгона.",
-      "Вместе с количеством меняется вся фраза: для одного берём `It is a`, для нескольких — `They are`. — правило сформулировано обычным человеческим языком.",
-      "`story` — «история», рассказ о событиях; `stories` — «истории». — точное лексическое определение снимает двусмысленность без искусственной метафоры."
+      "Current RU voice quote: «Даже в одной руке курьера два конверта остаются `they`.» It clarifies plurality and returns directly to `They are not envelopes.`"
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "У `glass` уже две `s`, но двух стаканов за это не выдадут."
+      "«Даже в одной руке курьера два конверта остаются `they`.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Проверка смешанной доставки перед подписью естественно даёт повод назвать один предмет и несколько предметов. Заказанная книга создаёт понятный контекст для `story/stories`; курьеру не приписана нелепая ошибка, а вопросы остаются частью проверки содержимого."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "Вместе с количеством меняется вся фраза: для одного берём `It is a`, для нескольких — `They are`.",
-    "У `glass` уже две `s`, но двух стаканов за это не выдадут.",
-    "`story` — «история», рассказ о событиях; `stories` — «истории»."
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Сессия держит уровень утверждённого checkpoint-эталона: текст ясный и человеческий, естественный юмор подтверждён точной цитатой, а признаков ИИ-текста, бреда, воды или мёртвого языка нет."
+  "verdict_reason": "Current RU voice quote: «Даже в одной руке курьера два конверта остаются `they`.» It clarifies plurality and returns directly to `They are not envelopes.`"
 }
-

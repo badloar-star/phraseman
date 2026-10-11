@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "0347e5769ec6402a30935010431a2b511f05441d4a6b093071e90dd0b15afe75",
+  "localeSha256": "debf9afa703500259ae8dd655491128d374b824fa43c92e3d511d170322ff25f",
+  "comparedThrough": "en/l03/s06",
+  "newWords": [
+    "drawer",
+    "cupboard",
+    "wardrobe"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 7 | слова | называние новых предметов с меньшей опорой | drawer, cupboard, wardrobe | разбираем последнюю коробку |",
+  "curriculumEvidence": {
+    "grammar": "называем предметы с `a + noun`, чередуем знакомые утверждения, вопросы и отрицания с меньшей опорой",
+    "newWords": [
+      "drawer",
+      "cupboard",
+      "wardrobe"
+    ],
+    "situation": "Вы с другом разбираете последнюю коробку после переезда. Находите место для мелочей, посуды и одежды, уточняете, какая мебель для чего нужна."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

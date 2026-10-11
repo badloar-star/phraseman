@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-31:i01",
-    "correctText": "",
+    "correctText": "menu",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-31:i03",
-    "correctText": "",
+    "correctText": "bill",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-31:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-31:i10:p1=menu\nen:lesson-02:session-31:i10:p2=bill\nen:lesson-02:session-31:i10:p3=price\nen:lesson-02:session-31:i10:p4=name",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-31:i17",
-    "correctText": "Where are the toilets? Is it near? The bill, please.",
+    "interactionId": "en:lesson-02:session-31:i17:s01",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-31:i17:s02",
+    "correctText": "Is it near?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-31:i17:s03",
+    "correctText": "The bill, please.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "услышать разницу между одним и несколькими предметами в `glass/glasses`, `brush/brushes`, `bench/benches`; у этих форм для нескольких появляется дополнительный слог; знакомые `They are`, `Are they`, `They are not`",
+    "uk": "почути різницю між одним і кількома предметами у `glass/glasses`, `brush/brushes`, `bench/benches`; у цих назвах для кількох з’являється додатковий склад; знайомі `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Начало узнали, а дальше?",
+        "uk": "Початок упізнали, а далі?"
+      },
+      "bodyByLocale": {
+        "ru": "`glass` — «стакан», `glasses` — «стаканы». В первом слове один слог, во втором два: у названия нескольких стаканов слышно короткое продолжение. Узнать начало и перестать слушать — удобно, пока не выяснится, что стаканов несколько. Дослушайте `glasses` целиком.",
+        "uk": "`glass` — «склянка», `glasses` — «склянки». У першому слові один склад, у другому два: у назві кількох склянок чути коротке продовження. Упізнати початок і перестати слухати зручно, аж поки не виявиться, що склянок кілька. Дослухайте `glasses` повністю."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Курьер достал набор стаканов для воды. Выберите название для нескольких стаканов.",
+          "uk": "Кур’єр дістав набір склянок для води. Оберіть назву для кількох склянок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r1",
+              "text": "glasses"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r2",
+              "text": "glass"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r3",
+              "text": "glasss"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r1",
+              "text": "glasses"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r2",
+              "text": "glass"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro1:r3",
+              "text": "glasss"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер достал набор стаканов для воды. Выберите название для нескольких стаканов.",
+          "uk": "Кур’єр дістав набір склянок для води. Оберіть назву для кількох склянок."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Щётка или щётки",
+        "uk": "Щітка чи щітки"
+      },
+      "bodyByLocale": {
+        "ru": "`brush` — «щётка» для уборки, `brushes` — «щётки». Сравните: в названии одной щётки один слог, а нескольких — два. Так можно услышать разницу, даже когда самих щёток не видно. Вопрос сохраняет это окончание: `Are they brushes?` — «Это щётки?»",
+        "uk": "`brush` — «щітка» для прибирання, `brushes` — «щітки». Порівняйте: у назві однієї щітки один склад, а кількох — два. Так можна почути різницю, навіть коли самих щіток не видно. Питання зберігає це закінчення: `Are they brushes?` — «Це щітки?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Из пакета торчат две деревянные ручки. Спросите курьера: «Это щётки?»",
+          "uk": "Із пакета стирчать дві дерев’яні ручки. Запитайте кур’єра: «Це щітки?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r1",
+              "text": "Are they brushes?"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r2",
+              "text": "Are they brush?"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r3",
+              "text": "Is they brushes?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r1",
+              "text": "Are they brushes?"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r2",
+              "text": "Are they brush?"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro2:r3",
+              "text": "Is they brushes?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Из пакета торчат две деревянные ручки. Спросите курьера: «Это щётки?»",
+          "uk": "Із пакета стирчать дві дерев’яні ручки. Запитайте кур’єра: «Це щітки?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Места для сидения",
+        "uk": "Місця для сидіння"
+      },
+      "bodyByLocale": {
+        "ru": "`bench` — «скамейка», длинное сиденье для нескольких человек. Само название одной скамейки звучит в один слог; `benches` — «скамейки», уже в два. Слушайте число слогов, а не считайте места для гостей. В слове `benches` короткое окончание сообщает, что скамеек несколько.",
+        "uk": "`bench` — «лавка», довге сидіння для кількох людей. Назва однієї лавки звучить в один склад; `benches` — «лавки», уже в два. Слухайте кількість складів, а не рахуйте місця для гостей. У `benches` коротке закінчення підказує, що лавок кілька."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Курьер показывает две скамейки для террасы. Как назвать их вместе одним английским словом?",
+          "uk": "Кур’єр показує дві лавки для тераси. Як назвати їх разом одним англійським словом?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r3",
+              "text": "benchs"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r1",
+              "text": "benches"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r2",
+              "text": "bench"
+            },
+            {
+              "responseId": "en:lesson-03:session-20:intro3:r3",
+              "text": "benchs"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер показывает две скамейки для террасы. Как назвать их вместе одним английским словом?",
+          "uk": "Кур’єр показує дві лавки для тераси. Як назвати їх разом одним англійським словом?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a31342ab4963ced0470b7bc96b9ee1f30f2f114f6115d9194741afe508d33928"
+}

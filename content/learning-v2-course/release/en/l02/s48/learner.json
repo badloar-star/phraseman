@@ -776,13 +776,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — спросите организатора, грубо ли ваша команда обычно отвечает на замечания: «Мы грубые?» (`rude` — «грубый»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i14:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — спросите организатора, грубо ли ваша команда обычно отвечает на замечания: «Мы грубые?» (`rude` — «грубый»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -809,13 +809,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы проверили свои заметки и сообщаете другу: «Я готов» (`ready` — «готов»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы проверили свои заметки и сообщаете другу: «Я готов» (`ready` — «готов»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -842,13 +842,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг переживает из-за своей манеры общения, а вы считаете его вежливым; скажите ему об этом (`polite` — «вежливый»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-48:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг переживает из-за своей манеры общения, а вы считаете его вежливым; скажите ему об этом (`polite` — «вежливый»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -906,5 +906,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5ddcac8e0de6f48db06429d319273d706b1ab0305ea729174a1e36b55789bd08"
+  "learnerFingerprint": "c72296cdedc23eca0f7d339f841f31d6fdee6978a7862888b2585e1306f6e8ed"
 }

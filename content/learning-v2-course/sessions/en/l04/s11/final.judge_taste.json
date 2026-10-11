@@ -1,0 +1,58 @@
+{
+  "session": "en/l04/s11",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:41:49.3857187Z",
+  "sourceSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactRuSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactUkSha256": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2",
+  "practiceAtomicSha256": "d3f2d3f20d1afa6b404e5b9a30b46916083789ca7dc71c8bede193646a246b18",
+  "localeHashes": {
+    "ru": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+    "uk": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent read-only taste review against current owner humor boundary and exemplars",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "pairwise": "equal",
+  "pairwise_reason": "The map explanation is direct and warm; its strongest joke is inseparable from why the learner should ask the current question.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "На транспортной карте лучше спросить сразу: карта молчит уверенно, а идти пешком придётся вам."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "На транспортной карте лучше спросить сразу: карта молчит уверенно, а идти пешком придётся вам."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "На транспортной карте лучше спросить сразу: карта молчит уверенно, а идти пешком придётся вам."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "evidence": [
+    "The quote is a natural language-teaching humorous move tied to asking about tram availability (final.ru.md:24).",
+    "No forced metaphor, pasted-on ending, bureaucratic prose or generic AI filler was found."
+  ],
+  "verdict_reason": "Clear, human teaching voice with a useful on-topic joke and no tonal misfire."
+}
+

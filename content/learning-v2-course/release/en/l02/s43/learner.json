@@ -841,13 +841,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы с другом собираетесь пойти по выбранной улице; перед первым шагом проверьте вашу общую уверенность",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы с другом собираетесь пойти по выбранной улице; перед первым шагом проверьте вашу общую уверенность",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -874,13 +874,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — прохожий упомянул вход в музей; спросите, где находится этот вход",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-43:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — прохожий упомянул вход в музей; спросите, где находится этот вход",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -938,5 +938,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2e30f669985125b80320574bc78f8149aed86fcdce5a72c7d9a5a52f38cfe8e3"
+  "learnerFingerprint": "81050c7232cf730eb1d3c7855fab6b3fe457bfd03dfb3f8b44d3ec92a6b93a61"
 }

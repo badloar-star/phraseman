@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 35 — «Whose is it?»
+# Английский · Урок 2 · Занятие 35 — «Whose is it?»
 
-**Сцена сессии.** Вечеринка у соседей. На стуле лежит куртка, и вы хотите выяснить, кому она принадлежит. Друг помогает найти хозяина дома и расспросить гостей.
+**Сцена занятия.** Вечеринка у соседей. На стуле лежит куртка, и вы хотите выяснить, кому она принадлежит. Друг помогает найти хозяина дома и расспросить гостей.
 
-**Операция:** готовый вопрос `Whose is it?`
+**Как сказать:** готовый вопрос `Whose is it?`
 **Новые слова:** —
 **Возвращаются:** host, sure, wet, here
 
@@ -50,87 +50,92 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Послушайте и выберите — какой вопрос сосед задал о куртке**
-🔊 *Whose is it?* → **Whose is it?** · Where is it? · What is it?
-- Where is it? — *Это вопрос о месте. На записи — `Whose is it?`, «Чьё это?»*
-- What is it? — *Это «Что это?». Сосед произнёс вопрос о том, кому принадлежит вещь.*
+<!-- interaction_id: en:lesson-02:session-35:i01; family: listen_choose -->
+Цель: `Whose is it?`
+Варианты: `Whose is it?` · `Where is it?` · `What is it?`
 
 **2 · Вставьте слово — покажите куртку гостям и спросите, кому она принадлежит**
-___ is it? → **Whose** · Where · What
-- Where — *Получится «Где это?». Вам нужно узнать владельца куртки.*
-- What — *Получится «Что это?». Чтобы спросить «Чьё это?», начните с `Whose`.*
+<!-- interaction_id: en:lesson-02:session-35:i02; family: context_gap_grammar -->
+Цель: `___ is it?`
+Варианты: `Whose` · `Where` · `What`
 
 **3 · Соберите фразу — спросите соседа: «Чьё это?»**
-Плитки: `it` `Whose` `is` → **Whose is it?**
+<!-- interaction_id: en:lesson-02:session-35:i03; family: phrase_builder -->
+Цель: `Whose is it?`
 
 **4 · Послушайте и выберите слово**
-🔊 *wet* → **wet** · wait · white
-- wait — *`Wait` — «ждать». Послушайте середину слова: в записи `wet`.*
-- white — *`White` — «белый». Послушайте середину слова: в записи `wet`.*
+<!-- interaction_id: en:lesson-02:session-35:i04; family: listen_choose -->
+Цель: `wet`
+Варианты: `wet` · `wait` · `white`
 
 **5 · Соберите фразу — куртка промокла под дождём; скажите о ней: «Она мокрая»**
-Плитки: `wet` `is` `It` → **It is wet.**
+<!-- interaction_id: en:lesson-02:session-35:i05; family: phrase_builder -->
+Цель: `It is wet.`
 
 **6 · Вставьте слово — друг переспрашивает, точно ли куртку принесли с улицы; скажите: «Я уверен»**
-*(`sure` — «уверен»)*
-I am ___ . → **sure** · wet · here
-- wet — *Это «мокрый». Нужно сказать, что вы уверены в своём ответе.*
-- here — *Это «здесь». Для «Я уверен» нужно `I am sure`.*
+<!-- interaction_id: en:lesson-02:session-35:i06; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `sure` · `wet` · `here`
 
 **7 · Послушайте и выберите слово**
-🔊 *host* → **host** · ghost · most
-- ghost — *`Ghost` — «призрак». Послушайте первый звук: в записи `host`.*
-- most — *`Most` — «больше всего». Послушайте первый звук: в записи `host`.*
+<!-- interaction_id: en:lesson-02:session-35:i07; family: listen_choose -->
+Цель: `host`
+Варианты: `host` · `ghost` · `most`
 
 **8 · Соберите фразу — хозяин дома поможет найти владельца куртки; спросите, где хозяин**
-Плитки: `host` `Where` `the` `is` → **Where is the host?**
+<!-- interaction_id: en:lesson-02:session-35:i08; family: phrase_builder -->
+Цель: `Where is the host?`
 
-**9 · Вставьте слово — вы показываете хозяину куртку и спрашиваете, чья она**
-Whose ___ it? → **is** · are · am
-- are — *В вопросе об этой вещи нужно `is it`: `Whose is it?`*
-- am — *Здесь вопрос с `it`. Нужное сочетание — `is it`, а не `am it`.*
+**9 · Вставьте слово — гость говорит, что хозяин нашёл владельца куртки; спросите гостя, уверен ли хозяин**
+<!-- interaction_id: en:lesson-02:session-35:i09; family: context_gap_grammar -->
+Цель: `___ the host sure?`
+Варианты: `is` · `are` · `am`
 
-**10 · Соедините пары (Speed Match, 4 пары)**
-host — хозяин вечера · sure — уверен · wet — мокрый · here — здесь
+**10 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-35:i10; family: speed_match -->
+Пары: `host` — хозяин вечера · `sure` — уверен · `wet` — мокрый · `here` — здесь
+Цель: `host · sure · wet · here`
 
 **11 · Вставьте слово — друг ищет хозяина; хозяин стоит рядом с вами, сообщите: «Он здесь»**
-*(`here` — «здесь»)*
-He is ___ . → **here** · sure · wet
-- sure — *Получится «Он уверен». Нужно сообщить, где он находится.*
-- wet — *Это «мокрый». Для «Он здесь» нужно `He is here`.*
+<!-- interaction_id: en:lesson-02:session-35:i11; family: context_gap_grammar -->
+Цель: `He is ___ .`
+Варианты: `here` · `sure` · `wet`
 
 **12 · Соберите фразу — хозяин спрашивает, кто принёс куртку; вы сомневаетесь и говорите: «Я не уверен»**
-Плитки: `sure` `not` `am` `I` → **I am not sure.**
+<!-- interaction_id: en:lesson-02:session-35:i12; family: phrase_builder -->
+Цель: `I am not sure.`
 
 **13 · Послушайте и выберите — что гость спросил о куртке**
-🔊 *Is it wet?* → **Is it wet?** · Is it dry? · Is it cold?
-- Is it dry? — *Это «Она сухая?». На записи гость спрашивает, мокрая ли она: `Is it wet?`*
-- Is it cold? — *Это «Она холодная?». Прозвучало слово `wet` — «мокрая».*
+<!-- interaction_id: en:lesson-02:session-35:i13; family: listen_choose -->
+Цель: `Is it wet?`
+Варианты: `Is it wet?` · `Is it dry?` · `Is it cold?`
 
 **14 · Послушайте и соберите — друг говорит о хозяине**
-🔊 *The host is here.* Плитки: `here` `The` `is` `host` `not` → **The host is here.**
-*(плитка `not` лишняя: на записи хозяин здесь, без отрицания)*
+<!-- interaction_id: en:lesson-02:session-35:i14; family: listen_build_dictation -->
+Цель: `The host is here.`
 
-**15 · Скажите вслух — поднимите куртку и спросите гостей, чья она**
-🎙 **Whose is it?** — послушайте, повторите, сравните.
+**15 · Послушайте и выберите слово для вопроса о владельце вещи**
+<!-- interaction_id: en:lesson-02:session-35:i15; family: listen_choose -->
+Цель: `whose`
+Варианты: `whose` · `who` · `where`
 
-**16 · Скажите вслух — друг упомянул мужчину, который мог оставить куртку; спросите, здесь ли он**
-🎙 **Is he here?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-35:i16; family: scripted_repeat_compare -->
+Цель: `Is he here?`
 
-**17 · Соберите фразу — ещё один гость подошёл к стулу; покажите ему найденную куртку и узнайте, кому она принадлежит**
-Плитки: `it` `Where` `is` `Whose` → **Whose is it?**
-*(плитка `Where` лишняя: вы спрашиваете о владельце вещи)*
-
----
+**17 · Произнесите фразу — покажите гостю найденную куртку и спросите, кому она принадлежит**
+<!-- interaction_id: en:lesson-02:session-35:i17; family: scripted_repeat_compare -->
+Цель: `Whose is it?`
 
 ## Для сборщика
 
 new_words:
 —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=listen_build_dictation, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=phrase_builder, 9=context_gap_grammar, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_choose, 14=listen_build_dictation, 15=listen_choose, 16=scripted_repeat_compare, 17=scripted_repeat_compare
 
 ---
 
@@ -159,10 +164,10 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose
 
 | слово | карточка | отработка ДО доски |
 |---|---|---|
-| host | из урока 2, сессии 33 | задания 7, 8 |
-| sure | из урока 1, сессии 3 | задание 6 |
-| wet | из урока 1, сессии 31 | задания 4, 5 |
-| here | из урока 1, сессии 1 | изучено в предыдущих сессиях |
+| host | из урока 2, занятия 33 | задания 7, 8 |
+| sure | из урока 1, занятия 3 | задание 6 |
+| wet | из урока 1, занятия 31 | задания 4, 5 |
+| here | из урока 1, занятия 1 | изучено в предыдущих занятиях |
 
 **4. Сборки**
 

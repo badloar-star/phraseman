@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i06",
-    "correctText": "",
+    "correctText": "lost",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i08",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-12:i08:p1=tired\nen:lesson-02:session-12:i08:p2=hungry\nen:lesson-02:session-12:i08:p3=cold\nen:lesson-02:session-12:i08:p4=lost",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i10",
-    "correctText": "",
+    "correctText": "curious",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i13",
-    "correctText": "",
+    "correctText": "upset",
     "correctResponseId": null
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i17",
-    "correctText": "",
+    "correctText": "pretty",
     "correctResponseId": null
   },
   {
@@ -91,7 +91,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-12:i19",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-12:i19:p1=upset\nen:lesson-02:session-12:i19:p2=curious\nen:lesson-02:session-12:i19:p3=pretty\nen:lesson-02:session-12:i19:p4=she",
     "correctResponseId": null
   },
   {
@@ -100,8 +100,13 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-12:i21",
-    "correctText": "Is he tired? Yes, he is.",
+    "interactionId": "en:lesson-02:session-12:i21:s01",
+    "correctText": "Is he tired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i21:s02",
+    "correctText": "Yes, he is.",
     "correctResponseId": null
   }
 ]

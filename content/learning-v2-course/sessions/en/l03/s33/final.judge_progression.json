@@ -1,9 +1,9 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+  "sourceSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
   "localeHashes": {
-    "ru": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
-    "uk": "4332cd2bd7c0a892184bb55465cffbd6d122bcc1044344c2ceb70276ef13846d"
+    "ru": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "uk": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa"
   },
   "comparedThrough": "en/l03/s32",
   "curriculumExactMatch": true,
@@ -70,13 +70,70 @@
   "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "Exact L3 S01–S32 RU+UK scan has zero shoe/shoes/sock/socks/shirt/shirts hits.",
-    "The charity-fair donation-sorting scene is new.",
-    "Task 12 localizes exact audio meaning without adding distance or request wording.",
-    "All three intros lead to scored practice and the independent final."
+    "Exact current curriculum row verified: | 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
   ],
   "deterministicGates": {
     "progression_quality_gate_from_25": "PASS",
     "check_new_words_session_33": "PASS: 56 sessions, 130 unique new words, no repeats"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "c4a2562c862f3e8710d2f70795461b031e870d2218315cba603bffdbdaba1402",
+    "localeSha256": "68daf43aaa51547251c907b9f0b978c554103eb14816987ac38f05ea4674a94b",
+    "practiceAtomicSha256": "5ca4635acd21a363517cafdd5b23579d62078f74ecf2e09980d9b50d17544c43"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+  "exactUkSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+  "localeSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+  "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "84d2b650badf61cbf330ca39372e32c83ab8b10dcd472d0fe14802af3456547c",
+    "localeSha256": "e335b408cfbd36b4b5fe415446af0b57b36fde94e32fa858a5928e88f521aa8a",
+    "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "exactRuSha256": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+    "exactUkSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+    "localeSha256": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa",
+    "localeHashes": {
+      "ru": "131f92236a89a2248f3b4caf197846630e457c35ce9e76c44c086fd442460e1c",
+      "uk": "def550c79c3fbc811fefb365a7108b188c78b625e5c4a7f8e2aa6a13d6dc89aa"
+    },
+    "practiceAtomicSha256": "2c14f934cdb3183dc21f859d028f206ce6a11ea5876f5b7c79114376eef60827",
+    "evidence": [
+      "Exact current curriculum row verified: | 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки | Current bytes match its grammar, lexicon and situation; prior-range progression gate PASS."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+  "detailedEvidence": {
+    "exactCurrentCurriculumRow": "| 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки |",
+    "grammarLexiconSituation": "Новая plural-near operation, three new words and charity-fair scene match exact row and novelty gate.",
+    "introPracticeFinalChains": "Three current intro pages, atomic practice targets and final interactions were checked against final.ru.md/final.uk.md and practice.atomic.json; progression gate PASS.",
+    "comparedThrough": "en/l03/s32"
   }
 }

@@ -1,9 +1,9 @@
-# Английский · Урок 1 · Сессия 35 — «We are not»
+# Английский · Урок 1 · Занятие 35 — «We are not»
 
-**Сцена сессии.** Обед с командой. Все идут в кафе через дорогу, и по пути кто-то из своих всё время предполагает про вас неправильное: что вы опаздываете, что вы не уверены, что вы одни. Пора научиться отвечать за всех сразу.
+**Ситуация.** Ира, Олег и вы идёте в кафе. Олег ошибочно думает, что вы опаздываете, а Ира не уверена, открыто ли кафе.
 
-**Операция:** `We are not` + слово о нас
-**Новые слова:** —
+**Сегодня.** Скажете о вашей группе, что это не так: `We are not` + слово.
+**Новые слова:** sure, wrong, free, alone
 **Возвращаются:** late, ready, hungry, busy, alone, wrong, sure, free
 
 ---
@@ -12,14 +12,14 @@
 
 ### `not` встаёт после `are`
 
-`we` — «мы». Скрепка при нём — `are`: `We are late` — «мы опаздываем».
+`we` — «мы». После него ставим `are`: `We are late` — «мы опаздываем».
 
 Чтобы получилось «не», добавляем `not`. Место у него жёсткое: сразу за `are`, перед словом о вас. Не перед `are`, не в конец — `We are not late`.
 
-**Кто-то на ходу: «Мы же опаздываем?» Времени полно. Скажите, что нет.**
+**Олег по дороге говорит: «Мы же опаздываем?» До встречи ещё двадцать минут. Скажите, что нет.**
 
 - ✅ **We are not late.**
-- ❌ We not are late. — *`not` встал перед скрепкой. Порядок обратный: сначала `are`, потом `not`.*
+- ❌ We not are late. — *Сначала `are`, затем `not`: We are not late.*
 - ❌ We are late not. — *`not` убежал в конец. Его место сразу после `are`, до слова о вас.*
 
 ---
@@ -32,10 +32,10 @@
 
 Отрицание к нему пригодится чаще самого слова: `We are not sure` — «мы не уверены». Это вежливое «понятия не имею»: и правду не соврали, и виноватым никто не выглядит.
 
-**Спрашивают, работает ли кафе через дорогу. Никто не знает. Ответьте за всех.**
+**Ира спрашивает, открыто ли кафе через дорогу. Вы с Олегом этого не знаете. Ответьте за всех.**
 
 - ✅ **We are not sure.**
-- ❌ We no sure. — *`no` — это ответ «нет» на вопрос целиком. Внутри фразы «не» — `not`, и скрепка `are` обязательна.*
+- ❌ We no sure. — *Внутри фразы используйте `not`: We are not sure.*
 - ❌ We are sure not. — *Слова те же, порядок сломан. После `are` сразу `not`, потом `sure`.*
 
 ---
@@ -48,10 +48,10 @@
 
 Слово это про человека, а не про дело: `We are wrong` — «мы ошибаемся», а не «у нас что-то сломалось». И спорить им можно за всю компанию сразу: `We are not wrong`.
 
-**Вам говорят, что вы всё перепутали. Ничего вы не перепутали. Скажите это.**
+**Олег говорит, что вы с Ирой перепутали адрес кафе. Вы проверили карту и знаете, что адрес верный. Скажите это.**
 
 - ✅ **We are not wrong.**
-- ❌ We not wrong. — *Скрепка пропала. После `we` идёт `are`, и только потом `not`.*
+- ❌ We not wrong. — *После `we` нужны `are not`: We are not wrong.*
 - ❌ We are not late. — *`late` — про время, «опаздываем». Про ошибку — `wrong`.*
 
 ---
@@ -59,69 +59,101 @@
 ## Практика (17 заданий, поддержка убывает)
 
 **1 · Карточка слова — sure**
+<!-- interaction_id: en:lesson-01:session-35:i01; family: listen_choose -->
 > **sure** — «уверен, знаю точно». Не про готовность, а про знание: знаешь — `sure`.
 
-**2 · Послушайте и выберите — sure**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-35:i02; family: listen_choose -->
 🔊 *sure* → **sure** · sugar · shoe
 - sugar — *«Сахар». Начало то же — «шу», но дальше слышно «г»: шу-гэр. В `sure` после «шу» сразу «р».*
 - shoe — *«Ботинок». Начало похоже, но `shoe` на этом и заканчивается, а в `sure` есть «р».*
 
 **3 · Карточка слова — wrong**
+<!-- interaction_id: en:lesson-01:session-35:i03; family: listen_choose -->
 > **wrong** — «неправ, ошибается». Сказал уверенно — и мимо.
 
-**4 · Послушайте и выберите — wrong**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-35:i04; family: listen_choose -->
 🔊 *wrong* → **wrong** · long · ring
 - long — *«Длинный». Отличается только первым звуком, слушайте начало.*
 - ring — *«Кольцо». Гласная другая: в `ring` слышно «и», в `wrong` — «о».*
 
 **5 · Соберите фразу — «мы не опаздываем»**
+<!-- interaction_id: en:lesson-01:session-35:i05; family: phrase_builder -->
 Плитки: `not` `late` `we` `are` → **We are not late.**
 
 **6 · Карточка слова — free**
+<!-- interaction_id: en:lesson-01:session-35:i06; family: listen_choose -->
 > **free** — «свободен». Дел нет, никто ничего не ждёт.
 
-**7 · Послушайте и выберите — free**
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-35:i07; family: listen_choose -->
 🔊 *free* → **free** · three · fry
 - three — *«Три». Отличается первым звуком: `free` начинается с «ф».*
 - fry — *«Жарить». Начало то же, а гласная в конце другая.*
 
 **8 · Карточка слова — alone**
+<!-- interaction_id: en:lesson-01:session-35:i08; family: listen_choose -->
 > **alone** — «один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт.
 
 **9 · Вставьте слово — вы не уверены, открыто ли кафе**
+<!-- interaction_id: en:lesson-01:session-35:i09; family: context_gap_grammar -->
 We are not ___ . → **sure** · wrong · busy
 - wrong — *«Неправы» — это про ошибку. Про незнание — `sure`.*
 - busy — *«Заняты» — про дела. Не знаете — `not sure`.*
 
 **10 · Послушайте и соберите — «мы не одни»**
+<!-- interaction_id: en:lesson-01:session-35:i10; family: listen_build_dictation -->
 🔊 *We are not alone.* Плитки: `alone` `are` `not` `we` `no` → **We are not alone.**
 
-**11 · Вставьте скрепку — вы всей командой не голодны**
+**11 · Выберите форму — Ира и Олег уже пообедали и не голодны**
+<!-- interaction_id: en:lesson-01:session-35:i11; family: context_gap_grammar -->
 We ___ not hungry. → **are** · am · is
 - am — *`am` только для `I`, про одного себя. Про «мы» — `are`.*
 - is — *`is` — про одного: он, она, оно. Вас несколько, значит `are`.*
 
-**12 · Соедините пары (Speed Match, 4 пары)**
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-35:i12; family: speed_match -->
 sure — уверен · wrong — неправ · free — свободен · alone — один
 
-**13 · Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание**
+**13 · Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание**
+<!-- interaction_id: en:lesson-01:session-35:i13; family: context_gap_grammar -->
 We are not ___ . → **free** · alone · ready
 - alone — *«Не одни» — про компанию, а не про время.*
 - ready — *«Не готовы» — другое. Времени нет — `not free`.*
 
 **14 · Утверждение или отрицание? Все уже с куртками, можно идти**
+<!-- interaction_id: en:lesson-01:session-35:i14; family: phrase_builder -->
 Соберите: `are` `ready` `we` `not` → **We are ready.**
 *(плитка `not` лишняя: по сцене вы готовы)*
 
-**15 · Соберите фразу — «мы не заняты»**
-Плитки: `busy` `we` `not` `are` → **We are not busy.**
+**15 · Послушайте и соберите — вы закончили все дела и можете уйти**
+<!-- interaction_id: en:lesson-01:session-35:i15; family: listen_build_dictation -->
+🔊 *We are not busy.* Плитки: `busy` `we` `not` `are` `is` → **We are not busy.**
 
 **16 · Соберите фразу — «мы не ошибаемся»**
+<!-- interaction_id: en:lesson-01:session-35:i16; family: phrase_builder -->
 Плитки: `we` `wrong` `are` `not` → **We are not wrong.**
 
-**17 · Финал сцены — пять ответов подряд о вас двоих**
-🎙 «Опаздываете? Голодные? Заняты? Уверены, что кафе открыто? Готовы идти?» Ответьте: не опаздываем, голодные, не заняты, не уверены — и да, готовы.
-**We are not late. We are hungry. We are not busy. We are not sure. We are ready.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s01; family: scripted_repeat_compare -->
+Ира спрашивает, опаздываете ли вы с Олегом. 🎙 **We are not late.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s02; family: scripted_repeat_compare -->
+Олег предлагает сначала пообедать. 🎙 **We are hungry.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s03; family: scripted_repeat_compare -->
+Ира уточняет, свободны ли вы после обеда. 🎙 **We are not busy.**
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s04; family: scripted_repeat_compare -->
+Олег не знает, открыто ли кафе. 🎙 **We are not sure.**
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s05; family: scripted_repeat_compare -->
+Ира видит, что вы с Олегом уже в куртках у двери. 🎙 **We are ready.**
 
 ---
 
@@ -133,7 +165,7 @@ wrong — неправ — «неправ, ошибается». Сказал у
 free — свободен — «свободен». Дел нет, никто ничего не ждёт.
 alone — один — «один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=phrase_builder, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

@@ -16,6 +16,7 @@ import {
   sha256Utf8,
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
+import { LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 } from "./course_session_limits_v1";
 
 export const LEARNING_V2_COURSE_SESSION_EVALUATOR_CAPSULE_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-evaluator-capsule-child.v1" as const;
@@ -134,7 +135,7 @@ function parseBody(
       V2_LOCAL_EVALUATOR_NORMALIZATION_PROFILE_HASH_V1 ||
     !Array.isArray(value.entries) ||
     value.entries.length < 9 ||
-    value.entries.length > 22 ||
+    value.entries.length > LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 ||
     value.entryCount !== value.entries.length ||
     value.assessmentSecrecy !== "none_device_inspectable" ||
     value.verdictAuthority !== "local_provisional_only" ||

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro1:r2": {
+          "ru": "Am выпало. Знакомая ловушка в новой одежде: слово другое, скрепка та же.",
+          "uk": "Am випало. Знайома пастка в новому одязі: слово інше, скріпка та сама."
+        },
+        "en:lesson-01:session-02:intro1:r3": {
+          "ru": "Хвост оборвали. Tired — с «-d» на конце, иначе это «шина».",
+          "uk": "Хвіст обірвали. Tired — з «-d» на кінці, інакше це «шина»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro2:r2": {
+          "ru": "Правда, но не то. Все и так видят, что вы здесь; им нужно услышать, что вы это понимаете: I am late.",
+          "uk": "Правда, але не те. Усі й так бачать, що ви тут; їм треба почути, що ви це розумієте: I am late."
+        },
+        "en:lesson-01:session-02:intro2:r3": {
+          "ru": "И снова без am. В спешке его теряют чаще всего — как ключи.",
+          "uk": "І знову без am. Поспішаючи, його гублять найчастіше — як ключі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro3:r2": {
+          "ru": "Скрепка am снова потерялась. Про себя — I am, всегда.",
+          "uk": "Скріпка am знову загубилася. Про себе — I am, завжди."
+        },
+        "en:lesson-01:session-02:intro3:r3": {
+          "ru": "Am уже стоит на месте, второе не нужно. Одна скрепка на фразу.",
+          "uk": "Am уже стоїть на місці, друге не потрібне. Одна скріпка на фразу."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f97a4c49a30862dbf9f12d983bf81ef0537862672df11f4ff290cb13bf71f144"
+}

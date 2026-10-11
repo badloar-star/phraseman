@@ -9,13 +9,18 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — apple",
-      "responseOptions": [],
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-38:i01:r1",
+          "text": "apple"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i01:audio"
       ],
-      "accessibilityLabel": "Карточка слова — apple",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -27,10 +32,7 @@
           {
             "responseId": "en:lesson-03:session-38:i01:r1",
             "targetText": "apple",
-            "meaningByLocale": {
-              "ru": "«яблоко». Круглый фрукт с тонкой кожурой и сердцевиной с семенами.",
-              "uk": "«яблуко». Круглий фрукт із тонкою шкіркою та серцевиною з насінням."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -47,184 +49,122 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i02",
+      "interactionId": "en:lesson-03:session-38:i03",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово назвал продавец",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-38:i02:r1",
-          "text": "apple"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i02:r2",
-          "text": "ample"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i02:r3",
-          "text": "ankle"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i02:r4",
-          "text": "April"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-38:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i02:audio",
-          "transcript": "apple"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i02:r1",
-            "targetText": "apple",
-            "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i02:r2",
-            "targetText": "ample",
-            "meaningByLocale": {
-              "ru": "достаточный",
-              "uk": "достатній"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i02:r3",
-            "targetText": "ankle",
-            "meaningByLocale": {
-              "ru": "лодыжка",
-              "uk": "щиколотка"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i02:r4",
-            "targetText": "April",
-            "meaningByLocale": {
-              "ru": "апрель",
-              "uk": "квітень"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-38:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "В `ample` перед /p/ слышится /m/, а в `apple` после первого гласного сразу идёт /p/.",
-              "uk": "В `ample` перед /p/ чути /m/, а в `apple` після першого голосного одразу йде /p/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "В середине `ankle` слышится сочетание /ŋk/, а в `apple` — /p/.",
-              "uk": "У середині `ankle` чути сполуку /ŋk/, а в `apple` — /p/."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i02:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`April` начинается дифтонгом /eɪ/, а `apple` — кратким /æ/.",
-              "uk": "`April` починається дифтонгом /eɪ/, а `apple` — коротким /æ/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-38:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — banana",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i03:audio"
       ],
-      "accessibilityLabel": "Карточка слова — banana",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i03:audio",
           "transcript": "banana"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i03:r1",
-            "targetText": "banana",
-            "meaningByLocale": {
-              "ru": "«банан». Длинный изогнутый фрукт с жёлтой кожурой.",
-              "uk": "«банан». Довгий вигнутий фрукт із жовтою шкіркою."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "banana",
-          "definitionByLocale": {
-            "ru": "«банан». Длинный изогнутый фрукт с жёлтой кожурой.",
-            "uk": "«банан». Довгий вигнутий фрукт із жовтою шкіркою."
-          }
-        }
+        "targetPhrase": "banana",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i05:audio",
+          "transcript": "orange"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "orange",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i02:audio",
+          "transcript": "apple"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "apple",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-38:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово назвал продавец",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i04:r1",
           "text": "banana"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i04:r2",
-          "text": "bandana"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i04:r3",
-          "text": "banner"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i04:r4",
-          "text": "vanilla"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -236,109 +176,17 @@
           {
             "responseId": "en:lesson-03:session-38:i04:r1",
             "targetText": "banana",
-            "meaningByLocale": {
-              "ru": "банан",
-              "uk": "банан"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i04:r2",
-            "targetText": "bandana",
-            "meaningByLocale": {
-              "ru": "бандана",
-              "uk": "бандана"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i04:r3",
-            "targetText": "banner",
-            "meaningByLocale": {
-              "ru": "баннер",
-              "uk": "банер"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i04:r4",
-            "targetText": "vanilla",
-            "meaningByLocale": {
-              "ru": "ваниль",
-              "uk": "ваніль"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-38:i04:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "В середине `bandana` слышится /d/, которого нет в `banana`.",
-              "uk": "У середині `bandana` чути /d/, якого немає в `banana`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i04:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`banner` заметно короче: в нём два слога, а в `banana` — три.",
-              "uk": "`banner` помітно коротше: у ньому два склади, а в `banana` — три."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i04:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`vanilla` начинается звуком /v/, а `banana` — /b/.",
-              "uk": "`vanilla` починається звуком /v/, а `banana` — /b/."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-38:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — orange",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-38:i05:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — orange",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i05:audio",
-          "transcript": "orange"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i05:r1",
-            "targetText": "orange",
-            "meaningByLocale": {
-              "ru": "«апельсин». Круглый цитрусовый фрукт с оранжевой кожурой.",
-              "uk": "«апельсин». Круглий цитрусовий фрукт із помаранчевою шкіркою."
-            }
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "orange",
+          "word": "banana",
           "definitionByLocale": {
-            "ru": "«апельсин». Круглый цитрусовый фрукт с оранжевой кожурой.",
-            "uk": "«апельсин». Круглий цитрусовий фрукт із помаранчевою шкіркою."
+            "ru": "«банан».",
+            "uk": "«банан»."
           }
         }
       },
@@ -348,111 +196,137 @@
       "interactionId": "en:lesson-03:session-38:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово назвал продавец",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-38:i06:r1",
-          "text": "orange"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i06:r2",
-          "text": "arrange"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i06:r3",
-          "text": "origin"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i06:r4",
-          "text": "porridge"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-38:i06:audio",
           "transcript": "orange"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i06:r1",
-            "targetText": "orange",
-            "meaningByLocale": {
-              "ru": "апельсин",
-              "uk": "апельсин"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i06:r2",
-            "targetText": "arrange",
-            "meaningByLocale": {
-              "ru": "расположить",
-              "uk": "розташувати"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i06:r3",
-            "targetText": "origin",
-            "meaningByLocale": {
-              "ru": "происхождение",
-              "uk": "походження"
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i06:r4",
-            "targetText": "porridge",
-            "meaningByLocale": {
-              "ru": "каша",
-              "uk": "каша"
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-38:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "В `arrange` ударный гласный — /eɪ/, а в `orange` такого звука нет.",
-              "uk": "В `arrange` наголошений голосний — /eɪ/, а в `orange` такого звука немає."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`origin` имеет три слога и заканчивается слогом /dʒɪn/, а `orange` — двумя слогами и звуком /dʒ/ в конце.",
-              "uk": "`origin` має три склади й закінчується складом /dʒɪn/, а `orange` — двома складами та звуком /dʒ/ у кінці."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i06:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
-            "feedbackByLocale": {
-              "ru": "`porridge` начинается звуком /p/, а `orange` — гласным.",
-              "uk": "`porridge` починається звуком /p/, а `orange` — голосним."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "orange",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i08:audio",
+          "transcript": "apple"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "apple",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i10:audio",
+          "transcript": "banana"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "banana",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i11:audio",
+          "transcript": "orange"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "orange",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-03:session-38:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -524,102 +398,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точное значение фразы о яблоках",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-38:i08:r1",
-          "text": "Это яблоки"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i08:r2",
-          "text": "Это яблоко"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i08:r3",
-          "text": "Это бананы"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i08:r4",
-          "text": "Это апельсины"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-38:i08:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите точное значение фразы о яблоках",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i08:audio",
-          "transcript": "These are apples."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i08:r1",
-            "targetText": "Это яблоки",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i08:r2",
-            "targetText": "Это яблоко",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i08:r3",
-            "targetText": "Это бананы",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i08:r4",
-            "targetText": "Это апельсины",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-38:i08:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "В записи слышны `these are` и `apples`: называют несколько яблок.",
-              "uk": "У записі чути `these are` і `apples`: називають кілька яблук."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i08:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "Названо `apples` — яблоки, а не `bananas` — бананы.",
-              "uk": "Названо `apples` — яблука, а не `bananas` — банани."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i08:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "Названо `apples`, а апельсины по-английски — `oranges`.",
-              "uk": "Названо `apples`, а апельсини англійською — `oranges`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-03:session-38:i09",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
@@ -700,132 +480,6 @@
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-38:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите просьбу — вы выбираете яблоки перед вами",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите просьбу — вы выбираете яблоки перед вами",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "These apples, please.",
-        "localizedMeaning": {
-          "ru": "Соберите просьбу — вы выбираете яблоки перед вами",
-          "uk": "Складіть прохання — ви вибираєте яблука перед вами"
-        },
-        "orderedTokens": [
-          "These",
-          "apples,",
-          "please"
-        ],
-        "authoredDistractorTokens": [
-          "Those",
-          "are",
-          "apple"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точное значение фразы о бананах",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-38:i11:r1",
-          "text": "Это бананы"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i11:r2",
-          "text": "Это банан"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i11:r3",
-          "text": "Это яблоки"
-        },
-        {
-          "responseId": "en:lesson-03:session-38:i11:r4",
-          "text": "Это апельсины"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-38:i11:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите точное значение фразы о бананах",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i11:audio",
-          "transcript": "Those are bananas."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-03:session-38:i11:r1",
-            "targetText": "Это бананы",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i11:r2",
-            "targetText": "Это банан",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i11:r3",
-            "targetText": "Это яблоки",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i11:r4",
-            "targetText": "Это апельсины",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-38:i11:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "В записи слышны `those are` и `bananas`: называют несколько бананов.",
-              "uk": "У записі чути `those are` і `bananas`: називають кілька бананів."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i11:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "Названо `bananas` — бананы, а не `apples` — яблоки.",
-              "uk": "Названо `bananas` — банани, а не `apples` — яблука."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-38:i11:r4",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
-            "feedbackByLocale": {
-              "ru": "Названо `bananas`, а апельсины по-английски — `oranges`.",
-              "uk": "Названо `bananas`, а апельсини англійською — `oranges`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -994,13 +648,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — апельсины находятся у дальнего прилавка",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — апельсины находятся у дальнего прилавка",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1022,33 +676,30 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i16",
+      "interactionId": "en:lesson-03:session-38:i16:s01",
       "ordinal": 19,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите два описания",
+      "prompt": "Послушайте и соберите одну фразу — шаг 1 из 2",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-38:i16:audio"
+        "en:lesson-03:session-38:i16:s01:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите два описания",
+      "accessibilityLabel": "Послушайте и соберите одну фразу — шаг 1 из 2",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i16:audio",
-          "transcript": "These are apples. Those are bananas."
+          "audioTargetId": "en:lesson-03:session-38:i16:s01:audio",
+          "transcript": "These are apples."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These are apples. Those are bananas.",
+        "hiddenTargetPhrase": "These are apples.",
         "orderedTokens": [
           "These",
           "are",
-          "apples.",
-          "Those",
-          "are",
-          "bananas"
+          "apples."
         ],
         "authoredDistractorTokens": [
           "This",
@@ -1060,26 +711,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-38:i17",
+      "interactionId": "en:lesson-03:session-38:i16:s02",
       "ordinal": 20,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал — назовите группы у второго ряда и сделайте заказ",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-38:i17:audio"
+        "en:lesson-03:session-38:i16:s02:audio"
       ],
-      "accessibilityLabel": "Финал — назовите группы у второго ряда и сделайте заказ",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-38:i17:audio",
-          "transcript": "Those are apples. These are bananas. These oranges, please."
+          "audioTargetId": "en:lesson-03:session-38:i16:s02:audio",
+          "transcript": "Those are bananas."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are apples. These are bananas. These oranges, please.",
+        "targetPhrase": "Those are bananas.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1091,13 +742,104 @@
         ]
       },
       "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i17:s01",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите одну фразу — шаг 1 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 3",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are apples.",
+        "localizedMeaning": {
+          "ru": "Соберите одну фразу",
+          "uk": "Складіть одну фразу"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "apples."
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i17:s02",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i17:s02:audio",
+          "transcript": "These are bananas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are bananas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-38:i17:s03",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите одну фразу — шаг 3 из 3",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-38:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите одну фразу — шаг 3 из 3",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-38:i17:s03:audio",
+          "transcript": "These oranges, please."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These oranges, please.",
+        "orderedTokens": [
+          "These",
+          "oranges,",
+          "please."
+        ],
+        "distractorTokens": []
+      },
+      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c79bf7499515efd68b0405c4957f040eb3d45360379fa2a802923749fdd00701"
+  "learnerFingerprint": "01e55749501bab49f84177d0ee13cea28fd5d350cc96efcaa22dd2f2dfdac063"
 }

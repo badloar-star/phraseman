@@ -807,13 +807,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы обсуждаете с другом, как ваша компания обычно разговаривает с официантами; спросите, грубы ли вы",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы обсуждаете с другом, как ваша компания обычно разговаривает с официантами; спросите, грубы ли вы",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -840,13 +840,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы случайно задели проходящего официанта; извинитесь (`sorry` — «извините»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-47:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы случайно задели проходящего официанта; извинитесь (`sorry` — «извините»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -904,5 +904,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8b566be82e4b5f604bf48cc889c98c1f5d6106558832b75567380b083a6b8921"
+  "learnerFingerprint": "0d5f474321aa77ac08233c2a83784fcd5404e3c311f0b207aea1b4276e19784c"
 }

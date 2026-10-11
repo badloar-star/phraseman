@@ -23,14 +23,32 @@ const exists = (f) => fs.existsSync(f);
 
 const problems = [];
 
-// ── 1. Языки, у которых есть курс ────────────────────────────────────────────
+// ── 1. Языки с реальными занятиями ───────────────────────────────────────────
+// Одного каталога curriculum недостаточно: там могут лежать исследовательские
+// пакеты будущего языка. Пока нет sessions/<lang>/lNN/sNN/final.ru.md, это не
+// курс, который автор или судья способен случайно выпустить.
 const curriculumDir = path.join(ROOT, 'curriculum');
+const hasLearnerSession = (lang) => {
+  const languageDir = path.join(ROOT, 'sessions', lang);
+  if (!exists(languageDir)) return false;
+  return fs.readdirSync(languageDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^l\d{2}$/.test(entry.name))
+    .some((lesson) => {
+      const lessonDir = path.join(languageDir, lesson.name);
+      return fs.readdirSync(lessonDir, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory() && /^s\d{2}$/.test(entry.name))
+        .some((session) => exists(path.join(lessonDir, session.name, 'final.ru.md')));
+    });
+};
 const langs = exists(curriculumDir)
-  ? fs.readdirSync(curriculumDir).filter((d) => /^[a-z]{2}$/.test(d) && fs.statSync(path.join(curriculumDir, d)).isDirectory())
+  ? fs.readdirSync(curriculumDir)
+    .filter((d) => /^[a-z]{2}$/.test(d) && fs.statSync(path.join(curriculumDir, d)).isDirectory())
+    .filter((lang) => !arg('lang', null) || lang === arg('lang', null))
+    .filter(hasLearnerSession)
   : [];
 
 if (langs.length === 0) {
-  BAD('в curriculum/ нет ни одного языка — проверять нечего, это само по себе странно');
+  BAD('нет ни одного языка с learner-facing занятиями — проверять нечего, это само по себе странно');
   process.exit(1);
 }
 LOG(`языков с курсом: ${langs.join(', ')}`);

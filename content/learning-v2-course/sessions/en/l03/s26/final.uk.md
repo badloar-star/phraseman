@@ -1,8 +1,8 @@
-# Англійська · Урок 3 · Сесія 26 — «That — це там, далі»
+# Англійська · Урок 3 · Заняття 26 — «That — це там, далі»
 
-**Сцена сесії.** Перед публічною презентацією ви стоїте біля пульта в кінці зали. На сцені вдалині вже розміщені картина, екран і колонка; ви називаєте техніку помічникові, не сходячи зі свого місця.
+**Сцена заняття.** Перед публічною презентацією ви стоїте біля пульта в кінці зали. На сцені вдалині вже розміщені картина, екран і колонка; ви називаєте техніку помічникові, не сходячи зі свого місця.
 
-**Операція:** `That is a + предмет` — назвати один предмет вдалині
+**Як сказати:** `That is a + предмет` — назвати один предмет вдалині
 **Нові слова:** picture, screen, speaker
 **Для повторення:** phone, cup, box
 
@@ -56,82 +56,87 @@
 
 ---
 
-## Практика (17 завдань, підтримка зменшується)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — picture**
-> **picture** — «картина». Та, яку на сцені повісили рівно, а помічник уже нахилив голову, щоб перевірити.
+<!-- interaction_id: en:lesson-03:session-26:i01; family: listen_choose -->
+Ціль: `picture`
 
-**2 · Послухайте й виберіть — яке слово назвав помічник**
-🔊 *picture* → **picture** · pitcher · fixture · mixture
-Значення варіантів: picture — картина · pitcher — глечик · fixture — елемент інтер'єру · mixture — суміш
-- pitcher — *У `pitcher` після /pɪ/ одразу звучить /tʃ/; у `picture` між /ɪ/ і /tʃ/ чути /k/.*
-- fixture — *`fixture` починається поєднанням `fik`, а `picture` — `pik`.*
-- mixture — *`mixture` починається зі звука `m`; у `picture` першим чути `p`.*
+**2 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-26:i03; family: scripted_repeat_compare -->
+Ціль: `screen`
 
-**3 · Картка слова — screen**
-> **screen** — «екран». На ньому зазвичай видно все, крім потрібної кнопки в потрібний момент.
+**3 · Вставте слово — на сцені стоїть колонка; виберіть її назву**
+<!-- interaction_id: en:lesson-03:session-26:i05; family: context_gap_grammar -->
+Ціль: `___`
+Варіанти: `speaker` · `screen` · `picture`
 
-**4 · Послухайте й виберіть — яке слово назвав помічник**
-🔊 *screen* → **screen** · green · scream · stream
-Значення варіантів: screen — екран · green — зелений · scream — крик · stream — потік
-- green — *У `green` початок — `gr`; у `screen` перед `r` чути `s` і `k`: `skr`.*
-- scream — *`scream` закінчується на `m`, а `screen` — на `n`.*
-- stream — *У `stream` після `s` чути `t`; у `screen` — поєднання `kr`.*
+**4 · Промовте слово**
+<!-- interaction_id: en:lesson-03:session-26:i02; family: scripted_repeat_compare -->
+Ціль: `picture`
 
-**5 · Картка слова — speaker**
-> **speaker** — «колонка». Музика ще не грає, а помічник уже перевіряє, чи чути її в останньому ряду.
+**5 · Послухайте й виберіть — яке слово назвав помічник**
+<!-- interaction_id: en:lesson-03:session-26:i04; family: listen_choose -->
+Значення варіантів: `screen` — екран · `green` — зелений · `scream` — крик · `stream` — потік
+Ціль: `screen`
+Варіанти: `screen` · `green` · `scream` · `stream`
 
-**6 · Послухайте й виберіть — яке слово назвав помічник**
-🔊 *speaker* → **speaker** · seeker · sneaker · keeper
-Значення варіантів: speaker — колонка · seeker — шукач · sneaker — кросівка · keeper — зберігач
-- seeker — *У `seeker` після `s` одразу чути довгий `ee`; у `speaker` між ними є звук `p`.*
-- sneaker — *У `sneaker` початок — `sn`; у `speaker` — `sp`.*
-- keeper — *`keeper` починається зі звука `k`, а `speaker` — з поєднання `sp`.*
+**6 · Розрізніть звук — speaker чи sticker**
+<!-- interaction_id: en:lesson-03:session-26:i06; family: sound_contrast -->
+Ціль: `speaker`
+*speaker · sticker* → **speaker**
 
 **7 · З'єднайте слова зі значеннями — предмети на сцені**
-picture — картина · screen — екран · speaker — колонка · phone — телефон
+<!-- interaction_id: en:lesson-03:session-26:i07; family: speed_match -->
+Пари: `picture` — картина · `screen` — екран · `speaker` — колонка · `phone` — телефон
+Ціль: `picture · screen · speaker · phone`
 
-**8 · Перенесіть у відповідь ціле слово — картина або фотографія в рамі**
-Плитки: `picture` `pitcher` `fixture` `mixture` → **picture**
+**8 · Розрізніть вказівне слово — this чи that**
+<!-- interaction_id: en:lesson-03:session-26:i08; family: sound_contrast -->
+Ціль: `That`
+*That · This* → **That**
 
-**9 · Скажіть уголос — поверхня, на якій видно зображення**
-🎙 **screen** — послухайте, повторіть і порівняйте.
+**9 · Вставте форму — один предмет стоїть удалині**
+<!-- interaction_id: en:lesson-03:session-26:i09; family: context_gap_grammar -->
+Ціль: `That ___ there.`
+Варіанти: `is` · `are`
 
-**10 · Послухайте й перенесіть у відповідь ціле слово — колонка**
-🔊 *speaker* Плитки: `speaker` `seeker` `sneaker` `keeper` → **speaker**
+**10 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-26:i10; family: scripted_repeat_compare -->
+Ціль: `That is a speaker.`
 
 **11 · Складіть фразу — картина знаходиться на сцені вдалині**
-Плитки: `picture` `That` `a` `is` `This` `are` → **That is a picture.**
+<!-- interaction_id: en:lesson-03:session-26:i11; family: phrase_builder -->
+Ціль: `That is a picture.`
 
-**12 · Скажіть уголос — ви вказуєте на екран в іншому кінці залу**
-🎙 **That is a screen.** — послухайте, повторіть і порівняйте.
+**12 · Послухайте та складіть одну фразу**
+<!-- interaction_id: en:lesson-03:session-26:i12; family: listen_build_dictation -->
+Ціль: `That is a screen.`
 
 **13 · Вставте слово — колонка стоїть біля дальньої стіни**
-That ___ a speaker. → **is** · are · am · a
-- are — *Колонка одна. Після `That` тут потрібне `is`.*
-- am — *`am` ставлять після `I`. Для одного далекого предмета потрібна зв'язка `That is`.*
-- a — *`a` уже стоїть перед `speaker`. Між `That` і `a speaker` потрібне `is`.*
+<!-- interaction_id: en:lesson-03:session-26:i13; family: context_gap_grammar -->
+Ціль: `That ___ a speaker.`
+Варіанти: `is` · `are` · `am` · `a`
 
 **14 · Послухайте й виберіть значення точної фрази**
-🔊 *That is a screen.* → **Це екран** · Це пружина · Це крик · Це струмок
-- Це пружина — *У записі прозвучало `screen` — «екран». Для «пружина» прозвучало б `spring`, зі звуком `p` після `s`.*
-- Це крик — *Почуте `screen` закінчується на `n`; слово `scream` — «крик» — закінчується на `m`.*
-- Це струмок — *У записі звучить поєднання `skr` у `screen`; слово `stream` — «струмок» — починається зі `str`.*
+<!-- interaction_id: en:lesson-03:session-26:i14; family: listen_choose -->
+Ціль: `That is a screen.`
+Варіанти: `Це екран` · `Це пружина` · `Це крик` · `Це струмок`
 
 **15 · Складіть фразу — колонка стоїть далеко від вас**
-Плитки: `speaker` `That` `a` `is` `This` `are` → **That is a speaker.**
+<!-- interaction_id: en:lesson-03:session-26:i15; family: phrase_builder -->
+Ціль: `That is a speaker.`
 
 **16 · Вставте вказівне слово — одна картина стоїть біля дальньої стіни**
-___ is a picture. → **That** · This · Is · A
-- This — *`this` указує на предмет поруч. Картина стоїть біля дальньої стіни, тому потрібне `That`.*
-- Is — *Зв'язка `is` уже стоїть після пропуску. На початку потрібне вказівне слово для предмета вдалині — `That`.*
-- A — *Фраза вже містить `a picture`. На початку потрібне вказівне слово для предмета вдалині — `That`.*
+<!-- interaction_id: en:lesson-03:session-26:i16; family: context_gap_grammar -->
+Ціль: `___ is a picture.`
+Варіанти: `That` · `This` · `Is` · `A`
 
-**17 · Фінал — самі назвіть екран на сцені**
-🎙 **That is a screen.** — скажіть фразу, потім послухайте зразок і порівняйте.
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-03:session-26:i17; family: scripted_repeat_compare -->
+Ціль: `That is a screen.`
 
-## Для збирача
-new_words: picture — картина — Та, яку на сцені повісили рівно, а помічник уже нахилив голову, щоб перевірити.
-new_words: screen — екран — На ньому зазвичай видно все, крім потрібної кнопки в потрібний момент.
-new_words: speaker — колонка — Музика ще не грає, а помічник уже перевіряє, чи чути її в останньому ряду.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=scripted_repeat_compare, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=context_gap_grammar, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=speed_match, 8=sound_contrast, 9=context_gap_grammar, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_build_dictation, 13=context_gap_grammar, 14=listen_choose, 15=phrase_builder, 16=context_gap_grammar, 17=scripted_repeat_compare
+

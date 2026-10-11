@@ -1,7 +1,7 @@
-# Английский · Урок 2 · Сессия 16 — «Десять человек за десять минут»
+# Английский · Урок 2 · Занятие 16 — «Десять человек за десять минут»
 
-**Сцена сессии.** Кафе в разгар дня. Столики заняты, у стойки очередь, за окном улица — и на каждого можно посмотреть и спросить про него одно короткое слово.
-**Операция:** повторение — вопрос `Is he …? / Is she …? / Is it …?` и короткие ответы
+**Сцена занятия.** Вы встречаете коллегу Олю у входа в переполненное кафе. Макс у стойки просит воды, Мира у окна отдыхает после дороги, а Олег сидит за дальним столиком. Вы с Олей решаете, есть ли свободные места: она спрашивает о каждом из них и о самом кафе, а вы отвечаете.
+**Как сказать:** повторение — вопрос `Is he …? / Is she …? / Is it …?` и короткие ответы
 **Новые слова:** —
 **Возвращаются:** thirsty, dizzy, comfortable, curious, cheerful, crowded, noisy, handsome, awake, lost
 
@@ -15,7 +15,7 @@
 
 Знак вопроса тут ничего не решает. Решает то, какое слово стоит первым.
 
-**Мужчина у стойки допил стакан воды и просит второй. Спросите, хочет ли он ещё пить.**
+**Макс у стойки допил стакан воды и просит второй. Спросите, хочет ли он ещё пить.**
 
 - ✅ **Is he thirsty?**
 - ❌ He is thirsty? — *Так вы сообщаете: «он хочет пить». Вопрос начинают с `is`.*
@@ -47,7 +47,7 @@
 
 Порядок при этом переворачивается: в вопросе `is she`, в ответе `she is`. Для «нет» добавляют `not` сразу после `is`: `No, she is not.`
 
-**Спутник спрашивает: «Is she curious?» — а девушка у окна и правда рассматривает всех подряд. Ответьте согласием.**
+**Оля спрашивает: «Is she curious?» — а Мира у окна и правда рассматривает всех подряд. Ответьте согласием.**
 
 - ✅ **Yes, she is.**
 - ❌ Yes, is she. — *Так снова получается вопрос. В ответе сначала `she`, потом `is`.*
@@ -55,88 +55,110 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Послушайте и выберите — thirsty**
-🔊 *thirsty* → **thirsty** · thirty · dirty
-- thirty — *Это «тридцать». В `thirsty` перед концом слышно «с», в `thirty` его нет.*
-- dirty — *Это «грязный». Слово начинается с «д», а `thirsty` — с другого звука, языком между зубами.*
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-16:i01; family: listen_choose -->
+Цель: `thirsty`
+Варианты: `thirsty` · `thirty` · `dirty`
 
-**2 · Вставьте слово — мужчина у стойки просит второй стакан воды**
-Is he ___ ? → **thirsty** · lost · awake
-- lost — *«Заблудился». Он стоит у стойки и заказывает — дорогу не ищет.*
-- awake — *«Проснулся, не спит». Это и так видно, а вода — про жажду.*
+**2 · Вставьте слово — Макс у стойки просит второй стакан воды**
+<!-- interaction_id: en:lesson-02:session-16:i02; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `thirsty` · `lost` · `awake`
 
-**3 · Вставьте слово — свободных столиков нет, люди стоят вдоль стены**
-Is it ___ ? → **crowded** · comfortable · dizzy
-- comfortable — *«Удобно». Когда некуда сесть, это как раз наоборот.*
-- dizzy — *«Голова кружится». Так говорят про человека, а не про кафе.*
+**3 · Соберите вопрос — свободных столиков нет, люди стоят вдоль стены**
+<!-- interaction_id: en:lesson-02:session-16:i03; family: phrase_builder -->
+Цель: `Is it crowded?`
 
-**4 · Соберите фразу — спросите про шум: за соседним столом кричат в трубку**
-Плитки: `it` `is` `noisy` `he` → **Is it noisy?**
+**4 · Послушайте и выберите — за соседним столом кричат в трубку; вы спрашиваете о шуме**
+<!-- interaction_id: en:lesson-02:session-16:i04; family: listen_choose -->
+Цель: `Is it noisy?`
+Варианты: `Is it noisy?` · `It is noisy.` · `Is it crowded?`
 
 **5 · Различите звуки — какое из двух про «людно»?**
-🔊 Два слова подряд.
-*crowded · cloudy* → **crowded**
-- cloudy — *Это «облачно». Оба слова начинаются с «к», но дальше в `crowded` идёт «р», а в `cloudy` — «л».*
+<!-- interaction_id: en:lesson-02:session-16:i05; family: sound_contrast -->
+Варианты: `crowded` · `cloudy`
 
-**6 · Соедините пары (Speed Match, 4 пары)**
-thirsty — хочет пить · crowded — людно · noisy — шумно · curious — любопытный
+**6 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-16:i06; family: speed_match -->
+Пары: `thirsty` — хочет пить · `crowded` — людно · `noisy` — шумно · `curious` — любопытный
+Цель: `thirsty · crowded · noisy · curious`
 
-**7 · Послушайте и выберите — handsome**
-🔊 *handsome* → **handsome** · handle · hands
-- handle — *Это «ручка» — у двери или у чашки. Второй кусок слова другой.*
-- hands — *Это «руки». В `handsome` после «хэнд» идёт ещё слог.*
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-16:i07; family: listen_choose -->
+Цель: `handsome`
+Варианты: `handsome` · `handle` · `hands`
 
-**8 · Вставьте слово — мужчина за дальним столиком, все на него оглядываются**
-Is he ___ ? → **handsome** · thirsty · noisy
-- thirsty — *«Хочет пить». Оглядываются не на жажду.*
-- noisy — *«Шумный». Он сидит молча, шума от него нет.*
+**8 · Вставьте слово — Олег за дальним столиком; все на него оглядываются**
+<!-- interaction_id: en:lesson-02:session-16:i08; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `handsome` · `thirsty` · `noisy`
 
 **9 · Послушайте и соберите — «она любопытная?»**
-🔊 *Is she curious?* Плитки: `she` `Is` `curious` `he` → **Is she curious?**
+<!-- interaction_id: en:lesson-02:session-16:i09; family: listen_build_dictation -->
+Цель: `Is she curious?`
 
-**10 · Вставьте слово — спутник сидит в мягком кресле у окна и не хочет уходить**
-Is he ___ ? → **comfortable** · lost · dizzy
-- lost — *«Заблудился». Он в кресле, а не на улице.*
-- dizzy — *«Голова кружится». Тогда бы он как раз хотел уйти.*
+**10 · Вставьте слово — Олег сидит в мягком кресле у окна и не хочет уходить**
+<!-- interaction_id: en:lesson-02:session-16:i10; family: context_gap_grammar -->
+Цель: `Is he ___ ?`
+Варианты: `comfortable` · `lost` · `dizzy`
 
 **11 · Соберите фразу — ответьте «да, она любопытная» коротко**
-Плитки: `she` `Yes,` `is` `curious` → **Yes, she is.**
-*(лишняя плитка `curious` — короткий ответ обходится без неё)*
+<!-- interaction_id: en:lesson-02:session-16:i11; family: phrase_builder -->
+Цель: `Yes, she is.`
 
-**12 · Вставьте слово — женщина встала и схватилась за стол, её качнуло**
-Is she ___ ? → **dizzy** · cheerful · awake
-- cheerful — *«Весёлая». Хвататься за стол от веселья не станут.*
-- awake — *«Не спит». Она только что встала — это и так ясно.*
+**12 · Вставьте слово — Мира встала и схватилась за стол, её качнуло**
+<!-- interaction_id: en:lesson-02:session-16:i12; family: context_gap_grammar -->
+Цель: `Is she ___ ?`
+Варианты: `dizzy` · `cheerful` · `awake`
 
-**13 · Вставьте слово — человек у входа вертит телефон и смотрит по сторонам**
-Is he ___ ? → **lost** · comfortable · handsome
-- comfortable — *«Удобно». Он стоит в дверях и не знает, куда идти.*
-- handsome — *«Красивый». Вопрос не про внешность, а про то, что он ищет дорогу.*
+**13 · Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он**
+<!-- interaction_id: en:lesson-02:session-16:i13; family: phrase_builder -->
+Цель: `Is he lost?`
 
 **14 · Послушайте и соберите — «здесь шумно?»**
-🔊 *Is it noisy?* Плитки: `noisy` `it` `Is` `crowded` → **Is it noisy?**
+<!-- interaction_id: en:lesson-02:session-16:i14; family: listen_build_dictation -->
+Цель: `Is it noisy?`
 
-**15 · Соедините пары (Speed Match, 4 пары)**
-handsome — красивый · dizzy — кружится голова · lost — заблудился · comfortable — удобно
+**15 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-16:i15; family: speed_match -->
+Пары: `handsome` — красивый · `dizzy` — кружится голова · `lost` — заблудился · `comfortable` — удобно
+Цель: `handsome · dizzy · lost · comfortable`
 
-**16 · Соберите вопрос — женщина за стойкой улыбается каждому; спросите, весёлая ли она**
-Плитки: `cheerful` `she` `Is` `is` → **Is she cheerful?**
-*(`cheerful` — «весёлая»; лишняя плитка `is` тут не нужна)*
+**16 · Соберите вопрос — бариста Лена за стойкой улыбается каждому; спросите, весёлая ли она**
+<!-- interaction_id: en:lesson-02:session-16:i16; family: phrase_builder -->
+Цель: `Is she cheerful?`
 
-**17 · Скажите вслух — финал сцены**
-🎙 Спутник показывает на троих подряд. Спросите про каждого и ответьте за себя.
-**Is he thirsty? Yes, he is. Is she awake? No, she is not. Is it crowded? Yes, it is.**
-*(`awake` — «проснулся, не спит»)*
+**17 · Произнесите фразу — Оля показывает на Макса у стойки и спрашивает, хочет ли он пить**
+<!-- interaction_id: en:lesson-02:session-16:i17:s01; family: scripted_repeat_compare -->
+Цель: `Is he thirsty?`
 
----
+**18 · Произнесите фразу — подтвердите вопрос Оли о Максе**
+<!-- interaction_id: en:lesson-02:session-16:i17:s02; family: scripted_repeat_compare -->
+Цель: `Yes, he is.`
+
+**19 · Произнесите фразу — Оля показывает на Миру у окна и спрашивает, бодрствует ли она**
+<!-- interaction_id: en:lesson-02:session-16:i17:s03; family: scripted_repeat_compare -->
+Цель: `Is she awake?`
+
+**20 · Произнесите фразу — Мира у окна задремала; ответьте на вопрос Оли о ней**
+<!-- interaction_id: en:lesson-02:session-16:i17:s04; family: scripted_repeat_compare -->
+Цель: `No, she is not.`
+
+**21 · Произнесите фразу — коллега спрашивает о самом кафе: здесь людно?**
+<!-- interaction_id: en:lesson-02:session-16:i17:s05; family: scripted_repeat_compare -->
+Цель: `Is it crowded?`
+
+**22 · Произнесите фразу — подтвердите вопрос коллеги о том же кафе**
+<!-- interaction_id: en:lesson-02:session-16:i17:s06; family: scripted_repeat_compare -->
+Цель: `Yes, it is.`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=context_gap_grammar, 4=phrase_builder, 5=sound_contrast, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=context_gap_grammar, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=phrase_builder, 4=listen_choose, 5=sound_contrast, 6=speed_match, 7=listen_choose, 8=context_gap_grammar, 9=listen_build_dictation, 10=context_gap_grammar, 11=phrase_builder, 12=context_gap_grammar, 13=phrase_builder, 14=listen_build_dictation, 15=speed_match, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
 
 ---
 
@@ -179,21 +201,3 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=context_gap_grammar, 4=phrase_b
 | comfortable (зад. 15) | — (возврат) | зад. 10 выбор |
 
 Пересечения между досками 6 и 15 нет.
-
----
-
-🟡 **Стоит улучшить**
-- Задание 11: `curious` дана лишней плиткой, а в задании 16 лишняя плитка — `is`. Два похожих приёма подряд в конце; если редактор сочтёт это повтором, в 16-м можно заменить ловушку на `he`.
-- Слово `cheerful` имеет всего два касания (минимум по правилу) — при желании добавить ему третье вместо одного из разборов.
-
-🧩 **Скрытые связи**
-- Сессия опирается на слова из сессий 13–15 того же урока; сцена «кафе» повторяется, но повод другой — не разговор про одного человека и не магазин, а перебор десяти разных людей подряд.
-
----
-
-**Итог:**
-- Написал шестнадцатую сессию второго урока — это проверочное занятие, новых слов в ней нет.
-- Человек в кафе разглядывает посетителей и спрашивает про каждого: хочет ли он пить, красивый ли он, шумно ли тут.
-- Три вводные страницы объясняют три вещи: вопрос начинается с «is», про вещи и места говорят «it», а отвечать надо не просто «да», а «да, она такая».
-- Дальше семнадцать заданий: послушать, выбрать слово, собрать фразу, соединить пары и в конце проговорить вслух три вопроса с ответами.
-- Все десять старых слов возвращаются, и у каждого есть задание, где оно — правильный ответ.

@@ -1,8 +1,7 @@
-# Англійська · Урок 1 · Сесія 32 — «Це не так»
+# Англійська · Урок 1 · Заняття 32 — «Квартира і погода»
 
-**Сцена сесії.** Увечері ви стоїте біля вікна з телефоном: подруга з іншого міста розпитує про нову квартиру і про те, що там за вікном. Відповідати треба коротко — що так, а що зовсім не так.
-
-**Операція:** повторення `It is` та `It is not` — про житло й погоду
+**Ситуація.** Лена телефонує подрузі Мії й розповідає про нову квартиру та погоду за вікном. Мія питає, чи квартира маленька, чи дорого в ній жити та чи йде дощ.
+**Як сказати:** `It is` і `It is not`, коли описуєте квартиру або погоду.
 **Нові слова:** —
 **Повертаються:** small, dark, cold, expensive, rainy, warm, clean, quiet
 
@@ -58,86 +57,116 @@
 
 ## Практика (перші завдання)
 
-**1 · Послухайте і виберіть — small**
+**1 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i01; family: listen_choose -->
 🔊 *small* → **small** · smell · mall
 - smell — *Інший голосний посередині, і значення інше. `small` — «маленький».*
 - mall — *Початок відрізано. У `small` попереду `s`.*
 
 **2 · Вставте слово — про кімнату, яка вам замала**
+<!-- interaction_id: en:lesson-01:session-32:i02; family: context_gap_grammar -->
 It is ___ . → **small** · warm · quiet
 - warm — *«Тепло» — про повітря, а не про розмір.*
 - quiet — *«Тихо» — про звук. Розмір тут ні до чого.*
 
-**3 · Послухайте і виберіть — dark**
+**3 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i03; family: listen_choose -->
 🔊 *dark* → **dark** · park · duck
 - park — *Усе те саме, тільки починається з `p`. Слухайте перший звук.*
 - duck — *Голосний інший і коротший. У `dark` він тягнеться.*
 
 **4 · Складіть фразу — «тут темно»**
+<!-- interaction_id: en:lesson-01:session-32:i04; family: phrase_builder -->
 Плитки: `dark` `It` `is` `not` → **It is dark.**
 *Темно і є, заперечувати нічого: плитка `not` зайва.*
 
 **5 · Вставте слово — вікна на сонячний бік, світла повно**
+<!-- interaction_id: en:lesson-01:session-32:i05; family: context_gap_grammar -->
 It is not ___ . → **dark** · rainy · expensive
 - rainy — *Ідеться про світло в кімнаті, а не про небо.*
 - expensive — *«Дорого» — це про ціну, не про освітлення.*
 
-**6 · Послухайте і виберіть — expensive**
+**6 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i06; family: listen_choose -->
 🔊 *expensive* → **expensive** · expense · offensive
 - expense — *Коротше на склад і без хвоста `-ive`.*
 - offensive — *Схоже закінчення, але початок інший: там `of-`.*
 
-**7 · З'єднайте пари (Speed Match, 4 пари)**
+**7 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-32:i07; family: speed_match -->
 small — маленький · dark — темно · expensive — дорого · quiet — тихо
 
 **8 · Послухайте і складіть — «це недорого»**
+<!-- interaction_id: en:lesson-01:session-32:i08; family: listen_build_dictation -->
 🔊 *It is not expensive.* Плитки: `not` `It` `expensive` `is` → **It is not expensive.**
 
 **9 · Картка слова — cold**
+<!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
 > **cold** — «холодно». Про повітря в кімнаті, надворі, про воду з крана — усе це `it`: `It is cold`.
 
-**10 · Послухайте і виберіть — cold**
+**10 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i10; family: listen_choose -->
 🔊 *cold* → **cold** · called · gold
 - called — *Голосний тягнеться інакше, і це інше слово.*
 - gold — *Попереду `g`. Слухайте перший звук.*
 
 **11 · Складіть фразу — подруга питає, чи не мерзнете ви вдома**
+<!-- interaction_id: en:lesson-01:session-32:i11; family: phrase_builder -->
 Плитки: `It` `cold` `not` `is` → **It is not cold.**
 
-**12 · Послухайте і виберіть — rainy**
+**12 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i12; family: listen_choose -->
 🔊 *rainy* → **rainy** · rain · train
 - rain — *Без хвоста `-y`. Це сам дощ, а не погода.*
 - train — *Попереду `t`. Слухайте самий початок слова.*
 
 **13 · Вставте слово — зранку ллє не перестаючи**
+<!-- interaction_id: en:lesson-01:session-32:i13; family: context_gap_grammar -->
 It is ___ . → **rainy** · warm · clean
 - warm — *«Тепло» — про температуру, дощу в цьому слові немає.*
 - clean — *«Чисто» — про підлогу й посуд, не про небо.*
 
-**14 · Послухайте і виберіть — warm**
+**14 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i14; family: listen_choose -->
 🔊 *warm* → **warm** · worm · farm
 - worm — *Голосний інший, і це «черв'як». Не про погоду.*
 - farm — *Попереду `f`. У `warm` початок м'якший: `w`.*
 
 **15 · Вставте слово — батареї гарячі, у куртці вдома спекотно**
+<!-- interaction_id: en:lesson-01:session-32:i15; family: context_gap_grammar -->
 It is ___ . → **warm** · small · dark
 - small — *«Маленький» — про розмір кімнати, а йдеться про повітря.*
 - dark — *«Темно» — про світло, а не про температуру.*
 
 **16 · Картка слова — clean**
+<!-- interaction_id: en:lesson-01:session-32:i16; family: listen_choose -->
 > **clean** — «чисто». Підлогу вимито, посуд прибрано, ніщо не валяється: `It is clean`.
 
-**17 · Послухайте і виберіть — clean**
+**17 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-32:i17; family: listen_choose -->
 🔊 *clean* → **clean** · clan · green
 - clan — *Голосний коротший. У `clean` він тягнеться: «кліін».*
 - green — *Попереду `gr-`. Початок інший.*
 
-**18 · З'єднайте пари (Speed Match, 4 пари)**
+**18 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-32:i18; family: speed_match -->
 cold — холодно · rainy — дощово · warm — тепло · clean — чисто
 
-**19 · Скажіть уголос — подруга просить описати все разом**
-🎙 Квартира невелика, але недорога й тепла, а надворі дощ.
-**It is small. It is not expensive. It is warm. It is rainy.**
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-32:i19:s01; family: scripted_repeat_compare -->
+🎙 **It is small.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-32:i19:s02; family: scripted_repeat_compare -->
+🎙 **It is not expensive.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-32:i19:s03; family: scripted_repeat_compare -->
+🎙 **It is warm.**
+
+**22 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-32:i19:s04; family: scripted_repeat_compare -->
+🎙 **It is rainy.**
 
 ---
 
@@ -145,7 +174,7 @@ cold — холодно · rainy — дощово · warm — тепло · clea
 
 new_words: —
 
-modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=word_card, 10=listen_choose, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=word_card, 17=listen_choose, 18=speed_match, 19=scripted_repeat_compare
+modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=listen_choose, 7=speed_match, 8=listen_build_dictation, 9=listen_choose, 10=listen_choose, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=listen_choose, 17=listen_choose, 18=speed_match, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare, 22=scripted_repeat_compare
 
 ---
 
@@ -187,14 +216,3 @@ modes: 1=listen_choose, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder
 
 Дошки не перетинаються словами.
 
----
-
-🟡 **Варто врахувати**
-- В інтро 2 наголос показано через «ік-СПЕН-сив»; якщо в курсі є єдиний стандарт запису вимови, треба звірити.
-- Пастка `It is no small` для україномовних менш типова, ніж пропуск `is`; лишив як є, бо англійські варіанти змінювати заборонено.
-
-**Підсумок**
-- Виправив зауваження судді: заголовок розділу практики тепер українською — «Практика (перші завдання)».
-- Решта тексту лишилася без змін: англійські слова, фрази, номери й порядок завдань — байт у байт.
-- Службовий блок «Для сборщика» не чіпав, як вимагають правила.
-- Українською тепер увесь пояснювальний текст, чужої мови в заголовках немає.

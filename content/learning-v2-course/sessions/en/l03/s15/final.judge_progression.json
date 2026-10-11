@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "536817b6308428d8132ab653b3cdb75bea6a50c368c860bec52571a28668bda2",
+  "localeSha256": "f61f8ba7176a91a7608c6bab824252ff220c1841a83d119eba03ddd4a70fe641",
+  "comparedThrough": "en/l03/s14",
+  "newWords": [
+    "candle",
+    "cushion",
+    "plant"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 15 | слова | быстрый выбор `a/an`: `a candle`, `a cushion`, `a plant` плюс возврат уже заземлённых в S9 `an armchair`, `an oven` | candle, cushion, plant | добираем уютные мелочи |",
+  "curriculumEvidence": {
+    "grammar": "быстрый выбор `a/an` перед названием одного предмета: `a candle`, `a cushion`, `a plant`, `an armchair`, `an oven`",
+    "newWords": [
+      "candle",
+      "cushion",
+      "plant"
+    ],
+    "situation": "После кафе вы с другом возвращаетесь в магазин для дома. Вы выбираете свечу, подушку и растение, уточняете покупки друг друга и договариваетесь, у какого товара встретиться."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "current-plan",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh second-repair RU/UK audit",
+    "Current distractors checked against curriculum allocation; no future-target collision"
+  ]
+}

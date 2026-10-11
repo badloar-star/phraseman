@@ -1,0 +1,74 @@
+{
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_reader",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "session": "s49",
+  "sourceSha256": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+  "exactRuSha256": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+  "exactUkSha256": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Furniture selection makes the adjective-before-noun operation and the three new colours explicit; final retrieves the operation in the same scene."
+  ],
+  "scope": "Fresh independent text-only audit of current RU and UK final files; actual audio was not reviewed.",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "6bb9f1069f315411bca09378514be624add7b79ab91fed2ec5c98463cbb0f62e",
+    "localeSha256": "552d2571747d9af7a0ce13f68283fd20344036c0d963fa62eefda3ea16b3ffca",
+    "practiceAtomicSha256": "75979e9a0ab1d039d6077502d6dcc4f33af7c63742c24cc02141d7df8d88781c"
+  },
+  "localeSha256": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a",
+  "practiceAtomicSha256": "18a2eeea254b839f7622a62a89cc51477966ebc9c8097db5363611ddd8fb8a85",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "8efe1af65a056c0642b8c85134b408243e36a6e920045c80ca79550ad8619d18",
+    "localeSha256": "7f9d10232bc33f0acf90aa1ff8fbb70c195294f470129c433cd07d4603d2e9ec",
+    "practiceAtomicSha256": "18a2eeea254b839f7622a62a89cc51477966ebc9c8097db5363611ddd8fb8a85",
+    "findings": []
+  },
+  "must_fix": [],
+  "localeHashes": {
+    "ru": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+    "uk": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_reader",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+    "exactRuSha256": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+    "exactUkSha256": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a",
+    "localeSha256": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a",
+    "localeHashes": {
+      "ru": "17ac4e2c22e4f693a4b023a5d486c7426c6366e3b898d1401419d406de02d352",
+      "uk": "c9de42fc35716da056124c3807c4fd7b610c9dcc3aba8d4b6bbbb8b626e4224a"
+    },
+    "practiceAtomicSha256": "18a2eeea254b839f7622a62a89cc51477966ebc9c8097db5363611ddd8fb8a85",
+    "evidence": [
+      "Furniture selection makes the adjective-before-noun operation and the three new colours explicit; final retrieves the operation in the same scene."
+    ]
+  }
+}

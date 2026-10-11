@@ -1,0 +1,1525 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-03:session-54",
+  "sourceSnapshotSha256": "c82bcb27012682ee4fe0a4254c12d91126d75d54315fd264d00225002e332125",
+  "preservationLedgerSha256": "07dda80585dd04488296f6993d4bfe8e3a6d15fa044f38b063218c554ef8e207",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-03:session-54:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i01:r1",
+            "text": "bright"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i01:audio",
+            "transcript": "bright"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i01:r1",
+              "targetText": "bright",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bright",
+            "definitionByLocale": {
+              "ru": "«яркий». Так можно описать лампу, которая даёт много света.",
+              "uk": "«яскравий». Так можна описати лампу, яка дає багато світла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i03",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i03:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i03:audio",
+            "transcript": "pale"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pale",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i07",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i07:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i07:r2","text":"bright"},{"responseId":"en:lesson-03:session-54:i07:r3","text":"pale"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i07:audio"],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {"audioTargetId":"en:lesson-03:session-54:i07:audio","transcript":"striped"},
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [{"responseId":"en:lesson-03:session-54:i07:r1","targetText":"striped","meaningByLocale":{"ru":"«полосатый». Так можно описать подушки с полосами.","uk":"«смугастий». Так можна описати подушки зі смугами."}},{"responseId":"en:lesson-03:session-54:i07:r2","targetText":"bright","meaningByLocale":null},{"responseId":"en:lesson-03:session-54:i07:r3","targetText":"pale","meaningByLocale":null}],
+          "transcriptRevealPolicy":"after_first_attempt",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i07:r2","correct":false,"testedDimension":"Послушайте и выберите — striped","feedbackByLocale":{"ru":"В записи слышно `striped` — «полосатый», а не `bright` — «яркий».","uk":"У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."}},{"responseId":"en:lesson-03:session-54:i07:r3","correct":false,"testedDimension":"Послушайте и выберите — striped","feedbackByLocale":{"ru":"`Pale` — «бледный». В записи назван узор из полос.","uk":"`Pale` — «блідий». У записі названо візерунок зі смуг."}}],
+          "isWordCard":true,
+          "wordCard":{"word":"striped","definitionByLocale":{"ru":"«полосатый». Вещь с полосами.","uk":"«смугастий». Річ зі смугами."}}
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i02:audio",
+            "transcript": "bright"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bright",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i04:r1",
+            "text": "pale"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i04:audio",
+            "transcript": "pale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i04:r1",
+              "targetText": "pale",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pale",
+            "definitionByLocale": {
+              "ru": "«бледный».",
+              "uk": "«блідий»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i08",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Различите слово — striped или stripped",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i08:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i08:r2","text":"stripped"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i08:audioA","en:lesson-03:session-54:i08:audioB"],
+        "accessibilityLabel": "Различите слово — striped или stripped",
+        "modePayload": {
+          "family":"sound_contrast", "contrastA":"striped", "contrastB":"stripped", "ipaA":"", "ipaB":"",
+          "audioA":{"audioTargetId":"en:lesson-03:session-54:i08:audioA","transcript":"striped"},
+          "audioB":{"audioTargetId":"en:lesson-03:session-54:i08:audioB","transcript":"stripped"},
+          "testedPhoneticContrast":"В striped слышится гласный звук перед концом слова.",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i08:r2","correct":false,"testedDimension":"Различите striped и stripped","feedbackByLocale":{"ru":"В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.","uk":"У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."}}]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family":"speed_match",
+          "pairGrid":[{"pairId":"en:lesson-03:session-54:i05:p1","target":"bright","meaningByLocale":{"ru":"яркий","uk":"яскравий"}},{"pairId":"en:lesson-03:session-54:i05:p2","target":"lamp","meaningByLocale":{"ru":"лампа","uk":"лампа"}},{"pairId":"en:lesson-03:session-54:i05:p3","target":"rug","meaningByLocale":{"ru":"коврик","uk":"килимок"}},{"pairId":"en:lesson-03:session-54:i05:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
+          "leftColumn":["bright","lamp","rug","cushions"]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i06",
+        "ordinal": 11,
+        "purpose": "supported_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Различите слово — pale или peel",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i06:r1","text":"pale"},{"responseId":"en:lesson-03:session-54:i06:r2","text":"peel"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i06:audioA","en:lesson-03:session-54:i06:audioB"],
+        "accessibilityLabel": "Различите слово — pale или peel",
+        "modePayload": {
+          "family":"sound_contrast", "contrastA":"pale", "contrastB":"peel", "ipaA":"", "ipaB":"",
+          "audioA":{"audioTargetId":"en:lesson-03:session-54:i06:audioA","transcript":"pale"},
+          "audioB":{"audioTargetId":"en:lesson-03:session-54:i06:audioB","transcript":"peel"},
+          "testedPhoneticContrast":"В pale слышится звук /eɪ/, а в peel — долгий /iː/.",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i06:r2","correct":false,"testedDimension":"Различите pale и peel","feedbackByLocale":{"ru":"`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».","uk":"`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."}}]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i10",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i10:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i10:audio",
+            "transcript": "striped"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "striped",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i09",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините пары — вспомните подписи в комнате",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините пары — вспомните подписи в комнате",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-54:i09:p1",
+              "target": "bright",
+              "meaningByLocale": {
+                "ru": "яркий",
+                "uk": "яскравий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p2",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p3",
+              "target": "striped",
+              "meaningByLocale": {
+                "ru": "полосатый",
+                "uk": "смугастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p5",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p6",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p7",
+              "target": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bright",
+            "pale",
+            "striped",
+            "lamp",
+            "rug",
+            "cushions",
+            "here"
+          ],
+          "rightColumn": [
+            "яркий",
+            "бледный",
+            "полосатый",
+            "лампа",
+            "коврик",
+            "подушки",
+            "здесь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i11",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите исправленную подпись — яркая лампа рядом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите исправленную подпись — яркая лампа рядом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This bright lamp is here.",
+          "localizedMeaning": {
+            "ru": "Соберите исправленную подпись — яркая лампа рядом",
+            "uk": "Складіть виправлений підпис — яскрава лампа поруч"
+          },
+          "orderedTokens": [
+            "This",
+            "bright",
+            "lamp",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "a",
+            "This"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i12",
+        "ordinal": 15,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте начало — бледный коврик лежит дальше",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i12:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r4",
+            "text": "Those"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте начало — бледный коврик лежит дальше",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте начало — бледный коврик лежит дальше",
+            "uk": "Вставте початок — блідий килимок лежить далі"
+          },
+          "gappedTargetPhrase": "___ pale rug is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-54:i12:r1",
+              "text": "That"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r3",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r4",
+              "text": "Those"
+            }
+          ],
+          "testedDimension": "Вставьте начало — бледный коврик лежит д",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "Здесь вы показываете на дальний коврик, поэтому начало — `That`.",
+                "uk": "Тут ви вказуєте на дальній килимок, тому початок — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "Для этой подписи нужен указатель расстояния `That`, а не `The`.",
+                "uk": "Для цього підпису потрібен указівник відстані `That`, а не `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r4",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "`Those` относится к нескольким предметам; коврик один.",
+                "uk": "`Those` стосується кількох предметів; килимок один."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i13",
+        "ordinal": 16,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i13:audio",
+            "transcript": "These bright lamps are here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These bright lamps are here.",
+          "orderedTokens": [
+            "These",
+            "bright",
+            "lamps",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "This"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i14",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте описание — на дальнем диване несколько подушек с полосами",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i14:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r2",
+            "text": "bright"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r3",
+            "text": "pale"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r4",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте описание — на дальнем диване несколько подушек с полосами",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте описание — на дальнем диване несколько подушек с полосами",
+            "uk": "Вставте опис — на дальньому дивані кілька подушок зі смугами"
+          },
+          "gappedTargetPhrase": "Those ___ cushions are here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-54:i14:r1",
+              "text": "striped"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r2",
+              "text": "bright"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r3",
+              "text": "pale"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r4",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вставьте описание — на дальнем диване не",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "В этой подписи подушки с полосами, поэтому нужно `striped`.",
+                "uk": "У цьому підписі подушки зі смугами, тому потрібно `striped`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "`Pale` значит «бледный», а здесь описывают полосы.",
+                "uk": "`Pale` означає «блідий», а тут описують смуги."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r4",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "После `Those` нужно описание `striped`; `the` рядом с указателем не ставят.",
+                "uk": "Після `Those` потрібен опис `striped`; `the` поруч з указівником не ставлять."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i15",
+        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите подпись — друг передвинул бледный коврик ближе к вам",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите подпись — друг передвинул бледный коврик ближе к вам",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This pale rug is here.",
+          "localizedMeaning": {
+            "ru": "Соберите подпись — друг передвинул бледный коврик ближе к вам",
+            "uk": "Складіть підпис — друг пересунув блідий килимок ближче до вас"
+          },
+          "orderedTokens": [
+            "This",
+            "pale",
+            "rug",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "a",
+            "That"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i16",
+        "ordinal": 19,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите одну фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Произнесите одну фразу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i16:audio",
+            "transcript": "That striped rug is here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That striped rug is here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i17",
+        "ordinal": 20,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "исправьте последнюю подпись у дальней стены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "исправьте последнюю подпись у дальней стены",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those bright lamps are here.",
+          "localizedMeaning": {
+            "ru": "исправьте последнюю подпись у дальней стены",
+            "uk": "виправте останній підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "Those",
+            "bright",
+            "lamps",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "These"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-03:session-54:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i01:r1",
+            "text": "bright"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте та виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i01:audio",
+            "transcript": "bright"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i01:r1",
+              "targetText": "bright",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bright",
+            "definitionByLocale": {
+              "ru": "«яркий». Так можно описать лампу, которая даёт много света.",
+              "uk": "«яскравий». Так можна описати лампу, яка дає багато світла."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i03",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i03:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i03:audio",
+            "transcript": "pale"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pale",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i07",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть слово",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i07:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i07:r2","text":"bright"},{"responseId":"en:lesson-03:session-54:i07:r3","text":"pale"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i07:audio"],
+        "accessibilityLabel": "Послухайте та виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {"audioTargetId":"en:lesson-03:session-54:i07:audio","transcript":"striped"},
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [{"responseId":"en:lesson-03:session-54:i07:r1","targetText":"striped","meaningByLocale":{"ru":"«полосатый». Так можно описать подушки с полосами.","uk":"«смугастий». Так можна описати подушки зі смугами."}},{"responseId":"en:lesson-03:session-54:i07:r2","targetText":"bright","meaningByLocale":null},{"responseId":"en:lesson-03:session-54:i07:r3","targetText":"pale","meaningByLocale":null}],
+          "transcriptRevealPolicy":"after_first_attempt",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i07:r2","correct":false,"testedDimension":"Послухайте й виберіть — striped","feedbackByLocale":{"ru":"В записи слышно `striped` — «полосатый», а не `bright` — «яркий».","uk":"У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."}},{"responseId":"en:lesson-03:session-54:i07:r3","correct":false,"testedDimension":"Послухайте й виберіть — striped","feedbackByLocale":{"ru":"`Pale` — «бледный». В записи назван узор из полос.","uk":"`Pale` — «блідий». У записі названо візерунок зі смуг."}}],
+          "isWordCard":true,
+          "wordCard":{"word":"striped","definitionByLocale":{"ru":"«полосатый». Вещь с полосами.","uk":"«смугастий». Річ зі смугами."}}
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i02:audio",
+            "transcript": "bright"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "bright",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i04:r1",
+            "text": "pale"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте та виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i04:audio",
+            "transcript": "pale"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i04:r1",
+              "targetText": "pale",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pale",
+            "definitionByLocale": {
+              "ru": "«бледный».",
+              "uk": "«блідий»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i08",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Розрізніть слово — striped чи stripped",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i08:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i08:r2","text":"stripped"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i08:audioA","en:lesson-03:session-54:i08:audioB"],
+        "accessibilityLabel": "Розрізніть слово — striped чи stripped",
+        "modePayload": {
+          "family":"sound_contrast", "contrastA":"striped", "contrastB":"stripped", "ipaA":"", "ipaB":"",
+          "audioA":{"audioTargetId":"en:lesson-03:session-54:i08:audioA","transcript":"striped"},
+          "audioB":{"audioTargetId":"en:lesson-03:session-54:i08:audioB","transcript":"stripped"},
+          "testedPhoneticContrast":"У striped чути голосний звук перед кінцем слова.",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i08:r2","correct":false,"testedDimension":"Розрізніть striped та stripped","feedbackByLocale":{"ru":"В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.","uk":"У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."}}]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family":"speed_match",
+          "pairGrid":[{"pairId":"en:lesson-03:session-54:i05:p1","target":"bright","meaningByLocale":{"ru":"яркий","uk":"яскравий"}},{"pairId":"en:lesson-03:session-54:i05:p2","target":"lamp","meaningByLocale":{"ru":"лампа","uk":"лампа"}},{"pairId":"en:lesson-03:session-54:i05:p3","target":"rug","meaningByLocale":{"ru":"коврик","uk":"килимок"}},{"pairId":"en:lesson-03:session-54:i05:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
+          "leftColumn":["bright","lamp","rug","cushions"]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i06",
+        "ordinal": 11,
+        "purpose": "supported_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Розрізніть слово — pale чи peel",
+        "responseOptions": [{"responseId":"en:lesson-03:session-54:i06:r1","text":"pale"},{"responseId":"en:lesson-03:session-54:i06:r2","text":"peel"}],
+        "mediaIds": [],
+        "audioTargetIds": ["en:lesson-03:session-54:i06:audioA","en:lesson-03:session-54:i06:audioB"],
+        "accessibilityLabel": "Розрізніть слово — pale чи peel",
+        "modePayload": {
+          "family":"sound_contrast", "contrastA":"pale", "contrastB":"peel", "ipaA":"", "ipaB":"",
+          "audioA":{"audioTargetId":"en:lesson-03:session-54:i06:audioA","transcript":"pale"},
+          "audioB":{"audioTargetId":"en:lesson-03:session-54:i06:audioB","transcript":"peel"},
+          "testedPhoneticContrast":"У pale чути /eɪ/, а в peel — довгий /iː/.",
+          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i06:r2","correct":false,"testedDimension":"Розрізніть pale та peel","feedbackByLocale":{"ru":"`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».","uk":"`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."}}]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i10",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i10:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i10:audio",
+            "transcript": "striped"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "striped",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i09",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте пари — згадайте підписи в кімнаті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте пари — згадайте підписи в кімнаті",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-54:i09:p1",
+              "target": "bright",
+              "meaningByLocale": {
+                "ru": "яркий",
+                "uk": "яскравий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p2",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p3",
+              "target": "striped",
+              "meaningByLocale": {
+                "ru": "полосатый",
+                "uk": "смугастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p4",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p5",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p6",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i09:p7",
+              "target": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bright",
+            "pale",
+            "striped",
+            "lamp",
+            "rug",
+            "cushions",
+            "here"
+          ],
+          "rightColumn": [
+            "яскравий",
+            "блідий",
+            "смугастий",
+            "лампа",
+            "килимок",
+            "подушки",
+            "тут"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i11",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть виправлений підпис — яскрава лампа поруч",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть виправлений підпис — яскрава лампа поруч",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This bright lamp is here.",
+          "localizedMeaning": {
+            "ru": "Соберите исправленную подпись — яркая лампа рядом",
+            "uk": "Складіть виправлений підпис — яскрава лампа поруч"
+          },
+          "orderedTokens": [
+            "This",
+            "bright",
+            "lamp",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "a",
+            "This"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i12",
+        "ordinal": 15,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте початок — блідий килимок лежить далі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i12:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r3",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i12:r4",
+            "text": "Those"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте початок — блідий килимок лежить далі",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте начало — бледный коврик лежит дальше",
+            "uk": "Вставте початок — блідий килимок лежить далі"
+          },
+          "gappedTargetPhrase": "___ pale rug is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-54:i12:r1",
+              "text": "That"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r3",
+              "text": "The"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r4",
+              "text": "Those"
+            }
+          ],
+          "testedDimension": "Вставьте начало — бледный коврик лежит д",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "Здесь вы показываете на дальний коврик, поэтому начало — `That`.",
+                "uk": "Тут ви вказуєте на дальній килимок, тому початок — `That`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "Для этой подписи нужен указатель расстояния `That`, а не `The`.",
+                "uk": "Для цього підпису потрібен указівник відстані `That`, а не `The`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i12:r4",
+              "correct": false,
+              "testedDimension": "Вставьте начало — бледный коврик лежит д",
+              "feedbackByLocale": {
+                "ru": "`Those` относится к нескольким предметам; коврик один.",
+                "uk": "`Those` стосується кількох предметів; килимок один."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i13",
+        "ordinal": 16,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i13:audio",
+            "transcript": "These bright lamps are here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These bright lamps are here.",
+          "orderedTokens": [
+            "These",
+            "bright",
+            "lamps",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "This"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i14",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте опис — на дальньому дивані кілька подушок зі смугами",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i14:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r2",
+            "text": "bright"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r3",
+            "text": "pale"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i14:r4",
+            "text": "the"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте опис — на дальньому дивані кілька подушок зі смугами",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте описание — на дальнем диване несколько подушек с полосами",
+            "uk": "Вставте опис — на дальньому дивані кілька подушок зі смугами"
+          },
+          "gappedTargetPhrase": "Those ___ cushions are here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-54:i14:r1",
+              "text": "striped"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r2",
+              "text": "bright"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r3",
+              "text": "pale"
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r4",
+              "text": "the"
+            }
+          ],
+          "testedDimension": "Вставьте описание — на дальнем диване не",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "В этой подписи подушки с полосами, поэтому нужно `striped`.",
+                "uk": "У цьому підписі подушки зі смугами, тому потрібно `striped`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "`Pale` значит «бледный», а здесь описывают полосы.",
+                "uk": "`Pale` означає «блідий», а тут описують смуги."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i14:r4",
+              "correct": false,
+              "testedDimension": "Вставьте описание — на дальнем диване не",
+              "feedbackByLocale": {
+                "ru": "После `Those` нужно описание `striped`; `the` рядом с указателем не ставят.",
+                "uk": "Після `Those` потрібен опис `striped`; `the` поруч з указівником не ставлять."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i15",
+        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть підпис — друг пересунув блідий килимок ближче до вас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть підпис — друг пересунув блідий килимок ближче до вас",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This pale rug is here.",
+          "localizedMeaning": {
+            "ru": "Соберите подпись — друг передвинул бледный коврик ближе к вам",
+            "uk": "Складіть підпис — друг пересунув блідий килимок ближче до вас"
+          },
+          "orderedTokens": [
+            "This",
+            "pale",
+            "rug",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "a",
+            "That"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i16",
+        "ordinal": 19,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте одну фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Промовте одну фразу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i16:audio",
+            "transcript": "That striped rug is here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That striped rug is here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-54:i17",
+        "ordinal": 20,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "виправте останній підпис біля дальньої стіни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "виправте останній підпис біля дальньої стіни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those bright lamps are here.",
+          "localizedMeaning": {
+            "ru": "исправьте последнюю подпись у дальней стены",
+            "uk": "виправте останній підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "Those",
+            "bright",
+            "lamps",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "These"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-03:session-54:i01",
+      "correctText": "bright",
+      "correctResponseId": "en:lesson-03:session-54:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i02",
+      "correctText": "bright",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i03",
+      "correctText": "pale",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i04",
+      "correctText": "pale",
+      "correctResponseId": "en:lesson-03:session-54:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i05",
+      "correctText": "en:lesson-03:session-54:i05:p1=bright\nen:lesson-03:session-54:i05:p2=lamp\nen:lesson-03:session-54:i05:p3=rug\nen:lesson-03:session-54:i05:p4=cushions",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i06",
+      "correctText": "pale",
+      "correctResponseId": "en:lesson-03:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i07",
+      "correctText": "striped",
+      "correctResponseId": "en:lesson-03:session-54:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i08",
+      "correctText": "striped",
+      "correctResponseId": "en:lesson-03:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i09",
+      "correctText": "en:lesson-03:session-54:i09:p1=bright\nen:lesson-03:session-54:i09:p2=pale\nen:lesson-03:session-54:i09:p3=striped\nen:lesson-03:session-54:i09:p4=lamp\nen:lesson-03:session-54:i09:p5=rug\nen:lesson-03:session-54:i09:p6=cushions\nen:lesson-03:session-54:i09:p7=here",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i10",
+      "correctText": "striped",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i11",
+      "correctText": "This bright lamp is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i12",
+      "correctText": "That",
+      "correctResponseId": "en:lesson-03:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i13",
+      "correctText": "These bright lamps are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i14",
+      "correctText": "striped",
+      "correctResponseId": "en:lesson-03:session-54:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i15",
+      "correctText": "This pale rug is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i16",
+      "correctText": "That striped rug is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-54:i17",
+      "correctText": "Those bright lamps are here.",
+      "correctResponseId": null
+    }
+  ]
+}

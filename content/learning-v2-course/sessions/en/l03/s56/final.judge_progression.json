@@ -1,0 +1,22 @@
+{
+  "session": "en/l03/s56",
+  "reviewedAt": "2026-10-04T12:30:00+01:00",
+  "sourceSha256": "233023677dafa0d049e8c89a640d5d31b1477f34bd64675fefe7954d57af0270",
+  "exactRuSha256": "233023677dafa0d049e8c89a640d5d31b1477f34bd64675fefe7954d57af0270",
+  "exactUkSha256": "b3d27a29b0da88abc476d2b218c230a8627ee97fe1074216611d33b24a282cf0",
+  "practiceAtomicSha256": "bd679b5353eb4bfa557ecccd62fa3d6b9a0239f1c276688bc6d70e5401d1bf14",
+  "localeHashes": { "ru": "233023677dafa0d049e8c89a640d5d31b1477f34bd64675fefe7954d57af0270", "uk": "b3d27a29b0da88abc476d2b218c230a8627ee97fe1074216611d33b24a282cf0" },
+  "reviewer": "/root/s56_release_receipts", "role": "judge_progression", "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s56_fresh_rejudge.json", "verdict": "PASS", "severity": { "P0": 0, "P1": 0, "P2": 0 }, "blockers": [], "mustFix": [], "must_fix": [],
+  "comparedThrough": "en/l03/s55", "newWords": ["mat", "tray", "hook"], "sceneNovel": true,
+  "grammarProgression": "Checkpoint: independently integrate established nouns, singular/plural, a/the and this/that/these/those rather than introduce a new grammar operation.",
+  "introPracticeAligned": true, "curriculumExactMatch": true,
+  "curriculumRow": "| 56 | checkpoint | интеграция nouns, plural, articles и demonstratives | mat, tray, hook | квартира готова: перед приходом гостей описываем покупки |",
+  "curriculumEvidence": { "grammar": "Practice and final require noun number, articles and demonstratives according to knownness and distance.", "newWords": ["mat", "tray", "hook"], "situation": "Before guests arrive, the learner and a friend place a mat, tray and hooks around one apartment and label them accurately." },
+  "introAlignment": [
+    { "intro": 1, "newWords": ["mat"], "sceneEvidence": "A friend holds one new mat by the apartment door.", "correctAnswer": "This is a mat.", "practiceTask": 11, "practiceTarget": "This is a mat.", "finalEvidence": "The final reuses the established known plural reference system after support fades.", "sameOperation": true },
+    { "intro": 2, "newWords": ["tray"], "sceneEvidence": "One wooden tray stands on the far counter.", "correctAnswer": "That tray is wooden.", "practiceTask": 12, "practiceTarget": "That tray is wooden.", "finalEvidence": "Later practice transfers the demonstrative decision to plural trays and independent retrieval.", "sameOperation": true },
+    { "intro": 3, "newWords": ["hook"], "sceneEvidence": "Several metal hooks hang together in the hallway near the learner.", "correctAnswer": "These hooks are metal.", "practiceTask": 13, "practiceTarget": "These hooks are metal.", "finalEvidence": "The final independently changes the near plural reference to known far hooks.", "sameOperation": true }
+  ],
+  "foreignIntroExamples": [], "repeatedPrimaryTargets": [],
+  "evidence": ["The precise S56 curriculum row, new vocabulary, guest-arrival apartment situation and all three intro-to-practice chains match current bytes."]
+}

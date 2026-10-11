@@ -1,17 +1,17 @@
 [
   {
     "interactionId": "en:lesson-03:session-16:i01",
-    "correctText": "a",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-16:i01:r1"
   },
   {
     "interactionId": "en:lesson-03:session-16:i02",
-    "correctText": "It is an umbrella.",
+    "correctText": "It is an invoice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i03",
-    "correctText": "A cushion.",
+    "correctText": "A uniform.",
     "correctResponseId": null
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i05",
-    "correctText": "It is a uniform.",
+    "correctText": "Is it an invoice?",
     "correctResponseId": "en:lesson-03:session-16:i05:r1"
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i07",
-    "correctText": "Is it an umbrella?",
+    "correctText": "Is it an invoice?",
     "correctResponseId": null
   },
   {
@@ -41,17 +41,17 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i09",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-16:i09:p1=invoice\nen:lesson-03:session-16:i09:p2=hour\nen:lesson-03:session-16:i09:p3=uniform\nen:lesson-03:session-16:i09:p4=plant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i10",
-    "correctText": "a",
+    "correctText": "an",
     "correctResponseId": "en:lesson-03:session-16:i10:r1"
   },
   {
     "interactionId": "en:lesson-03:session-16:i11",
-    "correctText": "It is not a cushion.",
+    "correctText": "It is not an invoice.",
     "correctResponseId": "en:lesson-03:session-16:i11:r1"
   },
   {
@@ -61,27 +61,37 @@
   },
   {
     "interactionId": "en:lesson-03:session-16:i13",
-    "correctText": "It is a uniform.",
+    "correctText": "It is an invoice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i14",
-    "correctText": "It is not an umbrella.",
+    "correctText": "It is not an invoice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i15",
-    "correctText": "It is not a candle.",
+    "correctText": "An invoice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-16:i16",
-    "correctText": "Is it a plant?",
+    "correctText": "Is it an invoice?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-16:i17",
-    "correctText": "It is a cushion.",
+    "interactionId": "en:lesson-03:session-16:i17:s01",
+    "correctText": "It is an invoice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-16:i17:s02",
+    "correctText": "Is it an invoice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-16:i17:s03",
+    "correctText": "It is not an invoice.",
     "correctResponseId": null
   }
 ]

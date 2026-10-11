@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-23:i01",
-    "correctText": "",
+    "correctText": "patient",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-23:i03",
-    "correctText": "",
+    "correctText": "grumpy",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-23:i07",
-    "correctText": "",
+    "correctText": "proud",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-23:i09",
-    "correctText": "",
+    "correctText": "gentle",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-23:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-23:i11:p1=patient\nen:lesson-01:session-23:i11:p2=grumpy\nen:lesson-01:session-23:i11:p3=proud\nen:lesson-01:session-23:i11:p4=gentle",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,18 @@
     "correctResponseId": "en:lesson-01:session-23:i17:r1"
   },
   {
-    "interactionId": "en:lesson-01:session-23:i18",
-    "correctText": "He is patient. She is gentle. He is not grumpy.",
+    "interactionId": "en:lesson-01:session-23:i18:s01",
+    "correctText": "He is patient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i18:s02",
+    "correctText": "She is gentle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-23:i18:s03",
+    "correctText": "He is not grumpy.",
     "correctResponseId": null
   }
 ]

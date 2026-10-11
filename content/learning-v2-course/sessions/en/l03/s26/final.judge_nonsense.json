@@ -1,11 +1,66 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+  "sourceSha256": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Инструкции, ответы и feedback согласованы по смыслу.",
-    "Задание 14 точно различает screen, spring, scream и stream.",
-    "Неоднозначных вариантов и ложных причин ошибки нет."
-  ]
+    "Дальняя сцена не приписывает английскому несуществующих свойств; ошибки диагностируют distance, is и article."
+  ],
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "f7ad4e5e3c1debbfaf0f9b449c7f793113cc710e7a60fdcdfb65eb08e8eccef7",
+    "localeSha256": "d85344ccc9dfdbe3e13455e9e6bad985caa24d4ddf9276888d68441825cb6beb",
+    "practiceAtomicSha256": "dcc2cfd96e6111c8ced803a4f37ce248b50ca3b1e9d5a3150394302f2657f8f1"
+  },
+  "reviewer": "economy-executor independent fresh rejudge",
+  "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+  "exactRuSha256": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+  "exactUkSha256": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810",
+  "localeSha256": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810",
+  "practiceAtomicSha256": "45dcdb2de2a8d6064708d4fdeb6332f7a7d1faf2f3094756834094b73046706e",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "f2a7803f10715bc8c27fea95bff5e73a6b639f6d1e95f91aae3dcf466191f858",
+    "localeSha256": "86316bb29a7cb20ad525920b600dec42b7dbfeaa7d57bd8a53bee7b093507f17",
+    "practiceAtomicSha256": "45dcdb2de2a8d6064708d4fdeb6332f7a7d1faf2f3094756834094b73046706e",
+    "findings": []
+  },
+  "mustFix": [],
+  "localeHashes": {
+    "ru": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+    "uk": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810"
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_nonsense",
+    "reviewedAt": "2026-10-03T23:52:13.8854878+01:00",
+    "reviewer": "economy-executor independent fresh rejudge",
+    "scope": "en/l03/s25..s40 current final.ru.md, final.uk.md, practice.atomic.json",
+    "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json",
+    "sourceSha256": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+    "exactRuSha256": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+    "exactUkSha256": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810",
+    "localeSha256": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810",
+    "localeHashes": {
+      "ru": "ba0d0d5c2e41914162d1b0b9d2230c48d76c2ee01a6d1c3261df70c978dee198",
+      "uk": "23a241612247c331ac8e624950226b195a6cc0b0b9287f28dcce32506c705810"
+    },
+    "practiceAtomicSha256": "45dcdb2de2a8d6064708d4fdeb6332f7a7d1faf2f3094756834094b73046706e",
+    "evidence": [
+      "Дальняя сцена не приписывает английскому несуществующих свойств; ошибки диагностируют distance, is и article."
+    ],
+    "blockers": [],
+    "mustFix": [],
+    "must_fix": []
+  },
+  "sourceReport": "judgements/2026-10-03_l3_s25_s40_fresh_rejudge.json"
 }

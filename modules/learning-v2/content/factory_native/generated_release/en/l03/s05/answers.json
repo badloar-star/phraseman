@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-03:session-05:i01",
-    "correctText": "",
+    "correctText": "wall",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i03",
-    "correctText": "",
+    "correctText": "floor",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i06",
-    "correctText": "",
+    "correctText": "ceiling",
     "correctResponseId": null
   },
   {
@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i08",
-    "correctText": "A ceiling.",
+    "correctText": "It is a ceiling.",
     "correctResponseId": null
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-05:i11",
-    "correctText": "",
+    "correctText": "en:lesson-03:session-05:i11:p1=wall\nen:lesson-03:session-05:i11:p2=floor\nen:lesson-03:session-05:i11:p3=ceiling\nen:lesson-03:session-05:i11:p4=door",
     "correctResponseId": null
   },
   {

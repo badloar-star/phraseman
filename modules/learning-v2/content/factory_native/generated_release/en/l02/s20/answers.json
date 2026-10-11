@@ -21,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-20:i05",
-    "correctText": "",
+    "correctText": "crowded",
     "correctResponseId": null
   },
   {
@@ -31,7 +31,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-20:i07",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-20:i07:p1=station\nen:lesson-02:session-20:i07:p2=street\nen:lesson-02:session-20:i07:p3=near\nen:lesson-02:session-20:i07:p4=behind",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-20:i17",
-    "correctText": "Where is the station? Where is the street? The street is crowded.",
+    "interactionId": "en:lesson-02:session-20:i17:s01",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i17:s02",
+    "correctText": "Where is the street?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i17:s03",
+    "correctText": "The street is crowded.",
     "correctResponseId": null
   }
 ]

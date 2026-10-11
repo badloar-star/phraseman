@@ -1,48 +1,63 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "8ec1385766625944a748c50a3174e34ac7d9633d889b04115da6a0b7b4e0081f",
-  "ukSha256": "921af042e5b9e745e6309a60ffa18bde0a93cb4ed002e1061d09d0b09376700b",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "localeSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
   "comparedThrough": "en/l03/s42",
-  "newWords": ["magazine", "newspaper"],
-  "sceneNovel": true,
-  "grammarProgression": "new_operation",
-  "introPracticeAligned": true,
+  "newWords": [
+    "book",
+    "magazine",
+    "newspaper"
+  ],
   "curriculumExactMatch": true,
-  "curriculumRow": "| 43 | новая | plural вообще без артикля; конкретный plural с `the` | новое: magazine, newspaper; возврат: book (полноценно показано в S31) | выбираем вещи из общей стопки |",
+  "curriculumRow": "| 43 | новая | plural вообще без артикля; конкретный plural с `the` | новое: book, magazine, newspaper | выбираем вещи из общей стопки |",
   "curriculumEvidence": {
-    "grammar": "plural вообще без артикля; конкретный plural с the",
-    "newWords": ["magazine", "newspaper"],
-    "situation": "выбираем печатные издания из общей стопки в читальном зале"
+    "grammar": "Plural generally has no article; a concrete shared group takes `the`.",
+    "newWords": [
+      "book",
+      "magazine",
+      "newspaper"
+    ],
+    "situation": "«Вы и помощник разбираете одну общую стопку печатных изданий. Сначала выбираете вид изданий вообще, затем показываете на конкретные отложенные экземпляры.»"
   },
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:generic plural without article versus a concrete shared plural with the",
+  "introPracticeAligned": true,
   "introAlignment": [
     {
       "intro": 1,
-      "newWords": ["magazine"],
-      "sceneEvidence": "Помощник выбирает вид изданий из общей стопки в читальном зале.",
-      "correctAnswer": "Magazines are fine.",
-      "practiceTask": 5,
-      "practiceTarget": "Задание 5 собирает Magazines are fine для выбора вида изданий.",
-      "finalEvidence": "Финал сначала требует Magazines are fine, затем указывает конкретные журналы.",
+      "newWords": [
+        "book"
+      ],
+      "sceneEvidence": "«Помощник спрашивает, подойдут ли книги.»",
+      "correctAnswer": "Books are fine.",
+      "practiceTask": 8,
+      "practiceTarget": "Books are fine.",
+      "finalEvidence": "Final voice key contains `Books are fine. The books are here.`",
       "sameOperation": true
     },
     {
       "intro": 2,
-      "newWords": ["newspaper"],
-      "sceneEvidence": "Помощник уже отложил конкретные газеты из той же стопки.",
-      "correctAnswer": "The newspapers are here.",
+      "newWords": [
+        "magazine"
+      ],
+      "sceneEvidence": "«Помощник положил выбранные журналы рядом со стопкой.»",
+      "correctAnswer": "The magazines are here.",
       "practiceTask": 14,
-      "practiceTarget": "Задание 14 собирает The newspapers are here про выбранную группу.",
-      "finalEvidence": "Финал завершает газетную пару точной фразой The newspapers are here.",
+      "practiceTarget": "The magazines are here.",
+      "finalEvidence": "Final voice key contains `Magazines are fine. The magazines are here.`",
       "sameOperation": true
     },
     {
       "intro": 3,
-      "newWords": ["magazine", "newspaper"],
-      "sceneEvidence": "Ученик различает вид изданий вообще и уже выбранную группу в одной сцене.",
-      "correctAnswer": "Magazines are fine. The newspapers are here.",
-      "practiceTask": 16,
-      "practiceTarget": "Задание 16 произносит тот же контраст без смены сцены.",
-      "finalEvidence": "Финал переносит тот же контраст на книги, журналы и газеты в заданном порядке.",
+      "newWords": [
+        "newspaper"
+      ],
+      "sceneEvidence": "«Помощник спрашивает, подойдут ли газеты как вид изданий.»",
+      "correctAnswer": "Newspapers are fine.",
+      "practiceTask": 12,
+      "practiceTarget": "___ newspapers are fine. → nothing",
+      "finalEvidence": "Final voice key contains `Newspapers are fine. The newspapers are here.`",
       "sameOperation": true
     }
   ],
@@ -51,11 +66,59 @@
   "meaningAdditions": [],
   "mustFix": [],
   "evidence": [
-    "Полное learner-facing сравнение до S42 подтверждает, что magazine и newspaper ранее не вводились как новые слова.",
-    "Book объявлен возвратом: слово полноценно показывалось в S31 и не считается новой лексикой.",
-    "Все три интро используют текущую сцену, текущие слова и готовят scored practice и independent final.",
-    "Задание 9 на аудиосборку использует нейтральный заголовок и не раскрывает услышанное высказывание заранее.",
-    "Listen choose передаёт только услышанный смысл и не добавляет отсутствующих обстоятельств."
+    "i12 is a phrase_builder with targetPhrase and correctText `Newspapers are fine.` in both locales and no audio target. S43's plural/the chains, scene, vocabulary, one-phrase boundaries, canonical `без артикля` options and global preservation check pass."
   ],
-  "at": "2026-09-19T19:20:00.000Z"
+  "localeHashes": {
+    "ru": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "uk": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "21f89bd30881071a086da7ef60c8b1f07029a6ba6b51fab6836bdf47dace598b",
+    "localeSha256": "72c0aa7175274eedefbee8a6f238d43bfea8bdd050b7793659f905f6239881a2",
+    "practiceAtomicSha256": "4a1624ffe6f2bcbcc84bd8a784d92fa5b289e7ffc6eec6e6db7c89a7deacb1b4"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+  "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+  "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "600ff4a92d4ca606834d429eecd549e0294e36828bb6b1744168070aaf538e86",
+    "localeSha256": "8f2ccc36f79e0470b02c9d3c6fb582fcc033e0cf47656d63f883464630f78f4e",
+    "practiceAtomicSha256": "0d053455b58d214081bcd85b5ad35ba9fa67c70bd5c56640fb2b4286f44f847b",
+    "findings": []
+  },
+  "blockers": [],
+  "must_fix": [],
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "judge_progression",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "exactRuSha256": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+    "exactUkSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+    "localeSha256": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee",
+    "localeHashes": {
+      "ru": "d464263ddf0b96ad68038a29db6b7ee2a61d3da9e5ec7d89baaddcee6d284ab7",
+      "uk": "cdd22881b9a83cc26717019c23d30ec938bab626437bfa1f47c3e486931929ee"
+    },
+    "practiceAtomicSha256": "8220017f9d784b7cc1b5f70c9bbc30beff0ecb64cd74b1236083f57eb9fc35b8",
+    "evidence": [
+      "i12 is a phrase_builder with targetPhrase and correctText `Newspapers are fine.` in both locales and no audio target. S43's plural/the chains, scene, vocabulary, one-phrase boundaries, canonical `без артикля` options and global preservation check pass."
+    ]
+  }
 }

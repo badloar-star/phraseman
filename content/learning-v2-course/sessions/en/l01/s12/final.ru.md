@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 12 — «Скажите это вслух»
+# Английский · Урок 1 · Занятие 12 — «Скажите это вслух»
 
-**Сцена сессии.** Вечерний поезд домой. Рядом сидит человек, с которым вы полдня делали один проект, — и всю дорогу он повторяет, что сделал недостаточно. Вы говорите ему обратное вслух, по-английски: молча думать «молодец» бесполезно, этого никто не слышит.
+**Ситуация.** По дороге домой в поезде вы сидите рядом с Никитой. Он весь день работал над общим проектом и считает, что сделал недостаточно. Вы говорите ему по-английски, что он справился.
 
-**Операция:** `I am` и `You are` рядом — про себя и про человека напротив
+**Что вы освоите:** как говорить о себе с `I am` и о собеседнике с `You are`
 **Новые слова:** brave, calm, honest, smart
 **Возвращаются:** tired, sure, quiet, right
 
@@ -14,7 +14,7 @@
 
 `calm` — «спокойный»: не повысил голос там, где мог.
 
-Само слово не меняется, а скрепка перед ним — да. Про себя: `I am calm`. Про собеседника: `You are calm`.
+Само слово не меняется. Про себя: `I am calm`. Про собеседника: `You are calm`.
 
 `am` дальше `I` не уходит. Заговорили о другом человеке — берите `are`.
 
@@ -22,7 +22,7 @@
 
 - ✅ **You are calm.**
 - ❌ You am calm. — *`am` не ходит дальше `I`. Для `you` — только `are`.*
-- ❌ You calm. — *Скрепка выпала. По-русски мы говорим «ты спокойный» без всякой связки, по-английски без `are` фраза не стоит.*
+- ❌ You calm. — *После `you` нужно `are`. По-русски мы говорим «ты спокойный» без связки, а по-английски она нужна.*
 
 ---
 
@@ -34,7 +34,7 @@
 
 Хорошая новость для уставших от окончаний: «смелый» и «смелая» — одно слово.
 
-Меняется только скрепка: `I am brave` про себя, `You are brave` про другого.
+О себе говорят `I am brave`, о другом человеке — `You are brave`.
 
 **Коллега один сказал начальнику, что тот неправ. Скажите ему: «ты смелый».**
 
@@ -52,94 +52,111 @@
 
 `smart` — «умный». Оба слова хвалят, но за разное: `honest` — сказал как есть, `smart` — быстро сообразил.
 
-Скрепка та же: `I am` про себя, `You are` про собеседника.
+Про себя говорят `I am`, о собеседнике — `You are`.
 
 **Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный».**
 
 - ✅ **You are smart.**
 - ❌ You are honest. — *Честный — это когда сказал правду. Здесь он быстро придумал выход, а это `smart`.*
-- ❌ You smart. — *Без `are` фраза рассыпается. С `you` скрепка обязательна.*
+- ❌ You smart. — *После `you` нужно `are`: You are smart.*
 
 ---
 
 ## Практика (20 заданий, поддержка убывает)
 
 **1 · Карточка слова — calm**
+<!-- interaction_id: en:lesson-01:session-12:i01; family: listen_choose -->
 > **calm** — «спокойный». Голос ровный, руки не трясутся. Буква «л» внутри не произносится, гласная длинная: «каам».
 
-**2 · Послушайте и выберите — calm**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-12:i02; family: listen_choose -->
 🔊 *calm* → **calm** · come · car
 - come — *Гласная короче: «кам». В `calm` она тянется — «каам».*
 - car — *Обрублен хвост. В `calm` на конце слышно «м».*
 
 **3 · Карточка слова — brave**
+<!-- interaction_id: en:lesson-01:session-12:i03; family: listen_choose -->
 > **brave** — «смелый». Про поступок, а не про характер: сказал неприятное вслух — уже `brave`.
 
-**4 · Послушайте и выберите — brave**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-12:i04; family: listen_choose -->
 🔊 *brave* → **brave** · brain · grave
 - brain — *Конец другой: `brave` заканчивается на «в», а не на «н».*
 - grave — *В `brave` в начале «бр», в `grave` — «гр». Различается только первый согласный.*
 
-**5 · Вставьте слово — все побоялись возразить клиенту, а он возразил**
+**5 · Вставьте слово — Никита заметил ошибку в сроке для клиента и спокойно сказал об этом**
+<!-- interaction_id: en:lesson-01:session-12:i05; family: context_gap_grammar -->
 You are ___ . → **brave** · calm · tired
 - calm — *Спокойным он как раз не был — он возражал. Здесь нужно «смелый».*
 - tired — *Устал он, наверное, тоже, но вы говорите не про усталость.*
 
 **6 · Соберите фразу — «я спокоен» (про себя)**
+<!-- interaction_id: en:lesson-01:session-12:i06; family: phrase_builder -->
 Плитки: `calm` `I` `am` `are` → **I am calm.**
 
 **7 · Карточка слова — honest**
+<!-- interaction_id: en:lesson-01:session-12:i07; family: listen_choose -->
 > **honest** — «честный». Говорит как есть, даже если так хуже для него. Первая буква молчит: «онест».
 
-**8 · Карточка слова — smart**
-> **smart** — «умный». Не «начитанный», а «быстро соображает и находит выход».
+**8 · Различите звуки — какое из двух означает «умная»?**
+<!-- interaction_id: en:lesson-01:session-12:i08; family: sound_contrast -->
+🔊 Два слова подряд.
+*smart · start* → **smart**
+- start — *`start` — «начать». В `smart` после `s` слышно `m`, а не `t`.*
 
-**9 · Послушайте и выберите — honest**
-🔊 *honest* → **honest** · hot · house
-- hot — *В `hot` слышно «х» в начале. В `honest` первая буква молчит: «онест».*
-- house — *Другое слово целиком. В `honest` в конце слышно «ст».*
+**9 · Вставьте слово — Нина прямо сказала клиенту, что сроки сорваны; скажите ей, что она честная**
+<!-- interaction_id: en:lesson-01:session-12:i09; family: context_gap_grammar -->
+You ___ honest. → **are** · am · is
+- am — *С `you` нужно `are`, не `am`: `am` используют с `I`.*
+- is — *`is` говорят про he, she или it. С Ниной напрямую — `you are`.*
 
-**10 · Послушайте и выберите — smart**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-12:i10; family: listen_choose -->
 🔊 *smart* → **smart** · start · small
 - start — *В `smart` после «с» идёт «м», а в `start` — «т».*
 - small — *Конец другой. В `smart` на конце «рт».*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-12:i11; family: speed_match -->
 calm — спокойный · brave — смелый · honest — честный · smart — умный
 
-**12 · Вставьте скрепку — вы говорите ему, что он честный**
-You ___ honest. → **are** · am · is
-- am — *`am` работает только с `I`. Про собеседника — `are`.*
-- is — *Это не для `you`. Со словом `you` всегда `are`.*
+**12 · Соберите фразу — Нина прямо сказала клиенту, что сроки сорваны; скажите ей, что она честная**
+<!-- interaction_id: en:lesson-01:session-12:i12; family: phrase_builder -->
+Плитки: `You` `are` `honest` `is` → **You are honest.**
 
-**13 · Послушайте и соберите — «ты умный»**
+**13 · Послушайте и соберите — Никита нашёл решение; скажите ему: «ты умный»**
+<!-- interaction_id: en:lesson-01:session-12:i13; family: listen_build_dictation -->
 🔊 *You are smart.* Плитки: `smart` `are` `You` `am` → **You are smart.**
 
 **14 · Карточка слова — quiet**
+<!-- interaction_id: en:lesson-01:session-12:i14; family: listen_choose -->
 > **quiet** — «тихий», про негромкий голос. Так он и рассказывает сейчас: вполголоса, будто извиняясь.
 
-**15 · Скрепка про себя — вы соглашаетесь: спокойны и вы тоже**
+**15 · Вставьте слово — вы проверили время отправления в билете и уверены в нём**
+<!-- interaction_id: en:lesson-01:session-12:i15; family: context_gap_grammar -->
 I ___ sure. → **am** · are · is
 - are — *`are` — для `you`. Про себя всегда `am`.*
 - is — *Тоже не для `I`. `I am sure` — эти два слова стоят вместе всегда.*
 
-**16 · Вставьте слово — он говорит вполголоса, вагон едва не заглушает**
-You are ___ . → **quiet** · brave · smart
-- brave — *«Смелый» — это про поступок, а тут про громкость: он говорит тихо.*
-- smart — *«Умный» — про голову, а тут про голос: он говорит тихо.*
+**16 · Послушайте и соберите — в библиотеке Лина говорит вполголоса; скажите: «ты тихая»**
+<!-- interaction_id: en:lesson-01:session-12:i16; family: listen_build_dictation -->
+🔊 *You are quiet.* Плитки: `You` `are` `quiet` `is` → **You are quiet.**
 
-**17 · Соберите фразу — «ты уверен» (он сам говорит, что решение верное)**
+**17 · Соберите фразу — Никита сверил решение с инструкцией и уверен, что оно верное**
+<!-- interaction_id: en:lesson-01:session-12:i17; family: phrase_builder -->
 Плитки: `sure` `You` `are` `am` → **You are sure.**
 
-**18 · Скажите вслух — он был прав насчёт клиента**
+**18 · Произнесите одну фразу — Никита показывает вам расчёт; вы сверили его и подтверждаете, что он прав**
+<!-- interaction_id: en:lesson-01:session-12:i18; family: scripted_repeat_compare -->
 🎙 **You are right.** `right` — «прав». Послушайте, повторите, сравните.
 
-**19 · Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)**
+**19 · Соедините пары — слова, которые уже ваши**
+<!-- interaction_id: en:lesson-01:session-12:i19; family: speed_match -->
 tired — устал · sure — уверен · quiet — тихий · right — прав
 
-**20 · Финал сцены — скажите ему всё вслух: он смелый, спокойный и прав**
-🎙 Поезд подходит к вашей станции. Скажите ему три вещи: он смелый, он был спокоен и он прав.
-**You are brave. You are calm. You are right.**
+**20 · Скажите вслух — Лина защитила коллегу на встрече, хотя боялась возразить; скажите, что она смелая**
+<!-- interaction_id: en:lesson-01:session-12:i20; family: scripted_repeat_compare -->
+🎙 Скажите: **You are brave.**
 
 ---
 
@@ -152,6 +169,6 @@ honest — честный — «честный». Говорит как есть
 smart — умный — «умный». Не «начитанный», а «быстро соображает и находит выход».
 
 modes:
-1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=word_card, 9=listen_choose, 10=listen_choose, 11=speed_match, 12=context_gap_grammar, 13=listen_build_dictation, 14=word_card, 15=context_gap_grammar, 16=context_gap_grammar, 17=phrase_builder, 18=scripted_repeat_compare, 19=speed_match, 20=scripted_repeat_compare
+1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=word_card, 8=sound_contrast, 9=context_gap_grammar, 10=listen_choose, 11=speed_match, 12=phrase_builder, 13=listen_build_dictation, 14=word_card, 15=context_gap_grammar, 16=listen_build_dictation, 17=phrase_builder, 18=scripted_repeat_compare, 19=speed_match, 20=scripted_repeat_compare
 
 ---

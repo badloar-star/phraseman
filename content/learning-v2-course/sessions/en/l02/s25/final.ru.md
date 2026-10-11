@@ -1,7 +1,7 @@
-# Английский · Урок 2 · Сессия 25 — «What is this?»
+# Английский · Урок 2 · Занятие 25 — «What is this?»
 
-**Сцена сессии.** Выходной в Дублине, вы в кафе. В меню строчки, которых вы не понимаете, и цифры рядом. Приходится спрашивать.
-**Операция:** `What is + вещь`
+**Сцена занятия.** Выходной в Дублине, вы в кафе. В меню строчки, которых вы не понимаете, и цифры рядом. Приходится спрашивать.
+**Как сказать:** `What is + вещь`
 **Новые слова:** price, name
 **Возвращаются:** cheap, street
 
@@ -55,77 +55,95 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — price**
-> **price** — «цена». Цифра справа от строчки в меню.
+<!-- interaction_id: en:lesson-02:session-25:i01; family: listen_choose -->
+Цель: `price`
 
-**2 · Послушайте и выберите — price**
-🔊 *price* → **price** · press · prize
-- press — *Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».*
-- prize — *Это «приз». Конец другой: `price` заканчивается глухо, `prize` — звонко.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
+Цель: `price`
+Варианты: `price` · `press` · `prize`
 
 **3 · Карточка слова — name**
-> **name** — «имя, название». Годится и для человека, и для блюда, и для улицы.
+<!-- interaction_id: en:lesson-02:session-25:i03; family: listen_choose -->
+Цель: `name`
 
-**4 · Послушайте и выберите — name**
-🔊 *name* → **name** · near · nine
-- near — *«Рядом», про расстояние. Спрашивая название, вы говорите `name`.*
-- nine — *Это «девять». Счёт, а не название.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-25:i04; family: listen_choose -->
+Цель: `name`
+Варианты: `name` · `near` · `nine`
 
 **5 · Соберите фразу — вы показали на строчку в меню**
-Плитки: `is` `What` `this` → **What is this?**
+<!-- interaction_id: en:lesson-02:session-25:i05; family: phrase_builder -->
+Цель: `What is this?`
 
-**6 · Вставьте слово — спрашиваете про цифру рядом со строчкой**
-What is the ___ ? → **price** · name · street
-- name — *Так вы спросите название блюда, а не сколько оно стоит.*
-- street — *Улица тут ни при чём: вы смотрите в меню.*
+**6 · Послушайте и выберите — о чём вы спрашиваете в меню**
+<!-- interaction_id: en:lesson-02:session-25:i06; family: listen_choose -->
+Цель: `What is the price?`
+Варианты: `цена` · `название` · `улица`
 
 **7 · Вставьте слово — вопрос про то, что стоит на столе**
-What ___ this? → **is** · are · this
-- are — *Не для одной вещи. Про одну — `is`.*
-- this — *`this` уже стоит в конце. Второе не нужно, нужно `is`.*
+<!-- interaction_id: en:lesson-02:session-25:i07; family: context_gap_grammar -->
+Цель: `What ___ this?`
+Варианты: `is` · `are` · `this`
 
 **8 · Различите звуки — какое из двух про цену?**
-🔊 Два слова подряд.
-*price · press* → **price**
-- press — *Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».*
+<!-- interaction_id: en:lesson-02:session-25:i08; family: sound_contrast -->
+Варианты: `price` · `press`
 
 **9 · Карточка слова — cheap**
-> **cheap** — «дёшево, недорого». Цена, из-за которой не жалко.
+<!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
+Цель: `cheap`
 
 **10 · Послушайте и соберите — «какая цена?»**
-🔊 *What is the price?* Плитки: `price` `What` `the` `is` `are` → **What is the price?**
+<!-- interaction_id: en:lesson-02:session-25:i10; family: listen_build_dictation -->
+Цель: `What is the price?`
 
 **11 · Вставьте слово — вы заблудились и хотите узнать, где стоите**
-What is the ___ ? → **street** · price · this
-*(`street` — «улица»)*
-- price — *У улицы цены нет. Вы спрашиваете, как она называется.*
-- this — *`this` — «это», оно не встаёт после `the`.*
+<!-- interaction_id: en:lesson-02:session-25:i11; family: context_gap_grammar -->
+Цель: `What is the ___ ?`
+Варианты: `street` · `price` · `this`
 
 **12 · Соберите фразу — спросите название блюда**
-Плитки: `name` `is` `the` `What` → **What is the name?**
+<!-- interaction_id: en:lesson-02:session-25:i12; family: phrase_builder -->
+Цель: `What is the name?`
 
-**13 · Соедините пары (Speed Match, 4 пары)**
-price — цена · name — название · cheap — дёшево · street — улица
+**13 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-25:i13; family: speed_match -->
+Пары: `price` — цена · `name` — название · `cheap` — дёшево · `street` — улица
+Цель: `price · name · cheap · street`
 
 **14 · Вставьте слово — цена оказалась маленькой, вы довольны**
-It is ___ . → **cheap** · price · what
-- price — *`price` — сама цена, а не оценка «дёшево».*
-- what — *`what` начинает вопрос, а вы говорите утверждение.*
+<!-- interaction_id: en:lesson-02:session-25:i14; family: context_gap_grammar -->
+Цель: `It is ___ .`
+Варианты: `cheap` · `price` · `what`
 
-**15 · Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это**
-Плитки: `What` `this` `is` `the` → **What is this?**
-*(плитка `the` лишняя: перед `this` она не ставится)*
+**15 · Скажите вслух — официант приносит незнакомое блюдо, и вы уточняете, что это**
+<!-- interaction_id: en:lesson-02:session-25:i15; family: scripted_repeat_compare -->
+Цель: `What is this?`
 
-**16 · Скажите вслух — два вопроса подряд официанту**
-🎙 **What is this? What is the price?** — послушайте, повторите, сравните.
+**16 · Послушайте — Лина показывает официанту незнакомый предмет. Выберите смысл услышанного вопроса**
+<!-- interaction_id: en:lesson-02:session-25:i16:s01; family: listen_choose -->
+Цель: `What is this?`
+Варианты: `что это` · `сколько это стоит` · `как это называется`
 
-**17 · Финал сцены — вы у кассы: спросите название, цену и оцените её**
-🎙 Вы показали на блюдо, спросили название, потом цену и остались довольны.
-**What is the name? What is the price? It is cheap.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i16:s02; family: scripted_repeat_compare -->
+Цель: `What is the price?`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i17:s01; family: scripted_repeat_compare -->
+Цель: `What is the name?`
+
+**19 · Соберите вопрос — официант назвал блюдо, но не сказал, сколько оно стоит**
+<!-- interaction_id: en:lesson-02:session-25:i17:s02; family: phrase_builder -->
+Цель: `What is the price?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-25:i17:s03; family: scripted_repeat_compare -->
+Цель: `It is cheap.`
 
 ## Для сборщика
 
@@ -133,7 +151,7 @@ new_words:
 price — цена — «цена». Цифра справа от строчки в меню.
 name — имя, название — «имя, название». Годится и для человека, и для блюда, и для улицы.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=sound_contrast, 9=word_card, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder, 13=speed_match, 14=context_gap_grammar, 15=phrase_builder, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=listen_choose, 7=context_gap_grammar, 8=sound_contrast, 9=listen_choose, 10=listen_build_dictation, 11=context_gap_grammar, 12=phrase_builder, 13=speed_match, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=listen_choose, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=phrase_builder, 20=scripted_repeat_compare
 
 ---
 
@@ -168,7 +186,7 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | price | 1 | 2 (слух), 6 (вставь), 8 (звуки), 10 (сборка) |
 | name | 3 | 4 (слух), 12 (сборка) |
-| cheap | 9 — напоминание, слово из прошлых сессий | из прошлых сессий |
-| street | из прошлых сессий | 11 (вставь слово) |
+| cheap | 9 — напоминание, слово из прошлых занятий | из прошлых занятий |
+| street | из прошлых занятий | 11 (вставь слово) |
 
 ---

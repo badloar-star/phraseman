@@ -801,13 +801,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы предполагаете, что фотографию сделали в субботу, но сомневаетесь; спросите: «Я ошибаюсь?» (`wrong` — «неправ»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы предполагаете, что фотографию сделали в субботу, но сомневаетесь; спросите: «Я ошибаюсь?» (`wrong` — «неправ»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -834,13 +834,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вы отложили телефон и готовы выходить; сообщите другу: «Я готов» (`ready` — «готов»)",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-49:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вы отложили телефон и готовы выходить; сообщите другу: «Я готов» (`ready` — «готов»)",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -899,5 +899,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a04d49b763c8c589b194ad63f918b9d0f83d56ea24b5ff24e7d457fd80402bf6"
+  "learnerFingerprint": "032a7f59e11e4d656cf88ea487e724f746d9d4a74b70fe48a023416d2425e394"
 }

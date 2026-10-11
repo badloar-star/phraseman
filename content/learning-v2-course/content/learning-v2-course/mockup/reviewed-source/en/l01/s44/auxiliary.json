@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro1:r2": {
+          "ru": "Пропал значок `'`. Он стоит там, где выпала буква `a`.",
+          "uk": "Зник значок `'`. Він стоїть там, звідки випала літера `a`."
+        },
+        "en:lesson-01:session-44:intro1:r3": {
+          "ru": "`am` уже спрятано внутри `I'm`. Второй раз оно не нужно.",
+          "uk": "`am` уже сховане всередині `I'm`. Удруге воно не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro2:r2": {
+          "ru": "Так говорят про человека. Бокал — это `it`.",
+          "uk": "Так кажуть про людину. Келих — це `it`."
+        },
+        "en:lesson-01:session-44:intro2:r3": {
+          "ru": "Без значка `'` получается «его», а не «оно холодное».",
+          "uk": "Без значка `'` це `its` — «його». Виходить не «воно холодне», а «його холодне» — і фраза обривається."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-44:intro3:r2": {
+          "ru": "После `they` нужна форма `are`. В краткой форме она уже входит в `they're`.",
+          "uk": "Після `they` потрібна форма `are`. У короткій формі вона вже входить до `they're`."
+        },
+        "en:lesson-01:session-44:intro3:r3": {
+          "ru": "В `they're` уже есть `are`. Второй раз его не ставят.",
+          "uk": "У `they're` уже є `are`. Удруге його не ставлять."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "af90117e658ccb1914085f46afe8f983e2a63f6726b117ec878df87d7d3ff642"
+}

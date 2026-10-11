@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-14:i01",
-    "correctText": "",
+    "correctText": "sold",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i03",
-    "correctText": "",
+    "correctText": "crowded",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i06",
-    "correctText": "",
+    "correctText": "comfortable",
     "correctResponseId": null
   },
   {
@@ -41,12 +41,12 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i09",
-    "correctText": "",
+    "correctText": "pretty",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-14:i10:p1=sold\nen:lesson-02:session-14:i10:p2=cheap\nen:lesson-02:session-14:i10:p3=comfortable\nen:lesson-02:session-14:i10:p4=crowded",
     "correctResponseId": null
   },
   {
@@ -71,17 +71,17 @@
   },
   {
     "interactionId": "en:lesson-02:session-14:i15",
-    "correctText": "No, it is not.",
+    "correctText": "Is it cheap?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i16",
-    "correctText": "Is it cheap? Is it sold?",
+    "correctText": "Is it sold?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-02:session-14:i17",
-    "correctText": "Is it cheap? Is it sold? It is pretty.",
+    "correctText": "No, it is not sold.",
     "correctResponseId": null
   }
 ]

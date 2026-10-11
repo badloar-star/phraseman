@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro1:r2": {
+          "ru": "`is` уехало в конец. Его место второе, сразу за `where`.",
+          "uk": "`is` поїхало в кінець. Його місце друге, одразу за `where`."
+        },
+        "en:lesson-02:session-23:intro1:r3": {
+          "ru": "Так вы спросите, что такое угол. Прохожий начнёт объяснять про две улицы.",
+          "uk": "Так ви спитаєте, що таке ріг. Перехожий почне пояснювати про дві вулиці."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro2:r2": {
+          "ru": "Перед местом нужен `the`: не любой мост вообще, а тот самый, про который речь.",
+          "uk": "Перед місцем потрібне `the`: не будь-який міст, а той самий, про який мова."
+        },
+        "en:lesson-02:session-23:intro2:r3": {
+          "ru": "Пропало `is`. Без него вопрос разваливается.",
+          "uk": "Зникло `is`. Без нього питання розсипається."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-23:intro3:r2": {
+          "ru": "Пропало `it`. Ответ начинается с него: `It is near`.",
+          "uk": "Зникло `it`. Відповідь починається з нього: `It is near`."
+        },
+        "en:lesson-02:session-23:intro3:r3": {
+          "ru": "Между `it` и словом о месте нужно `is`.",
+          "uk": "Між `it` і словом про місце потрібне `is`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e3efedc6dbfcb1c1f8531f261b06b7494a4d2916036aabe4b77705ffb1fe1fb2"
+}

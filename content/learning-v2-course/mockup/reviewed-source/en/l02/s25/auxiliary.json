@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro1:r2": {
+          "ru": "`is` уехало в конец. Его место второе, сразу за `what`.",
+          "uk": "`is` поїхало в кінець. Його місце друге, одразу за `what`."
+        },
+        "en:lesson-02:session-25:intro1:r3": {
+          "ru": "`is` пропало совсем. Без него это не вопрос, а два слова подряд.",
+          "uk": "`is` зникло зовсім. Без нього це не питання, а два слова поспіль."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro2:r2": {
+          "ru": "`is` потерялось. В вопросе оно стоит вторым: `What is the price?`",
+          "uk": "`is` загубилося. У питанні воно стоїть другим: `What is the price?`"
+        },
+        "en:lesson-02:session-25:intro2:r3": {
+          "ru": "Не хватает `the`. Перед словом оно нужно: `the price`.",
+          "uk": "Бракує `the`. Перед словом воно потрібне: `the price`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-25:intro3:r2": {
+          "ru": "`the` пропало. Речь о конкретной вещи на столе — значит `the`.",
+          "uk": "`the` зникло. Ідеться про конкретну річ на столі — отже `the`."
+        },
+        "en:lesson-02:session-25:intro3:r3": {
+          "ru": "`is` убежало в конец. После `what` оно идёт сразу.",
+          "uk": "`is` втекло в кінець. Після `what` воно йде одразу."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "58a4aa46ad1bc3492c83432dc66657ac14b7c777e3762c3ffe375b1bc9471749"
+}

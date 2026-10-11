@@ -1,8 +1,8 @@
-# Англійська · Урок 1 · Сесія 36 — «Хто всі ці люди»
+# Англійська · Урок 1 · Заняття 36 — «Хто всі ці люди»
 
-**Сцена сесії.** Обід із командою. За столом сидять люди, яких ви бачите другий день, і хтось напівголосно пояснює, хто тут хто: ці разом працюють, ті просто друзі, а он ті взагалі з сусіднього поверху.
+**Ситуація.** На обіді Іра знайомить вас з Олегом, Мією та сусідами з офісу. Вона пояснює, хто з ким працює, товаришує або живе поруч.
 
-**Операція:** повторення `We are` / `They are` вголос
+**Сьогодні.** Скажете, хто ви одне одному: `We are` і `They are` + назва групи.
 **Нові слова:** colleagues, friends, neighbours, guests
 **Повертаються:** together, funny, quiet, kind
 
@@ -16,7 +16,7 @@
 
 Слово довге, але лякає тільки на письмі. У кінці пишемо `-gues`, а чути «ґз»: «ко́ліґз». Літера `u` там не звучить зовсім. І `-s` у кінці обов'язкова: колега один не буває.
 
-**За столом питають, ви із сусідом друзі чи як. Ви разом працюєте.**
+**Мія питає, ви з Олегом друзі чи як. Ви разом працюєте.**
 
 - ✅ **We are colleagues.**
 - ❌ We colleagues. — *Англійська фраза не стоїть без дієслова. Українська пропускає «є», англійська — ні: `we are` + хто ви.*
@@ -59,71 +59,101 @@
 ## Практика (17 завдань, підтримка спадає)
 
 **1 · Картка слова — colleagues**
+<!-- interaction_id: en:lesson-01:session-36:i01; family: listen_choose -->
 > **colleagues** — «колеги». Люди з вашої роботи. Не друзі, але щодня поруч.
 
-**2 · Послухайте й виберіть — colleagues**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *colleagues* → **colleagues** · college · call
 - college — *Схоже початком, але це «коледж», і в кінці немає звука «з».*
 - call — *Це тільки початок слова. `colleagues` довше: «ко-ліґз».*
 
 **3 · Картка слова — friends**
+<!-- interaction_id: en:lesson-01:session-36:i03; family: listen_choose -->
 > **friends** — «друзі». Ті, з ким ви бачитеся не тому, що треба.
 
-**4 · Послухайте й виберіть — friends**
+**4 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-01:session-36:i04; family: listen_choose -->
 🔊 *friends* → **friends** · trends · friend
 - trends — *Початок інший: тут «тр-», а у `friends` — «фр-».*
 - friend — *Один. Ви чули `friends`, із «з» у кінці — їх кілька.*
 
 **5 · Складіть фразу — «ми колеги»**
+<!-- interaction_id: en:lesson-01:session-36:i05; family: phrase_builder -->
 Плитки: `colleagues` `we` `are` `is` → **We are colleagues.**
 
 **6 · Картка слова — neighbours**
+<!-- interaction_id: en:lesson-01:session-36:i06; family: listen_choose -->
 > **neighbours** — «сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом.
 
 **7 · Картка слова — guests**
+<!-- interaction_id: en:lesson-01:session-36:i07; family: listen_choose -->
 > **guests** — «гості». Прийшли ненадовго: поїли, поговорили, пішли.
 
-**8 · Послухайте й виберіть — guests**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-01:session-36:i08; family: listen_choose -->
 🔊 *guests* → **guests** · guess · gets
 - guess — *«Здогад», і в кінці тільки «с». У `guests` чути «стс».*
 - gets — *«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс».*
 
 **9 · Вставте слово — ці люди прийшли на годину й підуть**
+<!-- interaction_id: en:lesson-01:session-36:i09; family: context_gap_grammar -->
 They are ___ . → **guests** · neighbours · colleagues
 - neighbours — *Сусіди нікуди не йдуть, у тому й суть.*
 - colleagues — *Колеги — з вашої роботи. Ці взагалі не звідси.*
 
 **10 · Складіть фразу — ви живете в сусідніх квартирах**
+<!-- interaction_id: en:lesson-01:session-36:i10; family: phrase_builder -->
 Плитки: `neighbours` `are` `we` `am` → **We are neighbours.**
 
 **11 · Послухайте й складіть — «вони друзі»**
+<!-- interaction_id: en:lesson-01:session-36:i11; family: listen_build_dictation -->
 🔊 *They are friends.* Плитки: `friends` `are` `They` `is` → **They are friends.**
 
-**12 · Вставте слово — ви обідаєте всією командою, вас питають, чому всі за одним столом**
+**12 · Вставте слово — колега Міра питає, чому вся команда обідає за одним столом**
+<!-- interaction_id: en:lesson-01:session-36:i12; family: context_gap_grammar -->
 We are ___ . → **together** · alone · quiet
 - alone — *«Один». Вас за столом восьмеро.*
 - quiet — *«Тихі». Може, й так, але спитали не про шум, а про те, що ви разом.*
 
-**13 · Вставте слово — за сусіднім столом ніхто не розмовляє**
-They are ___ . → **quiet** · funny · kind
-- funny — *«Смішні». Люди, які мовчать, рідко смішать.*
-- kind — *«Добрі». Може бути, але з мовчання цього не зрозумієш.*
+**13 · Складіть фразу — за сусіднім столом ніхто не розмовляє**
+<!-- interaction_id: en:lesson-01:session-36:i13; family: phrase_builder -->
+Плитки: `quiet` `They` `are` `is` → **They are quiet.**
 
-**14 · З'єднайте пари (Speed Match, 4 пари)**
+**14 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-36:i14; family: speed_match -->
 colleagues — колеги · friends — друзі · neighbours — сусіди · guests — гості
 
 **15 · Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх**
+<!-- interaction_id: en:lesson-01:session-36:i15; family: context_gap_grammar -->
 They are ___ . → **funny** · kind · loud · lost
 - kind — *«Добрі». Про доброту не йшлося, йшлося про сміх.*
 - loud — *«Гучні». Смішити й шуміти — не те саме.*
 - lost — *«Загубилися». Вони за столом, усе гаразд.*
 
-**16 · Скажіть уголос — ви пояснюєте, хто є хто**
-🎙 **We are colleagues. They are guests.** — послухайте, повторіть, порівняйте.
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i16:s01; family: scripted_repeat_compare -->
+Іра питає, як ви з Олегом пов'язані на роботі. 🎙 **We are colleagues.**
 
-**17 · Фінал сцени — чотири фрази поспіль: хто ви одне одному і хто вони**
-🎙 Обід закінчується. Вас просять коротко сказати, хто за вашим столом: ви з ними працюєте, ви сидите разом, он ті — друзі, а ті двоє біля вікна — гості.
-**We are colleagues. We are together. They are friends. They are guests.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i16:s02; family: scripted_repeat_compare -->
+Іра питає, хто прийшов на зустріч ненадовго. 🎙 **They are guests.**
+
+**18 · Послухайте й складіть — ви працюєте в одній компанії**
+<!-- interaction_id: en:lesson-01:session-36:i17:s01; family: listen_build_dictation -->
+🔊 *We are colleagues.* Плитки: `colleagues` `We` `are` `is` → **We are colleagues.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i17:s02; family: scripted_repeat_compare -->
+Ви з Олегом стоїте біля одного стола. 🎙 **We are together.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-36:i17:s03; family: scripted_repeat_compare -->
+Мія показує на Лену й Дашу, які сміються разом. 🎙 **They are friends.**
+
+**21 · Складіть фразу — ці люди прийшли ненадовго**
+<!-- interaction_id: en:lesson-01:session-36:i17:s04; family: phrase_builder -->
+Плитки: `guests` `They` `are` `is` → **They are guests.**
 
 ---
 
@@ -135,7 +165,7 @@ friends — друзі — «друзі». Ті, з ким ви бачитеся
 neighbours — сусіди — «сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом.
 guests — гості — «гості». Прийшли ненадовго: поїли, поговорили, пішли.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=context_gap_grammar, 14=speed_match, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=word_card, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=listen_build_dictation, 12=context_gap_grammar, 13=phrase_builder, 14=speed_match, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=phrase_builder
 
 ---
 
@@ -169,10 +199,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 Усі чотири слова дошки приходять із карткою та щонайменше одним відпрацюванням.
 
----
-
-🟡 **Стоит улучшить** — замечание судьи было одно и точечное; остальной текст сверен ещё раз на кальки с русского (звучание слов, разборы ошибок, служебные подписи) — других мест, где слышен машинный перевод, не нашёл.
-
-- Исправил единственную придирку проверяющего: в задании 2, в разборе варианта `call`, убрал кальку «тільки перший шматок» — теперь там «Це тільки початок слова».
-- Всё остальное оставил без изменений: английские слова, фразы, ловушки, номера и порядок заданий, блок для сборщика — байт в байт как были.
-- Ещё раз перечитал текст целиком на предмет похожих калек — других не обнаружил.

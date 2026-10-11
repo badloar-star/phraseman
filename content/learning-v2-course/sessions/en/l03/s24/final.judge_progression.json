@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "2f048ef26836459b3426385d77c2fd68ef8aabfbb29f271c7b3b07f0b1314174",
+  "localeSha256": "91a08874071dcefad8eb25fece4e5a52eaa0b55bc0e2baaaf03676e91165e628",
+  "comparedThrough": "en/l03/s23",
+  "newWords": [
+    "envelope"
+  ],
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 24 | checkpoint | singular/plural и `a`, без новой грамматики | новое: envelope; возврат: слова главы | принимаем доставку окончательно |",
+  "curriculumEvidence": {
+    "grammar": "проверка знакомых форм одного и нескольких: `a + noun`, `envelopes`, `dishes`, `stories`, `glasses`; называние, вопрос и отрицание с `It is`, `They are`, `Are they`, `They are not`",
+    "newWords": [
+      "envelope"
+    ],
+    "situation": "Вы завершаете проверку доставки перед подписью. В заказе — посуда, конверт с билетами и книга историй для чтения. Курьер уточняет, что вы нашли в упаковках; вы проверяете отдельные предметы и наборы, а в книге — содержимое."
+  },
+  "sceneNovel": true,
+  "grammarProgression": "planned_review:current-plan learning delta",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Fresh independent S01–S24 progression audit; current final.ru.md and final.uk.md hashed",
+    "Exact L03 curriculum row read from ПЛАН_КУРСА.md"
+  ]
+}

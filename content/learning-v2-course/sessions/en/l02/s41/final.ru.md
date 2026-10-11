@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 41 — «Я не опоздал?»
+# Английский · Урок 2 · Занятие 41 — «Я не опоздал?»
 
-**Сцена сессии.** В воскресенье утром друг позвал вас на завтрак к соседям. У двери вы уточняете время и сомневаетесь, предупредил ли он хозяев о вашем приходе.
+**Сцена занятия.** В воскресенье утром друг позвал вас на завтрак к соседям. У двери вы уточняете время и сомневаетесь, предупредил ли он хозяев о вашем приходе.
 
-**Операция:** вопрос о себе `Am I + слово?`
+**Как сказать:** вопрос о себе `Am I + слово?`
 **Новые слова:** punctual
 **Возвращаются:** wrong, early, late, here, welcome
 **Новое значение возвращаемого слова:** welcome — «желанный», о том, кого рады видеть.
@@ -51,89 +51,91 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — punctual**
-> **punctual** — «пунктуальный». Здесь — о человеке, который обычно приходит к оговорённому времени.
+<!-- interaction_id: en:lesson-02:session-41:i01; family: listen_choose -->
+Цель: `punctual`
 
 **2 · Послушайте и выберите — какое слово произнёс друг**
-🔊 *punctual* → **punctual** · factual · actual
-- factual — *Это «основанный на фактах». В начале `factual` слышен звук «ф», а в `punctual` — «п».*
-- actual — *Это «реальный». Слово `actual` начинается с гласного, а в записи первым слышен звук «п»: `punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
+Цель: `punctual`
+Варианты: `punctual` · `factual` · `actual`
 
 **3 · Вставьте слово — друг спрашивает, часто ли вы задерживаетесь; скажите, что вы пунктуальны и обычно приходите к назначенному времени**
-I am ___ . → **punctual** · early · late
-- early — *Это «рано». Вы описываете привычку приходить к назначенному времени, поэтому нужно `punctual`.*
-- late — *Это «опоздал» или «опаздываю». Здесь вы говорите о своей пунктуальности: `I am punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i03; family: context_gap_grammar -->
+Цель: `I am ___ .`
+Варианты: `punctual` · `early` · `late`
 
 **4 · Послушайте и выберите — какой вопрос прозвучал у двери**
-🔊 *Am I early?* → **Am I early?** · Am I late? · Are you early?
-- Am I late? — *Это «Я опоздал?» На записи последнее слово `early` — «рано».*
-- Are you early? — *Это вопрос к собеседнику. В записи начало `Am I`: человек спрашивает о себе.*
+<!-- interaction_id: en:lesson-02:session-41:i04; family: listen_choose -->
+Цель: `Am I early?`
+Варианты: `Am I early?` · `Am I late?` · `Are you early?`
 
 **5 · Вставьте слово — вы назвали другу время завтрака, но сомневаетесь; спросите: «Я ошибаюсь?»**
-*(`wrong` — «неправ»)*
-Am I ___ ? → **wrong** · sure · tired
-- sure — *Получится вопрос о том, уверены ли вы. Сейчас вы хотите проверить, не ошиблись ли: `Am I wrong?`*
-- tired — *Это «устал». Вы проверяете своё предположение о времени, поэтому здесь нужно `wrong`.*
+<!-- interaction_id: en:lesson-02:session-41:i05; family: context_gap_grammar -->
+Цель: `Am I ___ ?`
+Варианты: `wrong` · `sure` · `tired`
 
 **6 · Соберите фразу — друг звонит узнать, дошли ли вы; сообщите, что вы здесь**
-*(`here` — «здесь»)*
-Плитки: `here` `I` `am` → **I am here.**
+<!-- interaction_id: en:lesson-02:session-41:i06; family: phrase_builder -->
+Цель: `I am here.`
 
 **7 · Вставьте слово — хозяин открыл дверь; спросите его: «Я опоздал?»**
-*(`late` — «опоздал»)*
-___ I late? → **Am** · Are · Is
-- Are — *С `I` этот вопрос начинается с `Am`: `Am I late?`*
-- Is — *Здесь вы спрашиваете о себе. Сочетание `Is I` замените на `Am I`.*
+<!-- interaction_id: en:lesson-02:session-41:i07; family: context_gap_grammar -->
+Цель: `___ I late?`
+Варианты: `Am` · `Are` · `Is`
 
 **8 · Соберите фразу — у соседей ещё накрывают на стол; уточните у друга, не рано ли вы пришли**
-*(`early` — «рано»)*
-Плитки: `early` `I` `Am` → **Am I early?**
+<!-- interaction_id: en:lesson-02:session-41:i08; family: phrase_builder -->
+Цель: `Am I early?`
 
-**9 · Соедините пары — слова для разговора о времени и сомнениях (Speed Match, 4 пары)**
-punctual — пунктуальный · wrong — неправ · early — рано · late — опоздал
+**9 · Соедините пары — слова для разговора о времени и сомнениях**
+<!-- interaction_id: en:lesson-02:session-41:i09; family: speed_match -->
+Пары: `punctual` — пунктуальный · `wrong` — неправ · `early` — рано · `late` — опоздал
+Цель: `punctual · wrong · early · late`
 
 **10 · Вставьте слово — спросите друга: «Мне здесь рады?»**
-*(`welcome` — «желанный», `here` — «здесь»)*
-Am I welcome ___ ? → **here** · outside · upstairs
-- outside — *Получится вопрос о том, рады ли вам снаружи. Для «здесь» нужно `here`.*
-- upstairs — *Это «наверху». Вы спрашиваете о месте, где стоите: «здесь» — `here`.*
+<!-- interaction_id: en:lesson-02:session-41:i10; family: context_gap_grammar -->
+Цель: `Am I welcome ___ ?`
+Варианты: `here` · `outside` · `upstairs`
 
 **11 · Послушайте и выберите — что сосед сказал вашему другу у двери**
-🔊 *You are welcome here.* → **You are welcome here.** · You are welcome. · Am I welcome here?
-- You are welcome. — *В этом варианте нет `here`. На записи сосед говорит полностью: `You are welcome here` — «Вам здесь рады».*
-- Am I welcome here? — *Это вопрос о себе. На записи начало `You are`: сосед обращается к вашему другу.*
+<!-- interaction_id: en:lesson-02:session-41:i11; family: listen_choose -->
+Цель: `You are welcome here.`
+Варианты: `You are welcome here.` · `You are welcome.` · `Am I welcome here?`
 
 **12 · Соберите фразу — друг тоже переживает, что опоздал, но вы знаете, что он пришёл вовремя; успокойте его**
-Плитки: `late` `not` `You` `are` → **You are not late.**
+<!-- interaction_id: en:lesson-02:session-41:i12; family: phrase_builder -->
+Цель: `You are not late.`
 
 **13 · Послушайте и соберите — друг сверяет со своим приглашением время, которое он вам назвал**
-🔊 *I am not wrong.* Плитки: `wrong` `I` `not` `am` → **I am not wrong.**
+<!-- interaction_id: en:lesson-02:session-41:i13; family: listen_build_dictation -->
+Цель: `I am not wrong.`
 
 **14 · Вставьте слово — вы с другом часто встречаетесь; спросите его, считает ли он вас пунктуальным человеком**
-Am I ___ ? → **punctual** · welcome · wrong
-- welcome — *Это вопрос о том, рады ли вам. Сейчас вы спрашиваете о привычке приходить вовремя: `punctual`.*
-- wrong — *Получится «Я ошибаюсь?» Вы просите оценить вашу пунктуальность, поэтому нужно `punctual`.*
+<!-- interaction_id: en:lesson-02:session-41:i14; family: context_gap_grammar -->
+Цель: `Am I ___ ?`
+Варианты: `punctual` · `welcome` · `wrong`
 
-**15 · Скажите вслух — вы думаете, что хозяин ждёт ещё одного гостя; уточните у друга, не ошибаетесь ли**
-🎙 **Am I wrong?** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-41:i15; family: scripted_repeat_compare -->
+Цель: `Am I wrong?`
 
-**16 · Скажите вслух — хозяин назвал время завтрака, и вы поняли, что пришли раньше; скажите об этом**
-🎙 **I am early.** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-41:i16; family: scripted_repeat_compare -->
+Цель: `I am early.`
 
 **17 · Соберите фразу — друг зовёт вас войти, но вы ещё не уверены, рады ли хозяева вашему приходу; спросите его об этом**
-Плитки: `here` `You` `welcome` `I` `Am` → **Am I welcome here?**
-*(плитка `You` лишняя: вы спрашиваете о себе)*
-
----
+<!-- interaction_id: en:lesson-02:session-41:i17; family: phrase_builder -->
+Цель: `Am I welcome here?`
 
 ## Для сборщика
 
 new_words:
 punctual — пунктуальный — Здесь — о человеке, который обычно приходит к оговорённому времени.
 
-modes: 1=word_card, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=listen_choose, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
+modes: 1=listen_choose, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=phrase_builder, 9=speed_match, 10=context_gap_grammar, 11=listen_choose, 12=phrase_builder, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=phrase_builder
 
 ---
 
@@ -166,9 +168,9 @@ modes: 1=word_card, 2=listen_choose, 3=context_gap_grammar, 4=listen_choose, 5=c
 | слово | карточка | отработка ДО доски |
 |---|---|---|
 | punctual | 1 | 2, 3 |
-| wrong | из предыдущих сессий | 5 |
-| early | из предыдущих сессий | 4, 8 |
-| late | из предыдущих сессий | 7 |
+| wrong | из предыдущих занятий | 5 |
+| early | из предыдущих занятий | 4, 8 |
+| late | из предыдущих занятий | 7 |
 
 На единственной доске четыре слова. Новое слово прошло карточку, узнавание на слух и использование во фразе до доски.
 

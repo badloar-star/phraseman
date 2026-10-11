@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 2 — «Are you comfortable?»
+# Английский · Урок 2 · Занятие 2 — «Are you comfortable?»
 
-**Сцена сессии.** Утро субботы в хостеле. Общая кухня, чайник, кто-то жарит тосты. Люди за столом малознакомые, и всё утро вы спрашиваете каждого, как он.
+**Сцена занятия.** Утро субботы в хостеле. Сосед Том жарит тосты, а соседка Мира сидит за общим столом с чаем. Вы знакомитесь с ними и по очереди спрашиваете, как они себя чувствуют.
 
-**Операция:** `Are you` + слово о человеке
+**Как сказать:** `Are you` + слово о человеке
 **Новые слова:** comfortable, upset
 **Возвращаются:** cold, ok
 
@@ -56,75 +56,98 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — comfortable**
-> **comfortable** — «удобно». Про стул, кровать, обувь, место у окна. Телу хорошо, ничего не давит и не колется.
+<!-- interaction_id: en:lesson-02:session-02:i01; family: listen_choose -->
+Цель: `comfortable`
 
-**2 · Послушайте и выберите — comfortable**
-🔊 *comfortable* → **comfortable** · comfort · company
-- comfort — *`comfort` — само по себе слово, «уют». У `comfortable` после него есть хвост.*
-- company — *Это «компания». Начало похоже, дальше всё другое.*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-02:i02; family: listen_choose -->
+Цель: `comfortable`
+Варианты: `comfortable` · `comfort` · `company`
 
 **3 · Карточка слова — upset**
-> **upset** — «расстроен». Человеку испортили настроение: плохая новость, чужие слова, отменённые планы.
+<!-- interaction_id: en:lesson-02:session-02:i03; family: listen_choose -->
+Цель: `upset`
 
-**4 · Послушайте и выберите — upset**
-🔊 *upset* → **upset** · up · set
-- up — *Только первая половина слова.*
-- set — *Только вторая половина, начало потерялось.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-02:i04; family: listen_choose -->
+Цель: `upset`
+Варианты: `upset` · `up` · `set`
 
 **5 · Соберите фразу — спросите гостя про стул**
-Плитки: `you` `comfortable` `are` → **Are you comfortable?**
+<!-- interaction_id: en:lesson-02:session-02:i05; family: phrase_builder -->
+Цель: `Are you comfortable?`
 
 **6 · Вставьте слово — сосед в куртке греет руки о кружку**
-Are you ___ ? → **cold** · comfortable · upset
-- comfortable — *«Удобно?» — но человек мёрзнет, а не устраивается на стуле.*
-- upset — *«Расстроен?» — куртка и горячая кружка говорят про холод, а не про настроение.*
+<!-- interaction_id: en:lesson-02:session-02:i06; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `cold` · `comfortable` · `upset`
 
-**7 · Вставьте слово — начало вопроса**
-___ you upset? → **Are** · Is · Am
-- Is — *`is` не ходит рядом с `you`.*
-- Am — *`am` идёт только со словом «я». Тут вы спрашиваете другого человека.*
+**7 · Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами**
+<!-- interaction_id: en:lesson-02:session-02:i07; family: phrase_builder -->
+Цель: `Are you upset?`
+Плитки: `Are` · `you` · `upset` · `is`
 
-**8 · Соедините пары (Speed Match, 4 пары)**
-comfortable — удобно · upset — расстроен · cold — замёрз · ok — нормально
+**8 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-02:i08; family: speed_match -->
+Пары: `comfortable` — удобно · `upset` — расстроен · `cold` — замёрз · `ok` — нормально
+Цель: `comfortable · upset · cold · ok`
 
 **9 · Послушайте и соберите — «тебе удобно?»**
-🔊 *Are you comfortable?* Плитки: `comfortable` `are` `you` `upset` → **Are you comfortable?**
+<!-- interaction_id: en:lesson-02:session-02:i09; family: listen_build_dictation -->
+Цель: `Are you comfortable?`
 
 **10 · Вставьте слово — сосед прочитал сообщение и замолчал**
-Are you ___ ? → **upset** · cold · comfortable
-- cold — *«Замёрз?» — в кухне тепло, дело в сообщении.*
-- comfortable — *«Удобно?» — про стул тут никто не думает.*
+<!-- interaction_id: en:lesson-02:session-02:i10; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `upset` · `cold` · `comfortable`
 
 **11 · Различите звуки — какое из двух про «расстроен»?**
-🔊 Два слова подряд.
-*upset · up* → **upset**
-- up — *`up` — «вверх», и на этом слово кончается. У `upset` дальше есть вторая половина.*
+<!-- interaction_id: en:lesson-02:session-02:i11; family: sound_contrast -->
+Варианты: `upset` · `up`
 
 **12 · Соберите фразу — вы хотите узнать, всё ли у человека нормально**
-Плитки: `ok` `are` `you` → **Are you ok?**
+<!-- interaction_id: en:lesson-02:session-02:i12; family: phrase_builder -->
+Цель: `Are you ok?`
 
 **13 · Вставьте слово — гость ёрзает на шатком стуле**
-Are you ___ ? → **comfortable** · ok · cold
-- ok — *«Нормально?» — слишком общо, а вы спрашиваете именно про стул.*
-- cold — *«Замёрз?» — он не мёрзнет, ему неудобно сидеть.*
+<!-- interaction_id: en:lesson-02:session-02:i13; family: context_gap_grammar -->
+Цель: `Are you ___ ?`
+Варианты: `comfortable` · `ok` · `cold`
 
 **14 · Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему**
-Плитки: `cold` `are` `you` `is` → **Are you cold?**
+<!-- interaction_id: en:lesson-02:session-02:i14; family: phrase_builder -->
+Цель: `Are you cold?`
 
 **15 · Послушайте и соберите — «ты расстроен?»**
-🔊 *Are you upset?* Плитки: `upset` `you` `are` `cold` → **Are you upset?**
+<!-- interaction_id: en:lesson-02:session-02:i15; family: listen_build_dictation -->
+Цель: `Are you upset?`
 
-**16 · Скажите вслух — вы обходите стол и спрашиваете двоих**
-🎙 **Are you cold? Are you ok?** — послушайте, повторите, сравните.
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i16:s01; family: scripted_repeat_compare -->
+Цель: `Are you cold?`
 
-**17 · Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему**
-🎙 Завтрак заканчивается, вы обходите кухню в последний раз. Спросите: не замёрз ли человек, удобно ли ему, не расстроен ли он, всё ли нормально.
-**Are you cold? Are you comfortable? Are you upset? Are you ok?**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i16:s02; family: scripted_repeat_compare -->
+Цель: `Are you ok?`
 
----
+**18 · Послушайте и соберите — «вам холодно?»**
+<!-- interaction_id: en:lesson-02:session-02:i17:s01; family: listen_build_dictation -->
+Цель: `Are you cold?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i17:s02; family: scripted_repeat_compare -->
+Цель: `Are you comfortable?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-02:i17:s03; family: scripted_repeat_compare -->
+Цель: `Are you upset?`
+
+**21 · Послушайте и соберите — «с вами всё нормально?»**
+<!-- interaction_id: en:lesson-02:session-02:i17:s04; family: listen_build_dictation -->
+Цель: `Are you ok?`
 
 ## Для сборщика
 
@@ -132,7 +155,7 @@ new_words:
 comfortable — удобно — «удобно». Про стул, кровать, обувь, место у окна. Телу хорошо, ничего не давит и не колется.
 upset — расстроен — «расстроен». Человеку испортили настроение: плохая новость, чужие слова, отменённые планы.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=speed_match, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=phrase_builder, 8=speed_match, 9=listen_build_dictation, 10=context_gap_grammar, 11=sound_contrast, 12=phrase_builder, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=listen_build_dictation, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=listen_build_dictation
 
 ## Самопроверка
 

@@ -1,49 +1,42 @@
 {
-  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
-  "reviewer": "/root/s17_taste",
-  "model": "gpt-5.6-sol",
-  "reasoningEffort": "high",
-  "previousReviewPath": "judgements/2026-09-12_l03_s17_taste_initial.json",
-  "previous_review_reference": {
-    "sourceSha256": "f0409b500c3924f239f23cf11d3c3b218f1bccf4d901bceda8a9d31cda5a8f72",
-    "verdict": "REVISE",
-    "comparison_base": "draft_02.ru.md",
-    "resolved_findings": [
-      "Покажите коллеге на → Укажите коллеге на",
-      "несколько кружков у её руки → несколько кружков перед ней"
-    ]
+  "schemaVersion": "learning_v2_owner_quality_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s17",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+  "exactRuSha256": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+  "exactUkSha256": "b38e67b9f789acc155f7ccc86219db1e767f77270bd0758de6fb1c75193787b5",
+  "practiceAtomicSha256": "faaa0cede4984787da8da7b047169cd5bd990ee352aa752ae4ae4341348c32bc",
+  "localeHashes": {
+    "ru": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+    "uk": "b38e67b9f789acc155f7ccc86219db1e767f77270bd0758de6fb1c75193787b5"
   },
   "pairwise": "equal",
-  "pairwise_reason": "Фактический эталон exemplars/en/l01_s03.ru.md сильнее за счёт более заметной игры с речевой ситуацией, а S17 отвечает нынешней строгой структуре: значение слова сразу, объяснение без предыстории, действие в вопросе. Текущая S17 столь же ясна, связна и пригодна для живого чтения; касса со сдачей и жетонами естественно объединяет нужные слова.",
+  "pairwise_reason": "The current source keeps a concrete scene and uses a small language-led mnemonic without replacing the rule.",
   "voice": {
-    "score": 5,
+    "score": 4,
     "evidence": [
-      "`ticket` — «билет». Когда билетов несколько, к названию добавляем `s`: `tickets` — «билеты». — значение и новое действие названы сразу простыми словами.",
-      "У кассы готовят сдачу и жетоны для участников. Укажите коллеге на несколько металлических кружков в лотке и уточните: «Это монеты?» — понятная ситуация даёт настоящий повод задать вопрос."
+      "Current RU voice quote: «Билетов может быть целая пачка, а дописать нужно всего одну букву.» It reinforces the exact plural operation."
     ]
   },
   "humor": {
     "present": true,
     "on_topic": true,
     "examples": [
-      "Билетов может быть целая пачка, а дописать нужно всего одну букву."
+      "«Билетов может быть целая пачка, а дописать нужно всего одну букву.»"
     ],
     "misfires": []
   },
-  "scene": {
-    "present": true,
-    "gives_reason_to_speak": true,
-    "note": "Подготовка мероприятия связывает билеты, карточки, растения и подушки; касса со сдачей и жетонами естественно вводит монеты."
-  },
   "ai_text_or_nonsense": [],
-  "water": [],
-  "dead_language": [],
-  "best_lines": [
-    "`ticket` — «билет». Когда билетов несколько, к названию добавляем `s`: `tickets` — «билеты».",
-    "Билетов может быть целая пачка, а дописать нужно всего одну букву.",
-    "Чтобы уточнить, монеты ли перед вами, спросите `Are they coins?` — «Это монеты?»"
-  ],
+  "blockers": [],
+  "mustFix": [],
   "must_fix": [],
   "verdict": "PASS",
-  "verdict_reason": "Три интро имеют длины 243/269/261, начинают с прямого значения слова, сцена даёт реальный повод говорить, уместный языковой юмор сохранён, а ИИ-текста, воды, мёртвого языка и непонятных формальных терминов нет."
+  "verdict_reason": "Current RU voice quote: «Билетов может быть целая пачка, а дописать нужно всего одну букву.» It reinforces the exact plural operation."
 }

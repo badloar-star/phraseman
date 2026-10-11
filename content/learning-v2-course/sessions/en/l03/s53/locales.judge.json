@@ -1,0 +1,81 @@
+{
+  "verdict": "PASS",
+  "severity": "P0:none/P1:none/P2:none",
+  "sourceSha256": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+  "localeSha256": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3",
+  "structureIdentical": true,
+  "englishTargetsIdentical": true,
+  "tasks": 17,
+  "languagePurity": true,
+  "semanticParity": true,
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "Collection-point scene gives real near/far plural groups; all three chains use these/those + adjective + plural noun and the final transfers the choice."
+      ]
+    }
+  },
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "RU and UK preserve the same 17 modes, order, English targets, answer logic, and single-phrase boundaries.",
+    "Metal, plastic, and soft are translated consistently and naturally in both locales.",
+    "Ukrainian is language-pure and introduces no added meaning."
+  ],
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "role": "judge_locale",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "localeHashes": {
+    "ru": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+    "uk": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3"
+  },
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "7550ba2fcc27e43e061139e851fb60f10aadb501285082bdddc5264d504e9460",
+    "localeSha256": "de6ef4a4c437cb99e936f5acb8a804b594529dda114e4a2cf4125eb1000faa3b",
+    "practiceAtomicSha256": "45d10968036bab332e552ee7eb9f95a351cb657cc32f490ffbad5740fffe91ee"
+  },
+  "exactRuSha256": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+  "exactUkSha256": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3",
+  "practiceAtomicSha256": "33b104fcdbbab2b6c71a21930782ae20a357540d502d947a5104b5359f6da735",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "7c328c958e8121374fff4e4143593535d495db51449917fe9a4f7619e6da90a7",
+    "localeSha256": "542b60606a62c1e47ad9565166bddc18f7f75fffcdcbdf6f7467f14879b29661",
+    "practiceAtomicSha256": "33b104fcdbbab2b6c71a21930782ae20a357540d502d947a5104b5359f6da735",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+    "exactRuSha256": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+    "exactUkSha256": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3",
+    "localeSha256": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3",
+    "localeHashes": {
+      "ru": "cbbbb95293bbc294d6364c60331ae3bdf072bcd3a42d042d4d61daa1ed2904b0",
+      "uk": "e2cfec1fd7440a34148f5759dcc27172bc36dccf2e27fb4657fbc60423454dd3"
+    },
+    "practiceAtomicSha256": "33b104fcdbbab2b6c71a21930782ae20a357540d502d947a5104b5359f6da735",
+    "evidence": [
+      "Collection-point scene gives real near/far plural groups; all three chains use these/those + adjective + plural noun and the final transfers the choice."
+    ]
+  }
+}

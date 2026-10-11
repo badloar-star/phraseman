@@ -1,0 +1,59 @@
+{
+  "session": "en/l04/s15",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-08T12:04:28.935Z",
+  "sourceSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactRuSha256": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+  "exactUkSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "practiceAtomicSha256": "4ef34bdda3c59880e0d53f1b333b7ebe94ddbd390aae50a557095c134b1d0ff9",
+  "localeHashes": {
+    "ru": "d3ab58774e4774da320402475b2322a5b9ca3f0df2311e16aa57cd4df47d3320",
+    "uk": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "independent S15 quality/spec reviewers",
+  "role": "judge_taste",
+  "sourceReport": "fresh independent read-only taste review against owner 2026-09-08 session-level humor rule",
+  "verdict": "PASS",
+  "pairwise": "equal",
+  "pairwise_reason": "Both locales use the same concise language-derived joke about a short answer stopping at the right time.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "Короткий ответ умеет вовремя остановиться: экономит слова, а не смысл.",
+      "Коротка відповідь уміє вчасно зупинитися: заощаджує слова, а не зміст."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Перед одним местом остаётся `a`.",
+      "Слово `rooms` уже во множественном числе, поэтому артикль `a` перед ним не ставится."
+    ],
+    "misfires": []
+  },
+  "best_lines": [
+    "Перед одним местом остаётся `a`.",
+    "Слово `rooms` уже во множественном числе, поэтому артикль `a` перед ним не ставится."
+  ],
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "must_fix": [],
+  "mustFix": [],
+  "blockers": [],
+  "evidence": [
+    "The exact humor examples and best lines are quoted verbatim from the current final.ru.md."
+  ],
+  "verdict_reason": "Clear human teaching voice with one natural language-derived humorous move preserved across locales.",
+  "at": "2026-10-08T12:04:28.935Z",
+  "localeSha256": "7096dc1c1b25064c219d86b938255c88865b03cb1980dd144073e483cbade6c7",
+  "preauthoringSha256": "4144f7b694438a4d536af3ca37b4241cd5b729bd5d2d5de43555567981de1b23",
+  "converged": true,
+  "needsHumanReview": false
+}

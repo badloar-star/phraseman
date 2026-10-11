@@ -1,0 +1,36 @@
+{
+  "session": "en/l04/s05",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:59:54.670Z",
+  "sourceSha256": "473EB1D504824F8076F08CCB0951AE84D4828850441D97405C40BFF4D4DF3E59",
+  "exactRuSha256": "473EB1D504824F8076F08CCB0951AE84D4828850441D97405C40BFF4D4DF3E59",
+  "exactUkSha256": "7ECD5376F2FE06A2D895FC61FD259BEF28A9B7B0D2AB1B49DC18444ED986E320",
+  "practiceAtomicSha256": "114AB3147AC44204C21D9F7AE2D48DE56262B6A2EBB083978102728BE542C81B",
+  "localeHashes": {
+    "ru": "473EB1D504824F8076F08CCB0951AE84D4828850441D97405C40BFF4D4DF3E59",
+    "uk": "7ECD5376F2FE06A2D895FC61FD259BEF28A9B7B0D2AB1B49DC18444ED986E320"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_current_s05_s12_review",
+  "reviewProvenance": "fresh_independent_current_byte_read_only_after_exact_repeat_repair",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "role": "judge_reader",
+  "verdict_reason": "PASS: all three introductions remain short and plain, and the revised final makes the controlling-noun rule visible without adding terminology or ambiguity.",
+  "evidence": [
+    "Intro 1 explains one supermarket and `There is a`; Intro 2 explains plural `shops` and no `a`; Intro 3 explains why plural shops after `near` do not change singular supermarket.",
+    "The final `There is a supermarket near two shops.` is a direct, readable application of Intro 3 rather than an exact repeat.",
+    "RU and UK preserve the same revised i11/i12 targets, prompts, tiles, purposes, transcripts, answers, and operation in natural locale prose."
+  ]
+}

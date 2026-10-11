@@ -1,9 +1,9 @@
-# Англійська · Урок 1 · Сесія 35 — «We are not»
+# Англійська · Урок 1 · Заняття 35 — «We are not»
 
-**Сцена сесії.** Обід із командою. Усі йдуть у кафе через дорогу, і дорогою хтось зі своїх весь час припускає про вас неправильне: що ви запізнюєтеся, що ви не впевнені, що ви самі. Час навчитися відповідати за всіх одразу.
+**Ситуація.** Іра, Олег і ви йдете до кав'ярні. Олег помилково думає, що ви запізнюєтеся, а Іра не впевнена, чи кав'ярня відчинена.
 
-**Операція:** `We are not` + слово про нас
-**Нові слова:** —
+**Сьогодні.** Скажете про вашу групу, що це не так: `We are not` + слово.
+**Нові слова:** sure, wrong, free, alone
 **Повертаються:** late, ready, hungry, busy, alone, wrong, sure, free
 
 ---
@@ -12,14 +12,14 @@
 
 ### `not` стає після `are`
 
-`we` — «ми». Скріпка при ньому — `are`: `We are late` — «ми запізнюємося».
+`we` — «ми». Після нього ставимо `are`: `We are late` — «ми запізнюємося».
 
 Щоб вийшло «не», додаємо `not`. Місце в нього жорстке: одразу за `are`, перед словом про вас. Не перед `are`, не в кінець — `We are not late`.
 
-**Хтось на ходу: «Ми ж запізнюємося?» Часу вдосталь. Скажіть, що ні.**
+**Олег дорогою каже: «Ми ж запізнюємося?» До зустрічі ще двадцять хвилин. Скажіть, що ні.**
 
 - ✅ **We are not late.**
-- ❌ We not are late. — *`not` став перед скріпкою. Порядок зворотний: спершу `are`, потім `not`.*
+- ❌ We not are late. — *Спершу `are`, потім `not`: We are not late.*
 - ❌ We are late not. — *`not` утік у кінець. Його місце одразу після `are`, до слова про вас.*
 
 ---
@@ -32,10 +32,10 @@
 
 Заперечення до нього знадобиться частіше за саме слово: `We are not sure` — «ми не впевнені». Це ввічливе «гадки не маю»: і не збрехали, і винним ніхто не виглядає.
 
-**Питають, чи працює кафе через дорогу. Ніхто не знає. Відповідайте за всіх.**
+**Іра питає, чи відчинена кав'ярня через дорогу. Ви з Олегом цього не знаєте. Відповідайте за всіх.**
 
 - ✅ **We are not sure.**
-- ❌ We no sure. — *`no` — це відповідь «ні» на все запитання. Усередині фрази «не» — це `not`, і скріпка `are` обов'язкова.*
+- ❌ We no sure. — *Усередині фрази використовуйте `not`: We are not sure.*
 - ❌ We are sure not. — *Слова ті самі, порядок зламано. Після `are` одразу `not`, потім `sure`.*
 
 ---
@@ -48,10 +48,10 @@
 
 Слово це про людину, а не про справу: `We are wrong` — «ми помиляємося», а не «у нас щось зламалося». І сперечатися ним можна за всю компанію одразу: `We are not wrong`.
 
-**Вам кажуть, що ви все переплутали. Нічого ви не переплутали. Скажіть це.**
+**Олег каже, що ви з Ірою переплутали адресу кав'ярні. Ви перевірили карту і знаєте, що адреса правильна. Скажіть це.**
 
 - ✅ **We are not wrong.**
-- ❌ We not wrong. — *Скріпка зникла. Після `we` іде `are`, і лише потім `not`.*
+- ❌ We not wrong. — *Після `we` потрібні `are not`: We are not wrong.*
 - ❌ We are not late. — *`late` — про час, «запізнюємося». Про помилку — `wrong`.*
 
 ---
@@ -59,69 +59,101 @@
 ## Практика (17 завдань, підтримка спадає)
 
 **1 · Картка слова — sure**
+<!-- interaction_id: en:lesson-01:session-35:i01; family: listen_choose -->
 > **sure** — «впевнений, знаю напевно». Не про готовність, а про знання: знаєш — `sure`.
 
-**2 · Послухайте і виберіть — sure**
+**2 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-35:i02; family: listen_choose -->
 🔊 *sure* → **sure** · sugar · shoe
 - sugar — *«Цукор». Початок той самий — «шу», але далі чути «ґ»: шу-ґер. У `sure` після «шу» одразу «р».*
 - shoe — *«Туфля». Початок схожий, але `shoe` на цьому й закінчується, а в `sure` є «р».*
 
 **3 · Картка слова — wrong**
+<!-- interaction_id: en:lesson-01:session-35:i03; family: listen_choose -->
 > **wrong** — «неправий, помиляється». Сказав упевнено — і мимо.
 
-**4 · Послухайте і виберіть — wrong**
+**4 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-35:i04; family: listen_choose -->
 🔊 *wrong* → **wrong** · long · ring
 - long — *«Довгий». Відрізняється лише першим звуком, слухайте початок.*
 - ring — *«Каблучка». Голосна інша: у `ring` чути «і», у `wrong` — «о».*
 
 **5 · Складіть фразу — «ми не запізнюємося»**
+<!-- interaction_id: en:lesson-01:session-35:i05; family: phrase_builder -->
 Плитки: `not` `late` `we` `are` → **We are not late.**
 
 **6 · Картка слова — free**
+<!-- interaction_id: en:lesson-01:session-35:i06; family: listen_choose -->
 > **free** — «вільний». Справ немає, ніхто нічого не чекає.
 
-**7 · Послухайте і виберіть — free**
+**7 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-35:i07; family: listen_choose -->
 🔊 *free* → **free** · three · fry
 - three — *«Три». Відрізняється першим звуком: `free` починається з «ф».*
 - fry — *«Смажити». Початок той самий, а голосна в кінці інша.*
 
 **8 · Картка слова — alone**
+<!-- interaction_id: en:lesson-01:session-35:i08; family: listen_choose -->
 > **alone** — «сам, без компанії». Поруч нікого — ні добре, ні погано, просто факт.
 
 **9 · Вставте слово — ви не впевнені, чи відчинено кафе**
+<!-- interaction_id: en:lesson-01:session-35:i09; family: context_gap_grammar -->
 We are not ___ . → **sure** · wrong · busy
 - wrong — *«Неправі» — це про помилку. Про незнання — `sure`.*
 - busy — *«Зайняті» — про справи. Не знаєте — `not sure`.*
 
 **10 · Послухайте і складіть — «ми не самі»**
+<!-- interaction_id: en:lesson-01:session-35:i10; family: listen_build_dictation -->
 🔊 *We are not alone.* Плитки: `alone` `are` `not` `we` `no` → **We are not alone.**
 
-**11 · Вставте скріпку — ви всією командою не голодні**
+**11 · Оберіть форму — Іра й Олег уже пообідали і не голодні**
+<!-- interaction_id: en:lesson-01:session-35:i11; family: context_gap_grammar -->
 We ___ not hungry. → **are** · am · is
 - am — *`am` тільки для `I`, про одного себе. Про «ми» — `are`.*
 - is — *`is` — про одного: він, вона, воно. Вас кілька, отже `are`.*
 
-**12 · З'єднайте пари (Speed Match, 4 пари)**
+**12 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-35:i12; family: speed_match -->
 sure — впевнений · wrong — неправий · free — вільний · alone — сам
 
-**13 · Вставте слово — питають, чи можемо ми затриматися: після обіду нарада**
+**13 · Вставте слово — керівник питає, чи можемо ми затриматися: після обіду нарада**
+<!-- interaction_id: en:lesson-01:session-35:i13; family: context_gap_grammar -->
 We are not ___ . → **free** · alone · ready
 - alone — *«Не самі» — про компанію, а не про час.*
 - ready — *«Не готові» — інше. Часу немає — `not free`.*
 
 **14 · Ствердження чи заперечення? Усі вже в куртках, можна йти**
+<!-- interaction_id: en:lesson-01:session-35:i14; family: phrase_builder -->
 Складіть: `are` `ready` `we` `not` → **We are ready.**
 *(плитка `not` зайва: за сценою ви готові)*
 
-**15 · Складіть фразу — «ми не зайняті»**
-Плитки: `busy` `we` `not` `are` → **We are not busy.**
+**15 · Послухайте й складіть — ви закінчили всі справи й можете піти**
+<!-- interaction_id: en:lesson-01:session-35:i15; family: listen_build_dictation -->
+🔊 *We are not busy.* Плитки: `busy` `we` `not` `are` `is` → **We are not busy.**
 
 **16 · Складіть фразу — «ми не помиляємося»**
+<!-- interaction_id: en:lesson-01:session-35:i16; family: phrase_builder -->
 Плитки: `we` `wrong` `are` `not` → **We are not wrong.**
 
-**17 · Фінал сцени — п’ять відповідей поспіль про вас двох**
-🎙 «Запізнюєтеся? Голодні? Зайняті? Упевнені, що кафе відчинене? Готові йти?» Відповідайте: не запізнюємося, голодні, не зайняті, не впевнені — і так, готові.
-**We are not late. We are hungry. We are not busy. We are not sure. We are ready.**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s01; family: scripted_repeat_compare -->
+Іра питає, чи ви з Олегом запізнюєтеся. 🎙 **We are not late.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s02; family: scripted_repeat_compare -->
+Олег пропонує спершу пообідати. 🎙 **We are hungry.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s03; family: scripted_repeat_compare -->
+Іра уточнює, чи ви вільні після обіду. 🎙 **We are not busy.**
+
+**20 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s04; family: scripted_repeat_compare -->
+Олег не знає, чи кав'ярня відчинена. 🎙 **We are not sure.**
+
+**21 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-35:i17:s05; family: scripted_repeat_compare -->
+Іра бачить, що ви з Олегом уже в куртках біля дверей. 🎙 **We are ready.**
 
 ---
 
@@ -133,7 +165,7 @@ wrong — неправий — «неправий, помиляється». С�
 free — вільний — «вільний». Справ немає, ніхто нічого не чекає.
 alone — сам — «сам, без компанії». Поруч нікого — ні добре, ні погано, просто факт.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=phrase_builder, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=word_card, 7=listen_choose, 8=word_card, 9=context_gap_grammar, 10=listen_build_dictation, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=phrase_builder, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 
@@ -169,16 +201,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 
 Зайва плитка `no` — одна, у завданні 10. Обманка на уважність (`not` при стверджувальній сцені) — одна, завдання 14.
 
----
-
-🟡 **Стоит улучшить**
-- Ловушка `We no sure` (Інтро 2) для украиноязычных менее типична, чем для испаноязычных, — но она остаётся валидной ошибкой начального уровня и разбор к ней корректный. Менять не стал: английские слова и ловушки заморожены заданием.
-
-🧩 **Скрытые связи**
-- Служебные блоки `new_words` и `modes` привязаны к номерам заданий — при любом изменении порядка практики их надо править синхронно.
-
-**Итог**
-
-- Исправил три замечания судьи: русский заголовок блока практики стал украинским, выдуманный оборот «зрадити правду» заменён на живое «не збрехали», слово `shoe` теперь переводится как «туфля», а не «черевик».
-- Остальной текст не трогал — английские слова, ловушки, номера и механики заданий остались прежними.
-- Служебные строки для сборщика и таблицы самопроверки оставлены без изменений.

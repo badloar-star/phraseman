@@ -1,0 +1,686 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть нове слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-14:i01:r1",
+          "text": "laundrette"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i01:r2",
+          "text": "laundry"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i01:r3",
+          "text": "landmark"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть нове слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-14:i01:audio",
+          "transcript": "laundrette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-14:i01:r1",
+            "targetText": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i01:r2",
+            "targetText": "laundry",
+            "meaningByLocale": {
+              "ru": "стирка или бельё",
+              "uk": "прання або білизна"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i01:r3",
+            "targetText": "landmark",
+            "meaningByLocale": {
+              "ru": "достопримечательность",
+              "uk": "пам’ятка"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-14:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть нове слово",
+            "feedbackByLocale": {
+              "ru": "В записи слышно название места `laundrette`, а не общее `laundry`.",
+              "uk": "У записі чути назву місця `laundrette`, а не загальне `laundry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть нове слово",
+            "feedbackByLocale": {
+              "ru": "`Landmark` — достопримечательность. В записи было место для стирки: `laundrette`.",
+              "uk": "`Landmark` — пам’ятка. У записі було місце для прання: `laundrette`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вимовте нове слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Вимовте нове слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-14:i02:audio",
+          "transcript": "laundrette"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "laundrette",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нове й знайомі місця зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нове й знайомі місця зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-04:session-14:i03:p1",
+            "target": "laundrette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-14:i03:p2",
+            "target": "hotel",
+            "meaningByLocale": {
+              "ru": "отель",
+              "uk": "готель"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-14:i03:p3",
+            "target": "shop",
+            "meaningByLocale": {
+              "ru": "магазин",
+              "uk": "магазин"
+            }
+          },
+          {
+            "pairId": "en:lesson-04:session-14:i03:p4",
+            "target": "platform",
+            "meaningByLocale": {
+              "ru": "платформа",
+              "uk": "платформа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laundrette",
+          "hotel",
+          "shop",
+          "platform"
+        ],
+        "rightColumn": [
+          "прачечная самообслуживания",
+          "отель",
+          "магазин",
+          "платформа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте питання біля платформи й оберіть його зміст",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-14:i04:r1",
+          "text": "Is there a laundrette near the platform?"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i04:r2",
+          "text": "Are there laundrettes near the platform?"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i04:r3",
+          "text": "There is a laundrette near the platform."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте питання біля платформи й оберіть його зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-14:i04:audio",
+          "transcript": "Is there a laundrette near the platform?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-14:i04:r1",
+            "targetText": "Is there a laundrette near the platform?",
+            "meaningByLocale": {
+              "ru": "У платформы есть одна прачечная самообслуживания?",
+              "uk": "Біля платформи є одна пральня самообслуговування?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r2",
+            "targetText": "Are there laundrettes near the platform?",
+            "meaningByLocale": {
+              "ru": "У платформы есть несколько прачечных самообслуживания?",
+              "uk": "Біля платформи є кілька пралень самообслуговування?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r3",
+            "targetText": "There is a laundrette near the platform.",
+            "meaningByLocale": {
+              "ru": "У платформы есть одна прачечная самообслуживания.",
+              "uk": "Біля платформи є одна пральня самообслуговування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте питання біля платформи й обер",
+            "feedbackByLocale": {
+              "ru": "`Laundrettes` — несколько мест. Здесь спрашиваем об одной прачечной, поэтому нужны `Is` и `a laundrette`.",
+              "uk": "`Laundrettes` — кілька місць. Тут питаємо про одну пральню, тому потрібні `Is` і `a laundrette`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте питання біля платформи й обер",
+            "feedbackByLocale": {
+              "ru": "Это сообщение, а не вопрос. Вопрос начинается с `Is`: `Is there a laundrette near the platform?`.",
+              "uk": "Це повідомлення, а не питання. Питання починається з `Is`: `Is there a laundrette near the platform?`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання про одну пральню біля готелю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть питання про одну пральню біля готелю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a laundrette near the hotel?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос об одной прачечной у отеля",
+          "uk": "Складіть питання про одну пральню біля готелю"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "laundrette",
+          "near",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Біля магазину ви перевіряєте, чи є одне місце. Вставте початок питання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-14:i06:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i06:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i06:r3",
+          "text": "There"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля магазину ви перевіряєте, чи є одне місце. Вставте початок питання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У магазина вы проверяете, есть ли одно место. Вставьте начало вопроса",
+          "uk": "Біля магазину ви перевіряєте, чи є одне місце. Вставте початок питання"
+        },
+        "gappedTargetPhrase": "___ there a laundrette near the shop?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i06:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i06:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i06:r3",
+            "text": "There"
+          }
+        ],
+        "testedDimension": "Біля магазину ви перевіряєте, чи є одне ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Біля магазину ви перевіряєте, чи є одне ",
+            "feedbackByLocale": {
+              "ru": "`A laundrette` — одно место, поэтому вопрос начинается с `Is`.",
+              "uk": "`A laundrette` — одне місце, тому питання починається з `Is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Біля магазину ви перевіряєте, чи є одне ",
+            "feedbackByLocale": {
+              "ru": "`There is a laundrette` — это порядок сообщения. Вопрос начинается с `Is`.",
+              "uk": "`There is a laundrette` — це порядок повідомлення. Питання починається з `Is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть повідомлення про одну пральню біля магазину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть повідомлення про одну пральню біля магазину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-14:i07:audio",
+          "transcript": "There is a laundrette near the shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a laundrette near the shop.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "laundrette",
+          "near",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть повідомлення про кілька пралень біля готелю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть повідомлення про кілька пралень біля готелю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are laundrettes near the hotel.",
+        "localizedMeaning": {
+          "ru": "Соберите сообщение о нескольких прачечных у отеля",
+          "uk": "Складіть повідомлення про кілька пралень біля готелю"
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "laundrettes",
+          "near",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте питання про кілька місць біля будівлі й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-14:i09:r1",
+          "text": "Are there laundrettes near the building?"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i09:r2",
+          "text": "Is there a laundrette near the building?"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i09:r3",
+          "text": "There are laundrettes near the building."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте питання про кілька місць біля будівлі й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-14:i09:audio",
+          "transcript": "Are there laundrettes near the building?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-14:i09:r1",
+            "targetText": "Are there laundrettes near the building?",
+            "meaningByLocale": {
+              "ru": "У здания есть несколько прачечных самообслуживания?",
+              "uk": "Біля будівлі є кілька пралень самообслуговування?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i09:r2",
+            "targetText": "Is there a laundrette near the building?",
+            "meaningByLocale": {
+              "ru": "У здания есть одна прачечная самообслуживания?",
+              "uk": "Біля будівлі є одна пральня самообслуговування?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i09:r3",
+            "targetText": "There are laundrettes near the building.",
+            "meaningByLocale": {
+              "ru": "У здания есть несколько прачечных самообслуживания.",
+              "uk": "Біля будівлі є кілька пралень самообслуговування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте питання про кілька місць біля",
+            "feedbackByLocale": {
+              "ru": "В записи `laundrettes` — несколько мест, поэтому вопрос начинается с `Are`.",
+              "uk": "У записі `laundrettes` — кілька місць, тому питання починається з `Are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте питання про кілька місць біля",
+            "feedbackByLocale": {
+              "ru": "В записи вопрос, а не сообщение: `Are there…?`.",
+              "uk": "У записі питання, а не повідомлення: `Are there…?`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання про дві пральні біля будівлі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть питання про дві пральні біля будівлі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there two laundrettes near the building?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос о двух прачечных у здания",
+          "uk": "Складіть питання про дві пральні біля будівлі"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "two",
+          "laundrettes",
+          "near",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Біля платформи позначено дві пральні. Вставте форму в повідомлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-14:i11:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-14:i11:r3",
+          "text": "there"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля платформи позначено дві пральні. Вставте форму в повідомлення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "У платформы отмечены две прачечные. Вставьте форму в сообщение",
+          "uk": "Біля платформи позначено дві пральні. Вставте форму в повідомлення"
+        },
+        "gappedTargetPhrase": "There ___ two laundrettes near the platform.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-14:i11:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r3",
+            "text": "there"
+          }
+        ],
+        "testedDimension": "Біля платформи позначено дві пральні. Вс",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Біля платформи позначено дві пральні. Вс",
+            "feedbackByLocale": {
+              "ru": "`Two laundrettes` — несколько мест, поэтому нужно `There are`.",
+              "uk": "`Two laundrettes` — кілька місць, тому потрібно `There are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Біля платформи позначено дві пральні. Вс",
+            "feedbackByLocale": {
+              "ru": "`There` уже стоит в начале. Здесь нужна форма `are`, согласованная с `two laundrettes`.",
+              "uk": "`There` уже стоїть на початку. Тут потрібна форма `are`, узгоджена з `two laundrettes`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-14:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Фінал — карта показує кілька місць біля готелю. Складіть питання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фінал — карта показує кілька місць біля готелю. Складіть питання",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there laundrettes near the hotel?",
+        "localizedMeaning": {
+          "ru": "Финал — карта показывает несколько мест у отеля. Соберите вопрос",
+          "uk": "Фінал — карта показує кілька місць біля готелю. Складіть питання"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "laundrettes",
+          "near",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [
+          "Is",
+          "There"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5abbe30cb38b5c89fe1d135fc2f1a34cbe23f1c352b067cc3d70819f07765fb6"
+}

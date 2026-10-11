@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 
 const gate = path.join(path.dirname(new URL(import.meta.url).pathname.replace(/^\/(?:[A-Za-z]:)/, (m) => m.slice(1))), "progression_quality_gate.mjs");
+const buildRelease = path.join(path.dirname(gate), "build_release.mjs");
 
 function writeSession(root, ordinal, body) {
   const dir = path.join(root, `s${String(ordinal).padStart(2, "0")}`);
@@ -17,6 +18,12 @@ function writeLocale(root, ordinal, locale, body) {
   const dir = path.join(root, `s${String(ordinal).padStart(2, "0")}`);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, `final.${locale}.md`), body, "utf8");
+}
+
+function writeAtomic(root, ordinal, value) {
+  const dir = path.join(root, `s${String(ordinal).padStart(2, "0")}`);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "practice.atomic.json"), `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
 function run(root) {
@@ -85,6 +92,232 @@ new_words: speaker — колонка — звук
   const result = run(root);
   assert.equal(result.status, 0, result.stdout + result.stderr);
   assert.match(result.stdout, /PASS/);
+});
+
+test("accepts migrated atomic practice and split final interactions", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-atomic-"));
+  writeSession(root, 25, `# S25
+
+**Сцена сессии.** Мастерская.
+## Интро 1
+phone: \`This is a phone.\`
+**Назовите телефон.**
+- ✅ **This is a phone.**
+## Интро 2
+charger: \`This is a charger.\`
+**Назовите зарядку.**
+- ✅ **This is a charger.**
+## Интро 3
+cable: \`This is a cable.\`
+**Назовите провод.**
+- ✅ **This is a cable.**
+## Практика — по одной целевой фразе
+**1 · Соберите одну фразу**
+Цель: \`This is a phone.\`
+**2 · Соберите одну фразу**
+Цель: \`This is a charger.\`
+**3 · Соберите одну фразу**
+Цель: \`This is a cable.\`
+## Для сборщика
+new_words: phone — телефон — связь
+new_words: charger — зарядка — питание
+new_words: cable — провод — соединение
+`);
+  const interaction = (id, targetPhrase) => ({ interactionId: id, family: "phrase_builder", modePayload: { targetPhrase } });
+  writeAtomic(root, 25, {
+    interactionsByLocale: {
+      ru: [
+        interaction("en:lesson-03:session-25:i01", "This is a phone."),
+        interaction("en:lesson-03:session-25:i02", "This is a charger."),
+        interaction("en:lesson-03:session-25:i03", "This is a cable."),
+        interaction("en:lesson-03:session-25:i17:s01", "This is a phone."),
+        interaction("en:lesson-03:session-25:i17:s02", "This is a charger."),
+        interaction("en:lesson-03:session-25:i17:s03", "This is a cable."),
+      ],
+    },
+    answers: [],
+  });
+  const result = run(root);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+});
+
+test("accepts a 12-task atomic session with an independent-check final stage", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-atomic-12-"));
+  writeSession(root, 25, `# S25
+
+**Сцена сессии.** Городская карта.
+## Интро 1
+laundrette: \`There is a laundrette near the hotel.\`
+**Назовите место рядом с отелем.**
+- ✅ **There is a laundrette near the hotel.**
+## Интро 2
+laundrette: \`Is there a laundrette nearby?\`
+**Спросите об одном месте рядом с магазином.**
+- ✅ **Is there a laundrette nearby?**
+## Интро 3
+laundrettes: \`Are there laundrettes nearby?\`
+**Спросите о нескольких местах рядом со зданием.**
+- ✅ **Are there laundrettes nearby?**
+## Практика — по одной целевой фразе
+**1 · Соберите сообщение**
+Цель: \`There is a laundrette near the hotel.\`
+**2 · Соберите вопрос**
+Цель: \`Is there a laundrette near the shop?\`
+**3 · Соберите вопрос**
+Цель: \`Are there laundrettes near the building?\`
+**12 · Финал — спросите о местах рядом с отелем**
+Цель: \`Are there laundrettes near the hotel?\`
+## Для сборщика
+new_words: laundrette — прачечная самообслуживания — место для стирки
+`);
+  writeLocale(root, 25, "uk", `# S25
+
+## Інтро 1
+laundrette: \`There is a laundrette near the hotel.\`
+**Назвіть місце біля готелю.**
+- ✅ **There is a laundrette near the hotel.**
+## Інтро 2
+laundrette: \`Is there a laundrette nearby?\`
+**Запитайте про одне місце біля магазину.**
+- ✅ **Is there a laundrette nearby?**
+## Інтро 3
+laundrettes: \`Are there laundrettes nearby?\`
+**Запитайте про кілька місць біля будівлі.**
+- ✅ **Are there laundrettes nearby?**
+## Практика — по одній цільовій фразі
+**1 · Складіть повідомлення**
+Ціль: \`There is a laundrette near the hotel.\`
+**2 · Складіть питання**
+Ціль: \`Is there a laundrette near the shop?\`
+**3 · Складіть питання**
+Ціль: \`Are there laundrettes near the building?\`
+**12 · Фінал — запитайте про місця біля готелю**
+Ціль: \`Are there laundrettes near the hotel?\`
+## Для збирача
+`);
+  const interaction = (ordinal, targetPhrase, purpose = "guided_practice") => ({
+    interactionId: `en:lesson-03:session-25:i${String(ordinal).padStart(2, "0")}`,
+    purpose,
+    family: "phrase_builder",
+    modePayload: { targetPhrase },
+  });
+  const interactions = [
+    interaction(1, "There is a laundrette near the hotel."),
+    interaction(2, "Is there a laundrette near the shop?"),
+    interaction(3, "Are there laundrettes near the building?"),
+    ...Array.from({ length: 7 }, (_, index) => interaction(index + 4, `Practice target ${index + 4}.`)),
+    interaction(11, "There are two laundrettes near the platform.", "independent_check"),
+    interaction(12, "Are there laundrettes near the hotel?", "independent_check"),
+  ];
+  writeAtomic(root, 25, {
+    interactionsByLocale: {
+      ru: interactions,
+      uk: interactions,
+    },
+    answers: [],
+  });
+  const result = run(root);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.match(result.stdout, /PASS/);
+});
+
+test("ignores only locative near-the while preserving article and auxiliary distinctions", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-locative-signature-"));
+  writeSession(root, 25, `# S25
+
+**Сцена сессии.** Городская карта.
+## Интро 1
+laundrette: \`Is there a laundrette nearby?\`
+**Спросите об одном месте.**
+- ✅ **Is there a laundrette nearby?**
+## Интро 2
+laundrette: \`Is there the laundrette nearby?\`
+**Спросите об определённом месте.**
+- ✅ **Is there the laundrette nearby?**
+## Интро 3
+laundrettes: \`Are there laundrettes nearby?\`
+**Спросите о нескольких местах.**
+- ✅ **Are there laundrettes nearby?**
+## Практика
+**1 · Соберите вопрос**
+Цель: \`Is there a laundrette near the shop?\`
+**12 · Финал — спросите об одном месте**
+Цель: \`Is there a laundrette near the hotel?\`
+## Для сборщика
+new_words: laundrette — прачечная самообслуживания — место для стирки
+`);
+  const interaction = (ordinal, targetPhrase, purpose = "guided_practice") => ({
+    interactionId: `en:lesson-03:session-25:i${String(ordinal).padStart(2, "0")}`,
+    purpose,
+    family: "phrase_builder",
+    modePayload: { targetPhrase },
+  });
+  writeAtomic(root, 25, {
+    interactionsByLocale: {
+      ru: [
+        ...Array.from({ length: 10 }, (_, index) => interaction(index + 1, "Is there a laundrette near the shop?")),
+        interaction(11, "Is there a laundrette near the platform?", "independent_check"),
+        interaction(12, "Is there a laundrette near the hotel?", "independent_check"),
+      ],
+    },
+    answers: [],
+  });
+  const result = run(root);
+  assert.equal(result.status, 1);
+  assert.doesNotMatch(result.stdout, /интро 1: операция/);
+  assert.match(result.stdout, /интро 2: операция question\|is the не является правильным target/);
+  assert.match(result.stdout, /интро 3: операция question\|are не является правильным target/);
+});
+
+test("reports the supported-practice range before a 12-task independent-check stage", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-progression-atomic-range-"));
+  writeSession(root, 25, `# S25
+
+**Сцена сессии.** Городская карта.
+## Интро 1
+laundrette: \`Is there a laundrette near the hotel?\`
+**Спросите о месте рядом с отелем.**
+- ✅ **Is there a laundrette near the hotel?**
+## Интро 2
+laundrette: \`There is a laundrette near the hotel.\`
+**Назовите место рядом с отелем.**
+- ✅ **There is a laundrette near the hotel.**
+## Интро 3
+laundrette: \`There is a laundrette near the shop.\`
+**Назовите место рядом с магазином.**
+- ✅ **There is a laundrette near the shop.**
+## Практика
+**12 · Финал — спросите о месте рядом с отелем**
+Цель: \`Is there a laundrette near the hotel?\`
+## Для сборщика
+new_words: laundrette — прачечная самообслуживания — место для стирки
+`);
+  const interaction = (ordinal, targetPhrase, purpose = "guided_practice") => ({
+    interactionId: `en:lesson-03:session-25:i${String(ordinal).padStart(2, "0")}`,
+    purpose,
+    family: "phrase_builder",
+    modePayload: { targetPhrase },
+  });
+  writeAtomic(root, 25, {
+    interactionsByLocale: {
+      ru: [
+        ...Array.from({ length: 10 }, (_, index) => interaction(index + 1, `Practice target ${index + 1}.`)),
+        interaction(11, "There is a laundrette near the hotel.", "independent_check"),
+        interaction(12, "Is there a laundrette near the hotel?", "independent_check"),
+      ],
+    },
+    answers: [],
+  });
+  const result = run(root);
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /не является правильным target в заданиях 1–10/);
+  assert.doesNotMatch(result.stdout, /заданиях 1–16/);
+});
+
+test("build release checks progression beginning at the current session ordinal", () => {
+  const source = fs.readFileSync(buildRelease, "utf8");
+  assert.match(source, /progressionIssues\(path\.dirname\(dir\), Number\(session\)\)/u);
+  assert.doesNotMatch(source, /progressionIssues\(path\.dirname\(dir\), 25\)/u);
 });
 
 test("accepts an inflected form of the current new word on an intro page", () => {
@@ -244,7 +477,7 @@ new_words: phone — телефон — связь
 `);
   const result = run(root);
   assert.equal(result.status, 1);
-  assert.match(result.stdout, /интро 1: операция .* не является правильным target в заданиях 1–16/);
+  assert.match(result.stdout, /интро 1: операция .* не является правильным target в заданиях 1–1/);
 });
 
 test("requires exactly three intro pages", () => {

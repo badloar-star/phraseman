@@ -1,8 +1,6 @@
-# Англійська · Урок 1 · Сесія 53 — «Три скріпки й одне `not`»
+# Англійська · Урок 1 · Заняття 53 — «Як сказати “не”»
 
-**Сцена сесії.** Недільний дзвінок додому. Мама розпитує про всіх одразу, а ви відповідаєте швидко — і саме тут вилазять усі помилки тижня.
-
-**Операція:** повторення — `am` / `is` / `are` і місце `not`
+**Ситуація.** У неділю ви телефонуєте мамі. Вона питає про вас, брата й сестру, а ви відповідаєте повними англійськими фразами.
 **Нові слова:** —
 **Повертаються:** tired, busy, home, sick, together
 
@@ -12,16 +10,16 @@
 
 ### `am` — тільки про себе
 
-`am` — це скріпка між `I` і словом про себе. `I am tired` — «я втомився».
+`am` ставлять після `I`, коли говорять про себе: `I am tired` — «я втомився».
 
 Українською «я втомився» обходиться без «є», і рука тягнеться написати так само: `I tired`. Без `am` фрази не виходить.
 
-Ще спокуса — взяти чужу скріпку: `I is`. Вона гарна, але не ваша.
+Не ставте після `I` форму `is`: вона потрібна для `he`, `she` або `it`.
 
 **Мама питає, як ви після тижня. Ви втомилися — скажіть про себе.**
 
 - ✅ **I am tired.**
-- ❌ I tired. — *Зникла скріпка. Між `I` і `tired` потрібне `am`.*
+- ❌ I tired. — *Після `I` перед `tired` потрібне `am`.*
 - ❌ I is tired. — *`is` — не для `I`. Про себе — `am`.*
 
 ---
@@ -30,7 +28,7 @@
 
 ### `are` — коли вас кілька
 
-`we` — це «ми». Про «ми» скріпка одна: `are`. `We are busy` — «ми зайняті».
+`we` — це «ми». Після `we` ставлять `are`: `We are busy` — «ми зайняті».
 
 Рука тягнеться поставити `is`, бо `is` знайоміше й коротше. Але `is` — про одну людину: `he is busy`. Щойно людей стало двоє, працює `are`.
 
@@ -40,93 +38,134 @@
 
 - ✅ **We are busy.**
 - ❌ We is busy. — *`is` — про одного. «Ми» — це вже двоє, потрібне `are`.*
-- ❌ We busy. — *Скріпка зникла. Між `we` і `busy` потрібне `are`.*
+- ❌ We busy. — *Після `we` перед `busy` потрібне `are`.*
 
 ---
 
 ## Інтро 3
 
-### `not` стає одразу після скріпки
+### `not` стоїть одразу після `am`, `is` або `are`
 
 `sick` — «хворіє». Щоб сказати «не хворіє», потрібне `not`: `she is not sick`.
 
-У `not` одне місце — одразу після скріпки. Без скріпки він у такій фразі не працює: спершу `is`, потім `not`.
+`not` ставлять одразу після `am`, `is` або `are`: спершу `is`, потім `not`.
 
 Українське «не» стоїть перед словом, тому рука тягне написати `she not is sick`. Тут спотикаються всі, чесне слово.
 
 **Мама хвилюється, чи не захворіла сестра. Вона здорова — заспокойте маму.**
 
 - ✅ **She is not sick.**
-- ❌ She not is sick. — *`not` став перед скріпкою. Спершу `is`, потім `not`.*
+- ❌ She not is sick. — *Спершу ставлять `is`, потім `not`.*
 - ❌ She is sick not. — *`not` утік у кінець. Його місце одразу після `is`.*
 
 ---
 
 ## Практика (16 завдань, підказок дедалі менше)
 
-**1 · Вставте слово — мама спитала, як ви**
-I ___ tired. → **am** · is · are
-- is — *Чужа скріпка. Про себе — тільки `am`.*
-- are — *`are` іде з `we`, `you`, `they`. З `I` — `am`.*
+**1 · Складіть фразу — мама питає, чи ви втомилися після тижня**
+<!-- interaction_id: en:lesson-01:session-53:i01; family: phrase_builder -->
+Плитки: `I` `am` `tired.` → **I am tired.**
 
 **2 · Вставте слово — мова про брата, він зайнятий**
+<!-- interaction_id: en:lesson-01:session-53:i02; family: context_gap_grammar -->
 He ___ busy. → **is** · am · are
 - am — *`am` буває тільки поруч із `I`. Про іншу людину — `is`.*
 - are — *`are` — коли людей кілька. Брат один.*
 
-**3 · Послухайте і виберіть — busy**
+**3 · Послухайте і виберіть**
+<!-- interaction_id: en:lesson-01:session-53:i03; family: listen_choose -->
 🔊 *busy* → **busy** · easy · body
-- easy — *Це «легко». Мама питала, чи брат зайнятий, а не чи легко йому.*
+- easy — *Це «легко». Тут потрібне слово «зайнятий»: `busy`.*
 - body — *Це «тіло». Про зайняту людину кажуть `busy`.*
 
 **4 · Складіть фразу — «ми вдома»**
+<!-- interaction_id: en:lesson-01:session-53:i04; family: phrase_builder -->
 Плитки: `home` `we` `are` → **We are home.**
 
 **5 · Вставте слово — про вас із братом разом**
+<!-- interaction_id: en:lesson-01:session-53:i05; family: context_gap_grammar -->
 We ___ home. → **are** · is · am
 - is — *`we` — це «ми», уже не одна людина. Потрібне `are`.*
 - am — *`am` іде тільки з `I`. Про «ми» — `are`.*
 
 **6 · Складіть фразу — «вона не хворіє»**
+<!-- interaction_id: en:lesson-01:session-53:i06; family: phrase_builder -->
 Плитки: `not` `she` `sick` `is` → **She is not sick.**
 
 **7 · Вставте слово — сестра здорова**
+<!-- interaction_id: en:lesson-01:session-53:i07; family: context_gap_grammar -->
 She is ___ sick. → **not** · no · am
 - no — *`no` — це відповідь «ні» на запитання. Усередині фрази «не» — `not`.*
-- am — *`am` тут ні до чого: скріпка `is` уже стоїть, потрібне `not`.*
+- am — *`is` уже стоїть. Щоб сказати «не хворіє», потрібне `not`.*
 
 **8 · Послухайте і складіть — «я не зайнятий»**
+<!-- interaction_id: en:lesson-01:session-53:i08; family: listen_build_dictation -->
 🔊 *I am not busy.* Плитки: `busy` `not` `I` `am` `is` → **I am not busy.**
 
-**9 · Розрізніть звуки — яке з двох про «хворіє»?**
+**9 · Послухайте й оберіть слово про самопочуття**
+<!-- interaction_id: en:lesson-01:session-53:i09; family: listen_choose -->
 🔊 Два слова поспіль.
 *sick · six* → **sick**
-- six — *Це «шість». У кінці `six` чути «кс», у `sick` — просто «к».*
+- six — *`Six` — «шість». У записі було `sick` — «хворий».*
 
 **10 · Вставте слово — сусіди не разом, кожен у себе**
+<!-- interaction_id: en:lesson-01:session-53:i10; family: context_gap_grammar -->
 They are not ___ . → **together** · home · tired
-- home — *«Вони не вдома» — а мама питала, чи вони разом.*
+- home — *Це означає «вони не вдома». Тут сказано, що вони не разом.*
 - tired — *«Вони не втомилися» — це про сили, а не про компанію.*
 
 **11 · Складіть фразу — «він не вдома»**
+<!-- interaction_id: en:lesson-01:session-53:i11; family: phrase_builder -->
 Плитки: `home` `he` `not` `is` → **He is not home.**
 
-**12 · З'єднайте пари (Speed Match, 4 пари)**
+**12 · З'єднайте пари**
+<!-- interaction_id: en:lesson-01:session-53:i12; family: speed_match -->
 tired — втомився · busy — зайнятий · sick — хворіє · home — вдома
 
 **13 · Правда чи заперечення? Брат справді зайнятий — скажіть як є**
+<!-- interaction_id: en:lesson-01:session-53:i13; family: phrase_builder -->
 Складіть: `busy` `is` `not` `he` → **He is busy.**
 *(плитка `not` зайва: мама спитала правду, а не заперечення)*
 
-**14 · Складіть фразу — «ми не втомилися»**
-Плитки: `we` `tired` `not` `are` → **We are not tired.**
+**14 · Вставте слово — ви з другом сповнені сил**
+<!-- interaction_id: en:lesson-01:session-53:i14; family: context_gap_grammar -->
+We are not ___ . → **tired** · busy · home
+- busy — *`busy` — «зайняті». Тут ви кажете, що не втомилися.*
+- home — *`home` — «вдома». Тут потрібне слово про самопочуття.*
 
-**15 · Скажіть уголос — заспокоюєте маму**
-🎙 **We are together. We are not tired.** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i15:s01; family: scripted_repeat_compare -->
+Мама питає, чи ви зараз разом із другом. Скажіть, що ви разом.
 
-**16 · Фінал сцени — чотири відповіді мамі поспіль, ви її заспокоюєте**
-🎙 «Втомився? Брат зайнятий? Сестра не хворіє? Ви разом?» Відповідайте: я втомився, він зайнятий, вона не хворіє, ми разом.
-**I am tired. He is busy. She is not sick. We are together.**
+🎙 **We are together.**
+
+**16 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i15:s02; family: scripted_repeat_compare -->
+Мама питає, чи ви з другом втомилися. Скажіть, що ви не втомилися.
+
+🎙 **We are not tired.**
+
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s01; family: scripted_repeat_compare -->
+Мама питає, чи ви втомилися. Скажіть, що втомилися.
+
+🎙 **I am tired.**
+
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s02; family: scripted_repeat_compare -->
+Мама питає, чи брат зайнятий. Скажіть, що він зайнятий.
+
+🎙 **He is busy.**
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s03; family: scripted_repeat_compare -->
+Мама питає, чи сестра захворіла. Скажіть, що вона не хвора.
+
+🎙 **She is not sick.**
+
+**20 · Складіть фразу — мама питає, чи ви разом із другом**
+<!-- interaction_id: en:lesson-01:session-53:i16:s04; family: phrase_builder -->
+Плитки: `We` `are` `together.` `is` → **We are together.**
 
 ---
 
@@ -134,7 +173,7 @@ tired — втомився · busy — зайнятий · sick — хворіє
 
 new_words: —
 
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=sound_contrast, 10=context_gap_grammar, 11=phrase_builder, 12=speed_match, 13=phrase_builder, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare
+modes: 1=phrase_builder, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=speed_match, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=phrase_builder
 
 ---
 
@@ -167,15 +206,3 @@ modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_b
 | sick | з минулих сесій | завдання 6, 7, 9 |
 | home | з минулих сесій | завдання 4, 5, 11 |
 
----
-
-🟡 **Стоит улучшить** — опора в Интро 1 и Интро 3 повторяет логику мастера, потому что ловушка для украинца та же самая. Это правда о языке, но если в мастер добавят другую ловушку — украинскую опору надо будет писать заново, а не переводить.
-
-🧩 **Скрытые связи** — английские слова, номера заданий, блок «Для сборщика» и таблицы самопроверки остались байт в байт; при любом изменении мастер-сессии украинскую версию нужно пересобирать целиком.
-
-- Исправил все четыре замечания судьи.
-- Русский заголовок практики заменён на украинский вариант из мастера.
-- Убрал кальку «Місце в `not` одне» — теперь «У `not` одне місце».
-- Поставил совершенный вид: «Відповідьте за двох» вместо «Відповідайте».
-- Книжное «узяти» заменил на живое «взяти».
-- Всё остальное — английские слова, задания, служебный блок и таблицы — не трогал.

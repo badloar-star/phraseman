@@ -1,0 +1,36 @@
+{
+  "session": "en/l04/s11",
+  "bindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "reviewedAt": "2026-10-07T21:41:49.3857187Z",
+  "sourceSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactRuSha256": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+  "exactUkSha256": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2",
+  "practiceAtomicSha256": "d3f2d3f20d1afa6b404e5b9a30b46916083789ca7dc71c8bede193646a246b18",
+  "localeHashes": {
+    "ru": "255ef5b771ec79052b5e466c6c60af7e1eae496e7be1f94a2f94fe03af43de69",
+    "uk": "f4834febfd4c8f88d11e38b4ddff4029677c1ee2ba472e81ca2c618dabb8aee2"
+  },
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "reviewer": "/root/l04_remaining_current_review",
+  "role": "judge_learner",
+  "sourceReport": "fresh independent read-only seven-role textual review; exact current bytes",
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "must_fix": [],
+  "evidence": [
+    "The transport-map scene immediately tells the learner that they need to find whether trams run near known places (final.ru.md:3; final.uk.md:3).",
+    "Tram is grounded before plural Are there...? questions; familiar map anchors change while the target operation remains stable.",
+    "The 12-task path moves from lexical recognition and guided question choice/building to independent i12 with one unambiguous answer per interaction."
+  ]
+}
+

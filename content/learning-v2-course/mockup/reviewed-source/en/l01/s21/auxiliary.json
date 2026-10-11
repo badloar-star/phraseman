@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro1:r2": {
+          "ru": "`am` живёт только рядом с `I`. Про третьего человека — `is`.",
+          "uk": "`am` живе тільки поруч із `I`. Про третю людину — `is`."
+        },
+        "en:lesson-01:session-21:intro1:r3": {
+          "ru": "В английской фразе здесь нужна форма `is`: без неё фраза неполная.",
+          "uk": "В англійській фразі тут потрібна форма `is`: без неї фраза неповна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro2:r2": {
+          "ru": "`are` — для того, с кем говорите. Про неё — `is`.",
+          "uk": "`are` — для того, з ким говорите. Про неї — `is`."
+        },
+        "en:lesson-01:session-21:intro2:r3": {
+          "ru": "`am` бывает только у `I`. Никто, кроме вас самих, `am` не получает.",
+          "uk": "`am` буває тільки в `I`. Ніхто, крім вас самих, `am` не отримує."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-21:intro3:r2": {
+          "ru": "`is` — про него или про неё. Про себя — `am`.",
+          "uk": "`is` — про нього або про неї. Про себе — `am`."
+        },
+        "en:lesson-01:session-21:intro3:r3": {
+          "ru": "`are` — про того, с кем говорите. Себе — `am`.",
+          "uk": "`are` — про того, з ким говорите. Собі — `am`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a279d16f47b45c557ae946df4ba60d7f6afb020a113f570b973892784daa96c6"
+}

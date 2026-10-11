@@ -4,6 +4,7 @@ import {
   hashCanonicalBody,
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
+import { LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 } from "./course_session_limits_v1";
 import {
   isLearningV2CourseSessionLearnerChildV1,
   type LearningV2CourseSessionLearnerChildV1,
@@ -528,7 +529,8 @@ export function learningV2CourseSessionInteractionVoiceIndexV1(
     !ID_RE.test(input.courseSessionId) ||
     !Number.isSafeInteger(input.interactionOrdinal) ||
     input.interactionOrdinal < 1 ||
-    input.interactionOrdinal > 22
+    input.interactionOrdinal >
+      LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1
   )
     fail();
   const cycleOffset =

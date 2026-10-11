@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i01:r1",
+          "text": "item"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i01:audio",
+          "transcript": "item"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-48:i01:r1",
+            "targetText": "item",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "item",
+          "definitionByLocale": {
+            "ru": "«позиция заказа». Одна вещь из списка в вашем заказе.",
+            "uk": "«позиція замовлення». Одна річ зі списку у вашому замовленні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i03",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i03:audio",
+          "transcript": "order"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "order",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i05",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i05:audio",
+          "transcript": "total"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "total",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i02:audio",
+          "transcript": "item"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "item",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i04:r1",
+          "text": "order"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i04:audio",
+          "transcript": "order"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-48:i04:r1",
+            "targetText": "order",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "order",
+          "definitionByLocale": {
+            "ru": "«заказ».",
+            "uk": "«замовлення»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i06:audio",
+          "transcript": "total"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "total",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i08",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i08:audio",
+          "transcript": "item"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "item",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i10",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i10:audio",
+          "transcript": "order"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "order",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i11",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i11:audio",
+          "transcript": "total"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "total",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — звіряємо коробку й чек",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — звіряємо коробку й чек",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-48:i07:p1",
+            "target": "item",
+            "meaningByLocale": {
+              "ru": "позиция заказа",
+              "uk": "позиція замовлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-48:i07:p2",
+            "target": "items",
+            "meaningByLocale": {
+              "ru": "позиции заказа",
+              "uk": "позиції замовлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-48:i07:p3",
+            "target": "order",
+            "meaningByLocale": {
+              "ru": "заказ",
+              "uk": "замовлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-48:i07:p4",
+            "target": "total",
+            "meaningByLocale": {
+              "ru": "итоговая сумма",
+              "uk": "підсумкова сума"
+            }
+          }
+        ],
+        "leftColumn": [
+          "item",
+          "items",
+          "order",
+          "total"
+        ],
+        "rightColumn": [
+          "позиція замовлення",
+          "позиції замовлення",
+          "замовлення",
+          "підсумкова сума"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте початок — ви вперше помітили неправильну позицію",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i09:r1",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i09:r2",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i09:r3",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i09:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте початок — ви вперше помітили неправильну позицію",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — вы впервые заметили неверную позицию",
+          "uk": "Вставте початок — ви вперше помітили неправильну позицію"
+        },
+        "gappedTargetPhrase": "___ item is wrong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-48:i09:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i09:r2",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i09:r3",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i09:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте начало — вы впервые заметили не",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — вы впервые заметили не",
+            "feedbackByLocale": {
+              "ru": "Позицию ещё не называли.",
+              "uk": "Позицію ще не називали."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — вы впервые заметили не",
+            "feedbackByLocale": {
+              "ru": "Перед `item` нужен `an`.",
+              "uk": "Перед `item` потрібен `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — вы впервые заметили не",
+            "feedbackByLocale": {
+              "ru": "Одну позицию здесь нужно назвать с артиклем.",
+              "uk": "Одну позицію тут треба назвати з артиклем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — замовлення вже принесли додому",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — замовлення вже принесли додому",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The order is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — заказ уже принесли домой",
+          "uk": "Складіть фразу — замовлення вже принесли додому"
+        },
+        "orderedTokens": [
+          "The",
+          "order",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i13:r1",
+          "text": "Итоговая сумма неверная"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i13:r2",
+          "text": "Итоговая сумма здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i13:r3",
+          "text": "Позиция неверная"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i13:r4",
+          "text": "Где итоговая сумма?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i13:audio",
+          "transcript": "The total is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-48:i13:r1",
+            "targetText": "Итоговая сумма неверная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i13:r2",
+            "targetText": "Итоговая сумма здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i13:r3",
+            "targetText": "Позиция неверная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i13:r4",
+            "targetText": "Где итоговая сумма?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `wrong`, а не `here`.",
+              "uk": "У записі звучить `wrong`, а не `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `total`, не `item`.",
+              "uk": "Звучить `total`, а не `item`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, не вопрос.",
+              "uk": "Це твердження, а не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — знайомі позиції лежать у коробці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — знайомі позиції лежать у коробці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The items are here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — знакомые позиции лежат в коробке",
+          "uk": "Складіть фразу — знайомі позиції лежать у коробці"
+        },
+        "orderedTokens": [
+          "The",
+          "items",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "item"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте зв’язку — звіряємо суму в чеку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i15:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i15:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i15:r3",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i15:r4",
+          "text": "без артикля"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте зв’язку — звіряємо суму в чеку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте связку — сверяем сумму в чеке",
+          "uk": "Вставте зв’язку — звіряємо суму в чеку"
+        },
+        "gappedTargetPhrase": "The total ___ wrong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-48:i15:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i15:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i15:r3",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i15:r4",
+            "text": "без артикля"
+          }
+        ],
+        "testedDimension": "Вставьте связку — сверяем сумму в чеке",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте связку — сверяем сумму в чеке",
+            "feedbackByLocale": {
+              "ru": "`total` — одна сумма, поэтому нужен `is`.",
+              "uk": "`total` — одна сума, тому потрібен `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте связку — сверяем сумму в чеке",
+            "feedbackByLocale": {
+              "ru": "`am` бывает с I, а здесь total.",
+              "uk": "`am` буває з I, а тут total."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте связку — сверяем сумму в чеке",
+            "feedbackByLocale": {
+              "ru": "После `The total` нужна связка `is`.",
+              "uk": "Після `The total` потрібна зв’язка `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i16:r1",
+          "text": "Эта позиция неверная"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i16:r2",
+          "text": "Эта позиция здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i16:r3",
+          "text": "Итоговая сумма неверная"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i16:r4",
+          "text": "Где позиция?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i16:audio",
+          "transcript": "The item is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-48:i16:r1",
+            "targetText": "Эта позиция неверная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i16:r2",
+            "targetText": "Эта позиция здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i16:r3",
+            "targetText": "Итоговая сумма неверная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i16:r4",
+            "targetText": "Где позиция?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `wrong`, а не `here`.",
+              "uk": "У записі звучить `wrong`, а не `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Звучит `item`, не `total`.",
+              "uk": "Звучить `item`, а не `total`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, не вопрос.",
+              "uk": "Це твердження, а не запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i17:s01",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i17:s01:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i17:s01:audio",
+          "transcript": "An item is wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "An item is wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i17:s02",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 2 із 4",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i17:s02:r1",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i17:s02:r2",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i17:s02:r3",
+          "text": "A"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 2 із 4",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — проверьте новый заказ",
+          "uk": "Вставте одну відповідь в одну фразу — крок 2 із 4"
+        },
+        "gappedTargetPhrase": "___ order is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-48:i17:s02:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s02:r2",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s02:r3",
+            "text": "A"
+          }
+        ],
+        "testedDimension": "Финал — проверьте новый заказ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i17:s02:r2",
+            "correct": false,
+            "testedDimension": "Финал — проверьте новый заказ",
+            "feedbackByLocale": {
+              "ru": "Новый заказ называют с `an`; у одной итоговой суммы нужна связка `is`.",
+              "uk": "Нове замовлення називають з `an`; з однією підсумковою сумою потрібен `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s02:r3",
+            "correct": false,
+            "testedDimension": "Финал — проверьте новый заказ",
+            "feedbackByLocale": {
+              "ru": "Перед словом `order`, которое начинается с гласного звука, нужен `an`.",
+              "uk": "Перед словом `order`, яке починається з голосного звука, потрібен `an`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i17:s03",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-48:i17:s03:audio"
+      ],
+      "accessibilityLabel": "Промовте одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-48:i17:s03:audio",
+          "transcript": "The total is wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The total is wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-48:i17:s04",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте одну відповідь в одну фразу — крок 4 із 4",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-48:i17:s04:r1",
+          "text": "items"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i17:s04:r2",
+          "text": "item"
+        },
+        {
+          "responseId": "en:lesson-03:session-48:i17:s04:r3",
+          "text": "order"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте одну відповідь в одну фразу — крок 4 із 4",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Финал — проверьте новый заказ",
+          "uk": "Вставте одну відповідь в одну фразу — крок 4 із 4"
+        },
+        "gappedTargetPhrase": "The ___ are here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-48:i17:s04:r1",
+            "text": "items"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s04:r2",
+            "text": "item"
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s04:r3",
+            "text": "order"
+          }
+        ],
+        "testedDimension": "Финал — проверьте новый заказ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-48:i17:s04:r2",
+            "correct": false,
+            "testedDimension": "Финал — проверьте новый заказ",
+            "feedbackByLocale": {
+              "ru": "Несколько позиций требуют форму `items`.",
+              "uk": "Кілька позицій потребують форми `items`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-48:i17:s04:r3",
+            "correct": false,
+            "testedDimension": "Финал — проверьте новый заказ",
+            "feedbackByLocale": {
+              "ru": "С `are` нужна форма множественного числа `items`.",
+              "uk": "З `are` потрібна форма множини `items`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "303f53ee4355dc8cf63ec6428fb0381b3179109b1aba475c1209b70f5569187a"
+}

@@ -1,8 +1,8 @@
-# Английский · Урок 3 · Сессия 33 — «Несколько вещей перед вами»
+# Английский · Урок 3 · Занятие 33 — «Несколько вещей перед вами»
 
-**Сцена сессии.** Перед открытием благотворительной ярмарки вы с волонтёром раскладываете пожертвованные вещи. На столе перед вами туфли, носки и рубашки: нужно назвать каждую группу и попросить отложить рубашки для продажи.
+**Сцена занятия.** Перед открытием благотворительной ярмарки вы с волонтёром раскладываете пожертвованные вещи. На столе перед вами туфли, носки и рубашки: нужно назвать каждую группу и попросить отложить рубашки для продажи.
 
-**Операция:** `these + plural noun` и `These are…` для нескольких предметов рядом
+**Как сказать:** `these + plural noun` и `These are…` для нескольких предметов рядом
 **Новые слова:** shoe, sock, shirt
 **Для повторения:** this, is, are, hat, please
 
@@ -50,79 +50,97 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
-**1 · Карточка слова — shoe**
-> **shoe** — «туфля». Предмет обуви, который закрывает ступню и обычно ждёт рядом вторую туфлю.
+**1 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-33:i01; family: listen_choose -->
+Цель: `shoe`
+Варианты: `shoe`
 
-**2 · Послушайте и выберите — какое слово назвал волонтёр**
-🔊 *shoe* → **shoe** · show · chew · she
-Значения вариантов: shoe — туфля · show — представление · chew — жевать · she — она
-- show — *Оба слова начинаются с `sh`, но в `show` другой гласный и слово заканчивается звуком /oʊ/. В записи прозвучало `shoe`.*
-- chew — *Гласная совпадает, но `chew` начинается со звука /tʃ/, а `shoe` — с /ʃ/.*
-- she — *Оба слова начинаются с /ʃ/, но `she` заканчивается гласным /iː/, а в записи прозвучало /uː/ в `shoe`.*
+**2 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-33:i03; family: scripted_repeat_compare -->
+Цель: `sock`
 
-**3 · Карточка слова — sock**
-> **sock** — «носок». Мягкая вещь для стопы, которая особенно уверенно умеет терять свою пару.
+**3 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-33:i05; family: listen_choose -->
+Цель: `shirt`
+Варианты: `shirt` · `shoe` · `sock`
 
-**4 · Послушайте и выберите — какое слово назвал волонтёр**
-🔊 *sock* → **sock** · sack · sick · shock
-Значения вариантов: sock — носок · sack — мешок · sick — больной · shock — потрясение
-- sack — *Начало и конец похожи, но в `sack` гласный /æ/, а в записи прозвучал `sock` с /ɒ/ или /ɑː/.*
-- sick — *В `sick` гласный /ɪ/, а в записи прозвучал другой гласный в `sock`.*
-- shock — *Гласный и конец близки, но `shock` начинается с /ʃ/, а `sock` — с /s/.*
+**4 · Произнесите слово**
+<!-- interaction_id: en:lesson-03:session-33:i02; family: scripted_repeat_compare -->
+Цель: `shoe`
 
-**5 · Карточка слова — shirt**
-> **shirt** — «рубашка». Одежда с воротником и рукавами, которую надевают на верхнюю часть тела.
+**5 · Послушайте и выберите слово**
+<!-- interaction_id: en:lesson-03:session-33:i04; family: listen_choose -->
+Цель: `sock`
+Варианты: `sock`
 
-**6 · Послушайте и выберите — какое слово назвал волонтёр**
-🔊 *shirt* → **shirt** · short · skirt · shorts
-Значения вариантов: shirt — рубашка · short — короткий · skirt — юбка · shorts — шорты
-- short — *Начало и конец похожи, но в `short` другой гласный. В записи прозвучало `shirt`.*
-- skirt — *`skirt` начинается с сочетания /sk/, а `shirt` — с одного звука /ʃ/.*
-- shorts — *В `shorts` на конце слышен дополнительный /s/, которого нет в `shirt`.*
+**6 · Различите слово — shirt или shoe**
+<!-- interaction_id: en:lesson-03:session-33:i06; family: sound_contrast -->
+Цель: `shirt`
+Варианты: `shirt` · `shoe`
 
-**7 · Соедините слова со значениями — стол ярмарки**
-shoe — туфля · sock — носок · shirt — рубашка · hat — шляпа
+**7 · Соберите короткую просьбу — вы выбираете несколько туфель со стола**
+<!-- interaction_id: en:lesson-03:session-33:i08; family: phrase_builder -->
+Цель: `These shoes, please.`
 
-**8 · Соберите короткую просьбу — волонтёр спрашивает, какие туфли отложить**
-Плитки: `These` `shoes` `please` `This` `shoe` `are` → **These shoes, please.**
+**8 · Послушайте и соберите короткую просьбу**
+<!-- interaction_id: en:lesson-03:session-33:i09; family: listen_build_dictation -->
+Цель: `These socks, please.`
 
-**9 · Скажите вслух — несколько носков на столе**
-🎙 **socks** — послушайте, повторите и сравните.
+**9 · Соедините слова со значениями — стол ярмарки**
+<!-- interaction_id: en:lesson-03:session-33:i07; family: speed_match -->
+Пары: `shoe` — туфля · `sock` — носок · `shirt` — рубашка · `hat` — шляпа
+Цель: `shoe · sock · shirt · hat`
 
-**10 · Послушайте и поставьте в ответ целое слово — несколько рубашек**
-🔊 *shirts* Плитки: `shirts` `shirt` `shorts` `skirts` → **shirts**
+**10 · Произнесите короткую просьбу**
+<!-- interaction_id: en:lesson-03:session-33:i10; family: scripted_repeat_compare -->
+Цель: `This hat, please.`
 
 **11 · Соберите утверждение — несколько туфель стоят перед вами**
-Плитки: `These` `are` `shoes` `This` `is` `shoe` → **These are shoes.**
+<!-- interaction_id: en:lesson-03:session-33:i11; family: phrase_builder -->
+Цель: `These are shoes.`
 
 **12 · Послушайте и выберите точное значение фразы**
-🔊 *These are hats.* → **Это шляпы** · Это шляпа · Это туфли · Эти шляпы, пожалуйста
-- Это шляпа — *Так называют один предмет. В записи `these are` и форма `hats` показывают несколько шляп.*
-- Это туфли — *Число совпадает, но в записи назвали `hats` — шляпы, а не туфли.*
-- Эти шляпы, пожалуйста — *Это просьба выбрать шляпы. В записи их просто называют: `These are hats`.*
+<!-- interaction_id: en:lesson-03:session-33:i12; family: listen_choose -->
+Цель: `These are hats.`
+Варианты: `Это шляпы` · `Это шляпа` · `Это туфли` · `Эти шляпы, пожалуйста`
 
 **13 · Вставьте указатель — перед вами несколько рубашек**
-___ are shirts. → **These** · This · That · Is
-- This — *`this` показывает на один предмет и сочетается с `is`. Для нескольких рубашек нужно `these`.*
-- That — *`that` показывает на один предмет. Здесь названо несколько рубашек: `These are shirts`.*
-- Is — *`Is are shirts` не образует фразу. В начале нужен указатель `These`.*
+<!-- interaction_id: en:lesson-03:session-33:i13; family: context_gap_grammar -->
+Цель: `___ are shirts.`
+Варианты: `These` · `This` · `That` · `Is`
 
-**14 · Скажите вслух — назовите несколько носков перед вами**
-🎙 **These are socks.** — произнесите фразу, затем послушайте образец и сравните.
+**14 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i14; family: scripted_repeat_compare -->
+Цель: `These are socks.`
 
 **15 · Послушайте и соберите фразу о нескольких рубашках**
-🔊 *These are shirts.* Плитки: `These` `are` `shirts` `This` `is` `shirt` → **These are shirts.**
+<!-- interaction_id: en:lesson-03:session-33:i15; family: listen_build_dictation -->
+Цель: `These are shirts.`
 
 **16 · Соберите короткую просьбу — вы выбираете несколько рубашек со стола**
-Плитки: `These` `shirts` `please` `are` `This` `shirt` → **These shirts, please.**
+<!-- interaction_id: en:lesson-03:session-33:i16; family: phrase_builder -->
+Цель: `These shirts, please.`
 
-**17 · Финал — помогите другу у стола ярмарки**
-🎙 Ярмарка открылась. Друг спрашивает, что лежит в трёх секциях стола. Назовите туфли, носки и рубашки, затем попросите у волонтёра эти рубашки: **These are shoes. These are socks. These are shirts. These shirts, please.** — скажите фразы, затем послушайте образец и сравните.
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s01; family: scripted_repeat_compare -->
+Цель: `These are shoes.`
+
+**18 · Соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s02; family: phrase_builder -->
+Цель: `These are socks.`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s03; family: scripted_repeat_compare -->
+Цель: `These are shirts.`
+
+**20 · Послушайте и соберите одну фразу**
+<!-- interaction_id: en:lesson-03:session-33:i17:s04; family: listen_build_dictation -->
+Цель: `These shirts, please.`
 
 ## Для сборщика
 new_words: shoe — туфля — Предмет обуви, который закрывает ступню и обычно ждёт рядом вторую туфлю.
 new_words: sock — носок — Мягкая вещь для стопы, которая особенно уверенно умеет терять свою пару.
 new_words: shirt — рубашка — Одежда с воротником и рукавами, которую надевают на верхнюю часть тела.
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=listen_choose, 7=speed_match, 8=phrase_builder, 9=scripted_repeat_compare, 10=listen_build_dictation, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=scripted_repeat_compare, 3=listen_choose, 4=scripted_repeat_compare, 5=listen_choose, 6=sound_contrast, 7=phrase_builder, 8=listen_build_dictation, 9=speed_match, 10=scripted_repeat_compare, 11=phrase_builder, 12=listen_choose, 13=context_gap_grammar, 14=scripted_repeat_compare, 15=listen_build_dictation, 16=phrase_builder, 17=scripted_repeat_compare, 18=phrase_builder, 19=scripted_repeat_compare, 20=listen_build_dictation

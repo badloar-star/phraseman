@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-19:i01",
-    "correctText": "",
+    "correctText": "angry",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i03",
-    "correctText": "",
+    "correctText": "rude",
     "correctResponseId": null
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i06",
-    "correctText": "",
+    "correctText": "mean",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i07",
-    "correctText": "",
+    "correctText": "slow",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i09",
-    "correctText": "",
+    "correctText": "quiet",
     "correctResponseId": null
   },
   {
@@ -51,12 +51,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i11",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-19:i11:p1=angry\nen:lesson-01:session-19:i11:p2=rude\nen:lesson-01:session-19:i11:p3=mean\nen:lesson-01:session-19:i11:p4=slow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i12",
-    "correctText": "",
+    "correctText": "serious",
     "correctResponseId": null
   },
   {
@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i14",
-    "correctText": "",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
@@ -95,8 +95,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-19:i20",
-    "correctText": "He is not angry. She is not rude. He is not slow.",
+    "interactionId": "en:lesson-01:session-19:i20:s01",
+    "correctText": "He is not angry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i20:s02",
+    "correctText": "She is not rude.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i20:s03",
+    "correctText": "He is not slow.",
     "correctResponseId": null
   }
 ]

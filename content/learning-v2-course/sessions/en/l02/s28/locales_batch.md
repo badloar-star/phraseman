@@ -1,7 +1,8 @@
-# Англійська · Урок 2 · Сесія 28 — «What is на слух»
+===LOCALE: uk===
+# Англійська · Урок 2 · Заняття 28 — «What is на слух»
 
-**Сцена сесії.** Година пік у дублінському кафе. Офіціант говорить швидко, і питання доводиться і ставити, і впізнавати на слух.
-**Операція:** повторення `What is + річ` — на слух, у швидкій мові
+**Сцена заняття.** Година пік у дублінському кафе. Офіціант говорить швидко, і питання доводиться і ставити, і впізнавати на слух.
+**Як сказати:** повторення `What is + річ` — на слух, у швидкій мові
 **Нові слова:** —
 **Повертаються:** price, name, weather, time, street
 
@@ -55,85 +56,97 @@
 
 ---
 
-## Практика (17 завдань, підтримка спадає)
+## Практика — по одній цільовій фразі
 
 **1 · Послухайте і виберіть — що прозвучало**
-🔊 *what* → **what** · water · walk
-- water — *«Вода». Довше: у `water` два склади, у `what` один.*
-- walk — *«Іти пішки». Голосний інший: у `what` чути коротке «о», у `walk` — округле «оо».*
+<!-- interaction_id: en:lesson-02:session-28:i01; family: listen_choose -->
+Ціль: `what`
+Варіанти: `what` · `water` · `walk`
 
-**2 · Послухайте і виберіть — що прозвучало**
-🔊 *price* → **price** · pray · rice
-- pray — *«Молитися». Голосний інший: у `price` чути «ай», у `pray` — «ей».*
-- rice — *«Рис». Слухайте початок: у `price` там зчепка «пр», у `rice` — один приголосний.*
+**2 · Картка слова — price**
+<!-- interaction_id: en:lesson-02:session-28:i02; family: listen_choose -->
+Ціль: `price`
+> **price** — «ціна». Цифра на ціннику або в рахунку — це `price`.
 
 **3 · Розрізніть звуки — яке з двох про «ціну»?**
-🔊 Два слова поспіль.
-*price · nice* → **price**
-- nice — *Це «приємний». Різниця в першому звуці: «пр» проти «н».*
+<!-- interaction_id: en:lesson-02:session-28:i03; family: sound_contrast -->
+Варіанти: `price` · `nice`
 
 **4 · Послухайте і зберіть — «що це?»**
-🔊 *What is this?* Плитки: `is` `this` `What` `the` → **What is this?**
+<!-- interaction_id: en:lesson-02:session-28:i04; family: listen_build_dictation -->
+Ціль: `What is this?`
 
 **5 · Послухайте і виберіть — про що запитали**
-🔊 *What is the price?* → **ціна** · назва · час
-- назва — *Прозвучало `price`. `name` — це «назва».*
-- час — *Прозвучало `price`. `time` — «час», і звучить зовсім інакше.*
+<!-- interaction_id: en:lesson-02:session-28:i05; family: listen_choose -->
+Ціль: `What is the price?`
+Варіанти: `ціна` · `назва` · `час`
 
-**6 · Послухайте і виберіть — що прозвучало**
-🔊 *time* → **time** · team · dime
-- team — *«Команда». Голосний інший: у `time` чути «ай», у `team` — «і».*
-- dime — *Починається з «д», а не з «т».*
+**6 · Картка слова — time**
+<!-- interaction_id: en:lesson-02:session-28:i06; family: listen_choose -->
+Ціль: `time`
+> **time** — «час». Його дивляться на годиннику, коли треба дізнатися, котра година.
 
 **7 · Картка слова — weather**
-> **weather** — «погода». Дощ, сонце, вітер — усе, що надворі і на що ви не впливаєте.
+<!-- interaction_id: en:lesson-02:session-28:i07; family: listen_choose -->
+Ціль: `weather`
 
 **8 · Послухайте і виберіть — що прозвучало**
-🔊 *weather* → **weather** · water · winter
-- water — *«Вода». Всередині різні приголосні: у `weather` язик між зубами, у `water` — «т».*
-- winter — *«Зима». Голосний інший: у `weather` чути «е», у `winter` — «і».*
+<!-- interaction_id: en:lesson-02:session-28:i08; family: listen_choose -->
+Ціль: `weather`
+Варіанти: `weather` · `water` · `winter`
 
 **9 · Картка слова — street**
-> **street** — «вулиця». Ряд будинків, вивіски, люди йдуть повз. У кожної є назва — за нею й знаходять кафе.
+<!-- interaction_id: en:lesson-02:session-28:i09; family: listen_choose -->
+Ціль: `street`
 
-**10 · З'єднайте пари (Speed Match, 4 пари)**
-price — ціна · name — назва · time — час · weather — погода
+**10 · З'єднайте пари**
+<!-- interaction_id: en:lesson-02:session-28:i10; family: speed_match -->
+Пари: `price` — ціна · `name` — назва · `time` — час · `weather` — погода
+Ціль: `price · name · time · weather`
 
 **11 · Вставте слово — ви не зрозуміли, як називається страва**
-What is the ___ ? → **name** · price · weather
-- price — *«Ціна». Цифру ви бачите, а от слово в меню незрозуміле.*
-- weather — *«Погода». Про погоду в меню не пишуть.*
+<!-- interaction_id: en:lesson-02:session-28:i11; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `name` · `price` · `weather`
 
-**12 · Вставте слово — ви записуєте адресу кафе, але не знаєте, яка це вулиця**
-What is the ___ ? → **street** · time · price
-- time — *«Час». Годинник вам не потрібен, вам потрібна назва вулиці.*
-- price — *«Ціна». За адресу грошей не беруть.*
+**12 · Складіть запитання — ви записуєте адресу кафе й просите офіціанта назвати вулицю**
+<!-- interaction_id: en:lesson-02:session-28:i12; family: phrase_builder -->
+Ціль: `What is the street?`
 
 **13 · Послухайте і зберіть — «котра година?»**
-🔊 *What is the time?* Плитки: `the` `What` `time` `is` `price` → **What is the time?**
+<!-- interaction_id: en:lesson-02:session-28:i13; family: listen_build_dictation -->
+Ціль: `What is the time?`
 
-**14 · Зберіть фразу — запитайте про ціну, серед плиток зайва**
-Плитки: `the` `price` `What` `is` `name` → **What is the price?**
+**14 · Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну**
+<!-- interaction_id: en:lesson-02:session-28:i14; family: phrase_builder -->
+Ціль: `What is the price?`
 
 **15 · Вставте слово — за вікном злива, супутник питає, що там надворі**
-What is the ___ ? → **weather** · street · name
-- street — *«Вулиця». Вулицю ви знаєте, вам незрозуміло, що з небом.*
-- name — *«Назва». У дощу назви немає.*
+<!-- interaction_id: en:lesson-02:session-28:i15; family: context_gap_grammar -->
+Ціль: `What is the ___ ?`
+Варіанти: `weather` · `street` · `name`
 
-**16 · Зберіть фразу — запитайте назву страви, серед плиток зайва**
-Плитки: `the` `name` `What` `is` `price` → **What is the name?**
+**16 · Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну**
+<!-- interaction_id: en:lesson-02:session-28:i16; family: phrase_builder -->
+Ціль: `What is the name?`
 
-**17 · Фінал сцени — три питання поспіль, голосом**
-🎙 Офіціант нарешті підійшов. Запитайте його, що це за рядок, скільки він коштує і котра година.
-**What is this? What is the price? What is the time?**
+**17 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s01; family: scripted_repeat_compare -->
+Ціль: `What is this?`
 
----
+**18 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s02; family: scripted_repeat_compare -->
+Ціль: `What is the price?`
+
+**19 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-28:i17:s03; family: scripted_repeat_compare -->
+Ціль: `What is the time?`
 
 ## Для сборщика
 
 new_words: —
 
-modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictation, 5=listen_choose, 6=listen_choose, 7=word_card, 8=listen_choose, 9=word_card, 10=speed_match, 11=context_gap_grammar, 12=context_gap_grammar, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictation, 5=listen_choose, 6=listen_choose, 7=listen_choose, 8=listen_choose, 9=listen_choose, 10=speed_match, 11=context_gap_grammar, 12=phrase_builder, 13=listen_build_dictation, 14=phrase_builder, 15=context_gap_grammar, 16=phrase_builder, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare
 
 ---
 
@@ -166,17 +179,3 @@ modes: 1=listen_choose, 2=listen_choose, 3=sound_contrast, 4=listen_build_dictat
 | time (дошка 10) | так — завдання 6 |
 | weather (дошка 10) | так — картка 7 і слух 8 |
 | street | не на дошці — картка 9, вставка 12 |
-
----
-
-🟡 **Стоит улучшить**
-- В украинской версии подсказка к `winter` («у `winter` — «і»») передаёт английский звук через украинскую «і» — для украинца это ближе к правде, чем русское «и», так что оставил. Если у вас есть единая таблица передачи звуков по локалям — стоит свериться с ней.
-
-🧩 **Скрытые связи**
-- Блок «Для сборщика» и все английские строки, номера заданий, плитки и режимы оставлены байт в байт как в мастере — сборщик читает их напрямую.
-
-- Сделал украинскую версию сессии 28 — только её, как вы и просили.
-- Английские слова, фразы, порядок заданий, плитки и служебный блок для сборщика не тронуты вообще.
-- Переведены только объяснения, подсказки к ошибкам, карточки слов, заголовки и таблицы самопроверки.
-- Ловушки оставил те же: пропуск `the` и перенос `is` в конец — украинцы делают ровно те же ошибки, придумывать другие не понадобилось.
-- Подсказки про звуки переписал под украинское ухо, а не переводил дословно.

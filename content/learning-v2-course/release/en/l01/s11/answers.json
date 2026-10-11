@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-11:i01",
-    "correctText": "",
+    "correctText": "crazy",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i03",
-    "correctText": "",
+    "correctText": "lazy",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i06",
-    "correctText": "",
+    "correctText": "wrong",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i09",
-    "correctText": "",
+    "correctText": "kind",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-11:i12",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-11:i12:p1=crazy\nen:lesson-01:session-11:i12:p2=lazy\nen:lesson-01:session-11:i12:p3=wrong\nen:lesson-01:session-11:i12:p4=kind",
     "correctResponseId": null
   },
   {
@@ -85,8 +85,23 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-11:i18",
-    "correctText": "You are not wrong. You are not lazy. You are not alone. You are kind.",
+    "interactionId": "en:lesson-01:session-11:i18:s01",
+    "correctText": "You are not wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-11:i18:s02",
+    "correctText": "You are not lazy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-11:i18:s03",
+    "correctText": "You are not alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-11:i18:s04",
+    "correctText": "You are kind.",
     "correctResponseId": null
   }
 ]

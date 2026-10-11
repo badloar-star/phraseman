@@ -29,7 +29,7 @@ vm.runInNewContext(
 
 const realS37 = fs.readFileSync(path.join(here, "../sessions/en/l02/s37/final.ru.md"), "utf8");
 const authorPrompt = fs.readFileSync(path.join(here, "prompts/author.md"), "utf8");
-const badS37 = realS37.replace("🎙 **Where is the host?**", "🎙 **Whose is it?**");
+const badS37 = realS37.replace("Цель: `Where is the host?`", "Цель: `Whose is it?`");
 assert.notEqual(badS37, realS37, "the regression fixture must change only task 16's spoken target");
 
 function hardFacts(text, session = "en/l02/s37") {
@@ -64,7 +64,7 @@ test("S37 blocks when task 16 voices the exact answer built in final task 17", (
 });
 
 test("the same phrase remains allowed when retrieval is not immediately before the final builder", () => {
-  const nonAdjacent = realS37.replace("🎙 **Who is she?**", "🎙 **Whose is it?**");
+  const nonAdjacent = realS37.replace("Цель: `Who is she?`", "Цель: `Whose is it?`");
   assert.deepEqual(finalProbeFacts(nonAdjacent), []);
 });
 

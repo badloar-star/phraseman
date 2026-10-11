@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro1:r2": {
+          "ru": "Так вы сообщаете ей новость, а не спрашиваете. В вопросе `are` идёт первым.",
+          "uk": "Так ви повідомляєте їй новину, а не запитуєте. У запитанні `are` іде першим."
+        },
+        "en:lesson-02:session-06:intro1:r3": {
+          "ru": "`you` уехал в конец, а его место сразу после `are`.",
+          "uk": "`you` поїхав у кінець, а його місце одразу після `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro2:r2": {
+          "ru": "Слова те же, порядок вывернут. Начинаем с `are you`.",
+          "uk": "Слова ті самі, порядок вивернутий. Починаємо з `are you`."
+        },
+        "en:lesson-02:session-06:intro2:r3": {
+          "ru": "`is` — не для `you`. С `you` всегда `are`.",
+          "uk": "`is` — не для `you`. З `you` завжди `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-06:intro3:r2": {
+          "ru": "Это «ты голоден?». Он дрожит, а не смотрит на булочную.",
+          "uk": "Це «ти голодний?». Він тремтить, а не дивиться на пекарню."
+        },
+        "en:lesson-02:session-06:intro3:r3": {
+          "ru": "`is` сюда не встаёт: с `you` идёт `are`.",
+          "uk": "`is` сюди не стає: з `you` іде `are`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9dbf4a8fb7b5646ede22bbbd3bed519f9b5d68545ad2c0b1b10e12822948cf5f"
+}

@@ -6,13 +6,16 @@ window.addEventListener("error", (e) => {
   console.error("[mockup] ошибка запуска:", e.message, e.error);
 });
 const DATA = window.__DATA__;
+const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
+const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
+const REVIEWED_CARDS = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
-const BUILT_AT = "20.09, 09:02";
+const BUILT_AT = "11.10, 07:33";
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
-document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
+document.getElementById("buildStamp").textContent = DATA.length + " занятий · " + BUILT_AT;
 
-const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
+const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairsDone: [], right: 0, wrong: 0 };
 const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
 
 const app = document.getElementById("app");
@@ -36,6 +39,9 @@ const h = (tag, attrs, kids) => {
   return e;
 };
 const loc = (byLocale) => !byLocale ? "" : (byLocale[S.locale] ?? byLocale.ru ?? Object.values(byLocale)[0] ?? "");
+// Служебное слово «сессия» не должно попадать в интерфейс ученика даже если
+// оно осталось в заголовке исходного файла. Номер занятия сохраняется.
+const displayTitle = (value) => String(value ?? "").replace(/(^|[^p{L}])сессия(?=$|[^p{L}])/giu, "$1Занятие");
 const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 // зачем: целевой язык размечен в тексте обратными кавычками — красим его
 // акцентом, чтобы английское сразу отличалось от объяснения на своём языке
@@ -115,15 +121,15 @@ const avoidAlignedPairs = (left, right) => {
   return right;
 };
 
-function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.pairSel = null; S.pairsDone = []; }
+function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairsDone = []; }
 
 // ---------- экраны ----------
 function renderHome() {
   homeBtn.hidden = true;
   app.replaceChildren(
     h("div", {class:"hero"}, [
-      h("h1", {text:"Пройдите любую написанную сессию"}),
-      h("p", {text:"Это то, что увидит ученик. Данные взяты из собранного релиза — что здесь работает, то откроется и в приложении."}),
+      h("h1", {text:"Пройдите любой подготовленный урок"}),
+      h("p", {text:"Открывайте занятия и проверяйте их глазами ученика. Зелёная карточка открывает уже проверенный исправленный текст; если выпуск отстаёт, это прямо отмечено на карточке."}),
     ]),
     ...groupByLesson(),
   );
@@ -135,14 +141,32 @@ function groupByLesson() {
   for (const [lesson, list] of Object.entries(byLesson)) {
     const lessonTitle = list[0].lessonTitle;
     out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
-    out.push(h("div", {class:"cards"}, list.map(s => h("button", {class:"card", onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
-      h("h3", {text:s.title}),
-      h("p", {class:"scene", text:s.scene}),
-      h("div", {class:"meta"}, [
-        h("span", {class:"chip k", text:"Сессия " + s.session.replace(/^s0?/, "")}),
-        h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
-      ]),
-    ]))));
+    out.push(h("div", {class:"cards"}, list.map(s => {
+      const findings = SOURCE_QUALITY[s.key] || [];
+      const releaseFindings = SOURCE_RELEASE[s.key] || [];
+      const sourceFixed = Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
+      const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
+      const findingTarget = hasUnnumberedFinding
+        ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
+        : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
+      const summary = sourceFixed && releaseFindings.length
+        ? "Выпуск ещё содержит старый текст; здесь открывается проверенная правка. Нажмите «Показать изменения», чтобы увидеть точную замену."
+        : findings.length
+        ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
+        : releaseFindings[0] || "";
+      return h("button", {class:"card" + (sourceFixed ? " source-fixed" : findings.length || releaseFindings.length ? " needs-repair" : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+        h("h3", {text:displayTitle(s.title)}),
+        h("p", {class:"scene", text:s.scene}),
+        h("div", {class:"meta"}, [
+          h("span", {class:"chip k", text:"Занятие " + s.session.replace(/^s0?/, "")}),
+          h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
+           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === "reviewed_source" ? "Показана проверенная правка" : "Исходник исправлен"}) : null,
+           releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
+        ]),
+        findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+      ]);
+    })));
   }
   return out;
 }
@@ -157,11 +181,11 @@ function renderSession() {
   const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
     h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
 
-  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(learner.interactions[S.step - 3]);
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step], s.auxiliary) : renderTask(learner.interactions[S.step - 3]);
   app.replaceChildren(bar, panel);
 }
 
-function renderIntro(page) {
+function renderIntro(page, auxiliary) {
   const KIND = {concept:"Понятие", formula:"Формула", trap:"Ловушка", tip:"Подсказка", example:"Пример"};
   // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
   // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
@@ -175,12 +199,16 @@ function renderIntro(page) {
     h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
     h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
     h("div", {class:"opts"}, choices.map((c, i) => h("button", {
-      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === i ? " wrong" : " dim")) : ""),
+      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === c.responseId ? " wrong" : " dim")) : ""),
       disabled: S.answered,
-      onClick: () => { S.answered = true; S.picked = i; S.ok = c.correct; render(); },
+      onClick: () => { S.answered = true; S.picked = c.responseId; S.ok = c.correct; render(); },
     }, [document.createTextNode(c.text)]))),
   ]);
-  if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Верный ответ: " + (choices.find(c => c.correct)?.text ?? "")}));
+  if (S.answered) {
+    const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
+    const wrongFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
+    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : (wrongFeedback || "Верный ответ: " + (choices.find(c => c.correct)?.text ?? ""))}));
+  }
   panel.append(nextRow());
   return panel;
 }
@@ -194,8 +222,9 @@ function nextRow(canNext = S.answered, label = "Дальше") {
 
 function renderTask(it) {
   const p = it.modePayload || {};
+  const taskNumber = Math.max(1, S.step - 2);
   const panel = h("div", {class:"panel"}, [
-    h("div", {class:"kind", text:familyName(it.family, p)}),
+    h("div", {class:"kind", text:"Задание " + taskNumber + " · " + familyName(it.family, p)}),
     h("div", {class:"task-prompt", html:tl(sanitizeLearnerPrompt(it.prompt))}),
   ]);
   if (p.isWordCard) { renderCard(panel, it, p); return panel; }
@@ -221,8 +250,18 @@ function renderCard(panel, it, p) {
 }
 
 function renderChoice(panel, it, p) {
-  const audio = p.referenceAudio?.transcript;
-  if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
+  if (it.family === "sound_contrast") {
+    const contrastAudio = [p.audioA?.transcript, p.audioB?.transcript];
+    if (contrastAudio.some(audio => !audio)) return WARNBOX(panel, "У задания на различение звуков нет двух аудиообразцов.");
+    panel.append(h("div", {class:"actions sound-contrast-audio"}, contrastAudio.map((audio, index) => h("button", {
+      class:"play",
+      onClick:() => speak(audio),
+      "aria-label":"Прослушать вариант " + (index ? "B" : "A"),
+    }, [document.createTextNode("▶  Прослушать " + (index ? "B" : "A"))]))));
+  } else {
+    const audio = p.referenceAudio?.transcript;
+    if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
+  }
   if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
   if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(sanitizeLearnerPrompt(loc(p.localizedScene)))}));
   const opts = shuffleChoices(it.responseOptions, it.interactionId + S.locale);
@@ -258,17 +297,23 @@ function renderBuilder(panel, it, p) {
   if (!ordered.length) return WARNBOX(panel, "У задания нет плиток — сборщик не нашёл целевую фразу.");
 
   const slot = h("div", {class:"slot", "data-hint":"Нажимайте плитки, чтобы собрать фразу"},
-    S.assembled.map((t, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); render(); }, text:t})));
+    S.assembled.map((tile, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); S.tileFeedback = null; render(); }, text:tile.text})));
   panel.append(h("div", {style:"margin-top:16px"}, [slot]));
 
-  const all = shuffle(ordered.concat(p.authoredDistractorTokens || []), it.interactionId);
-  const used = S.assembled.slice();
-  panel.append(h("div", {class:"tiles"}, all.map((t, i) => {
-    const idx = used.indexOf(t);
-    const isUsed = idx >= 0 && (used[idx] = null, true);
+  // Tile identity is independent from its visible text: two physical extra
+  // tiles may display the same word but require different explanations.
+  const feedbackByTileId = new Map((p.slotFeedback || []).map((row) => [row.responseId, loc(row.feedbackByLocale)]));
+  const all = shuffle([
+    ...ordered.map((text, index) => ({ tileId:it.interactionId + ":tile:t" + (index + 1), text, kind:"target" })),
+    ...(p.authoredDistractorTokens || []).map((text, index) => ({ tileId:it.interactionId + ":tile:d" + (index + 1), text, kind:"distractor" })),
+  ], it.interactionId);
+  const used = new Set(S.assembled.map((tile) => tile.tileId));
+  panel.append(h("div", {class:"tiles"}, all.map((tile) => {
+    const isUsed = used.has(tile.tileId);
     return h("button", {class:"tile" + (isUsed ? " used" : ""), disabled:S.answered || isUsed,
-      onClick:() => { S.assembled.push(t); render(); }, text:t});
+      onClick:() => { S.assembled.push(tile); S.tileFeedback = tile.kind === "distractor" ? feedbackByTileId.get(tile.tileId) || "Для этой лишней плитки нет объяснения." : null; render(); }, text:tile.text});
   })));
+  if (S.tileFeedback) panel.append(h("div", {class:"fb no", text:S.tileFeedback}));
 
   const ready = S.assembled.length === ordered.length;
   if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Правильно: " + target}));
@@ -277,7 +322,7 @@ function renderBuilder(panel, it, p) {
     S.answered
       ? h("button", {class:"btn primary spacer", onClick:() => { S.step++; resetStep(); render(); }, text:"Дальше"})
       : h("button", {class:"btn primary spacer", disabled:!ready, onClick:() => {
-          const got = S.assembled.join(" ").replace(/[.?!]$/, "").toLowerCase();
+          const got = S.assembled.map((tile) => tile.text).join(" ").replace(/[.?!]$/, "").toLowerCase();
           const want = ordered.join(" ").replace(/[.?!]$/, "").toLowerCase();
           S.answered = true; S.ok = got === want; S.ok ? S.right++ : S.wrong++; render();
         }, text:"Проверить"}),
@@ -328,14 +373,14 @@ function renderDone() {
   app.replaceChildren(h("div", {class:"panel"}, [
     h("div", {class:"done-wrap"}, [
       h("div", {class:"done-mark", text:"✓"}),
-      h("h2", {text:"Сессия пройдена"}),
+      h("h2", {text:"Урок пройден"}),
       h("p", {text:s.title}),
       h("div", {class:"stats"}, [
         h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:"верно"})]),
         h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:"ошибок"})]),
         h("div", {class:"stat"}, [h("b", {text:String(learner.interactions.length)}), h("span", {text:"заданий"})]),
       ]),
-      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку сессий"}),
+      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку уроков"}),
     ]),
   ]));
 }

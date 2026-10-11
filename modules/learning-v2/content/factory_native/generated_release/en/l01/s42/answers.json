@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-01:session-42:i01",
-    "correctText": "",
+    "correctText": "great",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-42:i03",
-    "correctText": "",
+    "correctText": "awful",
     "correctResponseId": null
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-42:i06",
-    "correctText": "",
+    "correctText": "gone",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-42:i10",
-    "correctText": "",
+    "correctText": "en:lesson-01:session-42:i10:p1=great\nen:lesson-01:session-42:i10:p2=awful\nen:lesson-01:session-42:i10:p3=gone\nen:lesson-01:session-42:i10:p4=quiet",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-42:i17",
-    "correctText": "It's great. He's gone. It's quiet.",
+    "interactionId": "en:lesson-01:session-42:i17:s01",
+    "correctText": "It's great.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i17:s02",
+    "correctText": "He's gone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i17:s03",
+    "correctText": "It's quiet.",
     "correctResponseId": null
   }
 ]

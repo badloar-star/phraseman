@@ -855,13 +855,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — друг спрашивает, что вы несёте к нижней полке; у вас две миски, назовите их «Это миски»",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-23:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — друг спрашивает, что вы несёте к нижней полке; у вас две миски, назовите их «Это миски»",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1003,5 +1003,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "57e94d973063473adc9ec2de8e8fb54060a34f900d0608c49a93aa90ebe5037f"
+  "learnerFingerprint": "b4329ab406ccd1df7a85f57a48628e093a740d66f3ebb041a960045c04bdf640"
 }

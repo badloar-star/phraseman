@@ -1,8 +1,8 @@
 {
-  "sourceSha256": "72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195",
+  "sourceSha256": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
   "localeHashes": {
-    "ru": "72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195",
-    "uk": "64dda3020405379f70cf9928fbaf5f7aa43d865d7e6d6e824a8426f4d1d5c443"
+    "ru": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+    "uk": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe"
   },
   "locales": {
     "uk": {
@@ -10,12 +10,57 @@
       "blockers": [],
       "must_fix": [],
       "evidence": [
-        "Все восемь обязательных языковых исправлений внесены и звучат естественно.",
-        "Все 17 заданий, modes, targets, choices, feedback, audio и плитки совпадают с RU по смыслу.",
-        "The receipt is wrong. точно передано как Цей чек із помилкою без добавления расстояния.",
-        "Изменённый финал сохраняет дальний чек, другого кассира-мужчину и близкую стойку."
+        "Receipt/counter/cashier scene, three word-first chains, split one-phrase interactions and final chain implement first mention versus known referent; no current Cyrillic audio target or packet delimiter found."
       ]
     }
   },
-  "verdict": "PASS"
+  "verdict": "PASS",
+  "postMigrationReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T18:25:06.027Z",
+    "reviewer": "fresh-terra-batch-2026-10-03",
+    "scope": "exact-current-ru-uk-atomic-after-single-phrase-migration",
+    "sourceSha256": "b103b1f609d60913ba3fc5e930a56da8b07aa9fc244c7c71766d1a420c500d47",
+    "localeSha256": "89e3e5faaf90cce3c66a9a0faf86c94f2afaa8cdb047b9feea3fc99c8f740703",
+    "practiceAtomicSha256": "4d455484beded5460ec7765dce23e0e834c4f3e4596952f4ceb97be4ea2ab9ab"
+  },
+  "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+  "reviewedAt": "2026-10-04T00:10:00+01:00",
+  "exactRuSha256": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+  "exactUkSha256": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe",
+  "localeSha256": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe",
+  "practiceAtomicSha256": "c313324d29006d86173389af05f27d7a13d306e3b4f5d9225f8571d0dc83fcb1",
+  "postRepairReview": {
+    "verdict": "PASS",
+    "reviewedAt": "2026-10-03T20:02:42.234Z",
+    "reviewers": [
+      "/root/rejudge_repaired_core",
+      "/root/s10_remove_future_vocab_leak"
+    ],
+    "scope": "exact-current-ru-uk-atomic-after-global-single-phrase-and-choreography-repair",
+    "sourceSha256": "5b92bb223169cb9dab0e9b94cfc3a6e2d878e401f5bb9c3ccc57d41b6eb449b1",
+    "localeSha256": "45fe3d185d7864ff49828d6974bd80160bc66a18ffefb448dbd2bf2b349d2088",
+    "practiceAtomicSha256": "41b3cf0a803df1a0e15b83ac4a1f42c68b33205417b29cc464980cf05ea3be79",
+    "findings": []
+  },
+  "freshBatchReview": {
+    "verdict": "PASS",
+    "role": "locale_uk",
+    "reviewedAt": "2026-10-04T00:10:00+01:00",
+    "reviewer": "/root/l3_s41_s55_fresh_rejudge",
+    "scope": "Independent current-byte review of English L3/S41-S55; only final.ru.md, final.uk.md, and practice.atomic.json were judged.",
+    "sourceReport": "judgements/2026-10-03_l3_s41_s55_fresh_rejudge.json",
+    "sourceSha256": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+    "exactRuSha256": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+    "exactUkSha256": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe",
+    "localeSha256": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe",
+    "localeHashes": {
+      "ru": "11d750c1ade24a000c9a6eddb9c7c4f0695d0350b1f9a40a68897746874ed09d",
+      "uk": "ea31a42fda4e43d07093228c78ad481a4a5238451c8d606e2568e4e6a60a83fe"
+    },
+    "practiceAtomicSha256": "c313324d29006d86173389af05f27d7a13d306e3b4f5d9225f8571d0dc83fcb1",
+    "evidence": [
+      "Receipt/counter/cashier scene, three word-first chains, split one-phrase interactions and final chain implement first mention versus known referent; no current Cyrillic audio target or packet delimiter found."
+    ]
+  }
 }

@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — angry",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — rude",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -381,7 +381,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — slow",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -550,11 +550,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -685,7 +685,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — serious",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1051,26 +1051,92 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-19:i20",
+      "interactionId": "en:lesson-01:session-19:i20:s01",
       "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три ответа подряд: вы за них заступаетесь",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-19:i20:audio"
+        "en:lesson-01:session-19:i20:s01:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три ответа подряд: вы за них заступаетесь",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-19:i20:audio",
-          "transcript": "He is not angry. She is not rude. He is not slow."
+          "audioTargetId": "en:lesson-01:session-19:i20:s01:audio",
+          "transcript": "He is not angry."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is not angry. She is not rude. He is not slow.",
+        "targetPhrase": "He is not angry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i20:s02",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i20:s02:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i20:s02:audio",
+          "transcript": "She is not rude."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is not rude.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i20:s03",
+      "ordinal": 25,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите одну фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i20:s03:audio"
+      ],
+      "accessibilityLabel": "Произнесите одну фразу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i20:s03:audio",
+          "transcript": "He is not slow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is not slow.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1084,11 +1150,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 22,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c1e211a024746209c3c082a4540b3851499acf14de4584e9bbf0ad7ca0cb11da"
+  "learnerFingerprint": "5e1fe4c60286f494d3227e3ddfa4b099a90098a6082b0fc679890951d3da7a5d"
 }

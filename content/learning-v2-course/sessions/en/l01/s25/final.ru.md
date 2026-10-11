@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 25 — «It is»
+# Английский · Урок 1 · Занятие 25 — «It is»
 
-**Сцена сессии.** Первый вечер в новой квартире в Дублине. Вы стоите посреди комнаты с чемоданом и разглядываете, что вам досталось.
-**Операция:** `It is` + признак (про вещь, комнату, погоду)
-**Новые слова:** small, dark, expensive
+**Ситуация.** В первый вечер в новой квартире в Дублине вы осматриваете комнату, счёт за аренду и воду из крана.
+**Как сказать:** `It is`, когда описываете вещь, комнату или погоду.
+**Новые слова:** small, dark, expensive, cold
 **Возвращаются:** new, warm, quiet, nice, cold (про вещь и погоду)
 
 ---
@@ -13,14 +13,14 @@
 
 `It` — это «оно»: про предмет, комнату, погоду. Не про человека.
 
-Скрепка та же, что у `he` и `she`, — `is`. `small` — «маленький», получается `It is small`.
+После `it` в такой фразе ставят `is`: `It is small`.
 
 По-русски «комната маленькая» прекрасно живёт без глагола. По-английски `It small` не соберётся: `is` держит фразу.
 
 **Открыли дверь: комната метра три на четыре. Скажите про неё.**
 
 - ✅ **It is small.**
-- ❌ It small. — *Скрепка пропала. По-русски её нет, по-английски без `is` фразы не существует.*
+- ❌ It small. — *В английской фразе нужна форма `is`: `It is small`.*
 - ❌ It am small. — *`am` живёт только рядом с `I`. Про вещь — `is`.*
 
 ---
@@ -39,7 +39,7 @@
 
 - ✅ **It is dark.**
 - ❌ It is darks. — *`dark` не меняется. Хвостов у него не бывает.*
-- ❌ It dark. — *Опять без `is`. Между `it` и словом всегда стоит скрепка.*
+- ❌ It dark. — *Между `it` и словом нужна форма `is`.*
 
 ---
 
@@ -61,72 +61,108 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика (20 заданий, поддержка убывает)
 
 **1 · Карточка слова — small**
+<!-- interaction_id: en:lesson-01:session-25:i01; family: listen_choose -->
 > **small** — «маленький». Комната, в которой чемодан приходится ставить на кровать.
 
-**2 · Послушайте и выберите — small**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-25:i02; family: listen_choose -->
 🔊 *small* → **small** · smell · tall
+- small — *В записи `small` начинается со «см» и заканчивается звуком «ол», не как `smell` и не как `tall`.*
 - smell — *Другая гласная: в `small` рот округляется, «смоол». В `smell` — короткое «э».*
 - tall — *Конец тот же, начало разное. `small` начинается со «см».*
 
 **3 · Карточка слова — dark**
+<!-- interaction_id: en:lesson-01:session-25:i03; family: listen_choose -->
 > **dark** — «тёмный, темно». Вечер за окном, и лампу вы ещё не нашли.
 
 **4 · Соберите фразу — про комнату без света**
+<!-- interaction_id: en:lesson-01:session-25:i04; family: phrase_builder -->
 Плитки: `is` `dark` `It` → **It is dark.**
 
 **5 · Карточка слова — expensive**
+<!-- interaction_id: en:lesson-01:session-25:i05; family: listen_choose -->
 > **expensive** — «дорогой». Цена, от которой вы перечитываете ценник второй раз.
 
-**6 · Послушайте и выберите — expensive**
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-25:i06; family: listen_choose -->
 🔊 *expensive* → **expensive** · expense · extensive
+- expensive — *В записи `expensive` после `ex-` слышно «пен», не короткое `expense` и не `extensive` с «тен».*
 - expense — *Короче на слог. В `expensive` в конце слышно «сив».*
 - extensive — *Похоже, но в середине «т»: экс-ТЕН-сив. В нашем слове «п».*
 
 **7 · Вставьте слово — комната три на четыре**
+<!-- interaction_id: en:lesson-01:session-25:i07; family: context_gap_grammar -->
 It is ___ . → **small** · dark · expensive
+- small — *Комната три на четыре метра, поэтому `small` — «маленькая»; не речь о свете или цене.*
 - dark — *Это про свет, а не про размер. Про размер — `small`.*
 - expensive — *Это про цену. Про размер — `small`.*
 
 **8 · Карточка слова — cold**
+<!-- interaction_id: en:lesson-01:session-25:i08; family: listen_choose -->
 > **cold** — «холодно, холодный». Батарея выключена, и вы это уже почувствовали.
 
-**9 · Вставьте скрепку — про воду из крана**
+**9 · Вставьте слово — про воду из крана**
+<!-- interaction_id: en:lesson-01:session-25:i09; family: context_gap_grammar -->
 It ___ cold. → **is** · am · are
+- is — *Про воду говорят `It`, поэтому в `It is cold.` нужна форма `is`.*
 - am — *`am` стоит только рядом с `I`. Про вещь — `is`.*
 - are — *`are` — не для одного предмета. Тут `is`.*
 
 **10 · Соберите фразу — вы посмотрели на счёт**
+<!-- interaction_id: en:lesson-01:session-25:i10; family: phrase_builder -->
 Плитки: `expensive` `It` `is` `he` → **It is expensive.**
 *(плитка `he` лишняя: `he` — про мужчину, а счёт — вещь)*
 
-**11 · Соедините пары (Speed Match, 4 пары)**
+**11 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-25:i11; family: speed_match -->
 small — маленький · dark — тёмный · expensive — дорогой · cold — холодный
 
 **12 · Вставьте слово — квартира вам досталась только что снятая, всё в ней с иголочки**
+<!-- interaction_id: en:lesson-01:session-25:i12; family: context_gap_grammar -->
 It is ___ . → **new** · dark · small
+- new — *Квартиру только что сняли, поэтому `new` — «новая», не про свет и не про размер.*
 - dark — *Про свет, а не про возраст вещи. Только что купленное — `new`.*
 - small — *Про размер. «Новое» — `new`.*
 
 **13 · Соберите фразу — во дворе ни звука**
+<!-- interaction_id: en:lesson-01:session-25:i13; family: phrase_builder -->
 Плитки: `quiet` `is` `It` → **It is quiet.**
 
 **14 · Вставьте слово — вы включили обогреватель, через час в комнате хорошо**
+<!-- interaction_id: en:lesson-01:session-25:i14; family: context_gap_grammar -->
 It is ___ . → **warm** · cold · dark
+- warm — *После обогревателя в комнате `warm` — «тепло», не холодно и не темно.*
 - cold — *Наоборот: обогреватель как раз убрал холод.*
 - dark — *Про свет. Про тепло — `warm`.*
 
 **15 · Послушайте и соберите — «это красиво»**
+<!-- interaction_id: en:lesson-01:session-25:i15; family: listen_build_dictation -->
 🔊 *It is nice.* Плитки: `nice` `It` `is` `am` → **It is nice.**
+Лишняя плитка `am`: с `It` ставят `is` — `It is nice.`
 
-**16 · Соедините пары — слова, которые уже прозвучали (Speed Match, 4 пары)**
+**16 · Соедините пары — слова, которые уже прозвучали**
+<!-- interaction_id: en:lesson-01:session-25:i16; family: speed_match -->
 new — новый · warm — тёплый · quiet — тихий · nice — приятный
 
-**17 · Скажите вслух — обход квартиры, четыре фразы подряд**
-🎙 Комната маленькая, света мало, зато тихо и цена не пугает — но обогреватель нужен.
-**It is small. It is dark. It is quiet. It is cold.**
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-25:i17:s01; family: scripted_repeat_compare -->
+🎙 **It is small.**
+
+**18 · Скажите вслух — в комнате темно**
+<!-- interaction_id: en:lesson-01:session-25:i17:s02; family: scripted_repeat_compare -->
+🎙 **It is dark.**
+
+**19 · Послушайте и соберите — во дворе тихо**
+<!-- interaction_id: en:lesson-01:session-25:i17:s03; family: listen_build_dictation -->
+🔊 *It is quiet.* Плитки: `quiet` `It` `is` `are` → **It is quiet.**
+Лишняя плитка `are`: с `It` ставят `is` — `It is quiet.`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-25:i17:s04; family: scripted_repeat_compare -->
+🎙 **It is cold.**
 
 ---
 
@@ -138,7 +174,7 @@ dark — тёмный, темно — «тёмный, темно». Вечер �
 expensive — дорогой — «дорогой». Цена, от которой вы перечитываете ценник второй раз.
 cold — холодно, холодный — «холодно, холодный». Батарея выключена, и вы это уже почувствовали.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card, 6=listen_choose, 7=context_gap_grammar, 8=word_card, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=speed_match, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=phrase_builder, 5=listen_choose, 6=listen_choose, 7=context_gap_grammar, 8=listen_choose, 9=context_gap_grammar, 10=phrase_builder, 11=speed_match, 12=context_gap_grammar, 13=phrase_builder, 14=context_gap_grammar, 15=listen_build_dictation, 16=speed_match, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=listen_build_dictation, 20=scripted_repeat_compare
 
 ---
 
@@ -176,11 +212,3 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=phrase_builder, 5=word_card,
 
 ---
 
-## Итог
-
-- Написал сессию 25: учим говорить про вещи и погоду — «оно какое-то» (`It is small`, `It is dark`).
-- Сцена новая, не повторяет соседние: первый вечер в пустой квартире в Дублине, человек ходит и разглядывает комнату. У соседних сессий были лестничная площадка, парковка и столовая.
-- Четыре новых слова: маленький, тёмный, дорогой, холодный. У каждого сначала карточка, потом узнавание на слух или во фразе, и только потом доска пар.
-- Четыре старых слова вернулись, и каждое хотя бы раз стоит правильным ответом, а не только ловушкой.
-- Заданий 17, поддержка убывает: к концу остаются сборка без подсказок и проговаривание вслух четырёх фраз подряд.
-- Три таблицы самопроверки заполнены — разрывов между текстом интро и вопросом нет, слов-угадаек на доске пар нет.

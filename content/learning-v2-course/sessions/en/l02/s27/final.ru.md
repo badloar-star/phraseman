@@ -1,8 +1,8 @@
-# Английский · Урок 2 · Сессия 27 — «What are these?»
+# Английский · Урок 2 · Занятие 27 — «What are these?»
 
-**Сцена сессии.** Выходной в Дублине, вы у прилавка на рынке. Одна вещь — это одно дело, а тут перед вами целая горка чего-то непонятного, и продавец ждёт вопроса.
+**Сцена занятия.** Выходной в Дублине, вы у прилавка на рынке. Одна вещь — это одно дело, а тут перед вами целая горка чего-то непонятного, и продавец ждёт вопроса.
 
-**Операция:** `What are these?`
+**Как сказать:** `What are these?`
 **Новые слова:** prices, rules
 **Возвращаются:** cheap, shops
 
@@ -60,78 +60,97 @@
 
 ---
 
-## Практика (17 заданий, поддержка убывает)
+## Практика — по одной целевой фразе
 
 **1 · Карточка слова — prices**
-> **prices** — «цены». Цифры на ценниках. Одна — `price`, несколько — `prices`.
+<!-- interaction_id: en:lesson-02:session-27:i01; family: listen_choose -->
+Цель: `prices`
 
-**2 · Послушайте и выберите — prices**
-🔊 *prices* → **prices** · places · pieces
-- places — *«места», не «цены». Слушайте после «п»: тут `r`, а не `l`.*
-- pieces — *«Кусочки», не «цены». Гласная в середине другая: у `prices` — «ай», у `pieces` — «и».*
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-27:i02; family: listen_choose -->
+Цель: `prices`
+Варианты: `prices` · `places` · `pieces`
 
 **3 · Карточка слова — rules**
-> **rules** — «правила». Список у входа: что можно, чего нельзя.
+<!-- interaction_id: en:lesson-02:session-27:i03; family: listen_choose -->
+Цель: `rules`
 
-**4 · Послушайте и выберите — rules**
-🔊 *rules* → **rules** · tools · schools
-- tools — *«инструменты», не «правила». Начало другое: `t`, а не `r`.*
-- schools — *«школы», не «правила». Начало длиннее: «ск».*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-02:session-27:i04; family: listen_choose -->
+Цель: `rules`
+Варианты: `rules` · `tools` · `schools`
 
 **5 · Соберите фразу — перед вами горка непонятных вещей**
-Плитки: `these` `are` `What` → **What are these?**
+<!-- interaction_id: en:lesson-02:session-27:i05; family: phrase_builder -->
+Цель: `What are these?`
 
 **6 · Вставьте слово — вещей несколько, спрашиваете, что это**
-What ___ these? → **are** · is · am
-- is — *`is` — про одну вещь. `these` значит «несколько», к нему идёт `are`.*
-- am — *`am` — форма для `I`. Про несколько вещей нужна `are`.*
+<!-- interaction_id: en:lesson-02:session-27:i06; family: context_gap_grammar -->
+Цель: `What ___ these?`
+Варианты: `are` · `is` · `am`
 
-**7 · Вставьте слово — вас удивили неожиданно высокие цены на ценниках**
-What are these ___ ? → **prices** · price · rules
-- price — *Одна цена. Ценников много — нужен хвост «-s»: `prices`.*
-- rules — *Это «правила». Цифры на ценниках — `prices`.*
+**7 · Послушайте — Анна смотрит на несколько ценников в меню. Выберите, о чём она спрашивает**
+<!-- interaction_id: en:lesson-02:session-27:i07; family: listen_choose -->
+Цель: `What are these prices?`
+Варианты: `цены` · `правила` · `названия`
 
 **8 · Различите звуки — какое из двух про «правила»?**
-🔊 Два слова подряд.
-*rules · tools* → **rules**
-- tools — *Это «инструменты». Про список на доске говорят `rules`.*
+<!-- interaction_id: en:lesson-02:session-27:i08; family: sound_contrast -->
+Варианты: `rules` · `tools`
 
 **9 · Соберите фразу — на доске у входа список, и вы просите объяснить**
-Плитки: `rules` `What` `these` `are` → **What are these rules?**
+<!-- interaction_id: en:lesson-02:session-27:i09; family: phrase_builder -->
+Цель: `What are these rules?`
 
 **10 · Вставьте слово — на прилавке одна вещь, и вы про неё спрашиваете**
-What ___ this? → **is** · are · these
-- are — *`are` — когда вещей несколько. Тут она одна: `this` — `is`.*
-- these — *Это «эти», указание на несколько. Здесь пропуск на месте связки, а не указания.*
+<!-- interaction_id: en:lesson-02:session-27:i10; family: context_gap_grammar -->
+Цель: `What ___ this?`
+Варианты: `is` · `are` · `these`
 
 **11 · Послушайте и соберите — реакция покупателя на ценники**
-🔊 *What are these prices?* Плитки: `prices` `are` `What` `these` `is` → **What are these prices?**
+<!-- interaction_id: en:lesson-02:session-27:i11; family: listen_build_dictation -->
+Цель: `What are these prices?`
 
 **12 · Вставьте слово — вы обошли ряд и удивились, до чего тут недорого**
-The shops are ___ . → **cheap** · these · rules
-- these — *Это «эти», указание на вещи. А тут нужно слово про то, какие магазины.*
-- rules — *«Правила». Про низкие цены говорят `cheap`.*
+<!-- interaction_id: en:lesson-02:session-27:i12; family: context_gap_grammar -->
+Цель: `The shops are ___ .`
+Варианты: `cheap` · `these` · `rules`
 
-**13 · Соедините пары (Speed Match, 4 пары)**
-prices — цены · rules — правила · cheap — дешёвый · shops — магазины
+**13 · Соедините пары**
+<!-- interaction_id: en:lesson-02:session-27:i13; family: speed_match -->
+Пары: `prices` — цены · `rules` — правила · `cheap` — дешёвый · `shops` — магазины
+Цель: `prices · rules · cheap · shops`
 
 **14 · Соберите фразу — вас удивили две высокие цены: «Что это за цены?»**
-Плитки: `are` `these` `What` `prices` `is` → **What are these prices?**
-*(плитка `is` лишняя: вещей несколько, нужна `are`)*
+<!-- interaction_id: en:lesson-02:session-27:i14; family: phrase_builder -->
+Цель: `What are these prices?`
 
 **15 · Вставьте слово — вы говорите спутнику, что тут целая улица недорогих лавок**
-These ___ are cheap. → **shops** · rules · streets
-- rules — *Это «правила». Речь о том, где продают, — `shops`.*
-- streets — *Это «улицы». Продают в магазинах: `shops`.*
+<!-- interaction_id: en:lesson-02:session-27:i15; family: context_gap_grammar -->
+Цель: `These ___ are cheap.`
+Варианты: `shops` · `rules` · `streets`
 
-**16 · Скажите вслух — вы у прилавка и хотите разобраться**
-🎙 **What are these? What are these prices?** — покупатель спрашивает о товарах, затем удивляется высоким ценам. Послушайте, повторите, сравните.
+**16 · Послушайте — Лина показывает продавцу несколько предметов на прилавке. Выберите, о чём она спрашивает**
+<!-- interaction_id: en:lesson-02:session-27:i16:s01; family: listen_choose -->
+Цель: `What are these?`
+Варианты: `что это за предметы` · `сколько они стоят` · `где находится магазин`
 
-**17 · Финал сцены — три вопроса подряд у прилавка**
-🎙 Вы у прилавка: спросите о самих вещах, затем удивитесь высоким ценам и спросите о правилах на доске у входа.
-**What are these? What are these prices? What are these rules?**
+**17 · Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах**
+<!-- interaction_id: en:lesson-02:session-27:i16:s02; family: context_gap_grammar -->
+Цель: `What are these ___ ?`
+Варианты: `prices` · `rules` · `shops`
 
----
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-27:i17:s01; family: scripted_repeat_compare -->
+Цель: `What are these?`
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-27:i17:s02; family: scripted_repeat_compare -->
+Цель: `What are these prices?`
+
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-02:session-27:i17:s03; family: scripted_repeat_compare -->
+Цель: `What are these rules?`
 
 ## Для сборщика
 
@@ -139,7 +158,7 @@ new_words:
 prices — цены — «цены». Цифры на ценниках. Одна — `price`, несколько — `prices`.
 rules — правила — «правила». Список у входа: что можно, чего нельзя.
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=context_gap_grammar, 8=sound_contrast, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=speed_match, 14=phrase_builder, 15=context_gap_grammar, 16=scripted_repeat_compare, 17=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=sound_contrast, 9=phrase_builder, 10=context_gap_grammar, 11=listen_build_dictation, 12=context_gap_grammar, 13=speed_match, 14=phrase_builder, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=scripted_repeat_compare
 
 ---
 
@@ -166,8 +185,8 @@ modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_buil
 |---|---|---|
 | prices | 1 | 2 (слух), 7 (пропуск), 11 (сборка) |
 | rules | 3 | 4 (слух), 8 (звуки), 9 (сборка) |
-| cheap | из прошлых сессий | 12 (пропуск, правильный ответ) |
-| shops | из прошлых сессий | 12 (в тексте фразы) |
+| cheap | из прошлых занятий | 12 (пропуск, правильный ответ) |
+| shops | из прошлых занятий | 12 (в тексте фразы) |
 
 **4. Длина интро (знаки текста объяснения).**
 

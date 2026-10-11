@@ -1,8 +1,6 @@
-# Английский · Урок 1 · Сессия 53 — «Три скрепки и одно `not`»
+# Английский · Урок 1 · Занятие 53 — «Как сказать “не”»
 
-**Сцена сессии.** Воскресный звонок домой. Мама выспрашивает про всех сразу, а вы отвечаете быстро — и вот тут вылезают все ошибки недели.
-
-**Операция:** повторение — `am` / `is` / `are` и место `not`
+**Ситуация.** В воскресенье вы звоните маме. Она спрашивает о вас, брате и сестре, а вы отвечаете полными английскими фразами.
 **Новые слова:** —
 **Возвращаются:** tired, busy, home, sick, together
 
@@ -12,16 +10,16 @@
 
 ### `am` — только про себя
 
-`am` — это скрепка между `I` и словом о себе. `I am tired` — «я устал».
+`am` ставят после `I`, когда говорят о себе: `I am tired` — «я устал».
 
 По-русски «я устал» обходится без «есть», и рука тянется написать так же: `I tired`. Без `am` фразы не выходит.
 
-Ещё соблазн — взять чужую скрепку: `I is`. Она красивая, но не ваша.
+Не ставьте после `I` форму `is`: она нужна для `he`, `she` или `it`.
 
 **Мама спрашивает, как вы после недели. Вы устали — скажите про себя.**
 
 - ✅ **I am tired.**
-- ❌ I tired. — *Пропала скрепка. Между `I` и `tired` нужно `am`.*
+- ❌ I tired. — *После `I` перед `tired` нужно `am`.*
 - ❌ I is tired. — *`is` — не для `I`. Про себя — `am`.*
 
 ---
@@ -30,7 +28,7 @@
 
 ### `are` — когда вас несколько
 
-`we` — это «мы». Про «мы» скрепка одна: `are`. `We are busy` — «мы заняты».
+`we` — это «мы». После `we` ставят `are`: `We are busy` — «мы заняты».
 
 Рука тянется поставить `is`, потому что `is` знакомее и короче. Но `is` — про одного человека: `he is busy`. Как только людей стало двое, работает `are`.
 
@@ -40,93 +38,134 @@
 
 - ✅ **We are busy.**
 - ❌ We is busy. — *`is` — про одного. «Мы» — это уже двое, нужно `are`.*
-- ❌ We busy. — *Скрепка пропала. Между `we` и `busy` нужно `are`.*
+- ❌ We busy. — *После `we` перед `busy` нужно `are`.*
 
 ---
 
 ## Интро 3
 
-### `not` встаёт сразу после скрепки
+### `not` стоит сразу после `am`, `is` или `are`
 
 `sick` — «болеет». Чтобы сказать «не болеет», нужно `not`: `she is not sick`.
 
-Место у `not` одно — сразу после скрепки. Без скрепки он в такой фразе не работает: сначала `is`, потом `not`.
+`not` ставят сразу после `am`, `is` или `are`: сначала `is`, потом `not`.
 
 Русское «не» стоит перед словом, поэтому рука тянет написать `she not is sick`. Тут спотыкаются все, честное слово.
 
 **Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.**
 
 - ✅ **She is not sick.**
-- ❌ She not is sick. — *`not` встал перед скрепкой. Сначала `is`, потом `not`.*
+- ❌ She not is sick. — *Сначала ставят `is`, затем `not`.*
 - ❌ She is sick not. — *`not` убежал в конец. Его место сразу после `is`.*
 
 ---
 
 ## Практика (16 заданий, поддержка убывает)
 
-**1 · Вставьте слово — мама спросила, как вы**
-I ___ tired. → **am** · is · are
-- is — *Чужая скрепка. Про себя — только `am`.*
-- are — *`are` идёт с `we`, `you`, `they`. С `I` — `am`.*
+**1 · Соберите фразу — мама спрашивает, устали ли вы после недели**
+<!-- interaction_id: en:lesson-01:session-53:i01; family: phrase_builder -->
+Плитки: `I` `am` `tired.` → **I am tired.**
 
 **2 · Вставьте слово — речь про брата, он занят**
+<!-- interaction_id: en:lesson-01:session-53:i02; family: context_gap_grammar -->
 He ___ busy. → **is** · am · are
 - am — *`am` бывает только рядом с `I`. Про другого человека — `is`.*
 - are — *`are` — когда людей несколько. Брат один.*
 
-**3 · Послушайте и выберите — busy**
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-53:i03; family: listen_choose -->
 🔊 *busy* → **busy** · easy · body
-- easy — *Это «легко». Мама спрашивала, занят ли брат, а не легко ли ему.*
+- easy — *Это «легко». Здесь нужно слово «занят»: `busy`.*
 - body — *Это «тело». Про человека занятого говорят `busy`.*
 
 **4 · Соберите фразу — «мы дома»**
+<!-- interaction_id: en:lesson-01:session-53:i04; family: phrase_builder -->
 Плитки: `home` `we` `are` → **We are home.**
 
 **5 · Вставьте слово — про вас и брата вместе**
+<!-- interaction_id: en:lesson-01:session-53:i05; family: context_gap_grammar -->
 We ___ home. → **are** · is · am
 - is — *`we` — это «мы», уже не один человек. Нужно `are`.*
 - am — *`am` идёт только с `I`. Про «мы» — `are`.*
 
 **6 · Соберите фразу — «она не болеет»**
+<!-- interaction_id: en:lesson-01:session-53:i06; family: phrase_builder -->
 Плитки: `not` `she` `sick` `is` → **She is not sick.**
 
 **7 · Вставьте слово — сестра здорова**
+<!-- interaction_id: en:lesson-01:session-53:i07; family: context_gap_grammar -->
 She is ___ sick. → **not** · no · am
 - no — *`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`.*
-- am — *`am` тут ни при чём: скрепка `is` уже стоит, нужно `not`.*
+- am — *`is` уже стоит. Чтобы сказать «не болеет», нужно `not`.*
 
 **8 · Послушайте и соберите — «я не занят»**
+<!-- interaction_id: en:lesson-01:session-53:i08; family: listen_build_dictation -->
 🔊 *I am not busy.* Плитки: `busy` `not` `I` `am` `is` → **I am not busy.**
 
-**9 · Различите звуки — какое из двух про «болеет»?**
+**9 · Послушайте и выберите слово о самочувствии**
+<!-- interaction_id: en:lesson-01:session-53:i09; family: listen_choose -->
 🔊 Два слова подряд.
 *sick · six* → **sick**
-- six — *Это «шесть». На конце `six` слышится «кс», у `sick` — просто «к».*
+- six — *`Six` — «шесть». В записи было `sick` — «болен».*
 
 **10 · Вставьте слово — соседи не вместе, каждый у себя**
+<!-- interaction_id: en:lesson-01:session-53:i10; family: context_gap_grammar -->
 They are not ___ . → **together** · home · tired
-- home — *«Они не дома» — а мама спрашивала, вместе ли они.*
+- home — *Это значит «они не дома». Здесь сказано, что они не вместе.*
 - tired — *«Они не устали» — это про силы, а не про компанию.*
 
 **11 · Соберите фразу — «он не дома»**
+<!-- interaction_id: en:lesson-01:session-53:i11; family: phrase_builder -->
 Плитки: `home` `he` `not` `is` → **He is not home.**
 
-**12 · Соедините пары (Speed Match, 4 пары)**
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-53:i12; family: speed_match -->
 tired — устал · busy — занят · sick — болеет · home — дома
 
 **13 · Правда или отрицание? Брат правда занят — скажите как есть**
+<!-- interaction_id: en:lesson-01:session-53:i13; family: phrase_builder -->
 Соберите: `busy` `is` `not` `he` → **He is busy.**
 *(плитка `not` лишняя: мама спросила правду, а не отрицание)*
 
-**14 · Соберите фразу — «мы не устали»**
-Плитки: `we` `tired` `not` `are` → **We are not tired.**
+**14 · Вставьте слово — вы с другом полны сил**
+<!-- interaction_id: en:lesson-01:session-53:i14; family: context_gap_grammar -->
+We are not ___ . → **tired** · busy · home
+- busy — *`busy` — «заняты». Здесь вы говорите, что не устали.*
+- home — *`home` — «дома». Здесь нужно слово о самочувствии.*
 
-**15 · Скажите вслух — успокаиваете маму**
-🎙 **We are together. We are not tired.** — послушайте, повторите, сравните.
+**15 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i15:s01; family: scripted_repeat_compare -->
+Мама спрашивает, вы ли сейчас вместе с другом. Скажите, что вы вместе.
 
-**16 · Финал сцены — четыре ответа маме подряд, вы её успокаиваете**
-🎙 «Устал? Брат занят? Сестра не болеет? Вы вместе?» Ответьте: я устал, он занят, она не болеет, мы вместе.
-**I am tired. He is busy. She is not sick. We are together.**
+🎙 **We are together.**
+
+**16 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i15:s02; family: scripted_repeat_compare -->
+Мама спрашивает, устали ли вы с другом. Скажите, что вы не устали.
+
+🎙 **We are not tired.**
+
+**17 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s01; family: scripted_repeat_compare -->
+Мама спрашивает, устали ли вы. Скажите, что устали.
+
+🎙 **I am tired.**
+
+**18 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s02; family: scripted_repeat_compare -->
+Мама спрашивает, занят ли брат. Скажите, что он занят.
+
+🎙 **He is busy.**
+
+**19 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-53:i16:s03; family: scripted_repeat_compare -->
+Мама спрашивает, заболела ли сестра. Скажите, что она не болеет.
+
+🎙 **She is not sick.**
+
+**20 · Соберите фразу — мама спрашивает, вместе ли вы с другом**
+<!-- interaction_id: en:lesson-01:session-53:i16:s04; family: phrase_builder -->
+Плитки: `We` `are` `together.` `is` → **We are together.**
 
 ---
 
@@ -134,7 +173,7 @@ tired — устал · busy — занят · sick — болеет · home —
 
 new_words: —
 
-modes: 1=context_gap_grammar, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=sound_contrast, 10=context_gap_grammar, 11=phrase_builder, 12=speed_match, 13=phrase_builder, 14=phrase_builder, 15=scripted_repeat_compare, 16=scripted_repeat_compare
+modes: 1=phrase_builder, 2=context_gap_grammar, 3=listen_choose, 4=phrase_builder, 5=context_gap_grammar, 6=phrase_builder, 7=context_gap_grammar, 8=listen_build_dictation, 9=listen_choose, 10=context_gap_grammar, 11=phrase_builder, 12=speed_match, 13=phrase_builder, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=scripted_repeat_compare, 17=scripted_repeat_compare, 18=scripted_repeat_compare, 19=scripted_repeat_compare, 20=phrase_builder
 
 ---
 

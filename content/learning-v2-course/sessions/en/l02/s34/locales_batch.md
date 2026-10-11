@@ -1,9 +1,9 @@
 ===LOCALE: uk===
-# Англійська · Урок 2 · Сесія 34 — «Хто ці люди?»
+# Англійська · Урок 2 · Заняття 34 — «Хто ці люди?»
 
-**Сцена сесії.** На вечірці в сусідів у Дубліні ви виходите в сад. Половину людей тут бачите вперше. Друг допомагає зрозуміти, хто з ким знайомий, а двоє схожих гостей виявляються близнюками.
+**Сцена заняття.** На вечірці в сусідів у Дубліні ви виходите в сад. Половину людей тут бачите вперше. Друг допомагає зрозуміти, хто з ким знайомий, а двоє схожих гостей виявляються близнюками.
 
-**Операція:** застосування `Who are these people?`  
+**Як сказати:** застосування `Who are these people?`  
 **Нові слова:** strangers, twins  
 **Повертаються:** these, people, guests, sure
 
@@ -13,9 +13,7 @@
 
 ### `these people` — ці люди
 
-`people` — «люди», а `these people` — «ці люди». Щоб запитати, хто вони, скажіть: `Who are these people?`
-
-В українському питанні «Хто ці люди?» між «хто» й «ці» немає окремого слова. В англійському там стоїть `are`, бо йдеться про кількох людей. `These people` залишається наприкінці.
+`these people` — «ці люди». Щоб дізнатися, хто вони, запитайте `Who are these people?` — «Хто ці люди?» Людей кілька, тому тут потрібне `are`: воно стоїть одразу після `Who`, а `these people` лишається наприкінці. В українському питанні такого слова немає, тож його легко забути.
 
 **Ви вказуєте другові на незнайому компанію в саду. Запитайте: «Хто ці люди?»**
 
@@ -29,9 +27,7 @@
 
 ### `strangers` — незнайомці
 
-`strangers` — «незнайомці»: люди, яких ви не знаєте. `They are strangers` — «Вони незнайомці». Тут `they` означає «вони», а `are` стоїть перед `strangers`.
-
-Про себе разом зі співрозмовником можна сказати: `We are strangers` — «Ми незнайомі». Не потрібно називати кожного окремо.
+`strangers` — «незнайомці», люди, яких ви не знаєте. `They are strangers` — «Вони незнайомці»: спочатку `they` — «вони», далі `are`, потім `strangers`. Якщо йдеться про вас зі співрозмовником, скажіть `We are strangers` — «Ми незнайомі». Початок залежить від того, про кого говорите.
 
 **Друг запитує, чи знайомі вам двоє біля паркану. Ви бачите їх уперше. Скажіть: «Вони незнайомці».**
 
@@ -45,9 +41,7 @@
 
 ### `twins` — близнюки
 
-`twins` — «близнюки». `They are twins` — «Вони близнюки». В українській між «вони» й «близнюки» нічого не потрібно, а в англійській фразі має бути `are`.
-
-Якщо ви з кимось схожі, але не близнюки, скажіть `We are not twins`. Слово `not` після `are` змінює відповідь на заперечну.
+`twins` — «близнюки». `They are twins` — «Вони близнюки». Якщо ви з кимось схожі, але не близнюки, скажіть `We are not twins` — «Ми не близнюки». Не загубіть `not`, бо тоді самі підтвердите, що ви близнюки. Воно стоїть після `are` і не замінює його: у відповіді потрібні обидва слова.
 
 **Гість приймає вас із другом за близнюків. Виправте його: «Ми не близнюки».**
 
@@ -57,125 +51,84 @@
 
 ---
 
-## Практика (17 завдань, підтримки дедалі менше)
+## Практика — по одній цільовій фразі
 
 **1 · Картка слова — strangers**
-> **strangers** — «незнайомці». Люди, з якими ви особисто не знайомі.
+<!-- interaction_id: en:lesson-02:session-34:i01; family: listen_choose -->
+Ціль: `strangers`
 
 **2 · Послухайте й виберіть слово**
-🔊 *strangers* → **strangers** · rangers · dangers
-- rangers — *`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`.*
-- dangers — *`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`.*
+<!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
+Ціль: `strangers`
+Варіанти: `strangers` · `rangers` · `dangers`
 
 **3 · Картка слова — twins**
-> **twins** — «близнюки». Двоє людей, які народилися внаслідок однієї вагітності. Дорослі близнюки — теж `twins`.
+<!-- interaction_id: en:lesson-02:session-34:i03; family: listen_choose -->
+Ціль: `twins`
 
 **4 · Послухайте й виберіть слово**
-🔊 *twins* → **twins** · tins · wins
-- tins — *`Tins` — «бляшанки». Послухайте початок слова: у записі `twins`.*
-- wins — *`Wins` — «перемагає». Послухайте початок слова: у записі `twins`.*
+<!-- interaction_id: en:lesson-02:session-34:i04; family: listen_choose -->
+Ціль: `twins`
+Варіанти: `twins` · `tins` · `wins`
 
 **5 · Складіть фразу — друг запитує про двох людей біля паркану; скажіть: «Вони незнайомці»**
-Плитки: `strangers` `They` `are` → **They are strangers.**
+<!-- interaction_id: en:lesson-02:session-34:i05; family: phrase_builder -->
+Ціль: `They are strangers.`
 
 **6 · Вставте слово — запитайте друга: «Хто ці люди?»**
-*(`these` — «ці»)*
-Who are ___ people? → **these** · this · they
-- this — *Для «ці люди» потрібно `these people`. Слово `this` стосується когось або чогось одного.*
-- they — *Це «вони». Перед `people` тут потрібне слово «ці» — `these`.*
+<!-- interaction_id: en:lesson-02:session-34:i06; family: context_gap_grammar -->
+Ціль: `Who are ___ people?`
+Варіанти: `these` · `this` · `they`
 
 **7 · Послухайте й виберіть слово**
-🔊 *people* → **people** · pupil · purple
-- pupil — *`Pupil` — «учень». Послухайте перший склад: у записі `people`.*
-- purple — *`Purple` — «фіолетовий». Послухайте перший склад: у записі `people`.*
+<!-- interaction_id: en:lesson-02:session-34:i07; family: listen_choose -->
+Ціль: `people`
+Варіанти: `people` · `pupil` · `purple`
 
 **8 · Вставте слово — двоє гостей виявилися близнюками; назвіть їхню спорідненість**
-They are ___ . → **twins** · strangers · sure
-- strangers — *Це «незнайомці». Тут потрібно назвати спорідненість — `twins`, «близнюки».*
-- sure — *Вийде «Вони впевнені». Це не відповідь про те, ким ці двоє доводяться одне одному.*
+<!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
+Ціль: `They are ___ .`
+Варіанти: `twins` · `strangers` · `sure`
 
 **9 · Складіть фразу — вас із другом прийняли за близнюків; скажіть: «Ми не близнюки»**
-Плитки: `twins` `not` `We` `are` → **We are not twins.**
+<!-- interaction_id: en:lesson-02:session-34:i09; family: phrase_builder -->
+Ціль: `We are not twins.`
 
 **10 · Вставте слово — друг перепитує, чи точно гості близнюки; скажіть: «Я впевнений»**
-*(`sure` — «упевнений»)*
-I am ___ . → **sure** · twins · people
-- twins — *Це «близнюки». Щоб сказати, що ви впевнені у відповіді, потрібне `sure`.*
-- people — *Це «люди». У цій фразі потрібне слово про вашу впевненість — `sure`.*
+<!-- interaction_id: en:lesson-02:session-34:i10; family: context_gap_grammar -->
+Ціль: `I am ___ .`
+Варіанти: `sure` · `twins` · `people`
 
-**11 · З’єднайте пари (Speed Match, 4 пари)**
-these — ці · people — люди · guests — гості · sure — упевнений
+**11 · З’єднайте пари**
+<!-- interaction_id: en:lesson-02:session-34:i11; family: speed_match -->
+Пари: `these` — ці · `people` — люди · `guests` — гості · `sure` — упевнений
+Ціль: `these · people · guests · sure`
 
-**12 · Послухайте й складіть — друг говорить про гостей, із якими ще не знайомий**
-*(`guests` — «гості»)*
-🔊 *The guests are strangers.* Плитки: `strangers` `are` `The` `guests` `not` → **The guests are strangers.**
-*(плитка `not` зайва: на записі гості — незнайомці, без заперечення)*
+**12 · Послухайте й складіть — друг говорить про кількох гостей**
+<!-- interaction_id: en:lesson-02:session-34:i12; family: listen_build_dictation -->
+Ціль: `The guests are strangers.`
 
 **13 · Вставте слово — ви показуєте на компанію біля паркану: «Хто ці люди?»**
-Who are these ___ ? → **people** · name · host
-- name — *Це «ім’я». У питанні про цих людей потрібне `people`.*
-- host — *Це один господар. Ви запитуєте про кількох людей — `these people`.*
+<!-- interaction_id: en:lesson-02:session-34:i13; family: context_gap_grammar -->
+Ціль: `Who are these ___ ?`
+Варіанти: `people` · `name` · `host`
 
 **14 · Складіть фразу — друг запитує, чи знайомі близнюки з господарем; ви не знаєте й чесно кажете, що не впевнені**
-Плитки: `sure` `I` `not` `am` → **I am not sure.**
+<!-- interaction_id: en:lesson-02:session-34:i14; family: phrase_builder -->
+Ціль: `I am not sure.`
 
-**15 · Скажіть уголос — зверніться до двох схожих гостей і запитайте, чи вони близнюки**
-🎙 **Are you twins?** — послухайте, повторіть, порівняйте.
+**15 · Промовте одну фразу**
+<!-- interaction_id: en:lesson-02:session-34:i15; family: scripted_repeat_compare -->
+Ціль: `Are you twins?`
 
 **16 · Послухайте й складіть — друг упізнав двох гостей і звертається до них**
-🔊 *You are twins.* Плитки: `twins` `are` `You` → **You are twins.**
+<!-- interaction_id: en:lesson-02:session-34:i16; family: listen_build_dictation -->
+Ціль: `You are twins.`
 
 **17 · Складіть фразу — у сад вийшла ще одна компанія; дізнайтеся в друга, хто ці люди**
-Плитки: `people` `Who` `these` `are` `is` → **Who are these people?**
-*(плитка `is` зайва: питання про кількох людей, тому потрібне `are`)*
+<!-- interaction_id: en:lesson-02:session-34:i17; family: phrase_builder -->
+Ціль: `Who are these people?`
 
----
-
-## Для збирача
-
-new_words:
-strangers — незнайомці — Люди, з якими ви особисто не знайомі.
-twins — близнюки — Двоє людей, які народилися внаслідок однієї вагітності. Дорослі близнюки — теж `twins`.
-
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=phrase_builder
-
----
-
-## Самоперевірка
-
-**1. Слова, що повертаються**
-
-| слово | у яких завданнях | де воно ПРАВИЛЬНА відповідь |
-|---|---|---|
-| these | 6, 11, 13, 17 | 6, 11, 17 |
-| people | 6, 7, 10, 11, 13, 17 | 7, 11, 13, 17 |
-| guests | 11, 12 | 11, 12 |
-| sure | 8, 10, 11, 14 | 10, 11, 14 |
-
-**2. Сторінки інтро**
-
-| сторінка | слово у відповіді ✅ | чи є це слово в тексті НАД запитанням |
-|---|---|---|
-| Інтро 1 | Who, are, these, people | так — наведено питання `Who are these people?` |
-| Інтро 2 | They, are, strangers | так — наведено фразу `They are strangers` |
-| Інтро 3 | We, are, not, twins | так — наведено фразу `We are not twins` |
-
-**3. Дошка пар — завдання 11**
-
-| слово | картка | опрацювання ДО дошки |
-|---|---|---|
-| these | введено в уроці 2, сесії 27 | завдання 6 |
-| people | з уроку 1, сесії 49 | завдання 7 |
-| guests | з уроку 1, сесії 36; повертається в уроці 2, сесії 33 | вивчено в попередніх сесіях |
-| sure | з уроку 1, сесії 3 | завдання 10 |
-
-**4. Складання фраз**
-
-| завдання | правильна фраза |
-|---|---|
-| 5 | They are strangers. |
-| 9 | We are not twins. |
-| 12 | The guests are strangers. |
-| 14 | I am not sure. |
-| 16 | You are twins. |
-| 17 | Who are these people? |
+## Для сборщика
+atomic_practice: practice.atomic.json
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=phrase_builder, 6=context_gap_grammar, 7=listen_choose, 8=context_gap_grammar, 9=phrase_builder, 10=context_gap_grammar, 11=speed_match, 12=listen_build_dictation, 13=context_gap_grammar, 14=phrase_builder, 15=scripted_repeat_compare, 16=listen_build_dictation, 17=phrase_builder

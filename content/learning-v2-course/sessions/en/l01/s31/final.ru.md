@@ -1,8 +1,8 @@
-# Английский · Урок 1 · Сессия 31 — «Мокро, сухо, жарко, тепло»
+# Английский · Урок 1 · Занятие 31 — «Погода за окном»
 
-**Сцена сессии.** Дублин за окном меняется каждый день: то дождь с утра, то к обеду солнце. Сосед по лестничной площадке уже одет и на выходе — он каждый раз спрашивает, что там на улице.
-**Операция:** `It is` про погоду (новые слова)
-**Новые слова:** wet
+**Ситуация.** Лена встречает соседа Тома у подъезда в Дублине. Том собирается выйти и спрашивает Лену, какая погода на улице.
+**Как сказать:** `It is`, когда говорите о погоде.
+**Новые слова:** wet, dry, hot, warm
 **Возвращаются:** cold, rainy, windy, dry, hot, warm
 
 ---
@@ -19,7 +19,7 @@
 
 - ✅ **It is wet.**
 - ❌ Is wet. — *Пропало `it`. Фраза о погоде всегда начинается с него, даже если по-русски там ничего нет.*
-- ❌ It wet. — *Скрепка `is` потерялась. `It` и слово о погоде всегда через `is`.*
+- ❌ It wet. — *Между `it` и словом о погоде нужна форма `is`.*
 
 ---
 
@@ -62,81 +62,104 @@
 ## Практика (20 заданий, поддержка убывает)
 
 **1 · Карточка слова — wet**
+<!-- interaction_id: en:lesson-01:session-31:i01; family: listen_choose -->
 > **wet** — «мокро, мокрый». Про дождь на улице, про скамейку, на которую лучше не садиться, и про вас, если зонта не было.
 
-**2 · Послушайте и выберите — wet**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
 🔊 *wet* → **wet** · went · what
 - went — *Внутри слышно «н», которого в `wet` нет.*
 - what — *Начало то же. Дальше гласный другой: в `what` слышно «о», в `wet` — «э».*
 
 **3 · Карточка слова — dry**
+<!-- interaction_id: en:lesson-01:session-31:i03; family: listen_choose -->
 > **dry** — «сухо, сухой». Дождя нет, асфальт светлый, куртку можно не вешать на батарею.
 
-**4 · Послушайте и выберите — dry**
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-31:i04; family: listen_choose -->
 🔊 *dry* → **dry** · try · draw
 - try — *Отличается только первым звуком. `dry` начинается с «д».*
 - draw — *Начало то же, `dr`. Дальше в `dry` слышно «ай», а в `draw` — долгое «о».*
 
 **5 · Карточка слова — cold**
+<!-- interaction_id: en:lesson-01:session-31:i05; family: listen_choose -->
 > **cold** — «холодно, холодный». Про погоду, из-за которой возвращаешься за шарфом, и про чай, который стоял слишком долго.
 
 **6 · Вставьте слово — дождь идёт третий час**
+<!-- interaction_id: en:lesson-01:session-31:i06; family: context_gap_grammar -->
 It is ___ . → **wet** · dry · cold
 - dry — *Это «сухо», а на улице дождь. Мокро — `wet`.*
 - cold — *«Холодно» — про температуру, а вопрос про воду сверху.*
 
 **7 · Соберите фразу — «сухо»**
+<!-- interaction_id: en:lesson-01:session-31:i07; family: phrase_builder -->
 Плитки: `dry` `is` `It` `am` → **It is dry.**
 
 **8 · Карточка слова — hot**
+<!-- interaction_id: en:lesson-01:session-31:i08; family: listen_choose -->
 > **hot** — «жарко, горячо». Про погоду, от которой ищешь тень, и про чай, который пока не выпить.
 
 **9 · Карточка слова — warm**
+<!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
 > **warm** — «тепло». Не жарко и не холодно, а ровно так, как хочется.
 
-**10 · Послушайте и выберите — warm**
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-01:session-31:i10; family: listen_choose -->
 🔊 *warm* → **warm** · worm · war
 - worm — *`worm` — «червяк». На месте гласного там глухой невнятный звук, ни «о», ни «а». В `warm` ясно слышно «о».*
 - war — *Обрублен хвост. В `warm` на конце слышно «м».*
 
 **11 · Вставьте слово — солнце печёт, вы ищете тень**
+<!-- interaction_id: en:lesson-01:session-31:i11; family: context_gap_grammar -->
 It is ___ . → **hot** · warm · cold
 - warm — *«Тепло» — это когда приятно. А вы прячетесь от солнца, значит уже слишком.*
 - cold — *Прямо наоборот. `cold` — про холод.*
 
-**12 · Соедините пары (Speed Match, 4 пары)**
+**12 · Соедините пары**
+<!-- interaction_id: en:lesson-01:session-31:i12; family: speed_match -->
 wet — мокро · dry — сухо · hot — жарко · warm — тепло
 
 **13 · Вставьте слово — с утра шарф и вторая кофта**
+<!-- interaction_id: en:lesson-01:session-31:i13; family: context_gap_grammar -->
 It is ___ . → **cold** · warm · dry
 - warm — *«Тепло» — это когда кофта не нужна.*
 - dry — *Про воду, а речь про температуру.*
 
 **14 · Карточка слова — rainy**
+<!-- interaction_id: en:lesson-01:session-31:i14; family: listen_choose -->
 > **rainy** — «дождливо». Не одна тучка на час, а день, когда дождь идёт и идёт.
 
 **15 · Вставьте слово — льёт с утра и не собирается кончаться**
+<!-- interaction_id: en:lesson-01:session-31:i15; family: context_gap_grammar -->
 It is ___ . → **rainy** · dry · hot
 - dry — *Это «сухо», а с неба льёт.*
 - hot — *Про жару, а речь о дожде.*
 
 **16 · Карточка слова — windy**
+<!-- interaction_id: en:lesson-01:session-31:i16; family: listen_choose -->
 > **windy** — «ветрено». Ветер вырывает дверь из рук, а зонт выворачивает наизнанку.
 
 **17 · Вставьте слово — шапку сдувает, идти приходится боком**
+<!-- interaction_id: en:lesson-01:session-31:i17; family: context_gap_grammar -->
 It is ___ . → **windy** · warm · wet
 - warm — *Про тепло, а речь о ветре.*
 - wet — *Про воду, а вас треплет ветром, не дождём.*
 
 **18 · Послушайте и соберите — «дождливо»**
+<!-- interaction_id: en:lesson-01:session-31:i18; family: listen_build_dictation -->
 🔊 *It is rainy.* Плитки: `rainy` `It` `is` `windy` → **It is rainy.**
 
 **19 · Соберите фразу — на улице рвёт зонт из рук**
+<!-- interaction_id: en:lesson-01:session-31:i19; family: phrase_builder -->
 Плитки: `windy` `It` `are` `is` → **It is windy.**
 
-**20 · Скажите вслух — сосед спросил, как на улице**
-🎙 Дождь кончился, вышло солнце, куртка не нужна. Ответьте двумя фразами:
-**It is dry. It is warm.**
+**20 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-31:i20:s01; family: scripted_repeat_compare -->
+🎙 **It is dry.**
+
+**21 · Произнесите одну фразу**
+<!-- interaction_id: en:lesson-01:session-31:i20:s02; family: scripted_repeat_compare -->
+🎙 **It is warm.**
 
 ---
 
@@ -148,7 +171,7 @@ dry — сухо, сухой — дождя нет, асфальт светлы�
 hot — жарко, горячо — про погоду, от которой ищешь тень, и про чай, который пока не выпить
 warm — тепло — не жарко и не холодно, а ровно так, как хочется
 
-modes: 1=word_card, 2=listen_choose, 3=word_card, 4=listen_choose, 5=word_card, 6=context_gap_grammar, 7=phrase_builder, 8=word_card, 9=word_card, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=word_card, 15=context_gap_grammar, 16=word_card, 17=context_gap_grammar, 18=listen_build_dictation, 19=phrase_builder, 20=scripted_repeat_compare
+modes: 1=listen_choose, 2=listen_choose, 3=listen_choose, 4=listen_choose, 5=listen_choose, 6=context_gap_grammar, 7=phrase_builder, 8=listen_choose, 9=listen_choose, 10=listen_choose, 11=context_gap_grammar, 12=speed_match, 13=context_gap_grammar, 14=listen_choose, 15=context_gap_grammar, 16=listen_choose, 17=context_gap_grammar, 18=listen_build_dictation, 19=phrase_builder, 20=scripted_repeat_compare, 21=scripted_repeat_compare
 
 ---
 

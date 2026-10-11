@@ -1,7 +1,7 @@
 [
   {
     "interactionId": "en:lesson-02:session-23:i01",
-    "correctText": "",
+    "correctText": "corner",
     "correctResponseId": null
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-23:i03",
-    "correctText": "",
+    "correctText": "bridge",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-23:i10",
-    "correctText": "",
+    "correctText": "en:lesson-02:session-23:i10:p1=corner\nen:lesson-02:session-23:i10:p2=bridge\nen:lesson-02:session-23:i10:p3=near\nen:lesson-02:session-23:i10:p4=behind",
     "correctResponseId": null
   },
   {
@@ -80,8 +80,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-02:session-23:i17",
-    "correctText": "Where is the bridge? It is near. It is behind the shops.",
+    "interactionId": "en:lesson-02:session-23:i17:s01",
+    "correctText": "Where is the bridge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-23:i17:s02",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-23:i17:s03",
+    "correctText": "It is behind the shops.",
     "correctResponseId": null
   }
 ]

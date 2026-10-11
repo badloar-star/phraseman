@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-03:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-03:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro1:r2": {
+          "ru": "Билетов несколько. В названии нужно добавить `s`: `tickets`.",
+          "uk": "Квитків кілька. У назві потрібно додати `s`: `tickets`."
+        },
+        "en:lesson-03:session-17:intro1:r3": {
+          "ru": "Название билетов с `s` верное, но после `They` здесь нужно `are`: `They are tickets`.",
+          "uk": "Назва квитків із `s` правильна, але після `They` тут потрібне `are`: `They are tickets`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro2:r2": {
+          "ru": "Спрашиваем о нескольких предметах. Название монет должно быть с `s`: `coins`.",
+          "uk": "Питаємо про кілька предметів. Назва монет має бути з `s`: `coins`."
+        },
+        "en:lesson-03:session-17:intro2:r3": {
+          "ru": "Вопрос о нескольких предметах начинается с `Are they`. Форма `coins` с `s` уже на месте.",
+          "uk": "Питання про кілька предметів починається з `Are they`. Форма `coins` із `s` уже правильна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-03:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-03:session-17:intro3:r2": {
+          "ru": "Речь о нескольких предметах. Даже со словом `not` название остаётся с `s`: `cards`.",
+          "uk": "Йдеться про кілька предметів. Навіть зі словом `not` назва лишається з `s`: `cards`."
+        },
+        "en:lesson-03:session-17:intro3:r3": {
+          "ru": "После `They` в этой фразе нужно `are`. Затем идёт `not cards` — «не карточки».",
+          "uk": "Після `They` у цій фразі потрібне `are`. Далі йде `not cards` — «не картки»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "74be9d5373eaedf44648f5328e9f80aa325497f7eb7ea00342eb84df3cc69b5f"
+}

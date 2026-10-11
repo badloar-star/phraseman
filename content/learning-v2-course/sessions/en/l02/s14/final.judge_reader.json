@@ -1,29 +1,28 @@
 {
-  "pages": [
-    {
-      "page": 1,
-      "retelling": "Про вещь по-английски говорят `it`, и чтобы спросить про неё, надо поставить слова в порядке `Is it ...?`.",
-      "what_i_do_now": "Теперь про пальто я скажу не «It is cheap?», а «Is it cheap?» — начну с `is`.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 2,
-      "retelling": "Слово `sold` значит «продано», и про вещь можно либо сообщить `It is sold.`, либо спросить `Is it sold?`.",
-      "what_i_do_now": "Теперь про ботинки с чужим именем я спрошу «Is it sold?».",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 3,
-      "retelling": "На вопрос можно ответить коротко: `Yes, it is.` или `No, it is not.` — слово из вопроса повторять не надо.",
-      "what_i_do_now": "Теперь на вопрос «Is it comfortable?» я отвечу «No, it is not.», а не буду тянуть всю фразу целиком.",
-      "understood": true,
-      "problems": []
-    }
+  "reviewer": "/root/s10_rejudge_core",
+  "role": "judge_reader",
+  "reviewedAt": "2026-10-03T16:04:31.622Z",
+  "session": "s14",
+  "sourceSha256": "443a240ce5ed9edb5ad8e694cd6b968e2ec9a0ba89e8c4abba1788ec71a17a4d",
+  "exactRuSha256": "443a240ce5ed9edb5ad8e694cd6b968e2ec9a0ba89e8c4abba1788ec71a17a4d",
+  "exactUkSha256": "61cf5b00bc587fad604fc3234bfcce00db18518f9b28a8b8a3d7aeecb7f6838d",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md"
+  ],
+  "verdict": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Labels «Финал 1 из 3», «2 из 3» and «3 из 3» make the sequence clear without placing multiple phrases on one screen.",
+    "Each instruction states one concrete action and leads to one short English phrase.",
+    "The final response follows directly from the stated fact that the coat is available."
   ],
   "pages_understood": 3,
-  "verdict": "PASS",
-  "verdict_reason": "два прогона разошлись (BLOCK/PASS), общих претензий нет: Прочитал все три страницы по одному разу и нигде не застрял. Первая объясняет, что вещь — это `it` и что вопрос начинается с `is`; сразу видно, чем «Is it cheap?» отличается от «It is cheap?». Вторая даёт новое слово «продано» и показывает его и в утверждении, и в вопросе — порядок тот же, ничего нового запоминать не надо. Третья короткая и самая полезная: понятно, почему в ответе не надо повторять слово, и где именно встаёт `not`. Разборы неправильных вариантов написаны по-человечески, каждый объясняет ошибку одной фразой, а не загадкой. Ни одного места, где пришлось бы догадываться или перечитывать, я не нашёл.",
-  "notes": "Мелочь, не влияющая на вердикт: на третьей странице продавец сначала спрашивает `Is it cheap?`, а в задании внизу — уже `Is it comfortable?`. Я успел за этим уследить, но переход между двумя вопросами чуть резкий."
+  "scope": "Fresh clarity review of the three separated final interactions in both locales."
 }

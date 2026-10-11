@@ -1,218 +1,33 @@
 {
-  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
-  "reasoningEffort": "medium",
-  "reviewer": "/root/s10_pedagogy",
-  "model": "gpt-5.6-terra",
-  "machineFactsHard": [],
-  "plan_fidelity": {
-    "operation_matches": true,
-    "new_words_match": [
-      "ticket",
-      "coin",
-      "card"
-    ],
-    "missing": [],
-    "extra_grammar_smuggled": []
+  "schemaVersion": "learning_v2_fresh_role_receipt_v1",
+  "reviewer": "/root/l3_s13_s24_fresh_rejudge_v2",
+  "reviewedAt": "2026-10-04T00:00:00+01:00",
+  "sourceReport": "content/learning-v2-course/judgements/2026-10-04_l3_s13_s24_fresh_rejudge.json",
+  "session": "en/l03/s17",
+  "role": "judge_pedagogy",
+  "sourcePaths": [
+    "final.ru.md",
+    "final.uk.md",
+    "practice.atomic.json"
+  ],
+  "sourceSha256": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+  "exactRuSha256": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+  "exactUkSha256": "b38e67b9f789acc155f7ccc86219db1e767f77270bd0758de6fb1c75193787b5",
+  "practiceAtomicSha256": "faaa0cede4984787da8da7b047169cd5bd990ee352aa752ae4ae4341348c32bc",
+  "localeHashes": {
+    "ru": "f266faddc764e50c93f00a745625db881a3035e738fab62bfaf5be9ff8c8d232",
+    "uk": "b38e67b9f789acc155f7ccc86219db1e767f77270bd0758de6fb1c75193787b5"
   },
-  "answer_semantics": [],
-  "boundary": {
-    "unknown_in_explanations": [],
-    "unknown_in_targets": []
-  },
-  "traps": {
-    "silly": [],
-    "feedback_teaches_unknown_form": []
-  },
-  "feedback": {
-    "missing_per_option": [],
-    "duplicated": []
-  },
-  "structure": {
-    "task_count": 17,
-    "below_12": false,
-    "word_first_respected": true,
-    "support_fades": true,
-    "speed_match_boards": [
-      [
-        "tickets",
-        "coins",
-        "cards",
-        "plants"
-      ]
-    ],
-    "speed_match_overlap": false,
-    "repeated_targets": [],
-    "generic_instructions": [],
-    "combinedBuilders": [
-      5,
-      9,
-      11,
-      14,
-      17
-    ]
-  },
-  "returns": {
-    "plant": [
-      8,
-      12
-    ],
-    "cushion": [
-      10,
-      14
-    ]
-  },
-  "time_references": [],
-  "cross_session_repeats": [],
-  "textbook_formulas": [],
   "verdict": "PASS",
-  "verdict_reason": "The session introduces only regular plural -s with explicit multi-item referents; all answers are unique, returns are retrieved correctly, and no S21 article-choice drill is introduced.",
-  "substitutionEvidence": "Every alternate fails number/agreement/referent. Each new word has card + listening before plural phrase. All four board plurals occur before board. T11/T13 provide no target/negation leak.",
-  "actualAudioReviewed": false,
-  "previousReview": {
-    "sourceSha256": "f0409b500c3924f239f23cf11d3c3b218f1bccf4d901bceda8a9d31cda5a8f72",
-    "reasoningEffort": "medium",
-    "reviewer": "/root/s10_pedagogy",
-    "model": "gpt-5.6-terra",
-    "machineFactsHard": [],
-    "plan_fidelity": {
-      "operation_matches": true,
-      "new_words_match": [
-        "ticket",
-        "coin",
-        "card"
-      ],
-      "missing": [],
-      "extra_grammar_smuggled": []
-    },
-    "answer_semantics": [],
-    "boundary": {
-      "unknown_in_explanations": [],
-      "unknown_in_targets": []
-    },
-    "traps": {
-      "silly": [],
-      "feedback_teaches_unknown_form": []
-    },
-    "feedback": {
-      "missing_per_option": [],
-      "duplicated": []
-    },
-    "structure": {
-      "task_count": 17,
-      "below_12": false,
-      "word_first_respected": true,
-      "support_fades": true,
-      "speed_match_boards": [
-        [
-          "tickets",
-          "coins",
-          "cards",
-          "plants"
-        ]
-      ],
-      "speed_match_overlap": false,
-      "repeated_targets": [],
-      "generic_instructions": [],
-      "combinedBuilders": [
-        5,
-        9,
-        11,
-        14,
-        17
-      ]
-    },
-    "returns": {
-      "plant": [
-        8,
-        12
-      ],
-      "cushion": [
-        10,
-        14
-      ]
-    },
-    "time_references": [],
-    "cross_session_repeats": [],
-    "textbook_formulas": [],
-    "verdict": "PASS",
-    "verdict_reason": "The session introduces only regular plural -s with explicit multi-item referents; all answers are unique, returns are retrieved correctly, and no S21 article-choice drill is introduced.",
-    "substitutionEvidence": "Every alternate fails number/agreement/referent. Each new word has card + listening before plural phrase. All four board plurals occur before board. T11/T13 provide no target/negation leak.",
-    "actualAudioReviewed": false,
-    "previousReview": {
-      "sourceSha256": "27fccff64a607584487fa69ee95f13813855272174afbfe038d8cddde6f09fe3",
-      "reasoningEffort": "medium",
-      "reviewer": "/root/s10_pedagogy",
-      "model": "gpt-5.6-terra",
-      "machineFactsHard": [],
-      "plan_fidelity": {
-        "operation_matches": true,
-        "new_words_match": [
-          "ticket",
-          "coin",
-          "card"
-        ],
-        "missing": [],
-        "extra_grammar_smuggled": []
-      },
-      "answer_semantics": [],
-      "boundary": {
-        "unknown_in_explanations": [],
-        "unknown_in_targets": []
-      },
-      "traps": {
-        "silly": [],
-        "feedback_teaches_unknown_form": []
-      },
-      "feedback": {
-        "missing_per_option": [],
-        "duplicated": []
-      },
-      "structure": {
-        "task_count": 17,
-        "below_12": false,
-        "word_first_respected": true,
-        "support_fades": true,
-        "speed_match_boards": [
-          [
-            "tickets",
-            "coins",
-            "cards",
-            "plants"
-          ]
-        ],
-        "speed_match_overlap": false,
-        "repeated_targets": [],
-        "generic_instructions": [],
-        "combinedBuilders": [
-          5,
-          9,
-          11,
-          14,
-          17
-        ]
-      },
-      "returns": {
-        "plant": [
-          8,
-          12
-        ],
-        "cushion": [
-          10,
-          14
-        ]
-      },
-      "time_references": [],
-      "cross_session_repeats": [],
-      "textbook_formulas": [],
-      "verdict": "PASS",
-      "verdict_reason": "The session introduces only regular plural -s with explicit multi-item referents; all answers are unique, returns are retrieved correctly, and no S21 article-choice drill is introduced.",
-      "substitutionEvidence": "Every alternate fails number/agreement/referent. Each new word has card + listening before plural phrase. All four board plurals occur before board. T11/T13 provide no target/negation leak.",
-      "actualAudioReviewed": false
-    },
-    "scope": "Initial full audit plus actual independent six-line delta review",
-    "deltaEvidence": "Actual reviewer confirms unchanged initial scope; cash desk change/tokens motivates neutral Are they coins? Intro2/T9 wrong options fail plural/agreement; T16 explicitly identifies coins for change. Board context has no answer effect. Intro2 only regular-s and known question frame, no article drift."
+  "severity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
   },
-  "scope": "Initial full review plus actual independent semantic and final two-phrase copy deltas",
-  "deltaEvidence": "Actual reviewer confirms unchanged initial scope; cash desk change/tokens motivates neutral Are they coins? Intro2/T9 wrong options fail plural/agreement; T16 explicitly identifies coins for change. Board context has no answer effect. Intro2 only regular-s and known question frame, no article drift.",
-  "finalDeltaEvidence": "Reviewer compared final against draft_02 and confirmed only the two stated Russian wording repairs; task meanings, options, answers and prior findings retained."
+  "blockers": [],
+  "mustFix": [],
+  "evidence": [
+    "Regular plural -s is limited to the named words and practised through statement, question and negation."
+  ],
+  "verdictReason": "Regular plural -s is limited to the named words and practised through statement, question and negation."
 }

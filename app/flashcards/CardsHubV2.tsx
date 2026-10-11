@@ -93,7 +93,7 @@ function WordChip({ g, text, style }: Readonly<{ g: GlassTokens; text: string; s
 
 const Tile = memo(function Tile({ g, testID, title, count, onPress, icon, children }: Readonly<{ g: GlassTokens; testID: string; title: string; count: string; onPress: () => void; icon: keyof typeof Ionicons.glyphMap; children: React.ReactNode }>) {
   return (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={`${title}, ${count}`} onPress={onPress}
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={count === '' ? title : `${title}, ${count}`} onPress={onPress}
       style={({ pressed }) => [styles.tile, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
       <PlateFill g={g} radius={22} />
       {children}

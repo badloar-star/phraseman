@@ -18,6 +18,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
+import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
 
 type Zone = 'up' | 'stay' | 'down';
@@ -55,7 +56,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
             key={m.uid}
             style={[s.row, m.isMe ? { backgroundColor: p.cardRaised } : null]}
             accessible
-            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${m.steps} ${spireText(lang, 'steps')}`}
+            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${spireStepsCount(lang, m.steps)}`}
           >
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
             <SpireInitial name={m.name} size={40} />
@@ -65,7 +66,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
             </View>
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
             {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
-            <Text style={[s.steps, { color: p.text }]}>{m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {spireText(lang, 'stepsShort')}</Text></Text>
+            <Text style={[s.steps, { color: p.text }]}>{m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {spireStepsShort(lang, m.steps)}</Text></Text>
           </View>
         ))}
       </View>

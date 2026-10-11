@@ -15,6 +15,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
+import { spireStepsCount, spireStepsWordAfterOf } from './spire_plurals';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn, type SpireRival } from './spire_tower_model';
 
 type Props = Readonly<{
@@ -38,14 +39,13 @@ export function spireFloorTitle(lang: Lang, floor: number): string {
 
 export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | null, stepInFloor: number | null, coins: SpireCoinsConfig): string {
   const total = spireStepsIn(floor);
-  const steps = spireText(lang, 'steps');
-  let status = `${total} ${steps}`;
+  let status = spireStepsCount(lang, total);
   if (myFloor !== null && floor === myFloor) {
     status = stepInFloor === null
       ? spireText(lang, 'youHere')
-      : `${spireText(lang, 'youHere')} · ${stepInFloor} ${spireText(lang, 'outOf')} ${total} ${steps}`;
+      : `${spireText(lang, 'youHere')} · ${stepInFloor} ${spireText(lang, 'outOf')} ${total} ${spireStepsWordAfterOf(lang, total)}`;
   } else if (myFloor !== null && floor < myFloor) {
-    status = `${spireText(lang, 'passed')} · ${total} ${steps}`;
+    status = `${spireText(lang, 'passed')} · ${spireStepsCount(lang, total)}`;
   }
   const guardMark = spireIsGuard(floor) ? ` (×${coins.guardianMultiplier})` : '';
   const summitMark = spireIsSummit(floor) ? ` + ${coins.summitBonus}` : '';

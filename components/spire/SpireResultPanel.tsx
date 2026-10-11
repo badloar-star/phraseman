@@ -19,6 +19,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { spireText } from './spire_strings';
+import { spireStepsCount } from './spire_plurals';
 import { spireClock, spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from './spire_tower_model';
 
@@ -76,7 +77,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
       title: guardNext ? spireGameText(lang, 'guardAhead') : spireGameText(lang, 'floorAhead', { n: next }),
       sub: guardNext
         ? spireGameText(lang, 'guardSub', { n: next, m: coins.guardianMultiplier })
-        : `${spireStepsIn(next)} ${spireText(lang, 'steps')} · ${spireFloorCoinsOf(next, coins)} ${spireText(lang, 'coinsPerFloor')}`,
+        : `${spireStepsCount(lang, spireStepsIn(next))} · ${spireFloorCoinsOf(next, coins)} ${spireText(lang, 'coinsPerFloor')}`,
       pills: [coins.perStep, spireFloorCoinsOf(o.floorBefore, coins)],
       cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null,
     };

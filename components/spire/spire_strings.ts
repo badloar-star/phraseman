@@ -22,7 +22,6 @@ const S = {
   guard: ['Страж', 'Вартовий', 'Guardian', 'Guardián', 'Guardião', 'Người canh', 'Penjaga', 'Muhafız', 'Strażnik'],
   summit: ['Вершина', 'Вершина', 'Summit', 'Cima', 'Topo', 'Đỉnh', 'Puncak', 'Zirve', 'Szczyt'],
   aboveClouds: ['Над облаками', 'Над хмарами', 'Above the clouds', 'Sobre las nubes', 'Acima das nuvens', 'Trên mây', 'Di atas awan', 'Bulutların üstünde', 'Nad chmurami'],
-  steps: ['ступеней', 'сходинок', 'steps', 'escalones', 'degraus', 'bậc', 'anak tangga', 'basamak', 'stopni'],
   stepsShort: ['ступ.', 'сход.', 'steps', 'esc.', 'deg.', 'bậc', 'lgk', 'bsm', 'st.'],
   coinsPerFloor: ['монет за этаж', 'монет за поверх', 'coins per floor', 'monedas por piso', 'moedas por andar', 'xu mỗi tầng', 'koin per lantai', 'jeton kat başına', 'monet za piętro'],
   youHere: ['Ты здесь', 'Ти тут', 'You are here', 'Estás aquí', 'Você está aqui', 'Bạn ở đây', 'Kamu di sini', 'Buradasın', 'Jesteś tutaj'],
@@ -35,6 +34,9 @@ const S = {
   you: ['Ты', 'Ти', 'You', 'Tú', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'],
   back: ['Назад', 'Назад', 'Back', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz'],
 } as const satisfies Record<string, Nine>;
+
+// зачем (координатор 12.10): сторож полноты словаря (tests/spire_strings_completeness.test.ts) читает таблицу целиком — 9 языков в каждом ключе, одинаковые {подстановки}, числа как в константах.
+export const SPIRE_STRINGS: Readonly<Record<string, Nine>> = S;
 
 export type SpireStringKey = keyof typeof S;
 

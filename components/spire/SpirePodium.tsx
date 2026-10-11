@@ -12,6 +12,7 @@ import { V2_TYPE } from '../../constants/v2Style';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { spireText } from './spire_strings';
+import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
 
 type Props = Readonly<{
@@ -52,10 +53,10 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
             const place = idx + 1;
             const blk = place === 1 ? 88 : place === 2 ? 66 : 50;
             return (
-              <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${m.steps} ${spireText(lang, 'steps')}`}>
+              <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireStepsCount(lang, m.steps)}`}>
                 <SpireInitial name={m.name} size={place === 1 ? 56 : 46} />
                 <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
-                <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireText(lang, 'stepsShort')}</Text>
+                <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>
                 </View>

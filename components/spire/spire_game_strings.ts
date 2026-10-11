@@ -96,9 +96,11 @@ const S = {
   rule7: ['За места недели: {p1} / {p2} / {p3} монет, за повышение +{promo}.', 'За місця тижня: {p1} / {p2} / {p3} монет, за підвищення +{promo}.', 'Top places of the week: {p1} / {p2} / {p3} coins, promotion +{promo}.', 'Puestos de la semana: {p1} / {p2} / {p3} monedas, ascenso +{promo}.', 'Lugares da semana: {p1} / {p2} / {p3} moedas, subida +{promo}.', 'Hạng tuần: {p1} / {p2} / {p3} xu, lên tháp +{promo}.', 'Peringkat minggu: {p1} / {p2} / {p3} koin, naik menara +{promo}.', 'Haftanın dereceleri: {p1} / {p2} / {p3} jeton, yükselme +{promo}.', 'Miejsca tygodnia: {p1} / {p2} / {p3} monet, awans +{promo}.'],
   rule8: ['В понедельник все начинают с 1 этажа.', 'У понеділок усі починають з 1 поверху.', 'On Monday everyone starts again from floor 1.', 'El lunes todos empiezan desde el piso 1.', 'Na segunda todos começam do andar 1.', 'Thứ Hai mọi người bắt đầu lại từ tầng 1.', 'Hari Senin semua mulai dari lantai 1.', 'Pazartesi herkes 1. kattan başlar.', 'W poniedziałek wszyscy zaczynają od 1 piętra.'],
   close: ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'],
-  peopleN: ['{n} человек', '{n} людей', '{n} people', '{n} personas', '{n} pessoas', '{n} người', '{n} orang', '{n} kişi', '{n} osób'],
   rankedBySteps: ['место по ступеням', 'місце за сходинками', 'ranked by steps', 'puesto por escalones', 'posição por degraus', 'xếp theo số bậc', 'peringkat dari anak tangga', 'basamağa göre sıra', 'miejsce wg stopni'],
 } as const satisfies Record<string, Nine>;
+
+// зачем (координатор 12.10): сторож полноты словаря (tests/spire_strings_completeness.test.ts) читает таблицу целиком — 9 языков в каждом ключе, одинаковые {подстановки}, числа как в константах.
+export const SPIRE_GAME_STRINGS: Readonly<Record<string, Nine>> = S;
 
 export type SpireGameStringKey = keyof typeof S;
 

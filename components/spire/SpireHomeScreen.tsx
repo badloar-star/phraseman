@@ -56,6 +56,7 @@ import SpireWeekResultCard from './SpireWeekResultCard';
 import { useSpirePreview } from './spire_preview_context';
 import type { SpireMemberRow } from './spire_room_types';
 import { spireText, spireTimeLeftText } from './spire_strings';
+import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
 
@@ -204,7 +205,7 @@ export default function SpireHomeScreen() {
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
-  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spireGameText(lang, 'peopleN', { n: members?.length ?? 0 })} · ${spireGameText(lang, 'rankedBySteps')}`;
+  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, 'rankedBySteps')}`;
 
   if (config === null) return <View style={s.root} testID="spire-loading" />;
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>;

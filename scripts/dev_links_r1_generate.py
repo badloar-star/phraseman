@@ -253,5 +253,17 @@ for title, secs in AREAS:
 out.append('## Итог\n')
 out.append(f'Строк с признаком «уникальна: да» (робот parity_batch_shoot берёт только их): {unique_count} из {sum(counts.values())}.\n')
 out.append(f"Строк в охвате: {sum(counts.values())}. Готовая ссылка: {counts['link']}. Ручной путь по shot list: {counts['manual']}. Только ссылки по shot list (Шпиль/онбординг/аккаунт): {counts['shot']}. «Нужна фикстура»: {counts['need']}" + (f" — {', '.join(need[:60])}" if need else '') + '.\n')
-open(R + 'docs/phraseman-2.0/DEV_LINKS_R1.md', 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
+import os, time
+target = R + 'docs/phraseman-2.0/DEV_LINKS_R1.md'
+# зачем: Windows иногда отвечает «Invalid argument» на открытие файла, который читает другой процесс; пишем во временный файл и подменяем, с повтором
+for attempt in range(8):
+    try:
+        open(target + '.tmpw', 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
+        os.replace(target + '.tmpw', target)
+        break
+    except OSError as error:
+        print('write retry', attempt, error)
+        time.sleep(1.5)
+else:
+    raise SystemExit('DEV_LINKS_R1.md не записан после 8 попыток')
 print(dict(counts), len(need))

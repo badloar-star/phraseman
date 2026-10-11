@@ -90,3 +90,37 @@ add('cards-024', ['tap:#ugc-pack-add-card'], DEMO_PLUS, f'{CREATE}?packId={WORK}
 
 add('cards-021', [], DEMO_PLUS, '/flashcards_card_editor?create=1&cat=custom', note='новая карточка (редактор)')
 add('cards-063', [], DEMO_PLUS, '/flashcards_card_editor?id=dev_missing_card', note='карточка не найдена')
+
+
+# ───────────────────────── Карточки · хаб, режим тренировки, настройка, каталог, «Из видео», лимиты, шторка «В какой набор?» ─────────────────────────
+HUB = '/flashcards'
+HUB_FREE = 'cards=demo&plus=off'
+TRAIN = 'tap:#fc-cards-hub-train'
+
+add('cards-v2-001', [], HUB_FREE, HUB, note='хаб Карточек (демо-аккаунт, Free)')
+add(['cards-002', 'cards-section-032', 'cards-v2-027'], [TRAIN], HUB_FREE, HUB, note='шторка выбора режима тренировки')
+add(['cards-section-033', 'cards-v2-028'], [TRAIN, 'tap:#fc-training-mode-blitz'], HUB_FREE, HUB, note='настройка тренировки «Блиц»')
+add('cards-section-034', [TRAIN, 'tap:#fc-training-mode-speaking'], HUB_FREE, HUB, note='настройка тренировки «Устно»')
+add('cards-section-035', [TRAIN, 'tap:#fc-training-mode-truefalse'], HUB_FREE, HUB, note='настройка тренировки «Правда / ложь»')
+add('cards-section-036', [TRAIN, 'tap:#fc-training-mode-recall'], HUB_FREE, HUB, note='настройка тренировки «Вспомни и напиши»')
+
+PACKS = '/flashcards_packs'
+add(['cards-014', 'cards-section-022', 'cards-section-024', 'cards-v2-025', 'packs-simple-001'], [], 'catalog=demo', PACKS, note='каталог сообщества, «Новые»')
+add(['cards-016', 'cards-048'], [], 'catalog=empty', PACKS, note='каталог пуст')
+add(['cards-017', 'cards-section-023', 'cards-section-028', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений')
+add('cards-015', ['tap:#flashcards-packs-search', 'type:Fam', 'long:#flashcards-pack-card-dev_demo_community_1'], 'catalog=demo', PACKS, note='поиск «Fam» → долгое нажатие по набору — меню действий')
+add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
+
+VIDEO = '/flashcards_video_packs'
+add(['cards-028', 'cards-v2-018'], [], DEMO_PLUS, VIDEO, note='«Из видео»: 5 демо-роликов (по строкам не тапать)')
+add('cards-081', ['tap:#fc-video-packs-menu', 'tap:#fc-video-packs-menu-search', 'tap:#fc-video-packs-search', 'type:zzzqq'], DEMO_PLUS, VIDEO, note='поиск по роликам без совпадений')
+
+CUSTOM50 = 'plus=off&cards=custom50'
+add(['cards-010', 'cards-v2-045'], [], CUSTOM50, SAVED, note='Free: лимит сохранённых 50/50')
+add('cards-v2-046', [], CUSTOM50, '/flashcards_card_editor?create=1&cat=custom', note='Free: лимит своих карточек 50/50 в редакторе новой карточки')
+
+TO_PACK = 'tap:#fc-expanded-to-pack'
+PACK_WORK = f'tap:#fc-expanded-pack-{WORK}'
+add('cards-gap-018', [TILE, TO_PACK], DEMO, SAVED, note='шторка «В какой набор?» — список')
+add('cards-gap-020', [TILE, TO_PACK, PACK_WORK], DEMO, SAVED, note='карточка добавлена в «Работа» — тост «Добавлено»')
+add('cards-gap-021', [TILE, TO_PACK, PACK_WORK, 'wait:1500', TO_PACK, PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')

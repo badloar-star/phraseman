@@ -18,6 +18,10 @@ import type { SpirePreviewGame, SpirePreviewModel } from './spire_preview_contex
 export const SPIRE_PREVIEW_STATES = [
   'locked', 'lobby', 'room', 'win', 'summit', 'lose', 'save_failed', 'empty', 'offline', 'weekresult', 'tour', 'rules', 'all',
   'step_choice', 'step_build', 'step_items', 'step_wrong', 'step_prep',
+  // зачем (координатор 14.10, R1_SHOT_LIST «нет пути»): итог недели «остаёшься»/«спускаешься», итог ступени «passed», этаж перед стражем,
+  // плашки «задания готовятся»/«нет сети» у кнопки «Подняться» и четыре вида заданий, которых не было в превью.
+  'weekresult_stay', 'weekresult_down', 'passed', 'guard', 'block_missing', 'block_offline',
+  'step_gap', 'step_odd', 'step_listen_choose', 'step_listen_build',
 ] as const;
 export type SpirePreviewState = (typeof SPIRE_PREVIEW_STATES)[number];
 
@@ -96,6 +100,13 @@ function outcome(kind: 'passed' | 'floor' | 'summit' | 'failed' | 'save_failed',
 
 /** Готовая модель для Home (SpireHomeScreen). Состояния ступени (step_*) тут тоже дают домашний фон. */
 export function spirePreviewModel(state: SpirePreviewState): SpirePreviewModel {
+  const model = buildPreviewModel(state);
+  // зачем (правило dev-состояний): каждая ветка пишет, что именно показала — Сверка сверяет кадр с логом. Сети и записей нет.
+  console.log(`[DEV-STATE] spire_preview model state=${state} floor=${model.week?.floor ?? 'none'} outcome=${model.game.outcome?.kind ?? 'none'} weekResult=${model.game.weekResult ? `promoted:${String(model.game.weekResult.promoted)} demoted:${String(model.game.weekResult.demoted)}` : 'none'} startBlock=${String(model.game.startBlock)} live=${String(model.game.live)}`);
+  return model;
+}
+
+function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
   const base = { config: ENABLED_CONFIG, tourSeen: true, coinRank: 5 } as const;
   switch (state) {
     case 'locked':
@@ -140,6 +151,40 @@ export function spirePreviewModel(state: SpirePreviewState): SpirePreviewModel {
         }),
       };
     }
+    case 'weekresult_stay': {
+      const w = week(7, 2, 31);
+      return {
+        ...base, week: w,
+        game: game({
+          rows: rows(31), myPlace: 5, friends: FRIENDS,
+          weekResult: { weekId: w.weekKey, lang: 'en', steps: 31, roomRank: 14, roomTotal: 30, promoted: false, demoted: false, prevTier: 3, newTier: 3, placeCoins: 60, promotionCoins: 0 },
+        }),
+      };
+    }
+    case 'weekresult_down': {
+      const w = week(4, 1, 12);
+      return {
+        ...base, week: w,
+        game: game({
+          rows: rows(12), myPlace: 11, friends: FRIENDS,
+          weekResult: { weekId: w.weekKey, lang: 'en', steps: 12, roomRank: 27, roomTotal: 30, promoted: false, demoted: true, prevTier: 3, newTier: 2, placeCoins: 0, promotionCoins: 0 },
+        }),
+      };
+    }
+    case 'passed': {
+      // итог ступени «passed» (`spire-result-passed`): ступень пройдена, этаж не меняется (шаг 3 из 5 этажа 7).
+      const w = week(7, 3, 32);
+      return { ...base, week: w, game: game({ rows: rows(32), myPlace: 5, friends: FRIENDS, outcome: outcome('passed', w) }) };
+    }
+    case 'guard': {
+      // макет «Этаж 4 → Страж»: этаж 5 (spireIsGuard каждые 5), поднялись с 4-го.
+      const w = week(5, 0, 20);
+      return { ...base, week: w, game: game({ rows: rows(20), myPlace: 8, friends: FRIENDS, outcome: outcome('floor', w) }) };
+    }
+    case 'block_missing':
+      return { ...base, week: week(7, 2, 31), game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, startBlock: 'pack_missing' }) };
+    case 'block_offline':
+      return { ...base, week: week(7, 2, 31), game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, startBlock: 'pack_offline' }) };
     case 'tour':
       return { ...base, tourSeen: false, week: week(1, 0, 0), game: game({ rows: rows(0), myPlace: 12 }) };
     case 'rules':
@@ -172,6 +217,24 @@ const ITEMS_TASK: SpirePackTask = {
   },
 } as SpirePackTask;
 
+// зачем (координатор 14.10, spire-gap-001/002/004/005): виды заданий, которых не было в превью. Данные выдуманные, как у остальных.
+const GAP_TASK: SpirePackTask = {
+  taskId: 'preview-gap', mode: 'fill_gap', kind: 'choice', difficulty: 2,
+  payload: { phrase: 'She ___ to work every day', options: ['go', 'goes', 'going', 'gone'] },
+} as SpirePackTask;
+const ODD_TASK: SpirePackTask = {
+  taskId: 'preview-odd', mode: 'find_oddity', kind: 'choice', difficulty: 2,
+  payload: { phrase: 'Найдите фразу с ошибкой согласования.', options: ['She works here', 'He have a car', 'They live nearby', 'We are friends'] },
+} as SpirePackTask;
+const LISTEN_CHOOSE_TASK: SpirePackTask = {
+  taskId: 'preview-listen-choose', mode: 'listen_choose', kind: 'listen', difficulty: 2,
+  payload: { phrase: 'She works every day', audioUri: 'device-tts:en:0a1b2c3d', options: ['Она работает каждый день', 'Она работала вчера', 'Она будет работать завтра', 'Она не работает'] },
+} as SpirePackTask;
+const LISTEN_BUILD_TASK: SpirePackTask = {
+  taskId: 'preview-listen-build', mode: 'listen_build', kind: 'dictate', difficulty: 3,
+  payload: { phrase: 'She works every day', audioUri: 'device-tts:en:0a1b2c3d', wordBank: ['She', 'works', 'every', 'day', 'work', 'the', 'is'], correctTokenCount: 4 },
+} as SpirePackTask;
+
 export type SpireStepPreview = Readonly<{
   task: SpirePackTask;
   taskIndex: number;
@@ -190,10 +253,20 @@ export function isSpireStepPreviewState(state: SpirePreviewState): boolean {
 }
 
 export function spireStepPreview(state: SpirePreviewState): SpireStepPreview {
+  const preview = buildStepPreview(state);
+  console.log(`[DEV-STATE] spire_preview step state=${state} task=${preview.task.taskId} mode=${preview.task.mode} kind=${preview.task.kind} taskIndex=${preview.taskIndex} hearts=${preview.hearts} paused=${String(preview.paused)} preparing=${String(preview.preparing)} feedback=${preview.feedback ? (preview.feedback.ok ? 'ok' : 'wrong') : 'none'}`);
+  return preview;
+}
+
+function buildStepPreview(state: SpirePreviewState): SpireStepPreview {
   const ctx = { lang: 'en', weekKey: spireCurrentWeekKey(Date.now()), tier: 3, floor: 7, stepInFloor: 2 } as const;
   const common = { ctx, budgetMs: 100_000, elapsedMs: 28_000, hearts: 3, paused: false, preparing: false, answering: true, feedback: null } as const;
   switch (state) {
     case 'step_build': return { ...common, task: BUILD_TASK, taskIndex: 3 };
+    case 'step_gap': return { ...common, task: GAP_TASK, taskIndex: 2 };
+    case 'step_odd': return { ...common, task: ODD_TASK, taskIndex: 4 };
+    case 'step_listen_choose': return { ...common, task: LISTEN_CHOOSE_TASK, taskIndex: 1 };
+    case 'step_listen_build': return { ...common, task: LISTEN_BUILD_TASK, taskIndex: 3 };
     case 'step_items': return { ...common, task: ITEMS_TASK, taskIndex: 5, hearts: 2 };
     case 'step_wrong':
       return {

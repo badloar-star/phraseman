@@ -5,6 +5,9 @@
 // Здесь все состояния Шпиля открываются на готовых моках, чтобы Эмулятор и Сверка снимали их рядом со spire.html:
 //   /dev_spire_preview?state=lobby | room | win | summit | lose | save_failed | empty | offline | weekresult | tour | rules | all | locked
 //                            | step_choice | step_build | step_items | step_wrong | step_prep
+//                            | weekresult_stay | weekresult_down | passed | guard | block_missing | block_offline
+//                            | step_gap | step_odd | step_listen_choose | step_listen_build
+//   ?exit=1 — на экране ступени поверх открыта шторка «Выйти из ступени?» (spire-009). Жалобу на задание в превью не рисуем: её отправка — запись в сеть.
 //   ?selector=1 — снизу полоса переключения состояний (по умолчанию скрыта, чтобы не попадать в кадр).
 // Экраны — ТЕ ЖЕ компоненты, что в бою (SpireHomeScreen через шов spire_preview_context, SpireStepLayout), данные — моки без сети.
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную. Охраняет tests/spire_dev_preview_release_guard.test.mjs.
@@ -16,6 +19,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
+import SpireExitSheet from '../components/spire/SpireExitSheet';
 import SpireHomeScreen from '../components/spire/SpireHomeScreen';
 import { SpireStepLayout } from '../components/spire/SpireStepScreen';
 import { SpirePreviewProvider } from '../components/spire/spire_preview_context';
@@ -32,7 +36,7 @@ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
 const noop = (): void => undefined;
 
-function StepPreview({ state }: Readonly<{ state: SpirePreviewState }>) {
+function StepPreview({ state, exitOpen }: Readonly<{ state: SpirePreviewState; exitOpen: boolean }>) {
   const { lang } = useLang();
   const preview = useMemo(() => spireStepPreview(state), [state]);
   const clock = useMemo(() => spireStaticClock(preview.elapsedMs), [preview.elapsedMs]);
@@ -49,7 +53,7 @@ function StepPreview({ state }: Readonly<{ state: SpirePreviewState }>) {
       taskIndex={preview.taskIndex}
       feedback={preview.feedback}
       answering={preview.answering}
-      exitOpen={false}
+      exitOpen={exitOpen}
       studyTarget="en"
       showEnergy={false}
       onBack={noop}
@@ -58,22 +62,27 @@ function StepPreview({ state }: Readonly<{ state: SpirePreviewState }>) {
       onItems={noop}
       onContinue={noop}
       reportSlot={null}
-      exitSlot={null}
+      // зачем (R1 spire-009): шторка выхода из ступени — тот же компонент, что в бою; кнопки ничего не делают, сети нет.
+      exitSlot={exitOpen ? <SpireExitSheet lang={lang} visible floor={preview.ctx.floor} onContinue={noop} onExit={noop} /> : null}
     />
   );
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string }>();
+  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string }>();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
   const model = useMemo(() => spirePreviewModel(state), [state]);
   const step = isSpireStepPreviewState(state);
+  const exitOpen = params.exit === '1';
+  useEffect(() => {
+    console.log(`[DEV-STATE] spire_preview route state=${state} fromParam=${String(params.state ?? 'нет→room')} step=${String(step)} selector=${String(params.selector === '1')} exit=${String(exitOpen)}`);
+  }, [state, params.state, params.selector, step, exitOpen]);
   return (
     <View style={s.root} testID="dev-spire-preview">
       {step ? (
-        <StepPreview state={state} />
+        <StepPreview state={state} exitOpen={exitOpen} />
       ) : (
         <ScreenGradient artBackdrop="home">
           <SafeAreaView edges={['top']} style={s.root}>

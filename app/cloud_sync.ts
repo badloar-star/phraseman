@@ -297,6 +297,7 @@ import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
 import { gcDelta, gcSnapshot } from './mem_probe';
+import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -4471,10 +4472,16 @@ async function restoreAndMigrateFromCloudResultTraced(
     }
     mark('reseed');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    // зачем (координатор 11.10): серверное восстановление ошибок — только нужные языки (первый раз на устройстве — все,
+    // затем активный + языки с локальным журналом; app/mistake_restore_targets.ts). Награды — по всем, как раньше.
+    const mistakeRestore = await resolveMistakeRestoreTargets(uid, SYNC_STUDY_TARGETS);
+    mark('mistake_restore_select');
     for (const target of SYNC_STUDY_TARGETS) {
-      await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
-      mark(`mistake_events:${target}`);
-      if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+      if (mistakeRestore.targets.includes(target)) {
+        await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
+        mark(`mistake_events:${target}`);
+        if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+      }
       // Async import keeps the reward/economy graph outside the cloud-sync and
       // lessons startup bundles while preserving the initialization-cycle guard.
       const { flushPendingMistakeCorrectionRewards } = await import('./mistake_practice_rewards');
@@ -4482,6 +4489,7 @@ async function restoreAndMigrateFromCloudResultTraced(
       mark(`mistake_rewards:${target}`);
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
+    if (mistakeRestore.reason === 'full_first_restore') await markMistakeFullRestoreDone(uid);
     return completedCloudRestoreAttempt(applied);
   } catch (error) {
     // Немой переход в «failed» запрещён: текст ошибки — в журнал, иначе причину 70-секундного провала не видно.

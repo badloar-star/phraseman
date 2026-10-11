@@ -281,6 +281,8 @@ const styles = StyleSheet.create({
     borderRadius: 21,
     alignItems: 'center',
     justifyContent: 'center',
+    // зачем (журнал system-010: «кнопка без тени»): мягкая тень кнопки токеном темы, как у главных кнопок кита.
+    boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 20, spreadDistance: -6, color: GRAPHITE.dropShadow }],
   },
   retryText: {
     color: GRAPHITE.accentInk,
@@ -295,6 +297,12 @@ const styles = StyleSheet.create({
     backgroundColor: GRAPHITE.opaqueCard,
     borderRadius: 14,
     paddingHorizontal: 14,
+    // зачем (журнал system-010: «блок деталей без стеклянной кромки и тени»): светлая кромка сверху + тонкое кольцо + тень — токены темы.
+    boxShadow: [
+      { inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: GRAPHITE.bevelHi },
+      { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: GRAPHITE.hairlineSoft },
+      { offsetX: 0, offsetY: 10, blurRadius: 24, spreadDistance: -10, color: GRAPHITE.dropShadow },
+    ],
   },
   debugTitle: {
     color: GRAPHITE.secondary,

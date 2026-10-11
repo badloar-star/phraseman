@@ -76,6 +76,9 @@ export type OptionMark = 'ok' | 'no' | undefined;
 export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, disabled }: Readonly<{ g: Lv2Glass; options: readonly string[]; marks?: Readonly<Record<string, OptionMark>>; onPick?: (option: string) => void; disabled?: boolean }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
+  // зачем (журнал mistakes-panel-010: «варианты в панели без стекла — плоские плитки; в макете градиент темы»): плита варианта — градиент
+  // в тоне темы (как у строки меню SheetRow) + стеклянная кромка GlassRim; плитки верно/неверно рисуют свою рамку-кольцо и без градиента.
+  const [a] = themePair(g);
   return (
     <View style={styles.grid}>
       {options.map((option) => {
@@ -95,6 +98,18 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
               mark === 'no' && { backgroundColor: `${mpColors(g).bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).bad}B3` }] },
               pressed && styles.pressed,
             ]}>
+            {mark === undefined ? (
+              <>
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]}
+                  start={{ x: 0.25, y: 0.07 }}
+                  end={{ x: 0.75, y: 0.93 }}
+                  style={[StyleSheet.absoluteFill, styles.cellPlate]}
+                />
+                <GlassRim radius={18} />
+              </>
+            ) : null}
             <Text style={[styles.cellText, { color: g.text }]}>{option}</Text>
           </Pressable>
         );
@@ -198,6 +213,7 @@ const baseStyles = StyleSheet.create({
   trayEdge: { borderTopLeftRadius: 30, borderTopRightRadius: 30 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   cell: { width: '48.6%', flexGrow: 1, minHeight: 62, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center' },
+  cellPlate: { borderRadius: 18 },
   cellText: { fontSize: 16, lineHeight: 24, fontWeight: '600', textAlign: 'center' },
   slot: { minHeight: 70, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center', padding: 12, borderRadius: 20 },
   token: { minHeight: 46, paddingHorizontal: 17, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },

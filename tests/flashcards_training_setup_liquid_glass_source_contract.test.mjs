@@ -362,11 +362,15 @@ test('setup screen delegates the view to TrainingSetupV2 and keeps the start/quo
   assert.match(routeSource, /onStart=\{\(\) => void startTraining\(\)\}/);
   assert.match(routeSource, /onRetry=\{\(\) => retryDecksLoad\('tap'\)\}/);
   assert.match(routeSource, /quotaPreview\.status === 'exhausted'/);
-  for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-summary', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-unavailable', 'fc-training-setup-empty', 'fc-training-setup-exhausted']) {
+  for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-upgrade', 'fc-training-setup-unavailable', 'fc-training-setup-empty']) {
     assert.ok(view.includes(id), `missing testID ${id}`);
   }
-  // зачем (11.10, журнал 9): строка набора — общий PackRow, отметка выбора — PackRowCheck (обёртка KitCheck).
-  assert.ok(view.includes('KitCta') && view.includes('PackRowCheck') && view.includes('KitSegment') && view.includes('<PackRow'), 'shared kit parts');
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Настройка»): наборы — плитки `.pk` в 2 колонки (DeckPickTile) с круглой отметкой; сегменты и кнопка — общие части kit.
+  assert.ok(view.includes('KitCta') && view.includes('DeckPickTile') && view.includes('KitSegment') && view.includes('styles.chk'), 'shared kit parts');
+  // зачем (решение координатора 12.10, кадр «Лимит Free»): исчерпанный лимит — не тупик, а «Безлимит с Plus» вместо «Начать».
+  assert.match(view, /limitReached \?/);
+  assert.match(routeSource, /limitReached=\{limitReached\}/);
+  assert.match(routeSource, /onUpgrade=\{openUpgrade\}/);
   assert.doesNotMatch(view, /numberOfLines/);
 });
 

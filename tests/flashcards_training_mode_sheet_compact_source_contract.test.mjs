@@ -28,9 +28,12 @@ assert.match(source, /styles\.grabber/, 'sheet has a grabber');
 assert.doesNotMatch(source, /<BlurView/, 'no backdrop sampler');
 assert.match(source, /Режим тренировки/);
 assert.match(styleBlock('heading', 'headingSubtitle'), /fontSize: 22/);
-assert.match(styleBlock('icon', 'copy'), /width: 57,[\s\S]*height: 57/, 'icon in a square tile');
-// 05.10 (Сверка cards-section-032): строка по макету mode() — 89 = 16 + 57 + 16, промежуток 20.
-assert.match(styleBlock('row', 'rowLine'), /minHeight: 89,[\s\S]*gap: 20/);
+// зачем (Карточки 2.0 12.10, cards-v2.html `.mgrid`/`.mt`): режимы — сетка плиток 2×2 (зазор 10), плитка r20, поля 16, высота от 112, значок 46.
+assert.match(styleBlock('icon', 'copy'), /width: 46,[\s\S]*height: 46/, 'icon in a square tile');
+assert.match(styleBlock('gridRow', 'tile'), /flexDirection: 'row', gap: 10/);
+assert.match(styleBlock('tile', 'icon'), /minHeight: 112, borderRadius: 20, padding: 16/);
+assert.match(styleBlock('headCopy', 'heading'), /alignItems: 'center'/, 'heading is centred');
+assert.doesNotMatch(source, /limitPill|limitText/, 'no remaining-trainings pill in the mode sheet (cards-v2: «без пилюли»)');
 assert.match(styleBlock('scroll', 'content'), /flexShrink: 1,[\s\S]*minHeight: 0/);
 assert.doesNotMatch(source, /numberOfLines/);
 assert.doesNotMatch(source, /styles\.cancelButton/, 'no separate Cancel button — closing is the backdrop');

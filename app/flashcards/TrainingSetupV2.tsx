@@ -1,22 +1,22 @@
 /**
- * Экран настройки тренировки — макет docs/design/v2-app/cards-section.html (кадры «Блиц», «Устно», «Правда / ложь», «Вспомни и напиши»,
- * «Мало карточек», «Карточек нет», «Лимит исчерпан», «Нет сети»).
+ * Экран настройки тренировки — макет docs/design/v2-app/cards-v2.html, блок «Тренировка» (кадры «Настройка», «Настройка — пусто», «Лимит Free»).
  *
- * зачем (владелец: «в приложении запрещены любые различия с макетом»): кружок «назад» и пилюля остатка «24/30» сверху, название режима 40/46 с короткой
- * подписью, раздел «Наборы» со счётчиком выбранных карточек, строки-карточки наборов с круглой отметкой, переключатель «Карточек 10 / 20 / Все»
- * (где режим его поддерживает) и мятная «Начать». Загрузка, выбор наборов, квота и запуск остаются в flashcards_training_setup.tsx — здесь только вид.
+ * зачем (владелец 12.10: «Карточки 2.0 все в работу», стиль «Тень»): кружок «назад» и пилюля остатка («24/30») сверху, плитка-значок 55 и
+ * название режима 30/700 без подписи, раздел «Что повторяем» — наборы плитками в 2 колонки с круглой отметкой, «Сколько» (10 / 20 / Все),
+ * режимный сегмент (Блиц — «Время», «Напиши» — «Показывать EN → RU / RU → EN») и «Начать» со значком ▶. Лимит Free — НЕ тупик, а обычная
+ * настройка с пилюлей, где вместо «Начать» кнопка «Безлимит с Plus». Загрузка, выбор наборов, квота и запуск остаются в
+ * flashcards_training_setup.tsx — здесь только вид.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
-import { packRowHeight } from '../../components/packs/packRowModel';
 
-import { KitCta, KitEmpty, KitSectionHead, KitSegment, KitTitle } from '../../components/cards-grid/CardsKit';
-import { PackRow, PackRowCheck } from '../../components/packs/PackRow';
-import { formatPackTitleForDisplay } from './marketplace';
-import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { KitCta, KitEmpty, KitSectionHead, KitSegment } from '../../components/cards-grid/CardsKit';
+import KitTouchable from '../../components/KitTouchable';
+import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
+import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import type { FcDeckId } from './deck_selection';
@@ -26,107 +26,157 @@ export type SetupSizeOption = Readonly<{ id: string; label: string }>;
 type Props = Readonly<{
   lang: Lang;
   title: string;
-  subtitle: string;
+  /** Значок режима в плитке 55 слева от названия (макет `.tile.t55`). */
+  modeIcon: keyof typeof Ionicons.glyphMap;
   /** «24/30»; null — пилюли нет (квота ещё читается). */
   limitLabel: string | null;
-  status: 'ready' | 'loading' | 'unavailable' | 'empty' | 'exhausted' | 'invalid';
-  /** Для «Лимит исчерпан»: «Обновится 1 ноября». */
-  resetText: string;
+  /** Лимит месяца исчерпан: настройка остаётся обычной, а вместо «Начать» — «Безлимит с Plus» (макет «Лимит Free»). */
+  limitReached: boolean;
+  status: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid';
   invalidText: string;
   decks: readonly DeckSheetOption[];
   /** «64 карточки» — подпись числа карточек набора на языке интерфейса. */
   countLabelFor: (count: number) => string;
   selectedIds: readonly FcDeckId[];
   onToggle: (deckId: FcDeckId) => void;
-  /** Сколько карточек выбрано (с учётом повторов в разных наборах). */
+  /** Сколько карточек выбрано (с учётом повторов в разных наборах) — для озвучки кнопки «Начать». */
   selectedCardCount: number;
   sizeOptions: readonly SetupSizeOption[] | null;
   size: string;
   onSizeChange: (id: string) => void;
-  /** Второй сегмент режима: блиц — «Время», вспомни и напиши — «Направление»; null — нет. */
+  /** Второй сегмент режима: блиц — «Время», «Напиши» — «Показывать»; null — нет. */
   extra: Readonly<{ title: string; options: readonly SetupSizeOption[]; value: string; onChange: (id: string) => void }> | null;
-  /** Подпись внизу: «Начать» или «Начать · 20». */
+  /** Подпись внизу: «Начать». */
   startLabel: string;
   canStart: boolean;
   /** Пояснение, почему «Начать» недоступна (например, мало карточек для блица); null — нет. */
   hint: string | null;
   onStart: () => void;
+  /** Тап по «Безлимит с Plus» при исчерпанном лимите — открыть окно покупки. */
+  onUpgrade: () => void;
   onBack: () => void;
   onFindPacks: () => void;
   onRetry: () => void;
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', packs: 'Наборы', selected: 'выбрано', cards: 'Карточек', addPack: 'Добавить набор', empty: 'Пока нет карточек', emptyHint: 'Добавь набор и начни', find: 'Найти наборы', unavailable: 'Сейчас недоступно', checkNet: 'Проверь интернет', retry: 'Попробовать снова', limit: 'Лимит на этот месяц исчерпан' },
-  uk: { back: 'Назад', packs: 'Набори', selected: 'вибрано', cards: 'Карток', addPack: 'Додати набір', empty: 'Поки немає карток', emptyHint: 'Додай набір і починай', find: 'Знайти набори', unavailable: 'Зараз недоступно', checkNet: 'Перевір інтернет', retry: 'Спробувати ще', limit: 'Ліміт на цей місяць вичерпано' },
-  en: { back: 'Back', packs: 'Packs', selected: 'selected', cards: 'Cards', addPack: 'Add a pack', empty: 'No cards yet', emptyHint: 'Add a pack and get started', find: 'Find packs', unavailable: 'Not available right now', checkNet: 'Check your connection', retry: 'Try again', limit: 'This month\'s limit is used up' },
-  es: { back: 'Atrás', packs: 'Packs', selected: 'seleccionadas', cards: 'Tarjetas', addPack: 'Añadir un pack', empty: 'Aún no hay tarjetas', emptyHint: 'Añade un pack y empieza', find: 'Buscar packs', unavailable: 'No disponible ahora', checkNet: 'Comprueba tu conexión', retry: 'Intentar de nuevo', limit: 'Límite de este mes agotado' },
-  'pt-BR': { back: 'Voltar', packs: 'Pacotes', selected: 'selecionados', cards: 'Cartões', addPack: 'Adicionar pacote', empty: 'Ainda não há cartões', emptyHint: 'Adicione um pacote e comece', find: 'Encontrar pacotes', unavailable: 'Indisponível agora', checkNet: 'Verifique sua conexão', retry: 'Tentar de novo', limit: 'O limite deste mês acabou' },
-  vi: { back: 'Quay lại', packs: 'Bộ thẻ', selected: 'đã chọn', cards: 'Thẻ', addPack: 'Thêm bộ thẻ', empty: 'Chưa có thẻ', emptyHint: 'Thêm bộ thẻ và bắt đầu', find: 'Tìm bộ thẻ', unavailable: 'Hiện chưa khả dụng', checkNet: 'Kiểm tra kết nối', retry: 'Thử lại', limit: 'Đã hết giới hạn tháng này' },
-  id: { back: 'Kembali', packs: 'Paket', selected: 'dipilih', cards: 'Kartu', addPack: 'Tambah paket', empty: 'Belum ada kartu', emptyHint: 'Tambahkan paket lalu mulai', find: 'Cari paket', unavailable: 'Belum tersedia sekarang', checkNet: 'Periksa koneksi', retry: 'Coba lagi', limit: 'Batas bulan ini habis' },
-  tr: { back: 'Geri', packs: 'Paketler', selected: 'seçildi', cards: 'Kart', addPack: 'Paket ekle', empty: 'Henüz kart yok', emptyHint: 'Bir paket ekle ve başla', find: 'Paket bul', unavailable: 'Şu anda kullanılamıyor', checkNet: 'Bağlantını kontrol et', retry: 'Tekrar dene', limit: 'Bu ayki limit doldu' },
-  pl: { back: 'Wstecz', packs: 'Zestawy', selected: 'wybrano', cards: 'Kart', addPack: 'Dodaj zestaw', empty: 'Brak kart', emptyHint: 'Dodaj zestaw i zacznij', find: 'Znajdź zestawy', unavailable: 'Teraz niedostępne', checkNet: 'Sprawdź połączenie', retry: 'Spróbuj ponownie', limit: 'Limit na ten miesiąc wyczerpany' },
+  ru: { back: 'Назад', packs: 'Что повторяем', cards: 'Сколько', unlimited: 'Безлимит с Plus', empty: 'Нет карточек', emptyHint: 'Сохрани пару слов', find: 'Открыть каталог', unavailable: 'Сейчас недоступно', checkNet: 'Проверь интернет', retry: 'Попробовать снова', selectedOf: 'карточек выбрано' },
+  uk: { back: 'Назад', packs: 'Що повторюємо', cards: 'Скільки', unlimited: 'Безліміт з Plus', empty: 'Немає карток', emptyHint: 'Збережи кілька слів', find: 'Відкрити каталог', unavailable: 'Зараз недоступно', checkNet: 'Перевір інтернет', retry: 'Спробувати ще', selectedOf: 'карток вибрано' },
+  en: { back: 'Back', packs: 'What to practise', cards: 'How many', unlimited: 'Unlimited with Plus', empty: 'No cards', emptyHint: 'Save a few words', find: 'Open the catalog', unavailable: 'Not available right now', checkNet: 'Check your connection', retry: 'Try again', selectedOf: 'cards selected' },
+  es: { back: 'Atrás', packs: 'Qué repasamos', cards: 'Cuántas', unlimited: 'Ilimitado con Plus', empty: 'Sin tarjetas', emptyHint: 'Guarda unas palabras', find: 'Abrir el catálogo', unavailable: 'No disponible ahora', checkNet: 'Comprueba tu conexión', retry: 'Intentar de nuevo', selectedOf: 'tarjetas elegidas' },
+  'pt-BR': { back: 'Voltar', packs: 'O que vamos revisar', cards: 'Quantos', unlimited: 'Ilimitado com Plus', empty: 'Sem cartões', emptyHint: 'Salve algumas palavras', find: 'Abrir o catálogo', unavailable: 'Indisponível agora', checkNet: 'Verifique sua conexão', retry: 'Tentar de novo', selectedOf: 'cartões selecionados' },
+  vi: { back: 'Quay lại', packs: 'Ôn gì', cards: 'Bao nhiêu', unlimited: 'Không giới hạn với Plus', empty: 'Chưa có thẻ', emptyHint: 'Hãy lưu vài từ', find: 'Mở danh mục', unavailable: 'Hiện chưa khả dụng', checkNet: 'Kiểm tra kết nối', retry: 'Thử lại', selectedOf: 'thẻ đã chọn' },
+  id: { back: 'Kembali', packs: 'Apa yang diulang', cards: 'Berapa banyak', unlimited: 'Tanpa batas dengan Plus', empty: 'Tidak ada kartu', emptyHint: 'Simpan beberapa kata', find: 'Buka katalog', unavailable: 'Belum tersedia sekarang', checkNet: 'Periksa koneksi', retry: 'Coba lagi', selectedOf: 'kartu dipilih' },
+  tr: { back: 'Geri', packs: 'Neyi tekrarlıyoruz', cards: 'Kaç tane', unlimited: 'Plus ile sınırsız', empty: 'Kart yok', emptyHint: 'Birkaç kelime kaydet', find: 'Kataloğu aç', unavailable: 'Şu anda kullanılamıyor', checkNet: 'Bağlantını kontrol et', retry: 'Tekrar dene', selectedOf: 'kart seçildi' },
+  pl: { back: 'Wstecz', packs: 'Co powtarzamy', cards: 'Ile', unlimited: 'Bez limitu z Plus', empty: 'Brak kart', emptyHint: 'Zapisz kilka słów', find: 'Otwórz katalog', unavailable: 'Teraz niedostępne', checkNet: 'Sprawdź połączenie', retry: 'Spróbuj ponownie', selectedOf: 'kart wybrano' },
+});
+
+/** Плитка набора `.pk`: название 16/700, под ним число карточек, справа сверху круглая отметка; выбранная приподнята (стиль «Тень»). */
+const DeckPickTile = memo(function DeckPickTile({ g, title, countLabel, on, disabled, testID, accessibilityLabel, onPress }: Readonly<{
+  g: Lv2Glass;
+  title: string;
+  countLabel: string;
+  on: boolean;
+  disabled: boolean;
+  testID: string;
+  accessibilityLabel: string;
+  onPress: () => void;
+}>) {
+  const lh = useLineScale();
+  return (
+    // зачем (Тень 12.10): сдвиг выбранной — на внешней обёртке, высота ряда не меняется
+    <View style={[styles.tileOuter, on && { transform: [{ translateY: RAISED_LIFT }] }]}>
+      <KitTouchable
+        testID={testID}
+        accessibilityRole="checkbox"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ checked: on, disabled }}
+        disabled={disabled}
+        onPress={onPress}
+        style={[styles.tile, { boxShadow: on ? raisedBoxShadow(g) : plateBoxShadow(g), opacity: disabled ? 0.45 : 1 }]}
+      >
+        <PlateFill g={g} radius={16} raised={on} />
+        <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(22) }]}>{title}</Text>
+        <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(18) }]}>{countLabel}</Text>
+        {/* индикатор выбора `.chk` 24: выбран — светлый круг с галочкой, нет — кольцо (состояние, не обводка контейнера) */}
+        <View
+          pointerEvents="none"
+          style={[styles.chk, on ? { backgroundColor: g.cta } : { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${g.text}4D` }] }]} // shadow-ok: кольцо индикатора выбора (радио), а не обводка контейнера
+        >
+          {on ? <Ionicons name="checkmark" size={16} color={g.ctaInk} /> : null}
+        </View>
+      </KitTouchable>
+    </View>
+  );
 });
 
 function TrainingSetupV2Inner(props: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом (при 1.0 тот же объект стилей — вид прежний)
-  const styles = useScaledTextStyles(baseStyles);
-  const { lang, title, subtitle, limitLabel, status, resetText, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onBack, onFindPacks, onRetry } = props;
+  const styles2 = useScaledTextStyles(baseStyles);
+  const { lang, title, modeIcon, limitLabel, limitReached, status, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onUpgrade, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
-  // зачем: заглушка набора — той же высоты, что строка PackRow (первый кадр = итоговая геометрия).
-  const skeletonH = packRowHeight('row', useLineScale());
+  const lh = useLineScale();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const showList = status === 'ready' || status === 'loading';
+  // зачем: плитки наборов собираются парами — обе плитки ряда одной высоты, если название одной переносится на 2 строки
+  const deckRows = useMemo(() => {
+    const out: DeckSheetOption[][] = [];
+    for (let i = 0; i < decks.length; i += 2) out.push(decks.slice(i, i + 2) as DeckSheetOption[]);
+    return out;
+  }, [decks]);
 
   return (
-    <View testID="fc-training-setup-v2" style={styles.root}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
-        <View style={styles.top}>
+    <View testID="fc-training-setup-v2" style={styles2.root}>
+      <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
+        <View style={styles2.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
           {limitLabel ? (
-            <View testID="fc-training-setup-monthly-limit" style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>
+            <View testID="fc-training-setup-monthly-limit" style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
               <Ionicons name="copy-outline" size={16} color={g.text} />
-              <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
+              <Text style={[styles2.pillText, { color: g.text }]}>{limitLabel}</Text>
             </View>
           ) : null}
         </View>
-        <KitTitle g={g} title={title} subtitle={subtitle} testID="fc-training-setup-header-title" />
+        {/* макет: `.tile.t55` + название режима 30/700 (без подписи) */}
+        <View style={styles2.titleRow}>
+          <View style={[styles2.modeTile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+            <Ionicons name={modeIcon} size={26} color={g.text} />
+          </View>
+          <Text testID="fc-training-setup-header-title" accessibilityRole="header" style={[styles2.title, { color: g.text, lineHeight: lh(36) }]}>{title}</Text>
+        </View>
 
         {showList ? (
           <>
-            <View style={styles.sectionRow}>
-              <KitSectionHead g={g} title={copy.packs} count={status === 'ready' ? decks.length : 0} hideCount />
-              {status === 'ready' ? <Text testID="fc-training-setup-summary" accessibilityLiveRegion="polite" style={[styles.selected, { color: g.secondary }]}>{`${selectedCardCount} ${copy.selected}`}</Text> : null}
-            </View>
+            <KitSectionHead g={g} title={copy.packs} count={0} hideCount />
             {status === 'loading' ? (
-              <View testID="fc-training-setup-loading" style={styles.stack}>
-                {[0, 1, 2].map((i) => <View key={`sk${i}`} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { height: skeletonH, backgroundColor: g.hairlineSoft }]} />)}
+              <View testID="fc-training-setup-loading" style={styles2.stack}>
+                {[0, 1].map((i) => (
+                  <View key={`sk${i}`} /* guard-ok: две статичные строки заглушек */ style={styles2.pickRow}>
+                    <View style={[styles2.skeleton, { backgroundColor: g.dividerTone }]} />
+                    <View style={[styles2.skeleton, { backgroundColor: g.dividerTone }]} />
+                  </View>
+                ))}
               </View>
             ) : (
-              <View style={styles.stack}>
-                {decks.map((deck) => {
-                  const on = selectedIds.includes(deck.deckId);
-                  // зачем (владелец, журнал 9): выбор набора — тот же общий PackRow, что «Мои наборы» и каталог:
-                  // фиксированная высота под 2 строки названия, отметка по центру по вертикали, название без хвоста файла.
-                  return (
-                    <PackRow
-                      key={deck.deckId}
-                      variant="row"
-                      g={g}
-                      lang={lang}
-                      leading={{ kind: 'icon', icon: deck.icon }}
-                      title={deck.title}
-                      subtitle={countLabelFor(deck.count)}
-                      trailing={<PackRowCheck g={g} on={on} />}
-                      testID={`fc-training-setup-deck-${deck.deckId}`}
-                      accessibilityLabel={`${formatPackTitleForDisplay(deck.title)}, ${deck.count}`}
-                      onPress={() => onToggle(deck.deckId)}
-                      disabled={deck.count <= 0}
-                      style={deck.count <= 0 ? styles.dim : undefined}
-                    />
-                  );
-                })}
-                {/* зачем (Сверка cards-section-033, решение координатора 10.10): строки «Добавить набор ›» в настройке тренировки нет ни в одном макете (setupBlitz/Speak/Tf/Recall) — добавить набор можно из хаба «+» и из пустого состояния. */}
+              <View style={styles2.stack}>
+                {deckRows.map((pair) => (
+                  <View key={pair[0].deckId} style={styles2.pickRow}>
+                    {pair.map((deck) => (
+                      <DeckPickTile
+                        key={deck.deckId}
+                        g={g}
+                        title={deck.title}
+                        countLabel={countLabelFor(deck.count)}
+                        on={selectedIds.includes(deck.deckId)}
+                        disabled={deck.count <= 0}
+                        testID={`fc-training-setup-deck-${deck.deckId}`}
+                        accessibilityLabel={`${deck.title}, ${deck.count}`}
+                        onPress={() => onToggle(deck.deckId)}
+                      />
+                    ))}
+                    {pair.length === 1 ? <View style={styles.tileOuter} /> : null}
+                  </View>
+                ))}
               </View>
             )}
             {status === 'ready' && sizeOptions ? (
@@ -141,7 +191,7 @@ function TrainingSetupV2Inner(props: Props) {
                 <KitSegment g={g} options={extra.options} value={extra.value} onChange={extra.onChange} testIDPrefix="fc-training-setup-extra" />
               </>
             ) : null}
-            {hint ? <Text accessibilityLiveRegion="polite" style={[styles.hint, { color: g.secondary }]}>{hint}</Text> : null}
+            {hint ? <Text accessibilityLiveRegion="polite" style={[styles2.hint, { color: g.secondary }]}>{hint}</Text> : null}
           </>
         ) : null}
       </ScrollView>
@@ -152,19 +202,28 @@ function TrainingSetupV2Inner(props: Props) {
       {status === 'unavailable' ? (
         <KitEmpty g={g} testID="fc-training-setup-unavailable" icon="cloud-offline-outline" title={copy.unavailable} detail={copy.checkNet} action={copy.retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-training-setup-try-again" />
       ) : null}
-      {/* зачем (координатор 10.10): «лимит исчерпан» и «режим недоступен» были тупиками без кнопки — теперь главная «Назад». */}
-      {status === 'exhausted' ? (
-        <KitEmpty g={g} testID="fc-training-setup-exhausted" icon="lock-closed-outline" title={copy.limit} detail={resetText} action={copy.back} onAction={onBack} actionTestID="fc-training-setup-exhausted-back" />
-      ) : null}
       {status === 'invalid' ? (
         <KitEmpty g={g} testID="fc-training-setup-error" icon="alert-circle-outline" title={invalidText} detail="" action={copy.back} onAction={onBack} actionTestID="fc-training-setup-error-back" />
       ) : null}
 
       {showList ? (
         <PanelDock>
-          <View style={styles.dock}>
+          <View style={styles2.dock}>
             <View>
-              <KitCta g={g} testID="fc-training-setup-start" label={startLabel} trailingIcon="arrow-forward" disabled={!canStart} onPress={() => { console.log('[FC-TRAIN-ENTRY] setup:press', JSON.stringify({ canStart, status })); onStart(); }} />
+              {limitReached ? (
+                // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный месячный лимит — не тупик; кнопка ведёт в покупку Plus
+                <KitCta g={g} testID="fc-training-setup-upgrade" label={copy.unlimited} icon="lock-open-outline" onPress={onUpgrade} />
+              ) : (
+                <KitCta
+                  g={g}
+                  testID="fc-training-setup-start"
+                  label={startLabel}
+                  accessibilityLabel={selectedCardCount > 0 ? `${startLabel}, ${selectedCardCount} ${copy.selectedOf}` : startLabel}
+                  icon="play"
+                  disabled={!canStart}
+                  onPress={() => { console.log('[FC-TRAIN-ENTRY] setup:press', JSON.stringify({ canStart, status })); onStart(); }}
+                />
+              )}
             </View>
           </View>
         </PanelDock>
@@ -175,18 +234,28 @@ function TrainingSetupV2Inner(props: Props) {
 
 export const TrainingSetupV2 = memo(TrainingSetupV2Inner);
 
+const styles = StyleSheet.create({
+  tileOuter: { flex: 1, minWidth: 0 },
+  // `.pk`: r16, поля 14/14/12, высота от 84
+  tile: { flex: 1, borderRadius: 16, paddingTop: 14, paddingHorizontal: 14, paddingBottom: 12, minHeight: 84 },
+  tileTitle: { fontSize: 16, fontWeight: '700', paddingRight: 30 },
+  tileCount: { fontSize: 13, marginTop: 14, fontVariant: ['tabular-nums'] },
+  chk: { position: 'absolute', right: 12, top: 12, width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+});
+
 const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
   top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
-  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  selected: { marginTop: 30, marginBottom: 14, fontSize: 13, lineHeight: 17 },
+  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  // макет: `.flex gap 14, margin-top 14`; `.tile.t55` r14; название 30/700, межбуквенный −.4
+  titleRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  modeTile: { width: 55, height: 55, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  title: { flex: 1, minWidth: 0, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4 },
   stack: { gap: 10 }, // зачем (Тень 12.10): между плашками ≥ 10
-  skeleton: { borderRadius: 14 },
-  dim: { opacity: 0.45 },
-  addTitle: { flex: 1, fontWeight: '600' },
+  pickRow: { flexDirection: 'row', gap: 10 },
+  skeleton: { flex: 1, minHeight: 84, borderRadius: 16 },
   hint: { marginTop: 14, fontSize: 13, lineHeight: 19, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
 });

@@ -135,6 +135,9 @@ function SetupAction({
   );
 }
 
+/** «EN» / «RU» / «PT»: короткий код языка для подписей «EN → RU» (pt-BR → PT). */
+const langChip = (code: string): string => code.split('-')[0].toUpperCase();
+
 export default function FlashcardsTrainingSetupScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ mode?: string | string[] }>();
@@ -564,23 +567,19 @@ export default function FlashcardsTrainingSetupScreen() {
   const modeTitle = mode === 'blitz'
     ? 'Блиц'
     : triLang(lang, {
-      ru: mode === 'speaking' ? 'Устно' : mode === 'recall' ? 'Вспомни и напиши' : 'Правда / ложь',
-      uk: mode === 'speaking' ? 'Усно' : mode === 'recall' ? 'Згадай і напиши' : 'Правда / неправда',
-      en: mode === 'speaking' ? 'Speaking' : mode === 'recall' ? 'Recall and write' : 'True / false',
-      es: mode === 'speaking' ? 'Oral' : mode === 'recall' ? 'Recuerda y escribe' : 'Verdadero / falso',
-      'pt-BR': mode === 'speaking' ? 'Falando' : mode === 'recall' ? 'Lembre e escreva' : 'Verdadeiro / falso',
-      vi: mode === 'speaking' ? 'Nói' : mode === 'recall' ? 'Nhớ và viết' : 'Đúng / sai',
-      id: mode === 'speaking' ? 'Lisan' : mode === 'recall' ? 'Ingat dan tulis' : 'Benar / salah',
-      tr: mode === 'speaking' ? 'Sözlü' : mode === 'recall' ? 'Hatırla ve yaz' : 'Doğru / yanlış',
-      pl: mode === 'speaking' ? 'Ustnie' : mode === 'recall' ? 'Przypomnij i napisz' : 'Prawda / fałsz',
+      // зачем (Карточки 2.0 12.10): режим «Напиши» называется так же, как плитка шторки режимов и заголовок сессии в макете
+      ru: mode === 'speaking' ? 'Устно' : mode === 'recall' ? 'Напиши' : 'Правда / ложь',
+      uk: mode === 'speaking' ? 'Усно' : mode === 'recall' ? 'Напиши' : 'Правда / неправда',
+      en: mode === 'speaking' ? 'Speaking' : mode === 'recall' ? 'Write' : 'True / false',
+      es: mode === 'speaking' ? 'Oral' : mode === 'recall' ? 'Escribe' : 'Verdadero / falso',
+      'pt-BR': mode === 'speaking' ? 'Falando' : mode === 'recall' ? 'Escreva' : 'Verdadeiro / falso',
+      vi: mode === 'speaking' ? 'Nói' : mode === 'recall' ? 'Viết' : 'Đúng / sai',
+      id: mode === 'speaking' ? 'Lisan' : mode === 'recall' ? 'Tulis' : 'Benar / salah',
+      tr: mode === 'speaking' ? 'Sözlü' : mode === 'recall' ? 'Yaz' : 'Doğru / yanlış',
+      pl: mode === 'speaking' ? 'Ustnie' : mode === 'recall' ? 'Napisz' : 'Prawda / fałsz',
     });
-  const modeSubtitle = triLang(lang, mode === 'blitz'
-    ? { ru: 'Минута на скорость', uk: 'Хвилина на швидкість', en: 'A minute for speed', es: 'Un minuto de velocidad', 'pt-BR': 'Um minuto de velocidade', vi: 'Một phút tốc độ', id: 'Satu menit kilat', tr: 'Hız için bir dakika', pl: 'Minuta na szybkość' }
-    : mode === 'speaking'
-      ? { ru: 'Говори вслух', uk: 'Говори вголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }
-      : mode === 'recall'
-        ? { ru: 'Пиши по памяти', uk: 'Пиши з пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }
-        : { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' });
+  // зачем (Карточки 2.0 12.10, макет «Настройка»): значок режима в плитке 55 слева от названия (те же значки, что в шторке режимов)
+  const modeIcon = mode === 'blitz' ? 'flash-outline' : mode === 'speaking' ? 'mic-outline' : mode === 'recall' ? 'create-outline' : 'checkmark';
   const sizeOptions = mode === 'speaking' || mode === 'recall' || mode === 'truefalse'
     ? [
       { id: '10', label: '10' },
@@ -597,37 +596,37 @@ export default function FlashcardsTrainingSetupScreen() {
     }
     : mode === 'recall'
       ? {
-        title: triLang(lang, { ru: 'Направление', uk: 'Напрям', en: 'Direction', es: 'Dirección', 'pt-BR': 'Direção', vi: 'Hướng', id: 'Arah', tr: 'Yön', pl: 'Kierunek' }),
+        // зачем (Карточки 2.0 12.10, макет «Показывать»: «EN → RU / RU → EN»): подписи — коды языка изучения и языка интерфейса;
+        // «EN → RU» = показываем фразу, пишем перевод (to_source), «RU → EN» = показываем перевод, пишем фразу (to_target)
+        title: triLang(lang, { ru: 'Показывать', uk: 'Показувати', en: 'Show', es: 'Mostrar', 'pt-BR': 'Mostrar', vi: 'Hiển thị', id: 'Tampilkan', tr: 'Göster', pl: 'Pokazuj' }),
         options: [
-          { id: 'to_target', label: triLang(lang, { ru: 'Перевод → фраза', uk: 'Переклад → фраза', en: 'Translation → phrase', es: 'Traducción → frase', 'pt-BR': 'Tradução → frase', vi: 'Bản dịch → cụm', id: 'Terjemahan → frasa', tr: 'Çeviri → ifade', pl: 'Tłumaczenie → fraza' }) },
-          { id: 'to_source', label: triLang(lang, { ru: 'Фраза → перевод', uk: 'Фраза → переклад', en: 'Phrase → translation', es: 'Frase → traducción', 'pt-BR': 'Frase → tradução', vi: 'Cụm → bản dịch', id: 'Frasa → terjemahan', tr: 'İfade → çeviri', pl: 'Fraza → tłumaczenie' }) },
+          { id: 'to_source', label: `${langChip(studyTarget)} → ${langChip(lang)}` },
+          { id: 'to_target', label: `${langChip(lang)} → ${langChip(studyTarget)}` },
         ],
         value: dirId,
         onChange: setDirId,
       }
       : null;
-  const sessionCount = sizeOptions ? (sizeId === 'all' ? summary.cardCount : Math.min(Number(sizeId) || 0, summary.cardCount)) : 0;
-  const baseStartLabel = sizeOptions && sessionCount > 0 ? `${copy.start} · ${sessionCount}` : copy.start;
+  // зачем (Карточки 2.0 12.10): кнопка по макету просто «Начать» — число карточек ушло из подписи (его озвучивает a11y-метка кнопки)
+  const baseStartLabel = copy.start;
   // зачем (ядро): пока тап в очереди, кнопка показывает «Начать…» — видно, что тап принят, и не хочется тапать снова
   const startLabel = startQueued ? `${baseStartLabel}…` : baseStartLabel;
-  const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'exhausted' | 'invalid' = !mode
+  const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid' = !mode
     ? 'invalid'
-    : quotaPreview.status === 'exhausted'
-      ? 'exhausted'
-      : loadState === 'loading'
-        ? 'loading'
-        : loadState === 'error'
-          ? (loadErrorKind === 'load' ? (loadExhausted ? 'unavailable' : 'loading') : 'invalid')
-          : decks.length === 0
-            ? 'empty'
-            : 'ready';
+    : loadState === 'loading'
+      ? 'loading'
+      : loadState === 'error'
+        ? (loadErrorKind === 'load' ? (loadExhausted ? 'unavailable' : 'loading') : 'invalid')
+        : decks.length === 0
+          ? 'empty'
+          : 'ready';
+  // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный лимит — обычная настройка с пилюлей и «Безлимит с Plus», а не тупик
+  const limitReached = quotaPreview.status === 'exhausted';
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
-  const resetText = (() => {
-    const now = new Date();
-    let date = '';
-    try { date = new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(lang, { day: 'numeric', month: 'long' }); } catch (error) { console.warn('[FC-TRAIN-SETUP] reset date format failed', error instanceof Error ? error.message : String(error)); }
-    return triLang(lang, { ru: `Обновится ${date}`, uk: `Оновиться ${date}`, en: `Renews ${date}`, es: `Se renueva el ${date}`, 'pt-BR': `Renova em ${date}`, vi: `Làm mới ${date}`, id: `Diperbarui ${date}`, tr: `${date} tarihinde yenilenir`, pl: `Odnowi się ${date}` });
-  })();
+  const openUpgrade = useCallback(() => {
+    console.log('[FC-TRAIN-ENTRY] setup:upgrade-tap', JSON.stringify({ mode: mode ?? null, quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit }));
+    router.push({ pathname: '/premium_modal', params: { context: 'flashcard_training', source: 'flashcards_training_setup' } } as never);
+  }, [mode, quotaPreview.limit, quotaPreview.status, quotaPreview.used, router]);
 
   return (
     <ScreenGradient>
@@ -643,10 +642,10 @@ export default function FlashcardsTrainingSetupScreen() {
           <TrainingSetupV2
             lang={lang}
             title={modeTitle}
-            subtitle={modeSubtitle}
+            modeIcon={modeIcon}
             limitLabel={limitLabel}
+            limitReached={limitReached}
             status={setupStatus}
-            resetText={resetText}
             invalidText={loadErrorMessage}
             decks={decks}
             countLabelFor={(count) => compactDeckCountLabel(lang, count)}
@@ -661,6 +660,7 @@ export default function FlashcardsTrainingSetupScreen() {
             canStart={canStart}
             hint={!blitzHasEnoughCards && summary.cardCount > 0 ? blitzMinimumLabel : null}
             onStart={() => void startTraining()}
+            onUpgrade={openUpgrade}
             onBack={leave}
             onFindPacks={() => router.push(FC_PACKS_ROUTE as never)}
             onRetry={() => retryDecksLoad('tap')}

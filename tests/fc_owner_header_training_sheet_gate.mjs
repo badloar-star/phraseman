@@ -23,18 +23,18 @@ const sheet = read('app/flashcards/FlashcardsTrainingModeSheet.tsx');
 assert.doesNotMatch(sheet, /Как тренируемся\?/);
 assert.doesNotMatch(sheet, /Выберите режим, затем отметьте нужные наборы\./);
 assert.doesNotMatch(sheet, /mode: 'listening'|Слушать|Listening/);
-assert.match(sheet, /Минута на скорость/);
+assert.match(sheet, /60 секунд/); // зачем (Карточки 2.0 12.10): подписи плиток по макету cards-v2
 // зачем (владелец 01.10, по скрину; bb5d31820): описание «Устно» сокращено — строка про паузу убрана.
-assert.match(sheet, /Говори вслух/); // обращение на «ты» (владелец 05.10)
+assert.match(sheet, /'Вслух'/);
 assert.doesNotMatch(sheet, /Можно остановиться и попробовать ещё раз\./);
-assert.match(sheet, /Верен ли перевод/);
+assert.match(sheet, /Да или нет/);
 // зачем: D129 — языков обучения несколько, «английскую» заменили на «на изучаемом языке».
-assert.match(sheet, /Пиши по памяти/); // обращение на «ты» (владелец 05.10)
+assert.match(sheet, /По памяти/);
 assert.match(sheet, /mode: 'recall'/);
 assert.doesNotMatch(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
 // зачем: bb5d31820 — окно переделано по скрину владельца; строка режима ниже (76), но выше минимума касания 44.
 // 05.10 (Сверка cards-section-032): строка по макету mode() — 16 + плитка 57 + 16 = 89, промежуток 20.
-assert.match(sheet, /row: \{ minHeight: 89, paddingVertical: 16,/);
+assert.match(sheet, /tile: \{ flex: 1, minWidth: 0, minHeight: 112, borderRadius: 20, padding: 16,/);
 assert.match(sheet, /<ScrollView/);
 assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{rowDescription\}`\}/);
 // зачем: efe19ae9d (снимок 30.09) — удалённый флаг «Устно» снят из приложения целиком (isSpeakingEnabled нет нигде);

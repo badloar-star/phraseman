@@ -22,7 +22,8 @@ import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { iconTileColors, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import KitTouchable from '../../components/KitTouchable';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import type { CardsTrainingMode } from './training_entry';
@@ -148,7 +149,8 @@ export default function FlashcardsTrainingModeSheet({
           ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
           vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
         }),
-        description: triLang(lang, { ru: 'Минута на скорость', uk: 'Хвилина на швидкість', en: 'A minute for speed', es: 'Un minuto de velocidad', 'pt-BR': 'Um minuto de velocidade', vi: 'Một phút tốc độ', id: 'Satu menit kilat', tr: 'Hız için bir dakika', pl: 'Minuta na szybkość' }),
+        // зачем (Карточки 2.0 12.10, cards-v2.html modeSheetInner): подпись плитки — «60 секунд», а не пересказ режима.
+        description: triLang(lang, { ru: '60 секунд', uk: '60 секунд', en: '60 seconds', es: '60 segundos', 'pt-BR': '60 segundos', vi: '60 giây', id: '60 detik', tr: '60 saniye', pl: '60 sekund' }),
       },
       {
         mode: 'speaking',
@@ -157,7 +159,7 @@ export default function FlashcardsTrainingModeSheet({
           ru: 'Устно', uk: 'Усно', en: 'Speaking', es: 'Oral', 'pt-BR': 'Falando',
           vi: 'Nói', id: 'Lisan', tr: 'Sözlü', pl: 'Ustnie',
         }),
-        description: triLang(lang, { ru: 'Говори вслух', uk: 'Говори вголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }),
+        description: triLang(lang, { ru: 'Вслух', uk: 'Вголос', en: 'Out loud', es: 'En voz alta', 'pt-BR': 'Em voz alta', vi: 'Thành tiếng', id: 'Dengan suara', tr: 'Sesli', pl: 'Na głos' }),
       },
       {
         mode: 'truefalse',
@@ -168,18 +170,19 @@ export default function FlashcardsTrainingModeSheet({
           'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah',
           tr: 'Doğru / yanlış', pl: 'Prawda / fałsz',
         }),
-        description: triLang(lang, { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' }),
+        description: triLang(lang, { ru: 'Да или нет', uk: 'Так чи ні', en: 'Yes or no', es: 'Sí o no', 'pt-BR': 'Sim ou não', vi: 'Có hay không', id: 'Ya atau tidak', tr: 'Evet ya da hayır', pl: 'Tak lub nie' }),
       },
       {
         mode: 'recall',
         // зачем (Сверка cards-section-032, макет icon('edit')): карандаш в квадрате.
         icon: 'create-outline',
+        // зачем (Карточки 2.0 12.10): плитка 2×2 по макету называется «Напиши» (в списке было «Вспомни и напиши»).
         title: triLang(lang, {
-          ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
-          'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
-          tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
+          ru: 'Напиши', uk: 'Напиши', en: 'Write', es: 'Escribe',
+          'pt-BR': 'Escreva', vi: 'Viết', id: 'Tulis',
+          tr: 'Yaz', pl: 'Napisz',
         }),
-        description: triLang(lang, { ru: 'Пиши по памяти', uk: 'Пиши з пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }),
+        description: triLang(lang, { ru: 'По памяти', uk: 'З пам’яті', en: 'From memory', es: 'De memoria', 'pt-BR': 'De memória', vi: 'Theo trí nhớ', id: 'Dari ingatan', tr: 'Hafızadan', pl: 'Z pamięci' }),
       },
     ];
     return allRows;
@@ -258,46 +261,46 @@ export default function FlashcardsTrainingModeSheet({
                 </PressableHybrid>
               ) : null}
             </View>
-            {limitLabel ? (
-              <View style={[styles.limitPill, { backgroundColor: g.hairlineSoft }]}>
-                <Ionicons name="copy-outline" size={16} color={g.text} />
-                <Text style={[styles.limitText, { color: g.text }]}>{limitLabel}</Text>
-              </View>
-            ) : null}
+            {/* зачем (Карточки 2.0 12.10, cards-v2.html «Режим»: «без пилюли»): остаток тренировок («24/30») теперь показывает экран настройки; в шторке режима его нет. */}
             {/* зачем: закрытие — тап по затемнению и системный «назад»; кнопка осталась невидимой для тестов и читалок экрана */}
             <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} onPress={onClose} style={styles.closeHidden} />
           </View>
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled decelerationRate="fast">
-            <View>
-              {rows.map((row, rowIndex) => {
-                const speakingBlocked = row.mode === 'speaking' && !speakingEnabled;
-                const disabled = speakingBlocked || preparing !== null;
-                const rowDescription = speakingBlocked ? speechUnavailableOnDeviceText(lang) : row.description;
-                const rowIcon = speakingBlocked ? 'mic-off-outline' : row.icon;
-                return (
-                  <Pressable
-                    ref={rowIndex === 0 ? firstRowRef : undefined}
-                    key={row.mode}
-                    testID={`fc-training-mode-${row.mode}`}
-                    accessibilityRole="button"
-                    accessibilityLabel={`${row.title}. ${rowDescription}`}
-                    accessibilityState={{ disabled }}
-                    disabled={disabled}
-                    onPress={() => onSelect(row.mode)}
-                    style={({ pressed }) => [styles.row, rowIndex > 0 && [styles.rowLine, { borderTopColor: g.line }], { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
-                  >
-                    <View style={[styles.icon, { boxShadow: nestedBoxShadow(g) }]}>
-                      <LinearGradient pointerEvents="none" colors={iconTileColors(g, ga, gb)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
-                      <Ionicons name={rowIcon} size={24} color={g.text} />
-                    </View>
-                    <View style={styles.copy}>
-                      <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
-                      <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text>
-                    </View>
-                    {speakingBlocked ? <View style={{ width: 20 }} /> : <Ionicons name="chevron-forward" size={20} color={g.text} />}
-                  </Pressable>
-                );
-              })}
+            {/* зачем (Карточки 2.0 12.10, cards-v2.html `.mgrid`/`.mt`): режимы — сетка плиток 2×2 (зазор 10, сверху 22): значок 46 слева сверху, внизу название и короткая подпись. */}
+            <View style={styles.grid}>
+              {[rows.slice(0, 2), rows.slice(2, 4)].map((pair, pairIndex) => (
+                <View key={pairIndex /* guard-ok: две статичные строки сетки */} style={styles.gridRow}>
+                  {pair.map((row, colIndex) => {
+                    const speakingBlocked = row.mode === 'speaking' && !speakingEnabled;
+                    const disabled = speakingBlocked || preparing !== null;
+                    const rowDescription = speakingBlocked ? speechUnavailableOnDeviceText(lang) : row.description;
+                    const rowIcon = speakingBlocked ? 'mic-off-outline' : row.icon;
+                    return (
+                      <KitTouchable
+                        ref={pairIndex === 0 && colIndex === 0 ? firstRowRef : undefined}
+                        key={row.mode}
+                        testID={`fc-training-mode-${row.mode}`}
+                        accessibilityRole="button"
+                        accessibilityLabel={`${row.title}. ${rowDescription}`}
+                        accessibilityState={{ disabled }}
+                        disabled={disabled}
+                        onPress={() => onSelect(row.mode)}
+                        style={[styles.tile, { boxShadow: plateBoxShadow(g), opacity: disabled ? 0.48 : 1 }]}
+                      >
+                        <PlateFill g={g} radius={20} />
+                        <View style={[styles.icon, { boxShadow: nestedBoxShadow(g) }]}>
+                          <LinearGradient pointerEvents="none" colors={iconTileColors(g, ga, gb)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
+                          <Ionicons name={rowIcon} size={22} color={g.text} />
+                        </View>
+                        <View style={styles.copy}>
+                          <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
+                          <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text>
+                        </View>
+                      </KitTouchable>
+                    );
+                  })}
+                </View>
+              ))}
             </View>
           </ScrollView>
           {/* зачем (Тень 12.10): внутренняя кромка шторки убрана — шторку отделяет затемнение */}
@@ -317,22 +320,22 @@ const baseStyles = StyleSheet.create({
   // зачем (Сверка cards-section-032, kit.css `.sheet` поля 12/18/40 и `.grab` 44×5 + 26): шторка была ~15 px выше макета —
   // лишние нижние поля (системный отступ + 16 + 4). Теперь низ 40 (системная полоса ложится поверх, как в макете), под хватателем 26.
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 26 },
-  headRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 },
-  headCopy: { flex: 1, minWidth: 0 },
-  heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
-  headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4 },
-  limitPill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
-  limitText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
+  headRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
+  // зачем (Карточки 2.0 12.10): заголовок шторки по центру (макет `.center` + 22/28), подпись «Готовим…» под ним тоже по центру
+  headCopy: { flex: 1, minWidth: 0, alignItems: 'center' },
+  heading: { fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
+  headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4, textAlign: 'center' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
-  content: { paddingTop: 10, paddingBottom: 0 },
-  // cards-section `mode()`: поля 16/4, промежуток 20 — высота строки 16 + 57 + 16.
-  row: { minHeight: 89, paddingVertical: 16, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 20 },
-  rowLine: { borderTopWidth: StyleSheet.hairlineWidth }, // shadow-ok: разделитель-линия строк меню; разделитель строк меню (макет «Режим тренировки»), не контейнер
-  icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  copy: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 16, lineHeight: 23, fontWeight: '700' },
+  content: { paddingTop: 22, paddingBottom: 0 },
+  // cards-v2 `.mgrid`: сетка 2×2, зазор 10; `.mt`: r20, поля 16, высота от 112, значок сверху, подписи внизу
+  grid: { gap: 10 },
+  gridRow: { flexDirection: 'row', gap: 10 },
+  tile: { flex: 1, minWidth: 0, minHeight: 112, borderRadius: 20, padding: 16, justifyContent: 'space-between' },
+  icon: { width: 46, height: 46, borderRadius: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  copy: { minWidth: 0, marginTop: 14 },
+  rowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   retry: { alignSelf: 'flex-start', marginTop: 4 },
   retryText: { marginTop: 0, fontWeight: '700' },
-  description: { fontSize: 16, lineHeight: 20, marginTop: 3 },
+  description: { fontSize: 13, lineHeight: 18, marginTop: 2 },
 });

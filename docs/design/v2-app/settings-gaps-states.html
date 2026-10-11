@@ -48,7 +48,7 @@
   .gs-ft.on { background: rgba(255,255,255,.16); color: #fff; }
   .gs-dets { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
   .gs-pl2 { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 10px 14px; border-radius: 14px; }
-  .gs-pl2.dim { opacity: .45; }
+  .gs-pl2.gs-dimrow { opacity: .45; }
   .gs-ver { text-align: center; color: var(--gs-mut); font-size: 13px; line-height: 18px; margin-top: 26px; }
   .gs-sw { width: 48px; height: 29px; border-radius: 16px; padding: 3px; background: rgba(255,255,255,.12); flex: none; display: flex; align-items: center; cursor: pointer; }
   .gs-sw i { display: block; width: 21px; height: 21px; border-radius: 50%; background: #8E8E93; transition: transform .2s; }
@@ -87,7 +87,7 @@
   .gs-mc .gs-tt { font-weight: 700; }
   .gs-mute { opacity: .45; }
   .gs-den { display: flex; align-items: center; gap: 10px; padding: 12px 14px; min-height: 64px; border-radius: 14px; margin-top: 12px; background: linear-gradient(180deg, rgba(242,118,107,.2), rgba(242,118,107,.1)); color: var(--gs-bad); font-size: 13px; line-height: 18px; }
-  .gs-nval { font-size: 13px; line-height: 18px; color: var(--gs-sec); margin-left: 8px; }
+  .gs-nval { font-size: 13px; line-height: 18px; color: var(--gs-sec); margin-left: 8px; margin-right: 14px; } /* зачем (код): значение и шеврон через 14 */
   .gs-sl { position: relative; height: 44px; margin-top: 2px; }
   .gs-sl::before { content: ""; position: absolute; left: 0; right: 0; top: 20px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.18); }
   .gs-sl i { position: absolute; left: 0; top: 20px; height: 4px; border-radius: 2px; background: #C7C7CC; }
@@ -143,6 +143,29 @@
   .gs-acts .c { background: rgba(255,255,255,.14); }
   .gs-acts .s { background: var(--gs-acc); color: var(--gs-on); }
   .gs-acts .s.off { opacity: .5; }
+  .gs-btn.off { background: rgba(255,255,255,.1); color: var(--gs-sec); opacity: .58; box-shadow: var(--gs-sh2); }
+  .gs-ta .ph0 { color: var(--gs-mut); }
+  .gs-inp.ph0 { color: var(--gs-mut); }
+  /* окно выбора времени (TimeModal): по центру, 340, r26, заголовок 25/31, два барабана по 88, «Отмена» и «OK» */
+  .gs-tdim { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.55); }
+  .gs-tw { position: absolute; z-index: 50; left: 50%; top: 50%; width: 340px; transform: translate(-50%, -50%); border-radius: 26px; background: #1B1B1D; box-shadow: var(--gs-sho); overflow: hidden; }
+  .gs-tw .tt { padding: 21px 21px 18px; text-align: center; font-size: 25px; line-height: 31px; font-weight: 700; }
+  .gs-tw .pp { display: flex; align-items: center; justify-content: center; padding: 18px 28px; background: #242427; }
+  .gs-tw .cl { width: 28px; text-align: center; font-size: 30px; font-weight: 300; }
+  .gs-tw .acts { display: flex; gap: 10px; padding: 16px 21px 21px; }
+  .gs-tw .acts div { flex: 1; min-height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+  .gs-tw .acts .c { background: #242427; box-shadow: var(--gs-sh2); } .gs-tw .acts .o { background: var(--gs-acc); color: var(--gs-on); box-shadow: 0 14px 24px -10px rgba(233,233,235,.35); }
+  .gs-pk { position: relative; width: 88px; height: 144px; overflow: hidden; }
+  .gs-pk .band { position: absolute; z-index: 0; left: 5px; right: 5px; top: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.12); }
+  .gs-pk .ln { position: absolute; z-index: 3; left: 6px; right: 6px; height: 0; border-top: 1.5px solid rgba(255,255,255,.14); } /* зачем: рамка выбранной строки барабана — в коде это тонкие линии сверху и снизу, не контейнер */
+  .gs-pk .fd { position: absolute; z-index: 2; left: 0; right: 0; height: 48px; background: #1B1B1D; opacity: .65; }
+  .gs-pk .v { position: relative; z-index: 1; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 20px; color: var(--gs-sec); }
+  .gs-pk .v.on { font-size: 27px; line-height: 32px; font-weight: 700; color: #fff; }
+  /* окно-сообщение внутри шторки (GlassInlineAlert): затемнение .62 только над шторкой, карточка по центру */
+  .gs-ascrim { position: absolute; inset: 0; z-index: 5; border-radius: 28px 28px 0 0; background: rgba(0,0,0,.62); display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .gs-al { width: 100%; max-width: 360px; border-radius: 25px; padding: 24px; background: #232326; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+  .gs-al .t { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; } .gs-al .m { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--gs-sec); }
+  .gs-al .b { margin-top: 18px; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--gs-acc); color: var(--gs-on); }
 </style>
 </head>
 <body>
@@ -183,6 +206,8 @@ const G = {
   noC: '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
   okCF: '<circle cx="12" cy="12" r="9.5" fill="currentColor" stroke="none"/><path d="M8 12.5l3 3 5-6" stroke="#232428" stroke-width="2"/>',
   alertCF: '<circle cx="12" cy="12" r="9.5" fill="currentColor" stroke="none"/><path d="M12 7.5v5.5M12 16.5h.01" stroke="#232428" stroke-width="2.2"/>',
+  alertCirc: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/>',
+  cloudOff: '<path d="M7 18.5h10a3.5 3.5 0 00.6-6.95A5.5 5.5 0 007.2 10.4 4 4 0 007 18.5z"/><path d="M3.5 3.5l17 17"/>',
   gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>',
 };
 const I = (n, c = '') => G[n]
@@ -197,7 +222,7 @@ const row = (n, title, o = {}) => `<div class="gs-row t">${tile(n)}<div class="g
 const grp = (rows) => `<div class="gs-grp">${rows.join('')}</div>`;
 const ey = (t, a = '') => `<div class="gs-ey"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
 const ey2 = (t, a = '') => `<div class="gs-ey2"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
-const pl2 = (n, title, o = {}) => `<div class="gs-pl2${o.dim ? ' dim' : ''}">${o.lead || tile(n)}<div class="gs-tx"><div class="gs-pt">${title}</div>${o.sub ? `<div class="gs-st">${o.sub}</div>` : ''}</div>${o.right || ''}</div>`;
+const pl2 = (n, title, o = {}) => `<div class="gs-pl2${o.dim ? ' gs-dimrow' : ''}">${o.lead || tile(n)}<div class="gs-tx"><div class="gs-pt">${title}</div>${o.sub ? `<div class="gs-st">${o.sub}</div>` : ''}</div>${o.right || ''}</div>`;
 const nav = (on) => `<div class="gs-fade"></div><div class="gs-nav">${['layers', 'bookmark', 'play', 'people', 'gear'].map((n, i) => `<span class="it${i === on ? ' on' : ''}">${n === 'play' ? '<svg class="i" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>' : I(n)}</span>`).join('')}</div>`;
 const backRow = (right = '') => `<div class="gs-brow"><span class="gs-back">${K.icon('back')}</span>${right}</div>`;
 
@@ -212,13 +237,13 @@ const secProfile = (acc, study) => ey('ПРОФИЛЬ') + grp([row('person', 'А
 const fontCard = `<div class="gs-fs"><div class="gs-fsh">${tile('text')}<div class="gs-tt">Размер шрифта</div></div><div class="gs-fst">${[['Малый', 12], ['Средний', 14], ['Большой', 17]].map(([n, s], i) => `<div class="gs-ft t${i === 1 ? ' on' : ''}"><b style="font-size:${s}px">A</b><span>${n}</span></div>`).join('')}</div></div>`;
 const secLearn = () => ey('ОБУЧЕНИЕ') + grp([row('book', 'Настройки обучения'), row('bell', 'Уведомления', { value: 'Вкл' }), row('layers', 'Темы', { value: 'Затмение' }), row('phone', 'Тактильный отклик', { right: sw(true) }), fontCard]);
 const det = (n, t, s) => `<div class="gs-pl2">${tile(n)}<div class="gs-tx"><div class="gs-pt">${t}</div><div class="gs-st">${s}</div></div></div>`;
-const secPlus = (p, details = []) => ey('PHRASEMAN PLUS', 'plus') + grp([row(p.filled ? 'diamondF' : 'diamond', p.title, { value: p.value }), row('tag', 'Ввести промокод'), row('gift', 'Пригласить друга')])
+const secPlus = (p, details = [], noInvite = false) => ey('PHRASEMAN PLUS', 'plus') + grp([row(p.filled ? 'diamondF' : 'diamond', p.title, { value: p.value }), row('tag', 'Ввести промокод'), ...(noInvite ? [] : [row('gift', 'Пригласить друга')])])
   + (details.length ? `<div class="gs-dets">${details.join('')}</div>` : '');
 const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить кеш', { value: cache }), row('star', 'Оценить в Google Play')]);
 const PLUS_OFF = { title: 'Подписка Plus', value: 'Не активна', filled: false };
 const PLUS_ON = { title: 'Подписка Plus', value: 'Активна', filled: true };
-const mainScreen = (o = {}) => hMain + pcard('Лектор · аккаунт привязан') + secProfile(o.acc || 'Google', o.study || 'English') + secLearn()
-  + secPlus(o.plus || PLUS_OFF, o.details || []) + secHelp(o.cache) + (o.slotBottom || '') + '<div class="gs-ver">Версия 2.0.0 (118)</div>';
+const mainScreen = (o = {}) => hMain + pcard('Лектор · аккаунт привязан') + secProfile(o.acc || 'Google', o.study || 'English') + (o.slotTop || '') + secLearn()
+  + secPlus(o.plus || PLUS_OFF, o.details || [], !!o.noInvite) + secHelp(o.cache) + (o.slotBottom || '') + '<div class="gs-ver">Версия 2.0.0 (118)</div>';
 
 /* ---------- слот сообщений (SettingsMessageSlotCard.tsx) ---------- */
 const POLL = [['Больше уроков', 41], ['Больше диалогов', 27], ['Больше карточек', 21], ['Другое', 11]];
@@ -227,24 +252,31 @@ const slotPoll = (voted) => `<div class="gs-slot bt">${slotHead}<div class="gs-s
   + POLL.map(([t, p], i) => `<div class="gs-op t${voted === i ? ' on' : ''}">${I(voted === i ? 'radioOn' : 'radio', 's22')}<span>${t}</span><em${voted === null ? ' style="visibility:hidden"' : ''}>${p}%</em></div>`).join('')
   + (voted !== null ? '<div class="gs-lk">Твой выбор сохранён</div>' : '') + '</div></div>';
 const slotMsg = `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Мы обновили приложение: тему оформления теперь можно сменить в настройках.</div></div>`;
+// зачем (settings.tsx): верхний слот — сразу под группой «Профиль», отступ сверху 12 (нижний — 20)
+const slotTopMsg = `<div class="gs-slot">${slotHead}<div class="gs-sbody">Мы обновили приложение: тему оформления теперь можно сменить в настройках.</div></div>`;
 
 /* ---------- уведомления (settings_notifications.tsx) ---------- */
-const nrow = (n, label, on, o = {}) => pl2(n, label, { right: o.val ? `<span class="gs-nval">${o.val}</span><span class="gs-ch">${K.icon('fwd', 's18')}</span>` : sw(on) });
+const nrow = (n, label, on, o = {}) => pl2(n, label, { dim: o.dim, right: o.val ? `<span class="gs-nval">${o.val}</span><span class="gs-ch">${K.icon('fwd', 's18')}</span>` : sw(on) });
 const notif = (o) => backRow(`<span class="gs-saved" style="opacity:${o.saved ? 1 : 0}">${I('okC', 's16')}Сохранено</span>`)
   + '<div class="gs-t34">Уведомления</div>'
   + (o.denied ? `<div class="gs-den t">${I('bellOff', 's18')}<span>Телефон не разрешает уведомления. Проверь разрешение в настройках телефона — переключателя в приложении недостаточно.</span></div>` : '')
   + `<div class="gs-pl gs-mc">${I('chat', 's20')}<div class="gs-tx"><div class="gs-tt">Разрешить уведомления</div><div class="gs-st">Системное разрешение телефона тоже должно быть включено.</div></div>${sw(o.master)}</div>`
   + `<div class="${o.master ? '' : 'gs-mute'}">`
-  + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', true)}${nrow('clock', 'Время', true, { val: '20:00' })}${nrow('flame', 'Серия под угрозой', true)}${nrow('bookmark', 'Фраза дня', true)}${nrow('bolt', 'Энергия восстановилась', false)}</div>`
-  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', true)}${nrow('calendar', 'Итоги месяца', false)}</div>`
+  + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', o.daily !== false)}${nrow('clock', 'Время', true, { val: '20:00', dim: o.daily === false })}${nrow('flame', 'Серия под угрозой', true)}${nrow('bookmark', 'Фраза дня', true)}${nrow('bolt', 'Энергия восстановилась', false)}</div>`
+  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', true)}${nrow('calendar', 'Итоги месяца', false)}${nrow('people', 'События Шпиля', true)}</div>`
   + ey2('Ещё') + `<div class="gs-stk">${nrow('people', 'Друзья', true)}${nrow('tag', 'Скидки и предложения', false)}</div></div>`;
 
+/* ---------- окно выбора времени (settings_notifications.tsx: TimeModal / SimplePicker) ---------- */
+// барабан: три видимые строки — предыдущее, выбранное, следующее; сверху и снизу затемнение .65, рамка выбранной — две тонкие линии
+const picker = ([a, b, c]) => `<div class="gs-pk"><div class="band"></div><div class="ln" style="top:48px"></div><div class="ln" style="top:96px"></div><div class="fd" style="top:0"></div><div class="fd" style="bottom:0"></div><div class="v">${a ?? ''}</div><div class="v on">${b}</div><div class="v">${c ?? ''}</div></div>`;
+const timeDialog = () => `<div class="gs-tdim"></div><div class="gs-tw"><div class="tt">Время</div><div class="pp">${picker(['19', '20', '21'])}<span class="cl">:</span>${picker([null, '00', '05'])}</div><div class="acts"><div class="c t">Отмена</div><div class="o t">OK</div></div></div>`;
+
 /* ---------- настройки обучения (settings_edu.tsx) ---------- */
-const edu = () => backRow() + '<div class="gs-t34">Настройки обучения</div><div class="gs-sub">Проверка ответа, ввод и единая озвучка</div>'
+const edu = (o = {}) => backRow() + '<div class="gs-t34">Настройки обучения</div><div class="gs-sub">Проверка ответа, ввод и единая озвучка</div>'
   + ey2('ОТВЕТ') + `<div class="gs-stk">${pl2('check', 'Автопроверка', { sub: 'Проверять при наборе последнего слова', right: sw(true) })}${pl2('arrowR', 'Автопереход после ответа', { sub: 'Следующее задание откроется само', right: sw(false) })}${pl2('edit', 'Ввод с клавиатуры', { sub: 'Вводить ответ вручную', right: sw(false) })}${pl2('bolt', 'Вибрация при ошибке', { sub: 'Работает при включённом тактильном отклике (Настройки → «Тактильный отклик»)', right: sw(true) })}</div>`
   + ey2('ЗВУК') + `<div class="gs-stk">${pl2('vol', 'Звуковые эффекты', { sub: 'Короткие звуки в карточках и тренировках', right: sw(true) })}${pl2('vol', 'Автопроизношение', { sub: 'Озвучивать английскую фразу после ответа', right: sw(true) })}</div>`
   + `<div class="gs-pl2" style="margin-top:10px;align-items:flex-start">${tile('vol')}<div class="gs-tx"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div class="gs-pt">Скорость произношения</div><div class="gs-pt" style="color:#E6E6E8">1.0x</div></div><div class="gs-st">Отпусти ползунок — прозвучит пример</div><div class="gs-sl"><i style="width:40%"></i><b style="left:40%"></b></div></div></div>`
-  + `<div class="gs-pl2 t" style="margin-top:10px">${tile('person')}<div class="gs-tx"><div class="gs-pt">Голос озвучки (EN)</div><div class="gs-st">Голос и скорость телефона</div></div><span class="gs-vv">Системный</span>${chev}</div>`;
+  + `<div class="gs-pl2 t" style="margin-top:10px">${tile('person')}<div class="gs-tx"><div class="gs-pt">Голос озвучки (EN)</div><div class="gs-st">Голос и скорость телефона</div></div><span class="gs-vv">${o.voice || 'Системный'}</span>${chev}</div>`;
 
 /* ---------- приватность и данные (privacy_settings.tsx) ---------- */
 const prow = (n, label, o = {}) => pl2(n, label, { sub: o.sub, right: (o.sw !== undefined ? sw(o.sw) : '') + (o.link ? chev : '') });
@@ -270,24 +302,29 @@ const toast = (kind, label, msg) => `<div class="gs-toast" role="status"><span c
 
 /* ---------- поддержка (support_report.tsx) ---------- */
 const EVS = [['12:38:52', 'app_state', 'info'], ['12:39:04', 'navigation', 'info'], ['12:39:31', 'feature_action', 'start'], ['12:39:33', 'feature_action', 'success'], ['12:40:10', 'navigation', 'info'], ['12:40:47', 'feature_action', 'error'], ['12:41:07', 'navigation', 'info']];
-const support = () => backRow() + '<div class="gs-t34">Поддержка</div><div class="gs-sub15">Расскажи, что случилось</div>'
+const PLACEHOLDER = 'Например: в «Карточках» нажимаю «Послушать», но звука нет.';
+// зачем (support_report.tsx): «Отправить» доступна от 10 символов (ERROR_REPORT_COMMENT_MIN_LEN); диагностика свёрнута — «Посмотреть», раскрыта — «Скрыть» и список
+const support = (o = {}) => backRow() + '<div class="gs-t34">Поддержка</div><div class="gs-sub15">Расскажи, что случилось</div>'
   + ey2('ОПИСАНИЕ ПРОБЛЕМЫ')
-  + '<div class="gs-ta">В «Карточках» нажимаю «Послушать», но звука нет.</div>'
-  + `<div class="gs-diag">${K.icon('check')}<div class="gs-tx"><div class="gs-dt">Техническая диагностика</div><div class="gs-dd">Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.</div><div class="gs-dl t">Скрыть</div><div class="gs-evs">${EVS.map(([t, e, r]) => `<div class="gs-ev">${t} · ${e} · ${r}</div>`).join('')}</div></div></div>`
-  + '<div class="gs-btn t">Отправить</div>';
+  + `<div class="gs-ta">${o.text ? o.text : `<span class="ph0">${PLACEHOLDER}</span>`}</div>`
+  + `<div class="gs-diag">${K.icon('check')}<div class="gs-tx"><div class="gs-dt">Техническая диагностика</div><div class="gs-dd">Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.</div><div class="gs-dl t">${o.open ? 'Скрыть' : 'Посмотреть'}</div>${o.open ? `<div class="gs-evs">${EVS.map(([t, e, r]) => `<div class="gs-ev">${t} · ${e} · ${r}</div>`).join('')}</div>` : ''}</div></div>`
+  + (o.fail ? `<div class="gs-den t" style="margin-top:18px">${I('alertCirc', 's18')}<span>Не отправилось. Попробуй ещё раз</span></div>` : '')
+  + `<div class="gs-btn t${o.off ? ' off' : ''}"${o.fail ? ' style="margin-top:10px"' : ''}>${o.fail ? 'Повторить' : 'Отправить'}</div>`;
 const supportSent = () => backRow() + '<div class="gs-t34">Поддержка</div>'
   + `<div style="padding:150px 0 0"><div class="gs-sent"><span class="gs-ok">${K.icon('check')}</span><h3>Обращение отправлено</h3><p>Спасибо! Команда всё проверит и ответит в приложении.</p></div><div class="gs-btn t">Готово</div></div>`;
 
 /* ---------- имя (NicknameEditModal.tsx) ---------- */
 const acctGhost = () => backRow() + '<div class="gs-t34">Аккаунт</div>' + `<div class="gs-stk" style="margin-top:22px;opacity:.4">${pl2('person', 'Имя', { right: '<span class="gs-val">Алекс</span>' })}${pl2('chat', 'Способ входа', { right: '<span class="gs-val">Google</span>' })}${pl2('arrowR', 'Выйти и войти под другим аккаунтом')}</div>`;
-const nickSheet = (st) => {
-  const M = { checking: ['Проверяем имя…', '', ''], available: ['Имя свободно', 'ok', 'okC'], taken: ['Имя уже занято', 'no', 'noC'] }[st];
-  const val = st === 'taken' ? 'Delta28' : 'Alexey';
-  const off = st !== 'available';
+const nickSheet = (st, o = {}) => {
+  // зачем (NicknameEditModal.tsx): «Сохранить» недоступна только пока идёт проверка и когда имя занято; при сбое проверки — «Проверим при сохранении»
+  const M = { checking: ['Проверяем имя…', '', ''], available: ['Имя свободно', 'ok', 'okC'], taken: ['Имя уже занято', 'no', 'noC'], error: ['Проверим при сохранении', '', 'cloudOff'], idle: ['', '', ''] }[st];
+  const val = o.val !== undefined ? o.val : (st === 'taken' ? 'Delta28' : 'Alexey');
+  const off = st === 'checking' || st === 'taken';
   return `<div class="gs-dim" style="background:rgba(0,0,0,.7)"></div><div class="gs-sheet"><div class="gs-grab"></div><div class="gs-shh"><div class="gs-tx"><div class="gs-sht">Изменить имя</div><div class="gs-shs">Ник можно менять раз в 14 дней</div></div><span class="gs-xs t">${K.icon('close')}</span></div>`
-    + `<div class="gs-ey2" style="margin:20px 0 8px">ИМЯ ПРОФИЛЯ</div><div class="gs-inp">${val}</div>`
-    + `<div class="gs-av ${M[1]}">${st === 'checking' ? '<span class="gs-spin"></span>' : I(M[2], 's16')}<span>${M[0]}</span></div>`
-    + `<div class="gs-acts"><div class="c t">Отмена</div><div class="s t${off ? ' off' : ''}">Сохранить</div></div></div>`;
+    + `<div class="gs-ey2" style="margin:20px 0 8px">ИМЯ ПРОФИЛЯ</div><div class="gs-inp${val === '' ? ' ph0' : ''}">${val === '' ? 'Введи имя...' : val}</div>`
+    + `<div class="gs-av ${M[1]}">${st === 'checking' ? '<span class="gs-spin"></span>' : (M[2] ? I(M[2], 's16') : '')}<span>${M[0]}</span></div>`
+    + `<div class="gs-acts"><div class="c t">Отмена</div><div class="s t${off ? ' off' : ''}">Сохранить</div></div>`
+    + (o.alert ? `<div class="gs-ascrim"><div class="gs-al"><div class="t">Сообщение</div><div class="m">${o.alert}</div><div class="b t">OK</div></div></div>` : '') + '</div>';
 };
 
 /* ---------- кадры ---------- */
@@ -311,7 +348,7 @@ document.getElementById('root').innerHTML =
     col('«Очистить кеш · Готово» + слот-опрос после голосования: проценты, выбранный вариант, «Твой выбор сохранён»', ph(mainScreen({ plus: PLUS_ON, cache: 'Готово', slotBottom: slotPoll(0) }), { ...withNav, anchor: 'end' })),
     col('«Очистить кеш · Не удалось» + слот без опроса (только заголовок и текст)', ph(mainScreen({ plus: PLUS_ON, cache: 'Не удалось', slotBottom: slotMsg }), { ...withNav, anchor: 'end' })),
   ]) +
-  block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели и месяца), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
+  block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели, месяца и события Шпиля), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
     col('Уведомления: «Сохранено» после переключения; «Время» · 20:00', ph(notif({ master: true, saved: true }), { time: '12:40' })),
     col('Уведомления, низ списка: «Итоги месяца», блок «Ещё»', ph(notif({ master: true, saved: false }), { time: '12:40', anchor: 'end' })),
     col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: true, saved: false, denied: true }), { time: '12:41' })),
@@ -332,13 +369,25 @@ document.getElementById('root').innerHTML =
     col('Тост при сбое: «Что-то пошло не так · Не получилось сменить язык. Попробуй ещё раз.»', ph(mainScreen({}), { ...withNav, time: '13:17', overlay: toast('err', 'Что-то пошло не так', 'Не получилось сменить язык. Попробуй ещё раз.') })),
   ]) +
   block('support', 'Поддержка', 'Раскрытая диагностика и экран после отправки.', [
-    col('Поддержка: раскрыта «Техническая диагностика» («Скрыть» + список действий)', ph(support(), { time: '12:42' })),
+    col('Поддержка: раскрыта «Техническая диагностика» («Скрыть» + список действий)', ph(support({ text: 'В «Карточках» нажимаю «Послушать», но звука нет.', open: true }), { time: '12:42' })),
     col('Поддержка: «Обращение отправлено» и «Готово»', ph(supportSent(), { time: '12:42' })),
   ]) +
   block('nick', 'Смена имени: проверка', 'Шторка «Изменить имя» над экраном «Аккаунт»; «Сохранить» недоступна, пока идёт проверка и когда имя занято.', [
     col('«Проверяем имя…»', ph(acctGhost(), { time: '13:20', overlay: nickSheet('checking') })),
     col('«Имя свободно»', ph(acctGhost(), { time: '13:20', overlay: nickSheet('available') })),
     col('«Имя уже занято»', ph(acctGhost(), { time: '13:21', overlay: nickSheet('taken') })),
+  ]) +
+  block('more', 'Дополнено по коду Настроек (67382e72b)', 'Состояния, которых образец не знал: «Время» при выключенном ежедневном напоминании и окно выбора времени, верхний слот сообщений, скрытая «Пригласить друга», проверка имени не удалась и окно «Введи имя», выбранный голос озвучки, неактивная «Отправить». Тумблеры — без обводки дорожки (стиль «Тень»).', [
+    col('Уведомления: мастер включён, ежедневное напоминание выключено — «Время» приглушено и не нажимается', ph(notif({ master: true, saved: false, daily: false }), { time: '12:43' })),
+    col('Окно выбора времени: «Время», два барабана (часы · минуты), «Отмена» и «OK»', ph(notif({ master: true, saved: false }), { time: '12:44', overlay: timeDialog() })),
+    col('Верхний слот сообщений: «Важное от Phraseman» сразу под группой «Профиль»', ph(mainScreen({ plus: PLUS_ON, slotTop: slotTopMsg }), { ...withNav, anchor: 'top' })),
+    col('«Пригласить друга» скрыта: раздел приглашений выключен — в группе Plus две строки', ph(mainScreen({ noInvite: true }), { ...withNav, anchor: 'plus' })),
+    col('Имя: проверка не удалась — «Проверим при сохранении», «Сохранить» доступна', ph(acctGhost(), { time: '13:22', overlay: nickSheet('error') })),
+    col('Имя: пустое поле — «Сохранить» → окно «Сообщение · Введи имя»', ph(acctGhost(), { time: '13:23', overlay: nickSheet('idle', { val: '', alert: 'Введи имя' }) })),
+    col('Имя: один символ — «Сохранить» → окно «Сообщение · Минимум 2 символа»', ph(acctGhost(), { time: '13:23', overlay: nickSheet('idle', { val: 'A', alert: 'Минимум 2 символа' }) })),
+    col('Обучение, низ: в «Голос озвучки (EN)» выбранный голос — «Samantha»', ph(edu({ voice: 'Samantha' }), { time: '13:03', anchor: 'end' })),
+    col('Поддержка: короткий текст (меньше 10 символов) — «Отправить» неактивна, диагностика свёрнута («Посмотреть»)', ph(support({ text: 'Нет звука', off: true }), { time: '12:45' })),
+    col('Поддержка: «Не отправилось. Попробуй ещё раз» — красная плашка, кнопка «Повторить», текст в поле остался', ph(support({ text: 'В «Карточках» нажимаю «Послушать», но звука нет.', fail: true }), { time: '12:46' })),
   ]);
 
 K.init();

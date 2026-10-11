@@ -35175,7 +35175,7 @@
         "label": "Уведомления — сохранено, время",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень») | Макеты 12.10: в «Итогах» добавлена строка «События Шпиля» (settings_notifications.tsx); значение «Время» и шеврон через 14.",
       "screen": "Настройки",
       "state": "Уведомления — сохранено, время",
       "code": [
@@ -35204,7 +35204,7 @@
         "label": "Уведомления — низ списка (итоги месяца, ещё)",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень») | Макеты 12.10: в «Итогах» добавлена строка «События Шпиля» (settings_notifications.tsx); значение «Время» и шеврон через 14.",
       "screen": "Настройки",
       "state": "Уведомления — низ списка (итоги месяца, ещё)",
       "code": [
@@ -35233,7 +35233,7 @@
         "label": "Уведомления — телефон не разрешает",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень») | Макеты 12.10: в «Итогах» добавлена строка «События Шпиля» (settings_notifications.tsx); значение «Время» и шеврон через 14.",
       "screen": "Настройки",
       "state": "Уведомления — телефон не разрешает",
       "code": [
@@ -35262,7 +35262,7 @@
         "label": "Уведомления — мастер выключен",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень») | Макеты 12.10: в «Итогах» добавлена строка «События Шпиля» (settings_notifications.tsx); значение «Время» и шеврон через 14.",
       "screen": "Настройки",
       "state": "Уведомления — мастер выключен",
       "code": [
@@ -35673,6 +35673,299 @@
       "state": "В какой набор? — нет наборов, куда можно добавить",
       "code": [
         "app/flashcards/ExpandedCardV2.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-027",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 27,
+        "label": "Уведомления — ежедневное выключено: «Время» приглушено",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): мастер включён, ежедневное напоминание выключено — строка «Время» с прозрачностью .45, не нажимается.",
+      "screen": "Настройки",
+      "state": "Уведомления — ежедневное выключено: «Время» приглушено",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-028",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 28,
+        "label": "Уведомления — окно выбора времени",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): окно по центру (TimeModal): заголовок «Время» 25/31, два барабана по 88 (часы · минуты), «Отмена» и «OK».",
+      "screen": "Настройки",
+      "state": "Уведомления — окно выбора времени",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-029",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 29,
+        "label": "Настройки — верхний слот сообщений",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): карточка «Важное от Phraseman» сразу под группой «Профиль», отступ сверху 12.",
+      "screen": "Настройки",
+      "state": "Настройки — верхний слот сообщений",
+      "code": [
+        "app/(tabs)/settings.tsx",
+        "components/settings/SettingsMessageSlotCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-030",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 30,
+        "label": "Настройки — «Пригласить друга» скрыта",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): раздел приглашений выключен — в группе Plus две строки (settingsReferralRowVisible = false).",
+      "screen": "Настройки",
+      "state": "Настройки — «Пригласить друга» скрыта",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-031",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 31,
+        "label": "Имя — проверка не удалась: «Проверим при сохранении»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): значок облака с перечёркиванием, «Сохранить» доступна.",
+      "screen": "Настройки",
+      "state": "Имя — проверка не удалась: «Проверим при сохранении»",
+      "code": [
+        "components/account/NicknameEditModal.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-032",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 32,
+        "label": "Имя — пустое поле: окно «Введи имя»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): окно-сообщение внутри шторки: «Сообщение» · «Введи имя» · «OK».",
+      "screen": "Настройки",
+      "state": "Имя — пустое поле: окно «Введи имя»",
+      "code": [
+        "components/account/NicknameEditModal.tsx",
+        "components/account/GlassInlineAlert.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-033",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 33,
+        "label": "Имя — один символ: окно «Минимум 2 символа»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): окно-сообщение внутри шторки: «Сообщение» · «Минимум 2 символа» · «OK».",
+      "screen": "Настройки",
+      "state": "Имя — один символ: окно «Минимум 2 символа»",
+      "code": [
+        "components/account/NicknameEditModal.tsx",
+        "components/account/GlassInlineAlert.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-034",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 34,
+        "label": "Обучение — выбранный голос озвучки",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): в строке «Голос озвучки (EN)» справа имя выбранного голоса вместо «Системный».",
+      "screen": "Настройки",
+      "state": "Обучение — выбранный голос озвучки",
+      "code": [
+        "app/settings_edu.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-035",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 35,
+        "label": "Поддержка — «Отправить» неактивна (меньше 10 символов)",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн 67382e72b): текст короче 10 символов (ERROR_REPORT_COMMENT_MIN_LEN) — кнопка приглушена; диагностика свёрнута, ссылка «Посмотреть».",
+      "screen": "Настройки",
+      "state": "Поддержка — «Отправить» неактивна (меньше 10 символов)",
+      "code": [
+        "app/support_report.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-036",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 36,
+        "label": "Поддержка — не отправилось: «Повторить»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Макеты 12.10 (Дизайн): красная плашка «Не отправилось. Попробуй ещё раз» (alert-circle-outline) над кнопкой, кнопка «Повторить», текст в поле остаётся. Источник — app/support_report.tsx в рабочем дереве Дизайна (на момент кадра ещё не в коммите) — сверить после коммита.",
+      "screen": "Настройки",
+      "state": "Поддержка — не отправилось: «Повторить»",
+      "code": [
+        "app/support_report.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,

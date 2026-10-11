@@ -927,9 +927,10 @@ async function executePostDeleteLocalWipe(
     invalidatePremiumCache();
     return true;
   } catch (e) {
-    const detail = e instanceof Error ? e.message : String(e);
+    // зачем (TG-0AE4918142EE): в журнал — только код ошибки, без текста (может нести почту).
+    const detail = identityErrorCode(e);
     traceAccountDeleteLocal(`threw:${detail}`);
-    if (__DEV__) console.warn('[auth_provider] post-delete local wipe failed', e);
+    if (__DEV__) console.warn(`[auth_provider] post-delete local wipe failed code=${detail}`);
     return false;
   }
 }
@@ -1005,7 +1006,8 @@ async function retirePhoneStateForDeletion(stableId: string | null): Promise<boo
         return true;
       })
       .catch((error: unknown) => {
-        const detail = error instanceof Error ? error.message : String(error);
+        // зачем (TG-0AE4918142EE): в журнал — только код ошибки.
+        const detail = identityErrorCode(error);
         traceAccountDeleteLocal(`phone_state_retire_threw:${detail}`);
         return false;
       });
@@ -1286,7 +1288,8 @@ export async function ensureFreshPostDeletionIdentity(
           return afterSignOut == null
             || (afterSignOut.isAnonymous === true && afterSignOut.uid !== lock!.providerUid);
         } catch (e) {
-          console.warn(`[ACC-MUT] delete:fresh_identity signout_failed retired_guest=${retiredGuestSignedIn ? 1 : 0} reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+          // зачем (TG-0AE4918142EE): в журнал — только код ошибки выхода провайдера.
+          console.warn(`[ACC-MUT] delete:fresh_identity signout_failed retired_guest=${retiredGuestSignedIn ? 1 : 0} reason=${identityErrorCode(e)}`);
           return false;
         }
       },
@@ -1727,7 +1730,8 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
         'play_services',
       );
     } catch (e: any) {
-      if (__DEV__) console.warn('[auth_provider] hasPlayServices failed', e);
+      // зачем (TG-0AE4918142EE): в журнал только код ошибки Google.
+      if (__DEV__) console.warn(`[auth_provider] hasPlayServices failed code=${identityErrorCode(e)}`);
       throw new Error(`play_services_${e?.code ?? e?.message ?? 'unknown'}`);
     }
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: hasPlayServices OK');
@@ -1784,7 +1788,8 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
       if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: timed out; native call remains reusable');
       throw new Error('google_signin_timeout');
     }
-    if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: signIn threw', e);
+    // зачем (TG-0AE4918142EE): текст ошибки Google может нести почту — в журнал только код.
+    if (__DEV__) console.warn(`[auth_provider] runGoogleNativeSignIn: signIn threw code=${identityErrorCode(e)}`);
     throw e;
   }
 
@@ -2016,9 +2021,20 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
 // остаются 'critical'.
 const EXPECTED_AUTH_FAILURE_STAGES = new Set(['native', 'firebase', 'config']);
 
+// зачем (TG-17B4F6788C5A): отчёт уходит в Crashlytics и (critical) в Firestore/Telegram,
+// куда персональные данные не должны попадать. Вызовы передают коды; страховка ловит
+// случайный сырой текст (пробел/«@» и т. п.): сохраняем безопасный префикс до «:», хвост — redacted.
+const SAFE_AUTH_FAILURE_DETAIL = /^[a-z0-9_:./-]{1,280}$/i;
+
+function safeAuthFailureDetail(detail: string): string {
+  if (SAFE_AUTH_FAILURE_DETAIL.test(detail)) return detail;
+  const head = detail.split(':')[0] ?? '';
+  return SAFE_AUTH_FAILURE_DETAIL.test(head) ? `${head}:redacted_text` : 'redacted_text';
+}
+
 function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detail: string): void {
   try {
-    const d = detail.replace(/\s+/g, ' ').slice(0, 280);
+    const d = safeAuthFailureDetail(detail.slice(0, 280));
     recordError(new Error(`auth_signin:${provider}:${stage}:${d}`), 'auth_signin');
     // зачем транзиенты → warning (2026-08-30): гонка холодного старта Android
     // (anon-auth/App Check ещё поднимаются) даёт identity_unavailable на первой
@@ -2348,10 +2364,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     // всё равно авторитетно классифицирует identity на стадии stable-link
     // (identity_retired / permanent denial). Повреждённый ВИДИМЫЙ замок
     // по-прежнему fail-closed.
+    // зачем (TG-17B4F6788C5A): stage guard = critical (Firestore/Telegram) — хвост только код.
     captureAuthSignInFailure(
       provider,
       'guard',
-      `account_delete_guard_unavailable:${guardError instanceof Error ? guardError.message : 'unknown'}`,
+      `account_delete_guard_unavailable:${identityErrorCode(guardError)}`,
     );
     if (!isAccountDeleteGuardNoLockSeenError(guardError)) {
       return { result: 'error', error: 'account_delete_guard_unavailable' };
@@ -2430,17 +2447,22 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       cred = await runAppleNativeSignIn();
     }
   } catch (e: any) {
-    if (__DEV__) console.warn('[auth_provider] native sign-in failed', e);
+    // зачем (TG-0AE4918142EE): в тексте ошибки Google/Apple бывает почта — в журнал и
+    // стороннюю аналитику уходит только код; полный текст остаётся в errStr для логики
+    // (распознавание отмены/конфигурации, describeAuthError для человека).
+    const telemetryCode = identityErrorCode(e);
+    if (__DEV__) console.warn(`[auth_provider] native sign-in failed code=${telemetryCode}`);
     const code = e?.code ? String(e.code) : '';
     const msg = e?.message ? String(e.message) : 'unknown';
     const detail = code ? `${code}:${msg}` : msg;
-    logAuthEvent('auth_signin_error', { provider, stage: 'native', error: detail.slice(0, 80) });
+    logAuthEvent('auth_signin_error', { provider, stage: 'native', error: telemetryCode });
     const errStr = `native_${detail}`.slice(0, 120);
     identityTrace('[AUTH-LINK-GOOGLE]', 'native failed', { provider, code: identityErrorCode(e) });
     if (errStr.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
       return { result: 'error', error: errStr };
     }
-    captureAuthSignInFailure(provider, 'native', errStr);
+    // зачем (TG-17B4F6788C5A): в отчёт о сбое — только код; errStr с текстом — для логики.
+    captureAuthSignInFailure(provider, 'native', `native_${telemetryCode}`);
     return { result: 'error', error: errStr };
   }
   if ('cancelled' in cred) {
@@ -2457,8 +2479,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   try {
     await anonPreparation;
   } catch (error) {
-    const detail = error instanceof Error ? error.message : 'unknown';
-    captureAuthSignInFailure(provider, 'firebase', `anonymous_preparation_failed:${detail}`);
+    // зачем (TG-17B4F6788C5A): в отчёт о сбое — только код, префикс сохранён.
+    captureAuthSignInFailure(provider, 'firebase', `anonymous_preparation_failed:${identityErrorCode(error)}`);
     return { result: 'error', error: 'anonymous_preparation_failed' };
   }
   const preProviderStableId = deferIdentityPreparation ? '' : await getStableId();
@@ -2643,11 +2665,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     if (providerHandoffMarker) {
       announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
     }
-    if (__DEV__) console.warn('[auth_provider] firebase sign-in/link failed', e);
+    // зачем (TG-0AE4918142EE): текст ошибки Firebase может нести почту — в журнал и
+    // аналитику только код; errStr с текстом нужен вызывающему для логики и текста человеку.
+    const telemetryCode = identityErrorCode(e);
+    if (__DEV__) console.warn(`[auth_provider] firebase sign-in/link failed code=${telemetryCode}`);
     const code = e?.code ? String(e.code) : '';
     const msg = e?.message ? String(e.message) : 'unknown';
     const detail = code ? `${code}:${msg}` : msg;
-    logAuthEvent('auth_signin_error', { provider, stage: 'firebase', error: detail.slice(0, 80) });
+    logAuthEvent('auth_signin_error', { provider, stage: 'firebase', error: telemetryCode });
     const errStr = `firebase_${detail}`.slice(0, 120);
     identityTrace('[AUTH-LINK-GOOGLE]', 'firebase failed', {
       provider,
@@ -2655,7 +2680,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       handoffMarker: providerHandoffMarker !== null,
       tookMs: identityTraceClockMs() - traceStartedAt,
     }, { persist: true });
-    captureAuthSignInFailure(provider, 'firebase', errStr);
+    // зачем (TG-17B4F6788C5A): в отчёт о сбое — только код; errStr с текстом — для логики.
+    captureAuthSignInFailure(provider, 'firebase', `firebase_${telemetryCode}`);
     return { result: 'error', error: errStr };
   }
 
@@ -2664,10 +2690,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     pendingDelete = await readAccountDeletePendingAuth(firebaseProviderUid);
   } catch (guardError) {
     // зачем: см. выше — noLockSeen не запирает вход, сервер классифицирует сам.
+    // зачем (TG-17B4F6788C5A): stage guard = critical (Firestore/Telegram) — хвост только код.
     captureAuthSignInFailure(
       provider,
       'guard',
-      `account_delete_guard_unavailable:${guardError instanceof Error ? guardError.message : 'unknown'}`,
+      `account_delete_guard_unavailable:${identityErrorCode(guardError)}`,
     );
     if (!isAccountDeleteGuardNoLockSeenError(guardError)) {
       return { result: 'error', error: 'account_delete_guard_unavailable' };
@@ -3206,8 +3233,10 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         mergedFromStableId: outcome.mergedFromStableId,
       };
     } catch (e: any) {
-      if (__DEV__) console.warn('[auth_provider] post-merge swap failed', e);
-      logAuthEvent('auth_signin_error', { provider, stage: 'swap', error: String(e?.message ?? e).slice(0, 80) });
+      // зачем (TG-0AE4918142EE): в аналитику и журнал — только код, без текста ошибки.
+      const telemetryCode = identityErrorCode(e);
+      if (__DEV__) console.warn(`[auth_provider] post-merge swap failed code=${telemetryCode}`);
+      logAuthEvent('auth_signin_error', { provider, stage: 'swap', error: telemetryCode });
       const errStr = `swap_${e?.message ?? 'unknown'}`.slice(0, 80);
       identityTrace('[AUTH-LINK-GOOGLE]', 'result error', {
         provider,
@@ -3216,7 +3245,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         authState: auth.currentUser?.isAnonymous === false ? 'provider' : 'anonymous_or_none',
         tookMs: identityTraceClockMs() - traceStartedAt,
       }, { persist: true });
-      captureAuthSignInFailure(provider, 'swap', errStr);
+      // зачем (TG-17B4F6788C5A): stage swap = critical (Firestore/Telegram) — только код.
+      captureAuthSignInFailure(provider, 'swap', `swap_${telemetryCode}`);
       return { result: 'error', error: errStr };
     }
   }
@@ -3290,7 +3320,8 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         await syncRevenueCatAfterAuthLink();
         await syncToCloud();
       } catch (e) {
-        console.warn(`[SIGNIN] keep_local tail failed reason=${String((e as any)?.message ?? e).slice(0, 160)}`);
+        // зачем (TG-0AE4918142EE): в журнал — только код ошибки.
+        console.warn(`[SIGNIN] keep_local tail failed reason=${identityErrorCode(e)}`);
       }
     })();
     logAuthEvent('auth_signin_merged_keep_local', {
@@ -3392,7 +3423,8 @@ function scheduleSameStablePostAuthRefresh(
         return value;
       } catch (e) {
         // зачем: немой catch запрещён — причина обязана попасть в лог.
-        console.warn(`[SIGNIN] bg:${stage}:${name} FAIL ${Date.now() - started}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+        // зачем (TG-0AE4918142EE): только код — текст ошибки входа может нести почту.
+        console.warn(`[SIGNIN] bg:${stage}:${name} FAIL ${Date.now() - started}ms reason=${identityErrorCode(e)}`);
         return undefined;
       }
     };
@@ -3425,7 +3457,8 @@ function scheduleSameStablePostAuthRefresh(
     console.log(`[SIGNIN] bg:${stage} done total=${Date.now() - t0}ms restore=${restoreResult}`);
   })().catch((e) => {
     // зачем: раньше причина падения фоновой догрузки терялась в __DEV__-only логе.
-    console.warn(`[SIGNIN] bg:${stage} background refresh failed reason=${String((e as any)?.message ?? e).slice(0, 160)}`);
+    // зачем (TG-0AE4918142EE): в журнал — только код ошибки.
+    console.warn(`[SIGNIN] bg:${stage} background refresh failed reason=${identityErrorCode(e)}`);
   }).finally(endCloudRefresh);
 }
 
@@ -3613,7 +3646,8 @@ export async function signOutAndWipeForAccountSwitch(
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
   } catch (error) {
     // Ранний выход: замок. Причину (какой ключ) уже напечатал сам guard.
-    const reason = error instanceof Error ? error.message : String(error);
+    // зачем (TG-0AE4918142EE): в журнал — только код (свои коды замка проходят как есть).
+    const reason = identityErrorCode(error);
     console.warn(`[ACC-MUT] signout:out reserve_failed reason=${reason} tookMs=${Date.now() - startedAt}`);
     return { ok: false, reason: 'clean_recovery_transition_active' };
   }
@@ -3709,7 +3743,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       logAuthEvent('auth_signout_wipe', { mode: 'no_cloud' });
       return { ok: true, synced: true };
     } catch (e: any) {
-      return { ok: false, reason: 'unknown', detail: String(e?.message ?? e).slice(0, 80) };
+      // зачем (TG-0AE4918142EE): detail потребители только печатают (журнал/DebugLogger),
+      // никто не разбирает текст — отдаём код без возможной почты из текста ошибки.
+      return { ok: false, reason: 'unknown', detail: identityErrorCode(e) };
     }
   }
   try {
@@ -3756,8 +3792,9 @@ async function signOutAndWipeForAccountSwitchReserved(
         );
         if (!backedUp) throw new Error('account_switch_backup_unavailable');
       } catch (e: any) {
-        const detail = String(e?.message ?? e).slice(0, 80);
-        if (__DEV__) console.warn('[auth_provider] account switch shard-spend discard backup failed', e);
+        // зачем (TG-0AE4918142EE): в аналитику, журнал и detail результата — только код.
+        const detail = identityErrorCode(e);
+        if (__DEV__) console.warn(`[auth_provider] account switch shard-spend discard backup failed code=${detail}`);
         logAuthEvent('auth_signout_wipe_failed', { stage: 'backup', error: detail });
         return { ok: false, reason: 'backup_failed', detail };
       }
@@ -3778,8 +3815,9 @@ async function signOutAndWipeForAccountSwitchReserved(
         );
         if (!backedUp) throw new Error('account_switch_backup_unavailable');
       } catch (e: any) {
-        const detail = String(e?.message ?? e).slice(0, 80);
-        if (__DEV__) console.warn('[auth_provider] account switch emergency backup failed', e);
+        // зачем (TG-0AE4918142EE): в аналитику, журнал и detail результата — только код.
+        const detail = identityErrorCode(e);
+        if (__DEV__) console.warn(`[auth_provider] account switch emergency backup failed code=${detail}`);
         logAuthEvent('auth_signout_wipe_failed', { stage: 'backup', error: detail });
         return { ok: false, reason: 'backup_failed', detail };
       }
@@ -3827,7 +3865,8 @@ async function signOutAndWipeForAccountSwitchReserved(
             backupOptions,
           );
         } catch (e: any) {
-          transitionFailure.backupDetail = String(e?.message ?? e).slice(0, 80);
+          // зачем (TG-0AE4918142EE): backupDetail уходит в аналитику и detail — только код.
+          transitionFailure.backupDetail = identityErrorCode(e);
           return false;
         }
         if (!backedUp || !isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
@@ -3848,7 +3887,8 @@ async function signOutAndWipeForAccountSwitchReserved(
           return false;
         }
       } catch (e: any) {
-        transitionFailure.backupDetail = String(e?.message ?? e).slice(0, 80);
+        // зачем (TG-0AE4918142EE): backupDetail уходит в аналитику и detail — только код.
+        transitionFailure.backupDetail = identityErrorCode(e);
         return false;
       }
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
@@ -3899,9 +3939,12 @@ async function signOutAndWipeForAccountSwitchReserved(
     logAuthEvent('auth_signout_wipe', { mode: 'switch' });
     return { ok: true, synced };
   } catch (e: any) {
-    if (__DEV__) console.warn('[auth_provider] signOutAndWipeForAccountSwitch failed', e);
-    logAuthEvent('auth_signout_wipe_failed', { stage: 'unknown', error: String(e?.message ?? e).slice(0, 80) });
-    return { ok: false, reason: 'unknown', detail: String(e?.message ?? e).slice(0, 80) };
+    // зачем (TG-0AE4918142EE): в аналитику, журнал и detail результата — только код;
+    // потребители detail лишь печатают его (settings/выход/онбординг/окно входа).
+    const code = identityErrorCode(e);
+    if (__DEV__) console.warn(`[auth_provider] signOutAndWipeForAccountSwitch failed code=${code}`);
+    logAuthEvent('auth_signout_wipe_failed', { stage: 'unknown', error: code });
+    return { ok: false, reason: 'unknown', detail: code };
   }
 }
 
@@ -4029,7 +4072,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   } catch (e) {
     // зачем (владелец, 2026-09-13): раньше причина жила только под __DEV__ и
     // в релизе исчезала — а prepared=null отсюда неотличим от честного отказа.
-    const detail = String((e as any)?.message ?? e).slice(0, 120);
+    // зачем (TG-0AE4918142EE): в журнал и DebugLogger (уходит в Firestore) — только код.
+    const detail = identityErrorCode(e);
     console.warn(`[ACC-MUT] delete:prepare_threw reason=${detail}`);
     DebugLogger.error('acc_mut:delete_prepare_threw', new Error(detail), 'critical');
   }
@@ -4066,7 +4110,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
     void authorityDeletion.then(
       () => console.log('[AA-S4] delete:aa_local_done'),
       (e: unknown) => {
-        const detail = String((e as any)?.message ?? e).slice(0, 120);
+        // зачем (TG-0AE4918142EE): в журнал и DebugLogger — только код.
+        const detail = identityErrorCode(e);
         console.warn(`[AA-S4] delete:aa_failed reason=${detail}`);
         DebugLogger.error('aa_s4:delete_failed', new Error(detail), 'critical');
       },
@@ -4086,7 +4131,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       if (legacyServerEnqueued && authorityDeletion !== null) {
         void authorityDeletion.then(
           ({ operationId }) => resolveAccountAuthorityDeletionByLegacyIfEnabled(operationId),
-          (e: unknown) => console.warn(`[AA-S4] delete:legacy_proof_skipped reason=${String((e as any)?.message ?? e).slice(0, 80)}`),
+          // зачем (TG-0AE4918142EE): в журнал — только код ошибки.
+          (e: unknown) => console.warn(`[AA-S4] delete:legacy_proof_skipped reason=${identityErrorCode(e)}`),
         );
       } else if (authorityDeletion !== null) {
         // зачем (AA S5, D-AA5): главный серверный путь при cutover — это старое
@@ -4108,7 +4154,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       }
       return result;
     } catch (e) {
-      const line = `[ACC-MUT] delete:bg_threw reason=${String((e as any)?.message ?? e).slice(0, 120)} tookMs=${Date.now() - backgroundStartedAt}`;
+      // зачем (TG-0AE4918142EE): строка уходит в DebugLogger 'critical' (Firestore) — только код.
+      const line = `[ACC-MUT] delete:bg_threw reason=${identityErrorCode(e)} tookMs=${Date.now() - backgroundStartedAt}`;
       if (__DEV__) console.warn(line);
       logAuthEvent('auth_account_delete_background_failed');
       DebugLogger.error('acc_mut:delete_background_threw', new Error(line), 'critical');
@@ -4542,7 +4589,8 @@ function observeEarlyAcknowledgmentRejection<T>(
   label: string,
 ): AccountDeleteEnqueueOperation<T> {
   void operation.acknowledgment.catch((e: unknown) => {
-    console.warn(`[ACC-MUT] delete:${label} ack_rejected_observed reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+    // зачем (TG-0AE4918142EE): в журнал — только код ошибки.
+    console.warn(`[ACC-MUT] delete:${label} ack_rejected_observed reason=${identityErrorCode(e)}`);
   });
   return operation;
 }

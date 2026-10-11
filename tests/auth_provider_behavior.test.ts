@@ -1998,7 +1998,8 @@ test('account switch discard aborts before wipe when its emergency backup fails'
     allowPendingShardSpendDiscard: true,
   });
 
-  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'backup unavailable' });
+  // зачем (TG-0AE4918142EE): detail несёт только код ошибки, не её текст (в тексте бывает почта).
+  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'error_without_code' });
   expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();
   expect(wipeLocalAccountData).not.toHaveBeenCalled();
   expect(clearStableId).not.toHaveBeenCalled();
@@ -2041,7 +2042,8 @@ test('account switch aborts before invalidation when the required emergency back
 
   const result = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
 
-  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'backup unavailable' });
+  // зачем (TG-0AE4918142EE): detail несёт только код ошибки, не её текст (в тексте бывает почта).
+  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'error_without_code' });
   expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();
   expect(authState.calls).not.toContain('signout');
   expect(wipeLocalAccountData).not.toHaveBeenCalled();
@@ -2361,7 +2363,8 @@ test('account switch never wipes a pending Learning V2 snapshot after general sy
   await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({
     ok: false,
     reason: 'backup_failed',
-    detail: 'completion snapshot unavailable',
+    // зачем (TG-0AE4918142EE): detail несёт только код ошибки, не её текст.
+    detail: 'error_without_code',
   });
   expect(forceSyncToCloud).toHaveBeenCalled();
   expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();

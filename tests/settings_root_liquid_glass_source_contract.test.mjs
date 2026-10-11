@@ -150,11 +150,12 @@ test('functions absent from the macet stay reachable as glass rows and are not s
   assert.match(body, /sound-settings-start[\s\S]*settings-ui-sounds-switch[\s\S]*settings-voice-out-switch[\s\S]*sound-settings-end/);
 });
 
-test('study language row is informational: globe, name, no chevron and no press action', () => {
+test('study language row opens the study-language sheet: globe, name, chevron (Сверка profile-001, владелец 11.10)', () => {
   const start = indexOfOrThrow(body, 'testID="settings-study-language-row"');
   const end = indexOfOrThrow(body, '/>', indexOfOrThrow(body, 'value={studyTargetName}', start));
   const row = body.slice(start, end);
-  assert.doesNotMatch(row, /onPress=/);
+  assert.match(row, /onPress=\{\(\) => setStudySheetVisible\(true\)\}/);
+  assert.match(source, /<StudyLanguageSheet[\s\S]{0,400}logTag="\[SETTINGS-STUDY-LANG\]"/);
   assert.match(row, /icon="globe-outline"/); // макет A: значок-глобус
   assert.match(source, /language_flags\/language_en\.webp/);
   assert.doesNotMatch(source, /<StudyLanguagePicker|Изучаемый язык|Выбранный язык применяется ко всем учебным разделам/);

@@ -75,8 +75,8 @@ const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
 function formatMemberSince(ms: number, lang: Lang): string {
   const d = new Date(ms);
   try {
-    const raw = d.toLocaleDateString(DATE_LOCALE_BY_LANG[lang], { month: 'long', year: 'numeric' });
-    return raw.charAt(0).toUpperCase() + raw.slice(1);
+    // зачем (Сверка profile-002, макет «С нами с 12.08.2025»): полная дата числами, а не «Сентябрь 2026 г.».
+    return d.toLocaleDateString(DATE_LOCALE_BY_LANG[lang], { day: '2-digit', month: '2-digit', year: 'numeric' });
   } catch (error) {
     DebugLogger.error('AccountDetails:formatMemberSince', error, 'warning');
     return `${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
@@ -246,7 +246,8 @@ export default function AccountDetailsScreen() {
                 withSound={false}
                 variant="chip"
                 // зачем (profile.html `.chipbtn`): пилюля 32 (поля 12, r16, без кромки) в области нажатия 44 — 6 сверху и снизу.
-                style={{ marginTop: 4, paddingVertical: 6 }}
+                // зачем (Сверка profile-002): пилюля по тексту по центру, а не во всю ширину.
+                style={{ marginTop: 4, paddingVertical: 6, alignSelf: 'center' }}
                 contentStyle={{ height: 32, paddingHorizontal: 12, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
               >
                 <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '600' }}>{nameLabel}</Text>

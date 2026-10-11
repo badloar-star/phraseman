@@ -83,6 +83,7 @@ import { trackEvent } from '../analytics';
 import { normalizePaywallAttributionValue } from '../paywall_entry_contract';
 import { applyUserSettingsNow, getUserSettingsSnapshot } from '../user_settings_store';
 import { themeDisplayName } from '../theme_display_names';
+import StudyLanguageSheet from '../../components/settings/StudyLanguageSheet';
 import {
   uiSoundsLabel,
   uiSoundsSub,
@@ -473,6 +474,7 @@ export default function SettingsMain() {
   const linkedAuthGenerationRef = useRef(0);
   const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
+  const [studySheetVisible, setStudySheetVisible] = useState(false);
   /**
    * зачем: статус чистки кеша показываем прямо в ряду (правая подпись), а не вторым
    * блокирующим Alert — чистка диска идёт секунды, и раньше интерфейс всё это время
@@ -1162,15 +1164,15 @@ export default function SettingsMain() {
             value={LANG_NATIVE[lang]}
             onPress={() => router.push('/settings_language' as any)}
           />
-          {/* зачем: выбор языка изучения из настроек не активируется (PRF-23 — у StudyLanguagePicker нет живого
-              вызова), поэтому строка показывает текущий язык без шеврона и без нажатия — не обещаем действие,
-              которого нет. Значок — глобус, как в макете A. */}
+          {/* зачем (Сверка profile-001, макет «Язык изучения ›»; владелец 11.10): шторка «Язык изучения» теперь живая (её открывает пилюля
+              языка во вкладке «Видео»), поэтому строка открывает ту же шторку и показывает шеврон. Значок — глобус, как в макете A. */}
           <SettingsGlassRow
             glass={glass}
             testID="settings-study-language-row"
             icon="globe-outline"
             title={L('Язык изучения', 'Мова навчання', 'Learning language', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa belajar', 'Öğrenilen dil', 'Język nauki')}
             value={studyTargetName}
+            onPress={() => setStudySheetVisible(true)}
           />
         </SettingsGlassGroup>
         {settingsMessageSelection.top ? (
@@ -1486,6 +1488,13 @@ export default function SettingsMain() {
       </BouncyWrap>
 
 
+      <StudyLanguageSheet
+        visible={studySheetVisible}
+        onClose={() => { setStudySheetVisible(false); void loadStudyTarget(); }}
+        lang={lang}
+        activeTarget={studyTarget}
+        logTag="[SETTINGS-STUDY-LANG]"
+      />
       <RegistrationPromptModal
         visible={authPromptVisible}
         context="settings"

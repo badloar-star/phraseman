@@ -20,6 +20,7 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
+import { DEV_LOGOUT_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
@@ -93,6 +94,18 @@ export type DevStateRequest = Readonly<{
   referral?: 'off' | 'on';
   /** Ответ промокода фикстурой, без сети: off=«промокоды выключены», ok, lifetime, used, expired, disabled, limit, not_found, rate_limited, error, none=снять. */
   promo?: DevPromoResult;
+  /** Вход недоступен (onboarding-006): none — Google и Apple выключены, ok — снять. */
+  auth?: 'none' | 'ok';
+  /** Отказы смены аккаунта (R1 auth-gap-004/005/013/014/015/017/018) без реального стирания; ok снимает. */
+  switch?: DevSwitchMode | 'ok';
+  /** «Не удалось выйти» (profile-029): fail — после записи маркера, precommit — до него; ok снимает. */
+  logout?: DevLogoutMode | 'ok';
+  /** «Удаление не завершилось» (auth-gap-011): имитация отказа, удаление не вызывается. */
+  delete?: 'fail' | 'ok';
+  /** `identity_retired` при входе (auth-gap-008). */
+  restore?: 'retired' | 'ok';
+  /** Строка про перенос Plus в окне смены аккаунта (auth-gap-012). */
+  plustransfer?: 'on' | 'off';
   /** План подписки только в памяти (экран «Управление подпиской», значение «Год» в Настройках): yearly|monthly|lifetime, off снимает. */
   plan?: 'yearly' | 'monthly' | 'lifetime' | 'off';
   /** Сбой смены языка изучения (settings-gap-021). */
@@ -183,6 +196,12 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
   request.paywall = pick('paywall', ['loading', 'live', 'reference', 'failed', 'off'] as const);
   request.referral = pick('referral', ['off', 'on'] as const);
+  request.auth = pick('auth', ['none', 'ok'] as const);
+  request.switch = pick('switch', [...DEV_SWITCH_MODES, 'ok'] as const);
+  request.logout = pick('logout', [...DEV_LOGOUT_MODES, 'ok'] as const);
+  request.delete = pick('delete', ['fail', 'ok'] as const);
+  request.restore = pick('restore', ['retired', 'ok'] as const);
+  request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
   request.plan = pick('plan', ['yearly', 'monthly', 'lifetime', 'off'] as const);
   request.studyfail = pick('studyfail', ['on', 'off'] as const);
   request.support = pick('support', ['fail', 'ok'] as const);
@@ -368,6 +387,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       return setDevPaywallLinkState(map[request.paywall!]);
     });
   }
+  // зачем (R1 «нет пути», аккаунт): флаги в памяти (app/dev_account_state.ts); хуки отказывают ДО побочных эффектов — стирание/удаление/вход недостижимы.
+  if (request.auth !== undefined) await step('auth', request.auth, async () => setDevAccountState({ authNone: request.auth === 'none' }));
+  if (request.switch !== undefined) await step('switch', request.switch, async () => setDevAccountState({ switchMode: request.switch === 'ok' ? null : request.switch! }));
+  if (request.logout !== undefined) await step('logout', request.logout, async () => setDevAccountState({ logoutMode: request.logout === 'ok' ? null : request.logout! }));
+  if (request.delete !== undefined) await step('delete', request.delete, async () => setDevAccountState({ deleteFail: request.delete === 'fail' }));
+  if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({ restoreRetired: request.restore === 'retired' }));
+  if (request.plustransfer !== undefined) await step('plustransfer', request.plustransfer, async () => setDevAccountState({ plusTransfer: request.plustransfer === 'on' }));
   if (request.plan !== undefined) {
     await step('plan', request.plan, async () => {
       const { setDevPlanOverride } = await import('./dev_vip_override');

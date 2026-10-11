@@ -11,6 +11,7 @@
  * Логи: префикс [ACC-MUT], без uid и без содержимого карточек.
  */
 import { readFlashcardPagesWriteLocks } from './flashcard_pages_read_result';
+import { isDevUnsavedCardsPrompt } from './dev_account_state';
 import {
   FLASHCARD_CLOUD_KEYS,
   peekLastForceFlashcardFailure,
@@ -54,6 +55,11 @@ export function decideAccountSwitchWithoutSaveConfirm(
 export async function readAccountSwitchUnsavedCardsDecision(
   attemptStartedAtMs: number,
 ): Promise<AccountSwitchWithoutSaveDecision> {
+  // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `switch=unsaved_cards` — вопрос про карточки, не доехавшие до облака, без запертых ключей; в стор-сборке геттер выключен.
+  if (isDevUnsavedCardsPrompt()) {
+    console.log('[DEV-STATE] account: решение про несохранённые карточки подменено (confirm_unsaved_cards)'); // guard-ok: dev-ветка
+    return { kind: 'confirm_unsaved_cards', reason: 'pages_locked' };
+  }
   let lockedFlashcardKeyCount = 0;
   try {
     const locked = await readFlashcardPagesWriteLocks(FLASHCARD_CLOUD_KEYS.map(([key]) => key));

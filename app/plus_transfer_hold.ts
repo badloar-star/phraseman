@@ -17,6 +17,7 @@
  * Ключ лежит вне инвентаря аккаунта (его не стирает wipe) и пишется ПОСЛЕ смены.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isDevPlusTransferNotice } from './dev_account_state';
 import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
 
 export const PLUS_TRANSFER_HOLD_KEY = 'plus_transfer_hold_v1';
@@ -207,7 +208,8 @@ export type PlusTransferSwitchWarning = Readonly<{
 
 /** Точка вызова перед ручной сменой аккаунта: синхронно, без сети (по решению premium_guard). */
 export function getPlusTransferSwitchWarning(currentStableId: string | null): PlusTransferSwitchWarning {
-  const show = hasFreshStorePlusEvidenceFor(currentStableId);
+  // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `plustransfer=on` — строка про перенос Plus в окне смены аккаунта без свежего store-Plus; в стор-сборке геттер выключен. Только предупреждение, перенос не затрагивается.
+  const show = hasFreshStorePlusEvidenceFor(currentStableId) || isDevPlusTransferNotice();
   identityTrace('[PLUS-TRANSFER]', 'manual_switch warning_point', {
     account: identityTag(currentStableId),
     show,

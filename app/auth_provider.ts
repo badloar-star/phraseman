@@ -23,6 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getDevSignInError, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail } from './dev_account_state';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
@@ -488,6 +489,7 @@ function configureGoogleSignin(): boolean {
 let iosAppleSignInAvailabilityCache: boolean | null = null;
 
 export async function isAppleSignInAvailable(): Promise<boolean> {
+  if (isDevAuthNone()) return false; // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `auth=none` — «Вход недоступен»; в стор-сборке геттер выключен.
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
   if (Platform.OS === 'ios') {
     const mod = getAppleAuth();
@@ -521,6 +523,7 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
  * раскладку, когда приходит асинхронный ответ.
  */
 export function peekAppleSignInAvailability(): boolean | null {
+  if (isDevAuthNone()) return false; // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `auth=none`
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
   if (Platform.OS === 'ios') return iosAppleSignInAvailabilityCache;
   if (Platform.OS === 'android') return !!getAppleAndroidServiceId();
@@ -539,6 +542,7 @@ export function peekAppleSignInAvailability(): boolean | null {
  * первого кадра.
  */
 export function isGoogleSignInAvailableSync(): boolean {
+  if (isDevAuthNone()) return false; // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `auth=none`
   const mod = getGoogleSignin();
   if (!mod) return false;
   if (!process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID) return false;
@@ -2285,6 +2289,12 @@ export async function signInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions = {},
 ): Promise<SignInResult> {
+  // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `switch=not_uploaded|backup_blocked`, `restore=retired` — ошибка входа ДО любых замков, сети и записи; в стор-сборке null.
+  const devSignInError = getDevSignInError();
+  if (devSignInError) {
+    console.log(`[DEV-STATE] account: вход подменён ошибкой ${devSignInError} provider=${provider}`); // guard-ok: dev-ветка
+    return { result: 'error', error: devSignInError };
+  }
   try {
     await assertNoCleanInstallRecoveryTransition();
   } catch (transitionError) {
@@ -3820,6 +3830,13 @@ export type SignOutSwitchOptions = {
 export async function signOutAndWipeForAccountSwitch(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
+  // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `logout=` / `switch=` — отказ ДО резервации замка, синхронизации и стирания (и обычная, и форсированная попытка): реальное стирание недостижимо; в стор-сборке null.
+  const devOutcome = getDevSignOutOutcome(options?.allowWipeWithoutSync === true || options?.allowPendingShardSpendDiscard === true);
+  if (devOutcome) {
+    console.log(`[DEV-STATE] account: выход/смена подменены отказом ${devOutcome.reason} delayMs=${devOutcome.delayMs}`); // guard-ok: dev-ветка
+    if (devOutcome.delayMs > 0) await new Promise<void>((resolve) => setTimeout(resolve, devOutcome.delayMs));
+    return { ok: false, reason: devOutcome.reason, ...(devOutcome.detail ? { detail: devOutcome.detail } : {}) } as SignOutSwitchResult;
+  }
   let releaseTransitionReservation: () => void;
   const startedAt = Date.now();
   // зачем (владелец, 2026-09-13): «сперва логи». Путь выхода был нем целиком —
@@ -4221,6 +4238,11 @@ export type DeleteAccountHandoff =
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `delete=fail` — только ИМИТАЦИЯ отказа локальной фазы, ДО любого побочного эффекта: удаление не вызывается и не начинается; в стор-сборке геттер выключен.
+  if (isDevDeleteFail()) {
+    console.log('[DEV-STATE] account: удаление подменено отказом pending_guard_persist_failed (ничего не удаляется)'); // guard-ok: dev-ветка
+    return { ok: false, reason: 'pending_guard_persist_failed' };
+  }
   // зачем (ревью L-1): удаление аккаунта отменяет любой отложенный вход после смены.
   discardAccountSwitchResumeCredential('account_delete');
   beginLocalAccountDeletionAttempt();

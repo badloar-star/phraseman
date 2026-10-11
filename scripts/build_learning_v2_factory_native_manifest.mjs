@@ -4,6 +4,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeMockupFile } from "../content/learning-v2-course/pipeline/write_mockup_file.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RELEASE_ROOT = path.join(ROOT, "content", "learning-v2-course", "release", "en");
@@ -46,7 +47,10 @@ function stripInlineMarkdown(value) {
 }
 
 function introMetadata(markdown, sourceLabel) {
-  const blocks = markdown.split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/gmi).slice(1, 4);
+  const blocks = markdown
+    .split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/gmi)
+    .slice(1, 4)
+    .map((block) => block.split(/^##\s+/m, 1)[0]);
   if (blocks.length !== 3) throw new Error(`${sourceLabel}: expected three intro blocks`);
   return blocks.map((block, pageIndex) => {
     const optionLines = [...block.matchAll(/^-\s+(✅|❌)\s*([\s\S]*?)(?=^-\s+(?:✅|❌)|^---|(?![\s\S]))/gm)];
@@ -73,29 +77,44 @@ function introMetadata(markdown, sourceLabel) {
 }
 
 function learningOutcome(markdown, sourceLabel) {
-  const match = /\*\*(?:(?:Новая|Нова)\s+)?операц[иі]я:\*\*\s*(.+)/iu.exec(markdown);
+  // Learner-facing source must not expose the authoring term «операция».
+  // Accept the plain-language labels emitted by current session headers while
+  // retaining historical source compatibility during the course migration.
+  const match = /\*\*(?:(?:(?:Новая|Нова)\s+)?операц[иі]я|Как\s+сказать|Як\s+сказати|Что\s+вы\s+освоите|Що\s+ви\s+опануєте|Сегодня|Сьогодні)[.:]?\*\*\s*(.+)/iu.exec(markdown);
   if (!match?.[1]?.trim()) throw new Error(`${sourceLabel}: learning operation missing`);
   return match[1].trim();
 }
 
-function practiceTitles(markdown, sourceLabel) {
+function practiceTitles(markdown, sourceLabel, atomicSource, locale) {
   const afterIntro = markdown.split(/^##\s*[ИІ]нтро\s*3[^\n]*$/mi)[1] ?? markdown;
   const practicePart = (afterIntro.split(/^##\s+(?!Для сборщика)/m)[1] ?? afterIntro)
     .split(/^## Для сборщика/m)[0] ?? "";
   const rows = practicePart.split(/^\*\*(?=\d+ · )/m).slice(1).map((chunk) => {
     const match = /^(\d+) · ([^*]+)\*\*/u.exec(chunk);
     if (!match) throw new Error(`${sourceLabel}: malformed practice heading`);
-    return { ordinal: Number(match[1]), title: match[2].trim() };
+    const interactionId = /<!--\s*interaction_id:\s*([^;]+);/u.exec(chunk)?.[1]?.trim() ?? "";
+    return { ordinal: Number(match[1]), title: match[2].trim(), interactionId };
   });
-  if (rows.length < 12 || rows.length > 22) {
-    throw new Error(`${sourceLabel}: expected 12-22 authored records, got ${rows.length}`);
+  const interactions = atomicSource?.interactionsByLocale?.[locale];
+  if (!Array.isArray(interactions) || !interactions.length) {
+    throw new Error(`${sourceLabel}: atomic practice source missing for ${locale}`);
   }
-  return rows;
+  if (rows.length !== interactions.length) {
+    throw new Error(`${sourceLabel}: Markdown/atomic practice count differs ${rows.length}/${interactions.length}`);
+  }
+  for (const [index, interaction] of interactions.entries()) {
+    const row = rows[index];
+    const derivedInteractionId = row.interactionId || interaction.interactionId?.replace(/:i\d+(?::[^:]+)?$/u, `:i${String(row.ordinal).padStart(2, "0")}`);
+    if (row.ordinal !== index + 1 || row.title !== interaction.prompt || derivedInteractionId !== interaction.interactionId) {
+      throw new Error(`${sourceLabel}: Markdown/atomic practice differs at ${index + 1}`);
+    }
+  }
+  return rows.map(({ ordinal, title }) => ({ ordinal, title }));
 }
 
 function lessonTitle(markdown, lessonOrdinal, locale) {
   const title = /^#\s+(.+)$/m.exec(markdown)?.[1]?.trim() ?? "";
-  const prefix = title.split(/\s+·\s+(?:Сессия|Сесія)\s+\d+/u)[0]?.trim();
+  const prefix = title.split(/\s+·\s+(?:Сессия|Сесія|Занятие|Заняття)\s+\d+/u)[0]?.trim();
   if (prefix && prefix.length >= 4) return prefix;
   return locale === "uk" ? `Англійська · Урок ${lessonOrdinal}` : `Английский · Урок ${lessonOrdinal}`;
 }
@@ -125,12 +144,14 @@ function rows() {
         answers: path.join(releaseDir, "answers.json"),
         sourceRu: path.join(sourceDir, "final.ru.md"),
         sourceUk: path.join(sourceDir, "final.uk.md"),
+        atomicSource: path.join(sourceDir, "practice.atomic.json"),
       };
       for (const [kind, file] of Object.entries(files).filter(([kind]) => kind !== "learnerUk")) {
         if (!fs.existsSync(file)) throw new Error(`${relative}: ${kind} missing`);
       }
       const sourceRu = read(files.sourceRu);
       const sourceUk = read(files.sourceUk);
+      const atomicSource = JSON.parse(read(files.atomicSource));
       const learnerRu = JSON.parse(read(files.learnerRu));
       const newWordCount = Array.isArray(learnerRu.interactions)
         ? learnerRu.interactions.filter(
@@ -190,8 +211,8 @@ function rows() {
           uk: lessonTitle(sourceUk, lessonOrdinal, "uk"),
         },
         practiceTitlesByAuthoredLocale: {
-          ru: practiceTitles(sourceRu, `${lesson.name}/${session.name}/ru`),
-          uk: practiceTitles(sourceUk, `${lesson.name}/${session.name}/uk`),
+          ru: practiceTitles(sourceRu, `${lesson.name}/${session.name}/ru`, atomicSource, "ru"),
+          uk: practiceTitles(sourceUk, `${lesson.name}/${session.name}/uk`, atomicSource, "uk"),
         },
         hasLocalizedLearnerRelease: fs.existsSync(files.learnerUk),
         sourceFingerprint: sha(`${sourceRu}\u0000${sourceUk}\u0000${releaseBytes}`),
@@ -306,11 +327,11 @@ if (CHECK) {
   for (const { source, destination } of generatedFiles) {
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     if (!fs.existsSync(destination) || read(source) !== read(destination)) {
-      fs.copyFileSync(source, destination);
+      await writeMockupFile(destination, read(source));
     }
   }
   fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
-  fs.writeFileSync(OUTPUT, output, "utf8");
-  fs.writeFileSync(CATALOG_OUTPUT, catalogOutput, "utf8");
+  await writeMockupFile(OUTPUT, output);
+  await writeMockupFile(CATALOG_OUTPUT, catalogOutput);
   console.log(`Learning V2 factory native manifest: wrote ${path.relative(ROOT, OUTPUT)}`);
 }

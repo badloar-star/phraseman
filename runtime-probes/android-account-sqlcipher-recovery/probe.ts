@@ -111,6 +111,8 @@ type Cleanup = Readonly<{
   execSync: CapturedMethod;
 }>;
 
+type PartialCleanup = { -readonly [Key in keyof Cleanup]?: Cleanup[Key] };
+
 type Connection = Readonly<{
   wrapper: object;
   native: object;
@@ -412,7 +414,8 @@ async function checkpoint(connection: Connection): Promise<void> {
   const row = plainRow(rows[0], ['busy', 'log', 'checkpointed']);
   if (
     row?.busy !== 0 || !Number.isSafeInteger(row.log) || (row.log as number) < 0 ||
-    !Number.isSafeInteger(row.checkpointed) || (row.checkpointed as number) < 0
+    !Number.isSafeInteger(row.checkpointed) || (row.checkpointed as number) < 0 ||
+    row.log !== 0 || row.checkpointed !== 0
   ) fail('account_sqlcipher_recovery_checkpoint_failed');
 }
 
@@ -511,16 +514,16 @@ function knownClosed(error: unknown, method: 'closeSync' | 'execSync'): boolean 
   }
 }
 
-async function cleanup(connection: Connection): Promise<void> {
+async function cleanupCaptured(cleanup: Cleanup): Promise<void> {
   try {
-    if (invokeCaptured(connection.cleanup.revokeAccountLeaseSync, []) !== undefined) {
+    if (invokeCaptured(cleanup.revokeAccountLeaseSync, []) !== undefined) {
       fail('account_sqlcipher_recovery_revoke_failed');
     }
   } catch (error) {
     throw normalizeFailure(error, 'account_sqlcipher_recovery_revoke_failed');
   }
   try {
-    const result = invokeCaptured(connection.cleanup.closeAccountLeaseAsync, []);
+    const result = invokeCaptured(cleanup.closeAccountLeaseAsync, []);
     if (!isGenuinePromise(result)) fail('account_sqlcipher_recovery_close_failed');
     const value = await result;
     if (value !== undefined && value !== null) fail('account_sqlcipher_recovery_close_failed');
@@ -530,16 +533,42 @@ async function cleanup(connection: Connection): Promise<void> {
   let closeRejected = false;
   let execRejected = false;
   try {
-    invokeCaptured(connection.cleanup.closeSync, []);
+    invokeCaptured(cleanup.closeSync, []);
   } catch (error) {
     closeRejected = knownClosed(error, 'closeSync');
   }
   try {
-    invokeCaptured(connection.cleanup.execSync, [POST_CLOSE_SQL]);
+    invokeCaptured(cleanup.execSync, [POST_CLOSE_SQL]);
   } catch (error) {
     execRejected = knownClosed(error, 'execSync');
   }
   if (!closeRejected || !execRejected) fail('account_sqlcipher_recovery_close_ineffective');
+}
+
+// Capture failures can happen after native open but before a complete Cleanup is available.
+// Invoke every primitive that was captured independently so one missing method never leaves
+// the opened database/WAL lease untouched. This is best-effort; the original capture failure
+// remains the sanitized result returned to the caller.
+async function cleanupPartialCaptured(cleanup: PartialCleanup): Promise<void> {
+  if (cleanup.revokeAccountLeaseSync !== undefined) {
+    try { invokeCaptured(cleanup.revokeAccountLeaseSync, []); } catch { /* best effort */ }
+  }
+  if (cleanup.closeAccountLeaseAsync !== undefined) {
+    try {
+      const result = invokeCaptured(cleanup.closeAccountLeaseAsync, []);
+      if (isGenuinePromise(result)) await result;
+    } catch { /* best effort */ }
+  }
+  if (cleanup.closeSync !== undefined) {
+    try { invokeCaptured(cleanup.closeSync, []); } catch { /* best effort */ }
+  }
+  if (cleanup.execSync !== undefined) {
+    try { invokeCaptured(cleanup.execSync, [POST_CLOSE_SQL]); } catch { /* best effort */ }
+  }
+}
+
+async function cleanup(connection: Connection): Promise<void> {
+  await cleanupCaptured(connection.cleanup);
 }
 
 async function captureConnection(wrapperValue: unknown): Promise<Connection> {
@@ -547,24 +576,47 @@ async function captureConnection(wrapperValue: unknown): Promise<Connection> {
   const nativeDescriptor = dataDescriptor(wrapperValue, 'nativeDatabase');
   if (nativeDescriptor === undefined || !isObject(nativeDescriptor.value)) fail('account_sqlcipher_recovery_unsupported');
   const native = nativeDescriptor.value;
-  const connection: Connection = Object.freeze({
-    wrapper: wrapperValue,
-    native,
-    nativeDescriptor: Object.freeze({ ...nativeDescriptor }),
-    execAsync: findMethod(wrapperValue, 'execAsync'),
-    getFirstAsync: findMethod(wrapperValue, 'getFirstAsync'),
-    getAllAsync: findMethod(wrapperValue, 'getAllAsync'),
-    runAsync: findMethod(wrapperValue, 'runAsync'),
-    commitAccountLeaseAsync: findMethod(native, 'commitAccountLeaseAsync'),
-    cleanup: Object.freeze({
-      revokeAccountLeaseSync: findMethod(native, 'revokeAccountLeaseSync'),
-      closeAccountLeaseAsync: findMethod(native, 'closeAccountLeaseAsync'),
-      closeSync: findMethod(native, 'closeSync'),
-      execSync: findMethod(native, 'execSync'),
-    }),
-  });
-  assertConnectionStable(connection);
-  return connection;
+  const cleanupMethods: PartialCleanup = {};
+  let captureError: unknown;
+  for (const [name, property] of [
+    ['revokeAccountLeaseSync', 'revokeAccountLeaseSync'],
+    ['closeAccountLeaseAsync', 'closeAccountLeaseAsync'],
+    ['closeSync', 'closeSync'],
+    ['execSync', 'execSync'],
+  ] as const) {
+    try {
+      cleanupMethods[name] = findMethod(native, property);
+    } catch (error) {
+      if (captureError === undefined) captureError = error;
+    }
+  }
+  if (captureError !== undefined) {
+    await cleanupPartialCaptured(cleanupMethods);
+    throw captureError;
+  }
+  const completeCleanup = Object.freeze(cleanupMethods) as Cleanup;
+  try {
+    const connection: Connection = Object.freeze({
+      wrapper: wrapperValue,
+      native,
+      nativeDescriptor: Object.freeze({ ...nativeDescriptor }),
+      execAsync: findMethod(wrapperValue, 'execAsync'),
+      getFirstAsync: findMethod(wrapperValue, 'getFirstAsync'),
+      getAllAsync: findMethod(wrapperValue, 'getAllAsync'),
+      runAsync: findMethod(wrapperValue, 'runAsync'),
+      commitAccountLeaseAsync: findMethod(native, 'commitAccountLeaseAsync'),
+      cleanup: completeCleanup,
+    });
+    assertConnectionStable(connection);
+    return connection;
+  } catch (error) {
+    try {
+      await cleanupCaptured(cleanupMethods as Cleanup);
+    } catch (cleanupError) {
+      throw normalizeFailure(cleanupError, 'account_sqlcipher_recovery_close_failed');
+    }
+    throw error;
+  }
 }
 
 function normalizeDirectory(value: unknown): string {

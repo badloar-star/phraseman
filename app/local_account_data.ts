@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { accountOwnedStorageKeysFrom } from './cloud_sync';
 import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
 import { DebugLogger } from './debug-logger';
+import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
+import { languageProfileKey } from './study_languages';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'user_name',
@@ -15,8 +17,7 @@ const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'last_active_date',
   'streak_last_date',
   'study_languages_started_v1',
-  'language_profile_v1::en',
-  'language_profile_v1::fr',
+  ...LEARNING_LANGUAGE_TARGETS.map(languageProfileKey),
   'week_points_migrated_v1',
   // зачем (Account V2, 7D): журнал удалений карточек — служебный след, не прогресс;
   // сам по себе не должен делать установку «непустой» при передаче учётных данных.

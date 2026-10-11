@@ -1,9 +1,10 @@
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { isDailyPhraseDevServerRuntimeEnabled } from './daily_phrase_remote_registration';
 
-type DailyPhrasePlannedTarget = 'es' | 'de';
+type DailyPhrasePlannedTarget = 'es' | 'de' | 'it';
 
 function isDailyPhrasePlannedTarget(value: RuntimeStudyTarget): value is DailyPhrasePlannedTarget {
-  return value === 'es' || value === 'de';
+  return value === 'es' || value === 'de' || value === 'it';
 }
 
 export type DailyPhraseContentGate = {
@@ -13,6 +14,7 @@ export type DailyPhraseContentGate = {
     | 'english_daily_phrase_bank_available'
     | 'french_flashcard_system_daily_phrase_available'
     | 'french_daily_phrase_source_gate'
+    | 'target_daily_phrase_dev_server_pack'
     | 'native_daily_phrase_pack_not_available'
     | 'unsupported_daily_phrase_target';
   blockedSurfaces: readonly string[];
@@ -29,6 +31,20 @@ const FRENCH_DAILY_PHRASE_REQUIRED_EVIDENCE = Object.freeze([
 export function dailyPhraseContentGateForTarget(studyTarget?: RuntimeStudyTarget): DailyPhraseContentGate {
   const target = studyTarget == null ? 'en' : studyTarget;
   if (isDailyPhrasePlannedTarget(target)) {
+    if (isDailyPhraseDevServerRuntimeEnabled()) {
+      return {
+        enabled: true,
+        studyTarget: target,
+        reason: 'target_daily_phrase_dev_server_pack',
+        blockedSurfaces: [],
+        requiredEvidence: [
+          `${target}_daily_phrase_prior_accepted_manifest`,
+          `${target}_daily_phrase_dev_server_pack`,
+          'target_and_source_locale_scoped_sha256_runtime',
+          'no_english_idiom_bank_fallback',
+        ],
+      };
+    }
     return {
       enabled: false,
       studyTarget: target,
@@ -101,6 +117,8 @@ export function dailyPhraseGateCopyForTarget(
     ? 'Spanish'
     : studyTarget === 'de'
       ? 'German'
+      : studyTarget === 'it'
+        ? 'Italian'
       : uk
         ? 'обраної мови'
         : 'выбранного языка';

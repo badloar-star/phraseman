@@ -18394,7 +18394,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const accessBootstrap = managedAccessResult?.profile || ((tr.claims || {}).admin === true
       ? { role:'administrator', permissions:{'*':'edit'}, active:true, enforcementReady:false, source:'legacy-admin-claim', email:user.email || '' }
       : null);
-    await window.pmV5InitializeAccessProfile?.(accessBootstrap);
+    // tr.claims уже проверены выше. Передаём их в RBAC bootstrap,
+    // чтобы краткий сбой повторного getIdTokenResult не превратил owner
+    // в managed-аккаунт и не сжёг browserLocalPersistence через signOut.
+    await window.pmV5InitializeAccessProfile?.(accessBootstrap, tr.claims || {});
     startAdminApp();
     // The backend is created before Auth finishes bootstrapping. Notify the
     // workbench only after the admin identity is confirmed so its first sync
@@ -48932,9 +48935,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
   window.pmV5ApplyAccessProfile = pmV5ApplyAccessProfile;
 
-  async function pmV5InitializeAccessProfile(bootstrapProfile) {
-    let claims = {};
-    try { claims = (await auth.currentUser?.getIdTokenResult(false))?.claims || {}; } catch (_) { /* fallback below */ }
+  async function pmV5InitializeAccessProfile(bootstrapProfile, bootstrapClaims) {
+    const hasVerifiedBootstrapClaims = bootstrapClaims && typeof bootstrapClaims === 'object';
+    let claims = hasVerifiedBootstrapClaims ? bootstrapClaims : {};
+    if (!hasVerifiedBootstrapClaims) {
+      try { claims = (await auth.currentUser?.getIdTokenResult(false))?.claims || {}; } catch (_) { /* fallback below */ }
+    }
     if (bootstrapProfile) return pmV5ApplyAccessProfile(bootstrapProfile, claims);
     try {
       const response = await pmV5Callable('adminAccessWhoAmI')({});
@@ -53983,13 +53989,13 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
     });
     return jsZipPromise;
    }
-   // зачем: PM-231 — сервер режет документ длиннее 60 000 знаков (document_text_too_long),
-   // поэтому админка проверяет тот же предел до отправки, а не падает после загрузки.
+   // зачем: PM-231 — сервер принимает не больше 60 000 знаков за вызов, поэтому
+   // длинный документ читаем целиком, а перед отправкой режем на безопасные пакеты.
    async function docxText(file){
     const name=String(file?.name||'').trim();
     if(!name)throw new Error('Имя документа не найдено');
     if(Number(file.size||0)>15*1024*1024)throw new Error('Документ больше 15 МБ');
-    if(name.toLowerCase().endsWith('.txt')){const text=await file.text();if(text.length>60000)throw new Error('В документе больше 60 000 символов — сервер такой не примет (document_text_too_long)');return text}
+    if(name.toLowerCase().endsWith('.txt'))return file.text();
     if(!name.toLowerCase().endsWith('.docx'))throw new Error('Поддерживаются только .docx и .txt');
     const JSZip=await loadJsZip();
     const archive=await JSZip.loadAsync(await file.arrayBuffer());
@@ -54001,21 +54007,40 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
         const paragraphs=[...doc.querySelectorAll('w\\:p,p')].map((paragraph)=>[...paragraph.querySelectorAll('w\\:t,t')].map((node)=>node.textContent||'').join('').trim()).filter(Boolean);
         const text=paragraphs.join('\n').trim();
         if(!text)throw new Error('В документе нет текста');
-        if(text.length>60000)throw new Error('В документе больше 60 000 символов — сервер такой не примет (document_text_too_long)');
         return text;
        }
        function splitVideoPhraseDocumentText(text){
-        const normalized=String(text||'').replace(/\r\n?/g,'\n').trim();
-        if(!normalized)return [];
-        const markers=[...normalized.matchAll(/(?:^|\n)ФРАЗА\s+\d{3}\s*\/\s*\d+\b[^\n]*/g)];
-        if(!markers.length)return [normalized];
-        const batchSize=8;
+        const normalized=String(text||'').replace(/\r\n?/g,'\n');
+        if(!normalized.trim())return [];
+        const maxBatchChars=58000;
         const batches=[];
+        const pushBounded=(segment)=>{
+         let remaining=segment;
+         while(remaining.length>maxBatchChars){
+          const minBoundary=Math.floor(maxBatchChars*0.6);
+          const windowText=remaining.slice(0,maxBatchChars);
+          let cut=windowText.lastIndexOf('\n\n');
+          if(cut>=minBoundary)cut+=2;
+          else{
+           cut=0;
+           for(const match of windowText.matchAll(/[.!?…]["'»”\)\]]*\s+/g)){
+            const end=(match.index||0)+match[0].length;
+            if(end>=minBoundary)cut=end;
+           }
+           if(cut<minBoundary){const lineBreak=windowText.lastIndexOf('\n');cut=lineBreak>=minBoundary?lineBreak+1:maxBatchChars}
+          }
+          batches.push(remaining.slice(0,cut));
+          remaining=remaining.slice(cut);
+         }
+         if(remaining)batches.push(remaining);
+        };
+        const markers=[...normalized.matchAll(/(?:^|\n)ФРАЗА\s+\d{3}\s*\/\s*\d+\b[^\n]*/g)];
+        if(!markers.length){pushBounded(normalized);return batches}
+        const batchSize=8;
         for(let index=0;index<markers.length;index+=batchSize){
-         const start=markers[index].index||0;
+         const start=index===0?0:(markers[index].index||0);
          const end=markers[index+batchSize]?.index??normalized.length;
-         const batch=normalized.slice(start,end).trim();
-         if(batch)batches.push(batch);
+         pushBounded(normalized.slice(start,end));
         }
         return batches;
        }

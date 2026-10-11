@@ -106,6 +106,12 @@ import {
   publishExamBestPctOverlay,
 } from './exam_best_pct_overlay';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
+import {
+  LEARNING_LANGUAGE_TARGETS,
+  type LearningLanguageTarget,
+} from './learning_language_contour';
+import { SOURCE_LOCALES as COMMUNITY_DRAFT_SOURCE_LOCALES } from './source_locales';
+import { languageProfileKey } from './study_languages';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
@@ -190,12 +196,14 @@ import {
   diagnosticLastKey,
   fiftyFiftyUsageKey,
   flashcardsCommunityOwnedPacksKey,
+  flashcardsCommunityOwnedPackTitlesKey,
   flashcardsAchievementFlipCountKey,
   flashcardsAchievementSavedCountKey,
   flashcardsAchievementSourceSetKey,
   flashcardsAchievementViewStreakKey,
   flashcardsDeleteHintSeenKey,
   flashcardsHiddenCommunityPacksKey,
+  flashcardsLocalAuthorPacksKey,
   flashcardsMarketDevActivePackKey,
   flashcardsMarketDevOwnedPacksKey,
   flashcardsMarketplaceBuiltCardsCacheKey,
@@ -294,7 +302,7 @@ const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 const FRENCH_SYNC_PERFECT_MILESTONES = [5, 10, 15, 20, 25, 30] as const;
 const FRENCH_SYNC_SOURCE_LOCALES = ['ru', 'uk'] as const;
-const SYNC_STUDY_TARGETS = ['en', 'fr'] as const;
+export const SYNC_STUDY_TARGETS = LEARNING_LANGUAGE_TARGETS;
 const LESSON_SESSION_FIELDS = ['cellIndex', 'phraseOrder', 'errorReplayQueue', 'errorReplaySince', 'errorReplayOverride'] as const;
 const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_any'] as const;
 
@@ -361,6 +369,31 @@ export const FRENCH_TARGET_SYNC_KEYS = [
     lessonTopicShardGrantedKey(level, 'fr'),
   ]),
   ...FRENCH_SYNC_PERFECT_MILESTONES.map((count) => lessonPerfectMilestoneKey(count, 'fr')),
+] as const;
+
+function buildTargetFlashcardSyncKeys(target: Exclude<LearningLanguageTarget, 'en' | 'fr'>): readonly string[] {
+  return [
+    flashcardsSavedKey(target),
+    customFlashcardsKey(target),
+    flashcardsCommunityOwnedPacksKey(target),
+    flashcardsOwnedPacksKey(target),
+    flashcardsProgressKey(target),
+    flashcardsPackTrialGiftKey(target),
+    flashcardsAchievementSavedCountKey(target),
+    flashcardsAchievementFlipCountKey(target),
+    flashcardsAchievementViewStreakKey(target),
+    flashcardsAchievementSourceSetKey(target),
+    flashcardsSwipeSessionDraftKey(target),
+    flashcardsSwipeMemoryKey(target),
+  ];
+}
+
+const OTHER_NON_ENGLISH_TARGET_SYNC_KEYS = SYNC_STUDY_TARGETS
+  .filter((target): target is Exclude<LearningLanguageTarget, 'en' | 'fr'> => target !== 'en' && target !== 'fr')
+  .flatMap((target) => buildTargetFlashcardSyncKeys(target));
+const NON_ENGLISH_TARGET_SYNC_KEYS = [
+  ...FRENCH_TARGET_SYNC_KEYS,
+  ...OTHER_NON_ENGLISH_TARGET_SYNC_KEYS,
 ] as const;
 
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
@@ -442,8 +475,7 @@ export const SYNC_KEYS = [
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
   // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',
-  'language_profile_v1::en',
-  'language_profile_v1::fr',
+  ...SYNC_STUDY_TARGETS.map(languageProfileKey),
   'unlocked_lessons',
   legacyFreeLessonCapKey('en'),
   legacyFreeLessonMigrationKey('en'),
@@ -576,6 +608,7 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => lessonTheorySectionsSeenKey(i + 1, 'en')),
   ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
   ...FRENCH_TARGET_SYNC_KEYS,
+  ...OTHER_NON_ENGLISH_TARGET_SYNC_KEYS,
   // ── Подарочный доступ intro: зеркалим срок в облако, чтобы при смене
   //    телефона / переустановке подарок не терялся и восстанавливался (Д2-фикс).
   //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). ВНИМАНИЕ: это
@@ -792,14 +825,17 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     flashcardsMarketplaceBuiltCardsCacheKey(target),
     flashcardsMarketDevActivePackKey(target),
     flashcardsCommunityOwnedPacksKey(target),
+    flashcardsCommunityOwnedPackTitlesKey(target),
+    flashcardsLocalAuthorPacksKey(target),
     flashcardsHiddenCommunityPacksKey(target),
     flashcardsOwnedPacksKey(target),
     flashcardsMarketDevOwnedPacksKey(target),
     flashcardsOpenedPacksKey(target),
     flashcardsPackTrialGiftKey(target),
     flashcardsDeleteHintSeenKey(target),
-    communityPackCreateDraftKey(target, 'ru'),
-    ...(target === 'fr' ? [communityPackCreateDraftKey(target, 'uk')] : []),
+    ...COMMUNITY_DRAFT_SOURCE_LOCALES.map((sourceLocale) => (
+      communityPackCreateDraftKey(target, sourceLocale)
+    )),
     ...GRAMMAR_HINT_STORAGE_IDS.map((id) => grammarHintSeenKey(id, target)),
     ...Array.from({ length: 32 }, (_, index) => index + 1).flatMap((lessonId) => [
       lessonIntroShownKey(lessonId, target),
@@ -1491,8 +1527,12 @@ function mergeLevelExamRestoreValue(
   return cloudValue;
 }
 
+const TARGET_SCOPED_RESTORE_KEY_PATTERN = new RegExp(
+  `^([a-z_]+)_v2::(?:${SYNC_STUDY_TARGETS.join('|')})::(.+)$`,
+);
+
 function targetScopedRestoreInfo(key: string): { domain: string; id: string } | null {
-  const match = /^([a-z_]+)_v2::(?:en|fr)::(.+)$/.exec(key);
+  const match = TARGET_SCOPED_RESTORE_KEY_PATTERN.exec(key);
   if (!match) return null;
   try {
     return { domain: match[1], id: decodeURIComponent(match[2]) };
@@ -1705,8 +1745,11 @@ function mergeLessonRestoreValue(
   return cloudValue;
 }
 
-async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
-  const restorableKeys = FRENCH_TARGET_SYNC_KEYS;
+async function buildTargetScopedStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
+  const restorableKeys = [
+    ...SYNC_STUDY_TARGETS.map(languageProfileKey),
+    ...NON_ENGLISH_TARGET_SYNC_KEYS,
+  ];
   const localMap = Object.fromEntries(
     await AsyncStorage.multiGet([...restorableKeys]),
   ) as Record<string, string | null>;
@@ -1762,10 +1805,10 @@ export function deriveLastActiveDateForRestore(cloudData: Record<string, string 
 
 function dailyLessonHelperKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   return [
-    fiftyFiftyUsageKey(todayKey, 'en'),
-    fiftyFiftyUsageKey(todayKey, 'fr'),
-    lessonBonusHintsKey(todayKey, 'en'),
-    lessonBonusHintsKey(todayKey, 'fr'),
+    ...SYNC_STUDY_TARGETS.flatMap((target) => [
+      fiftyFiftyUsageKey(todayKey, target),
+      lessonBonusHintsKey(todayKey, target),
+    ]),
     ...SYNC_STUDY_TARGETS.flatMap((target) =>
       GRAMMAR_HINT_STORAGE_IDS.map((id) => grammarHintSeenKey(id, target)),
     ),
@@ -3908,7 +3951,7 @@ async function applyRestoreFromUserDoc(
     if (mergedOwnedAuras !== null) stickyPairs.push([AVATAR_AURA_OWNED_KEY, mergedOwnedAuras]);
     // K2: остальные owned-ключи (паки флешкарт, аватары) — тот же принцип:
     // покупка/выдача с другого девайса догоняет устройство и в local-wins ветке. Union;
-    // ауры уже обработаны выше, fr-scoped ключи идут через buildFrenchTargetStickyRestorePairs.
+    // ауры уже обработаны выше, target-scoped ключи идут через buildTargetScopedStickyRestorePairs.
     const stickyOwnedKeys = getRuntimeSyncKeys().filter((k) =>
       isOwnedUnionRestoreKey(k) && k !== AVATAR_AURA_OWNED_KEY && targetScopedRestoreInfo(k) === null,
     );
@@ -3958,7 +4001,7 @@ async function applyRestoreFromUserDoc(
     if (cloudGiftAura != null && String(cloudGiftAura).trim() !== '') {
       stickyPairs.push([AVATAR_AURA_GIFT_OWNED_KEY, String(cloudGiftAura)]);
     }
-    stickyPairs.push(...await buildFrenchTargetStickyRestorePairs(cloudData));
+    stickyPairs.push(...await buildTargetScopedStickyRestorePairs(cloudData));
     for (const key of dailyLessonHelperKeysForToday()) {
       const value = cloudData[key];
       if (value === null || value === undefined) continue;

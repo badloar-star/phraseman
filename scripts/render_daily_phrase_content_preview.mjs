@@ -11,6 +11,7 @@ const LANGUAGE_LABELS = Object.freeze({
   es: Object.freeze({ title: 'Испанская', example: 'по-испански' }),
   fr: Object.freeze({ title: 'Французская', example: 'по-французски' }),
   de: Object.freeze({ title: 'Немецкая', example: 'по-немецки' }),
+  it: Object.freeze({ title: 'Итальянская', example: 'по-итальянски' }),
 });
 const language = LANGUAGE_LABELS[bank.studyTarget] ?? {
   title: `Контур ${String(bank.studyTarget || 'unknown').toUpperCase()}`,

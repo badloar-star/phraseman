@@ -165,6 +165,7 @@ function main() {
         ['Lint', 'npm', ['run', 'lint']],
         ['Unit and integration tests', 'npm', ['run', 'test:all', '--', '--runInBand']],
         ['Release key/config gate', 'npm', ['run', 'release:keys']],
+        ['Learning V2 release parity', 'npm', ['run', 'learning-v2:release-parity-gate']],
       ];
 
   for (const [label, command, commandArgs] of checks) {

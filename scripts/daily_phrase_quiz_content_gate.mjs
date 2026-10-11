@@ -58,6 +58,22 @@ function genericFeedback(value, locale) {
   return words(value).length < 8 || generic.test(normalized);
 }
 
+const LEARNER_FACING_QUIZ_KEYS = new Set(['correctFeedback', 'text', 'feedback']);
+const DISALLOWED_LEARNER_COPY_BYTES = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFD]/u;
+
+function hasInvalidQuizLearnerCopyEncoding(value, key = '') {
+  if (typeof value === 'string') {
+    return LEARNER_FACING_QUIZ_KEYS.has(key) && DISALLOWED_LEARNER_COPY_BYTES.test(value);
+  }
+  if (Array.isArray(value)) {
+    return value.some((item) => hasInvalidQuizLearnerCopyEncoding(item));
+  }
+  if (!value || typeof value !== 'object') return false;
+  return Object.entries(value).some(([childKey, childValue]) => (
+    hasInvalidQuizLearnerCopyEncoding(childValue, childKey)
+  ));
+}
+
 function invalidLocalizedLearnerCopy(value, options = {}) {
   const text = String(value ?? '').normalize('NFKC');
   const latinScan = options.allowQuotedLatinI === true ? text.replaceAll('«i»', '') : text;
@@ -139,6 +155,9 @@ export function evaluateDailyPhraseQuizContent(rows, options = {}) {
       if (!quiz || typeof quiz !== 'object' || Array.isArray(quiz)) {
         issues.push(issue(rowId, `${prefix}quiz_missing`, `${config.quizField} is required`));
         continue;
+      }
+      if (hasInvalidQuizLearnerCopyEncoding(quiz)) {
+        issues.push(issue(rowId, `${prefix}quiz_learner_copy_encoding`, 'Learner-facing quiz text and feedback must not contain replacement characters or disallowed C0 control characters'));
       }
 
       const correctWords = words(correct).length;

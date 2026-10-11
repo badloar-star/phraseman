@@ -44,7 +44,9 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
  * - flashcards — раздел открыт у всех по D129/D130; D160: встроенный английский банк
  *   системных карточек у es/de/it не показывается (родного банка нет), свои и маркетные
  *   наборы открыты; пустой/неизвестный язык = язык по умолчанию (app/flashcards_target_gate.ts).
- * - spire — D133: пул заданий есть для en/es/fr/de, для it нет.
+ * - spire — D155: non-English contour is ready only when its generated
+ *   release manifest carries both an independent PASS receipt and an approved
+ *   publication receipt. BLOCK manifests stay hidden fail-closed.
  */
 export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   Record<LearningLanguageTarget, Readonly<Record<LearningLanguageSurface, LearningSurfaceReadinessCell>>>
@@ -69,7 +71,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
-    spire: ready('D133'),
+    spire: ready('D155'),
   }),
   fr: Object.freeze({
     lessons: hidden('D129'),
@@ -80,7 +82,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
-    spire: ready('D133'),
+    spire: ready('D156'),
   }),
   de: Object.freeze({
     lessons: hidden('D129'),
@@ -91,7 +93,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
-    spire: ready('D133'),
+    spire: ready('D157'),
   }),
   it: Object.freeze({
     lessons: hidden('D130'),
@@ -102,7 +104,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     videos: ready('D130'),
     flashcards: ready('D130'),
     diagnostic_and_exam: hidden('D130'),
-    spire: hidden('D133'),
+    spire: ready('D155'),
   }),
 });
 

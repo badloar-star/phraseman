@@ -3,7 +3,7 @@
 // подменами). Аудит docs/arena/ARENA_DISTRACTOR_AUDIT_2026-08-21.md нашёл это
 // нарушение в старом живом пуле V10 (4439/4479 дистракторов — лексические).
 // Этот скрипт проверяет ТЕКУЩИЕ файлы content/arena-multilingual/generated/
-// {es,de,fr}/tasks.jsonl по той же методике: читает grammarMatrix и
+// {es,de,fr,it}/tasks.jsonl по той же методике: читает grammarMatrix и
 // distractorReasons каждого guess_phrase-задания, требует ровно 4 варианта,
 // ровно 1 грамматически верный, 3 грамматически неверных, никаких причин с
 // пометкой lexical/meaning/collocation/reference/function_choice (список
@@ -16,7 +16,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const TARGETS = ['es', 'de', 'fr'];
+const TARGETS = ['es', 'de', 'fr', 'it'];
 
 // Причины, которые НИКОГДА не могут обосновывать грамматический дистрактор
 // (см. audit: "reject lexical_meaning, collocation, reference, function_choice").

@@ -123,6 +123,10 @@ const ignoredRootFolders = [
   '.maestro',
   '.motion-mockups',
   '.shots',
+  // зачем (TG-441DCCC0ACA3, 10.10): корневая content/ — сценарии курса, пайплайны MASON/LINGMAN/VIRAL,
+  // аватар-студия (~2170+ файлов). Приложение её не импортирует (код курса живёт в modules/learning-v2/content/,
+  // эта папка сюда не попадает регэкспом по корню). Без исключения Metro держит её в карте файлов и растит память.
+  'content',
   'docs',
   'duel',
   'exports',

@@ -306,18 +306,19 @@ $PhaseEvents = @{
   'final-reopen' = @('bootstrap-ack', 'launch-sent', 'launch-ack', 'final-reopen-pass')
 }
 
-function Test-PhaseTranscript([object]$Payload) {
+function Test-PhaseTranscriptPrefix([object]$Payload, [int]$ExpectedCount) {
   if (-not (Get-ExactProperties $Payload @('phases')) -or -not (Test-ObjectArray $Payload.phases)) {
     return $false
   }
+  if ($ExpectedCount -lt 0 -or $ExpectedCount -gt $PhaseModes.Count) { return $false }
   $modes = $PhaseModes
   $expectedEvents = $PhaseEvents
   $phases = @($Payload.phases)
-  if ($phases.Count -ne $modes.Count) { return $false }
+  if ($phases.Count -ne $ExpectedCount) { return $false }
   $processIdentities = @()
   $runtimeIdentities = @()
   $launchNonces = @()
-  for ($phaseIndex = 0; $phaseIndex -lt $modes.Count; $phaseIndex += 1) {
+  for ($phaseIndex = 0; $phaseIndex -lt $ExpectedCount; $phaseIndex += 1) {
     $phase = $phases[$phaseIndex]
     if (-not (Get-ExactProperties $phase @('mode', 'binding', 'events', 'procDisappeared')) -or
         $phase.mode -isnot [string] -or $phase.mode -cne $modes[$phaseIndex] -or
@@ -347,6 +348,10 @@ function Test-PhaseTranscript([object]$Payload) {
     }
   }
   return $true
+}
+
+function Test-PhaseTranscript([object]$Payload) {
+  return Test-PhaseTranscriptPrefix $Payload $PhaseModes.Count
 }
 
 function Invoke-PhaseTranscript([object]$Payload) {
@@ -527,13 +532,14 @@ function Test-KindLengthSha([object]$Fact, [string[]]$Names) {
     (Test-Sha256 $Fact.sha256)
 }
 
-function Test-AggregatePhases([object]$Value) {
+function Test-AggregatePhases([object]$Value, [int]$ExpectedCount = $PhaseModes.Count) {
   if (-not (Test-ObjectArray $Value)) { return $false }
+  if ($ExpectedCount -lt 0 -or $ExpectedCount -gt $PhaseModes.Count) { return $false }
   $phases = @($Value)
-  if ($phases.Count -ne $PhaseModes.Count) { return $false }
+  if ($phases.Count -ne $ExpectedCount) { return $false }
   $names = @('name', 'eventKinds', 'pid', 'starttime', 'processNameSha256', 'launchNonceSha256', 'runtimeIdentitySha256')
   $seen = @()
-  for ($index = 0; $index -lt $PhaseModes.Count; $index += 1) {
+  for ($index = 0; $index -lt $ExpectedCount; $index += 1) {
     $phase = $phases[$index]
     if (-not (Get-ExactProperties $phase $names) -or
         $phase.name -isnot [string] -or $phase.name -cne $PhaseModes[$index] -or
@@ -579,7 +585,6 @@ function Test-AggregateStructure([object]$Aggregate) {
       -not (Test-BoundedInteger $Aggregate.cipherIntegrityErrorCount 0 2147483647) -or
       -not (Test-BoundedInteger $Aggregate.dirtyWalPreFrameCount 0 2147483647) -or
       -not (Test-BoundedInteger $Aggregate.dirtyWalPostFrameCount 0 2147483647) -or
-      -not (Test-AggregatePhases $Aggregate.phases) -or
       -not (Test-KindLengthSha $Aggregate.dirtyWalBaselineFact @('kind', 'length', 'sha256')) -or
       -not (Test-KindLengthSha $Aggregate.dirtyWalAfterFact @('kind', 'length', 'sha256')) -or
       -not (Test-CommittedWalFamily $Aggregate.committedWalFamilyFacts) -or
@@ -587,6 +592,7 @@ function Test-AggregateStructure([object]$Aggregate) {
       $Aggregate.abi -isnot [string]) {
     return $false
   }
+  if (-not (Test-AggregatePhases $Aggregate.phases ([int]$Aggregate.phaseCount))) { return $false }
   foreach ($name in $AggregateExactCounts.Keys) {
     if (-not (Test-BoundedInteger $Aggregate.$name 0 2147483647)) { return $false }
   }
@@ -631,12 +637,20 @@ function Test-Aggregate([object]$Aggregate, [string]$Status) {
 # из фаз одной кампании и фактов другой. Теперь транскрипт обязан быть валидным, его
 # канонический SHA-256 равен aggregate.transcriptSha256, а каждая фаза aggregate несёт
 # ровно те pid/starttime и хэши nonce/runtime, что стоят в транскрипте.
-function Test-TranscriptBinding([object]$Aggregate, [object]$Transcript) {
-  if (-not (Test-PhaseTranscript $Transcript)) { return $false }
+function Test-TranscriptBinding([object]$Aggregate, [object]$Transcript, [string]$Status) {
+  if ($Status -ceq 'pass') {
+    if (-not (Test-PhaseTranscript $Transcript)) { return $false }
+  } elseif ($Status -ceq 'failure') {
+    if (-not (Test-PhaseTranscriptPrefix $Transcript ([int]$Aggregate.phaseCount))) { return $false }
+  } else {
+    return $false
+  }
   if ((Get-CanonicalSha256 $Transcript) -cne $Aggregate.transcriptSha256) { return $false }
   $transcriptPhases = @($Transcript.phases)
   $aggregatePhases = @($Aggregate.phases)
-  for ($index = 0; $index -lt $PhaseModes.Count; $index += 1) {
+  if ($transcriptPhases.Count -ne $aggregatePhases.Count -or
+      $transcriptPhases.Count -ne [int]$Aggregate.phaseCount) { return $false }
+  for ($index = 0; $index -lt [int]$Aggregate.phaseCount; $index += 1) {
     $binding = $transcriptPhases[$index].binding
     $phase = $aggregatePhases[$index]
     if ([long]$phase.pid -ne [long]$binding.pid -or $phase.starttime -cne $binding.starttime -or
@@ -652,7 +666,7 @@ function Invoke-EvidencePublication([object]$Payload) {
   if (-not (Get-ExactProperties $Payload @('status', 'aggregate', 'cleanup', 'transcript')) -or
       $Payload.status -isnot [string] -or
       -not (Test-Aggregate $Payload.aggregate $Payload.status) -or
-      -not (Test-TranscriptBinding $Payload.aggregate $Payload.transcript) -or
+      -not (Test-TranscriptBinding $Payload.aggregate $Payload.transcript $Payload.status) -or
       -not (Test-CleanupOutcome $Payload.cleanup) -or
       ($Payload.status -ceq 'pass' -and $Payload.cleanup.campaignStatus -cne 'pass') -or
       ($Payload.status -ceq 'failure' -and $Payload.cleanup.campaignStatus -cne 'failure')) {

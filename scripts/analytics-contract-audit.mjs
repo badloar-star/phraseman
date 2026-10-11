@@ -139,7 +139,7 @@ function buildReport() {
   const canonical = value => aliases.get(value) ?? value;
   const literalCalled = calledEvents();
   const runtimeEvidence = dynamicRuntimeEvidence();
-  const onboardingEvidence = onboardingWrapperEvidence();
+  const onboardingEvidence = onboardingWrapperEvidence();
   const learningV2Evidence = learningV2TelemetryEvidence();
   const warehoused = warehousedEvents();
   const rowKinds = warehouseRowKinds();

@@ -218,7 +218,7 @@ function readBytes(filePath) {
 function runCli() {
   const studyTarget = String(process.argv[2] ?? '').trim();
   if (!isDailyPhraseManifestTarget(studyTarget)) {
-    console.error('Usage: node scripts/build_daily_phrase_prior_accepted_manifest.mjs <es|fr|de> [review.json] [output.json]');
+    console.error('Usage: node scripts/build_daily_phrase_prior_accepted_manifest.mjs <es|fr|de|it> [review.json] [output.json]');
     process.exitCode = 2;
     return;
   }

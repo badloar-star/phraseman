@@ -26,6 +26,36 @@ function isBlank(value) {
   return typeof value !== 'string' || value.trim().length === 0;
 }
 
+function validSourceAliases(ledger, issues) {
+  const aliases = ledger?.sourceAliases;
+  if (aliases === undefined) return [];
+  const valid = Array.isArray(aliases)
+    && aliases.every((alias) => typeof alias === 'string'
+      && alias.length > 0
+      && alias.trim() === alias
+      && alias !== ledger?.source
+      && typeof ledger?.source === 'string'
+      && ledger.source.startsWith(`${alias}; `))
+    && new Set(aliases).size === aliases.length;
+  if (!valid) {
+    issues.push(issue(
+      '__batch__',
+      'ledger.source_aliases_invalid',
+      'sourceAliases must contain unique exact nonblank prior append-only prefixes of source',
+    ));
+    return [];
+  }
+  return aliases;
+}
+
+function sameExactArrayOrAbsent(left, right) {
+  if (left === undefined || right === undefined) return left === right;
+  return Array.isArray(left)
+    && Array.isArray(right)
+    && left.length === right.length
+    && left.every((value, index) => same(value, right[index]));
+}
+
 function authoritativeCheckedAt(input, authority) {
   return authority?.checkedAt === undefined
     ? input?.ledger?.checkedAt
@@ -87,6 +117,7 @@ export function evaluateDailyPhraseSourceLinks(input, requestedIds = null) {
     ? input.linkage.linkedCandidateRows
     : [];
   const issues = [];
+  const sourceAliases = validSourceAliases(input?.ledger, issues);
   const requestedList = requestedIds === null ? null : (Array.isArray(requestedIds) ? requestedIds : []);
   if (requestedList) {
     const seenRequested = new Set();
@@ -119,7 +150,7 @@ export function evaluateDailyPhraseSourceLinks(input, requestedIds = null) {
     ? 'cvc-source-ledger.json'
     : 'authoritative-source-ledger.json';
   const authorityDescriptor = input?.linkage?.authoritativeLedger;
-  if (!['es', 'fr', 'de'].includes(target)
+  if (!['es', 'fr', 'de', 'it'].includes(target)
     || input?.bank?.sourceLocale !== 'ru'
     || input?.bank?.surface !== 'daily_phrase'
     || input?.ledger?.studyTarget !== target
@@ -135,6 +166,13 @@ export function evaluateDailyPhraseSourceLinks(input, requestedIds = null) {
   if (authorityDescriptor && typeof input?.ledger?.schemaVersion === 'string'
     && authorityDescriptor.schemaVersion !== input.ledger.schemaVersion) {
     issues.push(issue('__batch__', 'linkage.authority_schema_mismatch', 'Linkage authority schemaVersion must match the supplied ledger'));
+  }
+  if (!sameExactArrayOrAbsent(input?.ledger?.sourceAliases, authorityDescriptor?.sourceAliases)) {
+    issues.push(issue(
+      '__batch__',
+      'linkage.authority_source_aliases_mismatch',
+      'Linkage authority sourceAliases must exactly match the supplied ledger',
+    ));
   }
   if (input?.ledgerFileName !== undefined) {
     const actualLedgerFileName = input.ledgerFileName;
@@ -296,7 +334,8 @@ export function evaluateDailyPhraseSourceLinks(input, requestedIds = null) {
       }
     }
 
-    if (input?.ledger?.source && !same(evidence?.sourceType, input.ledger.source)) {
+    if (input?.ledger?.source
+      && ![input.ledger.source, ...sourceAliases].some((sourceType) => same(evidence?.sourceType, sourceType))) {
       issues.push(issue(rowId, 'evidence.source_type_mismatch', 'sourceType does not match the authoritative ledger source'));
     }
     const expectedCheckedAt = authoritativeCheckedAt(input, authority);

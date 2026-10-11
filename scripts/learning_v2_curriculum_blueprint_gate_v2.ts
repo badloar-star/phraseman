@@ -1,5 +1,6 @@
 import { LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_MANIFEST_V2 } from "../modules/learning-v2/curriculum/en/course_blueprint_manifest_en_v2";
 import { LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2 } from "../modules/learning-v2/curriculum/en/course_blueprint_en_v2";
+import { learningV2EnglishLexicalDensityFindingsForPacketV2 } from "../modules/learning-v2/curriculum/en/lexical_density_policy_en_v2";
 import {
   LEARNING_V2_ENGLISH_GRAMMAR_PREREQUISITE_DAG_V2,
   validateLearningV2EnglishGrammarPrerequisiteDagV2,
@@ -37,19 +38,9 @@ const lexicalScopeFindings = blueprint.scope.lessons
       !lessonsWithPlannedLexicalProgression.has(lesson.lessonOrdinal),
   )
   .map((lesson) => `lesson_lexical_progression_missing:${lesson.lessonOrdinal}`);
-const lexicalDensityFindings = blueprint.sessionPackets.flatMap((packet) => {
-  const isCheckpoint = packet.sessionWithinChapter === 8;
-
-  if (isCheckpoint && packet.newLexicalSenseIds.length > 0) {
-    return [`checkpoint_new_lexicon_forbidden:${packet.sessionId}`];
-  }
-
-  if (!isCheckpoint && packet.newLexicalSenseIds.length === 0) {
-    return [`noncheckpoint_new_lexicon_missing:${packet.sessionId}`];
-  }
-
-  return [];
-});
+const lexicalDensityFindings = blueprint.sessionPackets.flatMap(
+  learningV2EnglishLexicalDensityFindingsForPacketV2,
+);
 const checkpointRetrievalFindings = blueprint.sessionPackets
   .filter(
     (packet) =>

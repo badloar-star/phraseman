@@ -16,6 +16,11 @@ import {
   getCachedFrenchRemoteDailyPhrasePool,
   getCachedFrenchRemoteDailyPhraseForDay,
 } from './french_daily_phrase_remote_runtime';
+import {
+  ensureTargetRemoteDailyPhrases,
+  getCachedTargetRemoteDailyPhraseForDay,
+  getCachedTargetRemoteDailyPhrasePool,
+} from './multilingual_daily_phrase_remote_runtime';
 import type { Idiom, IdiomSourceLocaleMap } from './idioms_data';
 import { getIdiomsSync } from './idioms_lazy';
 import type { SourceLocale } from './source_locales';
@@ -226,6 +231,48 @@ async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Pr
   return phrase;
 }
 
+function targetRemoteDailyPhraseForDay(
+  studyTarget: Extract<RuntimeStudyTarget, 'es' | 'de' | 'it'>,
+  sourceLocale: RuntimeSourceLocale,
+): DailyPhrase | null {
+  return getCachedTargetRemoteDailyPhraseForDay(studyTarget, sourceLocale, getDayIndex(), todayKey());
+}
+
+async function getTodayTargetRemotePhrase(
+  studyTarget: Extract<RuntimeStudyTarget, 'es' | 'de' | 'it'>,
+  sourceLocaleInput?: RuntimeSourceLocale,
+): Promise<DailyPhrase | null> {
+  const sourceLocale = storageSourceLocale(sourceLocaleInput);
+  const today = todayKey();
+  const phraseKey = dailyPhraseKey(studyTarget);
+  const lastDateKey = dailyPhraseLastDateKey(studyTarget);
+  const cachedDate = await AsyncStorage.getItem(lastDateKey)
+    .catch(noteSwallowedAs('daily_phrase_system:target_remote_date', null));
+  if (cachedDate === today) {
+    const cached = await AsyncStorage.getItem(phraseKey)
+      .catch(noteSwallowedAs('daily_phrase_system:target_remote_phrase', null));
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached) as DailyPhrase;
+        if (parsed.studyTarget === studyTarget && parsed.english?.trim()) return parsed;
+      } catch (e) {
+        DebugLogger.error(
+          'daily_phrase_system:target_remote_cache',
+          e instanceof Error ? e : new Error(String(e)),
+          'warning',
+        );
+      }
+    }
+  }
+
+  await ensureTargetRemoteDailyPhrases(studyTarget, sourceLocale);
+  const phrase = targetRemoteDailyPhraseForDay(studyTarget, sourceLocale);
+  if (!phrase) return null;
+  await AsyncStorage.setItem(phraseKey, JSON.stringify(phrase));
+  await AsyncStorage.setItem(lastDateKey, today);
+  return phrase;
+}
+
 function normalizeRemotePhrase(id: string, raw: RemoteDailyPhraseDoc, date: string): DailyPhrase | null {
   const english = typeof raw.english === 'string' ? raw.english.trim() : '';
   if (!english) return null;
@@ -271,6 +318,8 @@ export function getDailyPhraseQuestPoolForTarget(
       return getCachedFrenchRemoteDailyPhrasePool(sourceLocale);
     case 'es':
     case 'de':
+    case 'it':
+      return getCachedTargetRemoteDailyPhrasePool(target, sourceLocale);
     default:
       return [];
   }
@@ -464,6 +513,10 @@ export function getTodayPhraseSyncForTarget(
     const sourceLocale = storageSourceLocale(sourceLocaleInput);
     return frenchRemoteDailyPhraseForDay(sourceLocale) || frenchFlashcardForDay(sourceLocale);
   }
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'es' || target === 'de' || target === 'it') {
+    return targetRemoteDailyPhraseForDay(target, storageSourceLocale(sourceLocaleInput));
+  }
   return getTodayPhraseSync();
 }
 
@@ -510,6 +563,10 @@ export const getTodayPhraseForTarget = async (
   if (!dailyPhraseContentAvailableForTarget(studyTarget)) return null;
   if (storageStudyTarget(studyTarget) === 'fr') {
     return getTodayFrenchPhrase(sourceLocaleInput);
+  }
+  const target = storageStudyTarget(studyTarget);
+  if (target === 'es' || target === 'de' || target === 'it') {
+    return getTodayTargetRemotePhrase(target, sourceLocaleInput);
   }
   return getTodayPhrase();
 };

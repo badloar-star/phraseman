@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-export const DAILY_PHRASE_MANIFEST_TARGETS = Object.freeze(['es', 'fr', 'de']);
+export const DAILY_PHRASE_MANIFEST_TARGETS = Object.freeze(['es', 'fr', 'de', 'it']);
 const TARGET_SET = new Set(DAILY_PHRASE_MANIFEST_TARGETS);
 const AUTHORITY_KEYS = Object.freeze([
   'bank',

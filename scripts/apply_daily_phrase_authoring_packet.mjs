@@ -71,7 +71,7 @@ function assertEnvelope({ bank, ledger, linkage, packet }) {
     throw new Error('Authoring packet status must remain DRAFT_REQUIRES_INDEPENDENT_REVIEW');
   }
   const target = string(bank?.studyTarget);
-  if (!['es', 'fr', 'de'].includes(target)
+  if (!['es', 'fr', 'de', 'it'].includes(target)
     || packet?.studyTarget !== target || ledger?.studyTarget !== target || linkage?.studyTarget !== target) {
     throw new Error('Authoring packet, bank, ledger and linkage studyTarget must match');
   }

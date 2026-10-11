@@ -2078,7 +2078,7 @@ service cloud.firestore {
     // The legacy browser-admin catch-all below explicitly excludes these docs;
     // Firestore overlapping matches are OR-combined, so this deny alone is not enough.
     match /config/{spireFlagsDocId} {
-      allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(es|fr|de)');
+      allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(en|es|fr|de|it)');
       allow write: if false;
     }
     match /spire_task_report_receipts/{receiptId} {
@@ -3412,7 +3412,7 @@ service cloud.firestore {
         && collection != 'spire_task_report_reservations'
         && collection != 'spire_task_incidents'
         && collection != 'error_reports'
-        && !(collection == 'config' && document.matches('spire_task_flags_(es|fr|de)'))
+        && !(collection == 'config' && document.matches('spire_task_flags_(en|es|fr|de|it)'))
         && collection != 'economy'
         && collection != 'youtube_catalog'
         && collection != 'youtube_catalog_snapshots'

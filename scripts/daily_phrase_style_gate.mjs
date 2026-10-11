@@ -30,7 +30,7 @@ const LOCALE_RULES = {
   },
 };
 
-const INTERNAL_ROW_REFERENCE = /\b(?:es|fr|de)[_-]?\d{3}\b/iu;
+const INTERNAL_ROW_REFERENCE = /\b(?:es|fr|de|it)[_-]?\d{3}\b/iu;
 
 function words(value) {
   return String(value).match(/[\p{L}\p{N}]+(?:[’'ʼ-][\p{L}\p{N}]+)*/gu) ?? [];

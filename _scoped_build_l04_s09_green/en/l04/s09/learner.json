@@ -1,0 +1,480 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-04:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите, что прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-09:i01:r1",
+          "text": "dentist"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i01:r2",
+          "text": "tennis"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i01:r3",
+          "text": "tender"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите, что прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-09:i01:audio",
+          "transcript": "dentist"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-09:i01:r1",
+            "targetText": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i01:r2",
+            "targetText": "tennis",
+            "meaningByLocale": {
+              "ru": "теннис",
+              "uk": "теніс"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i01:r3",
+            "targetText": "tender",
+            "meaningByLocale": {
+              "ru": "нежный",
+              "uk": "ніжний"
+            }
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-09:i01:r2",
+            "correct": false,
+            "testedDimension": "услышанное слово dentist",
+            "feedbackByLocale": {
+              "ru": "В `tennis` в начале слышно /t/, а в записи — /d/.",
+              "uk": "У `tennis` на початку чути /t/, а в записі — /d/."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i01:r3",
+            "correct": false,
+            "testedDimension": "услышанное слово dentist",
+            "feedbackByLocale": {
+              "ru": "В `tender` в начале слышно /t/, а в записи — /d/.",
+              "uk": "У `tender` на початку чути /t/, а в записі — /d/."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Произнесите новое слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-09:i02:audio",
+          "transcript": "dentist"
+        },
+        "targetPhrase": "dentist"
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово для врача, который лечит зубы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-09:i03:r1",
+          "text": "dentist"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i03:r2",
+          "text": "clinic"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i03:r3",
+          "text": "pharmacy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово для врача, который лечит зубы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-09:i03:r1",
+            "text": "dentist"
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i03:r2",
+            "text": "clinic"
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i03:r3",
+            "text": "pharmacy"
+          }
+        ],
+        "choiceFeedback": []
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте один вопрос и выберите его смысл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-09:i04:r1",
+          "text": "Is there a building?"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i04:r2",
+          "text": "Is there a shop?"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i04:r3",
+          "text": "There is a building."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте один вопрос и выберите его смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-09:i04:audio",
+          "transcript": "Is there a building?"
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-09:i04:r1",
+            "targetText": "Is there a building?",
+            "meaningByLocale": {
+              "ru": "Здесь есть здание?",
+              "uk": "Тут є будівля?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i04:r2",
+            "targetText": "Is there a shop?",
+            "meaningByLocale": {
+              "ru": "Здесь есть магазин?",
+              "uk": "Тут є магазин?"
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i04:r3",
+            "targetText": "There is a building.",
+            "meaningByLocale": {
+              "ru": "Здесь есть здание.",
+              "uk": "Тут є будівля."
+            }
+          }
+        ],
+        "choiceFeedback": []
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите один вопрос о магазине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите один вопрос о магазине",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a shop?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "shop"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте одно слово перед пекарней",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-09:i06:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i06:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-04:session-09:i06:r3",
+          "text": "the"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте одно слово перед пекарней",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "gappedTargetPhrase": "Is there ___ bakery?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-09:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-04:session-09:i06:r3",
+            "text": "the"
+          }
+        ],
+        "choiceFeedback": []
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i07",
+      "ordinal": 10,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите один вопрос о клинике",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите один вопрос о клинике",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-09:i07:audio",
+          "transcript": "Is there a clinic?"
+        },
+        "hiddenTargetPhrase": "Is there a clinic?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "clinic"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i08",
+      "ordinal": 11,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите один вопрос о банке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите один вопрос о банке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a bank?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Быстро соедините названия с русскими значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Быстро соедините названия с русскими значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "p1",
+            "target": "dentist",
+            "meaningByLocale": {
+              "ru": "стоматолог",
+              "uk": "стоматолог"
+            }
+          },
+          {
+            "pairId": "p2",
+            "target": "pharmacy",
+            "meaningByLocale": {
+              "ru": "аптека",
+              "uk": "аптека"
+            }
+          },
+          {
+            "pairId": "p3",
+            "target": "library",
+            "meaningByLocale": {
+              "ru": "библиотека",
+              "uk": "бібліотека"
+            }
+          },
+          {
+            "pairId": "p4",
+            "target": "bakery",
+            "meaningByLocale": {
+              "ru": "пекарня",
+              "uk": "пекарня"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i10",
+      "ordinal": 13,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите один вопрос об улице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите один вопрос об улице",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a street?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "street"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите один вопрос о саде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите один вопрос о саде",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-09:i11:audio",
+          "transcript": "Is there a garden?"
+        },
+        "hiddenTargetPhrase": "Is there a garden?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "garden"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — сами спросите у справочной о стоматологе рядом с аптекой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — сами спросите у справочной о стоматологе рядом с аптекой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a dentist near the pharmacy?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "dentist",
+          "near",
+          "the",
+          "pharmacy"
+        ],
+        "authoredDistractorTokens": [
+          "There"
+        ]
+      }
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "301cdbf5d99b975ad73c26ee04a1ba624ad23e3de828a79ddaa921207bb4484b"
+}

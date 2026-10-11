@@ -39,7 +39,7 @@ function validateBankMetadata(bank, errors) {
   const sourceLocale = bank?.sourceLocale;
   const surface = bank?.surface;
 
-  if (!['es', 'fr', 'de'].includes(target)) errors.push('unsupported_study_target');
+  if (!['es', 'fr', 'de', 'it'].includes(target)) errors.push('unsupported_study_target');
   if (!['ru', 'uk'].includes(sourceLocale)) errors.push('unsupported_source_locale');
   if (surface !== 'daily_phrase') errors.push('invalid_surface');
   if (bank?.activationApproved !== false) errors.push('activation_must_remain_closed');
@@ -86,7 +86,7 @@ function validateRows(rows, target, sourceLocale, errors) {
 }
 
 function validateCanonicalRowIdentities(rows, target, errors) {
-  if (!['es', 'fr', 'de'].includes(target)) return;
+  if (!['es', 'fr', 'de', 'it'].includes(target)) return;
   for (const [index, row] of rows.entries()) {
     const expectedOrder = index + 1;
     const expectedId = `${target}-${String(expectedOrder).padStart(3, '0')}`;

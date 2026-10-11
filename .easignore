@@ -12,6 +12,7 @@ scripts/*
 !scripts/visual_parity_gate.mjs
 !scripts/store_release_surface.mjs
 !scripts/store_route_reachability.mjs
+!scripts/learning_v2_release_parity_gate.mjs
 docs/
 qa-artifacts/
 tmp/

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "sourceBindingSchemaVersion": "learning_v2_canonical_source_binding_v1",
+  "courseSessionId": "en:lesson-04:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "спросить об одном месте: `Is there a/an + singular noun?`",
+    "uk": "запитати про одне місце: `Is there a/an + singular noun?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-04:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стоматолог",
+        "uk": "Стоматолог"
+      },
+      "bodyByLocale": {
+        "ru": "`dentist` — «стоматолог», врач для зубов. Зуб болит, а кабинет в незнакомом районе сам себя не найдёт. У стойки справочной вам нужен именно `dentist`, а не название улицы. Если назвать это слово, сотрудник поймёт, кого вы ищете, и сможет показать нужное место.",
+        "uk": "`dentist` — «стоматолог», лікар для зубів. Зуб болить, а кабінет у незнайомому районі сам себе не знайде. Біля стійки довідки вам потрібен саме `dentist`, а не назва вулиці. Якщо назвати це слово, працівник зрозуміє, кого ви шукаєте, і зможе показати потрібне місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Вам нужен врач для зубов. Выберите слово.",
+          "uk": "Вам потрібен лікар для зубів. Оберіть слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r1",
+              "text": "dentist"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r2",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r3",
+              "text": "pharmacy"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r1",
+              "text": "dentist"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r2",
+              "text": "clinic"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro1:r3",
+              "text": "pharmacy"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам нужен врач для зубов. Выберите слово.",
+          "uk": "Вам потрібен лікар для зубів. Оберіть слово."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-04:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли стоматолог?",
+        "uk": "Чи є стоматолог?"
+      },
+      "bodyByLocale": {
+        "ru": "Можно сообщить: `There is a pharmacy.` В вопросе `is` выходит перед `there`: `Is there a dentist?` Так вы спрашиваете, есть ли здесь один стоматолог. У стойки это короче, чем показывать на зуб и надеяться на телепатию.",
+        "uk": "Можна повідомити: `There is a pharmacy.` У питанні `is` виходить перед `there`: `Is there a dentist?` Так ви питаєте, чи є тут один стоматолог. Біля стійки це коротше, ніж показувати на зуб і сподіватися на телепатію."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли здесь стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут стоматолог. Оберіть питання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r1",
+              "text": "Is there a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r2",
+              "text": "There is a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r3",
+              "text": "Is there dentist?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r1",
+              "text": "Is there a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r2",
+              "text": "There is a dentist?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro2:r3",
+              "text": "Is there dentist?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли здесь стоматолог. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут стоматолог. Оберіть питання."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-04:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Есть ли аптека?",
+        "uk": "Чи є аптека?"
+      },
+      "bodyByLocale": {
+        "ru": "Тот же вопрос можно задать об аптеке: `Is there a pharmacy?` Сначала идёт `Is`, потом `there`, потом один предмет с `a`. `A pharmacy` — одна аптека; поэтому перед словом стоит маленькое `a`. Справочная не лечит зуб, но хотя бы не отправляет вас искать аптеку наугад.",
+        "uk": "Те саме питання можна поставити про аптеку: `Is there a pharmacy?` Спочатку йде `Is`, потім `there`, потім один предмет із `a`. `A pharmacy` — одна аптека; тому перед словом стоїть маленьке `a`. Довідка не лікує зуб, але принаймні не відправляє вас шукати аптеку навмання."
+      },
+      "question": {
+        "interactionId": "en:lesson-04:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, есть ли здесь аптека. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут аптека. Оберіть питання."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r1",
+              "text": "Is there a pharmacy?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r2",
+              "text": "There is a pharmacy?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r3",
+              "text": "Is there pharmacy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r1",
+              "text": "Is there a pharmacy?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r2",
+              "text": "There is a pharmacy?"
+            },
+            {
+              "responseId": "en:lesson-04:session-09:intro3:r3",
+              "text": "Is there pharmacy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, есть ли здесь аптека. Выберите вопрос.",
+          "uk": "Запитайте, чи є тут аптека. Оберіть питання."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c2eaa230fcb76070959a00458bcf0d188aecd0940fe9b1d317302fb8deab9530"
+}

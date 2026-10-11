@@ -103,12 +103,21 @@ const productionEnv = productionEnvFromEasJson();
 
 /** Оба гейта, которые иначе падают на сервере после загрузки архива. */
 const GATES = [
-  { name: 'ключи и конфиги релиза', script: 'scripts/release_keys_gate.mjs', env: {} },
+  {
+    name: 'ключи и конфиги релиза',
+    script: 'scripts/release_keys_gate.mjs',
+    env: {},
+    allowMissingEasSecrets: true,
+  },
   {
     name: 'версии production-профиля',
     script: 'scripts/eas_production_version_gate.mjs',
     env: { ...productionEnv, EAS_BUILD_PROFILE: 'production' },
+    allowMissingEasSecrets: true,
   },
+  // Сборка и OTA не должны читать выпуск, который расходится с проверенным
+  // исходником, или отставшую копию выпуска внутри приложения.
+  { name: 'исходник = выпуск = копия приложения Learning V2', script: 'scripts/learning_v2_release_parity_gate.mjs', env: {} },
   // зачем (инцидент 04.10, решение координатора): контент урока 1 перегенерировали без озвучки — занятие молча не открывалось.
   // Гейт собирает КАЖДОЕ встроенное занятие из бандла и падает, если для реплики нет записи в таблице озвучки.
   { name: 'озвучка встроенных занятий Learning V2', script: 'scripts/learning_v2_audio_coverage_gate.mjs', env: {} },
@@ -136,7 +145,8 @@ for (const gate of GATES) {
     // живут в секретах EAS и локально отсутствуют по определению. Считать это
     // провалом — значит приучить владельца игнорировать красный вывод.
     const stderr = String(result.stderr ?? '');
-    if (/EXPO_PUBLIC_RC_|EXPO_PUBLIC_GOOGLE_|is missing for production/.test(stderr)) {
+    if (gate.allowMissingEasSecrets
+      && /EXPO_PUBLIC_RC_|EXPO_PUBLIC_GOOGLE_|is missing for production/.test(stderr)) {
       secretsMissing.push(gate.name);
       console.log('   (пропущено: значение живёт в секретах EAS, локально его нет)');
     } else {

@@ -109,9 +109,9 @@ function SessionResultScreenImpl({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback?.entityId]);
 
-  // зачем (cards-section.html `resMix`): повтор ошибок подписан «Ошибки · N»; у Блица и «Правда/ложь» — свой retryLabel.
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Итог»): с ошибками основная кнопка — «Повторить ошибки» (без числа), без ошибок / у Блица — «Ещё раз» (retryLabel сессии).
   const retryWrongLabel = learnLeft > 0
-    ? triLang(lang, { ru: `Ошибки · ${learnLeft}`, uk: `Помилки · ${learnLeft}`, en: `Mistakes · ${learnLeft}`, es: `Errores · ${learnLeft}`, 'pt-BR': `Erros · ${learnLeft}`, vi: `Lỗi · ${learnLeft}`, id: `Kesalahan · ${learnLeft}`, tr: `Hatalar · ${learnLeft}`, pl: `Błędy · ${learnLeft}` })
+    ? triLang(lang, { ru: 'Повторить ошибки', uk: 'Повторити помилки', en: 'Retry mistakes', es: 'Repetir errores', 'pt-BR': 'Repetir erros', vi: 'Làm lại câu sai', id: 'Ulangi kesalahan', tr: 'Hataları tekrarla', pl: 'Powtórz błędy' })
     : retryLabel;
   void accentColor; void scoreText; // зачем: прежние пропсы вызовов; в макете итога Карточек нет ни акцента режима, ни строки счёта (владелец 04.10 — только монеты)
   return (

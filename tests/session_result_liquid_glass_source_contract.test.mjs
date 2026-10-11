@@ -64,7 +64,8 @@ test('the result renders the cards-section result screen with the session number
   assert.match(impl, /mistakes=\{mistakes\}/);
   assert.match(impl, /durationSec=\{durationSec\}/);
   const view = fs.readFileSync(path.join(ROOT, 'app/flashcards/CardsSessionResultV2.tsx'), 'utf8');
-  for (const copy of ['Что исправить', 'Без единой ошибки', 'верных ответов', 'точность', 'время']) assert.ok(view.includes(copy), copy);
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Итог»): «18 из 20», вердикт, плитки «Верно / Ошибки / Время», секция «Ошибки N» (карточки с переворотом)
+  for (const copy of ['Без единой ошибки', 'Почти идеально', 'Верно', 'Ошибки', 'Время', 'CardFlipV2']) assert.ok(view.includes(copy), copy);
   // владелец 04.10: очки Блица убраны — строки счёта в итоге нет.
   assert.doesNotMatch(view, /scoreLabel|Счёт/);
 });
@@ -76,9 +77,10 @@ test('finale sound/haptic and weekly feedback gate are kept', () => {
   assert.match(impl, /<FeedbackRatingCard[\s\S]*kind="vocab"/);
 });
 
-test('Done haptics before the callback; «Ошибки · N» shows only with a retry handler', () => {
+test('Done haptics before the callback; «Повторить ошибки» shows only with a retry handler', () => {
   assert.match(impl, /onDone=\{\(\) => \{ fcHaptic\('tap'\); onDone\(\); \}\}/);
   assert.match(impl, /retryLabel=\{onRetryWrong && retryWrongLabel \? retryWrongLabel : undefined\}/);
   assert.match(impl, /learnLeft > 0/);
-  assert.match(impl, /Ошибки · \$\{learnLeft\}/);
+  // зачем (Карточки 2.0 12.10, макет «Повторить ошибки»): подпись без числа — число видно в секции «Ошибки N»
+  assert.match(impl, /Повторить ошибки/);
 });

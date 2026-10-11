@@ -62,7 +62,8 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 .ring .pz { position: absolute; left: 0; right: 0; bottom: -26px; text-align: center; font-size: 13px; color: var(--sec); font-weight: 600; }
 .ovl { display: flex; align-items: center; gap: 14px; color: var(--sec); }
 .ovl::before, .ovl::after { content: ""; flex: 1; height: 1px; background: var(--line-2); }
-.qc.sp { position: relative; padding: 26px 64px; min-height: 150px; }
+/* зачем (код, SpireTaskView): у заданий «выбери перевод» кнопки озвучки нет (она только у заданий «на слух»); карточка вопроса minHeight 96, отступы 20/22 */
+.qc.sp { position: relative; padding: 20px 22px; min-height: 96px; }
 .qc.sp .snd { position: absolute; right: 16px; top: 50%; margin-top: -19px; }
 .hint { font-size: 15px; line-height: 20px; color: var(--sec); text-align: center; margin-top: 14px; }
 .hint b { color: var(--good); font-weight: 600; }
@@ -317,7 +318,7 @@ const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin
   <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span>${energy(e, { s: true })}</div>`;
 const ring = (left = '1:42', frac = .75, paused = false) => `<div class="ring" style="margin-top:34px"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="${paused ? '#8E8E92' : '#E9E9EB'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="${(370.7 * (1 - frac)).toFixed(1)}"/></svg><div class="tm">${left}</div>${paused ? '<div class="pz">таймер на паузе</div>' : ''}</div>`;
 const question = () => `<div class="ovl" style="margin-top:44px"><span class="ov" style="color:var(--sec)">Выбери перевод</span></div>
-  <div class="qc sp" style="margin-top:20px"><div class="q" style="margin-top:0">Hire, fire, quit</div><span class="rb snd t" style="width:38px;height:38px;background:#262628;border:none">${icon('vol', 's18')}</span></div>`;
+  <div class="qc sp" style="margin-top:20px"><div class="q" style="margin-top:0">Hire, fire, quit</div></div>`;
 const OPTS = ['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность'];
 const options = (state = {}) => `<div class="stack g13" style="margin-top:22px">${OPTS.map((t, i) => `<div class="opt t${state[i] ? ' ' + state[i] : ''}">${t}</div>`).join('')}</div>`;
 const stepFoot = (n = 3) => `<div class="center" style="margin-top:22px;color:var(--sec);font-size:15px;font-weight:600">${n} / 10</div>`;

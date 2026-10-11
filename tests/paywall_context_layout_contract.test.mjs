@@ -36,22 +36,26 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{S\.planCell\}/);
 });
 
-test('without prices the plans area says so and offers a retry (no empty skeleton cards)', () => {
+test('without prices the plans area says so, offers a retry and the button note explains itself (макет №9/№10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /COPY\.pricesUnavailable/);
-  assert.match(plus, /COPY\.retryPrices/);
+  assert.match(plus, /COPY\.pricesFailed/);
+  assert.match(plus, /COPY\.checkInternet/);
+  assert.match(plus, /COPY\.retry\)/);
   assert.match(plus, /testID="paywall-prices-retry"/);
+  assert.match(plus, /COPY\.fineNoPrices/, 'под кнопкой без цен — сноска, а не пустая строка');
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /<PaywallPlusPlansUnavailable lang=\{lang\} g=\{g\} onRetry=\{retryPrices\}/);
 });
 
-test('the two new texts exist in all nine languages and use the informal address', () => {
+test('sheet surfaces are solid so they stay visible on the light sheet (Сверка 11.10)', () => {
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.ok(!plus.includes('useV2GlassStyle') && !plus.includes('V2GlassSheen'), 'на шторке нет полупрозрачного стекла и блика');
+  assert.match(plus, /backgroundColor: g\.opaqueControl/);
+});
+
+test('the no-prices note exists in all nine languages', () => {
   const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
-  for (const key of ['pricesUnavailable', 'retryPrices']) {
-    const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith(`${key}: LP(`));
-    assert.ok(line, key);
-    const args = line.match(/'[^']*'/g) ?? [];
-    assert.equal(args.length, 9, `${key}: 9 языков`);
-  }
-  assert.ok(!/Ваш|Вы /.test(copy.split('pricesUnavailable')[1]?.split(String.fromCharCode(10))[0] ?? ''));
+  const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith('fineNoPrices: LP('));
+  assert.ok(line, 'fineNoPrices');
+  assert.equal((line.match(/'[^']*'|"[^"]*"/g) ?? []).length, 9, '9 языков');
 });

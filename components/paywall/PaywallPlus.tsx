@@ -23,7 +23,6 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LinearGradient } from '../SafeLinearGradient';
 import V2Pressable from '../v2/V2Pressable';
-import { useV2GlassStyle, V2GlassSheen } from '../v2/V2Glass';
 import { PaywallPlusBenefits, PaywallPlusComparison } from './PaywallBenefitComparison';
 import {
   COPY, chargeLine, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle,
@@ -83,7 +82,7 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
       <View style={[S.handle, { backgroundColor: g.glassEdge }]} />
       {contextTitle ? (
         <View style={S.ctxRow}>
-          <View testID="paywall-context-icon" style={[S.ctxTile, { backgroundColor: g.opaqueControl }]}>{contextIcon}</View>
+          <View testID="paywall-context-icon" style={[S.ctxTile, { backgroundColor: `${g.accent}2E` }]}>{contextIcon}</View>
           {contextPill ? (
             <View testID="paywall-context-pill" style={[S.ctxPill, { backgroundColor: g.opaqueControl }]}>
               <Text style={[S.ctxPillText, { color: g.text }]}>{contextPill}</Text>
@@ -108,7 +107,8 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
 export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({ lang, g, trialDays, yearlyPrice }: {
   lang: Lang; g: GlassTokens; trialDays: number; yearlyPrice: string;
 }) {
-  const glass = useV2GlassStyle();
+  // зачем (Сверка 11.10, светлая тема): на шторке поверхности сплошные (g.opaqueControl), полупрозрачное стекло там было белым по белому.
+  const surface = { backgroundColor: g.opaqueControl };
   const reminderDay = trialReminderDayNumber(trialDays);
   const steps: { icon: keyof typeof Ionicons.glyphMap; title: string; detail: string }[] = [
     { icon: 'gift-outline', title: pick(lang, COPY.today), detail: pick(lang, COPY.todayDetail) },
@@ -116,8 +116,7 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
     { icon: 'card-outline', title: reminderDayTitle(lang, trialDays), detail: chargeLine(lang, yearlyPrice) },
   ];
   return (
-    <View testID="paywall-trial-timeline" style={[S.card, S.timeline, glass]}>
-      <V2GlassSheen seed={0} />
+    <View testID="paywall-trial-timeline" style={[S.card, S.timeline, surface]}>
       {steps.map((step, index) => {
         const first = index === 0;
         const last = index === steps.length - 1;
@@ -151,7 +150,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   /** Скидка стора на первый период (владелец 2026-09-04: «написано = спишется»). */
   yearlyPromo: StorePromoPricing | null; monthlyPromo: StorePromoPricing | null;
 }) {
-  const glass = useV2GlassStyle();
+  const surface = { backgroundColor: g.opaqueControl };
   const yearOn = selected === 'yearly';
   const monthOn = selected === 'monthly';
   // Выбранный тариф: тон подложки + тонкая светлая кромка (исключение 2.0: 1px полупрозрачная).
@@ -162,10 +161,10 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   return (
     <View>
       {promo ? (
-        <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: g.opaqueSheet }]}>
+        <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: g.opaqueControl }]}>
           <Text style={[S.promoKicker, { color: g.mutedText }]}>{pick(lang, COPY.promoNow)}</Text>
           <View style={S.promoRow}>
-            <View style={[S.promoPill, { backgroundColor: g.opaqueControl }]}>
+            <View style={[S.promoPill, { backgroundColor: g.opaqueSheet }]}>
               <Text style={[S.promoPct, { color: g.text }]}>{`−${promo.discountPercent}%`}</Text>
             </View>
             <Text style={[S.promoPrice, { color: g.text }]}>{promo.promoPriceString}</Text>
@@ -185,9 +184,8 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           withHaptic={false}
           scaleTo={0.98}
           outerStyle={S.planCell}
-          style={[S.card, S.planCol, glass, yearOn && selectedRing]}
+          style={[S.card, S.planCol, surface, yearOn && selectedRing]}
         >
-          <V2GlassSheen seed={1} />
           <View style={S.planNameRow}>
             <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.year)}</Text>
             <View style={[S.badge, { backgroundColor: markFill(g) }]}>
@@ -216,9 +214,8 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           withHaptic={false}
           scaleTo={0.98}
           outerStyle={S.planCell}
-          style={[S.card, S.planCol, glass, monthOn && selectedRing]}
+          style={[S.card, S.planCol, surface, monthOn && selectedRing]}
         >
-          <V2GlassSheen seed={3} />
           <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.month)}</Text>
           {monthlyPromo ? <Text style={[S.priceStrike, { color: g.mutedText }]}>{monthlyPromo.standardPriceString}</Text> : null}
           <Text testID="paywall-month-price" style={[S.priceMonth, { color: g.text }]}>{monthlyPromo?.promoPriceString || monthlyPrice}</Text>
@@ -248,8 +245,8 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
   return (
     <View testID="paywall-plans-skeleton" accessibilityRole="progressbar">
       <View style={S.planRow}>
-        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueCard }]} />
-        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueCard }]} />
+        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueControl }]} />
+        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueControl }]} />
       </View>
     </View>
   );
@@ -264,15 +261,16 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
 }) {
   return (
     <View testID="paywall-plans-unavailable">
-      <View style={[S.skeleton, S.unavailableBox, S.planRow, { height: PLAN_CARD_HEIGHT, backgroundColor: g.opaqueCard }]}>
-        <Text style={[S.unavailableText, { color: g.text }]}>{pick(lang, COPY.pricesUnavailable)}</Text>
+      <View style={[S.skeleton, S.unavailableBox, S.planRowTop, { height: PLAN_CARD_HEIGHT, backgroundColor: g.opaqueControl }]}>
+        <Text style={[S.unavailableText, { color: g.text }]}>{pick(lang, COPY.pricesFailed)}</Text>
+        <Text style={[S.unavailableSub, { color: g.secondary }]}>{pick(lang, COPY.checkInternet)}</Text>
         {onRetry ? (
           <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
             disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
-            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: g.opaqueControl }]}>
+            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: g.opaqueSheet }]}>
             {retrying
               ? <ActivityIndicator color={g.text} />
-              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retryPrices)}</Text>}
+              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retry)}</Text>}
           </V2Pressable>
         ) : null}
       </View>
@@ -284,13 +282,11 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
 export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, leadBenefit }: {
   lang: Lang; g: GlassTokens; leadBenefit?: string;
 }) {
-  const glass = useV2GlassStyle();
   // зачем (владелец 11.10, макет paywall-context-redesign #c1): у контекстного окна ровно ОДНА выгода — та, что про этот момент
   // (`.ben.glass`); общие «Что входит» и «Free и Plus» остаются только у входа без своего текста.
   if (leadBenefit) {
     return (
-      <View testID="paywall-lead-benefit" style={[S.card, S.leadRow, glass]}>
-        <V2GlassSheen seed={4} />
+      <View testID="paywall-lead-benefit" style={[S.card, S.leadRow, { backgroundColor: g.opaqueControl }]}>
         <View style={[S.leadCheck, { backgroundColor: g.accent }]}>
           <Ionicons name="checkmark" size={16} color={g.accentInk} />
         </View>
@@ -340,7 +336,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
   // Нет цен — тап сам загрузит offerings и купит. Подпись под кнопкой — тихая: либо «Попробуй через минуту»
   // после сбоя тапа, либо мелкий текст тарифа; строка резервируется, чтобы геометрия не прыгала.
   const ctaDisabled = disabled;
-  const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : '\u00A0';
+  // зачем (макет paywall-context-redesign №9/№10): без цен под кнопкой — «Кнопка работает и без цен…», а не пустая строка.
+  const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : pick(lang, COPY.fineNoPrices);
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
       {/* зачем (макет `.cta`): кнопка 58 с лёгким переливом тона и свечением цвета темы. */}
@@ -446,7 +443,9 @@ const S = StyleSheet.create({
   retry: { minHeight: 44, paddingHorizontal: 16, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   retryText: { fontSize: 16, fontWeight: '700' },
   retryGap: { marginTop: 12 },
-  unavailableText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', paddingHorizontal: 16 },
+  unavailableText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center', paddingHorizontal: 16 },
+  unavailableSub: { marginTop: 4, fontSize: 13, lineHeight: 18, textAlign: 'center', paddingHorizontal: 16 },
+  planRowTop: { marginTop: 14 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },

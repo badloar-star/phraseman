@@ -20,7 +20,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
-import { useV2GlassStyle, V2GlassSheen } from '../v2/V2Glass';
 import { COPY, LP, compareMore, pick, type L9 } from './PaywallPlusCopy';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -100,11 +99,10 @@ export const PAYWALL_COMPARISON_VISIBLE_ROWS = 6;
 type SectionProps = Readonly<{ lang: Lang; g: GlassTokens }>;
 
 export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }: SectionProps) {
-  const glass = useV2GlassStyle();
+  const glass = { backgroundColor: g.opaqueControl }; // зачем: на шторке поверхности сплошные (светлая тема, Сверка 11.10)
   // зачем: общий список «Что входит» — только у входа без своего текста; контекстная выгода рисуется в PaywallPlusDetails (макет paywall-context-redesign #c1).
   return (
     <View style={[S.card, glass]}>
-      <V2GlassSheen seed={4} />
       {PAYWALL_MAIN_BENEFITS.map((benefit, index) => (
         <View key={benefit.icon} style={[S.benefitRow, index > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
           <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
@@ -121,7 +119,7 @@ export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }
 });
 
 export const PaywallPlusComparison = memo(function PaywallPlusComparison({ lang, g }: SectionProps) {
-  const glass = useV2GlassStyle();
+  const glass = { backgroundColor: g.opaqueControl };
   const [open, setOpen] = useState(false);
   // зачем: раскрытие — вставка строк в поток, поэтому только через общий
   // animateNextLayoutTransition (Performance Bible: flow inserts), без окна.
@@ -132,7 +130,6 @@ export const PaywallPlusComparison = memo(function PaywallPlusComparison({ lang,
   const rows = open ? PAYWALL_COMPARISON_ROWS : PAYWALL_COMPARISON_ROWS.slice(0, PAYWALL_COMPARISON_VISIBLE_ROWS);
   return (
     <View style={[S.card, glass]}>
-      <V2GlassSheen seed={2} />
       <View style={S.cmpHead}>
         <View style={S.cmpLabel} />
         <Text style={[S.cmpHeadCell, { color: g.mutedText }]}>{pick(lang, COPY.free)}</Text>

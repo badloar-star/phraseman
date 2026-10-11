@@ -37,6 +37,29 @@ beforeEach(() => {
   restoreMock.mockReset();
 });
 
+describe('accountRestorePromptMessage — число дней без «дн.» и «(s)»', () => {
+  it('правильные формы слова «день» на 9 языках', () => {
+    const { accountRestorePromptMessage } = require('../app/account_delete_restore_prompt');
+    expect(accountRestorePromptMessage('ru', 1)).toContain('через 1 день ');
+    expect(accountRestorePromptMessage('ru', 3)).toContain('через 3 дня ');
+    expect(accountRestorePromptMessage('ru', 14)).toContain('через 14 дней ');
+    expect(accountRestorePromptMessage('ru', 21)).toContain('через 21 день ');
+    expect(accountRestorePromptMessage('uk', 2)).toContain('через 2 дні ');
+    expect(accountRestorePromptMessage('uk', 5)).toContain('через 5 днів ');
+    expect(accountRestorePromptMessage('en', 1)).toContain('in 1 day ');
+    expect(accountRestorePromptMessage('en', 9)).toContain('in 9 days ');
+    expect(accountRestorePromptMessage('es', 1)).toContain('en 1 día:');
+    expect(accountRestorePromptMessage('pt-BR', 4)).toContain('em 4 dias:');
+    expect(accountRestorePromptMessage('pl', 1)).toContain('za 1 dzień ');
+    expect(accountRestorePromptMessage('pl', 5)).toContain('za 5 dni ');
+    for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+      const text = accountRestorePromptMessage(lang, 7);
+      expect(text).not.toMatch(/дн\.|\(s\)|día\(s\)|dia\(s\)/);
+      expect(text).toContain('7');
+    }
+  });
+});
+
 describe('промпт восстановления удалённого аккаунта', () => {
   it('согласие — сервер снимает удаление → restored', async () => {
     statusMock.mockResolvedValue({ pending: true, restorable: true, daysLeft: 9 });
@@ -83,7 +106,8 @@ describe('промпт восстановления удалённого акк�
     const prompt = read('app/account_delete_restore_prompt.ts');
     for (const phrase of [
       "ru: 'Восстановить аккаунт?'",
-      'ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`',
+      // 12.10: текст про дни — общая функция accountRestorePromptMessage (формы «1 день / 3 дня / 5 дней»).
+      'accountRestorePromptMessage(lang, days)',
       "ru: 'Не восстанавливать'",
       "ru: 'Восстановить'",
     ]) {

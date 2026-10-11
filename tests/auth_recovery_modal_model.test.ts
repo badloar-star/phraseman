@@ -15,7 +15,8 @@ import {
   normalizeRecoveryCodeInput,
 } from '../components/auth_recovery_modal_model';
 
-const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+// 12.10: + en — тексты к английскому интерфейсу (флаг выключен, ключи готовы заранее).
+const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
 describe('auth recovery modal model', () => {
   it('routes an authorized Google/Gmail hint through instructions first', () => {

@@ -3,7 +3,7 @@ import type { CleanInstallRecoveryFlowState } from '../app/auth_clean_install_re
 import { swallowError } from '../app/debug-logger';
 import { noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type AuthRecoveryUiLocale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+export type AuthRecoveryUiLocale = 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 export type AuthRecoveryEntryMode = 'google_instruction' | 'code_primary' | 'provider_choice';
 
 type RecoveryHintLike = Readonly<{
@@ -92,6 +92,20 @@ const COPY: Record<AuthRecoveryUiLocale, AuthRecoveryCopy> = {
     errorRateLimited: 'Забагато спроб. Трохи зачекай і спробуй знову.', errorInvalidCode: 'Код не підійшов. Перевір усі 6 цифр.',
     errorExpired: 'Термін дії коду минув. Запроси новий код.', errorNetwork: 'Немає зв’язку із сервером. Перевір інтернет і спробуй знову.',
     errorCancelled: 'Вхід скасовано. Можна спробувати ще раз.', errorSupport: 'Не вдалося безпечно продовжити. Звернися до підтримки.',
+  },
+  // зачем (координатор 12.10): подготовка к английскому интерфейсу — тексты есть заранее, флаг не трогаем.
+  en: {
+    entry: "Can't access this account?", instructionTitle: 'Try your previous Google account first',
+    googleInstruction: 'Open device Settings → Accounts, add the account shown below, then sign in with Google. If you no longer have access to it, request a code.',
+    codeTitle: 'Recover with a code', codeDescription: "We'll send a 6-digit code to the linked email. The address is only shown partially hidden.",
+    providerChoice: "Choose how the account was linked. Your answer won't reveal whether an account exists.",
+    useGoogle: 'Continue with Google', useApple: 'Continue with Apple', sendCode: 'Send code',
+    codeLabel: '6-digit code', confirm: 'Confirm', resend: 'Send the code again', resendIn: 'You can resend in', expiresIn: 'Code expires in',
+    working: 'Checking and recovering your account…', supportTitle: 'Support can help',
+    supportBody: 'Recovery was stopped so another account is not affected. Your local data is safe.',
+    errorRateLimited: 'Too many attempts. Wait a bit and try again.', errorInvalidCode: "That code didn't work. Check all 6 digits.",
+    errorExpired: 'The code has expired. Request a new one.', errorNetwork: "Can't reach the server. Check your internet connection and try again.",
+    errorCancelled: 'Sign-in was cancelled. You can try again.', errorSupport: "We couldn't continue safely. Please contact support.",
   },
   es: {
     entry: '¿No tienes acceso a esta cuenta?', instructionTitle: 'Primero prueba tu cuenta anterior de Google',
@@ -193,6 +207,19 @@ const CLEAN_INSTALL_COPY: Record<AuthRecoveryUiLocale, CleanInstallRecoveryCopy>
     working: 'Безпечно відновлюємо акаунт…', supportTitle: 'Потрібна допомога підтримки',
     supportBody: 'Відновлення зупинено, щоб не зачепити інший акаунт. Локальні дані збережено.',
     errorEmail: 'Введи коректний email.',
+  },
+  en: {
+    entry: 'Recover by email', providerTitle: 'Confirm your sign-in method',
+    providerBody: 'First confirm Google or Apple on this device. This protects recovery from strangers.',
+    emailTitle: 'Enter the account email', emailBody: 'Enter the email your progress was linked to.',
+    emailLabel: 'Account email', emailPlaceholder: 'name@example.com', sendCode: 'Send code',
+    sentTitle: 'Check your email', sentBody: 'If the details match, an email with a 6-digit code is on its way.',
+    codeLabel: '6-digit code', confirm: 'Confirm and recover', resend: 'Send the code again',
+    resendIn: 'You can resend in', resendEmailHint: 'To resend, enter the email again.', changeEmail: 'Change email', expiresIn: 'Code expires in', resumeTitle: 'Continue recovery',
+    resumeBody: 'The check is already done. Safely continue moving your account.', resume: 'Continue',
+    working: 'Safely recovering your account…', supportTitle: 'Support can help',
+    supportBody: 'Recovery was stopped so another account is not affected. Your local data is safe.',
+    errorEmail: 'Enter a valid email.',
   },
   es: {
     entry: 'Recuperar por email', providerTitle: 'Confirma cómo inicias sesión',

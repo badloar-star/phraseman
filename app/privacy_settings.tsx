@@ -32,10 +32,12 @@ import { recordConsentToCloud } from './age_consent_cloud';
 import { getAiExplainConsentState, setAiExplainConsent, recordAiExplainConsentToCloud } from './ai_explain_consent';
 import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToCloud } from './ai_dialog_consent';
 
-/** Строка на 8 UI-языках (форма triLang). */
+/** Строка на 9 UI-языках (форма triLang). */
 interface Text8 {
   ru: string;
   uk: string;
+  /** зачем (координатор 12.10): подготовка к английскому интерфейсу — ключ есть заранее, флаг не трогаем. */
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -202,10 +204,10 @@ export default function PrivacySettings() {
     applyConsentToggle('ai_dialog', val, setAiDialogOn, setAiDialogConsent, recordAiDialogConsentToCloud);
   }, [applyConsentToggle]);
 
-  const analyticsLabel = L({ ru: 'Отправлять данные об использовании', uk: 'Надсилати дані про використання', es: 'Enviar datos de uso', 'pt-BR': 'Enviar dados de uso', vi: 'Gửi dữ liệu sử dụng', id: 'Kirim data penggunaan', tr: 'Kullanım verisi gönder', pl: 'Wysyłać dane o użytkowaniu' });
+  const analyticsLabel = L({ ru: 'Отправлять данные об использовании', uk: 'Надсилати дані про використання', en: "Send usage data", es: 'Enviar datos de uso', 'pt-BR': 'Enviar dados de uso', vi: 'Gửi dữ liệu sử dụng', id: 'Kirim data penggunaan', tr: 'Kullanım verisi gönder', pl: 'Wysyłać dane o użytkowaniu' });
   // зачем: паритет profile.html PRF-07 (13.10): название строки как в макете — «AI-разбор ошибок»
-  const aiExplainLabel = L({ ru: 'AI-разбор ошибок', uk: 'AI-розбір помилок', es: 'Análisis de errores con IA', 'pt-BR': 'Análise de erros com IA', vi: 'Phân tích lỗi bằng AI', id: 'Analisis kesalahan AI', tr: 'Yapay zeka hata analizi', pl: 'Analiza błędów AI' });
-  const aiDialogLabel = L({ ru: 'AI-диалоги', uk: 'AI-діалоги', es: 'Diálogos con IA', 'pt-BR': 'Diálogos com IA', vi: 'Hội thoại AI', id: 'Dialog AI', tr: 'Yapay zeka diyalogları', pl: 'Dialogi AI' });
+  const aiExplainLabel = L({ ru: 'AI-разбор ошибок', uk: 'AI-розбір помилок', en: "AI mistake explanations", es: 'Análisis de errores con IA', 'pt-BR': 'Análise de erros com IA', vi: 'Phân tích lỗi bằng AI', id: 'Analisis kesalahan AI', tr: 'Yapay zeka hata analizi', pl: 'Analiza błędów AI' });
+  const aiDialogLabel = L({ ru: 'AI-диалоги', uk: 'AI-діалоги', en: "AI dialogs", es: 'Diálogos con IA', 'pt-BR': 'Diálogos com IA', vi: 'Hội thoại AI', id: 'Dialog AI', tr: 'Yapay zeka diyalogları', pl: 'Dialogi AI' });
   const sectionTitleStyle = {
     color: glass.secondary,
     fontSize: scaled(11),
@@ -237,7 +239,7 @@ export default function PrivacySettings() {
           >
             <PressableHybrid
               testID="privacy-settings-close"
-              accessibilityLabel={L({ ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+              accessibilityLabel={L({ ru: 'Закрыть', uk: 'Закрити', en: "Close", es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               accessibilityRole="button"
               onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)}
               withHaptic={true}
@@ -251,21 +253,21 @@ export default function PrivacySettings() {
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5, marginTop: 10, flexShrink: 1 }}>
-              {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
+              {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', en: "Privacy and data", es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
             </Text>
             <Text style={{ color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '400', marginTop: 7, flexShrink: 1 }}>
-              {L({ ru: 'Необязательные данные и документы', uk: 'Необов’язкові дані та документи', es: 'Datos y documentos opcionales', 'pt-BR': 'Dados e documentos opcionais', vi: 'Dữ liệu và tài liệu không bắt buộc', id: 'Data dan dokumen opsional', tr: 'İsteğe bağlı veriler ve belgeler', pl: 'Opcjonalne dane i dokumenty' })}
+              {L({ ru: 'Необязательные данные и документы', uk: 'Необов’язкові дані та документи', en: "Optional data and documents", es: 'Datos y documentos opcionales', 'pt-BR': 'Dados e documentos opcionais', vi: 'Dữ liệu và tài liệu không bắt buộc', id: 'Data dan dokumen opsional', tr: 'İsteğe bağlı veriler ve belgeler', pl: 'Opcjonalne dane i dokumenty' })}
             </Text>
 
             {/* Согласие на сбор данных об использовании (тумблер = мгновенный выбор). */}
-            <Text style={sectionTitleStyle}>{L({ ru: 'Данные об использовании', uk: 'Дані про використання', es: 'Datos de uso', 'pt-BR': 'Dados de uso', vi: 'Dữ liệu sử dụng', id: 'Data penggunaan', tr: 'Kullanım verileri', pl: 'Dane o użytkowaniu' })}</Text>
+            <Text style={sectionTitleStyle}>{L({ ru: 'Данные об использовании', uk: 'Дані про використання', en: "Usage data", es: 'Datos de uso', 'pt-BR': 'Dados de uso', vi: 'Dữ liệu sử dụng', id: 'Data penggunaan', tr: 'Kullanım verileri', pl: 'Dane o użytkowaniu' })}</Text>
             <View style={{ gap: 10 }}>
               <PrivacyRow
                 testID="privacy-analytics-consent"
                 icon="trending-up-outline"
                 label={analyticsLabel}
                 // зачем: паритет profile.html PRF-07 (13.10): подпись постоянная, состояние показывает переключатель и примечание ниже
-                sub={L({ ru: 'Приложение работает и без этого', uk: 'Застосунок працює і без цього', es: 'La app funciona sin esto', 'pt-BR': 'O app funciona sem isso', vi: 'Ứng dụng vẫn chạy khi tắt', id: 'Aplikasi tetap jalan tanpa ini', tr: 'Uygulama bunsuz da çalışır', pl: 'Aplikacja działa i bez tego' })}
+                sub={L({ ru: 'Приложение работает и без этого', uk: 'Застосунок працює і без цього', en: "The app works without it", es: 'La app funciona sin esto', 'pt-BR': 'O app funciona sem isso', vi: 'Ứng dụng vẫn chạy khi tắt', id: 'Aplikasi tetap jalan tanpa ini', tr: 'Uygulama bunsuz da çalışır', pl: 'Aplikacja działa i bez tego' })}
                 right={<LocalSwitch value={analyticsOn} onValueChange={toggleAnalytics} accessibilityLabel={analyticsLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -278,7 +280,7 @@ export default function PrivacySettings() {
                 {/* зачем: паритет profile.html PRF-07 (13.10): при выключенном согласии — текст макета; включённое состояние в макете не нарисовано, там прежний текст */}
                 {!analyticsOn ? L({
                   ru: 'Сейчас данные об использовании не отправляются. Сбор технических сбоев для стабильности продолжается.',
-                  uk: 'Зараз дані про використання не надсилаються. Збір технічних збоїв для стабільності триває.',
+                  uk: 'Зараз дані про використання не надсилаються. Збір технічних збоїв для стабільності триває.', en: "Usage data isn't being sent right now. Crash reports for stability are still collected.",
                   es: 'Ahora no se envían datos de uso. La recolección de fallos técnicos para la estabilidad continúa.',
                   'pt-BR': 'Agora os dados de uso não são enviados. A coleta de falhas técnicas para estabilidade continua.',
                   vi: 'Hiện không gửi dữ liệu sử dụng. Việc thu thập sự cố kỹ thuật để ổn định vẫn tiếp tục.',
@@ -287,7 +289,7 @@ export default function PrivacySettings() {
                   pl: 'Teraz dane o użytkowaniu nie są wysyłane. Zbieranie awarii technicznych dla stabilności trwa.',
                 }) : L({
                   ru: 'Обезличенные данные о том, как проходит обучение. Не обязательно — приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.',
-                  uk: 'Знеособлені дані про те, як проходить навчання. Не обов’язково — застосунок працює і без цього. Збір збоїв для стабільності триває завжди.',
+                  uk: 'Знеособлені дані про те, як проходить навчання. Не обов’язково — застосунок працює і без цього. Збір збоїв для стабільності триває завжди.', en: "Anonymous data about how your learning goes. Optional — the app works without it. Crash reports for stability are always collected.",
                   es: 'Datos despersonalizados sobre cómo avanza el aprendizaje. No es obligatorio: la app funciona sin esto. La recolección de fallos para la estabilidad continúa siempre.',
                   'pt-BR': 'Dados despersonalizados sobre como o aprendizado avança. Não é obrigatório: o app funciona sem isso. A coleta de falhas para estabilidade continua sempre.',
                   vi: 'Dữ liệu ẩn danh về việc học diễn ra thế nào. Không bắt buộc — ứng dụng vẫn chạy. Việc thu thập sự cố để ổn định luôn tiếp tục.',
@@ -300,15 +302,15 @@ export default function PrivacySettings() {
 
             {/* Согласие на AI-разбор ошибок в уроках (отдельная фича, не аналитика — текст
                 ответа уходит стороннему провайдеру ИИ, требует отдельного opt-in). */}
-            <Text style={sectionTitleStyle}>{L({ ru: 'ИИ-функции', uk: 'ІІ-функції', es: 'Funciones de IA', 'pt-BR': 'Funções de IA', vi: 'Tính năng AI', id: 'Fitur AI', tr: 'Yapay zeka özellikleri', pl: 'Funkcje AI' })}</Text>
+            <Text style={sectionTitleStyle}>{L({ ru: 'ИИ-функции', uk: 'ІІ-функції', en: "AI features", es: 'Funciones de IA', 'pt-BR': 'Funções de IA', vi: 'Tính năng AI', id: 'Fitur AI', tr: 'Yapay zeka özellikleri', pl: 'Funkcje AI' })}</Text>
             <View style={{ gap: 10 }}>
               <PrivacyRow
                 testID="privacy-ai-explain-consent"
                 icon="create-outline"
                 label={aiExplainLabel}
                 sub={aiExplainOn
-                  ? L({ ru: 'При ошибке ИИ объясняет, что не так, и может упростить объяснение', uk: 'При помилці ІІ пояснює, що не так, і може спростити пояснення', es: 'Al fallar, la IA explica qué salió mal y puede simplificarlo', 'pt-BR': 'No erro, a IA explica o que houve e pode simplificar', vi: 'Khi sai, AI giải thích lỗi và có thể đơn giản hoá', id: 'Saat salah, AI menjelaskan dan bisa menyederhanakan', tr: 'Hatada yapay zeka açıklar ve basitleştirebilir', pl: 'Przy błędzie AI wyjaśnia i może uprościć wyjaśnienie' })
-                  : L({ ru: 'Сейчас не используется', uk: 'Зараз не використовується', es: 'Ahora no se usa', 'pt-BR': 'Agora não é usada', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywana' })}
+                  ? L({ ru: 'При ошибке ИИ объясняет, что не так, и может упростить объяснение', uk: 'При помилці ІІ пояснює, що не так, і може спростити пояснення', en: "When you make a mistake, AI explains what went wrong and can simplify the explanation", es: 'Al fallar, la IA explica qué salió mal y puede simplificarlo', 'pt-BR': 'No erro, a IA explica o que houve e pode simplificar', vi: 'Khi sai, AI giải thích lỗi và có thể đơn giản hoá', id: 'Saat salah, AI menjelaskan dan bisa menyederhanakan', tr: 'Hatada yapay zeka açıklar ve basitleştirebilir', pl: 'Przy błędzie AI wyjaśnia i może uprościć wyjaśnienie' })
+                  : L({ ru: 'Сейчас не используется', uk: 'Зараз не використовується', en: "Not in use right now", es: 'Ahora no se usa', 'pt-BR': 'Agora não é usada', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywana' })}
                 right={<LocalSwitch value={aiExplainOn} onValueChange={toggleAiExplain} accessibilityLabel={aiExplainLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -319,8 +321,8 @@ export default function PrivacySettings() {
                 icon="chatbubble-outline"
                 label={aiDialogLabel}
                 sub={aiDialogOn
-                  ? L({ ru: 'Можно общаться с ИИ-собеседником', uk: 'Можна спілкуватися з ІІ-співрозмовником', es: 'Puedes hablar con el interlocutor de IA', 'pt-BR': 'Você pode conversar com o interlocutor de IA', vi: 'Có thể trò chuyện với bạn đồng hành AI', id: 'Bisa mengobrol dengan teman bicara AI', tr: 'Yapay zeka konuşma partneriyle sohbet edebilirsin', pl: 'Możesz rozmawiać z rozmówcą AI' })
-                  : L({ ru: 'Сейчас не используются', uk: 'Зараз не використовуються', es: 'Ahora no se usan', 'pt-BR': 'Agora não são usados', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywane' })}
+                  ? L({ ru: 'Можно общаться с ИИ-собеседником', uk: 'Можна спілкуватися з ІІ-співрозмовником', en: "You can chat with an AI conversation partner", es: 'Puedes hablar con el interlocutor de IA', 'pt-BR': 'Você pode conversar com o interlocutor de IA', vi: 'Có thể trò chuyện với bạn đồng hành AI', id: 'Bisa mengobrol dengan teman bicara AI', tr: 'Yapay zeka konuşma partneriyle sohbet edebilirsin', pl: 'Możesz rozmawiać z rozmówcą AI' })
+                  : L({ ru: 'Сейчас не используются', uk: 'Зараз не використовуються', en: "Not in use right now", es: 'Ahora no se usan', 'pt-BR': 'Agora não são usados', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywane' })}
                 right={<LocalSwitch value={aiDialogOn} onValueChange={toggleAiDialog} accessibilityLabel={aiDialogLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -331,7 +333,7 @@ export default function PrivacySettings() {
               <PrivacyRow
                 testID="privacy-dialogue-memory"
                 icon="layers-outline" // зачем: паритет profile.html PRF-07 (13.10): значок «layers» макета
-                label={L({ ru: 'Память диалогов', uk: 'Пам’ять діалогів', es: 'Memoria de diálogos', 'pt-BR': 'Memória dos diálogos', vi: 'Bộ nhớ hội thoại', id: 'Memori dialog', tr: 'Diyalog hafızası', pl: 'Pamięć dialogów' })}
+                label={L({ ru: 'Память диалогов', uk: 'Пам’ять діалогів', en: "Dialog memory", es: 'Memoria de diálogos', 'pt-BR': 'Memória dos diálogos', vi: 'Bộ nhớ hội thoại', id: 'Memori dialog', tr: 'Diyalog hafızası', pl: 'Pamięć dialogów' })}
                 onPress={() => {
                   void hapticTap();
                   console.log('[PRIVACY] open dialogue_memory'); // guard-ok: вход в экран контроля данных
@@ -347,7 +349,7 @@ export default function PrivacySettings() {
               <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', flexShrink: 1 }}>
                 {L({
                   ru: 'Каждая функция работает только после отдельного согласия. В зависимости от функции в OpenAI отправляется текст или речь. Выключено — новые запросы не отправляются.',
-                  uk: 'Кожна функція працює лише після окремої згоди. Залежно від функції до OpenAI надсилається текст або мовлення. Вимкнено — нові запити не надсилаються.',
+                  uk: 'Кожна функція працює лише після окремої згоди. Залежно від функції до OpenAI надсилається текст або мовлення. Вимкнено — нові запити не надсилаються.', en: "Each feature works only after separate consent. Depending on the feature, text or speech is sent to OpenAI. Turned off — no new requests are sent.",
                   es: 'Cada función requiere un consentimiento separado. Según la función, se envía texto o voz a OpenAI. Al desactivarla, no se envían solicitudes nuevas.',
                   'pt-BR': 'Cada função exige um consentimento separado. Conforme a função, texto ou voz é enviado à OpenAI. Desativada, nenhuma nova solicitação é enviada.',
                   vi: 'Mỗi tính năng cần sự đồng ý riêng. Tùy tính năng, văn bản hoặc giọng nói được gửi tới OpenAI. Khi tắt, không có yêu cầu mới nào được gửi.',
@@ -359,7 +361,7 @@ export default function PrivacySettings() {
             </View>
 
             {/* Юридические документы. */}
-            <Text style={sectionTitleStyle}>{L({ ru: 'Документы', uk: 'Документи', es: 'Documentos', 'pt-BR': 'Documentos', vi: 'Tài liệu', id: 'Dokumen', tr: 'Belgeler', pl: 'Dokumenty' })}</Text>
+            <Text style={sectionTitleStyle}>{L({ ru: 'Документы', uk: 'Документи', en: "Documents", es: 'Documentos', 'pt-BR': 'Documentos', vi: 'Tài liệu', id: 'Dokumen', tr: 'Belgeler', pl: 'Dokumenty' })}</Text>
             <View style={{ gap: 10 }}>
               {/* зачем: владелец (референс Bevel) — документы открываются ВНУТРИ
                   приложения как шторка с текстом (privacy_screen/terms_screen),
@@ -368,7 +370,7 @@ export default function PrivacySettings() {
               <PrivacyRow
                 testID="privacy-policy-row"
                 icon="document-text"
-                label={L({ ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách bảo mật', id: 'Kebijakan privasi', tr: 'Gizlilik politikası', pl: 'Polityka prywatności' })}
+                label={L({ ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', en: "Privacy Policy", es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách bảo mật', id: 'Kebijakan privasi', tr: 'Gizlilik politikası', pl: 'Polityka prywatności' })}
                 onPress={() => {
                   void hapticTap();
                   router.push('/privacy_screen' as any);
@@ -380,7 +382,7 @@ export default function PrivacySettings() {
               <PrivacyRow
                 testID="privacy-terms-row"
                 icon="document-text"
-                label={L({ ru: 'Условия использования', uk: 'Умови використання', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım koşulları', pl: 'Warunki użytkowania' })}
+                label={L({ ru: 'Условия использования', uk: 'Умови використання', en: "Terms of Use", es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım koşulları', pl: 'Warunki użytkowania' })}
                 onPress={() => {
                   void hapticTap();
                   router.push('/terms_screen' as any);
@@ -392,12 +394,12 @@ export default function PrivacySettings() {
             </View>
 
             {/* Удаление аккаунта. */}
-            <Text style={sectionTitleStyle}>{L({ ru: 'Аккаунт', uk: 'Акаунт', es: 'Cuenta', 'pt-BR': 'Conta', vi: 'Tài khoản', id: 'Akun', tr: 'Hesap', pl: 'Konto' })}</Text>
+            <Text style={sectionTitleStyle}>{L({ ru: 'Аккаунт', uk: 'Акаунт', en: "Account", es: 'Cuenta', 'pt-BR': 'Conta', vi: 'Tài khoản', id: 'Akun', tr: 'Hesap', pl: 'Konto' })}</Text>
             <View style={{ gap: 10 }}>
               <PrivacyRow
                 testID="privacy-delete-account"
                 icon="trash"
-                label={L({ ru: 'Удалить аккаунт и данные', uk: 'Видалити акаунт і дані', es: 'Eliminar cuenta y datos', 'pt-BR': 'Excluir conta e dados', vi: 'Xóa tài khoản và dữ liệu', id: 'Hapus akun dan data', tr: 'Hesabı ve verileri sil', pl: 'Usuń konto i dane' })}
+                label={L({ ru: 'Удалить аккаунт и данные', uk: 'Видалити акаунт і дані', en: "Delete account and data", es: 'Eliminar cuenta y datos', 'pt-BR': 'Excluir conta e dados', vi: 'Xóa tài khoản và dữ liệu', id: 'Hapus akun dan data', tr: 'Hesabı ve verileri sil', pl: 'Usuń konto i dane' })}
                 onPress={() => {
                   void hapticTap();
                   setDeleteModalVisible(true);

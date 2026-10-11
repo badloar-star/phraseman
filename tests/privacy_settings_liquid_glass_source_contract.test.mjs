@@ -49,8 +49,11 @@ function localeSignatures(candidate) {
         assert.ok(ts.isPropertyAssignment(property) && ts.isStringLiteral(property.initializer), 'localized values stay string literals');
         return [property.name.getText(file), property.initializer.text];
       });
-      assert.deepEqual(pairs.map(([key]) => key.replace(/^['"]|['"]$/g, '')), LOCALES, 'each map keeps the eight production locales and no English entry');
-      signatures.push(sha(JSON.stringify(pairs)));
+      // 12.10 (координатор, подготовка к английскому интерфейсу): в каждой карте есть en сразу после uk; отпечаток восьми
+      // прежних языков считается без en — их тексты по-прежнему побайтно сверяются со снимком.
+      const keys = pairs.map(([key]) => key.replace(/^['"]|['"]$/g, ''));
+      assert.deepEqual(keys, [LOCALES[0], LOCALES[1], 'en', ...LOCALES.slice(2)], 'each map keeps the eight production locales plus en after uk');
+      signatures.push(sha(JSON.stringify(pairs.filter(([key]) => key.replace(/^['"]|['"]$/g, '') !== 'en'))));
     }
     ts.forEachChild(node, walk);
   };

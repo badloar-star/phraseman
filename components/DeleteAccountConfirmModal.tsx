@@ -113,7 +113,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   }), [lang]);
   const deleteConfirmWord = L({
     ru: 'УДАЛИТЬ',
-    uk: 'ВИДАЛИТИ',
+    uk: 'ВИДАЛИТИ', en: "DELETE",
     es: 'ELIMINAR',
     'pt-BR': 'EXCLUIR',
     vi: 'XÓA',
@@ -186,7 +186,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     (title: string, message: string) => {
       void enqueueThemedBlockingChoiceAlert(title || L({
         ru: 'Сообщение',
-        uk: 'Повідомлення',
+        uk: 'Повідомлення', en: "Message",
         es: 'Message',
         'pt-BR': 'Mensagem',
         vi: 'Thông báo',
@@ -195,8 +195,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         pl: 'Wiadomość',
         // зачем (Сверка overlays-runtime 039–041): стадии удаления — плитка с замком, как в макете.
       }), message, [
-        { value: 'close', ghost: true, label: L({ ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }) },
-        { value: 'retry', label: L({ ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' }) },
+        { value: 'close', ghost: true, label: L({ ru: 'Закрыть', uk: 'Закрити', en: "Close", es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }) },
+        { value: 'retry', label: L({ ru: 'Повторить', uk: 'Повторити', en: "Try again", es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' }) },
       ], { icon: 'lock-closed' }).then((choice) => {
         // Оба окна отказа — до точки невозврата (аккаунт не изменён), поэтому повтор разрешён макетом.
         console.warn('[ACCOUNT-DELETE-UI] reject_alert:choice', JSON.stringify({ choice })); // guard-ok: выбор логируется
@@ -258,7 +258,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         showInfoAlert(
           L({
             ru: 'Не получилось',
-            uk: 'Не вийшло',
+            uk: 'Не вийшло', en: "Something went wrong",
             es: 'No salió',
             'pt-BR': 'Não deu certo',
             vi: 'Chưa được',
@@ -269,7 +269,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           res.reason === 'pending_guard_persist_failed'
             ? L({
             ru: 'Не удалось подготовить удаление. Аккаунт и данные не изменены. Освободи место на телефоне и попробуй снова.',
-            uk: 'Не вдалося підготувати видалення. Акаунт і дані не змінено. Звільни місце на пристрої або перезапусти телефон і спробуй знову.',
+            uk: 'Не вдалося підготувати видалення. Акаунт і дані не змінено. Звільни місце на пристрої або перезапусти телефон і спробуй знову.', en: "Couldn't prepare the deletion. Your account and data weren't changed. Free up some space on your phone and try again.",
             es: 'No pudimos preparar la eliminación de forma segura. La cuenta y los datos no cambiaron. Libera espacio o reinicia el teléfono e inténtalo de nuevo.',
             'pt-BR': 'Não foi possível preparar a exclusão com segurança. A conta e os dados não foram alterados. Libere espaço ou reinicie o telefone e tente novamente.',
             vi: 'Không thể chuẩn bị xóa một cách an toàn. Tài khoản và dữ liệu chưa thay đổi. Hãy giải phóng dung lượng hoặc khởi động lại điện thoại rồi thử lại.',
@@ -279,7 +279,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           })
             : L({
             ru: 'Выход не завершился. Аккаунт под защитой — перезапусти приложение и попробуй снова.',
-            uk: 'Вихід не завершився. Акаунт під захистом — перезапусти застосунок і спробуй знову.',
+            uk: 'Вихід не завершився. Акаунт під захистом — перезапусти застосунок і спробуй знову.', en: "Sign-out didn't finish. Your account is protected — restart the app and try again.",
             es: 'La salida local segura no terminó. La cuenta permanece protegida; reinicia la aplicación e inténtalo de nuevo.',
             'pt-BR': 'A saída local segura não foi concluída. A conta permanece protegida; reinicie o aplicativo e tente novamente.',
             vi: 'Quá trình thoát an toàn trên thiết bị chưa hoàn tất. Tài khoản vẫn được bảo vệ; hãy khởi động lại ứng dụng và thử lại.',
@@ -336,7 +336,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       showInfoAlert(
         L({
           ru: 'Не получилось',
-          uk: 'Не вийшло',
+          uk: 'Не вийшло', en: "Something went wrong",
           es: 'No salió',
           'pt-BR': 'Não deu certo',
           vi: 'Chưa được',
@@ -346,7 +346,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         }),
         L({
           ru: 'Удаление не завершилось. Проверь интернет и попробуй ещё раз.',
-          uk: 'Видалення не завершилося. Перевір інтернет і спробуй ще раз.',
+          uk: 'Видалення не завершилося. Перевір інтернет і спробуй ще раз.', en: "Deletion didn't finish. Check your internet connection and try again.",
           es: 'La eliminación no se completó. Revisa Internet e inténtalo de nuevo.',
           'pt-BR': 'A exclusão não foi concluída. Verifique a Internet e tente novamente.',
           vi: 'Quá trình xóa chưa hoàn tất. Hãy kiểm tra Internet và thử lại.',
@@ -426,7 +426,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginBottom: 8 }}>
             {L({
               ru: 'Введи «УДАЛИТЬ» для подтверждения:',
-              uk: 'Введи «ВИДАЛИТИ» для підтвердження:',
+              uk: 'Введи «ВИДАЛИТИ» для підтвердження:', en: "Type “DELETE” to confirm:",
               es: 'Escribe «ELIMINAR» para confirmar:',
               'pt-BR': 'Digite «EXCLUIR» para confirmar:',
               vi: 'Nhập "XÓA" để xác nhận:',
@@ -495,7 +495,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
             >
               <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>{L({
                 ru: 'Отмена',
-                uk: 'Скасувати',
+                uk: 'Скасувати', en: "Cancel",
                 es: 'Cancelar',
                 'pt-BR': 'Cancelar',
                 vi: 'Hủy',
@@ -514,7 +514,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               accessibilityRole="button"
               accessibilityLabel={L({
                 ru: 'Удалить',
-                uk: 'Видалити',
+                uk: 'Видалити', en: "Delete",
                 es: 'Eliminar',
                 'pt-BR': 'Excluir',
                 vi: 'Xóa',
@@ -541,7 +541,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 {deleting ? <ActivityIndicator size="small" color={t.wrong} /> : null}
                 <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
+                  {L({ ru: 'Удалить', uk: 'Видалити', en: "Delete", es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
                 </Text>
               </View>
             </Pressable>

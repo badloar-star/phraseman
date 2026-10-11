@@ -117,7 +117,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
-import { noticeAccountDeletedForever } from '../app/account_delete_restore_prompt';
+import { accountRestorePromptMessage, noticeAccountDeletedForever } from '../app/account_delete_restore_prompt';
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
 import { identityErrorCode } from '../app/identity_trace';
@@ -376,17 +376,7 @@ async function offerAccountRestore(lang: Lang): Promise<boolean> {
         tr: 'Hesap geri yüklensin mi?',
         pl: 'Przywrócić konto?',
       }),
-      triLang(lang, {
-        ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`,
-        uk: `Цей акаунт позначено на видалення. Лишилося ${days} дн. — увесь прогрес на місці й повернеться повністю.`,
-        en: `This account is scheduled for deletion. ${days} ${days === 1 ? 'day' : 'days'} left — all your progress is still here and will come back in full.`,
-        es: `Esta cuenta está marcada para eliminarse. Quedan ${days} día(s): todo tu progreso sigue intacto y vuelve completo.`,
-        'pt-BR': `Esta conta está marcada para exclusão. Faltam ${days} dia(s): todo o seu progresso está intacto e volta completo.`,
-        vi: `Tài khoản này đang chờ xóa. Còn ${days} ngày — toàn bộ tiến trình vẫn nguyên và sẽ trở lại đầy đủ.`,
-        id: `Akun ini dijadwalkan untuk dihapus. Sisa ${days} hari — seluruh progresmu utuh dan kembali sepenuhnya.`,
-        tr: `Bu hesap silinmek üzere işaretli. ${days} gün kaldı — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
-        pl: `To konto jest oznaczone do usunięcia. Zostało ${days} dni — cały postęp jest nienaruszony i wróci w całości.`,
-      }),
+      accountRestorePromptMessage(lang, days),
       [
         {
           text: triLang(lang, {

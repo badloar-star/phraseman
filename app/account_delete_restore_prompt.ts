@@ -12,8 +12,30 @@
  */
 import { Alert } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+
+/**
+ * Текст окна «Восстановить аккаунт?»: сколько дней до удаления — с правильной формой слова «день».
+ * зачем (координатор 12.10): было «Осталось 3 дн.» / «3 day(s)» / «3 día(s)». Фраза перестроена на «удалится через N …»,
+ * чтобы не согласовывать глагол с числом («остался 1 день / осталось 5 дней»): после «через» нужна только форма слова.
+ * Один источник для онбординга и окна входа (паритет — tests/aa_release_registration_restore_prompt.test.ts).
+ */
+export function accountRestorePromptMessage(lang: Lang, rawDays: number): string {
+  const n = Math.max(1, Math.trunc(Number.isFinite(rawDays) ? rawDays : 1));
+  return triLang(lang, {
+    ru: `Этот аккаунт удалится через ${n} ${pluralWord('ru', n, { one: 'день', few: 'дня', many: 'дней' })} — весь прогресс ещё на месте и вернётся полностью.`,
+    uk: `Цей акаунт видалиться через ${n} ${pluralWord('uk', n, { one: 'день', few: 'дні', many: 'днів' })} — увесь прогрес ще на місці й повернеться повністю.`,
+    en: `This account will be deleted in ${n} ${pluralWord('en', n, { one: 'day', few: 'days', many: 'days' })} — all your progress is still here and will come back in full.`,
+    es: `Esta cuenta se eliminará en ${n} ${pluralWord('es', n, { one: 'día', few: 'días', many: 'días' })}: todo tu progreso sigue intacto y vuelve completo.`,
+    'pt-BR': `Esta conta será excluída em ${n} ${pluralWord('pt-BR', n, { one: 'dia', few: 'dias', many: 'dias' })}: todo o seu progresso está intacto e volta completo.`,
+    vi: `Tài khoản này sẽ bị xóa sau ${n} ngày — toàn bộ tiến trình vẫn nguyên và sẽ trở lại đầy đủ.`,
+    id: `Akun ini akan dihapus dalam ${n} hari — seluruh progresmu utuh dan kembali sepenuhnya.`,
+    tr: `Bu hesap ${n} gün sonra silinecek — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
+    pl: `To konto zostanie usunięte za ${n} ${pluralWord('pl', n, { one: 'dzień', few: 'dni', many: 'dni' })} — cały postęp jest nienaruszony i wróci w całości.`,
+  });
+}
 
 /**
  * зачем (релизный пол 10.10, решение координатора): вход в ОКОНЧАТЕЛЬНО удалённый
@@ -76,17 +98,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
         tr: 'Hesap geri yüklensin mi?',
         pl: 'Przywrócić konto?',
       }),
-      triLang(lang, {
-        ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`,
-        uk: `Цей акаунт позначено на видалення. Лишилося ${days} дн. — увесь прогрес на місці й повернеться повністю.`,
-        en: `This account is scheduled for deletion. ${days} day(s) left — all your progress is intact and comes back in full.`,
-        es: `Esta cuenta está marcada para eliminarse. Quedan ${days} día(s): todo tu progreso sigue intacto y vuelve completo.`,
-        'pt-BR': `Esta conta está marcada para exclusão. Faltam ${days} dia(s): todo o seu progresso está intacto e volta completo.`,
-        vi: `Tài khoản này đang chờ xóa. Còn ${days} ngày — toàn bộ tiến trình vẫn nguyên và sẽ trở lại đầy đủ.`,
-        id: `Akun ini dijadwalkan untuk dihapus. Sisa ${days} hari — seluruh progresmu utuh dan kembali sepenuhnya.`,
-        tr: `Bu hesap silinmek üzere işaretli. ${days} gün kaldı — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
-        pl: `To konto jest oznaczone do usunięcia. Zostało ${days} dni — cały postęp jest nienaruszony i wróci w całości.`,
-      }),
+      accountRestorePromptMessage(lang, days),
       [
         {
           text: triLang(lang, {

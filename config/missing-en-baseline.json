@@ -1,6 +1,6 @@
 {
-  "total": 196,
-  "files": 34,
+  "total": 159,
+  "files": 31,
   "updatedAt": "2026-10-11",
   "note": "Храповик: число словарей ru+uk без en может только уменьшаться. Обновлять через --update.",
   "perFile": {
@@ -8,13 +8,10 @@
     "app/vip_survey_content.ts": 32,
     "app/shop_catalog.ts": 30,
     "app/lesson_words.tsx": 24,
-    "app/privacy_settings.tsx": 22,
-    "components/DeleteAccountConfirmModal.tsx": 13,
     "app/theme_display_names.ts": 8,
     "components/StatsPremiumBlur.tsx": 4,
     "components/ThemeContext.tsx": 3,
     "app/learning_v2_direct_session_intro_adapter_v1.ts": 2,
-    "components/auth_recovery_modal_model.ts": 2,
     "components/dev/motion_showcase/sections/press_icons_tabbar.tsx": 2,
     "app/flashcards/FlashcardDetailsBody.tsx": 1,
     "app/flashcards/PackVideoHero.tsx": 1,

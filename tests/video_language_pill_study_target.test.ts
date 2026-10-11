@@ -83,10 +83,14 @@ describe('пилюля языка на вкладке «Видео» — source-
     expect(sheet).not.toContain('adjustsFontSizeToFit');
   });
 
-  it('строка «Язык изучения» в Настройках остаётся без тапа (PRF-23, вне задачи)', () => {
+  // зачем (решение владельца 11.10, Сверка profile-001): строка «Язык изучения» в Настройках стала живой и открывает
+  // ТУ ЖЕ шторку, что пилюля «Видео», — а не язык интерфейса. Раньше тест закреплял «без тапа» (PRF-23).
+  it('строка «Язык изучения» в Настройках открывает ту же шторку изучаемого языка, а не язык интерфейса', () => {
     const settings = read('app/(tabs)/settings.tsx');
     const row = settings.slice(settings.indexOf('testID="settings-study-language-row"'), settings.indexOf('</SettingsGlassGroup>', settings.indexOf('testID="settings-study-language-row"')));
-    expect(row).not.toContain('onPress');
+    expect(row).toContain('onPress={() => setStudySheetVisible(true)}');
+    expect(row).not.toContain("'/settings_language'");
+    expect(settings).toContain('StudyLanguageSheet');
   });
 });
 

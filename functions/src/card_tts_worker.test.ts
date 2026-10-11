@@ -198,3 +198,59 @@ describe('card_tts_worker (D128)', () => {
     await expect(enqueueCardTtsJob(deps.db, '../x', 'moderation_approve')).resolves.toBe(false);
   });
 });
+
+// зачем (координатор 12.10, п.60(8)): даже случайный полный деплой функций не шлёт текст карточек в OpenAI —
+// без remote_config/app.bools.card_tts_enabled триггер и перепостановка выходят, ничего не вызывая.
+describe('card TTS server gate (12.10)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const admin = require('firebase-admin') as { firestore: jest.Mock; storage: jest.Mock };
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const worker = require('./card_tts_worker') as typeof import('./card_tts_worker');
+  const makeDb = (bools: Record<string, unknown> | undefined) => {
+    const touched: string[] = [];
+    const get = jest.fn(async () => ({ data: () => (bools === undefined ? undefined : { bools }) }));
+    const db = {
+      collection: (name: string) => {
+        touched.push(name);
+        return { doc: () => ({ get }) };
+      },
+    };
+    return { db, touched, get };
+  };
+  const queuedEvent = { params: { packId: 'p1' }, data: { after: { exists: true, data: () => ({ status: 'queued' }) } } };
+
+  beforeEach(() => {
+    worker.__resetCardTtsGateForTests();
+    admin.firestore.mockReset();
+    admin.storage.mockReset();
+  });
+
+  it('is off by default (no flag, no document)', async () => {
+    const { db } = makeDb(undefined);
+    await expect(worker.isCardTtsEnabled(db as never)).resolves.toBe(false);
+  });
+
+  it('trigger exits before claiming the job when the gate is off', async () => {
+    const { db, touched } = makeDb({});
+    admin.firestore.mockReturnValue(db);
+    await (worker.cardTtsPackWorker as unknown as (event: unknown) => Promise<void>)(queuedEvent);
+    expect(touched).toEqual(['remote_config']);
+    expect(admin.storage).not.toHaveBeenCalled();
+  });
+
+  it('admin requeue is refused while the gate is off', async () => {
+    const { db } = makeDb({ card_tts_enabled: false });
+    admin.firestore.mockReturnValue(db);
+    const requeue = worker.adminCardTtsRequeuePack as unknown as (request: unknown) => Promise<unknown>;
+    await expect(requeue({ auth: { token: { admin: true } }, data: { packId: 'p1' } })).rejects.toThrow('card_tts_disabled');
+  });
+
+  it('reads the flag once per 10 minutes', async () => {
+    const { db, get } = makeDb({ card_tts_enabled: true });
+    await expect(worker.isCardTtsEnabled(db as never, 1_000)).resolves.toBe(true);
+    await expect(worker.isCardTtsEnabled(db as never, 1_000 + 9 * 60 * 1000)).resolves.toBe(true);
+    expect(get).toHaveBeenCalledTimes(1);
+    await worker.isCardTtsEnabled(db as never, 1_000 + 11 * 60 * 1000);
+    expect(get).toHaveBeenCalledTimes(2);
+  });
+});

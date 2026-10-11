@@ -16,7 +16,7 @@ import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { isPaidAiFetchAbort, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
-import { aiGloballyDisabled } from './remote_gates';
+import { aiGloballyDisabled, resolveRemoteBool } from './remote_gates';
 import {
   CARD_TTS_CONCURRENCY,
   CARD_TTS_DAILY_CHAR_CAP,
@@ -456,6 +456,32 @@ function defaultDeps(): CardTtsWorkerDeps {
 }
 
 /**
+ * Серверный рубильник озвучки карточек (remote_config/app.bools.card_tts_enabled), по умолчанию ВЫКЛ.
+ * зачем (координатор 12.10, решение советника п.60(8)): политика §13 пока обещает, что озвучка только на устройстве.
+ * Даже случайный полный `firebase deploy --only functions` не должен начать слать текст карточек в OpenAI —
+ * без явного включения в «Пульте» триггер и перепостановка выходят, ничего не вызывая. Чтение кэшируется в памяти
+ * инстанса на 10 мин: одно чтение документа, а не на каждую задачу. Ошибка чтения → ВЫКЛ (безопасная сторона).
+ */
+const CARD_TTS_GATE_KEY = 'card_tts_enabled';
+const CARD_TTS_GATE_TTL_MS = 10 * 60 * 1000;
+let cardTtsGateCache: { enabled: boolean; readAtMs: number } | null = null;
+
+export async function isCardTtsEnabled(db: FirebaseFirestore.Firestore, nowMs: number = Date.now()): Promise<boolean> {
+  if (cardTtsGateCache && nowMs - cardTtsGateCache.readAtMs < CARD_TTS_GATE_TTL_MS) {
+    return cardTtsGateCache.enabled;
+  }
+  const enabled = await resolveRemoteBool(db, CARD_TTS_GATE_KEY, false);
+  cardTtsGateCache = { enabled, readAtMs: nowMs };
+  console.log('[CARD-TTS-GATE] read', JSON.stringify({ key: CARD_TTS_GATE_KEY, enabled }));
+  return enabled;
+}
+
+/** Только для тестов. */
+export function __resetCardTtsGateForTests(): void {
+  cardTtsGateCache = null;
+}
+
+/**
  * Триггер очереди. retry:false — повтор через admin requeue, а не бесконечные
  * автоповторы с риском платить OpenAI по кругу. maxInstances:2 — очередь
  * маленькая, распараллеливать наборы незачем.
@@ -481,6 +507,11 @@ export const cardTtsPackWorker = onDocumentWritten({
     console.log('[CARD-TTS] trigger:skip', JSON.stringify({ packId, status: String(status) }));
     return;
   }
+  if (!(await isCardTtsEnabled(admin.firestore()))) {
+    // Задача остаётся queued: после включения её вернёт в работу adminCardTtsRequeuePack.
+    console.warn('[CARD-TTS-GATE] skipped:disabled', JSON.stringify({ packId, source: 'trigger' }));
+    return;
+  }
   await runCardTtsJob(packId, defaultDeps());
 });
 
@@ -497,6 +528,10 @@ export const adminCardTtsRequeuePack = onCall({ region: REGION, enforceAppCheck:
   if (!isValidCardTtsPackId(packId)) {
     console.warn('[CARD-TTS] requeue:invalid_pack_id', JSON.stringify({ packId: String(packId as unknown).slice(0, 80) }));
     throw new HttpsError('invalid-argument', 'packId required');
+  }
+  if (!(await isCardTtsEnabled(admin.firestore()))) {
+    console.warn('[CARD-TTS-GATE] skipped:disabled', JSON.stringify({ packId, source: 'admin_requeue' }));
+    throw new HttpsError('failed-precondition', 'card_tts_disabled');
   }
   const ok = await enqueueCardTtsJob(admin.firestore(), packId, 'admin_requeue');
   if (!ok) throw new HttpsError('unavailable', 'enqueue_failed');

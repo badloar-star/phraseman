@@ -50,3 +50,5 @@ Governance-ID: TG-87C0CCD06D42
 Governance-ID: TG-87C0CCD06D42 (п.4: удаление react-native-webrtc / react-native-incall-manager, NSCameraUsageDescription; MODIFY_AUDIO_SETTINGS оставлен — нужен голосовым функциям)
 
 Governance-ID: TG-E1CEF515644F (п.60 журнала: сверка 9 решений советника по PRIVACY_R1_GAP; (2) одна фактическая строка про компьютерных участников Шпиля в условиях; (8) пометка у экспорта cardTts и тексты §6/§13 для владельца)
+
+Governance-ID: TG-F093BCBCD92D (рубильник озвучки карточек config/card_tts_v1 + предупреждение при полном деплое functions)

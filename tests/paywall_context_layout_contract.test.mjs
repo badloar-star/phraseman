@@ -33,7 +33,8 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   assert.match(read('components', 'paywall', 'paywallShared.tsx'), /presentation: 'transparentModal'/);
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
   assert.match(plus, /planRow: \{ flexDirection: 'row'/);
-  assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{S\.planCell\}/);
+  // зачем (владелец 12.10, стиль «Тень»): выбранный тариф приподнят сдвигом на внешней обёртке (tileOuter), а не кольцом.
+  assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{tileOuter\(yearOn\)\}/);
 });
 
 test('without prices the plans area says so, offers a retry and the button note explains itself (макет №9/№10)', () => {
@@ -90,7 +91,7 @@ test('store-unavailable reason picks the text; dev price preview names its butto
 test('dev price preview draws the plan tiles with prices; the error block is only for previewPrices=false (координатор 11.10)', () => {
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const hasPrices = !!\(p\.yearlyPrice \|\| p\.monthlyPrice\) \|\| p\.previewPrices;/);
-  assert.match(screen, /превью=\$\{String\(p\.previewPrices\)\} причина=\$\{p\.storeUnavailableReason \?\? '-'\} dev=\$\{String\(__DEV__\)\}/, 'журнал [PAYWALL] называет причину');
+  assert.match(screen, /превью=\$\{String\(p\.previewPrices\)\} причина=\$\{p\.storeUnavailableReason \?\? '-'\} источникЦены=\$\{p\.priceSource\} dev=\$\{String\(__DEV__\)\}/, 'журнал [PAYWALL] называет причину');
 });
 
 test('the no-prices note exists in all nine languages', () => {

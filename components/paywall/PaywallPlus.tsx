@@ -23,6 +23,8 @@ import { DebugLogger } from '../../app/debug-logger';
 import SkeletonBlock from '../SkeletonShimmer';
 import { LinearGradient } from '../SafeLinearGradient';
 import V2Pressable from '../v2/V2Pressable';
+import { nestedBoxShadow, PlateFill, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
+import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
 import { PaywallPlusBenefits, PaywallPlusComparison } from './PaywallBenefitComparison';
 import {
   COPY, chargeLine, ctaBuyMonth, ctaBuyYear, ctaStartTrial, fineAfterTrial, fineThenMonth, heroTrialTitle,
@@ -149,22 +151,29 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
 // ── тарифы ──────────────────────────────────────────────────────────────────
 export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   lang, g, selected, onSelect, disabled, yearlyPrice, yearlyPerMonth, monthlyPrice, yearlyTrialDays, monthlyTrialDays,
-  yearlyPromo, monthlyPromo,
+  yearlyPromo, monthlyPromo, yearlyPriceSource, monthlyPriceSource,
 }: {
   lang: Lang; g: GlassTokens; selected: PaywallPlan; onSelect: (plan: PaywallPlan) => void; disabled: boolean;
   yearlyPrice: string; yearlyPerMonth: string; monthlyPrice: string;
   yearlyTrialDays: number | null; monthlyTrialDays: number | null;
   /** Скидка стора на первый период (владелец 2026-09-04: «написано = спишется»). */
   yearlyPromo: StorePromoPricing | null; monthlyPromo: StorePromoPricing | null;
+  /** Откуда цена плитки (Ядро a0a910e9d): 'reference' — справочная, перед ней «≈». Не передан — как живая. */
+  yearlyPriceSource?: PaywallPriceSource; monthlyPriceSource?: PaywallPriceSource;
 }) {
-  const surface = { backgroundColor: g.opaqueControl };
   const yearOn = selected === 'yearly';
   const monthOn = selected === 'monthly';
   // Выбранный тариф: тон подложки + тонкая светлая кромка (исключение 2.0: 1px полупрозрачная).
   // зачем (решение владельца 05.10, OM-PROMO-PRESENT): над тарифами плашка «Скидка действует сейчас» —
   // процент, цена со скидкой и зачёркнутая обычная, ниже «далее {обычная}». Только вид данных стора: нет промо — нет плашки.
   const promo = (selected === 'monthly' ? monthlyPromo : yearlyPromo) ?? yearlyPromo ?? monthlyPromo;
-  const selectedRing = { backgroundColor: g.selected, borderColor: g.level === 'accent' || g.level === 'max' ? g.accentCap : g.lightTint, borderWidth: 1 }; // guard-ok: D43 1px кромка выбора
+  // зачем (владелец 12.10, стиль «Тень»): выбранный тариф — приподнятая плашка (градиент raised, тень raised, сдвиг вверх), а не плашка с кольцом.
+  // Невыбранный — обычная плашка. Сдвиг — только transform на внешней обёртке, высота ряда не меняется.
+  const tileShadow = (on: boolean) => ({ boxShadow: on ? raisedBoxShadow(g) : nestedBoxShadow(g) });
+  const tileOuter = (on: boolean) => [S.planCell, on ? { transform: [{ translateY: RAISED_LIFT }], zIndex: 2 } : null];
+  // «≈» только у справочной цены: перед живой и кэш-ценой его нет.
+  const yearApprox = yearlyPriceSource === 'reference' ? '≈ ' : '';
+  const monthApprox = monthlyPriceSource === 'reference' ? '≈ ' : '';
   return (
     <View>
       {promo ? (
@@ -190,9 +199,10 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           onPress={() => onSelect('yearly')}
           withHaptic={false}
           scaleTo={0.98}
-          outerStyle={S.planCell}
-          style={[S.card, S.planCol, surface, yearOn && selectedRing]}
+          outerStyle={tileOuter(yearOn)}
+          style={[S.card, S.planCol, tileShadow(yearOn)]}
         >
+          <PlateFill g={g} radius={22} raised={yearOn} />
           <View style={S.planNameRow}>
             <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.year)}</Text>
             <View style={[S.badge, { backgroundColor: markFill(g) }]}>
@@ -200,7 +210,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
             </View>
           </View>
           {yearlyPromo ? <Text testID="paywall-year-standard" style={[S.priceStrike, { color: g.mutedText }]}>{yearlyPromo.standardPriceString}</Text> : null}
-          <Text testID="paywall-year-price" style={[S.priceBig, { color: g.text }]}>{yearlyPromo?.promoPriceString || yearlyPrice}</Text>
+          <Text testID="paywall-year-price" style={[S.priceBig, { color: g.text }]}>{yearlyPromo?.promoPriceString || `${yearApprox}${yearlyPrice}`}</Text>
           <Text style={[S.priceSmall, { color: g.secondary }]}>{pick(lang, COPY.perYear)}</Text>
           {/* Мелко: «≈ X в месяц». Главная цена года — крупно (магазины требуют именно так). */}
           {yearlyPerMonth ? <Text style={[S.planSmall, { color: g.secondary }]}>{yearPerMonthApprox(lang, yearlyPerMonth)}</Text> : null}
@@ -220,12 +230,13 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           onPress={() => onSelect('monthly')}
           withHaptic={false}
           scaleTo={0.98}
-          outerStyle={S.planCell}
-          style={[S.card, S.planCol, surface, monthOn && selectedRing]}
+          outerStyle={tileOuter(monthOn)}
+          style={[S.card, S.planCol, tileShadow(monthOn)]}
         >
+          <PlateFill g={g} radius={22} raised={monthOn} />
           <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.month)}</Text>
           {monthlyPromo ? <Text style={[S.priceStrike, { color: g.mutedText }]}>{monthlyPromo.standardPriceString}</Text> : null}
-          <Text testID="paywall-month-price" style={[S.priceMonth, { color: g.text }]}>{monthlyPromo?.promoPriceString || monthlyPrice}</Text>
+          <Text testID="paywall-month-price" style={[S.priceMonth, { color: g.text }]}>{monthlyPromo?.promoPriceString || `${monthApprox}${monthlyPrice}`}</Text>
           <Text style={[S.priceSmall, { color: g.secondary }]}>{pick(lang, COPY.perMonth)}</Text>
           <Text style={[S.planSmall, { color: g.secondary }]}>
             {monthlyTrialDays ? trialFreeLabel(lang, monthlyTrialDays) : pick(lang, COPY.noTrial)}
@@ -312,14 +323,17 @@ export function paywallPlusCtaCopy(lang: Lang, args: {
   selected: PaywallPlan; yearlyPrice: string; monthlyPrice: string;
   yearlyTrialDays: number | null; monthlyTrialDays: number | null;
   yearlyPromo: StorePromoPricing | null; monthlyPromo: StorePromoPricing | null;
+  /** Справочная цена (не из магазина): на кнопке и в мелком тексте перед ценой «≈». */
+  yearlyApprox?: boolean; monthlyApprox?: boolean;
 }): { label: string; fine: string } {
   // Списание = первая платная фаза стора (промо-цена, если есть), дальше — обычная.
   if (args.selected === 'monthly') {
-    const charge = args.monthlyPromo?.promoPriceString || args.monthlyPrice;
-    const fine = args.monthlyTrialDays || args.monthlyPromo ? fineThenMonth(lang, args.monthlyPromo?.standardPriceString || args.monthlyPrice) : pick(lang, COPY.fineMonth);
+    const monthShown = `${args.monthlyApprox ? '≈ ' : ''}${args.monthlyPrice}`;
+    const charge = args.monthlyPromo?.promoPriceString || monthShown;
+    const fine = args.monthlyTrialDays || args.monthlyPromo ? fineThenMonth(lang, args.monthlyPromo?.standardPriceString || monthShown) : pick(lang, COPY.fineMonth);
     return { label: args.monthlyTrialDays ? ctaStartTrial(lang, args.monthlyTrialDays) : ctaBuyMonth(lang, charge), fine };
   }
-  const yearCharge = args.yearlyPromo?.promoPriceString || args.yearlyPrice;
+  const yearCharge = args.yearlyPromo?.promoPriceString || `${args.yearlyApprox ? '≈ ' : ''}${args.yearlyPrice}`;
   if (args.yearlyTrialDays) {
     return { label: ctaStartTrial(lang, args.yearlyTrialDays), fine: fineAfterTrial(lang, yearCharge) };
   }

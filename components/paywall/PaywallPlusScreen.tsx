@@ -7,7 +7,7 @@
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BackHandler, Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { useLang } from '../LangContext';
@@ -170,6 +170,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const cta = paywallPlusCtaCopy(lang, {
     selected: p.selected, yearlyPrice: p.yearlyPrice, monthlyPrice: p.monthlyPrice, yearlyTrialDays, monthlyTrialDays,
     yearlyPromo, monthlyPromo,
+    yearlyApprox: p.yearlyPriceSource === 'reference', monthlyApprox: p.monthlyPriceSource === 'reference',
   });
 
   const closeWindow = () => {
@@ -215,7 +216,14 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                   yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
                   yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
-                  yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
+                  yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo}
+                  yearlyPriceSource={p.yearlyPriceSource} monthlyPriceSource={p.monthlyPriceSource} />
+              ) : null}
+              {/* зачем (владелец 11.10, Ядро a0a910e9d): справочная цена — честная тихая строка под плитками; причину «магазина нет» оставляем тихо же. */}
+              {plansShown === 'ready' && (p.pricesApproximate || p.storeUnavailableReason === 'billing_unavailable') ? (
+                <Text testID="paywall-price-note" style={[S.priceNote, { color: g.mutedText }]}>
+                  {p.storeUnavailableReason === 'billing_unavailable' ? pick(lang, COPY.storeUnavailable) : pick(lang, COPY.priceWillConfirm)}
+                </Text>
               ) : null}
             </PaywallPlusScroll>
             <PaywallPlusDock lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
@@ -231,6 +239,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 }
 
 const S = StyleSheet.create({
+  priceNote: { marginTop: 10, fontSize: 13, lineHeight: 18, textAlign: 'center' },
   // зачем: корень прозрачный — окно лежит поверх прежнего экрана (transparentModal), снизу шторка со скруглёнными верхними углами.
   root: { flex: 1, justifyContent: 'flex-end' },
   sheet: { borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden' },

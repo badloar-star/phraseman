@@ -68,6 +68,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { takeOnboardingDonePeek } from '../onboarding_done_peek';
+import { createHomeVideoLoadPipeline } from '../home_video_load_pipeline';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 // зачем (PM-052, D75, 02.10): сбор наград на Главной (очередь + частицы в счётчик) удалён —
 // монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
@@ -479,6 +480,9 @@ function logHomeFirstMountEffectsTiming(): void {
 // повторный вход на Главную берёт его в первом кадре; сеть ходит один раз за запуск, флаг ставится только при успехе.
 let homeVideoSnapshotMemo: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error: boolean }> | null = null;
 let homeVideoNetworkOkThisLaunch = false;
+type HomeVideoLoadSnapshot = Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error?: string }>;
+// зачем (Сверка 02:15, HOME-COLD_cold3: video:start ×2): одна цепочка загрузки ленты на время её выполнения.
+const homeVideoLoadPipeline = createHomeVideoLoadPipeline<HomeVideoLoadSnapshot>();
 function logHomeFirstRenderTiming(): void {
   if (homeFirstRenderLogged) return;
   homeFirstRenderLogged = true;
@@ -946,11 +950,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }
         let alive = true;
         const videoLoadStartedAt = Date.now();
-        console.warn('[HOME-COLD] video:start', JSON.stringify({ sinceFirstRenderMs: videoLoadStartedAt - homeFirstRenderStartedAt, catalogRail: homeVideoRailUsesCatalog(studyTarget) })); // guard-ok: временная трассировка холодного старта
+        // Какая зависимость перезапустила эффект — видно по значениям (Сверка 02:15: второй старт через 1,9 с).
+        console.warn('[HOME-COLD] video:start', JSON.stringify({
+            sinceFirstRenderMs: videoLoadStartedAt - homeFirstRenderStartedAt, catalogRail: homeVideoRailUsesCatalog(studyTarget),
+            focusTick, homeRuntimeActive, studyTarget: String(studyTarget), pipelineRunning: homeVideoLoadPipeline.isRunning(),
+        })); // guard-ok: временная трассировка холодного старта
         // зачем (пакет 07:26 [HOME-COLD], правило «мгновенно из кэша»): сначала сохранённый список (локально, мс), сеть —
         // фоном и один раз за запуск. Раньше сеть шла на каждый фокус Главной и до неё лента стояла серой.
         const applySnapshot = (
-            snapshot: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error?: string }>,
+            snapshot: HomeVideoLoadSnapshot,
             source: 'cache' | 'network',
         ) => {
             console.warn('[HOME-COLD] video:resolved', JSON.stringify({
@@ -969,15 +977,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setHomeV2VideoStatus(snapshot.error && snapshot.videos.length === 0 ? 'error' : 'ready');
         };
         if (homeVideoSnapshotMemo) latestVideoIdRef.current = homeVideoSnapshotMemo.latestVideoId;
-        void import('../lingman_youtube')
-            .then(async (m) => {
+        // Повторный запуск, пока цепочка идёт, только подписывается на её результат — вторая цепочка не стартует.
+        const { joined, unsubscribe } = homeVideoLoadPipeline.run(applySnapshot, async (emit) => {
+            try {
+                const m = await import('../lingman_youtube');
                 // зачем (пакет 08:26: после video:start ни одной строки — ни resolved, ни cache_miss): дошёл ли ленивый
                 // импорт ленты и сколько шло чтение кэша.
                 console.warn('[HOME-COLD] video:import_done', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, memo: !!homeVideoSnapshotMemo })); // guard-ok: временная трассировка
                 if (!homeVideoSnapshotMemo) {
                     const cached = await m.readCachedLingmanYoutubeSnapshot();
-                    console.warn('[HOME-COLD] video:cache_read', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, hit: !!cached, alive })); // guard-ok: временная трассировка
-                    if (cached) applySnapshot(cached, 'cache');
+                    console.warn('[HOME-COLD] video:cache_read', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, hit: !!cached })); // guard-ok: временная трассировка
+                    if (cached) emit(cached, 'cache');
                     else console.warn('[HOME-COLD] video:cache_miss', JSON.stringify({ ms: Date.now() - videoLoadStartedAt })); // guard-ok: ветка логируется
                 }
                 if (homeVideoNetworkOkThisLaunch) {
@@ -986,15 +996,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 }
                 const snapshot = await m.getLingmanYoutubeSnapshot();
                 if (!snapshot.error) homeVideoNetworkOkThisLaunch = true;
-                applySnapshot(snapshot, 'network');
-            })
-            .catch((error: unknown) => {
-                console.warn('[HOME-VIDEO] snapshot:catch → 0', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
-                if (alive) {
-                    setHomeV2VideoStatus('error');
-                }
-            });
-        return () => { alive = false; };
+                emit(snapshot, 'network');
+            } catch (error: unknown) {
+                const message = error instanceof Error ? error.message : String(error);
+                console.warn('[HOME-VIDEO] snapshot:catch → 0', message); // guard-ok: лог в catch обязателен
+                // Как сбой сети: при показанном кэше он остаётся, без кэша — статус ошибки (applySnapshot).
+                emit({ videos: [], latestVideoId: null, error: message }, 'network');
+            }
+        });
+        if (joined) console.warn('[HOME-COLD] video:joined_in_flight', JSON.stringify({ sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt })); // guard-ok: временная трассировка
+        return () => {
+            alive = false;
+            unsubscribe();
+        };
     }, [focusTick, homeRuntimeActive, studyTarget]);
     // зачем D130: при смене языка лента не показывает видео прежнего языка, пока грузится новая.
     const homeRailTargetRef = useRef(studyTarget);

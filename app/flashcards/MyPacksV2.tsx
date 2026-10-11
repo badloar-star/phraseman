@@ -9,20 +9,22 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
-import { packRowHeight } from '../../components/packs/packRowModel';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
-import { KitCta, KitEmpty, KitSectionHead, KitTitle } from '../../components/cards-grid/CardsKit';
-import { PackRow, PackRowCountChevron } from '../../components/packs/PackRow';
+import { KitEmpty } from '../../components/cards-grid/CardsKit';
+import { PackDeck, PackDeckPlayButton } from '../../components/packs/PackRow';
+import { packDeckLevel, packDeckWords } from '../../components/packs/packDeckModel';
+import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
 import { formatPackTitleForDisplay } from './marketplace';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { BackButton, PanelDock, SheetRow } from '../../components/mistakes-panel/PanelKit';
+import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
+import { hapticTap } from '../../hooks/use-haptics';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
 import type { FlashcardMarketPack } from './marketplace';
@@ -47,7 +49,8 @@ type Props = Readonly<{
   onBack: () => void;
   onCreate: () => void;
   onOpen: (pack: FlashcardMarketPack) => void;
-  onTrain: () => void;
+  /** Запуск тренировки ИМЕННО этого набора (круглая «играть» стопки и «Тренировать» в шторке действий). */
+  onTrain: (pack: FlashcardMarketPack) => void;
   onEdit: (pack: FlashcardMarketPack) => void;
   onPublish: (pack: FlashcardMarketPack) => void;
   onDelete: (pack: FlashcardMarketPack) => void;
@@ -55,8 +58,8 @@ type Props = Readonly<{
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', created: 'Созданные', added: 'Добавленные', onlyYou: 'Только ты', inCommunity: 'В сообществе', train: 'Тренировать', edit: 'Изменить', share: 'Открыть сообществу', del: 'Удалить набор', emptyTitle: 'Наборов пока нет', emptyDetail: 'Создай свой первый', create: 'Создать набор', unavailable: 'Сейчас недоступно', retry: 'Попробовать снова', search: 'Поиск', searchPlaceholder: 'Название набора', byName: 'Порядок: по названию', byDate: 'Порядок: по обновлению', language: 'Язык наборов', close: 'Закрыть', none: 'Ничего не найдено', packs: { one: 'набор', few: 'набора', many: 'наборов' }, cards: { one: 'карточка', few: 'карточки', many: 'карточек' } },
-  uk: { back: 'Назад', menu: 'Меню', created: 'Створені', added: 'Додані', onlyYou: 'Тільки ти', inCommunity: 'У спільноті', train: 'Тренувати', edit: 'Змінити', share: 'Відкрити спільноті', del: 'Видалити набір', emptyTitle: 'Наборів поки немає', emptyDetail: 'Створи свій перший', create: 'Створити набір', unavailable: 'Зараз недоступно', retry: 'Спробувати ще', search: 'Пошук', searchPlaceholder: 'Назва набору', byName: 'Порядок: за назвою', byDate: 'Порядок: за оновленням', language: 'Мова наборів', close: 'Закрити', none: 'Нічого не знайдено', packs: { one: 'набір', few: 'набори', many: 'наборів' }, cards: { one: 'картка', few: 'картки', many: 'карток' } },
+  ru: { back: 'Назад', menu: 'Меню', created: 'Созданные', added: 'Добавленные', onlyYou: 'Только ты', inCommunity: 'В сообществе', train: 'Тренировать', edit: 'Изменить', share: 'Открыть сообществу', del: 'Удалить набор', emptyTitle: 'Наборов нет', emptyDetail: 'Собери свой первый', create: 'Создать набор', unavailable: 'Сейчас недоступно', retry: 'Попробовать снова', search: 'Поиск', searchPlaceholder: 'Название набора', byName: 'Порядок: по названию', byDate: 'Порядок: по обновлению', language: 'Язык наборов', close: 'Закрыть', none: 'Ничего не найдено', packs: { one: 'набор', few: 'набора', many: 'наборов' }, cards: { one: 'карточка', few: 'карточки', many: 'карточек' } },
+  uk: { back: 'Назад', menu: 'Меню', created: 'Створені', added: 'Додані', onlyYou: 'Тільки ти', inCommunity: 'У спільноті', train: 'Тренувати', edit: 'Змінити', share: 'Відкрити спільноті', del: 'Видалити набір', emptyTitle: 'Наборів немає', emptyDetail: 'Збери свій перший', create: 'Створити набір', unavailable: 'Зараз недоступно', retry: 'Спробувати ще', search: 'Пошук', searchPlaceholder: 'Назва набору', byName: 'Порядок: за назвою', byDate: 'Порядок: за оновленням', language: 'Мова наборів', close: 'Закрити', none: 'Нічого не знайдено', packs: { one: 'набір', few: 'набори', many: 'наборів' }, cards: { one: 'картка', few: 'картки', many: 'карток' } },
   en: { back: 'Back', menu: 'Menu', created: 'Created', added: 'Added', onlyYou: 'Only you', inCommunity: 'In the community', train: 'Train', edit: 'Edit', share: 'Share with the community', del: 'Delete pack', emptyTitle: 'No packs yet', emptyDetail: 'Create your first one', create: 'Create pack', unavailable: 'Not available right now', retry: 'Try again', search: 'Search', searchPlaceholder: 'Pack name', byName: 'Order: by name', byDate: 'Order: by update', language: 'Pack language', close: 'Close', none: 'Nothing found', packs: { one: 'pack', few: 'packs', many: 'packs' }, cards: { one: 'card', few: 'cards', many: 'cards' } },
   es: { back: 'Atrás', menu: 'Menú', created: 'Creados', added: 'Añadidos', onlyYou: 'Solo tú', inCommunity: 'En la comunidad', train: 'Entrenar', edit: 'Editar', share: 'Compartir con la comunidad', del: 'Eliminar pack', emptyTitle: 'Aún no hay packs', emptyDetail: 'Crea el primero', create: 'Crear pack', unavailable: 'No disponible ahora', retry: 'Intentar de nuevo', search: 'Buscar', searchPlaceholder: 'Nombre del pack', byName: 'Orden: por nombre', byDate: 'Orden: por actualización', language: 'Idioma de los packs', close: 'Cerrar', none: 'No se encontró nada', packs: { one: 'pack', few: 'packs', many: 'packs' }, cards: { one: 'tarjeta', few: 'tarjetas', many: 'tarjetas' } },
   'pt-BR': { back: 'Voltar', menu: 'Menu', created: 'Criados', added: 'Adicionados', onlyYou: 'Só você', inCommunity: 'Na comunidade', train: 'Treinar', edit: 'Editar', share: 'Abrir para a comunidade', del: 'Excluir pacote', emptyTitle: 'Ainda não há pacotes', emptyDetail: 'Crie o seu primeiro', create: 'Criar pacote', unavailable: 'Indisponível agora', retry: 'Tentar de novo', search: 'Buscar', searchPlaceholder: 'Nome do pacote', byName: 'Ordem: por nome', byDate: 'Ordem: por atualização', language: 'Idioma dos pacotes', close: 'Fechar', none: 'Nada encontrado', packs: { one: 'pacote', few: 'pacotes', many: 'pacotes' }, cards: { one: 'cartão', few: 'cartões', many: 'cartões' } },
@@ -77,12 +80,11 @@ function MyPacksV2Inner(props: Props) {
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  // зачем: заглушка — той же высоты, что строка PackRow (без прыжка, когда наборы пришли).
-  const skeletonH = packRowHeight('row', useLineScale());
+  // зачем: заглушка — высота стопки без чипов слов: 12 (стопка) + 16 + название 26 + подпись 21 + 16 (без прыжка, когда наборы пришли).
+  const skeletonH = 91;
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [actionsFor, setActionsFor] = useState<FlashcardMarketPack | null>(null);
-  const subtitle = totalCount > 0 ? `${totalCount} ${pluralWord(lang, totalCount, copy.packs)}` : null;
   const showSearch = searchOpen || query.length > 0;
   const closeActions = () => setActionsFor(null);
   const runAction = (action: (pack: FlashcardMarketPack) => void) => () => {
@@ -92,25 +94,24 @@ function MyPacksV2Inner(props: Props) {
   };
   const actionsOwn = actionsFor ? created.some((item) => item.id === actionsFor.id) : false;
 
-  // зачем (владелец, журнал 9 и 4–5): строка — общий PackRow (kit `.row`, фиксированная высота под 2 строки названия).
-  // Автор добавленного набора — без чтения сети: официальный → «Professor Lingman», иначе ник из каталога или фолбэк
-  // (раньше сюда шёл сырой authorName — у легаси-документов это мог быть обрезанный UID).
+  // зачем (владелец 12.10, cards-v2 mySets()): набор — «стопка» (общий PackDeck): название, «40 · A2», три чипа слов, круглая «играть»;
+  // у добавленных — аватар и имя автора. Уровень и первые слова читаются из полей набора, пока их нет — скрыты (ждём от Ядра).
+  // Автор добавленного набора — без чтения сети: официальный → «Professor Lingman», иначе ник из каталога или фолбэк.
   const row = (pack: FlashcardMarketPack, own: boolean) => {
     const title = labelFor(pack);
-    const subtitle = own
-      ? (isPublished(pack) ? copy.inCommunity : copy.onlyYou)
-      : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));
+    const authorName = own ? null : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));
     return (
-      <PackRow
+      <PackDeck
         key={pack.id}
-        variant="row"
         g={g}
         lang={lang}
-        leading={{ kind: 'icon', icon: own ? 'layers-outline' : 'people-outline' }}
         title={title}
-        subtitle={subtitle}
-        trailing={<PackRowCountChevron g={g} count={pack.cardCount} />}
-        accessibilityLabel={`${formatPackTitleForDisplay(title)}, ${subtitle}, ${pack.cardCount}`}
+        count={pack.cardCount}
+        level={packDeckLevel(pack)}
+        words={packDeckWords(pack)}
+        author={authorName ? { name: authorName } : null}
+        trailing={<PackDeckPlayButton g={g} label={copy.train} testID={`fc-my-packs-pack-play-${pack.id}`} disabled={openingPackId !== null} onPress={() => { void hapticTap(); onTrain(pack); }} />}
+        accessibilityLabel={`${formatPackTitleForDisplay(title)}${authorName ? `, ${authorName}` : ''}, ${pack.cardCount}`}
         testID={`fc-my-packs-pack-${pack.id}`}
         disabled={openingPackId !== null}
         onPress={() => onOpen(pack)}
@@ -123,16 +124,19 @@ function MyPacksV2Inner(props: Props) {
     <View style={styles.root}>
       <ScrollView
         style={styles.scroll}
-        contentContainerStyle={[styles.content, { paddingBottom: Math.max(insets.bottom, 16) + 120 }]}
+        contentContainerStyle={[styles.content, { paddingBottom: Math.max(insets.bottom, 16) + 32 }]}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled" decelerationRate="fast">
-        <View style={styles.top}>
-          <BackButton g={g} onPress={onBack} label={copy.back} />
-          <Pressable testID="fc-my-packs-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => setMenuOpen(true)} style={({ pressed }) => [styles.square, pressed && styles.pressed]}>
-            <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
-          </Pressable>
-        </View>
-        <KitTitle g={g} title={titleFor(lang)} subtitle={subtitle} testID="fc-my-packs-title" />
+        <PackTopBarRow
+          left={<PackBackBare g={g} onPress={onBack} label={copy.back} testID="mp-back" />}
+          right={(
+            <>
+              <PackSquareButton g={g} testID="fc-my-packs-menu" label={copy.menu} onPress={() => setMenuOpen(true)} />
+              <PackRoundButton g={g} testID="fc-my-packs-create-top" icon="add" label={copy.create} onPress={onCreate} />
+            </>
+          )}
+        />
+        <PackScreenTitle g={g} title={titleFor(lang)} count={totalCount > 0 ? totalCount : null} testID="fc-my-packs-title" />
         {showSearch ? (
           <View style={styles.search}>
             <Ionicons name="search" size={18} color={g.mutedText} />
@@ -162,17 +166,12 @@ function MyPacksV2Inner(props: Props) {
           </View>
         ) : null}
 
-        {status === 'list' && created.length > 0 ? (
-          <>
-            <KitSectionHead g={g} title={copy.created} count={created.length} />
-            <View testID="fc-my-packs-section-created" style={styles.stack}>{created.map((pack) => row(pack, true))}</View>
-          </>
-        ) : null}
-        {status === 'list' && added.length > 0 ? (
-          <>
-            <KitSectionHead g={g} title={copy.added} count={added.length} />
-            <View testID="fc-my-packs-section-added" style={styles.stack}>{added.map((pack) => row(pack, false))}</View>
-          </>
+        {/* зачем (cards-v2 mySets()): один список стопок без разделов — свои, затем добавленные (у них аватар автора). */}
+        {status === 'list' && created.length + added.length > 0 ? (
+          <View testID="fc-my-packs-section-created" style={styles.stack}>
+            {created.map((pack) => row(pack, true))}
+            {added.map((pack) => row(pack, false))}
+          </View>
         ) : null}
         {status === 'list' && created.length === 0 && added.length === 0 ? (
           <Text style={[styles.none, { color: g.secondary }]}>{copy.none}</Text>
@@ -185,14 +184,6 @@ function MyPacksV2Inner(props: Props) {
       {status === 'unavailable' ? (
         <KitEmpty g={g} testID="fc-my-packs-unavailable" icon="layers-outline" title={copy.unavailable} detail="" action={copy.retry} onAction={onRetry} actionTestID="fc-my-packs-try-again" />
       ) : null}
-      {status === 'list' || status === 'loading' ? (
-        <PanelDock>
-          <View style={styles.dock}>
-            <KitCta g={g} label={copy.create} icon="add" onPress={onCreate} testID="fc-my-packs-create" />
-          </View>
-        </PanelDock>
-      ) : null}
-
       <PanelSheet visible={menuOpen} onClose={() => setMenuOpen(false)} testID="fc-my-packs-menu-sheet">
         <SheetRow g={g} testID="fc-my-packs-menu-search" icon="search-outline" title={copy.search} onPress={() => { setMenuOpen(false); setSearchOpen(true); }} />
         <SheetRow
@@ -220,7 +211,7 @@ function MyPacksV2Inner(props: Props) {
                 <Ionicons name="close" size={18} color={g.text} />
               </Pressable>
             </View>
-            <SheetRow g={g} testID="fc-my-packs-action-train" icon="flash-outline" title={copy.train} onPress={() => { closeActions(); onTrain(); }} />
+            <SheetRow g={g} testID="fc-my-packs-action-train" icon="flash-outline" title={copy.train} onPress={() => { closeActions(); onTrain(actionsFor); }} />
             {actionsOwn ? <SheetRow g={g} testID={`fc-my-packs-pack-edit-${actionsFor.id}`} icon="create-outline" title={copy.edit} onPress={runAction(onEdit)} /> : null}
             {actionsOwn && !isPublished(actionsFor) ? <SheetRow g={g} testID="fc-my-packs-action-share" icon="share-outline" title={copy.share} onPress={runAction(onPublish)} /> : null}
             <SheetRow g={g} testID={`fc-my-packs-pack-delete-${actionsFor.id}`} icon="trash-outline" title={copy.del} onPress={runAction(onDelete)} />
@@ -242,15 +233,12 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   scroll: { flex: 1 },
   content: { paddingHorizontal: 20 },
   pressed: { opacity: 0.82 },
-  top: { minHeight: 44, marginTop: 4, marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft },
   search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
-  stack: { gap: 10 }, // зачем (Тень 12.10): между плашками ≥ 10
-  loading: { marginTop: 30, gap: 10 },
-  skeleton: { borderRadius: 14, backgroundColor: g.hairlineSoft },
+  stack: { marginTop: 22, gap: 14 }, // зачем: `.stack.g14` макета mySets() — 14 между стопками, 22 от заголовка (тень «дышит» ≥ 10)
+  loading: { marginTop: 22, gap: 14 },
+  skeleton: { borderRadius: 20, backgroundColor: g.hairlineSoft },
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
-  dock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
   langLabel: { fontSize: 16, lineHeight: 20 },
   sheetHead: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, paddingBottom: 18 },

@@ -22,14 +22,11 @@ import {
   AccessibilityInfo,
   Animated,
   BackHandler,
-  Easing,
   Platform,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
-  useWindowDimensions,
   View,
 } from 'react-native';
 import { useScaledTextStyles } from '../hooks/useLineScale';
@@ -41,9 +38,11 @@ import { KitTouchable } from '../components/KitTouchable';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { actionBoxShadow, plateBoxShadow, raisedBoxShadow } from '../components/v2/ShadowSurface';
+import { actionBoxShadow } from '../components/v2/ShadowSurface';
+import { KitSearchField } from '../components/cards-grid/CardsKit';
+import { PackChips } from '../components/packs/PackScreenKit';
+import { packDeckLevel } from '../components/packs/packDeckModel';
 import { hapticTap } from '../hooks/use-haptics';
-import { AdaptiveLabel } from '../components/text-integrity/AdaptiveLabel';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -70,8 +69,8 @@ import {
   sortCommunityMarketPacksBySocial,
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
-import { isLowPowerEffective } from './flashcards/low_power';
 import {
+  communitySortLabel,
   type CommunityPacksSort,
 } from './community_packs/communityCatalogFilter';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
@@ -96,7 +95,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const params = useLocalSearchParams<{ sort?: string }>();
-  const { theme: t, f, statusBarLight, themeMode, liquidGlassThemeId } = useTheme();
+  const { theme: t, statusBarLight, themeMode, liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   /** В этом проекте градиентных тем (`ocean` / `sakura`) нет — шапка всегда на обычной поверхности. */
   const onColoredGradient = false;
@@ -106,22 +105,6 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const { studyTarget } = useStudyTarget();
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useStableSafeAreaInsets();
-  const { width: screenW } = useWindowDimensions();
-  // зачем (владелец 11.10, community-redesign.html #c1: «нижней плавающей плашки больше нет»): док «Новые / + / Топ» над списком
-  // убран — переключатель стоит под заголовком, «+» в строке заголовка. Мерить док больше нечего: нижний отступ — по таб-бару.
-  /**
-   * Заголовок делит шапку с тремя круглыми кнопками, поэтому на узких экранах
-   * он аккуратно уменьшается, а не превращается в «Наборы сообщес…».
-   */
-  const headerTitleSize = useMemo(() => {
-    if (screenW <= 320) return Math.max(13, f.h3 - 3);
-    if (screenW < 360) return Math.max(14, f.h3 - 2);
-    if (screenW < 400) return Math.max(15, f.h3 - 1);
-    return f.h3;
-  }, [f.h3, screenW]);
-  /** Ширина, реально доступная заголовку: экран − паддинги − «назад» − три круглые кнопки. */
-  const headerTitleW = useMemo(() => Math.max(72, screenW - 16 * 2 - 36 - 8 - 72 - 8 - 36), [screenW]);
-
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
   );
@@ -173,8 +156,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   // каталог открывается на «Новые»; `?sort=popular` по-прежнему ведёт на «Топ». Сортировка клиентская над ОДНИМ загруженным списком —
   // ни нового запроса, ни индекса Firestore смена умолчания не требует (applyCommunityPacksFilter).
   const [communitySort, setCommunitySort] = useState<CommunityPacksSort>(() => params.sort === 'popular' ? 'popular' : 'new');
-  const [searchOpen, setSearchOpen] = useState(false);
-  const searchInputRef = useRef<TextInput>(null);
+  // зачем (cards-v2 commHead()): чипы «Популярные / Новые / A1…B2» — один выбранный; уровень — клиентский фильтр поверх сортировки «Популярные».
+  // Чипы уровней рисуются, только если у каких-то наборов каталога есть уровень (поля пока нет — данные ждём от Ядра).
+  const [communityLevel, setCommunityLevel] = useState<string | null>(null);
 
   /** cards-2.0 (E3): параллакс орбов ScreenGradient от скролла (±20px), за reduceMotion. */
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -184,63 +168,53 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => sub.remove();
   }, []);
-  /**
-   * Раскрытие поля поиска: ТОЛЬКО opacity + translateX (никакой анимации высоты),
-   * поле лежит абсолютным слоем поверх шапки, поэтому геометрия экрана не дёргается.
-   * Одиночный `timing` на нажатие — бесконечных циклов нет. При «уменьшить движение»
-   * и на слабых устройствах длительность = 0, состояние меняется мгновенно.
-   */
-  const searchAnim = useRef(new Animated.Value(0)).current;
-  const searchTranslateX = useMemo(
-    () => searchAnim.interpolate({ inputRange: [0, 1], outputRange: [18, 0], extrapolate: 'clamp' }),
-    [searchAnim],
-  );
-  const toggleSearch = useCallback(() => {
-    void hapticTap();
-    const next = !searchOpen;
-    setSearchOpen(next);
-    /** Закрыли — фильтр по названию снимаем: невидимое поле не должно молча резать каталог. */
-    if (!next) setCommunityQuery('');
-    const instant = reduceMotion || isLowPowerEffective();
-    Animated.timing(searchAnim, {
-      toValue: next ? 1 : 0,
-      duration: instant ? 0 : 190,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: Platform.OS !== 'web',
-    }).start();
-    if (next) {
-      requestAnimationFrame(() => searchInputRef.current?.focus());
-    } else {
-      searchInputRef.current?.blur();
-    }
-  }, [searchOpen, reduceMotion, searchAnim]);
-
+  // зачем (cards-v2 catalog(): капсула поиска «Наборы и авторы»): один постоянный ввод под заголовком вместо лупы, раскрывающей поле в шапке.
   const searchLabel = triLang(lang, {
-    ru: 'Поиск набора', uk: 'Пошук набору', en: 'Search packs', es: 'Buscar pack',
-    'pt-BR': 'Buscar pacote', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket ara', pl: 'Szukaj zestawu',
+    ru: 'Наборы и авторы', uk: 'Набори й автори', en: 'Packs and authors', es: 'Packs y autores',
+    'pt-BR': 'Pacotes e autores', vi: 'Bộ thẻ và tác giả', id: 'Paket dan penulis', tr: 'Paketler ve yazarlar', pl: 'Zestawy i autorzy',
   });
-  const closeSearchLabel = triLang(lang, {
-    ru: 'Закрыть поиск', uk: 'Закрити пошук', en: 'Close search', es: 'Cerrar la búsqueda',
-    'pt-BR': 'Fechar a busca', vi: 'Đóng tìm kiếm', id: 'Tutup pencarian',
-    tr: 'Aramayı kapat', pl: 'Zamknij wyszukiwanie',
+  const clearSearchLabel = triLang(lang, {
+    ru: 'Очистить поиск', uk: 'Очистити пошук', en: 'Clear search', es: 'Borrar la búsqueda',
+    'pt-BR': 'Limpar a busca', vi: 'Xóa tìm kiếm', id: 'Hapus pencarian',
+    tr: 'Aramayı temizle', pl: 'Wyczyść wyszukiwanie',
   });
   const screenTitle = triLang(lang, {
-    ru: 'Наборы сообщества', uk: 'Набори спільноти', en: 'Community packs', es: 'Packs de la comunidad',
-    'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
-    tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
+    ru: 'Сообщество', uk: 'Спільнота', en: 'Community', es: 'Comunidad',
+    'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas',
+    tr: 'Topluluk', pl: 'Społeczność',
   });
   const createPackLabel = triLang(lang, {
     ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un pack',
     'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
   });
-  const newPacksLabel = triLang(lang, {
-    ru: 'Новые', uk: 'Нові', en: 'New', es: 'Nuevos',
-    'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
-  });
-  const topPacksLabel = triLang(lang, {
-    ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top',
-    'pt-BR': 'Top', vi: 'Top', id: 'Teratas', tr: 'En iyi', pl: 'Top',
-  });
+  const newPacksLabel = communitySortLabel('new', lang);
+  const topPacksLabel = communitySortLabel('popular', lang);
+  /** Уровни, которые реально встречаются в каталоге (A1…C2 по порядку); нет данных — пусто, чипы уровней скрыты. */
+  const availableLevels = useMemo(() => {
+    const present = new Set<string>();
+    for (const pack of communityPacks) {
+      const level = packDeckLevel(pack);
+      if (level) present.add(level);
+    }
+    return ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].filter((level) => present.has(level));
+  }, [communityPacks]);
+  const filterChips = useMemo(() => [
+    { id: 'popular', label: topPacksLabel },
+    { id: 'new', label: newPacksLabel },
+    ...availableLevels.map((level) => ({ id: level, label: level })),
+  ], [availableLevels, newPacksLabel, topPacksLabel]);
+  const activeChip = communityLevel ?? communitySort;
+  const onChip = useCallback((id: string) => {
+    void hapticTap();
+    if (id === 'popular' || id === 'new') {
+      setCommunityLevel(null);
+      setCommunitySort(id);
+      return;
+    }
+    // уровень — фильтр поверх «Популярных»
+    setCommunitySort('popular');
+    setCommunityLevel(id);
+  }, []);
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const parallaxY = useMemo(
@@ -409,47 +383,18 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
-    // зачем: во вкладке «Сообщество» уходить некуда — «назад» принадлежит таббару,
-    // перехватываем его только чтобы закрыть открытый поиск.
-    if (embedded && !searchOpen) return;
+    // зачем: во вкладке «Сообщество» уходить некуда — «назад» принадлежит таббару, его не перехватываем.
+    if (embedded) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      /** Открытый поиск закрываем первым — иначе «назад» уводит с экрана мимо намерения. */
-      if (searchOpen) {
-        toggleSearch();
-        return true;
-      }
       leavePacks();
       return true;
     });
     return () => sub.remove();
-  }, [embedded, leavePacks, searchOpen, toggleSearch]);
+  }, [embedded, leavePacks]);
 
+  // зачем (cards-v2 catalog()): лупа в шапке больше не нужна — поиск стоит капсулой под заголовком; в шапке остаётся выбор языка наборов.
   const headerActions = (
           <View style={styles.headerActions}>
-            {/* зачем (владелец 04.10, packs-simple.html кадр 1): в шапке сначала круглая лупа, затем пилюля «EN ▾». */}
-            <TouchableOpacity
-              testID="flashcards-packs-search-toggle"
-              accessibilityRole="button"
-              accessibilityLabel={searchOpen ? closeSearchLabel : searchLabel}
-              accessibilityState={{ expanded: searchOpen }}
-              accessible
-              onPress={toggleSearch}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              style={[
-                styles.headerRoundBtn,
-                embedded ? styles.headerRoundBtnLarge : null,
-                // выбранное (поиск открыт или задан) приподнято, иначе обычная плашка
-                searchOpen || communityQuery.trim().length > 0
-                  ? { backgroundColor: g.raisedFillFrom, boxShadow: raisedBoxShadow(g) }
-                  : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
-              ]}
-            >
-              <Ionicons
-                name={searchOpen ? 'search' : 'search-outline'}
-                size={18}
-                color={searchOpen || communityQuery.trim().length > 0 ? t.accentText : g.secondary}
-              />
-            </TouchableOpacity>
             <PackLanguagePicker
               pill={embedded}
               lang={lang}
@@ -457,84 +402,16 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               value={packLanguage}
               onChange={handlePackLanguageChange}
             />
-
           </View>
-  );
-
-  const searchLayer = (
-          <Animated.View
-            pointerEvents={searchOpen ? 'auto' : 'none'}
-            accessibilityElementsHidden={!searchOpen}
-            importantForAccessibility={searchOpen ? 'auto' : 'no-hide-descendants'}
-            style={[
-              styles.headerSearchLayer,
-              embedded ? styles.headerSearchLayerEmbedded : null,
-              {
-                opacity: searchAnim,
-                transform: [{ translateX: searchTranslateX }],
-              },
-            ]}
-          >
-            {embedded ? (
-              // зачем (community-redesign.html #c1 экран 2, `.ib.bare`): слева «назад» 44 БЕЗ подложки — она же закрывает поиск.
-              <KitTouchable
-                testID="flashcards-packs-search-back"
-                accessibilityRole="button"
-                accessibilityLabel={closeSearchLabel}
-                onPress={toggleSearch}
-                style={styles.searchBareBtn}
-              >
-                <Ionicons name="chevron-back" size={22} color={g.text} />
-              </KitTouchable>
-            ) : null}
-            <View
-              style={[
-                styles.headerSearchField,
-                embedded
-                  // `.sf`: поле 52, скругление 26, заливка .08 и тонкая ВНУТРЕННЯЯ кромка (не обводка-контейнер).
-                  ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]
-                  : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, // зачем (Тень 12.10): поле поиска без кромки
-              ]}
-            >
-              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.secondary : t.accentText} />
-              <TextInput
-                ref={searchInputRef}
-                testID="flashcards-packs-search"
-                accessibilityLabel={searchLabel}
-                value={communityQuery}
-                onChangeText={setCommunityQuery}
-                placeholder={searchLabel}
-                placeholderTextColor={t.textMuted}
-                autoCorrect={false}
-                autoCapitalize="none"
-                returnKeyType="search"
-                maxFontSizeMultiplier={1.2}
-                style={[styles.headerSearchInput, embedded ? styles.headerSearchInputEmbedded : null, { color: g.text }]}
-              />
-              <TouchableOpacity
-                testID="flashcards-packs-search-close"
-                accessibilityRole="button"
-                accessibilityLabel={closeSearchLabel}
-                accessible
-                onPress={toggleSearch}
-                hitSlop={embedded ? undefined : { top: 8, bottom: 8, left: 8, right: 8 }}
-                // зачем (`.sf .ib.bare`): во вкладке «Сообщество» крестик — круг 44 без подложки внутри поля.
-                style={embedded ? styles.searchBareBtn : null}
-              >
-                <Ionicons name={embedded ? 'close' : 'close-circle'} size={18} color={embedded ? g.secondary : t.textMuted} />
-              </TouchableOpacity>
-            </View>
-          </Animated.View>
   );
 
   // зачем: во вкладке «Сообщество» кнопки раздела живут в общей шапке. Слот пересобирается только при
   // смене того, что в нём видно, — иначе шапка ловила бы новый объект на каждый рендер раздела.
   const setHeaderSlot = useCommunityHeaderSlotSetter();
   const headerSlot = useMemo(
-    // зачем: слой отдаётся только при открытом поиске — шапка тогда ставит его ВМЕСТО вкладок (кадр 2).
-    () => (embedded ? { right: headerActions, overlay: searchOpen ? searchLayer : null } : null),
+    () => (embedded ? { right: headerActions, overlay: null } : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- JSX выше выводится ровно из этих значений
-    [embedded, searchOpen, communityQuery, packLanguage, lang, liquidGlassThemeId, t, toggleSearch, handlePackLanguageChange, searchLabel, closeSearchLabel],
+    [embedded, packLanguage, lang, liquidGlassThemeId, t, handlePackLanguageChange],
   );
   useEffect(() => {
     if (!setHeaderSlot) return;
@@ -569,35 +446,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           </TouchableOpacity>
           )}
 
-          {/*
-            Единственный заголовок экрана — сразу справа от стрелки «назад».
-            AdaptiveLabel вместо сырого numberOfLines: длинные локали (pl/pt-BR)
-            ужимаются по размеру шрифта, а не обрезаются многоточием.
-          */}
-          <AdaptiveLabel
-            testID="flashcards-packs-title"
-            provenance="authored"
-            availableWidth={headerTitleW}
-            compactLineLimit={1}
-            accessibilityRole="header"
-            style={[
-              styles.headerTitle,
-              { color: onColoredGradient ? gradHeaderInk : g.text, fontSize: headerTitleSize },
-            ]}
-            maxFontSizeMultiplier={1.2}
-          >
-            {screenTitle}
-          </AdaptiveLabel>
+          {/* зачем (cards-v2 catalog()): заголовок 34/40 стоит в списке под панелью, как на макете; шапка — «назад» и язык наборов. */}
+          <View style={{ flex: 1 }} />
 
           {headerActions}
-
-          {/*
-            Раскрывающееся поле поиска. Лежит абсолютным слоем ПОВЕРХ заголовка и
-            кнопок — так раскрытие не меняет высоту шапки и обходится анимацией
-            только по opacity/transform. Закрытое поле не кликается и скрыто от
-            скринридера.
-          */}
-          {searchLayer}
         </View>
         )}
 
@@ -616,60 +468,35 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             onScroll={reduceMotion ? undefined : onHubScroll}
             scrollEventThrottle={16}
           >
-            {searchOpen ? null : (
-              // зачем (владелец 11.10, community-redesign.html #c1 экран 1): «Наборы сообщества» 32/38 и справа круглая «+» 44
-              // цвета темы — создать набор; ниже переключатель «Новые / Топ» (`.sg`). На экране поиска (экран 2) этого блока нет.
-              <View style={styles.listHead}>
-                <View style={styles.titleRow}>
-                  {embedded ? (
-                    <Text accessibilityRole="header" testID="flashcards-packs-title-embedded" style={[styles.embeddedTitle, { color: g.text }]}>
-                      {screenTitle}
-                    </Text>
-                  ) : <View style={styles.titleSpacer} />}
-                  <KitTouchable
-                    testID="flashcards-packs-create"
-                    accessibilityRole="button"
-                    accessibilityLabel={createPackLabel}
-                    onPress={() => {
-                      void hapticTap();
-                      router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
-                    }}
-                    style={[styles.createBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
-                  >
-                    <Ionicons name="add" size={22} color={g.accentInk} />
-                  </KitTouchable>
-                </View>
-                <View
-                  accessibilityRole="tablist"
-                  style={[styles.segment, {
-                    backgroundColor: g.plateFillFrom,
-                    boxShadow: plateBoxShadow(g),
-                  }]}
+            {/* зачем (cards-v2 catalog() / commHead()): заголовок «Сообщество» 34/40 (+ круглая «создать набор» — функция приложения, в макете её нет),
+                капсула поиска «Наборы и авторы», чипы «Популярные / Новые / A1…B2» (чипы уровней — только когда в каталоге есть уровни). */}
+            <View style={styles.listHead}>
+              <View style={styles.titleRow}>
+                <Text accessibilityRole="header" testID={embedded ? 'flashcards-packs-title-embedded' : 'flashcards-packs-title'} style={[styles.embeddedTitle, { color: g.text }]}>
+                  {screenTitle}
+                </Text>
+                <KitTouchable
+                  testID="flashcards-packs-create"
+                  accessibilityRole="button"
+                  accessibilityLabel={createPackLabel}
+                  onPress={() => {
+                    void hapticTap();
+                    router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
+                  }}
+                  style={[styles.createBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
                 >
-                  {(['new', 'popular'] as const).map((sort) => {
-                    const on = communitySort === sort;
-                    const label = sort === 'new' ? newPacksLabel : topPacksLabel;
-                    return (
-                      <KitTouchable
-                        key={sort}
-                        testID={sort === 'new' ? 'flashcards-packs-sort-new' : 'flashcards-packs-sort-popular'}
-                        accessibilityRole="tab"
-                        accessibilityLabel={label}
-                        accessibilityState={{ selected: on }}
-                        onPress={() => {
-                          if (on) return;
-                          void hapticTap();
-                          setCommunitySort(sort);
-                        }}
-                        style={[styles.segmentItem, on ? { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) } : null]}
-                      >
-                        <Text style={[styles.segmentText, { color: on ? g.accentInk : g.secondary }]}>{label}</Text>
-                      </KitTouchable>
-                    );
-                  })}
-                </View>
+                  <Ionicons name="add" size={22} color={g.accentInk} />
+                </KitTouchable>
               </View>
-            )}
+              <View style={styles.searchWrap}>
+                <KitSearchField g={g} value={communityQuery} onChangeText={setCommunityQuery} placeholder={searchLabel} clearLabel={clearSearchLabel} testID="flashcards-packs-search" />
+              </View>
+              {communityQuery.trim().length === 0 ? (
+                <View style={styles.chipsWrap}>
+                  <PackChips g={g} chips={filterChips} activeId={activeChip} onChange={onChip} testIDPrefix="flashcards-packs-chip" />
+                </View>
+              ) : null}
+            </View>
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
               t={t}
@@ -686,6 +513,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               communityQuery={communityQuery}
               onResetFilters={resetCommunityFilters}
               communitySort={communitySort}
+              communityLevel={communityLevel}
               packLanguage={packLanguage}
             />
           </Animated.ScrollView>
@@ -705,13 +533,12 @@ const baseStyles = StyleSheet.create({
   listHead: { paddingHorizontal: 20 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   titleSpacer: { flex: 1 },
-  embeddedTitle: { flex: 1, minWidth: 0, fontSize: 32, lineHeight: 38, fontWeight: '700', letterSpacing: -0.6 },
+  embeddedTitle: { flex: 1, minWidth: 0, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
+  searchWrap: { marginTop: 16 },
+  chipsWrap: { marginTop: 6 },
   // `.ib.ac`: круг 44 цвета темы, значок цветом «на акценте».
   createBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   // `.sg`: капсула 4/18, сегменты 38 r14, текст 15/600 макета → 16 (D145); отступ 14 от заголовка.
-  segment: { flexDirection: 'row', gap: 4, padding: 4, borderRadius: 18, marginTop: 14 },
-  segmentItem: { flex: 1, minHeight: 38, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 14 },
-  segmentText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -722,60 +549,5 @@ const baseStyles = StyleSheet.create({
     borderBottomWidth: 0.5, // shadow-ok: разделитель-линия под шапкой экрана, не контейнер
   },
   headerBack: { width: 36, height: 36, alignItems: 'flex-start', justifyContent: 'center' },
-  headerTitle: {
-    flex: 1,
-    minWidth: 0,
-    marginLeft: 2,
-    marginRight: 8,
-    fontWeight: '800',
-    letterSpacing: 0.2,
-  },
   headerActions: { flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }, // зачем (Тень 12.10): между плашками ≥ 10
-  /** Лупа и фильтры — один размер и один стиль (замечание владельца). */
-  headerRoundBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  /**
-   * Слой поиска. Yoga кладёт абсолютных детей от ПАДДИНГ-бокса родителя, поэтому
-   * координаты здесь — от контентной области шапки: 36 = ширина кнопки «назад»,
-   * дальше слой закрывает заголовок и круглые кнопки целиком.
-   */
-  // зачем: `.rb` packs-simple.html — круглая кнопка 42 в общей шапке «Сообщества».
-  headerRoundBtnLarge: { width: 42, height: 42, borderRadius: 21 },
-  headerSearchLayer: {
-    position: 'absolute',
-    left: 36,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    zIndex: 6,
-  },
-  // зачем (community-redesign.html #c1 экран 2, `.flex` + `.sf`): слой на месте строки вкладок: «назад» 44 без подложки,
-  // промежуток 8, поле 52 со скруглением 26, поля 0/6/0/16, внутри промежуток 10, справа крестик 44 без подложки.
-  headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  headerSearchFieldEmbedded: { flex: 1, minHeight: 52, height: 52, borderRadius: 26, paddingLeft: 16, paddingRight: 6, gap: 10 },
-  searchBareBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
-  headerSearchInputEmbedded: { height: 44, fontSize: 16 },
-  headerSearchField: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    height: 36,
-    paddingHorizontal: 12,
-    borderRadius: 18,
-  },
-  headerSearchInput: {
-    flex: 1,
-    height: 34,
-    paddingVertical: 0,
-    includeFontPadding: false,
-    textAlignVertical: 'center',
-    fontSize: 13,
-  },
 });

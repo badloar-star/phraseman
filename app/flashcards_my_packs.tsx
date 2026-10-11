@@ -761,10 +761,11 @@ export default function FlashcardsMyPacksScreen() {
     const displayTitle = packTitleForInterface(pack, contentLang);
     return pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : packHubCodeName(pack);
   }, [contentLang]);
-  const trainFromPack = useCallback(() => {
-    // зачем: тренировка стартует общим входом раздела (окно режимов → выбор наборов) — как кнопка «Тренировать» на списке карточек.
-    DebugLogger.info('[MY-PACKS]', 'шторка набора: «Тренировать» → вход в тренировку');
-    router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
+  const trainFromPack = useCallback((pack: FlashcardMarketPack) => {
+    // зачем (cards-v2, круглая «играть» стопки): тренировка стартует именно с ЭТИМ набором — тот же вход, что у «Тренировать» внутри набора
+    // (хаб откроет окно режимов и после выбора запустит сессию с набором, flashcards_collection.onTrainThisPack).
+    DebugLogger.info('[MY-PACKS]', `стопка: «Тренировать» pack=${pack.id} cnt=${pack.cardCount}`);
+    router.navigate({ pathname: '/flashcards', params: { train: '1', deck: `pack:${pack.id}`, cnt: String(pack.cardCount) } } as never);
   }, [router]);
   const publishPackFromList = useCallback((pack: FlashcardMarketPack) => {
     DebugLogger.info('[MY-PACKS]', `шторка набора: «Открыть сообществу» ${pack.id}`);

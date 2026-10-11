@@ -21,7 +21,7 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import { CountPill, KitCheck, KitIconTile, KitSurface } from '../cards-grid/CardsKit';
-import { nestedBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { KitTouchable } from '../KitTouchable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { mixDark, themePair } from '../mistakes-panel/panelPaint';
@@ -42,6 +42,7 @@ import {
   splitTitleHighlight,
   type PackRowVariant,
 } from './packRowModel';
+import { PACK_DECK_METRICS, packDeckCountLevel } from './packDeckModel';
 
 type IonName = keyof typeof Ionicons.glyphMap;
 
@@ -224,6 +225,197 @@ function PackRowBase({
 export const PackRow = memo(PackRowBase);
 export default PackRow;
 
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// «КОЛОДА» — Карточки 2.0 (docs/design/v2-app/cards-v2.html: deck(), mySets(), catalog()).
+//
+// зачем здесь, а не отдельным файлом: ClampedText (единственное разрешённое место обрезки строк наборов) импортируется ТОЛЬКО
+// из этого файла (трещотка tests/pack_row_shared_contract.test.ts). Стопка — тот же «набор в списке», что и PackRow, и общая для
+// «Моих наборов», каталога сообщества и поиска: меняется вид стопки — правим ЭТОТ блок, а не три экрана.
+// ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+type DeckProps = Readonly<{
+  g: GlassTokens;
+  lang: Lang;
+  title: string;
+  testID: string;
+  titleTestID?: string;
+  accessibilityLabel?: string;
+  /** Число карточек набора. */
+  count: number;
+  /** Уровень A1–C2; null — «· A2» скрыто (данных ждём от Ядра). */
+  level?: string | null;
+  /** Первые слова набора для трёх чипов; пусто — ряд чипов не рисуется. */
+  words?: readonly string[];
+  /** Автор добавленного набора: аватар + имя перед числом (`Ирина · 49 · B2`); у своих наборов null. */
+  author?: Readonly<{ name: string; coinRank?: number | null }> | null;
+  authorTestID?: string;
+  highlight?: string;
+  emphasis?: PackRowEmphasis;
+  /** Правый край карточки: круглая «играть» (Мои наборы) или ♥ (каталог). */
+  trailing?: React.ReactNode;
+  onPress?: () => void;
+  onLongPress?: () => void;
+  disabled?: boolean;
+  style?: StyleProp<ViewStyle>;
+  a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
+}>;
+
+/** `.mc` — чип слова: тон `dividerTone` и малая тень (стиль «Тень», без кольца), слово 13/600 в одну строку. */
+const DeckWordChip = memo(function DeckWordChip({ g, word, lineHeight }: Readonly<{ g: GlassTokens; word: string; lineHeight: number }>) {
+  return (
+    <View style={[styles.deckChip, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+      <ClampedText maxLines={1} style={[styles.deckChipText, { color: g.text, lineHeight }]}>{word}</ClampedText>
+    </View>
+  );
+});
+
+/** `.av` — аватар автора 22: монета ранга, если она есть, иначе значок человека на тоне контрола. */
+const DeckAvatar = memo(function DeckAvatar({ g, coinRank }: Readonly<{ g: GlassTokens; coinRank?: number | null }>) {
+  const coin = isValidCoinRank(coinRank) ? coinRankRowForDisplay(coinRank) : null;
+  const size = PACK_DECK_METRICS.avatarSize;
+  if (coin) return <Image source={coin.source} style={{ width: size, height: size }} contentFit="contain" accessible={false} />;
+  return (
+    <View style={[styles.deckAvatar, { width: size, height: size, borderRadius: size / 2, backgroundColor: g.opaqueControl }]}>
+      <Ionicons name="person" size={14} color={g.mutedText} />
+    </View>
+  );
+});
+
+function PackDeckBase({
+  g, lang, title, testID, titleTestID, accessibilityLabel, count, level = null, words = [], author = null, authorTestID,
+  highlight, emphasis = 'normal', trailing, onPress, onLongPress, disabled, style, a11yActions,
+}: DeckProps) {
+  const lh = useLineScale();
+  const m = PACK_DECK_METRICS;
+  const shown = formatPackTitleForDisplay(title);
+  const parts = splitTitleHighlight(shown, highlight);
+  const countLevel = packDeckCountLevel(count, level);
+  const countText = countLevel.needsUnit ? `${countLevel.text} ${packCardsWord(lang, count)}` : countLevel.text;
+  const subText = author ? `${author.name} · ${countText}` : countText;
+  const chipLine = lh(18);
+
+  const body = (
+    <View style={[styles.deck, { paddingTop: m.stackTop }]}>
+      {/* зачем: два слоя стопки сзади (`.dk.a` / `.dk.b`) — глубина стопки; без собственной тени, их кромка — только тон и прозрачность. */}
+      {[m.layerA, m.layerB].map((layer) => (
+        <View
+          key={layer.top}
+          pointerEvents="none"
+          style={[styles.deckLayer, {
+            top: layer.top,
+            left: `${(100 - layer.widthPct) / 2}%`,
+            width: `${layer.widthPct}%`,
+            height: m.layerHeight,
+            borderRadius: m.layerRadius,
+            opacity: layer.opacity,
+          }]}
+        >
+          <PlateFill g={g} radius={m.layerRadius} />
+        </View>
+      ))}
+      <View
+        style={{
+          borderRadius: m.radius,
+          paddingTop: m.padTop,
+          paddingBottom: m.padBottom,
+          paddingLeft: m.padLeft,
+          paddingRight: m.padRight,
+          boxShadow: plateBoxShadow(g),
+        }}
+      >
+        <PlateFill g={g} radius={m.radius} />
+        <View style={styles.deckHead}>
+          <View style={styles.deckText}>
+            <ClampedText
+              testID={titleTestID}
+              maxLines={2}
+              accessibilityRole={onPress ? undefined : 'header'}
+              style={[styles.deckTitle, { color: g.text, lineHeight: lh(m.titleLine) }]}
+            >
+              {parts.before}
+              {parts.match ? <Text style={{ color: g.accentText }}>{parts.match}</Text> : null}
+              {parts.after}
+            </ClampedText>
+            <View style={[styles.deckSub, { marginTop: m.subGap }]}>
+              {author ? <DeckAvatar g={g} coinRank={author.coinRank} /> : null}
+              <ClampedText testID={authorTestID} maxLines={1} style={[styles.deckSubText, { color: g.secondary, lineHeight: lh(m.subLine) }]}>{subText}</ClampedText>
+            </View>
+          </View>
+          {trailing}
+        </View>
+        {words.length > 0 ? (
+          <View style={[styles.deckChips, { marginTop: m.chipsTop, gap: m.chipsGap }]}>
+            {words.map((word, index) => <DeckWordChip key={`${index}:${word}`} g={g} word={word} lineHeight={chipLine} />)}
+          </View>
+        ) : null}
+      </View>
+    </View>
+  );
+
+  // зачем: подъём/приглушение — на обёртке (как у PackRow): KitTouchable сам управляет transform нажатия.
+  return (
+    <View
+      style={[
+        { borderRadius: m.radius },
+        emphasis === 'dimmed' ? styles.dimmed : null,
+        emphasis === 'lifted' ? [styles.lifted, { boxShadow: raisedBoxShadow(g) }] : null,
+        style,
+      ]}
+    >
+      {onPress ? (
+        <KitTouchable
+          testID={testID}
+          accessibilityRole="button"
+          accessibilityLabel={accessibilityLabel ?? shown}
+          accessibilityState={{ disabled: !!disabled }}
+          accessibilityActions={a11yActions?.map(({ name, label }) => ({ name, label }))}
+          onAccessibilityAction={a11yActions ? (event) => a11yActions.find((a) => a.name === event.nativeEvent.actionName)?.run() : undefined}
+          onPress={onPress}
+          onLongPress={onLongPress}
+          delayLongPress={onLongPress ? 420 : undefined}
+          disabled={disabled}
+        >
+          {body}
+        </KitTouchable>
+      ) : (
+        <View testID={testID}>{body}</View>
+      )}
+    </View>
+  );
+}
+
+export const PackDeck = memo(PackDeckBase);
+
+/** `.pl` — круглая «играть» 44 на цвете акцента, цветная тень кнопки действия. */
+export const PackDeckPlayButton = memo(function PackDeckPlayButton({ g, label, onPress, testID, disabled }: Readonly<{ g: GlassTokens; label: string; onPress: () => void; testID: string; disabled?: boolean }>) {
+  const size = PACK_DECK_METRICS.playSize;
+  return (
+    <KitTouchable
+      testID={testID}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !!disabled }}
+      disabled={disabled}
+      onPress={onPress}
+      hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+      style={[styles.deckPlay, { width: size, height: size, borderRadius: size / 2, backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
+    >
+      <Ionicons name="play" size={20} color={g.accentInk} />
+    </KitTouchable>
+  );
+});
+
+/** `likes()` каталога — ♥ и число справа в стопке, вторичным тоном. Число — счётчик, не подпись. */
+export const PackDeckLikes = memo(function PackDeckLikes({ g, value }: Readonly<{ g: GlassTokens; value: number }>) {
+  const lh = useLineScale();
+  return (
+    <View style={styles.deckLikes} accessible accessibilityLabel={String(value)}>
+      <Ionicons name="heart-outline" size={18} color={g.secondary} />
+      <Text style={[styles.deckLikesText, { color: g.secondary, lineHeight: lh(18) }]}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
+    </View>
+  );
+});
+
 type MetaProps = Readonly<{
   g: GlassTokens;
   authorName: string;
@@ -328,6 +520,20 @@ export function PackRowCheck({ g, on }: Readonly<{ g: GlassTokens; on: boolean }
 }
 
 const styles = StyleSheet.create({
+  deck: { position: 'relative' },
+  deckLayer: { position: 'absolute' },
+  deckHead: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  deckText: { flex: 1, minWidth: 0 },
+  deckTitle: { fontSize: 21, fontWeight: '700', letterSpacing: -0.2 },
+  deckSub: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  deckSubText: { flexShrink: 1, fontSize: 13, fontWeight: '500' },
+  deckAvatar: { alignItems: 'center', justifyContent: 'center' },
+  deckChips: { flexDirection: 'row' },
+  deckChip: { flex: 1, minWidth: 0, height: 38, borderRadius: 9, paddingHorizontal: 10, justifyContent: 'center' },
+  deckChipText: { fontSize: 13, fontWeight: '600' },
+  deckPlay: { alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  deckLikes: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingTop: 2 },
+  deckLikesText: { fontSize: 13, fontWeight: '500' },
   surface: { flexDirection: 'row', alignItems: 'center', overflow: 'hidden' },
   dimmed: { opacity: 0.32 },
   // зачем (стиль «Тень»): выбранное приподнято сдвигом вверх и тенью `raised` — только transform, высота ряда не меняется.

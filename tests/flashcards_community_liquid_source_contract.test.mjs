@@ -10,7 +10,9 @@ test('community catalog uses live 13-theme tokens for static shell and controls'
   assert.match(screen, /liquidGlassTokens\(liquidGlassThemeId\)/);
   // зачем (Тень 12.10): кнопки и поле шапки каталога — плашки с тенью темы, без блюр-блика и кромки glassEdge
   assert.doesNotMatch(screen, /CatalogGlass/);
-  assert.match(screen, /backgroundColor: g\.plateFillFrom, boxShadow: plateBoxShadow\(g\)/);
+  // зачем (Карточки 2.0, cards-v2 catalog() 12.10): поле поиска и чипы каталога — общие части kit (KitSearchField, PackChips) — плашки с тенью темы, без кромки
+  assert.match(screen, /<KitSearchField g=\{g\}/);
+  assert.match(screen, /<PackChips g=\{g\}/);
   assert.doesNotMatch(screen, /borderColor: g\.glassEdge/);
 });
 
@@ -28,7 +30,7 @@ test('community tiles use tinted translucent material, real diffusion and readab
 test('catalog preserves separate real empty versus filtered search states in glass', () => {
   assert.match(hub, /catalogCommunityPacks\.length === 0/);
   assert.match(hub, /Здесь появятся наборы после публикации\./);
-  assert.match(hub, /Ничего не найдено\./);
+  assert.match(hub, /Ничего не нашли/); // cards-v2 catalogNone
   assert.match(hub, /testID="flashcards-community-empty"/);
   assert.match(hub, /boxShadow: nestedBoxShadow\(g\), alignItems: 'center', justifyContent: 'center' \}\}>/);
 });

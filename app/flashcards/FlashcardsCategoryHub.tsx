@@ -39,8 +39,7 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
-import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
-import { packRowHeight } from '../../components/packs/packRowModel';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Reanimated, {
   FadeInDown,
   useAnimatedStyle,
@@ -74,7 +73,6 @@ import {
 import { packAddFailureToast, packHideFailureToast } from '../community_packs/packQuickAdd';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry, startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
-import { topLikedPackIds } from '../community_packs/packSocial';
 import {
   applyCommunityPacksFilter,
   type CommunityPacksSort,
@@ -83,7 +81,8 @@ import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons
 import { useCommunityAuthor } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
-import { PackRow, PackRowAddButton, PackRowAuthorMeta, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
+import { PackDeck, PackDeckLikes, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
+import { packDeckLevel, packDeckWords } from '../../components/packs/packDeckModel';
 import { useLang } from '../../components/LangContext';
 import { KitTouchable } from '../../components/KitTouchable';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
@@ -126,6 +125,8 @@ type Props = {
   onResetFilters?: () => void;
   /** Сортировка каталога — круглые кнопки фильтров в шапке экрана. */
   communitySort?: CommunityPacksSort;
+  /** Фильтр по уровню A1–C2 (чип каталога); null — все уровни. Работает, когда у наборов появится поле `level`. */
+  communityLevel?: string | null;
   /** Independent language of community packs; legacy packs normalize to English. */
   packLanguage?: PackLanguage;
 };
@@ -233,13 +234,10 @@ type CommunityPackRowProps = {
   titleLang: Lang;
   g: ReturnType<typeof liquidGlassTokens>;
   owned: boolean;
-  isTop: boolean;
   emphasis: PackRowEmphasis;
   highlight: string;
   /** Живые счётчики: значение каталога + сдвиг от лайков/откликов/добавлений этой сессии (packLiveCounts). */
   likes: number;
-  added: number;
-  comments: number;
   onOpen: () => void;
   onLongPress?: () => void;
   onAdd: () => void;
@@ -248,7 +246,8 @@ type CommunityPackRowProps = {
 };
 
 /** Зазор между плашками (`.pl { margin-top: 10px }`) и от плашки до меню (`.menu { margin-top: 8px }`). */
-const STACK_GAP = 10;
+// зачем (cards-v2 `.stack.g14`): стопки столбиком через 14, тень «дышит»; меню долгого нажатия — через 8 от стопки.
+const STACK_GAP = 14;
 const MENU_GAP = 8;
 
 /** community-redesign.html #c1, экран 3: меню долгого нажатия под плашкой (`.menu`): строки 52, значок 20, текст 16/600 (макет 17, D145). */
@@ -267,60 +266,43 @@ const baseMenuStyles = StyleSheet.create({
  * долгое нажатие на чужой набор — «Пожаловаться» / «Не показывать мне».
  */
 function CommunityPackRowBase({
-  pack, uiLang, titleLang, g, owned, isTop, emphasis, highlight, likes, added, comments, onOpen, onLongPress, onAdd, opening, disabled,
+  pack, uiLang, titleLang, g, owned, emphasis, highlight, likes, onOpen, onLongPress, onAdd, opening, disabled,
 }: CommunityPackRowProps) {
   // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
   const author = useCommunityAuthor(pack, uiLang);
-  // Единственный источник цены — тот же, из которого спишет шит покупки.
-  const packPriceRunes = communityPackPriceRunes(pack);
   const title = packTitleForInterface(pack, titleLang) || packHubCodeName(pack);
-  const topLabel = triLang(uiLang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' });
   const addLabel = triLang(uiLang, {
     ru: 'Добавить себе', uk: 'Додати собі', en: 'Add to mine', es: 'Añadir',
     'pt-BR': 'Adicionar', vi: 'Thêm vào của tôi', id: 'Tambahkan', tr: 'Bana ekle', pl: 'Dodaj do siebie',
   });
-  const ownedLabel = triLang(uiLang, {
-    ru: 'В моих наборах', uk: 'У моїх наборах', en: 'In my packs', es: 'En mis packs',
-    'pt-BR': 'Nos meus pacotes', vi: 'Trong bộ của tôi', id: 'Di paket saya', tr: 'Paketlerimde', pl: 'W moich zestawach',
-  });
 
+  // зачем (владелец 12.10, cards-v2 catalog()): набор сообщества — «стопка» (общий PackDeck): аватар автора, «Автор · 49 · B2», три чипа слов,
+  // справа ♥. Быстрое «+ добавить себе» с плашки убрано (в макете его нет) — оно живёт в меню долгого нажатия и в действиях доступности,
+  // а экран набора по тапу даёт «Добавить себе +». Уровень и первые слова читаются из полей набора, пока их нет — скрыты (ждём от Ядра).
   return (
-    <PackRow
-      variant="plate"
+    <PackDeck
       g={g}
       lang={uiLang}
       title={title}
       testID={`flashcards-pack-card-${pack.id}`}
       titleTestID={`flashcards-pack-title-${pack.id}`}
+      authorTestID={`flashcards-pack-author-${pack.id}`}
       accessibilityLabel={`${title}, ${author.name}, ${pack.cardCount} ${packCardsWord(uiLang, pack.cardCount)}`}
-      leading={{ kind: 'count', count: pack.cardCount }}
-      badge={isTop ? topLabel : null}
+      count={pack.cardCount}
+      level={packDeckLevel(pack)}
+      words={packDeckWords(pack)}
+      author={{ name: author.name, coinRank: author.coinRank }}
       highlight={highlight}
       emphasis={emphasis}
       onPress={onOpen}
       onLongPress={onLongPress}
       disabled={disabled}
       a11yActions={owned || opening ? undefined : [{ name: 'add-pack', label: addLabel, run: onAdd }]}
-      meta={(
-        <PackRowAuthorMeta
-          g={g}
-          authorName={author.name}
-          coinRank={author.coinRank}
-          likes={likes}
-          added={added}
-          comments={comments}
-          // зачем цена рядом с автором (владелец 2026-09-17): свойство набора, а не наклейка; «0» — шум.
-          priceRunes={packPriceRunes}
-          authorTestID={`flashcards-pack-author-${pack.id}`}
-        />
-      )}
       trailing={opening ? (
-        <View style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ width: 24, height: 24, alignItems: 'center', justifyContent: 'center' }}>
           <ActivityIndicator size="small" color={g.secondary} />
         </View>
-      ) : (
-        <PackRowAddButton g={g} added={owned} label={owned ? ownedLabel : addLabel} onPress={onAdd} testID={`flashcards-pack-add-${pack.id}`} disabled={disabled} />
-      )}
+      ) : <PackDeckLikes g={g} value={likes} />}
     />
   );
 }
@@ -337,12 +319,9 @@ const CommunityPackRow = React.memo(CommunityPackRowBase, (prev, next) => (
   && prev.titleLang === next.titleLang
   && prev.g === next.g
   && prev.owned === next.owned
-  && prev.isTop === next.isTop
   && prev.emphasis === next.emphasis
   && prev.highlight === next.highlight
   && prev.likes === next.likes
-  && prev.added === next.added
-  && prev.comments === next.comments
   && prev.opening === next.opening
   && prev.disabled === next.disabled
   // Наличие/отсутствие long-press меняет поведение, ссылка — нет. onOpen/onAdd/onLongPress зовут свежие обработчики
@@ -366,14 +345,15 @@ export default function FlashcardsCategoryHub({
   communityQuery = '',
   onResetFilters,
   communitySort = 'popular',
+  communityLevel = null,
   packLanguage = 'en',
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const menuStyles = useScaledTextStyles(baseMenuStyles);
   // зачем: подписи строки («карточек», «Добавить себе») — на языке интерфейса (9 языков), а не на суженном языке каталога.
   const { lang: uiLang } = useLang();
-  const lineScale = useLineScale();
-  const skeletonRowH = packRowHeight('plate', lineScale);
+  // зачем: заглушка той же высоты, что стопка без чипов слов (12 стопка + 16 + название 26 + подпись 21 + 16) — без прыжка
+  const skeletonRowH = 91;
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
@@ -479,16 +459,11 @@ export default function FlashcardsCategoryHub({
     [communityPacks, hiddenCommunityPackIds],
   );
 
-  const visibleCommunityPacks = useMemo(
-    () => applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage),
-    [catalogCommunityPacks, communityQuery, communitySort, packLanguage],
-  );
-
-  /** Топ по лайкам — визуальный акцент и бейдж «В топе» (без «премиальных» коннотаций). */
-  const topPackIds = useMemo(
-    () => new Set(topLikedPackIds(catalogCommunityPacks)),
-    [catalogCommunityPacks],
-  );
+  const visibleCommunityPacks = useMemo(() => {
+    const found = applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage);
+    // зачем (cards-v2 чипы A1…B2): фильтр по уровню — клиентский, поверх уже загруженного списка, без запросов.
+    return communityLevel ? found.filter((pack) => packDeckLevel(pack) === communityLevel) : found;
+  }, [catalogCommunityPacks, communityQuery, communitySort, communityLevel, packLanguage]);
 
   useEffect(() => {
     if (Platform.OS === 'web') {
@@ -877,7 +852,9 @@ export default function FlashcardsCategoryHub({
 
   const renderCommunityPackRow = (pack: FlashcardMarketPack) => {
     const owned = isCommunityPackMine(pack);
-    const showReportShortcut = !!pack.isCommunityUgc && !owned;
+    // зачем: меню долгого нажатия есть у каждого чужого набора — в нём «Добавить себе» (быстрое добавление без экрана набора), у наборов
+    // сообщества ещё «Пожаловаться» и «Не показывать мне».
+    const showReportShortcut = !owned;
     const emphasis: PackRowEmphasis = menuPackId === null ? 'normal' : menuPackId === pack.id ? 'lifted' : 'dimmed';
     const counts = livePackCounts(countsOverlay, pack.id, packBaseCounts(pack));
 
@@ -889,12 +866,9 @@ export default function FlashcardsCategoryHub({
           titleLang={lang}
           g={g}
           owned={owned}
-          isTop={topPackIds.has(pack.id)}
           emphasis={emphasis}
           highlight={highlightQuery}
           likes={counts.likes}
-          added={counts.added}
-          comments={counts.comments}
           opening={openingPackId === pack.id}
           disabled={openingPackId !== null}
           onOpen={() => openRowRef.current(pack)}
@@ -939,6 +913,16 @@ export default function FlashcardsCategoryHub({
           boxShadow: plateBoxShadow(g), // зачем (Тень 12.10): внутреннее кольцо убрано, тень плашки из темы
         }]}
       >
+        {/* зачем (cards-v2 catalog()): круглой «+» на стопке больше нет — быстрое «Добавить себе» живёт здесь (оптимистично, как раньше). */}
+        {actionRow('flashcards-pack-add', 'add-circle-outline', triLang(uiLang, {
+          ru: 'Добавить себе', uk: 'Додати собі', en: 'Add to mine', es: 'Añadir',
+          'pt-BR': 'Adicionar', vi: 'Thêm vào của tôi', id: 'Tambahkan', tr: 'Bana ekle', pl: 'Dodaj do siebie',
+        }), () => {
+          void hapticTap();
+          setMenuPack(null);
+          quickAddRef.current(pack);
+        })}
+        {pack.isCommunityUgc ? (<>
         {actionRow('flashcards-pack-report', 'flag-outline', triLang(uiLang, {
           ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack',
           'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi bildir', pl: 'Zgłoś zestaw',
@@ -987,6 +971,7 @@ export default function FlashcardsCategoryHub({
             }
           })();
         })}
+        </>) : null}
       </View>
     );
   };
@@ -1051,9 +1036,9 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && !communityLoaded ? (
-            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: 10, paddingTop: 10 }}>
+            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
               {[0, 1, 2, 3].map((i) => (
-                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: skeletonRowH, borderRadius: 22, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
+                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: skeletonRowH, borderRadius: 20, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
               ))}
             </View>
           ) : visibleCommunityPacks.length === 0 ? (
@@ -1062,7 +1047,7 @@ export default function FlashcardsCategoryHub({
               <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
               </View>
-              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>
+              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>
                 {catalogCommunityPacks.length === 0
                   ? triLang(lang, {
                       ru: 'Здесь появятся наборы после публикации.',
@@ -1076,15 +1061,15 @@ export default function FlashcardsCategoryHub({
                       pl: 'Zestawy pojawią się tu po opublikowaniu.',
                     })
                   : triLang(lang, {
-                      ru: 'Ничего не найдено.',
-                      uk: 'Нічого не знайдено.',
-                      en: 'Nothing found.',
-                      es: 'No se encontró nada.',
-                      'pt-BR': 'Nada encontrado.',
-                      vi: 'Không tìm thấy gì.',
-                      id: 'Tidak ada yang ditemukan.',
-                      tr: 'Bir şey bulunamadı.',
-                      pl: 'Nic nie znaleziono.',
+                      ru: 'Ничего не нашли',
+                      uk: 'Нічого не знайшли',
+                      en: 'Nothing found',
+                      es: 'No encontramos nada',
+                      'pt-BR': 'Não encontramos nada',
+                      vi: 'Không tìm thấy gì',
+                      id: 'Tidak ada yang ditemukan',
+                      tr: 'Bir şey bulunamadı',
+                      pl: 'Nic nie znaleziono',
                     })}
               </FlowText>
               {/* зачем (Сверка cards-section-023 catalogNone, координатор 05.10): на пустой результат ПОИСКА — подсказка и
@@ -1104,7 +1089,7 @@ export default function FlashcardsCategoryHub({
                       style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.accent }}
                     >
                       <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '700' }}>
-                        {triLang(lang, { ru: 'Сбросить фильтры', uk: 'Скинути фільтри', en: 'Reset filters', es: 'Quitar filtros', 'pt-BR': 'Limpar filtros', vi: 'Xóa bộ lọc', id: 'Atur ulang filter', tr: 'Filtreleri sıfırla', pl: 'Wyczyść filtry' })}
+                        {triLang(lang, { ru: 'Сбросить поиск', uk: 'Скинути пошук', en: 'Reset search', es: 'Borrar la búsqueda', 'pt-BR': 'Limpar a busca', vi: 'Xóa tìm kiếm', id: 'Hapus pencarian', tr: 'Aramayı temizle', pl: 'Wyczyść wyszukiwanie' })}
                       </Text>
                     </TouchableOpacity>
                   ) : null}

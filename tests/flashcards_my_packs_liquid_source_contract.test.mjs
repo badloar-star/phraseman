@@ -10,8 +10,8 @@ const view = readFileSync(join(root, 'app/flashcards/MyPacksV2.tsx'), 'utf8');
 const kit = readFileSync(join(root, 'components/cards-grid/CardsKit.tsx'), 'utf8');
 
 test('My Packs retains real Created then Added data, create, edit and delete actions', () => {
-  // макет: «Созданные» идут раньше «Добавленных»
-  assert.ok(view.indexOf('copy.created} count={created.length}') < view.indexOf('copy.added} count={added.length}'));
+  // макет cards-v2 mySets(): один список колод без разделов — сначала созданные, затем добавленные
+  assert.ok(view.indexOf('created.map((pack) => row(pack, true))') < view.indexOf('added.map((pack) => row(pack, false))'));
   for (const token of ['onOpen={(pack) => { void openPack(pack); }}', 'onEdit={openPackEditor}', 'onDelete={setDeletePackTarget}', "pathname: '/community_pack_create'", 'onPress={() => { void deletePack(); }}']) {
     assert.ok((source + view).includes(token), `missing live action: ${token}`);
   }

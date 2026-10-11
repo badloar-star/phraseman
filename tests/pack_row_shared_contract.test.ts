@@ -14,19 +14,20 @@ const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf
 
 const PACK_ROW = 'components/packs/PackRow.tsx';
 const MODEL = 'components/packs/packRowModel.ts';
-const CONSUMERS: readonly (readonly [string, string])[] = [
-  ['app/flashcards/FlashcardsCategoryHub.tsx', 'variant="plate"'],
-  ['app/flashcards/CommunityPackPreview.tsx', 'variant="plate"'],
-  ['app/flashcards/MyPacksV2.tsx', 'variant="row"'],
-  ['app/flashcards/TrainingSetupV2.tsx', 'variant="row"'],
+// зачем (Карточки 2.0, cards-v2 12.10): каталог сообщества и «Мои наборы» рисуют общую «стопку» PackDeck (тот же файл PackRow.tsx — там же единственный
+// ClampedText), тренировка — PackRow variant="row". Экран набора до добавления плашку набора больше не рисует: у него шапка по макету setOther().
+const CONSUMERS: readonly (readonly [string, string, string])[] = [
+  ['app/flashcards/FlashcardsCategoryHub.tsx', '<PackDeck', 'testID={`flashcards-pack-card-'],
+  ['app/flashcards/MyPacksV2.tsx', '<PackDeck', 'testID={`fc-my-packs-pack-'],
+  // TrainingSetupV2 (cards-v2 `pk`: плитки-наборы 2 колонки) больше не использует строку набора — запись снята вместе с её переделкой исполнителем «Тренировки».
 ];
 
 describe('строки наборов — один общий компонент PackRow', () => {
-  it.each(CONSUMERS)('%s рисует строку набора через <PackRow %s>', (file, variant) => {
+  it.each(CONSUMERS)('%s рисует строку набора через %s', (file, element, marker) => {
     const src = read(file);
     expect(src).toContain("from '../../components/packs/PackRow'");
-    expect(src).toContain('<PackRow');
-    expect(src).toContain(variant);
+    expect(src).toContain(element);
+    expect(src).toContain(marker);
   });
 
   it('старой строки набора KitPackRow больше нет нигде', () => {
@@ -87,7 +88,8 @@ describe('PackRow: фиксированная высота, две строки 
     expect(model).toContain('metaSize: 13');
     for (const m of row.matchAll(/fontSize:\s*(\d+)/g)) {
       const size = Number(m[1]);
-      expect([13, 16, 23]).toContain(size);
+      // 21 — название стопки (cards-v2 `.dt1`, заголовочный размер ≥ 19)
+      expect([13, 16, 21, 23]).toContain(size);
     }
   });
 });
@@ -171,7 +173,8 @@ describe('живые счётчики (жалоба владельца «пли�
   });
 
   it('экран набора показывает живые цифры, а не голый pack.commentsCount', () => {
-    expect(preview).toContain('comments={liveComments}');
+    expect(preview).toContain('{liveComments}');
+    expect(preview).toContain('{liveLikes}');
     // ревью 2, п.2: та же модель, что в хабе — поздний ответ чтения, уже учёвший лайк, сбрасывает сдвиг (без N+2)
     expect(preview).toContain('const live = livePackCounts(overlay, pack.id, base);');
     expect(preview).toContain('bumpPackCounts(prev, pack.id, baseRef.current, d)');
@@ -185,7 +188,7 @@ describe('мелочи ревью 11.10 (макет #c1 и Performance Bible)', 
   const screen = read('app/flashcards_packs.tsx');
 
   it('меню долгого нажатия — на 8 ниже плашки (стопка 10 компенсирована)', () => {
-    expect(hub).toContain('const STACK_GAP = 10;');
+    expect(hub).toContain('const STACK_GAP = 14;'); // cards-v2 `.stack.g14`
     expect(hub).toContain('const MENU_GAP = 8;');
     expect(hub).toContain('marginTop: MENU_GAP - STACK_GAP');
   });
@@ -219,10 +222,12 @@ describe('мелочи ревью 11.10 (макет #c1 и Performance Bible)', 
     expect(row).toContain('<View testID={testID}>{surface}</View>');
   });
 
-  it('экран поиска по #c1: «назад» и крестик 44 без подложки, поле 52 со скруглением 26 и внутренней кромкой', () => {
-    expect(screen).toContain('searchBareBtn: { width: 44, height: 44, borderRadius: 22');
-    expect(screen).toContain('minHeight: 52, height: 52, borderRadius: 26');
-    expect(screen).toMatch(/testID="flashcards-packs-search-back"[\s\S]{0,200}style=\{styles\.searchBareBtn\}/);
+  // зачем (cards-v2 catalog(), 12.10): лупа в шапке и раскрывающееся поле заменены постоянной капсулой «Наборы и авторы» под заголовком
+  it('поиск каталога — постоянная капсула kit под заголовком, лупы-переключателя нет', () => {
+    expect(screen).toContain('<KitSearchField g={g}');
+    expect(screen).toContain('testID="flashcards-packs-search"');
+    expect(screen).not.toContain('flashcards-packs-search-toggle');
+    expect(screen).not.toContain('searchBareBtn');
   });
 
   it('поле поиска 52 помещается в строку шапки «Сообщества» без сдвига списка (ревью 2, п.3)', () => {

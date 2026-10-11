@@ -199,11 +199,13 @@ describe('каталог сообщества: строки и тексты', ()
 
   // 11.10 (владелец, журнал 29): плашка набора — Вариант 1 «Плитка-счётчик» community-redesign.html #c1,
   // общий компонент PackRow (фиксированная высота под 2 строки названия) вместо строк packs-simple.html.
-  it('наборы рисуются столбиком плашек «Плитка-счётчик» через общий PackRow', () => {
+  // 12.10 (владелец, cards-v2 catalog()): плашка «Плитка-счётчик» заменена общей «стопкой» PackDeck; круглая «+» ушла в меню долгого нажатия
+  it('наборы рисуются столбиком стопок через общий PackDeck', () => {
     expect(hub).toContain('renderCommunityPackRow');
-    expect(hub).toContain('variant="plate"');
-    expect(hub).toContain("leading={{ kind: 'count', count: pack.cardCount }}");
-    expect(hub).toContain('<PackRowAddButton');
+    expect(hub).toContain('<PackDeck');
+    expect(hub).toContain('<PackDeckLikes');
+    expect(hub).not.toContain('<PackRowAddButton');
+    expect(hub).toContain("actionRow('flashcards-pack-add'"); // быстрое «Добавить себе» живёт в меню долгого нажатия
     expect(hub).not.toContain('renderCommunityPackTile');
     expect(hub).not.toContain('minHeight: 74');
   });
@@ -227,53 +229,45 @@ describe('шапка каталога сообщества (замечания �
   const hub = read('app', 'flashcards', 'FlashcardsCategoryHub.tsx');
   const screen = read('app', 'flashcards_packs.tsx');
 
-  it('заголовок один и живёт в шапке экрана, справа от стрелки «назад»', () => {
-    expect(screen).toContain('testID="flashcards-packs-title"');
-    expect(screen).toContain("ru: 'Наборы сообщества'");
+  it('заголовок один — «Сообщество» 34/40 под панелью (cards-v2), «назад» в шапке', () => {
+    expect(screen).toContain("'flashcards-packs-title'");
+    expect(screen).toContain("ru: 'Сообщество'");
     expect(screen).toContain('testID="flashcards-header-back"');
     /** В теле каталога заголовков больше нет — дубль «Наборы» / «Наборы сообщества» убран. */
     expect(hub).not.toContain("ru: 'Наборы сообщества'");
     expect(hub).not.toMatch(/ru: 'Наборы',/);
   });
 
-  it('строки поиска на экране нет: поле прячется под круглую лупу', () => {
+  it('поиск — постоянная капсула «Наборы и авторы» (cards-v2 catalog()), без лупы-переключателя', () => {
     expect(hub).not.toContain('TextInput');
-    expect(screen).toContain('testID="flashcards-packs-search-toggle"');
+    expect(screen).toContain('<KitSearchField g={g}');
     expect(screen).toContain('testID="flashcards-packs-search"');
-    expect(screen).toContain('pointerEvents={searchOpen');
+    expect(screen).toContain("ru: 'Наборы и авторы'");
+    expect(screen).not.toContain('flashcards-packs-search-toggle');
   });
 
-  it('раскрытие поиска анимируется только opacity/transform и уважает reduceMotion', () => {
-    expect(screen).toContain('opacity: searchAnim');
-    expect(screen).toContain('transform: [{ translateX: searchTranslateX }]');
-    expect(screen).toContain('reduceMotion || isLowPowerEffective()');
-    expect(screen).toContain('duration: instant ? 0 : 190');
-    /** Анимация высоты/ширины шапки запрещена — иначе экран «дышит» при раскрытии. */
-    expect(screen).not.toMatch(/Animated\.timing\(\s*headerHeight/);
+  it('поиск находит и по имени автора', () => {
+    expect(read('app', 'community_packs', 'communityCatalogFilter.ts')).toContain('pack.authorName,');
   });
 
-  it('язык — флаг в шапке, сортировки — переключатель «Новые / Топ» под заголовком', () => {
-    expect(screen).toContain('headerRoundBtn');
-    expect(screen).toContain('width: 36,');
-    expect(screen).toContain('borderRadius: 18,');
+  it('язык — в шапке, сортировки и уровни — чипы «Популярные / Новые / A1…» под капсулой поиска', () => {
     expect(screen).toContain('<PackLanguagePicker');
     expect(screen).toContain('value={packLanguage}');
-    expect(screen).toContain("'flashcards-packs-sort-new'");
-    expect(screen).toContain("'flashcards-packs-sort-popular'");
-    expect(screen).toContain("const label = sort === 'new' ? newPacksLabel : topPacksLabel;");
-    expect(screen).toContain('accessibilityLabel={label}');
-    // зачем (11.10, макет #c1): «+» создания набора — в строке заголовка.
+    expect(screen).toContain('<PackChips g={g}');
+    expect(screen).toContain("{ id: 'popular', label: topPacksLabel }");
+    expect(screen).toContain("{ id: 'new', label: newPacksLabel }");
+    // зачем: чипы уровней рисуются, только если у наборов каталога есть уровень (данные ждём от Ядра)
+    expect(screen).toContain('...availableLevels.map(');
     expect(screen).toContain('testID="flashcards-packs-create"');
   });
 
-  it('активный фильтр выделен визуально и в accessibilityState', () => {
-    // зачем (макет community-redesign.html #c1, `.sg span.on { background: var(--acc); color: var(--on) }`):
-    // активный сегмент — заливка акцентом темы, текст «на акценте» (g.accentInk).
-    expect(screen).toContain('accessibilityState={{ selected: on }}');
-    expect(screen).toContain('on ? { backgroundColor: g.accent } : null');
-    expect(screen).toContain('color: on ? g.accentInk : g.secondary');
-    expect(screen).toContain('setCommunitySort(sort)');
-    expect(screen).toContain("(['new', 'popular'] as const).map((sort)");
+  it('активный чип выделен заливкой темы и accessibilityState (kit PackChips)', () => {
+    const chips = read('components', 'packs', 'PackScreenKit.tsx');
+    expect(chips).toContain('accessibilityState={{ selected: on }}');
+    expect(chips).toContain('on ? { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }');
+    expect(chips).toContain('color: on ? g.accentInk : g.secondary');
+    expect(screen).toContain('setCommunitySort(id)');
+    expect(screen).toContain('setCommunityLevel(id)');
   });
 
   it('по умолчанию каталог открыт на «Новые» (макет packs-simple кадр 1), ?sort=popular ведёт на «Топ»', () => {

@@ -61,13 +61,15 @@ export function communitySortIonicon(sort: CommunityPacksSort, active: boolean):
   return active ? 'flame' : 'flame-outline';
 }
 
-/** Совпадение по названию набора во всех локалях каталога. */
+/** Совпадение по названию набора во всех локалях каталога и по имени автора. */
 export function communityPackMatchesQuery(pack: FlashcardMarketPack, query: string): boolean {
   const q = query.trim().toLowerCase();
   if (!q) return true;
   const fields = [
     pack.titleRu, pack.titleUk, pack.titleEs, pack.titlePtBr,
     pack.titleVi, pack.titleId, pack.titleTr, pack.titlePl, pack.codeName,
+    // зачем (cards-v2 catalog(): капсула поиска «Наборы и авторы»): ищем и по имени автора из документа набора.
+    pack.authorName,
   ];
   return fields.some((f) => String(f ?? '').toLowerCase().includes(q));
 }

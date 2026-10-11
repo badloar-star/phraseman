@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Опрос по приглашению — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 11 — «Опрос по приглашению», реестр overlays-specialist-011…020):
+     окно components/VipSurveyModal.tsx (его открывает входящее сообщение с опросом, награда — 30 дней Plus) и шторка components/VipSurveyReviewPromptModal.tsx «Твой Plus активирован».
+     Окно по центру: слева «назад», посередине «N / 10» и полоса, справа крестик; девять вопросов (шесть с вариантами, три только текстом) + итог. На первом шаге сверху карточка «Что такое Plus?».
+     Тексты — из app/vip_survey_content.ts и самого окна (RU). Кегли по правилу владельца 16/13, заголовок вопроса 24/29. Обводки — только 1px полупрозрачные. Тёмная «Аврора» и светлая тема.
+     Замечание по тексту: «зелёная аура и зелёный ник» в карточке «Что такое Plus?» — это обещание; в награде за опрос сейчас 30 дней Plus. Текст оставлен как в коде. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --v-panel: #1B1B21; --v-ctl: #24242B; --v-sel: rgba(255,255,255,.12); --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); --v-tint: var(--acc); color: var(--v-tx); }
+  .ph.lite { --v-panel: #FBFBFD; --v-ctl: #ECECF1; --v-sel: rgba(0,0,0,.08); --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.12); --v-ink: #fff; --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .vund { position: absolute; inset: 0; padding: 62px 20px 0; } .vund .t1 { font-size: 28px; line-height: 34px; font-weight: 700; } .vund .r { height: 76px; border-radius: 18px; background: var(--v-ctl); margin-top: 12px; }
+  .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }
+  .vwrap { position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 54px 16px 36px; }
+  .vpn { width: 100%; max-height: 100%; border-radius: 22px; padding: 16px; background: var(--v-panel); box-shadow: inset 0 0 0 1px var(--v-edge), 0 18px 48px rgba(0,0,0,.35); overflow: hidden; display: flex; flex-direction: column; }
+  .vhd { display: flex; align-items: center; gap: 12px; flex: none; } .vrb { width: 44px; height: 44px; border-radius: 50%; background: var(--v-ctl); display: flex; align-items: center; justify-content: center; flex: none; box-shadow: inset 0 0 0 1px var(--v-edge); } .vrb.off { opacity: .35; } .vrb .i { width: 21px; height: 21px; }
+  .vpg { flex: 1; display: flex; flex-direction: column; gap: 6px; } .vpg .n { text-align: center; font-size: 13px; line-height: 16px; font-weight: 700; color: var(--v-sc); } .vpg .tr { height: 6px; border-radius: 999px; background: var(--v-ctl); overflow: hidden; } .vpg .tr i { display: block; height: 100%; border-radius: 999px; background: var(--v-tx); }
+  .vbd { padding: 20px 0 6px; overflow: hidden; }
+  .vintro { border-radius: 14px; padding: 12px; margin-bottom: 12px; background: var(--v-ctl); box-shadow: inset 0 0 0 1px var(--v-edge); } .vintro .t { font-size: 16px; line-height: 22px; font-weight: 700; margin-bottom: 4px; } .vintro .b { font-size: 13px; line-height: 20px; font-weight: 600; color: var(--v-sc); }
+  .vic { width: 44px; height: 44px; border-radius: 50%; background: var(--v-ctl); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; } .vic .i { width: 22px; height: 22px; }
+  .vq { font-size: 24px; line-height: 29px; font-weight: 800; margin-bottom: 16px; }
+  .vop { display: flex; flex-direction: column; gap: 10px; } .vo { min-height: 52px; border-radius: 15px; padding: 12px 13px; display: flex; align-items: center; gap: 10px; background: var(--v-ctl); box-shadow: inset 0 0 0 1px var(--v-edge); font-size: 16px; line-height: 22px; font-weight: 700; } .vo .i { width: 22px; height: 22px; color: var(--v-mu); flex: none; } .vo.on { background: var(--v-sel); box-shadow: inset 0 0 0 1px var(--v-tx); } .vo.on .i { color: var(--v-tx); }
+  .vcm { margin-top: 14px; min-height: 110px; border-radius: 16px; padding: 12px; background: var(--v-ctl); box-shadow: inset 0 0 0 1px var(--v-edge); display: flex; flex-direction: column; } .vcm .p { min-height: 62px; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--v-mu); } .vcm .p.has { color: var(--v-tx); } .vcm.big .p { min-height: 118px; } .vcm .o { margin-top: 6px; font-size: 13px; line-height: 16px; font-weight: 700; color: var(--v-mu); } .vcm .cur { display: inline-block; width: 2px; height: 20px; vertical-align: -4px; background: var(--v-tint); margin-left: 1px; }
+  .vbody { font-size: 16px; line-height: 22px; font-weight: 600; color: var(--v-sc); margin-bottom: 14px; }
+  .verr { display: flex; align-items: flex-start; gap: 10px; margin-top: 12px; padding: 12px; border-radius: 14px; background: var(--v-ctl); box-shadow: inset 0 0 0 1px var(--v-edge); font-size: 13px; line-height: 19px; font-weight: 700; } .verr .i { width: 20px; height: 20px; flex: none; }
+  .vbtn { flex: none; margin-top: 12px; min-height: 52px; border-radius: 16px; padding: 0 14px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--v-tint); color: var(--v-ink); } .vbtn.off { opacity: .55; }
+  .vex { padding: 24px 0 8px; } .vex .vq { text-align: left; } .vex .vbtn { margin-top: 0; } .vex .st { margin: 4px auto 0; min-height: 44px; display: flex; align-items: center; justify-content: center; padding: 0 20px; font-size: 16px; font-weight: 700; color: var(--v-sc); }
+  .vrv { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 28px 28px 0 0; padding: 12px 22px 40px; background: var(--v-panel); box-shadow: inset 0 0 0 1px var(--v-edge), 0 -8px 24px rgba(0,0,0,.25); } .vrv .gr { width: 36px; height: 4px; border-radius: 99px; background: var(--v-edge); margin: 0 auto 18px; } .vrv .k { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.2px; color: var(--v-sc); } .vrv .h { margin-top: 6px; font-size: 24px; line-height: 30px; font-weight: 800; } .vrv .b { margin-top: 8px; font-size: 16px; line-height: 23px; color: var(--v-sc); } .vrv .vbtn { margin-top: 18px; } .vrv .lt { margin-top: 10px; min-height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--v-ctl); }
+  .vsp { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: vsq 900ms linear infinite; margin-right: 8px; } @keyframes vsq { to { transform: rotate(360deg); } }
+  .vnt { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Опрос по приглашению — состояния</h1>
+  <p class="page-lead">Группа 11 из «экранов без макета» (реестр overlays-specialist-011…020): окно опроса «VIP» (девять вопросов и итог, за прохождение — 30 дней Plus) и шторка «Твой Plus активирован» после него. Вступление, выбор, текстовый ответ, «ответы готовы», подтверждение, четыре ошибки отправки и выход. Тёмная «Аврора» и светлая тема. Тексты — из кода.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const CHK = svg('<circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M8 12.5l3 3 5-6" stroke="#fff" stroke-width="2"/>');
+const DOT = svg('<circle cx="12" cy="12" r="9"/>');
+const ALERT = svg('<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/>');
+const SPARK = svg('<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="currentColor" stroke="none"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="currentColor" stroke="none"/>');
+const BUBBLES = icon('chat');
+const und = '<div class="vund"><div class="t1">Сообщения</div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="vdim"></div>';
+const head = (n, total, back) => `<div class="vhd"><div class="vrb t${back ? '' : ' off'}">${icon('back', 's20')}</div><div class="vpg"><div class="n">${n} / ${total}</div><div class="tr"><i style="width:${n / total * 100}%"></i></div></div><div class="vrb t">${icon('close', 's20')}</div></div>`;
+const win = (inner, btn) => `<div class="vwrap"><div class="vpn">${inner}${btn}</div></div>`;
+const btn = (t, off, busy) => `<div class="vbtn t${off ? ' off' : ''}">${busy ? '<span class="vsp"></span>' : ''}${t}</div>`;
+const opts = (list, sel) => `<div class="vop">${list.map((t, i) => `<div class="vo t${i === sel ? ' on' : ''}">${i === sel ? CHK : DOT}<span>${t}</span></div>`).join('')}</div>`;
+const comment = (ph, val, textOnly) => `<div class="vcm${textOnly ? ' big' : ''}"><div class="p${val ? ' has' : ''}">${val ? val + '<span class="cur"></span>' : ph}</div>${textOnly ? '' : '<div class="o">Необязательно</div>'}</div>`;
+const intro = '<div class="vintro"><div class="t">Что такое Plus?</div><div class="b">Plus — это полный доступ ко всем функциям. После опроса ты получишь зелёную ауру и зелёный ник.</div></div>';
+const done = (err, busy) => `<div class="vbd"><div class="vic">${SPARK}</div><div class="vq">Спасибо за помощь!</div><div class="vbody">Твои ответы помогут сделать Phraseman лучше. Нажми «Завершить опрос» — и Plus активируется.</div>${err ? `<div class="verr">${ALERT}<span>${err}</span></div>` : ''}</div>`;
+const E = {
+  net: 'Сейчас не удалось завершить опрос. Попробуй ещё раз.',
+  auth: 'Сервер не смог подтвердить аккаунт — сервис временно недоступен. Ответы никуда не пропали, попробуй ещё раз позже.',
+  svc: 'Сейчас не отправилось. Ответы сохранены — попробуй позже.',
+  elig: 'Опрос доступен, пока подписка не активна. Если Plus или Premium уже действует — награда начисляется один раз.',
+};
+const S = [
+  ['011 · Вступление', 'Первый вопрос с карточкой «Что такое Plus?». Пока ничего не выбрано — «Продолжить» приглушена, «назад» неактивен.', win(head(1, 10, false) + `<div class="vbd">${intro}<div class="vic">${BUBBLES}</div><div class="vq">Что в приложении помогает учиться лучше всего?</div>${opts(['Уроки', 'Карточки', 'Пока ничего'], -1)}${comment('Можно добавить комментарий', '', false)}</div>`, btn('Продолжить', true))],
+  ['012 · Выбор', 'Вопрос с вариантами: выбранный выделен тоном и галочкой; комментарий необязателен.', win(head(3, 10, true) + `<div class="vbd"><div class="vic">${BUBBLES}</div><div class="vq">Когда становится менее интересно?</div>${opts(['Слишком легко', 'Слишком сложно', 'Непонятны ошибки', 'Много текста', 'Не вижу прогресс', 'Не бывает'], 1)}${comment('Можно добавить комментарий', '', false)}</div>`, btn('Продолжить', false))],
+  ['013 · Текстовый ответ', 'Три вопроса — только текстом (до 500 знаков); «Продолжить» включается, как только что-то написано.', win(head(7, 10, true) + `<div class="vbd"><div class="vic">${BUBBLES}</div><div class="vq">Что бы ты улучшил(а) прямо на этой неделе?</div>${comment('Напиши ответ', 'Хочется видеть, сколько уроков осталось до экзамена', true)}</div>`, btn('Продолжить', false))],
+  ['014 · Ответы готовы', 'Последний шаг: все вопросы пройдены, остаётся «Завершить опрос» — и Plus активируется.', win(head(10, 10, true) + done(), btn('Завершить опрос', false))],
+  ['015 · Подтверждение', 'После успешной отправки — шторка с предложением оставить отзыв. «Не сейчас» закрывает; тап по фону тоже.', `<div class="vrv"><div class="gr"></div><div class="k">PLUS</div><div class="h">Твой Plus активирован</div><div class="b">Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.</div><div class="vbtn t">Написать отзыв</div><div class="lt t">Не сейчас</div></div>`],
+  ['016 · Ошибка: сеть', 'Нет связи с сервером — повторить можно сразу тем же нажатием.', win(head(10, 10, true) + done(E.net), btn('Завершить опрос', false))],
+  ['017 · Ошибка: аккаунт', 'Сервер не смог подтвердить аккаунт; ответы не пропали.', win(head(10, 10, true) + done(E.auth), btn('Завершить опрос', false))],
+  ['018 · Ошибка: сервис', 'Любой другой сбой: ответы сохранены, попробовать позже.', win(head(10, 10, true) + done(E.svc), btn('Завершить опрос', false))],
+  ['019 · Недоступно', 'Опрос только для тех, у кого подписка ещё не активна; награда начисляется один раз.', win(head(10, 10, true) + done(E.elig), btn('Завершить опрос', false))],
+  ['020 · Выход', 'Крестик или «назад» при уже данных ответах: «Ответы пропадут. Выйти?». Без ответов окно закрывается сразу.', win(`<div class="vex"><div class="vic">${ALERT}</div><div class="vq">Ответы пропадут. Выйти?</div><div class="vbtn t">Выйти</div><div class="st t">Остаться</div></div>`, '')],
+  ['+ · Отправка', 'Идёт отправка: кнопка «Активируем…», крестик и «назад» не работают, повторное нажатие блокируется.', win(head(10, 10, true) + done(), btn('Активируем...', true, true))],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(und + h, lite)}<div class="vnt">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

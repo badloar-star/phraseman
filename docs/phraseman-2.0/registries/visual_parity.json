@@ -22841,10 +22841,10 @@
       "id": "overlays-specialist-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 11,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 1,
+        "label": "VIP-опрос · вступление",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · вступление",
@@ -22862,18 +22862,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 12,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 2,
+        "label": "VIP-опрос · выбор",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · выбор",
@@ -22891,18 +22892,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 13,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 3,
+        "label": "VIP-опрос · текст",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · текст",
@@ -22920,18 +22922,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 14,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 4,
+        "label": "VIP-опрос · ответы готовы",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · ответы готовы",
@@ -22949,18 +22952,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 15,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 5,
+        "label": "VIP-опрос · подтверждение",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · подтверждение",
@@ -22978,18 +22982,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 16,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 6,
+        "label": "VIP-опрос · сеть",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · сеть",
@@ -23007,18 +23012,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 17,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 7,
+        "label": "VIP-опрос · аккаунт",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · аккаунт",
@@ -23036,18 +23042,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 18,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 8,
+        "label": "VIP-опрос · сервис",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · сервис",
@@ -23065,18 +23072,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 19,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 9,
+        "label": "VIP-опрос · недоступно",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · недоступно",
@@ -23094,18 +23102,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-020",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 20,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/vip-survey-states.html",
+        "phone": 10,
+        "label": "VIP-опрос · выход",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос по приглашению",
       "state": "VIP-опрос · выход",
@@ -23123,9 +23132,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 11, опрос по приглашению), эталон сразу"
     },
     {
       "id": "overlays-specialist-021",

@@ -1,12 +1,11 @@
 {
-  "total": 236,
+  "total": 235,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
     "app/achievements_screen.tsx": 7,
     "app/ai_companion_session.tsx": 14,
     "app/combined_lesson_pick.tsx": 2,
-    "app/flashcards/FlashcardDetailsBody.tsx": 1,
     "app/hint.tsx": 8,
     "app/level_exam.tsx": 1,
     "app/pack_opening.tsx": 1,

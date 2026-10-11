@@ -4,6 +4,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
 import type { CardItem, FlashcardContentLang } from './types';
 import ReportErrorButton from '../../components/ReportErrorButton';
+import { RowDivider } from '../../components/v2/RowDivider';
 
 /** Прибирає дубль із заголовком секції «ДОСЛІВНО» (у JSON часто лишають «Дослівно: …»). */
 function stripLiteralHeadingDuplicate(text: string, lang: FlashcardContentLang): string {
@@ -146,7 +147,8 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
           >
             {LITERAL_LABEL[labelLang]}:
           </Text>
-          <View style={[ss.blockRail, { borderLeftColor: `${t.accent}99` }]}>
+          <View style={ss.blockRail}>
+            <RowDivider edge="left" color={`${t.accent}99`} />
             <Text
               maxFontSizeMultiplier={1.35}
               style={{
@@ -163,7 +165,8 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
       )}
       {bodyText && (
         <View style={[ss.block, ss.blockLast, ss.descBlockWrap]}>
-          <View style={[ss.blockRail, { borderLeftColor: `${t.textMuted}66` }]}>
+          <View style={ss.blockRail}>
+            <RowDivider edge="left" color={`${t.textMuted}66`} />
             <Text
               maxFontSizeMultiplier={1.35}
               style={{
@@ -233,7 +236,7 @@ const ss = StyleSheet.create({
     bottom: 6,
   },
   blockRail: {
-    borderLeftWidth: 1, // зачем (координатор 11.10): боковая полоса толще 1 pt — запрещена; оставлена тонкая линия-направляющая
+    // зачем (владелец 12.10, стиль «Тень»): направляющая слева — линия-View (RowDivider edge=left, 1 волосок), а не borderLeft
     paddingLeft: 12,
     paddingTop: 2,
     paddingBottom: 2,

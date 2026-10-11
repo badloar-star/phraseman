@@ -198,6 +198,35 @@ describe('lingman_youtube', () => {
     }
   });
 
+  // зачем (аудит стоимости 11.10, HOME-COLD_cold3: video_feed:network_ok дважды за 100 мс): два одновременных запроса
+  // ленты (живая и уходящая Главная) делят одну загрузку; последовательные вызовы по-прежнему идут в сеть.
+  it('concurrent snapshot requests share one feed download; a later request downloads again', async () => {
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    await storage.clear();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const originalFetch = global.fetch;
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+      <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+        <entry><yt:videoId>sharedvid01</yt:videoId><title>Shared lesson</title>
+          <published>2026-10-11T10:00:00+00:00</published><updated>2026-10-11T10:00:00+00:00</updated>
+          <media:group><media:description>Full lesson.</media:description></media:group></entry>
+      </feed>`;
+    const fetchMock = jest.fn(async () => ({ ok: true, status: 200, text: async () => xml }));
+    global.fetch = fetchMock as unknown as typeof fetch;
+    try {
+      const [a, b] = await Promise.all([getLingmanYoutubeSnapshot(), getLingmanYoutubeSnapshot()]);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(a.latestVideoId).toBe('sharedvid01');
+      expect(b.latestVideoId).toBe('sharedvid01');
+
+      await getLingmanYoutubeSnapshot();
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+    } finally {
+      global.fetch = originalFetch;
+      warn.mockRestore();
+    }
+  });
+
   // зачем (Сверка 01:40, HOME-COLD_cold1: «YouTube feed failed: 404»): после 404 лента до конца запуска берёт
   // сохранённый/встроенный список и в сеть этого канала не ходит — повтор на каждом фокусе Главной бесполезен.
   it('after a 404 serves the cached/builtin list and skips the network for the rest of the launch', async () => {

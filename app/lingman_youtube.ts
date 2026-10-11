@@ -434,11 +434,28 @@ export function resetLingmanFeedNotFoundForTests(): void {
   feedNotFoundChannelThisLaunch = null;
 }
 
-export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
+// зачем (аудит стоимости 11.10, HOME-COLD_cold3: video_feed:network_ok дважды за 100 мс — живая и уходящая Главная):
+// одновременные запросы одной ленты делят одну загрузку. Последовательные вызовы, как и раньше, идут в сеть.
+let feedDownloadInFlight: { url: string; promise: Promise<LingmanYoutubeVideo[]> } | null = null;
+
+export function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
+  const url = getActiveFeedUrl();
+  if (feedDownloadInFlight && feedDownloadInFlight.url === url) {
+    console.log('[HOME-COLD] video_feed:joined_in_flight'); // guard-ok: видно, что второй запрос не ушёл в сеть
+    return feedDownloadInFlight.promise;
+  }
+  const promise = downloadLingmanYoutubeVideos(url).finally(() => {
+    if (feedDownloadInFlight?.promise === promise) feedDownloadInFlight = null;
+  });
+  feedDownloadInFlight = { url, promise };
+  return promise;
+}
+
+async function downloadLingmanYoutubeVideos(feedUrl: string): Promise<LingmanYoutubeVideo[]> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), LINGMAN_FEED_TIMEOUT_MS);
   try {
-    const response = await fetch(getActiveFeedUrl(), {
+    const response = await fetch(feedUrl, {
       headers: {
         Accept: 'application/atom+xml, application/xml, text/xml',
       },

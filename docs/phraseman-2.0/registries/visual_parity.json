@@ -33,8 +33,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-001.png",
-      "evidence_at": "2026-10-11T08:45:25.551Z",
-      "evidence_sha256": "eb33a8e816655112ccbae9485b06436867cb288956dd9f24bf526134f2c9e489",
+      "evidence_at": "2026-10-11T14:17:09.449Z",
+      "evidence_sha256": "61b7c62c1957da1cc5ffbc820d4bb1c3966968ddcaacec5b422c8ec6acd40cb2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -63,9 +63,6 @@
       "matrix_status": "🏠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/cards-002.png",
-      "evidence_at": "2026-10-11T08:45:28.228Z",
-      "evidence_sha256": "03caec0e12b25f01d070598346479808ac9597a58b6ed54c6ce554d1361b1e55",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -15704,12 +15701,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "diffs": [],
+      "status": "removed_by_owner",
+      "reviewed_by": "решение координатора 11.10 (правило владельца 22.09)",
+      "reviewed_at": "2026-10-11T14:17:21.366Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -15721,7 +15716,9 @@
         "verdict": "diff",
         "notes": "Нет в коде «Подтверждаем удаление… / Запрос уже отправлен… / Проверяем статус…». ВАЖНО: правило владельца 22.09 — «уведомлений об удалении не показывать НИКОГДА»; образец, вероятно, противоречит → решение координатора (убрать из первого выпуска?).",
         "to": "Координатор"
-      }
+      },
+      "prev_status": "diff",
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
     },
     {
       "id": "profile-032",
@@ -15746,12 +15743,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "diffs": [],
+      "status": "removed_by_owner",
+      "reviewed_by": "решение координатора 11.10 (правило владельца 22.09)",
+      "reviewed_at": "2026-10-11T14:17:21.366Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -15763,7 +15758,9 @@
         "verdict": "diff",
         "notes": "Нет в коде «Статус удаления неизвестен / Проверить статус…». То же правило владельца (не показывать уведомления об удалении) → решение координатора.",
         "to": "Координатор"
-      }
+      },
+      "prev_status": "diff",
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
     },
     {
       "id": "profile-033",
@@ -15788,12 +15785,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "diffs": [],
+      "status": "removed_by_owner",
+      "reviewed_by": "решение координатора 11.10 (правило владельца 22.09)",
+      "reviewed_at": "2026-10-11T14:17:21.366Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -15805,7 +15800,9 @@
         "verdict": "diff",
         "notes": "Нет в коде «Удаление отклонено…». То же → решение координатора.",
         "to": "Координатор"
-      }
+      },
+      "prev_status": "diff",
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
     },
     {
       "id": "profile-034",
@@ -15830,12 +15827,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "diffs": [],
+      "status": "removed_by_owner",
+      "reviewed_by": "решение координатора 11.10 (правило владельца 22.09)",
+      "reviewed_at": "2026-10-11T14:17:21.366Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -15847,7 +15842,9 @@
         "verdict": "diff",
         "notes": "Нет в коде «Доступ к старому аккаунту закрыт / Остаточная очистка…». То же → решение координатора.",
         "to": "Координатор"
-      }
+      },
+      "prev_status": "diff",
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
     },
     {
       "id": "profile-035",
@@ -15872,12 +15869,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "diffs": [],
+      "status": "removed_by_owner",
+      "reviewed_by": "решение координатора 11.10 (правило владельца 22.09)",
+      "reviewed_at": "2026-10-11T14:17:21.366Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -15889,7 +15884,9 @@
         "verdict": "diff",
         "notes": "Нет в коде «Удаление завершено / Все связанные данные удалены…». То же → решение координатора.",
         "to": "Координатор"
-      }
+      },
+      "prev_status": "diff",
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
     },
     {
       "id": "results-001",

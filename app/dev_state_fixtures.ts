@@ -104,6 +104,8 @@ export type DevStateRequest = Readonly<{
   delete?: 'fail' | 'ok';
   /** `identity_retired` при входе (auth-gap-008). */
   restore?: 'retired' | 'ok';
+  /** Имя на экране приветствия (onboarding-010): произвольная строка до 24 символов, пустая снимает. */
+  greet?: string;
   /** Строка про перенос Plus в окне смены аккаунта (auth-gap-012). */
   plustransfer?: 'on' | 'off';
   /** План подписки только в памяти (экран «Управление подпиской», значение «Год» в Настройках): yearly|monthly|lifetime, off снимает. */
@@ -202,6 +204,9 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.delete = pick('delete', ['fail', 'ok'] as const);
   request.restore = pick('restore', ['retired', 'ok'] as const);
   request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
+  // зачем: регистр имени важен — берём сырую строку (one() приводит к нижнему), обрезаем до 24 как настоящее первое слово имени.
+  const greetRaw = Array.isArray(params.greet) ? params.greet[0] : params.greet;
+  if (typeof greetRaw === 'string') request.greet = greetRaw.trim().slice(0, 24);
   request.plan = pick('plan', ['yearly', 'monthly', 'lifetime', 'off'] as const);
   request.studyfail = pick('studyfail', ['on', 'off'] as const);
   request.support = pick('support', ['fail', 'ok'] as const);
@@ -393,6 +398,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.logout !== undefined) await step('logout', request.logout, async () => setDevAccountState({ logoutMode: request.logout === 'ok' ? null : request.logout! }));
   if (request.delete !== undefined) await step('delete', request.delete, async () => setDevAccountState({ deleteFail: request.delete === 'fail' }));
   if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({ restoreRetired: request.restore === 'retired' }));
+  if (request.greet !== undefined) await step('greet', request.greet || 'off', async () => setDevAccountState({ greetName: request.greet || null }));
   if (request.plustransfer !== undefined) await step('plustransfer', request.plustransfer, async () => setDevAccountState({ plusTransfer: request.plustransfer === 'on' }));
   if (request.plan !== undefined) {
     await step('plan', request.plan, async () => {

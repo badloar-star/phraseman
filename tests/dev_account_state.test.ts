@@ -22,7 +22,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { applyDevState, parseDevStateParams } from '../app/dev_state_fixtures';
 import {
-  getDevSignInError, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
+  getDevGreetName, getDevSignInError, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
 } from '../app/dev_account_state';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
@@ -61,6 +61,21 @@ describe('dev account states', () => {
     expect(mockStorage.setItem).not.toHaveBeenCalled();
   });
 
+  it('passes the greeting name through with its case, trimmed to 24 characters, and clears it on empty', async () => {
+    expect(parseDevStateParams({ greet: 'Aleksandrovich-Konstantinopolskiy-Long' }).request.greet).toBe('Aleksandrovich-Konstanti');
+    expect(parseDevStateParams({ greet: '  Alex ' }).request.greet).toBe('Alex');
+    await applyDevState({ greet: 'Alex' });
+    expect(getDevGreetName()).toBe('Alex');
+    await applyDevState({ greet: '' });
+    expect(getDevGreetName()).toBeNull();
+    mockStoreRelease = true;
+    expect(setDevAccountState({ greetName: 'Alex' })).toBe(false);
+    mockStoreRelease = false;
+    setDevAccountState({ greetName: 'Alex' });
+    mockStoreRelease = true;
+    expect(getDevGreetName()).toBeNull(); // в стор-сборке имя не отдаётся, даже если уже стояло
+  });
+
   it('refuses both the plain and the forced sign-out so real wiping is unreachable', () => {
     setDevAccountState({ logoutMode: 'fail' });
     expect(getDevSignOutOutcome(false)).toMatchObject({ reason: 'wipe_failed', delayMs: 0 });
@@ -76,10 +91,15 @@ describe('dev account states', () => {
     setDevAccountState({ switchMode: 'slow' });
     expect(getDevSignOutOutcome(false)?.delayMs).toBeGreaterThan(45_000);
     setDevAccountState({ switchMode: 'not_uploaded' });
-    expect(getDevSignOutOutcome(false)).toBeNull(); // это ошибка ВХОДА, а не выхода
-    expect(getDevSignInError()).toBe('local_progress_not_uploaded');
+    expect(getDevSignInError()).toBe('local_progress_not_uploaded'); // экран — ошибка ВХОДА…
+    expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed'); // …но выход при этом тоже отказывает: настоящее стирание недостижимо
+    expect(getDevSignOutOutcome(true)?.reason).toBe('unknown');
     setDevAccountState({ switchMode: 'backup_blocked' });
     expect(getDevSignInError()).toBe('local_progress_backup_blocked');
+    expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed');
+    setDevAccountState({ switchMode: null, restoreRetired: true });
+    expect(getDevSignInError()).toBe('identity_retired');
+    expect(getDevSignOutOutcome(false)).toBeNull(); // без switch/logout выход — настоящий, как в обычной сборке
   });
 
   it('does nothing in a store build', async () => {

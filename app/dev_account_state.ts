@@ -28,8 +28,10 @@ type State = {
   deleteFail: boolean;
   restoreRetired: boolean;
   plusTransfer: boolean;
+  /** `greet=<строка>`: имя на экране приветствия онбординга (onboarding-010, длинное имя). */
+  greetName: string | null;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null };
 let state: State = EMPTY;
 
 function devAccountAvailable(): boolean {
@@ -44,6 +46,7 @@ export function setDevAccountState(patch: Partial<{
   deleteFail: boolean;
   restoreRetired: boolean;
   plusTransfer: boolean;
+  greetName: string | null;
 }>): boolean {
   if (!devAccountAvailable()) {
     console.warn(`${LOG} account: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -56,6 +59,7 @@ export function setDevAccountState(patch: Partial<{
     deleteFail: patch.deleteFail ?? state.deleteFail,
     restoreRetired: patch.restoreRetired ?? state.restoreRetired,
     plusTransfer: patch.plusTransfer ?? state.plusTransfer,
+    greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
   };
   console.log(`${LOG} account: ${JSON.stringify(state)}`); // guard-ok: единичный лог на ссылку
   return true;
@@ -75,12 +79,16 @@ export function getDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null 
   if (state.logoutMode === 'fail') return { reason: 'wipe_failed', detail: 'dev_logout_fail', delayMs: 0 };
   if (state.logoutMode === 'precommit') return { reason: 'sync_failed', delayMs: 0 };
   const mode = state.switchMode;
-  if (mode === null || mode === 'not_uploaded' || mode === 'backup_blocked') return null;
+  if (mode === null) return null; // нет флагов — настоящее поведение, как в стор-сборке
+  // зачем (ревью безопасности 12.10): при ЛЮБОМ включённом switch= настоящее стирание недостижимо — и для not_uploaded/backup_blocked (их экран — ошибка ВХОДА,
+  // но в настройках вход идёт после выхода: выход тоже должен отказать, а не стереть данные).
   if (forced) return { reason: 'unknown', detail: 'dev_guard', delayMs: 0 };
   switch (mode) {
     case 'pending_spend': return { reason: 'pending_shard_spend', delayMs: 0 };
     case 'quarantine': return { reason: 'shard_queue_quarantined', delayMs: 0 };
     case 'slow': return { reason: 'sync_failed', delayMs: 50_000 }; // дольше ACCOUNT_SWITCH_UI_DEADLINE_MS (45 с)
+    case 'not_uploaded':
+    case 'backup_blocked':
     case 'unsaved_cards':
     case 'guard': return { reason: 'sync_failed', delayMs: 0 };
   }
@@ -108,6 +116,14 @@ export function isDevDeleteFail(): boolean {
 /** `plustransfer=on`: в окне смены аккаунта показать строку про перенос Plus (auth-gap-012). */
 export function isDevPlusTransferNotice(): boolean {
   return devAccountAvailable() && state.plusTransfer;
+}
+
+/**
+ * `greet=<строка>`: имя для экрана приветствия вместо имени из Google (onboarding-010 — длинное имя). Строка обрезается до 24 символов (как у
+ * настоящего первого слова имени), нигде не хранится и никуда не уходит. Вне dev — всегда null. Вставку в CleanOnboarding делает Авторизация.
+ */
+export function getDevGreetName(): string | null {
+  return devAccountAvailable() ? state.greetName : null;
 }
 
 /** Только для тестов. */

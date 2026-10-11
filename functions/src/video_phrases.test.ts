@@ -67,6 +67,24 @@ describe('video pack document', () => {
     expect(String(doc.titleRu).trim().length).toBeGreaterThan(0);
   });
 
+  // зачем (владелец, журнал строки 4–5): sourceName = имя файла из админки; в витрине было «… 500 фраз.docx»
+  // и автор «Автор сообщества». Название — без хвоста файла, автор — признак официального набора.
+  it('пишет название без расширения файла и признак официального набора', () => {
+    const doc = build({ sourceName: 'Английский по-человечески — 500 фраз.docx' });
+    expect(doc).toMatchObject({
+      title: 'Английский по-человечески — 500 фраз',
+      titleRu: 'Английский по-человечески — 500 фраз',
+      videoTitle: 'Английский по-человечески — 500 фраз',
+      authorStableId: 'video:dQw4w9WgXcQ',
+    });
+    const cards = doc.cards as { origin: { sourceTitle: string } }[];
+    expect(cards[0].origin.sourceTitle).toBe('Английский по-человечески — 500 фраз');
+  });
+
+  it('из одного расширения не делает пустое название', () => {
+    expect(build({ sourceName: '.docx' }).titleRu).toBe('Фразы из видео');
+  });
+
   it('кладёт объяснение фразы в description карточки — это и даёт шеврон подробностей', () => {
     const cards = build().cards as { description: string; en: string }[];
     expect(cards[0]).toMatchObject({ en: 'boarding pass', description: 'Дают на стойке регистрации.' });

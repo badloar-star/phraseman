@@ -15,6 +15,7 @@ import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, PACK_LANGUAGE_CHOICES, type PackLanguage } from '../flashcards/pack_languages';
 import { DebugLogger } from '../debug-logger';
 import { cardVideoStartSecFromRaw } from '../flashcards/video_moment';
+import { cleanPackSourceTitle } from '../../shared/pack_source_title';
 import { captureAccountGeneration, subscribeAccountGeneration } from '../account_generation';
 
 function num(v: unknown, d = 0): number {
@@ -43,6 +44,18 @@ function videoIdOrUndefined(value: unknown): string | undefined {
     return undefined;
   }
   return raw;
+}
+
+/**
+ * Название набора из документа — без хвоста файла.
+ *
+ * зачем (владелец, журнал строка 5; координатор 14:10): наборы роликов, записанные до правки сервера, несут название
+ * из имени файла («… 500 фраз.docx»). Чистим при чтении: ноль записей и ноль лишних чтений вместо миграции в проде.
+ * Если от названия ничего не осталось — оставляем как было, чтобы набор не пропал из каталога.
+ */
+function packTitleField(value: unknown): string {
+  const raw = String(value ?? '').trim();
+  return cleanPackSourceTitle(raw) || raw;
 }
 
 export type MapCommunityPackDocOptions = {
@@ -89,14 +102,14 @@ export function mapCommunityPackDocToMarket(
   ) {
     return null;
   }
-  const titleRu = String(data.titleRu ?? '').trim();
-  const titleUk = String(data.titleUk ?? '').trim();
-  const titleEs = String(data.titleEs ?? '').trim();
-  const titlePtBr = String(data.titlePtBr ?? '').trim();
-  const titleVi = String(data.titleVi ?? '').trim();
-  const titleId = String(data.titleId ?? '').trim();
-  const titleTr = String(data.titleTr ?? '').trim();
-  const titlePl = String(data.titlePl ?? '').trim();
+  const titleRu = packTitleField(data.titleRu);
+  const titleUk = packTitleField(data.titleUk);
+  const titleEs = packTitleField(data.titleEs);
+  const titlePtBr = packTitleField(data.titlePtBr);
+  const titleVi = packTitleField(data.titleVi);
+  const titleId = packTitleField(data.titleId);
+  const titleTr = packTitleField(data.titleTr);
+  const titlePl = packTitleField(data.titlePl);
   if (!titleRu && !titleUk && !titleEs && !titlePtBr && !titleVi && !titleId && !titleTr && !titlePl) return null;
   const codeNameRaw = String(data.codeName ?? '').trim();
   const cat = (data.category as FlashcardPackCategory) ?? 'slang';
@@ -168,7 +181,7 @@ export function mapCommunityPackDocToMarket(
      * Поля нет у обычных наборов — тогда undefined, и блок видео просто не рисуется.
      */
     videoId: videoIdOrUndefined(data.videoId),
-    videoTitle: String(data.videoTitle ?? '').trim() || undefined,
+    videoTitle: packTitleField(data.videoTitle) || undefined,
     videoDurationSec: Math.max(0, num(data.videoDurationSec)) || undefined,
     isOfficial: false,
     isCommunityUgc: true,

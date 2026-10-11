@@ -9,6 +9,8 @@ import { recordAiOperationUsage } from './ai_operation_billing';
 import { reserveContentFactoryBudget } from './content_factory/content_factory_budget';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { normalizeVideoPhraseList, type VideoPhrase } from '../../shared/video_phrases_contract';
+import { cleanPackSourceTitle } from '../../shared/pack_source_title';
+import { officialVideoPackAuthorId } from '../../shared/official_pack_marker';
 import {
   parseYoutubeCatalogManifest,
   parseYoutubeChannelSnapshot,
@@ -123,7 +125,8 @@ export function buildVideoPackDoc(args: Readonly<{
   keepSocial: boolean;
 }>): Record<string, unknown> {
   const { videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial } = args;
-  const videoTitle = String(sourceName ?? '').trim().slice(0, 240);
+  // зачем (владелец, журнал строка 5): sourceName = имя файла из админки («… 500 фраз.docx») — в витрину без хвоста файла.
+  const videoTitle = cleanPackSourceTitle(sourceName).slice(0, 240);
   /** Маппер каталога отбрасывает набор с пустым titleRu — запасное имя обязательно. */
   const title = videoTitle || 'Фразы из видео';
   const detectedLanguage = detectPackLanguage(phrases);
@@ -174,7 +177,8 @@ export function buildVideoPackDoc(args: Readonly<{
     status: 'published',
     listingStatus: 'published',
     priceRunes: 0,
-    authorStableId: `video:${id}`,
+    /** Признак официального набора (shared/official_pack_marker.ts) — по нему клиент пишет «Professor Lingman». */
+    authorStableId: officialVideoPackAuthorId(id),
     publishedAtMs: nowMs,
     publishedBy: actorUid,
     updatedAt: nowMs,

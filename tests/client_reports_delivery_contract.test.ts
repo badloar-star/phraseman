@@ -56,7 +56,9 @@ describe('client report delivery contract', () => {
     expect(wrapper).toContain('buildSpireTaskReportSubmission');
     expect(wrapper).not.toContain('router.');
     expect(stepScreen).toContain('<SpireTaskReportButton');
-    expect(stepScreen).toContain('stableUid: uid');
+    // зачем (Ядро 11.10): жалоба несёт СТАБИЛЬНЫЙ id (ids.stableId из use_spire_game, ступень не рисуется без него),
+    // а не uid входа — сторож ждал старое имя переменной `uid`, смысл тот же.
+    expect(stepScreen).toContain('stableUid: stableId');
     expect(stepScreen).toContain('studyTarget: reportableTarget');
     expect(stepScreen).toContain("studyTarget === 'it'");
     expect(stepScreen).toContain('removeFromRemainingRun=');

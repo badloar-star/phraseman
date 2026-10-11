@@ -1,0 +1,30 @@
+ВЫХОД ИЗ №2 (Сверка, 2026-10-12 00:00) и ВХОД В №2 после «Сменить аккаунт?»
+ВХОД: confirm tapped 23:58:41 → [AUTH-LINK-GOOGLE] result merged_devices 23:59:36 (tookMs 25487 в самой функции; всего ~55 с от тапа) → Главная NAV-PAINT 23:59:42 (3054 мс). Два [ACC-SWITCH-WIPE] wipe_stages 23:58:57 и 23:59:33.
+
+LOGOUT tapped 00:00:31.169
+signout done marker at ~18s
+10-12 00:00:30.980 I/ReactNativeJS( 8231): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":false,"allowPendingShardSpendDiscard":false}'
+10-12 00:00:31.027 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":1,"t":2910535}
+10-12 00:00:31.033 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":6,"pendingSpend":0,"t":2910540}
+10-12 00:00:31.040 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":13,"t":2910547}
+10-12 00:00:43.067 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":12040,"synced":false,"t":2922574}
+10-12 00:00:43.068 W/ReactNativeJS( 8231): [ACC-SWITCH-WIPE] signout force_sync {"synced":false,"allowWipeWithoutSync":false,"t":2922575}
+10-12 00:00:43.135 W/ReactNativeJS( 8231): [ACC-MUT] backup:shelved_other_owner reason=normal_switch owner=h:1964e1f6 stamp=mv4ffgsq bytes=486 shelfCount=1 shelfBytes=49968 evicted=0
+10-12 00:00:44.606 W/ReactNativeJS( 8231): [ACC-MUT] backup:previous_pages_kept reason=shelved owner=h:1964e1f6
+10-12 00:00:44.606 I/ReactNativeJS( 8231): '[ACC-MUT] signout:out', '{"ok":false,"reason":"sync_failed","detail":null,"synced":null,"tookMs":13628}'
+10-12 00:00:44.607 I/ReactNativeJS( 8231): '[ACC-MUT] ui:logout_attempt_1', '{"ok":false,"reason":"sync_failed","detail":null}'
+10-12 00:00:44.608 I/ReactNativeJS( 8231): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":true}'
+10-12 00:00:44.614 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":4,"t":2924121}
+10-12 00:00:44.620 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":10,"pendingSpend":0,"t":2924127}
+10-12 00:00:46.367 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":1743,"t":2925860}
+10-12 00:00:50.301 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":5689,"synced":true,"t":2929806}
+10-12 00:00:50.303 W/ReactNativeJS( 8231): [ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":true,"t":2929809}
+10-12 00:00:50.304 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":5694,"t":2929811}
+10-12 00:00:51.940 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":7327,"t":2931444}
+10-12 00:00:53.098 W/ReactNativeJS( 8231): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":132,"collectKeysMs":68,"collectKeysKeys":2217,"noteStashMs":17,"removeKeysMs":173,"removeKeysKeys":2214,"giftReceiptsMs":1,"customizationMs":12,"dialogueMemoryMs":3,"lateLearningV2Ms":7,"lateLearningV2Keys":8,"giftReceipts2Ms"
+10-12 00:00:54.830 W/ReactNativeJS( 8231): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":10221,"kind":"resumed","t":2934338}
+10-12 00:00:54.831 I/ReactNativeJS( 8231): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":10224}'
+10-12 00:00:54.831 I/ReactNativeJS( 8231): '[ACC-MUT] ui:logout_attempt_2_forced', '{"ok":true,"reason":null,"detail":null}'
+ALLDONE4
+
+ИТОГ ВЫХОДА: тап 00:00:31 → гость/онбординг 00:00:54 = ~24 с: попытка 1 (allowWipeWithoutSync=false) force_sync_done 12,0 с synced=false → sync_failed (13,6 с); попытка 2 forced: force_sync 5,7 с synced=true, lock_wait→quarantine_resume 10,2 с → ok. Итого два круга синка вместо одного.

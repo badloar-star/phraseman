@@ -34,3 +34,8 @@
 - **Тесты:** новый `aa_auth_error_codes_only` 11/11 (сторож + поведенческие «ошибка с user@example.com → нигде нет @»), `auth_provider_behavior` 110/110, `stable_link` 35/35, `double_tap` 29/29, `guest_server_delete` 12/12, `release_floor` 19/19.
 - **Следующим шагом (хвост ревью, LOW/MEDIUM):** ошибки без кода видны как `error_without_code` — добавить безопасный признак (`e.name`, числовой код); ужесточить сторож теста (стадия firebase, ветка `redacted_text`, `errStr`/`msg` в logAuthEvent, строки в подсчёте скобок).
 - **🟡 Вне моей полосы, на решение:** `app/app_health.ts` пишет `userName` в `app_errors` (Firestore) — вопрос приватности; в DEV-сборке `runGoogleNativeSignIn: success, email=…` печатает почту (до пользователей не доходит).
+
+## §AUTH-0300 — 2026-10-11 03:00: хвост ревью по кодам ошибок закрыт (155e66086, ревью APPROVE)
+- `identityErrorCode`: целый числовой код (Google Sign-In `12501`) больше не теряется; ошибка без кода с особым классом → `error_without_code:TypeError`; обычный `Error` — прежний `error_without_code`. Текст сообщения по-прежнему не пропускается. Потребители (9 файлов) результат только печатают; классификатор отказов аварийной копии не зависит.
+- Сторож ловит `errStr`/`msg` в `logAuthEvent`, firebase-тест закрепляет стадию. Тесты: codes_only 12/12, behavior 110/110, s2c_user_cases 6/6, s2d_presync_refusal 12/12.
+- Дальше в моей полосе: живая проверка удаления гостя без сети (жду окна «Эмулятора»); решение LOW-1 (7 дней) — за координатором.

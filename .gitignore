@@ -6,6 +6,8 @@ node_modules/
 # Expo
 .expo/
 dist/
+# стор-экспорт для гейта dev-строк (scripts/store_bundle_dev_strings_gate.mjs) — бандл не коммитим
+dist-store/
 web-build/
 expo-env.d.ts
 

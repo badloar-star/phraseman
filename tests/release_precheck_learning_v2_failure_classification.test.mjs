@@ -28,6 +28,8 @@ test("Learning V2 parity failure cannot masquerade as a missing EAS secret", (t)
     // зачем (12.10): гейт переходов на вырезанные маршруты появился в precheck 10.10 — без заглушки копия падала
     // «модуль не найден», и сторож считал 2 провала вместо 1 (красный не по своей причине).
     "store_route_reachability.mjs",
+    // зачем (12.10): гейт dev-строк стор-бандла подключён в precheck — без заглушки копия падала бы «модуль не найден».
+    "store_bundle_dev_strings_gate.mjs",
   ]) {
     fs.writeFileSync(path.join(scripts, script), "process.exitCode = 0;\n");
   }

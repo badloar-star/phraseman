@@ -26,7 +26,7 @@ import { useAudio } from '../hooks/use-audio';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { fcHaptic } from './flashcards/SoundService';
 import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
-import { getVoicesOnce, voiceTitle, type FcVoiceLike } from './flashcards/tts_voices';
+import { getVoicesOnce, peekVoicesCache, voiceTitle, type FcVoiceLike } from './flashcards/tts_voices';
 import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -75,8 +75,9 @@ export default function FlashcardsVoicePickerScreen() {
   const effectiveOs = useEffectivePlatformOS();
   const { speak, stop } = useAudio();
 
-  const [loading, setLoading] = useState(true);
-  const [voices, setVoices] = useState<FcVoiceLike[]>([]);
+  // зачем (аудит cards-gaps-states, «раздел открывается без экранов загрузки»): кэш голосов уже готов — первый кадр сразу со списком
+  const [loading, setLoading] = useState(() => peekVoicesCache() === null);
+  const [voices, setVoices] = useState<FcVoiceLike[]>(() => (peekVoicesCache() ?? []).filter(isPickableEnVoice));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [settings, setSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
 

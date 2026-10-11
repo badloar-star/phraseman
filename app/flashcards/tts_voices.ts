@@ -124,9 +124,14 @@ let voicesInflight: Promise<FcVoiceLike[]> | null = null;
 /** Web: onvoiceschanged может не стрельнуть (headless) — промис зависает; страхуемся. */
 const VOICES_TIMEOUT_MS = 2000;
 
+/** Синхронный взгляд на кэш: экран выбора голоса открывается готовым списком без кадра загрузки (аудит cards-gaps-states). null — ещё не спрашивали. */
+export function peekVoicesCache(): FcVoiceLike[] | null {
+  return voicesCache;
+}
+
 /**
- * Один запрос списка голосов на жизнь приложения (кэш). Ошибка/таймаут → []
- * (оптимистичная ветка pickVoiceForLang).
+ * Один запрос списка голосов на жизнь приложения (кэш). Ошибка → [] (оптимистичная ветка pickVoiceForLang).
+ * Таймаут → [] БЕЗ записи в кэш: медленный ответ системы не должен навсегда оставить список пустым (только «Системный (авто)»).
  */
 export function getVoicesOnce(): Promise<FcVoiceLike[]> {
   if (voicesCache) return Promise.resolve(voicesCache);
@@ -134,19 +139,26 @@ export function getVoicesOnce(): Promise<FcVoiceLike[]> {
   voicesInflight = (async () => {
     try {
       const Speech = require('expo-speech') as typeof import('expo-speech');
-      const timeout = new Promise<FcVoiceLike[]>((resolve) =>
-        setTimeout(() => resolve([]), VOICES_TIMEOUT_MS),
+      const timeout = new Promise<null>((resolve) =>
+        setTimeout(() => resolve(null), VOICES_TIMEOUT_MS),
       );
       const list = await Promise.race([
         Speech.getAvailableVoicesAsync() as Promise<FcVoiceLike[]>,
         timeout,
       ]);
+      if (list === null) {
+        // зачем: таймаут — не итог, список мог просто задержаться; не кэшируем пустоту, следующий вход спросит ещё раз
+        console.warn('[TTS-VOICES] список голосов не пришёл за', VOICES_TIMEOUT_MS, 'мс — отдаю [] без кэша'); // guard-ok: ранний выход пишет причину
+        voicesInflight = null;
+        return [];
+      }
       voicesCache = Array.isArray(list) ? list : [];
-    } catch {
+    } catch (error) {
+      console.warn('[TTS-VOICES] getAvailableVoicesAsync упал —', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
       voicesCache = [];
     }
     voicesInflight = null;
-    return voicesCache;
+    return voicesCache ?? [];
   })();
   return voicesInflight;
 }

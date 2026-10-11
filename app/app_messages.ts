@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { emitAppEvent, onAppEvent } from './events';
+import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import {
   captureAccountGeneration,
@@ -13,7 +13,6 @@ import {
 } from './account_generation';
 import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
-import { createDisposableAdoption } from './disposable_adoption';
 import { normalizeReportRewardBundle, type ReportRewardBundle } from './report_reward_bundle';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { rnfbInstance } from './rnfb_modular';
@@ -1542,8 +1541,8 @@ export async function refreshAppMessagesSnapshotOnce(options: {
         .catch(() => ({ docs: [] })),
       // зачем (PM-210, экономия чтений): коллекция состояний растёт монотонно
       // (документ на каждое прочитанное/скрытое сообщение) и не чистится — без
-      // limit давний аккаунт читал её ЦЕЛИКОМ. Берём свежие 80, как живой поток
-      // в subscribeUserAppMessages: состояния нужны только для сообщений из двух
+      // limit давний аккаунт читал её ЦЕЛИКОМ. Берём свежие 80, как прежний живой
+      // поток: состояния нужны только для сообщений из двух
       // лент выше (тоже по 80), а любая запись состояния ставит updatedAtMs, так
       // что только что тронутое сообщение всегда попадает в выборку.
       latest(['users', uid, APP_MESSAGE_STATES_COLLECTION], 'updatedAtMs'),
@@ -1585,176 +1584,8 @@ export async function refreshAppMessagesSnapshotOnce(options: {
   }
 }
 
-export function subscribeUserAppMessages(
-  onChange: (snapshot: AppMessagesSnapshot) => void,
-  onError?: (error: unknown) => void,
-): { remove: () => void } {
-  let disposed = false;
-  const lifetime = createDisposableAdoption();
-  let messages: AppMessage[] = [];
-  let userMessages: AppMessage[] = [];
-  let states: AppMessageState[] = [];
-  let localMessages: AppMessage[] = [];
-  let localStates: AppMessageState[] = [];
-  let pendingReportReplyClaims: PendingReportReplyShardClaim[] = [];
-  let pendingVisibility: PendingAppMessageVisibility[] = [];
-  let pendingPersonalModalAcknowledgements: PendingPersonalModalAcknowledgement[] = [];
-  let pendingAppMessageModalAcknowledgements: PendingAppMessageModalAcknowledgement[] = [];
-  let ownerUid: string | null = null;
-
-  const emit = () => {
-    const snapshot = mergeAppMessagesWithStates(
-      [...messages, ...userMessages, ...localMessages],
-      applyPendingAppMessageModalAcknowledgementsToStates(
-        applyPendingPersonalModalAcknowledgementsToStates(
-          applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
-          pendingPersonalModalAcknowledgements,
-        ),
-        pendingAppMessageModalAcknowledgements,
-      ),
-      Date.now(),
-      pendingReportReplyClaims.map((claim) => claim.messageId),
-    );
-    onChange(snapshot);
-    if (ownerUid) void writeCachedSnapshot(snapshot, ownerUid);
-  };
-
-  const reloadLocal = () => {
-    void Promise.all([
-      readLocalPreviewMessages(ownerUid),
-      readLocalPreviewStates(ownerUid),
-      readPendingReportReplyShardClaims(ownerUid),
-      readPendingAppMessageVisibility(ownerUid),
-      readPendingPersonalModalAcknowledgements(ownerUid),
-      readPendingAppMessageModalAcknowledgements(ownerUid),
-    ]).then(([nextMessages, nextStates, nextPendingClaims, nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
-      if (disposed) return;
-      localMessages = nextMessages;
-      localStates = nextStates;
-      pendingReportReplyClaims = nextPendingClaims;
-      pendingVisibility = nextPendingVisibility;
-      pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
-      pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
-      emit();
-    });
-  };
-
-  void readCachedSnapshot().then((snapshot) => {
-    if (!disposed && snapshot.messages.length) onChange(snapshot);
-  });
-  reloadLocal();
-  const localSub = onAppEvent('app_messages_local_changed', reloadLocal);
-
-  void (async () => {
-    const firestoreFactory = await getFirestoreModule();
-    const uid = await getAppMessagesOwnerUid();
-    if (lifetime.isDisposed()) return;
-    ownerUid = uid;
-    reloadLocal();
-    if (disposed || !firestoreFactory || !uid) {
-      if (!disposed) emit();
-      return;
-    }
-
-    await flushPendingAppMessageVisibility(firestoreFactory, uid);
-    if (lifetime.isDisposed()) return;
-    await flushPendingPersonalModalAcknowledgements(firestoreFactory, uid);
-    if (lifetime.isDisposed()) return;
-    await flushPendingAppMessageModalAcknowledgements(firestoreFactory, uid);
-    if (lifetime.isDisposed()) return;
-
-    const db = firestoreFactory();
-    // Global announcements do not require a realtime stream. Fetch a bounded
-    // page on startup and refresh periodically while this owner is alive.
-    const refreshMessages = async (): Promise<void> => {
-      try {
-        const snap = await db.collection(APP_MESSAGES_COLLECTION)
-          .orderBy('createdAtMs', 'desc')
-          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-          .get();
-        if (lifetime.isDisposed()) return;
-        messages = (snap.docs || []).map((docSnap: any) =>
-          normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}),
-        );
-        emit();
-      } catch (error) {
-        if (!lifetime.isDisposed()) onError?.(error);
-      }
-    };
-    void refreshMessages();
-    const messagesRefreshTimer = setInterval(() => { void refreshMessages(); }, 5 * 60 * 1000);
-    lifetime.adopt(() => clearInterval(messagesRefreshTimer));
-
-    const refreshUserMessages = async (): Promise<void> => {
-      try {
-        const snap = await db.collection('users').doc(uid)
-          .collection(USER_MESSAGES_COLLECTION)
-          .orderBy('createdAtMs', 'desc')
-          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-          .get();
-        if (lifetime.isDisposed()) return;
-        userMessages = (snap.docs || []).map((docSnap: any) =>
-          normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid),
-        ).filter((message: AppMessage | null): message is AppMessage => !!message);
-        const nextPendingClaims = await migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages);
-        if (disposed) return;
-        pendingReportReplyClaims = nextPendingClaims;
-        emit();
-      } catch (userMessagesError) {
-        reportSwallowed('app_messages:refreshUserMessages', userMessagesError);
-        // Персональная лента опциональна: ошибка не должна ронять остальные сообщения.
-      }
-    };
-    void refreshUserMessages();
-    const userMessagesRefreshTimer = setInterval(() => { void refreshUserMessages(); }, 5 * 60 * 1000);
-    lifetime.adopt(() => clearInterval(userMessagesRefreshTimer));
-
-    // зачем: этот поток раньше подписывался на ВСЮ коллекцию состояний без лимита,
-    // а она растёт монотонно (документ на каждое прочитанное/скрытое сообщение) и
-    // никогда не чистится. У давнего аккаунта снапшот тянул сотни документов и
-    // маппился в новый массив на каждое изменение — Android падал с OutOfMemoryError
-    // в sendOnSnapshotEvent. Ограничиваем как два соседних потока (limit 80):
-    // состояния нужны только для сообщений из тех же лент, а они сами лимитированы.
-    const refreshStates = async (): Promise<void> => {
-      try {
-        const snap = await db.collection('users').doc(uid)
-          .collection(APP_MESSAGE_STATES_COLLECTION)
-          .orderBy('updatedAtMs', 'desc')
-          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-          .get();
-        if (lifetime.isDisposed()) return;
-        states = (snap.docs || []).map((docSnap: any) =>
-          normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
-        );
-        await Promise.all([
-            acknowledgePendingAppMessageVisibility(uid, states),
-            acknowledgePendingPersonalModalAcknowledgements(uid, states),
-            acknowledgePendingAppMessageModalAcknowledgements(uid, states),
-        ]).then(([nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
-          if (disposed) return;
-          pendingVisibility = nextPendingVisibility;
-          pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
-          pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
-          emit();
-        });
-      } catch (error) {
-        if (!lifetime.isDisposed()) onError?.(error);
-      }
-    };
-    void refreshStates();
-    const statesRefreshTimer = setInterval(() => { void refreshStates(); }, 5 * 60 * 1000);
-    lifetime.adopt(() => clearInterval(statesRefreshTimer));
-  })();
-
-  return {
-    remove: () => {
-      disposed = true;
-      localSub.remove();
-      lifetime.dispose();
-    },
-  };
-}
-
+// зачем (§CORE-0162, аудит стоимости Firebase): живой поток subscribeUserAppMessages (три интервала по 5 мин,
+// по 80 документов) удалён — вызовов не было; входящие читаются разово и раз в сутки (refreshAppMessagesSnapshotOnce).
 function enqueueAppMessageVisibilityMutation(
   messageId: string,
   dismissedAtMs: number | null,

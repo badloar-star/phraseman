@@ -40,7 +40,9 @@ describe('app message account-scoped persistence', () => {
     expect(source).toContain('expectedOwnerUid?: string | null');
     expect(source).toContain('ownerUid !== expectedOwnerUid');
     expect(source).toContain('writeCachedSnapshot(snapshot, uid)');
-    expect(source).toContain('writeCachedSnapshot(snapshot, ownerUid)');
+    // §CORE-0162: вторая запись (writeCachedSnapshot(snapshot, ownerUid)) жила в удалённом мёртвом
+    // subscribeUserAppMessages; кэш теперь пишет только разовое обновление — по тому же uid владельца.
+    expect(source).not.toContain('export function subscribeUserAppMessages');
   });
 
   it('attributes legacy reward claims only through owned private report messages', () => {

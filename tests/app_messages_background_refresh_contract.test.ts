@@ -13,7 +13,10 @@ describe('app messages background refresh contract', () => {
     expect(appMessagesSource).toContain('export async function refreshAppMessagesSnapshotOnce');
 
     const refreshStart = appMessagesSource.indexOf('export async function refreshAppMessagesSnapshotOnce');
-    const refreshEnd = appMessagesSource.indexOf('export function subscribeUserAppMessages');
+    // §CORE-0162: мёртвый subscribeUserAppMessages удалён — блок заканчивается следующим объявлением.
+    expect(appMessagesSource).not.toContain('export function subscribeUserAppMessages');
+    const refreshEnd = appMessagesSource.indexOf('function enqueueAppMessageVisibilityMutation(', refreshStart);
+    expect(refreshEnd).toBeGreaterThan(refreshStart);
     const refreshBlock = appMessagesSource.slice(refreshStart, refreshEnd);
 
     expect(refreshBlock).toContain('readCachedSnapshot()');

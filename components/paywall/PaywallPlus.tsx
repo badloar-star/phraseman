@@ -30,6 +30,13 @@ import {
 } from './PaywallPlusCopy';
 
 export type GlassTokens = ReturnType<typeof liquidGlassTokens>;
+
+/**
+ * Фон самой шторки и «впадины» на плашках. зачем (Сверка 11.10): в графитовой тёмной теме opaqueSheet == opaqueControl (#222429),
+ * поэтому плитки на шторке сливались с ней. Тёмная: шторка на opaqueCard (темнее), плитки на opaqueControl; светлая: шторка белая,
+ * плитки #ECECEF. Один источник для экрана и вложенных элементов.
+ */
+export function paywallSheetBg(g: GlassTokens): string { return g.isLight ? g.opaqueSheet : g.opaqueCard; }
 export type PaywallPlusState = 'ready' | 'loading' | 'error';
 
 /** Высота плашек тарифов (и скелета/«недоступно» на их месте) — первый кадр без прыжка, когда придут цены. */
@@ -164,7 +171,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
         <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: g.opaqueControl }]}>
           <Text style={[S.promoKicker, { color: g.mutedText }]}>{pick(lang, COPY.promoNow)}</Text>
           <View style={S.promoRow}>
-            <View style={[S.promoPill, { backgroundColor: g.opaqueSheet }]}>
+            <View style={[S.promoPill, { backgroundColor: paywallSheetBg(g) }]}>
               <Text style={[S.promoPct, { color: g.text }]}>{`−${promo.discountPercent}%`}</Text>
             </View>
             <Text style={[S.promoPrice, { color: g.text }]}>{promo.promoPriceString}</Text>
@@ -267,7 +274,7 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
         {onRetry ? (
           <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
             disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
-            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: g.opaqueSheet }]}>
+            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: paywallSheetBg(g) }]}>
             {retrying
               ? <ActivityIndicator color={g.text} />
               : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retry)}</Text>}

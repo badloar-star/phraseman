@@ -28,7 +28,7 @@ import { useLoadGate } from '../../app/use_load_gate';
 import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
 import {
   PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPlansUnavailable,
-   PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy,
+   PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy, paywallSheetBg,
   type PaywallPlusState,
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
@@ -172,7 +172,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
               прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
           <PaywallScrim onPress={closeWindow} />
-          <View testID="paywall-sheet" style={[S.sheet, { backgroundColor: g.opaqueSheet, maxHeight: windowHeight - insets.top - 8 }]}>
+          <View testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}>
             <PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
               onClose={() => p.handleClose('close')}
               contextTitle={contextual ? headline.title : undefined}

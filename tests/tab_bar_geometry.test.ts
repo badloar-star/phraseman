@@ -64,6 +64,12 @@ describe('V2TabBar source', () => {
     expect(fill[fill.length - 1]).toBeGreaterThanOrEqual(0.1);
   });
 
+  test('the cap is placed instantly when the slot width changes, springs only between tabs (no mint tail)', () => {
+    expect(src).toContain('const slotChanged = lastSlotWRef.current > 0');
+    expect(src).toMatch(/capX\.stopAnimation\(\);\s*capX\.setValue\(to\);/);
+    expect(src).toContain('capX.stopAnimation(); // зачем: старая пружина');
+  });
+
   test('logs the measured cell widths next to window width, insets and tab count (one frame gives the cause)', () => {
     expect(src).toContain('cells windowW=');
     expect(src).toContain('widths=[');

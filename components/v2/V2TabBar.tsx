@@ -149,6 +149,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
 
   const travelTo = (left: number) => {
     targetLeftRef.current = left;
+    capX.stopAnimation(); // зачем: старая пружина не должна тянуть плашку назад, пока стартует новая
     if (live.current.reduceMotion) {
       capX.setValue(left);
       return;
@@ -156,9 +157,23 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     Animated.spring(capX, { toValue: left, ...CAP_SPRING }).start(); // guard-ok: useNativeDriver в CAP_SPRING
   };
 
+  // зачем (Сверка 11.10: «кусок мятной заливки слева у ▶ на вкладках Сообщество/Настройки — хвост анимации плашки?»): когда меняется ШИРИНА слота
+  // (появилась/исчезла вкладка, повернули экран, сменился шрифт), пружина шла бы из старой геометрии и плашка на кадры оставалась между вкладками.
+  // Тогда плашка ставится на место сразу, а незавершённая пружина гасится; пружина ездит только при смене вкладки.
+  const lastSlotWRef = useRef(0);
   useEffect(() => {
     if (slotW <= 0 || activeIndex < 0 || draggingRef.current) return;
     const to = PAD + activeIndex * slotW;
+    const slotChanged = lastSlotWRef.current > 0 && Math.abs(lastSlotWRef.current - slotW) > 0.5;
+    lastSlotWRef.current = slotW;
+    if (slotChanged) {
+      capX.stopAnimation();
+      capX.setValue(to);
+      targetLeftRef.current = to;
+      placedRef.current = true;
+      DebugLogger.info('[TABBAR]', `cap: ширина слота изменилась → плашка на месте сразу to=${Math.round(to * 10) / 10} slotW=${Math.round(slotW * 10) / 10} activeIndex=${activeIndex}`);
+      return;
+    }
     // Первый кадр — капсула сразу на месте (стабильная геометрия), дальше едет пружиной.
     if (!placedRef.current) {
       capX.setValue(to);

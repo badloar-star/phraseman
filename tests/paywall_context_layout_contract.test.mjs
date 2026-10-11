@@ -53,6 +53,14 @@ test('sheet surfaces are solid so they stay visible on the light sheet (Свер
   assert.match(plus, /backgroundColor: g\.opaqueControl/);
 });
 
+test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet == opaqueControl (Сверка 11.10)', () => {
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.match(plus, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueSheet : g\.opaqueCard; \}/);
+  const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+  assert.match(screen, /backgroundColor: paywallSheetBg\(g\)/);
+  assert.ok(!/backgroundColor: g\.opaqueSheet/.test(screen), 'шторка не на opaqueSheet (в графите он равен плиткам)');
+});
+
 test('the no-prices note exists in all nine languages', () => {
   const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
   const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith('fineNoPrices: LP('));

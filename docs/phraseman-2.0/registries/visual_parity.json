@@ -100,7 +100,8 @@
         "label": "Режим тренировки",
         "mapping": "manual_rebind"
       },
-      "prev_status": "match"
+      "prev_status": "match",
+      "release": "r1"
     },
     {
       "id": "cards-003",
@@ -166,7 +167,8 @@
       "reviewed_at": null,
       "prev_blocked_reason": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-005",
@@ -210,7 +212,8 @@
         "phone": 5,
         "label": "Список",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-006",
@@ -249,7 +252,8 @@
         "phone": 15,
         "label": "Карточка удалена — «Вернуть»",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-007",
@@ -284,7 +288,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-008",
@@ -317,7 +322,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-009",
@@ -354,7 +360,8 @@
         "phone": 7,
         "label": "Пусто",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-010",
@@ -386,7 +393,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-011",
@@ -425,7 +433,8 @@
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 9) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-012",
@@ -458,7 +467,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-013",
@@ -495,7 +505,8 @@
         "phone": 11,
         "label": "Пусто",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-014",
@@ -527,7 +538,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-015",
@@ -558,7 +570,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-016",
@@ -589,7 +602,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-017",
@@ -627,7 +641,8 @@
         "phone": 23,
         "label": "Ничего не найдено",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-018",
@@ -664,7 +679,8 @@
         "phone": 13,
         "label": "Чужой — до добавления",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-019",
@@ -701,7 +717,8 @@
         "phone": 14,
         "label": "Чужой — добавлен, лайк",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-020",
@@ -731,7 +748,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-021",
@@ -775,7 +793,8 @@
         "label": "Новая карточка",
         "mapping": "manual_rebind"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-022",
@@ -806,7 +825,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-023",
@@ -850,7 +870,8 @@
         "label": "Новый набор",
         "mapping": "manual_rebind"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-024",
@@ -881,7 +902,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-025",
@@ -922,7 +944,8 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-026",
@@ -960,7 +983,8 @@
       "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-027",
@@ -994,7 +1018,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-028",
@@ -1038,7 +1063,8 @@
         "label": "Список наборов",
         "mapping": "manual_rebind"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-029",
@@ -1112,7 +1138,8 @@
         "phone": 29,
         "label": "Сейчас недоступно",
         "mapping": "manual_rebind"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-031",
@@ -1144,7 +1171,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-032",
@@ -1176,7 +1204,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-033",
@@ -1209,7 +1238,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-034",
@@ -1239,7 +1269,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-035",
@@ -1271,7 +1302,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-036",
@@ -1301,7 +1333,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-037",
@@ -1334,7 +1367,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-038",
@@ -1364,7 +1398,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-039",
@@ -1394,7 +1429,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-040",
@@ -1430,7 +1466,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-041",
@@ -1464,7 +1501,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-042",
@@ -1498,7 +1536,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-043",
@@ -1530,7 +1569,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-044",
@@ -1562,7 +1602,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-045",
@@ -1594,7 +1635,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-046",
@@ -1629,7 +1671,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-047",
@@ -1660,7 +1703,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-048",
@@ -1691,7 +1735,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-049",
@@ -1722,7 +1767,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-050",
@@ -1752,7 +1798,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-051",
@@ -1782,7 +1829,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-052",
@@ -1812,7 +1860,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-053",
@@ -1842,7 +1891,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-054",
@@ -1872,7 +1922,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-055",
@@ -1902,7 +1953,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-056",
@@ -1934,7 +1986,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-057",
@@ -1964,7 +2017,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-058",
@@ -1994,7 +2048,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-059",
@@ -2024,7 +2079,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-060",
@@ -2055,7 +2111,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-061",
@@ -2086,7 +2143,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-062",
@@ -2116,7 +2174,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-063",
@@ -2146,7 +2205,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-064",
@@ -2177,7 +2237,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-065",
@@ -2208,7 +2269,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-066",
@@ -2239,7 +2301,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-067",
@@ -2270,7 +2333,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-068",
@@ -2301,7 +2365,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-069",
@@ -2332,7 +2397,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-070",
@@ -2363,7 +2429,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-071",
@@ -2394,7 +2461,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-072",
@@ -2427,7 +2495,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-073",
@@ -2458,7 +2527,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-074",
@@ -2489,7 +2559,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-075",
@@ -2521,7 +2592,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-076",
@@ -2553,7 +2625,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-077",
@@ -2585,7 +2658,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-078",
@@ -2617,7 +2691,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-079",
@@ -2651,7 +2726,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "release": "r1"
     },
     {
       "id": "cards-080",
@@ -2685,7 +2761,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-081",
@@ -2716,7 +2793,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-082",
@@ -2747,7 +2825,8 @@
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "release": "r1"
     },
     {
       "id": "cards-083",
@@ -2780,7 +2859,8 @@
       "reviewed_at": null,
       "prev_blocked_reason": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "practice-001",
@@ -3691,7 +3771,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-002",
@@ -3733,7 +3814,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-003",
@@ -3776,7 +3858,8 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "mockup_pinned": "Макеты 12.10: тур 3 слово в слово как в коде (tour3Title/tour3Text: «Верхние 15% …», «Нижние 15% и все без ступеней спускаются») — расхождение с правилом 5 закрыто Дизайном в коде."
+      "mockup_pinned": "Макеты 12.10: тур 3 слово в слово как в коде (tour3Title/tour3Text: «Верхние 15% …», «Нижние 15% и все без ступеней спускаются») — расхождение с правилом 5 закрыто Дизайном в коде.",
+      "release": "r1"
     },
     {
       "id": "spire-004",
@@ -3823,7 +3906,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-005",
@@ -3870,7 +3954,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-006",
@@ -3914,7 +3999,8 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "mockup_pinned": "Макеты 12.10: зона «Остаются» (spire_strings.ts zoneStay) вместо «Остаются в Граните»."
+      "mockup_pinned": "Макеты 12.10: зона «Остаются» (spire_strings.ts zoneStay) вместо «Остаются в Граните».",
+      "release": "r1"
     },
     {
       "id": "spire-007",
@@ -3957,7 +4043,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-008",
@@ -4001,7 +4088,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-009",
@@ -4043,7 +4131,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-010",
@@ -4088,7 +4177,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-011",
@@ -4132,7 +4222,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-012",
@@ -4177,7 +4268,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-013",
@@ -4221,7 +4313,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-014",
@@ -4267,7 +4360,8 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "mockup_pinned": "Макеты 12.10: тексты итога недели — как в коде (spire_game_strings.ts weekUp; sub: «N место · M ступеней · +150 · +100 монет»)."
+      "mockup_pinned": "Макеты 12.10: тексты итога недели — как в коде (spire_game_strings.ts weekUp; sub: «N место · M ступеней · +150 · +100 монет»).",
+      "release": "r1"
     },
     {
       "id": "spire-015",
@@ -4313,7 +4407,8 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "mockup_pinned": "Макеты 12.10: «Остаёшься в шпиле {камень}» (weekStay); «спускаешься» — кадр в spire-gaps-states.html (spire-gap-017)."
+      "mockup_pinned": "Макеты 12.10: «Остаёшься в шпиле {камень}» (weekStay); «спускаешься» — кадр в spire-gaps-states.html (spire-gap-017).",
+      "release": "r1"
     },
     {
       "id": "spire-016",
@@ -4357,7 +4452,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "spire-017",
@@ -4401,7 +4497,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "video-001",
@@ -5225,7 +5322,8 @@
         "reason": "миры + тон «ты»",
         "kind": "осознанное отличие"
       },
-      "mockup_pinned": "Макеты 12.10: миры Общение/Дела/Поездки/Каждый день с подписями из dialogue_world_subtitle.ts, «Практикуй…», пилюля 30/30 (D111)."
+      "mockup_pinned": "Макеты 12.10: миры Общение/Дела/Поездки/Каждый день с подписями из dialogue_world_subtitle.ts, «Практикуй…», пилюля 30/30 (D111).",
+      "release": "r1"
     },
     {
       "id": "dialogs-002",
@@ -5276,7 +5374,8 @@
         "reason": "миры + тон «ты»",
         "kind": "осознанное отличие"
       },
-      "mockup_pinned": "Макеты 12.10: те же миры и «ты», что в dialogs-001."
+      "mockup_pinned": "Макеты 12.10: те же миры и «ты», что в dialogs-001.",
+      "release": "r1"
     },
     {
       "id": "dialogs-003",
@@ -5325,7 +5424,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-004",
@@ -5379,7 +5479,8 @@
         "to": "Макеты",
         "reason": "D111 месячная модель лимита",
         "kind": "осознанное отличие"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-005",
@@ -5429,7 +5530,8 @@
         "to": "Макеты",
         "reason": "D129/D130 таблица языков",
         "kind": "осознанное отличие"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-006",
@@ -5474,7 +5576,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-007",
@@ -5523,7 +5626,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-008",
@@ -5572,7 +5676,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-009",
@@ -5606,7 +5711,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: текст шторки согласия — как в AiDialogConsentModal.tsx: «Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.» + «Можно выключить в настройках в любой момент.»"
+      "mockup_pinned": "Макеты 12.10: текст шторки согласия — как в AiDialogConsentModal.tsx: «Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.» + «Можно выключить в настройках в любой момент.»",
+      "release": "r1"
     },
     {
       "id": "dialogs-010",
@@ -5643,7 +5749,8 @@
         "reason": "тон «ты»",
         "kind": "осознанное отличие"
       },
-      "mockup_pinned": "Макеты 12.10: «AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.» (ты, как в ai_dialog_consent_gate.tsx)."
+      "mockup_pinned": "Макеты 12.10: «AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.» (ты, как в ai_dialog_consent_gate.tsx).",
+      "release": "r1"
     },
     {
       "id": "dialogs-011",
@@ -5676,7 +5783,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-012",
@@ -5708,7 +5816,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны."
+      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
+      "release": "r1"
     },
     {
       "id": "dialogs-013",
@@ -5745,7 +5854,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны."
+      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
+      "release": "r1"
     },
     {
       "id": "dialogs-014",
@@ -5793,7 +5903,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-015",
@@ -5835,7 +5946,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-016",
@@ -5882,7 +5994,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-017",
@@ -5928,7 +6041,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-018",
@@ -5976,7 +6090,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-019",
@@ -6022,7 +6137,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-020",
@@ -6067,7 +6183,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-021",
@@ -6100,7 +6217,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-022",
@@ -6147,7 +6265,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-023",
@@ -6193,7 +6312,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-024",
@@ -6227,7 +6347,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-025",
@@ -6263,7 +6384,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-026",
@@ -6300,7 +6422,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-027",
@@ -6335,7 +6458,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-028",
@@ -6368,7 +6492,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-029",
@@ -6402,7 +6527,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-030",
@@ -6453,7 +6579,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-031",
@@ -6504,7 +6631,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-032",
@@ -6539,7 +6667,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-033",
@@ -6574,7 +6703,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: текст «Диалоги на паузе» — как в коде (dialogue_v2_session_coaching_labels.ts pausedMessage): «Собеседники сейчас недоступны. Загляни чуть позже.»"
+      "mockup_pinned": "Макеты 12.10: текст «Диалоги на паузе» — как в коде (dialogue_v2_session_coaching_labels.ts pausedMessage): «Собеседники сейчас недоступны. Загляни чуть позже.»",
+      "release": "r1"
     },
     {
       "id": "dialogs-034",
@@ -6606,7 +6736,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны."
+      "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
+      "release": "r1"
     },
     {
       "id": "dialogs-035",
@@ -6653,7 +6784,8 @@
         "notes": "Месячная модель (D111) vs дневная в макете; Дизайн добавил отметку «Не отправлено» на упёршемся в лимит пузыре (3cedad10e). Править МАКЕТ (C21, телефон 36≠37) → Макеты.",
         "to": "Макеты",
         "reason": "осознанное отличие/устаревший макет — по решению Дизайна"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-036",
@@ -6698,7 +6830,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-037",
@@ -6729,7 +6862,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-038",
@@ -6774,7 +6908,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-039",
@@ -6808,7 +6943,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-040",
@@ -6841,7 +6977,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-041",
@@ -6888,7 +7025,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-042",
@@ -6923,7 +7061,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-043",
@@ -6959,7 +7098,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "mockup_pinned": "Макеты 12.10: «Разговор завершён»: «Твоих реплик: 3.» (без «Ориентир…») и плашка настроения — как dialogue_v2_completion.tsx."
+      "mockup_pinned": "Макеты 12.10: «Разговор завершён»: «Твоих реплик: 3.» (без «Ориентир…») и плашка настроения — как dialogue_v2_completion.tsx.",
+      "release": "r1"
     },
     {
       "id": "dialogs-044",
@@ -6994,7 +7134,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-045",
@@ -7028,7 +7169,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "dialogs-046",
@@ -7062,7 +7204,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "learn-001",
@@ -13881,7 +14024,8 @@
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
       "blocked_reason": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "community-002",
@@ -13922,7 +14066,8 @@
         "flag_source": "app/spire_tab_flag.ts",
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1"
     },
     {
       "id": "community-003",
@@ -13959,7 +14104,8 @@
         "flag_source": "app/spire_tab_flag.ts",
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1"
     },
     {
       "id": "community-004",
@@ -13997,7 +14143,8 @@
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: 8 правил из spire_game_strings.ts (rule1…rule8, значения монет по умолчанию config_contract.ts), заголовок «Правила Шпиля», кнопка «Закрыть»."
+      "mockup_pinned": "Макеты 12.10: 8 правил из spire_game_strings.ts (rule1…rule8, значения монет по умолчанию config_contract.ts), заголовок «Правила Шпиля», кнопка «Закрыть».",
+      "release": "r1"
     },
     {
       "id": "community-005",
@@ -14035,7 +14182,8 @@
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: полноэкранный «Итоги недели» заменён карточкой на главном Шпиля (SpireWeekResultCard.tsx), как в spire.html §9; монета выпрыгивает (anim-pop)."
+      "mockup_pinned": "Макеты 12.10: полноэкранный «Итоги недели» заменён карточкой на главном Шпиля (SpireWeekResultCard.tsx), как в spire.html §9; монета выпрыгивает (anim-pop).",
+      "release": "r1"
     },
     {
       "id": "community-006",
@@ -14071,7 +14219,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "community-007",
@@ -14112,7 +14261,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T21:18:54.000Z)"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "community-008",
@@ -14141,7 +14291,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-009",
@@ -14171,7 +14322,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-010",
@@ -14201,7 +14353,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-011",
@@ -14231,7 +14384,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-012",
@@ -14261,7 +14415,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-013",
@@ -14291,7 +14446,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-014",
@@ -14320,7 +14476,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-015",
@@ -14350,7 +14507,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-016",
@@ -14380,7 +14538,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
+      "release": "r1"
     },
     {
       "id": "community-017",
@@ -14409,7 +14568,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-018",
@@ -14438,7 +14598,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-019",
@@ -14467,7 +14628,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-020",
@@ -14509,7 +14671,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T21:18:54.000Z)"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "community-021",
@@ -14537,7 +14700,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-022",
@@ -14565,7 +14729,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-023",
@@ -14593,7 +14758,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-024",
@@ -14621,7 +14787,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "community-025",
@@ -14662,7 +14829,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T08:52:39.000Z)"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-001",
@@ -14710,7 +14878,8 @@
         "verdict": "diff",
         "notes": "Нет в коде текста опроса «Что добавить в первую очередь? / Больше уроков / Больше диалогов / Больше карточек / Другое» (блок «Важное от Phraseman» в приложении показывает текстовое сообщение). → Авторизация (профиль/настройки) или Макеты, если опрос вынесен в отдельный сценарий.",
         "to": "Авторизация"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-002",
@@ -14750,7 +14919,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-003",
@@ -14791,7 +14961,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-004",
@@ -14832,7 +15003,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-005",
@@ -14873,7 +15045,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-006",
@@ -14915,7 +15088,8 @@
         "verdict": "diff",
         "notes": "Нет строки «События Шпиля» в настройках уведомлений (settings_notifications). → Авторизация/Дизайн: добавить переключатель или убрать из макета (Шпиль включён в сборку приказом владельца).",
         "to": "Авторизация"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-007",
@@ -14956,7 +15130,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-008",
@@ -14999,7 +15174,8 @@
         "notes": "Образец устарел: «Все темы тёмные», «Тёмная тема», «Полярная/Сланец/Чернильная/Пыльная роза/Мягкая терракота/Эвкалипт/Морская…» — в приложении 23 темы + светлый режим + ползунок (Затмение, Аврора…). → Макеты (переделать образец под экран «Темы» 2.0).",
         "to": "Макеты"
       },
-      "mockup_pinned": "Макеты 12.10: образец под settings_themes.tsx — 13 тем (Затмение…Океан), переключатель тёмное/светлое, ползунок насыщенности, 10 градиентных тем (Аврора…Сирень)."
+      "mockup_pinned": "Макеты 12.10: образец под settings_themes.tsx — 13 тем (Затмение…Океан), переключатель тёмное/светлое, ползунок насыщенности, 10 градиентных тем (Аврора…Сирень).",
+      "release": "r1"
     },
     {
       "id": "profile-009",
@@ -15040,7 +15216,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-010",
@@ -15082,7 +15259,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-011",
@@ -15125,7 +15303,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-012",
@@ -15168,7 +15347,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-013",
@@ -15209,7 +15389,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-014",
@@ -15251,7 +15432,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-015",
@@ -15293,7 +15475,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-016",
@@ -15327,7 +15510,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-017",
@@ -15361,7 +15545,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-018",
@@ -15395,7 +15580,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-019",
@@ -15429,7 +15615,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-020",
@@ -15463,7 +15650,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-021",
@@ -15497,7 +15685,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-022",
@@ -15531,7 +15720,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-023",
@@ -15567,7 +15757,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-024",
@@ -15603,7 +15794,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-025",
@@ -15644,7 +15836,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-026",
@@ -15685,7 +15878,8 @@
         "notes": "Тон «Поделитесь кодом / Ваш код» (вы) — образец устарел (Макеты переводят на «ты»); тексты «Скопировать код», «Приглашённые друзья», «Здесь появятся друзья» в коде есть. → Макеты (тон) после перевода сверить.",
         "to": "Макеты"
       },
-      "mockup_pinned": "Макеты 12.10: тон «ты» («Поделись кодом», «Твой код»)."
+      "mockup_pinned": "Макеты 12.10: тон «ты» («Поделись кодом», «Твой код»).",
+      "release": "r1"
     },
     {
       "id": "profile-027",
@@ -15730,7 +15924,8 @@
       },
       "prev_status": "diff",
       "prev_blocked_reason": null,
-      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
+      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
+      "release": "r1"
     },
     {
       "id": "profile-028",
@@ -15772,7 +15967,8 @@
         "verdict": "diff",
         "notes": "Нет в коде «Выходим из аккаунта / Локальные изменения остаются привязаны к этому аккаунту». → Авторизация.",
         "to": "Авторизация"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-029",
@@ -15814,7 +16010,8 @@
         "verdict": "diff",
         "notes": "Нет в коде «Не удалось выйти / Старый аккаунт не считается закрытым…». → Авторизация.",
         "to": "Авторизация"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "profile-030",
@@ -15857,7 +16054,8 @@
         "notes": "Текст в коде «Введи «УДАЛИТЬ»» (ты) — образец «Введите…» (вы); про «Подписка в App Store или Google Play не отменится автоматически» проверить. → Макеты (тон) + Авторизация.",
         "to": "Макеты"
       },
-      "mockup_pinned": "Макеты 12.10: тон «ты» («Введи «УДАЛИТЬ»»)."
+      "mockup_pinned": "Макеты 12.10: тон «ты» («Введи «УДАЛИТЬ»»).",
+      "release": "r1"
     },
     {
       "id": "profile-031",
@@ -17317,7 +17515,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/ai_kill_switch_copy.ts. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-009",
@@ -17352,7 +17551,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/lesson_complete.tsx. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-010",
@@ -17387,7 +17587,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/lesson_complete.tsx. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-011",
@@ -17421,7 +17622,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-012",
@@ -17455,7 +17657,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-013",
@@ -17489,7 +17692,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-014",
@@ -17523,7 +17727,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-015",
@@ -17557,7 +17762,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-016",
@@ -17591,7 +17797,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-017",
@@ -17653,7 +17860,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-019",
@@ -17687,7 +17895,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-020",
@@ -17721,7 +17930,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-021",
@@ -17755,7 +17965,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-022",
@@ -17789,7 +18000,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-023",
@@ -17823,7 +18035,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-024",
@@ -17857,7 +18070,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "paywalls-025",
@@ -17891,7 +18105,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "system-001",
@@ -21787,7 +22002,8 @@
       },
       "prev_status": "diff",
       "prev_blocked_reason": null,
-      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
+      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
+      "release": "r1"
     },
     {
       "id": "overlays-runtime-018",
@@ -21827,7 +22043,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T18:51:37.000Z)"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "overlays-runtime-019",
@@ -22937,7 +23154,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-005",
@@ -22966,7 +23184,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-006",
@@ -22995,7 +23214,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-007",
@@ -23024,7 +23244,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-008",
@@ -23053,7 +23274,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-009",
@@ -23082,7 +23304,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-010",
@@ -23111,7 +23334,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-011",
@@ -23140,7 +23364,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-012",
@@ -23169,7 +23394,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-013",
@@ -23198,7 +23424,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-014",
@@ -23227,7 +23454,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-015",
@@ -23256,7 +23484,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-016",
@@ -23285,7 +23514,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-017",
@@ -23314,7 +23544,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-018",
@@ -23343,7 +23574,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-019",
@@ -23372,7 +23604,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-020",
@@ -23401,7 +23634,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-021",
@@ -23430,7 +23664,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-022",
@@ -23459,7 +23694,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-023",
@@ -23488,7 +23724,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-024",
@@ -23517,7 +23754,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-025",
@@ -23546,7 +23784,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-026",
@@ -23575,7 +23814,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
+      "release": "r1"
     },
     {
       "id": "overlays-campaigns-027",
@@ -26548,7 +26788,8 @@
         "phone": 5,
         "label": "Список",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-006",
@@ -26588,7 +26829,8 @@
         "phone": 6,
         "label": "Поиск",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-007",
@@ -26640,7 +26882,8 @@
         "label": "Пусто",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-008",
@@ -26678,7 +26921,8 @@
         "phone": 8,
         "label": "Карточки меняют размер и форму",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-009",
@@ -26730,7 +26974,8 @@
         "label": "Список",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-010",
@@ -26768,7 +27013,8 @@
         "phone": 10,
         "label": "Действия с набором",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-011",
@@ -26806,7 +27052,8 @@
         "phone": 11,
         "label": "Пусто",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-012",
@@ -26844,7 +27091,8 @@
         "phone": 12,
         "label": "Свой набор",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-013",
@@ -26882,7 +27130,8 @@
         "phone": 13,
         "label": "Чужой — до добавления",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-014",
@@ -26920,7 +27169,8 @@
         "phone": 14,
         "label": "Чужой — добавлен, лайк",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-015",
@@ -26958,7 +27208,8 @@
         "phone": 15,
         "label": "Карточка удалена — «Вернуть»",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-016",
@@ -26998,7 +27249,8 @@
         "phone": 16,
         "label": "Своя карточка",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-017",
@@ -27038,7 +27290,8 @@
         "phone": 17,
         "label": "Карточка — оборот",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-018",
@@ -27078,7 +27331,8 @@
         "phone": 18,
         "label": "Карточка из чужого набора",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-019",
@@ -27118,7 +27372,8 @@
         "phone": 19,
         "label": "Новый набор",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-020",
@@ -27158,7 +27413,8 @@
         "phone": 20,
         "label": "Новая карточка",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-021",
@@ -27196,7 +27452,8 @@
         "phone": 21,
         "label": "Изменить набор",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-022",
@@ -27234,7 +27491,8 @@
         "phone": 22,
         "label": "Каталог",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-023",
@@ -27274,7 +27532,8 @@
         "phone": 23,
         "label": "Ничего не найдено",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-024",
@@ -27327,7 +27586,8 @@
         "label": "Список наборов",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-025",
@@ -27487,7 +27747,8 @@
         "mapping": "by_construction"
       },
       "evidence_note": "образец заменён «Карточками 2.0» (код 5713437a8); нужна пересъёмка",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-029",
@@ -27525,7 +27786,8 @@
         "phone": 29,
         "label": "Сейчас недоступно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-030",
@@ -27563,7 +27825,8 @@
         "phone": 30,
         "label": "Набор из видео",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-031",
@@ -27601,7 +27864,8 @@
         "phone": 31,
         "label": "Набор из видео — уже у вас",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-032",
@@ -27650,7 +27914,8 @@
         "label": "Режим тренировки",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-033",
@@ -27700,7 +27965,8 @@
         "label": "Блиц",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-034",
@@ -27738,7 +28004,8 @@
         "phone": 34,
         "label": "Устно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-035",
@@ -27776,7 +28043,8 @@
         "phone": 35,
         "label": "Правда / ложь",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-036",
@@ -27814,7 +28082,8 @@
         "phone": 36,
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-037",
@@ -27886,7 +28155,8 @@
         "phone": 38,
         "label": "Карточек нет",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-039",
@@ -27924,7 +28194,8 @@
         "phone": 39,
         "label": "Блиц",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-040",
@@ -27962,7 +28233,8 @@
         "phone": 40,
         "label": "Устно — ожидание",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-041",
@@ -28004,7 +28276,8 @@
         "phone": 41,
         "label": "Устно — запись",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-042",
@@ -28042,7 +28315,8 @@
         "phone": 42,
         "label": "Правда / ложь",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-043",
@@ -28082,7 +28356,8 @@
         "phone": 43,
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-044",
@@ -28134,7 +28409,8 @@
         "label": "Блиц — верно",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-045",
@@ -28185,7 +28461,8 @@
         "label": "Блиц — неверно, минус жизнь",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-046",
@@ -28223,7 +28500,8 @@
         "phone": 46,
         "label": "Устно — верно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-047",
@@ -28329,7 +28607,8 @@
         "phone": 49,
         "label": "Правда / ложь — неверно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-050",
@@ -28367,7 +28646,8 @@
         "phone": 50,
         "label": "Напиши — верно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-051",
@@ -28439,7 +28719,8 @@
         "phone": 52,
         "label": "Напиши — неверно",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-053",
@@ -28477,7 +28758,8 @@
         "phone": 53,
         "label": "Итог с ошибками",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-054",
@@ -28524,7 +28806,8 @@
         "label": "Итог Блица",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-section-055",
@@ -28562,7 +28845,8 @@
         "phone": 55,
         "label": "Без ошибок",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-056",
@@ -28600,7 +28884,8 @@
         "phone": 56,
         "label": "Лимит исчерпан (Free)",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "cards-section-057",
@@ -28693,7 +28978,8 @@
         "mapping": "by_construction"
       },
       "evidence_note": "образец заменён «Карточками 2.0» (код 5713437a8); нужна пересъёмка",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "packs-simple-002",
@@ -28765,7 +29051,8 @@
         "phone": 3,
         "label": "3 · Пока нет наборов",
         "mapping": "by_construction"
-      }
+      },
+      "release": "r1"
     },
     {
       "id": "packs-simple-004",
@@ -28816,7 +29103,8 @@
         "label": "4 · Набор до добавления",
         "mapping": "by_construction"
       },
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "energy-modes-001",
@@ -28851,7 +29139,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-002",
@@ -28888,7 +29177,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-003",
@@ -28927,7 +29217,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-004",
@@ -28965,7 +29256,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос»."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
+      "release": "r1"
     },
     {
       "id": "energy-modes-005",
@@ -29000,7 +29292,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос»."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
+      "release": "r1"
     },
     {
       "id": "energy-modes-006",
@@ -29037,7 +29330,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос»."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
+      "release": "r1"
     },
     {
       "id": "energy-modes-007",
@@ -29073,7 +29367,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-008",
@@ -29110,7 +29405,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-009",
@@ -29145,7 +29441,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-010",
@@ -29180,7 +29477,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-011",
@@ -29215,7 +29513,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-012",
@@ -29250,7 +29549,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается."
+      "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-013",
@@ -29284,7 +29584,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме."
+      "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-014",
@@ -29318,7 +29619,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме."
+      "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-015",
@@ -29354,7 +29656,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия."
+      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-016",
@@ -29390,7 +29693,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия."
+      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
+      "release": "r1"
     },
     {
       "id": "energy-modes-017",
@@ -29424,7 +29728,8 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null,
-      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). Текст окна — одна из фраз lesson1_energy.ts (случайно), «+1 ⚡ вернётся через {время}»; кнопки «Открыть Plus» и «Позже» (NoEnergyModal.tsx). Серии монет «×N» в коде уроков нет — из кадров убрана (12.10)."
+      "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). Текст окна — одна из фраз lesson1_energy.ts (случайно), «+1 ⚡ вернётся через {время}»; кнопки «Открыть Plus» и «Позже» (NoEnergyModal.tsx). Серии монет «×N» в коде уроков нет — из кадров убрана (12.10).",
+      "release": "r1"
     },
     {
       "id": "onboarding-paywall-001",
@@ -29453,7 +29758,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-paywall-002",
@@ -29490,7 +29796,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-001",
@@ -29527,7 +29834,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-002",
@@ -29556,7 +29864,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-003",
@@ -29585,7 +29894,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-004",
@@ -29614,7 +29924,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-005",
@@ -29643,7 +29954,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-006",
@@ -29672,7 +29984,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-007",
@@ -29710,7 +30023,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-008",
@@ -29739,7 +30053,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-009",
@@ -29777,7 +30092,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-010",
@@ -29806,7 +30122,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-011",
@@ -29843,7 +30160,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-012",
@@ -29880,7 +30198,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-013",
@@ -29916,7 +30235,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-014",
@@ -29945,7 +30265,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-015",
@@ -29974,7 +30295,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-016",
@@ -30006,7 +30328,8 @@
       "reviewed_at": null,
       "prev_status": "pending",
       "prev_blocked_reason": null,
-      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
+      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
+      "release": "r1"
     },
     {
       "id": "onboarding-017",
@@ -30038,7 +30361,8 @@
       "reviewed_at": null,
       "prev_status": "pending",
       "prev_blocked_reason": null,
-      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
+      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
+      "release": "r1"
     },
     {
       "id": "onboarding-018",
@@ -30067,7 +30391,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-019",
@@ -30102,7 +30427,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-020",
@@ -30131,7 +30457,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-021",
@@ -30160,7 +30487,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-022",
@@ -30199,7 +30527,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "onboarding-025",
@@ -30228,7 +30557,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-026",
@@ -30257,7 +30587,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-027",
@@ -30286,7 +30617,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-028",
@@ -30315,7 +30647,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "onboarding-029",
@@ -30344,7 +30677,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-001",
@@ -30386,7 +30720,8 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "cards-v2-002",
@@ -30418,7 +30753,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-003",
@@ -30450,7 +30786,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-004",
@@ -30484,7 +30821,8 @@
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "prev_status": "pending",
-      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет поиска в хабе; поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет поиска в хабе; поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)",
+      "release": "r1"
     },
     {
       "id": "cards-v2-005",
@@ -30519,7 +30857,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-006",
@@ -30554,7 +30893,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-007",
@@ -30589,7 +30929,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-008",
@@ -30624,7 +30965,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-009",
@@ -30659,7 +31001,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-010",
@@ -30694,7 +31037,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-011",
@@ -30729,7 +31073,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-012",
@@ -30760,7 +31105,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-013",
@@ -30791,7 +31137,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-014",
@@ -30825,7 +31172,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-015",
@@ -30859,7 +31207,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-016",
@@ -30893,7 +31242,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-017",
@@ -30927,7 +31277,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-018",
@@ -30960,7 +31311,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-019",
@@ -30993,7 +31345,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-020",
@@ -31025,7 +31378,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-021",
@@ -31057,7 +31411,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-022",
@@ -31091,7 +31446,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-023",
@@ -31125,7 +31481,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-024",
@@ -31159,7 +31516,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-025",
@@ -31190,7 +31548,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-026",
@@ -31221,7 +31580,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-027",
@@ -31251,7 +31611,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-028",
@@ -31283,7 +31644,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-029",
@@ -31315,7 +31677,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-030",
@@ -31347,7 +31710,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-031",
@@ -31377,7 +31741,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-032",
@@ -31407,7 +31772,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-033",
@@ -31437,7 +31803,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-034",
@@ -31467,7 +31834,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-035",
@@ -31497,7 +31865,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-036",
@@ -31527,7 +31896,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-037",
@@ -31557,7 +31927,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-038",
@@ -31587,7 +31958,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-039",
@@ -31617,7 +31989,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-040",
@@ -31647,7 +32020,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-041",
@@ -31678,7 +32052,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-042",
@@ -31709,7 +32084,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-043",
@@ -31742,7 +32118,8 @@
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "prev_status": "pending",
-      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет кадра «Нет сети» у хаба (хаб в авиарежиме рисуется как обычно); поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет кадра «Нет сети» у хаба (хаб в авиарежиме рисуется как обычно); поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)",
+      "release": "r1"
     },
     {
       "id": "cards-v2-044",
@@ -31773,7 +32150,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "release": "r1"
     },
     {
       "id": "cards-v2-045",
@@ -31803,7 +32181,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-046",
@@ -31832,7 +32211,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-047",
@@ -31861,7 +32241,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-048",
@@ -31890,7 +32271,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-049",
@@ -31919,7 +32301,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-050",
@@ -31948,7 +32331,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-051",
@@ -31977,7 +32361,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-052",
@@ -32006,7 +32391,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-001",
@@ -32035,7 +32421,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-002",
@@ -32064,7 +32451,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-003",
@@ -32094,7 +32482,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-004",
@@ -32124,7 +32513,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-005",
@@ -32154,7 +32544,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-006",
@@ -32184,7 +32575,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-007",
@@ -32213,7 +32605,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-008",
@@ -32242,7 +32635,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-009",
@@ -32271,7 +32665,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-010",
@@ -32300,7 +32695,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-011",
@@ -32329,7 +32725,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-012",
@@ -32359,7 +32756,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-013",
@@ -32388,7 +32786,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-014",
@@ -32417,7 +32816,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-015",
@@ -32446,7 +32846,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-016",
@@ -32475,7 +32876,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-017",
@@ -32504,7 +32906,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "auth-gap-018",
@@ -32534,7 +32937,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-001",
@@ -32563,7 +32967,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-002",
@@ -32592,7 +32997,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-003",
@@ -32621,7 +33027,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-004",
@@ -32650,7 +33057,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-005",
@@ -32679,7 +33087,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-006",
@@ -32708,7 +33117,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-007",
@@ -32737,7 +33147,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-008",
@@ -32766,7 +33177,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-009",
@@ -32795,7 +33207,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-010",
@@ -32824,7 +33237,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-011",
@@ -32853,7 +33267,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-012",
@@ -32882,7 +33297,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-013",
@@ -32912,7 +33328,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-014",
@@ -32942,7 +33359,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-015",
@@ -32971,7 +33389,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-016",
@@ -33000,7 +33419,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "dialogs-gap-017",
@@ -33029,7 +33449,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-001",
@@ -33058,7 +33479,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-002",
@@ -33087,7 +33509,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-003",
@@ -33116,7 +33539,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-004",
@@ -33145,7 +33569,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-005",
@@ -33174,7 +33599,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-006",
@@ -33203,7 +33629,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-007",
@@ -33232,7 +33659,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-008",
@@ -33261,7 +33689,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-009",
@@ -33291,7 +33720,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-010",
@@ -33320,7 +33750,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-011",
@@ -33355,7 +33786,8 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "release": "r1"
     },
     {
       "id": "spire-gap-012",
@@ -33384,7 +33816,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-013",
@@ -33413,7 +33846,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-014",
@@ -33442,7 +33876,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-015",
@@ -33471,7 +33906,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-016",
@@ -33500,7 +33936,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-017",
@@ -33529,7 +33966,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-018",
@@ -33558,7 +33996,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-019",
@@ -33587,7 +34026,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-020",
@@ -33616,7 +34056,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-021",
@@ -33646,7 +34087,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "spire-gap-022",
@@ -33675,7 +34117,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-001",
@@ -33704,7 +34147,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-002",
@@ -33733,7 +34177,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-003",
@@ -33762,7 +34207,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-004",
@@ -33791,7 +34237,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-005",
@@ -33820,7 +34267,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-006",
@@ -33849,7 +34297,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-007",
@@ -33878,7 +34327,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-008",
@@ -33907,7 +34357,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-009",
@@ -33936,7 +34387,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-010",
@@ -33965,7 +34417,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-011",
@@ -33994,7 +34447,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-012",
@@ -34023,7 +34477,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-013",
@@ -34052,7 +34507,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-014",
@@ -34081,7 +34537,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-015",
@@ -34110,7 +34567,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-016",
@@ -34139,7 +34597,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-017",
@@ -34168,7 +34627,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-018",
@@ -34197,7 +34657,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-019",
@@ -34226,7 +34687,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-020",
@@ -34255,7 +34717,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-021",
@@ -34284,7 +34747,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-022",
@@ -34313,7 +34777,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-023",
@@ -34342,7 +34807,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-024",
@@ -34371,7 +34837,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-025",
@@ -34400,7 +34867,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-026",
@@ -34429,7 +34897,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-027",
@@ -34458,7 +34927,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-028",
@@ -34487,7 +34957,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-029",
@@ -34516,7 +34987,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-030",
@@ -34545,7 +35017,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-031",
@@ -34574,7 +35047,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-032",
@@ -34603,7 +35077,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-033",
@@ -34632,7 +35107,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-034",
@@ -34662,7 +35138,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-035",
@@ -34692,7 +35169,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-036",
@@ -34721,7 +35199,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-037",
@@ -34750,7 +35229,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-038",
@@ -34779,7 +35259,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-001",
@@ -34809,7 +35290,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-002",
@@ -34838,7 +35320,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-003",
@@ -34867,7 +35350,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-004",
@@ -34897,7 +35381,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-005",
@@ -34926,7 +35411,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-006",
@@ -34955,7 +35441,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-007",
@@ -34984,7 +35471,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-008",
@@ -35014,7 +35502,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-009",
@@ -35043,7 +35532,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-010",
@@ -35072,7 +35562,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-011",
@@ -35101,7 +35592,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-012",
@@ -35130,7 +35622,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "paywall-gap-013",
@@ -35159,7 +35652,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-001",
@@ -35188,7 +35682,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-002",
@@ -35217,7 +35712,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-003",
@@ -35246,7 +35742,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-004",
@@ -35275,7 +35772,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-005",
@@ -35304,7 +35802,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-006",
@@ -35333,7 +35832,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-007",
@@ -35363,7 +35863,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-008",
@@ -35393,7 +35894,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-009",
@@ -35423,7 +35925,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-010",
@@ -35452,7 +35955,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-011",
@@ -35481,7 +35985,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-012",
@@ -35510,7 +36015,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-013",
@@ -35539,7 +36045,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-014",
@@ -35568,7 +36075,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-015",
@@ -35597,7 +36105,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-016",
@@ -35626,7 +36135,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-017",
@@ -35655,7 +36165,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-018",
@@ -35684,7 +36195,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-019",
@@ -35713,7 +36225,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-020",
@@ -35742,7 +36255,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-021",
@@ -35771,7 +36285,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-022",
@@ -35800,7 +36315,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-023",
@@ -35829,7 +36345,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-024",
@@ -35858,7 +36375,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-025",
@@ -35887,7 +36405,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-026",
@@ -35916,7 +36435,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-039",
@@ -35945,7 +36465,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-027",
@@ -35974,7 +36495,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-028",
@@ -36003,7 +36525,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-029",
@@ -36033,7 +36556,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-030",
@@ -36062,7 +36586,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-031",
@@ -36091,7 +36616,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-032",
@@ -36121,7 +36647,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-033",
@@ -36151,7 +36678,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-034",
@@ -36180,7 +36708,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-035",
@@ -36209,7 +36738,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "settings-gap-036",
@@ -36238,7 +36768,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-v2-053",
@@ -36268,7 +36799,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "cards-gap-040",
@@ -36298,7 +36830,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "release": "r1"
     },
     {
       "id": "home-001",

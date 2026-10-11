@@ -25,6 +25,7 @@ describe('dev streakJump', () => {
     await runDevStreakRestoreJump({ local: 5, cloud: 12 }, {
       whenHomePainted: () => new Promise<void>((resolve) => { releasePaint = resolve; }),
       wait: () => new Promise<void>((resolve) => { releaseWait = resolve; }),
+      traceWrites: false,
     });
     expect(await AsyncStorage.getItem('streak_count')).toBe('5');
     expect(mockEmit).not.toHaveBeenCalled();

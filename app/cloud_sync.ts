@@ -3877,20 +3877,28 @@ async function applyRestoreFromUserDocTraced(
 
   try {
     applyMark('at:stats_import');
+    // зачем (координатор 12.10, «сначала логи»): at:stats_en=20335 мс у гостя на холодном dev-старте. applyMark пишет время
+    // С ПРЕДЫДУЩЕЙ отметки, то есть at:stats_en — это импорт модуля ниже, а не сверка. Делим: импорт / сверка en / сверка fr.
+    const statsImportStartedAt = Date.now();
     const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
+    const statsImportMs = Date.now() - statsImportStartedAt;
     assertCurrent();
     applyMark('at:stats_en');
+    const statsEnStartedAt = Date.now();
     cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData['stats_daily_breakdown_v1'],
       'en',
     );
+    const statsEnMs = Date.now() - statsEnStartedAt;
     assertCurrent();
     const frenchStatsKey = statsDailyBreakdownKey('fr');
     applyMark('at:stats_fr');
+    const statsFrStartedAt = Date.now();
     cloudData[frenchStatsKey] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData[frenchStatsKey],
       'fr',
     );
+    console.warn('[BOOT-STATS]', JSON.stringify({ importMs: statsImportMs, reconcileEnMs: statsEnMs, reconcileFrMs: Date.now() - statsFrStartedAt, dev: __DEV__ })); // guard-ok: одна строка на восстановление
     assertCurrent();
   } catch (e) {
       // ignore
@@ -3936,6 +3944,9 @@ async function applyRestoreFromUserDocTraced(
   let localStreakRaw: string | null;
   let localLastActiveRaw: string | null;
   let localStreakLastRaw: string | null;
+  // зачем (координатор 12.10, 🔴 streakJump, «сперва логи»): серию читаем здесь, а пишем слитое значение в конце
+  // восстановления — на холодном старте это секунды. Возраст чтения в момент записи покажет «записал устаревшее».
+  let streakReadAtMs = 0;
   try {
     applyMark('at:streak_reads');
     [localStreakRaw, localLastActiveRaw, localStreakLastRaw] = await Promise.all([
@@ -3943,6 +3954,7 @@ async function applyRestoreFromUserDocTraced(
       AsyncStorage.getItem('last_active_date'),
       AsyncStorage.getItem('streak_last_date'),
     ]);
+    streakReadAtMs = Date.now();
   } catch (error) {
     assertCurrent();
     // If persisted reads are unavailable, the authenticated server ledger is
@@ -4284,6 +4296,9 @@ async function applyRestoreFromUserDocTraced(
   }
   if (!phoneStateOwnsCore && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
     pairs.push(['streak_count', String(mergedStreak.streak)]);
+    console.log(`[STREAK] restore_pair streak=${mergedStreak.streak} localRead=${String(localStreakRaw)} cloud=${String(cloudData['streak_count'])} readAgoMs=${Date.now() - streakReadAtMs}`);
+  } else {
+    console.log(`[STREAK] restore_pair skipped phoneOwns=${phoneStateOwnsCore} merged=${mergedStreak.streak} cloud=${String(cloudData['streak_count'])}`);
   }
   if (!phoneStateOwnsCore && mergedStreak.lastActive) {
     pairs.push(['last_active_date', mergedStreak.lastActive]);

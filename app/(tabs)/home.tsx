@@ -180,6 +180,8 @@ const { height: SCREEN_H } = Dimensions.get('window');
  * ниже него карточка ошибок не захватывает слот, и проверять было бы нечего.
  */
 const DEV_HOME_MISTAKES_MIN_COUNT = 10;
+/** Дебаунс обновления Главной после восстановления из облака (событие приходит пачкой). */
+const HOME_RESTORE_REFRESH_DEBOUNCE_MS = 400;
 /** Единый едва заметный press-feedback для крупных действий Главной. */
 const HOME_BUTTON_PRESS_SCALE = 1.02;
 // Rollback: set false to return to the previous elite home status card.
@@ -1297,7 +1299,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (координатор 12.10, план (а) п.5, СПЕРВА ЛОГИ): «серия и монеты не прыгают после восстановления».
         // Главная на конец восстановления не подписана — серия обновится только при следующем loadData. Лог: что лежит
         // после восстановления; сравнить с последней строкой «[STREAK] home:hydration … -> X» (то, что сейчас на экране).
+        // зачем (координатор 12.10, этап 2 «ДА», Сверка streakJump: Главная держала «5 дней» при сохранённых 12): после
+        // восстановления — один лёгкий requestHomeDataRefresh (loadData читает только диск, без сети). Дебаунс: событие
+        // приходит пачкой; неактивная Главная просто взводит dirty-флаг и перечитает при возврате.
+        let restoreRefreshTimer: ReturnType<typeof setTimeout> | null = null;
         const restoreJumpSub = onAppEvent('cloud_profile_hydrated', () => {
+            if (restoreRefreshTimer) clearTimeout(restoreRefreshTimer);
+            restoreRefreshTimer = setTimeout(() => {
+                restoreRefreshTimer = null;
+                if (!mountedRef.current) {
+                    console.log('[HOME-RESTORE-JUMP] refresh: skipped reason=unmounted');
+                    return;
+                }
+                console.log(`[HOME-RESTORE-JUMP] refresh: requested active=${String(homeRuntimeActiveRef.current)} → ${homeRuntimeActiveRef.current ? 'loadData сейчас' : 'dirty, перечитаем при возврате'}`);
+                requestHomeDataRefresh();
+            }, HOME_RESTORE_REFRESH_DEBOUNCE_MS);
             const memoryStreak = getPersonalProgressSnapshot().streakCount;
             const snapshot = getAppSnapshot().progress;
             void hydratePersonalProgress().then((fresh) => {
@@ -1308,7 +1324,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     snapshotSource: snapshot?.source ?? null,
                     runes: peekRunes(),
                     homeActive: homeRuntimeActiveRef.current,
-                    willReload: 'next_loadData_only',
+                    willReload: `debounced_refresh_${HOME_RESTORE_REFRESH_DEBOUNCE_MS}ms`,
                 }));
             }).catch((error: unknown) => console.warn('[HOME-RESTORE-JUMP] чтение прогресса не удалось', error instanceof Error ? error.message : String(error)));
         });
@@ -1346,6 +1362,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             resumeTask?.cancel?.();
             freezeUpdatedSub.remove();
             restoreJumpSub.remove();
+            if (restoreRefreshTimer) clearTimeout(restoreRefreshTimer);
             lastOpenedLessonSub.remove();
             onboardingCompletedSub.remove();
             deferredReadyTaskRef.current?.cancel?.();

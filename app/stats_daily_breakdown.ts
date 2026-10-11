@@ -83,16 +83,23 @@ export async function reconcileStatsDailyBreakdownWithCloud(
 ): Promise<string> {
   let local: Store = {};
   let storedRaw: string | null = null;
+  const startedAt = Date.now();
   try {
     const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
     storedRaw = typeof raw === 'string' ? raw : null;
     local = parseStore(raw);
-  } catch {
+  } catch (error: unknown) {
+    // зачем (12.10): был немой catch — нечитаемый диск выглядел как «локальной статистики нет».
+    console.warn(`[STATS-RECONCILE] read:failed target=${String(studyTarget)} reason=${error instanceof Error ? error.message : String(error)} → считаем локальное пустым`);
     local = {};
   }
+  const readMs = Date.now() - startedAt;
   const remote = parseStore(cloudRaw);
   const merged = pruneStore(mergeDailyBreakdownStores(local, remote));
   const str = JSON.stringify(merged);
+  // зачем (координатор 12.10, «сначала логи»): что пришло из облака и что лежит локально — у нового гостя оба пустые,
+  // и тогда вся сверка лишь пишет «{}». Размеры и дни, без содержимого.
+  console.warn(`[STATS-RECONCILE] in target=${String(studyTarget)} cloudType=${cloudRaw === undefined ? 'none' : typeof cloudRaw} cloudDays=${Object.keys(remote).length} localStored=${storedRaw === null ? 'none' : `${storedRaw.length}b`} localDays=${Object.keys(local).length} mergedDays=${Object.keys(merged).length} readMs=${readMs}`);
   // зачем (замер холодного старта 04.10: запись stats_daily_breakdown 3 с в очереди, два раза за старт, в том числе для языка, которым
   // человек не пользуется): объединение с облаком чаще всего ничего не меняет — тогда пишем НЕ ТО ЖЕ САМОЕ. Результат и возврат прежние.
   if (storedRaw === str) {

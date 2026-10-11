@@ -2671,13 +2671,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (§142, правило владельца «каждый раздел открывается мгновенно»): окно Plus открывается
       // сразу (02a922192), но цены читались с диска уже после показа. Кэш цен читаем в память фоном
       // после первого кадра — только диск, без сети; модуль подгружаем динамически, не в старт.
-      runAfterHomeFirstFrame('paywall_price_cache_warmup', () => import('./paywall_price_cache')
-        .then(({ hydratePaywallPriceCache }) => hydratePaywallPriceCache())
+      // зачем (координатор 12.10, «сначала логи»): taskMs=21661 на холодном dev-старте — делим время на загрузку модуля
+      // (в dev Metro отдаёт его отдельным куском после перезапуска) и чтение кэша с диска.
+      runAfterHomeFirstFrame('paywall_price_cache_warmup', () => { const warmStartedAt = Date.now(); let importMs = -1; return import('./paywall_price_cache')
+        .then(({ hydratePaywallPriceCache }) => { importMs = Date.now() - warmStartedAt; return hydratePaywallPriceCache(); })
         .then((cache) => {
           const plans = cache ? [cache.yearly, cache.monthly].filter(Boolean).length : 0;
-          console.warn(cache ? `[PAYWALL] цены прогреты: из кэша ${plans}` : '[PAYWALL] цены прогреты: нет кэша'); // guard-ok: одна строка на запуск, цепочка [PAYWALL]
+          const timing = `importMs=${importMs} hydrateMs=${Date.now() - warmStartedAt - importMs}`;
+          console.warn(cache ? `[PAYWALL] цены прогреты: из кэша ${plans} ${timing}` : `[PAYWALL] цены прогреты: нет кэша ${timing}`); // guard-ok: одна строка на запуск, цепочка [PAYWALL]
         })
-        .catch((error: unknown) => console.warn('[PAYWALL] цены: прогрев не удался', String(error)))); // guard-ok: одна строка на запуск
+        .catch((error: unknown) => console.warn('[PAYWALL] цены: прогрев не удался', String(error))); }); // guard-ok: одна строка на запуск
       // зачем (04.10, удаление карточки из опубликованного набора): запись, не отправленная до закрытия
       // приложения, уходит при следующем входе. Одно чтение диска после первого кадра; сеть — только если
       // очередь не пуста. Модуль грузится динамически, не в старт.

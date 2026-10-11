@@ -28,6 +28,7 @@ import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
+import { chargesEnergyOnMistake, peekEnergyMode } from '../app/energy_mode';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
 import { markEnergySpendStage } from '../app/energy_spend_latency_trace';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -125,6 +126,13 @@ export interface EnergyContextValue {
   restoringPremium: boolean; // true while animating premium energy restore
   /** Start one priced activity using the canonical numeric-energy catalog. */
   confirmActivityStart: (activity: EnergyActivityKey, intent: EnergySessionIntent) => Promise<EnergyStartResult>;
+  /**
+   * Режим энергии Б (владелец 11.10): списать 1 энергию за ОШИБКУ в занятии с сердечками. Идемпотентно по
+   * intent.operationId (номер ответа). 'insufficient' — энергии уже нет; 'unlimited' — Plus, ничего не снято.
+   */
+  spendMistakeEnergy: (activity: EnergyActivityKey, intent: EnergySessionIntent) => Promise<EnergyStartResult>;
+  /** Режим Б: можно ли начать занятие (Plus или хотя бы 1 энергия). В режиме А всегда true — там решает цена старта. */
+  canStartInMistakeMode: boolean;
   refundActivityStart: (operationId: string, reason: string) => Promise<void>;
   spendOne: (intent: EnergySessionIntent) => Promise<boolean>;  // returns false if no energy
   /** Ask before a paid start and return a distinct cancel/no-energy outcome. */
@@ -163,6 +171,8 @@ const EnergyContext = createContext<EnergyContextValue>({
   isUnlimited: false,
   restoringPremium: false,
   confirmActivityStart: async () => 'spent',
+  spendMistakeEnergy: async () => 'spent',
+  canStartInMistakeMode: true,
   refundActivityStart: async () => {},
   spendOne: async () => true,
   confirmSpendOne: async () => 'spent',
@@ -891,6 +901,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const confirmActivityStart = useCallback(async (
     activity: EnergyActivityKey,
     intent: EnergySessionIntent,
+    options?: Readonly<{ mistakeCharge?: boolean }>,
   ): Promise<EnergyStartResult> => {
     const traceKey = intent.grant?.subjectId ? `spend:${intent.grant.subjectId}` : 'spend';
     try {
@@ -920,6 +931,17 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         const skipTrace = `spend SKIPPED (activity=${activity}, cost=${cost}):`
           + ` unlimited, reason=${_lastUnlimitedReason}`;
         traceEnergyRestore(skipTrace);
+        return 'unlimited';
+      }
+      // зачем (владелец 11.10, режим энергии Б): старт занятия с сердечками бесплатный, энергия снимается за ошибку
+      // (spendMistakeEnergy). Но без энергии и без Plus начать нельзя — шторка «Нужна энергия».
+      if (!options?.mistakeCharge && chargesEnergyOnMistake(activity)) {
+        const available = bonusRef.current + refundCreditRef.current + energyRef.current;
+        if (available < 1) {
+          console.warn(`[ENERGY-MODE] старт отклонён: режим Б, энергии нет (activity=${activity}, available=${available})`); // guard-ok: ранний выход логируется
+          return 'insufficient';
+        }
+        traceEnergyRestore(`spend SKIPPED (activity=${activity}): mode=mistake_charge, free start, available=${available}`);
         return 'unlimited';
       }
       if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) return 'insufficient';
@@ -971,6 +993,16 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       return 'cancelled';
     }
   }, [applySessionProjection, currentSessionProjection, load, sourceForActivity]);
+
+  const spendMistakeEnergy = useCallback(async (
+    activity: EnergyActivityKey,
+    intent: EnergySessionIntent,
+  ): Promise<EnergyStartResult> => {
+    // зачем: тот же журнал энергии, что и старт (идемпотентно по operationId), — двойной тап не снимет дважды.
+    const result = await confirmActivityStart(activity, intent, { mistakeCharge: true });
+    console.log('[ENERGY-MODE] mistake spend', JSON.stringify({ activity, operationId: intent.operationId, result, mode: peekEnergyMode() }));
+    return result;
+  }, [confirmActivityStart]);
 
   const spendOne = useCallback(async (intent: EnergySessionIntent): Promise<boolean> => {
     const result = await confirmActivityStart(energyActivityForSessionKind(intent.grant.kind), intent);
@@ -1138,17 +1170,18 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const formattedTime = activeEnergy < activeMaxEnergy && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
+  const canStartInMistakeMode = isUnlimited || energy + bonusEnergy >= 1;
 
   const value = useMemo<EnergyContextValue>(() => ({
     energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    confirmActivityStart, refundActivityStart,
+    confirmActivityStart, spendMistakeEnergy, canStartInMistakeMode, refundActivityStart,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    confirmActivityStart, refundActivityStart,
+    confirmActivityStart, spendMistakeEnergy, canStartInMistakeMode, refundActivityStart,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   ]);

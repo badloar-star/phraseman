@@ -58,6 +58,9 @@ export type RemoteBoolKey =
   // ссылки на сторы — в текстовых ключах ниже. Управляется из «Пульта» живьём.
   | 'force_update_enabled'
   | 'manual_update_enabled'
+  // Режим энергии (владелец 11.10, ENERGY_MODES_OWNER_BRIEF): false = А (1 энергия за старт, сердечки за ошибки),
+  // true = Б (старт бесплатный, 1 энергия за ошибку, остановка на последней). Переключатель — в админке.
+  | 'energy_mistake_charge'
   // Промо-баннер (акция). Дефолт FALSE. true → в приложении показывается
   // управляемый из «Пульта» баннер акции (текст/ссылка/срок в текстовых ключах).
   // Сама скидка на подписку настраивается в сторах отдельно — баннер только зовёт.
@@ -289,6 +292,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
   manual_update_enabled: false,
+  // По умолчанию режим А: Б включается только явным действием в админке.
+  energy_mistake_charge: false,
   // Промо-баннер (акция): дефолт FALSE. Включается из «Пульта» на время акции.
   promo_banner_enabled: false,
   // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
@@ -451,6 +456,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   const allowedBools = new Set<RemoteBoolKey>([
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
+    'energy_mistake_charge',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',

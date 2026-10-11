@@ -140,7 +140,9 @@ function parseAttemptsState(input: unknown, expectedSessionId?: string): Session
     || typeof input.questionId !== 'string'
     || input.maxAttempts !== 3
     || !Number.isSafeInteger(remaining) || remaining < 0 || remaining > 3
-    || !['active', 'awaiting_recovery', 'ended'].includes(String(input.phase))
+    // зачем (режим энергии Б, 11.10): остановленное на последней энергии занятие обязано пережить перезаход —
+    // «продолжить с Plus» возвращает на то же место.
+    || !['active', 'awaiting_recovery', 'ended', 'stopped_no_energy'].includes(String(input.phase))
     || !Number.isSafeInteger(recoveryOrdinal) || recoveryOrdinal < 0 || recoveryOrdinal > 1_000
     || !Array.isArray(processed) || !processed.every((value) => typeof value === 'string')
     || !Array.isArray(receipts) || !receipts.every((value) => typeof value === 'string')) return null;

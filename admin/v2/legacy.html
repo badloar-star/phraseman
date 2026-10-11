@@ -11691,6 +11691,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <div style="margin-top:8px"><span id="cp-toggles-status" class="cp-status-chip">Загрузка…</span></div>
 
     <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
+      <!-- зачем (владелец 11.10, ENERGY_MODES_OWNER_BRIEF): режим списания энергии. Выкл — режим А (1 энергия за старт,
+           сердечки за ошибки). Вкл — режим Б (старт бесплатный, 1 энергия за ошибку, на последней — остановка и
+           предложение Plus). Диалоги, экзамены и «Фраза дня» не меняются. Переключение — с подтверждением. -->
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">⚡</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Энергия за ошибки (режим Б)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл — энергия за старт занятия и сердечки (режим А).</div></div>
+        <label title="Переключить режим списания энергии для всех игроков" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-energy_mistake_charge" class="cp-toggle" onchange="saveEnergyModeToggle(this)" disabled/><span id="cp-bool-label-energy_mistake_charge" class="cp-bool-chip">…</span></label>
+      </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">🎤</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Режим «Устно»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Произношение/говорение в уроках и тренере.</div></div>
@@ -34104,6 +34112,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // Рубильники фич: булевы флаги remote_config/app.bools, читаемые клиентом
   // онлайн (onSnapshot). Дефолты держим в синхроне с app/remote_flags.ts.
   const CP_FEATURE_TOGGLES = [
+    { key: 'energy_mistake_charge',    label: '⚡ Энергия за ошибки (режим Б)',  def: false, hint: 'Выкл (по умолчанию) — режим А: 1 энергия за старт занятия, сердечки за ошибки. Вкл — режим Б: старт бесплатный, каждая ошибка снимает 1 энергию, на последней занятие останавливается с предложением Plus. Диалоги, экзамены, «Фраза дня» не меняются.' },
     { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги и комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'support_diagnostics_enabled', label: 'Диагностика обращений',        def: true,  hint: 'Локальная allowlist-история. В облако уходит только вместе с явно отправленным обращением; выкл — аварийный стоп записи и вложения.' },
@@ -34421,6 +34430,22 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       cpSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
       if (cb) cb.disabled = false;
     }
+  };
+
+  // зачем (владелец 11.10): режим энергии меняет правила для ВСЕХ игроков сразу — спрашиваем подтверждение, при отказе
+  // возвращаем переключатель в прежнее положение. Пишется тем же общим писателем рубильников (ревизия + аудит).
+  window.saveEnergyModeToggle = async function(input) {
+    const next = !!(input && input.checked);
+    const text = next
+      ? 'Включить режим Б для всех игроков?\n\nСтарт занятия станет бесплатным, каждая ошибка снимает 1 энергию, на последней занятие остановится с предложением Plus.\n\n⚠️ Включать только после сигнала координатора: экраны остановки занятия ещё дорабатываются (ревью 11.10).'
+      : 'Вернуть режим А для всех игроков?\n\n1 энергия за старт занятия, сердечки за ошибки.';
+    if (!confirm(text)) {
+      console.log('[ENERGY-MODE] переключение отменено в админке', JSON.stringify({ wanted: next }));
+      if (input) input.checked = !next;
+      return;
+    }
+    console.log('[ENERGY-MODE] переключение режима из админки', JSON.stringify({ energy_mistake_charge: next }));
+    await window.saveControlPanelBool('energy_mistake_charge', next);
   };
 
   // Совместимость: старый онколл lifetime-тумблера → общий обработчик.

@@ -6,7 +6,9 @@ const MAX_PROCESSED_ANSWER_ATTEMPT_IDS = 256;
 const MAX_RECOVERY_RECEIPT_IDS = 64;
 const MAX_STABLE_ID_LENGTH = 256;
 
-export type SessionAttemptsPhase = 'active' | 'awaiting_recovery' | 'ended';
+// зачем (владелец 11.10, режим энергии Б): 'stopped_no_energy' — ошибка на последней энергии остановила занятие; продолжить
+// можно после Plus или восстановления энергии (событие resume_after_energy), на том же месте.
+export type SessionAttemptsPhase = 'active' | 'awaiting_recovery' | 'ended' | 'stopped_no_energy';
 export type SessionAttemptVerdict =
   | 'correct'
   | 'pedagogical_wrong'
@@ -37,14 +39,24 @@ export type SessionAttemptsEvent =
   | Readonly<{ type: 'recover_all'; recoveryReceiptId: string }>
   /** Экран уже сжёг только временную копилку рун текущей сессии. */
   | Readonly<{ type: 'restore_after_session_rune_forfeit' }>
-  | Readonly<{ type: 'end_session' }>;
+  | Readonly<{ type: 'end_session' }>
+  /**
+   * Режим энергии Б: неверный ответ снимает энергию, а не сердечко. outcome решает хук по факту энергии:
+   * 'charged' — снята 1, ещё есть; 'exhausted' — снята последняя → остановка; 'free' — Plus, ничего не снято.
+   */
+  | Readonly<{ type: 'energy_mistake'; answerAttemptId: string; outcome: 'charged' | 'exhausted' | 'free' }>
+  /** Продолжить остановленное занятие (Plus оформлен или энергия восстановилась — проверяет хук). */
+  | Readonly<{ type: 'resume_after_energy' }>;
 
 export type SessionAttemptsEffect =
   | 'none'
   | 'attempt_consumed'
   | 'attempts_exhausted'
   | 'attempts_restored'
-  | 'session_ended';
+  | 'session_ended'
+  | 'energy_consumed'
+  | 'energy_exhausted'
+  | 'energy_resumed';
 
 export type SessionAttemptsTransition = Readonly<{
   state: SessionAttemptsStateV1;
@@ -141,6 +153,25 @@ export function reduceSessionAttempts(
         MAX_RECOVERY_RECEIPT_IDS,
       ),
     }), 'attempts_restored');
+  }
+
+  if (event.type === 'resume_after_energy') {
+    if (state.phase !== 'stopped_no_energy') return transition(state);
+    return transition(freezeState({ ...state, phase: 'active' }), 'energy_resumed');
+  }
+
+  if (event.type === 'energy_mistake') {
+    const mistakeAttemptId = stableId(event.answerAttemptId);
+    if (state.phase !== 'active' || state.processedAnswerAttemptIds.includes(mistakeAttemptId)) {
+      return transition(state);
+    }
+    const processed = boundedAppend(state.processedAnswerAttemptIds, mistakeAttemptId, MAX_PROCESSED_ANSWER_ATTEMPT_IDS);
+    // Сердечки в режиме Б не трогаем: remainingAttempts остаётся как есть.
+    if (event.outcome === 'free') return transition(freezeState({ ...state, processedAnswerAttemptIds: processed }));
+    if (event.outcome === 'exhausted') {
+      return transition(freezeState({ ...state, processedAnswerAttemptIds: processed, phase: 'stopped_no_energy' }), 'energy_exhausted');
+    }
+    return transition(freezeState({ ...state, processedAnswerAttemptIds: processed }), 'energy_consumed');
   }
 
   if (event.type === 'restore_after_session_rune_forfeit') {

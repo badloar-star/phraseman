@@ -1709,7 +1709,10 @@ function parseRestoreRecord(raw: string | null | undefined): Record<string, any>
   try {
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
-  } catch {
+  } catch (error: unknown) {
+    // зачем (координатор 12.10, «немого catch нет»): испорченная запись выглядела как «записи нет». Значение не печатаем —
+    // там личные данные; только длина и причина.
+    console.warn('[RESTORE-MERGE]', JSON.stringify({ event: 'record:unparseable', len: raw.length, reason: error instanceof Error ? error.message : String(error) }));
     return null;
   }
 }

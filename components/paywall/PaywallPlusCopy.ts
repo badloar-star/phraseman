@@ -177,6 +177,9 @@ export const COPY = {
   getPlus: LP('Оформить Plus', 'Оформити Plus', 'Get Plus', 'Obtener Plus', 'Assinar o Plus', 'Đăng ký Plus', 'Dapatkan Plus', "Plus'a geç", 'Wykup Plus'),
   pricesFailed: LP('Цены не загрузились', 'Ціни не завантажилися', "Prices didn't load", 'No se cargaron los precios', 'Os preços não carregaram', 'Không tải được giá', 'Harga gagal dimuat', 'Fiyatlar yüklenmedi', 'Nie udało się wczytać cen'),
   checkInternet: LP('Проверь интернет', 'Перевір інтернет', 'Check your connection', 'Revisa tu conexión', 'Verifique sua conexão', 'Kiểm tra kết nối mạng', 'Periksa koneksi internet', 'İnternet bağlantını kontrol et', 'Sprawdź internet'),
+  // зачем (владелец 11.10, пейволы): на месте цен — «Цены сейчас недоступны» + «Повторить» (раньше общее «Сейчас недоступно» и тихий повтор)
+  pricesUnavailable: LP('Цены сейчас недоступны', 'Ціни зараз недоступні', 'Prices are unavailable right now', 'Los precios no están disponibles ahora', 'Os preços não estão disponíveis agora', 'Hiện chưa có giá', 'Harga sedang tidak tersedia', 'Fiyatlar şu an kullanılamıyor', 'Ceny są teraz niedostępne'),
+  retryPrices: LP('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'),
   retry: LP('Ещё раз', 'Ще раз', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'),
   whatsIncluded: LP('ЧТО ВХОДИТ', 'ЩО ВХОДИТЬ', "WHAT'S INCLUDED", 'QUÉ INCLUYE', 'O QUE ESTÁ INCLUÍDO', 'BAO GỒM', 'YANG KAMU DAPAT', 'NELER DAHİL', 'CO ZAWIERA'),
   freeVsPlus: LP('FREE И PLUS', 'FREE І PLUS', 'FREE VS PLUS', 'FREE Y PLUS', 'FREE E PLUS', 'FREE VÀ PLUS', 'FREE DAN PLUS', 'FREE VE PLUS', 'FREE I PLUS'),

@@ -34,6 +34,7 @@ import {
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline } from '../../app/paywall_context_headline';
+import { PaywallContextIcon } from './PaywallContextIcons';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -175,7 +176,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             ) : null}
             <PaywallPlusDetails lang={lang} g={g} restoring={p.restoring}
               restoreDisabled={checkoutInFlight || state === 'loading'} onRestore={() => { void p.handleRestore(); }}
-              leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
+              leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
+              leadIcon={contextual && headline.firstBenefit ? <PaywallContextIcon ctx={ctx} size={22} color={g.text} /> : undefined} />
           </PaywallPlusScroll>
           <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
             notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}

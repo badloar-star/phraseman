@@ -260,14 +260,14 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
   return (
     <View testID="paywall-plans-unavailable">
       <View style={[S.skeleton, S.unavailableBox, { height: 132, backgroundColor: g.opaqueCard }]}>
-        <Text style={[S.planSmall, { color: g.secondary }]}>{pick(lang, COPY.unavailable)}</Text>
+        <Text style={[S.unavailableText, { color: g.text }]}>{pick(lang, COPY.pricesUnavailable)}</Text>
         {onRetry ? (
           <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
             disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
             outerStyle={S.retryGap} style={[S.retry, { backgroundColor: g.opaqueControl }]}>
             {retrying
               ? <ActivityIndicator color={g.text} />
-              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retry)}</Text>}
+              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retryPrices)}</Text>}
           </V2Pressable>
         ) : null}
       </View>
@@ -277,14 +277,14 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
 });
 
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
-export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore, leadBenefit }: {
+export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore, leadBenefit, leadIcon }: {
   lang: Lang; g: GlassTokens; restoring: boolean; restoreDisabled: boolean; onRestore: () => void;
-  leadBenefit?: string;
+  leadBenefit?: string; leadIcon?: React.ReactNode;
 }) {
   return (
     <View>
       <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.whatsIncluded)}</Text>
-      <PaywallPlusBenefits lang={lang} g={g} leadBenefit={leadBenefit} />
+      <PaywallPlusBenefits lang={lang} g={g} leadBenefit={leadBenefit} leadIcon={leadIcon} />
       <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.freeVsPlus)}</Text>
       <PaywallPlusComparison lang={lang} g={g} />
       <View style={S.links}>
@@ -424,6 +424,7 @@ const S = StyleSheet.create({
   retry: { minHeight: 44, paddingHorizontal: 16, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   retryText: { fontSize: 16, fontWeight: '700' },
   retryGap: { marginTop: 12 },
+  unavailableText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', paddingHorizontal: 16 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },

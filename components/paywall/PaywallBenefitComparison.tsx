@@ -99,9 +99,11 @@ export const PAYWALL_COMPARISON_VISIBLE_ROWS = 6;
 
 type SectionProps = Readonly<{ lang: Lang; g: GlassTokens }>;
 
-export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g, leadBenefit }: SectionProps & {
+export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g, leadBenefit, leadIcon }: SectionProps & {
   /** Первая выгода КОНТЕКСТА входа (paywallContextHeadline) — подсвеченной строкой сверху. */
   leadBenefit?: string;
+  /** Иконка контекста входа (PaywallContextIcon) вместо общей «искры». */
+  leadIcon?: React.ReactNode;
 }) {
   const glass = useV2GlassStyle();
   return (
@@ -110,9 +112,9 @@ export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g, 
       {/* зачем (владелец 11.10: «все пейволы должны быть контекстными»): человек сразу видит выгоду именно того места,
           откуда пришёл; строка — тот же ряд выгод кита, выделена тоном выбора (без новой вёрстки, координатор 17:25). */}
       {leadBenefit ? (
-        <View testID="paywall-lead-benefit" style={[S.benefitRow, { backgroundColor: g.selected, borderTopLeftRadius: 22, borderTopRightRadius: 22 }]}>
+        <View testID="paywall-lead-benefit" style={[S.benefitRow, { backgroundColor: g.selected, borderTopLeftRadius: S.card.borderRadius, borderTopRightRadius: S.card.borderRadius }]}>
           <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
-            <Ionicons name="sparkles-outline" size={20} color={g.text} />
+            {leadIcon ?? <Ionicons name="sparkles-outline" size={20} color={g.text} />}
           </View>
           <View style={S.benefitCopy}>
             <Text style={[S.benefitTitle, { color: g.text }]}>{leadBenefit}</Text>

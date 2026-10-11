@@ -66,7 +66,8 @@ describe('startup provider reauthentication recovery', () => {
     const helperEnd = authProvider.indexOf('export async function signInWithProvider', helperStart);
     const helper = authProvider.slice(helperStart, helperEnd);
     expect(helperStart).toBeGreaterThan(-1);
-    expect(helper).toContain('await signOutCurrentProvider()');
+    expect(helper).toContain('await performCurrentProviderSignOut()');
+    expect(helper).not.toContain('await signOutCurrentProvider()');
     expect(helper).toContain('await ensureAnonUser()');
     expect(helper).not.toContain('clearStableId');
     expect(helper).not.toContain('setStableId');

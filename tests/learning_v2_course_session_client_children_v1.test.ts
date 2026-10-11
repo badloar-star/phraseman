@@ -84,6 +84,7 @@ function learner() {
       mediaIds: [],
       audioTargetIds: [`audio-${index + 1}`],
       accessibilityLabel: `Build ${index + 1}`,
+      modePayload: null,
       scriptedAlternate: null,
     })),
   });
@@ -169,6 +170,41 @@ describe("Learning V2 direct session learner child contracts", () => {
     expect(parsed.interactions.at(-1)?.ordinal).toBe(16);
     expect(parsed.evaluatorPayload).toBe("absent_by_exact_schema");
     expect(parsed.acceptedAnswerPayload).toBe("absent_by_exact_schema");
+  });
+
+  test("accepts the bounded single-phrase migration ceiling and rejects overflow", () => {
+    const makeInteractions = (count: number) =>
+      Array.from({ length: count }, (_, index) => ({
+        interactionId: `migrated-interaction-${index + 1}`,
+        ordinal: index + 4,
+        purpose: "retrieval_practice" as const,
+        family: "scripted_repeat_compare" as const,
+        inputMode: "scripted_speech" as const,
+        prompt: `Say phrase ${index + 1}`,
+        responseOptions: [],
+        mediaIds: [],
+        audioTargetIds: [],
+        accessibilityLabel: `Say phrase ${index + 1}`,
+        modePayload: null,
+        scriptedAlternate: null,
+      }));
+
+    expect(
+      materializeLearningV2CourseSessionLearnerChildV1({
+        courseSessionId: "lesson-03:session:41",
+        targetLanguage: "en-US",
+        interactionProfile: "voice_heavy",
+        interactions: makeInteractions(32),
+      }).interactions,
+    ).toHaveLength(32);
+    expect(() =>
+      materializeLearningV2CourseSessionLearnerChildV1({
+        courseSessionId: "lesson-03:session:41",
+        targetLanguage: "en-US",
+        interactionProfile: "voice_heavy",
+        interactions: makeInteractions(33),
+      }),
+    ).toThrow("learning_v2_course_session_client_child_invalid");
   });
 
   test("requires report/save/voice and second-error explanation on every interaction", () => {

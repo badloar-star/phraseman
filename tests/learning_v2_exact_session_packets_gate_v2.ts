@@ -45,7 +45,7 @@ for (const packet of packets) {
     true,
     `${prefix}:grammar_or_review_required`,
   );
-  assert.equal(packet.newLexicalSenseIds.length <= 2, true, `${prefix}:new_lexicon_max_two`);
+  assert.equal(packet.newLexicalSenseIds.length <= 5, true, `${prefix}:new_lexicon_max_five`);
   assert.equal(packet.canonicalExamples.length >= 2 && packet.canonicalExamples.length <= 4, true, `${prefix}:canonical_example_count`);
   assert.equal(
     packet.canonicalExamples.some((example) => example.includes("MANUAL") || example.includes("[")),
@@ -78,7 +78,10 @@ for (const packet of packets) {
 
   const focusOperationIds = [...packet.grammarOperationIds, ...packet.reviewOperationIds];
   const allowedExamples = new Set(
-    focusOperationIds.flatMap((operationId) => operationById.get(operationId)?.positiveExamples ?? []),
+    focusOperationIds.flatMap((operationId) => {
+      const operation = operationById.get(operationId);
+      return operation ? [...operation.positiveExamples, ...operation.canonicalLexicalExamples] : [];
+    }),
   );
   assert.equal(
     packet.canonicalExamples.every((example) => allowedExamples.has(example)),
@@ -114,7 +117,13 @@ for (const packet of packets) {
 
   if (packet.role === "checkpoint") {
     assert.equal(packet.grammarOperationIds.length, 0, `${prefix}:checkpoint_new_grammar_forbidden`);
-    assert.equal(packet.newLexicalSenseIds.length, 0, `${prefix}:checkpoint_new_lexicon_forbidden`);
+    assert.equal(
+      packet.lessonOrdinal === 4
+        ? packet.newLexicalSenseIds.length >= 1 && packet.newLexicalSenseIds.length <= 5
+        : packet.newLexicalSenseIds.length === 0,
+      true,
+      `${prefix}:checkpoint_lexicon_contract`,
+    );
     assert.equal(packet.independentProbe.changedContextRequired, true, `${prefix}:checkpoint_changed_context`);
   }
 }

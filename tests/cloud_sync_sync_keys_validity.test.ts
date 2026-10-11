@@ -1,8 +1,26 @@
-import { FRENCH_TARGET_SYNC_KEYS, getRuntimeSyncKeys, SYNC_KEYS } from '../app/cloud_sync';
-import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from '../app/retired_account_local_keys';
 import {
+  FRENCH_TARGET_SYNC_KEYS,
+  SYNC_STUDY_TARGETS,
+  __cloudSyncTestHooks,
+  accountLocalDataKeysForToday,
+  getRuntimeSyncKeys,
+  isAccountLocalJournalStorageKey,
+  SYNC_KEYS,
+} from '../app/cloud_sync';
+import { LEARNING_LANGUAGE_TARGETS } from '../app/learning_language_contour';
+import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from '../app/retired_account_local_keys';
+import { SOURCE_LOCALES } from '../app/source_locales';
+import { languageProfileKey } from '../app/study_languages';
+import {
+  communityPackCreateDraftKey,
+  customFlashcardsKey,
+  flashcardsCommunityOwnedPackTitlesKey,
+  flashcardsLocalAuthorPacksKey,
+  flashcardsOwnedPacksKey,
+  flashcardsSavedKey,
   legacyFreeLessonCapKey,
   legacyFreeLessonMigrationKey,
+  mistakePracticeEventsKey,
 } from '../app/target_storage_keys';
 
 const FRENCH_TARGET_KEY_RE = /^(?:[a-z_]+_v2::fr(?:$|::)|personal_practice_v2::fr::(?:ru|uk)(?:$|::))/;
@@ -37,6 +55,38 @@ function badKeys(keys: readonly unknown[]) {
 }
 
 describe('cloud sync storage key lists', () => {
+  test('derives sync, restore and account cleanup coverage from every canonical learning target', () => {
+    expect(SYNC_STUDY_TARGETS).toEqual(LEARNING_LANGUAGE_TARGETS);
+    const wipeKeys = accountLocalDataKeysForToday('2026-10-03');
+
+    for (const target of LEARNING_LANGUAGE_TARGETS) {
+      expect(SYNC_KEYS).toContain(languageProfileKey(target));
+      expect(SYNC_KEYS).toEqual(expect.arrayContaining([
+        flashcardsSavedKey(target),
+        customFlashcardsKey(target),
+      ]));
+      expect(wipeKeys).toEqual(expect.arrayContaining([
+        languageProfileKey(target),
+        flashcardsSavedKey(target),
+        customFlashcardsKey(target),
+        flashcardsCommunityOwnedPackTitlesKey(target),
+        flashcardsLocalAuthorPacksKey(target),
+      ]));
+      for (const sourceLocale of SOURCE_LOCALES) {
+        expect(wipeKeys).toContain(communityPackCreateDraftKey(target, sourceLocale));
+      }
+      expect(isAccountLocalJournalStorageKey(
+        mistakePracticeEventsKey('account-a', target),
+      )).toBe(true);
+    }
+
+    expect(JSON.parse(__cloudSyncTestHooks.mergeLessonRestoreValue(
+      flashcardsOwnedPacksKey('it'),
+      JSON.stringify(['cloud-pack']),
+      JSON.stringify(['local-pack']),
+    ))).toEqual(['cloud-pack', 'local-pack']);
+  });
+
   test('SYNC_KEYS contains only non-empty string keys', () => {
     expect(badKeys(SYNC_KEYS)).toEqual([]);
   });

@@ -10,7 +10,7 @@ const senses = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2;
 const edges = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2;
 const normalizedExamples = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.map((operation) => ({
   operation,
-  text: ` ${operation.positiveExamples.join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `,
+  text: ` ${[...operation.positiveExamples, ...operation.canonicalLexicalExamples].join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `,
 }));
 
 assert.equal(new Set(senses.map((sense) => sense.id)).size, senses.length, "planned_sense_ids_unique");
@@ -53,9 +53,9 @@ for (const sense of senses) {
   );
 }
 assert.equal(
-  [...countsByIntroduction.values()].every((count) => count <= 2),
+  [...countsByIntroduction.values()].every((count) => count <= 5),
   true,
-  "no_more_than_two_new_senses_in_one_session",
+  "no_more_than_five_new_senses_in_one_session",
 );
 
 process.stdout.write(

@@ -8,7 +8,8 @@ describe('AppMessagesInbox tonal row surfaces', () => {
   it('keeps message rows as borderless semantic panels', () => {
     expect(SOURCE).toContain('cardStrong:');
     expect(SOURCE).toContain('readCard:');
-    expect(SOURCE).toContain('const rowBackgroundColor = messageRead ? chrome.readCard : chrome.cardStrong;');
+    // паритет с макетом system_17: строки входящих плоские, без заливки
+    expect(SOURCE).toContain("const rowBackgroundColor = 'transparent';");
     expect(SOURCE).not.toContain('const rowBorderColor =');
     expect(SOURCE).not.toContain('borderColor: rowBorderColor');
     expect(SOURCE).toContain('messageRow: {');

@@ -8,6 +8,7 @@ import {
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
 } from "../modules/learning-v2/curriculum/en/lexical_progression_en_v2";
+import { learningV2EnglishLexicalDensityFindingsForPacketV2 } from "../modules/learning-v2/curriculum/en/lexical_density_policy_en_v2";
 
 const packets = LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2;
 const senses = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2;
@@ -21,17 +22,7 @@ if (packets.length !== 1_792) findings.push(`packet_count:${packets.length}`);
 if (nonCheckpoints.length !== 1_568) findings.push(`noncheckpoint_count:${nonCheckpoints.length}`);
 if (checkpoints.length !== 224) findings.push(`checkpoint_count:${checkpoints.length}`);
 
-for (const packet of nonCheckpoints) {
-  if (packet.newLexicalSenseIds.length === 0) {
-    findings.push(`noncheckpoint_new_lexicon_missing:${packet.sessionId}`);
-  }
-}
-
-for (const packet of checkpoints) {
-  if (packet.newLexicalSenseIds.length > 0) {
-    findings.push(`checkpoint_new_lexicon_forbidden:${packet.sessionId}`);
-  }
-}
+findings.push(...packets.flatMap(learningV2EnglishLexicalDensityFindingsForPacketV2));
 
 const senseIds = senses.map((sense) => sense.id);
 if (new Set(senseIds).size !== senseIds.length) findings.push("planned_sense_ids_not_unique");

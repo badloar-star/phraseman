@@ -4,6 +4,14 @@ import path from 'node:path';
 const root = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
+const loadDocumentSplitter = (source: string): ((text: string) => string[]) => {
+  const implementation = source.match(
+    /function splitVideoPhraseDocumentText\(text\)\{[\s\S]*?(?=\n\s*byId\('vp-channel-filters'\))/,
+  )?.[0];
+  if (!implementation) throw new Error('splitVideoPhraseDocumentText implementation not found');
+  return new Function(`${implementation}; return splitVideoPhraseDocumentText;`)() as (text: string) => string[];
+};
+
 describe('video phrases runtime contracts', () => {
   it('loads the DOCX parser from an origin allowed by the admin CSP', () => {
     const source = read('admin/v2/legacy.html');
@@ -89,5 +97,22 @@ describe('video phrases runtime contracts', () => {
     expect(source).toContain('const batches=splitVideoPhraseDocumentText(text);');
     expect(source).toContain('for(let index=0;index<batches.length;index+=1)');
     expect(source).toContain('state.phrases=phrases');
+  });
+
+  it('splits a generic long document without phrase markers into safe complete ordered batches', () => {
+    const source = read('admin/v2/legacy.html');
+    const split = loadDocumentSplitter(source);
+    const text = Array.from(
+      { length: 400 },
+      (_, index) => `Paragraph ${index + 1}. ${'Content in original order. '.repeat(12)}`,
+    ).join('\n\n');
+
+    const batches = split(text);
+
+    expect(text.length).toBeGreaterThan(60_000);
+    expect(batches.length).toBeGreaterThan(1);
+    expect(batches.every((batch) => batch.length < 60_000)).toBe(true);
+    expect(batches.join('')).toBe(text);
+    expect(source).not.toContain("if(text.length>60000)throw new Error('В документе больше 60 000 символов");
   });
 });

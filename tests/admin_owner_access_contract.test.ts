@@ -61,6 +61,20 @@ describe('admin owner access contract', () => {
     expect(legacy).toContain('Проверить доступ снова');
   });
 
+  test('проверенный owner claim не теряется на стыке auth и RBAC bootstrap', () => {
+    // зачем: auth observer уже проверил tr.claims.admin. Раньше RBAC
+    // сразу перечитывал тот же token; при кратком сбое сети получал {},
+    // ошибочно помечал владельца managed-аккаунтом, а revalidation делал
+    // signOut(auth) и уничтожал browserLocalPersistence. Передаём уже
+    // доказанные claims в bootstrap без второго ненадёжного граничного перехода.
+    expect(legacy).toContain(
+      'async function pmV5InitializeAccessProfile(bootstrapProfile, bootstrapClaims)',
+    );
+    expect(legacy).toContain(
+      'await window.pmV5InitializeAccessProfile?.(accessBootstrap, tr.claims || {});',
+    );
+  });
+
   test('закон о доступе владельца лежит рядом с админкой', () => {
     const doc = fs.readFileSync(ownerDocPath, 'utf8');
     expect(doc).toContain('badloar@gmail.com');

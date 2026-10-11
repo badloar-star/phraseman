@@ -146,6 +146,41 @@ test('holds generic feedback that does not explain the misconception', () => {
   assert.ok(result.issues.some((item) => item.code === 'ru.feedback_not_diagnostic'));
 });
 
+test('holds replacement characters recursively in learner-facing quiz copy', () => {
+  const row = validRow();
+  row.quiz_ru.distractors[0].feedback = 'Буквальный образ вводит в заблуждение, но смысл выражения шире, чем ��уквальное описание.';
+  row.quiz_uk.distractors[1].text = 'Йдеться не про ��обуквальне тлумачення, а про значення вислову в ситуації.';
+
+  const result = evaluateDailyPhraseQuizContent([row]);
+
+  assert.equal(result.verdict, 'HOLD');
+  assert.ok(result.issues.some((item) => item.code === 'ru.quiz_learner_copy_encoding'));
+  assert.ok(result.issues.some((item) => item.code === 'uk.quiz_learner_copy_encoding'));
+});
+
+test('holds disallowed C0 controls recursively in learner-facing quiz copy', () => {
+  const row = validRow();
+  row.quiz_ru.correctFeedback = 'Верно:\u0007 смысл выражения не сводится к буквальному образу ситуации.';
+  row.quiz_uk.distractors[0].feedback = 'Буквальний образ\u0000 підказує хибну відповідь, але вислів означає інше.';
+
+  const result = evaluateDailyPhraseQuizContent([row]);
+
+  assert.equal(result.verdict, 'HOLD');
+  assert.ok(result.issues.some((item) => item.code === 'ru.quiz_learner_copy_encoding'));
+  assert.ok(result.issues.some((item) => item.code === 'uk.quiz_learner_copy_encoding'));
+});
+
+test('allows ordinary whitespace and valid Cyrillic, Spanish, and Italian characters without an encoding issue', () => {
+  const row = validRow();
+  row.quiz_ru.distractors[0].feedback = 'Буквальный образ\tне объясняет смысл.\nИспанское niño и итальянское città не повреждены.';
+  row.quiz_uk.distractors[0].feedback = 'Буквальний образ\r\nне пояснює зміст. Іспанське niño та італійське città не пошкоджені.';
+
+  const result = evaluateDailyPhraseQuizContent([row]);
+
+  assert.ok(!result.issues.some((item) => item.code.endsWith('quiz_learner_copy_encoding')),
+    JSON.stringify(result.issues, null, 2));
+});
+
 test('holds repeated misconception codes within one quiz', () => {
   const row = validRow();
   row.quiz_ru.distractors[1].misconceptionCode = 'literal_reading';

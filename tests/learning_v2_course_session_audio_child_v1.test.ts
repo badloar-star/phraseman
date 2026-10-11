@@ -32,6 +32,7 @@ function learner() {
       mediaIds: [],
       audioTargetIds: index === 0 ? [h("target-a"), h("target-b")] : [],
       accessibilityLabel: `Build neutral phrase ${index + 1}`,
+      modePayload: null,
       scriptedAlternate: null,
     })),
   });
@@ -144,6 +145,23 @@ describe("Learning V2 direct course-session audio child", () => {
         interactionOrdinal: 1,
       }),
     ).toBe(cycle[0]);
+  });
+
+  test("selects voices through the migrated maximum session ordinal", () => {
+    expect(
+      learningV2CourseSessionInteractionVoiceIndexV1({
+        sessionRunId: "run-migrated-1",
+        courseSessionId: "lesson-03:session:41",
+        interactionOrdinal: 35,
+      }),
+    ).toBeGreaterThanOrEqual(0);
+    expect(() =>
+      learningV2CourseSessionInteractionVoiceIndexV1({
+        sessionRunId: "run-migrated-1",
+        courseSessionId: "lesson-03:session:41",
+        interactionOrdinal: 36,
+      }),
+    ).toThrow("learning_v2_course_session_audio_child_invalid");
   });
 
   test("rejects visible-text drift, voice substitution and canonical unknown fields", () => {

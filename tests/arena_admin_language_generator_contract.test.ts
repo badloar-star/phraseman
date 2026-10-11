@@ -24,13 +24,14 @@ describe('preserved multilingual content admin surface for Spire', () => {
     expect(html).toContain("'arena-content'");
   });
 
-  test('offers explicit Spanish, French and German targets without fallback to English', () => {
+  test('offers every canonical English, Spanish, French, German and Italian target without fallback', () => {
     expect(panel).toContain('for="arena-content-target"');
     expect(panel).toContain('id="arena-content-target"');
+    expect(panel).toContain('<option value="en">Английский</option>');
     expect(panel).toContain('<option value="es">Испанский</option>');
     expect(panel).toContain('<option value="fr">Французский</option>');
     expect(panel).toContain('<option value="de">Немецкий</option>');
-    expect(panel).not.toContain('value="en"');
+    expect(panel).toContain('<option value="it">Итальянский</option>');
     expect(script).not.toMatch(/fallback.*en|\|\|\s*['"]en['"]/iu);
   });
 

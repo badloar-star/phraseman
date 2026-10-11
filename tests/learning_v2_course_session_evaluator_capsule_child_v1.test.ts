@@ -71,4 +71,36 @@ describe("Learning V2 course session evaluator capsule child", () => {
       ),
     ).toThrow();
   });
+
+  test("accepts 35 intro-plus-practice entries after single-phrase splitting", () => {
+    const entries = Array.from({ length: 35 }, (_, index) => ({
+      interactionId: `migration-interaction:${index + 1}`,
+      activityId: `migration-activity:${index + 1}`,
+      capsuleId: `migration-capsule:${index + 1}`,
+      family: "scripted_repeat_compare" as const,
+      normalizationLocale: "en-US",
+      salt: SALT.slice(0, 63) + String(index % 10),
+      acceptedResponses: [`Phrase ${index + 1}`],
+    }));
+    expect(
+      materializeLearningV2CourseSessionEvaluatorCapsuleChildV1({
+        courseSessionId: "lesson-03:session:41",
+        entries,
+      }).entries,
+    ).toHaveLength(35);
+    expect(() =>
+      materializeLearningV2CourseSessionEvaluatorCapsuleChildV1({
+        courseSessionId: "lesson-03:session:41",
+        entries: [
+          ...entries,
+          {
+            ...entries[0]!,
+            interactionId: "migration-interaction:36",
+            activityId: "migration-activity:36",
+            capsuleId: "migration-capsule:36",
+          },
+        ],
+      }),
+    ).toThrow();
+  });
 });

@@ -1070,6 +1070,56 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
     expectPass('EvidencePublication', publication());
   });
 
+  test('publishes a failure with a matching partial phase transcript', () => {
+    const aggregate = acceptedAggregate();
+    aggregate.accepted = false;
+    aggregate.phaseCount = 2;
+    aggregate.phases = aggregate.phases.slice(0, 2);
+    const transcript = phaseTranscript();
+    transcript.phases = transcript.phases.slice(0, 2);
+    aggregate.transcriptSha256 = transcriptSha256(transcript);
+    expectPass('EvidencePublication', publication(aggregate, failureCleanup(), transcript, 'failure'));
+  });
+
+  test.each([
+    ['aggregate phase count does not match phases', (() => {
+      const aggregate = acceptedAggregate();
+      aggregate.accepted = false;
+      aggregate.phaseCount = 2;
+      aggregate.phases = aggregate.phases.slice(0, 1);
+      const transcript = phaseTranscript();
+      transcript.phases = transcript.phases.slice(0, 2);
+      return publication(aggregate, failureCleanup(), transcript, 'failure');
+    })()],
+    ['transcript phase count does not match aggregate', (() => {
+      const aggregate = acceptedAggregate();
+      aggregate.accepted = false;
+      aggregate.phaseCount = 2;
+      aggregate.phases = aggregate.phases.slice(0, 2);
+      const transcript = phaseTranscript();
+      transcript.phases = transcript.phases.slice(0, 1);
+      return publication(aggregate, failureCleanup(), transcript, 'failure');
+    })()],
+    ['failure phase count exceeds campaign', (() => {
+      const aggregate = acceptedAggregate();
+      aggregate.accepted = false;
+      aggregate.phaseCount = 7;
+      return publication(aggregate, failureCleanup(), phaseTranscript(), 'failure');
+    })()],
+    ['partial transcript has a malformed phase', (() => {
+      const aggregate = acceptedAggregate();
+      aggregate.accepted = false;
+      aggregate.phaseCount = 1;
+      aggregate.phases = aggregate.phases.slice(0, 1);
+      const transcript = phaseTranscript();
+      transcript.phases = transcript.phases.slice(0, 1);
+      transcript.phases[0].events = [];
+      return publication(aggregate, failureCleanup(), transcript, 'failure');
+    })()],
+  ])('rejects inconsistent partial failure evidence: %s', (_name, payload) => {
+    expectReject('EvidencePublication', payload, 'evidence_publication_invalid');
+  });
+
   test.each([
     ['transcript missing', (() => { const value = publication(); delete value.transcript; return value; })()],
     ['transcript of another campaign', publication(acceptedAggregate(), successfulCleanup(), (() => {

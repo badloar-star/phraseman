@@ -17,7 +17,8 @@ describe('Dialogue V2 catalogue liquid-glass contract', () => {
   });
 
   it('uses opaque glass world cards and preserves rank-only locks', () => {
-    expect(source).toContain('dialogueGlassCardStyle(glass, 24)');
+    // 04.10: свёрнутая категория — `.card.c2` хаба (r22), раскрытая — карточка кадра A4 (r24).
+    expect(source).toContain('dialogueGlassCardStyle(glass, expanded ? 24 : 22)');
     // зачем (сверка с dialogs.html A1–A2, 04.10; правило владельца «всё по макетам»): карточка категории
     // несёт «пройдено N / всего M» и полоску — считается из статусов строк, без сети.
     expect(source).toContain("const doneCount = worldItems.filter((item) => item.status === 'done').length;");

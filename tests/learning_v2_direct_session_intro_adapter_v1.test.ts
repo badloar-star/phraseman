@@ -104,9 +104,9 @@ describe("Learning V2 direct intro adapter", () => {
     );
     expect(intro).toContain("evaluateChoice?:");
     expect(intro).toContain("evaluateChoice({");
-    expect(intro).toContain(
-      "resolveSecondWrongExplanation?.(question.questionId)",
-    );
+    expect(intro).toContain("resolveSecondWrongExplanation?.(");
+    expect(intro).toContain("question.questionId,");
+    expect(intro).toContain("wrongChoiceNudge.choiceIndex,");
     expect(adapter).toContain("getLearningV2CourseSessionIntroPageV1");
     expect(adapter).toContain("getLearningV2CourseSessionAuxiliaryEntryV1");
     expect(adapter).not.toMatch(/acceptedResponse|correctResponse|answerKey/u);

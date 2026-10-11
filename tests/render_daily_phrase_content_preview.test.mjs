@@ -291,6 +291,24 @@ test('renders French metadata and per-row dictionary attribution without Spanish
   }
 });
 
+test('renders Italian metadata without falling back to the generic contour label', () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'daily-phrase-preview-it-'));
+  const bankPath = path.join(tempDir, 'bank.json');
+  const outputPath = path.join(tempDir, 'preview.md');
+  try {
+    const bank = JSON.parse(fs.readFileSync(frenchSourceBankPath, 'utf8'));
+    bank.studyTarget = 'it';
+    bank.rows.forEach((row, index) => { row.id = `it-${String(index + 1).padStart(3, '0')}`; row.studyTarget = 'it'; });
+    fs.writeFileSync(bankPath, JSON.stringify(bank), 'utf8');
+    const preview = render(bankPath, outputPath, 1);
+    assert.match(preview, /^# Итальянская «Фраза дня» — визуальная проверка$/mu);
+    assert.match(preview, /\*\*Пример по-итальянски:\*\*/u);
+    assert.doesNotMatch(preview, /Контур IT|Испанская|Французская|Немецкая/u);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
 test('does not claim source or style approval that the renderer did not execute', () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'daily-phrase-preview-honesty-'));
   const bankPath = path.join(tempDir, 'bank.json');

@@ -51,6 +51,18 @@ test('accepts lowercase and titlecase Spanish todo instead of treating them as p
   }
 });
 
+test('accepts canonical Italian ids and rejects a foreign id inside an Italian bank', () => {
+  const bank = bankWithFirstExample('Todo quedó preparado antes del viaje.');
+  bank.studyTarget = 'it';
+  bank.rows.forEach((item) => {
+    item.studyTarget = 'it';
+    item.id = `it-${String(item.order).padStart(3, '0')}`;
+  });
+  assert.equal(validateTargetDailyPhraseBank(bank).status, 'STRUCTURAL_PASS');
+  bank.rows[1].id = 'de-002';
+  assert.ok(validateTargetDailyPhraseBank(bank).errors.includes('row:it-002:canonical_id_required'));
+});
+
 test('rejects exact uppercase TODO while preserving ordinary Spanish todo', () => {
   const result = validateTargetDailyPhraseBank(bankWithFirstExample('TODO'));
   assert.ok(result.errors.includes('row:es-001:targetExample_contains_placeholder'));

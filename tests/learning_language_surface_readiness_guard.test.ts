@@ -34,7 +34,7 @@ const OWNER_APPROVED_SNAPSHOT: Record<string, Record<string, string>> = {
   es: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
   fr: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
   de: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
-  it: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'hidden' },
+  it: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
 };
 
 describe('D129 guard: language × surface readiness', () => {
@@ -75,9 +75,25 @@ describe('D129 guard: language × surface readiness', () => {
     expect(LEARNING_LANGUAGE_TARGETS.filter(isLearnTabVisibleForTarget)).toEqual(['en']);
   });
 
-  // зачем D133/D134: задания дня читают клетки таблицы, а не свои списки языков.
-  test('daily tasks follow the table: spire (D133) and mistakes only with the course (D134)', () => {
-    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('spire_steps', t))).toEqual(['en', 'es', 'fr', 'de']);
+  test('non-English Spire readiness is fail-closed to the signed local release manifest', () => {
+    for (const target of ['es', 'fr', 'de', 'it'] as const) {
+      const manifest = JSON.parse(fs.readFileSync(path.join(
+        __dirname, '..', 'content', 'arena-multilingual', 'generated', target, 'manifest.json',
+      ), 'utf8')) as {
+        releaseEligible?: boolean;
+        linguisticReviewReceipt?: { verdict?: string };
+        adminPublicationReceipt?: { publicationStatus?: string };
+      };
+      const receiptReady = manifest.releaseEligible === true
+        && manifest.linguisticReviewReceipt?.verdict === 'PASS'
+        && manifest.adminPublicationReceipt?.publicationStatus === 'approved';
+      expect(LEARNING_LANGUAGE_SURFACE_READINESS[target].spire.status).toBe(receiptReady ? 'ready' : 'hidden');
+    }
+  });
+
+  // зачем D155/D134: задания дня читают клетки таблицы, а не свои списки языков.
+  test('daily tasks follow the table: receipt-gated spire (D155) and mistakes only with the course (D134)', () => {
+    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('spire_steps', t))).toEqual(['en', 'es', 'fr', 'de', 'it']);
     expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('mistakes', t))).toEqual(['en']);
     expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('cards', t))).toEqual([...LEARNING_LANGUAGE_TARGETS]);
   });

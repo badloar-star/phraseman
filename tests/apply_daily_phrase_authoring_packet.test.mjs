@@ -39,6 +39,26 @@ test('applies a source-linked authoring packet only after source, style and quiz
   assert.equal(first.sourceEvidence.checkedAt, input.ledger.rows[0].checkedAt);
 });
 
+test('applies an Italian authoritative packet while keeping every row inactive', () => {
+  const input = actualFrenchInput();
+  input.bank.studyTarget = 'it';
+  input.ledger.studyTarget = 'it';
+  input.linkage.studyTarget = 'it';
+  input.packet.studyTarget = 'it';
+  input.linkage.authoritativeLedger.path = 'authoritative-source-ledger.json';
+  input.bank.rows.forEach((row, index) => {
+    row.id = `it-${String(index + 1).padStart(3, '0')}`;
+    row.studyTarget = 'it';
+    if (row.sourceEvidence) row.sourceEvidence.sourceLedgerRef = `authoritative-source-ledger.json#rows[${index}]`;
+  });
+  input.packet.rows.forEach((row, index) => { row.id = `it-${String(index + 1).padStart(3, '0')}`; });
+  input.linkage.linkedCandidateRows.forEach((row, index) => { row.rowId = `it-${String(index + 1).padStart(3, '0')}`; });
+  const result = applyDailyPhraseAuthoringPacket(input);
+  assert.equal(result.source.verdict, 'PASS');
+  assert.ok(result.bank.rows.every((row) => row.active === false && row.activationApproved === false));
+  assert.equal(result.bank.rows[0].sourceEvidence.sourceLedgerRef, 'authoritative-source-ledger.json#rows[0]');
+});
+
 test('fails closed before mutation when packet target and bank target disagree', () => {
   const input = actualFrenchInput();
   input.packet.rows[0].targetText = 'Expression inventée';

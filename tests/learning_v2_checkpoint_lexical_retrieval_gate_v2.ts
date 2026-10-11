@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 
 import { LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2 } from "../modules/learning-v2/curriculum/en/exact_session_packets_en_v2";
+import { learningV2EnglishLexicalDensityFindingsForPacketV2 } from "../modules/learning-v2/curriculum/en/lexical_density_policy_en_v2";
 import { LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2 } from "../modules/learning-v2/curriculum/en/lexical_progression_en_v2";
 
 const sessionFlagIndex = process.argv.indexOf("--session");
@@ -32,9 +33,7 @@ if (!requestedSessionId && checkpoints.length !== 224) {
 }
 
 for (const checkpoint of checkpoints) {
-  if (checkpoint.newLexicalSenseIds.length > 0) {
-    findings.push(`checkpoint_new_lexicon_forbidden:${checkpoint.sessionId}`);
-  }
+  findings.push(...learningV2EnglishLexicalDensityFindingsForPacketV2(checkpoint));
 
   if (checkpoint.retrievalLexicalSenseIds.length === 0) {
     findings.push(`checkpoint_retrieval_missing:${checkpoint.sessionId}`);

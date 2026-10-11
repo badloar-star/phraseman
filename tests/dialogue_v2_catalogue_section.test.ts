@@ -76,7 +76,8 @@ describe('DialogueV2CatalogueSection', () => {
     expect(source).toContain('onPress={() => onPressItem(item)}');
     expect(source).toContain("name=\"lock-closed\"");
     expect(source).toContain('coinRankRowForDisplay(item.rankRequired).source');
-    expect(source).toContain('V2.gapTight');
+    // 04.10 (dialogs.html A4 `.stack`): строки раскрытой категории через 9.
+    expect(source).toContain('<View style={{ marginTop: 18, gap: 9 }}>');
     expect(source).not.toContain('hasPremiumAccess');
     expect(source).not.toContain('purchase');
     // Строка ранга локализуется вызывающим (labels.lockedAtRank), не зашивается здесь.

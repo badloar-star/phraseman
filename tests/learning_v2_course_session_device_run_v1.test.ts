@@ -34,7 +34,7 @@ const interactionIds = Array.from(
   (_, index) => `interaction-${index + 1}`,
 );
 
-function children() {
+function children(ids = interactionIds) {
   const introChild = materializeLearningV2CourseSessionIntroChildV1({
     courseSessionId: "lesson-01:session:01",
     learningOutcomeByLocale: localized("Introduce yourself confidently"),
@@ -50,7 +50,7 @@ function children() {
       titleByLocale: localized(`Title ${ordinal}`),
       bodyByLocale: localized(`Body ${ordinal}`),
       question: {
-        interactionId: interactionIds[ordinal - 1]!,
+        interactionId: ids[ordinal - 1]!,
         promptByLocale: localized(`Question ${ordinal}`),
         choicesByLocale: Object.freeze(
           Object.fromEntries(
@@ -68,7 +68,7 @@ function children() {
     courseSessionId: "lesson-01:session:01",
     targetLanguage: "en-US",
     interactionProfile: "standard",
-    interactions: interactionIds.slice(3).map((interactionId, index) => ({
+    interactions: ids.slice(3).map((interactionId, index) => ({
       interactionId,
       ordinal: index + 4,
       purpose:
@@ -84,19 +84,20 @@ function children() {
       mediaIds: [],
       audioTargetIds: [],
       accessibilityLabel: `Build phrase ${index + 1}`,
+      modePayload: null,
       scriptedAlternate: null,
     })),
   });
   const evaluatorCapsuleChild =
     materializeLearningV2CourseSessionEvaluatorCapsuleChildV1({
       courseSessionId: "lesson-01:session:01",
-      entries: interactionIds.map((interactionId, index) => ({
+      entries: ids.map((interactionId, index) => ({
         interactionId,
         activityId: `activity-${index + 1}`,
         capsuleId: `capsule-${index + 1}`,
         family: "phrase_builder" as const,
         normalizationLocale: "en-US",
-        salt: `${"0".repeat(63)}${index}`,
+        salt: `${"0".repeat(63)}${index % 10}`,
         acceptedResponses: [
           index < 3 ? `answer${index + 1}` : `word${index - 2}`,
         ],
@@ -104,7 +105,7 @@ function children() {
     });
   const auxiliaryChild = materializeLearningV2CourseSessionAuxiliaryChildV1({
     courseSessionId: "lesson-01:session:01",
-    entries: interactionIds.map((interactionId, index) => ({
+    entries: ids.map((interactionId, index) => ({
       interactionId,
       report: {
         available: true as const,
@@ -147,7 +148,7 @@ function children() {
   return { introChild, learnerChild, evaluatorCapsuleChild, auxiliaryChild };
 }
 
-function run() {
+function run(ids = interactionIds) {
   return createLearningV2CourseSessionDeviceRunV1({
     environment: "production",
     targetLanguage: "en-US",
@@ -163,7 +164,7 @@ function run() {
     sessionOrdinal: 1,
     packageFingerprint: "c".repeat(64),
     childSetFingerprint: "d".repeat(64),
-    ...children(),
+    ...children(ids),
   });
 }
 
@@ -236,6 +237,24 @@ describe("Learning V2 direct device session run", () => {
         interactionCompletions: [],
       }),
     ).toThrow("learning_v2_course_session_device_run_invalid");
+  });
+
+  test("stores an answer-free completion summary for 35 split interactions", () => {
+    const migratedIds = Array.from(
+      { length: 35 },
+      (_, index) => `migrated-interaction-${index + 1}`,
+    );
+    const completed = materializeLearningV2CourseSessionCompletedSummaryV1({
+      run: run(migratedIds),
+      sessionRunId: "run-migrated-1",
+      interactionCompletions: migratedIds.map((interactionId) => ({
+        interactionId,
+        disposition: "completed" as const,
+        learnerAttempts: 1,
+        hintUsed: false,
+      })),
+    });
+    expect(completed.interactionCompletions).toHaveLength(35);
   });
 
   test("rejects cross-session and reordered learner/evaluator/auxiliary joins", () => {

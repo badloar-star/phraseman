@@ -143,6 +143,10 @@ test('learner-facing descriptions reject internal row references', () => {
     ['ru', 'ES-024'],
     ['uk', 'fr_007'],
     ['uk', 'de123'],
+    ['ru', 'it024'],
+    ['ru', 'it-024'],
+    ['uk', 'it_024'],
+    ['uk', 'IT-024'],
   ];
 
   for (const [locale, rowReference] of cases) {

@@ -405,7 +405,7 @@ ${indent}}`,
     const blocks = exactRootMatchBlocks("config/{spireFlagsDocId}");
     expect(blocks).toHaveLength(1);
     expect(activeAllowLines(blocks[0])).toEqual([
-      "allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(es|fr|de)');",
+      "allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(en|es|fr|de|it)');",
       "allow write: if false;",
     ]);
 
@@ -435,7 +435,7 @@ ${indent}}`,
     expect(catchAll[0]).toContain("collection != 'spire_task_incidents'");
     expect(catchAll[0]).toContain("collection != 'error_reports'");
     expect(catchAll[0]).toContain(
-      "!(collection == 'config' && document.matches('spire_task_flags_(es|fr|de)'))",
+      "!(collection == 'config' && document.matches('spire_task_flags_(en|es|fr|de|it)'))",
     );
   });
 

@@ -30,7 +30,11 @@ import {
 import { shardDeltaQueueStorageKey } from '../app/shards_delta_queue';
 import { getAppSnapshot, patchAppSnapshot } from '../app/app_snapshot_store';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import { SOURCE_LOCALES } from '../app/source_locales';
 import {
+  communityPackCreateDraftKey,
+  flashcardsCommunityOwnedPackTitlesKey,
+  flashcardsLocalAuthorPacksKey,
   legacyFreeLessonCapKey,
   legacyFreeLessonMigrationKey,
 } from '../app/target_storage_keys';
@@ -211,6 +215,21 @@ it('removes purchase recovery and spend ledger during account switch wipe', asyn
 
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS.forEach((key) => expect(store[key]).toBeUndefined());
   expect(getAppSnapshot().customization).toBeUndefined();
+});
+
+it('isolates account B from every Italian account-A local pack and community draft surface', async () => {
+  const accountAKeys = [
+    flashcardsLocalAuthorPacksKey('it'),
+    flashcardsCommunityOwnedPackTitlesKey('it'),
+    ...SOURCE_LOCALES.map((sourceLocale) => communityPackCreateDraftKey('it', sourceLocale)),
+  ];
+  accountAKeys.forEach((key) => { store[key] = `account-a-private:${key}`; });
+  store.app_theme = 'account-b-device-setting';
+
+  await wipeLocalAccountData();
+
+  accountAKeys.forEach((key) => expect(store[key]).toBeUndefined());
+  expect(store.app_theme).toBe('account-b-device-setting');
 });
 
 it('removes every daily journey owner journal surface and preserves device settings', async () => {

@@ -29,8 +29,8 @@ if (!existsSync(resolve(root, registryPath))) {
 
 const client = read("app/learning_v2_course_released_session_client_v3.ts");
 if (client.includes("interactions: [],")) findings.push("bundled_audio_child_still_empty");
-if (!client.includes("buildLearningV2Session1BundledAudioChildV1")) {
-  findings.push("bundled_audio_child_not_bound");
+if (!client.includes("buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild)")) {
+  findings.push("factory_native_audio_child_not_bound");
 }
 if (client.includes("!audioComplete && !__DEV__")) {
   findings.push("dev_audio_completeness_bypass_present");

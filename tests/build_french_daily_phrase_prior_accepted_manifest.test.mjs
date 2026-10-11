@@ -311,6 +311,16 @@ test('builds the same fail-closed continuity manifest for a German target', () =
   assert.equal(manifest.activationApproved, false);
 });
 
+test('builds the same closed continuity manifest for an Italian target', () => {
+  const italian = retargetFixture(fixture(), 'it');
+  const manifest = buildDailyPhrasePriorAcceptedManifest({ ...italian, studyTarget: 'it' });
+  assert.equal(evaluateDailyPhrasePriorAcceptedManifest({ manifest, artifacts: italian.artifacts }).verdict, 'PASS');
+  assert.equal(manifest.acceptedThrough, 'it-002');
+  assert.equal(manifest.releaseTrusted, false);
+  assert.equal(manifest.activationApproved, false);
+  assert.equal(manifest.authorityArtifacts.sourceEvidence.path, 'content/daily-phrases/it/authoritative-source-ledger.json');
+});
+
 test('builds the same authority-bound continuity manifest for a Spanish target', () => {
   const spanish = retargetFixture(fixture(), 'es');
 

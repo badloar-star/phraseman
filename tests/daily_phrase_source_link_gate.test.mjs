@@ -93,6 +93,126 @@ test('accepts the target-neutral ledgerRow pointer with an explicit authoritativ
   assert.deepEqual(result.issues, []);
 });
 
+test('accepts an Italian target-neutral authoritative ledger envelope', () => {
+  const input = validInput();
+  input.bank.studyTarget = 'it';
+  input.bank.rows[0].id = 'it-001';
+  input.bank.rows[0].sourceEvidence.sourceLedgerRef = 'authoritative-source-ledger.json#rows[0]';
+  input.ledger.schemaVersion = 'daily-phrase-authoritative-source-ledger-v1';
+  input.ledger.studyTarget = 'it';
+  input.linkage.studyTarget = 'it';
+  input.linkage.authoritativeLedger = { path: 'authoritative-source-ledger.json', schemaVersion: input.ledger.schemaVersion };
+  input.linkage.linkedCandidateRows = [{ rowId: 'it-001', ledgerRow: 0, sourceId: '42' }];
+  assert.equal(evaluateDailyPhraseSourceLinks(input, ['it-001']).verdict, 'PASS');
+  input.linkage.surface = 'wrong_surface';
+  assert.equal(evaluateDailyPhraseSourceLinks(input, ['it-001']).verdict, 'HOLD');
+});
+
+test('accepts an exact prior source alias for an incremental multi-provider ledger', () => {
+  const input = validInput();
+  const priorSource = input.ledger.source;
+  input.bank.studyTarget = 'it';
+  input.bank.rows[0].id = 'it-001';
+  input.bank.rows[0].sourceEvidence.sourceLedgerRef = 'authoritative-source-ledger.json#rows[0]';
+  input.ledger.schemaVersion = 'daily-phrase-authoritative-source-ledger-v1';
+  input.ledger.studyTarget = 'it';
+  input.ledger.source = `${priorSource}; Accademia della Crusca — Consulenza linguistica`;
+  input.ledger.sourceAliases = [priorSource];
+  input.linkage.studyTarget = 'it';
+  input.linkage.authoritativeLedger = {
+    path: 'authoritative-source-ledger.json',
+    schemaVersion: input.ledger.schemaVersion,
+    sourceAliases: [priorSource],
+  };
+  input.linkage.linkedCandidateRows = [{ rowId: 'it-001', ledgerRow: 0, sourceId: '42' }];
+
+  const pass = evaluateDailyPhraseSourceLinks(input, ['it-001']);
+  assert.equal(pass.verdict, 'PASS', JSON.stringify(pass.issues, null, 2));
+
+  delete input.ledger.sourceAliases;
+  assert.ok(evaluateDailyPhraseSourceLinks(input, ['it-001']).issues.some(
+    (item) => item.code === 'evidence.source_type_mismatch',
+  ));
+
+  input.ledger.sourceAliases = ['Unrelated prior provider'];
+  assert.ok(evaluateDailyPhraseSourceLinks(input, ['it-001']).issues.some(
+    (item) => item.code === 'evidence.source_type_mismatch',
+  ));
+});
+
+test('holds malformed or duplicate source aliases even when one alias matches evidence', () => {
+  const priorSource = 'Centro Virtual Cervantes — Refranero Multilingüe';
+  for (const sourceAliases of [
+    priorSource,
+    [''],
+    [` ${priorSource}`],
+    [priorSource, 42],
+    [priorSource, priorSource],
+  ]) {
+    const input = validInput();
+    input.ledger.source = `${priorSource}; Current provider label`;
+    input.ledger.sourceAliases = sourceAliases;
+
+    const result = evaluateDailyPhraseSourceLinks(input, ['es-001']);
+
+    assert.equal(result.verdict, 'HOLD', JSON.stringify(sourceAliases));
+    assert.ok(
+      result.issues.some((item) => item.code === 'ledger.source_aliases_invalid'),
+      JSON.stringify(result.issues, null, 2),
+    );
+  }
+});
+
+test('holds current-source and unrelated source aliases instead of treating them as prior prefixes', () => {
+  const priorSource = 'Centro Virtual Cervantes — Refranero Multilingüe';
+  const currentSource = `${priorSource}; Current provider label`;
+  for (const alias of [currentSource, 'Unrelated prior provider']) {
+    const input = validInput();
+    input.ledger.source = currentSource;
+    input.ledger.sourceAliases = [alias];
+    input.linkage.authoritativeLedger.sourceAliases = [alias];
+
+    const result = evaluateDailyPhraseSourceLinks(input, ['es-001']);
+
+    assert.equal(result.verdict, 'HOLD', alias);
+    assert.ok(
+      result.issues.some((item) => item.code === 'ledger.source_aliases_invalid'),
+      JSON.stringify(result.issues, null, 2),
+    );
+  }
+});
+
+test('binds source aliases to the linkage authority descriptor with exact array equality', () => {
+  const priorSource = 'Centro Virtual Cervantes — Refranero Multilingüe';
+  const intermediateSource = `${priorSource}; Treccani`;
+  const aliases = [priorSource, intermediateSource];
+  const base = validInput();
+  base.ledger.source = `${intermediateSource}; Accademia della Crusca`;
+  base.ledger.sourceAliases = aliases;
+  base.linkage.authoritativeLedger.sourceAliases = [...aliases];
+  assert.equal(
+    evaluateDailyPhraseSourceLinks(base, ['es-001']).verdict,
+    'PASS',
+  );
+
+  for (const mutate of [
+    (input) => { delete input.linkage.authoritativeLedger.sourceAliases; },
+    (input) => { input.linkage.authoritativeLedger.sourceAliases = [priorSource, `${priorSource}; Larousse`]; },
+    (input) => { input.linkage.authoritativeLedger.sourceAliases.reverse(); },
+    (input) => { input.linkage.authoritativeLedger.sourceAliases.push(`${intermediateSource}; Extra`); },
+    (input) => { delete input.ledger.sourceAliases; },
+  ]) {
+    const input = structuredClone(base);
+    mutate(input);
+    const result = evaluateDailyPhraseSourceLinks(input, ['es-001']);
+    assert.equal(result.verdict, 'HOLD');
+    assert.ok(
+      result.issues.some((item) => item.code === 'linkage.authority_source_aliases_mismatch'),
+      JSON.stringify(result.issues, null, 2),
+    );
+  }
+});
+
 test('holds when a declared authority descriptor schema disagrees with the supplied ledger', () => {
   const input = validInput();
   input.ledger.schemaVersion = 'daily-phrase-cvc-source-ledger-v1';

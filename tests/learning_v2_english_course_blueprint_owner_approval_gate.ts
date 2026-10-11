@@ -9,6 +9,10 @@ const PREREQUISITE_UNSAFE_FINGERPRINT =
   "ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a";
 const CURRENT_AMENDED_FINGERPRINT =
   "3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4";
+const PREVIOUS_OWNER_APPROVED_FINGERPRINT =
+  "bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c";
+const CURRENT_OWNER_APPROVED_FINGERPRINT =
+  "f776cf32cd9a46df28ce54ff548c29abd1b9722a76e243fedc30cf5109a418b0";
 
 assert.equal(
   LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.blueprintFingerprint,
@@ -49,10 +53,28 @@ assert.deepEqual(
     CURRENT_AMENDED_FINGERPRINT
   ],
   {
-    status: "PENDING",
-    reason: "OWNER_REVIEW_REQUIRED_AFTER_COURSE_START_PREREQUISITE_AMENDMENT_2026_08_30",
+    status: "SUPERSEDED",
+    reason: "SUPERSEDED_BY_LEXICAL_DENSITY_RECONCILIATION_2026_09_02",
   },
-  "amended_blueprint_requires_exact_owner_approval",
+  "amended_blueprint_historical_state_must_match_registry",
+);
+
+assert.deepEqual(
+  LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2[PREVIOUS_OWNER_APPROVED_FINGERPRINT],
+  {
+    status: "SUPERSEDED",
+    reason: "SUPERSEDED_BY_OWNER_APPROVED_LESSON_4_CONTRACT_2026_10_04",
+  },
+  "previous_owner_approved_blueprint_must_be_superseded",
+);
+
+assert.deepEqual(
+  LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2[CURRENT_OWNER_APPROVED_FINGERPRINT],
+  {
+    status: "APPROVED",
+    reason: "OWNER_EXPLICIT_CONTINUE_AND_WRITE_LESSON_4_2026_10_04",
+  },
+  "current_lesson_four_blueprint_requires_exact_owner_evidence",
 );
 
 process.stdout.write(

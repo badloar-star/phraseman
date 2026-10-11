@@ -54,6 +54,7 @@ type FakeOptions = Readonly<{
   rows?: Readonly<Record<string, unknown>>;
   commitValue?: unknown;
   closeNoop?: boolean;
+  captureFailure?: 'commitAccountLeaseAsync' | 'revokeAccountLeaseSync' | 'closeAccountLeaseAsync' | 'closeSync' | 'execSync';
   closedMessage?: (method: 'closeSync' | 'execSync') => string;
   methodResult?: 'promise' | 'non-promise';
   wrongReceiver?: boolean;
@@ -175,6 +176,9 @@ function createFake(options: FakeOptions = {}) {
       return wrapper;
     },
   };
+  if (options.captureFailure !== undefined) {
+    delete (native as Record<string, unknown>)[options.captureFailure];
+  }
   return { port, events, emitted };
 }
 
@@ -401,6 +405,19 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
     expect(fake.emitted).toEqual([]);
   });
 
+  test.each([
+    ['non-zero WAL log', [{ busy: 0, log: 1, checkpointed: 0 }]],
+    ['non-zero checkpointed frames', [{ busy: 0, log: 0, checkpointed: 1 }]],
+  ] as const)('TRUNCATE checkpoint requires zero log and checkpointed frames: %s', async (_name, rows) => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake({ rows: { [CHECKPOINT_SQL]: rows } });
+    await expectCode(
+      () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'recovery-verify', (marker) => fake.emitted.push(marker)),
+      'account_sqlcipher_recovery_checkpoint_failed',
+    );
+    expect(fake.emitted).toEqual([MARKERS.recoveryAuthoritativeRead]);
+  });
+
   test.each(['prepare', 'rollback-verify', 'final-reopen'] as const)(
     '%s emits no recovery ordering markers',
     async (mode) => {
@@ -537,6 +554,36 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
       () => receiverModule.runAndroidAccountSqlcipherRecoveryProbe(receiver.port, 'prepare', () => undefined),
       'account_sqlcipher_recovery_open_failed',
     );
+  });
+
+  test('capture failure after open revokes and closes the native lease before failing', async () => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake({ captureFailure: 'commitAccountLeaseAsync' });
+    await expectCode(
+      () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'prepare', () => undefined),
+      'account_sqlcipher_recovery_unsupported',
+    );
+    expect(fake.events).toEqual(expect.arrayContaining([
+      'native:revoke',
+      'native:closeAsync',
+      'native:closeSync',
+      'native:execSync:SELECT 1',
+    ]));
+  });
+
+  test.each([
+    ['revokeAccountLeaseSync', ['native:closeAsync', 'native:closeSync', 'native:execSync:SELECT 1']],
+    ['closeAccountLeaseAsync', ['native:revoke', 'native:closeSync', 'native:execSync:SELECT 1']],
+    ['closeSync', ['native:revoke', 'native:closeAsync', 'native:execSync:SELECT 1']],
+    ['execSync', ['native:revoke', 'native:closeAsync', 'native:closeSync']],
+  ] as const)('progressively cleans up when capture lacks %s', async (captureFailure, expectedEvents) => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake({ captureFailure });
+    await expectCode(
+      () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'prepare', () => undefined),
+      'account_sqlcipher_recovery_unsupported',
+    );
+    expect(fake.events).toEqual(expect.arrayContaining(expectedEvents));
   });
 
   test('claims exactly one mode per JS runtime before a second open', async () => {

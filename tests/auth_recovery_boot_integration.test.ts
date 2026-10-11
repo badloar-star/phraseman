@@ -52,13 +52,18 @@ describe('auth recovery pre-cloud boot integration', () => {
   it('preserves the no-journal proceed path and starts the existing bootstrap once', () => {
     expect(bootstrapRegion).toContain("if (recoveryGate.result !== 'proceed')");
     expect(bootstrapRegion).toContain('recoveryBootAllowsCloud = true;');
-    const earlyCloud = bootstrapRegion.indexOf('cloudHydratePromise = bootCoordinator.run();');
+    // зачем (пункт (а), 11.10): ранний запуск облака теперь — один промис, который сразу назначается в
+    // cloudHydratePromise и внутри решает «сейчас или отложенно» (boot_restore_defer.ts). Правило прежнее:
+    // ранний запуск стоит ДО отложенного heavy init и назначается ровно один раз.
+    const earlyCloud = bootstrapRegion.indexOf('cloudHydratePromise = liveDeferred ?? (async () => {');
     const deferredHeavy = bootstrapRegion.indexOf('if (heavyInitRequestedWhileBlocked) {');
     expect(earlyCloud).toBeGreaterThan(-1);
     expect(deferredHeavy).toBeGreaterThan(earlyCloud);
+    expect(bootstrapRegion.slice(earlyCloud, deferredHeavy)).toContain('if (!decision.defer) return bootCoordinator.run();');
+    expect(bootstrapRegion.slice(earlyCloud, deferredHeavy)).toContain('run: () => bootCoordinator.run(),');
     expect(bootstrapRegion).toContain('heavyInitRequestedWhileBlocked = false;');
     expect(bootstrapRegion).toContain('runHeavyInit();');
-    expect(bootstrapRegion.match(/cloudHydratePromise = bootCoordinator\.run\(\);/g)).toHaveLength(1);
+    expect(bootstrapRegion.split('cloudHydratePromise = liveDeferred ?? (async () => {').length - 1).toBe(1);
   });
 
   it('renders only the local shell on transient block and schedules bounded timer/AppState retries', () => {

@@ -201,7 +201,16 @@ import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
-import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
+import { primeRemoteConfigCacheFromStorage, readRemoteConfigCacheRaw } from './remote_config_client';
+import { isMutationTrackingActive } from './storage_mutation_bus';
+import { isDeferredBootRestoreActive, requestDeferredBootRestoreStart } from './boot_restore_dirty_keys';
+import {
+  BOOT_RESTORE_OWNER_KEY,
+  bootRestoreDeferFlagFromCacheRaw,
+  decideBootRestoreDefer,
+  startDeferredBootRestore,
+  writeBootRestoreOwnerMark,
+} from './boot_restore_defer';
 import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifecycle';
 import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
@@ -2085,6 +2094,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (координатор 11.10, «сперва логи»): content_migration.wait_cloud ждал облако 67 с, а шагов восстановления
       // в журнале не было вовсе. Делим время: анонимный вход отдельно, восстановление отдельно, плюс итог и причина.
       const bootRestoreStartedAt = Date.now();
+      // зачем (пункт (а)): метка владельца пишется только для того же поколения аккаунта, что начало восстановление.
+      const ownerMarkToken = captureAccountGeneration();
       await ensureAnonUser();
       const anonMs = Date.now() - bootRestoreStartedAt;
       void resumePendingOnboardingFunnel().catch(noteSwallowedHandler('_layout:restoreCloudForBoot.resumePendingOnboardingFunnel'));
@@ -2099,6 +2110,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         failureReason: result.failureReason ?? null,
       }));
       bootRestoreFailureReason = result.failureReason;
+      // зачем (пункт (а)): успешное восстановление (или облака нет) — этот телефон сведён с облаком этого аккаунта;
+      // следующий холодный старт может отложить восстановление. Провал — метку не трогаем.
+      if (result.status !== 'failed' && ownerMarkToken.stableId) {
+        void writeBootRestoreOwnerMark(ownerMarkToken.stableId, () => isCurrentAccountGeneration(ownerMarkToken, ownerMarkToken.stableId));
+      }
       // Тихий deferred link: дожимаем отложенную привязку в фоне. Успех →
       // журнал снят и тут же молча подтягиваем облако в этой же сессии.
       // Никакого UI: юзер не должен знать, что что-то догонялось.
@@ -2475,7 +2491,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       // Чтение onboarding_done стартует параллельно с локальной гидрацией,
       // чтобы первый кадр не ждал дополнительный дисковый round-trip.
-      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done'];
+      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
 
@@ -2488,7 +2504,51 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
         });
-        cloudHydratePromise = bootCoordinator.run();
+        // зачем (пункт (а), координатор 11.10): вернувшемуся на этом телефоне человеку облако приходит после кадра
+        // Главной и простоя (не позже 8 с) — восстановление больше не делит поток с первым кадром. Промис назначается
+        // СРАЗУ: второе место запуска (runHeavyInit) берёт его же и не стартует своё восстановление.
+        const identityReady = freshIdentity.status === 'ready';
+        const recoveryProceed = recoveryGate.result === 'proceed';
+        const deferToken = captureAccountGeneration();
+        // зачем (ревью Opus): повторный вход в bootstrap (повтор после дочистки удаления) не запускает второе
+        // восстановление, пока отложенное ещё живо, — переиспользуем его промис и просто запускаем сейчас.
+        const liveDeferred = cloudHydratePromise !== null && isDeferredBootRestoreActive() ? cloudHydratePromise : null;
+        if (liveDeferred) {
+          console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'bootstrap_reentry', action: 'reuse_and_start' }));
+          requestDeferredBootRestoreStart('bootstrap_reentry');
+        }
+        cloudHydratePromise = liveDeferred ?? (async () => {
+          const [identityPairs, cacheRaw] = await Promise.all([
+            startupIdentityPairsPromise,
+            readRemoteConfigCacheRaw().catch((error: unknown) => {
+              console.warn('[BOOT-RESTORE-DEFER] кэш рубильника не прочитан — по умолчанию включено', String(error));
+              return null;
+            }),
+          ]);
+          const identity = new Map(identityPairs);
+          const decision = decideBootRestoreDefer({
+            flagEnabled: bootRestoreDeferFlagFromCacheRaw(cacheRaw),
+            onboardingDone: identity.get('onboarding_done') ?? null,
+            identityReady,
+            recoveryProceed,
+            ownerMark: identity.get(BOOT_RESTORE_OWNER_KEY) ?? null,
+            stableId: startupStableId,
+            mutationTracking: isMutationTrackingActive(),
+          });
+          console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'decision', defer: decision.defer, reason: decision.reason }));
+          if (!decision.defer) return bootCoordinator.run();
+          return startDeferredBootRestore({
+            run: () => bootCoordinator.run(),
+            isAccountCurrent: () => isCurrentAccountGeneration(deferToken, startupStableId),
+            whenHomePainted,
+            runAfterInteractions: (cb) => { InteractionManager.runAfterInteractions(cb); },
+            subscribeBackground: (cb) => {
+              // зачем (ревью Opus): только настоящий уход в фон — 'inactive' на iOS бывает от системных запросов на старте.
+              const sub = AppState.addEventListener('change', (state) => { if (state === 'background') cb(); });
+              return () => sub.remove();
+            },
+          });
+        })();
         void runContentDeliveryMigration(cloudHydratePromise);
       }
       if (heavyInitRequestedWhileBlocked) {
@@ -2779,6 +2839,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => {
       effectDisposed = true;
+      // зачем (ревью Opus): эффект снят — ожидающее восстановление запускаем сейчас, чтобы его промис разрешился, а
+      // таймер потолка и подписка на фон снялись (start их снимает).
+      requestDeferredBootRestoreStart('effect_disposed');
       closeStartupSettingsReadScope?.();
       authRecoveryBootAbort?.abort();
       authRecoveryBootAbort = null;

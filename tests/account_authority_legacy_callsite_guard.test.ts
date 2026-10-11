@@ -677,7 +677,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
       'app/cloud_sync.ts': {
         // AA S2b (пункт 9): +1 — стирание nonce M-1 после успешного слияния.
         // AA S2c (L-S2b-4): +2 — различение отказа из-за потерянного nonce (ensureLink, merge).
-        occurrences: 73,
+        // Пункт (а) 11.10: +1 — forceSyncToCloud перепроверяет поколение после ожидания отложенного восстановления.
+        occurrences: 74,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
@@ -693,7 +694,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureStableAuthLinkForStableIdDetailed': 8,
           'call:forgetAnonMergeNonce': 1,
           'call:isCurrentAccountGeneration': 9,
-          'call:isForceGenerationCurrent': 4,
+          'call:isForceGenerationCurrent': 5,
           'call:isSyncGenerationCurrent': 15,
           'call:peekStableId': 1,
           'call:setStableId': 1,

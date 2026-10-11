@@ -244,9 +244,11 @@ describe('8J — doSyncToCloud и restore (структура cloud_sync)', () =
   });
 
   test('restore: замок снимается только ПОСЛЕ записи pairs в хранилище (обе ветки)', () => {
-    const body = bodyOf('applyRestoreFromUserDoc');
+    // зачем (11.10): тело восстановления живёт в applyRestoreFromUserDocTraced (обёртка applyRestoreFromUserDoc —
+    // только трасса времени); раньше сторож смотрел в обёртку и молча не видел структуры.
+    const body = bodyOf('applyRestoreFromUserDocTraced');
     const mainUnlockAt = body.indexOf('await unlockFlashcardPagesAfterRestore(flashcardPagesRestore.unlockKeys, assertCurrent);');
-    expect(mainUnlockAt).toBeGreaterThan(body.lastIndexOf('await applyPersonalPlanRestorePairs(pairs);'));
+    expect(mainUnlockAt).toBeGreaterThan(body.lastIndexOf('await applyPersonalPlanRestorePairs(appliedPairs);'));
     const stickyUnlockAt = body.indexOf('if (stickyFlashcardPages) await unlockFlashcardPagesAfterRestore(stickyFlashcardPages.unlockKeys, assertCurrent);');
     expect(stickyUnlockAt).toBeGreaterThan(body.indexOf('await applyPersonalPlanRestorePairs(stickyPairs);'));
     // помощник сам замок не снимает — только запирает
@@ -256,7 +258,9 @@ describe('8J — doSyncToCloud и restore (структура cloud_sync)', () =
   });
 
   test('sticky-ветка перечитывает ТОЛЬКО запертые ключи', () => {
-    const body = bodyOf('applyRestoreFromUserDoc');
+    // зачем (11.10): тело восстановления живёт в applyRestoreFromUserDocTraced (обёртка applyRestoreFromUserDoc —
+    // только трасса времени); раньше сторож смотрел в обёртку и молча не видел структуры.
+    const body = bodyOf('applyRestoreFromUserDocTraced');
     expect(body).toContain('const stickyFlashcardPages = stickyFlashcardLocks.size > 0');
     expect(body).toContain('(key) => stickyFlashcardLocks.has(key)');
   });

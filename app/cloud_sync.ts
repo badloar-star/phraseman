@@ -301,6 +301,15 @@ import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mist
 import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
 import { mergeNumericMaxRestoreValue } from './restore_numeric_max_merge';
 import {
+  isDeferredBootRestoreWaiting,
+  onDeferredBootRestoreSettled,
+  peekBootRestoreDirtyKeys,
+  markBootRestoreUserDocRead,
+  requestDeferredBootRestoreStart,
+  whenDeferredBootRestoreDocRead,
+} from './boot_restore_dirty_keys';
+import { BOOT_RESTORE_OWNER_KEY } from './boot_restore_defer';
+import {
   customCardDeletionsForTarget,
   mergeCustomCardsRestoreValue,
   mergeSwipeMemoryRestoreValue,
@@ -884,6 +893,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     LAST_SYNC_SNAPSHOT_KEY,
     CREATED_AT_SYNC_KEY,
     STABLE_AUTH_LINK_CACHE_KEY,
+    // зачем (пункт (а)): метка «этот телефон уже восстанавливался в этот аккаунт» принадлежит аккаунту —
+    // после выхода/смены/удаления она не должна разрешать отложенное восстановление чужому uid.
+    BOOT_RESTORE_OWNER_KEY,
     // зачем (Account V2, 7A ремонт №2, P1): метка «V2 применена на этой установке»
     // принадлежит аккаунту — после выхода/смены она не должна пропускать restore.
     ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
@@ -1774,6 +1786,12 @@ function logSpendableRestore(key: string, localValue: string | null | undefined,
     winner,
   }));
 }
+
+/** Ключи итоговой записи восстановления, которые сами сливаются с локальным — защита «последняя запись» их не трогает. */
+const BOOT_DIRTY_GUARD_MERGED_KEYS: ReadonlySet<string> = new Set([
+  'achievements_v1', 'flashcards_v1', flashcardsSavedKey('fr'),
+  'streak_count', 'last_active_date', 'streak_last_date',
+]);
 
 function mergeLessonRestoreValue(
   key: string,
@@ -2754,8 +2772,30 @@ export async function syncToCloud(options?: { forceNow?: boolean; deferMs?: numb
   }, waitMs);
 }
 
+// зачем (пункт (а), ревью Opus): пока отложенное восстановление ЖДЁТ старта, отправка не уходит — иначе локальная
+// версия целиком заменила бы облачную (например, урок, пройденный на другом устройстве) ещё до чтения облака.
+// Запрос отправки сам запускает восстановление; отложенная отправка догоняет, когда оно закончилось.
+let deferredRestoreSettleSub: (() => void) | null = null;
+function holdSyncForDeferredBootRestore(): boolean {
+  if (!isDeferredBootRestoreWaiting()) return false;
+  pendingSync = true;
+  console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'sync_held', reason: 'restore_not_started' }));
+  if (!deferredRestoreSettleSub) {
+    deferredRestoreSettleSub = onDeferredBootRestoreSettled(() => {
+      deferredRestoreSettleSub?.();
+      deferredRestoreSettleSub = null;
+      console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'sync_resume', pendingSync }));
+      if (!pendingSync) return;
+      runSyncNow().catch(swallowError('cloud_sync:deferred_restore_resume'));
+    });
+  }
+  requestDeferredBootRestoreStart('sync_requested');
+  return true;
+}
+
 async function runSyncNow(): Promise<void> {
   if (syncInFlight) return syncInFlight;
+  if (holdSyncForDeferredBootRestore()) return;
   syncInFlight = doSyncToCloud()
     .catch((e) => { if (__DEV__) console.warn('[cloud_sync] runSyncNow: sync failed', e); })
     .finally(() => {
@@ -4314,9 +4354,21 @@ async function applyRestoreFromUserDocTraced(
       pairs.push([key, cloudProgressStorageValue(key, value)]);
     }
   }
-  if (pairs.length > 0) {
+  // зачем (пункт (а), защита «последняя запись», ревью Opus): при отложенном восстановлении ключи, записанные
+  // локально за время ожидания, облако не перезаписывает — в том числе язык, рамку и ежедневные ключи после цикла.
+  // Не фильтруем ключи со своими правилами слияния (прочитаны в localLessonRestoreMap, достижения, страницы карточек,
+  // серия) — они и так сохраняют локальное, а фильтр потерял бы облачные добавления. null — обычное восстановление.
+  const bootDirtyKeys = peekBootRestoreDirtyKeys();
+  const appliedPairs = bootDirtyKeys ? pairs.filter(([key, value]) => {
+    if (!bootDirtyKeys.has(key)) return true;
+    if (Object.prototype.hasOwnProperty.call(localLessonRestoreMap, key) || BOOT_DIRTY_GUARD_MERGED_KEYS.has(key)) return true;
+    console.log('[RESTORE-DIRTY]', JSON.stringify({ key, action: 'keep_local', cloudLen: value.length }));
+    return false;
+  }) : pairs;
+  if (bootDirtyKeys) console.log('[RESTORE-DIRTY]', JSON.stringify({ event: 'guard', dirtyKeys: bootDirtyKeys.size, kept: pairs.length - appliedPairs.length }));
+  if (appliedPairs.length > 0) {
     assertCurrent();
-    await applyPersonalPlanRestorePairs(pairs);
+    await applyPersonalPlanRestorePairs(appliedPairs);
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
@@ -4561,6 +4613,7 @@ async function restoreAndMigrateFromCloudResultTraced(
       'restore_user_doc',
     );
     mark('user_doc_read');
+    markBootRestoreUserDocRead();
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     mark(doc.exists ? 'migration_flag' : 'migration_flag:no_doc');
@@ -4802,6 +4855,8 @@ export type ForceSyncOptions = Readonly<{
   onRefusal?: (code: ForceSyncRefusalCode) => void;
 }>;
 
+const FORCE_SYNC_DEFERRED_RESTORE_WAIT_MS = 5_000;
+
 export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<boolean> {
   const refuse = (code: ForceSyncRefusalCode): false => {
     try {
@@ -4820,6 +4875,15 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
   const forceGeneration = captureAccountGeneration();
   const isForceGenerationCurrent = () => isCurrentAccountGeneration(forceGeneration, uid);
   if (!isForceGenerationCurrent()) return refuse('stale_generation');
+  // зачем (пункт (а), ревью Opus ×2): предотправка (перед выходом/сменой) не должна отправить локальное поверх облака,
+  // которое отложенное восстановление ещё не прочитало. Ждём ТОЛЬКО если оно ещё не стартовало, и только до чтения
+  // документа (потолок 5 с) — ожидание до конца применения съедало 20 с предотправки и роняло вход через Google.
+  if (isDeferredBootRestoreWaiting()) {
+    requestDeferredBootRestoreStart('force_sync');
+    const deferredWait = await whenDeferredBootRestoreDocRead(FORCE_SYNC_DEFERRED_RESTORE_WAIT_MS);
+    console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'force_sync_waited', outcome: deferredWait }));
+    if (!isForceGenerationCurrent()) return refuse('stale_generation');
+  }
   try {
     pendingSync = true;
     if (syncTimer) {

@@ -3,8 +3,8 @@
 Нужно: свежая рабочая (production) сборка, ваш аккаунт Google, по возможности — второй Google-аккаунт и iPhone для Apple. На эмуляторе это не проверить: нужен настоящий вход.
 
 **Уже проверено без вас (11.10, только чтение):**
-- Переменные EAS для production заданы все четыре: `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`, `EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID`, `EXPO_PUBLIC_APPLE_ANDROID_REDIRECT_URI`, `EXPO_PUBLIC_APPLE_ANDROID_APP_CALLBACK_URI` (значения не смотрели). Значит, сборка, собранная ПОСЛЕ их задания, покажет обе кнопки.
-- На сервере есть все функции входа и удаления: `authEnsureStableLink`, `accountDeleteEnqueue`, `accountDeleteMine`, `accountDeleteWorker`, `accountDeleteStatusMine`, `accountDeleteRestoreMine`, `accountDeleteCredentialStatus`, `accountDeleteRetryCron`. Последняя правка их кода — 04.10; если с тех пор не выкладывали группу удаления — выложите по `DEPLOY_NOW.md`.
+- Переменные EAS для production заданы все шесть: для входа — `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`, `EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID`, `EXPO_PUBLIC_APPLE_ANDROID_REDIRECT_URI`, `EXPO_PUBLIC_APPLE_ANDROID_APP_CALLBACK_URI`; для покупок — `EXPO_PUBLIC_RC_ANDROID`, `EXPO_PUBLIC_RC_IOS` (перепроверено 11.10, значения не смотрели). Значит, сборка, собранная ПОСЛЕ их задания, покажет обе кнопки входа.
+- Сервер выложен 11.10 (приватность, группа удаления `accountDelete*`, ошибки/друзья, политика). На сервере есть все функции входа и удаления: `authEnsureStableLink`, `accountDeleteEnqueue`, `accountDeleteMine`, `accountDeleteWorker`, `accountDeleteStatusMine`, `accountDeleteRestoreMine`, `accountDeleteCredentialStatus`, `accountDeleteRetryCron`. Отдельно выкладывать ничего не нужно — нужна только свежая сборка.
 - Изменения 11.10 (двойное нажатие, долгий вход, копии при смене аккаунта, «+» у видео-наборов, «Память диалогов» в Приватности) — только в приложении, сервер для них не нужен.
 
 Если что-то не так — пришлите строки журнала с метками: `[ONBOARDING-AUTH]`, `[AUTH-MODAL]`, `[AUTH-SIGNIN]`, `[ACC-MUT]`, `[ACCOUNT-RESTORE]`, `[AUTH-SWITCH-OFFER]`, `[account-delete-local]`, `[PACK-ADD]`.

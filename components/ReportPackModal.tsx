@@ -36,6 +36,7 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { plateBoxShadow } from './v2/ShadowSurface';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 
@@ -205,8 +206,7 @@ function ReportPackModal({
           <View
             style={{
               backgroundColor: glass.opaqueSheet,
-              borderColor: glass.glassEdge,
-              borderWidth: 1,
+              boxShadow: plateBoxShadow(glass),
               borderRadius: 26,
               padding: 22,
               maxHeight: '85%',

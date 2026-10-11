@@ -85,8 +85,8 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
               styles.cell,
               { boxShadow: plateBoxShadow(g) },
               // зачем (замечание владельца 10.10): верно/неверно — семантика mpColors(g).ok / .bad с альфой, а не отдельные литералы rgba
-              mark === 'ok' && { backgroundColor: `${mpColors(g).ok}33`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).ok}B3` }] },
-              mark === 'no' && { backgroundColor: `${mpColors(g).bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).bad}B3` }] },
+              mark === 'ok' && { backgroundColor: `${mpColors(g).ok}33`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).ok}B3` }] }, // shadow-ok: кольцо отметки верно/неверно у выбранного ответа — семантика, не контейнер
+              mark === 'no' && { backgroundColor: `${mpColors(g).bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).bad}B3` }] }, // shadow-ok: кольцо отметки верно/неверно у выбранного ответа — семантика, не контейнер
               pressed && styles.pressed,
             ]}>
             {mark === undefined ? (

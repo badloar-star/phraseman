@@ -23,6 +23,7 @@ import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { RowDivider } from './v2/RowDivider';
 /** Фиксированная высота контентной части шапки — без прыжков геометрии. */
 export const SECTION_SHEET_HEADER_HEIGHT = 56;
 
@@ -70,9 +71,10 @@ export default function SectionSheetHeader({
       style={{
         height: SECTION_SHEET_HEADER_HEIGHT,
         justifyContent: 'center',
-        ...(showDivider ? { borderBottomWidth: 0.5, borderBottomColor: t.border } : null),
       }}
     >
+      {/* зачем (стиль «Тень»): нижний разделитель шапки — линия-View, а не borderBottom */}
+      {showDivider ? <RowDivider edge="bottom" color={t.border} /> : null}
       <View
         pointerEvents="none"
         style={{

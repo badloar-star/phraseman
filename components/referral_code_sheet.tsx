@@ -272,8 +272,6 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           minHeight: 48,
           borderRadius: 14,
           paddingHorizontal: 14,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: glass.glassEdge,
           backgroundColor: glass.opaqueControl,
           color: glass.text,
           fontSize: 16,

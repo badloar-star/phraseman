@@ -49,6 +49,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { soundDirector } from '../modules/audio/sound_director';
+import { RowDivider } from '../components/v2/RowDivider';
 
 const EXEMPT_COLOR_1 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
 const EXEMPT_COLOR_2 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
@@ -714,11 +715,11 @@ export default function PackOpeningScreen() {
         style={[
           styles.footer,
           {
-            borderTopColor: t.borderLight,
             paddingBottom: bottomInset + 14,
           },
         ]}
       >
+        <RowDivider color={t.borderLight} />
         {!allOpened ? (
           <View style={{ flexDirection: 'row', gap: 10 }}>
             <Pressable
@@ -852,7 +853,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingHorizontal: 16,
     paddingTop: 12,
-    borderTopWidth: StyleSheet.hairlineWidth,
   },
   primaryBtn: {
     height: 52,

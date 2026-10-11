@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { RowDivider } from '../v2/RowDivider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
@@ -97,8 +98,9 @@ export function DialogueV2BriefingScreen({
             {objectives.map((objective, index) => (
               <View
                 key={objective.id}
-                style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone } : null]}
+                style={styles.obj}
               >
+                {index > 0 ? <RowDivider color={glass.dividerTone} /> : null}
                 {/* зачем (сверка dialogs-008, макет `.obj .n`): цифра в видимом кружке (control 0x1C1C1E на карточке 0x161618) — тон от цвета текста темы, токен opaqueControl сливался с карточкой */}
                 <View style={[styles.num, { backgroundColor: glassTone(glass.text, 0.10) }]}>
                   <Text maxFontSizeMultiplier={1.2} style={[styles.numText, { color: glass.text }]}>{index + 1}</Text>

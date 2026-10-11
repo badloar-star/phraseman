@@ -870,7 +870,7 @@ const styles = StyleSheet.create({
     right: -4,
     bottom: -4,
     borderRadius: 13,
-    borderWidth: 2,
+    borderWidth: 2, // shadow-ok: кольцо выбранного дня календаря — состояние выбора, не контейнер
   },
   // `.om-info`
   dayInfo: {

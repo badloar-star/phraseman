@@ -628,7 +628,7 @@ const styles = StyleSheet.create({
   topIcon: {
     width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.34)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-    borderWidth: 1, borderColor: EXEMPT_COLOR_3, // guard-ok: .vz-ic hairline из макета
+    borderWidth: 1, borderColor: EXEMPT_COLOR_3, // guard-ok: .vz-ic hairline из макета shadow-ok: кромка круглой кнопки поверх обложки профиля из макета, не контейнер
   },
   bannerWrap: { position: 'absolute', top: 66, left: 0, right: 0, alignItems: 'center', zIndex: 13 },
   banner: {

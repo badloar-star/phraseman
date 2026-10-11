@@ -382,7 +382,7 @@ export default function PromoCodeEntryScreen() {
                   backgroundColor: g.opaqueControl, color: g.text,
                   // зачем (стиль «Тень»): нейтральная кромка снята, остаётся только индикатор «код подходит» (кольцо lightTint); 1 px сохранён прозрачным, чтобы поле не прыгало
                   boxShadow: nestedBoxShadow(g) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
-                  borderWidth: 1, borderColor: inputValid ? g.lightTint : 'transparent',
+                  borderWidth: 1, borderColor: inputValid ? g.lightTint : 'transparent', // shadow-ok: индикатор валидности введённого кода, не рамка контейнера
                   fontSize: f.body ?? 16, fontWeight: '900', letterSpacing: 1,
                 }}
               />

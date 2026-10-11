@@ -20,6 +20,7 @@ import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useV2Palette } from '../../v2/useV2Palette';
+import { nestedBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
 import { MOTION_SPRING } from '../../../constants/motion';
 import { useReduceMotion } from '../../../hooks/use_reduce_motion';
 import { subscribeNetStatus } from '../../../app/net_status';
@@ -36,6 +37,7 @@ export type OfflineDataNoticeProps = Readonly<{
 
 export default function OfflineDataNotice({ message }: OfflineDataNoticeProps) {
   const p = useV2Palette();
+  const shadowGlass = useShadowGlass(); // зачем (стиль «Тень»): карточку отделяет тень, а не кромка
   const reduceMotion = useReduceMotion();
   const [online, setOnline] = useState(true);
   const enter = useSharedValue(0);
@@ -75,7 +77,7 @@ export default function OfflineDataNotice({ message }: OfflineDataNoticeProps) {
       accessibilityLabel={message ?? undefined}
       // зачем: паритет с макетом system.html (кадр system_07) — нейтральная графитовая карточка
       // с тонкой кромкой, серый текст 14.5 и серый значок; никакого золота.
-      style={[styles.wrap, { backgroundColor: p.card, borderColor: p.hairline }, style]}
+      style={[styles.wrap, { backgroundColor: p.card, boxShadow: nestedBoxShadow(shadowGlass) }, style]}
       testID="offline-data-notice"
     >
       <Ionicons name="cloud-offline-outline" size={20} color={p.textSecondary} />
@@ -93,7 +95,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 14,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка карточки kit.css
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,

@@ -79,7 +79,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
         onPress={handleOpen}
         onPressIn={handleWarm}
         activeOpacity={0.8}
-        style={[styles.trigger, { backgroundColor: t.bgSurface2, borderColor: t.border }, style]}
+        style={[styles.trigger, { backgroundColor: t.bgSurface2 }, style]}
         accessibilityRole="button"
         accessibilityLabel={triLang(uiLang, {
           ru: 'Объяснить простыми словами',

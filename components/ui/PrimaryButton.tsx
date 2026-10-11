@@ -65,7 +65,6 @@ function PrimaryButton({ label, onPress, disabled, loading, style, accessibility
           borderLeftWidth: 0,
           borderRightWidth: 0,
           borderBottomWidth: 0,
-          borderColor: isDisabled ? t.border : GOLD_RICH.hairlineStrong,
           overflow: 'hidden',
         },
         style,

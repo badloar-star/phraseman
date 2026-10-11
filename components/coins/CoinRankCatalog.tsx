@@ -58,7 +58,6 @@ function CoinRankCatalog({ glass, lang, currentRank, showTitle = true }: Props) 
                 styles.cell,
                 {
                   backgroundColor: on ? glass.selected : glass.opaqueCard,
-                  borderColor: glass.glassEdge, // guard-ok: 1 px кромка плитки макета
                 },
               ]}
             >
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     minHeight: 88,
     borderRadius: 15,
-    borderWidth: StyleSheet.hairlineWidth,
     paddingVertical: 9,
     paddingHorizontal: 5,
     alignItems: 'center',

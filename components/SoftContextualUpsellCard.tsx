@@ -69,7 +69,7 @@ export default function SoftContextualUpsellCard({
       accessibilityLabel={`${title}. ${body}`}
       onLayout={handleLayout}
       radius={16}
-      style={[styles.card, { borderColor: glass.glassEdge }]}
+      style={styles.card}
     >
       <View style={styles.headingRow}>
         <Ionicons name="sparkles-outline" size={22} color={glass.accentText} />
@@ -103,7 +103,7 @@ export default function SoftContextualUpsellCard({
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: 16, borderWidth: 1, gap: 10, padding: 16 },
+  card: { borderRadius: 16, gap: 10, padding: 16 },
   headingRow: { alignItems: 'center', flexDirection: 'row', gap: 9 },
   title: { flex: 1, fontWeight: '800' },
   body: { lineHeight: 20 },

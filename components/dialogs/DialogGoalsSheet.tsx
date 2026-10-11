@@ -17,6 +17,7 @@
  */
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { RowDivider } from '../v2/RowDivider';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
@@ -125,11 +126,12 @@ export default function DialogGoalsSheet({
               return (
                 <View
                   key={objective.id}
-                  style={[styles.row, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
+                  style={styles.row}
                   accessible
                   accessibilityRole="text"
                   accessibilityLabel={showStatus ? `${formatDialogObjectiveLabel(objective.labelRu)}. ${status}` : formatDialogObjectiveLabel(objective.labelRu)}
                 >
+                  {index > 0 ? <RowDivider color={glass.line} /> : null}
                   <View style={[styles.badge, { backgroundColor: done ? glass.cta : glass.opaqueControl }]}>
                     {done ? (
                       <Ionicons name="checkmark" size={16} color={glass.ctaInk} />

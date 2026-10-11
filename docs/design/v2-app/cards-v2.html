@@ -99,7 +99,7 @@
   .hc .vb2 { position: absolute; right: 16px; top: 14px; }
   .vb2 { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08); display: inline-flex; align-items: center; justify-content: center; color: var(--text); }
 
-  /* ---------- хаб: «ваши карточки» — две живые плитки ---------- */
+  /* ---------- хаб: «твои карточки» — две живые плитки ---------- */
   .ygrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .ytile { position: relative; border-radius: 22px; padding: 12px 12px 14px; background: var(--card-2); border: 1px solid var(--line); overflow: hidden; }
   .ymos { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 92px; align-content: start; }
@@ -279,6 +279,18 @@
   .rise > *:nth-child(5) { animation-delay: 200ms; } .rise > *:nth-child(6) { animation-delay: 250ms; } .rise > *:nth-child(n+7) { animation-delay: 300ms; }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
   @media (prefers-reduced-motion: reduce) { .rise > * { animation: none; } .flip .fl, .zth, .zf { transition: none; } }
+  /* ---------- дорисовано по приложению (решения 12.10): «Кто видит», «Подсказка», «Показать ответ» ---------- */
+  .vseg { display: flex; gap: 4px; padding: 5px; border-radius: 16px; background: #161618; }
+  .vseg span { flex: 1; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--sec); cursor: pointer; transition: background 200ms, color 200ms; }
+  .vseg span.on { background: var(--cta); color: var(--cta-ink); }
+  .hintrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; min-height: 44px; }
+  .hintb { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 22px; background: #262628; font-size: 16px; font-weight: 700; cursor: pointer; }
+  .hintg { color: var(--sec); font-size: 16px; font-weight: 600; }
+  .revl { display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; margin-top: 6px; color: var(--sec); font-size: 16px; font-weight: 600; cursor: pointer; }
+  .ansc { margin-top: 18px; border-radius: 16px; padding: 16px 18px; background: #18181A; box-shadow: 0 14px 28px -18px rgba(0,0,0,.9); }
+  .ansc .k { font-size: 16px; font-weight: 700; color: var(--sec); } .ansc .v { font-size: 20px; line-height: 26px; font-weight: 600; margin-top: 8px; }
+  .ansc .sg { display: flex; gap: 10px; margin-top: 16px; } .ansc .sg span { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; cursor: pointer; }
+  .ansc .sg .n { background: rgba(242,118,107,.14); color: var(--bad); } .ansc .sg .y { background: rgba(111,208,140,.14); color: var(--good); }
 </style>
 </head>
 <body>
@@ -305,6 +317,13 @@
     grip: svg('<path d="M9 7h.01M15 7h.01M9 12h.01M15 12h.01M9 17h.01M15 17h.01" stroke-width="2.8"/>', 's20'),
     share: svg('<path d="M12 3.5v11M8 7.5l4-4 4 4"/><path d="M6 11v8.5h12V11"/>'),
     move: svg('<path d="M4 7h16M4 12h10M4 17h7"/><path d="M16 15l3 3-3 3"/>'),
+    bulb: svg('<path d="M9.5 18.5h5M10.5 21.5h3M12 3a6 6 0 014 10.4c-.7.7-1 1.4-1 2.6H9c0-1.2-.3-1.9-1-2.6A6 6 0 0112 3z"/>'),
+    eye: svg('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
+    lock: svg('<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/>', 's18'),
+    globe: svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.7 2.7 15.3 0 18M12 3c-2.7 2.7-2.7 15.3 0 18"/>', 's18'),
+    albums: svg('<rect x="5.5" y="8.5" width="13" height="11" rx="2.5"/><path d="M8 5.5h8M10 2.8h4"/>'),
+    filter: svg('<path d="M4 6h16M7 12h10M10 18h4"/>'),
+    checkbox: svg('<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>'),
     retry: svg('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/>', 's20'),
   };
 
@@ -390,7 +409,7 @@
         <div class="trk"><i style="width:${o.p ?? 30}%"></i></div></div></div>
     <div class="flex" style="gap:10px;margin-top:14px"><div class="cta t grow">${icon('play', 's18')}${o.cta || 'Продолжить'}</div><span class="rb l t" data-open="mode" title="Режим">${icon('layers', 's20')}</span></div>`;
   const covers = [['Путешествия', 40, '#1A1A1D'], ['B2 глаголы', 49, '#232326'], ['Работа', 22, '#2C2C30']];
-  const yours = (empty) => `<div class="sec"><div class="ti">Ваши карточки</div></div>
+  const yours = (empty) => `<div class="sec"><div class="ti">Твои карточки</div></div>
     <div class="ygrid">
       <div class="ytile t"><div class="ymos"${empty ? ' style="opacity:.28"' : ''}>${(empty ? ['', '', '', ''] : ['Layover', 'Gate', 'Delay', 'Visa']).map((w) => `<span class="mc">${w}</span>`).join('')}</div>
         <div class="yft"><div class="grow"><div class="ytt">Сохранённые</div><div class="ysu">${empty ? 'Пока пусто' : '64'}</div></div>${icon('bookmark', 's18')}</div></div>
@@ -407,7 +426,7 @@
 
   const hub = () => phone(`${hubTop}<div class="rise">${hero()}<div>${yours()}</div><div>${videoRail()}</div><div>${commChart()}</div></div>`, { time: '9:41', overlay: modeSheet });
   const hubNew = () => phone(`${hubTop}<div class="rise">
-      ${hero({ ov: 'Начните здесь', w: 'Hello', s: 'Первые 50 слов', p: 0, cta: 'Начать' })}
+      ${hero({ ov: 'Начни здесь', w: 'Hello', s: 'Первые 50 слов', p: 0, cta: 'Начать' })}
       <div>${yours(true)}</div><div>${videoRail()}</div><div>${commChart()}</div></div>`, { time: '9:41', overlay: modeSheet });
   const hubLoad = () => phone(`${hubTop}${hero()}${yours()}
       <div class="sec"><div class="ti">Из видео</div></div>
@@ -425,13 +444,16 @@
   // =====================================================================
   // СОХРАНЁННЫЕ — масштабируемая сетка
   // =====================================================================
-  const savedTop = back(`<span class="rb t">${icon('plus', 's20')}</span>`) + ttl('Сохранённые', 64);
+  const savedTop = back(`<span class="rb t" data-open="smn">${icon('dotsH', 's20')}</span><span class="rb t">${icon('plus', 's20')}</span>`) + ttl('Сохранённые', 64);
   const savedFab = `<div class="fab-wrap"><span class="cta sm t">${icon('play', 's18')}Тренировать</span></div>`;
+  // зачем (решение 12.10): в приложении меню «⋯» списка — «Показать стопкой / списком», «Фильтр», «Отметить несколько», «Лучшее у сообщества»; на макете его не было, функция остаётся.
+  const savedMenuRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Сохранённые</div>
+      ${[['albums', 'Показать стопкой'], ['filter', 'Фильтр'], ['checkbox', 'Отметить несколько'], ['people', 'Лучшее у сообщества']].map(([ic, t]) => `<div class="mrow t">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`;
   const cardSheet = sheet('cd', `<div data-cdbody>${cardSheetInner(W[0][0], W[0][1], 'We have a two-hour layover.')}</div>`);
-  const saved = (step) => phone(`${savedTop}${zoomBar()}${zgrid(step, W)}`, { time: '9:41', fixed: savedFab, overlay: cardSheet });
+  const saved = (step) => phone(`${savedTop}${zoomBar()}${zgrid(step, W)}`, { time: '9:41', fixed: savedFab, overlay: cardSheet + sheet('smn', savedMenuRows) });
   const savedSearch = () => phone(`${savedTop}${zoomBar(srch('ga', { caret: 1 }))}
       ${zgrid(1, [[`<mark>Ga</mark>te`, 'выход на посадку'], [`Lug<mark>ga</mark>ge`, 'багаж'], [`<mark>Ga</mark>p year`, 'год перерыва'], [`Me<mark>ga</mark>`, 'огромный']])}`, { time: '9:41', overlay: cardSheet });
-  const savedEmpty = () => phone(`${back()}${ttl('Сохранённые')}${empty('bookmark', 'Пока пусто', 'Сохраняйте слова из уроков', 'Открыть каталог')}`, { time: '9:41' });
+  const savedEmpty = () => phone(`${back()}${ttl('Сохранённые')}${empty('bookmark', 'Пока пусто', 'Сохраняй слова из уроков', 'Открыть каталог')}`, { time: '9:41' });
   const savedUndo = () => phone(`${savedTop}${zoomBar()}${zgrid(0, W.slice(1, 12))}`, { time: '9:41', overlay: cardSheet,
     fixed: `<div class="toast">${icon('trash', 's18')}Удалено<span class="cta sm t" style="height:40px">Вернуть</span></div>` });
 
@@ -445,7 +467,7 @@
         ${deck('B2 глаголы', `<span class="av">${icon('user', 's16')}</span>Ирина · 49 · B2`, ['Convince', 'Claim', 'Afford'], playBtn)}
         ${deck('Работа', '22 · B1', ['Follow up', 'Deadline', 'Refund'], playBtn)}
         ${deck('Фразовые глаголы', '31 · B1', ['Give up', 'Run out', 'Set off'], playBtn)}</div>`, { time: '9:41' });
-  const mySetsEmpty = () => phone(`${back()}${ttl('Мои наборы')}${empty('layers', 'Наборов нет', 'Соберите свой первый', 'Создать набор')}`, { time: '9:41' });
+  const mySetsEmpty = () => phone(`${back()}${ttl('Мои наборы')}${empty('layers', 'Наборов нет', 'Собери свой первый', 'Создать набор')}`, { time: '9:41' });
 
   // =====================================================================
   // НАБОР ОТКРЫТ
@@ -456,15 +478,15 @@
       <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px"><span class="lvl">${o.l}</span><span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   const setActions = sheet('sa', `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>
-      ${[['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`);
+      ${[['albums', 'Показать стопкой'], ['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`);
   const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });
   const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: added ? 4 : 3, liked: added,
-        btns: added ? `<div class="cta gh t grow">${icon('check', 's18')}В ваших наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
+        btns: added ? `<div class="cta gh t grow">${icon('check', 's18')}В твоих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
           : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div><span class="rb l t">${icon('heart', 's20')}</span>` })}
       ${zoomBar()}${zgrid(0, W.slice(13, 28))}`, { time: '9:41', overlay: cardSheet });
   const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div>` })}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>
-      ${[['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`, true) });
+      ${[['albums', 'Показать стопкой'], ['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`, true) });
 
   // =====================================================================
   // ИЗ ВИДЕО
@@ -494,25 +516,31 @@
   // СОЗДАНИЕ И РЕДАКТИРОВАНИЕ
   // =====================================================================
   const mHead = (t, r) => `<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span style="font-size:17px;font-weight:700">${t}</span>${r || '<span style="width:42px"></span>'}</div>`;
+  // зачем (решение 12.10): переключатель «Кто видит» (Только я / Все) в редакторе набора остаётся — сразу под названием.
+  const vis = (pub) => `<div style="margin-top:20px"><div class="flab">Кто видит</div><div class="vseg" data-seg><span${pub ? '' : ' class="on"'}>${X.lock}Только я</span><span${pub ? ' class="on"' : ''}>${X.globe}Все</span></div></div>`;
+  // зачем (решение 12.10): пилюля лимита — реальный лимит МЕСТА, где он сработал (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц).
+  const limPill = (ic, t) => `<span class="pill s">${icon(ic, 's16')}${t}</span>`;
   const lvls = (on) => `<div class="chips">${['A1', 'A2', 'B1', 'B2', 'C1'].map((l) => `<span class="chipbtn${l === on ? ' on' : ''}" data-chip>${l}</span>`).join('')}</div>`;
-  const newSet = () => phone(`${mHead('Новый набор')}
+  const newSet = (o = {}) => phone(`${mHead('Новый набор', o.limit ? limPill('layers', o.limit) : '')}
       <div style="margin-top:26px"><div class="flab">Название</div><div class="field"><span>Путешествия</span><span class="caret"></span></div></div>
+      ${vis(false)}
       <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('A2')}</div>
       <div style="margin-top:22px"><div class="flab">Карточки</div>
         <div class="stack g13">${wc(W[0], 0)}${wc(W[1], 1)}<div class="ghostadd t">${icon('plus', 's20')}Карточка</div></div></div>`, { time: '9:41',
-    fixed: `<div class="bot"><div class="cta t" data-shake>Создать набор</div></div>` });
+    fixed: `<div class="bot"><div class="cta t" data-shake>${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : 'Создать набор'}</div></div>` });
   const editSet = () => phone(`${mHead('Изменить', '<span style="font-size:16px;font-weight:600">Готово</span>')}
       <div style="margin-top:26px"><div class="flab">Название</div><div class="field">Путешествия</div></div>
+      ${vis(false)}
       <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('A2')}</div>
       <div style="margin-top:22px"><div class="flab">Карточки · 40</div>
         <div class="stack">${W.slice(0, 5).map(([w, t]) => `<div class="erow"><span class="g">${X.grip}</span><div class="grow"><div class="w1">${w}</div><div class="w2">${t}</div></div><span class="rb t" style="width:36px;height:36px;color:var(--bad)">${icon('trash', 's18')}</span></div>`).join('')}</div></div>`, { time: '9:41' });
-  const newCard = () => phone(`${mHead('Новая карточка')}
+  const newCard = (o = {}) => phone(`${mHead('Новая карточка', o.limit ? limPill('layers', o.limit) : '')}
       <div data-live style="margin-top:22px">${flip('Layover', 'пересадка', { ex: 'Пример появится тут' })}</div>
       <div style="margin-top:22px"><div class="flab">Слово или фраза</div><div class="field"><input data-en value="Layover" placeholder="Например, layover"></div></div>
       <div style="margin-top:14px"><div class="flab">Перевод</div><div class="field"><input data-ru value="пересадка" placeholder="Перевод"></div></div>
       <div style="margin-top:14px"><div class="flab">Пример</div><div class="field"><input data-ex placeholder="Необязательно"></div></div>
       <div class="card t" style="margin-top:18px"><div class="row" style="min-height:56px"><div class="tile" style="width:34px;height:34px">${icon('layers', 's18')}</div><div class="tx"><div class="tt m">Путешествия</div></div>${ch}</div></div>`, { time: '9:41',
-    fixed: `<div class="bot"><div class="cta t">Добавить</div></div>` });
+    fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : 'Добавить'}</div></div>` });
 
   // =====================================================================
   // СООБЩЕСТВО
@@ -521,14 +549,14 @@
       <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 0 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;
   const catalog = () => phone(`${commHead('')}
       <div class="stack g14 rise" style="margin-top:20px">${COMM.map(([t, a, c, l, h, w]) => deck(t, `<span class="av">${icon('user', 's16')}</span>${a} · ${c} · ${l}`, [w, ...W.slice((c % 9) + 13, (c % 9) + 15).map((x) => x[0])], likes(h))).join('')}</div>`, { time: '9:41' });
-  const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуйте другое слово', 'Сбросить поиск').replace('min-height:640px', '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
+  const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', 'Сбросить поиск').replace('min-height:640px', '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
 
   // =====================================================================
   // ТРЕНИРОВКА: режим, настройка, лимит
   // =====================================================================
   const modePick = () => phone(`<div style="opacity:.35">${hubTop}${hero()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
   const pk = (t, n, on) => `<div class="pk${on ? ' on' : ''}" data-pk><div class="t1">${t}</div><div class="t2">${n}</div><span class="chk">${icon('check', 's16')}</span></div>`;
-  const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${o.limit ? `<span class="pill s">${icon('layers', 's16')}0/3</span>` : '<span></span>'}</div>
+  const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${o.limit ? limPill('layers', o.limit) : '<span></span>'}</div>
       <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
       <div class="sec" style="margin-top:28px"><div class="ti" style="font-size:17px">Что повторяем</div></div>
       <div class="pick">${pk('Сохранённые', 64, 1)}${pk('Путешествия', 40, 1)}${pk('B2 глаголы', 49)}${pk('Работа', 22)}</div>
@@ -537,7 +565,7 @@
       <div class="sec"><div class="ti" style="font-size:17px">Показывать</div></div>
       <div class="seg3" data-seg><span class="on">EN → RU</span><span>RU → EN</span></div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : `${icon('play', 's18')}Начать`}</div></div>` });
-  const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span></div>${empty('layers', 'Нет карточек', 'Сохраните пару слов', 'Открыть каталог')}`, { time: '9:41' });
+  const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span></div>${empty('layers', 'Нет карточек', 'Сохрани пару слов', 'Открыть каталог')}`, { time: '9:41' });
 
   // =====================================================================
   // СЕССИИ
@@ -556,7 +584,7 @@
         return `<div class="opt t${c}">${o}${mk ? `<span class="mk">${mk}</span>` : ''}</div>`; }).join('')}</div>`, { time: '9:41' });
   const oral = (st) => phone(`${sessHdr('Устно', '4 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:20%"></i></div>
       <div style="margin-top:34px">${flip('пересадка', 'Layover', { fl: 'RU', bl: 'EN', novol: 1, on: st === 'ok', cls: st === 'ok' ? 'ok' : '', ex: st === 'ok' ? '' : '' })}</div>
-      <div class="center" style="margin-top:${st === 'ok' ? 40 : 54}px">${st === 'ok' ? '' : `<span class="mic live t">${icon('mic', 's28')}</span><div class="wave">${[14, 26, 18, 34, 22, 30, 16, 24, 12].map((h, i) => `<i style="height:${h}px;animation-delay:${i * 90}ms"></i>`).join('')}</div><div style="color:var(--sec);margin-top:14px;font-size:15px">Скажите по-английски</div>`}</div>`, { time: '9:41',
+      <div class="center" style="margin-top:${st === 'ok' ? 40 : 54}px">${st === 'ok' ? '' : `<span class="mic live t">${icon('mic', 's28')}</span><div class="wave">${[14, 26, 18, 34, 22, 30, 16, 24, 12].map((h, i) => `<i style="height:${h}px;animation-delay:${i * 90}ms"></i>`).join('')}</div><div style="color:var(--sec);margin-top:14px;font-size:15px">Скажи по-английски</div>`}</div>`, { time: '9:41',
     fixed: st === 'ok' ? `<div class="bot"><div class="ans ok"><span class="vk ok">${icon('check', 's20')}</span><div class="grow"><div class="k">Верно</div><div class="v">layover</div></div><span class="plus10">+10</span></div><div class="cta t">Дальше</div></div>` : '' });
   const tf = (st) => phone(`${sessHdr('Правда / ложь', '7 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:35%"></i></div>
       <div class="swz" data-swz><div class="under"></div>
@@ -564,31 +592,53 @@
           <span class="stmp y">Правда</span><span class="stmp n"${st === 'no' ? ' style="opacity:1"' : ''}>Ложь</span></div></div>
       ${st === 'no' ? '' : `<div class="tfb"><div class="tfx t" data-tf="0"><span class="o">${icon('close', 's28')}</span>Ложь</div><div class="tfx t" data-tf="1"><span class="o">${icon('check', 's28')}</span>Правда</div></div>`}`, { time: '9:41',
     fixed: st === 'no' ? `<div class="bot"><div class="ans no"><span class="vk no">${icon('close', 's20')}</span><div class="grow"><div class="k">Неверно</div><div class="v">Gate — выход на посадку</div></div></div><div class="cta t">Дальше</div></div>` : '' });
+  // зачем (решение 12.10): «Подсказка» (пилюля под полем, справа — начало ответа) и «Показать ответ» (под «Проверить») — функции приложения, остаются.
+  const hintRow = (open) => `<div class="hintrow"><span class="hintb t">${X.bulb}Подсказка</span>${open ? '<span class="hintg">layove…</span>' : ''}</div>`;
+  const revealLink = `<div class="revl t">${X.eye}Показать ответ</div>`;
   const write = (st) => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
       <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">задержка</div></div>
-      <div class="field${st ? ' ' + st : ''}" style="margin-top:22px;font-size:20px;min-height:60px">${st === 'ok' ? 'delay' : st === 'no' ? 'd<span class="bad">i</span>lay' : 'dela<span class="caret"></span>'}<span style="margin-left:auto;color:${st === 'ok' ? 'var(--good)' : st === 'no' ? 'var(--bad)' : 'transparent'}">${st ? icon(st === 'ok' ? 'check' : 'close', 's20') : ''}</span></div>`, { time: '9:41',
+      <div class="field${st ? ' ' + st : ''}" style="margin-top:22px;font-size:20px;min-height:60px">${st === 'ok' ? 'delay' : st === 'no' ? 'd<span class="bad">i</span>lay' : 'dela<span class="caret"></span>'}<span style="margin-left:auto;color:${st === 'ok' ? 'var(--good)' : st === 'no' ? 'var(--bad)' : 'transparent'}">${st ? icon(st === 'ok' ? 'check' : 'close', 's20') : ''}</span></div>
+      ${st ? '' : hintRow(false)}`, { time: '9:41',
     fixed: `<div class="bot">${st === 'ok' ? `<div class="ans ok"><span class="vk ok">${icon('check', 's20')}</span><div class="grow"><div class="k">Верно</div><div class="v">Delay</div></div><span class="plus10">+10</span></div><div class="cta t">Дальше</div>`
       : st === 'no' ? `<div class="ans no"><span class="vk no">${icon('close', 's20')}</span><div class="grow"><div class="k">Правильно</div><div class="v">Delay</div></div></div><div class="cta t">Дальше</div>`
-      : `<div class="cta t">Проверить</div>`}</div>` });
+      : `<div class="cta t">Проверить</div>${revealLink}`}</div>` });
+
+
+  // =====================================================================
+  // ДОРИСОВАНО ПО ПРИЛОЖЕНИЮ (решения 12.10) — кадры только В КОНЦЕ страницы, чтобы номера прежних телефонов не сдвинулись
+  // =====================================================================
+  const savedLimit = () => phone(`${back(`${limPill('bookmark', '50/50')}<span class="rb t">${icon('plus', 's20')}</span>`)}${ttl('Сохранённые', 50)}${zoomBar()}${zgrid(1, W.slice(0, 14), 1)}`, { time: '9:41',
+    fixed: `<div class="bot"><div class="cta t">${icon('unlock', 's18')}Безлимит с Plus</div></div>` });
+  const savedMenuOpen = () => phone(`${savedTop}${zoomBar()}${zgrid(1, W.slice(0, 12), 1)}`, { time: '9:41', overlay: sheet('smn2', savedMenuRows, true) });
+  const writeHint = () => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
+      <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">пересадка</div></div>
+      <div class="field" style="margin-top:22px;font-size:20px;min-height:60px">lay<span class="caret"></span></div>
+      ${hintRow(true)}`, { time: '9:41', fixed: `<div class="bot"><div class="cta t">Проверить</div>${revealLink}</div>` });
+  const resultGood = () => result(false, { ok: 12, v: 'Хороший результат' });
+  const resultLow = () => result(false, { ok: 6, v: 'Есть куда расти' });
+  const writeReveal = () => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
+      <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">задержка</div></div>
+      <div class="ansc"><div class="k">Ответ</div><div class="v">Delay</div><div class="sg"><span class="n t">Не знал</span><span class="y t">Знал</span></div></div>`, { time: '9:41' });
 
   // =====================================================================
   // ИТОГ
   // =====================================================================
-  const result = (clean) => phone(`<div class="topbar"><span></span><span class="rb t">${icon('close', 's20')}</span></div>
-      <div class="center rise" style="margin-top:30px"><div class="ov">Блиц · Путешествия</div><div class="big" style="margin-top:14px">${clean ? 20 : 18}<span>из 20</span></div>
-        <div style="font-size:17px;color:var(--sec);margin-top:6px">${clean ? 'Без единой ошибки' : 'Почти идеально'}</div></div>
-      <div class="stats"><div class="stt"><b>${clean ? 20 : 18}</b><span>Верно</span></div><div class="stt"><b>${clean ? 0 : 2}</b><span>Ошибки</span></div><div class="stt"><b>1:12</b><span>Время</span></div></div>
-      <div class="flex" style="justify-content:center;margin-top:16px"><span class="pill">${coinImg(5, 20)}+${clean ? 200 : 180}</span></div>
-      ${clean ? '' : `<div class="sec"><div class="ti">Ошибки<span class="n">2</span></div></div>
+  // зачем (решение 12.10): слева в шапке — плашка баланса монет (в приложении есть, к ней летят монеты); вердикт по доле верных: 100 % — «Без единой ошибки», ≥80 — «Почти идеально», ≥50 — «Хороший результат», иначе «Есть куда расти»; 10 монет за верный ответ.
+  const result = (clean, o = {}) => { const ok = clean ? 20 : (o.ok ?? 18); const bad = 20 - ok; const verdict = clean ? 'Без единой ошибки' : (o.v || 'Почти идеально'); return phone(`<div class="topbar"><span class="pill">${coinImg(5, 20)}1 240</span><span class="rb t">${icon('close', 's20')}</span></div>
+      <div class="center rise" style="margin-top:30px"><div class="ov">Блиц · Путешествия</div><div class="big" style="margin-top:14px">${ok}<span>из 20</span></div>
+        <div style="font-size:17px;color:var(--sec);margin-top:6px">${verdict}</div></div>
+      <div class="stats"><div class="stt"><b>${ok}</b><span>Верно</span></div><div class="stt"><b>${bad}</b><span>Ошибки</span></div><div class="stt"><b>1:12</b><span>Время</span></div></div>
+      <div class="flex" style="justify-content:center;margin-top:16px"><span class="pill">${coinImg(5, 20)}+${ok * 10}</span></div>
+      ${clean ? '' : `<div class="sec"><div class="ti">Ошибки<span class="n">${bad}</span></div></div>
       <div class="stack g13">${flip('Gate', 'выход на посадку', { h: 132 })}${flip('Customs', 'таможня', { h: 132 })}</div>`}`, { time: '9:41',
-    fixed: `<div class="bot"><div class="two">${clean ? `<div class="cta gh t">Готово</div><div class="cta t">Ещё раз</div>` : `<div class="cta gh t">Готово</div><div class="cta t">Повторить ошибки</div>`}</div></div>` });
+    fixed: `<div class="bot"><div class="two">${clean ? `<div class="cta gh t">Готово</div><div class="cta t">Ещё раз</div>` : `<div class="cta gh t">Готово</div><div class="cta t">Повторить ошибки</div>`}</div></div>` }); };
 
   // =====================================================================
   // НЕТ СЕТИ
   // =====================================================================
   const offlineHub = () => phone(`${hubTop}${hero()}${yours()}
-      <div style="margin-top:12px">${empty('wifiOff', 'Нет сети', 'Ваши карточки доступны', `${X.retry}Повторить`, 1)}</div>`, { time: '9:41' });
-  const offlineCatalog = () => phone(`${back()}${ttl('Сообщество')}${empty('wifiOff', 'Нет сети', 'Проверьте подключение', `${X.retry}Повторить`)}`, { time: '9:41' });
+      <div style="margin-top:12px">${empty('wifiOff', 'Нет сети', 'Твои карточки доступны', `${X.retry}Повторить`, 1)}</div>`, { time: '9:41' });
+  const offlineCatalog = () => phone(`${back()}${ttl('Сообщество')}${empty('wifiOff', 'Нет сети', 'Проверь подключение', `${X.retry}Повторить`)}`, { time: '9:41' });
 
   // =====================================================================
   // СБОРКА СТРАНИЦЫ
@@ -605,11 +655,15 @@
     ['card', 'Карточка открыта', 'Тап по карточке — разворот 560 мс.', [col('Лицевая сторона', cardFront()), col('Оборот', cardBack())]],
     ['create', 'Создание', '', [col('Новый набор', newSet()), col('Изменить набор', editSet()), col('Новая карточка — превью живое', newCard())]],
     ['comm', 'Сообщество', '', [col('Каталог', catalog()), col('Ничего не найдено', catalogNone())]],
-    ['train', 'Тренировка', '', [col('Режим', modePick()), col('Настройка', setup()), col('Настройка — пусто', setupEmpty()), col('Лимит Free', setup({ limit: 1 }))]],
-    ['sess', 'Сессии', '«Правда / ложь» — смахните карточку вправо или влево.', [col('Блиц', blitz()), col('Устно', oral()), col('Правда / ложь', tf()), col('Вспомни и напиши', write())]],
+    ['train', 'Тренировка', '', [col('Режим', modePick()), col('Настройка', setup()), col('Настройка — пусто', setupEmpty()), col('Лимит Free — тренировки 30/30 в месяц', setup({ limit: '30/30 в месяц' }))]],
+    ['sess', 'Сессии', '«Правда / ложь» — смахни карточку вправо или влево.', [col('Блиц', blitz()), col('Устно', oral()), col('Правда / ложь', tf()), col('Вспомни и напиши', write())]],
     ['answ', 'Ответы', '', [col('Блиц — верно', blitz('ok')), col('Блиц — неверно', blitz('no')), col('Устно — верно', oral('ok')), col('Правда / ложь — неверно', tf('no')), col('Напиши — верно', write('ok')), col('Напиши — неверно', write('no'))]],
     ['res', 'Итог', '', [col('Итог с ошибками', result(false)), col('Без ошибок', result(true))]],
     ['net', 'Нет сети', '', [col('Хаб без сети', offlineHub()), col('Каталог без сети', offlineCatalog())]],
+    ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
+      col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
+      col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),
+      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow())]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

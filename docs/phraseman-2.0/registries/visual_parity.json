@@ -5094,7 +5094,8 @@
         "to": "Макеты",
         "reason": "миры + тон «ты»",
         "kind": "осознанное отличие"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: миры Общение/Дела/Поездки/Каждый день с подписями из dialogue_world_subtitle.ts, «Практикуй…», пилюля 30/30 (D111)."
     },
     {
       "id": "dialogs-002",
@@ -5144,7 +5145,8 @@
         "to": "Макеты",
         "reason": "миры + тон «ты»",
         "kind": "осознанное отличие"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: те же миры и «ты», что в dialogs-001."
     },
     {
       "id": "dialogs-003",
@@ -5201,11 +5203,11 @@
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
         "phone": 5,
-        "label": "Хаб — лимит исчерпан (0/10)",
+        "label": "Хаб — лимит исчерпан (0/30)",
         "mapping": "manual_rebind"
       },
       "screen": "A. Хаб «Диалоги»",
-      "state": "Хаб — лимит исчерпан (0/10)",
+      "state": "Хаб — лимит исчерпан (0/30)",
       "code": [
         "components/dialogs/DialogueV2CatalogueContainer.tsx"
       ],
@@ -5233,7 +5235,7 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 5 (\"Хаб — лимит исчерпан (0/10)карточка «Plus снимает лимит реплик»\") — склейка снята с 4; переснять",
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind) | Макеты 12.10: месячный лимит D111 — «Plus снимает лимит ответов», «В этом месяце осталось 0 из 30 ответов.», пилюля 0/30.",
       "triage": {
         "action": "переснять",
         "to": "Дизайн",
@@ -5283,7 +5285,7 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 6 (\"Хаб — язык ещё проверяетсяизучаемый испанский: миров нет\") — склейка снята с 5; переснять",
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind) | Макеты 12.10: «Диалоги на этом языке ещё проверяются» + текст и «К урокам» из DialogueV2HubNotices (D129/D130).",
       "triage": {
         "action": "переснять",
         "to": "Дизайн",
@@ -5509,7 +5511,8 @@
         "to": "Макеты",
         "reason": "тон «ты»",
         "kind": "осознанное отличие"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: «AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.» (ты, как в ai_dialog_consent_gate.tsx)."
     },
     {
       "id": "dialogs-011",
@@ -6445,11 +6448,11 @@
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
         "phone": 35,
-        "label": "Лимит — последняя реплика (1/10)",
+        "label": "Лимит — последний ответ (1/30)",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Лимиты, завершение и выход",
-      "state": "Лимит — последняя реплика (1/10)",
+      "state": "Лимит — последний ответ (1/30)",
       "code": [],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -6502,7 +6505,7 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 36 (\"Лимит закончился — «На сегодня всё»\") — склейка снята с 35; переснять",
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния; макет исправлен 12.10 под приложение — основание: D111, Ядро 11.10 (лимит Free — 30 ответов в календарный месяц, кнопки «Итоги» / «Plus»)",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния; макет исправлен 12.10 под приложение — основание: D111, Ядро 11.10 (лимит Free — 30 ответов в календарный месяц, кнопки «Итоги» / «Plus») | Макеты 12.10: под пузырём «Не отправлено» (DialogueGlassBubble note), пилюля 0/30.",
       "triage": {
         "action": "исправить",
         "to": "Дизайн",
@@ -14794,11 +14797,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 8,
-        "label": "тёмные темы",
+        "label": "темы · 13 + 10 градиентных, светлое/тёмное, насыщенность",
         "mapping": "label_match"
       },
       "screen": "Обучение и внешний вид",
-      "state": "тёмные темы",
+      "state": "темы · 13 + 10 градиентных, светлое/тёмное, насыщенность",
       "code": [
         "app/settings_themes.tsx"
       ],
@@ -14828,7 +14831,8 @@
         "verdict": "diff",
         "notes": "Образец устарел: «Все темы тёмные», «Тёмная тема», «Полярная/Сланец/Чернильная/Пыльная роза/Мягкая терракота/Эвкалипт/Морская…» — в приложении 23 темы + светлый режим + ползунок (Затмение, Аврора…). → Макеты (переделать образец под экран «Темы» 2.0).",
         "to": "Макеты"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: образец под settings_themes.tsx — 13 тем (Затмение…Океан), переключатель тёмное/светлое, ползунок насыщенности, 10 градиентных тем (Аврора…Сирень)."
     },
     {
       "id": "profile-009",
@@ -15513,7 +15517,8 @@
         "verdict": "diff",
         "notes": "Тон «Поделитесь кодом / Ваш код» (вы) — образец устарел (Макеты переводят на «ты»); тексты «Скопировать код», «Приглашённые друзья», «Здесь появятся друзья» в коде есть. → Макеты (тон) после перевода сверить.",
         "to": "Макеты"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: тон «ты» («Поделись кодом», «Твой код»)."
     },
     {
       "id": "profile-027",
@@ -15681,7 +15686,8 @@
         "verdict": "diff",
         "notes": "Текст в коде «Введи «УДАЛИТЬ»» (ты) — образец «Введите…» (вы); про «Подписка в App Store или Google Play не отменится автоматически» проверить. → Макеты (тон) + Авторизация.",
         "to": "Макеты"
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: тон «ты» («Введи «УДАЛИТЬ»»)."
     },
     {
       "id": "profile-031",
@@ -15689,11 +15695,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 20,
-        "label": "проект UX · запрос отправлен",
+        "label": "не в выпуске (правило 22.09) · запрос отправлен",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
-      "state": "проект UX · запрос отправлен",
+      "state": "не в выпуске (правило 22.09) · запрос отправлен",
       "code": [
         "components/DeleteAccountConfirmModal.tsx"
       ],
@@ -15723,7 +15729,8 @@
         "to": "Координатор"
       },
       "prev_status": "diff",
-      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются",
+      "mockup_pinned": "Макеты 12.10: кадр оставлен на странице и помечен «не в выпуске (правило 22.09: уведомлений об удалении не показывать)»."
     },
     {
       "id": "profile-032",
@@ -15731,11 +15738,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 21,
-        "label": "проект UX · ответ потерян",
+        "label": "не в выпуске (правило 22.09) · ответ потерян",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
-      "state": "проект UX · ответ потерян",
+      "state": "не в выпуске (правило 22.09) · ответ потерян",
       "code": [
         "components/DeleteAccountConfirmModal.tsx"
       ],
@@ -15765,7 +15772,8 @@
         "to": "Координатор"
       },
       "prev_status": "diff",
-      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются",
+      "mockup_pinned": "Макеты 12.10: кадр оставлен на странице и помечен «не в выпуске (правило 22.09: уведомлений об удалении не показывать)»."
     },
     {
       "id": "profile-033",
@@ -15773,11 +15781,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 22,
-        "label": "проект UX · отказ до изменений",
+        "label": "не в выпуске (правило 22.09) · отказ до изменений",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
-      "state": "проект UX · отказ до изменений",
+      "state": "не в выпуске (правило 22.09) · отказ до изменений",
       "code": [
         "components/DeleteAccountConfirmModal.tsx"
       ],
@@ -15807,7 +15815,8 @@
         "to": "Координатор"
       },
       "prev_status": "diff",
-      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются",
+      "mockup_pinned": "Макеты 12.10: кадр оставлен на странице и помечен «не в выпуске (правило 22.09: уведомлений об удалении не показывать)»."
     },
     {
       "id": "profile-034",
@@ -15815,11 +15824,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 23,
-        "label": "проект UX · credential safe, cleanup pending",
+        "label": "не в выпуске (правило 22.09) · credential safe, cleanup pending",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
-      "state": "проект UX · credential safe, cleanup pending",
+      "state": "не в выпуске (правило 22.09) · credential safe, cleanup pending",
       "code": [
         "components/DeleteAccountConfirmModal.tsx"
       ],
@@ -15849,7 +15858,8 @@
         "to": "Координатор"
       },
       "prev_status": "diff",
-      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются",
+      "mockup_pinned": "Макеты 12.10: кадр оставлен на странице и помечен «не в выпуске (правило 22.09: уведомлений об удалении не показывать)»."
     },
     {
       "id": "profile-035",
@@ -15857,11 +15867,11 @@
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
         "phone": 24,
-        "label": "проект UX · cleanup complete receipt",
+        "label": "не в выпуске (правило 22.09) · cleanup complete receipt",
         "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
-      "state": "проект UX · cleanup complete receipt",
+      "state": "не в выпуске (правило 22.09) · cleanup complete receipt",
       "code": [
         "components/AccountDeletedNotice.tsx"
       ],
@@ -15891,7 +15901,8 @@
         "to": "Координатор"
       },
       "prev_status": "diff",
-      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются"
+      "removed_reason": "правило владельца 22.09: уведомления об удалении не показываются",
+      "mockup_pinned": "Макеты 12.10: кадр оставлен на странице и помечен «не в выпуске (правило 22.09: уведомлений об удалении не показывать)»."
     },
     {
       "id": "results-001",
@@ -31122,9 +31133,8 @@
       "screen": "Карточки · Сохранённые",
       "state": "Лимит — сохранённые 50/50",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionListView.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31153,9 +31163,7 @@
       "screen": "Карточки · Новая карточка",
       "state": "Лимит — свои карточки 50/50",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards_card_editor.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31184,8 +31192,6 @@
       "screen": "Карточки · Новый набор",
       "state": "Лимит — свои наборы 3/3",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
         "app/community_pack_create.tsx"
       ],
       "matrix_status": null,
@@ -31215,9 +31221,7 @@
       "screen": "Карточки · Сохранённые",
       "state": "Сохранённые — меню «⋯» («Показать стопкой»)",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31246,9 +31250,7 @@
       "screen": "Карточки · Вспомни и напиши",
       "state": "Вспомни и напиши — подсказка",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards_recall_session.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31277,9 +31279,7 @@
       "screen": "Карточки · Вспомни и напиши",
       "state": "Вспомни и напиши — ответ показан («Знал / Не знал»)",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards_recall_session.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31308,9 +31308,7 @@
       "screen": "Карточки · Итог тренировки",
       "state": "Итог — «Хороший результат» (12 из 20), плашка баланса монет",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards/CardsSessionResultV2.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31339,9 +31337,7 @@
       "screen": "Карточки · Итог тренировки",
       "state": "Итог — «Есть куда расти» (6 из 20), плашка баланса монет",
       "code": [
-        "app/flashcards_recall_session.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx",
-        "app/community_pack_create.tsx"
+        "app/flashcards/CardsSessionResultV2.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,

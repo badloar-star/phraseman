@@ -60,7 +60,8 @@ test('paywall_purchase: логика покупки не тронута, окн�
 
 test('ник: ошибки валидации — стеклянный слой внутри модалки, не второй <Modal>', () => {
   assert.ok(files.nickname.includes('<GlassInlineAlert'));
-  assert.ok(files.settings.includes('<GlassInlineAlert'));
+  // 12.10: мёртвый «Модал имени» в Настройках удалён (аудит COVERAGE_AUDIT_R1 §C) — слой живёт только в NicknameEditModal.
+  assert.ok(!files.settings.includes('<GlassInlineAlert'));
   assert.ok(!/<Modal[ >]/.test(inline.replace(/\/\/.*$/gm, '')), 'слой не Modal — нет present-over-present на iOS');
   assert.ok(inline.includes('<GlassAlertCard'), 'карточка — общая .or-alert');
   assert.ok(card.includes('liquidGlassTokens('));

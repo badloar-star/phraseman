@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity,
-  TextInput, Modal, DeviceEventEmitter,
-  Keyboard,
+  Modal, DeviceEventEmitter,
   InteractionManager,
   Platform,
-  Pressable,
-  ActivityIndicator,
 } from 'react-native';
 import Reanimated from 'react-native-reanimated';
 import { Image } from 'expo-image';
@@ -29,12 +26,11 @@ import {
   SettingsGlassTile,
 } from '../../components/settings/SettingsGlassRows';
 import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
-import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { emitAppEvent } from '../events';
 import { requestOpenDevHub } from '../dev_hub_bus';
@@ -49,11 +45,8 @@ import { getStoredStudyTarget, type StudyTarget } from '../study_target';
 import { triLang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
-import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
-import GlassInlineAlert from '../../components/account/GlassInlineAlert';
-import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM, shouldShowPlusTransferSwitchNotice } from '../account_switch_copy';
 import { peekStableId } from '../stable_id';
 import { ACCOUNT_SWITCH_UI_DEADLINE_MS, awaitWithStillRunningNotice, isAccountSwitchStillRunning } from '../account_switch_deadline';
@@ -92,10 +85,8 @@ import {
   voiceOutSub,
 } from '../feedback/feedback_i18n';
 
-const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.75)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
-const EXEMPT_COLOR_4 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
@@ -228,46 +219,6 @@ export default function SettingsMain() {
     [lang],
   );
 
-  /**
-   * Сообщение поверх открытой модалки имени.
-   *
-   * showInfoAlert (enqueueThemedBlockingInfoAlert → ThemedBlockingAlertHost → OverlayArbiter)
-   * рендерит themedAlert НАТИВНЫМ <Modal>. Модалка имени тут — тоже нативный <Modal>. На iOS
-   * презентовать один <Modal> поверх другого (present-over-present) ломает стек презентаций:
-   * алерт не появляется ВООБЩЕ («Сохранить ничего не делает»), а экран виснет.
-   *
-   * зачем (Liquid Glass, overlays-runtime «native alert · name»): раньше тут был системный
-   * Alert.alert. Теперь — стеклянный слой ВНУТРИ самой модалки имени (GlassInlineAlert — обычный
-   * View, не <Modal>), поэтому конфликта презентаций по-прежнему нет, а вид стеклянный.
-   */
-  const [nameInlineAlert, setNameInlineAlert] = useState<string | null>(null);
-  const alertOverName = React.useCallback(
-    (message: string) => {
-      setNameInlineAlert(message);
-    },
-    [],
-  );
-
-  /**
-   * Закрыть модалку имени СИНХРОННО. Нативный animationType="fade" самого <Modal> сам
-   * проигрывает выход, а при visible=false React размонтирует всё субдерево модалки
-   * (включая backdrop-Pressable), поэтому «слоя-призрака», который ест тапы, не остаётся.
-   *
-   * ВАЖНО: НЕ откладывать закрытие через InteractionManager.runAfterInteractions+setTimeout.
-   * На тяжёлом экране настроек (анимации + autoFocus-клавиатура) interaction-handle мог не
-   * закрыться никогда → колбэк не выполнялся → модалка не закрывалась. Это и давало два бага:
-   * «Сохранить ничего не делает» (saveName закрывал через этот колбэк) и «после Отмена→Сохранить
-   * всё виснет» (backdrop оставался поверх экрана и съедал все тапы).
-   */
-  const closeNameModalNow = useCallback(() => {
-    setNameInlineAlert(null);
-    Keyboard.dismiss();
-    setNameModal(false);
-  }, []);
-  const closeNameModal = useCallback(() => {
-    if (nameSavingRef.current) return;
-    closeNameModalNow();
-  }, [closeNameModalNow]);
   const LANG_NATIVE: Record<string, string> = {
     ru: 'Русский',
     en: 'English',
@@ -369,26 +320,7 @@ export default function SettingsMain() {
   }, []);
   const [userName, setUserName] = useState(() => appSnapshot.profile?.name ?? '');
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
-  const [nameModal, setNameModal] = useState(false);
-  const [newName, setNewName]     = useState('');
-  const [nameSaving, setNameSaving] = useState(false);
-  const nameSavingRef = useRef(false);
-  /**
-   * зачем (Optimistic UI): раньше «Сохранить» держало модалку открытой и крутило
-   * спиннер, пока ждали ответ nameReserve — юзер упирался в блокирующий Alert
-   * только ПОСЛЕ round-trip. Теперь модалка закрывается и новый ник виден в
-   * профиле СРАЗУ по тапу, а бронь на сервере (14-дневный кулдаун — источник
-   * истины, НЕ ослаблен) идёт фоном. Если сервер отклонит — откатываем ник
-   * обратно и показываем некритичную инлайн-плашку (не блокирующий Alert).
-   * nameChangeGuardRef — last-write-guard: поздний ответ устаревшей попытки
-   * не может откатить уже более свежее локальное имя (гонка double-tap/повтор).
-   */
-  const [, setNameChangeNotice] = useState<string | null>(null);
-  const nameChangeGuardRef = useRef(0);
   const settingsStorageHydratedRef = useRef(false);
-  useEffect(() => {
-    if (nameModal) warmNameAvailabilityAuth();
-  }, [nameModal]);
   const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
   const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
@@ -504,8 +436,6 @@ export default function SettingsMain() {
   useEffect(() => () => {
     if (clearCacheResetTimerRef.current) clearTimeout(clearCacheResetTimerRef.current);
   }, []);
-  const [accountModalVisible, setAccountModalVisible] = useState(false);
-  const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
   /**
    * UI state для flow "Сменить аккаунт" (Variant 2):
    *   'idle'        — пользователь нигде не нажал
@@ -731,148 +661,6 @@ export default function SettingsMain() {
     });
     return () => sub.remove();
   }, [refreshLinkedAuth]);
-
-  const BAD_WORDS = ['хуй','піздець','пизда','блядь','бляд','ёбан','єбан','єбать','ебать','ебал','залупа','мудак','мудила','сука','пидор','пидар','хуйня','піздюк','нахуй','нахій','сучка','мразь','тварь','ублюдок','ёб','йоб','fuck','shit','bitch','cunt','dick','ass','asshole','faggot','nigger','bastard'];
-  const containsBadWord = (s: string) => {
-    const low = s.toLowerCase();
-    return BAD_WORDS.some(w => low.includes(w));
-  };
-
-  const updateLocalNameReferences = useCallback(async (fromName: string, toName: string) => {
-    try {
-      const lb = await AsyncStorage.getItem('leaderboard');
-      if (lb) {
-        const arr = JSON.parse(lb);
-        const updated = arr.map((e: any) => e.name === fromName ? { ...e, name: toName } : e);
-        await AsyncStorage.setItem('leaderboard', JSON.stringify(updated));
-      }
-    } catch (error) {
-      DebugLogger.error('settings.tsx:renameName:leaderboard', error, 'warning');
-    }
-
-  }, []);
-
-  const saveName = async () => {
-    if (nameSavingRef.current) return;
-    const trimmed = newName.trim();
-    if (!trimmed) { alertOverName(L('Введи имя', "Введи ім\'я", 'Enter a name', 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { alertOverName(L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { alertOverName(L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { alertOverName(L('Недопустимое имя', "Недопустиме ім\'я", 'Invalid name', 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
-
-    const oldName = userName.trim();
-    if (trimmed === oldName) {
-      closeNameModal();
-      return;
-    }
-
-    // зачем (Optimistic UI, last-write-guard): если юзер успеет запустить ещё одну
-    // попытку смены ника, поздний ответ ЭТОЙ попытки не должен откатить уже более
-    // свежее локальное состояние (double-tap / повторный сабмит).
-    const myGuard = ++nameChangeGuardRef.current;
-    const isStaleAttempt = () => nameChangeGuardRef.current !== myGuard;
-
-    nameSavingRef.current = true;
-    setNameSaving(true);
-    setNameChangeNotice(null);
-
-    // зачем (Optimistic UI, ГЕНУИННО): раньше ник применялся локально ТОЛЬКО
-    // после ответа reserveNameDetailed — то есть UI ждал round-trip как и до
-    // «оптимистичного» коммита, несмотря на комментарий. Теперь показываем
-    // новое имя и закрываем модалку СРАЗУ по тапу, а бронь (14-дневный кулдаун
-    // и проверка уникальности — источник истины, НЕ ослаблены) идёт в фоне.
-    // Если сервер отклонит — откатываем ник обратно на oldName и показываем
-    // некритичную инлайн-плашку (nameChangeNotice), а не блокирующий Alert.
-    setUserName(trimmed);
-    patchAppSnapshot((current) => current.profile ? {
-      profile: {
-        ...current.profile,
-        source: 'local',
-        updatedAt: Date.now(),
-        name: trimmed,
-      },
-    } : {});
-    closeNameModalNow();
-    void AsyncStorage.setItem('user_name', trimmed).catch((error) => {
-      DebugLogger.error('settings.tsx:renameName:localApplyOptimistic', error, 'warning');
-    });
-    void updateLocalNameReferences(oldName, trimmed).catch((error) => {
-      DebugLogger.error('settings.tsx:renameName:localReferencesOptimistic', error, 'warning');
-    });
-
-    const rollbackToOldName = () => {
-      if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
-      setUserName(oldName);
-      patchAppSnapshot((current) => current.profile ? {
-        profile: {
-          ...current.profile,
-          source: 'local',
-          updatedAt: Date.now(),
-          name: oldName,
-        },
-      } : {});
-      void AsyncStorage.setItem('user_name', oldName).catch((error) => {
-        DebugLogger.error('settings.tsx:renameName:rollbackStorage', error, 'warning');
-      });
-      void updateLocalNameReferences(trimmed, oldName).catch((error) => {
-        DebugLogger.error('settings.tsx:renameName:rollbackReferences', error, 'warning');
-      });
-    };
-
-    try {
-      // Жёсткая проверка уникальности: бронируем имя на сервере В ФОНЕ, пока
-      // юзер уже видит новое имя. При отказе сервера — откатываем.
-      let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
-      try {
-        reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
-      } catch (error) {
-        DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
-        reservation = { status: 'error' };
-      }
-
-      if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
-
-      if (reservation.status === 'taken') {
-        rollbackToOldName();
-        setNameChangeNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Обери інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-        return;
-      }
-      if (reservation.status === 'cooldown') {
-        rollbackToOldName();
-        setNameChangeNotice(L(
-          'Ник можно менять не чаще одного раза в 14 дней.',
-          'Нік можна змінювати не частіше одного разу на 14 днів.',
-          'You can change your nickname no more than once every 14 days.',
-          'Puedes cambiar el nombre solo una vez cada 14 días.',
-          'Você só pode mudar o nome uma vez a cada 14 dias.',
-          'Bạn chỉ có thể đổi tên 14 ngày một lần.',
-          'Nama hanya bisa diganti sekali setiap 14 hari.',
-          'Adı en fazla 14 günde bir değiştirebilirsin.',
-          'Nazwę można zmieniać najwyżej raz na 14 dni.',
-        ));
-        return;
-      }
-      if (reservation.status !== 'ok') {
-        rollbackToOldName();
-        setNameChangeNotice(L(
-          'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
-          'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
-          'Could not verify the name. Check your connection and try again.',
-          'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
-          'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
-          'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
-          'Tidak bisa memeriksa nama. Periksa koneksi dan coba lagi.',
-          'Ad doğrulanamadı. Bağlantını kontrol et ve tekrar dene.',
-          'Nie udało się sprawdzić nazwy. Sprawdź połączenie i spróbuj ponownie.',
-        ));
-        return;
-      }
-
-    } finally {
-      nameSavingRef.current = false;
-      setNameSaving(false);
-    }
-  };
 
   // зачем: владелец (2026-08-03) — тир берём из isPro, а не из локального
   // premium_plan: пожизненный доступ бывает и безденежным (сертификат «Pro —
@@ -1514,86 +1302,6 @@ export default function SettingsMain() {
         }}
       />
 
-      <DeleteAccountConfirmModal
-        visible={deleteAccountModalVisible}
-        onRequestClose={() => setDeleteAccountModalVisible(false)}
-      />
-
-      <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>
-        <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <View
-            style={[
-              {
-                width: '100%',
-                maxWidth: 380,
-                backgroundColor: t.bgCard,
-                borderRadius: 16,
-                padding: 20,
-                borderWidth: 0,
-                borderColor: 'transparent',
-                overflow: 'hidden',
-              },
-            ]}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
-              {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-            </Text>
-            <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22 }}>
-              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Not linked', 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')}
-            </Text>
-            {!!linkedAuth?.email && (
-              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-                {linkedAuth.email}
-              </Text>
-            )}
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12, marginTop: 22 }}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => setAccountModalVisible(false)}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => {
-                  navigateAfterModalClose(
-                    () => setAccountModalVisible(false),
-                    () => setSwitchAccountStage('confirm'),
-                  );
-                }}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
-              >
-                {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
-                <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Сменить аккаунт', 'Змінити акаунт', 'Switch account', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity
-              testID="account-modal-delete-account"
-              activeOpacity={0.8}
-              onPress={() => {
-                navigateAfterModalClose(
-                  () => setAccountModalVisible(false),
-                  () => setDeleteAccountModalVisible(true),
-                );
-              }}
-              style={{ marginTop: 14, paddingTop: 14, borderTopWidth: 0.5, borderTopColor: t.border }}
-            >
-              <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '800', textAlign: 'right' }}>
-                {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Delete account and data', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
       {/* ── Смена аккаунта: подтверждение + лоадер в ОДНОМ нативном <Modal> ──
           зачем (владелец, 2026-09-13): «нажимаю сохранить и выйти — мелькает и
           ничего». Раньше здесь были ДВА <Modal> (confirm и wiping), и переход
@@ -2039,124 +1747,9 @@ export default function SettingsMain() {
         )}
       </Modal>
 
-      {/* Модал имени */}
-      <Modal
-        visible={nameModal}
-        transparent
-        animationType="fade"
-        onRequestClose={closeNameModal}
-      >
-        <Pressable
-          style={{ flex: 1, backgroundColor: EXEMPT_COLOR_4, justifyContent: 'center', alignItems: 'center' }}
-          onPress={closeNameModal}
-        >
-          <Pressable onPress={(e) => e.stopPropagation()}>
-            <View
-              style={[
-                {
-                  width: '80%',
-                  minWidth: 280,
-                  backgroundColor: glass.opaqueSheet,
-                  borderRadius: 24,
-                  padding: 24,
-                  boxShadow: plateBoxShadow(glass), // зачем (стиль «Тень»): окно по центру — тень вместо кромки; overflow: hidden убран, он резал бы тень
-                },
-              ]}
-            >
-            <Text style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginBottom: 16 }}>
-              {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-            </Text>
-            <TextInput
-              accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
-              style={{
-                backgroundColor: glass.opaqueControl,
-                color: glass.text,
-                fontSize: f.h2,
-                padding: 14,
-                minHeight: 52,
-                borderRadius: 16,
-                boxShadow: nestedBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */, // зачем (стиль «Тень»): поле имени — вложенная плашка с малой тенью, без кромки
-                marginBottom: 20,
-              }}
-              value={newName}
-              onChangeText={setNewName}
-              placeholder={L('Введи имя...', 'Введи ім\'я...', 'Enter a name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
-              placeholderTextColor={glass.mutedText}
-              editable={!nameSaving}
-              autoFocus maxLength={20}
-              returnKeyType="done"
-              onSubmitEditing={() => { if (!nameSaving) void saveName(); }}
-              blurOnSubmit
-            />
-            <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                disabled={nameSaving}
-                style={[
-                  {
-                    flex: 1,
-                    padding: 12,
-                    minHeight: 48,
-                    justifyContent: 'center',
-                    borderRadius: 24,
-                    alignItems: 'center',
-                    backgroundColor: glass.selected,
-                    boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): «Отмена» — плашка с малой тенью
-                    opacity: nameSaving ? 0.6 : 1,
-                  },
-                ]}
-                onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
-              >
-                <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                disabled={nameSaving}
-                style={[
-                  {
-                    flex: 1,
-                    padding: 12,
-                    borderRadius: 24,
-                    backgroundColor: glass.accent,
-                    boxShadow: actionBoxShadow(glass), // зачем (стиль «Тень»): кнопка действия — цвет темы и цветная тень
-                    alignItems: 'center',
-                    minHeight: 48,
-                    justifyContent: 'center',
-                    opacity: nameSaving ? 0.82 : 1,
-                  },
-                ]}
-                onPress={() => { if (nameSaving) return; doHaptic(); void saveName(); }}
-              >
-                <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
-                  {nameSaving ? (
-                    <ActivityIndicator size="small" color={glass.ctaInk} />
-                  ) : null}
-                  {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
-                      уменьшен размер (было до 15, стало до 13), чтобы длинные варианты перевода
-                      («Kaydediliyor», «Zapisywanie») влезали в flex:1-кнопку рядом с индикатором
-                      без ужимания на рендере, guard-ok */}
-                  <Text
-                    style={{ color: glass.accentInk, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
-                    numberOfLines={1}
-                  >
-                    {nameSaving
-                      ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
-                      : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <GlassInlineAlert
-              visible={nameInlineAlert != null}
-              title={L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość')}
-              message={nameInlineAlert ?? undefined}
-              onClose={() => setNameInlineAlert(null)}
-            />
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
-
+      {/* зачем (12.10, аудит COVERAGE_AUDIT_R1 §C): «Модал имени», окно «Аккаунт» и второй экземпляр
+          удаления аккаунта удалены — ни один путь их не открывал. Смена имени и удаление аккаунта
+          живут в app/account_details.tsx (NicknameEditModal, DeleteAccountConfirmModal). */}
       {glassAlertNode}
 
     </ScreenGradient>

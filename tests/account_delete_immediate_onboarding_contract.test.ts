@@ -35,8 +35,9 @@ describe('Settings account deletion immediate clean-onboarding handoff', () => {
     const eventEnd = layout.indexOf('    });', eventStart);
     const eventHandler = layout.slice(eventStart, eventEnd);
 
-    expect(settings).toContain('visible={deleteAccountModalVisible}');
-    expect(settings).toContain('onRequestClose={() => setDeleteAccountModalVisible(false)}');
+    // 12.10: недостижимый экземпляр удаления в Настройках убран (аудит COVERAGE_AUDIT_R1 §C);
+    // удаление открывается только из «Аккаунта» (app/account_details.tsx).
+    expect(settings).not.toContain('deleteAccountModalVisible');
     expect(eventHandler).toContain('setOnboardingStartAtName(false);');
     expect(eventHandler).toContain('setOnboardingPaywallActive(false);');
     expect(eventHandler).toContain('setAccountDeletionNavigationEpoch((value) => value + 1);');

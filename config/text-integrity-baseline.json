@@ -479,39 +479,6 @@
       }
     },
     {
-      "file": "app/(tabs)/settings.tsx",
-      "ownerName": "SettingsMain",
-      "ownerPath": "SettingsMain",
-      "ancestorPath": [
-        "ScreenGradient",
-        "Modal",
-        "Pressable",
-        "Pressable",
-        "View",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "3464fc45f2affca9355afb5be0d715dd0b7c7c1e4319dbd64d11c4af4ce38dd8",
-      "count": 1,
-      "lineHints": [
-        1891
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/home.tsx",
       "ownerName": "HomeScreen",
       "ownerPath": "HomeScreen",
@@ -1796,40 +1763,6 @@
       "count": 1,
       "lineHints": [
         108
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/(tabs)/settings.tsx",
-      "ownerName": "SettingsMain",
-      "ownerPath": "SettingsMain",
-      "ancestorPath": [
-        "ScreenGradient",
-        "Modal",
-        "Pressable",
-        "Pressable",
-        "View",
-        "View",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "f174019ad7f6d34f210e63fb0055f70b68e4a2b91a183ef9809cc2933d8c411c",
-      "count": 1,
-      "lineHints": [
-        1921
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

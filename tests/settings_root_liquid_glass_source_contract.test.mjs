@@ -133,7 +133,8 @@ test('rows, values and handlers of the old screen are preserved', () => {
   assert.ok(indexOfOrThrow(body, 'settings-message-slot-top') > indexOfOrThrow(body, 'settings-study-language-row'));
   assert.ok(indexOfOrThrow(body, 'settings-message-slot-bottom') > indexOfOrThrow(body, 'settings-rate-app-row'));
   assert.ok(indexOfOrThrow(body, 'settings-message-slot-bottom') < indexOfOrThrow(body, 'settings-dev-hub-button'));
-  assert.match(source, /<DeleteAccountConfirmModal/);
+  // 12.10: недостижимый экземпляр удаления аккаунта убран (аудит COVERAGE_AUDIT_R1 §C) — удаление живёт в app/account_details.tsx.
+  assert.doesNotMatch(source, /<DeleteAccountConfirmModal/);
   assert.match(source, /signOutAndWipeForAccountSwitch/);
 });
 

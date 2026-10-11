@@ -16,11 +16,12 @@ import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPicke
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
 import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
-import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
+import YoutubePlaylistGridCard from '../components/youtube/YoutubePlaylistGridCard';
 import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
-import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
+import YoutubeVideoGridCard from '../components/youtube/YoutubeVideoGridCard';
 import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { normalizePackLanguage } from './flashcards/pack_languages';
+import FlashcardsVideoPacksScreen from './flashcards_video_packs';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -28,7 +29,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
-import type { YoutubeCatalogManifest, YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
+import type { YoutubeCatalogManifest, YoutubeChannelSnapshot, YoutubePlaylistSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 import { rememberYoutubeChannelMemorySnapshot, resolveYoutubeChannelSwitchView } from './youtube_channel_memory_cache';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
@@ -77,7 +78,7 @@ import {
   requestYoutubePremiereReminderFromTap,
 } from './youtube_premiere_notifications';
 
-// Stable child contract: YoutubeVideoCard renders testID="lingman-video-card".
+// Stable child contract: YoutubeVideoGridCard renders testID="lingman-video-card".
 
 // зачем: единый стеклянный блик плашек — живёт в components/video/VideoGlassKit (макет video.html).
 const VideoScreenGlass = VideoGlassSheen;
@@ -177,9 +178,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 
   const copy = useMemo(() => ({
     tabTitle: triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy' }),
-    videoPacks: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Packs from videos', es: 'Packs de videos', 'pt-BR': 'Pacotes dos vídeos', vi: 'Bộ thẻ từ video', id: 'Paket dari video', tr: 'Videolardan paketler', pl: 'Zestawy z filmów' }),
-    videoPacksSub: triLang(lang, { ru: 'Фразы из роликов карточками', uk: 'Фрази з роликів картками', en: 'Phrases from the videos as cards', es: 'Frases de los videos en tarjetas', 'pt-BR': 'Frases dos vídeos em cartões', vi: 'Cụm từ trong video thành thẻ', id: 'Frasa dari video jadi kartu', tr: 'Videolardaki ifadeler kart olarak', pl: 'Zwroty z filmów jako fiszki' }),
-    recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
     savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
     // зачем (паритет с макетом video.html «Ошибка»): текст и кнопка как на кадре; «потянуть вниз» повторяет загрузку.
@@ -187,7 +185,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
     unavailable: triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' }),
     tryAgain: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-    train: triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати фрази ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
@@ -444,10 +441,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       }));
     });
   }, [favorites]);
-  const trainVideo = useCallback((videoId: string) => {
-    console.log('[VIDEO-TAB] тренировать фразы ролика', JSON.stringify({ videoId }));
-    router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);
-  }, [router]);
   const openVideo = (video: YoutubeVideoSnapshot) => {
     // зачем (правило владельца): хаптик только на управляющих кнопках — тап по плитке/строке без вибрации.
     if (!catalog && snapshot) {
@@ -465,11 +458,23 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         setCachedSnapshot((current) => current ? { ...current, unreadCount } : current);
       });
     }
+    // зачем (владелец 11.10, video-redesign #c1): ролик в сетке открывается экраном ролика (плеер, фразы, «Добавить набор
+    // себе»), как из плейлиста. Встроенным плеером остаётся только премьера в шапке вкладки.
+    const activeEvent = catalog?.activeEvent;
+    const isHeroVideo = !!activeEvent && activeEvent.id === video.id && (activeEvent.state === 'upcoming' || activeEvent.state === 'live');
+    if (!isHeroVideo) {
+      console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'home_grid', videoId: video.id })); // guard-ok: вход на экран ролика логируется
+      router.push({ pathname: '/lingman_video_watch', params: { videoId: video.id, channelId: catalog?.channel.id ?? channel.channelId, title: video.title, source: 'home_grid' } } as never);
+      return;
+    }
     // Ровно один videoId хранится в состоянии: смена id размонтирует прежний
     // WebView до создания следующего, поэтому параллельного воспроизведения нет.
     setActiveVideoId(video.id);
   };
 
+  // зачем: строки сетки мемоизированы и не должны держать устаревший openVideo (он читает каталог/снимок текущего кадра).
+  const openVideoRef = useRef(openVideo);
+  openVideoRef.current = openVideo;
   const closeVideo = useCallback(() => setActiveVideoId(null), []);
   useEffect(() => {
     const target = typeof deepLinkedVideoId === 'string' ? deepLinkedVideoId : null;
@@ -551,49 +556,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     }],
   };
 
-  const renderVideoCard = (video: YoutubeVideoSnapshot, compact = false) => (
-    <YoutubeVideoCard
-      video={video}
-      compact={compact && video.id !== activeVideoId}
-      highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
-      onWatch={() => openVideo(video)}
-      saved={favorites.isSaved(video.id)}
-      saveCount={saveCountOf(video.id)}
-      onToggleSave={() => toggleSave(video.id)}
-      inlinePlayer={video.id === activeVideoId ? (
-        <YoutubeInlinePlayer
-          videoId={video.id}
-          title={video.title}
-          active={screenRuntimeActive}
-          onClose={closeVideo}
-          presentation="preview"
-        />
-      ) : undefined}
-      belowPlayer={!compact || video.id === activeVideoId ? <>
-      {video.id === activeVideoId ? (
-        <TouchableOpacity
-          testID={`video-train-${video.id}`}
-          accessibilityRole="button"
-          accessibilityLabel={copy.train}
-          activeOpacity={0.86}
-          onPressIn={() => hapticTap()}
-          onPress={() => trainVideo(video.id)}
-          style={[styles.trainCta, { backgroundColor: g.cta }]}
-        >
-          <Ionicons name="layers-outline" size={18} color={g.ctaInk} />
-          <Text style={[styles.trainText, { color: g.ctaInk }]}>{copy.train}</Text>
-        </TouchableOpacity>
-      ) : null}
-      <YoutubeVideoPhrases
-        packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
-        sourceTitle={activeChannel.displayName}
-        videoId={video.id}
-        expanded={expandedPhraseVideoId === video.id}
-        onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}
-        testID={`video-phrases-${video.id}`}
-      /></> : undefined}
-    />
-  );
   const scrollToDeepLinked = (videoId: string) => {
     const index = homeListVideos.findIndex((video) => video.id === videoId);
     console.log('[VIDEO-TAB] deeplink: прокрутка к ролику', JSON.stringify({ videoId, index, hasList: !!homeListRef.current }));
@@ -604,31 +566,41 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     }
     homeListRef.current?.scrollToIndex({ index, animated: true, viewOffset: 12 });
   };
-  const renderHomeVideo = useCallback(({ item }: { item: YoutubeVideoSnapshot }) => renderVideoCard(item),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeVideoId, expandedPhraseVideoId, favorites.savedIds, saveCountOf, remindedIds, screenRuntimeActive, lang]);
+  // зачем (владелец 11.10, video-redesign #c1): ролики в две колонки; промежуток между колонками 12 (по 6 с каждой стороны),
+  // между рядами 20. Левая колонка — отступ справа, правая — слева, чтобы внешние края совпали с полями экрана.
+  const renderHomeVideo = useCallback(({ item, index }: { item: YoutubeVideoSnapshot; index: number }) => (
+    <View style={index % 2 === 0 ? styles.gridCellLeft : styles.gridCellRight}>
+      <YoutubeVideoGridCard
+        video={item}
+        highlighted={item.id === deepLinkedVideoId}
+        onWatch={() => openVideoRef.current(item)}
+        saved={favorites.isSaved(item.id)}
+        saveCount={saveCountOf(item.id)}
+        onToggleSave={() => toggleSave(item.id)}
+      />
+    </View>
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [deepLinkedVideoId, favorites.savedIds, saveCountOf, lang, catalog]);
+  const renderPlaylist = useCallback(({ item, index }: { item: YoutubePlaylistSnapshot; index: number }) => (
+    <View style={index % 2 === 0 ? styles.gridCellLeft : styles.gridCellRight}>
+      <YoutubePlaylistGridCard playlist={item} onPress={() => openPlaylist(item.id)} />
+    </View>
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), [catalog?.channel.id]);
 
-  const skeletonHeight = Math.round((windowWidth - V2.screenPad * 2) * 9 / 16);
-  // зачем: плашка «Наборы из видео» стоит в макете внутри вкладки «Главная» — после премьеры,
-  // перед «Новыми видео» (и в пустом состоянии), а не над вкладками.
-  const packsRow = inTab ? (
-    <TouchableOpacity
-      testID="video-tab-packs-row"
-      accessibilityRole="button"
-      accessibilityLabel={copy.videoPacks}
-      activeOpacity={0.8}
-      onPress={() => router.push('/flashcards_video_packs' as never)}
-      style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
-    >
-      <VideoScreenGlass tint={g.selected} edge={g.glassEdge} />
-      <View style={[styles.packsIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="layers-outline" size={20} color={g.text} /></View>
-      <View style={styles.packsCopy}>
-        <Text style={[styles.packsTitle, { color: g.text }]}>{copy.videoPacks}</Text>
-        <Text style={[styles.packsSub, { color: g.secondary }]}>{copy.videoPacksSub}</Text>
-      </View>
-      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-    </TouchableOpacity>
-  ) : null;
+  // зачем: первый кадр = итоговая геометрия сетки (две колонки, промежуток 12) — без прыжка, когда придут данные.
+  const gridSkeletonHeight = Math.round(((windowWidth - V2.screenPad * 2 - 12) / 2) * 9 / 16);
+  const renderGridSkeleton = (coverHeight: number) => Array.from({ length: 3 }).map((_, row) => (
+    <View key={row} style={styles.gridSkeletonRow}>
+      {[0, 1].map((col) => (
+        <View key={col} style={styles.gridSkeletonCell}>
+          <SkeletonBlock width="100%" height={coverHeight} borderRadius={14} />
+          <SkeletonBlock width="90%" height={16} borderRadius={8} />
+          <SkeletonBlock width="55%" height={13} borderRadius={7} />
+        </View>
+      ))}
+    </View>
+  ));
   const savedRow = !savedOnly && savedVideos.length > 0 ? (
     <TouchableOpacity
       testID="video-saved-row"
@@ -679,7 +651,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {catalogExhausted && !catalog && !snapshot ? (
+        {tab === 'packs' && !savedOnly ? (
+          // зачем (владелец 11.10, video-redesign #c1): вкладка «Наборы» показывает тот же список «Наборы из видео», что и
+          // раздел «Карточки» (один экран данных, режим embedded); грузится только когда вкладку открыли.
+          <FlashcardsVideoPacksScreen embedded bottomPad={inTab ? tabContentBottomPad : 24} />
+        ) : catalogExhausted && !catalog && !snapshot ? (
           <ScrollView
             testID="youtube-catalog-unavailable"
             decelerationRate="fast"
@@ -699,24 +675,17 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             </Pressable>
           </ScrollView>
         ) : (visibleLoading || issue === 'error') && !catalog && !snapshot ? (
-          <View testID="youtube-catalog-loading" style={styles.skeletons}>
-            <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22} />
-            <SkeletonBlock width="100%" height={64} borderRadius={12} />
-            {Array.from({ length: 2 }).map((_, index) => <View key={index} style={styles.skeletonCard}><SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} /><SkeletonBlock width="70%" height={16} borderRadius={8} /></View>)}
+          <View testID="youtube-catalog-loading" style={styles.gridSkeleton}>
+            {renderGridSkeleton(gridSkeletonHeight)}
           </View>
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
           <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
-            {packsRow}
-            <View style={styles.skeletons}>
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
-            </View>
+            <View style={styles.gridSkeleton}>{renderGridSkeleton(gridSkeletonHeight)}</View>
           </ScrollView>
         ) : tab === 'playlists' ? (
-          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
-            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.skeletons}>
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} numColumns={2} keyExtractor={(item) => item.id} renderItem={renderPlaylist} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.gridList, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.gridSkeleton}>
+              {renderGridSkeleton(gridSkeletonHeight)}
             </View></ScrollView>
         ) : (
           <FlashList
@@ -726,10 +695,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             data={homeListVideos}
             keyExtractor={(item) => item.id}
             renderItem={renderHomeVideo}
+            numColumns={2}
             extraData={homeListExtra}
             showsVerticalScrollIndicator={false}
             refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />}
-            contentContainerStyle={inTab ? { ...styles.list, paddingBottom: tabContentBottomPad } : styles.list}
+            contentContainerStyle={inTab ? { ...styles.gridList, paddingBottom: tabContentBottomPad } : styles.gridList}
             ListHeaderComponent={<>
             {hero && !savedOnly ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
@@ -750,9 +720,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
-            {savedOnly ? null : packsRow}
             {savedRow}
-            {savedOnly ? null : <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>}
             </>}
             ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
           />
@@ -783,11 +751,13 @@ const styles = StyleSheet.create({
   unavailableAction: { marginTop: 22, minHeight: 42, paddingHorizontal: 18, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   unavailableActionLabel: { fontSize: 16, fontWeight: '600' },
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
-  list: { paddingBottom: 32 },
-  // зачем: `.sec .ti` макета — 20/26, вес 700, отступ сверху 26.
-  sectionTitle: { marginTop: 26, marginBottom: 14, marginHorizontal: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
-  skeletons: { gap: 18, marginTop: 18 },
-  skeletonCard: { gap: 10, marginTop: 4 },
+  // зачем (video-redesign #c1, `.g2`): сетка в две колонки, ряды через 20; верхний отступ 16 под вкладками.
+  gridList: { paddingTop: 16, paddingBottom: 32 },
+  gridCellLeft: { paddingRight: 6, marginBottom: 20 },
+  gridCellRight: { paddingLeft: 6, marginBottom: 20 },
+  gridSkeleton: { marginTop: 16 },
+  gridSkeletonRow: { flexDirection: 'row', gap: 12, marginBottom: 20 },
+  gridSkeletonCell: { flex: 1, gap: 8 },
   packsRow: {
     minHeight: 64,
     borderRadius: 14,
@@ -804,7 +774,5 @@ const styles = StyleSheet.create({
   packsCopy: { flex: 1, minWidth: 0 },
   packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   packsSub: { fontSize: 13, lineHeight: 18, marginTop: 2 },
-  trainCta: { minHeight: 52, borderRadius: 26, marginTop: 4, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
-  trainText: { fontSize: 16, fontWeight: '700' },
   heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
 });

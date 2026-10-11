@@ -12,7 +12,8 @@ describe('multichannel YouTube catalog UI contract', () => {
     'components/youtube/YoutubeChannelTabs.tsx',
     'components/youtube/YoutubeInlinePlayer.tsx',
     'components/youtube/YoutubePremiereHero.tsx',
-    'components/youtube/YoutubePlaylistRow.tsx',
+    'components/youtube/YoutubePlaylistGridCard.tsx',
+    'components/youtube/YoutubeVideoGridCard.tsx',
     'components/youtube/YoutubeVideoCard.tsx',
   ].map(read).join('\n');
 
@@ -40,7 +41,7 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).not.toContain('youtube-all-channels-legacy');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
-    expect(source).toContain("(['home', 'playlists'] as const)");
+    expect(source).toContain("(['home', 'playlists', 'packs'] as const)");
     expect(source).not.toContain("(['home', 'all', 'playlists'] as const)");
     // зачем (владелец 01.10): вкладка «Все видео» удалена вместе с веткой экрана.
     expect(screen()).not.toContain('testID="youtube-catalog-all-videos"');
@@ -78,7 +79,8 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).toContain('const [activeVideoId, setActiveVideoId]');
     expect(source).toContain('setActiveVideoId(video.id)');
     expect(source).toContain('active={screenRuntimeActive}');
-    expect(source).toContain('inlinePlayer={video.id === activeVideoId ? (');
+    // зачем (владелец 11.10, video-redesign #c1): обычный ролик открывается экраном ролика; встроенный плеер остаётся у премьеры в шапке.
+    expect(source).toContain('hero.id === activeVideoId ? (');
     expect(source).toContain('presentation="preview"');
     expect(source).toContain('{inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL}');
     expect(videoCard).not.toContain('testID="lingman-video-watch"');

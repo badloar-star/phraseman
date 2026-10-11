@@ -20,7 +20,8 @@ describe('жизненный цикл видеоплеера (PM-118)', () => {
     expect(player).toContain('mediaPlaybackRequiresUserAction={!autoPlay}');
     // Экран «Видео»: плеер только у выбранного тапом ролика, один на экран.
     expect(screen).toContain('const [activeVideoId, setActiveVideoId] = useState<string | null>(null);');
-    expect(screen).toContain('inlinePlayer={video.id === activeVideoId ? (');
+    // зачем (владелец 11.10, video-redesign #c1): обычные ролики открываются экраном ролика; встроенный плеер — у премьеры в шапке.
+    expect(screen).toContain('hero.id === activeVideoId ? (');
     expect(screen).toContain('active={screenRuntimeActive}');
   });
 

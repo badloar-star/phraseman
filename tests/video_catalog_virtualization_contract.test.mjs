@@ -11,7 +11,8 @@ test('All videos tab is gone; one real inline player remains', () => {
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
   assert.ok(!screen.includes('youtube-catalog-all-videos'), 'no All Videos list');
   assert.ok(!tabs.includes("'all'"), 'no all tab in the type');
-  assert.ok(screen.includes('inlinePlayer={video.id === activeVideoId ? ('), 'one real inline player remains wired');
+  assert.ok(screen.includes('hero.id === activeVideoId ? ('), 'one real inline player remains wired (премьера в шапке)');
+  assert.ok(screen.includes("pathname: '/lingman_video_watch'"), 'обычный ролик открывается экраном ролика');
 });
 
 test('Video chrome follows the reference hierarchy without inert controls', () => {

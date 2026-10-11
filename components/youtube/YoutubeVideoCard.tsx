@@ -21,7 +21,7 @@ import { hapticTap } from '../../hooks/use-haptics';
  * каталог отдаёт обложки maxres/sd (1280×720), а карточка ленты ~360 dp. Берём обложку под
  * размер карточки: компактная строка — mqdefault (320×180), полная — hqdefault (480×360, есть у всех роликов, sd — не у всех).
  */
-function feedThumbUrl(url: string, compact: boolean): string {
+export function feedThumbUrl(url: string, compact: boolean): string {
   const match = /^(https:\/\/i\.ytimg\.com\/vi(?:_webp)?\/[^/]+\/)(maxresdefault|sddefault|hqdefault|mqdefault|hq720)(\.(?:jpg|webp))/.exec(url);
   if (!match) return url;
   return `${match[1]}${compact ? 'mqdefault' : 'hqdefault'}${match[3]}`;

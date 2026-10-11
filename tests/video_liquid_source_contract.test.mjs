@@ -7,14 +7,14 @@ const tabs = readFileSync(new URL('../components/youtube/YoutubeChannelTabs.tsx'
 const card = readFileSync(new URL('../components/youtube/YoutubeVideoCard.tsx', import.meta.url), 'utf8');
 const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.tsx', import.meta.url), 'utf8');
 
-// зачем (владелец 01.10): видимых вкладок две — «Все видео» убрана.
+// зачем (владелец 01.10): «Все видео» убрана. Владелец 11.10 (video-redesign #c1): третья вкладка — «Наборы».
 test('channel tabs are live on the same catalog', () => {
-  assert.ok(tabs.includes("'home' | 'playlists'"), 'two-tab state type');
-  assert.ok(tabs.includes("['home', 'playlists']"), 'two visible tab buttons');
+  assert.ok(tabs.includes("'home' | 'playlists' | 'packs'"), 'three-tab state type');
+  assert.ok(tabs.includes("['home', 'playlists', 'packs']"), 'three visible tab buttons');
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
   // зачем (FINAL_PHASE п.4): ролики Главной вкладки — виртуальный список по реальному каталогу.
   assert.ok(screen.includes('savedOnly ? savedVideos : allVideos.filter') && screen.includes('data={homeListVideos}'), 'Home renders real catalog data');
-  assert.ok(card.includes('compact?: boolean'), 'card supports approved compact All Videos row');
+  assert.ok(card.includes('compact?: boolean'), 'card supports approved compact row (экран плейлиста)');
   assert.ok(card.includes('width: 150'), 'compact row retains 150px thumbnail width');
 });
 
@@ -24,7 +24,7 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(card.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in cards');
   assert.ok(header.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in channel actions');
   assert.ok(card.includes('video.thumbnailUrl'), 'real thumbnail source');
-  assert.ok(screen.includes('<YoutubeInlinePlayer'), 'real inline player stays wired');
+  assert.ok(screen.includes('<YoutubeInlinePlayer'), 'real inline player stays wired (премьера)');
   assert.ok(screen.includes('VideoScreenGlass tint={g.selected}'), 'static screen material');
   assert.ok(!screen.includes('testID="youtube-catalog-error"'), 'владелец 01.10: экрана ошибки нет');
   // зачем: состояния «нет сети / устарел / ошибка» переехали в components/video/VideoGlassKit (макет video.html).

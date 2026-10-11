@@ -8,28 +8,23 @@ const playlist = read('app/lingman_playlist.tsx');
 const kit = read('components/video/VideoGlassKit.tsx');
 const hero = read('components/youtube/YoutubePremiereHero.tsx');
 const card = read('components/youtube/YoutubeVideoCard.tsx');
-const row = read('components/youtube/YoutubePlaylistRow.tsx');
+const row = read('components/youtube/YoutubePlaylistGridCard.tsx');
 const header = read('components/youtube/YoutubeChannelHeader.tsx');
 const tabs = read('components/youtube/YoutubeChannelTabs.tsx');
 const packs = read('app/flashcards_video_packs.tsx');
 const views = read('components/video/formatViewCount.ts');
 
-test('video.html: packs row lives inside the Home tab after the premiere, before "New videos"', () => {
-  // зачем (FINAL_PHASE п.4): Главная вкладка — FlashList, премьера и плашки в ListHeaderComponent.
-  const home = screen.slice(screen.indexOf('ref={homeListRef}'));
-  assert.ok(home.indexOf('packsRow}') > home.indexOf('<YoutubePremiereHero'), 'packs row after the premiere hero');
-  assert.ok(home.indexOf('{packsRow}') < home.indexOf('{copy.recent}'), 'packs row before the section title');
-  assert.ok(screen.includes('testID="video-tab-packs-row"'), 'packs row keeps its testID and action');
-  assert.ok(screen.includes("router.push('/flashcards_video_packs' as never)"), 'packs row keeps its route');
-  assert.match(screen, /\{packsRow\}\s*<View style=\{styles\.skeletons\}>/, 'пустой каталог: ряд наборов и скелетоны (владелец 01.10)');
+test('video-redesign #c1: «Наборы» — третья вкладка, а не плашка сверху', () => {
+  // зачем (владелец 11.10): плашка «Наборы из видео» заменена вкладкой; список тот же экран наборов (режим embedded).
+  assert.ok(!screen.includes('testID="video-tab-packs-row"'), 'плашки наборов сверху больше нет');
+  assert.ok(screen.includes("tab === 'packs' && !savedOnly") && screen.includes('<FlashcardsVideoPacksScreen embedded'), 'вкладка встраивает экран наборов');
   assert.ok(screen.includes('<YoutubeChannelTabs value={tab} onChange={changeTab} />'), 'tabs are drawn in every state');
 });
 
-test('video.html: header pill has avatar/initials, tabs are 16/600, section title is 20/26', () => {
+test('video.html: header pill has avatar/initials, tabs are 16/600', () => {
   assert.ok(header.includes('testID="youtube-channel-avatar"'), 'channel avatar in the pill');
   assert.ok(header.includes('avatarText'), 'initials fallback');
   assert.ok(tabs.includes("fontSize: 16, fontWeight: '600'"), 'tab label 16/600');
-  assert.ok(screen.includes("fontSize: 20, lineHeight: 26, fontWeight: '700'"), 'section title 20/26/700');
   assert.ok(!screen.includes('adjustsFontSizeToFit') && !header.includes('adjustsFontSizeToFit'), 'no font shrinking');
 });
 
@@ -56,8 +51,8 @@ test('video.html: premiere hero uses glass card, state pill on the frame and moc
 });
 
 test('video.html: playlist row and playlist screen follow the mockup', () => {
-  assert.ok(row.includes('borderBottomColor: g.line'), 'row separated by a hairline, not a card');
   assert.ok(row.includes('stackOne') && row.includes('stackTwo'), 'stacked cover');
+  assert.ok(row.includes('testID="youtube-playlist-row"'), 'playlist tile keeps its testID');
   assert.ok(playlist.includes('liquidGlassTokens(liquidGlassThemeId)'), 'playlist screen on glass tokens');
   assert.ok(playlist.includes('compact'), 'playlist videos use the compact row');
   assert.ok(playlist.includes('testID="youtube-playlist-play-all"'), 'play all stays wired');
@@ -69,7 +64,8 @@ test('video.html: loading, empty, error and note states use the shared glass kit
   assert.ok(kit.includes('export function VideoNote') && kit.includes('fontSize: 16, lineHeight: 21'), 'note 16/21 (D145)');
   assert.ok(!screen.includes('testID="youtube-catalog-error"') && !screen.includes('youtube-catalog-retry'), 'владелец 01.10: ни ошибки, ни retry');
   assert.ok(!screen.includes('<VideoNote'), 'владелец 01.10: ни offline, ни stale плашек');
-  assert.ok(screen.includes('SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22}'), 'loading skeleton geometry');
+  // зачем (video-redesign #c1): первый кадр — сетка в две колонки, геометрия скелета = геометрия карточек.
+  assert.ok(screen.includes('SkeletonBlock width="100%" height={coverHeight} borderRadius={14}'), 'loading skeleton geometry');
   assert.ok(screen.includes("DebugLogger.error('[VIDEO-TAB]:loadCatalog'"), 'no silent catch on catalog load');
 });
 

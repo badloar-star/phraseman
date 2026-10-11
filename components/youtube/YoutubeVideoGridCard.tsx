@@ -1,0 +1,120 @@
+import React from 'react';
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
+import type { YoutubeVideoSnapshot } from '../../shared/youtube_catalog_contract';
+import { formatRelativeVideoDate } from '../video/formatRelativeVideoDate';
+import { formatVideoDuration } from '../video/formatVideoDuration';
+import { formatViewCount } from '../video/formatViewCount';
+import { useLang } from '../LangContext';
+import { useTheme } from '../ThemeContext';
+import { triLang } from '../../constants/i18n';
+import { pluralWord } from '../../constants/plural';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { hapticTap } from '../../hooks/use-haptics';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { feedThumbUrl } from './YoutubeVideoCard';
+
+/**
+ * Ролик в сетке «2 колонки» — вариант 1 «Сетка» макета video-redesign.html (#c1, владелец 11.10).
+ *
+ * зачем: за один экран видно шесть роликов вместо одного-двух. Обложка 16:9 (длительность справа внизу), закладка
+ * на самой обложке справа вверху (круг 38), под ней название ЦЕЛИКОМ (без обрезки, «Methodика…» читается до конца) и
+ * «когда · просмотры». Содержимое прежнее: обложка и данные из каталога, закладка — то же избранное (оптимистично,
+ * откат делает хранилище), тап по ролику открывает экран ролика.
+ */
+function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSave, highlighted = false }: {
+  video: YoutubeVideoSnapshot;
+  onWatch: () => void;
+  saved?: boolean;
+  saveCount?: number;
+  onToggleSave?: () => void;
+  highlighted?: boolean;
+}) {
+  const { lang } = useLang();
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем: межстрочный растёт с системным размером шрифта (названия не обрезаются и не слипаются).
+  const styles = useScaledTextStyles(baseStyles);
+  const watch = triLang(lang, { ru: 'Смотреть', uk: 'Дивитися', en: 'Watch', es: 'Ver', 'pt-BR': 'Assistir', vi: 'Xem', id: 'Tonton', tr: 'İzle', pl: 'Oglądaj' });
+  const stateLabel = video.state === 'live'
+    ? triLang(lang, { ru: 'Сейчас в эфире', uk: 'Зараз наживо', en: 'Live now', es: 'En directo ahora', 'pt-BR': 'Ao vivo', vi: 'Đang trực tiếp', id: 'Sedang live', tr: 'Şimdi canlı', pl: 'Na żywo' })
+    : video.state === 'upcoming'
+      ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', en: 'Premiere upcoming', es: 'Próximo estreno', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Wkrótce premiera' })
+      : '';
+  const savedLine = saveCount && saveCount > 0 ? triLang(lang, {
+    ru: `${saveCount} ${pluralWord(lang, saveCount, { one: 'сохранил', few: 'сохранили', many: 'сохранили' })}`,
+    uk: `${saveCount} ${pluralWord(lang, saveCount, { one: 'зберіг', few: 'зберегли', many: 'зберегли' })}`,
+    en: `${saveCount} saved`, es: `${saveCount} guardados`, 'pt-BR': `${saveCount} salvaram`, vi: `${saveCount} đã lưu`,
+    id: `${saveCount} menyimpan`, tr: `${saveCount} kaydetti`, pl: `${saveCount} zapisało`,
+  }) : '';
+  const saveLabel = saved
+    ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' })
+    : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' });
+  const duration = formatVideoDuration(video.durationSec);
+  const metaParts = stateLabel
+    ? [stateLabel]
+    : [formatRelativeVideoDate(video.publishedAt, lang), formatViewCount(video.viewCount, lang), savedLine].filter(Boolean);
+
+  return (
+    <View testID="lingman-video-card" style={styles.card}>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={`${watch}: ${video.title}${stateLabel ? `. ${stateLabel}` : ''}`}
+        onPress={onWatch}
+        activeOpacity={0.86}
+      >
+        <View style={[styles.thumb, { backgroundColor: g.opaqueControl, borderColor: highlighted ? g.accent : g.glassEdge }]}>{/* guard-ok: тонкая кромка обложки 2.0, как `.th` макета */}
+          {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
+          <Image accessible={false} source={{ uri: feedThumbUrl(video.thumbnailUrl, true) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
+          {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
+        </View>
+        <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
+        {metaParts.length > 0 ? <Text style={[styles.meta, { color: g.secondary }]}>{metaParts.join(' · ')}</Text> : null}
+      </TouchableOpacity>
+      {onToggleSave ? (
+        <Pressable
+          testID={`video-save-${video.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={saveLabel}
+          accessibilityState={{ selected: !!saved }}
+          hitSlop={4}
+          onPressIn={() => hapticTap()}
+          onPress={onToggleSave}
+          style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.accent : MEDIA_SCRIM }, pressed && styles.bookmarkPressed]}
+        >
+          <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={18} color={saved ? g.accentInk : MEDIA_INK} />
+        </Pressable>
+      ) : null}
+    </View>
+  );
+}
+
+// зачем: кружок закладки лежит на обложке (картинка с YouTube), поэтому подложка тёмная и значок белый в любой теме.
+const MEDIA_SCRIM = 'rgba(0,0,0,0.55)'; // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
+/** Один ролик — одна и та же ссылка: перерисовка только при смене данных, закладки или счётчика. */
+export default React.memo(YoutubeVideoGridCardBase, (prev, next) => (
+  prev.video === next.video
+  && prev.saved === next.saved
+  && prev.saveCount === next.saveCount
+  && prev.highlighted === next.highlighted
+  && prev.onWatch === next.onWatch
+  && prev.onToggleSave === next.onToggleSave
+));
+
+const baseStyles = StyleSheet.create({
+  card: { position: 'relative' },
+  // `.th` макета: 16:9, радиус 14, тонкая кромка.
+  thumb: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth }, // guard-ok: тонкая 1 px полупрозрачная кромка обложки, как `.th` макета
+  // `.du`: высота 22, поля 7, радиус 7, чёрный 70 %, справа-снизу 7; 12 → 13 по шкале D145.
+  duration: { position: 'absolute', right: 7, bottom: 7, minHeight: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.7)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  // `.bm`: круг 38 справа-вверху на обложке, отступ 7.
+  bookmark: { position: 'absolute', top: 7, right: 7, width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
+  // `.gt` 15/20 → шкала D145: 16/21; `.gm` 13/17.
+  title: { marginTop: 8, fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  meta: { marginTop: 3, fontSize: 13, lineHeight: 17, fontWeight: '400' },
+});

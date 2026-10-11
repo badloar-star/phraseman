@@ -5,7 +5,8 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
-export type YoutubeChannelTab = 'home' | 'playlists';
+// зачем (владелец 11.10, макет video-redesign #c1): третья вкладка «Наборы» заменила плашку «Наборы из видео» сверху.
+export type YoutubeChannelTab = 'home' | 'playlists' | 'packs';
 
 export default function YoutubeChannelTabs({ value, onChange }: {
   value: YoutubeChannelTab;
@@ -17,11 +18,12 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   const labels = {
     home: triLang(lang, { ru: 'Главная', uk: 'Головна', en: 'Home', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chính', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }),
     playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', en: 'Playlists', es: 'Listas de reproducción', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
+    packs: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }),
   };
   return (
     <View style={[styles.wrap, { borderBottomColor: g.line }]}>
-      {/* зачем (владелец 01.10): вкладки «Все видео» нет — канал показывает «Главная» и «Плейлисты». */}
-      {(['home', 'playlists'] as const).map((tab) => {
+      {/* зачем (владелец 01.10): вкладки «Все видео» нет. Владелец 11.10 (video-redesign #c1): третья вкладка — «Наборы». */}
+      {(['home', 'playlists', 'packs'] as const).map((tab) => {
         const active = value === tab;
         return (
           <TouchableOpacity

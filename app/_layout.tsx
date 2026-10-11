@@ -102,7 +102,9 @@ import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
-import { triLang, type Lang } from '../constants/i18n';
+import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
+import { peekResolvedUiLang } from './ui_lang_resolved';
+import { resolvePushUiLang } from './push_ui_lang';
 import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { PAYWALL_SHEET_STACK_OPTIONS, SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
@@ -751,13 +753,12 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       }
     }
     const langRaw = await AsyncStorage.getItem('app_lang');
-    const lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
-    // зачем (координатор 12.10, диагностика): этот lang уходит на сервер как pushTokenLang (по нему решаются пуши Шпиля)
-    // и в локальные напоминания. Сравниваем с фактическим языком интерфейса — расхождение = пуши не на том языке.
-    void import('./ui_lang_resolved').then(({ peekResolvedUiLang }) => {
-      const uiLang = peekResolvedUiLang();
-      console.log('[PUSH-LANG]', JSON.stringify({ step: 'boot_lang', storedAppLang: langRaw, chosen: lang, uiLang, mismatch: uiLang !== null && uiLang !== lang, notifEnabled: notifEnabledRaw === 'true' }));
-    }).catch((error: unknown) => console.warn('[PUSH-LANG] boot_lang_log_failed', error instanceof Error ? error.message : String(error)));
+    // зачем (координатор 12.10, «ДА» на правку): этот lang уходит на сервер как pushTokenLang (по нему решаются пуши
+    // Шпиля и язык всех серверных пушей) и в локальные напоминания. Раньше — сырое app_lang (uk/es, иначе ru): uk без
+    // ручного выбора и pt-BR/vi/id/tr/pl получали русский. Теперь — язык, которым реально нарисован интерфейс.
+    const uiLang = peekResolvedUiLang();
+    const { lang, source: langSource } = resolvePushUiLang({ resolvedUiLang: uiLang, storedAppLang: langRaw, deviceLang: getDeviceBootstrapLocale() });
+    console.log('[PUSH-LANG]', JSON.stringify({ step: 'boot_lang', storedAppLang: langRaw, uiLang, chosen: lang, source: langSource, notifEnabled: notifEnabledRaw === 'true' }));
 
     // ── 3. Восстановление напоминаний: daily ИЛИ per-day (расписание), не оба
     const notifEnabled = notifEnabledRaw;

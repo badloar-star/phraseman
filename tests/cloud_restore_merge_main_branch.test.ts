@@ -37,7 +37,7 @@ describe('ветка «облако главнее» — ключи из таб�
     const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8') as string;
     const loopStart = source.indexOf('for (const key of getRuntimeSyncKeys()) {', source.indexOf('const mergeStrategyRuntimeKeys'));
     const loop = source.slice(loopStart, source.indexOf("pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);", loopStart));
-    expect(loop).toContain('const mergeStrategy = FC_RESTORE_MERGE_STRATEGIES[key];');
+    expect(loop).toContain('const mergeStrategy = FC_RESTORE_MERGE_STRATEGIES[key] ?? cardRestoreStrategies[key];');
     expect(loop).toContain('logRestoreMerge(key, localValue, storageValue, merged);');
   });
 });

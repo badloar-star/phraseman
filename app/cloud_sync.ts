@@ -299,6 +299,12 @@ import { noteSwallowed } from './swallow_log';
 import { gcDelta, gcSnapshot } from './mem_probe';
 import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
 import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
+import {
+  customCardDeletionsForTarget,
+  mergeCustomCardsRestoreValue,
+  mergeSwipeMemoryRestoreValue,
+  type CustomCardsMergeStats,
+} from './flashcards/restore_merge';
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -1694,6 +1700,39 @@ function logRestoreMerge(key: string, localValue: string | null | undefined, clo
   console.log('[RESTORE-MERGE]', JSON.stringify({
     key, winner, localLen: localValue?.length ?? null, cloudLen: cloudValue.length, resultLen: merged.length,
   }));
+}
+
+/**
+ * Пп.2–3 (координатор 11.10): правила слияния для своих карточек и памяти ответов по всем языкам.
+ * Журнал удалений читается ОДИН раз и только если в облаке есть свои карточки хоть одного языка.
+ * Сбой чтения журнала → без журнала (удалённая здесь карточка может вернуться — лог об этом).
+ */
+async function buildCardRestoreMergeStrategies(
+  cloudData: Record<string, unknown>,
+): Promise<Record<string, (localRaw: string | null | undefined, cloudRaw: string) => string>> {
+  const strategies: Record<string, (localRaw: string | null | undefined, cloudRaw: string) => string> = {};
+  const customTargets = SYNC_STUDY_TARGETS.filter((target) => cloudData[customFlashcardsKey(target)] != null);
+  let journal: ReadonlyMap<string, number> | null = null;
+  if (customTargets.length > 0) {
+    journal = await readCardDeletionJournal().catch((error: unknown) => {
+      console.warn('[RESTORE-MERGE] журнал удалений карточек не прочитан', error instanceof Error ? error.message : String(error));
+      return null;
+    });
+    if (!journal) console.warn('[RESTORE-MERGE] журнала удалений нет или он битый — удалённые здесь карточки не отсеиваются');
+  }
+  for (const target of customTargets) {
+    const deleted = customCardDeletionsForTarget(journal, target);
+    strategies[customFlashcardsKey(target)] = (localRaw, cloudRaw) => {
+      const stats: CustomCardsMergeStats = { localOnly: 0, cloudOnly: 0, both: 0, localWon: 0, droppedDeleted: 0 };
+      const merged = mergeCustomCardsRestoreValue(localRaw, cloudRaw, deleted, stats);
+      console.log('[RESTORE-MERGE]', JSON.stringify({ key: customFlashcardsKey(target), cards: stats, journalDeleted: deleted.size }));
+      return merged;
+    };
+  }
+  for (const target of SYNC_STUDY_TARGETS) {
+    strategies[flashcardsSwipeMemoryKey(target)] = mergeSwipeMemoryRestoreValue;
+  }
+  return strategies;
 }
 
 function mergeLessonRestoreValue(
@@ -4110,12 +4149,16 @@ async function applyRestoreFromUserDocTraced(
   // (FC_RESTORE_MERGE_STRATEGIES) читаем локально и здесь — раньше таблица работала только в sticky- и fr-ветках,
   // а основная ветка писала облако поверх (дни активности, прогресс достижений).
   const mergeStrategyRuntimeKeys = getRuntimeSyncKeys().filter((key) => Object.prototype.hasOwnProperty.call(FC_RESTORE_MERGE_STRATEGIES, key));
+  // зачем (пп.2–3): свои карточки и память ответов тоже сливаются, а не перезаписываются облаком.
+  const cardRestoreStrategies = await buildCardRestoreMergeStrategies(cloudData);
+  assertCurrent();
   const localLessonRestoreMap = Object.fromEntries(
     await AsyncStorage.multiGet([
       ...RESTORE_MERGE_KEY_SET,
       ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
       ...ownedUnionRuntimeKeys,
       ...mergeStrategyRuntimeKeys,
+      ...Object.keys(cardRestoreStrategies),
     ]),
   ) as Record<string, string | null>;
   assertCurrent();
@@ -4142,7 +4185,7 @@ async function applyRestoreFromUserDocTraced(
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
       const storageValue = cloudProgressStorageValue(key, val);
-      const mergeStrategy = FC_RESTORE_MERGE_STRATEGIES[key];
+      const mergeStrategy = FC_RESTORE_MERGE_STRATEGIES[key] ?? cardRestoreStrategies[key];
       if (mergeStrategy) {
         const localValue = localLessonRestoreMap[key];
         const merged = mergeStrategy(localValue, storageValue);

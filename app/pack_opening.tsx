@@ -315,7 +315,7 @@ function FlippableCard({
               {/* зачем: аналогично — статичный кегль поменьше (f.caption вместо f.body),
                   numberOfLines=3 уже даёт перенос под длинный перевод. guard-ok */}
               <Text
-                style={[styles.cardRU, { color: t.textSecond, fontSize: f.caption }]}
+                style={[styles.cardRU, { color: t.accentText, fontSize: f.caption }]}
                 numberOfLines={3}
               >
                 {resolveFlashcardBackText(card, cardLang)}

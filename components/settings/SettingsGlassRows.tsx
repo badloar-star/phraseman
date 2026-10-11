@@ -158,7 +158,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       {leading ?? (icon ? (
         <SettingsGlassTile glass={glass}>
           {/* зачем (темы 2.0): значок плитки в цвете темы в «Акценте/Максимуме»; в «Спокойно» — как было. */}
-          <Ionicons name={icon} size={20} color={glass.level === 'accent' || glass.level === 'max' ? glass.accentBright : glass.lightTint} />
+          <Ionicons name={icon} size={20} color={glass.level === 'accent' || glass.level === 'max' ? glass.accentText : glass.lightTint} />
         </SettingsGlassTile>
       ) : null)}
       <View style={{ flex: 1, minWidth: 0 }}>

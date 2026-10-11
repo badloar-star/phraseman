@@ -731,7 +731,7 @@ function NotificationCenterButton({
             <View style={[styles.notificationUndo, { bottom: 0, backgroundColor: t.bgSurface }]}>
               <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>Уведомление удалено</Text>
               <TouchableOpacity accessibilityRole="button" onPress={undoDelete} style={styles.notificationUndoButton}>
-                <Text style={[styles.notificationUndoAction, { color: t.accent }]}>Вернуть</Text>
+                <Text style={[styles.notificationUndoAction, { color: t.accentText }]}>Вернуть</Text>
               </TouchableOpacity>
             </View>
           ) : null}

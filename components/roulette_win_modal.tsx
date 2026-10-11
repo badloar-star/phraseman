@@ -170,7 +170,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             <RewardImpactRings
               show={impact.showRings}
               dustCount={impact.dustCount}
-              color={t.accent}
+              color={t.accentText}
               ring0Style={impact.styles.ring0}
               ring1Style={impact.styles.ring1}
             />
@@ -195,7 +195,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
           <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
             <Text
               maxFontSizeMultiplier={1.2}
-              style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
+              style={[styles.winDays, { color: t.accentText, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
             >
               {heroLine}
             </Text>
@@ -212,7 +212,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
                   {' '}
                   <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
                   {' · '}
-                  <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
+                  <Text maxFontSizeMultiplier={1.2} style={{ color: t.accentText, fontWeight: '700' }}>{daysShort}</Text>
                 </>
               )}
             </Text>

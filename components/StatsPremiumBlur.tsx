@@ -243,7 +243,7 @@ function StatsPremiumBlur({
         accessibilityLabel={ctaLabel}
       >
         <View style={[styles.lockBadge, { backgroundColor: g.opaqueControl }]}>
-          <Ionicons name="lock-closed" size={28} color={vivid ? g.accentBright : g.text} />
+          <Ionicons name="lock-closed" size={28} color={vivid ? g.accentText : g.text} />
         </View>
         <View style={styles.titleCtaBlock}>
           <Text style={[styles.title, { color: g.text, fontSize: f.bodyLg }]}>

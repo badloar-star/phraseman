@@ -71,7 +71,7 @@ function ReferralInviteBannerArt({ motionVariant = 'hybrid' }: ReferralInviteBan
     >
       {/* Векторный знак без старого тематического изображения. */}
       <View style={styles.fallback}>
-        <Ionicons name="gift-outline" size={44} color={theme.accent} />
+        <Ionicons name="gift-outline" size={44} color={theme.accentText} />
       </View>
       {isHybrid && (
         // Перелив по кромке — тон/свет (LinearGradient), НЕ обводка: владелец

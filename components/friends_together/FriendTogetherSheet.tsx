@@ -141,7 +141,7 @@ function FriendTogetherSheet({
                   <View style={[styles.link, { backgroundColor: isGold ? g.text : g.cta }]} />
                   <AvatarView avatar={friendAvatar} size={64} auraId={friendAura} />
                 </View>
-                <FlowText testID="friend-together-sheet-level" provenance="authored" style={{ color: isGold ? g.text : g.cta, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
+                <FlowText testID="friend-together-sheet-level" provenance="authored" style={{ color: isGold ? g.text : g.accentText, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
                   {friendshipLevelName(together.level, lang)}
                 </FlowText>
                 <FlowText testID="friend-together-sheet-days" provenance="authored" style={{ color: g.text, fontSize: 34, fontWeight: '700', textAlign: 'center' }}>
@@ -163,7 +163,7 @@ function FriendTogetherSheet({
             )}
 
             <View testID="friend-together-sheet-streak" accessibilityLabel={`${streakLabel}: ${streak}`} style={styles.streakRow}>
-              <Ionicons name="flame" size={26} color={isGold ? g.text : g.cta} />
+              <Ionicons name="flame" size={26} color={isGold ? g.text : g.accentText} />
               <FlowText testID="friend-together-sheet-streak-value" provenance="authored" style={{ color: g.text, fontSize: 32, fontWeight: '700' }}>
                 {streak}
               </FlowText>
@@ -172,7 +172,7 @@ function FriendTogetherSheet({
             {together?.incomingNudge && <FlowText testID="friend-together-sheet-status-nudge" provenance="authored" accessibilityRole="text" accessibilityLabel={incomingLabel} style={[styles.status, { color: g.text, backgroundColor: g.opaqueControl, fontSize: f.body, fontWeight: '400' }]}>{incomingLabel}</FlowText>}
 
             <View style={styles.actions}>
-              {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? g.opaqueControl : g.cta }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? g.secondary : buttonForegroundForBackground(g.cta), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
+              {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? g.opaqueControl : g.cta }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? g.secondary : buttonForegroundForBackground(g.accentText), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
               <PressableHybrid testID="friend-together-sheet-high-five" onPress={() => onHighFive()} accessibilityLabel={highFiveLabel} accessibilityState={{ selected: highFived }} variant="secondary" style={[styles.actionBtn, { backgroundColor: g.opaqueControl }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-high-five-label" provenance="authored" style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{highFiveLabel}</FlowText></PressableHybrid>
               {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: g.badFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
               {onBlock && <PressableHybrid testID="friend-together-sheet-block" onPress={() => onBlock(requestDismiss)} accessibilityLabel={blockLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-block-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '400' }}>{blockLabel}</FlowText></PressableHybrid>}

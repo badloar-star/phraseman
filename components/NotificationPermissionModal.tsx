@@ -110,14 +110,14 @@ function NotificationPermissionModal({
           <ScrollView testID="notification-permission-scroll-content" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <View style={{ alignItems: 'center', marginBottom: 10 }}>
             <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: `${t.accent}55`, overflow: 'hidden' }}>
-              <Ionicons name="notifications-outline" size={26} color={t.accent} />
+              <Ionicons name="notifications-outline" size={26} color={t.accentText} />
             </View>
           </View>
 
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
             {resolvedTitle}
           </Text>
-          {resolvedBody ? <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginTop: 10, textAlign: 'center' }}>{resolvedBody}</Text> : null}
+          {resolvedBody ? <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22, marginTop: 10, textAlign: 'center' }}>{resolvedBody}</Text> : null}
 
           <View style={{ marginTop: 14, gap: 8 }}>
             {resolvedPoints.map((p) => (

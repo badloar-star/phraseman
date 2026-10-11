@@ -1143,10 +1143,10 @@ export default function AchievementsScreen() {
               alignItems: 'center', justifyContent: 'center',
             }}
           >
-            <Ionicons name="open-outline" size={20} color={t.accent} />
+            <Ionicons name="open-outline" size={20} color={t.accentText} />
           </View>
         </View>
-        <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}>
+        <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}>
           {achievementDescForLang(achievement, lang)}
         </Text>
         {condition ? (
@@ -1158,7 +1158,7 @@ export default function AchievementsScreen() {
               borderColor: t.border,
             }}
           >
-            <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+            <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
               {triLang(lang, {
                 ru: 'Как получить', uk: 'Як отримати', en: 'How to get it', es: 'Cómo conseguirlo',
                 'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
@@ -1275,7 +1275,7 @@ export default function AchievementsScreen() {
                 flexShrink: 0,
               }}
             >
-              <Text numberOfLines={1} style={{ color: showAllAchievements ? t.gold : t.textSecond, fontWeight: '900', fontSize: Math.max(11, Math.min(f.sub, 14)) }}>
+              <Text numberOfLines={1} style={{ color: showAllAchievements ? t.accentText : t.accentText, fontWeight: '900', fontSize: Math.max(11, Math.min(f.sub, 14)) }}>
                 {showAllAchievements ? 'DEV: все' : 'DEV'}
               </Text>
             </TouchableOpacity>

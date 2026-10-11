@@ -280,7 +280,7 @@ export const EnergyInfoPopover = memo(function EnergyInfoPopover({
                   style={StyleSheet.absoluteFill}
                 />
                 <View style={styles.primaryRow}>
-                  <Ionicons name="flash" size={18} color={glass.cta} />
+                  <Ionicons name="flash" size={18} color={glass.accentText} />
                   <Text
                     style={[
                       styles.primaryText,

@@ -141,7 +141,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
                 <Ionicons
                   name={selected ? 'radio-button-on' : 'radio-button-off'}
                   size={20}
-                  color={selected ? t.accent : t.textGhost}
+                  color={selected ? t.accentText : t.textGhost}
                 />
                 <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
                   {pickAppMessagePollOptionText(option, lang)}

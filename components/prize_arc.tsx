@@ -334,7 +334,7 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
     >
       {/* Свечение под центральной карточкой — тон, не обводка. */}
       <View style={styles.pointer}>
-        <Ionicons name="caret-down" size={28} color={dimmed ? t.textMuted : t.accent} />
+        <Ionicons name="caret-down" size={28} color={dimmed ? t.textMuted : t.accentText} />
       </View>
       <View style={[styles.pivotAnchor, { left: windowWidth / 2 }]}>
         <Animated.View style={pivotStyle}>

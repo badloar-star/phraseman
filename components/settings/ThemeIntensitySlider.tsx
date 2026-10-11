@@ -196,7 +196,7 @@ function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onC
           />
         </View>
       </GestureDetector>
-      <Ionicons name="water" size={ICON} color={glass.accentBright} />
+      <Ionicons name="water" size={ICON} color={glass.accentText} />
     </View>
   );
 }

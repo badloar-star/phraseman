@@ -120,14 +120,14 @@ function CategoryOptionRow<T extends string>({
         ]}
       >
         <View style={[styles.optionIcon, { backgroundColor: t.accentBg }]}>
-          <Ionicons name={option.icon} size={18} color={t.accent} />
+          <Ionicons name={option.icon} size={18} color={t.accentText} />
         </View>
         <Text
           style={{ color: t.textPrimary, fontSize: f.body, fontWeight: selected ? '900' : '700', flex: 1 }}
         >
           {option.label}
         </Text>
-        {selected ? <Ionicons name="checkmark" size={19} color={t.accent} /> : null}
+        {selected ? <Ionicons name="checkmark" size={19} color={t.accentText} /> : null}
       </Pressable>
     </Reanimated.View>
   );
@@ -262,7 +262,7 @@ export default function AchievementCategoryDock<T extends string>({
           ]}
         >
           <View style={[styles.capsuleIcon, { backgroundColor: t.accentBg }]}>
-            <Ionicons name={selected.icon} size={18} color={t.accent} />
+            <Ionicons name={selected.icon} size={18} color={t.accentText} />
           </View>
           <Text style={{ flexShrink: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
             {selected.label}

@@ -584,13 +584,13 @@ export default function ReferralsScreen() {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
-            <Ionicons name={spinReady ? 'sparkles-outline' : 'person-outline'} size={22} color={spinReady ? t.accent : t.textMuted} />
+            <Ionicons name={spinReady ? 'sparkles-outline' : 'person-outline'} size={22} color={spinReady ? t.accentText : t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
               {displayName}
             </Text>
-            <Text style={{ color: spinReady ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '700', marginTop: 2 }}>
+            <Text style={{ color: spinReady ? t.accentText : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '700', marginTop: 2 }}>
               {statusText}
             </Text>
           </View>
@@ -631,7 +631,7 @@ export default function ReferralsScreen() {
                 backgroundColor: t.bgCard,
               }}
             >
-              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
+              <Text style={{ color: t.accentText, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
             </TapScale>
           ) : undefined}
         />
@@ -649,14 +649,14 @@ export default function ReferralsScreen() {
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 7, borderRadius: 12, backgroundColor: spinCredits > 0 ? t.accentBg : glassFill(t.bgSurface, 0.46) }}>
-                  <Ionicons name="key-outline" size={15} color={spinCredits > 0 ? t.accent : t.textSecond} />
-                  <Text style={{ color: spinCredits > 0 ? t.accent : t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                  <Ionicons name="key-outline" size={15} color={spinCredits > 0 ? t.accentText : t.accentText} />
+                  <Text style={{ color: spinCredits > 0 ? t.accentText : t.accentText, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                     {L(`Ключей: ${spinCredits}`, `Ключів: ${spinCredits}`, `Keys: ${spinCredits}`, `Llaves: ${spinCredits}`, `Chaves: ${spinCredits}`, `Chìa khóa: ${spinCredits}`, `Kunci: ${spinCredits}`, `Anahtar: ${spinCredits}`, `Klucze: ${spinCredits}`)}
                   </Text>
                 </View>
               </View>
 
-              <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
+              <Text testID="referrals-condition-hint" style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
                 {drainVisible ? sunsetCopy.drainBody : L(
                   'Пригласи друга — когда он введёт твой код и оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
                   'Запроси друга — коли він введе твій код і оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
@@ -673,7 +673,7 @@ export default function ReferralsScreen() {
               {/* зачем: D100 (владелец, 2026-09-30) — у Pro дни Plus бессмысленны, призы
                   приходят монетами; карточки те же, конверсию объясняет подпись. */}
               {isProLifetime && !drainVisible && (
-                <Text testID="referrals-pro-coins-hint" style={{ color: t.accent, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center', paddingHorizontal: 8, marginTop: -6 }}>
+                <Text testID="referrals-pro-coins-hint" style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center', paddingHorizontal: 8, marginTop: -6 }}>
                   {L(
                     'У тебя Pro — каждый приз приходит монетами.',
                     'У тебе Pro — кожен приз приходить монетами.',
@@ -726,8 +726,8 @@ export default function ReferralsScreen() {
                   }}
                 >
                   {inviteBusy
-                    ? <ActivityIndicator color={spinCredits > 0 ? t.accent : t.textOnGold} />
-                    : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accent : t.textOnGold} />}
+                    ? <ActivityIndicator color={spinCredits > 0 ? t.accentText : t.textOnGold} />
+                    : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accentText : t.textOnGold} />}
                   <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.textOnGold, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
                   </Text>
@@ -760,7 +760,7 @@ export default function ReferralsScreen() {
                     backgroundColor: glassFill(t.bgSurface, 0.46),
                   }}
                 >
-                  <Ionicons name="ticket-outline" size={18} color={t.accent} />
+                  <Ionicons name="ticket-outline" size={18} color={t.accentText} />
                   <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Ввести код друга', 'Ввести код друга', 'Enter a friend\'s code', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
                   </Text>
@@ -791,7 +791,7 @@ export default function ReferralsScreen() {
               style={{ padding: 18, gap: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <Ionicons name="gift-outline" size={18} color={t.accent} />
+                <Ionicons name="gift-outline" size={18} color={t.accentText} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700', flex: 1 }}>
                   {L('Твой код', 'Твій код', 'Your code', 'Tu código', 'Seu código', 'Mã của bạn', 'Kodemu', 'Kodun', 'Twój kod')}
                 </Text>
@@ -804,7 +804,7 @@ export default function ReferralsScreen() {
                   accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copy the code', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
                   style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 12, paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' }}
                 >
-                  <Text testID="referrals-my-code-value" style={{ color: t.accent, fontSize: f.h2 ?? 22, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
+                  <Text testID="referrals-my-code-value" style={{ color: t.accentText, fontSize: f.h2 ?? 22, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
                     {referralCode}
                   </Text>
                 </KitTouchable>
@@ -815,7 +815,7 @@ export default function ReferralsScreen() {
                   accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copy the code', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
                   style={{ width: 56, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: codeCopied ? t.accentBg : t.bgSurface }}
                 >
-                  <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={codeCopied ? t.accent : t.textSecond} />
+                  <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={codeCopied ? t.accentText : t.accentText} />
                 </KitTouchable>
               </View>
             </TonalSurface>
@@ -845,7 +845,7 @@ export default function ReferralsScreen() {
             </View>
           ) : (
             <View style={{ borderRadius: 18, padding: 14, backgroundColor: glassFill(t.bgSurface, 0.46) }}>
-              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400' }}>
+              <Text style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400' }}>
                 {L('Здесь появятся друзья по твоему коду.', 'Тут з’являться друзі за твоїм кодом.', 'Friends who use your code will show up here.', 'Aquí aparecerán los amigos que usen tu código.', 'Aqui aparecerão os amigos que usarem seu código.', 'Bạn bè dùng mã của bạn sẽ xuất hiện ở đây.', 'Teman yang memakai kodemu akan muncul di sini.', 'Kodunu kullanan arkadaşlar burada görünecek.', 'Tutaj pojawią się znajomi, którzy użyją twojego kodu.')}
               </Text>
             </View>

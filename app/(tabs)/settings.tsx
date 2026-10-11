@@ -1518,7 +1518,7 @@ export default function SettingsMain() {
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
+            <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22 }}>
               {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Not linked', 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')}
             </Text>
             {!!linkedAuth?.email && (
@@ -1549,7 +1549,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
-                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '800' }}>
                   {L('Сменить аккаунт', 'Змінити акаунт', 'Switch account', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
                 </Text>
               </TouchableOpacity>
@@ -1603,7 +1603,7 @@ export default function SettingsMain() {
                 overflow: 'hidden',
               }}
             >
-              <Ionicons name="shield-checkmark" size={28} color={t.accent} />
+              <Ionicons name="shield-checkmark" size={28} color={t.accentText} />
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
                 {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
               </Text>
@@ -1630,7 +1630,7 @@ export default function SettingsMain() {
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
               {L('Сменить аккаунт?', 'Змінити акаунт?', 'Switch account?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
+            <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                 "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
@@ -1986,7 +1986,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
-                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '800' }}>
                   {L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
                 </Text>
               </TouchableOpacity>

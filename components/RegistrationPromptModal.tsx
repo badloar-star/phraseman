@@ -1561,7 +1561,7 @@ function RegistrationPromptModal({
             hitSlop={8}
             style={[styles.closeBtn, { backgroundColor: glass.opaqueControl, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
           >
-            <Ionicons name="close" size={14} color={t.textSecond} />
+            <Ionicons name="close" size={14} color={t.accentText} />
           </Pressable>
 
           <ScrollView decelerationRate="fast"

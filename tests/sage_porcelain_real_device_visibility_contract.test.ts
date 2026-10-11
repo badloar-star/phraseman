@@ -77,6 +77,7 @@ describe('Sage Porcelain real-device visibility regressions', () => {
     expect(source).toContain('styles.fallback');
     expect(source).toContain('name="gift-outline"');
     expect(source).toContain('backgroundColor: theme.bgSurface2');
-    expect(source).toContain('color={theme.accent}');
+    // 11.10: акцент как текст/значок на светлой карточке — токен accentText, а не заливочный accent
+    expect(source).toContain('color={theme.accentText}');
   });
 });

@@ -341,7 +341,7 @@ function ShopScreenImpl() {
 
       {/* Пометка о временном входе — прямое требование владельца. */}
       <View style={[styles.devNotice, { backgroundColor: t.bgSurface }]}>
-        <Ionicons name="construct-outline" size={15} color={t.gold} />
+        <Ionicons name="construct-outline" size={15} color={t.accentText} />
         <Text style={[styles.devNoticeText, { color: t.textMuted, fontSize: f.caption }]}>
           {triLang(lang, COPY.devOnly)}
         </Text>
@@ -468,7 +468,7 @@ function ShopScreenImpl() {
                   ]}
                 >
                   <View style={[styles.dockRowIcon, { backgroundColor: selected ? t.accentBg : t.bgSurface }]}>
-                    <Ionicons name={cat.icon} size={18} color={selected ? t.accent : t.textMuted} />
+                    <Ionicons name={cat.icon} size={18} color={selected ? t.accentText : t.textMuted} />
                   </View>
                   <FlowText
                     testID={`shop-category-${cat.id}`}
@@ -482,7 +482,7 @@ function ShopScreenImpl() {
                     {shopText(lang, cat.title)}
                   </FlowText>
                   {selected ? (
-                    <Ionicons name="checkmark" size={19} color={t.accent} />
+                    <Ionicons name="checkmark" size={19} color={t.accentText} />
                   ) : (
                     <Text style={[styles.dockRowCount, { color: t.textMuted, fontSize: f.caption }]}>
                       {cat.id === 'all' ? SHOP_ITEMS.length : shopItemsForCategory(cat.id).length}
@@ -510,7 +510,7 @@ function ShopScreenImpl() {
             { backgroundColor: t.bgCard, opacity: pressed ? 0.86 : 1 },
           ]}
         >
-          <Ionicons name={categoryIcon} size={17} color={t.accent} />
+          <Ionicons name={categoryIcon} size={17} color={t.accentText} />
           <Text style={[styles.capsuleLabel, { color: t.textPrimary, fontSize: f.body }]}>{categoryLabel}</Text>
           <Ionicons name={dockOpen ? 'chevron-down' : 'chevron-up'} size={16} color={t.textMuted} />
         </Pressable>

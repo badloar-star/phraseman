@@ -2451,7 +2451,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           <Ionicons name={item.current ? 'ribbon' : 'checkmark-circle'} size={20} color={titleColor}/>
                         </View>
                         <View style={{ flex: 1, minWidth: 0 }}>
-                          <Text allowFontScaling={false} style={{ color: item.unlocked ? titleColor : t.textSecond, fontSize: Math.max(15, f.body), fontWeight: '900', lineHeight: Math.max(15, f.body) + 5, letterSpacing: 0 }} numberOfLines={1} ellipsizeMode="tail">
+                          <Text allowFontScaling={false} style={{ color: item.unlocked ? titleColor : t.accentText, fontSize: Math.max(15, f.body), fontWeight: '900', lineHeight: Math.max(15, f.body) + 5, letterSpacing: 0 }} numberOfLines={1} ellipsizeMode="tail">
                             {item.titleEN}
                           </Text>
                           <Text allowFontScaling={false} style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', lineHeight: f.caption + 4, marginTop: 1, letterSpacing: 0 }} numberOfLines={2}>
@@ -2459,7 +2459,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           </Text>
                         </View>
                         {item.current && (<View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: isLightTheme ? 'rgba(202,138,4,0.14)' : 'rgba(252,211,77,0.16)' }}>
-                            <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: f.caption, fontWeight: '900' }} numberOfLines={1}>
+                            <Text style={{ color: isLightTheme ? t.accentText : t.accentText, fontSize: f.caption, fontWeight: '900' }} numberOfLines={1}>
                               {triLang(lang, {
                                     ru: 'Сейчас',
                                     uk: 'Зараз',
@@ -2523,7 +2523,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         count={cardArrivals}
         target={cardsTileCenter}
         origin={{ x: Dimensions.get('window').width / 2, y: Dimensions.get('window').height * 0.32 }}
-        color={t.accent}
+        color={t.accentText}
         onDone={() => {
           const effect = cardArrivalEffectRef.current ?? 'flight';
           cardArrivalEffectRef.current = null;

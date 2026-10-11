@@ -939,7 +939,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                 borderBottomColor: t.border,
                 gap: 8,
             }}>
-            <Text style={{ color: t.accent, fontSize: f.body, flex: 1, fontWeight: '600' }} numberOfLines={2}>
+            <Text style={{ color: t.accentText, fontSize: f.body, flex: 1, fontWeight: '600' }} numberOfLines={2}>
               {label}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -1006,7 +1006,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
         }}>
       <Text style={{
-            color: isGoldTheme ? GOLD_RICH.champagne : t.accent,
+            color: isGoldTheme ? GOLD_RICH.champagne : t.accentText,
             fontSize: f.label,
             fontWeight: '900',
             textTransform: 'uppercase',
@@ -1654,7 +1654,7 @@ function WeekAnalyticsCard({
           {progressParts.length > 0 ? (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 12, paddingTop: 10, borderTopWidth: 1, borderTopColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
               <Ionicons name={weekDeltaMinutes !== null && weekDeltaMinutes < 0 ? 'trending-down-outline' : 'trending-up-outline'} size={15} color={t.textMuted} />
-              <Text style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.35 }}>
+              <Text style={{ flex: 1, color: t.accentText, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.35 }}>
                 {progressParts.join(' · ')}
               </Text>
             </View>
@@ -2253,7 +2253,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         const time7 = visiblePercentile(time7Percentile, myTime7ms > 0);
         if (time7 !== null) pItems.push({
             icon: 'time-outline',
-            color: isGoldTheme ? GOLD_RICH.paleGold : t.accent,
+            color: isGoldTheme ? GOLD_RICH.paleGold : t.accentText,
             percent: time7,
             label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', en: 'Time in 7 days', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
         });
@@ -2281,7 +2281,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   const topN = Math.max(1, 100 - bestItem.percent);
                   return (
                     <View style={{ marginBottom: 14, gap: 2 }}>
-                      <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.accent, fontSize: f.numLg, fontWeight: '900' }}>
+                      <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.accentText, fontSize: f.numLg, fontWeight: '900' }}>
                         {`${triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
                       </Text>
                       <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{bestItem.label}</Text>
@@ -2503,7 +2503,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 }}>
                   <StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? null : null]}>
                     <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent), alignItems: 'center', justifyContent: 'center' }}>
-                      <Ionicons name="bar-chart-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+                      <Ionicons name="bar-chart-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : t.accentText}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -2607,7 +2607,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                     return (<View key={`t-${i}`} style={{ width: 26, alignItems: 'center', gap: 2 }}>
                                   <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
                                     <AdaptiveLabel testID={`stats-lifetime-chart-value-time-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
-                                            color: d.ms > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
+                                            color: d.ms > 0 ? (isToday ? t.textPrimary : t.accentText) : t.textGhost,
                                             fontSize: 7, // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                                             fontWeight: '700',
                                             textAlign: 'center',
@@ -2627,7 +2627,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                             fontSize: 8, fontWeight: isToday ? '800' : '400', // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                                             lineHeight: 11,
                                         }}>{d.shortLabel}</AdaptiveLabel>
-                                  <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 /* d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает */ }}>{d.dayNum}</Text>
+                                  <Text style={{ color: isToday ? t.accentText : t.textGhost, fontSize: 8 /* d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает */ }}>{d.dayNum}</Text>
                                 </View>);
                                 })}
                       </ScrollView>

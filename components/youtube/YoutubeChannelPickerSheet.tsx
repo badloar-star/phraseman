@@ -28,9 +28,9 @@ interface Props {
 function ChannelRowContent({ channel, checked, t }: { channel: YoutubeManifestChannel; checked: boolean; t: ReturnType<typeof useTheme>['theme'] }) {
   return (
     <>
-      {channel.avatarUrl ? <Image source={{ uri: channel.avatarUrl }} style={styles.icon} /> : <View style={[styles.icon, { backgroundColor: t.accentBg }]}><Ionicons name="logo-youtube" size={21} color={t.accent} /></View>}
+      {channel.avatarUrl ? <Image source={{ uri: channel.avatarUrl }} style={styles.icon} /> : <View style={[styles.icon, { backgroundColor: t.accentBg }]}><Ionicons name="logo-youtube" size={21} color={t.accentText} /></View>}
       <View style={styles.rowBody}><Text style={[styles.rowText, { color: t.textPrimary }]}>{channel.displayName}</Text><Text style={[styles.languages, { color: t.textMuted }]}>{channel.languageTags.join(' · ')}</Text></View>
-      {checked && <Ionicons name="checkmark-circle" size={23} color={t.accent} />}
+      {checked && <Ionicons name="checkmark-circle" size={23} color={t.accentText} />}
     </>
   );
 }

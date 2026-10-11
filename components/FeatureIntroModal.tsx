@@ -141,7 +141,7 @@ function IconStage({ icon }: { icon: FeatureIntroIconName }) {
           style={[StyleSheet.absoluteFill, { opacity: 0.16 }]}
         />
         <View pointerEvents="none" style={styles.stageRim} />
-        <Ionicons name={icon} size={28} color={glass.cta} />
+        <Ionicons name={icon} size={28} color={glass.accentText} />
       </View>
     </Animated.View>
   );

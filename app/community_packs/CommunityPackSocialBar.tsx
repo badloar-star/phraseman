@@ -11,6 +11,8 @@
  *   • `screen` — экран набора: ЯВНАЯ заметная кнопка лайка + «Добавить себе»;
  *   • `list`   — строка каталога «Наборы сообщества» (packs-simple.html, 04.10): счётчики 18px, без кнопок;
  *   • `videoAdd` — строка списка «Из видео» (cards-section кадры 024–029): только мятная кнопка «Добавить» 98×34, после добавления — пилюля с галочкой;
+ *   • `setAdd` / `setHeart` — Карточки 2.0 (cards-v2 setOther()): «Добавить себе +» (после добавления — «✓ В моих наборах») и круглое сердце в ряду
+ *     кнопок экрана набора; `previewMeta` — строка «♥ N · 💬 N» под названием (тап по сердцу — лайк, только у добавленного набора);
  *   • `previewMeta` / `previewCta` — экран набора ДО добавления (packs-simple.html кадр 4): счётчики справа
  *     от автора и нижняя кнопка «Добавить себе». Логика добавления — та же `onAddPress`.
  *
@@ -23,6 +25,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PackCta, PackGhostCta, PackRoundButton } from '../../components/packs/PackScreenKit';
 import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -43,7 +46,7 @@ import {
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart';
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -58,6 +61,8 @@ type Props = {
   variant?: CommunityPackSocialVariant;
   /** Подпись нижней кнопки `previewCta` до добавления (у набора из видео — «Учить набор»). */
   ctaLabel?: string;
+  /** `setAdd`: вид кнопки «Добавить себе» — главная (по умолчанию) или спокойная плашка (рядом с «Тренировать»). */
+  addStyle?: 'primary' | 'ghost';
   /**
    * зачем (координатор 11.10, экран ролика): у набора из видео после добавления нижняя кнопка не «глохнет», а ведёт к тренировке.
    * Оба поля заданы — вариант `previewCta` в добавленном состоянии показывает `ownedCtaLabel` и зовёт `onOwnedCtaPress`.
@@ -88,6 +93,7 @@ export default function CommunityPackSocialBar({
   compact = false,
   variant,
   ctaLabel,
+  addStyle = 'primary',
   ownedCtaLabel,
   onOwnedCtaPress,
   onAdded,
@@ -109,9 +115,11 @@ export default function CommunityPackSocialBar({
   const isPreviewCta = mode === 'previewCta';
   const isVideoAdd = mode === 'videoAdd';
   const isVideoAddRound = mode === 'videoAddRound';
+  const isSetAdd = mode === 'setAdd';
+  const isSetHeart = mode === 'setHeart';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
   // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
-  const isCatalog = isTile || isList || isPreviewMeta;
+  const isCatalog = isTile || isList || isPreviewMeta || isSetAdd || isSetHeart;
   const isScreen = mode === 'screen';
 
   /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
@@ -136,7 +144,7 @@ export default function CommunityPackSocialBar({
 
   useEffect(() => {
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
-    if (isPreviewCta) return undefined;
+    if (isPreviewCta || isSetAdd || isSetHeart) return undefined;
     let cancelled = false;
     const seqAtStart = opSeqRef.current;
     void (async () => {
@@ -166,7 +174,7 @@ export default function CommunityPackSocialBar({
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta, isSetAdd, isSetHeart]);
 
   /**
    * Счётчик откликов.
@@ -452,32 +460,56 @@ export default function CommunityPackSocialBar({
 
   /** Плитка сетки: только компактные счётчики (лайк ставится на экране набора). */
   if (isPreviewMeta) {
-    // зачем (packs-simple.html кадр 4, `meta(3, 11, 1)` справа от автора): значок над числом, промежуток 16, вторичный тон.
-    const cell = (icon: keyof typeof Ionicons.glyphMap, value: string) => (
-      <View style={{ alignItems: 'center', gap: 2 }}>
-        <Ionicons name={icon} size={18} color={g.secondary} />
-        <Text style={{ color: g.secondary, fontSize: 16, lineHeight: lh(20) }}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
-      </View>
-    );
+    // зачем (cards-v2 setHead(): `likes()` в строке «уровень · N карточек · ♥ N»): сердце 18 + число 16 вторичным тоном, у добавленного набора
+    // сердце — кнопка лайка (заливается, когда лайк стоит); отклики — тот же вход в обсуждение, ноль скрыт. 👥 в макете нет — не рисуем.
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-        {cell('heart-outline', String(snapshot.likesCount))}
-        {cell('people-outline', String(snapshot.addedCount))}
-        {shouldShowCommentsCount(commentsCount) ? (
-          onOpenComments ? (
-            <TouchableOpacity
-              testID={`pack-comments-${pack.id}`}
-              accessibilityRole="button"
-              accessibilityLabel="qa-pack-comments"
-              onPress={() => onOpenComments(pack.id)}
-              hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
-            >
-              {cell('chatbubble-outline', formatCommentsCount(commentsCount, lang))}
-            </TouchableOpacity>
-          ) : cell('chatbubble-outline', formatCommentsCount(commentsCount, lang))
-        ) : null}
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <TouchableOpacity
+          testID={`pack-like-${pack.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={likeA11y}
+          accessibilityState={{ disabled: !isAdded, selected: snapshot.liked }}
+          accessibilityHint={isAdded ? undefined : likeLockedHint}
+          activeOpacity={0.85}
+          onPress={onLikePress}
+          hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
+        >
+          <Animated.View style={{ transform: [{ scale: likePop }] }}>
+            <Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} />
+          </Animated.View>
+          <Text style={{ color: g.secondary, fontSize: 16, lineHeight: lh(22), fontVariant: ['tabular-nums'] }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+        </TouchableOpacity>
+        {renderCommentsCount(18, 16, 5)}
       </View>
     );
+  }
+
+  if (isSetHeart) {
+    // зачем (cards-v2 setOther(false): круглое сердце 48 рядом с «Добавить себе +»): правило владельца «лайк — после добавления» сохранено:
+    // до добавления сердце приглушено и объясняет причину тостом (onLikePress), после — ставит лайк.
+    return (
+      <PackRoundButton
+        g={g}
+        size={48}
+        testID={`pack-like-${pack.id}`}
+        icon={snapshot.liked ? 'heart' : 'heart-outline'}
+        label={likeLabel}
+        onPress={onLikePress}
+        style={{ opacity: isAdded ? 1 : 0.5 }}
+      />
+    );
+  }
+
+  if (isSetAdd) {
+    // зачем (cards-v2 setOther()): «Добавить себе +» — главная кнопка ряда; после добавления — «✓ В моих наборах» спокойной плашкой.
+    // Логика добавления/покупки — та же `onAddPress` (оптимистично, откат при отказе, платный набор — шит покупки экрана).
+    if (isAdded) {
+      return <PackGhostCta g={g} grow icon="checkmark" label={ownedLabel} disabled onPress={onAddPress} testID={`pack-add-${pack.id}`} />;
+    }
+    return addStyle === 'ghost'
+      ? <PackGhostCta g={g} grow trailingIcon="add" label={addLabel} onPress={onAddPress} testID={`pack-add-${pack.id}`} />
+      : <PackCta g={g} grow trailingIcon="add" label={addLabel} onPress={onAddPress} testID={`pack-add-${pack.id}`} />;
   }
 
   if (isVideoAddRound) {
@@ -501,30 +533,14 @@ export default function CommunityPackSocialBar({
   }
 
   if (isVideoAdd) {
-    // зачем (владелец: «любые различия с макетом запрещены», cards-section «Из видео»): `.vadd` — мятная пилюля 98×34, 14/700, тёмный текст;
-    // у уже добавленного набора — пилюля `.cntp` с галочкой. Логика добавления — та же `onAddPress` (оптимистично, откат при отказе).
+    // зачем (cards-v2 videoAll(): «Добавить +» — `.cta.sm` высотой 38 справа под кадром ролика): главная кнопка цвета темы с плюсом;
+    // у уже добавленного набора — спокойная плашка с галочкой. Логика добавления — та же `onAddPress` (оптимистично, откат при отказе).
     const shortAdd = triLang(lang, {
       ru: 'Добавить', uk: 'Додати', en: 'Add', es: 'Añadir', 'pt-BR': 'Adicionar', vi: 'Thêm', id: 'Tambah', tr: 'Ekle', pl: 'Dodaj',
     });
-    return (
-      <TouchableOpacity
-        testID={`pack-add-${pack.id}`}
-        accessibilityRole="button"
-        accessibilityLabel={isAdded ? ownedLabel : addLabel}
-        accessibilityState={{ disabled: isAdded }}
-        disabled={isAdded}
-        onPress={onAddPress}
-        activeOpacity={0.85}
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        style={isAdded
-          ? { minWidth: 34, minHeight: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft }
-          : { minWidth: 98, minHeight: 34, borderRadius: 17, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
-      >
-        {isAdded
-          ? <Ionicons name="checkmark" size={16} color={g.text} />
-          : <Text style={{ color: t.textOnGold, fontSize: 13, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
-      </TouchableOpacity>
-    );
+    return isAdded
+      ? <PackGhostCta g={g} small icon="checkmark" label={ownedLabel} disabled onPress={onAddPress} testID={`pack-add-${pack.id}`} style={{ minHeight: 38, borderRadius: 19 }} />
+      : <PackCta g={g} small trailingIcon="add" label={shortAdd} accessibilityLabel={addLabel} onPress={onAddPress} testID={`pack-add-${pack.id}`} style={{ minHeight: 38, borderRadius: 19 }} />;
   }
 
   if (isPreviewCta) {

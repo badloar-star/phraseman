@@ -1,151 +1,128 @@
 /**
- * Шапка экрана набора — макет docs/design/v2-app/cards-section.html (кадры «Свой набор», «Чужой — добавлен», «Карточка удалена»).
+ * Шапка экрана набора — макет docs/design/v2-app/cards-v2.html (кадры «Свой набор», «Чужой — добавлен», «Действия с набором»; setHead()).
  *
- * зачем (владелец: «в приложении запрещены любые различия с одобренными макетами»): сверху «назад» без круга и квадратная «⋮»,
- * ниже название 34/40, строка автора с пилюлей-статусом, ряд действий («＋ Карточка» + «Тренировать →» у своего набора, отклики
- * + «Тренировать →» у добавленного), разделитель и подпись «Карточки N». Всё, что в макете не нарисовано (опубликовать, править,
- * пожаловаться), живёт в шторке «⋯». Логика экрана остаётся в flashcards_collection.tsx — здесь только вид.
+ * зачем (владелец 12.10: cards-v2 утверждён целиком, «приложение = макет»): сверху «назад» без круга и квадратная «⋮», ниже название 34/40,
+ * у чужого набора — строка автора (аватар 23 + имя), строка «уровень · N карточек · ♥», ряд кнопок: у своего «Тренировать» и круглая «+»
+ * (новая карточка), у добавленного «✓ В моих наборах» и «Тренировать». Подписи-разделителя «Карточки N» и линии больше нет — за шапкой
+ * идёт полоса масштаба и сетка. Всё, что в макете не нарисовано (опубликовать, править, пожаловаться), живёт в шторке «⋮».
+ * Логика экрана остаётся в flashcards_collection.tsx — здесь только вид.
+ *
+ * Уровень набора (A1–C2) в документах пока нет — чип `level` скрыт, пока поле не придёт от Ядра (packDeckLevel).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { actionBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { packCardsWord } from '../../components/packs/PackRow';
+import { PackBackBare, PackCta, PackGhostCta, PackRoundButton, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', you: 'Ты', onlyYou: 'Только ты', inYou: 'У тебя', inCommunity: 'В сообществе', card: 'Карточка', train: 'Тренировать', cards: 'Карточки' },
-  uk: { back: 'Назад', menu: 'Меню', you: 'Ти', onlyYou: 'Тільки ти', inYou: 'У тебе', inCommunity: 'У спільноті', card: 'Картка', train: 'Тренувати', cards: 'Картки' },
-  en: { back: 'Back', menu: 'Menu', you: 'You', onlyYou: 'Only you', inYou: 'In yours', inCommunity: 'In the community', card: 'Card', train: 'Train', cards: 'Cards' },
-  es: { back: 'Atrás', menu: 'Menú', you: 'Tú', onlyYou: 'Solo tú', inYou: 'En los tuyos', inCommunity: 'En la comunidad', card: 'Tarjeta', train: 'Entrenar', cards: 'Tarjetas' },
-  'pt-BR': { back: 'Voltar', menu: 'Menu', you: 'Você', onlyYou: 'Só você', inYou: 'Nos seus', inCommunity: 'Na comunidade', card: 'Cartão', train: 'Treinar', cards: 'Cartões' },
-  vi: { back: 'Quay lại', menu: 'Menu', you: 'Bạn', onlyYou: 'Chỉ bạn', inYou: 'Của bạn', inCommunity: 'Trong cộng đồng', card: 'Thẻ', train: 'Luyện tập', cards: 'Thẻ' },
-  id: { back: 'Kembali', menu: 'Menu', you: 'Kamu', onlyYou: 'Hanya kamu', inYou: 'Milikmu', inCommunity: 'Di komunitas', card: 'Kartu', train: 'Latihan', cards: 'Kartu' },
-  tr: { back: 'Geri', menu: 'Menü', you: 'Sen', onlyYou: 'Yalnızca sen', inYou: 'Sende', inCommunity: 'Toplulukta', card: 'Kart', train: 'Çalış', cards: 'Kartlar' },
-  pl: { back: 'Wstecz', menu: 'Menu', you: 'Ty', onlyYou: 'Tylko ty', inYou: 'U ciebie', inCommunity: 'W społeczności', card: 'Karta', train: 'Trenuj', cards: 'Karty' },
+  ru: { back: 'Назад', menu: 'Меню', onlyYou: 'Только ты', inCommunity: 'В сообществе', inMine: 'В моих наборах', card: 'Новая карточка', train: 'Тренировать' },
+  uk: { back: 'Назад', menu: 'Меню', onlyYou: 'Тільки ти', inCommunity: 'У спільноті', inMine: 'У моїх наборах', card: 'Нова картка', train: 'Тренувати' },
+  en: { back: 'Back', menu: 'Menu', onlyYou: 'Only you', inCommunity: 'In the community', inMine: 'In my packs', card: 'New card', train: 'Train' },
+  es: { back: 'Atrás', menu: 'Menú', onlyYou: 'Solo tú', inCommunity: 'En la comunidad', inMine: 'En mis packs', card: 'Nueva tarjeta', train: 'Entrenar' },
+  'pt-BR': { back: 'Voltar', menu: 'Menu', onlyYou: 'Só você', inCommunity: 'Na comunidade', inMine: 'Nos meus pacotes', card: 'Novo cartão', train: 'Treinar' },
+  vi: { back: 'Quay lại', menu: 'Menu', onlyYou: 'Chỉ bạn', inCommunity: 'Trong cộng đồng', inMine: 'Trong bộ của tôi', card: 'Thẻ mới', train: 'Luyện tập' },
+  id: { back: 'Kembali', menu: 'Menu', onlyYou: 'Hanya kamu', inCommunity: 'Di komunitas', inMine: 'Di paket saya', card: 'Kartu baru', train: 'Latihan' },
+  tr: { back: 'Geri', menu: 'Menü', onlyYou: 'Yalnızca sen', inCommunity: 'Toplulukta', inMine: 'Paketlerimde', card: 'Yeni kart', train: 'Çalış' },
+  pl: { back: 'Wstecz', menu: 'Menu', onlyYou: 'Tylko ty', inCommunity: 'W społeczności', inMine: 'W moich zestawach', card: 'Nowa karta', train: 'Trenuj' },
 });
+
+const noop = (): void => undefined;
 
 /** Верхняя панель: «назад» без круга (30×42) и квадратная «⋮» 36 (`.rb.bare` + `.rb.sq`). */
 export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Readonly<{ lang: Lang; onBack: () => void; onMenu: () => void }>) {
-  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
-  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
-  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
+  const styles = useMemo(() => makeStyles(g), [g]);
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
-    <View style={styles.top}>
-      <Pressable testID="fc-collection-back" accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={12} onPress={onBack} style={({ pressed }) => [styles.bare, pressed && styles.pressed]}>
-        <Ionicons name="chevron-back" size={24} color={g.text} />
-      </Pressable>
-      <Pressable testID="fc-pack-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={onMenu} style={({ pressed }) => [styles.square, pressed && styles.pressed]}>
-        <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
-      </Pressable>
+    <View style={styles.topWrap}>
+      <PackTopBarRow
+        left={<PackBackBare g={g} testID="fc-collection-back" label={copy.back} onPress={onBack} />}
+        right={<PackSquareButton g={g} testID="fc-pack-menu" label={copy.menu} onPress={onMenu} />}
+      />
     </View>
   );
 });
 
 export type PackBadge = 'only_you' | 'in_you' | 'community' | null;
 
-/** Блок под панелью: название, автор + статус, ряд действий, разделитель, «Карточки N». */
-export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorName, mine, badge, left, onTrain, cardCount }: Readonly<{
+/** Блок под панелью: название, автор, «уровень · N карточек · ♥», ряд кнопок. */
+export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorName, mine, badge, left, onTrain, cardCount, level = null }: Readonly<{
   lang: Lang;
   title: string;
   /** Имя автора; null — у встроенных наборов автора нет, строка не рисуется. */
   authorName: string | null;
   mine: boolean;
   badge: PackBadge;
-  /** Левая часть ряда действий: «＋ Карточка» или отклики. */
+  /** Свой набор: круглая «+» (новая карточка) в конце ряда кнопок; чужой: счётчики (♥ и отклики) в строке «N карточек». */
   left: React.ReactNode;
   onTrain: (() => void) | null;
   cardCount: number;
+  /** Уровень A1–C2 (чип `.lvl`); null — чип скрыт. */
+  level?: string | null;
 }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const badgeLabel = badge === 'only_you' ? copy.onlyYou : badge === 'in_you' ? copy.inYou : badge === 'community' ? copy.inCommunity : null;
-  const badgeIcon = badge === 'only_you' ? 'lock-closed' : badge === 'in_you' ? 'checkmark' : 'globe-outline';
-  const hasAuthorRow = authorName !== null || badgeLabel !== null;
+  const badgeLabel = badge === 'only_you' ? copy.onlyYou : badge === 'community' ? copy.inCommunity : null;
+  const badgeIcon = badge === 'only_you' ? 'lock-closed' : 'globe-outline';
+  const showAuthor = !mine && authorName !== null;
+  const added = badge === 'in_you';
   return (
     <View style={styles.info}>
       <Text testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-      {hasAuthorRow ? (
+      {showAuthor ? (
         <View style={styles.authorRow}>
-          {authorName !== null ? (
-            <>
-              <View style={styles.ava}><Ionicons name="person" size={14} color={g.mutedText} /></View>
-              <Text style={[styles.author, { color: g.secondary }]}>{mine ? copy.you : authorName}</Text>
-            </>
-          ) : null}
-          {badgeLabel ? (
-            <View style={styles.badge}>
-              <Ionicons name={badgeIcon} size={16} color={g.secondary} />
-              <Text style={styles.badgeText}>{badgeLabel}</Text>
-            </View>
-          ) : null}
+          <View style={styles.ava}><Ionicons name="person" size={14} color={g.mutedText} /></View>
+          <Text style={[styles.author, { color: g.secondary }]}>{authorName}</Text>
         </View>
       ) : null}
-      <View style={styles.actions}>
-        <View style={styles.actionLeft}>{left}</View>
-        {onTrain ? (
-          <Pressable
-            testID="fc-pack-train"
-            hitSlop={4}
-            accessibilityRole="button"
-            accessibilityLabel={copy.train}
-            onPress={onTrain}
-            style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}>
-            <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
-            <Ionicons name="arrow-forward" size={18} color={g.accentInk} />
-          </Pressable>
+      <View style={styles.metaRow}>
+        {level ? <View style={[styles.lvl, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}><Text style={[styles.lvlText, { color: g.text }]}>{level}</Text></View> : null}
+        <Text style={[styles.metaText, { color: g.secondary }]}>{`${cardCount} ${packCardsWord(lang, cardCount)}`}</Text>
+        {/* зачем: у своего набора статус (кто видит) — единственное, что макет не рисует, но продукт обязан показать; тихий, в этой же строке */}
+        {mine && badgeLabel ? (
+          <View style={styles.status}>
+            <Ionicons name={badgeIcon} size={16} color={g.secondary} />
+            <Text style={[styles.metaText, { color: g.secondary }]}>{badgeLabel}</Text>
+          </View>
         ) : null}
+        {!mine ? left : null}
       </View>
-      <View style={styles.divider} />
-      <Text style={[styles.cardsLabel, { color: g.text }]}>
-        {copy.cards}
-        <Text style={styles.cardsCount}>{`  ${cardCount}`}</Text>
-      </Text>
+      <View style={styles.actions}>
+        {added ? <PackGhostCta g={g} grow icon="checkmark" label={copy.inMine} onPress={noop} disabled testID="fc-pack-in-mine" /> : null}
+        {onTrain ? <PackCta g={g} grow icon="play" label={copy.train} onPress={onTrain} testID="fc-pack-train" /> : null}
+        {mine ? left : null}
+      </View>
     </View>
   );
 });
 
-/** «＋ Карточка» — прозрачная кнопка с тонкой кромкой (`.cta.sm.gh`). */
+/** Круглая «+» 48 (`.rb.l`) — новая карточка в свой набор (в макете: «Новая карточка» живёт и в шторке «⋮»). */
 export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress }: Readonly<{ lang: Lang; onPress: () => void }>) {
-  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
-  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
-  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
-  return (
-    <Pressable testID="fc-pack-add-card" hitSlop={4} accessibilityRole="button" accessibilityLabel={copy.card} onPress={onPress} style={({ pressed }) => [styles.ghost, pressed && styles.pressed]}>
-      <Ionicons name="add" size={18} color={g.text} />
-      <Text style={[styles.ghostText, { color: g.text }]}>{copy.card}</Text>
-    </Pressable>
-  );
+  return <PackRoundButton g={g} size={48} icon="add" testID="fc-pack-add-card" label={copy.card} onPress={onPress} />;
 });
 
 const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
-  pressed: { opacity: 0.82 },
-  top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  bare: { width: 30, height: 42, justifyContent: 'center' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
-  info: { paddingHorizontal: 20 },
-  title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
-  authorRow: { marginTop: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  ava: { width: 24, height: 24, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' },
+  topWrap: { marginTop: 6, paddingHorizontal: 20 },
+  info: { paddingHorizontal: 20, paddingBottom: 14 },
+  title: { marginTop: 14, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
+  authorRow: { marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  ava: { width: 23, height: 23, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' },
   author: { flexShrink: 1, fontSize: 16, lineHeight: 22 },
-  badge: { marginLeft: 'auto', minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: g.hairlineSoft },
-  badgeText: { fontSize: 16, lineHeight: 20, fontWeight: '600', color: g.secondary },
-  actions: { marginTop: 16, minHeight: 42, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  actionLeft: { flexShrink: 1, flexDirection: 'row', alignItems: 'center' },
-  train: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  trainText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
-  ghostText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  divider: { marginTop: 22, height: 1, backgroundColor: g.line },
-  cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  cardsCount: { color: g.mutedText },
+  metaRow: { marginTop: 12, flexDirection: 'row', alignItems: 'center', gap: 18, flexWrap: 'wrap' },
+  metaText: { fontSize: 16, lineHeight: 22 },
+  status: { flexDirection: 'row', alignItems: 'center', gap: 7 },
+  lvl: { minWidth: 38, height: 26, paddingHorizontal: 9, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
+  lvlText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  actions: { marginTop: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
 });

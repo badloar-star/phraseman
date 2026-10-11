@@ -19,42 +19,8 @@ const SRC = __dirname;
 const SKIP = new Set(['generated', 'node_modules', 'lib']);
 
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину через swallowed().
+// зачем (11.10, общий прогон §CORE-0169): 35 файлов уже без немых catch — потолок сокращён до факта (ратчет только вниз).
 const BASELINE: Record<string, number> = {
-  'admin_alert_context.ts': 4,
-  'admin_alerts.ts': 1,
-  'admin_asset_studio.ts': 1,
-  'admin_director_digest_audio.ts': 1,
-  'admin_push_jobs.ts': 2,
-  'admin_user_profile.ts': 2,
-  'app_messages.ts': 1,
-  'content_factory/artifact_edit.ts': 1,
-  'content_factory/v2_firebase_repository_persistence_v1.ts': 1,
-  'content_studio/firestore_authoring_store.ts': 1,
-  'daily_phrases.ts': 2,
-  'dialogue_v2_freeform_memory.ts': 1,
-  'dialogue_v2_session_complete_callable.ts': 1,
-  'dialogue_v2_turn_callable.ts': 2,
-  'dialogue_v2_turn_production_callable.ts': 2,
-  'email_contacts.ts': 1,
-  'email_unsubscribe.ts': 1,
-  'explain/explain_provider.ts': 2,
-  'explain_phrase.ts': 5,
-  'expo_push.ts': 1,
-  'friend_codes.ts': 4,
-  'friend_lookup.ts': 5,
-  'jarvis/all_departments_callables.ts': 1,
-  'jarvis/approval_webhook.ts': 1,
-  'jarvis/business_tier_callables.ts': 1,
-  'jarvis/growth_firestore_fetcher.ts': 1,
-  'jarvis/pm_business_context.ts': 3,
-  'jarvis/quality_firestore_fetcher.ts': 1,
-  'jarvis/telegram_send.ts': 2,
-  'leaderboard.ts': 6,
-  'payment_webhook_alert.ts': 1,
-  'premium_dialog.ts': 5,
-  'premium_dialog_review.ts': 1,
-  'premium_dialog_stream.ts': 1,
-  'report_replies.ts': 1,
   // stats_insights.ts (1) и weekly_review.ts (5) удалены 04.10 (PM-221) — их немые catch ушли вместе с кодом.
 };
 

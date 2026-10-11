@@ -616,6 +616,12 @@
       <div class="sec"><div class="ti" style="font-size:17px">Время</div></div>
       <div class="seg3" data-seg><span>30 с</span><span class="on">60 с</span><span>90 с</span></div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : `${icon('play', 's18')}Начать`}</div></div>` });
+  // зачем (код TrainingSetupV2, кадр cards-075 приложения 12.10): пока наборы грузятся — шапка режима, «Что повторяем» и четыре плитки-заглушки в два столбца без текста, «Время» ещё нет, внизу неактивная «Начать» (вопрос Дизайну: код может показывать «Режим недоступен» — флаг или дефект; в образце «Начать»)
+  const setupLoading = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', '24/30')}</div>
+      <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
+      <div class="sec" style="margin-top:28px"><div class="ti" style="font-size:17px">Что повторяем</div></div>
+      <div class="pick">${[0, 1, 2, 3].map(() => '<div class="pk" style="min-height:110px"></div>').join('')}</div>`, { time: '9:41',
+    fixed: `<div class="bot"><div class="cta dis">${icon('play', 's18')}Начать</div></div>` });
   const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', '24/30')}</div>
       <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
       <div style="margin-top:40px">${empty(X.albums.replace('s18', 's28'), 'Нет карточек', 'Сохрани пару слов', 'Открыть каталог', 1)}</div>`, { time: '9:41' });
@@ -728,7 +734,7 @@
     ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
       col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
       col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),
-      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true)), col('Сохранённые — загрузка', savedLoading())]],
+      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true)), col('Сохранённые — загрузка', savedLoading()), col('Подготовка тренировки — загрузка наборов', setupLoading())]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

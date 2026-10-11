@@ -22,6 +22,13 @@ describe('вкладка «Видео»: каталог роликов вирт�
     expect(source).toContain("index % 2 === 0 ? styles.gridCellLeft : styles.gridCellRight");
   });
 
+  test('Главная показывает все ролики канала страницами по 20 (источник Ядра), а счётчики сохранений читаются только для показанных страниц', () => {
+    expect(source).toContain("useAllChannelVideos(catalog?.channel.id ?? pendingChannel?.id ?? '', undefined, catalog)");
+    expect(source).toContain('onEndReached={loadMoreVideos}');
+    expect(source).toContain('allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE)');
+    expect(source).toContain('allChannel.refresh()');
+  });
+
   test('шапка (премьера, «Сохранённые видео») — в ListHeaderComponent; «Наборы» — отдельная вкладка', () => {
     const start = source.indexOf('ListHeaderComponent={<>');
     expect(start).toBeGreaterThan(0);

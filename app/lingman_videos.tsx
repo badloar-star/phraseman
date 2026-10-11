@@ -23,6 +23,7 @@ import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import FlashcardsVideoPacksScreen from './flashcards_video_packs';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
+import { ALL_VIDEOS_PAGE_SIZE, useAllChannelVideos, type AllVideosItem } from './all_channel_videos_source';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -91,6 +92,11 @@ function legacyChannelSnapshot(): YoutubeChannelSnapshot {
     handle: channel.handle, url: channel.url, languageTags: ['en'], order: 0,
     recentVideoIds: [], playlistIds: [],
   };
+}
+
+/** Элемент полного списка (без описания, ради компактного кэша) → снимок для карточки сетки. */
+function toVideoSnapshot(item: AllVideosItem): YoutubeVideoSnapshot {
+  return { ...item, description: '', playlistIds: [...item.playlistIds] };
 }
 
 function legacyVideoSnapshot(video: LingmanYoutubeVideo): YoutubeVideoSnapshot {
@@ -423,9 +429,20 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     void Linking.openURL(trustedUrl);
   };
 
-  const allVideos = catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
+  // зачем (владелец, журнал 14 + макет video-redesign #c1): Главная показывает ВСЕ ролики канала (до 100), а не только последние 20 снимка.
+  // Источник — app/all_channel_videos_source.ts (Ядро): первый кадр — снимок экрана, полный список догружается фоном (сеть не чаще раза в 6 ч,
+  // почти всегда 0 чтений Firestore). Пока полного списка нет, всё работает на снимке, как раньше.
+  const allChannel = useAllChannelVideos(catalog?.channel.id ?? pendingChannel?.id ?? '', undefined, catalog);
+  const fullVideos = useMemo(
+    () => (allChannel.status === 'ready' ? allChannel.items.map(toVideoSnapshot) : null),
+    [allChannel.status, allChannel.items],
+  );
+  const [pages, setPages] = useState(1);
+  useEffect(() => { setPages(1); }, [catalog?.channel.id]);
+  const allVideos = fullVideos ?? catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
   const favorites = useVideoFavorites();
-  const shownVideoIds = useMemo(() => allVideos.map((video) => video.id), [allVideos]);
+  // зачем (Firebase-экономия): счётчики сохранений читаем только для показанных страниц, а не для всех 100 роликов.
+  const shownVideoIds = useMemo(() => allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE).map((video) => video.id), [allVideos, pages]);
   const saveCountOf = useVideoSaveCounts(shownVideoIds, favorites.state);
   const savedVideos = useMemo(() => {
     const byId = new Map(allVideos.map((video) => [video.id, video] as const));
@@ -551,7 +568,15 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     : pendingChannel ?? legacyChannelSnapshot();
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
-  const homeListVideos = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
+  const homeListAll = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
+  // Страницы по 20 (allVideosPage у Ядра = page × 20): список растёт по onEndReached; снимок (20) и «Сохранённые» — целиком.
+  const paged = !savedOnly && !!fullVideos;
+  const homeListVideos = useMemo(() => (paged ? homeListAll.slice(0, pages * ALL_VIDEOS_PAGE_SIZE) : homeListAll), [homeListAll, pages, paged]);
+  const loadMoreVideos = useCallback(() => {
+    if (!paged || pages * ALL_VIDEOS_PAGE_SIZE >= homeListAll.length) return;
+    console.log('[VIDEO-TAB] догрузка страницы', JSON.stringify({ pages: pages + 1, total: homeListAll.length })); // guard-ok: пагинация логируется
+    setPages((current) => current + 1);
+  }, [homeListAll.length, pages, paged]);
   // Всё, от чего зависит вид карточки, — иначе FlashList не перерисует видимые строки.
   const homeListExtra = useMemo(() => ({ activeVideoId, expandedPhraseVideoId, saved: favorites.savedIds, remindedIds, screenRuntimeActive }), [activeVideoId, expandedPhraseVideoId, favorites.savedIds, remindedIds, screenRuntimeActive]);
   const pickerManifest = catalog?.manifest ?? {
@@ -710,9 +735,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             keyExtractor={(item) => item.id}
             renderItem={renderHomeVideo}
             numColumns={2}
+            onEndReached={loadMoreVideos}
+            onEndReachedThreshold={0.6}
             extraData={homeListExtra}
             showsVerticalScrollIndicator={false}
-            refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />}
+            refreshControl={<HybridRefreshControl refreshing={refreshing || allChannel.refreshing} onRefresh={() => { void loadCatalog(undefined, true); allChannel.refresh(); }} />}
             contentContainerStyle={inTab ? { ...styles.gridList, paddingBottom: tabContentBottomPad } : styles.gridList}
             ListHeaderComponent={<>
             {hero && !savedOnly ? hero.id === activeVideoId ? (

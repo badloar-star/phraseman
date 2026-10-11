@@ -47,6 +47,15 @@ describe('triLang without an English key', () => {
   });
 });
 
+describe('no unguarded direct reads of a language dictionary that lacks `en`', () => {
+  // зачем (крэш 27.08): DICT[lang] без ключа en давал undefined и TypeError, как только английский включали.
+  it('scan_direct_lang_index finds no new unguarded reads', () => {
+    const root = path.resolve(__dirname, '..');
+    const out = execFileSync(process.execPath, [path.join(root, 'scripts', 'scan_direct_lang_index.mjs')], { cwd: root, encoding: 'utf8', timeout: 120_000 });
+    expect(out).toContain('OK');
+  });
+});
+
 describe('dictionaries without an English key never grow', () => {
   it('scan_missing_en_dictionaries passes against config/missing-en-baseline.json', () => {
     const root = path.resolve(__dirname, '..');

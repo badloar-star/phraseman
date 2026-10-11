@@ -103,6 +103,7 @@
     "i18n:en-check": "node scripts/scan_missing_en_dictionaries.mjs",
     "i18n:en-report": "node scripts/scan_missing_en_dictionaries.mjs --report",
     "i18n:en-baseline": "node scripts/scan_missing_en_dictionaries.mjs --update",
+    "i18n:en-index-check": "node scripts/scan_direct_lang_index.mjs",
     "workload": "node scripts/workload_check.mjs",
     "workload:full": "node scripts/workload_check.mjs --full",
     "content:status": "node scripts/content_pipeline_brief.mjs --status",

@@ -33,6 +33,8 @@ type Props = Readonly<{
   /** Заголовочный блок (название, число карточек, поиск) — едет вместе со списком. */
   header: React.ReactNode;
   hiddenByLimitCount: number;
+  /** Free упёрся в лимит сохранённых (cards-v2 `savedLimit`): внизу «Безлимит с Plus» вместо секции «+N скрыто». */
+  limitCta?: Readonly<{ onPress: () => void }> | null;
   onOpenPremiumLimit: () => void;
   onOpenCard: (id: string) => void;
   onSpeak: (text: string) => void;
@@ -79,6 +81,12 @@ const copyFor = (lang: FlashcardContentLang) => triLang(lang, {
   pl: { train: 'Ćwicz', speak: 'Posłuchaj', edit: 'Edytuj', del: 'Usuń', hint: 'Przytrzymaj kartę, aby ją edytować lub usunąć', hidden: (n: number) => `+${n} kart ukrytych`, free: 'Za darmo: pierwsze 50 zapisanych kart', plus: 'Odblokuj wszystko z Plus', createPack: 'Utwórz zestaw', deleteSel: 'Usuń', more: (n: number) => `Wybierz jeszcze ${n} kart, aby utworzyć zestaw`, add: 'Dodaj kartę', close: 'Zamknij' },
 });
 
+// зачем (cards-v2 `savedLimit`): подпись нижней кнопки при упёртом лимите Free — 9 языков
+const unlimitedLabelFor = (lang: FlashcardContentLang): string => triLang(lang, {
+  ru: 'Безлимит с Plus', uk: 'Безліміт з Plus', en: 'Unlimited with Plus', es: 'Sin límite con Plus', 'pt-BR': 'Sem limite com Plus',
+  vi: 'Không giới hạn với Plus', id: 'Tanpa batas dengan Plus', tr: 'Plus ile sınırsız', pl: 'Bez limitu z Plus',
+});
+
 const zoomCopyFor = (lang: FlashcardContentLang) => triLang(lang, {
   ru: { smaller: 'Мельче', larger: 'Крупнее', more: 'Ещё' },
   uk: { smaller: 'Дрібніше', larger: 'Крупніше', more: 'Ще' },
@@ -96,7 +104,7 @@ const SEARCH_STEP = GALLERY_DEFAULT_STEP;
 const TAG = '[CARDS-ZOOM]';
 
 export default function CollectionGalleryView({
-  cards, lang, header, hiddenByLimitCount, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
+  cards, lang, header, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
   selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
@@ -225,7 +233,7 @@ export default function CollectionGalleryView({
               highlight={searching ? searchQuery : undefined}
             />
           </View>
-          {!selectionMode && hiddenByLimitCount > 0 ? (
+          {!selectionMode && hiddenByLimitCount > 0 && !limitCta ? (
             <Pressable testID="flashcards-free-limit-section" accessibilityRole="button" onPress={onOpenPremiumLimit} style={[styles.limit, { backgroundColor: g.hairlineSoft }]}>
               <Ionicons name="lock-closed" size={24} color={g.text} />
               <Text style={[styles.limitTitle, { color: g.text }]}>{copy.hidden(hiddenByLimitCount)}</Text>
@@ -263,10 +271,19 @@ export default function CollectionGalleryView({
         </PanelDock>
       ) : onTrain ? (
         // зачем (макет cards-v2 `.fab-wrap`): «Тренировать» — плавающая пилюля по центру внизу (42 высотой, значок ▶ и подпись), а не широкая панель
-        <View pointerEvents="box-none" style={[styles.fabWrap, { bottom: Math.max(30, insets.bottom + 10) }]}>
+        <View pointerEvents="box-none" style={[styles.fabWrap, { bottom: Math.max(30, insets.bottom + 10) + (limitCta ? 66 : 0) }]}>
           <Pressable testID="fc-gallery-train" accessibilityRole="button" accessibilityLabel={copy.train} onPress={onTrain} style={({ pressed }) => [styles.fab, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
             <Ionicons name="play" size={18} color={g.accentInk} />
             <Text style={[styles.fabText, { color: g.accentInk }]}>{copy.train}</Text>
+          </Pressable>
+        </View>
+      ) : null}
+
+      {limitCta && !selectionMode ? (
+        <View pointerEvents="box-none" style={[styles.limitBar, { bottom: Math.max(16, insets.bottom + 6) }]}>
+          <Pressable testID="fc-gallery-unlimited" accessibilityRole="button" accessibilityLabel={unlimitedLabelFor(lang)} onPress={limitCta.onPress} style={({ pressed }) => [styles.limitBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
+            <Ionicons name="lock-open-outline" size={18} color={g.accentInk} />
+            <Text style={[styles.limitBtnText, { color: g.accentInk }]}>{unlimitedLabelFor(lang)}</Text>
           </Pressable>
         </View>
       ) : null}
@@ -300,6 +317,9 @@ const styles = StyleSheet.create({
   selHint: { marginBottom: 10, fontSize: 13, lineHeight: 17, textAlign: 'center' },
   selRow: { flexDirection: 'row', gap: 10 },
   fabWrap: { position: 'absolute', left: 0, right: 0, alignItems: 'center' },
+  limitBar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 20 },
+  limitBtn: { minHeight: 56, borderRadius: 28, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  limitBtnText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   fab: { height: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
   fabPressed: { opacity: 0.86 },
   fabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },

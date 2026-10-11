@@ -8,6 +8,7 @@ import { customCardLocalizationForLang } from './flashcards/custom_card_localiza
 // `ru`/`es` берутся из существующей карточки; аналогично для RU и ES.
 // Запись — только через очередь `flashcards/custom_cards_store.ts`.
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -157,6 +158,15 @@ export default function FlashcardsCardEditorScreen() {
   const creatorGated = !isEdit && shouldGateCreator(hasPremiumAccess);
   const creatorLocked = creatorGated && accessResolved;
   const creatorRedirectedRef = useRef(false);
+  // зачем (Карточки 2.0 12.10, cards-v2 `newCard({limit:'50/50'})`, координатор): у Free 50 своих карточек (FREE_CUSTOM_CARD_LIMIT). Число своих
+  // карточек читаем из того же локального списка, что и подсказки дубликатов (0 чтений Firestore) и сразу на входе показываем пилюлю «50/50»
+  // и «Безлимит с Plus» — человек не вводит слово и перевод ради сырого отказа при сохранении.
+  const [customCount, setCustomCount] = useState<number | null>(() => peekCustomCardsSync(studyTarget)?.length ?? null);
+  const cardLimitReached = !isEdit && accessResolved && !hasPremiumAccess && customCount !== null && customCount >= FREE_CUSTOM_CARD_LIMIT;
+  const openCardLimitPaywall = useCallback(() => {
+    void trackEvent('paywall_shown', { context: creatorPaywallContext('card'), source: 'card_editor_limit' });
+    router.push({ pathname: '/premium_modal', params: { context: creatorPaywallContext('card'), source: 'card_editor_limit' } } as never);
+  }, [router]);
   useEffect(() => {
     if (!creatorLocked || creatorRedirectedRef.current) return;
     creatorRedirectedRef.current = true;
@@ -230,6 +240,7 @@ export default function FlashcardsCardEditorScreen() {
       }),
     ]).then(([custom, saved]) => {
       if (cancelled) return;
+      setCustomCount(custom.length);
       const map = new Map<string, ExistingRow[]>();
       for (const c of [...custom, ...saved]) {
         if (!c.en) continue;
@@ -467,6 +478,12 @@ export default function FlashcardsCardEditorScreen() {
     } catch (e: unknown) {
       DebugLogger.error('flashcards_card_editor:save', e instanceof Error ? e : new Error(String(e)), 'warning');
       setSaving(false);
+      if (e instanceof Error && e.message === 'free_custom_card_limit_reached') {
+        // зачем: сырой отказ «не удалось сохранить» при исчерпанном лимите — потеря работы без объяснения; ведём в покупку, форма остаётся
+        console.log('[CARD-EDITOR] save refused by free card limit -> paywall'); // guard-ok: ранний выход пишет причину
+        openCardLimitPaywall();
+        return;
+      }
       emitAppEvent(
         'action_toast',
         {
@@ -493,6 +510,7 @@ export default function FlashcardsCardEditorScreen() {
     isEdit,
     hasOtherLangTranslation,
     lang,
+    openCardLimitPaywall,
     leaveEditorAfterSave,
     loadingCard,
     creatorGated,
@@ -505,6 +523,10 @@ export default function FlashcardsCardEditorScreen() {
   // плашка с подписью ВНУТРИ и полем ввода без своей рамки; фокус — светлее
   // кромка, а не цветная толстая рамка. Логика ввода/сохранения не менялась.
   const inputStyle = { color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '500' as const, paddingHorizontal: 0, paddingVertical: 0 };
+  const unlimitedPlusLabel = triLang(lang, {
+    ru: 'Безлимит с Plus', uk: 'Безліміт з Plus', en: 'Unlimited with Plus', es: 'Sin límite con Plus', 'pt-BR': 'Sem limite com Plus',
+    vi: 'Không giới hạn với Plus', id: 'Tanpa batas dengan Plus', tr: 'Plus ile sınırsız', pl: 'Bez limitu z Plus',
+  });
   const fieldCopy = triLang(lang, {
     ru: { word: 'Слово или фраза', translation: 'Перевод', example: 'Пример', pack: 'Набор', myCards: 'Мои карточки', add: 'Добавить' },
     uk: { word: 'Слово або фраза', translation: 'Переклад', example: 'Приклад', pack: 'Набір', myCards: 'Мої картки', add: 'Додати' },
@@ -553,7 +575,13 @@ export default function FlashcardsCardEditorScreen() {
                   {isEdit ? s.editCard : s.newCard}
                 </Text>
               </View>
-              <View style={{ width: 44 }} />
+              {cardLimitReached ? (
+                // макет `limPill('layers', '50/50')`: пилюля лимита — реальный лимит места (свои карточки)
+                <View testID="fc-editor-limit-pill" accessible accessibilityLabel={`${customCount} / ${FREE_CUSTOM_CARD_LIMIT}`} style={{ height: 32, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }}>
+                  <Ionicons name="layers-outline" size={16} color={g.text} />
+                  <Text style={{ color: g.text, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${customCount}/${FREE_CUSTOM_CARD_LIMIT}`}</Text>
+                </View>
+              ) : <View style={{ width: 44 }} />}
             </View>
 
             {/*
@@ -788,9 +816,9 @@ export default function FlashcardsCardEditorScreen() {
                 <CardsGlassPrimaryButton
                   g={g}
                   testID="fc-editor-save"
-                  label={isEdit ? s.save : fieldCopy.add}
-                  disabled={!canSave}
-                  onPress={handleSave}
+                  label={cardLimitReached ? unlimitedPlusLabel : isEdit ? s.save : fieldCopy.add}
+                  disabled={cardLimitReached ? false : !canSave}
+                  onPress={cardLimitReached ? openCardLimitPaywall : handleSave}
                 />
               </CardsGlassBottomBar>
               </>

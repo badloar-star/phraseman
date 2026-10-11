@@ -67,7 +67,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 /** Верхняя панель: «назад» и квадратная кнопка меню; в режиме выбора — «Отмена» и счётчик. */
-export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, onCreate, onSearch, searchOpen }: Readonly<{
+export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, limitIcon, onCreate, onSearch, searchOpen }: Readonly<{
   lang: Lang;
   onBack: () => void;
   onMenu: () => void;
@@ -77,6 +77,8 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
   onExitSelection?: () => void;
   /** Пилюля остатка тренировок («24/30») и «+» — на экране набора (макет «Свой набор»). */
   limitLabel?: string | null;
+  /** Значок пилюли лимита: на «Сохранённых» закладка, на наборе стопка (по умолчанию). */
+  limitIcon?: keyof typeof Ionicons.glyphMap;
   onCreate?: () => void;
   /** Кнопка поиска в шапке (макет cards-v2: поиск открывается в полосе масштаба); без неё поиск остаётся в заголовочном блоке. */
   onSearch?: () => void;
@@ -103,7 +105,7 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
       <View style={styles.topRight}>
         {limitLabel ? (
           <View testID="fc-collection-limit" style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>
-            <Ionicons name="albums-outline" size={16} color={g.text} />
+            <Ionicons name={limitIcon ?? 'albums-outline'} size={16} color={g.text} />
             <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
           </View>
         ) : null}

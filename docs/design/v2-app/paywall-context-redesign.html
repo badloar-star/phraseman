@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пейволл Plus — по входам</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 11.10: «ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ ВСЕГДА, я не вижу контекста»; координатор 18:00): три варианта окна Plus, где КОНТЕКСТ — главное:
+     человек сразу видит, ПОЧЕМУ окно открылось (что закончилось / что закрыто), и ровно одну выгоду под этот момент. Состояния: энергия, лимит ИИ-разбора, закрытый урок, ошибки,
+     карточки, серия (заморозка), диалоги, итог бесплатных уроков, «Цена недоступна — повторить», загрузка цен. Остальные входы — в таблице paywall-context-texts.md.
+     Тексты — короткие, на «ты». Цены, пробный период и числа примерные: в приложении они приходят из магазина. Только существующее: заголовок / подзаголовок / первая выгода,
+     планы «Год» и «Месяц», пробный период из магазина, «Восстановить · Условия · Конфиденциальность», «Цены не загрузились → Ещё раз». Цвет — только тема. */
+  .scr > .in { min-height: 100%; }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); } .grow { flex: 1; }
+  .ib { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; color: #fff; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .ib.bare { background: transparent; box-shadow: none; }
+  .glass { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.72)), rgba(14,14,18,.68) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.68))); box-shadow: inset 0 0 0 1px rgba(255,255,255,.11), inset 0 1.5px 0 -.2px rgba(255,255,255,.2); }
+  .cta { display: flex; align-items: center; justify-content: center; height: 58px; border-radius: 29px; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); font-size: 18px; font-weight: 700; box-shadow: 0 8px 26px color-mix(in srgb, var(--acc) 30%, transparent); }
+  .fine { text-align: center; font-size: 13px; line-height: 18px; color: var(--sec); margin-top: 10px; }
+  .links { display: flex; justify-content: center; gap: 18px; font-size: 14px; font-weight: 600; color: var(--sec); margin-top: 14px; }
+  .chip2 { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 16px; background: rgba(255,255,255,.09); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); font-size: 14px; font-weight: 700; }
+  .ico { display: flex; align-items: center; justify-content: center; flex: none; color: var(--acc); background: linear-gradient(150deg, color-mix(in srgb, var(--acc) 26%, #14141a), color-mix(in srgb, var(--g2) 26%, #0e0e12)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), inset 0 1.5px 0 -.2px rgba(255,255,255,.28); }
+  .ttl { font-weight: 700; letter-spacing: -.5px; } .sub { color: rgba(255,255,255,.78); }
+  .ben { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; font-size: 17px; font-weight: 600; line-height: 22px; }
+  .ben .ok { width: 28px; height: 28px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; }
+  .tag { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 11px; background: var(--acc); color: var(--on); font-size: 12px; font-weight: 700; }
+  .plan { border-radius: 20px; padding: 14px 16px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .plan.on { background: color-mix(in srgb, var(--acc) 16%, rgba(255,255,255,.05)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .plan .n { font-size: 17px; font-weight: 700; } .plan .p { font-size: 15px; color: var(--sec); margin-top: 3px; }
+  .trial { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,.1); font-size: 15px; font-weight: 600; color: var(--acc); }
+  .rad { width: 24px; height: 24px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 2px rgba(255,255,255,.3); } .on .rad { background: var(--acc); box-shadow: none; display: flex; align-items: center; justify-content: center; color: var(--on); }
+  .err { border-radius: 20px; padding: 18px 16px; text-align: center; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .err .a { font-size: 18px; font-weight: 700; } .err .b { font-size: 15px; color: var(--sec); margin-top: 4px; }
+  .ret { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 22px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); font-size: 16px; font-weight: 700; margin-top: 12px; }
+  .sk { border-radius: 20px; height: 74px; background: linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.1), rgba(255,255,255,.05)); }
+  /* 1 · шторка поверх экрана, где человек был */
+  .und { position: absolute; inset: 0; padding: 70px 20px 0; }
+  .und .h { font-size: 28px; font-weight: 700; } .und .r { height: 64px; border-radius: 18px; background: rgba(255,255,255,.08); margin-top: 12px; }
+  .und::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.6); }
+  .sh1 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 10px 20px 34px; background: rgba(22,22,27,.98); box-shadow: inset 0 1.5px 0 -.2px rgba(255,255,255,.2), inset 0 0 0 1px rgba(255,255,255,.07); }
+  .sh1 .gr { width: 44px; height: 5px; border-radius: 3px; background: #4A4A4E; margin: 0 auto 14px; }
+  .pl2 { display: flex; gap: 10px; margin-top: 14px; } .pl2 .plan { flex: 1; }
+  /* 2 · полный экран с героем */
+  .hro { text-align: center; margin-top: 18px; }
+  .stk { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .stk .plan { display: flex; align-items: center; gap: 14px; } .stk .plan .tx { flex: 1; }
+  .fixb { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 22px 20px 30px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.96) 40%); }
+  /* 3 · «бесплатно или Plus» */
+  .cmp { display: flex; gap: 10px; margin-top: 18px; } .cmp > div { flex: 1; border-radius: 22px; padding: 16px 14px; min-height: 142px; }
+  .cmp .f { background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); } .cmp .p { background: color-mix(in srgb, var(--acc) 14%, rgba(255,255,255,.05)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--acc) 65%, transparent); }
+  .cmp .k { font-size: 14px; font-weight: 700; color: var(--sec); } .cmp .p .k { color: var(--acc); } .cmp .v { font-size: 20px; line-height: 25px; font-weight: 700; margin-top: 10px; }
+  .seg { display: flex; gap: 4px; padding: 4px; border-radius: 18px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); margin-top: 18px; } .seg span { flex: 1; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600; color: var(--sec); } .seg span.on { background: var(--acc); color: var(--on); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Пейволл Plus — по входам</h1>
+  <p class="page-lead">Три варианта окна Plus, где главное — контекст: сразу видно, почему окно открылось и что именно даёт Plus в этот момент. В каждом варианте 10 состояний: энергия, ИИ-разбор, закрытый урок, ошибки, карточки, серия, диалоги, итог бесплатных уроков, «Цена недоступна — повторить», загрузка цен. Тексты — короткие, на «ты»; цены и пробный период примерные, в приложении их даёт магазин. Остальные входы и все тексты — в таблице paywall-context-texts.md. Цвет темы переключается кнопками ниже.</p>
+  <div class="page-nav"><a href="#c1">1 · Шторка</a><a href="#c2">2 · Полный экран</a><a href="#c3">3 · Бесплатно или Plus</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const ib = (n, x = '') => `<span class="ib t${x}">${icon(n, 's20')}</span>`;
+// ---- входы: что закончилось → короткий текст на «ты» ----
+// [иконка, «что случилось» (пилюля), заголовок, подзаголовок, первая выгода, экран-подложка, «сейчас бесплатно», «с Plus»]
+const C = {
+  energy: ['bolt', 'Энергия 0', 'Энергия закончилась', 'С Plus она не тратится — занимайся дальше сразу.', 'Занятия без ожидания', 'Урок', 'Энергия тратится на уроки', 'Не тратится'],
+  explain: ['chatDots', 'Разбор на сегодня: 0', 'Разбор на сегодня закончился', 'С Plus ИИ объяснит каждую ошибку: что не так и как сказать верно.', 'Разбор каждой ошибки сразу после ответа', 'Результат урока', 'Несколько разборов в день', 'Каждая ошибка'],
+  lesson: ['layers', 'Урок 4 закрыт', 'Дальше — в Plus', 'Впереди ещё двадцать девять уроков: от простых фраз до свободного разговора.', 'Весь курс целиком', 'Карта уроков', 'Первые три урока', 'Весь курс'],
+  mistakes: ['flag', '1 из 1 подхода', 'Ошибки — без лимита', 'Бесплатно — один подход в день. С Plus разбирай сколько нужно.', 'Все ошибки из уроков и карточек в одном месте', 'Мои ошибки', 'Один подход в день', 'Сколько нужно'],
+  cards: ['layers', '20 из 20 фраз', 'Место для карточек закончилось', 'Бесплатно — двадцать фраз. С Plus сохраняй сколько хочешь.', 'Безлимит на личную базу карточек', 'Карточки', 'Двадцать фраз', 'Сколько угодно'],
+  streak: ['flame', 'Серия 12 дней', 'Не потеряй серию', 'Plus защитит её, если пропустишь день.', 'Защита серии даже при пропуске', 'Главная', 'Серия сгорает при пропуске', 'Защита серии'],
+  dialog: ['chat', '30 из 30 ответов', 'Ответы в диалогах закончились', 'Бесплатно — 30 ответов в месяц. С Plus счётчика нет.', 'Все сценарии без месячного лимита', 'Диалоги', '30 ответов в месяц', 'Без счётчика'],
+  done: ['play', 'Бесплатные уроки пройдены', 'Бесплатные уроки пройдены', 'Дальше двадцать девять уроков — открой их с Plus.', 'Весь курс целиком', 'Итог урока', 'Бесплатные уроки', 'Весь курс'],
+};
+const STATES = [['1 · Энергия', 'energy', 'ok'], ['2 · ИИ-разбор', 'explain', 'ok'], ['3 · Закрытый урок', 'lesson', 'ok'], ['4 · Ошибки', 'mistakes', 'ok'], ['5 · Карточки', 'cards', 'ok'],
+  ['6 · Серия, заморозка', 'streak', 'ok'], ['7 · Диалоги', 'dialog', 'ok'], ['8 · Итог бесплатных уроков', 'done', 'ok'], ['9 · Цена недоступна', 'energy', 'err'], ['10 · Загрузка цен', 'energy', 'load']];
+const YEAR = '3 990 ₽ в год', MON = '490 ₽ в месяц';
+const links = '<div class="links"><span class="t">Восстановить</span><span class="t">Условия</span><span class="t">Конфиденциальность</span></div>';
+const errBox = `<div class="err"><div class="a">Цены не загрузились</div><div class="b">Проверь интернет</div><span class="ret t">${icon('up', 's18')}Ещё раз</span></div>`;
+const loadBox = '<div style="display:flex;flex-direction:column;gap:10px"><div class="sk"></div><div class="sk" style="height:60px"></div></div>';
+const ctaTxt = (st) => (st === 'ok' ? 'Начать 7 дней бесплатно' : 'Оформить Plus');
+const fine = (st) => (st === 'ok' ? '<div class="fine">Потом 3 990 ₽ в год. Отмена в любой момент.</div>' : '<div class="fine">Кнопка работает и без цен — цена покажется в магазине.</div>');
+
+// ================= 1 · ШТОРКА =================
+const v1 = (k, st) => { const c = C[k]; const plans = st === 'ok' ? `<div class="pl2"><div class="plan on t"><div class="n">Год <span class="tag" style="margin-left:6px">Выгоднее</span></div><div class="p">3 990 ₽ в год<br>332 ₽ в месяц</div></div><div class="plan t"><div class="n">Месяц</div><div class="p">490 ₽ в месяц</div></div></div>` : st === 'err' ? `<div style="margin-top:14px">${errBox}</div>` : `<div style="margin-top:14px">${loadBox}</div>`;
+  return phone('', { overlay: `<div class="und"><div class="h">${c[5]}</div><div class="r"></div><div class="r"></div><div class="r"></div></div>
+  <div class="sh1"><div class="gr"></div><div class="flex" style="align-items:center;gap:12px"><span class="ico" style="width:52px;height:52px;border-radius:16px">${icon(c[0], 's24')}</span><span class="chip2">${c[1]}</span><span class="grow"></span>${ib('close', ' bare')}</div>
+  <div class="ttl" style="font-size:27px;line-height:32px;margin-top:16px">${c[2]}</div><div class="sub" style="font-size:16px;line-height:22px;margin-top:8px">${c[3]}</div>
+  <div class="ben glass" style="margin-top:16px"><span class="ok">${icon('check', 's16')}</span>${c[4]}</div>${plans}<div class="cta t" style="margin-top:16px">${ctaTxt(st)}</div>${fine(st)}${links}</div>` }); };
+
+// ================= 2 · ПОЛНЫЙ ЭКРАН =================
+const v2 = (k, st) => { const c = C[k]; const plans = st === 'ok' ? `<div class="stk"><div class="plan on t"><span class="rad">${icon('check', 's16')}</span><div class="tx"><div class="n">Год <span class="tag" style="margin-left:6px">Выгоднее всего</span></div><div class="p">3 990 ₽ в год · 332 ₽ в месяц</div></div></div><div class="plan t"><span class="rad"></span><div class="tx"><div class="n">Месяц</div><div class="p">490 ₽ в месяц</div></div></div></div>` : st === 'err' ? `<div style="margin-top:18px">${errBox}</div>` : `<div style="margin-top:18px">${loadBox}</div>`;
+  return phone(`<div class="topbar">${ib('close', ' bare')}<span></span></div><div class="hro"><span class="ico" style="width:96px;height:96px;border-radius:50%;margin:0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 0 0 10px color-mix(in srgb, var(--acc) 10%, transparent)">${icon(c[0], 's28')}</span>
+  <div style="margin-top:18px"><span class="chip2">${c[1]}</span></div><div class="ttl" style="font-size:32px;line-height:37px;margin-top:14px">${c[2]}</div><div class="sub" style="font-size:17px;line-height:24px;margin-top:10px">${c[3]}</div></div>
+  <div class="ben glass" style="margin-top:20px"><span class="ok">${icon('check', 's16')}</span>${c[4]}</div>${plans}<div style="height:150px"></div>`, { fixed: `<div class="fixb"><div class="cta t">${ctaTxt(st)}</div>${fine(st)}${links}</div>` }); };
+
+// ================= 3 · БЕСПЛАТНО ИЛИ PLUS =================
+const v3 = (k, st) => { const c = C[k]; const plans = st === 'ok' ? `<div class="seg"><span class="on t">Год · 332 ₽ в месяц</span><span class="t">Месяц</span></div>` : st === 'err' ? `<div style="margin-top:18px">${errBox}</div>` : `<div style="margin-top:18px">${loadBox}</div>`;
+  return phone(`<div class="topbar">${ib('close', ' bare')}<span class="chip2">${icon(c[0], 's18')}${c[1]}</span></div>
+  <div class="ttl" style="font-size:31px;line-height:36px;margin-top:18px">${c[2]}</div><div class="sub" style="font-size:17px;line-height:24px;margin-top:10px">${c[3]}</div>
+  <div class="cmp"><div class="f"><div class="k">Сейчас, бесплатно</div><div class="v">${c[6]}</div></div><div class="p"><div class="k">С Plus</div><div class="v">${c[7]}</div></div></div>
+  <div class="ben glass" style="margin-top:14px"><span class="ok">${icon('check', 's16')}</span>${c[4]}</div>${plans}<div style="height:150px"></div>`, { fixed: `<div class="fixb"><div class="cta t">${ctaTxt(st)}</div>${fine(st)}${links}</div>` }); };
+
+const mk = (f) => STATES.map(([l, k, st]) => col(l, f(k, st)));
+document.getElementById('root').innerHTML =
+  block('c1', 'Вариант 1 · Шторка', 'Чем отличается: окно выезжает шторкой поверх того экрана, где человек был, — контекст виден буквально (за шторкой «Урок», «Диалоги», «Карточки»). Наверху значок входа и пилюля «что закончилось», ниже заголовок, одна фраза и первая выгода.', mk(v1)) +
+  block('c2', 'Вариант 2 · Полный экран', 'Чем отличается: целый экран с крупным значком входа в центре и пилюлей «что закончилось». Планы «Год» и «Месяц» — двумя строками, кнопка закреплена внизу.', mk(v2)) +
+  block('c3', 'Вариант 3 · Бесплатно или Plus', 'Чем отличается: две карточки рядом — что у тебя сейчас бесплатно и что будет с Plus, именно для этого входа («30 ответов в месяц» → «Без счётчика»). Выбор плана — переключателем «Год / Месяц».', mk(v3));
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

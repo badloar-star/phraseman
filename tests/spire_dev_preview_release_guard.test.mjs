@@ -65,3 +65,17 @@ test('the Dev Hub opens the preview and the route is classified in the route reg
   assert.match(read('components', 'dev', 'devToolRegistry.ts'), /action: 'open-spire-preview'/);
   assert.match(read('scripts', 'pm004_route_registry.mjs'), /'\/dev_spire_preview': \['archive'/);
 });
+
+// зачем (координатор 11.10): рантайм-увод на Главную оставлял маршрут и моки в стор-бандле. Теперь стор-ветка router.ctx.js
+// вырезает маршрут целиком — моки тянет только он, поэтому в релиз не попадают ни экран, ни данные превью.
+test('the store router context cuts the preview route out of the release bundle', () => {
+  const router = read('router.ctx.js');
+  const storeBranch = router.split(': require.context(')[0] ?? '';
+  const literal = /\n\s*\/(\^[\s\S]*?)\/,\s*\n/.exec(storeBranch)?.[1];
+  assert.ok(literal, 'регулярка стор-ветки router.ctx.js найдена');
+  const storeRegex = new RegExp(literal);
+  assert.equal(storeRegex.test('./dev_spire_preview.tsx'), false, 'превью Шпиля вырезано из стор-сборки');
+  assert.equal(storeRegex.test('./(tabs)/community.tsx'), true, 'вкладка «Сообщество» со Шпилем в стор-сборке есть');
+  const nonStoreBranch = router.split(': require.context(')[1] ?? '';
+  assert.ok(!nonStoreBranch.includes('dev_spire_preview'), 'в дев-сборке превью доступно');
+});

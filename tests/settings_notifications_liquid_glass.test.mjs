@@ -42,7 +42,8 @@ const protectedHashes = {
   // зачем (темы 2.0): кнопка OK модалки — роли цвета темы accent/accentInk (в «Спокойно» = cta/ctaInk).
   // 04.10: OM-TIME — кнопки 48, «Отмена» 700, двоеточие 300, поля панели колёс 18/28.
   // 11.10: «Темы» (cb4ecb396) дописали в разметку комментарий theme-exempt к чёрному затемнению — вид прежний.
-  TimeModal: 'e3537ef7107f8faedc8451ec70c6611d701336e35179516932bbbb9304c2468e', // 11.10: граница дорожки переключателя — switchTrackBorder(glass)
+  // 12.10 (Тень): окно времени без кромки — внешний слой с plateBoxShadow, кнопки с nested/action тенью; логика прежняя.
+  TimeModal: 'c7de4b443c84ac3ac95531d37ae3b7aaa48f9ffc8b2b9a59c11bb1d5ab6dd7fc', // 11.10: граница дорожки переключателя — switchTrackBorder(glass)
   scheduleTime: 'ba0a7abb3016f9ad6d07373ff26b07a699ca06431ef0ddcfff3268319f36cce1',
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',
@@ -124,9 +125,12 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   assert.match(source, /width:\s*41,\s*height:\s*41,\s*borderRadius:\s*10/);
   assert.match(source, /<Ionicons name=\{name\} size=\{20\}/);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*21,\s*fontWeight:\s*'700'/);
-  assert.match(source, /backgroundColor:\s*glass\.opaqueCard/);
-  assert.match(source, /colors=\{\[glass\.selected, 'transparent'\]\}/);
-  assert.match(source, /borderColor:\s*glass\.glassEdge/);
+  // зачем (стиль «Тень», владелец 12.10): строки — плашки с тенью без кромки и клипа.
+  assert.match(source, /backgroundColor:\s*glass\.plateFillFrom/);
+  assert.match(source, /boxShadow:\s*plateBoxShadow\(glass\)/);
+  assert.match(source, /<PlateFill g=\{glass\} radius=\{14\} \/>/);
+  // Исключение — рамка текущего часа в колёсике (индикатор выбора, не контейнер): borderTopWidth/borderBottomWidth.
+  assert.doesNotMatch(source, /borderWidth:\s*1,\s*borderColor:\s*glass\.glassEdge/);
   assert.doesNotMatch(source, /SectionSheetHeader|CustomSwitch|SafeAreaView|BlurView/);
   assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier|numberOfLines=/);
 });

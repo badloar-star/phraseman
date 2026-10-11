@@ -55,13 +55,15 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
   assert.match(rows, /minHeight:\s*SETTINGS_GLASS_ROW_MIN_HEIGHT/);
   assert.match(rows, /SETTINGS_GLASS_ROW_MIN_HEIGHT = 64/);
   assert.match(rows, /borderRadius:\s*14,\s*paddingVertical:\s*10,\s*paddingHorizontal:\s*14,\s*gap:\s*14/);
-  assert.match(rows, /backgroundColor:\s*glass\.opaqueCard/);
-  assert.match(rows, /colors=\{\[glass\.selected, 'transparent'\]\}/);
+  // зачем (стиль «Тень», владелец 12.10): плашка — заливка плашки и plateBoxShadow, без кромки и клипа; прежний diagonal-sheen selected→transparent убран.
+  assert.match(rows, /backgroundColor:\s*glass\.plateFillFrom/);
+  assert.match(rows, /boxShadow:\s*plateBoxShadow\(glass\)/);
+  assert.doesNotMatch(rows, /glassEdge: |borderColor: glass\.glassEdge|inset: true/);
   assert.match(rows, /width:\s*41,\s*height:\s*41,\s*borderRadius:\s*10/);
   assert.match(rows, /fontSize: 16, lineHeight: grouped \? 22 : 21, fontWeight: grouped \? '600' : '700'/);
   // Группа макета A: одна карточка, пункты через тонкий разделитель, строки внутри плоские 60 / 9·16.
   assert.match(rows, /export function SettingsGlassGroup/);
-  assert.match(rows, /borderTopWidth: StyleSheet\.hairlineWidth, borderTopColor: glass\.line/);
+  assert.match(rows, /borderTopWidth: StyleSheet\.hairlineWidth, borderTopColor: glass\.dividerTone/);
   assert.match(rows, /minHeight: 60,\s*paddingVertical: 9,\s*paddingHorizontal: 16/);
   assert.match(rows, /fontSize:\s*13,\s*lineHeight:\s*18,\s*marginTop:\s*3/);
   assert.match(rows, /name="chevron-forward"\s+size=\{18\}/);

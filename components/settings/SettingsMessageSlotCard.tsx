@@ -16,6 +16,7 @@ import {
 } from '../../app/settings_poll_vote';
 import { trackEvent } from '../../app/analytics';
 import { SETTINGS_GROUP_MARGIN } from './SettingsGroup';
+import { nestedBoxShadow, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 
 type Props = {
   campaign: AppMessageWithState;
@@ -53,6 +54,7 @@ function percent(count: number, total: number): string {
 
 export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginTop = 12 }: Props) {
   const { theme: t, f } = useTheme();
+  const g = useShadowGlass();
   const [vote, setVote] = useState<SettingsPollVoteState | null>(null);
   const copy = useMemo(() => pickAppMessageText(campaign, lang), [campaign, lang]);
   const question = useMemo(() => (
@@ -105,12 +107,14 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
         styles.card,
         {
           marginTop,
-          backgroundColor: t.bgCard,
+          // зачем (стиль «Тень», владелец 12.10): карточка сообщения — плашка с тенью (раньше отделялась только тоном bgCard)
+          backgroundColor: g.plateFillFrom,
+          boxShadow: plateBoxShadow(g),
         },
       ]}
     >
       <View style={styles.headingRow}>
-        <View style={[styles.icon, { backgroundColor: t.bgSurface }]}>
+        <View style={[styles.icon, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
           <Ionicons name={campaign.kind === 'poll' ? 'bar-chart-outline' : 'megaphone-outline'} size={18} color={t.textPrimary} />
         </View>
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg }]}>{copy.title}</Text>

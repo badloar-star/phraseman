@@ -3,16 +3,17 @@ import { switchTrackBorder } from './switch_chrome';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
-import SafeLinearGradient from '../SafeLinearGradient';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 // зачем (владелец 2026-09-29): корневой экран «Настройки» переносится 1 в 1 по макету
 // profile.html#PRF-01 (Liquid Glass). Строки/секции/переключатель собраны здесь один раз,
 // теми же размерами, что уже утверждены на дочерних экранах (язык, обучение): плашка 64 dp,
 // радиус 14, плитка 41, заголовок 16/21, подпись 13/18. Токены — только из liquidGlassTokens
-// (13 тем), без собственных цветов и без толстых обводок (только тонкая полупрозрачная 1 px).
+// (13 тем), без собственных цветов. Стиль «Тень» (владелец 12.10, эталон shadow-style-etalon.html «Настройки»): НИ ОДНОЙ обводки и кромки —
+// группа одна плашка, строки внутри без своих плашек, между ними разделитель-тон; отдельные строки — плашки с тенью.
 
 export type SettingsGlass = ReturnType<typeof liquidGlassTokens>;
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -28,10 +29,9 @@ export function settingsGlassCardStyle(glass: SettingsGlass) {
     gap: 14,
     flexDirection: 'row' as const,
     alignItems: 'center' as const,
-    backgroundColor: glass.opaqueCard,
-    borderWidth: 1,
-    borderColor: glass.glassEdge,
-    overflow: 'hidden' as const,
+    // зачем (стиль «Тень»): кромка и overflow: 'hidden' сняты — клип резал бы тень; заливку и скругление даёт KitGlassLayer.
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass),
   };
 }
 
@@ -63,20 +63,20 @@ const GROUPED_ROW_STYLE = {
   alignItems: 'center' as const,
 };
 
-/** `.card.list` макета A: одна карточка r14 с кромкой, пункты через тонкий разделитель `.row+.row`. */
+/** `.card.list` макета A: одна плашка r14 стиля «Тень», пункты через тонкий разделитель `.row+.row`. */
 export function SettingsGlassGroup({ glass, children, testID, marginTop }: { glass: SettingsGlass; children: React.ReactNode; testID?: string; marginTop?: number }) {
   const items = React.Children.toArray(children).filter(Boolean);
   if (items.length === 0) return null;
   return (
-    <View testID={testID} style={{ marginTop, borderRadius: 14, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' }}>
-      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+    // зачем (стиль «Тень»): группа — одна плашка с тенью, без кромки; строки плоские, разделитель — тон `dividerTone`.
+    <View testID={testID} style={{ marginTop, borderRadius: 14, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}>
       <ThemeGlassSmoke glass={glass} />
       <KitGlassLayer radius={14} />
       <SettingsGroupContext.Provider value>
         {items.map((child, index) => (
           <View
             key={React.isValidElement(child) && child.key != null ? child.key : index}
-            style={index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : undefined}
+            style={index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone } : undefined}
           >
             {child}
           </View>
@@ -93,9 +93,8 @@ export function SettingsGlassList({ children, marginTop }: { children: React.Rea
 
 export function SettingsGlassTile({ glass, children }: { glass: SettingsGlass; children: React.ReactNode }) {
   return (
-    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' }}>
-      {/* зачем (сверка 04.10, kit.css LIQUID GLASS): плитка значка — стекло с бликом и кромкой, как в макете. */}
-      <KitGlassLayer radius={10} />
+    // зачем (стиль «Тень»): плитка значка — вложенная плашка: тон и малая тень, без кромки и без слоя стекла.
+    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
       {children}
     </View>
   );
@@ -109,10 +108,9 @@ export function SettingsGlassCard({ glass, children, testID, style }: { glass: S
   }
   return (
     <View testID={testID} style={[settingsGlassCardStyle(glass), style]}>
-      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} />
-      {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
+      {/* зачем (стиль «Тень»): строка — плашка (градиент 180°), тень на самом контейнере; кромки нет. */}
       <KitGlassLayer radius={14} />
       {children}
     </View>
@@ -149,10 +147,9 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
     <>
       {grouped ? null : (
         <>
-          <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
           {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
           <ThemeGlassSmoke glass={glass} />
-          {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
+          {/* зачем (стиль «Тень»): строка — плашка (градиент 180°), тень на самом контейнере; кромки нет. */}
           <KitGlassLayer radius={14} />
         </>
       )}

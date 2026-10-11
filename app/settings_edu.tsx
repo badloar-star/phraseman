@@ -10,7 +10,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import PressableHybrid from '../components/PressableHybrid';
-import SafeLinearGradient from '../components/SafeLinearGradient';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useAudio } from '../hooks/use-audio';
 import {
   isFcAutoSpeakEnabled,
@@ -250,11 +250,11 @@ export default function SettingsEdu() {
   ];
 
   const RowIcon = ({ name }: { name: keyof typeof Ionicons.glyphMap }) => (
-    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}>
+    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
       <Ionicons name={name} size={20} color={glass.lightTint} />
     </View>
   );
-  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
+  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }; // зачем (стиль «Тень», владелец 12.10): строка — плашка с тенью, без кромки; overflow убран, он резал бы тень
   const titleStyle = { color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' as const };
   const subStyle = { color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '400' as const, marginTop: 3 };
 
@@ -291,7 +291,7 @@ export default function SettingsEdu() {
               const isOn = !!s[row.key];
               return (
                 <View key={row.key} style={rowStyle}>
-                  <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+                  <PlateFill g={glass} radius={14} />
                   <RowIcon name={row.icon} />
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={titleStyle}>{row.label}</Text>
@@ -309,7 +309,7 @@ export default function SettingsEdu() {
             </Text>
             <View style={{ gap: 10 }}>
             {soundRows.map(row => <View key={row.testID} testID={row.testID === 'fc-sfx-toggle' ? 'fc-sfx-row' : 'fc-autospeak-row'} style={rowStyle}>
-              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <PlateFill g={glass} radius={14} />
               <RowIcon name={row.icon} />
               <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{row.label}</Text><Text style={subStyle}>{row.sub}</Text></View>
               <LocalSwitch testID={row.testID} value={row.value} onValueChange={row.onValueChange} accessibilityLabel={row.label} glass={glass} />
@@ -317,7 +317,7 @@ export default function SettingsEdu() {
             </View>
 
             <View style={[rowStyle, { marginTop: 10 }]}>
-              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <PlateFill g={glass} radius={14} />
               <RowIcon name="volume-high-outline" />
               <View style={{ flex: 1, minWidth: 0 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
@@ -358,7 +358,7 @@ export default function SettingsEdu() {
             variant="card"
             contentStyle={[rowStyle, { marginTop: 10 }]}
             >
-            <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+            <PlateFill g={glass} radius={14} />
             <RowIcon name="person-outline" />
             <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />

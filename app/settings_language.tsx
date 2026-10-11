@@ -11,7 +11,7 @@ import { coerceInterfaceLang, getVisibleInterfaceLanguageOptions, triLang, type 
 import { IS_STORE_RELEASE } from './config';
 import { safeRouterBack } from './navigation_back';
 import PressableHybrid from '../components/PressableHybrid';
-import SafeLinearGradient from '../components/SafeLinearGradient';
+import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Image } from 'expo-image';
@@ -47,7 +47,9 @@ export default function SettingsLanguage() {
     ru: 'Язык меню и подсказок приложения', uk: 'Мова меню та підказок застосунку', en: 'Language for the app menus and hints', es: 'Idioma de los menús y las pistas de la app',
     'pt-BR': 'Idioma dos menus e dicas do aplicativo', vi: 'Ngôn ngữ cho menu và gợi ý của ứng dụng', id: 'Bahasa untuk menu dan petunjuk aplikasi', tr: 'Uygulama menüleri ve ipuçlarının dili', pl: 'Język menu i wskazówek aplikacji',
   });
-  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
+  // зачем (стиль «Тень», владелец 12.10): строка — плашка с тенью без кромки; выбранный язык приподнят (RAISED_LIFT на внешней обёртке), overflow не ставим — клип резал бы тень.
+  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
+  const activeRowStyle = { ...rowStyle, boxShadow: raisedBoxShadow(glass) };
 
   return (
     <ScreenGradient>
@@ -62,7 +64,7 @@ export default function SettingsLanguage() {
               withSound={false}
               variant="icon"
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
             >
               <Ionicons name="close" size={20} color={glass.lightTint} />
             </PressableHybrid>
@@ -88,10 +90,10 @@ export default function SettingsLanguage() {
                   withHaptic={false}
                   withSound={false}
                   variant="card"
-                  style={{ opacity: enabled ? 1 : 0.42 }}
-                  contentStyle={rowStyle}
+                  style={{ opacity: enabled ? 1 : 0.42, transform: active ? [{ translateY: RAISED_LIFT }] : undefined }}
+                  contentStyle={active ? activeRowStyle : rowStyle}
                 >
-                  <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+                  <PlateFill g={glass} radius={14} raised={active} />
                   <Text style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
                     {item.native}
                   </Text>

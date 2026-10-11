@@ -18,7 +18,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableHybrid from '../components/PressableHybrid';
-import SafeLinearGradient from '../components/SafeLinearGradient';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import DeleteAccountConfirmModal from '../components/DeleteAccountConfirmModal';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -95,14 +95,14 @@ function PrivacyRow({ testID, icon, label, glass, titleColor, scaled, sub, right
     gap: 14,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: glass.opaqueCard,
-    overflow: 'hidden',
+    // зачем (стиль «Тень», владелец 12.10): строка — плашка с тенью, без кромки; overflow: hidden убран, он резал бы тень
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass),
   };
   const content = (
     <>
-      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
-      <View pointerEvents="none" style={{ position: 'absolute', inset: 0, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge }} />
-      <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}>
+      <PlateFill g={glass} radius={14} />
+      <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
         <Ionicons name={icon} size={20} color={titleColor} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
@@ -216,8 +216,8 @@ export default function PrivacySettings() {
     marginTop: 12,
     borderRadius: 14,
     padding: 16,
-    backgroundColor: glass.opaqueCard,
-    overflow: 'hidden',
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass), // зачем (стиль «Тень»): плашка-примечание с тенью, без кромки
   };
 
   return (
@@ -269,8 +269,7 @@ export default function PrivacySettings() {
               />
             </View>
             <View style={noteStyle}>
-              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
-              <View pointerEvents="none" style={{ position: 'absolute', inset: 0, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge }} />
+              <PlateFill g={glass} radius={14} />
               <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', flexShrink: 1 }}>
                 {L({
                   ru: 'Обезличенные данные о том, как проходит обучение. Не обязательно — приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.',
@@ -330,8 +329,7 @@ export default function PrivacySettings() {
               />
             </View>
             <View style={noteStyle}>
-              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
-              <View pointerEvents="none" style={{ position: 'absolute', inset: 0, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge }} />
+              <PlateFill g={glass} radius={14} />
               <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', flexShrink: 1 }}>
                 {L({
                   ru: 'Каждая функция работает только после отдельного согласия. В зависимости от функции в OpenAI отправляется текст или речь. Выключено — новые запросы не отправляются.',

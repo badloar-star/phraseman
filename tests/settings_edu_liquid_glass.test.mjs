@@ -22,9 +22,11 @@ test('learning settings use the approved liquid-glass shell without losing setti
   assert.match(source, /fontSize:\s*16, lineHeight:\s*22, marginTop:\s*7/);
   assert.match(source, /\{L\(\{ ru: 'ОТВЕТ'[\s\S]*?<View style=\{\{ gap: 10 \}\}>/);
   assert.match(source, /\{L\(\{ ru: 'ЗВУК'[\s\S]*?<View style=\{\{ gap: 10 \}\}>/);
-  assert.match(source, /backgroundColor:\s*glass\.opaqueCard/);
-  assert.match(source, /colors=\{\[glass\.selected, 'transparent'\]\}/);
-  assert.match(source, /borderColor:\s*glass\.glassEdge/);
+  // зачем (стиль «Тень», владелец 12.10): строки — плашки с тенью без кромки и клипа.
+  assert.match(source, /backgroundColor:\s*glass\.plateFillFrom/);
+  assert.match(source, /boxShadow:\s*plateBoxShadow\(glass\)/);
+  assert.match(source, /<PlateFill g=\{glass\} radius=\{14\} \/>/);
+  assert.doesNotMatch(source, /borderColor:\s*glass\.glassEdge/);
   assert.match(source, /minHeight:\s*64/);
   assert.match(source, /const rowStyle = \{[\s\S]*gap: 14/);
   assert.match(source, /fontSize:\s*16,[\s\S]*lineHeight:\s*21,[\s\S]*fontWeight:\s*'700'/);

@@ -52,11 +52,13 @@ test('time modal keeps the action dock reachable in a bounded viewport and uses 
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/, 'all 13 themes resolve through the liquid glass token registry');
   assert.match(timeModalSource, /colors=\{\[glass\.opaqueSheet, glass\.opaqueSheet\]\}/, 'panel has the approved opaque sheet base');
   assert.match(timeModalSource, /colors=\{\[glass\.selected, 'transparent'\]\}/, 'panel has the approved subtle sheen');
-  assert.match(timeModalSource, /borderColor:glass\.glassEdge/, 'panel edge comes from the active glass token');
+  // зачем (стиль «Тень», владелец 12.10): окно без кромки — plateBoxShadow на внешнем слое, клип скруглений на внутреннем.
+  assert.match(timeModalSource, /boxShadow:plateBoxShadow\(glass\)/, 'panel is separated by the plate shadow from the active glass token');
+  assert.doesNotMatch(timeModalSource, /borderColor:glass\.glassEdge|borderWidth:1/, 'panel and buttons carry no edge');
   assert.match(timeModalSource, /backgroundColor:glass.accent/, 'OK uses the approved CTA token');
   assert.match(timeModalSource, /color:glass.accentInk/, 'OK label uses the approved CTA ink token');
-  assert.match(timeModalSource, /borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass\.glassEdge/, 'Cancel keeps the transparent ghost treatment and glass edge');
-  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass.accent/, 'OK keeps the approved pill radius');
+  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass\.opaqueControl, boxShadow:nestedBoxShadow\(glass\)/, 'Cancel is a nested plate with a small shadow instead of a ghost outline');
+  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass.accent, boxShadow:actionBoxShadow\(glass\)/, 'OK keeps the approved pill radius and gets the action shadow');
   assert.match(source, /useEffect\(\(\) => \(\) => \{ if \(timer\.current\) clearTimeout\(timer\.current\); \}, \[\]\)/, 'pending wheel snap timer is cleaned on unmount');
   assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier/, 'large text is not shrunk or capped');
   assert.doesNotMatch(source, /lineHeight: Math\.ceil\(\(v === value \? 32 : 20\) \* fontScale\)/, 'wheel line height is not manually scaled twice');

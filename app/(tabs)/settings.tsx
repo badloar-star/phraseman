@@ -29,6 +29,7 @@ import {
   SettingsGlassTile,
 } from '../../components/settings/SettingsGlassRows';
 import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
@@ -1116,7 +1117,7 @@ export default function SettingsMain() {
           withSound={false}
           variant="card"
           style={{ marginTop: 22 }}
-          contentStyle={{ borderRadius: 22, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' }}
+          contentStyle={{ borderRadius: 22, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) /* зачем (стиль «Тень»): карточка профиля — плашка с тенью, без кромки и без клипа */ }}
         >
           <KitGlassLayer radius={22} />
           <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
@@ -1135,7 +1136,7 @@ export default function SettingsMain() {
               onPress={() => setAuthPromptVisible(true)}
               withSound={false}
               variant="chip"
-              contentStyle={{ minHeight: 30, paddingHorizontal: 12, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
+              contentStyle={{ minHeight: 30, paddingHorizontal: 12, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
             >
               <Text style={{ color: glass.text, fontSize: 13, fontWeight: '700' }}>
                 {L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}
@@ -1293,7 +1294,7 @@ export default function SettingsMain() {
                   variant="chip"
                   style={{ flex: 1 }}
                   // зачем: выбранность читается тоном (glass.selected) и цветом текста, без цветной рамки.
-                  contentStyle={{ minHeight: 56, borderRadius: 12, paddingVertical: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: fontSize === sz ? glass.selected : glass.opaqueControl }}
+                  contentStyle={{ minHeight: 56, borderRadius: 12, paddingVertical: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: fontSize === sz ? glass.selected : glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
                 >
                   <Text style={{ fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : 17, fontWeight: '700', color: fontSize === sz ? glass.text : glass.mutedText }}>A</Text>
                   {/* зачем: короткое слово в равнодолевой плитке — при нехватке места переносится, не сжимается (запрет на подгонку шрифта). */}
@@ -2052,9 +2053,7 @@ export default function SettingsMain() {
                   backgroundColor: glass.opaqueSheet,
                   borderRadius: 24,
                   padding: 24,
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  overflow: 'hidden',
+                  boxShadow: plateBoxShadow(glass), // зачем (стиль «Тень»): окно по центру — тень вместо кромки; overflow: hidden убран, он резал бы тень
                 },
               ]}
             >
@@ -2070,8 +2069,7 @@ export default function SettingsMain() {
                 padding: 14,
                 minHeight: 52,
                 borderRadius: 16,
-                borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка поля — разрешена для PhraseMan 2.0
-                borderColor: glass.line,
+                boxShadow: nestedBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */, // зачем (стиль «Тень»): поле имени — вложенная плашка с малой тенью, без кромки
                 marginBottom: 20,
               }}
               value={newName}
@@ -2095,12 +2093,10 @@ export default function SettingsMain() {
                     minHeight: 48,
                     justifyContent: 'center',
                     borderRadius: 24,
-                    borderWidth: 0,
-                    borderColor: 'transparent',
                     alignItems: 'center',
                     backgroundColor: glass.selected,
+                    boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): «Отмена» — плашка с малой тенью
                     opacity: nameSaving ? 0.6 : 1,
-                    overflow: 'hidden',
                   },
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
@@ -2116,13 +2112,11 @@ export default function SettingsMain() {
                     padding: 12,
                     borderRadius: 24,
                     backgroundColor: glass.accent,
-                    borderWidth: 0,
-                    borderColor: 'transparent',
+                    boxShadow: actionBoxShadow(glass), // зачем (стиль «Тень»): кнопка действия — цвет темы и цветная тень
                     alignItems: 'center',
                     minHeight: 48,
                     justifyContent: 'center',
                     opacity: nameSaving ? 0.82 : 1,
-                    overflow: 'hidden',
                   },
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); void saveName(); }}

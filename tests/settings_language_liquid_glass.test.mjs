@@ -22,9 +22,11 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   assert.match(source, /marginTop:\s*22/);
   assert.match(source, /minHeight:\s*64[\s\S]*?borderRadius:\s*14[\s\S]*?paddingVertical:\s*10[\s\S]*?paddingHorizontal:\s*14[\s\S]*?gap:\s*14/s);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*21,\s*fontWeight:\s*'700'/);
-  assert.match(source, /backgroundColor:\s*glass\.opaqueCard/);
-  assert.match(source, /colors=\{\[glass\.selected, 'transparent'\]\}/);
-  assert.match(source, /borderColor:\s*glass\.glassEdge/);
+  // зачем (стиль «Тень», владелец 12.10): строка — плашка с тенью без кромки; выбранный язык приподнят.
+  assert.match(source, /backgroundColor:\s*glass\.plateFillFrom/);
+  assert.match(source, /boxShadow:\s*plateBoxShadow\(glass\)/);
+  assert.match(source, /raisedBoxShadow\(glass\)/);
+  assert.doesNotMatch(source, /borderColor:\s*glass\.glassEdge|borderWidth:\s*1/);
   assert.doesNotMatch(source, /SectionSheetHeader|TouchableOpacity|SafeAreaView|BlurView|adjustsFontSizeToFit|maxFontSizeMultiplier|numberOfLines=/);
 });
 
@@ -88,7 +90,8 @@ test('transpiled screen uses the release-aware registry and preserves row intera
       coerceInterfaceLang: code => code === 'ru' ? 'ru' : null,
       getVisibleInterfaceLanguageOptions: release => { calls.visible.push(release); return options; },
     },
-    '../constants/liquidGlassThemePalette': { liquidGlassTokens: () => ({ opaqueCard: '#222', opaqueControl: '#333', glassEdge: '#444', selected: '#555', lightTint: '#fff', secondary: '#aaa' }) },
+    '../constants/liquidGlassThemePalette': { liquidGlassTokens: () => ({ opaqueCard: '#222', opaqueControl: '#333', glassEdge: '#444', selected: '#555', lightTint: '#fff', secondary: '#aaa', plateFillFrom: '#262626' }) },
+    '../components/v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], raisedBoxShadow: () => [{ stub: 'raised' }], nestedBoxShadow: () => [{ stub: 'nested' }], PlateFill: 'PlateFill', RAISED_LIFT: -3 },
     '../hooks/use-haptics': { hapticTap: () => { calls.haptics += 1; } },
     './config': { IS_STORE_RELEASE: true },
     './navigation_back': { safeRouterBack: (router, fallback) => { calls.back = [router, fallback]; } },

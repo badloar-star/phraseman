@@ -115,7 +115,7 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
     '../components/ContentWrap': { __esModule: true, default: 'ContentWrap' },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
-    '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
+    '../components/v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], raisedBoxShadow: () => [{ stub: 'raised' }], nestedBoxShadow: () => [{ stub: 'nested' }], PlateFill: 'PlateFill', RAISED_LIFT: -3 },
     '../components/DeleteAccountConfirmModal': { __esModule: true, default: 'DeleteAccountConfirmModal' },
     '../components/ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
@@ -127,7 +127,7 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     '../components/LangContext': { useLang: () => ({ lang }) },
     '../constants/i18n': { triLang: (active, copy) => copy[active] },
     '../constants/liquidGlassThemePalette': {
-      liquidGlassTokens: () => ({ opaqueCard: '#222', opaqueControl: '#333', selected: '#444', glassEdge: '#555', lightTint: '#fff', secondary: '#aaa' }),
+      liquidGlassTokens: () => ({ opaqueCard: '#222', opaqueControl: '#333', selected: '#444', glassEdge: '#555', lightTint: '#fff', secondary: '#aaa', plateFillFrom: '#262626', dividerTone: '#3a3a3a' }),
     },
     '../hooks/use-haptics': { hapticTap: () => { order.push('haptic'); } },
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.back.push(fallback) },
@@ -319,8 +319,10 @@ test('every rendered row and local switch has the approved geometry, wrapping, g
     const descendants = visit(row);
     assert.ok(descendants.some(node => node.type === 'View' && flatStyle(node.props.style).width === 41 && flatStyle(node.props.style).borderRadius === 10), `${id} has 41/10 tile`);
     assert.ok(descendants.some(node => node.type === 'Ionicons' && node.props.size === 20), `${id} has 20px icon`);
-    assert.equal(descendants.filter(node => node.type === 'SafeLinearGradient' && node.props.pointerEvents === 'none').length, 1, `${id} has one sheen`);
-    assert.ok(descendants.some(node => node.type === 'View' && node.props.pointerEvents === 'none' && flatStyle(node.props.style).borderWidth === 1), `${id} has a pointer-neutral rim`);
+    // зачем (стиль «Тень», владелец 12.10): вместо блика-градиента и рамки — заливка плашки и тень, кромок нет.
+    assert.equal(descendants.filter(node => node.type === 'PlateFill').length, 1, `${id} has one plate fill`);
+    assert.ok(style.boxShadow, `${id} carries the plate shadow`);
+    assert.ok(!descendants.some(node => node.type === 'View' && flatStyle(node.props.style).borderWidth === 1 && flatStyle(node.props.style).height !== 29 /* трек переключателя оставлен: switch_track_border_contract */), `${id} has no rim`);
     for (const text of descendants.filter(node => node.type === 'Text')) {
       assert.equal(text.props.numberOfLines, undefined);
       assert.equal(text.props.adjustsFontSizeToFit, undefined);

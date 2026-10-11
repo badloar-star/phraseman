@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../components/PressableHybrid';
 import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
+import { nestedBoxShadow } from '../components/v2/ShadowSurface';
 import { ThemeSwatch } from '../components/settings/ThemeSwatch';
 import { ThemeGlassSmoke } from '../components/v2/ThemeGlassSmoke';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -28,8 +29,6 @@ import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
 
-const EXEMPT_COLOR_1 = 'rgba(255,255,255,0.12)'; // theme-exempt: выбранный сегмент тёмного «Спокойно» — светлая плашка по макету (светлая тема — выше по функции, из токенов)
-const EXEMPT_COLOR_2 = 'rgba(255,255,255,0.14)'; // theme-exempt: выбранный сегмент тёмного «Спокойно» — светлая плашка по макету (светлая тема — выше по функции, из токенов)
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // модалка покупки темы за жемчуг удалена целиком (D45).
 
@@ -64,24 +63,23 @@ const APPEARANCE_OPTIONS: ReadonlyArray<Readonly<{ key: LiquidGlassAppearance; i
 ];
 
 /**
- * Вид выбранного сегмента/значка по макету: тёмное «Спокойно» — светлая плашка стекла;
- * тёмные «Акцент/Максимум» — капсула цвета темы; светлое — белая плашка с тенью в тон темы.
+ * Вид выбранного сегмента/значка (стиль «Тень», владелец 12.10 — без кромки): тёмное «Спокойно» — приподнятый тон плашки;
+ * тёмные «Акцент/Максимум» — капсула цвета темы; светлое — белая плашка; у всех малая тень вложенного.
  */
 function selectedChip(glass: GlassTokens): { box: ViewStyle; ink: string } {
   if (glass.isLight) {
     return {
       box: {
         backgroundColor: glass.level === 'calm' ? glass.opaqueCard : glass.accentSoft,
-        borderColor: glass.level === 'calm' ? glass.line : glass.accentCap, // guard-ok: 1px кромка 2.0 по макету
-        shadowColor: glass.shadowTint, shadowOpacity: 1, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 1,
+        boxShadow: nestedBoxShadow(glass),
       },
       ink: glass.level === 'calm' ? glass.text : glass.accent,
     };
   }
   if (glass.level === 'calm') {
-    return { box: { backgroundColor: EXEMPT_COLOR_1, borderColor: EXEMPT_COLOR_2 }, ink: glass.text }; // guard-ok: 1px кромка 2.0
+    return { box: { backgroundColor: glass.raisedFillFrom, boxShadow: nestedBoxShadow(glass) }, ink: glass.text };
   }
-  return { box: { backgroundColor: `${glass.accentCap}38`, borderColor: `${glass.accentCap}4D` }, ink: glass.accentBright }; // guard-ok: 1px кромка 2.0
+  return { box: { backgroundColor: `${glass.accentCap}38`, boxShadow: nestedBoxShadow(glass) }, ink: glass.accentBright };
 }
 
 const AppearanceToggle = memo(function AppearanceToggle({ glass, lang, value, onChange }: {
@@ -101,7 +99,7 @@ const AppearanceToggle = memo(function AppearanceToggle({ glass, lang, value, on
             accessibilityLabel={triLang(lang, opt.label)}
             hitSlop={4}
             onPress={() => onChange(opt.key)}
-            style={[styles.modeItem, selected ? [styles.chipOn, on.box] : null]}
+            style={[styles.modeItem, selected ? on.box : null]}
           >
             <Ionicons name={selected ? opt.icon : `${opt.icon}-outline`} size={19} color={selected ? on.ink : glass.secondary} />
           </Pressable>
@@ -137,7 +135,7 @@ const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, 
       withHaptic={false}
       withSound={false}
       variant="card"
-      contentStyle={[styles.row, first ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line }]}
+      contentStyle={[styles.row, first ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone }]}
     >
       <ThemeSwatch id={option.mode} vivid={vivid} />
       <View style={styles.rowText}>
@@ -198,9 +196,7 @@ export default function SettingsThemes() {
   const insets = useStableSafeAreaInsets();
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   const vivid = liquidGlassIntensity > 0;
-  const listShadow: ViewStyle | null = glass.isLight
-    ? { shadowColor: glass.shadowTint, shadowOpacity: 1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 2 }
-    : null;
+  // зачем (стиль «Тень»): тень списков даёт settingsGlassCardStyle (plateBoxShadow) — прежняя светлая shadow* здесь удвоила бы её.
 
   return (
     <ScreenGradient>
@@ -215,7 +211,7 @@ export default function SettingsThemes() {
               withHaptic={false}
               withSound={false}
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }} // guard-ok: 1px кромка 2.0
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
             >
               <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
@@ -235,7 +231,7 @@ export default function SettingsThemes() {
             />
             <View
               accessibilityRole="radiogroup"
-              style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
+              style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} />
               {THEME_OPTIONS.map((item, index) => (
@@ -255,7 +251,7 @@ export default function SettingsThemes() {
                 карточкой ниже, без подписи; набор берётся из одного списка-конфига. */}
             <View
               accessibilityRole="radiogroup"
-              style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
+              style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} />
               {GRADIENT_OPTIONS.map((item, index) => (
@@ -283,8 +279,6 @@ const styles = StyleSheet.create({
   title: { flexShrink: 1, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
   modeToggle: { flexDirection: 'row', gap: 3, padding: 3, borderRadius: 22 },
   modeItem: { width: 42, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  // Тонкая 1px кромка выбранного сегмента — как в макете (разрешено в стиле 2.0).
-  chipOn: { borderWidth: 1 }, // guard-ok: 1px кромка 2.0
   list: { flexDirection: 'column', alignItems: 'stretch', padding: 0, paddingVertical: 0, paddingHorizontal: 0, gap: 0, borderRadius: 20, marginTop: 14 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },

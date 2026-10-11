@@ -33,6 +33,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 
 import { swallowError } from './debug-logger';
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
@@ -118,7 +119,9 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   return (
     <Modal visible transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onCancel}>
       <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingTop:Math.max(20, insets.top), paddingBottom:Math.max(20, insets.bottom), paddingHorizontal:20 }}>{/* theme-exempt: затемнение под окном — чёрное в любой теме */}
-        <LinearGradient colors={[glass.opaqueSheet, glass.opaqueSheet]} style={{ width:'100%', maxWidth:340, maxHeight:'100%', borderRadius:TIME_MODAL_PANEL_RADIUS, overflow:'hidden', borderWidth:1, borderColor:glass.glassEdge }}>
+        {/* зачем (стиль «Тень», владелец 12.10): окно по центру — тень на внешнем слое, клип скруглений внутренних слоёв — на внутреннем; кромки нет */}
+        <View style={{ width:'100%', maxWidth:340, maxHeight:'100%', borderRadius:TIME_MODAL_PANEL_RADIUS, boxShadow:plateBoxShadow(glass) }}>
+        <LinearGradient colors={[glass.opaqueSheet, glass.opaqueSheet]} style={{ flexShrink:1, minHeight:0, borderRadius:TIME_MODAL_PANEL_RADIUS, overflow:'hidden' }}>
           <View pointerEvents="none" style={{ position:'absolute', inset:0 }}>
             <View style={{ position:'absolute', inset:0, backgroundColor:glass.sheet }}/>
             <LinearGradient colors={[glass.selected, 'transparent']} start={{ x:0.04, y:0 }} end={{ x:0.9, y:1 }} style={{ position:'absolute', inset:0 }}/>
@@ -134,14 +137,15 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             </View>
           </ScrollView>
           <View style={{ flexDirection:'row', gap:10, paddingHorizontal:21, paddingTop:16, paddingBottom:21 }}>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass.glassEdge }} onPress={onCancel}>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.opaqueControl, boxShadow:nestedBoxShadow(glass) }} onPress={onCancel}>
               <Text style={{ color:glass.text, fontSize:16, fontWeight:'700' }}>{cancelLabel}</Text>
             </DuoPressable>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.accent }} onPress={() => onConfirm(h, m)}>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.accent, boxShadow:actionBoxShadow(glass) }} onPress={() => onConfirm(h, m)}>
               <Text style={{ color:glass.accentInk, fontSize:16, fontWeight:'700' }}>OK</Text>
             </DuoPressable>
           </View>
         </LinearGradient>
+        </View>
       </View>
     </Modal>
   );
@@ -178,7 +182,7 @@ function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = fals
 
 function RowIcon({ name, glass }: { name: keyof typeof Ionicons.glyphMap; glass: ReturnType<typeof liquidGlassTokens> }) {
   return (
-    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}>
+    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
       <Ionicons name={name} size={20} color={glass.lightTint} />
     </View>
   );
@@ -196,7 +200,7 @@ function ToggleRow({ label, icon, value, onValueChange, disabled, glass, titleCo
 }) {
   return (
     <View style={rowStyle}>
-      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+      <PlateFill g={glass} radius={14} />
       <RowIcon name={icon} glass={glass} />
       <FlowText testID="notif-toggle-label" provenance="authored" style={{ color: titleColor, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>
         {label}
@@ -355,8 +359,8 @@ export default function SettingsNotifications() {
 
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
   const sectionTitleStyle = { color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
-  const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
-  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
+  const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }; // зачем (стиль «Тень»): плашка с тенью, без кромки и клипа
+  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
 
   return (
     <ScreenGradient>
@@ -422,7 +426,7 @@ export default function SettingsNotifications() {
                 withSound={false}
                 variant="card"
                 style={{ marginTop: 12 }}
-                contentStyle={{ minHeight: 64, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 14, gap: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: t.wrongBg ?? glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge }}
+                contentStyle={{ minHeight: 64, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 14, gap: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: t.wrongBg ?? glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}
               >
                 <Ionicons name="notifications-off" size={18} color={t.wrong ?? t.textPrimary} />
                 <FlowText testID="notif-permission-denied-label" provenance="authored" style={{ color: t.wrong ?? t.textPrimary, fontSize: 13, flex: 1, lineHeight: 18 }}>
@@ -432,7 +436,7 @@ export default function SettingsNotifications() {
             )}
 
             <View style={[statusCardStyle, { marginTop: 18 }]}>
-              <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <PlateFill g={glass} radius={14} />
               <Ionicons name="chatbubble-outline" size={20} color={glass.lightTint} />
               <View style={{ flex: 1, minWidth: 0 }}>
                 <FlowText testID="notif-master-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
@@ -463,7 +467,7 @@ export default function SettingsNotifications() {
                   style={{ opacity: master && !dailyEnabled ? 0.45 : 1 }}
                   contentStyle={rowStyle}
                 >
-                  <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+                  <PlateFill g={glass} radius={14} />
                   <RowIcon name="time-outline" glass={glass} />
                   <FlowText testID="notif-time-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>{timeLabel}</FlowText>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 }}>

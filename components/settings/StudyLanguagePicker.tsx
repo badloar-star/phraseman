@@ -14,6 +14,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { studyTargetsForSourceLocale, type StudyTarget } from '../../app/study_target';
 import { LEARNING_LANGUAGE_CONTOURS } from '../../app/learning_language_contour';
 import type { Lang } from '../../constants/i18n';
@@ -259,9 +260,9 @@ export default function StudyLanguagePicker({
               paddingVertical: 7,
               paddingHorizontal: 6,
               borderRadius: 16,
-              borderWidth: active ? 1 : 0, // guard-ok: 1 px кромка выбранной плитки
-              borderColor: glass.glassEdge,
-              backgroundColor: active ? glass.opaqueControl : glass.opaqueCard,
+              // зачем (стиль «Тень», владелец 12.10): кромка выбранной плитки снята — выбранная плашка «приподнята» заливкой и тенью поглубже
+              backgroundColor: active ? glass.raisedFillFrom : glass.plateFillFrom,
+              boxShadow: active ? raisedBoxShadow(glass) : plateBoxShadow(glass),
             }}
           >
             <View

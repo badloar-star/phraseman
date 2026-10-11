@@ -1,0 +1,34 @@
+diff --git a/app/(tabs)/settings.tsx b/app/(tabs)/settings.tsx
+index 64ce0f8..355f14a 100644
+--- a/app/(tabs)/settings.tsx
++++ b/app/(tabs)/settings.tsx
+@@ -1723,6 +1723,29 @@ export default function SettingsMain() {
+                       allowPendingShardSpendDiscard: true,
+                     }), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);
+                     setSwitchAccountStage('idle');
++                    // зачем (§AUTH-0105, ревью аудита двойного тапа 0dfe1c9c9): принудительная смена тоже может
++                    // сорваться ПОСЛЕ записи маркера (recovery_required / wipe_failed) — тогда «Всё осталось на
++                    // месте» неправда. Показываем то же окно, что обычная смена (~«Нужно завершить смену»).
++                    if (!forced.ok && (forced.reason === 'recovery_required' || forced.reason === 'wipe_failed')) {
++                      console.warn('[ACC-MUT] settings:forced_switch_failed_kind', { reason: forced.reason, kind: 'recovery' });
++                      showGlassAlert(
++                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
++                        L(
++                          'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
++                          'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
++                          'A safety marker may already have been written. Restart the app to continue restoring the state.',
++                          'Puede que ya se haya guardado un marcador de seguridad. Reinicia la app para continuar la recuperación.',
++                          'Um marcador de segurança pode já ter sido gravado. Reinicie o app para continuar a recuperação.',
++                          'Dấu an toàn có thể đã được ghi. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
++                          'Penanda pengaman mungkin sudah tertulis. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
++                          'Güvenlik işareti yazılmış olabilir. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
++                          'Znacznik bezpieczeństwa mógł już zostać zapisany. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
++                        ),
++                        [{ text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij') }],
++                        { delayMs: 360 },
++                      );
++                      return;
++                    }
+                     if (!forced.ok) {
+                       showInfoAlert(
+                         L(

@@ -14257,10 +14257,10 @@
       "id": "profile-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 16,
-        "label": "проект UX · offline-выход",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 1,
+        "label": "Управление Plus · годовая",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "статический пример · годовая подписка",
@@ -14276,21 +14276,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 17,
-        "label": "проект UX · выход выполняется",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 3,
+        "label": "Управление Plus · месячная",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "статический пример · месячная подписка",
@@ -14306,21 +14305,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 18,
-        "label": "проект UX · выход не доказан",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 5,
+        "label": "Управление Plus · разовая покупка",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "статический пример · разовая покупка",
@@ -14336,21 +14334,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 19,
-        "label": "проект UX · удаление до отправки",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 4,
+        "label": "Управление Plus · загрузка плана",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "статический пример · загрузка данных магазина",
@@ -14366,21 +14363,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-020",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 20,
-        "label": "проект UX · запрос отправлен",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 8,
+        "label": "Причина отмены · ничего не выбрано",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "оверлей · причины отмены · ничего не выбрано",
@@ -14396,21 +14392,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 21,
-        "label": "проект UX · ответ потерян",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 10,
+        "label": "Причина «Другое» · ввод текста",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "оверлей · причина «Другое» · ввод текста",
@@ -14426,21 +14421,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 22,
-        "label": "проект UX · отказ до изменений",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 11,
+        "label": "Шаг удержания · прогресс",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "оверлей удержания · реальный прогресс · демо",
@@ -14456,21 +14450,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 23,
-        "label": "проект UX · credential safe, cleanup pending",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 12,
+        "label": "Шаг удержания · поддержка",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "оверлей удержания · поддержка",
@@ -14488,21 +14481,20 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/profile.html",
-        "phone": 24,
-        "label": "проект UX · cleanup complete receipt",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 7,
+        "label": "Восстановление · покупок не найдено",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "оверлей восстановления · покупок не найдено",
@@ -14520,12 +14512,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html"
     },
     {
       "id": "profile-025",

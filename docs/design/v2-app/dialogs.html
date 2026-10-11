@@ -267,6 +267,14 @@
 .msg.u .bub::after { background: linear-gradient(160deg, rgba(255,255,255,.55), rgba(255,255,255,0) 55%); box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1.5px 0 rgba(0,0,0,.10); }
 .one .page-h1, .one .page-lead, .one .page-nav, .one .block > h2, .one .block > p { display: none; }
 .one .page { padding: 20px 20px 20px; } .one .block { margin-top: 0; }
+/* зачем (координатор 11.10): «Свободный разговор» — строка над категориями хаба (DialogsTabContent), кнопки входа — акцентом темы, а не белые.
+   Free: справа замок (ряд ведёт в Plus), Plus: шеврон. «Память диалогов» здесь НЕ рисуем — она в Настройки → Приватность и данные. */
+.ph { --acc: #7EF0C8; --on: #04261D; }
+.fr { margin-top: 14px; padding: 16px 16px 16px 14px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 14%, #1D1D1F), #1D1D1F 70%) !important; }
+.fr .fi { width: 52px; height: 52px; border-radius: 18px; flex: none; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--acc) 22%, #1D1D1F); color: var(--acc); }
+.fr .ft { display: flex; align-items: center; gap: 8px; font-size: 18px; line-height: 23px; font-weight: 800; } .fr .fp { height: 20px; padding: 0 7px; border-radius: 8px; background: var(--acc); color: var(--on); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; flex: none; }
+.fr .fs { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 3px; } .fr > .i, .fr > .ch { color: var(--acc); flex: none; }
+.fx .cta:not(.dis):not(.gh), .poster .cta { background: var(--acc); color: var(--on); }
 </style>
 </head>
 <body>
@@ -275,6 +283,7 @@
   <p class="page-lead">Раздел «Диалоги» PhraseMan 2.0 целиком: хаб и раскрытая категория (1:1 эталон), брифинг, согласие на ИИ, сессия по раскладке ref_20 (цвета нейтральные, пузырь «Вы» — светло-серый), тьютор «Макс», компаньон «Компас», лимиты, энергия 5, единый экран завершения из practice.html. Опись — <a href="spec_dialogs.md" style="color:#D6D6D8;border-bottom:1px dotted var(--line-2)">spec_dialogs.md</a>. Опыта, рун-цен и золота нет.</p>
   <nav class="page-nav"><a href="#hub">Хаб</a><a href="#brief">Брифинг и вход</a><a href="#sess">Сессия</a><a href="#voice">Голос</a><a href="#wait">Ожидание и ошибки</a><a href="#limit">Лимиты и выход</a><a href="#done">Итог</a><a href="#tutor">Урок с Максом</a><a href="#comp">Компаньон</a></nav>
   <table class="spec" id="spec"></table>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
@@ -321,7 +330,8 @@ const hub = (o = {}) => phone(`
   ${hubHead(o)}
   ${o.gate ? `<div class="card c2" style="margin-top:32px;padding:22px 18px 24px 20px;display:flex;gap:18px;align-items:flex-start"><div class="tile t55" style="background:#2A2A2C;color:#8E8E92">${icon('lockF', 's24')}</div><div class="grow"><div style="font-size:17px;line-height:22px;font-weight:700">Испанские AI-диалоги ещё проверяются</div><div style="font-size:15px;line-height:20px;color:var(--sec);margin-top:8px">Испанские сценарии, подсказки и озвучка ещё не получили отдельную проверку. Английские диалоги в этом режиме скрыты.</div><div class="cta sm t" style="margin-top:16px;width:max-content">К урокам<span>${icon('arrowR', 's18')}</span></div></div></div>` : `
   ${o.poster ? poster(o.mem) : ''}
-  <div class="stack g13" style="margin-top:${o.poster ? 14 : 32}px">${cat('cupF', 'Каждый день', 'Повседневные диалоги', 11, o.done ?? 0)}${cat('planeF', 'Путешествия', 'В поездках и на отдыхе', 8)}${cat('peopleF', 'Общение', 'Знакомства и разговоры', 13)}${cat('docF', 'Ситуации', 'Разные жизненные сценарии', 19)}</div>
+  <div class="card c2 t fr" style="margin-top:${o.poster ? 14 : 32}px"><span class="fi">${icon('chat', 's26')}</span><div class="grow" style="min-width:0"><div class="ft">Свободный разговор<span class="fp">PLUS</span></div><div class="fs">Практика без сценария</div></div>${o.plus ? ch : icon('lockF', 's20')}</div>
+  <div class="stack g13" style="margin-top:14px">${cat('cupF', 'Каждый день', 'Повседневные диалоги', 11, o.done ?? 0)}${cat('planeF', 'Путешествия', 'В поездках и на отдыхе', 8)}${cat('peopleF', 'Общение', 'Знакомства и разговоры', 13)}${cat('docF', 'Ситуации', 'Разные жизненные сценарии', 19)}</div>
   ${o.exhausted ? `<div class="card c2 t" style="margin-top:24px;padding:22px 16px 22px 20px;display:flex;gap:18px;align-items:center"><div class="tile t61">${icon('unlock', 's26')}</div><div class="grow"><div style="font-size:17px;line-height:22px;font-weight:700">Plus снимает лимит реплик</div><div style="font-size:15px;line-height:20px;color:var(--sec);margin-top:6px">Сегодня осталось 0 из 10 реплик.</div></div>${ch}</div>` : o.plus ? '' : lockedCard()}`}`,
   { time: '13:00', inStyle: 'padding-left:16px;padding-right:16px' });
 
@@ -581,6 +591,17 @@ if (location.search.includes('pos')) setTimeout(() => console.log('POS ' + JSON.
 document.addEventListener('click', (e) => { const h = e.target.closest('[data-cat]'); if (!h) return; const ph = h.closest('.ph'); const b = ph.querySelector('.cat-body'); if (!b) return; if (b.classList.contains('on')) { b.classList.remove('on'); h.querySelector('.ch').innerHTML = icon('down', 's20'); } else playCat(ph); });
 // Для headless-скриншота: первая волна анимаций сразу.
 setTimeout(() => { document.querySelectorAll('.col').forEach((c) => { if (c.querySelector('[data-replay]') && c.getBoundingClientRect().top < innerHeight * 3) { play(c); io.unobserve(c); } }); }, 200);
+
+// ---- темы: акцент кнопок и строки «Свободный разговор» берётся из выбранной темы ----
+(() => {
+  const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+    ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+  let theme = 0;
+  const apply = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('#chips .chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+  document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+  document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; apply(); });
+  apply();
+})();
 </script>
 </body>
 </html>

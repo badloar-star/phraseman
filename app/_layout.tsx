@@ -253,6 +253,7 @@ import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
 import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
 import { rememberOnboardingDonePeek } from './onboarding_done_peek';
+import { armMemTick, setMemTickRoute } from './mem_tick';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -495,6 +496,9 @@ const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
 
 
 /** Сколько ждём, пока expo-router сам откроет тёплую ссылку, прежде чем открыть её вручную. */
+// зачем (координатор 11.10): фоновый сэмплер памяти/таймеров/чтений Firestore — только dev; как можно раньше, чтобы
+// в счёт попали чтения старта. В стор-сборке armMemTick сразу выходит.
+armMemTick();
 const WARM_DEEP_LINK_SELF_OPEN_WAIT_MS = 400;
 // зачем (координатор 11.10, «сперва логи»): phraseman://settings дважды вешал приложение (красный экран addViewAt
 // «already has a parent», белый экран 4+ мин). Каждая развилка обработки ссылки пишет одну строку: что пришло, готов ли
@@ -1620,6 +1624,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
     const previous = lastPathRef.current;
     lastPathRef.current = pathname;
+    setMemTickRoute(pathname);
     if (/settings/i.test(pathname) || /settings/i.test(previous ?? '')) {
       deeplinkSettingsTrace('path_change', { previous: previous ?? null, next: pathname });
     }

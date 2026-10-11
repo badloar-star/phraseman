@@ -120,4 +120,61 @@ describe('mistake practice immutable event transport', () => {
       expect(records.size).toBe(0);
     });
   });
+
+  // зачем (§CORE-0162, аудит стоимости Firebase, пакет A): страница списка фильтрует язык в самом запросе — раньше
+  // листала все mp_* аккаунта (×5 языков на восстановлении). Нет индекса — прежний запрос; форма ответа та же.
+  describe('list filters by study target in the query', () => {
+    const createHandler = (require('./mistake_practice_event_sync') as {
+      createMistakePracticeEventSyncHandler: (dependencies: unknown) => (request: unknown) => Promise<any>;
+    }).createMistakePracticeEventSyncHandler;
+    const enRecord = materializeMistakePracticeEventRecord({ stableUid: 'owner-a', studyTarget: 'en', event });
+
+    function makeListDb(options: { failFiltered?: boolean }) {
+      const queries: string[][] = [];
+      const makeQuery = (steps: string[]): any => ({
+        where: (field: string, op: string, value: unknown) => makeQuery([...steps, `where:${field}${op}${String(value)}`]),
+        orderBy: () => makeQuery([...steps, 'orderBy:id']),
+        startAt: () => makeQuery(steps),
+        endBefore: () => makeQuery(steps),
+        startAfter: (cursor: string) => makeQuery([...steps, `after:${cursor}`]),
+        limit: () => makeQuery(steps),
+        get: async () => {
+          queries.push(steps);
+          if (options.failFiltered && steps.some((step) => step.startsWith('where:'))) {
+            throw Object.assign(new Error('9 FAILED_PRECONDITION: The query requires an index.'), { code: 9 });
+          }
+          return { docs: [{ id: 'mp_' + 'a'.repeat(64), data: () => enRecord }] };
+        },
+      });
+      const db = {
+        collection: (name: string) => ({
+          doc: () => name === 'users'
+            ? { get: async () => ({ exists: true, data: () => ({}) }), collection: () => makeQuery([]) }
+            : {},
+        }),
+        runTransaction: async () => { throw new Error('unused'); },
+      };
+      return { db, queries };
+    }
+    const request = { auth: { uid: 'auth-a' }, data: { action: 'list', expectedStableUid: 'owner-a', studyTarget: 'en', cursor: null } };
+
+    test('the page query carries where(studyTarget) and returns the same response shape', async () => {
+      const { db, queries } = makeListDb({});
+      const handler = createHandler({ db, resolveAccountBinding: async () => ({ stableUid: 'owner-a', accountGeneration: 1 }) });
+      const result = await handler(request);
+      expect(queries).toEqual([['where:studyTarget==en', 'orderBy:id']]);
+      expect(result).toEqual({ ok: true, events: [event], cursor: null });
+    });
+
+    test('falls back to the unfiltered page when the index is unavailable', async () => {
+      const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+      const { db, queries } = makeListDb({ failFiltered: true });
+      const handler = createHandler({ db, resolveAccountBinding: async () => ({ stableUid: 'owner-a', accountGeneration: 1 }) });
+      const result = await handler(request);
+      expect(queries).toEqual([['where:studyTarget==en', 'orderBy:id'], ['orderBy:id']]);
+      expect(result).toEqual({ ok: true, events: [event], cursor: null });
+      expect(warn).toHaveBeenCalledWith('[MP-SYNC] list:target_filter_unavailable', expect.any(String));
+      warn.mockRestore();
+    });
+  });
 });

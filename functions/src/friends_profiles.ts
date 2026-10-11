@@ -279,14 +279,30 @@ export function buildFriendProfile(
  * это не удваивает латентность, а серверный кэш 60с (SERVER_CACHE_TTL_MS) держит
  * повторный расход в разумных рамках при частых открытиях вкладки.
  */
-async function fetchOneProfile(db: admin.firestore.Firestore, uid: string): Promise<FriendPublicProfile | null> {
-  const [publicProfileSnap, userSnap, deletionTombstone] = await Promise.all([
-    db.collection('public_profiles').doc(uid).get(),
-    db.collection('users').doc(uid).get(),
-    db.collection('account_deletion_tombstones').doc(uid).get(),
-  ]);
+/** Документы друга, уже прочитанные проверкой дружбы в этом же вызове. */
+type PrefetchedFriendDocs = Readonly<{
+  userExists: boolean;
+  userData: DocData;
+  tombstoneExists: boolean;
+}>;
 
-  if (!userSnap.exists || userSnap.data()?.identityHidden === true || deletionTombstone.exists) return null;
+async function fetchOneProfile(
+  db: admin.firestore.Firestore,
+  uid: string,
+  prefetched?: PrefetchedFriendDocs,
+): Promise<FriendPublicProfile | null> {
+  // зачем (§CORE-0162, аудит стоимости Firebase, пакет D): users/{uid} и метку удаления друга только что прочитала
+  // проверка дружбы (authorizedProfileUids, тот же вызов) — второй раз их не читаем: −2 чтения на друга.
+  // Без них (свой профиль) — прежние 3 чтения.
+  const [publicProfileSnap, user, tombstoneExists] = prefetched
+    ? [await db.collection('public_profiles').doc(uid).get(), { exists: prefetched.userExists, data: prefetched.userData }, prefetched.tombstoneExists]
+    : await Promise.all([
+      db.collection('public_profiles').doc(uid).get(),
+      db.collection('users').doc(uid).get().then((snap) => ({ exists: snap.exists, data: snap.data() as DocData })),
+      db.collection('account_deletion_tombstones').doc(uid).get().then((snap) => snap.exists),
+    ]);
+
+  if (!user.exists || (user.data as Record<string, unknown> | undefined)?.identityHidden === true || tombstoneExists) return null;
 
   const publicProfileData = publicProfileSnap.exists
     ? publicProfileSnap.data() as DocData
@@ -306,9 +322,9 @@ async function fetchOneProfile(db: admin.firestore.Firestore, uid: string): Prom
   return buildFriendProfile(
     uid,
     lbData,
-    userSnap.data() as DocData,
+    user.data,
     publicProfileData,
-    deletionTombstone.exists,
+    tombstoneExists,
   );
 }
 
@@ -316,8 +332,9 @@ async function authorizedProfileUids(
   db: admin.firestore.Firestore,
   callerStableUid: string,
   requestedUids: string[],
-): Promise<string[]> {
+): Promise<Readonly<{ uids: string[]; prefetched: ReadonlyMap<string, PrefetchedFriendDocs> }>> {
   const authorized = new Set<string>();
+  const prefetched = new Map<string, PrefetchedFriendDocs>();
   const friendCandidates = requestedUids.filter((uid) => {
     if (uid === callerStableUid) {
       authorized.add(uid);
@@ -325,7 +342,7 @@ async function authorizedProfileUids(
     }
     return true;
   });
-  if (friendCandidates.length === 0) return [...authorized];
+  if (friendCandidates.length === 0) return { uids: [...authorized], prefetched };
 
   const authorizationRefs = friendCandidates.flatMap((friendUid) => [
     db.collection('users').doc(callerStableUid).collection('friends').doc(friendUid),
@@ -343,9 +360,14 @@ async function authorizedProfileUids(
       && friendUser.data()?.identityHidden !== true
       && !authorizationSnaps[offset + 3]?.exists) {
       authorized.add(friendUid);
+      prefetched.set(friendUid, {
+        userExists: true,
+        userData: friendUser.data() as DocData,
+        tombstoneExists: false,
+      });
     }
   });
-  return [...authorized];
+  return { uids: [...authorized], prefetched };
 }
 
 function responseForRequestedUids(
@@ -379,7 +401,19 @@ export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise
     undefined,
     { repairLinks: false },
   );
-  const authorizedUids = await authorizedProfileUids(db, callerStableUid, uids);
+  return runFriendsGetProfiles(db, callerStableUid, uids);
+});
+
+/**
+ * Тело friendsGetProfiles без авторизации вызова — для тестов на подменной базе (§CORE-0162).
+ * Форма ответа прежняя: старые сборки (1.6.24) получают тот же { ok, profiles }.
+ */
+export async function runFriendsGetProfiles(
+  db: admin.firestore.Firestore,
+  callerStableUid: string,
+  uids: string[],
+): Promise<ProfilesResponse> {
+  const { uids: authorizedUids, prefetched } = await authorizedProfileUids(db, callerStableUid, uids);
   const authorizedSet = new Set(authorizedUids);
 
   // Profiles include private users/{uid}.progress fields, so cached responses
@@ -392,7 +426,7 @@ export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise
   const entries = await Promise.all(
     authorizedUids.map(async (uid): Promise<[string, FriendPublicProfile | null]> => {
       try {
-        return [uid, await fetchOneProfile(db, uid)];
+        return [uid, await fetchOneProfile(db, uid, prefetched.get(uid))];
       } catch (e) {
         console.warn('friendsGetProfiles: failed for uid', uid, e);
         return [uid, null];
@@ -406,4 +440,4 @@ export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise
   const result: ProfilesResponse = { ok: true, profiles };
   writeServerCache(cacheKey, result);
   return responseForRequestedUids(uids, authorizedSet, result);
-});
+}

@@ -211,10 +211,25 @@ export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
     ownerSnapshot.data()?.mistakePracticeMergePending === true) {
     throw new HttpsError('failed-precondition', 'mistake_practice_owner_transitioned');
   }
-  let query = collection.orderBy(admin.firestore.FieldPath.documentId())
-    .startAt('mp_').endBefore('mp_\uf8ff');
-  if (input.cursor) query = query.startAfter(input.cursor);
-  const snapshot = await query.limit(MISTAKE_PRACTICE_EVENT_PAGE_MAX).get();
+  // \u0437\u0430\u0447\u0435\u043c (\u00a7CORE-0162, \u0430\u0443\u0434\u0438\u0442 \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438 Firebase, \u043f\u0430\u043a\u0435\u0442 A): \u0440\u0430\u043d\u044c\u0448\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043b\u0438\u0441\u0442\u0430\u043b\u0430 \u0412\u0421\u0415 mp_* \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430 \u0438 \u043e\u0442\u0441\u0435\u0438\u0432\u0430\u043b\u0430
+  // \u044f\u0437\u044b\u043a \u043f\u043e\u0441\u043b\u0435 \u0447\u0442\u0435\u043d\u0438\u044f \u2014 \u043a\u043b\u0438\u0435\u043d\u0442 \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 5 \u044f\u0437\u044b\u043a\u043e\u0432, \u0438\u0442\u043e\u0433\u043e \u2248 5\u00d7E \u0447\u0442\u0435\u043d\u0438\u0439. \u0422\u0435\u043f\u0435\u0440\u044c \u044f\u0437\u044b\u043a \u0444\u0438\u043b\u044c\u0442\u0440\u0443\u0435\u0442 \u0441\u0430\u043c \u0437\u0430\u043f\u0440\u043e\u0441
+  // (\u043e\u0434\u043d\u043e\u043f\u043e\u043b\u044c\u043d\u044b\u0439 \u0438\u043d\u0434\u0435\u043a\u0441 studyTarget + \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u043f\u043e id). \u041a\u0443\u0440\u0441\u043e\u0440 \u2014 \u043f\u043e-\u043f\u0440\u0435\u0436\u043d\u0435\u043c\u0443 id \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430, \u043e\u0442\u0432\u0435\u0442 \u0442\u043e\u0439 \u0436\u0435 \u0444\u043e\u0440\u043c\u044b:
+  // \u0441\u0442\u0430\u0440\u044b\u0435 \u0441\u0431\u043e\u0440\u043a\u0438 (1.6.24) \u043b\u0438\u0441\u0442\u0430\u044e\u0442 \u0442\u0430\u043a \u0436\u0435. \u041d\u0435\u0442 \u0438\u043d\u0434\u0435\u043a\u0441\u0430 (FAILED_PRECONDITION) \u2014 \u043f\u0440\u0435\u0436\u043d\u0438\u0439 \u0437\u0430\u043f\u0440\u043e\u0441, \u0431\u0435\u0437 \u043f\u043e\u043b\u043e\u043c\u043a\u0438.
+  const buildQuery = (byTarget: boolean) => {
+    let query = byTarget ? collection.where('studyTarget', '==', input.studyTarget) : collection;
+    query = query.orderBy(admin.firestore.FieldPath.documentId()).startAt('mp_').endBefore('mp_\uf8ff');
+    if (input.cursor) query = query.startAfter(input.cursor);
+    return query.limit(MISTAKE_PRACTICE_EVENT_PAGE_MAX);
+  };
+  let snapshot: admin.firestore.QuerySnapshot;
+  try {
+    snapshot = await buildQuery(true).get();
+  } catch (error) {
+    const code = String((error as { code?: unknown })?.code ?? '');
+    if (code !== '9' && code !== 'failed-precondition' && !/FAILED_PRECONDITION|index/i.test(String((error as Error)?.message ?? ''))) throw error;
+    console.warn('[MP-SYNC] list:target_filter_unavailable', JSON.stringify({ studyTarget: input.studyTarget, code }));
+    snapshot = await buildQuery(false).get();
+  }
   const events: Record<string, unknown>[] = [];
   for (const doc of snapshot.docs) {
     const value = doc.data();

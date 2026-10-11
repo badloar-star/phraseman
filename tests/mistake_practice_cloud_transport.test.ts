@@ -55,16 +55,40 @@ describe('mistake practice cloud owner fence', () => {
     expect(invoke).toHaveBeenCalledWith(expect.objectContaining({ expectedStableUid: 'owner-a' }));
   });
 
-  test('replays every local event so a late backdated event cannot be skipped', async () => {
+  // §CORE-0162 (пакет B): отбор по id, а не по времени — событие «задним числом» не пропадает; первая выгрузка
+  // в запуске полная (лечит потерю на сервере), дальше — только неподтверждённое.
+  test('a late backdated event cannot be skipped; only unconfirmed events go after the first full replay', async () => {
     const first = makeEvent('first', 100);
     const late = makeEvent('late', 50);
+    const journalWith = (events: unknown[]) => ({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events });
     mockLoadJournal
-      .mockResolvedValueOnce({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events: [first] })
-      .mockResolvedValueOnce({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events: [first, late] });
+      .mockResolvedValueOnce(journalWith([first]))
+      .mockResolvedValueOnce(journalWith([first, late]))
+      .mockResolvedValueOnce(journalWith([first, late]))
+      .mockResolvedValueOnce(journalWith([first, late]));
     const invoke = jest.fn(async (request: any) => ({ ok: true as const, appended: request.events.length }));
     await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
     await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
-    expect(invoke.mock.calls[1][0].events).toEqual([late, first]);
+    expect(invoke.mock.calls[0][0].events).toEqual([first]);
+    expect(invoke.mock.calls[1][0].events).toEqual([late]);
+
+    await expect(uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke })).resolves.toBe(0);
+    expect(invoke).toHaveBeenCalledTimes(2);
+
+    resetMistakePracticeRestoreThrottleForTests(); // новый запуск
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
+    expect(invoke.mock.calls[2][0].events).toEqual([late, first]);
+  });
+
+  test('an account switch replays the full journal again', async () => {
+    const first = makeEvent('first', 100);
+    mockLoadJournal.mockResolvedValue({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events: [first] });
+    const invoke = jest.fn(async (request: any) => ({ ok: true as const, appended: request.events.length }));
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
+    mockToken = Object.freeze({ generation: 2, stableId: 'owner-a', phase: 'active' });
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
+    expect(invoke).toHaveBeenCalledTimes(2);
+    expect(invoke.mock.calls[1][0].events).toEqual([first]);
   });
 
   test('continues deterministic pagination across a mixed-target empty page', async () => {

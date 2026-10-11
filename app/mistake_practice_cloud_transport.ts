@@ -41,11 +41,13 @@ export interface MistakePracticeCloudTransportDependencies {
 const RESTORE_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
 const restoreSucceededAtMs = new Map<string, number>();
 const restoreInFlight = new Map<string, Promise<number>>();
+const uploadConfirmedEventIds = new Map<string, ReadonlySet<string>>();
 
 /** Только для тестов. */
 export function resetMistakePracticeRestoreThrottleForTests(): void {
   restoreSucceededAtMs.clear();
   restoreInFlight.clear();
+  uploadConfirmedEventIds.clear();
 }
 
 const invokeDefault = async (request: AppendRequest | ListRequest): Promise<Response> => {
@@ -70,7 +72,20 @@ export async function uploadMistakePracticeEvents(input: Readonly<{
   }
   const journal = await loadMistakeEventJournal(input);
   if (!isCurrentAccountGeneration(generation)) throw new Error('mistake_practice_cloud_owner_stale');
-  const events = [...journal.events].sort(eventOrder);
+  // зачем (§CORE-0162, аудит стоимости Firebase, пакет B): каждый синк пересылал ВЕСЬ журнал, сервер читал каждое
+  // событие в транзакции (≈ E чтений на синк, 3–6 синков за сессию). Первая выгрузка в запуске — по-прежнему полная
+  // (лечит потерю на сервере); дальше в пределах запуска уходят только события, которых сервер ещё не подтвердил,
+  // — по id, не по времени, поэтому событие «задним числом» не пропадает. Смена аккаунта — новое поколение, полная.
+  const uploadKey = `${generation.generation}|${input.accountScope}|${input.studyTarget}`;
+  const confirmed = uploadConfirmedEventIds.get(uploadKey);
+  const events = [...journal.events]
+    .filter((event) => !confirmed || !confirmed.has(event.eventId))
+    .sort(eventOrder);
+  if (confirmed && events.length === 0) {
+    console.log(`[MISTAKE-SYNC] upload:nothing_new target=${input.studyTarget} confirmed=${confirmed.size}`);
+    return 0;
+  }
+  const confirmedNow = new Set(confirmed ?? []);
   let uploaded = 0;
   for (let offset = 0; offset < events.length; offset += PAGE_MAX) {
     const batch = events.slice(offset, offset + PAGE_MAX);
@@ -86,6 +101,9 @@ export async function uploadMistakePracticeEvents(input: Readonly<{
       throw new Error('mistake_practice_cloud_append_invalid');
     }
     uploaded += batch.length;
+    batch.forEach((event) => confirmedNow.add(event.eventId));
+    // Подтверждённое запоминаем после каждой страницы: обрыв на середине не заставит пересылать уже принятое.
+    uploadConfirmedEventIds.set(uploadKey, confirmedNow); // guard-ok: Map в памяти процесса, не Firestore
   }
   return uploaded;
 }

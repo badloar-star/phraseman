@@ -62,8 +62,8 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   // 'recovery' — маркер уже мог быть записан: слепой повтор запрещён, только перезапуск.
   const [failureKind, setFailureKind] = useState<'precommit' | 'recovery'>('precommit');
 
-  // зачем: стадию 'wiping' ставит requestLogout (кнопка «Выйти» в подтверждении или «Повторить»
-  // после отказа) — здесь ловим её и запускаем выход ровно один раз (подтверждение вернул координатор 12.10).
+  // зачем: стадию 'wiping' ставит экран аккаунта сразу по тапу «Выйти» (выход мгновенный, решение владельца 31.08)
+  // или requestLogout («Повторить» после отказа) — здесь ловим её и запускаем выход ровно один раз.
   const logoutStartedRef = useRef(false);
   useEffect(() => {
     if (stage !== 'wiping' || logoutStartedRef.current) return;

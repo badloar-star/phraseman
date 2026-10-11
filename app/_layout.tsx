@@ -157,7 +157,6 @@ import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
-import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import {
   consumeRemoteAccountDeletionNotice,
   handleAccountDeletedOnAnotherDevice,
@@ -1029,7 +1028,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
-  const remoteDeletionNoticeShownRef = useRef(false);
   const { studyTarget } = useStudyTarget();
   // зачем (аудит 2026-08-28, тот же класс бага что в flashcards_collection.tsx):
   // hasPremiumAccess — полный законный доступ (покупка ИЛИ VIP ИЛИ intro ИЛИ
@@ -1058,36 +1056,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }), []);
   const globalSearchParams = useGlobalSearchParams();
 
+  // зачем (правило владельца 22.09 «уведомлений об удалении не показывать никогда», координатор 12.10):
+  // окно «Аккаунт удалён на другом устройстве» убрано. Выход и очистка при удалении остались как были
+  // (handleAccountDeletedOnAnotherDevice); здесь только снимаем флаг показа и пишем в лог, почему окна нет.
   const showRemoteAccountDeletionNotice = useCallback(async () => {
     const pending = await consumeRemoteAccountDeletionNotice();
-    if (!pending || remoteDeletionNoticeShownRef.current) return;
-    remoteDeletionNoticeShownRef.current = true;
-    await enqueueThemedBlockingInfoAlert(
-      triLang(lang, {
-        ru: 'Аккаунт удалён',
-        uk: 'Акаунт видалено',
-        en: 'Account deleted',
-        es: 'Cuenta eliminada',
-        'pt-BR': 'Conta excluída',
-        vi: 'Tài khoản đã bị xóa',
-        id: 'Akun telah dihapus',
-        tr: 'Hesap silindi',
-        pl: 'Konto usunięte',
-      }),
-      triLang(lang, {
-        ru: 'Этот аккаунт был удалён на другом устройстве. Локальные данные на этом телефоне очищены, вход завершён.',
-        uk: 'Цей акаунт було видалено на іншому пристрої. Локальні дані на цьому телефоні очищено, сеанс завершено.',
-        en: 'This account was deleted on another device. Local data on this phone has been cleared and the session ended.',
-        es: 'Esta cuenta se eliminó en otro dispositivo. Se borraron los datos locales de este teléfono y se cerró la sesión.',
-        'pt-BR': 'Esta conta foi excluída em outro dispositivo. Os dados locais deste telefone foram apagados e a sessão foi encerrada.',
-        vi: 'Tài khoản này đã bị xóa trên một thiết bị khác. Dữ liệu cục bộ trên điện thoại này đã được xóa và phiên đăng nhập đã kết thúc.',
-        id: 'Akun ini dihapus di perangkat lain. Data lokal di ponsel ini telah dibersihkan dan sesi telah diakhiri.',
-        tr: 'Bu hesap başka bir cihazda silindi. Bu telefondaki yerel veriler temizlendi ve oturum kapatıldı.',
-        pl: 'To konto usunięto na innym urządzeniu. Dane lokalne na tym telefonie zostały wyczyszczone, a sesja zakończona.',
-      }),
-      'OK',
-    );
-  }, [lang]);
+    if (!pending) return;
+    console.log('[ACC-DELETED-REMOTE] notice_suppressed', JSON.stringify({ reason: 'owner_rule_no_deletion_notices', flagConsumed: true }));
+  }, []);
 
   useEffect(() => {
     void showRemoteAccountDeletionNotice();

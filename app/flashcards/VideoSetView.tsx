@@ -15,6 +15,7 @@ import { KitCard } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
@@ -106,7 +107,6 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
           <LinearGradient pointerEvents="none" colors={[mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBase, 0.5)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
           {thumbUrl ? <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} cachePolicy="memory-disk" /> : null}
           <View style={styles.play}><Ionicons name="play" size={26} color={g.mediaInk} /></View>
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]} />
         </Pressable>
 
         <View style={styles.pills}>
@@ -152,11 +152,10 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
               accessibilityRole="button"
               accessibilityLabel={copy.train}
               onPress={onTrain}
-              style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && styles.pressed]}
+              style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}
             >
               <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
               <Ionicons name="arrow-forward" size={20} color={g.accentInk} />
-              <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />
             </Pressable>
           ) : null)}
         </View>
@@ -172,20 +171,20 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   pressed: { opacity: 0.82 },
   scroll: { paddingHorizontal: 20, paddingBottom: 140 },
   top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
   title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4 },
-  hero: { marginTop: 18, height: 218, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', boxShadow: [{ offsetX: 0, offsetY: 20, blurRadius: 40, spreadDistance: -20, color: g.dropShadow }] },
+  hero: { marginTop: 18, height: 218, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', boxShadow: plateBoxShadow(g) },
   play: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', backgroundColor: g.mediaScrim },
   pills: { marginTop: 14, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft },
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', color: g.text },
-  rows: { marginTop: 9, gap: 9 },
+  rows: { marginTop: 10, gap: 10 }, // зачем (Тень 12.10): отступ между плашками ≥ 10 — тень должна «дышать»
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
   time: { width: 40, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.accentText },
   rowText: { flex: 1, minWidth: 0 },
   phrase: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   tr: { marginTop: 2, fontSize: 16, lineHeight: 21 },
-  vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: g.glassEdge },
+  vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) },
   dock: { paddingHorizontal: 20 },
   train: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   trainText: { fontSize: 16, fontWeight: '700' },

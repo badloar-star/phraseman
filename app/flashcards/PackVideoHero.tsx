@@ -17,6 +17,7 @@ import type { Theme } from '../../constants/theme';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
@@ -90,7 +91,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
       accessibilityRole="button"
       accessibilityLabel={pack.videoTitle ? `${watchLabel}. ${pack.videoTitle}` : watchLabel}
       onPress={() => { void onPress(); }}
-      style={({ pressed }) => [styles.hero, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge, opacity: pressed ? 0.85 : 1 }]}
+      style={({ pressed }) => [styles.hero, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.85 : 1 }]}
     >
       {/* Подложка до загрузки кадра: тон темы, а не пустой серый прямоугольник. */}
       <LinearGradient pointerEvents="none" colors={[g.opaqueControl, g.opaqueCard]} start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
@@ -109,7 +110,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
       {/* Затемнение снизу — чтобы подпись читалась на любом кадре. */}
       <View style={styles.scrim} pointerEvents="none" />
 
-      <View style={styles.playBadge}>
+      <View style={[styles.playBadge, { boxShadow: nestedBoxShadow(g) }]}>
         <Ionicons name="play" size={24} color={MEDIA_INK} />
       </View>
 
@@ -128,8 +129,7 @@ const styles = StyleSheet.create({
     width: '100%',
     aspectRatio: 16 / 9,
     borderRadius: 22,
-    borderWidth: StyleSheet.hairlineWidth,
-    overflow: 'hidden',
+    overflow: 'hidden', // зачем: клип кадра по скруглению; boxShadow (Тень 12.10) рисуется вне контейнера клипа
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 4,
@@ -143,8 +143,6 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 28,
     backgroundColor: 'rgba(0,0,0,0.55)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(255,255,255,0.25)', // theme-exempt: белый значок/текст поверх видео — в любой теме
     alignItems: 'center',
     justifyContent: 'center',
   },

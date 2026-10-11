@@ -11,6 +11,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { feedThumbUrl } from './YoutubeVideoCard';
@@ -64,7 +65,8 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
         onPress={onWatch}
         activeOpacity={0.86}
       >
-        <View style={[styles.thumb, { backgroundColor: g.opaqueControl, borderColor: highlighted ? g.accent : g.glassEdge }]}>{/* guard-ok: тонкая кромка обложки 2.0, как `.th` макета */}
+        {/* зачем (Тень 12.10): обложка без кромки; выбранный ролик (highlighted) приподнят — raisedBoxShadow + сдвиг, как в спеке */}
+        <View style={[styles.thumb, { backgroundColor: g.opaqueControl }, highlighted ? { boxShadow: raisedBoxShadow(g), transform: [{ translateY: RAISED_LIFT }] } : { boxShadow: plateBoxShadow(g) }]}>
           {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
           <Image accessible={false} source={{ uri: feedThumbUrl(video.thumbnailUrl, true) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
           {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
@@ -108,8 +110,8 @@ export default React.memo(YoutubeVideoGridCardBase, (prev, next) => (
 
 const baseStyles = StyleSheet.create({
   card: { position: 'relative' },
-  // `.th` макета: 16:9, радиус 14, тонкая кромка.
-  thumb: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth }, // guard-ok: тонкая 1 px полупрозрачная кромка обложки, как `.th` макета
+  // `.th` макета: 16:9, радиус 14; кромки нет (стиль «Тень»).
+  thumb: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden' },
   // `.du`: высота 22, поля 7, радиус 7, чёрный 70 %, справа-снизу 7; 12 → 13 по шкале D145.
   duration: { position: 'absolute', right: 7, bottom: 7, minHeight: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.7)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме

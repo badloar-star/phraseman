@@ -21,6 +21,7 @@ import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audi
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { FlowText } from '../text-integrity';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
@@ -83,7 +84,7 @@ export default function YoutubeInlinePlayer({
 }: YoutubeInlinePlayerProps) {
   const { lang } = useLang();
   const { theme: t, isDark, themeMode, liquidGlassThemeId } = useTheme();
-  // зачем (Сверка video-011): вокруг плеера была толстая светлая рамка старой палитры — в 2.0 только 1 px glassEdge.
+  // зачем (Сверка video-011): вокруг плеера была толстая светлая рамка старой палитры; в стиле «Тень» (12.10) кромки нет вовсе — плашка с тенью.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
@@ -313,7 +314,7 @@ export default function YoutubeInlinePlayer({
   }
 
   return (
-    <View testID="lingman-inline-player" style={[styles.shell, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}>
+    <View testID="lingman-inline-player" style={[styles.shell, { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }]}>
       <View style={styles.header}>
         <FlowText testID="lingman-inline-player-title" provenance="external" style={[styles.title, { color: glass.text }]}>{title}</FlowText>
         {onClose ? (
@@ -334,7 +335,7 @@ export default function YoutubeInlinePlayer({
 }
 
 const styles = StyleSheet.create({
-  shell: { borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden', marginBottom: 12 }, // guard-ok: 1 px полупрозрачная кромка 2.0
+  shell: { borderRadius: 20, overflow: 'hidden', marginBottom: 12 }, // overflow нужен: углы плеера; boxShadow рисуется вне контейнера клипа (Fabric)
   previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   header: { minHeight: 56, paddingHorizontal: 12, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },

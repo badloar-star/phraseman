@@ -7,6 +7,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 /**
@@ -32,7 +33,7 @@ function YoutubePlaylistGridCardBase({ playlist, onPress }: { playlist: YoutubeP
       <View style={styles.stack}>
         <View style={[styles.stackTwo, { backgroundColor: g.opaqueCard }]} />
         <View style={[styles.stackOne, { backgroundColor: g.opaqueControl }]} />
-        <View style={[styles.cover, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{/* guard-ok: тонкая кромка обложки 2.0, как `.th` макета */}
+        <View style={[styles.cover, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>{/* зачем (Тень 12.10): обложка без кромки — плашка с тенью */}
           {playlist.thumbnailUrl
             ? <Image accessible={false} source={{ uri: playlist.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" cachePolicy="memory-disk" recyclingKey={playlist.id} />
             : <Ionicons name="albums-outline" size={24} color={g.secondary} />}
@@ -50,7 +51,7 @@ export default React.memo(YoutubePlaylistGridCardBase, (prev, next) => prev.play
 const baseStyles = StyleSheet.create({
   // `.stk`: отступ сверху 10 под полоски, они выходят за кадр на 6 и 11.
   stack: { marginTop: 10 },
-  cover: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка обложки, как `.th` макета
+  cover: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   stackOne: { position: 'absolute', top: -6, left: 12, right: 12, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
   stackTwo: { position: 'absolute', top: -11, left: 24, right: 24, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },

@@ -12,6 +12,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
+import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { formatViewCount } from '../video/formatViewCount';
 import { pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -65,7 +66,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views, savedLine].filter(Boolean);
   const content = (
     <>
-      <View style={[styles.thumbWrap, compactLayout && styles.thumbCompact, { borderColor: g.glassEdge }]}>
+      <View style={[styles.thumbWrap, compactLayout && styles.thumbCompact, inlinePlayer ? styles.thumbInPlayingCard : { boxShadow: highlighted ? raisedBoxShadow(g) : plateBoxShadow(g) }]}>
         {/* зачем (координатор Q39): мягкое раскрытие ролика — см. components/video/videoMotion.ts. */}
         {inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL} style={styles.thumb}>{inlinePlayer}</Animated.View> : (
           <>
@@ -106,7 +107,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   );
 
   const card = inlinePlayer ? (
-    <View testID="lingman-video-card" style={[styles.card, styles.playingCard, { backgroundColor: g.card, borderColor: highlighted ? g.cta : g.glassEdge }]}>
+    <View testID="lingman-video-card" style={[styles.card, styles.playingCard, { backgroundColor: g.plateFillFrom, boxShadow: highlighted ? raisedBoxShadow(g) : plateBoxShadow(g) }]}>
       {content}
     </View>
   ) : (
@@ -118,7 +119,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
       activeOpacity={0.86}
       /* зачем не функция: TouchableOpacity не передаёт `pressed` — ветка
          нажатия была мёртвой. Отклик даёт activeOpacity. */
-      style={[styles.card, compactLayout ? styles.compactCard : styles.gridCard, { borderColor: highlighted ? g.cta : 'transparent' }]}
+      style={[styles.card, compactLayout ? styles.compactCard : styles.gridCard]}
     >
       {content}
     </TouchableOpacity>
@@ -130,10 +131,13 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
 
 const styles = StyleSheet.create({
   card: { marginBottom: 12 },
-  gridCard: { borderRadius: 16, borderWidth: 1, marginBottom: 20 },
-  compactCard: { borderRadius: 12, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 16 },
-  playingCard: { borderRadius: 20, borderWidth: 1, overflow: 'hidden' },
-  thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505', borderRadius: 16, overflow: 'hidden', borderWidth: 1 }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  // зачем (Тень 12.10): ни кромок, ни кольца «выбрано» (accent) — выбранный ролик приподнят тенью (raisedBoxShadow) на обложке;
+  // у играющей карточки overflow убран (клип тени), верх обложки скруглён под плашку (thumbInPlayingCard)
+  gridCard: { borderRadius: 16, marginBottom: 20 },
+  compactCard: { borderRadius: 12, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 16 },
+  playingCard: { borderRadius: 20 },
+  thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505', borderRadius: 16, overflow: 'hidden' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  thumbInPlayingCard: { borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 },
   thumbCompact: { width: 150, aspectRatio: 16 / 9, borderRadius: 12 },
   thumb: { ...StyleSheet.absoluteFillObject },
   scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.10)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме

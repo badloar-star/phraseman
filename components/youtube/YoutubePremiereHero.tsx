@@ -19,7 +19,8 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { VideoGlassSheen, VideoPlayBadge } from '../video/VideoGlassKit';
+import { VideoPlayBadge } from '../video/VideoGlassKit';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -126,7 +127,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
       testID="youtube-premiere-static"
       style={[
         styles.hero,
-        { backgroundColor: g.card, borderColor: g.glassEdge },
+        { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
         playIntro ? ({
           animationName: introKeyframes,
           animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`,
@@ -135,7 +136,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         } as any) : null,
       ]}
     >
-      <VideoGlassSheen tint={g.selected} edge={g.glassEdge} />
+      <PlateFill g={g} radius={22} />
       <TouchableOpacity
         testID="youtube-premiere-thumbnail"
         accessibilityRole="button"
@@ -157,17 +158,17 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
         {!live && isCountdown && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={[styles.countdown, { color: g.secondary }]}>{countdown}</Text>}
         {live ? (
-          <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta }]}>
+          <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>
             <Ionicons name="play" size={18} color={g.ctaInk} />
             <Text style={[styles.ctaText, { color: g.ctaInk }]}>{copy.join}</Text>
           </TouchableOpacity>
         ) : !isCountdown ? (
-          <View testID="youtube-premiere-checking" accessibilityRole="button" accessibilityLabel={copy.checking} style={[styles.cta, styles.ctaGhost, { borderColor: g.glassEdge }]}>
+          <View testID="youtube-premiere-checking" accessibilityRole="button" accessibilityLabel={copy.checking} style={[styles.cta, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
             <ActivityIndicator size="small" color={g.text} />
             <Text style={[styles.ctaText, { color: g.text }]}>{copy.checking}</Text>
           </View>
         ) : (
-          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? [styles.ctaGhost, { borderColor: g.glassEdge }] : { backgroundColor: g.cta }]}>
+          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) } : { backgroundColor: g.cta, boxShadow: actionBoxShadow(g) }]}>
             <Ionicons name={reminded ? 'checkmark' : 'flag-outline'} size={18} color={reminded ? g.text : g.ctaInk} />
             <Text style={[styles.ctaText, { color: reminded ? g.text : g.ctaInk }]}>{reminded ? copy.reminded : copy.remind}</Text>
           </TouchableOpacity>
@@ -182,7 +183,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
 
 const styles = StyleSheet.create({
   // зачем: `.hero` макета — плашка радиус 22, поля 12, кадр внутри радиусом 14.
-  hero: { borderRadius: 22, borderWidth: 1, overflow: 'hidden', padding: 12, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая 1 px кромка стекла, как в макете
+  hero: { borderRadius: 22, padding: 12, marginTop: 18, marginBottom: 10 }, // зачем (Тень 12.10): без кромки и overflow (клип тени); отступ снизу 10 — тень должна «дышать»
   thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden', backgroundColor: '#050505' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   image: { ...StyleSheet.absoluteFillObject },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
@@ -193,6 +194,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   countdown: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  ctaGhost: { backgroundColor: 'transparent', borderWidth: 1 }, // guard-ok: `.cta.gh` макета — тонкая 1 px полупрозрачная кромка
+  // зачем (Тень 12.10): контурная `.cta.gh` заменена плашкой с малой тенью (opaqueControl + nestedBoxShadow в разметке)
   ctaText: { fontSize: 16, fontWeight: '600' },
 });

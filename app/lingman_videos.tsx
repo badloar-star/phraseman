@@ -39,7 +39,7 @@ import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { V2 } from '../constants/v2Style';
-import { VideoGlassSheen } from '../components/video/VideoGlassKit';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites, useVideoSaveCounts } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
@@ -81,9 +81,6 @@ import {
 } from './youtube_premiere_notifications';
 
 // Stable child contract: YoutubeVideoGridCard renders testID="lingman-video-card".
-
-// зачем: единый стеклянный блик плашек — живёт в components/video/VideoGlassKit (макет video.html).
-const VideoScreenGlass = VideoGlassSheen;
 
 function legacyChannelSnapshot(): YoutubeChannelSnapshot {
   const channel = getActiveYoutubeChannel();
@@ -647,10 +644,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       accessibilityLabel={copy.savedVideos}
       activeOpacity={0.8}
       onPress={() => router.push({ pathname: '/lingman_videos', params: { saved: '1' } } as never)}
-      style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
+      style={[styles.packsRow, { boxShadow: plateBoxShadow(g) }]}
     >
-      <VideoScreenGlass tint={g.selected} edge={g.glassEdge} />
-      <View style={[styles.packsIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="bookmark-outline" size={20} color={g.text} /></View>
+      {/* зачем (Тень 12.10): строка «Сохранённые» без кромки — заливка PlateFill и тень плашки */}
+      <PlateFill g={g} radius={14} />
+      <View style={[styles.packsIcon, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}><Ionicons name="bookmark-outline" size={20} color={g.text} /></View>
       <View style={styles.packsCopy}>
         <Text style={[styles.packsTitle, { color: g.text }]}>{copy.savedVideos}</Text>
         <Text style={[styles.packsSub, { color: g.secondary }]}>{triLang(lang, {
@@ -802,8 +800,6 @@ const styles = StyleSheet.create({
   packsRow: {
     minHeight: 64,
     borderRadius: 14,
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как `.card` макета
-    overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,

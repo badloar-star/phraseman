@@ -25,11 +25,13 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(header.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in channel actions');
   assert.ok(card.includes('video.thumbnailUrl'), 'real thumbnail source');
   assert.ok(screen.includes('<YoutubeInlinePlayer'), 'real inline player stays wired (премьера)');
-  assert.ok(screen.includes('VideoScreenGlass tint={g.selected}'), 'static screen material');
+  // зачем (Тень 12.10): строка «Сохранённые» — PlateFill + тень плашки, без блика-кромки VideoScreenGlass
+  assert.ok(screen.includes('<PlateFill g={g} radius={14} />') && screen.includes('plateBoxShadow(g)'), 'static screen material');
   assert.ok(!screen.includes('testID="youtube-catalog-error"'), 'владелец 01.10: экрана ошибки нет');
   // зачем: состояния «нет сети / устарел / ошибка» переехали в components/video/VideoGlassKit (макет video.html).
   const kit = readFileSync(new URL('../components/video/VideoGlassKit.tsx', import.meta.url), 'utf8');
-  assert.ok(kit.includes('{ backgroundColor: g.card, borderColor: g.glassEdge }'), 'note surface uses current tint');
+  // зачем (Тень 12.10): плашка-заметка без кромки: заливка темы PlateFill + тень плашки
+  assert.ok(kit.includes('<PlateFill g={g} radius={14} />') && kit.includes('boxShadow: plateBoxShadow(g)') && !kit.includes('borderColor'), 'note surface uses current tint, no edge');
   assert.ok(kit.includes('styles.stateActionText, { color: g.accentInk }'), 'retry label follows current theme CTA');
   assert.ok(!kit.includes("color: '#071015'"), 'retry label has no graphite-only fallback');
   assert.ok(screen.includes('paddingBottom: tabContentBottomPad'), 'tab content clears bottom navigation');

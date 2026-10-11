@@ -9,6 +9,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { FlowText } from '../text-integrity';
 import type { StudyTarget } from '../../app/study_target';
 
@@ -50,7 +51,9 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
   const back = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   // зачем: в макете слева в пилюле круглая аватарка канала (`.chav`): картинка, а без неё — инициалы.
   const initials = channel.displayName.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word.charAt(0).toUpperCase()).join('');
-  const actionButton = [styles.actionButton, { backgroundColor: g.card, borderColor: g.glassEdge }];
+  // зачем (Тень 12.10): круглая кнопка и пилюли шапки — плашки с тенью, без кромки `glassEdge`
+  const plate = { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) };
+  const actionButton = [styles.actionButton, plate];
   return (
     <View style={styles.wrap}>
       <View style={styles.titleRow}>
@@ -61,7 +64,7 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
         ) : null}
         <FlowText testID="youtube-channel-title" provenance={title ? 'authored' : 'external'} accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title ?? channel.displayName}</FlowText>
         {onOpenLanguage && studyTarget ? (
-          <TapScale testID="youtube-study-language" accessibilityRole="button" accessibilityLabel={`${languageLabel}: ${studyTarget.toUpperCase()}`} onPress={onOpenLanguage} style={[styles.langPill, { backgroundColor: g.opaqueControl }]}>
+          <TapScale testID="youtube-study-language" accessibilityRole="button" accessibilityLabel={`${languageLabel}: ${studyTarget.toUpperCase()}`} onPress={onOpenLanguage} style={[styles.langPill, plate]}>
             {/* зачем (Сверка video-001 🔴): TapScale кладёт детей в обёртку анимации, а стиль — на внешний Pressable, поэтому
                 flexDirection:'row' пилюли не действовал и флаг/EN/⌄ вставали столбиком. Строка — во внутреннем View. */}
             <View style={styles.langRow}>
@@ -88,11 +91,11 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
       );
       // зачем (владелец 01.10): каждый канал — отдельный контур по языку обучения; выбора каналов нет.
       return onOpenChannels ? (
-        <TapScale testID="youtube-all-channels" accessibilityRole="button" accessibilityLabel={channelAccessibilityLabel} onPress={onOpenChannels} style={[styles.channelPill, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+        <TapScale testID="youtube-all-channels" accessibilityRole="button" accessibilityLabel={channelAccessibilityLabel} onPress={onOpenChannels} style={[styles.channelPill, plate]}>
           {pillBody}
         </TapScale>
       ) : (
-        <View testID="youtube-channel-pill" accessible accessibilityLabel={channel.displayName} style={[styles.channelPill, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+        <View testID="youtube-channel-pill" accessible accessibilityLabel={channel.displayName} style={[styles.channelPill, plate]}>
           {pillBody}
         </View>
       );
@@ -104,9 +107,9 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
 const styles = StyleSheet.create({
   wrap: { marginBottom: 16 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: V2.iconButton },
-  actionButton: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }, // guard-ok: D43
+  actionButton: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   title: { ...V2_TYPE.largeTitle, flex: 1, minWidth: 0 },
-  channelPill: { minHeight: 44, alignSelf: 'flex-start', maxWidth: '100%', borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, marginTop: 14, paddingLeft: 6, paddingRight: 14, justifyContent: 'center' }, // guard-ok: D43
+  channelPill: { minHeight: 44, alignSelf: 'flex-start', maxWidth: '100%', borderRadius: 22, marginTop: 14, paddingLeft: 6, paddingRight: 14, justifyContent: 'center' },
   channelPillContent: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0 },
   avatar: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 },
   avatarText: { fontSize: 13, fontWeight: '800' },

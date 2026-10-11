@@ -30,7 +30,8 @@ test('video.html: header pill has avatar/initials, tabs are 16/600', () => {
 
 test('video.html: video card has the round play badge and localized short view counts', () => {
   assert.ok(card.includes('<VideoPlayBadge small={compactLayout} />'), 'play badge on the thumbnail');
-  assert.ok(kit.includes('rgba(0,0,0,0.5)') && kit.includes('rgba(255,255,255,0.25)'), 'badge colors from `.thumb .pl`');
+  // зачем (Тень 12.10): значок «play» без белого кольца 0.25 — только тёмная заливка `.thumb .pl` и малая тень
+  assert.ok(kit.includes('rgba(0,0,0,0.5)') && !kit.includes('rgba(255,255,255,0.25)') && kit.includes('nestedBoxShadow(g)'), 'badge fill from `.thumb .pl`, no ring');
   assert.ok(views.includes("ru: { thousand: ' тыс.'"), 'ru abbreviation');
   assert.ok(card.includes('formatViewCount(video.viewCount, lang)'), 'card uses the localized formatter');
   // зачем (05.10, 84418b35d): длительность теперь приходит из каталога (durationSec) — показываем только её, без вымысла.

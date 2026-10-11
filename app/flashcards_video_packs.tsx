@@ -69,6 +69,7 @@ import {
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import VideoPackRow from './flashcards/VideoPackRow';
 import { KitEmpty, KitFound, KitSearchField, KitTitle } from '../components/cards-grid/CardsKit';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
@@ -575,7 +576,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
               accessibilityLabel={copy.menu}
               hitSlop={8}
               onPress={() => setMenuOpen(true)}
-              style={({ pressed }) => [styles.square, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }], opacity: pressed ? 0.82 : 1 }]}
+              style={({ pressed }) => [styles.square, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.82 : 1 }]}
             >
               <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
             </Pressable>

@@ -19,6 +19,7 @@ import {
   subscribeYoutubePosition,
 } from '../../app/youtube_player_seek_bus';
 import { actionToastTri, emitAppEvent } from '../../app/events';
+import { actionBoxShadow, nestedBoxShadow } from '../v2/ShadowSurface';
 import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type YoutubeVideoPhrasesProps = {
@@ -288,7 +289,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
             onPress={() => void save(shown)}
             style={({ pressed }) => [
               styles.sheetCta,
-              selectedSaved ? { backgroundColor: 'transparent', borderWidth: 1, borderColor: glass.glassEdge } : { backgroundColor: glass.cta }, // guard-ok: `.cta.gh` макета — тонкий полупрозрачный контур
+              // зачем (Тень 12.10): контурная `.cta.gh` («сохранено») — плашка с малой тенью вместо контура; главная — цветная тень действия
+              selectedSaved ? { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) } : { backgroundColor: glass.cta, boxShadow: actionBoxShadow(glass) },
               { opacity: pressed ? 0.82 : 1 },
             ]}
           >

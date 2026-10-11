@@ -4,6 +4,7 @@ import { BlurView } from 'expo-blur';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
@@ -11,13 +12,13 @@ const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст
 // (Liquid Glass). Общие кирпичи собраны здесь один раз: стеклянный блик плашки, круглая
 // кнопка «play» поверх кадра, центрированное состояние (плитка + фраза + «Повторить»),
 // плашка-заметка «нет сети / устарел». Токены — только liquidGlassTokens (13 тем);
-// обводки — лишь тонкая полупрозрачная 1 px (glassEdge), как в макете.
+// обводок нет (стиль «Тень», владелец 12.10): плашку отделяет градиент и тень (components/v2/ShadowSurface).
 
 export type VideoGlassTokens = ReturnType<typeof liquidGlassTokens>;
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
-/** Материал плашки: лёгкий блюр + верхний блик + тонкая кромка (тот же, что в SettingsGlassRows). */
-export function VideoGlassSheen({ tint, edge }: { tint: string; edge: string }) {
+/** Материал плашки: лёгкий блюр + верхний блик (тот же, что в SettingsGlassRows); кромки нет — стиль «Тень». */
+export function VideoGlassSheen({ tint }: { tint: string }) {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <BlurView
@@ -28,7 +29,6 @@ export function VideoGlassSheen({ tint, edge }: { tint: string; edge: string }) 
         style={StyleSheet.absoluteFill}
       />
       <LinearGradient colors={[tint, 'transparent']} style={StyleSheet.absoluteFill} />
-      <View style={{ height: 1, backgroundColor: edge }} />
     </View>
   );
 }
@@ -36,13 +36,14 @@ export function VideoGlassSheen({ tint, edge }: { tint: string; edge: string }) 
 /** `.thumb .pl` макета: тёмный круг 44 (в узком ряду 28) с белым треугольником, слева-снизу кадра. */
 export function VideoPlayBadge({ small = false }: { small?: boolean }) {
   const size = small ? 28 : 44;
+  const g = useShadowGlass();
   return (
     <View
       pointerEvents="none"
       style={[
         styles.playBadge,
         small ? styles.playBadgeSmall : null,
-        { width: size, height: size, borderRadius: size / 2 },
+        { width: size, height: size, borderRadius: size / 2, boxShadow: nestedBoxShadow(g) },
       ]}
     >
       <Ionicons name="play" size={small ? 14 : 22} color={MEDIA_INK} style={styles.playGlyph} />
@@ -91,8 +92,8 @@ export function VideoStateBlock({ g, icon, text, testID, actionLabel, actionTest
 /** `.note` макета: плашка «Показываем сохранённый каталог» / «Каталог давно не обновлялся». */
 export function VideoNote({ g, icon, text, testID }: { g: VideoGlassTokens; icon: IconName; text: string; testID?: string }) {
   return (
-    <View testID={testID} style={[styles.note, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-      <VideoGlassSheen tint={g.selected} edge={g.glassEdge} />
+    <View testID={testID} style={[styles.note, { boxShadow: plateBoxShadow(g) }]}>
+      <PlateFill g={g} radius={14} />
       <Ionicons name={icon} size={20} color={g.text} />
       <Text style={[styles.noteText, { color: g.secondary }]}>{text}</Text>
     </View>
@@ -107,8 +108,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка круга, как `.thumb .pl` макета
-    borderColor: 'rgba(255,255,255,0.25)', // theme-exempt: белый значок/текст поверх видео — в любой теме
   },
   playBadgeSmall: { left: 8, bottom: 7 },
   playGlyph: { marginLeft: 2 },
@@ -121,8 +120,7 @@ const styles = StyleSheet.create({
   note: {
     minHeight: 44,
     borderRadius: 14,
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как `.note` макета
-    overflow: 'hidden',
+    // зачем (Тень 12.10): overflow убран — иначе клип тени плашки; кромки нет
     paddingHorizontal: 16,
     paddingVertical: 12,
     flexDirection: 'row',

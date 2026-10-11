@@ -26,6 +26,9 @@ const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
 const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'auth_provider_linked @ app/(tabs)/settings.tsx',
   'auth_provider_linked @ app/account_details.tsx',
+  // зачем (11.10, Шпиль только ru/uk): замок вкладки пересчитывается при смене языка интерфейса в настройках
+  // (LangContext шлёт APP_LANG_CHANGED через DeviceEventEmitter). Подписка одна на процесс (4b5162622, bc4b295ca).
+  'app_lang_changed @ app/spire_tab_flag.ts',
   'energy_reload @ components/EnergyContext.tsx',
   'intro_full_access_changed @ app/(tabs)/settings.tsx',
   'loyalty_gift_changed @ app/(tabs)/settings.tsx',

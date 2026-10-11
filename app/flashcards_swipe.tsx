@@ -3485,7 +3485,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
 
-      <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }]}>
+      {/* зачем (аудит cards-gaps-states): без черновика карточка пуста — рисовалась пустая плашка ~32 px между заголовком и «Наборы»; в образце её нет */}
+      <View style={pendingDraft ? [styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }] : styles.heroCardEmpty}>
         {/* зачем (владелец 11.10, журнал 12): блока с названием механики подбора на экране нет — убраны заголовок, подпись и три счётчика; остались только кнопки запуска. Механика подбора карточек не менялась. */}
         {/* зачем: раньше кнопка просто гасла (opacity 0.72) без единого слова о причине —
             «Кнопка начать не сработала» (репорт 25.07). Теперь сама подпись говорит,
@@ -4439,6 +4440,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     lineHeight: 21,
   },
+  heroCardEmpty: { height: 0 },
   heroCard: {
     marginTop: 18,
     borderRadius: 20,

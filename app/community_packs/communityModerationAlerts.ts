@@ -105,7 +105,9 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
     try {
       const res = await callCommunityListSellerInbox({ authorStableId, limit: 50 });
       events = res.events || [];
-    } catch {
+    } catch (error) {
+      // зачем: письмо о результате модерации не должно пропадать молча — причина в журнале (правило «сперва логи»)
+      console.warn('[MOD-ALERT] list inbox failed —', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
       return;
     }
     const mod = events

@@ -10,7 +10,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { KitCta } from '../../components/cards-grid/CardsKit';
 import { FlipCard } from '../../components/cards-grid/FlipCard';
@@ -192,15 +192,22 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
       ) : (
         <View testID="fc-expanded-pack-picker">
           <Text accessibilityRole="header" style={[styles.pickTitle, { color: g.text, lineHeight: lh(26) }]}>{copy.pickPack}</Text>
-          {packs === null ? null : packs.length === 0 ? (
+          {/* зачем (аудит cards-gaps-states): пока список читается — заглушки строк (высота шторки не прыгает); много наборов — список прокручивается */}
+          {packs === null ? (
+            <View testID="fc-expanded-pack-picker-loading">
+              {[0, 1, 2].map((n) => <View key={n} style={[styles.pickSkeleton, { backgroundColor: g.opaqueControl }]} />)}
+            </View>
+          ) : packs.length === 0 ? (
             <View>
               <Text style={[styles.empty, { color: g.secondary, lineHeight: lh(22) }]}>{copy.noPacks}</Text>
               {onCreatePack ? <SheetRow g={g} testID="fc-expanded-create-pack" icon="add" title={copy.createPack} onPress={onCreatePack} /> : null}
             </View>
           ) : (
-            packs.map((pack) => (
-              <SheetRow key={pack.id} g={g} testID={`fc-expanded-pack-${pack.id}`} icon="albums-outline" title={pack.title} onPress={() => addTo(pack.id)} />
-            ))
+            <ScrollView style={styles.pickList} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+              {packs.map((pack) => (
+                <SheetRow key={pack.id} g={g} testID={`fc-expanded-pack-${pack.id}`} icon="albums-outline" title={pack.title} onPress={() => addTo(pack.id)} />
+              ))}
+            </ScrollView>
           )}
         </View>
       )}
@@ -211,6 +218,8 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
 export const ExpandedCardV2 = memo(ExpandedCardInner);
 
 const styles = StyleSheet.create({
+  pickList: { maxHeight: 360 },
+  pickSkeleton: { height: 62, borderRadius: 16, marginTop: 10 },
   acts: { marginTop: 22, flexDirection: 'row', gap: 8 },
   act: { flex: 1, alignItems: 'center', gap: 8 },
   actCircle: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },

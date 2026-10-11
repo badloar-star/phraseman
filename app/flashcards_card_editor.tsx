@@ -36,7 +36,6 @@ import {
   CardsGlassRoundButton,
   CardsGlassScreen,
   CardsGlassStateBlock,
-  CardsGlassSurface,
   useCardsGlass,
 } from './flashcards/CardsGlassKit';
 import { triLang } from '../constants/i18n';
@@ -58,6 +57,14 @@ import {
 } from './flashcards/custom_cards_store';
 import type { CardItem } from './flashcards/types';
 import { DebugLogger } from './debug-logger';
+import { FlipCard } from '../components/cards-grid/FlipCard';
+import { KitCard, KitIconTile } from '../components/cards-grid/CardsKit';
+import { SheetRow } from '../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { EditorField } from './community_packs/PackEditorV2';
+import { addCardToLocalPack, loadAddableLocalPacks } from './community_packs/localPackCardAdd';
+import type { LocalAuthorPack } from './community_packs/localAuthorPacks';
 
 function firstParam(v: string | string[] | undefined): string | null {
   const raw = Array.isArray(v) ? v[0] : v;
@@ -124,6 +131,7 @@ const ASSIST_DEBOUNCE_MS = 250;
 export default function FlashcardsCardEditorScreen() {
   // зачем: Liquid Glass — токены активной темы (cards.html #21–22, #60–64).
   const { g } = useCardsGlass();
+  const kg = useLv2Glass();
   const { lang } = useLang();
   // зачем: редактор обязан читать и писать библиотеку СВОЕГО языка обучения —
   // без этого карточка, созданная в режиме French, уходила в английский ключ.
@@ -178,9 +186,24 @@ export default function FlashcardsCardEditorScreen() {
   /** Перевод текущей локали на момент загрузки — чтобы отличать «не было» от «стёр». */
   const prefillTrRef = useRef('');
   const [focusedField, setFocusedField] = useState<'front' | 'back' | 'description'>('front');
-  /** Необязательная подсказка спрятана до явного запроса — на первом экране только две стороны. */
-  const [descriptionOpen, setDescriptionOpen] = useState(false);
   const [saving, setSaving] = useState(false);
+  // зачем (Карточки 2.0, макет «Новая карточка — превью живое»): превью-разворот сверху показывает лицо, пока вводят слово, и оборот, пока вводят перевод или пример
+  const [previewBack, setPreviewBack] = useState(false);
+  useEffect(() => { setPreviewBack(focusedField !== 'front'); }, [focusedField]);
+  // зачем (макет: строка выбора набора): новая карточка всегда попадает в «Мои карточки» и, если выбран свой неопубликованный набор, ещё и в него
+  const [packPickerOpen, setPackPickerOpen] = useState(false);
+  const [addablePacks, setAddablePacks] = useState<readonly LocalAuthorPack[]>([]);
+  const [targetPackId, setTargetPackId] = useState<string | null>(null);
+  useEffect(() => {
+    if (isEdit) return undefined;
+    let cancelled = false;
+    void loadAddableLocalPacks().then((packs) => {
+      if (!cancelled) setAddablePacks(packs);
+    }).catch((e: unknown) => {
+      console.warn('[CARD-EDITOR] не удалось прочитать свои наборы', e instanceof Error ? e.message : String(e));
+    });
+    return () => { cancelled = true; };
+  }, [isEdit]);
 
   const backInputRef = useRef<TextInput | null>(null);
   const descriptionInputRef = useRef<TextInput | null>(null);
@@ -308,7 +331,6 @@ export default function FlashcardsCardEditorScreen() {
       prefillTrRef.current = own;
       setDraftTR(own);
       setDraftDescription(card.description ?? '');
-      setDescriptionOpen((card.description ?? '').trim().length > 0);
       setLoadingCard(false);
     };
     const cachedList = peekCustomCardsSync(studyTarget);
@@ -418,6 +440,16 @@ export default function FlashcardsCardEditorScreen() {
         throw new Error(hasPremiumAccess ? 'plus_custom_card_limit_reached' : 'free_custom_card_limit_reached');
       }
       await upsertCustomCard(newCard, studyTarget);
+      if (!isEdit && targetPackId) {
+        const added = await addCardToLocalPack(targetPackId, newCard);
+        console.log(`[CARD-EDITOR] карточка ${newCard.id} в набор ${targetPackId}: ${added}`);
+        if (added !== 'added' && added !== 'duplicate') {
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Карточка сохранена, но в набор не добавилась.', uk: 'Картку збережено, але до набору не додано.', es: 'La tarjeta se guardó, pero no se añadió al set.',
+            en: 'The card was saved but not added to the pack.',
+          }));
+        }
+      }
       playSfx('correct');
       fcHaptic('correct');
       // зачем: карточка своей коллекции сохранена (create/edit) — отдельное
@@ -465,25 +497,37 @@ export default function FlashcardsCardEditorScreen() {
     loadingCard,
     creatorGated,
     saving,
+    targetPackId,
   ]);
   handleSaveRef.current = () => { void handleSave(); };
 
   // зачем (Liquid Glass, cards.html #21–22, #60–64): поле — одна непрозрачная
   // плашка с подписью ВНУТРИ и полем ввода без своей рамки; фокус — светлее
   // кромка, а не цветная толстая рамка. Логика ввода/сохранения не менялась.
-  const fieldLabelStyle = {
-    color: g.secondary,
-    fontSize: 13,
-    lineHeight: 17,
-    fontWeight: '700' as const,
-    letterSpacing: 0.2,
-  };
-  const inputInnerStyle = {
-    color: g.text,
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-    marginTop: 6,
-  };
+  const inputStyle = { color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '500' as const, paddingHorizontal: 0, paddingVertical: 0 };
+  const fieldCopy = triLang(lang, {
+    ru: { word: 'Слово или фраза', translation: 'Перевод', example: 'Пример', pack: 'Набор', myCards: 'Мои карточки', add: 'Добавить' },
+    uk: { word: 'Слово або фраза', translation: 'Переклад', example: 'Приклад', pack: 'Набір', myCards: 'Мої картки', add: 'Додати' },
+    en: { word: 'Word or phrase', translation: 'Translation', example: 'Example', pack: 'Pack', myCards: 'My cards', add: 'Add' },
+    es: { word: 'Palabra o frase', translation: 'Traducción', example: 'Ejemplo', pack: 'Set', myCards: 'Mis tarjetas', add: 'Añadir' },
+    'pt-BR': { word: 'Palavra ou frase', translation: 'Tradução', example: 'Exemplo', pack: 'Conjunto', myCards: 'Meus cartões', add: 'Adicionar' },
+    vi: { word: 'Từ hoặc cụm từ', translation: 'Bản dịch', example: 'Ví dụ', pack: 'Bộ thẻ', myCards: 'Thẻ của tôi', add: 'Thêm' },
+    id: { word: 'Kata atau frasa', translation: 'Terjemahan', example: 'Contoh', pack: 'Set', myCards: 'Kartu saya', add: 'Tambah' },
+    tr: { word: 'Kelime veya ifade', translation: 'Çeviri', example: 'Örnek', pack: 'Set', myCards: 'Kartlarım', add: 'Ekle' },
+    pl: { word: 'Słowo lub fraza', translation: 'Tłumaczenie', example: 'Przykład', pack: 'Zestaw', myCards: 'Moje karty', add: 'Dodaj' },
+  });
+  const previewCopy = triLang(lang, {
+    ru: { word: 'Слово', translation: 'Перевод', example: 'Пример появится тут', flip: 'Перевернуть карточку' },
+    uk: { word: 'Слово', translation: 'Переклад', example: 'Приклад з’явиться тут', flip: 'Перевернути картку' },
+    en: { word: 'Word', translation: 'Translation', example: 'The example will appear here', flip: 'Flip the card' },
+    es: { word: 'Palabra', translation: 'Traducción', example: 'El ejemplo aparecerá aquí', flip: 'Girar la tarjeta' },
+    'pt-BR': { word: 'Palavra', translation: 'Tradução', example: 'O exemplo aparecerá aqui', flip: 'Virar o cartão' },
+    vi: { word: 'Từ', translation: 'Bản dịch', example: 'Ví dụ sẽ hiện ở đây', flip: 'Lật thẻ' },
+    id: { word: 'Kata', translation: 'Terjemahan', example: 'Contoh akan muncul di sini', flip: 'Balik kartu' },
+    tr: { word: 'Kelime', translation: 'Çeviri', example: 'Örnek burada görünecek', flip: 'Kartı çevir' },
+    pl: { word: 'Słowo', translation: 'Tłumaczenie', example: 'Przykład pojawi się tutaj', flip: 'Obróć kartę' },
+  });
+  const targetPackTitle = (targetPackId ? addablePacks.find((pack) => pack.id === targetPackId)?.title : null) ?? fieldCopy.myCards;
   const closeLabel = triLang(lang, {
     ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar',
     'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
@@ -554,42 +598,59 @@ export default function FlashcardsCardEditorScreen() {
               <>
               <ScrollView decelerationRate="fast"
                 style={{ flex: 1 }}
-                contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 20, paddingBottom: 24, gap: 12 }}
+                contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 22, paddingBottom: 24 }}
                 keyboardShouldPersistTaps="handled"
                 showsVerticalScrollIndicator={false}
               >
-                {/* EN field */}
-                <CardsGlassSurface g={g} focused={focusedField === 'front'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 24 }}>
-                    <Text style={[fieldLabelStyle, { flex: 1 }]}>{s.editFront}</Text>
-                    {/* E13: TTS-превью введённого EN */}
-                    {draftEN.trim() ? (
-                      <TouchableOpacity
-                        testID="fc-editor-tts"
-                        accessibilityLabel="qa-fc-editor-tts"
-                        accessible
-                        onPress={previewEn}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                        style={{ width: 44, height: 44, marginVertical: -10, marginRight: -10, alignItems: 'center', justifyContent: 'center' }}
-                      >
-                        <Ionicons name="volume-medium" size={20} color={g.text} />
-                      </TouchableOpacity>
-                    ) : null}
-                  </View>
-                  <TextInput
-                    testID="fc-editor-en"
-                    accessibilityLabel="qa-fc-editor-en"
-                    style={[inputInnerStyle, { fontSize: 16, lineHeight: 21, fontWeight: '700' }]}
-                    value={draftEN}
-                    onChangeText={setDraftEN}
-                    autoFocus
-                    returnKeyType="next"
-                    onSubmitEditing={() => backInputRef.current?.focus()}
-                    blurOnSubmit={false}
-                    maxLength={80}
-                    onFocus={() => setFocusedField('front')}
-                    placeholderTextColor={g.mutedText}
+                {/* зачем (макет cards-v2 «Новая карточка — превью живое»): сверху разворотная карточка 196 — слово на лице, перевод и пример на обороте;
+                    пока вводишь слово, видно лицо, перевод или пример — оборот. Тап по превью переворачивает вручную. */}
+                <View testID="fc-editor-preview">
+                  <FlipCard
+                    g={g}
+                    front={draftEN.trim() || previewCopy.word}
+                    back={draftTR.trim() || previewCopy.translation}
+                    example={draftDescription.trim() || previewCopy.example}
+                    backTag={lang.slice(0, 2).toUpperCase()}
+                    flipped={previewBack}
+                    onFlip={() => setPreviewBack((prev) => !prev)}
+                    flipLabel={previewCopy.flip}
+                    showSpeak={false}
                   />
+                </View>
+
+                {/* EN field */}
+                <View style={{ marginTop: 22 }}>
+                  <EditorField g={g} label={fieldCopy.word}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                      <TextInput
+                        testID="fc-editor-en"
+                        accessibilityLabel="qa-fc-editor-en"
+                        style={[inputStyle, { flex: 1 }]}
+                        value={draftEN}
+                        onChangeText={setDraftEN}
+                        autoFocus
+                        returnKeyType="next"
+                        onSubmitEditing={() => backInputRef.current?.focus()}
+                        blurOnSubmit={false}
+                        maxLength={80}
+                        onFocus={() => setFocusedField('front')}
+                        placeholderTextColor={g.mutedText}
+                      />
+                      {/* E13: TTS-превью введённого EN */}
+                      {draftEN.trim() ? (
+                        <TouchableOpacity
+                          testID="fc-editor-tts"
+                          accessibilityLabel="qa-fc-editor-tts"
+                          accessible
+                          onPress={previewEn}
+                          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                          style={{ width: 36, height: 36, alignItems: 'center', justifyContent: 'center' }}
+                        >
+                          <Ionicons name="volume-medium" size={20} color={g.text} />
+                        </TouchableOpacity>
+                      ) : null}
+                    </View>
+                  </EditorField>
                   {/* E13: автотранскрипция — пойдёт в карточку при сохранении */}
                   {assistTranscription ? (
                     <Text
@@ -600,13 +661,14 @@ export default function FlashcardsCardEditorScreen() {
                         lineHeight: 18,
                         fontStyle: 'italic',
                         letterSpacing: 0.25,
-                        marginTop: 6,
+                        marginTop: 8,
+                        marginLeft: 4,
                       }}
                     >
                       {assistTranscription}
                     </Text>
                   ) : null}
-                </CardsGlassSurface>
+                </View>
                 {/* E13: предупреждение о дубликате (плашка тоном, без жёлтой рамки) */}
                 {duplicateOfEn ? (
                   <View
@@ -614,6 +676,7 @@ export default function FlashcardsCardEditorScreen() {
                     accessibilityLabel="qa-fc-editor-duplicate"
                     accessible
                     style={{
+                      marginTop: 12,
                       flexDirection: 'row',
                       alignItems: 'center',
                       gap: 8,
@@ -641,26 +704,24 @@ export default function FlashcardsCardEditorScreen() {
                 ) : null}
 
                 {/* Translation field (текущая локаль — инвариант) */}
-                <CardsGlassSurface g={g} focused={focusedField === 'back'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
-                  <Text style={fieldLabelStyle}>{s.editBack}</Text>
-                  <TextInput
-                    ref={backInputRef}
-                    testID="fc-editor-tr"
-                    accessibilityLabel="qa-fc-editor-tr"
-                    style={[inputInnerStyle, { fontSize: 16, lineHeight: 21, fontWeight: '700' }]}
-                    value={draftTR}
-                    onChangeText={setDraftTR}
-                    returnKeyType={descriptionOpen ? 'next' : 'done'}
-                    onSubmitEditing={() => {
-                      if (descriptionOpen) descriptionInputRef.current?.focus();
-                      else void handleSave();
-                    }}
-                    blurOnSubmit={!descriptionOpen}
-                    maxLength={80}
-                    onFocus={() => setFocusedField('back')}
-                    placeholderTextColor={g.mutedText}
-                  />
-                </CardsGlassSurface>
+                <View style={{ marginTop: 14 }}>
+                  <EditorField g={g} label={fieldCopy.translation}>
+                    <TextInput
+                      ref={backInputRef}
+                      testID="fc-editor-tr"
+                      accessibilityLabel="qa-fc-editor-tr"
+                      style={inputStyle}
+                      value={draftTR}
+                      onChangeText={setDraftTR}
+                      returnKeyType="next"
+                      onSubmitEditing={() => descriptionInputRef.current?.focus()}
+                      blurOnSubmit={false}
+                      maxLength={80}
+                      onFocus={() => setFocusedField('back')}
+                      placeholderTextColor={g.mutedText}
+                    />
+                  </EditorField>
+                </View>
                 {/* E13: подсказка перевода из словаря уроков — тап подставляет */}
                 {assistSuggestion && assistSuggestion !== trVal ? (
                   <TouchableOpacity
@@ -670,6 +731,7 @@ export default function FlashcardsCardEditorScreen() {
                     activeOpacity={0.8}
                     onPress={applySuggestion}
                     style={{
+                      marginTop: 12,
                       alignSelf: 'flex-start',
                       minHeight: 44,
                       justifyContent: 'center',
@@ -687,94 +749,46 @@ export default function FlashcardsCardEditorScreen() {
                   </TouchableOpacity>
                 ) : null}
 
-                {/* Optional description — раскрывается по запросу (упрощение 2026-08-13) */}
-                {descriptionOpen ? (
-                <CardsGlassSurface g={g} focused={focusedField === 'description'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Text style={fieldLabelStyle}>{s.editDescription}</Text>
-                    <Text style={{ color: g.mutedText, fontSize: 13, fontWeight: '500' }}>
-                      {draftDescription.length}/220
-                    </Text>
-                  </View>
-                  <TextInput
-                    ref={descriptionInputRef}
-                    testID="fc-editor-description"
-                    accessibilityLabel="qa-fc-editor-description"
-                    style={[
-                      inputInnerStyle,
-                      { fontSize: 16, lineHeight: 22, fontWeight: '500', minHeight: 66, textAlignVertical: 'top' },
-                    ]}
-                    value={draftDescription}
-                    onChangeText={setDraftDescription}
-                    returnKeyType="done"
-                    onSubmitEditing={handleSave}
-                    blurOnSubmit
-                    maxLength={220}
-                    multiline
-                    onFocus={() => setFocusedField('description')}
-                    placeholderTextColor={g.mutedText}
-                  />
-                </CardsGlassSurface>
-                ) : (
-                  <TouchableOpacity
-                    testID="fc-editor-description-open"
-                    accessibilityLabel="qa-fc-editor-description-open"
-                    accessible
-                    activeOpacity={0.8}
-                    onPress={() => {
-                      // Поле заметки вставляется в поток и толкает форму —
-                      // сдвигаем плавно, а не рывком.
-                      animateNextLayoutTransition();
-                      setDescriptionOpen(true);
-                      requestAnimationFrame(() => descriptionInputRef.current?.focus());
-                    }}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 8,
-                      alignSelf: 'flex-start',
-                      minHeight: 44,
-                      marginTop: 6,
-                    }}
-                  >
-                    <Ionicons name="add" size={20} color={g.text} />
-                    <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
-                      {triLang(lang, {
-                        ru: 'Добавить заметку',
-                        uk: 'Додати нотатку',
-                        en: 'Add a note',
-                        es: 'Añadir una nota',
-                        'pt-BR': 'Adicionar uma nota',
-                        vi: 'Thêm ghi chú',
-                        id: 'Tambah catatan',
-                        tr: 'Not ekle',
-                        pl: 'Dodaj notatkę',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                )}
+                {/* Пример (необязательно) — теперь всегда виден, как в макете; хранится как заметка карточки */}
+                <View style={{ marginTop: 14 }}>
+                  <EditorField g={g} label={fieldCopy.example}>
+                    <TextInput
+                      ref={descriptionInputRef}
+                      testID="fc-editor-description"
+                      accessibilityLabel="qa-fc-editor-description"
+                      style={inputStyle}
+                      value={draftDescription}
+                      onChangeText={setDraftDescription}
+                      returnKeyType="done"
+                      onSubmitEditing={handleSave}
+                      blurOnSubmit
+                      maxLength={220}
+                      onFocus={() => setFocusedField('description')}
+                      placeholderTextColor={g.mutedText}
+                    />
+                  </EditorField>
+                </View>
 
-                <Text style={{ color: g.mutedText, fontSize: 13, lineHeight: 18, marginTop: 14 }}>
-                  {triLang(lang, {
-                    ru: 'Карточка появится во вкладке «Свои» и будет доступна в тренировках.',
-                    uk: 'Картка з’явиться у вкладці «Свої» і буде доступна в тренуваннях.',
-                    en: 'The card will appear in the "My cards" tab and be available in training.',
-                    es: 'La tarjeta aparecerá en «Mis tarjetas» y estará disponible en los entrenamientos.',
-                    'pt-BR': 'O cartão aparecerá em «Meus cartões» e ficará disponível nos treinos.',
-                    vi: 'Thẻ sẽ xuất hiện trong tab «Của tôi» và có thể dùng để luyện tập.',
-                    id: 'Kartu akan muncul di tab «Milikku» dan tersedia untuk latihan.',
-                    tr: '«Benimkiler» sekmesinde görünecek ve alıştırmalarda kullanılabilecek.',
-                    pl: 'Karta pojawi się w zakładce «Moje» i będzie dostępna w treningach.',
-                  })}
-                </Text>
+                {/* Выбор набора (макет: строка «плитка + название + шеврон»): карточка кладётся в «Мои карточки» и, если выбран набор, ещё и в него */}
+                {!isEdit ? (
+                  <View style={{ marginTop: 18 }}>
+                    <KitCard g={g} testID="fc-editor-pack-row" accessibilityLabel={`${fieldCopy.pack}: ${targetPackTitle}`} onPress={() => { Keyboard.dismiss(); setPackPickerOpen(true); }} style={{ minHeight: 56 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingLeft: 11, paddingRight: 16 }}>
+                        <KitIconTile g={g} icon="albums-outline" />
+                        <Text style={{ flex: 1, color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>{targetPackTitle}</Text>
+                        <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+                      </View>
+                    </KitCard>
+                  </View>
+                ) : null}
               </ScrollView>
 
-              {/* Save: закреплена внизу с затуханием (макет #21, #22) */}
+              {/* Сохранить: закреплена внизу с затуханием (макет #21, #22; cards-v2 — «Добавить») */}
               <CardsGlassBottomBar g={g} bottomInset={0}>
                 <CardsGlassPrimaryButton
                   g={g}
                   testID="fc-editor-save"
-                  label={s.save}
+                  label={isEdit ? s.save : fieldCopy.add}
                   disabled={!canSave}
                   onPress={handleSave}
                 />
@@ -783,6 +797,13 @@ export default function FlashcardsCardEditorScreen() {
             )}
           </ContentWrap>
         </KeyboardAvoidingView>
+        <PanelSheet visible={packPickerOpen} onClose={() => setPackPickerOpen(false)} testID="fc-editor-pack-picker">
+          <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, lineHeight: 28, fontWeight: '700', paddingHorizontal: 6, paddingBottom: 6 }}>{fieldCopy.pack}</Text>
+          <SheetRow g={kg} testID="fc-editor-pack-none" icon={targetPackId === null ? 'checkmark-circle' : 'bookmark-outline'} title={fieldCopy.myCards} onPress={() => { setTargetPackId(null); setPackPickerOpen(false); }} />
+          {addablePacks.map((pack) => (
+            <SheetRow key={pack.id} g={kg} testID={`fc-editor-pack-${pack.id}`} icon={targetPackId === pack.id ? 'checkmark-circle' : 'albums-outline'} title={pack.title} onPress={() => { setTargetPackId(pack.id); setPackPickerOpen(false); }} />
+          ))}
+        </PanelSheet>
       </SafeAreaView>
     </CardsGlassScreen>
   );

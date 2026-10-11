@@ -6,21 +6,20 @@
  * cubic-bezier(.2,.8,.2,1), перспектива 1200) и ряд круглых действий 56: «Озвучить / Изменить / В набор / Удалить». Лицевая сторона — «EN», озвучка, слово 34/40,
  * значок «перевернуть»; оборот — перевод 30/36 и пример под ним. Точек «силы слова» на карточке больше нет (макет их не рисует).
  * «В набор» открывает в той же шторке список своих неопубликованных наборов и кладёт в выбранный эту карточку (localPackCardAdd), без серверных вызовов.
- * Высота карточки растёт по тексту, а не режет его (правило владельца: лечим вёрсткой, не сжатием шрифта).
+ * Сама карточка — общий FlipCard (его же использует превью «Новой карточки»); высота растёт по тексту, а не режет его.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { KitCta } from '../../components/cards-grid/CardsKit';
+import { FlipCard } from '../../components/cards-grid/FlipCard';
 import { useLineScale } from '../../components/cards-grid/useLineScale';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
-import { PlateFill, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
-import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { addCardToLocalPack, loadAddableLocalPacks } from '../community_packs/localPackCardAdd';
 import type { LocalAuthorPack } from '../community_packs/localAuthorPacks';
 import { actionToastTri, emitAppEvent } from '../events';
@@ -79,14 +78,6 @@ const toastCopy = {
   failed: { ru: 'Не удалось добавить карточку', uk: 'Не вдалося додати картку', en: 'Could not add the card', es: 'No se pudo añadir la tarjeta', 'pt-BR': 'Não foi possível adicionar o cartão', vi: 'Không thể thêm thẻ', id: 'Kartu tidak dapat ditambahkan', tr: 'Kart eklenemedi', pl: 'Nie udało się dodać karty' },
 } as const;
 
-/** Разворот: 560 мс, cubic-bezier(.2,.8,.2,1) — `.flip .fl` макета. */
-const FLIP_MS = 560;
-const FLIP_EASE = Easing.bezier(0.2, 0.8, 0.2, 1);
-/** Высота карточки по макету (системный шрифт 100%); при крупном шрифте карточка растёт по тексту, а не режет его. */
-const CARD_MIN_H = 196;
-const CARD_RADIUS = 20;
-/** Вертикальный запас внутри грани: паддинги 20+20 и место под метку/значок. */
-const FACE_PAD_V = 40;
 const TAG = '[CARD-SHEET]';
 
 type ActionDef = Readonly<{ key: string; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID: string; danger?: boolean }>;
@@ -94,18 +85,11 @@ type ActionDef = Readonly<{ key: string; icon: keyof typeof Ionicons.glyphMap; l
 function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, showSave = true, sourceCard, onCreatePack, onClose, onSpeak, onEdit, onDelete, onToggleSave }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const reduceMotion = useReduceMotion();
   const lh = useLineScale();
-  const flip = useSharedValue(0);
   const [flipped, setFlipped] = useState(false);
   const [mode, setMode] = useState<'card' | 'packs'>('card');
   const [packs, setPacks] = useState<readonly LocalAuthorPack[] | null>(null);
   const [adding, setAdding] = useState(false);
-  // зачем (координатор 05.10, «ExpandedCardV2 при крупном системном шрифте»; правило владельца — лечим вёрсткой, не сжатием шрифта):
-  // высота карточки = максимум из высоты макета и фактической высоты текста обеих сторон, измеренной onLayout.
-  const [frontH, setFrontH] = useState(0);
-  const [backH, setBackH] = useState(0);
-  const cardH = Math.max(CARD_MIN_H, frontH + FACE_PAD_V, backH + FACE_PAD_V);
   const cardId = card?.id ?? null;
 
   // зачем: при открытии новой карточки — лицевая сторона и режим «карточка»
@@ -114,22 +98,14 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
     setMode('card');
     setPacks(null);
     setAdding(false);
-    setFrontH(0);
-    setBackH(0);
-    flip.value = 0;
-  }, [cardId, flip]);
+  }, [cardId]);
 
   const toggleFlip = useCallback(() => {
     setFlipped((prev) => {
-      const next = !prev;
-      console.log(`${TAG} разворот → ${next ? 'оборот' : 'лицо'} cardId=${cardId} быстро=${reduceMotion}`);
-      flip.value = withTiming(next ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: FLIP_EASE });
-      return next;
+      console.log(`${TAG} разворот → ${!prev ? 'оборот' : 'лицо'} cardId=${cardId}`);
+      return !prev;
     });
-  }, [cardId, flip, reduceMotion]);
-
-  const frontStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1200 }, { rotateY: `${flip.value * 180}deg` }] }));
-  const backStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1200 }, { rotateY: `${flip.value * 180 - 180}deg` }] }));
+  }, [cardId]);
 
   const openPacks = useCallback(() => {
     if (!sourceCard) { console.warn(`${TAG} «В набор»: исходной карточки нет cardId=${cardId}`); return; }
@@ -177,35 +153,21 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
     <PanelSheet visible onClose={onClose} testID="fc-expanded-card">
       {mode === 'card' ? (
         <View>
-          <Pressable
+          <FlipCard
+            g={g}
             testID="fc-expanded-card-flip"
-            accessibilityRole="button"
-            accessibilityLabel={`${copy.flip}: ${flipped ? card.back : card.front}`}
-            onPress={toggleFlip}
-            style={[styles.card, { height: cardH }]}>
-            <Animated.View style={[styles.face, { borderRadius: CARD_RADIUS, boxShadow: plateBoxShadow(g) }, frontStyle]}>
-              <PlateFill g={g} radius={CARD_RADIUS} />
-              <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>EN</Text>
-              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
-                <Ionicons name="volume-high" size={18} color={g.text} />
-              </Pressable>
-              <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
-                <Text style={[styles.word, { color: g.text, lineHeight: lh(40) }]}>{card.front}</Text>
-                {card.ipa ? <Text style={[styles.sub, { color: g.secondary, lineHeight: lh(20) }]}>{card.ipa}</Text> : null}
-              </View>
-              <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
-            </Animated.View>
-            <Animated.View style={[styles.face, { borderRadius: CARD_RADIUS, boxShadow: plateBoxShadow(g) }, backStyle]}>
-              <PlateFill g={g} radius={CARD_RADIUS} raised />
-              <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>{backTag}</Text>
-              <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
-                <Text style={[styles.wordBack, { color: g.text, lineHeight: lh(36) }]}>{card.back}</Text>
-                {card.example ? <Text style={[styles.sub, { color: g.secondary, lineHeight: lh(20) }]}>{card.example}</Text> : null}
-                {card.exampleTr ? <Text style={[styles.subTr, { color: g.mutedText, lineHeight: lh(20) }]}>{card.exampleTr}</Text> : null}
-              </View>
-              <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
-            </Animated.View>
-          </Pressable>
+            front={card.front}
+            ipa={card.ipa}
+            back={card.back}
+            example={card.example}
+            exampleTr={card.exampleTr}
+            backTag={backTag}
+            flipped={flipped}
+            onFlip={toggleFlip}
+            onSpeak={() => onSpeak(card.front)}
+            speakLabel={copy.speak}
+            flipLabel={copy.flip}
+          />
           <View style={styles.acts}>
             {actions.map((action) => (
               <Pressable key={action.key} testID={action.testID} accessibilityRole="button" accessibilityLabel={action.label} onPress={action.onPress} style={({ pressed }) => [styles.act, pressed && styles.pressed]}>
@@ -244,17 +206,6 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
 export const ExpandedCardV2 = memo(ExpandedCardInner);
 
 const styles = StyleSheet.create({
-  card: { minHeight: CARD_MIN_H },
-  face: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 30, paddingVertical: 20, alignItems: 'center', justifyContent: 'center', backfaceVisibility: 'hidden' },
-  // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
-  faceText: { alignSelf: 'stretch', alignItems: 'center' },
-  tag: { position: 'absolute', left: 20, top: 18, fontSize: 13, fontWeight: '600' },
-  speak: { position: 'absolute', right: 14, top: 12, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  word: { width: '100%', textAlign: 'center', fontSize: 34, fontWeight: '700', letterSpacing: -0.5 },
-  wordBack: { width: '100%', textAlign: 'center', fontSize: 30, fontWeight: '700', letterSpacing: -0.5 },
-  sub: { marginTop: 8, textAlign: 'center', fontSize: 16 },
-  subTr: { marginTop: 4, textAlign: 'center', fontSize: 16 },
-  turn: { position: 'absolute', right: 16, bottom: 14 },
   acts: { marginTop: 22, flexDirection: 'row', gap: 8 },
   act: { flex: 1, alignItems: 'center', gap: 8 },
   actCircle: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },

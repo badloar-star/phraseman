@@ -6,13 +6,14 @@
  * форма новой карточки — нижней шторкой. Только вид; данные, черновик, проверки и публикация остаются в community_pack_create.tsx.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { BackHandler, Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown, runOnJS, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
 
 import { KitCard, KitIconTile, KitSurface } from '../../components/cards-grid/CardsKit';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { actionBoxShadow, nestedBoxShadow } from '../../components/v2/ShadowSurface';
+import { PlateFill, actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 
@@ -101,6 +102,147 @@ export const EditorCardRow = memo(function EditorCardRow({ g, front, back, onPre
   );
 });
 
+export type EditorListRow = Readonly<{ key: string; front: string; back: string }>;
+
+const REORDER_GAP = 9;
+const REORDER_ROW_MIN_H = 72;
+const REORDER_TAG = '[PACK-REORDER]';
+
+/** Строка «Изменить набор» (макет cards-v2 `.erow`): ручка переноса слева, слово и перевод, корзина справа. Ручка двигает строку вверх-вниз, остальные расступаются. */
+const ReorderRow = memo(function ReorderRow({ g, index, count, row, step, active, target, ty, onPress, onLongPress, onDelete, finishMove, onDragState, deleteLabel, gripLabel, onMeasure }: Readonly<{
+  g: GlassTokens;
+  index: number;
+  count: number;
+  row: EditorListRow;
+  step: SharedValue<number>;
+  active: SharedValue<number>;
+  target: SharedValue<number>;
+  ty: SharedValue<number>;
+  onPress: () => void;
+  onLongPress: () => void;
+  onDelete: () => void;
+  finishMove: (from: number, to: number) => void;
+  onDragState: (dragging: boolean) => void;
+  deleteLabel: string;
+  gripLabel: string;
+  onMeasure: (height: number) => void;
+}>) {
+  const style = useAnimatedStyle(() => {
+    const a = active.value;
+    const t = target.value;
+    if (a === index) return { transform: [{ translateY: ty.value }, { scale: 1.02 }], zIndex: 5 };
+    let shift = 0;
+    if (a >= 0 && a < t && index > a && index <= t) shift = -step.value;
+    else if (a >= 0 && a > t && index < a && index >= t) shift = step.value;
+    return { transform: [{ translateY: a < 0 ? 0 : withTiming(shift, { duration: 160 }) }, { scale: 1 }], zIndex: 0 };
+  });
+  const pan = Gesture.Pan()
+    .minDistance(0)
+    .onStart(() => {
+      active.value = index;
+      target.value = index;
+      ty.value = 0;
+      runOnJS(onDragState)(true);
+    })
+    .onUpdate((event) => {
+      ty.value = event.translationY;
+      const raw = Math.round(index + event.translationY / step.value);
+      target.value = Math.max(0, Math.min(count - 1, raw));
+    })
+    .onEnd(() => {
+      const to = target.value;
+      ty.value = withTiming((to - index) * step.value, { duration: 140 }, (finished) => {
+        if (finished) runOnJS(finishMove)(index, to);
+      });
+    })
+    .onFinalize((_event, success) => {
+      if (!success) {
+        active.value = -1;
+        target.value = -1;
+        ty.value = 0;
+        runOnJS(onDragState)(false);
+      }
+    });
+  return (
+    <Animated.View style={style} onLayout={(event) => { if (index === 0) onMeasure(event.nativeEvent.layout.height); }}>
+      <View style={[styles.erow, { boxShadow: plateBoxShadow(g) }]}>
+        <PlateFill g={g} radius={16} />
+        <GestureDetector gesture={pan}>
+          <View testID={`ugc-pack-grip-${index}`} accessible accessibilityRole="adjustable" accessibilityLabel={gripLabel} style={styles.grip}>
+            <Ionicons name="reorder-three" size={24} color={g.mutedText} />
+          </View>
+        </GestureDetector>
+        <Pressable testID={`ugc-pack-card-${index}`} accessibilityRole="button" accessibilityLabel={row.back ? `${row.front}, ${row.back}` : row.front} onPress={onPress} onLongPress={onLongPress} style={styles.erowText}>
+          <Text style={[styles.cardRowTitle, { color: g.text }]}>{row.front}</Text>
+          {row.back ? <Text style={[styles.cardRowSub, { color: g.secondary }]}>{row.back}</Text> : null}
+        </Pressable>
+        <Pressable testID={`ugc-pack-card-delete-${index}`} accessibilityRole="button" accessibilityLabel={deleteLabel} hitSlop={6} onPress={onDelete} style={[styles.erowTrash, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+          <Ionicons name="trash-outline" size={18} color={g.bad} />
+        </Pressable>
+      </View>
+    </Animated.View>
+  );
+});
+
+/**
+ * Список карточек набора в режиме «Изменить» — строки с ручкой переноса и корзиной.
+ * зачем (Карточки 2.0, макет cards-v2 «Изменить набор»): порядок карточек меняют перетаскиванием за ручку, удаляют корзиной в строке.
+ * Строки одной высоты (мин. 72, зазор 9): шаг переноса считается по первой строке.
+ */
+export const EditorCardList = memo(function EditorCardList({ g, rows, onPress, onLongPress, onDelete, onMove, onDragState, deleteLabel, gripLabel }: Readonly<{
+  g: GlassTokens;
+  rows: readonly EditorListRow[];
+  onPress: (index: number) => void;
+  onLongPress: (index: number) => void;
+  onDelete: (index: number) => void;
+  onMove: (from: number, to: number) => void;
+  onDragState: (dragging: boolean) => void;
+  deleteLabel: string;
+  gripLabel: string;
+}>) {
+  const step = useSharedValue(REORDER_ROW_MIN_H + REORDER_GAP);
+  const active = useSharedValue(-1);
+  const target = useSharedValue(-1);
+  const ty = useSharedValue(0);
+  const onMeasure = useCallback((height: number) => { step.value = height + REORDER_GAP; }, [step]);
+  const finishMove = useCallback((from: number, to: number) => {
+    console.log(`${REORDER_TAG} перенос ${from} → ${to} из ${rows.length}`);
+    if (from !== to) onMove(from, to);
+    // зачем: сначала отдаём новый порядок, затем (через два кадра) снимаем смещения — иначе строки на кадр прыгают
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      active.value = -1;
+      target.value = -1;
+      ty.value = 0;
+      onDragState(false);
+    }));
+  }, [active, onDragState, onMove, rows.length, target, ty]);
+  return (
+    <View style={styles.list}>
+      {rows.map((row, index) => (
+        <ReorderRow
+          key={row.key}
+          g={g}
+          index={index}
+          count={rows.length}
+          row={row}
+          step={step}
+          active={active}
+          target={target}
+          ty={ty}
+          onPress={() => onPress(index)}
+          onLongPress={() => onLongPress(index)}
+          onDelete={() => onDelete(index)}
+          finishMove={finishMove}
+          onDragState={onDragState}
+          deleteLabel={deleteLabel}
+          gripLabel={gripLabel}
+          onMeasure={onMeasure}
+        />
+      ))}
+    </View>
+  );
+});
+
 /** Нижняя шторка формы карточки (kit «.sheet»): ручка, заголовок 22/700 + крестик 35, содержимое. Поднимается над клавиатурой. */
 export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeLabel, onClose, bottomInset, children }: Readonly<{
   g: GlassTokens;
@@ -156,6 +298,11 @@ const styles = StyleSheet.create({
   seg: { flex: 1, height: 42, borderRadius: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   segDisabled: { opacity: 0.6 },
   segText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
+  list: { gap: REORDER_GAP },
+  erow: { minHeight: REORDER_ROW_MIN_H, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingLeft: 8, paddingRight: 12 },
+  grip: { width: 36, height: 44, alignItems: 'center', justifyContent: 'center' },
+  erowText: { flex: 1, minWidth: 0, justifyContent: 'center' },
+  erowTrash: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   cardRowOuter: { minHeight: 70 },
   cardRow: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 13, paddingLeft: 19, paddingRight: 16 },
   cardRowText: { flex: 1, minWidth: 0 },

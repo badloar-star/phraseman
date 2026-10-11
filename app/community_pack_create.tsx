@@ -34,7 +34,7 @@ import {
   useCardsGlass,
 } from './flashcards/CardsGlassKit';
 import { PackMenuRow, PackPopoverMenu } from './community_packs/PackCreateGlassParts';
-import { AddCardRow, EditorCardRow, EditorField, EditorHeader, EditorSheet, VisibilitySegment } from './community_packs/PackEditorV2';
+import { AddCardRow, EditorCardList, EditorCardRow, EditorField, EditorHeader, EditorSheet, VisibilitySegment } from './community_packs/PackEditorV2';
 import { KitCta, KitSectionHead } from '../components/cards-grid/CardsKit';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
@@ -650,6 +650,19 @@ export default function CommunityPackCreateScreen() {
     });
   }, []);
 
+  // зачем (Карточки 2.0, макет «Изменить набор»: ручка переноса): порядок карточек меняют перетаскиванием; номера c1, c2… пересчитываются как при удалении
+  const moveRow = useCallback((from: number, to: number) => {
+    setRows((r) => {
+      if (from === to || from < 0 || to < 0 || from >= r.length || to >= r.length) return r;
+      const next = [...r];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved!);
+      return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
+    });
+  }, []);
+  /** Пока строку тащат, прокрутка экрана отключена — иначе вертикальный жест уходил бы в скролл. */
+  const [rowsDragging, setRowsDragging] = useState(false);
+
   const editRow = useCallback(
     (idx: number) => {
       Keyboard.dismiss();
@@ -1111,6 +1124,7 @@ export default function CommunityPackCreateScreen() {
             ref={scrollViewRef}
             style={{ flex: 1 }}
             nestedScrollEnabled
+            scrollEnabled={!rowsDragging}
             decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
@@ -1177,7 +1191,19 @@ export default function CommunityPackCreateScreen() {
 
                 <View testID="ugc-pack-cards-count" style={{ gap: 9 }}>
                   <AddCardRow g={kg} label={addCardLabel} onPress={openAddCard} disabled={isEditingCard} testID="ugc-pack-add-card" />
-                  {rows.map((row, idx) => (
+                  {isEditMode ? (
+                    <EditorCardList
+                      g={kg}
+                      rows={rows.map((row, idx) => ({ key: `${row.id}-${idx}`, front: row.en, back: cardBackText(row) }))}
+                      onPress={(idx) => { if (!isEditingCard) editRow(idx); }}
+                      onLongPress={(idx) => { Keyboard.dismiss(); if (!isEditingCard) setRowMenuIdx(idx); }}
+                      onDelete={(idx) => { if (!isEditingCard) removeRow(idx); }}
+                      onMove={moveRow}
+                      onDragState={setRowsDragging}
+                      deleteLabel={deleteLabel}
+                      gripLabel={L('Перенести карточку', 'Перенести картку', 'Move the card', 'Mover la tarjeta', 'Mover o cartão', 'Di chuyển thẻ', 'Pindahkan kartu', 'Kartı taşı', 'Przenieś kartę')}
+                    />
+                  ) : rows.map((row, idx) => (
                     <EditorCardRow
                       key={row.id + String(idx)}
                       g={kg}

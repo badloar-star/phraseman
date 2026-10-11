@@ -85,7 +85,8 @@ const BarRim = memo(function BarRim({ width, color }: { width: number; color: st
           <Stop offset="1" stopColor={color} stopOpacity={0.45} />
         </SvgLinearGradient>
       </Defs>
-      <Rect x={0.5} y={0.5} width={width - 1} height={h - 1} rx={(h - 1) / 2} fill="none" stroke="url(#v2TabRim)" strokeWidth={1} />
+      {/* зачем (урок c014f2b9c: Android округляет ширину холста SVG вниз до целого px — линия на самом краю срезается): кромка капсулы тоже с запасом CAP_EDGE_INSET */}
+      <Rect x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2} height={h - CAP_EDGE_INSET * 2} rx={(h - CAP_EDGE_INSET * 2) / 2} fill="none" stroke="url(#v2TabRim)" strokeWidth={1} />
     </Svg>
   );
 });

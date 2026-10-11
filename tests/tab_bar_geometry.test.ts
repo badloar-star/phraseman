@@ -64,6 +64,12 @@ describe('V2TabBar source', () => {
     expect(fill[fill.length - 1]).toBeGreaterThanOrEqual(0.1);
   });
 
+  test('the capsule rim keeps the same safe inset from the SVG canvas edge as the cap (Android rounds the canvas down)', () => {
+    const rim = src.slice(src.indexOf('const BarRim'), src.indexOf('const CapFill'));
+    expect(rim).toContain('x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2}');
+    expect(rim).not.toContain('x={0.5} y={0.5}');
+  });
+
   test('the cap is placed instantly when the slot width changes, springs only between tabs (no mint tail)', () => {
     expect(src).toContain('const slotChanged = lastSlotWRef.current > 0');
     expect(src).toMatch(/capX\.stopAnimation\(\);\s*capX\.setValue\(to\);/);

@@ -11,6 +11,8 @@ import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зач
 const BOOT_TRACE_ENABLED = !!(globalThis as { __DEV__?: boolean }).__DEV__;
 if (BOOT_TRACE_ENABLED) console.warn('[BOOT] _layout module eval START'); // guard-ok: BOOT_TRACE_ENABLED и есть __DEV__
 const BOOT_T0 = Date.now();
+// зачем (координатор 11.10): чистые кадры сверки — LogBox выключается ТОЛЬКО в dev при EXPO_PUBLIC_SNAPSHOT_CLEAN=1; в релизном бандле ветка вырезается (__DEV__ = false).
+if (typeof __DEV__ !== 'undefined' && __DEV__) require('./dev_snapshot_clean');
 // зачем (координатор 05.10, пакет 01:26, «сперва логи»): таймеры ворот сплеша опаздывали на 1,5–2 с (FALLBACK 400 мс
 // сработал через ~2 с). Сторож простоя JS-потока: тик 100 мс, печатает каждый разрыв > 250 мс с временем от
 // старта — видно, КОГДА и НА СКОЛЬКО поток стоял. Только dev, сам снимается через 3 с после снятия сплеша

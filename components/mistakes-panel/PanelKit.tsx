@@ -6,11 +6,13 @@
  * Границ нет — «кромка» это внутренняя тень (boxShadow inset, новая архитектура включена).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import React, { memo, useCallback, useRef } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Svg, { Circle } from 'react-native-svg';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { DebugLogger } from '../../app/debug-logger';
+import { useTheme } from '../ThemeContext';
 
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
@@ -190,11 +192,33 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
   const insets = useStableSafeAreaInsets();
   // зачем (замечание владельца 10.10): затухание под кнопками — от фона темы, а не литерал под «Аврору»
   const g = useLv2Glass();
+  // зачем (журнал 27, «подложка под кнопкой ВСЁ ЕЩЁ просвечивает»; правило «сперва логи»): ВРЕМЕННЫЙ лог [DOCK] — какой цвет и
+  // откуда пришёл, где панель стоит в окне. После починки подробности убрать, оставить только ранние выходы и ошибки.
+  const { liquidGlassThemeId } = useTheme();
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const dockRef = useRef<View>(null);
+  const gradientColors = [`${g.bgBottom}00`, `${g.bgBottom}FF`, `${g.bgBottom}FF`] as const;
+  const onDockLayout = useCallback((e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    const snapshot = {
+      theme: liquidGlassThemeId, level: g.level, appearance: g.isLight ? 'light' : 'dark', intensity: g.intensity,
+      bg: g.bg, bgTop: g.bgTop, bgBottom: g.bgBottom, bgEqualsBottom: g.bg === g.bgBottom,
+      colors: gradientColors, locations: [0, 0.35, 1], colorsValid: gradientColors.every((c) => /^#[0-9A-Fa-f]{8}$/.test(c)),
+      layout: { x, y, width, height }, window: { width: windowWidth, height: windowHeight }, insetBottom: insets.bottom,
+    };
+    DebugLogger.info('[DOCK]', `layout ${JSON.stringify(snapshot)}`);
+    requestAnimationFrame(() => {
+      dockRef.current?.measureInWindow?.((wx, wy, ww, wh) => {
+        DebugLogger.info('[DOCK]', `window x=${Math.round(wx)} y=${Math.round(wy)} w=${Math.round(ww)} h=${Math.round(wh)} bottomGap=${Math.round(windowHeight - (wy + wh))}`);
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liquidGlassThemeId, g.level, g.isLight, g.intensity, g.bg, g.bgTop, g.bgBottom, windowWidth, windowHeight, insets.bottom]);
   return (
-    <View style={styles.dock} pointerEvents="box-none">
+    <View ref={dockRef} onLayout={onDockLayout} style={styles.dock} pointerEvents="box-none">
       <LinearGradient
         pointerEvents="none"
-        colors={[`${g.bgBottom}00`, `${g.bgBottom}FF`, `${g.bgBottom}FF`]} // зачем (Сверка 06:07): под самой кнопкой фон сплошной (F2 пропускал строку списка); затухание вверх оставлено
+        colors={gradientColors} // зачем (Сверка 06:07): под самой кнопкой фон сплошной (F2 пропускал строку списка); затухание вверх оставлено
         locations={[0, 0.35, 1]}
         style={StyleSheet.absoluteFill}
       />

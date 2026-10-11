@@ -16346,10 +16346,10 @@
       "id": "paywalls-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 19,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 1,
+        "label": "Управление подпиской (годовая)",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Управление подпиской",
@@ -16366,18 +16366,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-020",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 20,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 4,
+        "label": "Загрузка плана",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Загрузка плана",
@@ -16394,18 +16395,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 21,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 5,
+        "label": "Разовая покупка",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Разовая покупка",
@@ -16422,18 +16424,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 22,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 7,
+        "label": "Восстановление: пусто",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Восстановление: пусто",
@@ -16450,18 +16453,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 23,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 8,
+        "label": "Причина отмены",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Причина отмены",
@@ -16478,18 +16482,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 24,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 11,
+        "label": "Сохранить доступ или отменить",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Сохранить доступ или отменить",
@@ -16506,18 +16511,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "paywalls-025",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 25,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/manage-subscription-states.html",
+        "phone": 12,
+        "label": "Поддержка или отмена",
+        "mapping": "manual_rebind"
       },
       "screen": "Управление действующим Plus",
       "state": "Поддержка или отмена",
@@ -16534,9 +16540,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу"
     },
     {
       "id": "system-001",

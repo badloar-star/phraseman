@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Управление Plus — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 8 — «Управление действующим Plus», реестр paywalls-019…025):
+     экран app/manage_subscription.tsx (Настройки → Plus → «Управление подпиской») и три шторки поверх него: «Почему уходишь?», шаг удержания, «Покупок не нашлось».
+     Тексты — из кода (RU-ветка). Кегли по правилу владельца 16/13 (в коде 15/22/34 — макет главнее), заголовок экрана 34/40 как в коде.
+     Цен и скидок нет вообще (запрет владельца 24.08 «скидок не предлагаем!»); сумма годового плана приходит из магазина — в макете показан запасной текст без суммы.
+     Обводки — только 1px полупрозрачные. Каждое состояние — в тёмной «Авроре» и в светлой теме. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --m-card: #202027; --m-ctl: #1D1D22; --m-sel: rgba(255,255,255,.1); --m-tx: #fff; --m-sc: #A6A6A8; --m-mu: #75757A; --m-edge: rgba(255,255,255,.13); --m-ink: var(--on); --m-dim: rgba(0,0,0,.68); --m-sheet: rgba(24,24,29,.985); --m-ok: #5FD6A0; --m-tint: var(--acc); color: var(--m-tx); }
+  .ph.lite { --m-card: #F6F6FA; --m-ctl: #ECECF1; --m-sel: rgba(0,0,0,.07); --m-tx: #0C0C10; --m-sc: #55555D; --m-mu: #86868E; --m-edge: rgba(0,0,0,.12); --m-ink: #fff; --m-dim: rgba(20,20,30,.4); --m-sheet: #FBFBFD; --m-ok: #1E8F5E; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .mpg { position: absolute; left: 0; right: 0; top: 0; bottom: 0; padding: 54px 15px 0; overflow: hidden; }
+  .mclose { width: 48px; height: 48px; border-radius: 50%; background: var(--m-ctl); display: flex; align-items: center; justify-content: center; color: var(--m-tint); margin-top: 4px; }
+  .mh1 { margin-top: 10px; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+  .mcard { position: relative; margin-top: 20px; border-radius: 22px; padding: 20px; background: var(--m-card); overflow: hidden; box-shadow: inset 0 0 0 1px var(--m-edge); }
+  .mcard::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 78px; background: linear-gradient(var(--m-sel), transparent); opacity: .62; }
+  .mcard > * { position: relative; }
+  .mst { display: flex; align-items: center; gap: 8px; font-size: 16px; line-height: 20px; font-weight: 700; color: var(--m-sc); } .mst .i { width: 20px; height: 20px; color: var(--m-tint); }
+  .mpl { margin-top: 8px; font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.35px; }
+  .minf { margin-top: 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 16px; line-height: 20px; } .minf .a { color: var(--m-sc); } .minf .b { font-weight: 700; }
+  .mnote { margin-top: 10px; font-size: 16px; line-height: 22px; color: var(--m-sc); }
+  .msec { margin: 24px 4px 10px; font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 1.7px; color: var(--m-sc); }
+  .mbl { display: flex; flex-direction: column; gap: 10px; }
+  .mbf { min-height: 64px; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 14px; background: var(--m-ctl); }
+  .mbf .ic { width: 41px; height: 41px; border-radius: 10px; background: var(--m-sel); display: flex; align-items: center; justify-content: center; color: var(--m-tint); flex: none; } .mbf .ic .i { width: 22px; height: 22px; }
+  .mbf .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 21px; font-weight: 700; } .mbf > .i { width: 20px; height: 20px; color: var(--m-tint); flex: none; }
+  .mchg { margin-top: 18px; min-height: 64px; border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; background: var(--m-card); box-shadow: inset 0 0 0 1px var(--m-edge); }
+  .mchg .cp { flex: 1; min-width: 0; } .mchg .t1 { font-size: 16px; line-height: 21px; font-weight: 700; } .mchg .t2 { margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--m-sc); } .mchg > .i { width: 28px; height: 28px; color: var(--m-tint); }
+  .mrs { margin-top: 16px; min-height: 56px; border-radius: 16px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; background: var(--m-ctl); font-size: 16px; line-height: 21px; font-weight: 700; } .mrs > .i { width: 22px; height: 22px; color: var(--m-tint); flex: none; } .mrs .tx { flex: 1; } .mrs > .i.ch { width: 18px; height: 18px; color: var(--m-sc); }
+  .mcn { margin-top: 10px; min-height: 48px; border-radius: 16px; padding: 10px 16px; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--m-ctl); font-size: 16px; line-height: 20px; font-weight: 700; color: var(--m-sc); } .mcn .i { width: 20px; height: 20px; }
+  .mft { margin-top: 16px; padding-bottom: 40px; text-align: center; font-size: 13px; line-height: 18px; color: var(--m-sc); }
+  .msp { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: msq 900ms linear infinite; flex: none; } .mrs .msp, .mchg .msp { color: var(--m-tint); } @keyframes msq { to { transform: rotate(360deg); } }
+  .msk { border-radius: 14px; background: linear-gradient(90deg, var(--m-ctl), var(--m-sel), var(--m-ctl)); } .mskw { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .mdim { position: absolute; inset: 0; z-index: 20; background: var(--m-dim); }
+  .msh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 24px 24px 0 0; padding: 22px 20px 38px; background: var(--m-sheet); box-shadow: inset 0 0 0 1px var(--m-edge), 0 -8px 24px rgba(0,0,0,.25); overflow: hidden; }
+  .msh::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 88px; background: linear-gradient(var(--m-sel), transparent); opacity: .42; } .msh > * { position: relative; }
+  .mti { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.4px; } .msub { margin: 6px 0 14px; font-size: 16px; line-height: 22px; color: var(--m-sc); }
+  .mrsn { min-height: 52px; margin-top: 8px; border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; background: var(--m-ctl); font-size: 16px; line-height: 21px; } .mrsn.on { background: var(--m-sel); box-shadow: inset 0 0 0 1px var(--m-edge); }
+  .mrsn .i { width: 22px; height: 22px; color: var(--m-sc); flex: none; } .mrsn.on .i { color: var(--m-tint); }
+  .minp { margin-top: 10px; min-height: 88px; border-radius: 14px; padding: 12px 14px; background: var(--m-ctl); font-size: 16px; line-height: 22px; color: var(--m-mu); } .minp.has { color: var(--m-tx); } .minp .cur { display: inline-block; width: 2px; height: 20px; vertical-align: -4px; background: var(--m-tint); margin-left: 1px; }
+  .mpri { margin-top: 16px; min-height: 52px; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 22px; font-weight: 700; background: var(--m-tint); color: var(--m-ink); } .mpri.off { opacity: .5; }
+  .msec2 { margin-top: 4px; min-height: 48px; padding: 13px 16px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 21px; font-weight: 700; color: var(--m-sc); }
+  .mstt { display: flex; gap: 8px; margin: 4px 0; } .mstt > div { flex: 1; border-radius: 14px; padding: 12px 10px; background: var(--m-ctl); text-align: center; } .mstt .n { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; color: var(--m-tint); } .mstt .l { font-size: 13px; line-height: 18px; color: var(--m-sc); }
+  .mtoast { position: absolute; left: 15px; right: 15px; top: 58px; z-index: 40; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; background: var(--m-sheet); box-shadow: inset 0 0 0 1px var(--m-edge), 0 8px 24px rgba(0,0,0,.3); font-size: 16px; line-height: 21px; font-weight: 700; } .mtoast .i { width: 22px; height: 22px; flex: none; } .mtoast .ok { color: var(--m-ok); } .mtoast .er { color: #FF6B6B; } .mtoast .ac { color: var(--m-tint); margin-left: auto; padding-left: 8px; }
+  .lite .mtoast .er { color: #C23B3B; }
+  .mnt { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Управление Plus — состояния</h1>
+  <p class="page-lead">Группа 8 из «экранов без макета» (реестр paywalls-019…025): экран «Подписка Plus» и три шторки поверх него. Годовая и месячная подписка, разовая покупка (Pro), загрузка, «Восстановить покупки» (покупок не нашлось), причина отмены, шаг удержания про прогресс и про поддержку — плюс состояния из кода сверх реестра. Тёмная «Аврора» и светлая тема. Тексты — из кода. Цен и скидок нет (запрет владельца).</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const OK = svg('<circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M8 12.5l3 3 5-6" stroke="#fff" stroke-width="2"/>');
+const REFRESH = svg('<path d="M20 12a8 8 0 11-2.4-5.7"/><path d="M20 4v4.5h-4.5"/>');
+const OPEN = svg('<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h4"/>');
+const ARROWC = svg('<circle cx="12" cy="12" r="9.5"/><path d="M8 12h8M13 8.5l3.5 3.5-3.5 3.5"/>');
+const R_ON = svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/>');
+const R_OFF = svg('<circle cx="12" cy="12" r="9"/>');
+const SNOW = svg('<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.5L12 7l2.5-2.5M9.5 19.5L12 17l2.5 2.5"/>');
+const BENEFITS = [
+  [icon('bolt'), 'Энергия не расходуется'], [icon('chat'), 'Свободный разговор'], [icon('mic'), 'Произношение без дневного лимита'], [icon('bookmark'), 'Сохранённые фразы без ограничения'],
+  [SNOW, '3 заморозки серии в месяц'], [icon('trend'), 'Подробная статистика занятий'], [icon('layers'), 'Тренировки с карточками без ограничений'],
+];
+const benefits = () => `<div class="msec">ЧТО ВКЛЮЧЕНО</div><div class="mbl">${BENEFITS.map(([ic, t]) => `<div class="mbf"><span class="ic">${ic}</span><span class="tx">${t}</span>${icon('check')}</div>`).join('')}</div>`;
+const card = (plan, extra) => `<div class="mcard"><div class="mst">${OK}Plus активирован</div><div class="mpl">${plan}</div>${extra || ''}</div>`;
+const next = '<div class="minf"><span class="a">Следующее списание</span><span class="b">14 января 2027</span></div>';
+const life = '<div class="mnote">Разовая покупка — без списаний и автопродления.</div>';
+const restore = (busy) => `<div class="mrs t">${REFRESH}<span class="tx">Восстановить покупки</span>${busy ? '<span class="msp"></span>' : svg('<path d="M9 5l7 7-7 7"/>', 'ch')}</div>`;
+const cancel = '<div class="mcn t">' + OPEN + 'Перейти к отмене</div>';
+const foot = '<div class="mft">Цена и период всегда берутся из App Store / Google Play.</div>';
+const change = (busy) => `<div class="mchg t"><div class="cp"><div class="t1">Перейти на годовой план</div><div class="t2">Дешевле в пересчёте на месяц</div></div>${busy ? '<span class="msp"></span>' : ARROWC}</div>`;
+// scroll: сдвиг содержимого вверх (экран прокручивается)
+const screen = (inner, o = {}) => `<div class="mpg"><div class="mw" style="transform:translateY(-${o.scroll || 0}px)"><div class="mclose t">${icon('back', 's20')}</div><div class="mh1">Подписка Plus</div>${inner}</div></div>`;
+const dim = '<div class="mdim"></div>';
+const sheet = (inner) => `<div class="msh">${inner}</div>`;
+const REASONS = [['too_expensive', 'Слишком дорого'], ['not_using', 'Не пользуюсь достаточно'], ['missing_features', 'Не хватает функций'], ['technical', 'Технические проблемы'], ['temporary', 'Временно, вернусь позже'], ['other', 'Другое']];
+const reasons = (sel, txt) => sheet(`<div class="mti">Почему уходишь?</div><div class="msub">Это поможет нам стать лучше.</div>${REASONS.map(([k, t]) => `<div class="mrsn t${sel === k ? ' on' : ''}">${sel === k ? R_ON : R_OFF}<span>${t}</span></div>`).join('')}${sel === 'other' ? `<div class="minp${txt ? ' has' : ''}">${txt ? txt + '<span class="cur"></span>' : 'Расскажи подробнее…'}</div>` : ''}<div class="mpri t${sel ? '' : ' off'}">Перейти к отмене</div><div class="msec2 t">Остаться в Plus</div>`);
+const offer = (kind) => sheet(`<div class="mti">${kind === 'support' ? 'Расскажи, что пошло не так' : 'Ты уже многого добился'}</div><div class="msub">${kind === 'support' ? 'Мы читаем каждое обращение и чиним то, что мешает.' : 'Прогресс останется с тобой, но занятия придётся продолжать без Plus.'}</div>${kind === 'progress' ? '<div class="mstt"><div><div class="n">12</div><div class="l">дней подряд</div></div><div><div class="n">38</div><div class="l">уроков</div></div></div>' : ''}<div class="mpri t">${kind === 'support' ? 'Написать нам' : 'Остаться в Plus'}</div><div class="msec2 t">Всё равно отменить</div>`);
+const empty = sheet('<div class="mti">Покупок не нашлось</div><div class="msub">Проверь, тот ли это аккаунт магазина, с которого покупал. Чаще всего дело именно в нём.</div><div class="mpri t">Написать в поддержку</div><div class="msec2 t">Закрыть</div>');
+const toast = (kind, text, act) => `<div class="mtoast">${kind === 'ok' ? svg('<circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M8 12.5l3 3 5-6" stroke="#fff" stroke-width="2"/>', 'ok') : svg('<circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M12 7.5v5.5M12 16.2h.01" stroke="#fff" stroke-width="2.2"/>', 'er')}<span>${text}</span>${act ? `<span class="ac">${act}</span>` : ''}</div>`;
+const base = (plan) => screen(card(plan, next) + benefits());
+const S = [
+  ['019 · Управление подпиской', 'Годовая подписка: статус, дата следующего списания, что включено. Ниже — прокрутка.', base('Годовая подписка')],
+  ['019 · …прокрутка вниз (годовая)', 'Восстановить покупки, «Перейти к отмене» и пояснение про источник цены. Карточки «Перейти на годовой» нет.', screen(card('Годовая подписка', next) + benefits() + restore() + cancel + foot, { scroll: 470 })],
+  ['019 · Месячная: можно перейти на годовой', 'Только при месячной подписке и если годовой план есть в магазине. Сумма приходит из магазина; здесь запасной текст без суммы.', screen(card('Месячная подписка', next) + benefits() + change() + restore() + cancel + foot, { scroll: 560 })],
+  ['020 · Загрузка плана', 'Название — общее «Подписка Plus», даты нет; вместо списка — три серых блока.', screen(card('Подписка Plus') + '<div class="mskw"><div class="msk" style="height:64px"></div><div class="msk" style="height:64px"></div><div class="msk" style="width:70%;height:48px"></div></div>')],
+  ['021 · Разовая покупка', 'Phraseman Pro: без даты списания, без «Перейти на годовой» и без отмены.', screen(card('Phraseman Pro', life) + benefits())],
+  ['021 · …прокрутка вниз (разовая)', 'Только «Восстановить покупки» и пояснение; кнопки отмены нет.', screen(card('Phraseman Pro', life) + benefits() + restore() + foot, { scroll: 400 })],
+  ['022 · Восстановление: пусто', 'Покупок под этим аккаунтом магазина нет. Спокойный тон, не ошибка.', screen(card('Годовая подписка', next) + benefits() + restore() + cancel + foot) + dim + empty],
+  ['023 · Причина отмены', 'Ничего не выбрано — «Перейти к отмене» приглушена. «Остаться в Plus» закрывает шторку.', base('Годовая подписка') + dim + reasons(null)],
+  ['023 · Причина выбрана', 'Выбор подсвечен тоном, кнопка включилась.', base('Годовая подписка') + dim + reasons('too_expensive')],
+  ['023 · Причина «Другое»', 'Появляется поле «Расскажи подробнее…».', base('Годовая подписка') + dim + reasons('other', 'Пока не нужен')],
+  ['024 · Сохранить доступ или отменить', 'Для «Слишком дорого», «Не пользуюсь», «Временно»: показываем накопленный прогресс. Ни цен, ни скидок. «Всё равно отменить» — рядом и одним тапом.', base('Годовая подписка') + dim + offer('progress')],
+  ['025 · Поддержка или отмена', 'Для «Не хватает функций» и «Технические проблемы»: предлагаем написать в поддержку. «Всё равно отменить» — рядом.', base('Годовая подписка') + dim + offer('support')],
+  ['+ · Идёт восстановление', 'Вместо стрелки в ряду крутится кружок; текст на месте, раскладка не прыгает.', screen(card('Годовая подписка', next) + benefits() + restore(true) + cancel + foot, { scroll: 470 })],
+  ['+ · Plus вернулся', 'Всплывающее сообщение после успешного восстановления.', base('Годовая подписка') + toast('ok', 'Plus вернулся — подписка снова активна.')],
+  ['+ · Не удалось проверить покупки', 'Сбой сети при восстановлении; в сообщении есть «Повторить».', screen(card('Годовая подписка', next) + benefits() + restore() + cancel + foot, { scroll: 470 }) + toast('er', 'Сейчас не удалось проверить покупки. Попробуй ещё раз.', 'Повторить')],
+  ['+ · Смена плана не прошла', 'Месячный → годовой не оформился. Деньги не списаны.', screen(card('Месячная подписка', next) + benefits() + change() + restore() + cancel + foot, { scroll: 560 }) + toast('er', 'Смена плана не прошла. Деньги не списаны — попробуй ещё раз.')],
+  ['+ · Магазин не открылся', 'После «Перейти к отмене»: ссылка в магазин не сработала.', base('Годовая подписка') + dim + offer('progress') + toast('er', 'Не удалось открыть магазин. Отмени подписку в настройках телефона.')],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="mnt">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

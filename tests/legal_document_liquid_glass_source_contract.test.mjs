@@ -37,8 +37,9 @@ const LEGAL_FILES = [
   // зачем (владелец 04.10, §124 PM-252): §19 — журналы ошибок и активности удаляются через 90 дней; дата 4 октября.
   // 10.10: политика правилась осознанно — fe079cd49, 15feb3642 (04.10), 472f8715e (недельные монеты Шпиля, D162).
   // 11.10: политика правилась осознанно по решениям координатора (21:12, 00:50) — 0af36379f (§20: удаление гостевого аккаунта), a350f04ba (§3: прогресс гостя привязан к установке).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'dd81d9a1defa954968263770aa53a26f02b29e9be0ad6700693686f145eac2f5'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '09500089f9142ec4b99ded194f80665e92c52caacacfef67bcd579557f253087'],
+  // 12.10 (ночью, решения советника по PRIVACY_R1_GAP): §3/§4/§5/§6/§10/§11/§12 — аварийная копия, вход по коду, Шпиль и компьютерные участники, ИИ-проверка наборов и черновики ответов, состав обращения, язык и пояс при push, свободный чат; дата 12 октября.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '7d89628c5bfe163abb44f1aa029bc6ee0edd7be5e8707e34466e023c14e65d54'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '9d3e5c7634be5853bfd37fe06cc5ea7706fe47f717d3eac33a17450842692c08'],
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '41074944d0d737fc9fa2cf670e172df0c2e56fdc4dd51a9666b40a3678c046b9'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '936e2e7b62c86cd0b551de5a69ab045bc83b73e631e19e727957d821e3e813cd'],
 ];

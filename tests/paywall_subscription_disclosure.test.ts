@@ -4,12 +4,19 @@ import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord,
 
 // зачем (координатор 12.10, требование сторов): условия подписки показываются на языке человека; русский остаётся прежним байт в байт.
 describe('subscription disclosure on every interface language', () => {
-  it('Russian output is identical to the legacy builder', () => {
-    for (const trialDays of [null, 1, 3, 7, 11, 14, 21]) {
-      expect(buildSubscriptionDisclosure('ru', { trialDays, price: '€24,99', period: 'year' }))
-        .toBe(buildSubscriptionDisclosureRu({ trialDays, price: '€24,99', period: 'год' }));
-      expect(buildSubscriptionDisclosure('ru', { trialDays, price: '€4,99', period: 'month' }))
-        .toBe(buildSubscriptionDisclosureRu({ trialDays, price: '€4,99', period: 'месяц' }));
+  it('Russian output keeps the exact legacy wording (the legacy builder is now a thin wrapper)', () => {
+    // зачем: buildSubscriptionDisclosureRu делегирует сюда, поэтому сравнивать их между собой бессмысленно — пинем сам текст.
+    expect(buildSubscriptionDisclosure('ru', { trialDays: 3, price: '€24,99', period: 'year' }))
+      .toBe('3 дня бесплатно, затем €24,99 в год. Подписка продлевается автоматически. Отменить можно в настройках магазина.');
+    expect(buildSubscriptionDisclosure('ru', { trialDays: null, price: '€4,99', period: 'month' }))
+      .toBe('€4,99 в месяц. Подписка продлевается автоматически. Отменить можно в настройках магазина.');
+    expect(buildSubscriptionDisclosure('ru', { trialDays: 1, price: '€4,99', period: 'month' }))
+      .toBe('1 день бесплатно, затем €4,99 в месяц. Подписка продлевается автоматически. Отменить можно в настройках магазина.');
+    expect(buildSubscriptionDisclosure('ru', { trialDays: 7, price: '€4,99', period: 'month' }))
+      .toBe('7 дней бесплатно, затем €4,99 в месяц. Подписка продлевается автоматически. Отменить можно в настройках магазина.');
+    for (const trialDays of [null, 3, 7]) {
+      expect(buildSubscriptionDisclosureRu({ trialDays, price: '€9,99', period: 'год' }))
+        .toBe(buildSubscriptionDisclosure('ru', { trialDays, price: '€9,99', period: 'year' }));
     }
   });
 

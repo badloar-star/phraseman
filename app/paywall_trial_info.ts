@@ -9,6 +9,7 @@
 // обещаем»: синтетического fallback нет.
 // ════════════════════════════════════════════════════════════════════════════
 import type { PurchasesPackage } from 'react-native-purchases';
+import { buildSubscriptionDisclosure } from './paywall_subscription_disclosure';
 
 export interface TrialInfo {
   hasTrial: boolean;
@@ -95,12 +96,13 @@ export function getTrialInfo(
   return days ? { hasTrial: true, days } : { hasTrial: false, days: null };
 }
 
-function pluralDaysRu(n: number): string {
-  if (n % 10 === 1 && n % 100 !== 11) return 'день';
-  if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return 'дня';
-  return 'дней';
-}
-
+/**
+ * Раскрытие условий подписки на русском.
+ *
+ * зачем (координатор 12.10, требование сторов — условия на языке человека): боевой код теперь зовёт
+ * buildSubscriptionDisclosure(lang, …) из paywall_subscription_disclosure.ts (9 языков). Эта функция осталась тонкой обёрткой
+ * для русского — её контракт (tests/paywall_trial_info.test.ts) и прежние вызовы не меняются, текст один на оба пути.
+ */
 export function buildSubscriptionDisclosureRu({
   trialDays,
   price,
@@ -110,11 +112,7 @@ export function buildSubscriptionDisclosureRu({
   price: string;
   period: 'год' | 'месяц';
 }): string {
-  const renewal = 'Подписка продлевается автоматически. Отменить можно в настройках магазина.';
-  if (trialDays) {
-    return `${trialDays} ${pluralDaysRu(trialDays)} бесплатно, затем ${price} в ${period}. ${renewal}`;
-  }
-  return `${price} в ${period}. ${renewal}`;
+  return buildSubscriptionDisclosure('ru', { trialDays, price, period: period === 'год' ? 'year' : 'month' });
 }
 
 /* expo-router route shim. */

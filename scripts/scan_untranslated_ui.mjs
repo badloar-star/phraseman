@@ -344,7 +344,7 @@ const total = findings.reduce((sum, f) => sum + f.count, 0);
 
 if (args.has('--report')) {
   console.log(`Файлов с непереведёнными строками: ${findings.length}, строк всего: ${total}\n`);
-  for (const f of findings.slice(0, 25)) {
+  for (const f of findings.slice(0, Number(process.env.I18N_REPORT_LIMIT) || 25)) {
     console.log(`${String(f.count).padStart(4)}  ${f.file}`);
     for (const s of f.samples) console.log(`      ${s.slice(0, 90)}`);
   }

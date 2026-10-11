@@ -107,6 +107,10 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 /* зачем: флажок жалобы (SpireStepScreen:172) — только красный значок справа под заданием, текст есть лишь для скринридера */
 .sg-rep { min-height: 44px; margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; color: var(--bad); padding-right: 6px; }
 .sg-foot { margin-top: 22px; text-align: center; color: var(--sec); font-size: 16px; font-weight: 700; }
+/* зачем (код SpireStepScreen.tsx, Ядро c323a5e7f): плашка ответа — «Правильно: …», ниже тихая строка (тем же серым тоном, без красного и значков), кнопка «Дальше →»; общий тост — поверх любого экрана Шпиля */
+.sg-hint { margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: rgba(255,90,90,.14); text-align: center; font-size: 15px; line-height: 20px; } .sg-hint b { font-weight: 700; } .sg-hint .sub { margin-top: 6px; color: var(--sec); font-size: 13px; line-height: 18px; }
+.sg-next { margin-top: 12px; height: 46px; border-radius: 23px; background: #F2F2F4; color: #111114; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.sg-toast { position: absolute; left: 20px; right: 20px; bottom: 96px; z-index: 30; padding: 14px 16px; border-radius: 16px; background: rgba(40,42,48,.97); font-size: 15px; line-height: 20px; font-weight: 600; text-align: center; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
 .sg-prep { margin-top: 40px; text-align: center; color: var(--sec); font-size: 16px; line-height: 22px; }
 
 /* ---------- шторка правил ---------- */
@@ -410,9 +414,14 @@ const rulesTop = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { o
 const rulesEnd = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { overlay: rulesSheet(true) });
 
 /* ===================== 7. МЕЛОЧИ ===================== */
-/* зачем: фаза 'charging' раннера — идёт списание энергии (D72), задания ещё нет: кольцо на паузе, вместо задания «Готовим ступень…», счётчик 1 / 10 */
+/* зачем: фаза 'charging' раннера — идёт списание энергии (D72), задания ещё нет: кольцо на паузе, вместо задания «Готовим ступень…», счётчик 1 / 10.
+   Ядро c323a5e7f: то же состояние показывается и ДО загрузки пакета недели («Подняться» при непрогретом пакете открывает ступень в тот же тап; время на кольце — оценка, точное подставит ступень; «Назад» до пакета — отмена без энергии) */
 const preparing = () => phone(`${stepHead(3, 3)}${ringHtml('1:40', 1, true)}<div class="sg-prep">Готовим ступень…</div><div class="sg-foot">1 / 10</div>`);
 /* зачем: то же «Выбери перевод», что в spire.html, но с флажком жалобы справа под вариантами (SpireStepScreen:172: виден, пока можно отвечать) */
+/* зачем (Ядро c323a5e7f, обзор R1 п.4): верный текст ответа и «запись в «Мои ошибки» не удалась» — тихая строка только при сбое записи, штатный пропуск (пары, «найди лишнее», язык без журнала) её не показывает */
+const stepMistakeNotSaved = () => stepPhone({ prompt: 'Выбери перевод', n: 3, hearts: 2, body: qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность']) + `<div class="sg-hint">Правильно: <b>Нанимать, увольнять, уходить с работы</b><div class="sub">Не удалось сохранить в «Мои ошибки»</div></div><div class="sg-next">Дальше${icon('arrowR', 's18')}</div>`, flag: false });
+/* зачем (Ядро c323a5e7f): жалоба легла в очередь, а сервер отказал — общий тост виден и без кнопки жалобы, на любом экране Шпиля */
+const stepReportQueued = () => phone(`${stepHead(3, 2)}${ringHtml('1:12', .72)}<div class="sg-ovl"><span>Выбери перевод</span></div>${qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность'])}${FLAG}<div class="sg-foot">3 / 10</div><div class="sg-toast" role="status">Жалоба сохранена — отправим, когда будет связь</div>`);
 const stepWithFlag = () => stepPhone({ prompt: 'Выбери перевод', n: 3, body: qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность']) });
 const betaMain = () => homePhone({ beta: true, tower: { mySteps: 25, sel: 4 } });
 
@@ -444,9 +453,11 @@ document.getElementById('root').innerHTML = [
     col('Правила — начало списка', rulesTop()),
     col('Правила — список прокручен до конца', rulesEnd())]),
   block('misc', '7. Мелочи', '«Готовим ступень…» во время списания энергии, флажок жалобы и пилюля «бета» у испанского, немецкого, французского и итальянского.', [
-    col('Готовим ступень… (списывается энергия)', preparing()),
+    col('Готовим ступень… (списывается энергия — и до загрузки пакета недели, «Подняться» открывает ступень в тот же тап)', preparing()),
     col('Ступень с флажком «Сообщить об ошибке в задании Шпиля»', stepWithFlag()),
-    col('Главный экран: пилюля «бета» (es / de / fr / it)', betaMain())]),
+    col('Главный экран: пилюля «бета» (es / de / fr / it)', betaMain()),
+    col('Ответ неверный — запись в «Мои ошибки» не удалась (тихая строка)', stepMistakeNotSaved()),
+    col('Жалоба сохранена в очереди — общий тост', stepReportQueued())]),
 ].join('');
 
 /* ===================== ПОВЕДЕНИЕ ===================== */

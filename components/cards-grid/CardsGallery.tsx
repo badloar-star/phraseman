@@ -9,7 +9,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { PixelRatio, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -83,6 +83,8 @@ const FACE = [
   { lg: 0, lgLine: 0, w: 10.5, wLine: 13, wTop: 0, tr: 0, trLine: 0, trTop: 0 },
 ] as const;
 const SPEAK_SIZE = [38, 28, 0, 0] as const;
+// зачем: потолок системного масштаба шрифта в плитках 3/5 колонок — при 1.5 две строки слова (3 кол.) всё ещё лежат в плитке 62.
+const MINI_MAX_FONT_SCALE = 1.5;
 
 const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selected, highlight }: Readonly<{
   card: GalleryCard;
@@ -120,7 +122,19 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
   const showTranslation = step <= 1 && !!card.back;
   const speakSize = SPEAK_SIZE[step]!;
   const speakVisible = step <= 1 && !!onSpeak;
-  const wordEl = <Text style={[styles.word, { color: g.text, fontSize: f.w, lineHeight: f.wLine, marginTop: f.wTop }]}>{renderFront(card.front, highlight)}</Text>;
+  // зачем (сверка Макетов e4e4149d0): в плитках 3 и 5 колонок высота плитки фиксирована (62 / 37), длинное слово раньше ломало её переносом без границы.
+  // Режем по правилам: 2 строки (3 кол.) / 1 строка (5 кол.) + многоточие, БЕЗ adjustsFontSizeToFit; крупный шрифт ограничен 1.5, межстрочный растёт вместе с ним.
+  const miniStep = step >= 2;
+  const miniScale = miniStep ? Math.min(Math.max(PixelRatio.getFontScale(), 1), MINI_MAX_FONT_SCALE) : 1;
+  const wordEl = (
+    <Text
+      numberOfLines={step === 2 ? 2 : step === 3 ? 1 : undefined}
+      ellipsizeMode={miniStep ? 'tail' : undefined}
+      maxFontSizeMultiplier={miniStep ? MINI_MAX_FONT_SCALE : undefined}
+      style={[styles.word, { color: g.text, fontSize: f.w, lineHeight: miniStep ? Math.ceil(f.wLine * miniScale) : f.wLine, marginTop: f.wTop }, miniStep && styles.wordMini]}>
+      {renderFront(card.front, highlight)}
+    </Text>
+  );
   const speakEl = speakVisible ? (
     <Pressable
       accessibilityRole="button"
@@ -236,6 +250,7 @@ const styles = StyleSheet.create({
   text: { flex: 1, minWidth: 0 },
   lg: { fontWeight: '600' },
   word: { fontWeight: '600', letterSpacing: -0.2 },
+  wordMini: { minWidth: 0, flexShrink: 1 },
   tr: {},
   match: { textDecorationLine: 'underline' },
   speak0: { alignItems: 'center', justifyContent: 'center' },

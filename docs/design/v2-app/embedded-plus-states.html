@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Встроенные предложения Plus — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 6 — «Встроенные предложения Plus», реестр paywalls-008…010):
+     карточки-предложения, которые стоят ПРЯМО В ЭКРАНЕ, а не отдельным окном: 1) «Разбор промаха» при исчерпанном дневном лимите ИИ (components/AiLimitUpsellCard.tsx внутри AiMistakeCard);
+     2) и 3) на результате урока — «Первый урок — готово» и «Три урока — отличный старт» (components/SoftContextualUpsellCard.tsx, app/lesson_complete.tsx).
+     Тексты — из кода (ai_kill_switch_copy.ts, lesson_complete.tsx); шутливый текст лимита выбирается случайно из набора — показан один вариант. Размеры текста 16 и 13; обводка — только 1px полупрозрачная.
+     Каждое состояние показано в тёмной «Авроре» и в светлой теме. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --e-surf: #1D1D22; --e-raise: #23232A; --e-sel: rgba(255,255,255,.1); --e-tx: #fff; --e-sc: #A6A6A8; --e-mu: #75757A; --e-edge: rgba(255,255,255,.13); --e-ink: var(--on); color: var(--e-tx); }
+  .ph.lite { --e-surf: #ECECF1; --e-raise: #FFFFFF; --e-sel: rgba(0,0,0,.07); --e-tx: #0C0C10; --e-sc: #55555D; --e-mu: #86868E; --e-edge: rgba(0,0,0,.12); --e-ink: #fff; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .epg { padding: 62px 20px 0; } .epg .t1 { font-size: 28px; line-height: 34px; font-weight: 700; } .epg .gh { height: 64px; border-radius: 18px; background: var(--e-surf); margin-top: 12px; opacity: .6; } .epg .gh.tall { height: 120px; }
+  .eres { display: flex; flex-direction: column; align-items: center; padding-top: 6px; } .eres .mdl { width: 120px; height: 120px; border-radius: 50%; background: var(--e-surf); opacity: .6; margin: 6px 0 14px; } .eres .ln { height: 14px; width: 150px; border-radius: 7px; background: var(--e-surf); opacity: .6; margin-bottom: 8px; }
+  .enext { margin-top: 12px; min-height: 56px; border-radius: 28px; background: var(--e-surf); opacity: .6; }
+  /* карточка «Разбор промаха» */
+  .emc { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .emc .hd { display: flex; align-items: center; gap: 10px; } .emc .ic { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--acc) 12%, transparent); color: var(--acc); flex: none; }
+  .emc .tt { font-size: 16px; line-height: 22px; font-weight: 800; } .eai { border-radius: 6px; padding: 2px 6px; background: color-mix(in srgb, var(--acc) 14%, transparent); color: var(--acc); font-size: 13px; font-weight: 900; letter-spacing: .4px; }
+  /* предложение: лимит ИИ */
+  .elim { border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--e-raise); box-shadow: inset 0 0 0 1px var(--e-edge), 0 8px 16px rgba(0,0,0,.12); }
+  .elim .rw { display: flex; align-items: center; gap: 10px; padding-top: 2px; } .elim .iw { width: 36px; height: 36px; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: var(--e-sel); color: var(--acc); flex: none; }
+  .elim .tx { flex: 1; font-size: 16px; line-height: 23px; font-weight: 800; } .elim .tx span { display: block; font-weight: 800; }
+  .ecta { min-height: 48px; padding: 10px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--acc); color: var(--e-ink); font-size: 13px; font-weight: 800; align-self: stretch; } .ecta.l { font-size: 16px; }
+  /* предложение: результат урока */
+  .esoft { border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--e-surf); box-shadow: inset 0 0 0 1px var(--e-edge); }
+  .esoft .hr { display: flex; align-items: center; gap: 9px; } .esoft .hr .tt { flex: 1; font-size: 16px; line-height: 22px; font-weight: 800; } .esoft .hr .sp { color: var(--acc); flex: none; }
+  .esoft .bd { font-size: 13px; line-height: 20px; color: var(--e-sc); }
+  .esoft .ac { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; align-items: stretch; }
+  .esoft .dm { flex: 1 1 0; min-height: 44px; min-width: 44px; padding: 0 8px; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--e-sc); }
+  .esoft .cta { flex: 1 1 0; min-height: 44px; min-width: 44px; padding: 0 16px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 7px; background: var(--acc); color: var(--e-ink); font-size: 13px; font-weight: 800; }
+  .enote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Встроенные предложения Plus — состояния</h1>
+  <p class="page-lead">Группа 6 из «экранов без макета» (реестр paywalls-008…010): предложения Plus, встроенные прямо в экран. «Разбор промаха» с исчерпанным лимитом ИИ и карточка на результате урока — после первого и после третьего урока. Тёмная «Аврора» и светлая тема. Тексты — из кода.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const flash = '<svg class="i s20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2.5L4.5 13.8h6.4L9.8 21.5l9-11.3h-6.4z"/></svg>';
+const sparkles = '<svg class="i s24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4l1.8 4.6L17.5 10l-4.7 1.4L11 16l-1.8-4.6L4.5 10l4.7-1.4z"/><path d="M18 15l.8 2.1 2.2.9-2.2.8L18 21l-.8-2.2-2.2-.8 2.2-.9z"/></svg>';
+const bulb = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/></svg>';
+const arrow = (s) => `<svg class="i ${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+const BODY = 'Дальше курс ведёт от простых фраз до свободного разговора. С Plus открывается весь курс, а с ним и всё остальное: разговоры вслух, тренировки без счётчика и статистика.';
+const mistake = () => `<div class="epg"><div class="t1">Ошибка</div><div class="gh tall"></div>
+  <div class="emc"><div class="hd"><span class="ic">${bulb}</span><span class="tt">Разбор промаха</span><span class="eai">AI</span></div>
+  <div class="elim"><div class="rw"><span class="iw">${flash}</span><div class="tx"><span>Учитель устал</span><span style="font-weight:700;color:var(--e-sc)">Ты сегодня разобрал столько ошибок, что учитель уснул прямо на стуле. Отдохнёт до завтра.</span></div></div>
+  <div class="ecta l">Посмотреть Plus${arrow('s20')}</div></div></div><div class="gh" style="margin-top:14px"></div></div>`;
+const soft = (title) => `<div class="epg"><div class="eres"><div class="mdl"></div><div class="ln"></div><div class="ln" style="width:110px"></div></div>
+  <div class="esoft"><div class="hr"><span class="sp">${sparkles}</span><span class="tt">${title}</span></div><div class="bd">${BODY}</div>
+  <div class="ac"><span class="dm t">${icon('close', 's20')}Не сейчас</span><span class="cta t">Посмотреть Plus${arrow('s20')}</span></div></div><div class="enext"></div></div>`;
+const S = [
+  ['008 · Разбор ошибки: лимит ИИ', 'Дневной лимит ИИ-разборов исчерпан: вместо разбора — карточка с шуткой про усталого учителя (вариантов несколько, выбирается случайно) и кнопкой «Посмотреть Plus». Карточка появляется спокойным подъёмом.', mistake()],
+  ['009 · Результат: первый урок', 'После первого урока на экране результата — «Первый урок — готово», про курс и Plus; «Не сейчас» прячет карточку, «Посмотреть Plus» открывает окно оплаты.', soft('Первый урок — готово')],
+  ['010 · Результат: три урока', 'Когда бесплатные уроки пройдены — «Три урока — отличный старт»; тот же текст и те же кнопки.', soft('Три урока — отличный старт')],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="enote">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

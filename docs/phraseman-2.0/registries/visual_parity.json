@@ -15947,10 +15947,10 @@
       "id": "paywalls-008",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 8,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/embedded-plus-states.html",
+        "phone": 1,
+        "label": "008 · Разбор ошибки: лимит ИИ",
+        "mapping": "manual_rebind"
       },
       "screen": "Встроенные предложения Plus",
       "state": "Разбор ошибки · лимит ИИ",
@@ -15967,18 +15967,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 6, встроенные предложения Plus; светлая тема — телефоны 4–6), эталон сразу"
     },
     {
       "id": "paywalls-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 9,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/embedded-plus-states.html",
+        "phone": 2,
+        "label": "009 · Результат: первый урок",
+        "mapping": "manual_rebind"
       },
       "screen": "Встроенные предложения Plus",
       "state": "Результат · первый урок",
@@ -15995,18 +15996,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 6, встроенные предложения Plus; светлая тема — телефоны 4–6), эталон сразу"
     },
     {
       "id": "paywalls-010",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 10,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/embedded-plus-states.html",
+        "phone": 3,
+        "label": "010 · Результат: три урока",
+        "mapping": "manual_rebind"
       },
       "screen": "Встроенные предложения Plus",
       "state": "Результат · три урока",
@@ -16023,9 +16025,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 6, встроенные предложения Plus; светлая тема — телефоны 4–6), эталон сразу"
     },
     {
       "id": "paywalls-011",

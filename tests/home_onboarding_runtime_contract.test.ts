@@ -8,7 +8,9 @@ const events = fs.readFileSync(path.join(ROOT, 'app', 'events.ts'), 'utf8');
 
 describe('hidden Home runtime behind onboarding', () => {
   it('does not give Home runtime ownership until onboarding is complete', () => {
-    expect(home).toContain('const [homeOnboardingDone, setHomeOnboardingDone] = useState(false)');
+    // зачем (HOME-COLD_cold1, 11.10): стартовое значение — одноразовый флаг, уже прочитанный корнем; «пройден» только при '1'.
+    expect(home).toContain('const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true)');
+    expect(rootLayout).toContain("rememberOnboardingDonePeek(val === '1')");
     expect(home).toContain('useRuntimeActive(isHomeOwner && homeOnboardingDone)');
     expect(home).not.toContain('useRuntimeActive(isHomeOwner);');
     expect(home).toContain('HOME_ONBOARDING_DONE_KEY');

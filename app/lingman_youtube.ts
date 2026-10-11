@@ -424,6 +424,16 @@ async function cacheSuccessfulVideos(videos: LingmanYoutubeVideo[]): Promise<voi
     }
 }
 
+// зачем (Сверка 01:40, HOME-COLD_cold1: video_feed:network_failed «YouTube feed failed: 404»): RSS канала по умолчанию
+// отвечает 200, значит 404 — у канала-подмены из «Пульта» или сбой YouTube. Повтор на каждом фокусе Главной ничего не
+// даёт — до конца запуска этот канал в сеть не ходит, лента тихо берёт сохранённый/встроенный список.
+let feedNotFoundChannelThisLaunch: string | null = null;
+
+/** Только для тестов. */
+export function resetLingmanFeedNotFoundForTests(): void {
+  feedNotFoundChannelThisLaunch = null;
+}
+
 export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), LINGMAN_FEED_TIMEOUT_MS);
@@ -435,6 +445,9 @@ export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]
       signal: controller.signal,
     });
     if (!response.ok) {
+      const active = getActiveYoutubeChannel();
+      console.warn('[HOME-COLD] video_feed:http_error', JSON.stringify({ status: response.status, channelId: active.channelId, isOverride: active.isOverride })); // guard-ok: сбой сети логируется
+      if (response.status === 404) feedNotFoundChannelThisLaunch = active.channelId;
       throw new Error(`YouTube feed failed: ${response.status}`);
     }
     const xml = await response.text();
@@ -493,6 +506,10 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
   // сбое сети. Трассировка: сколько шла сеть, чем кончилась, был ли кэш. Поведение не меняется.
   const networkStartedAt = Date.now();
   try {
+    if (feedNotFoundChannelThisLaunch && feedNotFoundChannelThisLaunch === getActiveYoutubeChannel().channelId) {
+      // Ветка ниже (catch) берёт кэш/встроенный список и логирует итог — сеть не трогаем.
+      throw new Error('YouTube feed 404 earlier this launch — network skipped');
+    }
     const feed = await fetchLingmanYoutubeVideos();
     console.warn('[HOME-COLD] video_feed:network_ok', JSON.stringify({ ms: Date.now() - networkStartedAt, videos: feed.length })); // guard-ok: временная трассировка холодного старта
     void cacheSuccessfulVideos(feed);

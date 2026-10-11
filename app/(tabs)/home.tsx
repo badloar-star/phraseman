@@ -67,6 +67,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 // 30.09: animateNextLayoutTransition вернулся — поздняя вставка карточки «Продолжить обучение».
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
+import { takeOnboardingDonePeek } from '../onboarding_done_peek';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 // зачем (PM-052, D75, 02.10): сбор наград на Главной (очередь + частицы в счётчик) удалён —
 // монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
@@ -605,7 +606,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility]);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
-    const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
+    // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,
+    // включает homeRuntimeActive на первом кадре; multiGet ниже остаётся источником правды.
+    const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true);
     const isHomeOwner = runtimeOwnerId === 'home';
     // Root Stack монтирует Home под полноэкранным CleanOnboarding. Владение табом
     // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем

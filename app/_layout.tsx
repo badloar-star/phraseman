@@ -251,6 +251,7 @@ import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_sa
 import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
 import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
+import { rememberOnboardingDonePeek } from './onboarding_done_peek';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -2524,6 +2525,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         const startupIdentityPairs = await startupIdentityPairsPromise;
         const startupIdentity = new Map(startupIdentityPairs);
         const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null);
+        // зачем (HOME-COLD_cold1: Главная ждала свой multiGet ~6 с): тот же флаг Главной — из памяти, сразу.
+        rememberOnboardingDonePeek(val === '1');
 
         // зачем (аудит скорости 2026-08-22): ожидание Play Install Referrer
         // (await с гонкой setTimeout 2000мс) стояло ДО setReady(true) и держало

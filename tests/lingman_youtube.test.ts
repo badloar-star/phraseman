@@ -16,6 +16,7 @@ import {
   mergePinnedVideos,
   markLingmanYoutubeCatalogSeen,
   markLingmanYoutubeSectionOpened,
+  resetLingmanFeedNotFoundForTests,
   type LingmanYoutubeVideo,
 } from '../app/lingman_youtube';
 
@@ -194,6 +195,32 @@ describe('lingman_youtube', () => {
       await markPromise;
     } finally {
       global.fetch = originalFetch;
+    }
+  });
+
+  // зачем (Сверка 01:40, HOME-COLD_cold1: «YouTube feed failed: 404»): после 404 лента до конца запуска берёт
+  // сохранённый/встроенный список и в сеть этого канала не ходит — повтор на каждом фокусе Главной бесполезен.
+  it('after a 404 serves the cached/builtin list and skips the network for the rest of the launch', async () => {
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    await storage.clear();
+    resetLingmanFeedNotFoundForTests();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const originalFetch = global.fetch;
+    const fetchMock = jest.fn(async () => ({ ok: false, status: 404, text: async () => '' }));
+    global.fetch = fetchMock as unknown as typeof fetch;
+    try {
+      const first = await getLingmanYoutubeSnapshot();
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(first.videos.length).toBeGreaterThan(0);
+      expect(warn).toHaveBeenCalledWith('[HOME-COLD] video_feed:http_error', expect.stringContaining('"status":404'));
+
+      const second = await getLingmanYoutubeSnapshot();
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(second.videos.map((video) => video.id)).toEqual(first.videos.map((video) => video.id));
+    } finally {
+      global.fetch = originalFetch;
+      resetLingmanFeedNotFoundForTests();
+      warn.mockRestore();
     }
   });
 

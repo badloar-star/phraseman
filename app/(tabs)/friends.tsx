@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { consumeDevFriendEvent, isDevFriendsFail, isDevFriendsHeld, isDevUnsyncedFriendCode } from '../dev_social_state';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput,
@@ -1554,7 +1555,12 @@ export default function FriendsTabScreen() {
           return;
         }
       }
-      const result = isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
+      // зачем (координатор 12.10, R1 «нет пути», друзья): dev `dev_friends_fail=search` — «Сейчас не получилось» (не транзиентный отказ); служебный код DEVUNSYNCED — «профиль найден, но не синхронизирован» без сервера; в стор-сборке геттеры выключены.
+      if (isDevFriendsFail('search')) throw new Error('dev_friends_search_failed');
+      const devUnsynced = isCode && isDevUnsyncedFriendCode(codeUpper);
+      const result = devUnsynced
+        ? ({ uid: 'dev_unsynced_friend', name: '', source: 'friend_code' } as unknown as Awaited<ReturnType<typeof lookupUserByFriendCode>>)
+        : isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
       lastLookupSourceRef.current = result?.source ?? null;
       if (!result) {
         await trackActivity('friends:search_result', {
@@ -1580,7 +1586,7 @@ export default function FriendsTabScreen() {
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
-      const fetched = await fetchFriendProfileFromFirestore(result.uid);
+      const fetched = devUnsynced ? null : await fetchFriendProfileFromFirestore(result.uid);
       // Серверный профиль (из users.progress) — ПЕРВИЧНЫЙ источник имени/уровня/аватара.
       // Объединяем с leaderboard: серверный имеет приоритет (mergePublicFriendProfiles
       const lookupProfile = friendProfileFromLookup(result.uid, result.profile);
@@ -1680,7 +1686,10 @@ export default function FriendsTabScreen() {
         result: 'start',
         tags: { targetUid: targetUser.uid },
       });
-      const result = await sendFriendRequest(targetUser.uid);
+      // зачем (координатор 12.10, R1 «нет пути», друзья): dev `dev_friends_hold=add_request` держит «отправку заявки»; `dev_friends_fail=add` — отказ отправки (результат error); в стор-сборке геттеры выключены.
+      const result: Awaited<ReturnType<typeof sendFriendRequest>> = isDevFriendsHeld('add_request')
+        ? await new Promise<never>(() => undefined)
+        : isDevFriendsFail('add') ? 'error' : await sendFriendRequest(targetUser.uid);
       await trackActivity('friends:add_request_result', {
         feature: 'friends',
         screen: 'friends',
@@ -2057,6 +2066,18 @@ export default function FriendsTabScreen() {
     const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
     if (profile) openFriendEvent(profile, event);
   }, [openFriendEvent]);
+
+  // зачем (координатор 12.10, R1 «нет пути», друзья): dev `friend_event=study_invite` — окно приглашения на занятие без события от сервера; выдаётся один раз; в стор-сборке null.
+  useEffect(() => {
+    if (consumeDevFriendEvent() !== 'study_invite') return;
+    const now = Date.now();
+    console.log('[DEV-STATE] friends: окно приглашения на занятие (study_invite)'); // guard-ok: dev-ветка
+    setStudyInvite({
+      event: { id: 'dev_study_invite', actorStableUid: 'dev_friend', kind: 'study_invite', createdAtMs: now, expiresAtMs: now + 10 * 60_000, inviteId: 'dev_invite' },
+      friendName: 'Алиса',
+      friendCoinRank: 3,
+    });
+  }, [focusTick]);
 
   const socialOpenedRef = useRef('');
   useEffect(() => {

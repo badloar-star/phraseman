@@ -1,4 +1,5 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { isDevReferralOff } from './dev_social_state';
 
 /**
  * Referral cloud gate. Two conditions must hold:
@@ -7,6 +8,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
  *     referral_cloud modules (firestore_friends etc.) must not load in Jest.
  */
 export function isReferralCloudEnabled(): boolean {
+  // зачем (координатор 12.10, R1 «нет пути»): dev `referral=off` — рубильник приглашений выключен (settings-gap-030, overlays-campaigns-025); в стор-сборке геттер выключен.
+  if (isDevReferralOff()) return false;
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 }
 

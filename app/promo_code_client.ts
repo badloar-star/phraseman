@@ -6,6 +6,7 @@
 // маппинг ответа сервера в типизированный статус для UI.
 // ════════════════════════════════════════════════════════════════════════════
 import { getApp } from '@react-native-firebase/app';
+import { getDevPromoResult } from './dev_social_state';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { withCallableTimeout } from './callable_timeout';
@@ -55,6 +56,12 @@ interface RedeemResponse {
 export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResult> {
   const code = normalizePromoCodeInput(rawCode);
   if (!CLIENT_CODE_RE.test(code)) return { status: 'bad_code' };
+  // зачем (координатор 12.10, R1 «нет пути»): dev `promo=…` — ответ сервера подставляется фикстурой, сеть не используется; в стор-сборке null.
+  const devResult = getDevPromoResult();
+  if (devResult) {
+    console.log(`[DEV-STATE] promo: ответ подменён статусом ${devResult.status}`); // guard-ok: dev-ветка
+    return devResult;
+  }
   const existing = promoRedeemInFlight.get(code);
   if (existing) return existing;
 

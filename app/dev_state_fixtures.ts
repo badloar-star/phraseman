@@ -20,6 +20,8 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
+import { DEV_FRIEND_EVENTS, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult } from './dev_social_state';
+import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 
@@ -85,6 +87,18 @@ export type DevStateRequest = Readonly<{
   trainGate?: DevTrainGate | 'off';
   /** Окно решения модерации набора (Н-12): локальная постановка, без чтения почтового ящика продавца. */
   moderation?: 'approved' | 'rejected' | 'revision' | 'removed';
+  /** Цена на пейволе без своего `_dev_state` (онбординг): loading|live|reference|failed, off снимает. */
+  paywall?: 'loading' | 'live' | 'reference' | 'failed' | 'off';
+  /** Рубильник приглашений: off — выключен (settings-gap-030, overlays-campaigns-025), on — снять. */
+  referral?: 'off' | 'on';
+  /** Ответ промокода фикстурой, без сети: off=«промокоды выключены», ok, lifetime, used, expired, disabled, limit, not_found, rate_limited, error, none=снять. */
+  promo?: DevPromoResult;
+  /** Друзья: удержание «отправки заявки» (add_request) или off. */
+  friendsHold?: readonly DevFriendsHold[] | 'off';
+  /** Друзья: отказ отправки заявки (add) / поиска (search) или off. */
+  friendsFail?: readonly DevFriendsFail[] | 'off';
+  /** Друзья: окно приглашения на занятие (study_invite), один раз. */
+  friendEvent?: DevFriendEvent;
   next?: string;
 }>;
 
@@ -159,6 +173,12 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
+  request.paywall = pick('paywall', ['loading', 'live', 'reference', 'failed', 'off'] as const);
+  request.referral = pick('referral', ['off', 'on'] as const);
+  request.promo = pick('promo', DEV_PROMO_RESULTS);
+  request.friendsHold = list('dev_friends_hold', DEV_FRIENDS_HOLDS);
+  request.friendsFail = list('dev_friends_fail', DEV_FRIENDS_FAILS);
+  request.friendEvent = pick('friend_event', DEV_FRIEND_EVENTS);
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -325,6 +345,28 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.trainGate !== undefined) {
     await step('train_gate', request.trainGate, async () => setDevCardsState({ trainGate: request.trainGate === 'off' ? null : request.trainGate! }));
+  }
+  // зачем (R1 «нет пути», аккаунт/друзья): флаги в памяти процесса (app/dev_social_state.ts, app/dev_paywall_state.ts); без сети.
+  if (request.paywall !== undefined) {
+    await step('paywall', request.paywall, async () => {
+      const map: Record<NonNullable<DevStateRequest['paywall']>, DevPaywallState | null> = { loading: 'loading', live: 'live', reference: 'reference', failed: 'error_no_prices', off: null };
+      return setDevPaywallLinkState(map[request.paywall!]);
+    });
+  }
+  if (request.referral !== undefined) {
+    await step('referral', request.referral, async () => setDevSocialState({ referralOff: request.referral === 'off' }));
+  }
+  if (request.promo !== undefined) {
+    await step('promo', request.promo, async () => setDevSocialState({ promo: request.promo }));
+  }
+  if (request.friendsHold !== undefined) {
+    await step('dev_friends_hold', request.friendsHold === 'off' ? 'off' : request.friendsHold.join(','), async () => setDevSocialState({ friendsHolds: request.friendsHold === 'off' ? [] : request.friendsHold }));
+  }
+  if (request.friendsFail !== undefined) {
+    await step('dev_friends_fail', request.friendsFail === 'off' ? 'off' : request.friendsFail.join(','), async () => setDevSocialState({ friendsFails: request.friendsFail === 'off' ? [] : request.friendsFail }));
+  }
+  if (request.friendEvent !== undefined) {
+    await step('friend_event', request.friendEvent, async () => setDevSocialState({ friendEvent: request.friendEvent }));
   }
   if (request.moderation) {
     await step('moderation', request.moderation, async () => {

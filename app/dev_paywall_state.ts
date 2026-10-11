@@ -52,6 +52,26 @@ export function parseDevPaywallState(raw: unknown): DevPaywallState | null {
   return state;
 }
 
+/**
+ * Состояние «по ссылке»: `dev_state?paywall=loading|live|reference|failed` — для окон без своего `_dev_state` (пейвол онбординга, `onboarding-025`,
+ * `onboarding-paywall-001`). Явный `_dev_state` у окна сильнее. В памяти процесса; `paywall=off` снимает. В стор-сборке всегда null.
+ */
+let linkState: DevPaywallState | null = null;
+
+export function setDevPaywallLinkState(state: DevPaywallState | null): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: paywall= отклонён — не dev-сборка`, { state }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  linkState = state;
+  console.log(`${LOG} paywall: по ссылке = ${state ?? 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function getDevPaywallLinkState(): DevPaywallState | null {
+  return devPaywallAvailable() ? linkState : null;
+}
+
 export type PaywallDevView = {
   loading: boolean;
   offeringsSettled: boolean;

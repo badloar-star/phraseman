@@ -60,7 +60,7 @@ import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import { applyDevPaywallView, type DevPaywallState } from './dev_paywall_state';
+import { applyDevPaywallView, getDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
@@ -481,7 +481,9 @@ export interface PaywallPurchaseArgs {
 
 let onboardingPaywallHookMounts = 0; // зачем: счётчик перемонтирований хука онбординга для [ONB-PAYWALL-WAIT]
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState = null }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
+  // зачем (координатор 12.10, R1 «нет пути»): явный `_dev_state` окна сильнее состояния по ссылке `dev_state?paywall=…` (пейвол онбординга); в стор-сборке оба null.
+  const devState = devStateArg ?? getDevPaywallLinkState();
   const router = useRouter();
   const { refillToMax } = useEnergy();
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));

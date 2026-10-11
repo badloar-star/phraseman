@@ -32,6 +32,23 @@ export type LiquidGlassSurfaceRoles = Readonly<{
   iconMuted: string;
   /** Дорожка ВЫКЛЮЧЕННОГО переключателя, пустая часть слайдера: контраст ≥ 3:1 к тем же поверхностям. */
   trackOff: string;
+  // ── Стиль «Тень» (владелец 12.10, вариант 2; docs/design/v2-app/SHADOW_STYLE_SPEC.md): контейнеры БЕЗ обводок ──
+  /** Градиент плашки 180° (сверху → вниз): тёмная — белый 8,5 % → 4 % поверх фона (непрозрачный результат), светлая — белый → тон ниже. */
+  plateFillFrom: string;
+  plateFillTo: string;
+  /** Градиент выбранного/главного (приподнятого): тёмная — белый 15 % → 7 %, светлая — белый → чуть темнее. */
+  raisedFillFrom: string;
+  raisedFillTo: string;
+  /** Цвет тени плашки (`0 16 28 −14` тёмная / `0 14 26 −14` светлая) и мягкий второй слой светлой (`0 1 3`). */
+  plateShadow: string;
+  plateShadowSoft: string;
+  /** Тень вложенного (плитка-иконка, кнопка внутри плашки): `0 6 12 −6` / `0 5 10 −5`. */
+  nestedShadow: string;
+  /** Тень выбранного: `0 26 40 −14` и мягкий слой светлой `0 2 4`; сам элемент сдвигается на RAISED_LIFT. */
+  raisedShadow: string;
+  raisedShadowSoft: string;
+  /** Разделитель между строками внутри групповой плашки (вместо обводки и своих плашек у строк). */
+  dividerTone: string;
 }>;
 
 type SurfaceSource = Readonly<{
@@ -40,6 +57,8 @@ type SurfaceSource = Readonly<{
   opaqueControl: string;
   opaqueSheet: string;
   card: string;
+  /** Уровень цвета темы: чем выше, тем больше тон темы в светлых тенях (ползунок интенсивности). */
+  level?: 'calm' | 'accent' | 'max';
   text: string;
   isLight: boolean;
   shadowTint: string;
@@ -85,9 +104,41 @@ function nonTextTone(t: SurfaceSource, from: number, min: number): string {
   return hex6(t.text);
 }
 
+/** Спековый цвет светлых теней (rgba(40,40,80)) с тоном темы: подмешиваем тон тени самой темы. */
+const LIGHT_SHADOW_BASE = '#282850';
+
 export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurfaceRoles {
   const iconMuted = nonTextTone(t, 0.40, 3.2);
   const trackOff = nonTextTone(t, 0.32, 3.1);
+  // Стиль «Тень»: числа — из спеки; тон светлой тени и нижний тон плашки — от темы, поэтому ползунок и тема их меняют.
+  const tintShare = { calm: 0.35, accent: 0.55, max: 0.75 }[t.level ?? 'calm'];
+  const tinted = t.shadowTint.length > 7 ? mixSurfaceHex(LIGHT_SHADOW_BASE, t.shadowTint, tintShare) : LIGHT_SHADOW_BASE;
+  const lightShadow = (alpha: number) => withAlpha(tinted, alpha);
+  const shadowStyle = t.isLight
+    ? {
+        plateFillFrom: hex6(t.opaqueCard),
+        plateFillTo: mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.55),
+        raisedFillFrom: hex6(t.opaqueCard),
+        raisedFillTo: mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.25),
+        plateShadow: lightShadow(0.34),
+        plateShadowSoft: lightShadow(0.06),
+        nestedShadow: lightShadow(0.28),
+        raisedShadow: lightShadow(0.46),
+        raisedShadowSoft: lightShadow(0.08),
+        dividerTone: 'rgba(20,20,40,0.06)',
+      }
+    : {
+        plateFillFrom: mixSurfaceHex(t.bg, '#FFFFFF', 0.085),
+        plateFillTo: mixSurfaceHex(t.bg, '#FFFFFF', 0.04),
+        raisedFillFrom: mixSurfaceHex(t.bg, '#FFFFFF', 0.15),
+        raisedFillTo: mixSurfaceHex(t.bg, '#FFFFFF', 0.07),
+        plateShadow: 'rgba(0,0,0,0.75)',
+        plateShadowSoft: 'rgba(0,0,0,0)',
+        nestedShadow: 'rgba(0,0,0,0.6)',
+        raisedShadow: 'rgba(0,0,0,0.9)',
+        raisedShadowSoft: 'rgba(0,0,0,0)',
+        dividerTone: 'rgba(255,255,255,0.07)',
+      };
   if (t.isLight) {
     return Object.freeze({
       deepBase: mixSurfaceHex(t.opaqueControl, '#000000', 0.08),
@@ -101,6 +152,7 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
       hairlineSoft: withAlpha(t.text, 0.10),
       iconMuted,
       trackOff,
+      ...shadowStyle,
     });
   }
   return Object.freeze({
@@ -115,5 +167,6 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
     hairlineSoft: withAlpha(t.text, 0.08),
     iconMuted,
     trackOff,
+    ...shadowStyle,
   });
 }

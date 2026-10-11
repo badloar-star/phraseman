@@ -128,7 +128,7 @@ add('cards-gap-021', [TILE, TO_PACK, PACK_WORK, 'wait:1500', TO_PACK, PACK_WORK]
 # Карточки: состояния, которые открывает сама ссылка (фикстура держит/ломает данные, тап не нужен)
 add('cards-039', [], 'cards=demo&fail=saved_load', SAVED, note='«Сохранённые» — ошибка загрузки (fail=saved_load; снять fail=off)')
 add('cards-047', [], 'hold=catalog_loading', PACKS, note='каталог — загрузка (hold=catalog_loading; снять hold=off)')
-add('cards-075', [], 'cards=demo&hold=setup_loading', '/flashcards_training_setup', note='настройка тренировки — загрузка (hold=setup_loading)')
+add('cards-075', [], 'cards=demo&plus=on&hold=setup_loading', '/flashcards_training_setup?mode=truefalse', note='настройка «Правда / ложь» — загрузка наборов (hold=setup_loading); режим ОБЯЗАТЕЛЕН в маршруте, без ?mode= кнопка показывает «Режим недоступен»')
 add('cards-gap-016', [], 'cards=demo_published&moderation=approved', HUB, note='окно «Нужна доработка» приходит само через задержку фикстуры')
 add('cards-gap-037', [], 'cards=demo&hold=voices_loading', '/flashcards_voice_picker', note='голос озвучки — загрузка (hold=voices_loading)')
 add('cards-v2-030', [TRAIN, 'tap:#fc-training-mode-blitz'], 'plus=off&cards=demo&quota=exhausted', HUB, note='Free: тренировки 30/30 в месяц — на настройке тренировки')
@@ -222,3 +222,32 @@ add('overlays-campaigns-011', PROMO_SEND, PROMO_BASE + '&promo=limit', PROMO, no
 add('overlays-campaigns-012', PROMO_SEND, PROMO_BASE + '&promo=used', PROMO, note='ответ «уже использован»')
 add('overlays-campaigns-014', PROMO_SEND, PROMO_BASE + '&promo=disabled', PROMO, note='ответ «промокод отключён»')
 add('overlays-campaigns-015', PROMO_SEND, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')
+
+
+# ───────────────────────── Карточки: прямые маршруты тренировок (вердикты Макетов 12.10) ─────────────────────────
+# Маршруты и параметры — из app/flashcards/training_entry.ts (deck=saved, quick=1, size=all). cards=* — только на анонимном госте (dev_state_account_guard).
+TF_ROUTE = '/flashcards_truefalse_session?deck=saved&quick=1&size=all'
+SPEAK_ROUTE = '/flashcards_speaking_session?deck=saved&size=all'
+RECALL_ROUTE = '/flashcards_recall_session?deck=saved&size=all&dir=to_target'
+BLITZ_ROUTE = '/flashcards_blitz_session?deck=saved&sec=60'
+add('cards-gap-004', [], EMPTY_PLUS, TF_ROUTE, note='«Правда / ложь»: нет сохранённых карточек (cards=empty, только анонимный гость)')
+add('cards-gap-010', [], EMPTY_PLUS, SPEAK_ROUTE, note='«Устно»: нечего говорить — нет карточек (cards=empty)')
+add('cards-gap-007', [], 'cards=notranslation&plus=on', TF_ROUTE, note='«Правда / ложь»: нет карточек с переводом')
+add('cards-gap-008', [], 'cards=notranslation&plus=on', RECALL_ROUTE, note='«Напиши»: нет карточек с переводом')
+add('cards-gap-006', [], DEMO + '&train_gate=fail_swipe_quota', TF_ROUTE, note='«Правда / ложь»: не удалось проверить лимит (train_gate=fail_swipe_quota)')
+add('cards-gap-001', [], DEMO + '&train_gate=fail_blitz', BLITZ_ROUTE, note='«Блиц»: тренировка не открылась (train_gate=fail_blitz)')
+add('cards-gap-002', [], DEMO + '&train_gate=fail_speaking', SPEAK_ROUTE, note='«Устно»: тренировка не открылась (train_gate=fail_speaking)')
+add('cards-gap-011', [TRAIN], 'cards=demo&plus=off&hold=quota_waiting', HUB, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting)')
+add('cards-gap-012', [TRAIN], 'cards=demo&plus=off&hold=quota_failed', HUB, note='шторка режима: «Не получилось подготовить тренировку» (hold=quota_failed)')
+
+add('cards-062', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO + '&fail=card_write', '/flashcards_card_editor?create=1&cat=custom', note='редактор: «Не удалось сохранить» (fail=card_write); создание карточки — функция Plus, поэтому plus=on')
+
+
+# ───────────────────────── Диалоги: внутри сессии (подставной старт и ход Ядра: dev_dialog_send=ok, app/dev_dialog_send.ts) ─────────────────────────
+# Вход: хаб → первая категория → первый диалог → «Начать». Какой именно диалог первый — зависит от каталога, поэтому кадры, привязанные к
+# конкретному диалогу («приветствие баристы»), остаются «нет». Берём только кадры, чья раскладка не зависит от темы диалога.
+DLG_SEND = 'plus=on&dquota=reset&energy=5&dev_dialog_send=ok'
+DLG_START = [WORLD, ROW, 'tap:#dialogue-v2-briefing-start', 'wait:3000']
+add('dialogs-gap-015', DLG_START + ['tap:#dialogue-v2-session-more'], DLG_SEND, DLG, note='внутри сессии: меню «⋯» открыто (подставной старт dev_dialog_send=ok)')
+add('dialogs-017', DLG_START + ['tap:#dialogue-v2-session-hint'], DLG_SEND, DLG, note='внутри сессии: окно подсказки')
+add('dialogs-018', DLG_START + ['tap:#dialogue-v2-session-goals'], DLG_SEND, DLG, note='внутри сессии: шторка заданий')

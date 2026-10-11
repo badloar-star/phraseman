@@ -158,6 +158,19 @@ export default function FlashcardsCardEditorScreen() {
   const creatorGated = !isEdit && shouldGateCreator(hasPremiumAccess);
   const creatorLocked = creatorGated && accessResolved;
   const creatorRedirectedRef = useRef(false);
+  // зачем (вердикт Макетов 12.10, cards-062: «пустой светлый экран без формы»): сперва логи. Редактор НОВОЙ карточки — функция подписки: у Free после
+  // резолва доступа экран заменяется пейволом, а до резолва показывается скелет; пустой кадр бывает ровно на этом стыке. Печатаем каждое слагаемое.
+  useEffect(() => {
+    console.log('[CARD-EDITOR] mount-state', JSON.stringify({
+      editId: editId ?? null,
+      isEdit,
+      create: params.create ?? null,
+      accessResolved,
+      hasPremiumAccess,
+      creatorGated,
+      creatorLocked,
+    }));
+  }, [accessResolved, creatorGated, creatorLocked, editId, hasPremiumAccess, isEdit, params.create]);
   // зачем (Карточки 2.0 12.10, cards-v2 `newCard({limit:'50/50'})`, координатор): у Free 50 своих карточек (FREE_CUSTOM_CARD_LIMIT). Число своих
   // карточек читаем из того же локального списка, что и подсказки дубликатов (0 чтений Firestore) и сразу на входе показываем пилюлю «50/50»
   // и «Безлимит с Plus» — человек не вводит слово и перевод ради сырого отказа при сохранении.

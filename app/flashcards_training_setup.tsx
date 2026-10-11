@@ -625,6 +625,26 @@ export default function FlashcardsTrainingSetupScreen() {
           : 'ready';
   // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=setup_loading` / `fail=setup_decks` — «Загрузка наборов» и «Сейчас недоступно»; в стор-сборке геттеры выключены.
   const setupStatus: typeof computedSetupStatus = isDevCardsHeld('setup_loading') ? 'loading' : isDevCardsFail('setup_decks') ? 'unavailable' : computedSetupStatus;
+  // зачем (вердикт Макетов 12.10, cards-075: «внизу "Режим недоступен", в образце "Начать"»): сперва логи. Печатаем КАЖДОЕ слагаемое, которое
+  // решает статус экрана и подпись кнопки: режим из маршрута (его отсутствие даёт «Режим недоступен» на кнопке), состояние загрузки, dev-держатели.
+  const prepModeParam = Array.isArray(params.mode) ? params.mode.join(',') : (params.mode ?? null);
+  useEffect(() => {
+    console.log('[TRAIN-PREP] status', JSON.stringify({
+      modeParam: prepModeParam,
+      mode: mode ?? null,
+      loadState,
+      loadErrorKind: loadErrorKind ?? null,
+      decks: decks.length,
+      computedSetupStatus,
+      devHoldSetupLoading: isDevCardsHeld('setup_loading'),
+      devFailSetupDecks: isDevCardsFail('setup_decks'),
+      setupStatus,
+      startLabel,
+      canStart,
+      quotaStatus: quotaPreview.status,
+    }));
+    if (!mode) console.warn('[TRAIN-PREP] режим не задан в маршруте (?mode=blitz|speaking|truefalse|recall) — кнопка и заголовок покажут «Режим недоступен»', JSON.stringify({ modeParam: prepModeParam })); // guard-ok: причина подписи «недоступен»
+  }, [prepModeParam, mode, loadState, loadErrorKind, decks.length, computedSetupStatus, setupStatus, startLabel, canStart, quotaPreview.status]);
   // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный лимит — обычная настройка с пилюлей и «Безлимит с Plus», а не тупик
   const limitReached = quotaPreview.status === 'exhausted';
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;

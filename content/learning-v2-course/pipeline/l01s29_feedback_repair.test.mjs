@@ -1,0 +1,11 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import test from "node:test";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const session="en:lesson-01:session-29";
+const choices={i02:"heavy",i04:"light",i07:"clean",i09:"dirty",i11:"empty",i16:"small"};
+const tiles={i05:"light",i12:"are",i13:"clean",i15:"he"};
+const load=()=>JSON.parse(fs.readFileSync(path.join(root,"sessions/en/l01/s29/practice.atomic.json"),"utf8"));
+test("L01/S29 explains each checked answer and extra tile",()=>{for(const locale of ["ru","uk"]){const rows=new Map(load().interactionsByLocale[locale].map(x=>[x.interactionId.slice(`${session}:`.length),x]));for(const [id,answer] of Object.entries(choices)){const x=rows.get(id).modePayload.choiceFeedback.find(x=>x.responseId===`${session}:${id}:r1`);assert.equal(x?.correct,true,`${locale}:${id}: correct feedback`);assert.match(x?.feedbackByLocale?.[locale]??"",new RegExp(answer),`${locale}:${id}: answer named`)}for(const [id,tile] of Object.entries(tiles)){const x=rows.get(id);assert.deepEqual(x.responseOptions,[],`${locale}:${id}: no phantom choices`);const feedback=x.modePayload.slotFeedback.find(y=>y.responseId===`${session}:${id}:tile:d1`);assert.equal(feedback?.correct,false,`${locale}:${id}: tile feedback`);assert.match(feedback?.feedbackByLocale?.[locale]??"",new RegExp(tile),`${locale}:${id}: tile named`)}}});

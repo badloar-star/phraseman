@@ -2,7 +2,7 @@
 // dev_state — DEV-фикстуры состояний для робот-съёмки (Maestro).
 //
 // зачем (координатор 11.10, план выпуска 20.10): робот выставляет состояние одной ссылкой и снимает экран:
-//   phraseman://dev_state?energy=0&plus=off&mode=b&spire=open&onboarding=done&free=on&next=/(tabs)/home
+//   phraseman://dev_state?energy=0&plus=off&mode=b&spire=open&onboarding=done&free=on&cards=demo&next=/(tabs)/home
 // Экран показывает «DEV-STATE OK» (testID dev-state-done) — Maestro ждёт его, затем уходит на next.
 // Шрифты по шкале D145 (16/21 и 13/17) — сторож typography_two_sizes считает и dev-экраны вне своего списка исключений.
 // В релизе маршрута нет: router.ctx.js вырезает dev_state из стор-сборки, а здесь __DEV__ && !IS_STORE_RELEASE.

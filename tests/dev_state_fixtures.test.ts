@@ -31,6 +31,32 @@ describe('dev_state: разбор ссылки', () => {
   });
 });
 
+describe('dev_state: cards=demo — наполненный аккаунт Карточек', () => {
+  test('параметр разбирается', () => {
+    expect(parseDevStateParams({ cards: 'demo' }).request.cards).toBe('demo');
+    expect(parseDevStateParams({ cards: 'full' }).rejected).toHaveProperty('cards');
+  });
+  test('данные как на кадрах макета: 64 сохранённые, 4 своих набора, «Продолжить» на своём наборе', () => {
+    const demo = require('../app/dev_state_cards_demo') as typeof import('../app/dev_state_cards_demo');
+    const saved = demo.demoSavedFlashcards();
+    expect(saved).toHaveLength(64);
+    expect(saved[0].en).toBe('Layover');
+    expect(new Set(saved.map((c) => c.id)).size).toBe(64);
+    expect(demo.DEMO_OWN_PACKS).toHaveLength(4);
+    const travel = demo.DEMO_OWN_PACKS.find((p) => p.packId === demo.DEMO_TRAVEL_PACK_ID);
+    expect(travel).toMatchObject({ title: 'Путешествия', count: 40, level: 'A2', pending: true });
+    for (const pack of demo.DEMO_OWN_PACKS) {
+      const cards = demo.demoPackCards(pack);
+      expect(cards).toHaveLength(pack.count);
+      expect(cards.slice(0, 3).map((c) => c.en)).toEqual(pack.words);
+    }
+    const videos = demo.demoVideoPacks();
+    expect(videos.map((v) => v.videoDurationSec)).toEqual([252, 458, 305, 380, 227]);
+    expect(videos.every((v) => /^[A-Za-z0-9_-]{11}$/.test(String(v.videoId)))).toBe(true);
+    expect(demo.demoCommunityPacks().every((p) => p.isCommunityUgc && p.level)).toBe(true);
+  });
+});
+
 describe('dev_state: в стор-сборке маршрута нет', () => {
   test('router.ctx.js вырезает dev_state из стор-ветки', () => {
     const router = fs.readFileSync(path.join(__dirname, '..', 'router.ctx.js'), 'utf8');

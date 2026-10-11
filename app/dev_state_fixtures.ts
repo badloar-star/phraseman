@@ -25,6 +25,8 @@ export type DevStateRequest = Readonly<{
   spire?: 'open' | 'closed';
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
+  /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts). */
+  cards?: 'demo';
   next?: string;
 }>;
 
@@ -57,6 +59,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   request.free = pick('free', ['on', 'off'] as const);
+  request.cards = pick('cards', ['demo'] as const);
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -110,6 +113,14 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']);
         emitAppEvent('dev_onboarding_restart');
       }
+    });
+  }
+  if (request.cards === 'demo') {
+    await step('cards', 'demo', async () => {
+      const { applyCardsDemo } = await import('./dev_state_cards_demo');
+      const demo = await applyCardsDemo();
+      for (const [key, reason] of Object.entries(demo.skipped)) skipped[`cards.${key}`] = reason;
+      return Object.keys(demo.skipped).length === 0;
     });
   }
   const result = { applied, skipped, next: request.next ?? null };

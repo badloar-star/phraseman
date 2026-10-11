@@ -94,6 +94,22 @@ export function buildVideoPhraseSetPacks(
     });
 }
 
+/**
+ * DEV-фикстура (phraseman://dev_state?cards=demo): кладёт наборы роликов в память и на диск как свежий кэш —
+ * экран «Из видео» берёт их без сети. зачем: съёмка кадров макета на наполненном аккаунте (координатор 11.10).
+ * В стор-сборке ничего не делает.
+ */
+export async function seedVideoPhraseSetPacksForDev(packs: FlashcardMarketPack[]): Promise<boolean> {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) {
+    DebugLogger.warn(LOG, 'seed отклонён: не dev-сборка');
+    return false;
+  }
+  memory = { savedAtMs: Date.now(), packs };
+  await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(memory));
+  DebugLogger.info(LOG, `source=dev_seed наборов ${packs.length}`);
+  return true;
+}
+
 /** Синхронный первый кадр: память модуля (диск поднимается в loadVideoPhraseSetPacks). */
 export function peekVideoPhraseSetPacks(): FlashcardMarketPack[] | null {
   return memory ? memory.packs : null;

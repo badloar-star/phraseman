@@ -277,6 +277,22 @@ export function invalidateCommunityPackCatalog(): void {
     });
 }
 
+/**
+ * DEV-фикстура (phraseman://dev_state?cards=demo): каталог сообщества как свежий кэш (память + диск) — хаб и
+ * «Лучшее у сообщества» берут его без сети 6 ч. зачем: съёмка кадров макета (координатор 11.10). В сторе — отказ.
+ */
+export function seedCommunityCatalogForDev(studyTarget: RuntimeStudyTarget | undefined, packs: FlashcardMarketPack[]): boolean {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) {
+    console.warn('[PACKS-CATALOG] dev seed отклонён: не dev-сборка');
+    return false;
+  }
+  const entry = { key: String(studyTarget ?? 'default'), at: Date.now(), packs };
+  _communityCatalogCache = entry;
+  writeCatalogToDisk('community', entry);
+  console.log('[PACKS-CATALOG] dev seed', JSON.stringify({ key: entry.key, packs: packs.length }));
+  return true;
+}
+
 /** Синхронный снимок для первого кадра. null — снимка нет, нужен спиннер. */
 export function peekPublishedCommunityMarketPacks(
   studyTarget?: RuntimeStudyTarget,

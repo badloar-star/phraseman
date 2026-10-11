@@ -12,6 +12,7 @@ import AvatarView from '../AvatarView';
 import type { Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useSpirePalette } from './useSpirePalette';
+import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
@@ -74,6 +75,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
 
 function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false }: Props) {
   const p = useSpirePalette();
+  const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
   const scrollRef = useRef<ScrollView>(null);
   const [width, setWidth] = useState(0);
@@ -128,8 +130,10 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, [onSelect, selected]);
 
   return (
+    // зачем (владелец 12.10, стиль «Тень»): окно башни без кромки; тень — на внешней обёртке, обрезка содержимого — на внутреннем окне.
+    <View style={[s.shadowWrap, { boxShadow: plateBoxShadow(g) }]}>
     <View
-      style={[s.window, { backgroundColor: p.card, borderColor: p.hairline }]}
+      style={[s.window, { backgroundColor: g.plateFillFrom }]}
       onLayout={onLayout}
       accessible
       accessibilityRole="adjustable"
@@ -162,12 +166,14 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         ) : null}
       </ScrollView>
     </View>
+    </View>
   );
 }
 
 const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка окна, как .tview в макете; толстых рамок нет.
-  window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden', borderWidth: 1 },
+  shadowWrap: { borderRadius: 22 },
+  window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden' },
   rivals: { position: 'absolute', flexDirection: 'row', alignItems: 'center' },
   rivalExtra: { marginLeft: 5, fontSize: 13, fontWeight: '700' },
   marker: { position: 'absolute', left: 0, top: 0, width: MARKER_SIZE, height: MARKER_SIZE, alignItems: 'center', justifyContent: 'center' },

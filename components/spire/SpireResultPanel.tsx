@@ -17,6 +17,7 @@ import type { SpireStepOutcome } from '../../app/spire/use_spire_game';
 import AvatarView from '../AvatarView';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { spireText } from './spire_strings';
 import { spireClock, spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from './spire_tower_model';
@@ -88,9 +89,11 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
 
 function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onHigher, onLater }: Props) {
   const p = useSpirePalette();
+  const g = useShadowGlass();
   const v = describe(lang, outcome, coins, myPlace);
   return (
-    <View style={[s.panel, { backgroundColor: p.card, borderColor: p.hairline }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>{/* guard-ok: hairline 1px 2.0 */}
+    <View style={[s.panel, { boxShadow: plateBoxShadow(g) }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>
+      <PlateFill g={g} radius={24} />
       <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{v.title}</Text>
       <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text>
@@ -121,8 +124,8 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
 }
 
 const s = StyleSheet.create({
-  // Тонкая кромка панели, как .panel макета (hairline 2.0 разрешён).
-  panel: { borderRadius: 24, borderWidth: 1, // guard-ok: hairline 1px, исключение PhraseMan 2.0
+  // Плашка стиля «Тень» (12.10): без кромки, градиент и тень.
+  panel: { borderRadius: 24,
  paddingHorizontal: 20, paddingTop: 18, paddingBottom: 16 },
   over: { fontSize: 13, fontWeight: '700', letterSpacing: 2, textAlign: 'center' },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center', marginTop: 8 },

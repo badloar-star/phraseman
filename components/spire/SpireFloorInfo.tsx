@@ -12,6 +12,7 @@ import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
 import { useSpirePalette } from './useSpirePalette';
+import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn, type SpireRival } from './spire_tower_model';
@@ -53,14 +54,17 @@ export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | 
 
 function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [] }: Props) {
   const p = useSpirePalette();
+  const g = useShadowGlass();
   return (
     <View
-      style={[s.card, { backgroundColor: p.cardRaised, borderColor: p.hairline }]}
+      // зачем (владелец 12.10, стиль «Тень»): карточка этажа — плашка с тенью, без кромки.
+      style={[s.card, { boxShadow: plateBoxShadow(g) }]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={`${spireFloorTitle(lang, floor)}. ${spireFloorSubtitle(lang, floor, myFloor, stepInFloor, coins)}${others.length > 0 ? `. ${others.map((m) => m.name).join(', ')}` : ''}`}
       testID="spire-floor-info"
     >
+      <PlateFill g={g} radius={16} />
       <View style={s.text}>
         <Text style={[s.title, { color: p.text }]}>{spireFloorTitle(lang, floor)}</Text>
         <Text style={[s.sub, { color: p.textSecondary }]}>{spireFloorSubtitle(lang, floor, myFloor, stepInFloor, coins)}</Text>
@@ -78,7 +82,7 @@ function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [] 
 
 const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка карточки, как .finfo макета.
-  card: { marginTop: 12, minHeight: 72, paddingHorizontal: 16, paddingVertical: 14, borderRadius: 16, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  card: { marginTop: 12, minHeight: 72, paddingHorizontal: 16, paddingVertical: 14, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
   text: { flex: 1, minWidth: 0 },
   who: { flexDirection: 'row' },
   whoOverlap: { marginLeft: -8 },

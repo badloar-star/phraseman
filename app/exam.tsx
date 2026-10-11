@@ -1078,12 +1078,12 @@ export default function ExamScreen() {
               {t3('Что будет на экзамене', 'Що буде на іспиті', 'What\'s on the exam', 'Qué incluye el examen', 'O que cai no exame', 'Bài kiểm tra gồm những gì', 'Isi ujian', 'Sınavda neler var', 'Co obejmuje egzamin')}
             </Text>
             {[
-              { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque', 'pt-BR': '60 minutos para todo o bloco', ptBr: '60 minutos para todo o bloco', vi: '60 phút cho toàn bộ phần', id: '60 menit untuk seluruh blok', tr: 'Tüm blok için 60 dakika', pl: '60 minut na cały blok' },
+              { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque', en: '60 minutes for the whole block', 'pt-BR': '60 minutos para todo o bloco', ptBr: '60 minutos para todo o bloco', vi: '60 phút cho toàn bộ phần', id: '60 menit untuk seluruh blok', tr: 'Tüm blok için 60 dakika', pl: '60 minut na cały blok' },
               {
                 icon: 'bookmark-outline',
                 ru: 'Можно помечать и пропускать вопросы, затем вернуться, если есть время',
                 uk: 'Можна позначати й пропускати питання, потім повернутися, якщо є час',
-                es: 'Puedes marcar y saltar preguntas y volver si te da tiempo',
+                es: 'Puedes marcar y saltar preguntas y volver si te da tiempo', en: 'You can flag and skip questions, then come back if there is time',
                 'pt-BR': 'Você pode marcar e pular perguntas e voltar se der tempo',
                 ptBr: 'Você pode marcar e pular perguntas e voltar se der tempo',
                 vi: 'Bạn có thể đánh dấu, bỏ qua câu hỏi rồi quay lại nếu còn thời gian',
@@ -1095,7 +1095,7 @@ export default function ExamScreen() {
                 icon: 'ribbon-outline',
                 ru: 'Награда уровня B2 в приложении при успешной сдаче',
                 uk: 'Нагорода рівня B2 у застосунку при успішній здачі',
-                es: 'Insignia nivel B2 en la app al completar con éxito',
+                es: 'Insignia nivel B2 en la app al completar con éxito', en: 'B2 level award in the app for passing',
                 'pt-BR': 'Insígnia nível B2 no app ao concluir com sucesso',
                 ptBr: 'Insígnia nível B2 no app ao concluir com sucesso',
                 vi: 'Huy hiệu cấp B2 trong ứng dụng khi hoàn thành thành công',

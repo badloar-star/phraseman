@@ -19,7 +19,7 @@ import { useLang } from './LangContext';
 const SHARDS_WORD: Record<string, (n: number) => string> = {
   ru: (n) => `+${n} ${ruKnowledgeShardsAfterNumber(n)}`,
   uk: (n) => `+${n} ${ukKnowledgeShardsAfterNumber(n)}`,
-  es: (n) => `+${n} perlas`,
+  es: (n) => `+${n} perlas`, en: (n) => `+${n} shards`,
   'pt-BR': (n) => `+${n} perlas`,
   vi: (n) => `+${n} xu`,
   id: (n) => `+${n} shard`,
@@ -31,7 +31,7 @@ const SHARDS_WORD: Record<string, (n: number) => string> = {
 const CARD_BONUS_WORD: Record<string, (n: number) => string> = {
   ru: (n) => `карточка +${n}`,
   uk: (n) => `картка +${n}`,
-  es: (n) => `tarjeta +${n}`,
+  es: (n) => `tarjeta +${n}`, en: (n) => `card +${n}`,
   'pt-BR': (n) => `cartão +${n}`,
   vi: (n) => `thẻ +${n}`,
   id: (n) => `kartu +${n}`,

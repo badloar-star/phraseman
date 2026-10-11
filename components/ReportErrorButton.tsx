@@ -60,13 +60,13 @@ type ReportErrorCategory = {
   label: string;
 };
 
-type ReportErrorCategoryLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+type ReportErrorCategoryLang = 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
 const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLang, string>> = {
   typo_translation: {
     ru: 'Ошибка в тексте или переводе',
     uk: 'Помилка в тексті або перекладі',
-    es: 'Error en el texto o la traducción',
+    es: 'Error en el texto o la traducción', en: 'Error in text or translation',
     'pt-BR': 'Erro no texto ou na tradução',
     vi: 'Lỗi trong văn bản hoặc bản dịch',
     id: 'Kesalahan teks atau terjemahan',
@@ -76,7 +76,7 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
   audio_pronunciation: {
     ru: 'Проблема со звуком или произношением',
     uk: 'Проблема зі звуком або вимовою',
-    es: 'Problema de audio o pronunciación',
+    es: 'Problema de audio o pronunciación', en: 'Audio or pronunciation problem',
     'pt-BR': 'Problema de áudio ou pronúncia',
     vi: 'Sự cố âm thanh hoặc phát âm',
     id: 'Masalah audio atau pelafalan',
@@ -86,7 +86,7 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
   exercise_logic: {
     ru: 'Неверный ответ или логика задания',
     uk: 'Неправильна відповідь або логіка завдання',
-    es: 'Respuesta o lógica del ejercicio incorrecta',
+    es: 'Respuesta o lógica del ejercicio incorrecta', en: 'Wrong answer or exercise logic',
     'pt-BR': 'Resposta ou lógica do exercício incorreta',
     vi: 'Đáp án hoặc logic bài tập sai',
     id: 'Jawaban atau logika latihan keliru',
@@ -97,7 +97,7 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
   payment_premium: {
     ru: 'Подписка или покупка',
     uk: 'Підписка або покупка',
-    es: 'Suscripción o compra',
+    es: 'Suscripción o compra', en: 'Subscription or purchase',
     'pt-BR': 'Assinatura ou compra',
     vi: 'Gói đăng ký hoặc giao dịch mua',
     id: 'Langganan atau pembelian',
@@ -107,7 +107,7 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
   other: {
     ru: 'Другая проблема',
     uk: 'Інша проблема',
-    es: 'Otro problema',
+    es: 'Otro problema', en: 'Another problem',
     'pt-BR': 'Outro problema',
     vi: 'Sự cố khác',
     id: 'Masalah lainnya',
@@ -120,7 +120,7 @@ const REPORT_ERROR_GENERAL_KEYS = ['typo_translation', 'audio_pronunciation', 'e
 const REPORT_ERROR_HOME_KEYS = ['payment_premium', 'typo_translation', 'other'] as const;
 
 function normalizeReportErrorCategoryLang(lang: string): ReportErrorCategoryLang {
-  return lang === 'uk' || lang === 'es' || lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl'
+  return lang === 'uk' || lang === 'en' || lang === 'es' || lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl'
     ? lang
     : 'ru';
 }

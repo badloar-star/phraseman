@@ -887,14 +887,14 @@ export default function FriendsTabScreen() {
     setDevBotsState(s);
   }, []);
 
-  const NUDGE_ERROR_TEXT: Record<NudgeErrorReason, { ru: string; uk: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> = {
-    disabled: { ru: 'Друг отключил зовы', uk: 'Друг вимкнув кличі', es: 'Tu amigo desactivó las llamadas', ptBr: 'Seu amigo desativou os chamados', vi: 'Bạn đã tắt lời gọi', id: 'Teman menonaktifkan panggilan', tr: 'Arkadaşın çağrıları kapattı', pl: 'Znajomy wyłączył wołania' },
-    quiet_hours: { ru: 'У друга тихие часы', uk: 'У друга тихі години', es: 'Tu amigo está en horas de silencio', ptBr: 'Seu amigo está no horário silencioso', vi: 'Bạn đang trong giờ yên tĩnh', id: 'Teman sedang jam tenang', tr: 'Arkadaşının sessiz saatleri', pl: 'Znajomy ma ciche godziny' },
-    daily_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
-    sender_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
-    receiver_limit: { ru: 'Друг уже получил максимум зовов на сегодня. Попробуй завтра.', uk: 'Друг уже отримав максимум закликів на сьогодні. Спробуй завтра.', es: 'Tu amigo alcanzó el límite de llamadas de hoy. Prueba mañana.', ptBr: 'Seu amigo atingiu o limite de chamados de hoje. Tente amanhã.', vi: 'Bạn của bạn đã nhận đủ lời gọi hôm nay. Thử lại ngày mai nhé.', id: 'Temanmu sudah mencapai batas panggilan hari ini. Coba besok.', tr: 'Arkadaşın bugünkü çağrı sınırına ulaştı. Yarın tekrar dene.', pl: 'Znajomy osiągnął dzisiejszy limit wołań. Spróbuj jutro.' },
-    not_friends: { ru: 'Зов доступен только друзьям. Проверь список друзей.', uk: 'Заклик доступний лише друзям. Перевір список друзів.', es: 'Solo puedes llamar a amigos. Revisa tu lista de amigos.', ptBr: 'Você só pode chamar amigos. Confira sua lista de amigos.', vi: 'Chỉ có thể gọi bạn bè. Hãy kiểm tra danh sách bạn bè.', id: 'Panggilan hanya tersedia untuk teman. Periksa daftar temanmu.', tr: 'Yalnızca arkadaşlarını çağırabilirsin. Arkadaş listeni kontrol et.', pl: 'Możesz wołać tylko znajomych. Sprawdź listę znajomych.' },
-    network: { ru: 'Нет сети — попробуй ещё раз', uk: 'Немає мережі — спробуй ще раз', es: 'Sin conexión — inténtalo de nuevo', ptBr: 'Sem conexão — tente novamente', vi: 'Không có mạng — thử lại nhé', id: 'Tidak ada jaringan — coba lagi', tr: 'Bağlantı yok — tekrar dene', pl: 'Brak sieci — spróbuj ponownie' },
+  const NUDGE_ERROR_TEXT: Record<NudgeErrorReason, { ru: string; uk: string; en?: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> = {
+    disabled: { ru: 'Друг отключил зовы', uk: 'Друг вимкнув кличі', es: 'Tu amigo desactivó las llamadas', en: 'Your friend turned off calls', ptBr: 'Seu amigo desativou os chamados', vi: 'Bạn đã tắt lời gọi', id: 'Teman menonaktifkan panggilan', tr: 'Arkadaşın çağrıları kapattı', pl: 'Znajomy wyłączył wołania' },
+    quiet_hours: { ru: 'У друга тихие часы', uk: 'У друга тихі години', es: 'Tu amigo está en horas de silencio', en: 'Your friend is in quiet hours', ptBr: 'Seu amigo está no horário silencioso', vi: 'Bạn đang trong giờ yên tĩnh', id: 'Teman sedang jam tenang', tr: 'Arkadaşının sessiz saatleri', pl: 'Znajomy ma ciche godziny' },
+    daily_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', en: 'You already called today', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
+    sender_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', en: 'You already called today', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
+    receiver_limit: { ru: 'Друг уже получил максимум зовов на сегодня. Попробуй завтра.', uk: 'Друг уже отримав максимум закликів на сьогодні. Спробуй завтра.', es: 'Tu amigo alcanzó el límite de llamadas de hoy. Prueba mañana.', en: 'Your friend has reached today\'s call limit. Try tomorrow.', ptBr: 'Seu amigo atingiu o limite de chamados de hoje. Tente amanhã.', vi: 'Bạn của bạn đã nhận đủ lời gọi hôm nay. Thử lại ngày mai nhé.', id: 'Temanmu sudah mencapai batas panggilan hari ini. Coba besok.', tr: 'Arkadaşın bugünkü çağrı sınırına ulaştı. Yarın tekrar dene.', pl: 'Znajomy osiągnął dzisiejszy limit wołań. Spróbuj jutro.' },
+    not_friends: { ru: 'Зов доступен только друзьям. Проверь список друзей.', uk: 'Заклик доступний лише друзям. Перевір список друзів.', es: 'Solo puedes llamar a amigos. Revisa tu lista de amigos.', en: 'You can only call friends. Check your friends list.', ptBr: 'Você só pode chamar amigos. Confira sua lista de amigos.', vi: 'Chỉ có thể gọi bạn bè. Hãy kiểm tra danh sách bạn bè.', id: 'Panggilan hanya tersedia untuk teman. Periksa daftar temanmu.', tr: 'Yalnızca arkadaşlarını çağırabilirsin. Arkadaş listeni kontrol et.', pl: 'Możesz wołać tylko znajomych. Sprawdź listę znajomych.' },
+    network: { ru: 'Нет сети — попробуй ещё раз', uk: 'Немає мережі — спробуй ще раз', es: 'Sin conexión — inténtalo de nuevo', en: 'No connection — try again', ptBr: 'Sem conexão — tente novamente', vi: 'Không có mạng — thử lại nhé', id: 'Tidak ada jaringan — coba lagi', tr: 'Bağlantı yok — tekrar dene', pl: 'Brak sieci — spróbuj ponownie' },
   };
 
   const handleNudgeFriend = useCallback(async (friendUid: string, friendName: string) => {
@@ -912,7 +912,7 @@ export default function FriendsTabScreen() {
       const texts = NUDGE_ERROR_TEXT[result.reason];
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: texts.ru, messageUk: texts.uk, messageEs: texts.es, messagePtBr: texts.ptBr,
+        messageRu: texts.ru, messageUk: texts.uk, messageEn: texts.en, messageEs: texts.es, messagePtBr: texts.ptBr,
         messageVi: texts.vi, messageId: texts.id, messageTr: texts.tr, messagePl: texts.pl,
       });
       return;
@@ -921,6 +921,7 @@ export default function FriendsTabScreen() {
       type: 'success',
       messageRu: `Позвал ${friendName}`,
       messageUk: `Покликав ${friendName}`,
+      messageEn: `You called ${friendName}`,
       messageEs: `Llamaste a ${friendName}`,
       messagePtBr: `Você chamou ${friendName}`,
       messageVi: `Đã gọi ${friendName}`,

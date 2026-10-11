@@ -1144,7 +1144,7 @@ function MistakePracticeSessionScreen() {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось скрыть ошибку. Попробуй ещё раз.',
         uk: 'Не вдалося приховати помилку. Спробуй ще раз.',
-        es: 'No se pudo ocultar el error. Inténtalo de nuevo.',
+        es: 'No se pudo ocultar el error. Inténtalo de nuevo.', en: 'Couldn\'t hide the mistake. Try again.',
       }));
     } finally {
       submissionLatchRef.current = false;
@@ -1192,7 +1192,7 @@ function MistakePracticeSessionScreen() {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось вернуть ошибку. Попробуй ещё раз.',
         uk: 'Не вдалося повернути помилку. Спробуй ще раз.',
-        es: 'No se pudo restaurar el error. Inténtalo de nuevo.',
+        es: 'No se pudo restaurar el error. Inténtalo de nuevo.', en: 'Couldn\'t restore the mistake. Try again.',
       }));
     } finally {
       submissionLatchRef.current = false;

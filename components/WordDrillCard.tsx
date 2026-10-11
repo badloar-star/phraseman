@@ -59,7 +59,7 @@ export function WordDrillCard({
         return L(lang, {
           ru: 'Готовлю микрофон…',
           uk: 'Готую мікрофон…',
-          es: 'Preparando el micrófono…',
+          es: 'Preparando el micrófono…', en: 'Getting the microphone ready…',
           'pt-BR': 'Preparando o microfone…',
           vi: 'Đang chuẩn bị micrô…',
           id: 'Menyiapkan mikrofon…',
@@ -70,7 +70,7 @@ export function WordDrillCard({
         return L(lang, {
               ru: 'Говори… отпусти, когда скажешь',
               uk: 'Говори… відпусти, коли скажеш',
-              es: 'Habla… suelta al terminar',
+              es: 'Habla… suelta al terminar', en: 'Speak… release when you\'re done',
               'pt-BR': 'Fale… solte ao terminar',
               vi: 'Nói… thả ra khi xong',
               id: 'Bicara… lepas saat selesai',
@@ -81,7 +81,7 @@ export function WordDrillCard({
         return L(lang, {
           ru: 'Проверяю…',
           uk: 'Перевіряю…',
-          es: 'Comprobando…',
+          es: 'Comprobando…', en: 'Checking…',
           'pt-BR': 'Verificando…',
           vi: 'Đang kiểm tra…',
           id: 'Memeriksa…',
@@ -92,7 +92,7 @@ export function WordDrillCard({
         return L(lang, {
           ru: 'Чисто! Слово готово',
           uk: 'Чисто! Слово готове',
-          es: '¡Limpio! Palabra lista',
+          es: '¡Limpio! Palabra lista', en: 'Clean! Word done',
           'pt-BR': 'Limpo! Palavra pronta',
           vi: 'Rõ ràng! Từ đã ổn',
           id: 'Jelas! Kata siap',
@@ -103,7 +103,7 @@ export function WordDrillCard({
         return L(lang, {
           ru: 'Ещё нечётко — послушай и повтори',
           uk: 'Ще нечітко — послухай і повтори',
-          es: 'Aún poco claro: escucha y repite',
+          es: 'Aún poco claro: escucha y repite', en: 'Still unclear — listen and repeat',
           'pt-BR': 'Ainda impreciso — ouça e repita',
           vi: 'Vẫn chưa rõ — nghe và lặp lại',
           id: 'Masih kurang jelas — dengar dan ulangi',
@@ -114,7 +114,7 @@ export function WordDrillCard({
         return L(lang, {
           ru: 'Не расслышал. Скажи чуть громче',
           uk: 'Не розчув. Скажи трохи гучніше',
-          es: 'No te oí. Habla un poco más alto',
+          es: 'No te oí. Habla un poco más alto', en: 'Didn\'t catch that. Speak a little louder',
           'pt-BR': 'Não ouvi. Fale um pouco mais alto',
           vi: 'Không nghe rõ. Nói to hơn chút',
           id: 'Tidak terdengar. Bicara lebih keras',
@@ -125,7 +125,7 @@ export function WordDrillCard({
         return L(lang, {
               ru: 'Зажми «Повторить» и скажи слово',
               uk: 'Затисни «Повторити» і скажи слово',
-              es: 'Mantén «Repetir» y di la palabra',
+              es: 'Mantén «Repetir» y di la palabra', en: 'Hold “Repeat” and say the word',
               'pt-BR': 'Segure «Repetir» e diga a palavra',
               vi: 'Giữ «Lặp lại» và nói từ',
               id: 'Tahan «Ulangi» dan ucapkan kata',
@@ -142,7 +142,7 @@ export function WordDrillCard({
   const repeatLabel = L(lang, {
     ru: 'Повторить',
     uk: 'Повторити',
-    es: 'Repetir',
+    es: 'Repetir', en: 'Repeat',
     'pt-BR': 'Repetir',
     vi: 'Lặp lại',
     id: 'Ulangi',
@@ -166,7 +166,7 @@ export function WordDrillCard({
           accessibilityLabel={L(lang, {
             ru: 'Свернуть',
             uk: 'Згорнути',
-            es: 'Cerrar',
+            es: 'Cerrar', en: 'Collapse',
             'pt-BR': 'Fechar',
             vi: 'Đóng',
             id: 'Tutup',
@@ -188,7 +188,7 @@ export function WordDrillCard({
             ? L(lang, {
                 ru: `услышал «${heard}»`,
                 uk: `почув «${heard}»`,
-                es: `escuché «${heard}»`,
+                es: `escuché «${heard}»`, en: `heard “${heard}”`,
                 'pt-BR': `ouvi «${heard}»`,
                 vi: `nghe thành «${heard}»`,
                 id: `terdengar «${heard}»`,
@@ -236,7 +236,7 @@ export function WordDrillCard({
             {L(lang, {
               ru: 'Послушать свою запись',
               uk: 'Послухати свій запис',
-              es: 'Escuchar mi grabación',
+              es: 'Escuchar mi grabación', en: 'Listen to my recording',
               'pt-BR': 'Ouvir minha gravação',
               vi: 'Nghe bản ghi của tôi',
               id: 'Dengar rekamanku',

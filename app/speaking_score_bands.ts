@@ -42,7 +42,7 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
   excellent: {
     ru: 'Отлично! Совпало с фразой',
     uk: 'Чудово! Збіглося з фразою',
-    es: '¡Excelente! Coincide con la frase',
+    es: '¡Excelente! Coincide con la frase', en: 'Excellent! Matches the phrase',
     'pt-BR': 'Excelente! Bateu com a frase',
     vi: 'Xuất sắc! Khớp với câu',
     id: 'Luar biasa! Cocok dengan frasa',
@@ -52,7 +52,7 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
   good: {
     ru: 'Хорошо! Зачтено',
     uk: 'Добре! Зараховано',
-    es: '¡Bien! Aprobado',
+    es: '¡Bien! Aprobado', en: 'Good! Counted',
     'pt-BR': 'Bom! Aprovado',
     vi: 'Tốt! Đã đạt',
     id: 'Bagus! Lulus',
@@ -62,7 +62,7 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
   almost: {
     ru: 'Почти получилось',
     uk: 'Майже вийшло',
-    es: 'Casi lo logras',
+    es: 'Casi lo logras', en: 'Almost there',
     'pt-BR': 'Quase conseguiu',
     vi: 'Suýt nữa là được',
     id: 'Hampir berhasil',
@@ -72,7 +72,7 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
   rough: {
     ru: 'Пока не совпало — попробуй ещё',
     uk: 'Поки не збіглося — спробуй ще',
-    es: 'Aún no coincide — inténtalo otra vez',
+    es: 'Aún no coincide — inténtalo otra vez', en: 'Doesn\'t match yet — try again',
     'pt-BR': 'Ainda não bateu — tente de novo',
     vi: 'Chưa khớp — thử lại nhé',
     id: 'Belum cocok — coba lagi',
@@ -141,7 +141,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   say_clearer: {
     ru: 'Фраза распознаётся только с подсказкой — скажи чётче и чуть медленнее',
     uk: 'Фраза розпізнається лише з підказкою — скажи чіткіше й трохи повільніше',
-    es: 'La frase solo se reconoce con ayuda — dilo más claro y un poco más despacio',
+    es: 'La frase solo se reconoce con ayuda — dilo más claro y un poco más despacio', en: 'The phrase is only recognized with a hint — say it clearer and a bit slower',
     'pt-BR': 'A frase só é reconhecida com ajuda — fale mais claro e um pouco mais devagar',
     vi: 'Câu chỉ được nhận ra khi có gợi ý — hãy nói rõ và chậm hơn một chút',
     id: 'Frasa hanya dikenali dengan bantuan — ucapkan lebih jelas dan sedikit lebih pelan',
@@ -151,7 +151,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   missed_words: {
     ru: 'Не прозвучало: {words}',
     uk: 'Не пролунало: {words}',
-    es: 'No se oyó: {words}',
+    es: 'No se oyó: {words}', en: 'Not heard: {words}',
     'pt-BR': 'Não deu para ouvir: {words}',
     vi: 'Chưa nghe thấy: {words}',
     id: 'Tidak terdengar: {words}',
@@ -161,7 +161,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   fuzzy_words: {
     ru: 'Нечётко прозвучало: {words}',
     uk: 'Нечітко пролунало: {words}',
-    es: 'Sonó poco claro: {words}',
+    es: 'Sonó poco claro: {words}', en: 'Unclear: {words}',
     'pt-BR': 'Soou pouco claro: {words}',
     vi: 'Nghe chưa rõ: {words}',
     id: 'Terdengar kurang jelas: {words}',
@@ -171,7 +171,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   incomplete: {
     ru: 'Скажи фразу целиком, не обрывая конец',
     uk: 'Скажи фразу повністю, не обриваючи кінець',
-    es: 'Di la frase completa, sin cortar el final',
+    es: 'Di la frase completa, sin cortar el final', en: 'Say the whole phrase, don\'t cut off the ending',
     'pt-BR': 'Diga a frase inteira, sem cortar o final',
     vi: 'Hãy nói trọn câu, đừng bỏ dở phần cuối',
     id: 'Ucapkan frasa sampai selesai, jangan putus di akhir',
@@ -181,7 +181,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   monotone: {
     ru: 'Звучит ровно — добавь выражения и ударения',
     uk: 'Звучить рівно — додай виразності та наголосу',
-    es: 'Suena plano — añade más énfasis',
+    es: 'Suena plano — añade más énfasis', en: 'Sounds flat — add expression and stress',
     'pt-BR': 'Soa monótono — dê mais ênfase',
     vi: 'Nghe đều đều — hãy nhấn nhá hơn',
     id: 'Terdengar datar — beri lebih banyak penekanan',
@@ -191,7 +191,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   stress: {
     ru: 'Обрати внимание на ударение во фразе',
     uk: 'Зверни увагу на наголос у фразі',
-    es: 'Cuida el acento de la frase',
+    es: 'Cuida el acento de la frase', en: 'Mind the stress in the phrase',
     'pt-BR': 'Atenção à ênfase da frase',
     vi: 'Chú ý trọng âm của câu',
     id: 'Perhatikan penekanan kalimat',

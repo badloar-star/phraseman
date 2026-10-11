@@ -1322,6 +1322,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
 const PRIMARY_METRIC_COPY: Record<StatsPrimaryMetric, {
     ru: string;
     uk: string;
+    en: string;
     es: string;
     'pt-BR': string;
     vi: string;
@@ -1329,8 +1330,8 @@ const PRIMARY_METRIC_COPY: Record<StatsPrimaryMetric, {
     tr: string;
     pl: string;
 }> = {
-    time: { ru: 'Время', uk: 'Час', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas' },
-    year: { ru: 'Год', uk: 'Рік', es: 'Año', 'pt-BR': 'Ano', vi: 'Năm', id: 'Tahun', tr: 'Yıl', pl: 'Rok' },
+    time: { ru: 'Время', uk: 'Час', es: 'Tiempo', en: 'Time', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas' },
+    year: { ru: 'Год', uk: 'Рік', es: 'Año', en: 'Year', 'pt-BR': 'Ano', vi: 'Năm', id: 'Tahun', tr: 'Yıl', pl: 'Rok' },
 };
 
 /** Порядок опций сегмент-переключателя недели (как в утверждённом макете). */
@@ -2200,7 +2201,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             emitAppEvent('action_toast', actionToastTri('error', {
                 ru: 'Не удалось включить заморозку. Попробуй ещё раз.',
                 uk: 'Не вдалося увімкнути заморозку. Спробуй ще раз.',
-                es: 'No se pudo activar la congelación. Inténtalo de nuevo.',
+                es: 'No se pudo activar la congelación. Inténtalo de nuevo.', en: 'Couldn\'t turn on the freeze. Try again.',
             }));
         } finally {
             freezeInFlightRef.current = false;

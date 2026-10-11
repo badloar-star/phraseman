@@ -45,3 +45,5 @@ Governance-ID: TG-EEBDBDBA8A60
 
 ## Rollback
 Откат коммита.
+
+Governance-ID: TG-960DC469AE78 (11.10 ~17:50: отчёт координатору о d90f7bcb2 и запрос окна эмулятора записан в INBOX_COORDINATOR_FROM_AUTH.md — сообщение сессии задержано)

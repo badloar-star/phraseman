@@ -107,7 +107,7 @@ const sheet = (o) => `<div class="wsh">${head(o)}<div class="wbody">${o.body}</d
 const und = '<div class="wund"><div class="t1">Урок</div><div class="r"></div><div class="r"></div><div class="r"></div></div>';
 const alert = (title, body, btns) => `<div class="wdim"></div><div class="wal"><div class="tt">${title}</div><div class="bd">${body}</div><div class="ac">${btns}</div></div>`;
 const toast = (txt, mark) => `<div class="wtoast"><span class="ti">${mark}</span><span class="tx">${txt}</span></div>`;
-const FINE_YEAR = 'Потом 3 990 ₽ в год. Отмена в любой момент.';
+const FINE_YEAR = 'Затем 3 990 ₽ в год · Отмена в любой момент';
 const CTA_TRIAL = 'Начать 7 дней бесплатно';
 const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
 
@@ -129,11 +129,11 @@ const S = [
   ['016 · Статус неизвестен (после проверки)', 'Проверка не нашла покупку: тост ведёт к «Восстановить». Другие исходы: «Не удалось проверить статус. Попробуй позже.», «Активных подписок не обнаружено.».',
     () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + toast('Покупка пока не найдена. Нажми «Восстановить покупки».', '!')],
   ['018 · Промо от магазина', 'Если магазин даёт скидку на первый период: плашка над тарифами («Скидка действует сейчас», процент, цена со скидкой, зачёркнутая обычная, «далее»), в карточках — зачёркнутая и новая цена. Нет скидки — нет плашки.',
-    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'далее 3 990 ₽ · Отмена в любой момент' }) })],,
+    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'Затем 3 990 ₽ в год · Отмена в любой момент' }) })],,
   ['012 · Магазин недоступен на этом устройстве', 'Причина — billing_unavailable: на месте плиток тихая строка «Магазин недоступен на этом устройстве» (та же высота), «Ещё раз» нет (повтор бессмыслен). «Получить Plus» остаётся, но тап не открывает оплату: без тоста под кнопкой тихо появляется «Попробуй через минуту».',
     () => und + sheet({ body: lead + unavBilling, dock: dock({ label: 'Получить Plus', fine: 'Магазин недоступен на этом устройстве', restoreOff: true }) })],
   ['012 · Справочная цена с «≈»', 'Магазин не отдал цену, но есть справочная (последняя настоящая из кэша, иначе из рубильника): перед суммой «≈», под плитками тихая строка «Цена уточнится в магазине». Платёж идёт только по живой цене магазина. Суммы в евро — как справочные в приложении.',
-    () => und + sheet({ body: lead + plansRef + '<div class="wqn" style="min-height:0;margin-top:10px">Цена уточнится в магазине</div>', dock: dock({ label: CTA_TRIAL, fine: 'Потом ≈ €39,99 в год. Отмена в любой момент.' }) })],
+    () => und + sheet({ body: lead + plansRef + '<div class="wqn" style="min-height:0;margin-top:10px">Цена уточнится в магазине</div>', dock: dock({ label: CTA_TRIAL, fine: 'Затем ≈ €39,99 в год · Отмена в любой момент' }) })],
 ];
 const grid = (lite) => S.map(([t, n, f]) => `<div class="col"><div class="lbl">${t}</div>${ph(f(), lite)}<div class="wnote">${n}</div></div>`);
 document.getElementById('root').innerHTML =

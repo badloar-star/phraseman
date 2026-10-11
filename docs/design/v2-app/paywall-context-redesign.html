@@ -87,7 +87,7 @@ const links = '<div class="links"><span class="t">Восстановить</span
 const errBox = `<div class="err" style="min-height:140px;display:flex;align-items:center;justify-content:center;background:none;box-shadow:none"><div class="b" style="margin:0;font-size:13px;line-height:18px">Цена уточнится в магазине</div></div>`;
 const loadBox = '<div style="display:flex;flex-direction:column;gap:10px"><div class="sk"></div><div class="sk" style="height:60px"></div></div>';
 const ctaTxt = (st) => (st === 'ok' ? 'Начать 7 дней бесплатно' : 'Оформить Plus');
-const fine = (st) => (st === 'ok' ? '<div class="fine">Потом 3 990 ₽ в год. Отмена в любой момент.</div>' : '<div class="fine">Кнопка работает и без цен — цена покажется в магазине.</div>');
+const fine = (st) => (st === 'ok' ? '<div class="fine">Затем 3 990 ₽ в год · Отмена в любой момент</div>' : '<div class="fine">Кнопка работает и без цен — цена покажется в магазине.</div>');
 
 // ================= 1 · ШТОРКА =================
 const v1 = (k, st) => { const c = C[k]; const plans = st === 'ok' ? `<div class="pl2"><div class="plan on t"><div class="n">Год <span class="tag" style="margin-left:6px">Выгоднее</span></div><div class="p">3 990 ₽ в год<br>332 ₽ в месяц</div></div><div class="plan t"><div class="n">Месяц</div><div class="p">490 ₽ в месяц</div></div></div>` : st === 'err' ? `<div style="margin-top:14px">${errBox}</div>` : `<div style="margin-top:14px">${loadBox}</div>`;

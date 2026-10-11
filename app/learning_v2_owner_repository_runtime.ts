@@ -30,20 +30,33 @@ import {
   parseMistakeCorrectionWalletComposite,
   type MistakeCorrectionWalletCompositeV1,
 } from '../modules/learning-v2/progress/mistake_correction_wallet_composite';
-import {
-  createLearningV2SessionRuneRewardPreparedIntentV1,
-  createLearningV2SessionRuneRewardProtectedIntentReceiptV1,
-  createLearningV2SessionRuneRewardCompositeAuthorityV1,
-  deriveLearningV2SessionRuneRewardOperationIdV1,
-  parseLearningV2SessionRuneRewardPreparedIntentV1,
-  parseLearningV2SessionRuneRewardProtectedIntentReceiptV1,
-  parseLearningV2SessionRuneRewardCompositeV1,
-  restoreLearningV2SessionRuneRewardPublicationTokenV1,
-  type LearningV2SessionRuneRewardPreparedIntentV1,
-  type LearningV2SessionRuneRewardProtectedIntentReceiptV1,
-  type LearningV2SessionRuneRewardCompositeV1,
-  type LearningV2SessionRuneRewardPublicationTokenV1,
+import type {
+  LearningV2SessionRuneRewardPreparedIntentV1,
+  LearningV2SessionRuneRewardProtectedIntentReceiptV1,
+  LearningV2SessionRuneRewardCompositeV1,
+  LearningV2SessionRuneRewardPublicationTokenV1,
 } from '../modules/learning-v2/progress/learning_session_rune_reward_composite_v1';
+// зачем (координатор 11.10, замер после 8a4d86225: манифест factory_native 425 мс всё ещё на первом кадре Главной):
+// этот модуль V2 тянет factory_native_course_v1 → манифест. Нужен только при наградах за сессию — вычисляем лениво.
+type RuneRewardCompositeV1Module = typeof import('../modules/learning-v2/progress/learning_session_rune_reward_composite_v1');
+const runeRewardCompositeV1 = (): RuneRewardCompositeV1Module =>
+  require('../modules/learning-v2/progress/learning_session_rune_reward_composite_v1') as RuneRewardCompositeV1Module;
+const createLearningV2SessionRuneRewardPreparedIntentV1 = ((...args) =>
+  runeRewardCompositeV1().createLearningV2SessionRuneRewardPreparedIntentV1(...args)) as RuneRewardCompositeV1Module['createLearningV2SessionRuneRewardPreparedIntentV1'];
+const createLearningV2SessionRuneRewardProtectedIntentReceiptV1 = ((...args) =>
+  runeRewardCompositeV1().createLearningV2SessionRuneRewardProtectedIntentReceiptV1(...args)) as RuneRewardCompositeV1Module['createLearningV2SessionRuneRewardProtectedIntentReceiptV1'];
+const createLearningV2SessionRuneRewardCompositeAuthorityV1 = ((...args) =>
+  runeRewardCompositeV1().createLearningV2SessionRuneRewardCompositeAuthorityV1(...args)) as RuneRewardCompositeV1Module['createLearningV2SessionRuneRewardCompositeAuthorityV1'];
+const deriveLearningV2SessionRuneRewardOperationIdV1 = ((...args) =>
+  runeRewardCompositeV1().deriveLearningV2SessionRuneRewardOperationIdV1(...args)) as RuneRewardCompositeV1Module['deriveLearningV2SessionRuneRewardOperationIdV1'];
+const parseLearningV2SessionRuneRewardPreparedIntentV1 = ((...args) =>
+  runeRewardCompositeV1().parseLearningV2SessionRuneRewardPreparedIntentV1(...args)) as RuneRewardCompositeV1Module['parseLearningV2SessionRuneRewardPreparedIntentV1'];
+const parseLearningV2SessionRuneRewardProtectedIntentReceiptV1 = ((...args) =>
+  runeRewardCompositeV1().parseLearningV2SessionRuneRewardProtectedIntentReceiptV1(...args)) as RuneRewardCompositeV1Module['parseLearningV2SessionRuneRewardProtectedIntentReceiptV1'];
+const parseLearningV2SessionRuneRewardCompositeV1 = ((...args) =>
+  runeRewardCompositeV1().parseLearningV2SessionRuneRewardCompositeV1(...args)) as RuneRewardCompositeV1Module['parseLearningV2SessionRuneRewardCompositeV1'];
+const restoreLearningV2SessionRuneRewardPublicationTokenV1 = ((...args) =>
+  runeRewardCompositeV1().restoreLearningV2SessionRuneRewardPublicationTokenV1(...args)) as RuneRewardCompositeV1Module['restoreLearningV2SessionRuneRewardPublicationTokenV1'];
 import {
   canonicalJsonV1,
   hashCanonicalBody,

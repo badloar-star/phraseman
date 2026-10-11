@@ -84,10 +84,15 @@ import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-
 import { retryLearningV2LocalCompletionV1 } from "../modules/learning-v2/progress/local_completion_retry_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 import { deriveLearningV2EconomicAccountScopeHash } from "../modules/learning-v2/progress/economic_account_scope";
-import {
-  createLearningV2SessionRuneRewardCompositeV1,
-  resolveLearningV2SessionRuneRewardPublicationTokenV1,
-} from "../modules/learning-v2/progress/learning_session_rune_reward_composite_v1";
+// зачем (координатор 11.10, замер после 8a4d86225: манифест factory_native 425 мс всё ещё на первом кадре Главной):
+// этот модуль V2 тянет factory_native_course_v1 → манифест. Нужен только при наградах за сессию — вычисляем лениво.
+type RuneRewardCompositeV1Module = typeof import("../modules/learning-v2/progress/learning_session_rune_reward_composite_v1");
+const runeRewardCompositeV1 = (): RuneRewardCompositeV1Module =>
+  require("../modules/learning-v2/progress/learning_session_rune_reward_composite_v1") as RuneRewardCompositeV1Module;
+const createLearningV2SessionRuneRewardCompositeV1 = ((...args) =>
+  runeRewardCompositeV1().createLearningV2SessionRuneRewardCompositeV1(...args)) as RuneRewardCompositeV1Module["createLearningV2SessionRuneRewardCompositeV1"];
+const resolveLearningV2SessionRuneRewardPublicationTokenV1 = ((...args) =>
+  runeRewardCompositeV1().resolveLearningV2SessionRuneRewardPublicationTokenV1(...args)) as RuneRewardCompositeV1Module["resolveLearningV2SessionRuneRewardPublicationTokenV1"];
 import {
   createLearningV2CourseSessionDeviceRunV1,
   evaluateLearningV2CourseSessionDeviceInteractionV1,

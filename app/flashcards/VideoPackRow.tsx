@@ -177,10 +177,13 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
                 cachePolicy="memory-disk"
               />
             ) : null}
-            <View style={styles.playCircle} pointerEvents="none">
-              <Ionicons name="play" size={16} color={MEDIA_INK} />
-            </View>
-            {duration ? (
+            {/* зачем (Сверка 11.10, макет video-redesign #c1, экран 4): на обложке строки вкладки «Наборы» нет ни ▶, ни длительности. */}
+            {plain ? null : (
+              <View style={styles.playCircle} pointerEvents="none">
+                <Ionicons name="play" size={16} color={MEDIA_INK} />
+              </View>
+            )}
+            {duration && !plain ? (
               <View style={styles.duration} pointerEvents="none">
                 <Text style={styles.durationText}>{duration}</Text>
               </View>

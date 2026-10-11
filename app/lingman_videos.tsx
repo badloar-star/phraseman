@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Linking, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { AppState, InteractionManager, Linking, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
@@ -22,6 +22,7 @@ import YoutubeVideoGridCard from '../components/youtube/YoutubeVideoGridCard';
 import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import FlashcardsVideoPacksScreen from './flashcards_video_packs';
+import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -507,6 +508,19 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     setExpandedPhraseVideoId(null);
     setTab(nextTab);
   }, []);
+
+  // зачем (правило владельца «каждый раздел открывается мгновенно», Сверка 11.10: вкладка «Наборы» в первый раз показывала скелетон):
+  // после первого кадра тихо греем список «Наборы из видео»; загрузчик сам держит кэш по TTL, холодный вход во вкладку — уже из памяти.
+  useEffect(() => {
+    if (!inTab || !screenRuntimeActive) return undefined;
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (peekVideoPhraseSetPacks()) return;
+      loadVideoPhraseSetPacks().catch((error: unknown) => {
+        DebugLogger.error('[VIDEO-TAB]:warmPacks', error, 'warning');
+      });
+    });
+    return () => task.cancel();
+  }, [inTab, screenRuntimeActive]);
 
   const openPlaylist = (playlistId: string) => router.push({ pathname: '/lingman_playlist', params: { playlistId, channelId: catalog?.channel.id } } as any);
   const remind = async (video: YoutubeVideoSnapshot) => {

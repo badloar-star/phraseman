@@ -93,13 +93,13 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
     ru: 'Попробуй другое слово.', uk: 'Спробуй інше слово.', en: 'Try another word.', es: 'Prueba con otra palabra.',
     'pt-BR': 'Tente outra palavra.', vi: 'Thử từ khác.', id: 'Coba kata lain.', tr: 'Başka bir kelime dene.', pl: 'Spróbuj innego słowa.',
   }) : triLang(lang, {
-    ru: 'Сохраняй слова в уроках', uk: 'Зберігай слова в уроках', en: 'Save words in lessons', es: 'Guarda palabras en las lecciones',
-    'pt-BR': 'Salve palavras nas aulas', vi: 'Lưu từ trong bài học', id: 'Simpan kata di pelajaran',
-    tr: 'Derslerde kelime kaydet', pl: 'Zapisuj słowa w lekcjach',
+    ru: 'Сохраняй слова из уроков', uk: 'Зберігай слова з уроків', en: 'Save words from lessons', es: 'Guarda palabras de las lecciones',
+    'pt-BR': 'Salve palavras das aulas', vi: 'Lưu từ từ bài học', id: 'Simpan kata dari pelajaran',
+    tr: 'Derslerden kelime kaydet', pl: 'Zapisuj słowa z lekcji',
   });
   const action = triLang(lang, {
-    ru: 'Найти наборы', uk: 'Знайти набори', en: 'Find packs', es: 'Buscar packs',
-    'pt-BR': 'Encontrar pacotes', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket bul', pl: 'Znajdź zestawy',
+    ru: 'Открыть каталог', uk: 'Відкрити каталог', en: 'Open the catalog', es: 'Abrir el catálogo',
+    'pt-BR': 'Abrir o catálogo', vi: 'Mở danh mục', id: 'Buka katalog', tr: 'Kataloğu aç', pl: 'Otwórz katalog',
   });
   if (searchActive) {
     // зачем (шаблон .empty макета): поиск без результатов — плитка, 24/30 и 16/22 по центру экрана, как у «Пусто».

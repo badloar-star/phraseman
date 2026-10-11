@@ -23,10 +23,8 @@ import DuoPressable from '../../components/DuoPressable';
 import { FlowText } from '../../components/text-integrity';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens, type GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
+import { PlateFill, actionBoxShadow, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
 import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import PressableHybrid from '../../components/PressableHybrid';
 import { LUM } from '../../constants/motionHybrid';
@@ -922,9 +920,8 @@ export function UndoDeleteSnackbar({
 }) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Карточка удалена — «Вернуть»»): тост 58 высотой,
-  // r18, заливка 150° из цветов темы, тень вниз, кнопка «Вернуть» 42 высотой на тёмной плашке.
-  const [ta, tb] = themePair(g);
+  // зачем (Карточки 2.0, макет cards-v2 «Удалено — вернуть», .toast): пилюля 56 высотой r28 на всю ширину (поля 16, снизу 34),
+  // слева значок корзины и «Удалено», справа кнопка «Вернуть» (cta sm, 40). Стиль «Тень»: плашка и тень темы, без обводки.
   return (
     <Reanimated.View
       entering={FadeInDown.duration(220)}
@@ -932,34 +929,28 @@ export function UndoDeleteSnackbar({
         position: 'absolute',
         left: 16,
         right: 16,
-        bottom: bottomOffset,
+        bottom: Math.max(bottomOffset, 34),
         zIndex: 90,
       }}
     >
       <View
         style={{
-          height: 58,
+          height: 56,
           flexDirection: 'row',
           alignItems: 'center',
           gap: 12,
-          borderRadius: 18,
+          borderRadius: 28,
           paddingLeft: 18,
           paddingRight: 8,
-          boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -14, color: g.dropShadow }],
+          backgroundColor: g.opaqueControl,
+          boxShadow: plateBoxShadow(g),
         }}
       >
-        <LinearGradient
-          pointerEvents="none"
-          colors={[`${mixDark(ta, g.deepBase, 0.2)}E2`, `${g.deepBase}D9`]}
-          start={{ x: 0.25, y: 0.07 }}
-          end={{ x: 0.75, y: 0.93 }}
-          style={[StyleSheet.absoluteFill, { borderRadius: 18 }]}
-        />
         <Ionicons name="trash-outline" size={18} color={g.text} />
         <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: g.text, fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
           {triLang(lang, {
-              ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
-              'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
+              ru: 'Удалено', uk: 'Видалено', en: 'Deleted', es: 'Eliminado',
+              'pt-BR': 'Excluído', vi: 'Đã xóa', id: 'Dihapus', tr: 'Silindi', pl: 'Usunięto',
             })}
         </FlowText>
         <TouchableOpacity
@@ -969,15 +960,16 @@ export function UndoDeleteSnackbar({
           onPress={onUndo}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           style={{
-            height: 42,
-            borderRadius: 21,
-            backgroundColor: g.opaqueControl,
-            paddingHorizontal: 16,
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: g.accent,
+            boxShadow: actionBoxShadow(g),
+            paddingHorizontal: 18,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Text style={{ color: g.text, fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
+          <Text style={{ color: g.accentInk, fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
             {triLang(lang, {
               ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer',
               'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Batalkan', tr: 'Geri al', pl: 'Cofnij',

@@ -65,7 +65,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 
 const SIDE = 18;
 const UNFOLD_MS = 760;
-const FLIP_MS = 320;
+const FLIP_MS = 560;
 /** Высота карточки по макету (системный шрифт 100%); при крупном шрифте карточка растёт по тексту, а не режет его. */
 const CARD_MIN_H = 230;
 /** Вертикальный запас внутри грани: паддинги 20+20 и место под кнопку звука / точки силы. */
@@ -103,7 +103,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
   const toggleFlip = useCallback(() => {
     setFlipped((prev) => {
       const next = !prev;
-      flip.value = withTiming(next ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: Easing.out(Easing.cubic) });
+      flip.value = withTiming(next ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: Easing.bezier(0.2, 0.8, 0.2, 1) }); // зачем (Карточки 2.0 12.10, cards-v2 .flip): разворот 560 мс cubic-bezier(.2,.8,.2,1)
       return next;
     });
   }, [flip, reduceMotion]);

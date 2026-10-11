@@ -8,6 +8,7 @@ import {
 import {
   chargesEnergyOnMistake,
   energyActivityForAttemptsSessionId,
+  isFreeInMistakeMode,
   isMistakeChargeActivity,
   peekEnergyMode,
 } from '../app/energy_mode';
@@ -94,5 +95,9 @@ describe('режим и виды занятий', () => {
     expect(chargesEnergyOnMistake('classic_lesson', 'mistake_charge')).toBe(true);
     expect(chargesEnergyOnMistake('classic_lesson', 'start_charge')).toBe(false);
     expect(chargesEnergyOnMistake('ai_dialog', 'mistake_charge')).toBe(false);
+    // координатор 11.10: отработка ошибок в режиме Б бесплатна целиком, в А — как сейчас
+    expect(isFreeInMistakeMode('mistake_practice', 'mistake_charge')).toBe(true);
+    expect(isFreeInMistakeMode('mistake_practice', 'start_charge')).toBe(false);
+    expect(isFreeInMistakeMode('classic_lesson', 'mistake_charge')).toBe(false);
   });
 });

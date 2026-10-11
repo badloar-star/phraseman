@@ -35,6 +35,13 @@ const MISTAKE_CHARGE_ACTIVITIES: ReadonlySet<EnergyActivityKey> = new Set<Energy
   'learning_v2_session',
 ]);
 
+/**
+ * Режим Б: занятия, которые БЕСПЛАТНЫ целиком — ни за старт, ни за ошибку, и без требования энергии.
+ * зачем (координатор 11.10, решено по рекомендации): отработка ошибок в режиме Б бесплатная; в режиме А — как сейчас
+ * (1 ⚡ за старт, сердечки за ошибки).
+ */
+const FREE_IN_MISTAKE_MODE_ACTIVITIES: ReadonlySet<EnergyActivityKey> = new Set<EnergyActivityKey>(['mistake_practice']);
+
 let lastLoggedMode: EnergyMode | null = null;
 
 export function peekEnergyMode(): EnergyMode {
@@ -65,6 +72,11 @@ export function peekEnergyMode(): EnergyMode {
 /** Действует ли режим Б на это занятие. */
 export function isMistakeChargeActivity(activity: EnergyActivityKey): boolean {
   return MISTAKE_CHARGE_ACTIVITIES.has(activity);
+}
+
+/** Режим Б и занятие бесплатно целиком (отработка ошибок). */
+export function isFreeInMistakeMode(activity: EnergyActivityKey, mode: EnergyMode = peekEnergyMode()): boolean {
+  return mode === 'mistake_charge' && FREE_IN_MISTAKE_MODE_ACTIVITIES.has(activity);
 }
 
 /** Режим Б и занятие из его списка — старт бесплатный, энергия снимается за ошибку. */

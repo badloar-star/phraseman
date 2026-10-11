@@ -28,7 +28,7 @@ import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
-import { chargesEnergyOnMistake, peekEnergyMode } from '../app/energy_mode';
+import { chargesEnergyOnMistake, isFreeInMistakeMode, peekEnergyMode } from '../app/energy_mode';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
 import { markEnergySpendStage } from '../app/energy_spend_latency_trace';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -935,6 +935,11 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       }
       // зачем (владелец 11.10, режим энергии Б): старт занятия с сердечками бесплатный, энергия снимается за ошибку
       // (spendMistakeEnergy). Но без энергии и без Plus начать нельзя — шторка «Нужна энергия».
+      // зачем (координатор 11.10): в режиме Б отработка ошибок бесплатна целиком — без списания и без требования энергии.
+      if (!options?.mistakeCharge && isFreeInMistakeMode(activity)) {
+        traceEnergyRestore(`spend SKIPPED (activity=${activity}): mode=mistake_charge, free activity`);
+        return 'unlimited';
+      }
       if (!options?.mistakeCharge && chargesEnergyOnMistake(activity)) {
         const available = bonusRef.current + refundCreditRef.current + energyRef.current;
         if (available < 1) {

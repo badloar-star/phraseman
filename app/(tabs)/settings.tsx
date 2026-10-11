@@ -1046,11 +1046,15 @@ export default function SettingsMain() {
   const studyTargetFlag = STUDY_TARGET_FLAG[studyTarget];
   // Монета ранга вместо аватара (PRF-18); пока ранг неизвестен — нейтральный кружок, не выдуманная медь.
   // зачем (макет A): монета в шапке 44 (`.coin.av`), в карточке профиля 52.
-  const renderRankCoin = (testID: string, size = 48) => (myCoinRankRow ? (
-    <Image testID={testID} accessible={false} source={myCoinRankRow.source} style={{ width: size, height: size }} contentFit="contain" />
-  ) : (
-    <View testID={`${testID}-loading`} style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: glass.opaqueControl }} />
-  ));
+  // зачем (владелец 11.10, журнал 34): пока ранг не известен, вместо серого кружка — монета по умолчанию (ранг 0, «Новичок»): шапка не мигает серым.
+  const renderRankCoin = (testID: string, size = 48) => (
+    <Image
+      testID={myCoinRankRow ? testID : `${testID}-default`}
+      accessible={false}
+      source={(myCoinRankRow ?? coinRankRowForDisplay(0)).source}
+      style={{ width: size, height: size }} contentFit="contain"
+    />
+  );
   const toggleTapHaptics = (val: boolean) => {
     // зачем (Optimistic UI): переключатель меняется мгновенно, диск догоняет фоном; сбой записи
     // не откатывает UI (следующая гидрация возьмёт значение из снапшота), но причина пишется в лог.

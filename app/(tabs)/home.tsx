@@ -1294,6 +1294,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }).catch(noteSwallowedHandler('home:refreshWeekMarkers.readCurrentStreakWeekMarkers'));
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
+        // зачем (координатор 12.10, план (а) п.5, СПЕРВА ЛОГИ): «серия и монеты не прыгают после восстановления».
+        // Главная на конец восстановления не подписана — серия обновится только при следующем loadData. Лог: что лежит
+        // после восстановления; сравнить с последней строкой «[STREAK] home:hydration … -> X» (то, что сейчас на экране).
+        const restoreJumpSub = onAppEvent('cloud_profile_hydrated', () => {
+            const memoryStreak = getPersonalProgressSnapshot().streakCount;
+            const snapshot = getAppSnapshot().progress;
+            void hydratePersonalProgress().then((fresh) => {
+                console.log('[HOME-RESTORE-JUMP]', JSON.stringify({
+                    memoryStreak,
+                    storedStreak: fresh.streakCount,
+                    snapshotStreak: snapshot?.streak ?? null,
+                    snapshotSource: snapshot?.source ?? null,
+                    runes: peekRunes(),
+                    homeActive: homeRuntimeActiveRef.current,
+                    willReload: 'next_loadData_only',
+                }));
+            }).catch((error: unknown) => console.warn('[HOME-RESTORE-JUMP] чтение прогресса не удалось', error instanceof Error ? error.message : String(error)));
+        });
         // зачем: владелец — «зашёл в урок, а карточка "Продолжить урок" на Главной ещё
         // старая, пока не перезайду в приложение». lesson1.tsx эмитит это СРАЗУ при входе
         // в урок (см. lesson1.tsx рядом с correctCount/score). Патчим state напрямую —
@@ -1327,6 +1345,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
             freezeUpdatedSub.remove();
+            restoreJumpSub.remove();
             lastOpenedLessonSub.remove();
             onboardingCompletedSub.remove();
             deferredReadyTaskRef.current?.cancel?.();

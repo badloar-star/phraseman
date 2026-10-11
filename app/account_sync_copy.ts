@@ -78,7 +78,12 @@ export function signInRefusalCopyFor(code: string, lang: Lang, surface: SignInRe
   // устройства — тексты «Дизайна» (6eb7937ec), поведение как у account_switch_required.
   if (code === 'local_progress_backup_blocked') {
     // зачем (аудит Онбординга 12.10): в онбординге гость не попадёт в Настройки — свой текст без них и без кнопки.
-    if (surface === 'onboarding') return { ...localProgressBackupBlockedGuestCopy(lang), offersAccountSwitch: false };
+    if (surface === 'onboarding') {
+      // зачем (координатор 12.10, R1): видно, что гостю ушёл вариант без «Настроек», куда ему не попасть.
+      console.log(`[AUTH-REFUSAL] code=${code} surface=onboarding variant=guest_no_settings lang=${lang}`);
+      return { ...localProgressBackupBlockedGuestCopy(lang), offersAccountSwitch: false };
+    }
+    console.log(`[AUTH-REFUSAL] code=${code} surface=${surface} variant=switch_account lang=${lang}`);
     return { ...localProgressBackupBlockedCopy(lang), offersAccountSwitch: true };
   }
   return null;

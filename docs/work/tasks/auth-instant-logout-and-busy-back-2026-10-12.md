@@ -37,3 +37,5 @@ Governance-ID: TG-1280F1EC6ED3
 
 ## Rollback
 - `git revert`.
+
+Governance-ID: TG-6DBE31BD9948 (R1: лог выбора гостевого текста отказа [AUTH-REFUSAL]; profile-004/005 — правок кода нет, нужен кадр с телефона)

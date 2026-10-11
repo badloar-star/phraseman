@@ -66,3 +66,15 @@ describe('English interface dictionaries (preparation, flag stays off)', () => {
     expect(read('app/config.ts')).toMatch(/export const ENGLISH_UI_LOCALE_ENABLED = false;/);
   });
 });
+
+describe('untranslated-UI scanner knows the project\'s real translation shapes', () => {
+  it('masks indented one-line locale maps, line-by-line locale entries and function-valued maps, but only with a neighbour language', () => {
+    const scanner = fs.readFileSync(path.join(__dirname, '..', 'scripts/scan_untranslated_ui.mjs'), 'utf8');
+    expect(scanner).toContain('function maskLocaleKeyedEntries(source)');
+    expect(scanner).toContain('return maskLocaleKeyedEntries(src);');
+    expect(scanner).toContain(String.raw`const INLINE_LOCALE_MAP = /(^\s*|[{,]\s*)`);
+    expect(scanner).toContain('OTHER_LOCALE_ENTRY');
+    // одинокий ru:/uk: без соседей-языков остаётся нарушением
+    expect(scanner).toMatch(/if \(!LOCALE_KEY_ENTRY\.test\(lines\[i\]\)\) continue;\s*let neighbour = false;/);
+  });
+});

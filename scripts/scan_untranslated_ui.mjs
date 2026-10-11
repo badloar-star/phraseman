@@ -96,7 +96,8 @@ const PAIRED_TRANSLATION = /\b\w+(UK|Uk|_uk|EN|En|_en|ES|Es|_es)\s*:/;
  * чужого переформатирования выглядел как «стало больше непереведённых».
  * Признак перевода: рядом с ru: в той же строке стоит ключ другой локали.
  */
-const INLINE_LOCALE_MAP = /(^|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s*['"]?(uk|en|es|pl|tr|vi|id|pt-BR)['"]?\s*:/;
+// зачем (координатор 12.10): `^\s*` вместо `^` — однострочная карта `ru: '…', uk: '…', en: …` с отступом (так записаны подписи вкладок в app/(tabs)/_layout.tsx) не считалась переведённой.
+const INLINE_LOCALE_MAP = /(^\s*|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s*['"]?(uk|en|es|pl|tr|vi|id|pt-BR)['"]?\s*:/;
 
 /**
  * Строка — диагностический ЛОГ, а не текст интерфейса.
@@ -235,7 +236,33 @@ function stripLegal(source) {
     }
     src = result;
   }
-  return src;
+  return maskLocaleKeyedEntries(src);
+}
+
+/**
+ * Построчные записи словаря локалей: `ru: 'текст',` и `uk: 'текст',` на отдельных строках, рядом с ними — ключи других языков.
+ *
+ * зачем (координатор 12.10, подготовка к английскому интерфейсу): isTranslationDictionary видит только словари вида `const RU = {…}`, а карты
+ * `{ ru: '…', uk: '…', en: '…', es: '…' }`, разложенные по строкам, считались «забытым русским» — по 2 ложных срабатывания на каждую запись
+ * (PaywallProofCards, ReportErrorButton и др.). Признак перевода тот же, что у INLINE_LOCALE_MAP: рядом (в пределах ±LOCALE_WINDOW строк) есть
+ * запись ДРУГОГО языка — не ru/uk. Одинокий `ru:`/`uk:` без соседей-языков остаётся нарушением.
+ */
+const LOCALE_KEY_ENTRY = /^\s*(?:\{\s*)?['"]?(ru|uk)['"]?\s*:\s*(?:[`'"]|\([^)]*\)\s*=>)/;
+const OTHER_LOCALE_ENTRY = /['"]?\b(en|es|pl|tr|vi|id|pt-BR)['"]?\s*:\s*(?:[`'"]|\([^)]*\)\s*=>)/;
+const LOCALE_WINDOW = 14;
+
+function maskLocaleKeyedEntries(source) {
+  const lines = source.split('\n');
+  const hasOther = lines.map((line) => OTHER_LOCALE_ENTRY.test(line));
+  for (let i = 0; i < lines.length; i += 1) {
+    if (!LOCALE_KEY_ENTRY.test(lines[i])) continue;
+    let neighbour = false;
+    for (let j = Math.max(0, i - LOCALE_WINDOW); j <= Math.min(lines.length - 1, i + LOCALE_WINDOW); j += 1) {
+      if (j !== i && hasOther[j]) { neighbour = true; break; }
+    }
+    if (neighbour) lines[i] = lines[i].replace(/[^\r\n]/g, ' ');
+  }
+  return lines.join('\n');
 }
 
 const CYRILLIC_LITERAL = /(['"`])(?:(?!\1)[^\r\n])*[а-яА-ЯёЁ](?:(?!\1)[^\r\n])*\1/g;

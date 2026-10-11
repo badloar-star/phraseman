@@ -465,14 +465,28 @@ async function readCachedRemotePhrase(date: string): Promise<DailyPhrase | null>
 const DAILY_PHRASE_PEEK_KEY = 'daily_phrase_peek_v1';
 let peekPhraseToday: DailyPhrase | null = null;
 
+// зачем (координатор 11.10, «сперва логи»): первый кадр Главной поднимал полный каталог идиом (627 мс). Снимок
+// фразы дня существует ровно чтобы этого не было — видно, в каком состоянии он был в момент промаха.
+let peekHydrationState: 'pending' | 'empty' | 'no_today' | 'ready' | 'failed' = 'pending';
+
 export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
+  const startedAt = Date.now();
   try {
     const raw = await AsyncStorage.getItem(DAILY_PHRASE_PEEK_KEY);
-    if (!raw) return;
+    if (!raw) {
+      peekHydrationState = 'empty';
+      console.log('[DAILY-PHRASE-PEEK] hydrate', JSON.stringify({ state: peekHydrationState, ms: Date.now() - startedAt }));
+      return;
+    }
     const parsed = JSON.parse(raw) as Record<string, DailyPhrase | undefined>;
     const todays = parsed?.[todayKey()];
     if (todays?.english?.trim()) peekPhraseToday = todays;
+    peekHydrationState = peekPhraseToday ? 'ready' : 'no_today';
+    console.log('[DAILY-PHRASE-PEEK] hydrate', JSON.stringify({
+      state: peekHydrationState, ms: Date.now() - startedAt, today: todayKey(), keys: Object.keys(parsed ?? {}),
+    }));
   } catch (e) {
+      peekHydrationState = 'failed';
       // best-effort: без peek sync-путь честно поднимет каталог, как раньше
       DebugLogger.error('daily_phrase_system:todays', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
@@ -500,6 +514,12 @@ function rememberPeekPhrases(today: DailyPhrase): void {
 /** Sync phrase for first paint; matches idiomForDay() / cloud logic without I/O. */
 export function getTodayPhraseSync(): DailyPhrase {
   if (peekPhraseToday && peekPhraseToday.date === todayKey()) return peekPhraseToday;
+  console.log('[DAILY-PHRASE-PEEK] miss — поднимаю каталог', JSON.stringify({
+    reason: peekPhraseToday ? 'date_mismatch' : 'no_peek',
+    hydration: peekHydrationState,
+    peekDate: peekPhraseToday?.date ?? null,
+    today: todayKey(),
+  }));
   const idiom = idiomForDay();
   return phraseFromIdiom(idiom);
 }

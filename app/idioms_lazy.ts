@@ -11,8 +11,13 @@ let cachedIdioms: readonly Idiom[] | null = null;
 
 export function getIdiomsSync(): readonly Idiom[] {
   if (!cachedIdioms) {
+    // зачем (координатор 11.10, замер home_paint: idioms_data 627 мс на первом кадре Главной): «сперва логи» —
+    // кто первым поднял полный каталог и сколько это стоило. Пишется один раз за процесс.
+    const startedAt = Date.now();
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     cachedIdioms = (require('./idioms_data') as { IDIOMS: readonly Idiom[] }).IDIOMS;
+    const caller = (new Error().stack ?? '').split('\n').slice(2, 6).map((line) => line.trim()).join(' <- ');
+    console.log('[IDIOMS-LOAD] first require', JSON.stringify({ ms: Date.now() - startedAt, count: cachedIdioms.length, caller }));
   }
   return cachedIdioms;
 }

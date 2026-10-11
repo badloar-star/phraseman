@@ -3909,6 +3909,12 @@ async function resumeAccountSwitchQuarantineForSignOut(
 async function signOutAndWipeForAccountSwitchReserved(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
+  // зачем (2-й прогон Сверки 11.10): выход шёл 28,5 с, а стирание — ~1 с. Засечки [ACC-SIGNOUT] по стадиям (время от входа
+  // в функцию) показывают, что держит выход: монеты, синхронизация, замок, доведение смены. Логи — навсегда.
+  const signoutStartedAtMs = Date.now();
+  const signoutStage = (stage: string, extra?: Readonly<Record<string, string | number | boolean | null>>): void => {
+    identityTrace('[ACC-SIGNOUT]', `stage ${stage}`, { sinceStartMs: Date.now() - signoutStartedAtMs, ...(extra ?? {}) });
+  };
   const existingTransition = await inspectAccountSwitchQuarantine().catch((inspectError: unknown) => {
     // зачем (AA S2c, [ACC-SWITCH-WIPE]): прежде немой — «маркер битый» и «не
     // смогли прочитать» сливались в один recovery_required/marker_invalid.
@@ -3970,7 +3976,9 @@ async function signOutAndWipeForAccountSwitchReserved(
     // 1. Гарантируем что весь локальный прогресс ушёл в облако.
     //    Осколки синкаются отдельным путём и в forceSyncToCloud не входят —
     //    без этого вызова баланс офлайн-сессии терялся при смене аккаунта.
+    signoutStage('shard_preflight_start');
     const shardPreflight = await preparePendingShardDeltasForAccountSwitch();
+    signoutStage('shard_preflight_done', { pendingSpend: shardPreflight.pendingSpend });
     if (shardPreflight.stale || shardPreflight.ownerStableId !== switchOwnerStableId) {
       return { ok: false, reason: 'sync_failed' };
     }
@@ -4020,7 +4028,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       // Осколки дальше страхует аварийная копия; причина — в лог (S2c).
       identityTrace('[ACC-SWITCH-WIPE]', 'signout shard_sync_failed', { code: identityErrorCode(shardSyncError) });
     });
+    signoutStage('shard_sync_done');
     const synced = await forceSyncToCloud();
+    signoutStage('force_sync_done', { synced });
     identityTrace('[ACC-SWITCH-WIPE]', 'signout force_sync', { synced, allowWipeWithoutSync: options?.allowWipeWithoutSync === true });
     if (!synced) {
       try {
@@ -4054,6 +4064,7 @@ async function signOutAndWipeForAccountSwitchReserved(
       pendingShardSpend: false,
       quarantinedShardQueue: false,
     };
+    signoutStage('lock_wait_start');
     const transitionLock = await withAccountTransitionLockWithDeadline(async (): Promise<boolean> => {
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) {
         // зачем (S2c): этот ранний выход прежде маскировался под sync_failed
@@ -4144,7 +4155,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'pending_shard_queue' });
       return { ok: false, reason: 'sync_failed' };
     }
+    signoutStage('quarantine_resume_start');
     const resumeOutcome = await resumeAccountSwitchQuarantineForSignOut('switch');
+    signoutStage('quarantine_resume_done', { kind: resumeOutcome.kind });
     if (resumeOutcome.kind === 'threw') return resumeOutcome.failure;
     const resumed = resumeOutcome.resumed;
     if (resumed.result !== 'completed') {

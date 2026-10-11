@@ -25,7 +25,9 @@ export type IdentityTracePrefix = '[AUTH-LINK-GOOGLE]' | '[PROFILE-FLIP]' | '[AC
   | '[ACC-BACKUP-MERGE]'
   // зачем (10.10, ревью «Авторизации»): причины сбоя синхронных peek привязки и даты аккаунта.
   | '[AUTH-PEEK]'
-  | '[AUTH-AVAIL]'; // зачем (11.10): сбой проверки «доступен ли вход через Apple» больше не немой
+  | '[AUTH-AVAIL]' // зачем (11.10): сбой проверки «доступен ли вход через Apple» больше не немой
+  // зачем (12.10, прогон Сверки): стадии выхода/смены по времени — что держит выход 28 с.
+  | '[ACC-SIGNOUT]';
 
 export type IdentityTraceValue = string | number | boolean | null;
 

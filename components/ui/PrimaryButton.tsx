@@ -32,7 +32,8 @@ function PrimaryButton({ label, onPress, disabled, loading, style, accessibility
     ? t.textMuted
     : (isGoldTheme || isOliveTheme) && !isDisabled
     ? (isOliveTheme ? OLIVE_RICH.piano : t.textOnGold)
-    : t.correctText;
+    // зачем (координатор 14.10): лицо кнопки — t.accent, а старый correctText на нём 1.01–4.5 в темах Liquid Glass; в выключенном виде лицо bgSurface2 — прежний цвет.
+    : (isDisabled ? t.correctText : (t.accentInk ?? t.correctText));
   const radius = ds.radius.lg;
   const edgeColor = isDisabled
     ? t.shadowDark

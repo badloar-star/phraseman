@@ -17,6 +17,7 @@ import type { SpireFriendChip } from './spire_room_types';
 
 function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: readonly SpireFriendChip[] }>) {
   const p = useSpirePalette();
+  // зачем (отчёт тем 14.10): заглушка аватара была зашитой белой rgba(255,255,255,0.12) — на светлой теме почти невидима; берём тон темы (hairline).
   if (friends.length === 0) return null;
   return (
     <View testID="spire-friends">
@@ -26,7 +27,7 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
           const stone = f.tier === null ? '—' : spireTierName(f.tier, lang);
           return (
             <View key={f.uid} style={[s.chip, { backgroundColor: p.control }]} accessible accessibilityLabel={`${f.name}, ${stone}`}>
-              {f.coinRank !== null ? <AvatarView avatar="" coinRank={f.coinRank} size={30} /> : <View style={s.dot} />}
+              {f.coinRank !== null ? <AvatarView avatar="" coinRank={f.coinRank} size={30} /> : <View style={[s.dot, { backgroundColor: p.hairline }]} />}
               <Text style={[s.name, { color: p.text }]}>{f.name}</Text>
               <Text style={[s.stone, { color: p.textSecondary }]}>{stone}</Text>
             </View>
@@ -41,7 +42,7 @@ const s = StyleSheet.create({
   head: { marginTop: 26, marginBottom: 12, marginHorizontal: 2, fontSize: 16, lineHeight: 21, fontWeight: '700' },
   list: { gap: 10, paddingRight: V2.screenPad },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 10, height: 46, paddingLeft: 8, paddingRight: 14, borderRadius: 23 },
-  dot: { width: 30, height: 30, borderRadius: 15, backgroundColor: 'rgba(255,255,255,0.12)' },
+  dot: { width: 30, height: 30, borderRadius: 15 },
   name: { fontSize: 16, fontWeight: '700', maxWidth: 140 },
   stone: { fontSize: 16, fontWeight: '700' },
 });

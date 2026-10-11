@@ -47,5 +47,6 @@ describe('текст на заливке accent в темах Liquid Glass', () 
     expect(read('components/dialogs/DialogHowToSaySheet.tsx')).not.toMatch(/color=\{t\.correctText\}/);
     expect(read('components/dialogs/DialogHowToSaySheet.tsx')).toMatch(/t\.accentInk \?\? t\.correctText/);
     expect(read('components/flashcards/FlashcardsShelves.tsx')).toMatch(/t\.accentInk \?\? t\.correctText/);
+    expect(read('components/ui/PrimaryButton.tsx')).toMatch(/t\.accentInk \?\? t\.correctText/);
   });
 });

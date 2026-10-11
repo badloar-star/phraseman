@@ -298,6 +298,7 @@ import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
 import { gcDelta, gcSnapshot } from './mem_probe';
 import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
+import { diffAchievementUnlocks } from './achievement_restore_diff';
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -4135,7 +4136,21 @@ async function applyRestoreFromUserDocTraced(
     pairs.push(['last_active_date', mergedStreak.lastActive]);
     pairs.push(['streak_last_date', mergedStreak.lastActive]);
   }
-  if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
+  if (cloudData['achievements_state']) {
+    // зачем (координатор 11.10, сперва логи): облако пишет достижения целиком — видно, что затёрло бы локальные.
+    try {
+      const localAchievements = await AsyncStorage.getItem('achievements_v1');
+      const diff = diffAchievementUnlocks(localAchievements, String(cloudData['achievements_state']));
+      console.log('[ACH-RESTORE]', JSON.stringify({
+        localUnlocked: diff.localUnlocked?.length ?? 'unparsed',
+        cloudUnlocked: diff.cloudUnlocked?.length ?? 'unparsed',
+        wouldLose: diff.wouldLose,
+      }));
+    } catch (error) {
+      console.warn('[ACH-RESTORE] сравнение не удалось', error instanceof Error ? error.message : String(error));
+    }
+    pairs.push(['achievements_v1', cloudData['achievements_state']]);
+  }
   // ── Карточки из подколлекции flashcard_pages ───────────────────────────────
   // зачем: у мигрированных аккаунтов поля progress.flashcards_v1 в документе
   // больше нет (см. writeFlashcardPages), и общий цикл restore его не увидит —

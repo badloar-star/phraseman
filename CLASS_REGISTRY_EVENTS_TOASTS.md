@@ -139,7 +139,6 @@ Other observed events with direct `onAppEvent` listeners:
 - `account_deleted`
 - `achievement_unlocked`
 - `app_first_content_ready`
-- `app_messages_local_changed`
 - `auth_provider_linked`
 - `cloud_profile_hydrated`
 - `collectibles_changed`
@@ -361,6 +360,21 @@ Observed state (04.10, git history):
 Safe decision needed:
 
 - Keep as an extension point for post-delete flows, or remove together with the auth session owner.
+
+### Owner review: `app_messages_local_changed`
+
+Emitters:
+
+- `app/app_messages.ts` (local preview messages, visibility and modal acknowledgement outboxes, report-reply claims), `app/report_reward_bundle.ts`.
+
+Observed state (11.10, git history):
+
+- The only listener lived in `subscribeUserAppMessages` (`app/app_messages.ts`), a live-polling inbox stream with three 5-minute timers over 80 documents each. It had no callers and was deleted as dead code in b59868b5b (Firebase cost audit, §CORE-0162). So no running screen ever reacted to this event.
+- The inbox reads its state one-shot and daily (`refreshAppMessagesSnapshotOnce`) and applies local changes optimistically on its own.
+
+Safe decision needed:
+
+- Either subscribe the inbox to this event so a local change elsewhere re-renders it immediately, or remove the emits. Until then the event stays a documented emit-only hook.
 
 ## Existing tests and guardrails
 

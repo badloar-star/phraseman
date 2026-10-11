@@ -18,6 +18,9 @@ const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
   // Слушателя не было никогда (f5a01076d): точка расширения после свежей личности при удалении
   // аккаунта (auth_provider, зона сессии 5), проверяется post_delete_fresh_identity_integration.
   'post_delete_identity_ready',
+  // зачем (11.10, §CORE-0169): единственный слушатель жил в мёртвом subscribeUserAppMessages (нигде не подключался),
+  // удалённом в b59868b5b по аудиту стоимости Firebase. Отправители остались; живой реакции не было и раньше.
+  'app_messages_local_changed',
 ]);
 
 const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([

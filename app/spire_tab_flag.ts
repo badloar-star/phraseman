@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { onAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { readRemoteConfigCacheRaw } from './remote_config_client'; // зачем: [COLD-START-IO] — одно чтение кэша на всех
+import { invalidateSpireConfigCache } from './spire_config_client';
 
 const SPIRE_TAB_FLAG_KEY = 'spire_tab_enabled';
 const SPIRE_TAB_DEV_KEY = 'spire_tab_dev_override_v1';
@@ -34,6 +35,7 @@ function notify(): void {
 }
 
 async function readCacheOnce(): Promise<void> {
+  const before = _hydrated ? _remoteEnabled : null;
   try {
     const raw = await readRemoteConfigCacheRaw();
     if (raw) {
@@ -44,6 +46,9 @@ async function readCacheOnce(): Promise<void> {
     }
     if (__DEV__) _devOverride = (await AsyncStorage.getItem(SPIRE_TAB_DEV_KEY)) === '1';
     DebugLogger.info(LOG, `tab flag: remote=${String(_remoteEnabled)} dev=${String(_devOverride)} (из кэша remote_config_cache_v1)`);
+    // зачем (координатор 11.10): флаг вкладки сменился → кэш config/spire_v1 (6 ч) мог остаться от прежнего состояния —
+    // сбрасываем, чтобы вход в Шпиль прочитал сервер (одно чтение документа, только при смене).
+    if (before !== null && before !== _remoteEnabled) void invalidateSpireConfigCache(`spire_tab_enabled ${String(before)}→${String(_remoteEnabled)}`);
   } catch (e) {
     // зачем: битый кэш не должен открыть вкладку — остаёмся на выключенном.
     _remoteEnabled = false;
@@ -62,6 +67,13 @@ export function primeSpireTabFlag(): Promise<void> {
 /** Синхронное чтение: до прогрева кэша всегда false. */
 export function isSpireTabEnabled(): boolean {
   return _remoteEnabled || (__DEV__ && (_devOverride || DEV_TAB_ENV));
+}
+
+/** Перечитать флаг из кэша рубильников сейчас (после принудительного перечита) и уведомить подписчиков. */
+export async function rereadSpireTabFlag(): Promise<boolean> {
+  await readCacheOnce();
+  notify();
+  return isSpireTabEnabled();
 }
 
 /** __DEV__-переключатель. В релизной сборке ничего не делает. */

@@ -9,6 +9,7 @@ import { CommunityHeaderSlotProvider, type CommunityHeaderSlot } from '../commun
 import { TabRuntimeOwnerOverride, useTabNav } from '../TabContext';
 import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model';
 import { useSpireTabEnabled } from '../spire_tab_flag';
+import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
 
 type Section = SubRuntimeOwnerId;
@@ -77,6 +78,12 @@ export default function CommunityTabRoute() {
   ], [lang, spireVisible]);
 
   const tabVisible = runtimeOwnerId === 'community' || segments.some((s) => s.key === runtimeOwnerId);
+  // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): вкладка скрыта по кэшу рубильников (TTL 6 ч) — при входе в раздел один
+  // принудительный перечит, не чаще раза в 60 секунд; включили на сервере → вкладка появляется без перезапуска.
+  useEffect(() => {
+    if (!tabVisible || spireVisible) return;
+    void refreshSpireTabFlagIfClosed('community_focus');
+  }, [spireVisible, tabVisible]);
 
   const renderSection = (key: Section) => {
     if (!visited.has(key) && key !== section) return null;

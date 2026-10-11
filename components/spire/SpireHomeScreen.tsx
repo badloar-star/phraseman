@@ -22,6 +22,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { spireReadWeekLocal } from '../../app/spire_report_client';
 import { loadSpireConfig } from '../../app/spire_config_client';
+import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
 import { peekSpireTourSeen, spireMarkTourSeen, spireReadTourSeen } from '../../app/spire/spire_local_store';
 import { DebugLogger } from '../../app/debug-logger';
@@ -124,6 +125,15 @@ export default function SpireHomeScreen() {
         if (!alive) return;
         DebugLogger.info(LOG, `home: config.enabled=${String(next.enabled)}`);
         setConfig(next);
+        if (next.enabled !== true) {
+          // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): «выключен» может быть старым кэшем (6 ч) — один принудительный
+          // перечит config/spire_v1 (не чаще раза в 60 секунд); включён на сервере → открываем Шпиль сразу.
+          void refreshSpireConfigIfLocked('spire_home', false).then((enabledNow) => {
+            if (!alive || !enabledNow) return;
+            DebugLogger.info(LOG, 'home: после перечита сервер включён — открываем Шпиль');
+            void loadSpireConfig().then((fresh) => { if (alive) setConfig(fresh); });
+          });
+        }
       })
       .catch((error: unknown) => {
         // зачем: при сбое остаёмся под замком — дефолт выключен.

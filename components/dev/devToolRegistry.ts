@@ -20,6 +20,7 @@ export type DevToolAction =
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
   | 'open-cancel-flow'
   | 'open-spire-preview'
+  | 'refresh-remote-gates'
   | 'open-manage-subscription'
   // зачем (владелец, 2026-08-27): «Проверка рун» — отдельный НОВЫЙ раздел (не
   // внутри «Движение · все поверхности»). Каждая кнопка открывает НАСТОЯЩИЙ
@@ -462,6 +463,18 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-spire-preview',
         icon: 'map-outline',
         testID: 'dev-open-spire-preview',
+      },
+      // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): кэши рубильников и конфига Шпиля живут 6 ч — перечитать их сейчас,
+      // без перезапуска и без сброса данных приложения.
+      {
+        id: 'spire-refresh-remote-gates',
+        order: 20,
+        title: 'Обновить рубильники сейчас',
+        detail: 'Перечитать remote_config и config/spire_v1 с сервера, минуя кэш 6 ч. Вкладка «Шпиль» появится без перезапуска.',
+        actionLabel: 'Обновить',
+        action: 'refresh-remote-gates',
+        icon: 'rocket-outline',
+        testID: 'dev-refresh-remote-gates',
       },
     ],
   },

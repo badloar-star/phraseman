@@ -65,6 +65,19 @@ async function writeCache(config: SpireConfigDoc): Promise<void> {
 }
 
 /**
+ * Сбросить кэш конфига Шпиля — следующий loadSpireConfig пойдёт в сеть.
+ * зачем (координатор 11.10): флаг вкладки сменился на сервере → старый «выключен» в кэше 6 ч держал бы заглушку.
+ */
+export async function invalidateSpireConfigCache(reason: string): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(SPIRE_CONFIG_CACHE_KEY);
+    DebugLogger.info('[SPIRE-CONFIG]', `кэш конфига сброшен (${reason})`);
+  } catch (error) {
+    DebugLogger.warn('[SPIRE-CONFIG]', `кэш конфига не сбросился (${reason}): ${String(error)}`);
+  }
+}
+
+/**
  * Отдаёт конфиг Шпиля для текущего экрана: из свежего кэша, иначе сеть
  * (и обновляет кэш), иначе честный дефолт (SPIRE_CONFIG_DEFAULTS — та же
  * функция сборки, что использует сервер, поэтому дефолт совместим по форме).

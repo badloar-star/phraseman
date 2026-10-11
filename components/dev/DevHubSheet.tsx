@@ -469,6 +469,13 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // до смены route, иначе iOS оставит DEV-sheet поверх сцены.
         requestClose(false, () => router.push(CANCEL_FLOW_PREVIEW_ROUTE as never));
         return;
+      case 'refresh-remote-gates':
+        // зачем (владелец 11.10): перечит рубильников и конфига Шпиля без 6-часового кэша; итог — в лог [SPIRE-GATE].
+        void import('../../app/spire_gate_refresh')
+          .then((m) => m.forceRefreshSpireGatesNow())
+          .then((result) => console.log('[SPIRE-GATE] dev_hub result', JSON.stringify(result)))
+          .catch((error: unknown) => console.warn('[SPIRE-GATE] dev_hub refresh failed', String(error)));
+        return;
       case 'open-spire-preview':
         requestClose(false, () => router.push({ pathname: SPIRE_PREVIEW_ROUTE, params: { state: 'room', selector: '1' } } as never));
         return;

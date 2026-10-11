@@ -183,10 +183,13 @@ function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.no
     return;
   }
   applyRemoteConfigSnapshot(clean);
+  // зачем (11.10, «Шпиль не виден»): зеркало кэша обновляется ДО события. Раньше событие уходило первым, и слушатели,
+  // читающие кэш (флаг вкладки Шпиля, «Вместе»), синхронно получали из зеркала СТАРОЕ значение — вкладка не появлялась
+  // до перезапуска, а при свежем кэше на диске — до 6 часов.
+  rememberRemoteConfigCacheRaw(encoded);
   emitAppEvent('remote_config_changed');
   // зачем: метка свежести пишется ВМЕСТЕ с кэшем — кэш без метки снова гнал бы
   // сеть, а метка без кэша выдавала бы дефолты за «свежие».
-  rememberRemoteConfigCacheRaw(encoded);
   void AsyncStorage.multiSet([
     [REMOTE_CONFIG_CACHE_KEY, encoded],
     [REMOTE_CONFIG_FETCHED_AT_KEY, String(fetchedAtMs)],

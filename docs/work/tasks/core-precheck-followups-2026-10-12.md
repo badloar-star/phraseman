@@ -1,6 +1,7 @@
 # Task packet: хвосты release:precheck — сторож классификации, «Утром решить», 🟡 Шпиля
 
-Governance-ID: TG-6E64942F3FAD
+Governance-ID: TG-8838B21BF4C1
+Previous-Governance-ID: TG-6E64942F3FAD
 Previous-Governance-ID: TG-E4F380695F2B
 Previous-Governance-ID: TG-3698EA6BB282
 Previous-Governance-ID: TG-37A3E6009C45

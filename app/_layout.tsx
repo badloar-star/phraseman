@@ -1526,11 +1526,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return () => clearTimeout(retry);
     }
 
-    if (isTabsGroupRoutePath(target)) {
-      traceLessonExit('layout:deeplink_tabs_replace', { target: maskDeepLinkForLog(target) });
-      deeplinkSettingsTrace('open:tabs_replace', { target: maskDeepLinkForLog(target), currentPath: pathnameRef.current ?? null });
-      router.replace(target as Href);
-      return;
+    // зачем (Сверка 11.10, падение Fabric «addViewAt: The specified child already has a parent» на тёплой
+    // phraseman://settings): роутер САМ открывал вкладку по redirectSystemPath, а эта ветка сразу делала ещё
+    // router.replace на ту же вкладку. replace из стекового экрана пересоздавал вкладки: замороженная 270 с вкладка
+    // настроек монтировалась, через 924 мс снималась повторно — и падение. Теперь вкладка идёт общим путём ниже:
+    // ждём, открыл ли роутер сам; если нет — navigate (переключает вкладку, НЕ пересоздаёт; повтор безопасен).
+    const targetIsTab = isTabsGroupRoutePath(target);
+    if (targetIsTab) {
+      traceLessonExit('layout:deeplink_tabs_deferred', { target: maskDeepLinkForLog(target) });
+      deeplinkSettingsTrace('open:tabs_deferred', { target: maskDeepLinkForLog(target), currentPath: pathnameRef.current ?? null });
     }
 
     // зачем (эмулятор 30.09): expo-router САМ открывает тёплую ссылку через
@@ -1540,7 +1544,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // пустым экраном навсегда. Путь в этот момент ещё старый (замер: push шёл
     // при currentPath=/home), поэтому ждём и открываем сами, только если
     // навигация ссылку не открыла (онбординг, неготовый корень).
-    const targetPath = target.split(/[?#]/)[0]?.replace(/\/$/, '') || '';
+    // Путь роутера — без групп: /(tabs)/settings у него /settings.
+    const targetPath = (target.split(/[?#]/)[0] ?? '').replace(/\/\([^/)]+\)(?=\/|$)/g, '').replace(/\/$/, '');
     // Таймер в ref, а не в cleanup эффекта: setPendingWarmDeepLink(null) выше
     // сразу перезапускает эффект, и cleanup снял бы ожидание до срабатывания.
     if (warmDeepLinkTimerRef.current) clearTimeout(warmDeepLinkTimerRef.current);
@@ -1556,6 +1561,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
       if (__DEV__) {
         console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target: maskDeepLinkForLog(target), currentPath }));
+      }
+      if (targetIsTab) {
+        deeplinkSettingsTrace('open:tabs_navigate', { target: maskDeepLinkForLog(target), currentPath });
+        router.navigate(target as Href);
+        return;
       }
       router.push(target as Href);
     }, WARM_DEEP_LINK_SELF_OPEN_WAIT_MS);

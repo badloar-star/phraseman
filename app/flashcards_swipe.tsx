@@ -1066,7 +1066,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     () => swipeAccessGranted
       ? buildCachedTrainingSources(
         lang,
-        peekSelectedSavedContour(),
+        // Тот же запасной язык, что у loadSelectedSavedContour(studyTarget) ниже — первый кадр не расходится с загрузкой.
+        peekSelectedSavedContour(studyTarget),
         peekCustomCardsCache(studyTarget),
         visibleRequestedOfficialOwnedIds,
         requestedSourceId,

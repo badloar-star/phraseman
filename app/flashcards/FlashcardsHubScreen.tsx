@@ -42,7 +42,7 @@ import { FC_DEFAULT_SESSION_SIZE, setLastPreset } from './mode_prefs';
 import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
-import { loadSelectedSavedContour, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
+import { loadSelectedSavedContour, peekFirstSavedCardAnyLanguage, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
 import { logMemoryOnce } from '../mem_probe';
 
 import { packTileArtRevision } from './packMarketplaceIcons';
@@ -145,7 +145,7 @@ export default function FlashcardsHubScreen() {
     () => peekWarmMarketplacePacks(studyTarget) ?? [],
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
-  const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
+  const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour(studyTarget)?.length ?? null);
   // My Packs includes unpublished author packs that the Hub catalog does not know.
   // Only its settled account/target snapshot is a truthful count.
   const [myPackCount, setMyPackCount] = useState<number | null>(null);
@@ -615,7 +615,8 @@ export default function FlashcardsHubScreen() {
   }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
-  const topCard = peekSelectedSavedContour()?.[0] ?? null;
+  // Запасной язык — тот же, что у loadSelectedSavedContour(studyTarget); в выбранном языке пусто → любая сохранённая.
+  const topCard = peekSelectedSavedContour(studyTarget)?.[0] ?? peekFirstSavedCardAnyLanguage();
   // зачем (координатор 11.10): ANR на тапе по «Карточкам» при 1,87 ГБ pss — размер кучи на первом открытии хаба.
   logMemoryOnce('cards_hub_open');
   logHubTopCardOutcome(topCard?.en ?? null, trainingLocked);

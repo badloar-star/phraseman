@@ -513,10 +513,10 @@
       "id": "cards-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 11,
-        "label": "Каталог · «Новые»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Наборы сообщества",
       "state": "Каталог · «Новые»",
@@ -546,10 +546,10 @@
       "id": "cards-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 12,
-        "label": "Поиск · действия долгим нажатием",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Наборы сообщества",
       "state": "Поиск · действия долгим нажатием",
@@ -801,10 +801,10 @@
       "id": "cards-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 17,
-        "label": "Правка · дубликат",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Правка · дубликат",
@@ -877,10 +877,10 @@
       "id": "cards-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 19,
-        "label": "Новая карточка в наборе",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новая карточка в наборе",
@@ -1405,10 +1405,10 @@
       "id": "cards-039",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 33,
-        "label": "Ошибка загрузки",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 44,
+        "label": "Каталог без сети",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Ошибка загрузки",
@@ -1436,10 +1436,10 @@
       "id": "cards-040",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 34,
-        "label": "Мой набор — ещё не в сообществе",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 14,
+        "label": "Свой набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Мой набор — ещё не в сообществе",
@@ -1473,10 +1473,10 @@
       "id": "cards-041",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 35,
-        "label": "Отправка в сообщество",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 17,
+        "label": "Действия с набором",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Отправка в сообщество",
@@ -1508,10 +1508,10 @@
       "id": "cards-042",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 36,
-        "label": "Мой опубликованный — «Править набор»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 23,
+        "label": "Изменить набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Мой опубликованный — «Править набор»",
@@ -1678,10 +1678,10 @@
       "id": "cards-047",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 41,
-        "label": "Загрузка",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Загрузка",
@@ -1710,10 +1710,10 @@
       "id": "cards-048",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 42,
-        "label": "Каталог пуст",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 26,
+        "label": "Ничего не найдено",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Каталог пуст",
@@ -1742,10 +1742,10 @@
       "id": "cards-049",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 43,
-        "label": "Свой опубликованный — карандаш · «Топ»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Свой опубликованный — карандаш · «Топ»",
@@ -2086,10 +2086,10 @@
       "id": "cards-060",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 54,
-        "label": "Проверка Plus — скелет",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Проверка Plus — скелет",
@@ -2118,10 +2118,10 @@
       "id": "cards-061",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 55,
-        "label": "Новая · заметка раскрыта",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Новая · заметка раскрыта",
@@ -2150,10 +2150,10 @@
       "id": "cards-062",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 56,
-        "label": "Не удалось сохранить",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Не удалось сохранить",
@@ -2181,10 +2181,10 @@
       "id": "cards-063",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 57,
-        "label": "Карточка не найдена",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Карточка не найдена",
@@ -2212,10 +2212,10 @@
       "id": "cards-064",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 58,
-        "label": "Сохранено",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Сохранено",
@@ -2244,10 +2244,10 @@
       "id": "cards-065",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 59,
-        "label": "Правка своего набора",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 23,
+        "label": "Изменить набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Правка своего набора",
@@ -2276,10 +2276,10 @@
       "id": "cards-066",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 60,
-        "label": "Только для меня",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Только для меня",
@@ -2308,10 +2308,10 @@
       "id": "cards-067",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 62,
-        "label": "Меню: черновик / ошибка",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Меню: черновик / ошибка",
@@ -2340,10 +2340,10 @@
       "id": "cards-068",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 63,
-        "label": "Очистить черновик?",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Очистить черновик?",
@@ -2372,10 +2372,10 @@
       "id": "cards-069",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 64,
-        "label": "Минимум 10 карточек",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Минимум 10 карточек",
@@ -2404,10 +2404,10 @@
       "id": "cards-070",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 65,
-        "label": "Проверь поля",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Проверь поля",
@@ -2436,10 +2436,10 @@
       "id": "cards-071",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 66,
-        "label": "Лимит 50 карточек",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Лимит 50 карточек",
@@ -2468,10 +2468,10 @@
       "id": "cards-072",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 67,
-        "label": "Офлайн — сохранено на устройстве",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Офлайн — сохранено на устройстве",
@@ -2502,10 +2502,10 @@
       "id": "cards-073",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 68,
-        "label": "Набор сохранён",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Набор сохранён",
@@ -2534,10 +2534,10 @@
       "id": "cards-074",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 69,
-        "label": "Недоступен для правки",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 23,
+        "label": "Изменить набор",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Недоступен для правки",
@@ -2632,10 +2632,10 @@
       "id": "cards-077",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 72,
-        "label": "Ошибка сети",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 44,
+        "label": "Каталог без сети",
+        "mapping": "rebind_coordinator_2026-10-12"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Ошибка сети",
@@ -31014,11 +31014,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "removed_reason": "п.55 журнала владельца 11.10: хаб Карточек — вариант А (стопка + 4 крупные плитки); этот вариант хаба заменён, отдельного кадра нет (подтверждено координатором 12.10)"
     },
     {
       "id": "cards-v2-003",
@@ -31047,11 +31047,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "removed_reason": "п.55 журнала владельца 11.10: хаб Карточек — вариант А (стопка + 4 крупные плитки); этот вариант хаба заменён, отдельного кадра нет (подтверждено координатором 12.10)"
     },
     {
       "id": "cards-v2-004",
@@ -34811,10 +34811,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "removed_reason": "п.55 журнала владельца 11.10: хаб Карточек — вариант А (стопка + 4 крупные плитки); этот вариант хаба заменён, отдельного кадра нет (подтверждено координатором 12.10)"
     },
     {
       "id": "cards-gap-014",

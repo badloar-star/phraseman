@@ -291,7 +291,7 @@
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   const bgPackOwn = () => `${packHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${ic('play', 's18')}Тренировать</div><span class="gs-rb l t">${ic('plus', 's20')}</span>` })}${zoomBar()}${grid2(W.slice(0, 10))}`;
   const bgPackOther = (added) => `${packHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: 3, liked: false,
-      btns: added ? `<div class="cta gh t grow">${ic('check', 's18')}В твоих наборах</div><div class="cta t grow">${ic('play', 's18')}Тренировать</div>`
+      btns: added ? `<div class="cta gh t grow">${ic('check', 's18')}В моих наборах</div><div class="cta t grow">${ic('play', 's18')}Тренировать</div>`
         : `<div class="cta t grow">Добавить себе ${ic('plus', 's18')}</div><span class="gs-rb l t">${ic('heart', 's20')}</span>` })}${zoomBar()}${grid2(W.slice(10, 16))}`;
   const savedTop = back(`<span class="gs-rb t">${ic('dotsH', 's20')}</span><span class="gs-rb t">${ic('plus', 's20')}</span>`) + ttl('Сохранённые', 64);
   const savedFab = `<div class="gs-fab"><span class="cta sm t">${ic('play', 's18')}Тренировать</span></div>`;

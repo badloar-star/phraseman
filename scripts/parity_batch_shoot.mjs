@@ -11,7 +11,7 @@
  * Опции:
  *   --dry-run            печатает команды, adb не запускает (эмулятор не нужен)
  *   --status=pending     какие статусы реестра брать для --all-pending (через запятую; по умолчанию pending)
- *   --with-taps          брать и строки, где по документу «дальше тапами» (по умолчанию пропускаются — кадр был бы не тем состоянием)
+ *   --include-nonunique  брать и строки с «уникальна: нет» (ссылка общая с соседями — кадр будет НЕ тем состоянием; по умолчанию пропускаются)
  *   --device=emulator-5554   --timeout-ms=20000   --settle-ms=1500   --blind-wait-ms=8000   --poll-ms=1000
  *   --out=<папка>        куда класть <id>.png (по умолчанию docs/phraseman-2.0/evidence/parity)
  *   --journal=<файл>     журнал прогона (по умолчанию <out>/_runs/batch_<метка>.tsv)
@@ -23,6 +23,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { describeSteps, parseSteps, runSteps } from './parity_steps.mjs';
 
 const LOG = '[BATCH-SHOOT]';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -40,9 +41,24 @@ export function parseLinksDoc(text) {
     if (!/^\| [a-z0-9-]+-\d{3} \|/.test(line)) continue;
     const cells = line.split('|');
     const id = (cells[1] ?? '').trim();
-    const match = (cells[3] ?? '').match(/`(phraseman:\/\/[^`]+)`/);
+    // зачем: ссылки в документе бывают без схемы (`premium_modal?…`, `dev_state?…`) — для am start добавляем phraseman://
+    const match = (cells[3] ?? '').match(/`((?:phraseman:\/\/)?(?:dev_state|premium_modal)\?[^`]+|phraseman:\/\/[^`]+)`/);
     const before = (cells[4] ?? '').trim();
-    rows.set(id, { id, screen: (cells[2] ?? '').trim(), link: match ? match[1] : null, before, needsTaps: /тапами/.test(before) });
+    // зачем: колонки «тапы» и «уникальна» стоят ПОСЛЕ shot list (индексы 6 и 7), чтобы не сдвигать старый разбор ссылки
+    const stepsRaw = (cells[6] ?? '').trim();
+    const uniqueRaw = (cells[7] ?? '').trim().toLowerCase();
+    let steps = [];
+    let stepsError = null;
+    try {
+      steps = parseSteps(stepsRaw);
+    } catch (error) {
+      stepsError = String(error.message ?? error);
+      console.warn(`${LOG} ${id}: шаги не разобраны — строка будет пропущена:`, stepsError); // guard-ok: причина пропуска строки
+    }
+    rows.set(id, {
+      id, screen: (cells[2] ?? '').trim(), link: match ? (match[1].startsWith('phraseman://') ? match[1] : `phraseman://${match[1]}`) : null, before,
+      steps, stepsError, unique: uniqueRaw === 'да',
+    });
   }
   return rows;
 }
@@ -59,7 +75,7 @@ export function linkTraits(link) {
   };
 }
 
-export function selectIds({ ids, allPending, prefix, statuses, limit, withTaps, rows, registryRows }) {
+export function selectIds({ ids, allPending, prefix, statuses, limit, includeNonUnique, rows, registryRows }) {
   const skipped = [];
   let candidates = ids;
   if (allPending) {
@@ -72,7 +88,9 @@ export function selectIds({ ids, allPending, prefix, statuses, limit, withTaps, 
     if (!row) { skipped.push({ id, reason: 'нет_в_DEV_LINKS_R1' }); continue; }
     if (!row.link) { skipped.push({ id, reason: 'нет_готовой_ссылки' }); continue; }
     if (row.link.includes("'")) { skipped.push({ id, reason: 'кавычка_в_ссылке' }); continue; }
-    if (row.needsTaps && !withTaps) { skipped.push({ id, reason: 'нужны_тапы_(--with-taps)' }); continue; }
+    if (row.stepsError) { skipped.push({ id, reason: `шаги_не_разобраны_${row.stepsError}` }); continue; }
+    // зачем (координатор 12.10): ссылка общая с соседями ⇒ слепой робот снимет чужой кадр; берём только строки «уникальна: да»
+    if (!row.unique && !includeNonUnique) { skipped.push({ id, reason: 'не_уникальна_(--include-nonunique)' }); continue; }
     picked.push(row);
   }
   return { picked: limit > 0 ? picked.slice(0, limit) : picked, skipped };
@@ -85,6 +103,10 @@ export function commandsFor(row, device) {
   const launch = `${adbBase} shell "am start -a android.intent.action.VIEW -d ${quote(row.link)} ${APP}"`;
   const steps = [`${adbBase} shell am force-stop ${APP}`, `${adbBase} logcat -c`, launch, `# ждать в logcat: «${READY_MARKERS[0]}»${traits.isDevState && traits.hasNext ? '' : ' (маркера нет — слепое ожидание)'}`];
   if (traits.needsRelaunch) steps.push(`${adbBase} shell am force-stop ${APP}`, `${adbBase} logcat -c`, launch, '# второй запуск (vip/plan читаются при старте): снова ждать маркер');
+  if (row.steps.length > 0) {
+    steps.push(`# шаги состояния (uiautomator dump → input): ${describeSteps(row.steps).join(' ⏵ ')}`);
+    for (const s of row.steps) steps.push(`    ${s.op}${s.value ? ` ${s.value}` : ''}`);
+  }
   steps.push('# пауза settle', `${adbBase} exec-out screencap -p > <out>/${row.id}.png`);
   return steps;
 }
@@ -143,6 +165,15 @@ async function shootOne(device, row, opts, runDir) {
     console.log(`${LOG} ${row.id}: vip/plan → второй запуск`); // guard-ok: ход пакета
     result = await launchAndWait(device, row, opts);
   }
+  if (result.outcome === 'ok' && row.steps.length > 0) {
+    try {
+      await runSteps((args, o) => adb(device, args, o), row.steps, { log: (msg) => console.log(`${LOG} ${row.id}: ${msg}`) }); // guard-ok: ход шагов
+      result = { ...result, detail: `${result.detail}+шагов_${row.steps.length}` };
+    } catch (error) {
+      console.error(`${LOG} ${row.id}: шаг не выполнен:`, String(error).slice(0, 240)); // guard-ok: catch логируется
+      result = { ...result, outcome: 'error', detail: String(error.message ?? error).slice(0, 160) };
+    }
+  }
   await sleep(opts.settleMs);
   const png = adb(device, ['exec-out', 'screencap', '-p'], { timeout: 30_000, binary: true });
   if (!isPng(png)) return { ...result, outcome: 'error', detail: `screencap_не_png_${png.length}_байт`, file: null };
@@ -158,7 +189,7 @@ async function shootOne(device, row, opts, runDir) {
 export async function main(argv) {
   const dryRun = argv.includes('--dry-run');
   const allPending = argv.includes('--all-pending');
-  const withTaps = argv.includes('--with-taps');
+  const includeNonUnique = argv.includes('--include-nonunique');
   const ids = argv.filter((a) => !a.startsWith('--'));
   const device = arg(argv, '--device', 'emulator-5554');
   const opts = {
@@ -175,7 +206,7 @@ export async function main(argv) {
   const rows = parseLinksDoc(fs.readFileSync(LINKS_DOC, 'utf8'));
   const registryRows = allPending ? JSON.parse(fs.readFileSync(REGISTRY, 'utf8')).rows : [];
   const statuses = arg(argv, '--status', 'pending').split(',');
-  const { picked, skipped } = selectIds({ ids, allPending, prefix: arg(argv, '--prefix', ''), statuses, limit: Number(arg(argv, '--limit', '0')), withTaps, rows, registryRows });
+  const { picked, skipped } = selectIds({ ids, allPending, prefix: arg(argv, '--prefix', ''), statuses, limit: Number(arg(argv, '--limit', '0')), includeNonUnique, rows, registryRows });
   console.log(`${LOG} режим=${dryRun ? 'DRY-RUN' : 'съёмка'} устройство=${device} к съёмке=${picked.length} пропущено=${skipped.length} потолок=${opts.timeoutMs}мс пауза=${opts.settleMs}мс`); // guard-ok: итог выбора
   for (const s of skipped) console.log(`${LOG} пропуск ${s.id}: ${s.reason}`); // guard-ok: причина пропуска
   if (dryRun) {

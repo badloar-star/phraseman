@@ -1,6 +1,10 @@
 # Генератор docs/phraseman-2.0/DEV_LINKS_R1.md из реестра и R1_SHOT_LIST*.md (python scripts/dev_links_r1_generate.py). Правила ссылок — в списке rule(...) ниже.
 import json, re, glob, collections, sys
 
+# зачем (координатор 12.10): под-состояния и шаги тапов для строк с общей ссылкой — отдельный файл данных
+sys.path.insert(0, 'C:/appsprojects/phraseman/scripts')
+import dev_links_r1_steps as STEPS_DATA
+
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))
 
@@ -181,20 +185,38 @@ out.append('2. Ссылка начинается с `phraseman://dev_state?` и 
 out.append('3. Окна и тосты прошлого кадра: перед новым состоянием пейвола очередь блокирующих окон очищается сама (6bdba4d26). Для остальных — force-stop.')
 out.append('4. Свойства аккаунта: `plus=on|off` (Plus), `free=on` (без dev-Plus), `energy=0..5`, `cards=demo` (64 сохранённые, 4 набора), `catalog=demo|empty`, `quota=N|exhausted|reset`, `dquota=N|reset`. Снимать перепробованные фикстуры значением `off`/`reset`.')
 out.append('5. VIP-плашка и план подписки (`vip=`, `plan=`) читаются при старте: после ссылки force-stop → запуск.')
-out.append('6. Тема кадра: тёмная «Аврора» (Спокойно), если в строке не сказано иное.\n')
+out.append('6. Тема кадра: тёмная «Аврора» (Спокойно), если в строке не сказано иное.')
+out.append('7. Колонка «тапы» — шаги после открытия ссылки (грамматика — `scripts/parity_steps.mjs`: `tap:#testID`, `tap:Текст`, `long:`, `swipe-left:`, `type:`, `back`, `wait:`); их выполняет робот `scripts/parity_batch_shoot.mjs` через `uiautomator dump`. Колонка «уникальна»: **да** — ссылка+шаги открывают ровно этот кадр (робот берёт только такие); **нет** — ссылка общая с соседями или путь не выведен, снимать руками по shot list. `cards=empty` очищает сохранённые/свои карточки и наборы (пустые кадры); `cards=demo` и `cards=empty` сбрасывают масштаб сетки и режим «стопка».\n')
 
 need = []
 counts = collections.Counter()
+
+# ── ссылка каждой строки ДО вывода: нужна, чтобы понять, общая ли она с соседями (признак «уникальна»)
+def final_link(row):
+    entry = STEPS_DATA.ENTRIES.get(row['id'])
+    if entry:
+        return f"`{entry['link']}`"
+    link, _ = match(row)
+    return link
+
+link_usage = collections.Counter(final_link(r) for r in rows if final_link(r))
+unique_count = 0
 for title, secs in AREAS:
     group = [r for r in rows if section_of(r['id']) in secs]
     if not group:
         continue
     group.sort(key=lambda r: r['id'])
     out.append(f'## {title} ({len(group)})\n')
-    out.append('| id | экран · состояние | ссылка / путь | перед кадром | shot list |')
-    out.append('|---|---|---|---|---|')
+    out.append('| id | экран · состояние | ссылка / путь | перед кадром | shot list | тапы | уникальна |')
+    out.append('|---|---|---|---|---|---|---|')
     for r in group:
         link, prep = match(r)
+        entry = STEPS_DATA.ENTRIES.get(r['id'])
+        steps_cell = ''
+        if entry:
+            link = f"`{entry['link']}`"
+            prep = entry['note']
+            steps_cell = '`' + '; '.join(entry['steps']) + '`' if entry['steps'] else ''
         t = texts.get(r['id'])
         shot = ''
         if t:
@@ -218,10 +240,18 @@ for title, secs in AREAS:
         else:
             counts['manual'] += 1
             cell = 'ручной путь — см. shot list'
-        out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} |")
+        # «уникальна»: либо данные строки это утверждают (путь выведен из кода), либо ссылка у строки ОДНА на всю таблицу и в «перед кадром» нет «тапами»
+        if entry:
+            is_unique = bool(entry['unique'])
+        else:
+            is_unique = bool(link) and link_usage[link] == 1 and 'тапами' not in prep and secs is not O
+        unique_count += 1 if is_unique else 0
+        prep = prep.replace('|', '¦')  # зачем: «|» в тексте подготовки сдвигал колонки «тапы»/«уникальна» (разбор роботом по номеру колонки)
+        out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} | {steps_cell} | {'да' if is_unique else 'нет'} |")
     out.append('')
 
 out.append('## Итог\n')
+out.append(f'Строк с признаком «уникальна: да» (робот parity_batch_shoot берёт только их): {unique_count} из {sum(counts.values())}.\n')
 out.append(f"Строк в охвате: {sum(counts.values())}. Готовая ссылка: {counts['link']}. Ручной путь по shot list: {counts['manual']}. Только ссылки по shot list (Шпиль/онбординг/аккаунт): {counts['shot']}. «Нужна фикстура»: {counts['need']}" + (f" — {', '.join(need[:60])}" if need else '') + '.\n')
 open(R + 'docs/phraseman-2.0/DEV_LINKS_R1.md', 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
 print(dict(counts), len(need))

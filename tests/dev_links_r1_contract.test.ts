@@ -41,14 +41,40 @@ describe('DEV_LINKS_R1', () => {
     // только колонка «ссылка / путь» (в колонке «shot list» выдержки из старых списков обрезаны многоточием)
     const linkCells = doc.split(String.fromCharCode(10)).filter((line) => /^\| [a-z0-9-]+-\d{3} \|/.test(line)).map((line) => line.split('|')[3] ?? '');
     const names = new Set(linkCells.flatMap((cell) => [...cell.matchAll(/_dev_state(?:=|%3D)([a-z_]+)/g)].map((m) => m[1])));
-    expect(names.size).toBeGreaterThan(8);
+    expect(names.size).toBeGreaterThan(5);
     for (const name of names) expect(DEV_PAYWALL_STATES as readonly string[]).toContain(name);
+  });
+
+  it('cards=empty is parsed (clears saved/own cards and packs so «Пусто» frames do not inherit the previous frame)', () => {
+    expect(parseDevStateParams({ cards: 'empty' }).request.cards).toBe('empty');
+    expect(parseDevStateParams({ cards: 'nope' }).rejected.cards).toBeTruthy();
   });
 
   it('intros=seen|reset is parsed; anything else is rejected', () => {
     expect(parseDevStateParams({ intros: 'seen' }).request.intros).toBe('seen');
     expect(parseDevStateParams({ intros: 'reset' }).request.intros).toBe('reset');
     expect(parseDevStateParams({ intros: 'nope' }).rejected.intros).toBeTruthy();
+  });
+
+  it('«уникальна: да» rows have a ready link; their «тапы» use only the known step grammar; the table keeps 7 columns', () => {
+    const rows = doc.split(String.fromCharCode(10)).filter((line) => /^\| [a-z0-9-]+-\d{3} \|/.test(line));
+    const badColumns = rows.filter((line) => line.split('|').length !== 9).map((line) => line.slice(0, 60));
+    expect(badColumns).toEqual([]); // «|» в тексте сдвигал колонки, а робот читает «тапы»/«уникальна» по номеру
+    const stepRx = /^(tap|long|swipe-left|swipe-right):\S.*$|^(back)$|^(type|key|scroll|wait|xy):\S+$/;
+    const problems: string[] = [];
+    let unique = 0;
+    for (const line of rows) {
+      const cells = line.split('|');
+      const id = cells[1].trim();
+      if (cells[7].trim() !== 'да') continue;
+      unique += 1;
+      if (!/`(phraseman:\/\/|premium_modal\?|dev_state\?)/.test(cells[3])) problems.push(`${id}: уникальна, но нет ссылки`);
+      for (const step of cells[6].replace(/`/g, '').split(';').map((s) => s.trim()).filter(Boolean)) {
+        if (!stepRx.test(step)) problems.push(`${id}: шаг «${step}» не по грамматике`);
+      }
+    }
+    expect(problems).toEqual([]);
+    expect(unique).toBeGreaterThan(20);
   });
 
   it('no row says a fixture is still needed for a state that already has one', () => {

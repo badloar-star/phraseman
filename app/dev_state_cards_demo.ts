@@ -317,6 +317,58 @@ export async function applyDialogQuota(stableId: string, remaining: number | 're
   return `${remaining}/${TRAINING_LIMIT_DEV}`;
 }
 
+// зачем (координатор 12.10, «уникальна»): режим просмотра «Сохранённых» и масштаб сетки переживают перезапуск (AsyncStorage + память процесса) — после кадра «5 колонок» или «Стопка»
+// следующая строка с той же ссылкой открывалась бы не в исходном виде. Каждая фикстура Карточек начинает с чистого вида.
+export async function resetCardsViewPrefs(): Promise<string> {
+  assertDevBuild('cards view prefs');
+  const { saveGalleryStep } = await import('../components/cards-grid/gallery_step_prefs');
+  const { GALLERY_DEFAULT_STEP } = await import('../components/cards-grid/cardsGalleryLayout');
+  const { setCollectionViewMode } = await import('./flashcards/collection_view_prefs');
+  saveGalleryStep(GALLERY_DEFAULT_STEP);
+  setCollectionViewMode('list');
+  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list' })); // guard-ok: единичный лог на ссылку
+  return `step=${GALLERY_DEFAULT_STEP},list`;
+}
+
+/**
+ * Пустой аккаунт Карточек (cards-009/013, cards-v2-011/013, packs-simple-003): ни сохранённых, ни своих карточек, ни своих наборов.
+ * Нужен, потому что «просто не применять cards=demo» не пусто: данные прошлого кадра лежат на устройстве.
+ */
+export async function applyCardsEmpty(): Promise<CardsDemoResult> {
+  const applied: Record<string, string> = {};
+  const skipped: Record<string, string> = {};
+  const step = async (key: string, run: () => Promise<string>) => {
+    try {
+      applied[key] = await run();
+    } catch (error) {
+      skipped[key] = error instanceof Error ? error.message : String(error);
+      console.warn('[DEV-STATE] cards empty step failed', key, skipped[key]); // guard-ok: сбой шага виден в логе
+    }
+  };
+  assertDevBuild('cards=empty');
+  await step('saved', async () => {
+    const { saveFlashcards } = await import('../hooks/use-flashcards');
+    await saveFlashcards([], TARGET);
+    return '0';
+  });
+  await step('custom', async () => {
+    const { updateCustomCards } = await import('./flashcards/custom_cards_store');
+    await updateCustomCards(() => [], TARGET);
+    return '0';
+  });
+  await step('own_packs', async () => {
+    const { loadLocalAuthorPacks, removeLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
+    const packs = await loadLocalAuthorPacks(TARGET);
+    for (const pack of packs) { // guard-ok: локальные ключи устройства, Firestore не читается
+      await removeLocalAuthorPack(pack.id, TARGET);
+    }
+    return String(packs.length);
+  });
+  await step('view', resetCardsViewPrefs);
+  console.log('[DEV-STATE] cards empty', JSON.stringify({ applied, skipped })); // guard-ok: единичный лог на ссылку
+  return { applied, skipped };
+}
+
 /** Выставить наполненный аккаунт. Каждый шаг независим: сбой одного не мешает остальным и пишет причину. */
 export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = {}): Promise<CardsDemoResult> {
   const applied: Record<string, string> = {};
@@ -330,6 +382,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = 
     }
   };
 
+  await step('view', resetCardsViewPrefs);
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');
     const cards = demoSavedFlashcards(options.lessons === true);

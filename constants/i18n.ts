@@ -820,7 +820,22 @@ export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown 
   if (lang === 'uk') return txt.uk as WidenTriLangValue<T[keyof T]>;
   if (lang === 'es' && isInterfaceLangEnabled(lang)) return txt.es as WidenTriLangValue<T[keyof T]>;
   if (lang !== 'ru' && lang in txt) return (txt[lang as keyof T] ?? txt.es) as WidenTriLangValue<T[keyof T]>;
+  // зачем (координатор 12.10, подготовка к включению английского интерфейса): словарь без ключа `en` молча отдавал РУССКИЙ.
+  // Английского текста в нём нет, поэтому берём ближайший латинский запасной (es) и пишем [I18N-FALLBACK] один раз на строку,
+  // чтобы дыры в словарях были видны в журнале, а не в глазах англоязычного человека.
+  if (lang === 'en') return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
   return txt.ru as WidenTriLangValue<T[keyof T]>;
+}
+
+const missingEnLogged = new Set<string>();
+
+function missingEnFallback(txt: { ru: unknown; es: unknown }): unknown {
+  const key = typeof txt.ru === 'string' ? txt.ru.slice(0, 80) : typeof txt.ru;
+  if (!missingEnLogged.has(key)) {
+    missingEnLogged.add(key);
+    console.warn(`[I18N-FALLBACK] lang=en: в словаре нет ключа en, показываю es (ru="${key}")`); // guard-ok: один раз на строку, дыра в переводе
+  }
+  return txt.es ?? txt.ru;
 }
 
 /** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */

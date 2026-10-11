@@ -117,8 +117,9 @@ const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error
 function isTranslationDictionary(source) {
   // зачем `[^=\n]*` перед `=`: словари объявляются и с типом
   // (`const UK: typeof RU = {`), не только голым присваиванием.
-  const hasRu = /\b(const\s+RU\b[^=\n]*=|['"]?ru['"]?\s*:\s*\{)/.test(source);
-  const hasOther = /\b(const\s+(UK|EN|ES|PL|TR|VI|ID|PT_BR)\b[^=\n]*=|['"]?(uk|en|es|pl|tr|vi|id)['"]?\s*:\s*\{)/.test(source);
+  // зачем (координатор 12.10): словарь бывает и массивом строк на язык (`ru: [ … ]`, как реплики демо-чата), не только вложенным объектом.
+  const hasRu = /\b(const\s+RU\b[^=\n]*=|['"]?ru['"]?\s*:\s*[{[])/.test(source);
+  const hasOther = /\b(const\s+(UK|EN|ES|PL|TR|VI|ID|PT_BR)\b[^=\n]*=|['"]?(uk|en|es|pl|tr|vi|id)['"]?\s*:\s*[{[])/.test(source);
   return hasRu && hasOther;
 }
 

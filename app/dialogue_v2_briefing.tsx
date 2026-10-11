@@ -172,7 +172,7 @@ export default function DialogueV2BriefingRoute() {
   // зачем (владелец 30.09: «энергия как урок, 1 за диалог»; макет dialogs.html B5/B6):
   // «Начать» списывает 1 энергию до входа в сессию; нет энергии — окно «Нет энергии».
   // Plus не тратит (confirmSpendOne вернёт 'unlimited'). Латч — от двойного тапа.
-  const { confirmSpendOne } = useEnergy();
+  const { confirmSpendOne, isUnlimited: energyUnlimited } = useEnergy();
   const [dialogueAttempt, setDialogueAttempt] = useState(0);
   // зачем (баг 01.10, «Дизайн»: «Начать диалог» — мёртвая кнопка, operation_id_conflict):
   // номер операции энергии = тип + попытка, БЕЗ сценария; попытка с 0 на каждом открытии
@@ -338,6 +338,7 @@ export default function DialogueV2BriefingRoute() {
     <>
     <DialogueV2BriefingScreen
       {...model}
+      showEnergy={!energyUnlimited}
       currentRank={localCoinRank}
       labels={labels}
       onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}

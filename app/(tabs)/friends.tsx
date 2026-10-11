@@ -356,7 +356,8 @@ function readPublicString(value: unknown): string {
 function normalizePublicFriendProfile(profile: FriendProfile): FriendProfile {
   return {
     ...profile,
-    name: profile.name.trim() || 'Игрок',
+    // зачем (координатор 12.10, подготовка к английскому): запасное имя при пустом имени было русским «Игрок» для всех языков; теперь тот же нейтральный «Phraseman», что у placeholderFriendProfile и в списке заглушек shouldUseLookupDisplayName (старый кэш с «Игрок» по-прежнему считается заглушкой).
+    name: profile.name.trim() || 'Phraseman',
     avatar: profile.avatar.trim() || '1',
     frame: profile.frame.trim(),
     // зачем (D108, 2026-09-30): ауры удалены — у друга только монета-аватар.
@@ -2335,7 +2336,7 @@ export default function FriendsTabScreen() {
       <UnifiedPlayerModal
         player={selectedPlayer}
         myInfo={{
-          name: myProfile?.name ?? 'Я',
+          name: myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja'),
           avatar: myProfile?.avatar ?? '1',
           frame: myProfile?.frame ?? '',
           aura: myProfile?.aura,

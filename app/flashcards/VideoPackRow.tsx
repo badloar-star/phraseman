@@ -14,7 +14,6 @@ import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
-import { FlowText } from '../../components/text-integrity/FlowText';
 import { KitCard } from '../../components/cards-grid/CardsKit';
 // зачем (координатор 11.10, ночная задача Карточек п.5; журнал владельца п.9 «название до 2 строк, многоточие только если не влезает»): название ролика в крупной карточке — максимум 2 строки. Новый потребитель ClampedText разрешён координатором; трещотка — tests/pack_row_shared_contract.test.ts.
 import { ClampedText } from '../../components/text-integrity/ClampedText';
@@ -268,9 +267,11 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               onPress={() => { void hapticTap(); onOpen(pack); }}
               style={StyleSheet.absoluteFill}
             />
-            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.title, plain && styles.titlePlain, { color: g.text }]}>
+            {/* зачем (Сверка cards-section-024, координатор 12.10): в узкой колонке строки вкладки «Наборы» длинное название («…500 фраз.docx») переносилось на 8–10 строк;
+                по образцу и журналу владельца п.9 — до 2 строк с многоточием, шрифт не ужимается (ClampedText разрешён для этого файла). */}
+            <ClampedText testID={`video-pack-title-${pack.id}`} maxLines={2} pointerEvents="none" style={[styles.title, plain && styles.titlePlain, { color: g.text }]}>
               {title}
-            </FlowText>
+            </ClampedText>
             <Text pointerEvents="none" maxFontSizeMultiplier={1.3} style={[styles.count, plain && styles.countPlain, { color: plain ? g.accentText : g.secondary }]}>{phrasesText}</Text>
           </View>
 

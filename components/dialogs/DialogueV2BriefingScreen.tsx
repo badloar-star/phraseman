@@ -4,6 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
+import EnergyBar from '../EnergyBar';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
 import {
   DialogueGlassBackButton,
@@ -28,6 +29,8 @@ export type DialogueV2BriefingScreenProps = Readonly<{
   briefing: string;
   objectives: readonly DialogueV2BriefingObjective[];
   rankRequired: number;
+  /** Пилюля энергии справа в шапке (как в сессии диалога): false у безлимитной энергии. */
+  showEnergy?: boolean;
   /** The local rank gate decides this before render; no account entitlement is consulted. */
   unlocked: boolean;
   /** Реальный ранг монеты человека; null — ещё не известен, строку «Сейчас ранг» не рисуем. */
@@ -54,6 +57,7 @@ export function DialogueV2BriefingScreen({
   briefing,
   objectives,
   rankRequired,
+  showEnergy = false,
   unlocked,
   currentRank,
   labels,
@@ -69,6 +73,8 @@ export function DialogueV2BriefingScreen({
       <SafeAreaView edges={['top']} style={styles.fill}>
         <View style={styles.top}>
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
+          {/* зачем (Сверка dialogs-007/008, координатор 12.10): в образце B1/B2 справа в шапке пилюля энергии «⚡ N» (диалог тратит энергию) — как в шапке сессии */}
+          {showEnergy ? <EnergyBar glass /> : null}
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
@@ -127,7 +133,7 @@ export function DialogueV2BriefingScreen({
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
-  top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row' },
+  top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   scroll: { paddingHorizontal: 16, paddingBottom: 28 },
   hero: { alignItems: 'center', marginTop: 18 },
   // dialogs.html B `.lvl`: 38×26, радиус 8, поля 0·9; без кромки (стиль «Тень»).

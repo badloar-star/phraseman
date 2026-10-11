@@ -35,7 +35,8 @@ test('Video shows rows or row placeholders with silent retry, never an error or 
   for (const token of ["'loading' | 'ready' | 'error'", 'fc-video-packs-clear-search', 'THUMB_W = 112', 'THUMB_H = 63']) {
     assert.ok((screen + row).includes(token), `missing state: ${token}`);
   }
-  assert.match(row, /<FlowText/);
+  // зачем (координатор 12.10): название строки — ClampedText (до 2 строк с многоточием, шрифт не ужимается), см. tests/pack_row_shared_contract.test.ts
+  assert.match(row, /<ClampedText/);
   assert.doesNotMatch(row, /numberOfLines=/);
 });
 

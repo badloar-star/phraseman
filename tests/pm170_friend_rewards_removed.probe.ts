@@ -26,7 +26,13 @@ const index = read('functions/src/index.ts');
 const rules = read('firestore.rules');
 assert.ok(!/friendsTogetherClaimLevel/.test(server + index), 'friendsTogetherClaimLevel вернулся');
 assert.ok(!/starsForLevel|bonusPercentForLevel|LEVEL_STAR_REWARDS/.test(core), 'награды за уровни вернулись в core');
-assert.ok(!rules.includes('friends_chest_claims'), 'правило friends_chest_claims вернулось');
+// зачем (координатор 11.10): чтение клейма сундука оставлено для клиентов 1.6.x до min_app_version >= 2.0 —
+// только чтение владельцем; запись клиенту по-прежнему запрещена, серверной выдачи нет.
+const chestRule = /match \/users\/\{userId\}\/friends_chest_claims\/\{weekKey\} \{([^}]*)\}/.exec(rules);
+assert.ok(chestRule, 'правило чтения friends_chest_claims для 1.6.x пропало до min_app_version >= 2.0');
+assert.match(chestRule[1], /allow read: if canonicalUserMatchesAuth\(userId\);/, 'friends_chest_claims: читать может только владелец');
+assert.match(chestRule[1], /allow write: if false;/, 'friends_chest_claims: клиентская запись запрещена');
+assert.equal((rules.match(/friends_chest_claims\/\{/g) ?? []).length, 1, 'friends_chest_claims: ровно один блок');
 assert.ok(/export const friendsNudge\b/.test(server), 'friendsNudge («Позвать») пропал');
 assert.ok(/export \{ friendsNudge \} from "\.\/friends_together"/.test(index), 'friendsNudge не экспортирован');
 

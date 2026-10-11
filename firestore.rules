@@ -2562,6 +2562,15 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Клеймы сундука недели «Вместе» — читает только владелец, пишет только сервер.
+    // зачем (координатор 11.10, DEPLOY_RUNBOOK ред. 2): награды «Вместе» удалены в 2.0 (PM-170), но сборка 1.6.24 читает
+    // этот документ (together_store.ts, readWeeklyChestClaimedWeekKey). Без правила 1.6.x на втором устройстве видит
+    // забранный сундук незабранным. Только чтение; удалить после min_app_version >= 2.0.
+    match /users/{userId}/friends_chest_claims/{weekKey} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow write: if false;
+    }
+
     // «Позвать» — дневные лимиты/receipts обеих сторон в доке владельца (friendsNudge).
     // Читает только владелец (та же модель, что friend_activity_like_daily_limits выше).
     match /users/{userId}/friend_nudges/{dayKey} {

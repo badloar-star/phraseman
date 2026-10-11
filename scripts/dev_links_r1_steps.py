@@ -204,3 +204,21 @@ add('settings-gap-035', ['tap:#support-report-input', 'type:short'], S_FREE, '/s
 add('settings-gap-036', ['tap:#support-report-input', 'type:Test message for the layout check', 'tap:#support-report-submit'], 'plus=off&support=fail', '/support_report', note='отправка не удалась (support=fail — на сервер ничего не уходит)')
 add('profile-025', [], S_FREE, '/survey_screen', note='опрос недоступен — совместимый маршрут')
 add('profile-026', [], 'referral=off', '/referrals', note='приглашение друга (referral=off)')
+
+
+# ───────────────────────── Промокод (экран ввода кода) ─────────────────────────
+# Ответ сервера подменяет фикстура promo=<результат> (app/dev_social_state.ts, память процесса); любой введённый код получает этот ответ.
+PROMO = '/promo_code_entry'
+PROMO_TYPE = ['tap:#promo-code-input', 'type:TESTCODE']
+PROMO_SEND = PROMO_TYPE + ['tap:#promo-code-submit']
+PROMO_BASE = 'plus=off&energy=3'
+add('overlays-campaigns-004', [], PROMO_BASE, PROMO, note='ввод промокода — пусто')
+add('overlays-campaigns-005', PROMO_TYPE, PROMO_BASE, PROMO, note='введён код — кнопка активна («можно применить»)')
+add('overlays-campaigns-007', PROMO_SEND, PROMO_BASE + '&promo=ok', PROMO, note='ответ «срок подтверждён» (promo=ok)')
+add('overlays-campaigns-008', PROMO_SEND, PROMO_BASE + '&promo=lifetime', PROMO, note='ответ «бессрочно» (promo=lifetime)')
+add('overlays-campaigns-009', PROMO_SEND, PROMO_BASE + '&promo=not_found', PROMO, note='ответ «не найден»')
+add('overlays-campaigns-010', PROMO_SEND, PROMO_BASE + '&promo=expired', PROMO, note='ответ «истёк»')
+add('overlays-campaigns-011', PROMO_SEND, PROMO_BASE + '&promo=limit', PROMO, note='ответ «лимит исчерпан»')
+add('overlays-campaigns-012', PROMO_SEND, PROMO_BASE + '&promo=used', PROMO, note='ответ «уже использован»')
+add('overlays-campaigns-014', PROMO_SEND, PROMO_BASE + '&promo=disabled', PROMO, note='ответ «промокод отключён»')
+add('overlays-campaigns-015', PROMO_SEND, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')

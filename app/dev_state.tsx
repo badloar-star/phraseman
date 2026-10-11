@@ -13,6 +13,9 @@ import { Text, View } from 'react-native';
 import { useEnergy } from '../components/EnergyContext';
 import { applyDevState, isDevStateAvailable, parseDevStateParams, type DevStateResult } from './dev_state_fixtures';
 
+// зачем: потолок ожидания перечитывания энергии (см. комментарий в эффекте).
+const ENERGY_RELOAD_CEILING_MS = 3000;
+
 export default function DevStateRoute() {
   const params = useLocalSearchParams();
   const router = useRouter();
@@ -25,14 +28,49 @@ export default function DevStateRoute() {
     let alive = true;
     const { request, rejected } = parseDevStateParams(params as Record<string, unknown>);
     if (Object.keys(rejected).length > 0) console.warn('[DEV-STATE] rejected params', JSON.stringify(rejected)); // guard-ok: отброшенные параметры видны в логе
-    void applyDevState(request)
-      .then(async (applied) => {
+    // зачем (координатор 12.10: «повис на DEV-STATE… больше 90 с, перехода на next нет»): раньше после applyDevState
+    // шло безлимитное `await reload()` энергии (её загрузчик ждёт замок/сеть) и ни одного лога — экран молчал.
+    // Теперь каждый шаг пишет [DEV-STATE] route: …, а ожидание энергии ограничено потолком: фикстуры УЖЕ применены,
+    // переход на next не должен зависеть от того, успела ли перечитаться энергия.
+    void (async () => {
+      const startedAt = Date.now();
+      const since = () => `${Date.now() - startedAt}мс`;
+      let ceilingTimer: ReturnType<typeof setTimeout> | null = null;
+      try {
+        console.warn('[DEV-STATE] route: старт', JSON.stringify({ request, rejected })); // guard-ok: трассировка робот-ссылки
+        const applied = await applyDevState(request);
+        console.warn('[DEV-STATE] route: фикстуры применены', since(), JSON.stringify({ applied: applied.applied, skipped: applied.skipped, next: applied.next })); // guard-ok: трассировка
         // Энергия и Plus читаются контекстом — перечитываем, чтобы экран после перехода показал новое состояние.
-        await reload().catch((error: unknown) => console.warn('[DEV-STATE] energy reload failed', String(error))); // guard-ok: catch логируется
-        if (!alive) return;
+        const reloadOutcome = await Promise.race([
+          reload().then(() => 'ok', (error: unknown) => `error: ${String(error)}`),
+          new Promise<string>((resolve) => { ceilingTimer = setTimeout(() => resolve('потолок'), ENERGY_RELOAD_CEILING_MS); }),
+        ]);
+        console.warn('[DEV-STATE] route: перечитывание энергии →', reloadOutcome, since()); // guard-ok: трассировка
+        if (!alive) {
+          console.warn('[DEV-STATE] route: экран уже закрыт (alive=false) — переход не делаем', since()); // guard-ok: ранний выход логируется
+          return;
+        }
         setResult({ ...applied, skipped: { ...applied.skipped, ...rejected } });
-        if (applied.next) setTimeout(() => router.replace(applied.next as never), 300);
-      });
+        if (!applied.next) {
+          console.warn('[DEV-STATE] route: next не задан — остаёмся на экране', since()); // guard-ok: ранний выход логируется
+          return;
+        }
+        console.warn('[DEV-STATE] route: replace через 300 мс →', applied.next, since()); // guard-ok: трассировка
+        setTimeout(() => {
+          try {
+            router.replace(applied.next as never);
+            console.warn('[DEV-STATE] route: replace вызван →', applied.next); // guard-ok: трассировка
+          } catch (error) {
+            console.warn('[DEV-STATE] route: replace УПАЛ', applied.next, String(error)); // guard-ok: catch логируется
+          }
+        }, 300);
+      } catch (error) {
+        console.warn('[DEV-STATE] route: ОШИБКА до перехода', since(), String(error)); // guard-ok: catch логируется
+        if (alive) setResult({ applied: {}, skipped: { route_error: String(error) }, next: null });
+      } finally {
+        if (ceilingTimer) clearTimeout(ceilingTimer);
+      }
+    })();
     return () => { alive = false; };
     // Применяем один раз на заход по ссылке.
     // eslint-disable-next-line react-hooks/exhaustive-deps

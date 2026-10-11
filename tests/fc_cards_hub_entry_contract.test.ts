@@ -19,15 +19,14 @@ describe('approved Cards hub entry', () => {
     if (!exists) return;
 
     const hub = fs.readFileSync(hubPath, 'utf8');
-    // зачем (владелец 04.10, хаб А утверждён): хаб — стопка, главная кнопка и четыре равные плитки (CardsHubV2); блока «Лучшее у сообщества» и сегментов больше нет.
+    // зачем (владелец 12.10, «Карточки 2.0» cards-v2.html утверждены целиком): хаб — hero «Продолжить», «Твои карточки» (Сохранённые, Мои наборы), лента «Из видео» и чарт «Лучшее у сообщества»; прежний хаб А заменён.
     expect(hub).toContain('CardsHubV2');
-    expect(hub).not.toContain('SavedTopCommunityPacks');
+    expect(hub).toContain('pickTopCommunityPacks');
     expect(hub).toContain("pathname: '/flashcards_collection'");
     expect(hub).toContain("router.push('/flashcards_my_packs'");
     expect(hub).toContain("router.push('/flashcards_packs'");
     const view = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
-    for (const id of ['saved', 'mine', 'video', 'community']) expect(hub).toContain(`id: '${id}'`);
-    expect(view).toContain('fc-cards-hub-tile-');
+    for (const id of ['tile-saved', 'tile-mine', 'video-', 'community-']) expect(view).toContain(`fc-cards-hub-${id}`);
     expect(view).toContain('fc-cards-hub-train');
     expect(hub).not.toContain('<Ionicons name="barbell-outline"');
     expect(hub).not.toContain('FlashcardsTabBar');
@@ -38,8 +37,8 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain("safeRouterBack(router, '/(tabs)/home' as never)");
     const view = read('app', 'flashcards', 'CardsHubV2.tsx');
     expect(view).toContain('testID="fc-cards-hub-back"');
-    expect(view).toContain('name="arrow-back"');
-    expect(view).toContain('accessibilityLabel={labels.back}');
+    expect(view).toContain('icon="arrow-back"');
+    expect(view).toContain('label={labels.back}');
     expect(hub).toContain('back: copy.back');
   });
 
@@ -92,7 +91,7 @@ describe('approved Cards hub entry', () => {
     expect(hub).not.toContain('disabled={trainingLocked || !trainingEntryReady}');
     expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_train')");
     expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");
-    expect(read('app', 'flashcards', 'CardsHubV2.tsx')).toContain("trainLocked ? 'lock-closed' : 'arrow-forward'");
+    expect(read('app', 'flashcards', 'CardsHubV2.tsx')).toContain("hero.ctaLocked ? 'lock-closed' : 'play'");
     expect(hub).toContain('if (paywallOpeningRef.current)');
     expect(setup).toContain('loadFcDeckOptions');
     expect(setup).toContain('useFlashcardTrainingQuotaPreview()');

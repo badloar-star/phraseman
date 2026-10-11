@@ -23,11 +23,13 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
-import { isLocalAuthorPackId, loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
+import { isLocalAuthorPackId, loadLocalAuthorPacks, type LocalAuthorPack } from '../community_packs/localAuthorPacks';
 import { getCanonicalUserId } from '../user_id_policy';
 import { startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import {
+  formatPackTitleForDisplay,
   loadMarketplacePacks,
+  packTitleForInterface,
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './marketplace';
@@ -46,6 +48,8 @@ import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_lang
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
+import { pickTopCommunityPacks } from './SavedTopCommunityPacks';
+import { formatDuration } from './VideoPackRow';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
@@ -132,6 +136,8 @@ export default function FlashcardsHubScreen() {
     () => peekWarmMarketplacePacks(studyTarget) ?? [],
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
+  // зачем (Карточки 2.0, плитка «Мои наборы»): обложки стопки — названия и размеры своих наборов; уже загружаются для владения, держим сами пакеты.
+  const [authoredPacks, setAuthoredPacks] = useState<LocalAuthorPack[]>([]);
   const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
   // My Packs includes unpublished author packs that the Hub catalog does not know.
   // Only its settled account/target snapshot is a truthful count.
@@ -144,15 +150,22 @@ export default function FlashcardsHubScreen() {
     return applyCommunityPacksFilter(filterVideoPacks(packs), '', 'new', packLanguage).length;
   }, [studyTarget]);
   const [videoPackCount, setVideoPackCount] = useState<number | null>(() => countVideoPacks(peekVideoPhraseSetPacks()));
+  // зачем (Карточки 2.0, лента «Из видео» на хабе): те же наборы и тот же фильтр языка, что у счётчика; кэш 6 ч — без лишних запросов.
+  const listVideoPacks = useCallback((packs: readonly FlashcardMarketPack[] | null): FlashcardMarketPack[] => {
+    if (!packs) return [];
+    const packLanguage = peekStoredPackLanguage() ?? defaultPackLanguageForStudyTarget(studyTarget);
+    return applyCommunityPacksFilter(filterVideoPacks(packs), '', 'new', packLanguage).slice(0, 8);
+  }, [studyTarget]);
+  const [videoPacks, setVideoPacks] = useState<FlashcardMarketPack[]>(() => listVideoPacks(peekVideoPhraseSetPacks()));
   useEffect(() => {
     let cancelled = false;
     void loadVideoPhraseSetPacks().then((packs) => {
-      if (!cancelled) setVideoPackCount(countVideoPacks(packs));
+      if (!cancelled) { setVideoPackCount(countVideoPacks(packs)); setVideoPacks(listVideoPacks(packs)); }
     }).catch((error: unknown) => {
       console.warn('[FC-DECKS] hub:video count FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok
     });
     return () => { cancelled = true; };
-  }, [countVideoPacks]);
+  }, [countVideoPacks, listVideoPacks]);
   /**
    * зачем (владелец: «раздел открывается и происходит скачок, моргание»):
    * состояние стартовало в 'loading' ВСЕГДА, даже когда тёплый каталог уже лежал
@@ -398,6 +411,7 @@ export default function FlashcardsHubScreen() {
         setCatalog((prev) => (sameCatalog(prev, merged) ? prev : merged));
         const nextOwned = [...new Set([...owned, ...authored.map((pack) => pack.id)])];
         setOwnedCommunityPackIds((prev) => (sameIds(prev, nextOwned) ? prev : nextOwned));
+        setAuthoredPacks((prev) => (prev.length === authored.length && prev.every((pack, i) => pack.id === authored[i]?.id && pack.cards.length === authored[i]?.cards.length) ? prev : authored));
         setCatalogLoadState('ready');
       })();
       return () => {
@@ -624,12 +638,6 @@ export default function FlashcardsHubScreen() {
     return cat === 'one' ? f[0] : cat === 'few' ? f[1] : f[2];
   };
   const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
-  const tiles = [
-    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
-    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
-  ];
   const limitOutTitle = triLang(lang, { ru: 'Лимит на этот месяц исчерпан', uk: 'Ліміт на цей місяць вичерпано', en: 'This month’s limit is used up', es: 'Has agotado el límite de este mes', 'pt-BR': 'O limite deste mês acabou', vi: 'Đã hết lượt của tháng này', id: 'Batas bulan ini sudah habis', tr: 'Bu ayın limiti doldu', pl: 'Limit na ten miesiąc wyczerpany' });
   const limitOutSub = triLang(lang, { ru: `Обновится ${resetDate}`, uk: `Оновиться ${resetDate}`, en: `Resets on ${resetDate}`, es: `Se renueva el ${resetDate}`, 'pt-BR': `Renova em ${resetDate}`, vi: `Làm mới vào ${resetDate}`, id: `Diperbarui ${resetDate}`, tr: `${resetDate} tarihinde yenilenir`, pl: `Odnowi się ${resetDate}` });
   const reduceMotion = useFcReduceMotion();
@@ -645,6 +653,52 @@ export default function FlashcardsHubScreen() {
     }
     : undefined;
 
+  // зачем (Карточки 2.0, макет cards-v2.html «Хаб»): модель секций хаба. Данных, которых у приложения ещё нет (позиция «Продолжить», стартовый
+  // набор «Первые 50 слов»), не выдумываем: полоса позиции скрыта, у новичка — прежний «Начни с готового».
+  const hubCopy = {
+    cont: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
+    start: triLang(lang, { ru: 'Начни здесь', uk: 'Почни тут', en: 'Start here', es: 'Empieza aquí', 'pt-BR': 'Comece aqui', vi: 'Bắt đầu tại đây', id: 'Mulai di sini', tr: 'Buradan başla', pl: 'Zacznij tutaj' }),
+    mode: triLang(lang, { ru: 'Режим', uk: 'Режим', en: 'Mode', es: 'Modo', 'pt-BR': 'Modo', vi: 'Chế độ', id: 'Mode', tr: 'Mod', pl: 'Tryb' }),
+    empty: triLang(lang, { ru: 'Пока пусто', uk: 'Поки порожньо', en: 'Nothing yet', es: 'Aún vacío', 'pt-BR': 'Ainda vazio', vi: 'Chưa có gì', id: 'Belum ada', tr: 'Henüz boş', pl: 'Na razie pusto' }),
+    createShort: triLang(lang, { ru: 'Создать', uk: 'Створити', en: 'Create', es: 'Crear', 'pt-BR': 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' }),
+    all: triLang(lang, { ru: 'Все', uk: 'Усі', en: 'All', es: 'Todos', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
+    best: triLang(lang, { ru: 'Лучшее у сообщества', uk: 'Найкраще у спільноти', en: 'Best of the community', es: 'Lo mejor de la comunidad', 'pt-BR': 'Melhores da comunidade', vi: 'Nổi bật của cộng đồng', id: 'Terbaik dari komunitas', tr: 'Topluluğun en iyileri', pl: 'Najlepsze ze społeczności' }),
+    phrases: (n: number) => triLang(lang, { ru: `${n} фраз`, uk: `${n} фраз`, en: `${n} phrases`, es: `${n} frases`, 'pt-BR': `${n} frases`, vi: `${n} cụm`, id: `${n} frasa`, tr: `${n} ifade`, pl: `${n} zwrotów` }),
+    cardsN: (n: number) => triLang(lang, { ru: `${n} карточек`, uk: `${n} карток`, en: `${n} cards`, es: `${n} tarjetas`, 'pt-BR': `${n} cartões`, vi: `${n} thẻ`, id: `${n} kartu`, tr: `${n} kart`, pl: `${n} kart` }),
+  };
+  const translationOf = (card: { ru?: string; uk?: string; es?: string; sourceLocales?: unknown }): string => {
+    const byLocale = (card.sourceLocales as Record<string, string | undefined> | undefined)?.[lang];
+    if (byLocale) return byLocale;
+    return (lang === 'uk' ? card.uk : lang === 'es' ? card.es ?? card.ru : card.ru) ?? '';
+  };
+  const savedPreviewCards = peekSelectedSavedContour() ?? [];
+  const myCovers = [
+    ...authoredPacks.map((pack) => ({ title: formatPackTitleForDisplay(pack.title), count: pack.cards.length })),
+    ...catalog.filter((pack) => ownedCommunityPackIds.includes(pack.id) && !isLocalAuthorPackId(pack.id)).map((pack) => ({ title: packTitleForInterface(pack, lang), count: pack.cardCount })),
+  ].slice(0, 3).map((c) => ({ title: c.title, count: String(c.count) }));
+  const hubHero = trainingLocked
+    ? { overline: hubCopy.cont, word: limitOutTitle, sub: limitOutSub, progress: null, ctaLabel: trainLabel, ctaLocked: true }
+    : fresh
+      ? { overline: hubCopy.start, word: 'Hello', sub: fresh.sub, progress: null, ctaLabel: fresh.cta, ctaLocked: false }
+      : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: trainLabel, ctaLocked: false };
+  const openVideoPack = (pack: FlashcardMarketPack) => openTopPack(pack);
+  const videoItems = videoPacks.map((pack) => ({
+    id: pack.id,
+    title: packTitleForInterface(pack, lang),
+    meta: hubCopy.phrases(pack.cardCount),
+    thumbUrl: pack.videoId ? `https://i.ytimg.com/vi/${encodeURIComponent(String(pack.videoId).trim())}/mqdefault.jpg` : null,
+    duration: formatDuration(pack.videoDurationSec),
+    onPress: () => openVideoPack(pack),
+  }));
+  const communityItems = pickTopCommunityPacks(catalog, 3).map((pack) => ({
+    id: pack.id,
+    title: packTitleForInterface(pack, lang),
+    sub: `${pack.authorName ?? ''} · ${hubCopy.cardsN(pack.cardCount)}`.replace(/^ · /, ''),
+    word: packTitleForInterface(pack, lang),
+    likes: fmt(pack.likesCount ?? 0),
+    onPress: () => openTopPack(pack),
+  }));
+
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
       {/* зачем: фон хаба как в макете — пятна цвета темы (один статичный слой), а не плоская заливка */}
@@ -656,22 +710,24 @@ export default function FlashcardsHubScreen() {
           <CardsHubV2
             g={g}
             title={copy.title}
-            subtitle={copy.subtitleShort}
-            limitLabel={limitLabel}
-            // зачем (Сверка cards-section-004, hubLimitS): лимит исчерпан — верхняя карточка стопки говорит об этом и о дате обновления.
-            topWord={trainingLocked ? limitOutTitle : (topCard?.en ?? 'Boarding pass')}
-            topIpa={trainingLocked ? limitOutSub : (topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/')}
-            trainLabel={trainLabel}
-            trainLocked={trainingLocked}
-            tiles={tiles}
+            hero={{
+              ...hubHero,
+              modeLabel: hubCopy.mode,
+              onCta: () => { pendingDeckRef.current = null; if (fresh && !trainingLocked) { fresh.onPress(); return; } onTrainPress(); },
+              onMode: () => { pendingDeckRef.current = null; onTrainPress(); },
+            }}
+            yours={{
+              title: copy.library,
+              saved: { title: copy.saved, count: fmt(savedCount), empty: savedCount === 0, emptyLabel: hubCopy.empty, words: savedPreviewCards.slice(0, 4).map((c) => c.en), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
+              mine: { title: copy.mine, count: fmt(myPackCount), empty: myPackCount === 0, emptyLabel: hubCopy.createShort, covers: myCovers, onPress: () => (myPackCount === 0 ? openCreatePack() : router.push('/flashcards_my_packs' as never)) },
+            }}
+            video={videoItems.length > 0 ? { title: copy.videoShort, allLabel: hubCopy.all, items: videoItems, onAll: () => router.push('/flashcards_video_packs' as never) } : null}
+            community={communityItems.length > 0 ? { title: hubCopy.best, allLabel: hubCopy.all, items: communityItems, onAll: () => router.push('/flashcards_packs' as never) } : null}
             reduceMotion={reduceMotion}
-            availableHeight={windowHeight - insets.top - insets.bottom}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
             onCreate={openCreatePack}
-            onTrain={() => { pendingDeckRef.current = null; onTrainPress(); }}
-            trainButtonRef={trainButtonRef}
-            labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
-            fresh={fresh}
+            ctaRef={trainButtonRef}
+            labels={{ back: copy.back, create: copy.create, ctaA11y: trainAccessibilityLabel }}
           />
         </ContentWrap>
 

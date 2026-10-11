@@ -526,19 +526,15 @@ test('approved graphite, lavender and marine tokens remain distinct materials', 
 });
 
 
-// зачем (владелец 04.10, хаб А утверждён и перенесён 1 в 1 из docs/design/v2-app/cards-section.html): прежние проверки раскладки «библиотека рядами + лента сообщества + сегменты»
-// удалены вместе с самой раскладкой; здесь — сторож утверждённой: четыре равные плитки, стопка, главная кнопка с остатком, без прокрутки и без обводок.
-test('approved hub A: stack, accent CTA with the monthly remainder and four equal tiles, no scroll, no outlines', () => {
+// зачем (владелец 12.10, «Карточки 2.0» cards-v2.html утверждены целиком): сторож нового хаба вместо хаба А — hero с главной кнопкой и остатком месяца, две плитки «Твои карточки»,
+// лента «Из видео» и чарт «Лучшее у сообщества» (оба скрыты, пока данных нет), стиль «Тень»: ни одной обводки у контейнеров.
+test('Cards 2.0 hub: hero CTA with the monthly remainder, two library tiles, video rail, community chart, no outlines', () => {
   const hub = readFileSync('app/flashcards/FlashcardsHubScreen.tsx', 'utf8');
   const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
-  for (const id of ['saved', 'mine', 'video', 'community']) assert.match(hub, new RegExp(`id: '${id}'`), `tile ${id}`);
   for (const route of ["'/flashcards_collection'", "'/flashcards_my_packs'", "'/flashcards_packs'", "'/flashcards_video_packs'"]) assert.match(hub, new RegExp(route), `route ${route}`);
   assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
-  assert.match(view, /fc-cards-hub-train/);
-  assert.match(view, /stackTop/);
-  // зачем (координатор 05.10, FONTSCALE2): при шрифте 1.0 хаб без прокрутки, как в макете; ScrollView разрешён ТОЛЬКО как запасной вариант при крупном системном шрифте
-  assert.doesNotMatch(view, /borderWidth: (?!StyleSheet\.hairlineWidth)/, 'hub A has only 1px hairline edges');
-  assert.equal((view.match(/<ScrollView/g) ?? []).length, 1, 'one ScrollView only');
-  assert.ok(view.includes('return fs > 1') && view.includes('? <ScrollView'), 'hub A has no scroll at font scale 1.0');
-  assert.match(view, /tiles: \{[^}]*flexWrap: 'wrap'/);
+  for (const id of ['fc-cards-hub-train', 'fc-cards-hub-hero', 'fc-cards-hub-tile-saved', 'fc-cards-hub-tile-mine', 'fc-cards-hub-video-', 'fc-cards-hub-community-']) assert.ok(view.includes(id), id);
+  assert.match(view, /hasVideo && video/, 'video rail hidden when there are no video packs');
+  assert.match(view, /hasCommunity && community/, 'community chart hidden when the catalog is empty');
+  assert.doesNotMatch(view, /borderWidth|borderColor/, 'Shadow style: no container outlines on the hub');
 });

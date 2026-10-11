@@ -26,23 +26,25 @@
       "screen": "Хаб и выбор режима",
       "state": "Хаб · четыре раздела",
       "code": [
+        "app/flashcards/CardsHubV2.tsx",
         "app/flashcards/FlashcardsHubScreen.tsx"
       ],
       "matrix_status": "🏠",
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-001.png",
-      "evidence_at": "2026-10-10T18:42:54.358Z",
-      "evidence_sha256": "8ff5d722249ba3181286639d65dd41a3f76e3975fbba237569856f3a9a669617",
+      "evidence_at": "2026-10-11T08:45:25.551Z",
+      "evidence_sha256": "eb33a8e816655112ccbae9485b06436867cb288956dd9f24bf526134f2c9e489",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "reviewed_by": null,
-      "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 1) — одна съёмка закрывает обе строки"
+      "status": "match",
+      "blocked_reason": null,
+      "reviewed_by": "owner-2026-10-11: владелец велел переводить сверенное в match; дубль строки cards-section-001 (тот же экран, склейка по тому же кадру)",
+      "reviewed_at": "2026-10-11T08:45:42.585Z",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 1) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-002",
@@ -61,18 +63,19 @@
       "matrix_status": "🏠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-002.png",
+      "evidence_at": "2026-10-11T08:45:28.228Z",
+      "evidence_sha256": "03caec0e12b25f01d070598346479808ac9597a58b6ed54c6ce554d1361b1e55",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "reviewed_by": null,
-      "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 32) — одна съёмка закрывает обе строки"
+      "status": "match",
+      "blocked_reason": null,
+      "reviewed_by": "owner-2026-10-11: владелец велел переводить сверенное в match; дубль строки cards-section-032 (тот же экран, склейка по тому же кадру)",
+      "reviewed_at": "2026-10-11T08:45:42.586Z",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 32) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-003",
@@ -98,11 +101,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 4) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 4) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-004",
@@ -128,10 +132,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-005",
@@ -161,12 +166,13 @@
       "diffs": [
         "Не сверено: снято не то состояние (открыт редактор «Новая карточка» с клавиатурой). Эталон — режим выделения «Отметить 3/128» в «Сохранённых»: чекбоксы, «Создать набор» + «Удалить». Нужно войти в выделение в списке и переснять."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 3 (\"Список\") — склейка снята с 5; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 5) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 5) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-006",
@@ -194,11 +200,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 15) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 15) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-007",
@@ -226,10 +233,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-008",
@@ -256,10 +264,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-009",
@@ -285,11 +294,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 7) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 7) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-010",
@@ -315,10 +325,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-011",
@@ -346,12 +357,13 @@
       "diffs": [
         "Макет: заголовок «Мои наборы» + подпись «Всё, что ты добавил…», справа пилюля языка EN, поиск по названию и «Сначала новые», две секции «Добавленные из сообщества» и «Созданные мной» плитками-обложками 3 в ряд, внизу круглая кнопка «+». Приложение: подпись «3 набора», вместо языка кнопка «⋮», секция «Добавленные» списком строк с иконкой людей и числом, без поиска/сортировки, без «Созданные мной», внизу широкая кнопка «Создать набор». Раскладка расходится целиком."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 9 (\"Мои наборы\") — склейка снята с 11; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 9) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 9) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-012",
@@ -378,10 +390,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-013",
@@ -407,11 +420,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 11) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 11) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-014",
@@ -438,11 +452,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-015",
@@ -469,10 +484,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-016",
@@ -499,10 +515,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-017",
@@ -529,11 +546,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-018",
@@ -559,11 +577,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 13) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 13) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-019",
@@ -589,11 +608,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 14) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 14) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-020",
@@ -619,10 +639,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-021",
@@ -651,12 +672,13 @@
       "diffs": [
         "Макет (заполненная карточка): у поля «Передняя сторона» значок динамика, текст, транскрипция, плашка «Подсказка», у «Задней стороны» крупный текст. Приложение — пустая форма: нет значка динамика, нет плашки подсказки; кнопка «Сохранить» в макете у низа экрана, тут над клавиатурой. Пустое состояние макета не снято — нужна заполненная форма для 100% сверки."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 17 (\"Новая карточка\") — склейка снята с 21; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 20) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 20) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-022",
@@ -683,10 +705,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-023",
@@ -715,12 +738,13 @@
       "diffs": [
         "Макет «Новый набор»: поля «Название набора», «Кратко о наборе», «Язык набора» с пилюлей EN, переключатель «Публичный набор», «Оформление», список «Карточки 12 из 10–50», «Добавить карточку», кнопка «Сохранить»; стрелка назад. Приложение: крестик вместо стрелки, «⋮» справа, поле «Название *», сегмент «Кто видит: Только я / Все», «Карточки 0», «Первая карточка». Нет «Кратко», «Язык», «Публичный», «Оформление». Состав экрана расходится."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 19 (\"Новый набор\") — склейка снята с 23; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 19) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 19) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-024",
@@ -747,10 +771,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-025",
@@ -771,17 +796,18 @@
       "anim_notes": [
         "sk 1.3s linear infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-025.png",
+      "evidence_at": "2026-10-11T08:45:30.618Z",
+      "evidence_sha256": "5cff8d6449ae0c64681d0660bb9a5c6493baaef0c5421f57f81fce59a58afa65",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-026",
@@ -809,12 +835,13 @@
       "diffs": [
         "Не сверено: снят экран «Правда / ложь» с ошибкой «Этот режим сейчас недоступен», а эталон — экран «Из видео» с ошибкой «Не удалось загрузить / Повторить». Ошибочное состояние недостижимо без обрыва связи (режим полёта запрещён). Отдельно: текст ошибки режима крупный по центру, у макета ошибки — значок, заголовок и кнопка «Повторить»."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-027",
@@ -842,10 +869,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-028",
@@ -874,12 +902,13 @@
       "diffs": [
         "Макет «Из видео»: вкладки «Популярные/Новые», строки с превью, длительностью, лайками и числом добавивших, без кнопок. Приложение: подпись «4 набора · 750 фраз», крупный заголовок, пилюля EN под ним, строки с кнопкой «Добавить», название в узкой колонке переносится на 10 строк, нет вкладок и лайков. Расходится раскладка и состав строки."
       ],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "_remap_note": "телефон макета 24 (\"Список\") — склейка снята с 28; переснять",
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 24) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 24) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-029",
@@ -908,11 +937,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 26) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 26) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-030",
@@ -939,11 +969,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 29) — одна съёмка закрывает обе строки"
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 29) — одна съёмка закрывает обе строки",
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-031",
@@ -969,10 +1000,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-032",
@@ -998,10 +1030,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-033",
@@ -1030,10 +1063,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-034",
@@ -1059,10 +1093,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-035",
@@ -1089,10 +1124,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-036",
@@ -1118,10 +1154,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-037",
@@ -1150,10 +1187,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-038",
@@ -1179,10 +1217,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-039",
@@ -1208,10 +1247,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-040",
@@ -1240,10 +1280,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-041",
@@ -1270,10 +1311,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-042",
@@ -1300,10 +1342,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-043",
@@ -1331,10 +1374,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-044",
@@ -1360,10 +1404,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-045",
@@ -1389,10 +1434,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-046",
@@ -1421,10 +1467,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-047",
@@ -1451,10 +1498,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-048",
@@ -1481,10 +1529,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-049",
@@ -1511,10 +1560,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-050",
@@ -1540,10 +1590,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-051",
@@ -1569,10 +1620,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-052",
@@ -1598,10 +1650,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-053",
@@ -1627,10 +1680,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-054",
@@ -1656,10 +1710,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-055",
@@ -1685,10 +1740,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-056",
@@ -1716,10 +1772,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-057",
@@ -1745,10 +1802,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-058",
@@ -1774,10 +1832,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-059",
@@ -1803,10 +1862,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-060",
@@ -1833,10 +1893,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-061",
@@ -1863,10 +1924,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-062",
@@ -1892,10 +1954,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-063",
@@ -1921,10 +1984,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-064",
@@ -1951,10 +2015,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-065",
@@ -1981,10 +2046,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-066",
@@ -2011,10 +2077,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-067",
@@ -2041,10 +2108,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-068",
@@ -2071,10 +2139,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-069",
@@ -2101,10 +2170,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-070",
@@ -2131,10 +2201,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-071",
@@ -2161,10 +2232,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-072",
@@ -2193,10 +2265,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-073",
@@ -2223,10 +2296,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-074",
@@ -2253,10 +2327,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-075",
@@ -2282,10 +2357,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-076",
@@ -2311,10 +2387,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-077",
@@ -2340,10 +2417,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-078",
@@ -2369,10 +2447,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-079",
@@ -2400,10 +2479,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-080",
@@ -2432,10 +2512,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-081",
@@ -2462,10 +2543,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-082",
@@ -2492,10 +2574,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "cards-083",
@@ -2521,10 +2604,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "status": "pending",
+      "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
     },
     {
       "id": "practice-001",
@@ -23025,10 +23109,10 @@
       "id": "overlays-specialist-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 21,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 1,
+        "label": "021 · Вариант не выбран",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · вариант не выбран",
@@ -23046,18 +23130,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 22,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 2,
+        "label": "022 · Вариант выбран",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · вариант выбран",
@@ -23075,18 +23160,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 23,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 3,
+        "label": "023 · Пустой текст",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · пустой текст",
@@ -23104,18 +23190,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 24,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 4,
+        "label": "024 · Текст готов",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · текст готов",
@@ -23133,18 +23220,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-025",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 25,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 5,
+        "label": "025 · Отправка",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · отправка",
@@ -23162,18 +23250,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-026",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 26,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 6,
+        "label": "026 · Ожидание результата",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · ожидание результата",
@@ -23191,18 +23280,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-027",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 27,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 7,
+        "label": "027 · Подтверждён",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · подтверждён",
@@ -23220,18 +23310,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-028",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 28,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 8,
+        "label": "028 · Уже пройден",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · уже пройден",
@@ -23249,18 +23340,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-029",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 29,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/survey-states.html",
+        "phone": 9,
+        "label": "029 · Повторить",
+        "mapping": "manual_rebind"
       },
       "screen": "Опрос о занятиях",
       "state": "Опрос · повторить",
@@ -23278,9 +23370,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 7, «Опрос о занятиях»; светлая тема — телефоны 10–18; тексты вопросов — пример (приходят с сервера)), эталон сразу"
     },
     {
       "id": "overlays-specialist-030",

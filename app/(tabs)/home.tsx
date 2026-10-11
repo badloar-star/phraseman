@@ -13,6 +13,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { isLearnTabVisibleForTarget, isLearningSurfaceReady } from '../learning_language_surface_readiness';
+import { useSpireTabEnabled } from '../spire_tab_flag';
 import { filterTodayTasksForTarget } from '../today_task_surface_filter';
 import { homeVideoRailUsesCatalog, loadHomeVideoRailForTarget, peekHomeVideoRailForTarget } from '../home_video_rail_source';
 import ScreenGradient from '../../components/ScreenGradient';
@@ -524,6 +525,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
     // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
     const todayTasks = useTodayTasks(lang, studyTarget);
+    // зачем (владелец 11.10): плитка «Шпиль» — за тем же замком, что и вкладка (флаг + интерфейс ru/uk).
+    const spireTabEnabled = useSpireTabEnabled();
     // зачем D129/D130: какие разделы видны для языка обучения — только из таблицы
     // готовности. studyTarget синхронный (peek), поэтому первый кадр уже финальный.
     const homeLearnVisible = isLearnTabVisibleForTarget(studyTarget);
@@ -2204,7 +2207,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2FillerTiles: (HomeFeatureTile & { available: boolean })[] = [
             {
                 key: 'spire',
-                available: isLearningSurfaceReady(studyTarget, 'spire'),
+                available: isLearningSurfaceReady(studyTarget, 'spire') && spireTabEnabled,
                 title: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Tháp', id: 'Menara', tr: 'Kule', pl: 'Wieża' }),
                 subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { useLocalSearchParams, usePathname } from 'expo-router';
+import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
@@ -8,7 +8,7 @@ import { useV2Palette } from '../../components/v2/useV2Palette';
 import { CommunityHeaderSlotProvider, type CommunityHeaderSlot } from '../community_header_slot';
 import { TabRuntimeOwnerOverride, useTabNav } from '../TabContext';
 import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model';
-import { useSpireTabEnabled } from '../spire_tab_flag';
+import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spire_tab_flag';
 import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
 
@@ -65,7 +65,21 @@ export default function CommunityTabRoute() {
     setVisited((prev) => (prev.has(section) ? prev : new Set([...prev, section])));
   }, [section]);
 
-  // зачем: замок погас (remote-ключ выключили) при открытом «Шпиле» — возвращаемся к друзьям.
+  // зачем (владелец 11.10): вход по ссылке ?section=spire, а Шпиль скрыт (флаг или интерфейс не ru/uk) — на Главную,
+  // а не в «Друзей». Решаем после прогрева флага: до него «скрыт» ещё не значит «нельзя».
+  const router = useRouter();
+  useEffect(() => {
+    if (sectionFromParam(sectionParam) !== 'spire') return undefined;
+    let alive = true;
+    void primeSpireTabFlag().then(() => {
+      if (!alive || isSpireTabEnabled()) return;
+      console.log('[SPIRE-GATE]', JSON.stringify({ where: 'community_link', action: 'redirect_home' }));
+      router.replace('/(tabs)/home');
+    });
+    return () => { alive = false; };
+  }, [router, sectionParam]);
+
+  // зачем: замок погас (remote-ключ выключили или сменили язык на не ru/uk) при открытом «Шпиле» — к друзьям.
   useEffect(() => {
     if (!spireVisible && section === 'spire') setSection('friends');
   }, [spireVisible, section]);

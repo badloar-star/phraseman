@@ -36,6 +36,7 @@ import { spireLiveZoneSize } from './spire_residents';
 import {
   chunkSpirePushMessages,
   isSpirePushOptedOut,
+  isSpirePushUiLangAllowed,
   isValidSpireExpoPushToken,
   readSpirePushMark,
   readSpirePushPrefs,
@@ -113,8 +114,10 @@ export interface SpireZoneWarningCandidate {
 export function spireZoneWarningSkipReason(
   u: SpireZoneWarningUser,
   weekId?: string | null,
-): 'no_token' | 'opted_out' | 'already_sent' | null {
+): 'no_token' | 'ui_lang_not_supported' | 'opted_out' | 'already_sent' | null {
   if (!isValidSpireExpoPushToken(u.expoPushToken)) return 'no_token';
+  // зачем (владелец 11.10): Шпиль только для интерфейса ru/uk — иначе пропуск, а не русский текст.
+  if (!isSpirePushUiLangAllowed(u.pushTokenLang)) return 'ui_lang_not_supported';
   if (isSpirePushOptedOut(u.pushPrefs)) return 'opted_out';
   if (weekId && u.sentForWeekId === weekId) return 'already_sent';
   return null;
@@ -253,14 +256,16 @@ export async function runSpireZoneWarningPush(
 
   let optedOut = 0;
   let alreadySent = 0;
+  let uiLangSkipped = 0;
   for (const u of usersByUid.values()) {
     const reason = spireZoneWarningSkipReason(u, weekId);
     if (reason === 'opted_out') optedOut++;
     else if (reason === 'already_sent') alreadySent++;
+    else if (reason === 'ui_lang_not_supported') uiLangSkipped++;
   }
-  if (optedOut > 0 || alreadySent > 0) {
-    // Только счётчики — без uid/токенов.
-    console.log('[PUSH-PREFS]', JSON.stringify({ event: 'spire_zone_warning_skip', weekId, optedOut, alreadySent }));
+  if (optedOut > 0 || alreadySent > 0 || uiLangSkipped > 0) {
+    // Только счётчики — без uid/токенов. uiLangSkipped — интерфейс не ru/uk (Шпиль скрыт, решение владельца 11.10).
+    console.log('[PUSH-PREFS]', JSON.stringify({ event: 'spire_zone_warning_skip', weekId, optedOut, alreadySent, uiLangSkipped }));
   }
 
   const candidates = buildSpireZoneWarningCandidates(inputs, usersByUid, weekId);

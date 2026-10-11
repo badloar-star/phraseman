@@ -97,21 +97,21 @@ describe('spireZoneEdgeStatuses', () => {
 
 describe('shouldSendSpireZoneWarningPush', () => {
   it('валидный токен без запрета — да', () => {
-    expect(shouldSendSpireZoneWarningPush({ expoPushToken: 'ExponentPushToken[a]' })).toBe(true);
+    expect(shouldSendSpireZoneWarningPush({ pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken[a]' })).toBe(true);
   });
   it('нет токена — нет', () => {
-    expect(shouldSendSpireZoneWarningPush({ expoPushToken: null })).toBe(false);
+    expect(shouldSendSpireZoneWarningPush({ pushTokenLang: 'ru', expoPushToken: null })).toBe(false);
   });
   it('категория «Лига» выключена — нет', () => {
-    expect(shouldSendSpireZoneWarningPush({ expoPushToken: 'ExponentPushToken[a]', pushPrefs: { league: false } })).toBe(false);
+    expect(shouldSendSpireZoneWarningPush({ pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken[a]', pushPrefs: { league: false } })).toBe(false);
   });
 });
 
 describe('buildSpireZoneWarningCandidates', () => {
   it('фильтрует по наличию юзера и валидности пуша', () => {
     const users = new Map<string, SpireZoneWarningUser>([
-      ['u1', { expoPushToken: 'ExponentPushToken[a]' }],
-      ['u2', { expoPushToken: null }],
+      ['u1', { pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken[a]' }],
+      ['u2', { pushTokenLang: 'ru', expoPushToken: null }],
     ]);
     const out = buildSpireZoneWarningCandidates(
       [{ uid: 'u1', status: 'promotion_edge' }, { uid: 'u2', status: 'demotion_edge' }, { uid: 'u3', status: 'promotion_edge' }],
@@ -162,13 +162,13 @@ describe('spireCurrentWeekIdForWarning', () => {
 describe('PM-200: opt-out по pushPrefs.streak и метка недели', () => {
   const PUSH_FIXTURE = 'ExponentPushToken' + '[a]';
   it('pushPrefs.streak=false — не шлём; поля нет — шлём', () => {
-    expect(shouldSendSpireZoneWarningPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: { streak: false } })).toBe(false);
-    expect(shouldSendSpireZoneWarningPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: null })).toBe(true);
+    expect(shouldSendSpireZoneWarningPush({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, pushPrefs: { streak: false } })).toBe(false);
+    expect(shouldSendSpireZoneWarningPush({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, pushPrefs: null })).toBe(true);
   });
   it('метка этой недели отсекает повтор; один пуш на человека', () => {
     const users = new Map<string, SpireZoneWarningUser>([
-      ['u1', { expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W40' }],
-      ['u2', { expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W39' }],
+      ['u1', { pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W40' }],
+      ['u2', { pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W39' }],
     ]);
     const out = buildSpireZoneWarningCandidates(
       [

@@ -23,13 +23,13 @@ function candidate(overrides: Partial<SpireWeekResultPushCandidate> = {}): Spire
 
 describe('shouldSendSpireWeekResultPush', () => {
   it('валидный токен без запрета — да', () => {
-    expect(shouldSendSpireWeekResultPush({ expoPushToken: 'ExponentPushToken[abc]', pushPrefs: null })).toBe(true);
+    expect(shouldSendSpireWeekResultPush({ pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken[abc]', pushPrefs: null })).toBe(true);
   });
   it('нет токена — нет', () => {
-    expect(shouldSendSpireWeekResultPush({ expoPushToken: null })).toBe(false);
+    expect(shouldSendSpireWeekResultPush({ pushTokenLang: 'ru', expoPushToken: null })).toBe(false);
   });
   it('категория «Лига» выключена — нет', () => {
-    expect(shouldSendSpireWeekResultPush({ expoPushToken: 'ExponentPushToken[abc]', pushPrefs: { league: false } })).toBe(false);
+    expect(shouldSendSpireWeekResultPush({ pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken[abc]', pushPrefs: { league: false } })).toBe(false);
   });
 });
 
@@ -37,7 +37,7 @@ describe('buildSpireWeekResultCandidates', () => {
   it('собирает только тех, у кого есть в usersByUid и прошли проверку', () => {
     const users = new Map<string, SpireWeekResultPushUser>([
       ['u1', { expoPushToken: 'ExponentPushToken[a]', pushTokenLang: 'ru' }],
-      ['u2', { expoPushToken: null }], // без токена — отсеян
+      ['u2', { pushTokenLang: 'ru', expoPushToken: null }], // без токена — отсеян
     ]);
     const out = buildSpireWeekResultCandidates(
       [RESULT, { ...RESULT, uid: 'u2' }, { ...RESULT, uid: 'u3' }], // u3 вообще не в users
@@ -48,10 +48,10 @@ describe('buildSpireWeekResultCandidates', () => {
     expect(out[0].token).toBe('ExponentPushToken[a]');
   });
 
-  it('пустой pushTokenLang падает на ru', () => {
+  it('пустой pushTokenLang — пропуск (Шпиль только ru/uk, владелец 11.10)', () => {
     const users = new Map<string, SpireWeekResultPushUser>([['u1', { expoPushToken: 'ExponentPushToken[a]', pushTokenLang: null }]]);
     const out = buildSpireWeekResultCandidates([RESULT], users);
-    expect(out[0].uiLang).toBe('ru');
+    expect(out).toHaveLength(0);
   });
 });
 
@@ -96,18 +96,18 @@ describe('PM-200: opt-out по существующей категории и м
   const PUSH_FIXTURE = 'ExponentPushToken' + '[a]';
 
   it('pushPrefs.streak=false (мастер или «Серия под угрозой» выключены) — не шлём', () => {
-    expect(shouldSendSpireWeekResultPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: { streak: false } })).toBe(false);
+    expect(shouldSendSpireWeekResultPush({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, pushPrefs: { streak: false } })).toBe(false);
   });
   it('старый league=false по-прежнему выключает (обратная совместимость)', () => {
-    expect(shouldSendSpireWeekResultPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: { league: false, streak: true } })).toBe(false);
+    expect(shouldSendSpireWeekResultPush({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, pushPrefs: { league: false, streak: true } })).toBe(false);
   });
   it('метка этой недели — already_sent; метка прошлой недели не мешает', () => {
     const { spireWeekResultSkipReason } = require('./spire_week_result_push');
-    expect(spireWeekResultSkipReason({ expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W39' }, '2026-W39')).toBe('already_sent');
-    expect(spireWeekResultSkipReason({ expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W38' }, '2026-W39')).toBeNull();
+    expect(spireWeekResultSkipReason({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W39' }, '2026-W39')).toBe('already_sent');
+    expect(spireWeekResultSkipReason({ pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W38' }, '2026-W39')).toBeNull();
   });
   it('один пуш на человека, даже если итогов несколько (разные языки)', () => {
-    const users = new Map<string, SpireWeekResultPushUser>([['u1', { expoPushToken: PUSH_FIXTURE }]]);
+    const users = new Map<string, SpireWeekResultPushUser>([['u1', { pushTokenLang: 'ru', expoPushToken: PUSH_FIXTURE }]]);
     const out = buildSpireWeekResultCandidates([RESULT, { ...RESULT, studyLang: 'es' }], users, '2026-W39');
     expect(out).toHaveLength(1);
   });
@@ -124,7 +124,7 @@ describe('PM-200: opt-out по существующей категории и м
     const { runSpireWeekResultPush } = require('./spire_week_result_push');
     const users = new Map<string, Record<string, unknown>>([
       ['u1', { expoPushToken: PUSH_FIXTURE, pushTokenLang: 'ru' }],
-      ['u2', { expoPushToken: 'ExponentPushToken' + '[b]', pushPrefs: { streak: false } }],
+      ['u2', { pushTokenLang: 'ru', expoPushToken: 'ExponentPushToken' + '[b]', pushPrefs: { streak: false } }],
     ]);
     const db = {
       collection: () => ({ doc: (id: string) => ({ id }) }),

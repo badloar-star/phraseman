@@ -142,6 +142,25 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
             navTabHome();
             break;
           }
+          if (data.type === 'spire_week_result' || data.type === 'spire_zone_warning') {
+            // зачем (владелец 11.10): Шпиль скрыт (флаг выключен или интерфейс не ru/uk) — старый пуш ведёт на Главную,
+            // а не в «Сообщество» с пустым разделом. Флаг прогреваем до решения: на холодном старте он ещё не прочитан.
+            void import('./spire_tab_flag')
+              .then(async ({ primeSpireTabFlag, isSpireTabEnabled }) => {
+                await primeSpireTabFlag();
+                if (isSpireTabEnabled()) {
+                  scheduleNav(() => router.push(route));
+                  return;
+                }
+                console.log('[SPIRE-GATE]', JSON.stringify({ where: 'push_tap', type: String(data.type), action: 'redirect_home' }));
+                navTabHome();
+              })
+              .catch((error: unknown) => {
+                console.warn('[SPIRE-GATE] push_tap: замок не прочитан — на Главную', error instanceof Error ? error.message : String(error));
+                navTabHome();
+              });
+            break;
+          }
           scheduleNav(() => router.push(route));
           break;
         }

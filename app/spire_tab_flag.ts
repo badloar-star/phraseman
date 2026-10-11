@@ -12,6 +12,9 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { DeviceEventEmitter } from 'react-native';
+import { peekAppLang } from './app_snapshot_bootstrap';
+import { logSpireUiLangGate, spireUiLangDecision } from './spire/spire_ui_lang_gate';
 import { onAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { readRemoteConfigCacheRaw } from './remote_config_client'; // зачем: [COLD-START-IO] — одно чтение кэша на всех
@@ -64,9 +67,33 @@ export function primeSpireTabFlag(): Promise<void> {
   return _primePromise;
 }
 
-/** Синхронное чтение: до прогрева кэша всегда false. */
-export function isSpireTabEnabled(): boolean {
+/** Флаг вкладки без учёта языка интерфейса (remote или dev). */
+function isSpireFlagOn(): boolean {
   return _remoteEnabled || (__DEV__ && (_devOverride || DEV_TAB_ENV));
+}
+
+/**
+ * Синхронное чтение: до прогрева кэша всегда false.
+ * зачем (владелец 11.10): Шпиль в первом выпуске только при интерфейсе ru/uk — язык проверяется здесь, в
+ * единственном замке, через который ходят вкладка, ворота сети, задания дня, плитка Главной и вход по пушу.
+ * Dev-переключатель язык НЕ обходит: съёмка es-интерфейса обязана показать Главную без Шпиля.
+ */
+export function isSpireTabEnabled(): boolean {
+  if (!isSpireFlagOn()) return false;
+  const decision = spireUiLangDecision(peekAppLang());
+  logSpireUiLangGate(decision, 'isSpireTabEnabled');
+  return decision.allowed;
+}
+
+// зачем: смена языка ru → es посреди недели — Шпиль пропадает сразу, без перезапуска. LangContext пишет peek
+// языка ДО события 'app_lang_changed', поэтому подписчики видят уже новый язык. Подписка одна на процесс.
+let _langSub: { remove: () => void } | null = null;
+function ensureLangSubscription(): void {
+  if (_langSub) return;
+  _langSub = DeviceEventEmitter.addListener('app_lang_changed', () => {
+    DebugLogger.info(LOG, `tab flag: язык интерфейса сменился → пересчёт замка (lang=${String(peekAppLang())})`);
+    notify();
+  });
 }
 
 /** Перечитать флаг из кэша рубильников сейчас (после принудительного перечита) и уведомить подписчиков. */
@@ -96,6 +123,7 @@ export function useSpireTabEnabled(): boolean {
   const [enabled, setEnabled] = useState<boolean>(() => isSpireTabEnabled());
   useEffect(() => {
     let alive = true;
+    ensureLangSubscription();
     const sync = () => { if (alive) setEnabled(isSpireTabEnabled()); };
     void primeSpireTabFlag().then(sync);
     listeners.add(sync);
@@ -109,6 +137,11 @@ export function useSpireTabEnabled(): boolean {
     };
   }, []);
   return _hydrated ? enabled : false;
+}
+
+/** Прогрет ли флаг (для входа по ссылке: до прогрева «скрыт» ещё не значит «нельзя»). */
+export function isSpireTabFlagHydrated(): boolean {
+  return _hydrated;
 }
 
 /* expo-router route shim */

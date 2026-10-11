@@ -1965,9 +1965,10 @@ const DEV_MESSAGE_TITLE: DevCampaignText = {
 };
 const DEV_MESSAGE_BODY: DevCampaignText = {
   ru: 'Мы добавили Шпиль и обновили Карточки. Загляни и расскажи, как тебе.', uk: 'Ми додали Шпиль і оновили Картки. Зазирни та розкажи, як тобі.',
-  es: 'Añadimos Spire y renovamos las Tarjetas. Échales un vistazo.', ptBr: 'Adicionamos o Spire e renovamos os Cartões. Dê uma olhada.',
-  vi: 'Chúng tôi đã thêm Spire và làm mới Thẻ. Hãy xem thử.', id: 'Kami menambahkan Spire dan memperbarui Kartu. Coba lihat.',
-  tr: 'Spire eklendi ve Kartlar yenilendi. Bir göz at.', pl: 'Dodaliśmy Spire i odświeżyliśmy Karty. Zajrzyj.',
+  // зачем (владелец 11.10): Шпиль в первом выпуске только для интерфейса ru/uk — остальным о нём не рассказываем.
+  es: 'Renovamos las Tarjetas. Échales un vistazo.', ptBr: 'Renovamos os Cartões. Dê uma olhada.',
+  vi: 'Chúng tôi đã làm mới Thẻ. Hãy xem thử.', id: 'Kami memperbarui Kartu. Coba lihat.',
+  tr: 'Kartlar yenilendi. Bir göz at.', pl: 'Odświeżyliśmy Karty. Zajrzyj.',
 };
 
 function devCampaignRow(id: string, slot: SettingsMessageSlot, kind: 'poll' | 'message', nowMs: number): Record<string, unknown> {

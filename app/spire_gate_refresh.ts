@@ -15,6 +15,8 @@ import { DebugLogger } from './debug-logger';
 import { refreshRemoteConfigNow } from './remote_config_client';
 import { loadSpireConfig } from './spire_config_client';
 import { isSpireTabEnabled, rereadSpireTabFlag } from './spire_tab_flag';
+import { peekAppLang } from './app_snapshot_bootstrap';
+import { spireUiLangDecision } from './spire/spire_ui_lang_gate';
 
 // зачем (координатор 11.10): не чаще раза в 60 с — владелец ждёт «сейчас», а закрытые ворота бывают у немногих.
 export const SPIRE_GATE_REFRESH_MIN_INTERVAL_MS = 60 * 1000;
@@ -92,6 +94,13 @@ async function runGate(kind: GateKind, where: string, open: boolean, refresh: ()
 
 /** Вкладка «Шпиль» скрыта по кэшу рубильников → перечитать `remote_config/app` (флаг вкладки обновится сам по событию). */
 export function refreshSpireTabFlagIfClosed(where: string, options: { force?: boolean } = {}): Promise<boolean> {
+  // зачем (владелец 11.10, Шпиль только ru/uk): при другом языке интерфейса вкладка закрыта языком, а не кэшем —
+  // перечит рубильников её не откроет, а стоил бы чтение на каждый заход в «Сообщество».
+  const langDecision = spireUiLangDecision(peekAppLang());
+  if (!langDecision.allowed) {
+    DebugLogger.info(LOG, `tab: перечит не нужен (${langDecision.reason}, lang=${String(langDecision.lang)}) where=${where}`);
+    return Promise.resolve(false);
+  }
   return runGate('tab', where, isSpireTabEnabled(), async () => {
     await refreshRemoteConfigNow();
     return rereadSpireTabFlag();

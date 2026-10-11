@@ -26,6 +26,16 @@ export const SPIRE_PUSH_TIER_COUNT = 12;
 const SUPPORTED_PUSH_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 export type SpirePushLang = (typeof SUPPORTED_PUSH_LANGS)[number];
 
+/**
+ * зачем (владелец 11.10, по симуляции SPIRE_SIMULATION_2026-10-11): Шпиль в первом выпуске только для интерфейса
+ * ru и uk — тексты пушей Шпиля есть только на них. Остальным пуши Шпиля не шлём вовсе (пропуск с причиной),
+ * а не русский текст. Список расширяется вместе с переводами и клиентским SPIRE_UI_LANGS.
+ */
+export const SPIRE_PUSH_UI_LANGS: readonly string[] = Object.freeze(['ru', 'uk']);
+export function isSpirePushUiLangAllowed(lang: string | null | undefined): boolean {
+  return typeof lang === 'string' && SPIRE_PUSH_UI_LANGS.includes(lang);
+}
+
 export function normalizeSpirePushLang(lang: string | null | undefined): SpirePushLang {
   return (SUPPORTED_PUSH_LANGS as readonly string[]).includes(lang ?? '')
     ? (lang as SpirePushLang)

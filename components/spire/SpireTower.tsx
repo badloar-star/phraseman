@@ -16,6 +16,7 @@ import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
+import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
 
 const WINDOW_HEIGHT = 400;
@@ -83,6 +84,11 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const tx = useRef(new Animated.Value(0)).current;
   const ty = useRef(new Animated.Value(0)).current;
   const placedRef = useRef(false);
+  // зачем (Макеты spire-gap-017, «Ты спускаешься»: башня стояла на вершине при этаже 4): scrollTo до того, как содержимое измерено, молча уходит в 0.
+  // Поэтому запоминаем высоту содержимого и отложенный запрос и повторяем его, когда содержимое получило размер.
+  const contentHRef = useRef(0);
+  const pendingRef = useRef<Readonly<{ floor: number | null }> | null>(null);
+  const echoRef = useRef<string | null>(null);
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
@@ -90,23 +96,47 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, []);
 
   // Прокрутка к этажу: свой этаж по центру окна (как data-center в макете), иначе низ башни.
-  const scrollToFloor = useCallback((floor: number | null, animated: boolean) => {
-    if (scale <= 0) return;
+  const scrollToFloor = useCallback((floor: number | null, animated: boolean, why: string) => {
+    if (scale <= 0) {
+      console.log('[SPIRE-SCROLL] пропуск: scale<=0', JSON.stringify({ floor, why, width })); // guard-ok: ранний выход логируется
+      return;
+    }
     const fl = floor === null ? SPIRE_TOWER_GEOM.floors[0] : SPIRE_TOWER_GEOM.floors[Math.min(floor, SPIRE_FLOOR_COUNT) - 1];
     const cy = (fl.y + fl.h / 2) * scale;
-    scrollRef.current?.scrollTo({ y: Math.max(0, cy - WINDOW_HEIGHT / 2), animated });
-  }, [scale]);
+    const y = Math.max(0, cy - WINDOW_HEIGHT / 2);
+    const needH = SPIRE_TOWER_GEOM.height * scale;
+    const ready = contentHRef.current >= needH - 1;
+    logSpireLayout(`scroll-req#${why}`, { floor, scale: roundLayout(scale), cy: roundLayout(cy), requestedY: roundLayout(y), contentH: roundLayout(contentHRef.current), needH: roundLayout(needH), ready: ready ? 'да' : 'нет → отложено', animated: animated ? 'да' : 'нет' });
+    if (!ready) { pendingRef.current = { floor }; return; }
+    pendingRef.current = null;
+    echoRef.current = why;
+    scrollRef.current?.scrollTo({ y, animated });
+  }, [scale, width]);
+
+  const onContentSizeChange = useCallback((_w: number, h: number) => {
+    contentHRef.current = h;
+    const pending = pendingRef.current;
+    console.log('[SPIRE-SCROLL] размер содержимого', JSON.stringify({ h: roundLayout(h), pending: pending ? { floor: pending.floor } : null })); // guard-ok: единичный лог на изменение размера
+    if (pending) scrollToFloor(pending.floor, false, 'после-layout');
+  }, [scrollToFloor]);
+
+  const onScrollEcho = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    const why = echoRef.current;
+    if (!why) return;
+    echoRef.current = null;
+    console.log('[SPIRE-SCROLL] получено', JSON.stringify({ why, gotY: roundLayout(e.nativeEvent.contentOffset.y) })); // guard-ok: итог прокрутки
+  }, []);
 
   useEffect(() => {
     if (scale <= 0) return;
-    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false); return; }
+    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false, 'нет-этажа'); return; }
     const target = markerTarget(myFloor, scale);
     if (!placedRef.current || reduceMotion) {
       // Первый кадр и «уменьшить движение»: маркер сразу на месте.
       tx.setValue(target.x);
       ty.setValue(target.y);
       placedRef.current = true;
-      scrollToFloor(myFloor, false);
+      scrollToFloor(myFloor, false, 'первый-показ');
       return;
     }
     // Подъём на этаж выше: перелёт на нативном драйвере, окно догоняет.
@@ -114,7 +144,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       Animated.timing(tx, { toValue: target.x, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
       Animated.timing(ty, { toValue: target.y, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
     ]).start();
-    scrollToFloor(myFloor, true);
+    scrollToFloor(myFloor, true, 'смена-этажа');
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
   const label = useMemo(
@@ -143,7 +173,16 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       onAccessibilityAction={onA11yAction}
       testID="spire-tower"
     >
-      <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} nestedScrollEnabled bounces={false} decelerationRate="fast">
+      <ScrollView
+        ref={scrollRef}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled
+        bounces={false}
+        decelerationRate="fast"
+        onContentSizeChange={onContentSizeChange}
+        onScroll={onScrollEcho}
+        scrollEventThrottle={32}
+      >
         {width > 0 ? (
           <View style={{ width, height: SPIRE_TOWER_GEOM.height * scale }}>
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} />

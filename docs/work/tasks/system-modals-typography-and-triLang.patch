@@ -1,0 +1,232 @@
+diff --git a/components/GlobalBroadcastModal.tsx b/components/GlobalBroadcastModal.tsx
+--- a/components/GlobalBroadcastModal.tsx
++++ b/components/GlobalBroadcastModal.tsx
+@@ -200,7 +200,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
+             wrapStyle={styles.btnWrap}
+             style={[styles.btn, { backgroundColor: glass.accent }]}
+           >
+-            <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: 17 }}>
++            <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: 16 }}>
+               {isReviewPromo && payload
+                 ? triLang(lang, {
+                   ru: payload.reviewCtaRu,
+@@ -233,7 +233,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
+               onPress={() => { void closeOnce(); }}
+               style={styles.secondaryBtn}
+             >
+-              <Text style={{ color: glass.text, fontWeight: '700', fontSize: 17, textAlign: 'center' }}>
++              <Text style={{ color: glass.text, fontWeight: '700', fontSize: 16, textAlign: 'center' }}>
+                 {triLang(lang, {
+                   ru: 'Позже',
+                   uk: 'Пізніше',
+@@ -278,8 +278,8 @@ const styles = StyleSheet.create({
+   // зачем: паритет с макетом system.html system_15 — оверлайн 12/700 (разрядка 3), заголовок 21/700, текст 15.
+   eyebrow: {
+     textAlign: 'center',
+-    fontSize: 12,
+-    lineHeight: 16,
++    fontSize: 13,
++    lineHeight: 17,
+     fontWeight: '700',
+     letterSpacing: 3,
+     textTransform: 'uppercase',
+@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
+   },
+   body: {
+     textAlign: 'center',
+-    fontSize: 15,
++    fontSize: 16,
+     lineHeight: 21,
+   },
+   coinPill: {
+@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
+     borderRadius: 18,
+     borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка пилюли kit.css
+   },
+-  coinPillNum: { fontSize: 17, fontWeight: '700' },
++  coinPillNum: { fontSize: 16, fontWeight: '700' },
+   rewardBlock: {
+     alignItems: 'center',
+     marginTop: 16,
+diff --git a/components/PersonalAdminMessageModal.tsx b/components/PersonalAdminMessageModal.tsx
+--- a/components/PersonalAdminMessageModal.tsx
++++ b/components/PersonalAdminMessageModal.tsx
+@@ -125,12 +125,12 @@ const styles = StyleSheet.create({
+     paddingBottom: 20,
+   },
+   // зачем: паритет с макетом system.html system_16 — оверлайн 12/700 (разрядка 3), заголовок 21/700, текст 15, кнопка 48 пилюля.
+-  eyebrow: { fontSize: 12, lineHeight: 16, fontWeight: '700', textAlign: 'center', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 10 },
++  eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 10 },
+   title: { fontSize: 21, lineHeight: 27, fontWeight: '700', textAlign: 'center' },
+-  body: { marginTop: 8, fontSize: 15, lineHeight: 21, textAlign: 'center' },
++  body: { marginTop: 8, fontSize: 16, lineHeight: 21, textAlign: 'center' },
+   buttonWrap: { marginTop: 20 },
+   button: { borderRadius: 24, minHeight: 48, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
+-  buttonText: { fontSize: 17, fontWeight: '700' },
++  buttonText: { fontSize: 16, fontWeight: '700' },
+ });
+ 
+ export default memo(PersonalAdminMessageModal);
+diff --git a/components/NotificationPermissionModalHybrid.tsx b/components/NotificationPermissionModalHybrid.tsx
+--- a/components/NotificationPermissionModalHybrid.tsx
++++ b/components/NotificationPermissionModalHybrid.tsx
+@@ -125,7 +125,7 @@ function NotificationPermissionModalHybrid({
+ 
+   return (
+     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onCancel}>
+-      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
++      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { backgroundColor: glass.scrim, paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
+         <Pressable onPress={(event) => event.stopPropagation()} accessible={false} style={[styles.card, { backgroundColor: glass.sheet, paddingBottom: Math.max(18, insets.bottom + 12) }]}>
+           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+             <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+@@ -176,7 +176,7 @@ function NotificationPermissionModalHybrid({
+ export default memo(NotificationPermissionModalHybrid);
+ 
+ const styles = StyleSheet.create({
+-  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22, backgroundColor: 'rgba(0,0,0,0.62)' },
++  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22 },
+   card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 26, paddingHorizontal: 20, paddingTop: 26, overflow: 'hidden' },
+   scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
+   scrollContentInner: { paddingBottom: 14 },
+@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
+     marginBottom: 10,
+   },
+   body: {
+-    fontSize: 15,
++    fontSize: 16,
+     lineHeight: 21,
+     fontWeight: '400',
+     textAlign: 'center',
+@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
+   },
+   pointText: {
+     flex: 1,
+-    fontSize: 15,
+-    lineHeight: 20,
++    fontSize: 16,
++    lineHeight: 21,
+   },
+   footer: {
+     gap: 10,
+@@ -229,14 +229,14 @@ const styles = StyleSheet.create({
+     alignItems: 'center',
+     justifyContent: 'center',
+     paddingHorizontal: 18,
+-    shadowColor: '#000000',
++    shadowColor: '#000000', // theme-exempt: тень кнопки всегда чёрная, не зависит от темы
+     shadowOffset: { width: 0, height: 5 },
+     shadowOpacity: 0.22,
+     shadowRadius: 8,
+     ...noAndroidOutline,
+   },
+   primaryBtnText: {
+-    fontSize: 17,
++    fontSize: 16,
+     fontWeight: '700',
+     textAlign: 'center',
+   },
+@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
+     justifyContent: 'center',
+   },
+   secondaryBtnText: {
+-    fontSize: 17,
++    fontSize: 16,
+     fontWeight: '700',
+   },
+ });
+diff --git a/components/ForceUpdateGate.tsx b/components/ForceUpdateGate.tsx
+--- a/components/ForceUpdateGate.tsx
++++ b/components/ForceUpdateGate.tsx
+@@ -112,7 +112,19 @@ function storeUrlForPlatform(): string {
+ // зачем: паритет с макетом system.html (кадры system_08/09) — у обязательного и мягкого окна
+ // разные русские заголовок и текст; остальные языки остаются как были.
+ function defaultTitle(lang: string, mode: GateMode = 'force'): string {
+-  if (lang === 'ru' && mode === 'optional') return 'Это Компас. У меня кое-что новое';
++  if (mode === 'optional') {
++    return triLang(lang as Lang, {
++      ru: 'Это Компас. У меня кое-что новое',
++      uk: 'Це Компас. У мене дещо нове',
++      en: "It's Compass. I've got something new",
++      es: 'Soy la Brújula. Tengo algo nuevo',
++      'pt-BR': 'É a Bússola. Tenho uma novidade',
++      vi: 'Mình là La bàn. Mình có điều mới đây',
++      id: 'Ini Kompas. Ada yang baru dariku',
++      tr: 'Ben Pusula. Sana yeni bir şeyim var',
++      pl: 'Tu Kompas. Mam coś nowego',
++    });
++  }
+   return triLang(lang as Lang, {
+     ru: 'Это Компас. Без обновления дальше никак',
+     uk: 'Це Компас. Без оновлення далі ніяк',
+@@ -127,11 +139,20 @@ function defaultTitle(lang: string, mode: GateMode = 'force'): string {
+ }
+ 
+ function defaultBody(lang: string, mode: GateMode = 'force'): string {
+-  if (lang === 'ru') {
+-    return mode === 'optional'
+-      ? 'Доступна новая версия — быстрее и удобнее.'
+-      : 'Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.';
++  if (mode === 'optional') {
++    return triLang(lang as Lang, {
++      ru: 'Доступна новая версия — быстрее и удобнее.',
++      uk: 'Доступна нова версія — швидше й зручніше.',
++      en: 'A new version is available — faster and easier.',
++      es: 'Hay una versión nueva: más rápida y cómoda.',
++      'pt-BR': 'Há uma nova versão — mais rápida e prática.',
++      vi: 'Đã có phiên bản mới — nhanh và tiện hơn.',
++      id: 'Versi baru tersedia — lebih cepat dan nyaman.',
++      tr: 'Yeni sürüm var — daha hızlı ve rahat.',
++      pl: 'Jest nowa wersja — szybsza i wygodniejsza.',
++    });
+   }
++  if (lang === 'ru') return 'Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.';
+   return triLang(lang as Lang, {
+     ru: 'Я заметно подрос, и старая версия меня уже не тянет. Обнови — и продолжим путь там же, где остановились.',
+     uk: 'Я помітно підріс, і стара версія мене вже не тягне. Онови — і продовжимо шлях там само, де спинилися.',
+@@ -655,7 +676,7 @@ const styles = StyleSheet.create({
+     shadowOffset: { width: 0, height: 5 },
+     elevation: 5,
+   },
+-  primaryLabel: { fontSize: 17, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
++  primaryLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
+   secondaryButton: {
+     width: '100%',
+     minHeight: 48,
+@@ -665,5 +686,5 @@ const styles = StyleSheet.create({
+     justifyContent: 'center',
+     marginTop: 10,
+   },
+-  secondaryLabel: { fontSize: 17, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
++  secondaryLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
+ });
+diff --git a/components/UpdateModal.tsx b/components/UpdateModal.tsx
+--- a/components/UpdateModal.tsx
++++ b/components/UpdateModal.tsx
+@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
+     height: '48%',
+   },
+   updateBtnText: {
+-    fontSize: 17,
++    fontSize: 16,
+     lineHeight: 22,
+     fontWeight: '700',
+     textAlign: 'center',
+@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
+     paddingHorizontal: 20,
+   },
+   closeBtnText: {
+-    fontSize: 17,
++    fontSize: 16,
+     lineHeight: 22,
+     fontWeight: '700',
+     textAlign: 'center',
+diff --git a/components/ReleaseNotesV2Modal.tsx b/components/ReleaseNotesV2Modal.tsx
+--- a/components/ReleaseNotesV2Modal.tsx
++++ b/components/ReleaseNotesV2Modal.tsx
+@@ -118,5 +118,5 @@ const styles = StyleSheet.create({
+   ctaWrap: { width: '100%', marginTop: 12 },
+   // зачем: макет system_14 — главная кнопка 48pt в форме пилюли (.cta в kit.css).
+   cta: { minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
++  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
+ });

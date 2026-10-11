@@ -94,7 +94,7 @@ export default function SupportReportScreen() {
             {/* зачем: паритет с макетом profile.html PRF-09 — «назад» шевроном */}
             <Ionicons name="chevron-back" size={21} color={glass.text} />
           </PressableHybrid>
-          <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}>
+          <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5 /* зачем: паритет profile.html PRF-09 (13.10) */, marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}
           </Text>
 
@@ -158,7 +158,7 @@ export default function SupportReportScreen() {
                     <Text style={{ color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
                       {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
                     </Text>
-                    <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 3 }}>
+                    <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 2 /* зачем: паритет profile.html PRF-09 (13.10) */ }}>
                       {L(
                         'Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.',
                         'До цього звернення додадуться лише недавні технічні дії. Без тексту повідомлень, паролів і платіжних даних.',

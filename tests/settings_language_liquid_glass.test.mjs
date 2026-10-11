@@ -15,9 +15,10 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   for (const side of ['Top', 'Bottom', 'Left', 'Right']) assert.match(source, new RegExp(`padding${side}:\\s*insets\\.${side.toLowerCase()}`));
   const scrollStart = source.indexOf('<BouncyScrollView');
   assert.ok(scrollStart >= 0 && source.indexOf('settings-language-back', scrollStart) >= 0, 'close control lives inside the scroll view');
-  assert.match(source, /width:\s*48,\s*height:\s*48/);
-  assert.match(source, /name="close"\s+size=\{20\}/);
-  assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*marginTop:\s*10/);
+  // 11.10 (паритет profile.html PRF-03): круг «Закрыть» 42 со значком 21, заголовок с разрядкой −0.5.
+  assert.match(source, /width:\s*42,\s*height:\s*42/);
+  assert.match(source, /name="close"\s+size=\{21\}/);
+  assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5,\s*marginTop:\s*10/);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/);
   assert.match(source, /marginTop:\s*22/);
   assert.match(source, /minHeight:\s*64[\s\S]*?borderRadius:\s*14[\s\S]*?paddingVertical:\s*10[\s\S]*?paddingHorizontal:\s*14[\s\S]*?gap:\s*14/s);
@@ -74,6 +75,9 @@ test('transpiled screen uses the release-aware registry and preserves row intera
     react: { __esModule: true, default: React, useState: initial => [initial, () => undefined], useEffect: () => undefined },
     'expo-image': { Image: 'Image' },
     './study_target': { getStoredStudyTarget: () => Promise.resolve('en') },
+    // 11.10 (ревью паритета): язык изучения — из общего StudyTargetContext; строка открывает шторку выбора.
+    '../components/StudyTargetContext': { useStudyTarget: () => ({ studyTarget: 'en', refresh: async () => undefined }) },
+    '../components/settings/StudyLanguageSheet': { __esModule: true, default: 'StudyLanguageSheet' },
     '../components/settings/SettingsGlassRows': { SettingsGlassEyebrow: 'SettingsGlassEyebrow', SettingsGlassRow: 'SettingsGlassRow' },
     'react-native': { Text: 'Text', View: 'View' },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },

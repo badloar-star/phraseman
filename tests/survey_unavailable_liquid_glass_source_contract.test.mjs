@@ -257,15 +257,13 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
 
   const close = byId('survey-fallback-close');
   assert.equal(close.type, 'PressableHybrid');
-  assert.deepEqual(flatStyle(close.props.style), { width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 });
-  assert.deepEqual(flatStyle(close.props.contentStyle), {
-    width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: harness.glass.opaqueControl, borderWidth: 1, borderColor: harness.glass.glassEdge,
-  });
+  // 11.10 (паритет profile.html PRF-13, `.rb.bare`): «назад» — голый шеврон без круга и кромки, область нажатия 48×44.
+  assert.deepEqual(flatStyle(close.props.style), { width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 });
+  assert.deepEqual(flatStyle(close.props.contentStyle), { width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' });
   const closeIcon = visit(close).find(node => node.type === 'Ionicons');
   // зачем (10.10): паритет с макетом profile.html (abc8be429) — «назад» шевроном вместо крестика.
   assert.equal(closeIcon.props.name, 'chevron-back');
-  assert.equal(closeIcon.props.size, 22);
+  assert.equal(closeIcon.props.size, 21);
 
   const scale = 1.3 / 1.15 * 1.2;
   const titleStyle = flatStyle(byId('survey-fallback-title').props.style);
@@ -285,7 +283,8 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
   const tile = byId('survey-fallback-icon-tile');
   assert.deepEqual(flatStyle(tile.props.style), {
     width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: harness.glass.opaqueControl, borderWidth: 1, borderColor: harness.glass.glassEdge, overflow: 'hidden',
+    // 11.10 (стиль «Тень»): плитка без кромки — тон фона и блик.
+    backgroundColor: harness.glass.opaqueControl, overflow: 'hidden',
   });
   const tileIcon = visit(tile).find(node => node.type === 'Ionicons');
   assert.equal(tileIcon.props.size, 25);
@@ -304,8 +303,9 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
   const ok = byId('survey-fallback-ok');
   assert.equal(ok.type, 'PressableHybrid');
   assert.equal(flatStyle(ok.props.style).marginTop, 20);
-  assert.equal(flatStyle(ok.props.contentStyle).minHeight, 48);
-  assert.equal(flatStyle(ok.props.contentStyle).borderRadius, 24);
+  // 11.10 (паритет profile.html PRF-13): малая кнопка `.cta.sm` — 42, r21.
+  assert.equal(flatStyle(ok.props.contentStyle).minHeight, 42);
+  assert.equal(flatStyle(ok.props.contentStyle).borderRadius, 21);
   assert.equal(strings(ok.props.children).join(''), 'Вернуться'); // макет PRF-13 (abc8be429): «Вернуться» вместо «OK»
   for (const node of nodes.filter(item => item.type === 'FlowText')) {
     assert.equal(node.props.numberOfLines, undefined);
@@ -331,7 +331,11 @@ test('all nine actual localized fallbacks preserve copy, split only typography, 
     };
     assert.equal(strings(byId('survey-fallback-title').props.children).join(''), TITLES[locale]);
     assert.equal(byId('survey-fallback-close').props.accessibilityLabel, CLOSE[locale]);
-    assert.equal(strings(byId('survey-fallback-message').props.children).join(' '), MESSAGES[locale]);
+    // 11.10 (паритет profile.html PRF-13): заголовок пустого состояния — без точки; текст в остальном не меняется.
+    const original = MESSAGES[locale];
+    const cut = original.indexOf('. ');
+    const expected = cut >= 0 ? `${original.slice(0, cut)} ${original.slice(cut + 2)}` : original.replace(/[.。]\s*$/, '');
+    assert.equal(strings(byId('survey-fallback-message').props.children).join(' '), expected);
     const close = byId('survey-fallback-close');
     const ok = byId('survey-fallback-ok');
     assert.equal(close.props.onPress, ok.props.onPress);

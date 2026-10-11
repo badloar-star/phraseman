@@ -115,9 +115,10 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
     >
       <View style={styles.headingRow}>
         <View style={[styles.icon, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
-          <Ionicons name={campaign.kind === 'poll' ? 'bar-chart-outline' : 'megaphone-outline'} size={18} color={t.textPrimary} />
+          {/* зачем: паритет profile.html (13.10): в макете A у блока «Важное от Phraseman» один значок — рупор, и для сообщения, и для опроса */}
+          <Ionicons name="megaphone-outline" size={18} color={t.textPrimary} />
         </View>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg }]}>{copy.title}</Text>
+        <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
       </View>
       {copy.body ? <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>{copy.body}</Text> : null}
       {campaign.kind === 'poll' && campaign.poll ? (
@@ -144,7 +145,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
               >
                 <Ionicons
                   name={selected ? 'radio-button-on' : 'radio-button-off'}
-                  size={20}
+                  size={22}
                   color={selected ? t.accentText : t.textGhost}
                 />
                 <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
@@ -170,14 +171,15 @@ const styles = StyleSheet.create({
   // тоном. Фон t.bgCard уже отличается от фона экрана настроек.
   card: {
     marginHorizontal: SETTINGS_GROUP_MARGIN,
-    borderRadius: 16,
+    borderRadius: 22, // зачем: паритет profile.html (13.10): `.card.c2` — радиус 22, как у карточки профиля
     borderWidth: 0,
     padding: 16,
   },
   headingRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   icon: { width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, fontWeight: '800', lineHeight: 22 },
-  body: { marginTop: 10, lineHeight: 21 },
+  // зачем: паритет profile.html (13.10): заголовок 16/22/800 и текст с межстрочным 22 — ровно как в макете A
+  title: { flex: 1, fontSize: 16, fontWeight: '800', lineHeight: 22 },
+  body: { marginTop: 10, lineHeight: 22 },
   poll: { marginTop: 14, gap: 8 },
   question: { fontWeight: '700', lineHeight: 21, marginBottom: 2 },
   // зачем: выбор варианта показывают радиокнопка и более светлый фон, рамка

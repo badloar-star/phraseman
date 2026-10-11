@@ -202,7 +202,7 @@ export default function SettingsThemes() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <PressableHybrid
               testID="themes-back"
               accessibilityLabel={backLabel}
@@ -210,10 +210,11 @@ export default function SettingsThemes() {
               variant="icon"
               withHaptic={false}
               withSound={false}
-              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
+              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+              // зачем: паритет profile.html PRF-06 (13.10): «назад» — голый шеврон 21 без круга, как на соседних экранах настроек; область нажатия 48×44
+              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+              <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <View style={styles.head}>
               <Text accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>

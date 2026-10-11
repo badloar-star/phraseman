@@ -934,17 +934,21 @@ export default function SettingsMain() {
   // Верх экрана — по референсу Bevel: отдельная карточка Plus, под ней отдельная
   // карточка ввода кода, ниже широкий инвайт-баннер с картинкой.
   // зачем: подпись-расшифровка под названием убрана (запрет владельца + чистота
-  // референса) — ряд Plus однострочный; при активном Plus справа короткий план.
+  // референса) — ряд Plus однострочный.
+  // зачем: паритет profile.html (13.10): по макету A заголовок строки всегда «Подписка Plus»,
+  // а статус — значением справа: «Не активна» / план («Год», «Месяц») / «Активна».
+  // Тир берём из tierName, чтобы у владельца Pro не было написано «Plus» (правило 2026-08-03).
   const plusRowLabel = hasPremiumAccess
-    ? `${tierName} ${L('активирован', 'активовано', 'active', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
-    : 'Phraseman Plus';
-  const plusRowValue = hasPremiumAccess && isPremium
-    ? (premiumPlan === 'yearly'
+    ? L(`Подписка ${tierName}`, `Підписка ${tierName}`, `${tierName} subscription`, `Suscripción ${tierName}`, `Assinatura ${tierName}`, `Gói ${tierName}`, `Langganan ${tierName}`, `${tierName} aboneliği`, `Subskrypcja ${tierName}`)
+    : L('Подписка Plus', 'Підписка Plus', 'Plus subscription', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus');
+  const plusRowActiveValue = L('Активна', 'Активна', 'Active', 'Activa', 'Ativa', 'Đang hoạt động', 'Aktif', 'Aktif', 'Aktywna');
+  const plusRowValue = !hasPremiumAccess
+    ? L('Не активна', 'Не активна', 'Not active', 'No activa', 'Não ativa', 'Chưa kích hoạt', 'Tidak aktif', 'Aktif değil', 'Nieaktywna')
+    : isPremium && premiumPlan === 'yearly'
       ? L('Год', 'Рік', 'Year', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
-      : premiumPlan === 'monthly'
+      : isPremium && premiumPlan === 'monthly'
         ? L('Месяц', 'Місяць', 'Month', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')
-        : undefined)
-    : undefined;
+        : plusRowActiveValue;
   const plusRowPress = () => {
     doHaptic();
     if (hasPremiumAccess) {
@@ -1086,9 +1090,11 @@ export default function SettingsMain() {
         testID="screen-settings"
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
-        // зачем: верх/лево/право — safe area, низ — высота таббара (tabContentBottomPad уже включает нижний inset);
+        // зачем: лево/право — safe area, низ — высота таббара (tabContentBottomPad уже включает нижний inset);
         // крупный шрифт просто удлиняет прокручиваемое содержимое.
-        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top, paddingLeft: 15 + insets.left, paddingRight: 15 + insets.right }}
+        // зачем: паритет profile.html (13.10): верхний inset уже даёт обёртка вкладок ((tabs)/_layout.tsx, paddingTop: insets.top) —
+        // второй раз он опускал заголовок на ≈55px; поля 20, как в макете A.
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingLeft: 20 + insets.left, paddingRight: 20 + insets.right }}
         keyboardShouldPersistTaps="handled"
         scrollEventThrottle={16}
         bounces
@@ -1099,7 +1105,7 @@ export default function SettingsMain() {
 
         {/* зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): шапка «Настройки» 40/46
             без подзаголовка, справа монета ранга; Dev Hub переехал в подвал строкой рядом с версией. */}
-        <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 12 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
           <Text accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
             {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
@@ -1124,7 +1130,7 @@ export default function SettingsMain() {
             {renderRankCoin('settings-profile-coin', 52)}
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' }}>{profileCardName}</Text>
+            <Text style={{ color: glass.text, fontSize: 18, lineHeight: 22, fontWeight: '700' /* зачем: паритет profile.html (13.10): имя 18/22, как в макете A */ }}>{profileCardName}</Text>
             {profileCardSub ? (
               <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{profileCardSub}</Text>
             ) : null}

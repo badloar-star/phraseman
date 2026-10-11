@@ -118,7 +118,8 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
   // 04.10 (profile.html `.rb.bare`): «назад» — голый шеврон, область нажатия 48×44.
   assert.match(source, /style=\{\{ width: 48, height: 44,[^}]*marginTop: 4 \}\}/);
-  assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*marginTop:\s*10/);
+  // 11.10 (паритет profile.html PRF-04): заголовок с разрядкой −0.5.
+  assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5,\s*marginTop:\s*10/);
   assert.match(source, /const statusCardStyle[^;]*paddingVertical:\s*14[^;]*paddingHorizontal:\s*16[^;]*alignItems:\s*'flex-start'/s);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*fontWeight:\s*'700'/);
   assert.match(source, /const rowStyle[^;]*minHeight:\s*64[^;]*paddingVertical:\s*10[^;]*paddingHorizontal:\s*14[^;]*gap:\s*14/s);

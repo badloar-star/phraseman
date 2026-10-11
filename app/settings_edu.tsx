@@ -26,6 +26,8 @@ import {
   type UserSettings,
 } from './user_settings_store';
 import { safeRouterBack } from './navigation_back';
+import { getVoicePrefs, peekEnVoiceId } from './flashcards/voice_prefs';
+import { getVoicesOnce, voiceTitle } from './flashcards/tts_voices';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -91,6 +93,11 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
   );
 }
 
+// зачем: последнее показанное значение строки «Голос озвучки (EN)» живёт в памяти модуля —
+// повторный вход на экран рисует его с первого кадра (Performance Bible: первый кадр = последнее известное).
+// undefined — ещё ни разу не вычисляли; null — системный голос; строка — имя выбранного голоса.
+let lastShownVoiceValue: string | null | undefined;
+
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t, liquidGlassThemeId } = useTheme();
@@ -103,12 +110,34 @@ export default function SettingsEdu() {
   // «Автопроизношение» (fc_autospeak_on), оба дефолт true (SoundService).
   const [fcSfx, setFcSfx] = useState(() => isFcSfxEnabled());
   const [fcAutoSpeak, setFcAutoSpeak] = useState(() => isFcAutoSpeakEnabled());
+  // зачем: паритет profile.html PRF-05 (13.10): у строки «Голос озвучки (EN)» справа значение — «Системный»
+  // или имя выбранного голоса. Первый кадр: последнее показанное значение; если его нет, но голос выбран
+  // (синхронный снимок peekEnVoiceId) — пустое место вместо неверного «Системный». Имя догружается фоном
+  // из локального списка голосов телефона (без сети).
+  const [voiceValue, setVoiceValue] = useState<string | null>(() => (
+    lastShownVoiceValue !== undefined ? lastShownVoiceValue : (peekEnVoiceId() ? '' : null)
+  ));
 
   useFocusEffect(
     useCallback(() => {
+      let alive = true;
       void loadSettings().then(setS);
       setFcSfx(isFcSfxEnabled());
       setFcAutoSpeak(isFcAutoSpeakEnabled());
+      void getVoicePrefs()
+        .then(async (prefs) => {
+          if (!prefs.voiceIdEn) { lastShownVoiceValue = null; if (alive) setVoiceValue(null); return; }
+          const voices = await getVoicesOnce();
+          const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
+          // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
+          const next = match ? voiceTitle(match) : null;
+          lastShownVoiceValue = next;
+          if (alive) setVoiceValue(next);
+        })
+        .catch((error: unknown) => {
+          console.warn(`[SETTINGS-EDU] voice_value_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
+        });
+      return () => { alive = false; };
     }, []),
   );
 
@@ -125,7 +154,7 @@ export default function SettingsEdu() {
   const rows: { key: RowKey; label: string; sub: string; icon: keyof typeof Ionicons.glyphMap }[] = [
     {
       key: 'autoCheck',
-      icon: 'checkmark-circle-outline',
+      icon: 'checkmark-outline', // зачем: паритет profile.html PRF-05 (13.10): значок «check» макета
       label: L({
         ru: 'Автопроверка',
         uk: 'Автоперевірка',
@@ -178,7 +207,7 @@ export default function SettingsEdu() {
     },
     {
       key: 'hardMode',
-      icon: 'key-outline',
+      icon: 'create-outline', // зачем: паритет profile.html PRF-05 (13.10): значок «edit» макета
       label: L({
         ru: 'Ввод с клавиатуры',
         uk: 'Введення з клавіатури',
@@ -217,15 +246,16 @@ export default function SettingsEdu() {
         pl: 'Wibracja przy błędzie',
       }),
       sub: L({
-        ru: 'Работает при включённом тактильном отклике (Настройки → Внешний вид и отклик)',
-        uk: 'Працює за увімкненого тактильного відгуку (Налаштування → Вигляд і відгук)',
-        en: 'Works when haptic feedback is enabled (Settings → Appearance and feedback)',
-        es: 'Requiere la respuesta háptica activa (Ajustes → Apariencia y respuesta)',
-        'pt-BR': 'Requer a resposta tátil ativa (Configurações → Aparência e resposta)',
-        vi: 'Cần bật phản hồi rung (Cài đặt → Giao diện và phản hồi)',
-        id: 'Perlu umpan balik haptik aktif (Pengaturan → Tampilan dan respons)',
-        tr: 'Dokunsal geri bildirim açık olmalı (Ayarlar → Görünüm ve geri bildirim)',
-        pl: 'Wymaga włączonej reakcji haptycznej (Ustawienia → Wygląd i reakcje)',
+        // зачем: раздела «Внешний вид и отклик» больше нет — называем сам переключатель «Тактильный отклик» (он в Настройках, группа «Обучение»).
+        ru: 'Работает при включённом тактильном отклике (Настройки → «Тактильный отклик»)',
+        uk: 'Працює за увімкненого тактильного відгуку (Налаштування → «Тактильний відгук»)',
+        en: 'Works when haptic feedback is enabled (Settings → “Haptic feedback”)',
+        es: 'Requiere la respuesta háptica activa (Ajustes → «Respuesta háptica»)',
+        'pt-BR': 'Requer a resposta tátil ativa (Configurações → “Resposta tátil”)',
+        vi: 'Cần bật phản hồi rung (Cài đặt → “Phản hồi rung”)',
+        id: 'Perlu umpan balik haptik aktif (Pengaturan → “Umpan balik haptik”)',
+        tr: 'Dokunsal geri bildirim açık olmalı (Ayarlar → “Dokunsal geri bildirim”)',
+        pl: 'Wymaga włączonej reakcji haptycznej (Ustawienia → „Reakcja haptyczna”)',
       }),
     },
   ];
@@ -262,7 +292,7 @@ export default function SettingsEdu() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 20 }} decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 20 }} decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <PressableHybrid
               accessibilityLabel={L({ ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
               onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
@@ -276,7 +306,7 @@ export default function SettingsEdu() {
               {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
-            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>
+            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {loc.edu.title}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>
@@ -361,6 +391,9 @@ export default function SettingsEdu() {
             <PlateFill g={glass} radius={14} />
             <RowIcon name="person-outline" />
             <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, maxWidth: 120, flexShrink: 1, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится, без обрезки */ }}>
+              {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
+            </Text>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
             </PressableHybrid>
           </BouncyScrollView>

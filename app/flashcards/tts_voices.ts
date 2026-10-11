@@ -167,6 +167,15 @@ export async function resolveVoiceForLang(lang: FcTtsLang): Promise<ResolvedVoic
   return pickVoiceForLang(voices, lang, preferred);
 }
 
+/** Читаемое имя: «Samantha» без служебных суффиксов (Enhanced)/(Premium).
+ *  зачем: одно правило имени для экрана выбора голоса и строки «Голос озвучки (EN)» в Настройках обучения. */
+export function voiceTitle(v: FcVoiceLike): string {
+  const name = (v.name ?? '').trim();
+  if (name) return name.replace(/\s*\((enhanced|premium)\)\s*/i, '').trim() || name;
+  const parts = v.identifier.split('.');
+  return parts[parts.length - 1] || v.identifier;
+}
+
 /** Только для юнит-тестов: сброс кэша модульного состояния. */
 export function __resetTtsVoicesForTests(): void {
   voicesCache = null;

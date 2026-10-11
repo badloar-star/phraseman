@@ -388,21 +388,23 @@ export default function NicknameEditModal({
         borderTopRightRadius: 28,
         borderBottomLeftRadius: bottomRadius,
         borderBottomRightRadius: bottomRadius,
-        paddingHorizontal: 20,
+        // зачем: паритет profile.html (13.10): шторка макета — поля 12/18/40; низ 40 считаем от края экрана (не плюс inset), иначе шторка выше макета
+        paddingHorizontal: 18,
         paddingTop: 12,
-        paddingBottom: isHybrid ? Math.max(20, insets.bottom + 12) : 20,
+        paddingBottom: isHybrid ? Math.max(40, insets.bottom + 12) : 20,
         // зачем (стиль «Тень»): шторку снизу отделяет затемнение (без тени), окно по центру — тень плашки; overflow: hidden убран, он резал бы тень
         boxShadow: isHybrid ? undefined : plateBoxShadow(glass),
       }}
     >
-      <View style={{ width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 10, backgroundColor: glass.glassEdge }} />
+      {/* зачем: паритет profile.html (13.10): ручка шторки 44×5 r3, отступ 26; шапка по центру, зазор 10 */}
+      <View style={{ width: 44, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 26, backgroundColor: glass.glassEdge }} />
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-          <View style={{ flex: 1, paddingTop: 6 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <View style={{ flex: 1 }}>
             <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700' }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
-            <Text style={{ color: glass.secondary, fontSize: f.caption, marginTop: 4 }}>
+            <Text style={{ color: glass.secondary, fontSize: f.caption, marginTop: 7 /* зачем: паритет profile.html (13.10): отступ подзаголовка 7 */ }}>
               {L('Ник можно менять раз в 14 дней', 'Нік можна змінювати раз на 14 днів', 'You can change it once every 14 days', 'Puedes cambiarlo una vez cada 14 días', 'Você pode mudar uma vez a cada 14 dias', 'Có thể đổi 14 ngày một lần', 'Bisa diganti sekali tiap 14 hari', '14 günde bir değiştirebilirsin', 'Zmiana raz na 14 dni')}
             </Text>
           </View>
@@ -413,11 +415,12 @@ export default function NicknameEditModal({
             activeOpacity={0.7}
             disabled={saving}
             accessibilityState={{ disabled: saving }}
-            hitSlop={{ top: 4, right: 4, bottom: 4, left: 4 }}
+            // зачем: паритет profile.html (13.10): крестик 35×35 как в макете; зона нажатия добрана hitSlop до 45
+            hitSlop={{ top: 5, right: 5, bottom: 5, left: 5 }}
             style={{
-              width: 44,
-              height: 44,
-              borderRadius: 22,
+              width: 35,
+              height: 35,
+              borderRadius: 18,
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: glass.selected,
@@ -431,8 +434,9 @@ export default function NicknameEditModal({
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginTop: 20, marginBottom: 8 }}>
-          {L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
+        {/* зачем: паритет profile.html (13.10): метка поля — eyebrow макета (заглавные, жирная, разрядка 1.7), размер как у SettingsGlassEyebrow (13/18, D145) */}
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1.7, marginTop: 20, marginBottom: 8 }}>{/* guard-ok: это метка поля (eyebrow макета), не подпись под названием */}
+          {L('ИМЯ ПРОФИЛЯ', 'ІМ\'Я ПРОФІЛЮ', 'PROFILE NAME', 'NOMBRE DE PERFIL', 'NOME DO PERFIL', 'TÊN HỒ SƠ', 'NAMA PROFIL', 'PROFİL ADI', 'NAZWA PROFILU')}
         </Text>
         <TextInput
           testID="nickname-input"
@@ -443,10 +447,11 @@ export default function NicknameEditModal({
             boxShadow: nestedBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
             color: glass.text,
             fontSize: f.h2,
-            minHeight: 52,
-            paddingHorizontal: 16,
+            // зачем: паритет profile.html (13.10): поле 48, r14, поля 12/14
+            minHeight: 48,
+            paddingHorizontal: 14,
             paddingVertical: 12,
-            borderRadius: 16,
+            borderRadius: 14,
             marginBottom: 8,
           }}
           value={newName}
@@ -461,7 +466,7 @@ export default function NicknameEditModal({
           blurOnSubmit
         />
         <View
-          style={{ minHeight: 22, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
+          style={{ minHeight: 22, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 10 /* зачем: паритет profile.html (13.10): зазор значок↔текст 10 */ }}
         >
           {availabilityStatus === 'checking' ? (
             <ActivityIndicator size="small" color={availabilityColor} />

@@ -7,20 +7,22 @@ import ts from 'typescript';
 
 const source = fs.readFileSync('app/privacy_settings.tsx', 'utf8');
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+// 11.10 (паритет profile.html PRF-07): 5 карт заменены текстами макета — подпись аналитики «Приложение работает и без этого»
+// (вместо пары «Помогают понять…»/«Сейчас не отправляются»), примечание при отказе, «AI-разбор ошибок», «Сейчас не используется/-ются».
 const ORIGINAL_LOCALE_SIGNATURES = [
   '3426bd9295c45c238c6b6675cad20670491961cd17ce0541347eb5e2b456df4f',
   'ba5804535e65f07d50d9dabc1129edf6e4cb17f41ecd790a427977c3697fb067',
   '76480bd36c546b53eeda83ad4ae54f315c979187c2fd6eaf89587bb04d3990c7',
-  'bfc0d6fc53b8582f6673e3d6c53b8374369b9b2bec0986d414fded56e5041ee2',
-  '2a7432398360fb9e912c59a6dfda3951f7b47dbb3e4d95fec65998adefabbc15',
+  '01452ec938935627bd244abf814845f6c288c0a463b70290d5c32ac465f43dfa',
+  'e0690c01636524ac0b25a09053282b986c386b796c7931bb871e3fcebb9833c3',
   'f345546cc028a3a9441bfe7ce4743bea9ca794a29535c9c06f7263741628d411',
   'ae4537eab7c45a6f9850a68bdfdd29efaf7d55240a1768bd58efa4f7b3c1c6ac',
-  '6ed9f9dc4b45a1c2b74919209f3ebd9c738e72ed2ff0c69c2e33d155c8a6181a',
+  'c2faf6d04e53d5ed63a12980a5f1ddcc4af56918f6c42aedf24dba996d801449',
   '411bf7a8e0a523644f47e1420d49131cb754658e80c09f5c15cdad3b50e355fd',
-  '07b6630a8e9feda1169cb5c880fb83ffc0f12c111bb0a028c66b352b69b4c1c8',
+  '2a75c541a8726db6004ecef2c3feaadfe9b140e7344206013c20ebd3537640e2',
   '6d71623a4577c55c8a1e46d17fd19999f9b4768b7dc37dfa8485f295a7d3a11e',
   '4e5e049ed04375ef9b80bce8cc459897716f3d28479176669ffbc26defae70a1',
-  'e30394a7119540bc04e65d93a2ceee4cd573da677af93c55a4cb5a72e467e088',
+  'bec19d24ad2ff0a49ac3eb838222c0716f3aefdae317f0b1d97bcd119ca065c3',
   'f40953d99ecd46670f37e95d8e506ca1b87bd616ec1fd1cd9682bb6bca55c1e5',
   'cf4eb60e3d53d8699e873b77792908e11e822aa17bfced7aac6727dfa01a3a9f',
   '9560e914ffe7dd6596130821f20c4e29a06bbdd5bbd491822b174fdcf4beb9dc',
@@ -355,12 +357,14 @@ test('all locale shells render and disclosures, dynamic strings, semantic delete
   const text = nodes.filter(node => node.type === 'Text').map(textOf).join(' ');
   for (const required of [
     'Необязательные данные и документы',
-    'Обезличенные данные о том, как проходит обучение.',
-    'Сбор сбоев для стабильности продолжается всегда.',
+    // 11.10 (паритет profile.html PRF-07): при отказе — текст макета; прежний текст остаётся для включённого согласия.
+    'Сейчас данные об использовании не отправляются.',
+    'Сбор технических сбоев для стабильности продолжается.',
     'Каждая функция работает только после отдельного согласия.',
     'В зависимости от функции в OpenAI отправляется текст или речь.',
     'Выключено — новые запросы не отправляются.',
-    'Сейчас не отправляются', 'Сейчас разбор ошибок через ИИ не используется', 'Сейчас AI-диалоги не используются',
+    // 11.10 (паритет profile.html PRF-07): подписи строк как в макете.
+    'Приложение работает и без этого', 'AI-разбор ошибок', 'Сейчас не используется', 'Сейчас не используются',
   ]) assert.ok(text.includes(required), required);
   const deleteRow = nodes.find(node => node.props?.testID === 'privacy-delete-account');
   assert.ok(visit(deleteRow).filter(node => node.type === 'Text' || node.type === 'Ionicons').some(node => node.props.color === '#f66' || flatStyle(node.props.style).color === '#f66'));

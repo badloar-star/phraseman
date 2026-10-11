@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
@@ -15,8 +15,10 @@ import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIF
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Image } from 'expo-image';
-import { getStoredStudyTarget, type StudyTarget } from './study_target';
+import { type StudyTarget } from './study_target';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { SettingsGlassEyebrow, SettingsGlassRow } from '../components/settings/SettingsGlassRows';
+import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
 
 // зачем: паритет с макетом profile.html PRF-03 — внизу экрана языков блок «Язык изучения» с флагом текущего языка.
 const STUDY_NAME: Record<StudyTarget, string> = { en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', it: 'Italiano' };
@@ -34,14 +36,11 @@ export default function SettingsLanguage() {
   const { lang, setLang, s } = useLang();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const [studyTarget, rememberShownStudyTarget] = useState<StudyTarget>('en');
-  useEffect(() => {
-    let alive = true;
-    getStoredStudyTarget(lang as Lang)
-      .then((v) => { if (alive) rememberShownStudyTarget(v); })
-      .catch((error: unknown) => { console.warn(`[SETTINGS-LANG] study_target_load_failed reason=${error instanceof Error ? error.message : String(error)}`); });
-    return () => { alive = false; };
-  }, [lang]);
+  // зачем (ревью 11.10): язык изучения — из общего StudyTargetContext: первый кадр сразу с последним известным
+  // языком (снимок peek), смена языка приходит событием STUDY_TARGET_CHANGED — без своего второго источника правды.
+  const { studyTarget } = useStudyTarget();
+  // зачем: паритет profile.html PRF-03 (13.10): строка «Язык изучения» — кнопка с шевроном, открывает ту же шторку, что и в Настройках.
+  const [studySheetVisible, setStudySheetVisible] = useState(false);
   const closeLabel = triLang(lang as Lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
   const subtitle = triLang(lang as Lang, {
     ru: 'Язык меню и подсказок приложения', uk: 'Мова меню та підказок застосунку', en: 'Language for the app menus and hints', es: 'Idioma de los menús y las pistas de la app',
@@ -55,7 +54,8 @@ export default function SettingsLanguage() {
     <ScreenGradient>
       <View testID="settings-language-screen" style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 40 }} scrollEventThrottle={16}>
+          {/* зачем: паритет profile.html PRF-03 (13.10): поля экрана 20, круг «Закрыть» 42 со значком 21, разрядка заголовка −0.5 */}
+          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }} scrollEventThrottle={16}>
             <PressableHybrid
               testID="settings-language-back"
               accessibilityLabel={closeLabel}
@@ -63,12 +63,13 @@ export default function SettingsLanguage() {
               withHaptic={true}
               withSound={false}
               variant="icon"
-              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
+              hitSlop={{ top: 3, right: 3, bottom: 3, left: 3 }}
+              style={{ width: 42, height: 42, alignSelf: 'flex-start', marginTop: 3 }}
+              contentStyle={{ width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
             >
-              <Ionicons name="close" size={20} color={glass.lightTint} />
+              <Ionicons name="close" size={21} color={glass.lightTint} />
             </PressableHybrid>
-            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>{s.settings.lang}</Text>
+            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>{s.settings.lang}</Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>{subtitle}</Text>
             <View style={{ marginTop: 22, gap: 10 }}>
             {getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).map((item) => {
@@ -108,17 +109,28 @@ export default function SettingsLanguage() {
               );
             })}
             </View>
-            <SettingsGlassEyebrow glass={glass} title={triLang(lang as Lang, { ru: 'ЯЗЫК ИЗУЧЕНИЯ', uk: 'МОВА НАВЧАННЯ', en: 'LEARNING LANGUAGE', es: 'IDIOMA DE ESTUDIO', 'pt-BR': 'IDIOMA DE ESTUDO', vi: 'NGÔN NGỮ HỌC', id: 'BAHASA BELAJAR', tr: 'ÖĞRENİLEN DİL', pl: 'JĘZYK NAUKI' })} />
+            {/* зачем: паритет profile.html PRF-03 (13.10): над «ЯЗЫК ИЗУЧЕНИЯ» отступ 26 (в макете .eyebrow margin 26px 4px 10px) */}
+            <View style={{ marginTop: 2 }}>
+              <SettingsGlassEyebrow glass={glass} title={triLang(lang as Lang, { ru: 'ЯЗЫК ИЗУЧЕНИЯ', uk: 'МОВА НАВЧАННЯ', en: 'LEARNING LANGUAGE', es: 'IDIOMA DE ESTUDIO', 'pt-BR': 'IDIOMA DE ESTUDO', vi: 'NGÔN NGỮ HỌC', id: 'BAHASA BELAJAR', tr: 'ÖĞRENİLEN DİL', pl: 'JĘZYK NAUKI' })} />
+            </View>
             <SettingsGlassRow
               glass={glass}
               testID="settings-language-study-row"
               leading={<Image source={STUDY_FLAG[studyTarget]} accessible={false} style={{ width: 54, height: 38, borderRadius: 10 }} contentFit="cover" />}
               title={STUDY_NAME[studyTarget]}
               sub={triLang(lang as Lang, { ru: 'Сейчас изучаете', uk: 'Зараз вивчаєте', en: 'Currently learning', es: 'Estudias ahora', 'pt-BR': 'Estudando agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorsun', pl: 'Teraz się uczysz' })}
+              onPress={() => setStudySheetVisible(true)}
             />
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <StudyLanguageSheet
+        visible={studySheetVisible}
+        onClose={() => setStudySheetVisible(false)}
+        lang={lang as Lang}
+        activeTarget={studyTarget}
+        logTag="[SETTINGS-LANG-STUDY]"
+      />
     </ScreenGradient>
   );
 }

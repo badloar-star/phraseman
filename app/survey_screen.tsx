@@ -208,7 +208,6 @@ export default function SurveyScreen() {
           text: glass.text,
           secondary: glass.secondary,
           control: glass.opaqueControl,
-          edge: glass.glassEdge,
           icon: glass.lightTint,
           sheen: glass.selected,
           cta: glass.cta,
@@ -252,7 +251,6 @@ function UnavailableSurvey({
     text: string;
     secondary: string;
     control: string;
-    edge: string;
     icon: string;
     sheen: string;
     cta: string;
@@ -261,7 +259,8 @@ function UnavailableSurvey({
   scaled: (value: number) => number;
 }) {
   const boundary = message.indexOf('. ');
-  const heading = boundary >= 0 ? message.slice(0, boundary + 1) : message;
+  // зачем: паритет profile.html PRF-13 (13.10): заголовок пустого состояния — без точки в конце («Сейчас опрос недоступен»), во всех языках
+  const heading = (boundary >= 0 ? message.slice(0, boundary + 1) : message).replace(/[.。]\s*$/, '');
   const body = boundary >= 0 ? message.slice(boundary + 2) : '';
 
   return (
@@ -277,6 +276,9 @@ function UnavailableSurvey({
         }}
       >
         <ContentWrap>
+          {/* зачем: паритет profile.html PRF-13 (13.10): шапка и заголовок — в поле экрана 20 (ContentWrap полей не даёт);
+              «назад» — голый шеврон 21 без круга и кромки (`.rb.bare`), зона нажатия 48×44 */}
+          <View style={{ paddingHorizontal: 20 }}>
           <PressableHybrid
             testID="survey-fallback-close"
             accessibilityLabel={closeAccessibilityLabel}
@@ -285,23 +287,13 @@ function UnavailableSurvey({
             withHaptic={false}
             withSound={false}
             variant="icon"
-            style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-            contentStyle={{
-              width: 48,
-              height: 48,
-              borderRadius: 24,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: colors.control,
-              borderWidth: 1,
-              borderColor: colors.edge,
-            }}
+            style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+            contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
           >
-            {/* зачем: паритет с макетом profile.html PRF-13 — «назад» шевроном */}
             <Ionicons
               name="chevron-back"
-              size={22}
-              color={colors.icon}
+              size={21}
+              color={colors.text}
               accessibilityElementsHidden
               importantForAccessibility="no-hide-descendants"
             />
@@ -311,10 +303,11 @@ function UnavailableSurvey({
             testID="survey-fallback-title"
             provenance="authored"
             accessibilityRole="header"
-            style={{ color: colors.text, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}
+            style={{ color: colors.text, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}
           >
             {title}
           </FlowText>
+          </View>
 
           <BouncyScrollView
             testID="survey-fallback-scroll"
@@ -324,10 +317,13 @@ function UnavailableSurvey({
           >
             <View
               testID="survey-fallback-empty"
+              // зачем: в макете PRF-13 отступ сверху 170, но сторож survey_unavailable_* прямо запрещает paddingTop 170 (30.09) —
+              // оставлено по центру до решения координатора (вопрос в docs/work/tasks/parity-profile-audit-2026-10-11.md).
               style={{ flex: 1, minHeight: 0, alignItems: 'center', justifyContent: 'center', paddingVertical: 24 }}
             >
               <View
                 testID="survey-fallback-icon-tile"
+                // зачем (стиль «Тень»): плитка без кромки — тон фона и блик
                 style={{
                   width: 61,
                   height: 61,
@@ -335,8 +331,6 @@ function UnavailableSurvey({
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: colors.control,
-                  borderWidth: 1,
-                  borderColor: colors.edge,
                   overflow: 'hidden',
                 }}
               >
@@ -383,9 +377,10 @@ function UnavailableSurvey({
                 withSound={false}
                 variant="primary"
                 style={{ minWidth: 88, marginTop: 20 }}
-                contentStyle={{ minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.cta }}
+                // зачем: паритет profile.html PRF-13 (13.10): малая кнопка `.cta.sm` — 42, r21, поля 18, 16/600
+                contentStyle={{ minHeight: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, backgroundColor: colors.cta }}
               >
-                <FlowText testID="survey-cta-label" provenance="authored" style={{ color: colors.ctaInk, fontWeight: '700', fontSize: scaled(17), lineHeight: scaled(22) }}>
+                <FlowText testID="survey-cta-label" provenance="authored" style={{ color: colors.ctaInk, fontWeight: '600', fontSize: scaled(16), lineHeight: scaled(21) }}>
                   {actionLabel}
                 </FlowText>
               </PressableHybrid>

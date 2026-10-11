@@ -26,7 +26,7 @@ import { useAudio } from '../hooks/use-audio';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { fcHaptic } from './flashcards/SoundService';
 import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
-import { getVoicesOnce, type FcVoiceLike } from './flashcards/tts_voices';
+import { getVoicesOnce, voiceTitle, type FcVoiceLike } from './flashcards/tts_voices';
 import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -60,13 +60,6 @@ function isEnhanced(v: FcVoiceLike): boolean {
   return q.includes('enhanced') || q.includes('premium') || n.includes('enhanced') || n.includes('premium');
 }
 
-/** Читаемое имя: «Samantha · en-US» без служебных суффиксов идентификатора. */
-function voiceTitle(v: FcVoiceLike): string {
-  const name = (v.name ?? '').trim();
-  if (name) return name.replace(/\s*\((enhanced|premium)\)\s*/i, '').trim() || name;
-  const parts = v.identifier.split('.');
-  return parts[parts.length - 1] || v.identifier;
-}
 
 /** Rate-пресеты §3.8/E13 — та же шкала, что слайдер speechRate (0.5–1.0). */
 const RATE_PRESETS = [

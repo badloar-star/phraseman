@@ -25,9 +25,11 @@ test('root settings use the Liquid Glass tokens and the approved scroll shell wi
   assert.ok(bodyStart > 0 && bodyEnd > bodyStart);
   assert.match(source, /import \{ liquidGlassTokens \} from '\.\.\/\.\.\/constants\/liquidGlassThemePalette';/);
   assert.match(source, /const glass = liquidGlassTokens\(liquidGlassThemeId\);/);
-  assert.match(body, /paddingTop:\s*insets\.top/);
-  assert.match(body, /paddingLeft:\s*15 \+ insets\.left/);
-  assert.match(body, /paddingRight:\s*15 \+ insets\.right/);
+  // 11.10 (паритет profile.html, макет A): верхний inset даёт обёртка вкладок ((tabs)/_layout.tsx, paddingTop: insets.top) —
+  // свой paddingTop опускал заголовок «Настройки» на ≈55px; поля экрана 20.
+  assert.doesNotMatch(body, /contentContainerStyle=\{\{[^}]*paddingTop:\s*insets\.top/);
+  assert.match(body, /paddingLeft:\s*20 \+ insets\.left/);
+  assert.match(body, /paddingRight:\s*20 \+ insets\.right/);
   assert.match(body, /paddingBottom:\s*tabContentBottomPad/);
   assert.match(body, /onScroll=\{handleSettingsScroll\}/);
   assert.match(source, /settingsScrollYRef\.current/);

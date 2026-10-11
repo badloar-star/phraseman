@@ -976,7 +976,7 @@ export default function FlashcardsScreen() {
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: 'Набор отправлен на публикацию.',
           uk: 'Набір надіслано на публікацію.',
-          es: 'El pack se ha enviado para publicarse.',
+          es: 'El pack se ha enviado para publicarse.', en: 'The pack was sent for publication.',
           'pt-BR': 'O pacote foi enviado para publicação.',
           vi: 'Bộ thẻ đã được gửi để đăng.',
           id: 'Paket dikirim untuk dipublikasikan.',
@@ -995,7 +995,7 @@ export default function FlashcardsScreen() {
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Для публикации нужны название, описание и достаточное число карточек.',
           uk: 'Для публікації потрібні назва, опис і достатня кількість карток.',
-          es: 'Para publicar hacen falta título, descripción y suficientes tarjetas.',
+          es: 'Para publicar hacen falta título, descripción y suficientes tarjetas.', en: 'Publishing needs a title, a description and enough cards.',
           'pt-BR': 'Para publicar são necessários título, descrição e cartões suficientes.',
           vi: 'Để đăng cần có tiêu đề, mô tả và đủ số thẻ.',
           id: 'Untuk publikasi perlu judul, deskripsi, dan cukup kartu.',
@@ -1007,7 +1007,7 @@ export default function FlashcardsScreen() {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось отправить набор на публикацию.',
         uk: 'Не вдалося надіслати набір на публікацію.',
-        es: 'No se pudo enviar el pack para publicarse.',
+        es: 'No se pudo enviar el pack para publicarse.', en: 'Could not send the pack for publication.',
         'pt-BR': 'Não foi possível enviar o pacote para publicação.',
         vi: 'Không thể gửi bộ thẻ để đăng.',
         id: 'Gagal mengirim paket untuk dipublikasikan.',

@@ -49,23 +49,23 @@ export const FLASHCARD_STATUS_A11Y_LABEL: Record<FlashcardStatus, string> = {
 export function flashcardStatusA11yLabel(status: FlashcardStatus, lang: string): string {
   const byLang: Record<FlashcardStatus, Record<string, string>> = {
     new: {
-      ru: 'Новая карточка', uk: 'Нова картка', es: 'Tarjeta nueva', 'pt-BR': 'Cartão novo',
+      ru: 'Новая карточка', uk: 'Нова картка', es: 'Tarjeta nueva', en: 'New card', 'pt-BR': 'Cartão novo',
       vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa fiszka',
     },
     learning: {
-      ru: 'Учу', uk: 'Вивчаю', es: 'Aprendiendo', 'pt-BR': 'Aprendendo',
+      ru: 'Учу', uk: 'Вивчаю', es: 'Aprendiendo', en: 'Learning', 'pt-BR': 'Aprendendo',
       vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Öğreniyorum', pl: 'Uczę się',
     },
     review: {
-      ru: 'Пора повторить', uk: 'Час повторити', es: 'Hora de repasar', 'pt-BR': 'Hora de revisar',
+      ru: 'Пора повторить', uk: 'Час повторити', es: 'Hora de repasar', en: 'Time to review', 'pt-BR': 'Hora de revisar',
       vi: 'Đến lúc ôn lại', id: 'Waktunya diulang', tr: 'Tekrar zamanı', pl: 'Czas powtórzyć',
     },
     mastered: {
-      ru: 'Освоена', uk: 'Опанована', es: 'Dominada', 'pt-BR': 'Dominado',
+      ru: 'Освоена', uk: 'Опанована', es: 'Dominada', en: 'Mastered', 'pt-BR': 'Dominado',
       vi: 'Đã thuộc', id: 'Dikuasai', tr: 'Öğrenildi', pl: 'Opanowana',
     },
     weak: {
-      ru: 'Слабая карточка', uk: 'Слабка картка', es: 'Tarjeta débil', 'pt-BR': 'Cartão fraco',
+      ru: 'Слабая карточка', uk: 'Слабка картка', es: 'Tarjeta débil', en: 'Weak card', 'pt-BR': 'Cartão fraco',
       vi: 'Thẻ yếu', id: 'Kartu lemah', tr: 'Zayıf kart', pl: 'Słaba fiszka',
     },
   };

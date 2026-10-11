@@ -27,7 +27,7 @@ const SCAN_DIRS = ['app', 'components', 'constants', 'hooks', 'modules'];
 const SKIP_FILE = /(^|\/)(__tests__|node_modules|\.worktrees|\.claude|\.codex-tmp)\/|\.test\.|\/lesson\d+|\/theory_content|\/content\/|generated/;
 // Контент обучения на языках-источниках (объяснения грамматики, глоссы, диагностика): английский интерфейс переводит только оболочку,
 // учебный материал остаётся на языке источника (app/config.ts, ENGLISH_UI_LOCALE_ENABLED). Плюс неподключённый модуль онбординга-«ага».
-const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_)|components\/onboarding_aha\//;
+const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_|flashcards\/(deck_sources|FlashcardListItem))|components\/onboarding_aha\//;
 
 function listFiles() {
   const out = execFileSync('git', ['ls-files', '--', ...SCAN_DIRS], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });

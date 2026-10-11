@@ -235,7 +235,7 @@ export default function CommunityPackSocialBar({
       actionToastTri('info', {
         ru: 'Сначала добавь набор себе — потом можно поставить лайк.',
         uk: 'Спершу додай набір собі — потім можна поставити лайк.',
-        es: 'Primero añade el pack; después podrás darle me gusta.',
+        es: 'Primero añade el pack; después podrás darle me gusta.', en: 'First add the pack to your own; then you can like it.',
         'pt-BR': 'Primeiro adicione o pacote; depois você pode curtir.',
         vi: 'Hãy thêm bộ thẻ trước, sau đó bạn có thể thích.',
         id: 'Tambahkan paket dulu, setelah itu kamu bisa menyukainya.',
@@ -337,7 +337,7 @@ export default function CommunityPackSocialBar({
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Этот набор пока нельзя добавить себе.',
         uk: 'Цей набір поки не можна додати собі.',
-        es: 'Este pack todavía no se puede añadir.',
+        es: 'Este pack todavía no se puede añadir.', en: 'This pack can\'t be added yet.',
       }));
     })();
   }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);

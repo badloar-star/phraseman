@@ -201,7 +201,7 @@ function communityPackValidationToast(
         return {
           ru: `Минимум ${COMMUNITY_PACK_CARD_COUNT_MIN} карточек.`,
           uk: `Мінімум ${COMMUNITY_PACK_CARD_COUNT_MIN} карток.`,
-          es: `Al menos ${COMMUNITY_PACK_CARD_COUNT_MIN} tarjetas.`,
+          es: `Al menos ${COMMUNITY_PACK_CARD_COUNT_MIN} tarjetas.`, en: `At least ${COMMUNITY_PACK_CARD_COUNT_MIN} cards.`,
           'pt-BR': `No mínimo ${COMMUNITY_PACK_CARD_COUNT_MIN} cartões.`,
           vi: `Tối thiểu ${COMMUNITY_PACK_CARD_COUNT_MIN} thẻ.`,
           id: `Minimal ${COMMUNITY_PACK_CARD_COUNT_MIN} kartu.`,
@@ -212,7 +212,7 @@ function communityPackValidationToast(
       return {
         ru: `Не более ${COMMUNITY_PACK_CARD_COUNT_MAX} карточек.`,
         uk: `Не більше ${COMMUNITY_PACK_CARD_COUNT_MAX} карток.`,
-        es: `Como máximo, ${COMMUNITY_PACK_CARD_COUNT_MAX} tarjetas.`,
+        es: `Como máximo, ${COMMUNITY_PACK_CARD_COUNT_MAX} tarjetas.`, en: `No more than ${COMMUNITY_PACK_CARD_COUNT_MAX} cards.`,
         'pt-BR': `No máximo ${COMMUNITY_PACK_CARD_COUNT_MAX} cartões.`,
         vi: `Tối đa ${COMMUNITY_PACK_CARD_COUNT_MAX} thẻ.`,
         id: `Maksimal ${COMMUNITY_PACK_CARD_COUNT_MAX} kartu.`,
@@ -223,7 +223,7 @@ function communityPackValidationToast(
       return {
         ru: 'Укажи название и описание набора.',
         uk: 'Вкажи назву й опис набору.',
-        es: 'Indica el título y la descripción del pack.',
+        es: 'Indica el título y la descripción del pack.', en: 'Enter the pack title and description.',
         'pt-BR': 'Informe o título e a descrição do pacote.',
         vi: 'Nhập tên và mô tả của bộ thẻ.',
         id: 'Isi judul dan deskripsi paket.',
@@ -234,7 +234,7 @@ function communityPackValidationToast(
       return {
         ru: 'У каждой карточки должны быть EN и перевод.',
         uk: 'У кожної картки мають бути EN і переклад.',
-        es: 'Cada tarjeta debe tener EN y traducción.',
+        es: 'Cada tarjeta debe tener EN y traducción.', en: 'Every card needs English text and a translation.',
         'pt-BR': 'Cada cartão precisa ter EN e tradução.',
         vi: 'Mỗi thẻ cần có EN và bản dịch.',
         id: 'Setiap kartu harus memiliki EN dan terjemahan.',
@@ -245,7 +245,7 @@ function communityPackValidationToast(
       return {
         ru: 'Community-наборы для French закрыты до отдельной проверки источников.',
         uk: 'Community-набори для French закриті до окремої перевірки джерел.',
-        es: 'Los packs community para French están bloqueados hasta una revisión de fuentes.',
+        es: 'Los packs community para French están bloqueados hasta una revisión de fuentes.', en: 'Community packs for French are closed until the sources are reviewed.',
         'pt-BR': 'Os pacotes community para French ficam bloqueados até uma revisão separada das fontes.',
         vi: 'Bộ community cho French bị chặn cho đến khi kiểm tra nguồn riêng.',
         id: 'Paket community untuk French diblokir sampai sumbernya ditinjau terpisah.',
@@ -256,7 +256,7 @@ function communityPackValidationToast(
       return {
         ru: 'Проверь название, описание и все карточки.',
         uk: 'Перевір назву, опис і всі картки.',
-        es: 'Revisa el título, la descripción y todas las tarjetas.',
+        es: 'Revisa el título, la descripción y todas las tarjetas.', en: 'Check the title, description and all cards.',
         'pt-BR': 'Verifique o título, a descrição e todos os cartões.',
         vi: 'Kiểm tra tên, mô tả và tất cả thẻ.',
         id: 'Periksa judul, deskripsi, dan semua kartu.',
@@ -726,7 +726,7 @@ export default function CommunityPackCreateScreen() {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Заполни английский текст и перевод.',
         uk: 'Заповни англійський текст і переклад.',
-        es: 'Completa el texto en inglés y la traducción.',
+        es: 'Completa el texto en inglés y la traducción.', en: 'Fill in the English text and the translation.',
         'pt-BR': 'Preencha o texto em inglês e a tradução.',
         vi: 'Nhập văn bản tiếng Anh và bản dịch.',
         id: 'Isi teks bahasa Inggris dan terjemahannya.',
@@ -879,7 +879,7 @@ export default function CommunityPackCreateScreen() {
             ? {
                 ru: 'Добавь хотя бы одну карточку.',
                 uk: 'Додай хоча б одну картку.',
-                es: 'Añade al menos una tarjeta.',
+                es: 'Añade al menos una tarjeta.', en: 'Add at least one card.',
                 'pt-BR': 'Adicione pelo menos um cartão.',
                 vi: 'Thêm ít nhất một thẻ.',
                 id: 'Tambahkan setidaknya satu kartu.',
@@ -935,7 +935,7 @@ export default function CommunityPackCreateScreen() {
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: 'Набор сохранён.',
           uk: 'Набір збережено.',
-          es: 'Pack guardado.',
+          es: 'Pack guardado.', en: 'Pack saved.',
           'pt-BR': 'Pacote salvo.',
           vi: 'Đã lưu bộ thẻ.',
           id: 'Paket disimpan.',
@@ -968,7 +968,7 @@ export default function CommunityPackCreateScreen() {
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: short || 'Не удалось сохранить набор.',
           uk: short || 'Не вдалося зберегти набір.',
-          es: short || 'No se pudo guardar el pack.',
+          es: short || 'No se pudo guardar el pack.', en: short || 'Could not save the pack.',
           'pt-BR': short || 'Não foi possível salvar o pacote.',
           vi: short || 'Không thể lưu bộ thẻ.',
           id: short || 'Gagal menyimpan paket.',

@@ -18,6 +18,7 @@ export type UgcCardThemeId = (typeof UGC_CARD_THEME_IDS)[number];
 export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   ru: string;
   uk: string;
+  en?: string; // зачем (12.10): ключ en для будущего английского интерфейса
   es: string;
   'pt-BR': string;
   vi: string;
@@ -28,7 +29,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   neon_lime: {
     ru: 'Лайм неон',
     uk: 'Лайм неон',
-    es: 'Lima neón',
+    es: 'Lima neón', en: 'Neon lime',
     'pt-BR': 'Lima neon',
     vi: 'Xanh chanh neon',
     id: 'Lime neon',
@@ -38,7 +39,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   aqua_pulse: {
     ru: 'Циан / вода',
     uk: 'Бірюза / вода',
-    es: 'Cian / agua',
+    es: 'Cian / agua', en: 'Cyan / water',
     'pt-BR': 'Ciano / água',
     vi: 'Xanh cyan / nước',
     id: 'Sian / air',
@@ -48,7 +49,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   magenta_pop: {
     ru: 'Маджента',
     uk: 'Маджента',
-    es: 'Magenta',
+    es: 'Magenta', en: 'Magenta',
     'pt-BR': 'Magenta',
     vi: 'Đỏ tím',
     id: 'Magenta',
@@ -58,7 +59,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   solar_gold: {
     ru: 'Золото',
     uk: 'Золото',
-    es: 'Oro',
+    es: 'Oro', en: 'Gold',
     'pt-BR': 'Ouro',
     vi: 'Vàng',
     id: 'Emas',
@@ -68,7 +69,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   violet_nebula: {
     ru: 'Фиолет',
     uk: 'Фіолет',
-    es: 'Violeta',
+    es: 'Violeta', en: 'Violet',
     'pt-BR': 'Violeta',
     vi: 'Tím',
     id: 'Ungu',
@@ -78,7 +79,7 @@ export const UGC_CARD_THEME_LABELS: Record<UgcCardThemeId, {
   ember_coal: {
     ru: 'Уголь / янтарь',
     uk: 'Вугіль / бурштин',
-    es: 'Carbón / ámbar',
+    es: 'Carbón / ámbar', en: 'Charcoal / amber',
     'pt-BR': 'Carvão / âmbar',
     vi: 'Than / hổ phách',
     id: 'Arang / amber',
@@ -97,7 +98,7 @@ export function ugcCardThemeLabel(id: string, lang: Lang): string {
     return triLang(lang, {
       ru: label.ru,
       uk: label.uk,
-      en: label.ru,
+      en: label.en ?? label.ru,
       es: label.es,
       'pt-BR': label['pt-BR'],
       vi: label.vi,

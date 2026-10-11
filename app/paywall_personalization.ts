@@ -80,6 +80,7 @@ export interface PersonalizedTag {
   emoji: string;
   ru: string;
   uk: string;
+  en?: string; // зачем (12.10): ключ en для будущего английского интерфейса
   es: string;
   'pt-BR': string;
   vi: string;
@@ -97,7 +98,7 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     emoji: '⚡',
     ru: 'Безлимит энергии — учись без пауз',
     uk: 'Безліміт енергії — навчайся без пауз',
-    es: 'Energía ilimitada — sin pausas',
+    es: 'Energía ilimitada — sin pausas', en: 'Unlimited energy — study without pauses',
     'pt-BR': 'Energia ilimitada — aprenda sem pausas',
     vi: 'Năng lượng không giới hạn — học không gián đoạn',
     id: 'Energi tanpa batas — belajar tanpa jeda',
@@ -110,7 +111,7 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     emoji: '🔁',
     ru: 'Повтори любой урок неограниченно',
     uk: 'Повторюй будь-який урок необмежено',
-    es: 'Repite cualquier lección sin límites',
+    es: 'Repite cualquier lección sin límites', en: 'Repeat any lesson without limits',
     'pt-BR': 'Repita qualquer lição sem limite',
     vi: 'Ôn lại bất kỳ bài học nào không giới hạn',
     id: 'Ulang pelajaran apa pun tanpa batas',
@@ -123,7 +124,7 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     emoji: '🧠',
     ru: 'Тренер слабых мест — умный повтор',
     uk: 'Тренер слабких місць — розумний повтор',
-    es: 'Entrenador de puntos débiles',
+    es: 'Entrenador de puntos débiles', en: 'Weak-spot trainer — smart review',
     'pt-BR': 'Treino dos pontos fracos',
     vi: 'Luyện các điểm yếu',
     id: 'Pelatih titik lemah',
@@ -136,7 +137,7 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     emoji: '📊',
     ru: 'Подробная аналитика и карта 365 дней',
     uk: 'Детальна аналітика і карта 365 днів',
-    es: 'Analítica detallada y mapa de 365 días',
+    es: 'Analítica detallada y mapa de 365 días', en: 'Detailed analytics and a 365-day map',
     'pt-BR': 'Análises detalhadas e mapa de 365 dias',
     vi: 'Phân tích chi tiết và bản đồ 365 ngày',
     id: 'Analitik detail dan peta 365 hari',
@@ -167,7 +168,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       emoji: '⚡',
       ru: `Энергия кончалась ${n} ${ru_times(n)} — Плюс даёт безлимит`,
       uk: `Енергія закінчувалась ${n} ${uk_times(n)} — Плюс дає безліміт`,
-      es: `Quedaste sin energía ${n} ${es_times(n)} — Plus la hace ilimitada`,
+      es: `Quedaste sin energía ${n} ${es_times(n)} — Plus la hace ilimitada`, en: `Ran out of energy ${n} ${n === 1 ? 'time' : 'times'} — Plus makes it unlimited`,
       'pt-BR': `Você ficou sem energia ${n}x — Plus deixa ilimitada`,
       vi: `Bạn hết năng lượng ${n} lần — Plus cho dùng không giới hạn`,
       id: `Energi habis ${n} kali — Plus membuatnya tanpa batas`,
@@ -186,7 +187,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       emoji: '🔥',
       ru: `Цепочка обрывалась ${n} ${ru_times(n)} — Плюс защищает её`,
       uk: `Ланцюжок обривався ${n} ${uk_times(n)} — Плюс захищає його`,
-      es: `Perdiste la racha ${n} ${es_times(n)} — Plus la protege`,
+      es: `Perdiste la racha ${n} ${es_times(n)} — Plus la protege`, en: `Your streak broke ${n} ${n === 1 ? 'time' : 'times'} — Plus protects it`,
       'pt-BR': `Você perdeu a sequência ${n}x — Plus ajuda a protegê-la`,
       vi: `Bạn mất chuỗi ${n} lần — Plus giúp bảo vệ chuỗi`,
       id: `Streak putus ${n} kali — Plus membantu melindunginya`,
@@ -206,7 +207,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       emoji: '⏱️',
       ru: `${h} ${ru_hours(h)} в приложении — серьёзная инвестиция`,
       uk: `${h} ${uk_hours(h)} у застосунку — серйозна інвестиція`,
-      es: `${h} ${es_hours(h)} en la app — una inversión real`,
+      es: `${h} ${es_hours(h)} en la app — una inversión real`, en: `${h} ${h === 1 ? 'hour' : 'hours'} in the app — a real investment`,
       'pt-BR': `${h} h no app — um investimento real`,
       vi: `${h} giờ trong ứng dụng — một khoản đầu tư thật sự`,
       id: `${h} jam di aplikasi — investasi nyata`,

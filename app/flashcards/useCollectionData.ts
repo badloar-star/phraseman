@@ -766,7 +766,7 @@ export function applyPostLoadNavigation(
       actionToastTri('success', {
         ru: 'Открыт купленный DEV-набор в карточках.',
         uk: 'Відкрито придбаний DEV-набір у картках.',
-        es: 'Pack DEV comprado abierto en Tarjetas.',
+        es: 'Pack DEV comprado abierto en Tarjetas.', en: 'Purchased DEV pack opened in Cards.',
       }),
     );
   } else if (!rc && progress) {
@@ -835,7 +835,7 @@ export function usePackDeeplinkGuard(args: {
         actionToastTri('info', {
           ru: 'Набор ещё не открыт. Его можно открыть за монеты в магазине (вкладка с наборами карточек).',
           uk: 'Набір ще не відкрито. Його можна відкрити за монети в магазині (вкладка з наборами карток).',
-          es: 'Aún no has desbloqueado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).',
+          es: 'Aún no has desbloqueado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).', en: 'This pack isn\'t unlocked yet. You can unlock it with coins in the shop (the card packs tab).',
         }),
       );
       onDeniedRef.current('not_owned');
@@ -953,7 +953,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось удалить карточку.',
           uk: 'Не вдалося видалити картку.',
-          es: 'No se pudo eliminar la tarjeta.',
+          es: 'No se pudo eliminar la tarjeta.', en: 'Could not delete the card.',
         }),
       );
     } finally {
@@ -1013,7 +1013,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось удалить выбранные карточки.',
           uk: 'Не вдалося видалити вибрані картки.',
-          es: 'No se pudieron eliminar las tarjetas seleccionadas.',
+          es: 'No se pudieron eliminar las tarjetas seleccionadas.', en: 'Could not delete the selected cards.',
         }),
       );
       return false;
@@ -1076,7 +1076,7 @@ export function useCollectionDeletion(args: {
         actionToastTri('error', {
           ru: 'Не удалось вернуть карточку.',
           uk: 'Не вдалося повернути картку.',
-          es: 'No se pudo restaurar la tarjeta.',
+          es: 'No se pudo restaurar la tarjeta.', en: 'Could not restore the card.',
         }),
       );
     }

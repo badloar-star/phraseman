@@ -54,6 +54,7 @@ export type LiquidGlassSurfaceRoles = Readonly<{
 type SurfaceSource = Readonly<{
   bg: string;
   bgTop?: string;
+  bgBottom?: string;
   opaqueCard: string;
   opaqueControl: string;
   opaqueSheet: string;
@@ -120,6 +121,22 @@ function nonTextTone(t: SurfaceSource, from: number, min: number, extra: readonl
   return hex6(t.text);
 }
 
+// зачем (светлая тема, решение координатора п.68, 15.10): низ плашки «Тени» сливался с фоном экрана — разница светлоты 0,1–3,4 при пороге 3. Здесь низ
+// плашки минимально затемняется В СТОРОНУ ТЕКСТА темы шагом 2 % (оттенок сохраняется), пока разница светлоты L* с КАЖДЫМ тоном фона не станет ≥ 3.
+const labL = (hex: string): number => {
+  const y = lum(hex);
+  return y > 0.008856 ? 116 * Math.cbrt(y) - 16 : 903.3 * y;
+};
+export const PLATE_BG_MIN_DL = 3;
+export function separatedFromBackground(color: string, toward: string, backgrounds: readonly string[], minDL: number = PLATE_BG_MIN_DL): string {
+  const bgL = backgrounds.map(labL);
+  for (let k = 0; k <= 0.6001; k += 0.02) {
+    const tone = k === 0 ? hex6(color) : mixSurfaceHex(color, toward, k);
+    if (bgL.every((l) => Math.abs(labL(tone) - l) >= minDL)) return tone;
+  }
+  return hex6(color);
+}
+
 /** Спековый цвет светлых теней (rgba(40,40,80)) с тоном темы: подмешиваем тон тени самой темы. */
 const LIGHT_SHADOW_BASE = '#282850';
 
@@ -131,7 +148,10 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
   const shadowStyle = t.isLight
     ? {
         plateFillFrom: hex6(t.opaqueCard),
-        plateFillTo: mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.55),
+        plateFillTo: separatedFromBackground(
+          mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.55), t.text,
+          [t.bg, ...(t.bgTop ? [t.bgTop] : []), ...(t.bgBottom ? [t.bgBottom] : [])],
+        ),
         raisedFillFrom: hex6(t.opaqueCard),
         raisedFillTo: mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.25),
         plateShadow: lightShadow(0.34),

@@ -483,6 +483,8 @@
   const savedSearch = () => phone(`${savedTop}${zoomBar(srch('ga', { caret: 1 }))}
       ${zgrid(1, [[`<mark>Ga</mark>te`, 'выход на посадку'], [`Lug<mark>ga</mark>ge`, 'багаж'], [`<mark>Ga</mark>p year`, 'год перерыва'], [`Me<mark>ga</mark>`, 'огромный']])}`, { time: '9:41', fixed: savedFab, overlay: cardSheet });
   const savedEmpty = () => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}${ttl('Сохранённые')}${empty('bookmark', 'Пока пусто', 'Сохраняй слова из уроков', 'Открыть каталог')}`, { time: '9:41' });
+  // зачем (код SavedCollectionStates.tsx, 12.10): загрузка «Сохранённых» — шапка с «‹ · поиск · + · ⋮», заголовок «Сохранённые 0» и четыре плашки-заглушки 118 px (три полоски: 39/52 %, 24 %, 67 %), без строки поиска, чипа языка и сегмента — ими занимается готовый список
+  const savedLoading = () => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}${ttl('Сохранённые', 0)}<div class="stack" style="margin-top:16px">${[0, 1, 2, 3].map((n) => `<div class="card" style="padding:18px;height:118px"><div class="skel" style="background:var(--control);animation:none;height:20px;width:${n % 2 === 0 ? 39 : 52}%"></div><div class="skel" style="background:var(--control);animation:none;height:14px;width:24%;margin-top:10px"></div><div class="skel" style="background:var(--control);animation:none;height:14px;width:67%;margin-top:12px"></div></div>`).join('')}</div>`, { time: '9:41' });
   const savedUndo = () => phone(`${savedTop}${zoomBar()}${zgrid(0, W.slice(1, 12))}`, { time: '9:41', overlay: cardSheet,
     fixed: `${savedFab}<div class="toast">${icon('trash', 's18')}Удалено<span class="cta sm t" style="height:40px">Вернуть</span></div>` });
 
@@ -726,7 +728,7 @@
     ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
       col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
       col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),
-      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true))]],
+      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true)), col('Сохранённые — загрузка', savedLoading())]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

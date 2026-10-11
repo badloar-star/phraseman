@@ -1,11 +1,10 @@
-import { BlurView } from 'expo-blur';
 import React, { useCallback } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
-import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLoadGate } from '../use_load_gate';
 
@@ -21,16 +20,6 @@ function noop(): void {
   // кнопки в состоянии поиска нет (hideAction)
 }
 
-function SavedGlassSheen({ edge, tint }: { edge: string; tint: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
-      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
-      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: edge }} />
-  </View>;
-}
-
 export function SavedCollectionLoading({ lang }: { lang: Lang }) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -41,8 +30,8 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
     'pt-BR': 'Carregando cartões', vi: 'Đang tải thẻ', id: 'Memuat kartu', tr: 'Kartlar yükleniyor', pl: 'Wczytywanie kart',
   });
   return <View testID="fc-saved-loading" accessibilityLabel={label} style={styles.loading}>
-    {Array.from({ length: 4 }, (_, index) => <View key={index} style={[styles.skeleton, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-      <SavedGlassSheen edge={g.glassEdge} tint={g.selected} />
+    {Array.from({ length: 4 }, (_, index) => <View key={index} style={[styles.skeleton, { boxShadow: plateBoxShadow(g) }]}>
+      <PlateFill g={g} radius={16} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: index % 2 === 0 ? '39%' : '52%' }]} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '24%' }]} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '67%' }]} />
@@ -121,6 +110,7 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
 
 const baseStyles = StyleSheet.create({
   loading: { flex: 1, paddingHorizontal: 20, paddingTop: 16, gap: 10 },
-  skeleton: { height: 118, borderRadius: 16, borderWidth: 1, padding: 18, justifyContent: 'center', gap: 9, overflow: 'hidden' },
+  // зачем (Тень 12.10): плашка-скелетон без кромки; overflow убран, иначе клип тени; gap между плашками loading — 10
+  skeleton: { height: 118, borderRadius: 16, padding: 18, justifyContent: 'center', gap: 9 },
   skeletonLine: { height: 11, borderRadius: 6 },
 });

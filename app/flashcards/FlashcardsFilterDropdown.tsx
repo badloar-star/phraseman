@@ -5,6 +5,7 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import type { Theme } from '../../constants/theme';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
@@ -49,19 +50,21 @@ export default function FlashcardsFilterDropdown({
           zIndex: 9999,
           backgroundColor: savedGlass ? g.sheet : t.bgSurface,
           borderRadius: 14,
-          borderWidth: savedGlass ? 1 : 0,
-          borderColor: g.glassEdge,
-          overflow: 'hidden',
+          // зачем (Тень 12.10): меню «Сохранённых» без кромки — плашка с тенью темы; overflow внешней обёртки убран (клип тени),
+          // скругление содержимого держит слой блюра и ScrollView со своим overflow
+          ...(savedGlass ? { boxShadow: plateBoxShadow(g) } : { overflow: 'hidden' as const }),
           minWidth: 200,
           maxHeight: 420,
-          shadowColor: '#000', // theme-exempt: тень выпадающего меню — чёрная в любой теме
-          shadowOffset: { width: 0, height: 4 },
-          shadowOpacity: 0.25,
-          shadowRadius: 12,
+          ...(savedGlass ? null : {
+            shadowColor: '#000', // theme-exempt: тень выпадающего меню — чёрная в любой теме
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.25,
+            shadowRadius: 12,
+          }),
           ...noAndroidOutline,
         }}
       >
-        {savedGlass ? <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+        {savedGlass ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, overflow: 'hidden' }]}>
           <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
           <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
         </View> : null}
@@ -88,7 +91,7 @@ export default function FlashcardsFilterDropdown({
 
           {filterGroups.map((group) => (
             <View key={group.groupKey}>
-              <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 0.5, borderTopColor: savedGlass ? g.glassEdge : t.border, backgroundColor: savedGlass ? g.card : t.bgSurface }}>
+              <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 0.5, borderTopColor: savedGlass ? g.dividerTone : t.border, backgroundColor: savedGlass ? g.card : t.bgSurface }}>
                 <Text style={{ fontSize: f.caption, color: savedGlass ? g.secondary : t.accentText, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8 }}>{group.groupLabel}</Text>
               </View>
               {group.items.map((opt) => {
@@ -104,7 +107,7 @@ export default function FlashcardsFilterDropdown({
                       paddingHorizontal: 24,
                       paddingVertical: 10,
                       borderTopWidth: 0.5,
-                      borderTopColor: savedGlass ? g.glassEdge : t.border,
+                      borderTopColor: savedGlass ? g.dividerTone : t.border,
                     }}
                   >
                     <Text style={{ fontSize: f.body, color: savedGlass ? g.text : active ? t.accentText : t.textPrimary, fontWeight: active ? '700' : '400' }}>{opt.label}</Text>

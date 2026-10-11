@@ -36,8 +36,6 @@ export default function FlashcardsCategoryTiles({
   return (
     <View
       style={{
-        borderTopWidth: 0.5,
-        borderTopColor: t.border,
         paddingHorizontal: H_PAD,
         paddingTop: 10,
         paddingBottom: Math.max(bottomInset, 8),
@@ -77,7 +75,7 @@ export default function FlashcardsCategoryTiles({
                   alignItems: 'center',
                   justifyContent: 'center',
                   ...(active
-                    ? { borderWidth: 0, borderColor: t.accent, backgroundColor: `${t.accent}18` }
+                    ? { backgroundColor: `${t.accent}18` }
                     : { backgroundColor: glassFill(t.bgSurface, 0.46) }),
                 }}
               >

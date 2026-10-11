@@ -12,6 +12,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { actionBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 
 const copyFor = (lang: Lang) => triLang(lang, {
@@ -96,10 +97,9 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
             accessibilityRole="button"
             accessibilityLabel={copy.train}
             onPress={onTrain}
-            style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && styles.pressed]}>
+            style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}>
             <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
             <Ionicons name="arrow-forward" size={18} color={g.accentInk} />
-            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 21, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />
           </Pressable>
         ) : null}
       </View>
@@ -131,7 +131,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   pressed: { opacity: 0.82 },
   top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   bare: { width: 30, height: 42, justifyContent: 'center' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
   info: { paddingHorizontal: 20 },
   title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
   authorRow: { marginTop: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -143,7 +143,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   actionLeft: { flexShrink: 1, flexDirection: 'row', alignItems: 'center' },
   train: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
   trainText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] },
+  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
   ghostText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   divider: { marginTop: 22, height: 1, backgroundColor: g.line },
   cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 16, lineHeight: 20, fontWeight: '600' },

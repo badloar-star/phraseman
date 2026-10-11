@@ -11,6 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CARDS_GLASS_DANGER, CardsGlassSurface, type CardsGlassTokens } from '../flashcards/CardsGlassKit';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.45)'; // theme-exempt: затемнение — тёмный скрим в любой теме
 
@@ -127,8 +128,8 @@ export function PackPopoverMenu({
           padding: 6,
           borderRadius: 18,
           backgroundColor: g.opaqueSheet,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: g.glassEdge,
+          // зачем (Тень 12.10): меню без кромки — отделяют затемнение и тень плашки
+          boxShadow: plateBoxShadow(g),
         }}
       >
         {children}

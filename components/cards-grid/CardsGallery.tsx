@@ -13,7 +13,7 @@ import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
-import { bevelShadow, mixDark, themePair } from '../mistakes-panel/panelPaint';
+import { mixDark, themePair } from '../mistakes-panel/panelPaint';
 import {
   GALLERY_FONT,
   GALLERY_IPA,
@@ -33,7 +33,6 @@ const EXEMPT_COLOR_4 = 'rgba(255,255,255,0)'; // theme-exempt: плитка га
 const EXEMPT_COLOR_5 = 'rgba(255,255,255,0.05)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
 const EXEMPT_COLOR_6 = '#FFFFFF'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
 const EXEMPT_COLOR_7 = 'rgba(255,255,255,0.22)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
-const EXEMPT_COLOR_8 = 'rgba(255,255,255,0.28)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
 const EXEMPT_COLOR_9 = '#04261D'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
 
 export type GalleryCard = Readonly<{
@@ -155,7 +154,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
               {[0, 1, 2, 3].map((d) => <View key={d} style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? accent : EXEMPT_COLOR_7 }]} />)}
             </View>
           ) : null}
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: bevelShadow(EXEMPT_COLOR_8, `${a}66`) }]} />
+          {/* зачем (Тень 12.10): внутренняя фаска-кромка плитки (bevelShadow) убрана — плитку отделяет внешняя тень .press */}
           {selected !== undefined ? (
             <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: accent } : styles.checkOff]}>
               {selected ? <Ionicons name="checkmark" size={16} color={EXEMPT_COLOR_9} /> : null}

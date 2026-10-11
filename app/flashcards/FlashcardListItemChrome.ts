@@ -12,7 +12,6 @@ export const FLASHCARD_LIST_ITEM_CARD_STYLE = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderRadius: 20,
-    borderWidth: 1,
     padding: 22,
     alignItems: "center",
     justifyContent: "center",

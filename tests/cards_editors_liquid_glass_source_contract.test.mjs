@@ -28,9 +28,11 @@ test('kit reads the active 13-theme glass tokens', () => {
   assert.ok(kit.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active theme token registry');
   // зачем (темы 2.0): главная кнопка берёт роли цвета темы g.accent/g.accentInk
   // (в «Спокойно» они равны прежним cta/ctaInk — сторож палитры это проверяет).
-  for (const token of ['g.opaqueCard', 'g.opaqueControl', 'g.glassEdge', 'g.accent', 'g.accentInk']) {
+  // зачем (Тень 12.10): поле/карточка — PlateFill и тень плашки, а не g.opaqueCard + кромка g.glassEdge; обводок в ките нет
+  for (const token of ['g.opaqueControl', 'g.accent', 'g.accentInk', 'PlateFill', 'plateBoxShadow(g)']) {
     assert.ok(kit.includes(token), `kit uses ${token}`);
   }
+  assert.ok(!/g\.glassEdge|borderWidth|borderColor/.test(kit), 'kit has no outlines (стиль «Тень»)');
 });
 
 test('editor and pack creation use the shared glass kit, not the legacy palette surfaces', () => {

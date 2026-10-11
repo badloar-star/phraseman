@@ -7,8 +7,8 @@
  * токенах `liquidGlassTokens`, чтобы четыре экрана не разошлись за месяц.
  * Только внешний вид: ни данных, ни навигации, ни лимитов этот файл не знает.
  *
- * Правила владельца: без толстых/цветных рамок (только 1px полупрозрачная
- * кромка), тап ≥44dp, без сжатия шрифта и обрезки строк.
+ * Правила владельца: НИКАКИХ обводок и кромок — стиль «Тень» (12.10): плашку отделяют
+ * градиент 180° и тень (components/v2/ShadowSurface), тап ≥44dp, без сжатия шрифта и обрезки строк.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
@@ -17,6 +17,7 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { fcHaptic } from './SoundService';
 
 export type CardsGlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -41,7 +42,10 @@ export function CardsGlassScreen({ g, children }: { g: CardsGlassTokens; childre
   );
 }
 
-/** Поле / карточка: непрозрачный тон + 1px кромка (без толстых рамок). */
+/**
+ * Поле / карточка: плашка стиля «Тень» — градиент 180° и тень, без обводки.
+ * зачем (владелец 12.10): раньше 1px кромка `glassEdge`/`${g.text}66` при фокусе; теперь фокус и «raised» — приподнятая заливка.
+ */
 export function CardsGlassSurface({
   g,
   focused = false,
@@ -58,19 +62,8 @@ export function CardsGlassSurface({
   testID?: string;
 }) {
   return (
-    <View
-      testID={testID}
-      style={[
-        {
-          borderRadius: 16,
-          borderWidth: StyleSheet.hairlineWidth,
-          // Фокус — чуть светлее кромка, а не цветная рамка.
-          borderColor: focused ? `${g.text}66` : g.glassEdge,
-          backgroundColor: raised ? g.opaqueControl : g.opaqueCard,
-        },
-        style,
-      ]}
-    >
+    <View testID={testID} style={[{ borderRadius: 16, boxShadow: plateBoxShadow(g) }, style]}>
+      <PlateFill g={g} radius={16} raised={focused || raised} />
       {children}
     </View>
   );
@@ -112,9 +105,8 @@ export function CardsGlassRoundButton({
         borderRadius: Math.max(44, size) / 2,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: g.opaqueControl,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: g.glassEdge,
+        backgroundColor: g.plateFillFrom,
+        boxShadow: plateBoxShadow(g),
       }}
     >
       <Ionicons name={icon} size={iconSize} color={g.text} />
@@ -160,6 +152,8 @@ export function CardsGlassPrimaryButton({
           justifyContent: 'center',
           // зачем (темы 2.0): accent/accentInk — в «Спокойно» это прежние cta/ctaInk.
           backgroundColor: disabled ? g.opaqueControl : ghost ? g.opaqueControl : g.accent,
+          // зачем (Тень 12.10): контурный «ghost» заменён плашкой с малой тенью, главная — цветная тень действия
+          boxShadow: disabled ? undefined : ghost ? nestedBoxShadow(g) : actionBoxShadow(g),
         },
         style,
       ]}

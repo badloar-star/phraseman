@@ -23,13 +23,11 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
-import { isLocalAuthorPackId, loadLocalAuthorPacks, type LocalAuthorPack } from '../community_packs/localAuthorPacks';
+import { isLocalAuthorPackId, loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
 import { getCanonicalUserId } from '../user_id_policy';
 import { startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import {
-  formatPackTitleForDisplay,
   loadMarketplacePacks,
-  packTitleForInterface,
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './marketplace';
@@ -48,8 +46,6 @@ import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_lang
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
-import { STARTER_FIRST_50_DECK_ID, STARTER_FIRST_50_TITLE, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
-import { latestPackContinue, loadPackContinuePositions, peekPackContinuePositions, subscribePackContinue } from './pack_continue_position';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
@@ -136,19 +132,6 @@ export default function FlashcardsHubScreen() {
     () => peekWarmMarketplacePacks(studyTarget) ?? [],
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
-  // зачем (Карточки 2.0, плитка «Мои наборы»): обложки стопки — названия и размеры своих наборов; уже загружаются для владения, держим сами пакеты.
-  // зачем (Карточки 2.0 12.10, данные Ядра ee01d089a): герой «Продолжить» показывает набор и позицию («Путешествия · 12 из 40») из памяти устройства;
-  // 0 чтений Firestore. Нет сохранённой позиции — прежний герой (последняя сохранённая карточка).
-  const [continuePos, setContinuePos] = useState(() => latestPackContinue(peekPackContinuePositions(studyTarget) ?? {}));
-  useEffect(() => {
-    let alive = true;
-    void loadPackContinuePositions(studyTarget)
-      .then((positions) => { if (alive) setContinuePos(latestPackContinue(positions)); })
-      .catch(noteSwallowedAs('FlashcardsHubScreen:loadPackContinuePositions', undefined));
-    const unsubscribe = subscribePackContinue(() => { if (alive) setContinuePos(latestPackContinue(peekPackContinuePositions(studyTarget) ?? {})); });
-    return () => { alive = false; unsubscribe(); };
-  }, [studyTarget]);
-  const [authoredPacks, setAuthoredPacks] = useState<LocalAuthorPack[]>([]);
   const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
   // My Packs includes unpublished author packs that the Hub catalog does not know.
   // Only its settled account/target snapshot is a truthful count.
@@ -415,7 +398,6 @@ export default function FlashcardsHubScreen() {
         setCatalog((prev) => (sameCatalog(prev, merged) ? prev : merged));
         const nextOwned = [...new Set([...owned, ...authored.map((pack) => pack.id)])];
         setOwnedCommunityPackIds((prev) => (sameIds(prev, nextOwned) ? prev : nextOwned));
-        setAuthoredPacks((prev) => (prev.length === authored.length && prev.every((pack, i) => pack.id === authored[i]?.id && pack.cards.length === authored[i]?.cards.length) ? prev : authored));
         setCatalogLoadState('ready');
       })();
       return () => {
@@ -642,6 +624,12 @@ export default function FlashcardsHubScreen() {
     return cat === 'one' ? f[0] : cat === 'few' ? f[1] : f[2];
   };
   const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
+  const tiles = [
+    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
+    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
+  ];
   const limitOutTitle = triLang(lang, { ru: 'Лимит на этот месяц исчерпан', uk: 'Ліміт на цей місяць вичерпано', en: 'This month’s limit is used up', es: 'Has agotado el límite de este mes', 'pt-BR': 'O limite deste mês acabou', vi: 'Đã hết lượt của tháng này', id: 'Batas bulan ini sudah habis', tr: 'Bu ayın limiti doldu', pl: 'Limit na ten miesiąc wyczerpany' });
   const limitOutSub = triLang(lang, { ru: `Обновится ${resetDate}`, uk: `Оновиться ${resetDate}`, en: `Resets on ${resetDate}`, es: `Se renueva el ${resetDate}`, 'pt-BR': `Renova em ${resetDate}`, vi: `Làm mới vào ${resetDate}`, id: `Diperbarui ${resetDate}`, tr: `${resetDate} tarihinde yenilenir`, pl: `Odnowi się ${resetDate}` });
   const reduceMotion = useFcReduceMotion();
@@ -657,57 +645,6 @@ export default function FlashcardsHubScreen() {
     }
     : undefined;
 
-  // зачем (Карточки 2.0, макет cards-v2.html «Хаб»): модель секций хаба. Данных, которых у приложения ещё нет (позиция «Продолжить», стартовый
-  // набор «Первые 50 слов»), не выдумываем: полоса позиции скрыта, у новичка — прежний «Начни с готового».
-  const hubCopy = {
-    begin: triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
-    search: triLang(lang, { ru: 'Поиск', uk: 'Пошук', en: 'Search', es: 'Buscar', 'pt-BR': 'Buscar', vi: 'Tìm kiếm', id: 'Cari', tr: 'Ara', pl: 'Szukaj' }),
-    cont: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
-    start: triLang(lang, { ru: 'Начни здесь', uk: 'Почни тут', en: 'Start here', es: 'Empieza aquí', 'pt-BR': 'Comece aqui', vi: 'Bắt đầu tại đây', id: 'Mulai di sini', tr: 'Buradan başla', pl: 'Zacznij tutaj' }),
-    mode: triLang(lang, { ru: 'Режим', uk: 'Режим', en: 'Mode', es: 'Modo', 'pt-BR': 'Modo', vi: 'Chế độ', id: 'Mode', tr: 'Mod', pl: 'Tryb' }),
-    empty: triLang(lang, { ru: 'Пока пусто', uk: 'Поки порожньо', en: 'Nothing yet', es: 'Aún vacío', 'pt-BR': 'Ainda vazio', vi: 'Chưa có gì', id: 'Belum ada', tr: 'Henüz boş', pl: 'Na razie pusto' }),
-    createShort: triLang(lang, { ru: 'Создать', uk: 'Створити', en: 'Create', es: 'Crear', 'pt-BR': 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' }),
-    all: triLang(lang, { ru: 'Все', uk: 'Усі', en: 'All', es: 'Todos', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
-    best: triLang(lang, { ru: 'Лучшее у сообщества', uk: 'Найкраще у спільноти', en: 'Best of the community', es: 'Lo mejor de la comunidad', 'pt-BR': 'Melhores da comunidade', vi: 'Nổi bật của cộng đồng', id: 'Terbaik dari komunitas', tr: 'Topluluğun en iyileri', pl: 'Najlepsze ze społeczności' }),
-    phrases: (n: number) => triLang(lang, { ru: `${n} фраз`, uk: `${n} фраз`, en: `${n} phrases`, es: `${n} frases`, 'pt-BR': `${n} frases`, vi: `${n} cụm`, id: `${n} frasa`, tr: `${n} ifade`, pl: `${n} zwrotów` }),
-    offTitle: triLang(lang, { ru: 'Нет сети', uk: 'Немає мережі', en: 'No connection', es: 'Sin conexión', 'pt-BR': 'Sem conexão', vi: 'Không có mạng', id: 'Tidak ada jaringan', tr: 'Bağlantı yok', pl: 'Brak sieci' }),
-    offSub: triLang(lang, { ru: 'Твои карточки доступны', uk: 'Твої картки доступні', en: 'Your cards are available', es: 'Tus tarjetas están disponibles', 'pt-BR': 'Seus cartões estão disponíveis', vi: 'Thẻ của bạn vẫn dùng được', id: 'Kartumu tetap tersedia', tr: 'Kartların kullanılabilir', pl: 'Twoje karty są dostępne' }),
-    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' }),
-    cardsN: (n: number) => triLang(lang, { ru: `${n} карточек`, uk: `${n} карток`, en: `${n} cards`, es: `${n} tarjetas`, 'pt-BR': `${n} cartões`, vi: `${n} thẻ`, id: `${n} kartu`, tr: `${n} kart`, pl: `${n} kart` }),
-  };
-  const translationOf = (card: { ru?: string; uk?: string; es?: string; sourceLocales?: unknown }): string => {
-    const byLocale = (card.sourceLocales as Record<string, string | undefined> | undefined)?.[lang];
-    if (byLocale) return byLocale;
-    return (lang === 'uk' ? card.uk : lang === 'es' ? card.es ?? card.ru : card.ru) ?? '';
-  };
-  const continuePack = continuePos
-    ? (authoredPacks.find((pack) => pack.id === continuePos.packId) ?? null) ?? (catalog.find((pack) => pack.id === continuePos.packId) ?? null)
-    : null;
-  const continueTitle = continuePack
-    ? ('cards' in continuePack ? formatPackTitleForDisplay(continuePack.title) : packTitleForInterface(continuePack, lang))
-    : '';
-  const continueWord = continuePack && continuePos
-    ? ('cards' in continuePack ? continuePack.cards[continuePos.index]?.en : continuePack.previewWords?.[0]) ?? continueTitle
-    : '';
-  const ofWord = triLang(lang, { ru: 'из', uk: 'з', en: 'of', es: 'de', 'pt-BR': 'de', vi: '/', id: 'dari', tr: '/', pl: 'z' });
-  const hubHero = trainingLocked
-    ? { overline: hubCopy.cont, word: limitOutTitle, sub: limitOutSub, progress: null, ctaLabel: trainLabel, ctaLocked: true }
-    : fresh && starterPackAvailable(studyTarget)
-      // зачем (Карточки 2.0 12.10, данные Ядра 1dc23e923, cards-v2 `hubNew`): новичку без своих карточек — герой «Hello · Первые 50 слов» и «Начать»
-      ? { overline: hubCopy.start, word: starterFirst50CardItems()[0]?.en ?? 'Hello', sub: (STARTER_FIRST_50_TITLE as Readonly<Record<string, string>>)[lang] ?? STARTER_FIRST_50_TITLE.en, progress: 0, ctaLabel: hubCopy.begin, ctaLocked: false }
-    : fresh
-      ? { overline: hubCopy.start, word: 'Hello', sub: fresh.sub, progress: null, ctaLabel: fresh.cta, ctaLocked: false }
-      : continuePos && continuePack
-        ? { overline: hubCopy.cont, word: continueWord, sub: `${continueTitle} · ${continuePos.index} ${ofWord} ${continuePos.total}`, progress: Math.max(0, Math.min(1, continuePos.index / continuePos.total)), ctaLabel: hubCopy.cont, ctaLocked: false }
-        : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: topCard ? hubCopy.cont : trainLabel, ctaLocked: false };
-  // зачем (приказ владельца 11.10: «4 кнопки крупные внизу»): четыре плитки хаба — Сохранённые, Мои наборы, Из видео, Сообщество
-  const hubTiles = [
-    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
-    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
-  ];
-
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
       {/* зачем: фон хаба как в макете — пятна цвета темы (один статичный слой), а не плоская заливка */}
@@ -719,29 +656,22 @@ export default function FlashcardsHubScreen() {
           <CardsHubV2
             g={g}
             title={copy.title}
-            hero={{
-              ...hubHero,
-              modeLabel: hubCopy.mode,
-              onCta: () => {
-                pendingDeckRef.current = null;
-                if (fresh && !trainingLocked && starterPackAvailable(studyTarget)) {
-                  // зачем: «Начать» в герое новичка запускает набор «Первые 50 слов» (окно режима, затем тренировка именно этого набора)
-                  pendingDeckRef.current = { deckId: STARTER_FIRST_50_DECK_ID, count: starterFirst50CardItems().length };
-                  onTrainPress();
-                  return;
-                }
-                if (fresh && !trainingLocked) { fresh.onPress(); return; }
-                onTrainPress();
-              },
-              onMode: () => { pendingDeckRef.current = null; onTrainPress(); },
-            }}
-            tiles={hubTiles}
+            subtitle={copy.subtitleShort}
+            limitLabel={limitLabel}
+            // зачем (Сверка cards-section-004, hubLimitS): лимит исчерпан — верхняя карточка стопки говорит об этом и о дате обновления.
+            topWord={trainingLocked ? limitOutTitle : (topCard?.en ?? 'Boarding pass')}
+            topIpa={trainingLocked ? limitOutSub : (topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/')}
+            trainLabel={trainLabel}
+            trainLocked={trainingLocked}
+            tiles={tiles}
             reduceMotion={reduceMotion}
+            availableHeight={windowHeight - insets.top - insets.bottom}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
-            onSearch={() => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub', search: '1' } } as never)}
             onCreate={openCreatePack}
-            ctaRef={trainButtonRef}
-            labels={{ back: copy.back, create: copy.create, search: hubCopy.search, ctaA11y: trainAccessibilityLabel }}
+            onTrain={() => { pendingDeckRef.current = null; onTrainPress(); }}
+            trainButtonRef={trainButtonRef}
+            labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
+            fresh={fresh}
           />
         </ContentWrap>
 

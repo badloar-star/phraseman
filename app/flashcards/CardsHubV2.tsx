@@ -1,25 +1,25 @@
 /**
- * Хаб «Карточки 2.0».
+ * Хаб «Карточки» — вариант А, утверждённый владельцем 04.10.2026 (макет docs/design/v2-app/cards-section.html, блок «Хаб — вариант А»).
  *
- * зачем (приказ владельца 11.10 по хабу: «верни хаб как был, 4 кнопки внизу… не большие три карточки парящие, а вот как сейчас… но внизу было
- * 4 кнопки крупные»): ВЕРХ — как сейчас (шапка с лупой и «+», заголовок, hero «Продолжить» со стопкой, главная кнопка и кнопка режимов);
- * НИЗ — сетка 2×2 из четырёх КРУПНЫХ плиток: Сохранённые, Мои наборы, Из видео, Сообщество (иконка сверху слева, название и счётчик снизу).
- * «Твои карточки» (две плитки), лента «Из видео» с роликами и чарт «Лучшее у сообщества» убраны. Стиль «Тень»: плашки без обводок.
- * Чистый вид без данных и навигации — всё приходит пропсами из FlashcardsHubScreen.
+ * зачем (владелец: «в приложении запрещены любые различия с одобренными макетами, визуально в точности»):
+ * чистый вид без данных и без навигации — всё приходит пропсами из FlashcardsHubScreen. Без прокрутки:
+ * шапка (пилюля лимита и «плюс»), заголовок, стопка из трёх карточек с верхним словом, главная кнопка с остатком тренировок
+ * и четыре равные плитки (Сохранённые, Мои наборы, Из видео, Сообщество).
+ * Анимации — только transform на UI-потоке: лёгкое «парение» верхней карточки (6 с, не крутится при reduceMotion).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import Reanimated, { FadeInDown } from 'react-native-reanimated';
+import React, { memo, useEffect } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import { LinearGradient } from '../../components/SafeLinearGradient';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { FlowText } from '../../components/text-integrity/FlowText';
-import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 
 export type CardsHubTile = Readonly<{
   id: 'saved' | 'mine' | 'video' | 'community';
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
-  /** Счётчик под названием; пусто — число ещё не известно (подпись плитки тогда без числа). */
   count: string;
   onPress: () => void;
 }>;
@@ -27,143 +27,227 @@ export type CardsHubTile = Readonly<{
 type Props = Readonly<{
   g: GlassTokens;
   title: string;
-  hero: Readonly<{
-    overline: string;
-    word: string;
-    sub: string;
-    /** Позиция в наборе 0…1; null — данных нет, полоса скрыта. */
-    progress: number | null;
-    ctaLabel: string;
-    ctaLocked: boolean;
-    modeLabel: string;
-    onCta: () => void;
-    onMode: () => void;
-  }>;
-  /** Четыре крупные плитки внизу (сетка 2×2). */
+  subtitle: string;
+  limitLabel: string | null;
+  topWord: string;
+  topIpa: string;
+  trainLabel: string;
+  trainLocked: boolean;
   tiles: readonly CardsHubTile[];
   reduceMotion: boolean;
+  /** Высота, доступная под содержимое (экран минус вырезы): стопка и плитки сжимаются на невысоких экранах, чтобы не было прокрутки. */
+  availableHeight: number;
   onBack: () => void;
-  /** Лупа в шапке (макет `hubTop`); поиск по трём группам — у Ядра, пока открывает поиск «Сохранённых». */
-  onSearch: () => void;
   onCreate: () => void;
-  ctaRef?: React.Ref<View>;
-  labels: Readonly<{ back: string; create: string; search: string; ctaA11y: string }>;
+  onTrain: () => void;
+  trainButtonRef?: React.Ref<View>;
+  labels: Readonly<{ back: string; create: string; trainA11y: string }>;
+  /**
+   * Новичок: своих карточек и наборов нет (макет cards-section-extra.js hubNewS). Вместо стопки — стеклянная карточка
+   * «Начните с готового», главная кнопка — «Выбрать набор» (а не тренировка, тренировать пока нечего).
+   */
+  fresh?: Readonly<{ title: string; sub: string; cta: string; onPress: () => void }>;
 }>;
 
-/** Появление секций по очереди (макет `.rise`: 520 мс, cubic-bezier(.2,.8,.2,1), шаг 50 мс). «Уменьшить движение» — без анимации. */
-function Rise({ index, reduceMotion, children }: Readonly<{ index: number; reduceMotion: boolean; children: React.ReactNode }>) {
-  if (reduceMotion) return <View>{children}</View>;
-  return <Reanimated.View entering={FadeInDown.duration(520).delay(index * 50)}>{children}</Reanimated.View>;
+/** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */
+function mixDark(hex: string, base: string, t: number): string {
+  const c = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const a = c(hex.length >= 7 ? hex : '#888888'); // theme-exempt: запасной серый при битом входе функции смешивания
+  const b = c(base);
+  return `#${a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)).toString(16).padStart(2, '0')).join('')}`;
 }
 
-function RoundBtn({ g, icon, label, onPress, testID }: Readonly<{ g: GlassTokens; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID: string }>) {
+/** Два цвета темы для градиентов: пятна фона (A, B) — как «--g1/--g2» макета; у светлых тем пятен нет — акцент и кромка. */
+function themePair(g: GlassTokens): readonly [string, string] {
+  // зачем (макет: плитки и карточка идут от первого цвета темы ко второму — зелёный→фиолетовый у «Авроры»):
+  // два цвета темы лежат в пятнах фона bgGlow (A, B, A) — берём их без альфы.
+  const glow = g.bgGlow;
+  if (glow && glow[0] && glow[1] && glow[0].slice(1, 7) !== '000000' && glow[1].slice(1, 7) !== '000000') {
+    return [glow[0].slice(0, 7), glow[1].slice(0, 7)];
+  }
+  const gr = g.accentGradient;
+  if (gr && gr.length >= 2) return [gr[0]!, gr[gr.length - 1]!];
+  return [g.accent, g.accentBorder];
+}
+
+// зачем (владелец 12.10, стиль «Тень»): внутренних кромок-фасок (bevel) и колец больше нет — плитки и «Свежий» блок это плашки
+// (PlateFill + plateBoxShadow), карточки стопки — арт с градиентом и внешней тенью, значки — вложенные (nestedBoxShadow).
+/** Градиент плитки-значка: цвет темы 60 % / 32 % в базах темы. */
+const iconGlass = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
+/** Заливка карточки стопки: 145°, доля цвета темы 50 %/38 % в тёмном — как «.mc.solid» макета. */
+const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.5), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
+const DIAG_START = { x: 0.21, y: 0.09 } as const;
+const DIAG_END = { x: 0.79, y: 0.91 } as const;
+
+const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: StyleProp<ViewStyle>; radius: number; opacity: number }) => {
+  const [a, b] = themePair(g);
   return (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} hitSlop={8}
-      style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-      <Ionicons name={icon} size={icon === 'add' ? 22 : 20} color={g.text} />
-    </Pressable>
+    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: plateBoxShadow(g) }]}>
+      <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+    </View>
   );
-}
+};
 
-function CardsHubV2Inner({ g, title, hero, tiles, reduceMotion, onBack, onSearch, onCreate, ctaRef, labels }: Props) {
+function CardsHubV2Inner({
+  g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
+  onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight, fresh,
+}: Props) {
+  // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
+  // в светлой теме берём текст темы, в тёмных остаётся прежний (mediaInk).
+  const faceInk = g.isLight ? g.text : g.mediaInk;
+  const faceInkSoft = g.isLight ? g.secondary : g.mediaInkSoft;
+  const float = useSharedValue(0);
+  // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
+  const runtimeActive = useRuntimeActive();
+  useEffect(() => {
+    if (reduceMotion || !runtimeActive) return undefined;
+    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), -1, true);
+    return () => { float.value = 0; };
+  }, [float, reduceMotion, runtimeActive]);
+  const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
+  const [a, b] = themePair(g);
+  // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
+  const fixed = 4 + 44 + 8 + 46 + 6 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
+  const rem = Math.max(0, availableHeight - fixed);
   const { fontScale } = useWindowDimensions();
   const fs = Math.max(1, fontScale);
-  // зачем (large font): высота hero растёт с системным шрифтом, чтобы слово и подпись не резались; сам шрифт не сжимаем.
-  const heroH = Math.round(192 * (fs > 1 ? Math.min(fs, 1.4) : 1));
-  let idx = 0;
+  // при крупном шрифте превью-карточке нужно больше места под слово и транскрипцию (до ×1.5), иначе слово режется по высоте
+  const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)) * (fs > 1 ? Math.min(fs, 1.5) : 1));
+  const tileH = Math.round(Math.min(150, Math.max(96, (rem - stackH) / 2)));
+  const k = stackH / 250;
+  // зачем (координатор 05.10, «хаб «Карточки» режет текст при системном шрифте 2.0»; сжимать шрифт нельзя): fontSize система масштабирует, а заданный
+  // lineHeight остаётся прежним — строка становится ниже глифов и низ срезается. Масштабируем lineHeight тем же коэффициентом, высоты пилюли/шапки —
+  // в minHeight, подписи плиток и превью — с переносом. При шрифте 1.0 коэффициент 1: вид совпадает с макетом пиксель в пиксель.
+  const lh = (n: number) => (fs === 1 ? n : Math.round(n * fs));
 
-  return (
-    <ScrollView testID="fc-cards-hub-v2" style={styles.root} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
-      <View style={styles.topbar}>
-        <RoundBtn g={g} icon="arrow-back" label={labels.back} onPress={onBack} testID="fc-cards-hub-back" />
+  const body = (
+    <View style={styles.root} testID="fc-cards-hub-v2">
+      <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
+        <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
+          style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+          <Ionicons name="arrow-back" size={20} color={g.text} />
+        </Pressable>
         <View style={styles.topRight}>
-          <RoundBtn g={g} icon="search" label={labels.search} onPress={onSearch} testID="fc-cards-hub-search" />
-          <RoundBtn g={g} icon="add" label={labels.create} onPress={onCreate} testID="fc-cards-hub-create-pack" />
+          {limitLabel ? (
+            <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
+              <Ionicons name="albums-outline" size={16} color={g.text} />
+              <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
+            </View>
+          ) : null}
+          <Pressable testID="fc-cards-hub-create-pack" accessibilityRole="button" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8}
+            style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+            <Ionicons name="add" size={22} color={g.text} />
+          </Pressable>
         </View>
       </View>
-      <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
 
-      <Rise index={idx++} reduceMotion={reduceMotion}>
-        <View style={styles.hstk} testID="fc-cards-hub-hero">
-          <View pointerEvents="none" style={[styles.slab, styles.slabA, { boxShadow: nestedBoxShadow(g) }]}><PlateFill g={g} radius={18} /></View>
-          <View pointerEvents="none" style={[styles.slab, styles.slabB, { boxShadow: nestedBoxShadow(g) }]}><PlateFill g={g} radius={18} /></View>
-          <View style={[styles.hc, { height: heroH, boxShadow: raisedBoxShadow(g) }]}>
-            <PlateFill g={g} radius={22} raised />
-            <Text style={[styles.ov, { color: g.secondary }]}>{hero.overline.toUpperCase()}</Text>
-            <View style={styles.hbottom}>
-              <FlowText testID="fc-cards-hub-hero-word" provenance="external" style={[styles.hw, { color: g.text }]}>{hero.word}</FlowText>
-              {hero.sub ? <FlowText testID="fc-cards-hub-hero-sub" provenance="external" style={[styles.hs, { color: g.secondary }]}>{hero.sub}</FlowText> : null}
-              {hero.progress !== null ? (
-                <View style={[styles.trk, { backgroundColor: g.dividerTone }]}>
-                  <View style={[styles.trkFill, { backgroundColor: g.accent, width: `${Math.round(Math.max(0, Math.min(1, hero.progress)) * 100)}%` }]} />
-                </View>
-              ) : null}
-            </View>
+      <Text accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
+      <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
+
+      {fresh ? (
+        // зачем (Сверка cards-section-003, hubNewS): у новичка не было этого состояния — стопка показывала выдуманную
+        // карточку «Boarding pass», которой у человека нет. Карточка по центру: плитка 64/r20, 24/700, подпись 16.
+        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: plateBoxShadow(g) }]}>
+          <PlateFill g={g} radius={26} />
+          <View style={[styles.freshIcon, { boxShadow: nestedBoxShadow(g) }]}>
+            <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+            <Ionicons name="people-outline" size={28} color={faceInk} />
           </View>
+          <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
+          <Text style={[styles.freshSub, { color: g.secondary, lineHeight: lh(22) }]}>{fresh.sub}</Text>
         </View>
-        <View style={styles.ctaRow}>
-          <Pressable ref={ctaRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={labels.ctaA11y} onPress={hero.onCta}
-            style={({ pressed }) => [styles.cta, hero.ctaLocked ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) } : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}>
-            <Ionicons name={hero.ctaLocked ? 'lock-closed' : 'play'} size={18} color={hero.ctaLocked ? g.text : g.accentInk} />
-            <FlowText testID="fc-cards-hub-train-label" provenance="authored" style={[styles.ctaText, { color: hero.ctaLocked ? g.text : g.accentInk }]}>{hero.ctaLabel}</FlowText>
-          </Pressable>
-          <Pressable testID="fc-cards-hub-mode" accessibilityRole="button" accessibilityLabel={hero.modeLabel} onPress={hero.onMode} hitSlop={6}
-            style={({ pressed }) => [styles.modeBtn, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-            <Ionicons name="layers-outline" size={20} color={g.text} />
-          </Pressable>
-        </View>
-      </Rise>
+      ) : (
+      <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
+        <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
+        <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
+        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: plateBoxShadow(g) }, floatStyle]} pointerEvents="none">
+          <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+          {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
+          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: faceInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
+          {topIpa ? <Text style={[styles.topIpa, { color: faceInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
+        </Reanimated.View>
+      </View>
+      )}
 
-      <Rise index={idx++} reduceMotion={reduceMotion}>
-        <View style={styles.tiles}>
-          {tiles.map((t) => (
-            <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
-              style={({ pressed }) => [styles.tile, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-              {/* зачем (Тень 12.10, приказ владельца 11.10): крупная плитка — плашка (градиент 180° + тень), без фасок и кольца */}
-              <PlateFill g={g} radius={26} />
-              <View style={[styles.tileIcon, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
-                <Ionicons name={t.icon} size={24} color={g.text} />
-              </View>
-              <View>
-                <FlowText testID={`fc-cards-hub-tile-title-${t.id}`} provenance="authored" style={[styles.tileTitle, { color: g.text }]}>{t.title}</FlowText>
-                <FlowText testID={`fc-cards-hub-tile-count-${t.id}`} provenance="authored" style={[styles.tileCount, { color: g.secondary }]}>{t.count === '' ? ' ' : t.count}</FlowText>
-              </View>
-            </Pressable>
-          ))}
+      <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
+        style={({ pressed }) => [
+          styles.cta,
+          { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
+          // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
+          !fresh && trainLocked ? styles.ctaLocked : null,
+          pressed && styles.pressed,
+        ]}>
+        <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
+        <View style={styles.ctaIcon}>
+          <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
         </View>
-      </Rise>
-    </ScrollView>
+      </Pressable>
+
+      <View style={styles.tiles}>
+        {tiles.map((t) => (
+          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
+            style={({ pressed }) => [
+              styles.tile,
+              { minHeight: tileH, boxShadow: plateBoxShadow(g) },
+              pressed && styles.pressed,
+            ]}>
+            {/* зачем (Тень 12.10): плитка — плашка (градиент 180° + тень), без фасок и кольца */}
+            <PlateFill g={g} radius={26} />
+            <View style={[styles.tileIcon, { boxShadow: nestedBoxShadow(g) }]}>
+              <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+              <Ionicons name={t.icon} size={24} color={faceInk} />
+            </View>
+            <View>
+              <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
+              <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count === '' ? ' ' : t.count}</Text>
+            </View>
+          </Pressable>
+        ))}
+      </View>
+    </View>
   );
+  // зачем: при крупном шрифте хаб не помещается в экран — прокручивается; при 1.0 прежняя разметка без ScrollView (макет без прокрутки)
+  return fs > 1
+    ? <ScrollView contentContainerStyle={styles.scrollGrow} showsVerticalScrollIndicator={false} decelerationRate="fast">{body}</ScrollView>
+    : body;
 }
 
+const CardsHubV2 = memo(CardsHubV2Inner);
+export default CardsHubV2;
+
+// зачем: размеры строго из макета cards-section (замер getBoundingClientRect, 430×932): заголовок 40/46, пилюля 30, кнопки шапки 42, плитка 150 с отступами 18/16.
 const styles = StyleSheet.create({
+  scrollGrow: { flexGrow: 1, paddingBottom: 24 },
+  root: { flex: 1, paddingHorizontal: 20 },
+  pressed: { opacity: 0.82 },
+  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
+  pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
+  title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
+  subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
+  stack: { height: 250, marginTop: 26 },
+  stackCard: { position: 'absolute', overflow: 'hidden' },
+  stackBack2: { left: 38, right: 38, top: 0, height: 110 },
+  stackBack1: { left: 19, right: 19, top: 18, height: 130 },
+  stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  topWord: { fontSize: 36, lineHeight: 44, fontWeight: '700', paddingHorizontal: 16 },
+  topWordWrap: { textAlign: 'center' },
+  topIpa: { marginTop: 8, fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
+  // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
+  cta: { marginTop: 14, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
+  ctaLocked: { opacity: 0.55 },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
-  tileIcon: { width: 52, height: 52, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
+  fresh: { marginTop: 26, borderRadius: 26, paddingHorizontal: 22, paddingVertical: 22, alignItems: 'center', justifyContent: 'center' },
+  freshIcon: { width: 64, height: 64, borderRadius: 20, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  freshTitle: { marginTop: 18, fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center' },
+  freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
   tileCount: { fontSize: 16, lineHeight: 21 },
-  root: { flex: 1 },
-  content: { paddingHorizontal: 20, paddingBottom: 120 },
-  pressed: { opacity: 0.82 },
-  topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  round: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
-  hstk: { position: 'relative', paddingTop: 22, marginTop: 22 },
-  slab: { position: 'absolute', left: '50%', height: 40, borderRadius: 18 },
-  slabA: { top: 0, width: '84%', marginLeft: '-42%', opacity: 0.55 },
-  slabB: { top: 10, width: '92%', marginLeft: '-46%', opacity: 0.85 },
-  hc: { borderRadius: 22, paddingTop: 18, paddingHorizontal: 20, paddingBottom: 20 },
-  ov: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2.4 },
-  hbottom: { marginTop: 'auto' },
-  hw: { fontSize: 38, lineHeight: 44, fontWeight: '700', letterSpacing: -0.8 },
-  hs: { marginTop: 4, fontSize: 16, lineHeight: 22 },
-  trk: { marginTop: 16, height: 4, borderRadius: 2, overflow: 'hidden' },
-  trkFill: { height: '100%', borderRadius: 2 },
-  ctaRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  cta: { flex: 1, minHeight: 56, borderRadius: 28, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
-  modeBtn: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
 });
-
-export default memo(CardsHubV2Inner);

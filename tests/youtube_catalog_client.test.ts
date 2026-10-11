@@ -150,4 +150,31 @@ describe('YouTube catalog mobile client', () => {
     });
     expect(commit).not.toHaveBeenCalled();
   });
+
+  // зачем (аудит стоимости Firebase 11.10): вкладка «Видео» перечитывала весь каталог (до ~154 чтений) на каждом
+  // заходе. Снимки версионные и неизменяемые — при той же версии хватает одного чтения манифеста.
+  it('re-reads only the manifest when the shown snapshot already has the active version', async () => {
+    beginAccountGeneration('alice');
+    const token = captureAccountGeneration();
+    const previous = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
+    const source = reader();
+    const commit = jest.fn();
+    const result = await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous, commit });
+
+    expect(result).toBe(previous);
+    expect(commit).not.toHaveBeenCalled();
+    expect(source.get).toHaveBeenCalledTimes(1);
+    expect(source.get).toHaveBeenCalledWith('youtube_catalog/public');
+    expect(source.list).not.toHaveBeenCalled();
+  });
+
+  it('downloads the lists again when the active version changed or the channel differs', async () => {
+    beginAccountGeneration('alice');
+    const token = captureAccountGeneration();
+    const current = buildYoutubeScreenSnapshot(await fetchYoutubeChannelCatalogWithReader('english', reader()));
+    const stale = { ...current, version: 'older-version' };
+    const source = reader();
+    await revalidateYoutubeChannelCatalog({ channelId: 'english', token, reader: source, previous: stale, commit: jest.fn() });
+    expect(source.list).toHaveBeenCalled();
+  });
 });

@@ -286,6 +286,20 @@ export async function revalidateYoutubeChannelCatalog(options: {
 }): Promise<YoutubeCatalogScreenSnapshot | null> {
   if (accountSwitchedAway(options.token)) return null;
   const reader = options.reader ?? await createFirestoreReader();
+  // зачем (аудит стоимости Firebase 11.10): вкладка перечитывала весь каталог (корень, канал, до 100 видео и 50
+  // плейлистов — до ~154 чтений) на КАЖДОМ заходе и возвращении в приложение. Сервер пишет каталог новым снимком
+  // с новой версией и только потом переключает манифест, снимок одной версии не меняется — если на экране уже эта
+  // версия этого канала, хватает одного чтения манифеста.
+  const previous = options.previous;
+  if (previous && previous.channel?.id === options.channelId) {
+    const manifest = await fetchYoutubeCatalogManifestWithReader(reader);
+    if (accountSwitchedAway(options.token)) return null;
+    if (manifest.activeVersion === previous.version && manifest.channels.some((channel) => channel.id === options.channelId)) {
+      console.log(`[VIDEO-CATALOG] revalidate:unchanged version=${manifest.activeVersion} channel=${options.channelId}`);
+      return previous;
+    }
+    console.log(`[VIDEO-CATALOG] revalidate:version_changed ${previous.version} -> ${manifest.activeVersion}`);
+  }
   const catalog = await fetchYoutubeChannelCatalogWithReader(options.channelId, reader);
   // Поздний ответ не должен дорисовывать каталог поверх ЧУЖОГО аккаунта.
   if (accountSwitchedAway(options.token)) return null;

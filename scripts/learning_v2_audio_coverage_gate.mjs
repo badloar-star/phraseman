@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { learningV2ReleasedCeilingVerdict, parseLearningV2AvailabilityAdvisory } from './learning_v2_availability_advisory.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LOG = '[V2-AUDIO-GATE]';
@@ -45,10 +46,14 @@ if (!fs.existsSync(runner)) {
 
 console.log(`${LOG} проверяю, что каждое встроенное занятие собирается из бандла (озвучка есть для каждой реплики)…`);
 const startedAt = Date.now();
-const result = spawnSync(process.execPath, [runner, '--no-watchman', '--runTestsByPath', TEST], {
+// зачем (координатор 12.10): раннер без лимита кучи падал по памяти на ПК (правило проекта — 8 ГБ); лимит и для самого
+// процесса раннера, и для его воркеров (через NODE_OPTIONS).
+const HEAP_FLAG = '--max-old-space-size=8192';
+const nodeOptions = [process.env.NODE_OPTIONS ?? '', HEAP_FLAG].filter(Boolean).join(' ');
+const result = spawnSync(process.execPath, [HEAP_FLAG, runner, '--no-watchman', '--runTestsByPath', TEST], {
   cwd: ROOT,
   encoding: 'utf8',
-  env: { ...process.env, CI: 'true' },
+  env: { ...process.env, CI: 'true', NODE_OPTIONS: nodeOptions },
   maxBuffer: 64 * 1024 * 1024,
 });
 const seconds = ((Date.now() - startedAt) / 1000).toFixed(1);
@@ -60,7 +65,15 @@ if (result.error) {
 const advisory = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.split('\n').find((line) => line.includes('[V2-AVAILABILITY] advisory'));
 if (advisory) console.log(`${LOG} ${advisory.trim().slice(0, 600)}`);
 if (result.status === 0) {
-  console.log(`${LOG} OK за ${seconds} с: каждое ВЫПУЩЕННОЕ занятие собирается из бандла (невыпущенные — справка выше)`);
+  // зачем (координатор 12.10): «каждое выпущенное собирается» при НУЛЕ выпущенных — пустой раздел V2 в стор-сборке.
+  // Сюда доходим, только если V2 входит в сборку (ветка пропуска выше уже вышла) — значит пусто = красный.
+  const verdict = learningV2ReleasedCeilingVerdict(parseLearningV2AvailabilityAdvisory(`${result.stdout ?? ''}\n${result.stderr ?? ''}`));
+  if (!verdict.ok) {
+    console.error(`${LOG} ОТКАЗ (${verdict.reason}): Learning V2 входит в стор-сборку, но выпущено занятий: ${verdict.released ?? 'нет справки'} (собирается подряд: ${verdict.ceiling ?? 'нет справки'}). Ученик откроет раздел и не сможет начать ни одного занятия.`);
+    console.error(`${LOG} Что делать: озвучить и выпустить занятия с первого (l1s1) и перегенерировать артефакт доступности (UPDATE_LEARNING_V2_AVAILABILITY=1) — Codex; либо решением владельца вырезать V2 из стор-сборки.`);
+    process.exit(1);
+  }
+  console.log(`${LOG} OK за ${seconds} с: каждое ВЫПУЩЕННОЕ занятие собирается из бандла; выпущено ${verdict.released}, подряд собирается ${verdict.ceiling} (невыпущенные — справка выше)`);
   process.exit(0);
 }
 

@@ -230,6 +230,22 @@ const storeReleaseDevModules = new Set([
   './_phone_state_sqlcipher_smoke',
 ]);
 
+// зачем (координатор 12.10, ревью безопасности dev-хуков аккаунта): dev-переключатели R1 (аккаунт, VIP/план, промокод/друзья, Карточки, Диалоги, пейвол) импортируются
+// статически из боевого кода, поэтому их мёртвый код попадал в стор-бандл. В стор-сборке подменяем модули пустыми заглушками с теми же runtime-экспортами («нет подмены»).
+// Ключ — имя файла (импорты бывают './x', '../x', '../app/x'). Сторож паритета экспортов: tests/store_release_dev_state_stubs.test.ts.
+const storeReleaseDevStateStubDir = path.join(__dirname, 'store_release_stubs', 'dev_state');
+const storeReleaseDevStateStubs = new Map(
+  [
+    'dev_account_state',
+    'dev_vip_override',
+    'dev_social_state',
+    'dev_cards_state',
+    'dev_dialog_state',
+    'dev_paywall_state',
+    'hub_lifecycle_probe',
+  ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
+);
+
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (moduleName === 'expo-router/_ctx') {
     return {
@@ -257,6 +273,16 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
       type: 'sourceFile',
       filePath: storeReleaseVipSurveyDevAuthStubPath,
     };
+  }
+
+  if (process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && moduleName.startsWith('.')) {
+    const devStateStubPath = storeReleaseDevStateStubs.get(path.posix.basename(moduleName));
+    if (devStateStubPath) {
+      return {
+        type: 'sourceFile',
+        filePath: devStateStubPath,
+      };
+    }
   }
 
   if (

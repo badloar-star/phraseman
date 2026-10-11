@@ -13802,8 +13802,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/profile-001.png",
-      "evidence_at": "2026-10-10T22:07:41.309Z",
-      "evidence_sha256": "8aaac458bdbd4c9d7c107318617949374b6eb4b5b46a7760874acca1f3df52b4",
+      "evidence_at": "2026-10-11T08:56:05.492Z",
+      "evidence_sha256": "b6895d03e65c87be14cff3262633dd903440b663775654788da9237ae9c5ab1d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -13841,17 +13841,16 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/profile-002.png",
-      "evidence_at": "2026-10-10T22:03:22.066Z",
-      "evidence_sha256": "18782b65d6d5f20d6abfd2af5b65f273de97abed43a8d6ac263db72684e397e6",
+      "evidence_at": "2026-10-11T08:59:24.859Z",
+      "evidence_sha256": "fd769781270871fb86236fe92009d54930b93ac619b886ab823bd37a63ce0b1b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Снято 12:11 (аккаунт тестовый, НЕ привязан — макет показывает привязанный). Совпадает: «‹», «Аккаунт», аватар, имя, «Изменить имя», «ДАННЫЕ», строка «Имя · Показывается друзьям», «С нами с», «АККАУНТ», «Удалить аккаунт · Требует отдельного подтверждения»",
-        "Кнопка «Изменить имя» во всю ширину; в макете компактная пилюля по тексту",
-        "Нет строк «Email · Скопировать» и «Способ входа» — у непривязанного аккаунта их нет (данные), вместо них «Привязать аккаунт»",
-        "Нет «Выйти и войти под другим аккаунтом» — у непривязанного аккаунта выхода нет",
-        "«С нами с» без «›» и датой «Сентябрь 2026 г.»; в макете «12.08.2025 ›»"
+        "Перепроверено 11.10 09:59 на свежем бандле (после d251b66f3): «Изменить имя» теперь пилюля по центру, «С нами с» с полной датой (03.09.2026) — совпадает с макетом.",
+        "Состав строк отличается ТОЛЬКО потому, что тестовый аккаунт — гость: в макете привязанный аккаунт (Email + «Скопировать», «Способ входа · Google», «Выйти и войти под другим аккаунтом»), в приложении «Привязать аккаунт». Привязанное состояние не снято — вход в аккаунт мне запрещён (не вводить и не привязывать учётные данные).",
+        "Стрелка «назад» в приложении лежит на тёмном квадрате (в макете без подложки) — мелкое отличие, смотреть ×3.",
+        "Заливка карточек строк зеленоватая с кромкой темы, у макета нейтрально-серая — токены темы (принято по DESIGN_BURNDOWN_TRIAGE для «Аврора»)."
       ],
       "status": "diff",
       "reviewed_by": null,
@@ -22533,10 +22532,10 @@
       "id": "overlays-specialist-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 1,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Plus · появление",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Plus · появление",
@@ -22554,18 +22553,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-002",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 2,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Plus · польза",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Plus · польза",
@@ -22583,18 +22583,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-003",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 3,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Plus · завершение",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Plus · завершение",
@@ -22612,18 +22613,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-004",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 4,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Pro · появление",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Pro · появление",
@@ -22641,18 +22643,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 5,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Pro · польза",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Pro · польза",
@@ -22670,18 +22673,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 6,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Pro · завершение",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "Pro · завершение",
@@ -22699,18 +22703,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-007",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 7,
-        "label": null,
-        "mapping": "no_page"
+        "label": "VIP · появление",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "VIP · появление",
@@ -22728,18 +22733,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-008",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 8,
-        "label": null,
-        "mapping": "no_page"
+        "label": "VIP · польза",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "VIP · польза",
@@ -22757,18 +22763,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 9,
-        "label": null,
-        "mapping": "no_page"
+        "label": "VIP · завершение",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "VIP · завершение",
@@ -22786,18 +22793,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-010",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/access-celebration-states.html",
         "phone": 10,
-        "label": null,
-        "mapping": "no_page"
+        "label": "VIP · промокод",
+        "mapping": "manual_rebind"
       },
       "screen": "Подтверждённый доступ",
       "state": "VIP · промокод",
@@ -22815,9 +22823,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 9, подтверждённый доступ), эталон сразу"
     },
     {
       "id": "overlays-specialist-011",

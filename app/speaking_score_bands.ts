@@ -11,12 +11,29 @@ import type { StressFeedback } from './speaking_prosody';
 
 export type SpeakingBand = 'excellent' | 'good' | 'almost' | 'rough';
 
-/** Score → band. `threshold` is the pass threshold (75). */
-export function speakingBand(score: number, threshold: number): SpeakingBand {
-  if (score >= 90) return 'excellent';
-  if (score >= threshold) return 'good';
+/**
+ * Score → band. `threshold` is the pass threshold (75).
+ *
+ * `passed` — итог проверки (`PronunciationScoringResult.passed`). Он строже балла: кроме порога требует, чтобы каждое
+ * слово фразы прозвучало. зачем (Карточки 2.0, двоичный вердикт «Устно», 11.10): при 80 баллах и пропущенном слове
+ * подпись говорила «Хорошо! Зачтено», а ответ не засчитывался. Не засчитано → полоса не выше «Почти».
+ */
+export function speakingBand(score: number, threshold: number, passed?: boolean): SpeakingBand {
+  if (score >= 90) return passed === false ? 'almost' : 'excellent';
+  if (score >= threshold) return passed === false ? 'almost' : 'good';
   if (score >= 50) return 'almost';
   return 'rough';
+}
+
+/**
+ * Двоичный вердикт «Устно» («Верно» / «Неверно» поверх звёзд) — единый источник для экрана карточек и урока.
+ * correct совпадает с тем, что засчитано в прогрессе (`passed`), а полоса не противоречит вердикту.
+ */
+export function speakingVerdict(result: Readonly<{ score: number; passed: boolean }>, threshold: number): Readonly<{
+  correct: boolean;
+  band: SpeakingBand;
+}> {
+  return { correct: result.passed === true, band: speakingBand(result.score, threshold, result.passed) };
 }
 
 const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>>>> = {

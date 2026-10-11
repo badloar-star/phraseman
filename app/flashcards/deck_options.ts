@@ -17,6 +17,7 @@ import type Ionicons from '@expo/vector-icons/Ionicons';
 import { captureAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { STARTER_FIRST_50_DECK_ID, STARTER_FIRST_50_TITLE, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { triLang, type Lang } from '../../constants/i18n';
 import {
   loadCommunityOwnedPackIds,
@@ -31,7 +32,7 @@ import {
 } from '../community_packs/localAuthorPacks';
 import { storageStudyTarget } from '../target_storage_keys';
 import type { DeckSheetOption } from './DeckPickerSheet';
-import { loadDeckCards, type DeckCard, type DeckRef } from './deck_sources';
+import { deckCardsFromCardItems, loadDeckCards, type DeckCard, type DeckRef } from './deck_sources';
 import { NO_PACK_LANGUAGE, normalizePackLanguage } from './pack_languages';
 import {
   bundledPacksForOwned,
@@ -478,6 +479,21 @@ export async function loadFcDeckOptions(
     }),
   );
   for (const deck of packDecks) if (deck) out.push(deck);
+
+  // зачем (Карточки 2.0, герой новичка «Первые 50 слов · Начать»): у новичка нет ни одной карточки — без этой колоды
+  // настройка тренировки открылась бы пустой. Предлагаем встроенный набор только пока своих карточек нет (D160: en).
+  if (starterPackAvailable(studyTarget) && out.every((deck) => deck.count === 0)) {
+    const starterCards = deckCardsFromCardItems(starterFirst50CardItems(), cl);
+    out.push({
+      deckId: STARTER_FIRST_50_DECK_ID as FcDeckId,
+      title: triLang(lang, STARTER_FIRST_50_TITLE),
+      count: starterCards.length,
+      cardIds: starterCards.map((c) => c.id),
+      icon: 'sparkles-outline' as IconName,
+      sourceKind: 'pack',
+    } satisfies DeckSheetOption);
+    console.log(`[FC-DECKS] starter:offered карточек=${starterCards.length} (своих карточек нет)`);
+  }
 
   // Снимок для мгновенного первого кадра следующего открытия экрана.
   const key = deckOptionsCacheKey(mode, lang, studyTarget);

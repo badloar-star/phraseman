@@ -3,6 +3,7 @@ import {
   speakingBand,
   speakingBandLabel,
   speakingHintText,
+  speakingVerdict,
 } from '../app/speaking_score_bands';
 import type { SpokenWordEntry } from '../app/speaking_word_report';
 
@@ -21,6 +22,16 @@ describe('speaking score bands', () => {
     expect(speakingBand(74, 75)).toBe('almost');
     expect(speakingBand(50, 75)).toBe('almost');
     expect(speakingBand(49, 75)).toBe('rough');
+  });
+
+  // зачем (Карточки 2.0, 11.10): балл ≥ порога, но слово фразы не прозвучало → не «Зачтено».
+  it('не засчитанный ответ не получает полосу «зачтено», вердикт совпадает с passed', () => {
+    expect(speakingBand(80, 75, false)).toBe('almost');
+    expect(speakingBand(95, 75, false)).toBe('almost');
+    expect(speakingBand(80, 75, true)).toBe('good');
+    expect(speakingBand(40, 75, false)).toBe('rough');
+    expect(speakingVerdict({ score: 82, passed: false }, 75)).toEqual({ correct: false, band: 'almost' });
+    expect(speakingVerdict({ score: 92, passed: true }, 75)).toEqual({ correct: true, band: 'excellent' });
   });
 
   it('has a non-empty label for every band in every UI language', () => {

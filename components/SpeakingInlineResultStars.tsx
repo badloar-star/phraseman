@@ -18,7 +18,8 @@ interface SpeakingInlineResultStarsProps {
 }
 
 function SpeakingInlineResultStars({ result, theme, testID }: SpeakingInlineResultStarsProps) {
-  const band = speakingBand(result.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD);
+  // Цвет звёзд не спорит с вердиктом: незасчитанный ответ (пропущено слово) не красится как «зачтено».
+  const band = speakingBand(result.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD, result.passed);
   return (
     <View testID={testID} accessibilityLabel={`${result.score}`}>
       <SpeakingScoreStars

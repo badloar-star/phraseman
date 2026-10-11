@@ -26,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { splitDeckParam } from './deck_selection';
+import { STARTER_FIRST_50_PACK_ID, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
@@ -223,6 +224,14 @@ async function loadPackDeckCards(
    * Свой набор с устройства (сохранён в редакторе) — карточки лежат локально.
    * Проверка по префиксу до импорта: обычные паки не тянут лишний модуль.
    */
+  // зачем (Карточки 2.0, герой новичка «Первые 50 слов»): встроенный набор — без сети и Firestore, только английский (D160).
+  if (packId === STARTER_FIRST_50_PACK_ID) {
+    if (!starterPackAvailable(studyTarget)) {
+      console.warn('[FC-DECKS] pack:starter_first_50 недоступен для языка изучения', JSON.stringify({ studyTarget: studyTarget ?? null })); // guard-ok: ранний выход логируется
+      return [];
+    }
+    return deckCardsFromCardItems(starterFirst50CardItems(), lang);
+  }
   if (packId.startsWith(LOCAL_AUTHOR_PACK_ID_PREFIX)) {
     const { loadLocalAuthorPacks, localAuthorPackCardItems } = await import(
       '../community_packs/localAuthorPacks'

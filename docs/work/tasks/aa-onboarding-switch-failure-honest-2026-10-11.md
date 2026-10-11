@@ -21,7 +21,8 @@ Related: решение координатора 06:20 п.5; 8186fd68a (полк
 Нет новых данных; лог только кодом.
 
 ## Technical debt
-Pay now.
+- Pay now: ложный текст «Прогресс на месте» для `backup_failed` / `recovery_required` / `wipe_failed` и сырой текст ошибки в логе catch — закрыто в 1594f4b1f.
+- Accept temporarily (владелец — сессия «Авторизация», пересмотр после релиза 2.0.0): копия «earn», вернувшая false без исключения, даёт `sync_failed` вместо `backup_failed`; исключение после маркера во внутреннем try даёт `unknown`. Потолок вреда — общий текст и лишний повтор, данные не теряются.
 
 ## Verification
 Тест `tests/aa_release_floor_auth_ui.test.ts` (или новый `aa_onboarding_switch_failure_text.test.ts`): тексты для backup_failed / recovery_required / wipe_failed не содержат «на месте»; catch без `.message`. По одному со слотом. Храповик переводов 814. Ревью.

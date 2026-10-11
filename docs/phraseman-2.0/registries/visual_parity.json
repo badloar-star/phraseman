@@ -27171,6 +27171,1326 @@
       "reviewed_at": null,
       "prev_release_surface_proof": null,
       "blocked_reason": null
+    },
+    {
+      "id": "cards-v2-001",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 1,
+        "label": "Хаб",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Хаб",
+      "state": "Хаб",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-002",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 2,
+        "label": "Хаб — новичок",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Хаб",
+      "state": "Хаб — новичок",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-003",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 3,
+        "label": "Хаб — загрузка",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Хаб",
+      "state": "Хаб — загрузка",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-004",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 4,
+        "label": "Хаб — поиск",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Хаб",
+      "state": "Хаб — поиск",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-005",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 5,
+        "label": "1 колонка",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "1 колонка",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-006",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 6,
+        "label": "2 колонки",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "2 колонки",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-007",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 7,
+        "label": "3 колонки",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "3 колонки",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-008",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 8,
+        "label": "5 колонок",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "5 колонок",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-009",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 9,
+        "label": "Поиск",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-006) — сверять с обоими, не плодить двойников",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "Поиск",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-010",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 10,
+        "label": "Удалено — вернуть",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "Удалено — вернуть",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-011",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 11,
+        "label": "Пусто",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-007) — сверять с обоими, не плодить двойников",
+      "screen": "Сохранённые — масштаб как в «Фото»",
+      "state": "Пусто",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-012",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 12,
+        "label": "Мои наборы",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Мои наборы",
+      "state": "Мои наборы",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-013",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 13,
+        "label": "Пусто",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-007) — сверять с обоими, не плодить двойников",
+      "screen": "Мои наборы",
+      "state": "Пусто",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-014",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 14,
+        "label": "Свой набор",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-012) — сверять с обоими, не плодить двойников",
+      "screen": "Набор открыт",
+      "state": "Свой набор",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-015",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 15,
+        "label": "Чужой — до добавления",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-013) — сверять с обоими, не плодить двойников",
+      "screen": "Набор открыт",
+      "state": "Чужой — до добавления",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-016",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 16,
+        "label": "Чужой — добавлен",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Набор открыт",
+      "state": "Чужой — добавлен",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-017",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 17,
+        "label": "Действия с набором",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-010) — сверять с обоими, не плодить двойников",
+      "screen": "Набор открыт",
+      "state": "Действия с набором",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-018",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 18,
+        "label": "Все ролики",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Из видео",
+      "state": "Все ролики",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-019",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 19,
+        "label": "Набор из видео",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-030) — сверять с обоими, не плодить двойников",
+      "screen": "Из видео",
+      "state": "Набор из видео",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-020",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 20,
+        "label": "Лицевая сторона",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Карточка открыта",
+      "state": "Лицевая сторона",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-021",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 21,
+        "label": "Оборот",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Карточка открыта",
+      "state": "Оборот",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-022",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
+        "label": "Новый набор",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-019) — сверять с обоими, не плодить двойников",
+      "screen": "Создание",
+      "state": "Новый набор",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-023",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 23,
+        "label": "Изменить набор",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-021) — сверять с обоими, не плодить двойников",
+      "screen": "Создание",
+      "state": "Изменить набор",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-024",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
+        "label": "Новая карточка — превью живое",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Создание",
+      "state": "Новая карточка — превью живое",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-025",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-022) — сверять с обоими, не плодить двойников",
+      "screen": "Сообщество",
+      "state": "Каталог",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-026",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 26,
+        "label": "Ничего не найдено",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-023) — сверять с обоими, не плодить двойников",
+      "screen": "Сообщество",
+      "state": "Ничего не найдено",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-027",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 27,
+        "label": "Режим",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Тренировка",
+      "state": "Режим",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-028",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 28,
+        "label": "Настройка",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Тренировка",
+      "state": "Настройка",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-029",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 29,
+        "label": "Настройка — пусто",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Тренировка",
+      "state": "Настройка — пусто",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-030",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 30,
+        "label": "Лимит Free",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Тренировка",
+      "state": "Лимит Free",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-031",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 31,
+        "label": "Блиц",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-033) — сверять с обоими, не плодить двойников",
+      "screen": "Сессии",
+      "state": "Блиц",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-032",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 32,
+        "label": "Устно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-034) — сверять с обоими, не плодить двойников",
+      "screen": "Сессии",
+      "state": "Устно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-033",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 33,
+        "label": "Правда / ложь",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-035) — сверять с обоими, не плодить двойников",
+      "screen": "Сессии",
+      "state": "Правда / ложь",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-034",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 34,
+        "label": "Вспомни и напиши",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-036) — сверять с обоими, не плодить двойников",
+      "screen": "Сессии",
+      "state": "Вспомни и напиши",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-035",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 35,
+        "label": "Блиц — верно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-044) — сверять с обоими, не плодить двойников",
+      "screen": "Ответы",
+      "state": "Блиц — верно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-036",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 36,
+        "label": "Блиц — неверно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Ответы",
+      "state": "Блиц — неверно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-037",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 37,
+        "label": "Устно — верно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-046) — сверять с обоими, не плодить двойников",
+      "screen": "Ответы",
+      "state": "Устно — верно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-038",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 38,
+        "label": "Правда / ложь — неверно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-049) — сверять с обоими, не плодить двойников",
+      "screen": "Ответы",
+      "state": "Правда / ложь — неверно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-039",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 39,
+        "label": "Напиши — верно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-050) — сверять с обоими, не плодить двойников",
+      "screen": "Ответы",
+      "state": "Напиши — верно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-040",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 40,
+        "label": "Напиши — неверно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-052) — сверять с обоими, не плодить двойников",
+      "screen": "Ответы",
+      "state": "Напиши — неверно",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-041",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 41,
+        "label": "Итог с ошибками",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-053) — сверять с обоими, не плодить двойников",
+      "screen": "Итог",
+      "state": "Итог с ошибками",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-042",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 42,
+        "label": "Без ошибок",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу; то же состояние есть в cards-section (cards-section-055) — сверять с обоими, не плодить двойников",
+      "screen": "Итог",
+      "state": "Без ошибок",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-043",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 43,
+        "label": "Хаб без сети",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Нет сети",
+      "state": "Хаб без сети",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-v2-044",
+      "source": "OWNER_PIN_54_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 44,
+        "label": "Каталог без сети",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "screen": "Нет сети",
+      "state": "Каталог без сети",
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
     }
   ]
 }

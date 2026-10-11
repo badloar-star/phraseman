@@ -30099,12 +30099,12 @@
       "id": "cards-v2-001",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 1,
-        "label": "Хаб",
-        "mapping": "by_construction"
+        "label": "Хаб — вариант А",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#1 на cards-section.html телефон 1.",
       "screen": "Хаб",
       "state": "Хаб",
       "code": [
@@ -30131,12 +30131,12 @@
       "id": "cards-v2-002",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 2,
-        "label": "Хаб — новичок",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 3,
+        "label": "Хаб — новичок, своих карточек нет",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#2 на cards-section.html телефон 3.",
       "screen": "Хаб",
       "state": "Хаб — новичок",
       "code": [
@@ -30163,12 +30163,12 @@
       "id": "cards-v2-003",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 3,
-        "label": "Хаб — загрузка",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 2,
+        "label": "Хаб — загрузка сообщества",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#3 на cards-section.html телефон 2.",
       "screen": "Хаб",
       "state": "Хаб — загрузка",
       "code": [
@@ -30195,12 +30195,12 @@
       "id": "cards-v2-004",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 4,
-        "label": "Хаб — поиск",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 1,
+        "label": "Хаб — вариант А (поиска в варианте А нет)",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#4 на cards-section.html телефон 1.",
       "screen": "Хаб",
       "state": "Хаб — поиск",
       "code": [
@@ -31452,12 +31452,12 @@
       "id": "cards-v2-043",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 43,
-        "label": "Хаб без сети",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 1,
+        "label": "Хаб — вариант А (кадра «без сети» в варианте А нет)",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу",
+      "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#43 на cards-section.html телефон 1.",
       "screen": "Нет сети",
       "state": "Хаб без сети",
       "code": [
@@ -33758,12 +33758,12 @@
       "id": "cards-gap-013",
       "source": "COORDINATOR_AUDIT_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-gaps-states.html",
-        "phone": 13,
-        "label": "Хаб — «Осталось 0 из 30 · до 1 ноября»",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 4,
+        "label": "Хаб — лимит исчерпан (Free)",
+        "mapping": "manual_rebind"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень») | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-gaps-states.html#13 на cards-section.html телефон 4.",
       "screen": "Карточки",
       "state": "Хаб — «Осталось 0 из 30 · до 1 ноября»",
       "code": [

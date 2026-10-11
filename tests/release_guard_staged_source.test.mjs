@@ -50,3 +50,43 @@ test('коммит меняет охраняемый файл и рвёт под
     assert.match(run.stderr, /СТОРОЖ ВЫПУСКА СЕССИЙ LEARNING V2/);
   });
 });
+
+// зачем (Ядро/координатор 11.10): фабрика V2 стала требовать loadAuxiliary, а манифест его не давал — 186 из 187 занятий
+// не собирались. Сторож обязан остановить коммит такой пары и пропустить согласованную.
+const FACTORY = 'modules/learning-v2/content/factory_native/factory_native_course_v1.ts';
+const MANIFEST = 'modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts';
+const headText = (rel) => execFileSync('git', ['show', `HEAD:${rel}`], { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+const stageText = (env, rel, text) => {
+  const blob = execFileSync('git', ['hash-object', '-w', '--stdin'], { cwd: ROOT, input: text, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
+  execFileSync('git', ['update-index', '--cacheinfo', `100644,${blob},${rel}`], { cwd: ROOT, env });
+};
+const requiringFactory = () => `${headText(FACTORY)}\nfunction requireAuxiliaryForTest(row) {\n  if (!row.loadAuxiliary)\n    throw new Error("learning_v2_factory_native_auxiliary_missing");\n}\n`;
+
+test('HEAD: пара фабрика/манифест согласована — сторож её считает и пропускает', () => {
+  withTempIndex((env) => {
+    const run = runGuard(env);
+    assert.match(run.stdout, /\[RELEASE-GUARD\] factory requiresAuxiliary=(true|false) manifestRows=[1-9]\d* auxiliaryRows=\d+/);
+    assert.equal(run.status, 0, run.stderr);
+  });
+});
+
+test('фабрика требует loadAuxiliary, манифест из HEAD без него → коммит остановлен', () => {
+  withTempIndex((env) => {
+    stageText(env, FACTORY, requiringFactory());
+    const run = runGuard(env);
+    assert.match(run.stdout, /requiresAuxiliary=true/);
+    assert.notEqual(run.status, 0);
+    assert.match(run.stderr, /требует loadAuxiliary/);
+  });
+});
+
+test('фабрика требует loadAuxiliary и манифест даёт его каждой строке → коммит проходит', () => {
+  withTempIndex((env) => {
+    stageText(env, FACTORY, requiringFactory());
+    const manifest = headText(MANIFEST).replace(/\bloadAnswers:\s*\(\)\s*=>\s*(?!unknown\b)/g, (m) => `loadAuxiliary: () => null, ${m}`);
+    stageText(env, MANIFEST, manifest);
+    const run = runGuard(env);
+    assert.doesNotMatch(run.stdout, /auxiliaryRows=0\b/);
+    assert.equal(run.status, 0, run.stderr);
+  });
+});

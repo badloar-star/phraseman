@@ -1,3 +1,5 @@
+> ⛔ **СРОЧНО (11.10): не коммить `factory_native_course_v1.ts` без перегенерации манифеста и `auxiliary.json` ОДНИМ коммитом, затем `tests/learning_v2_lesson1_bundle_builds.test.ts`** — сейчас 186 из 187 занятий не собираются. Подробно: [CODEX_URGENT_FACTORY_2026-10-11.md](CODEX_URGENT_FACTORY_2026-10-11.md).
+
 # Codex: курс Learning V2 — что чинить первым (Ядро, 11.10, одна страница)
 
 Дополняет [CODEX_LEARNING_V2_STORE_PARITY_2026-10-11.md](CODEX_LEARNING_V2_STORE_PARITY_2026-10-11.md). Курс входит в стор-сборку

@@ -254,6 +254,41 @@ for (const trackFile of trackFiles) {
   }
 }
 
+// ── 5. Фабрика требует auxiliary, а манифест его не даёт ─────────────────────
+// зачем (Ядро/координатор 11.10, release:precheck): незакоммиченная правка фабрики стала бросать
+// learning_v2_factory_native_auxiliary_missing без loadAuxiliary у строки манифеста, а в манифесте их 0 —
+// 186 из 187 занятий не собирались. Курс входит в стор-сборку: такой коммит = «Сессия недоступна» у всех.
+// Проверяем пару «фабрика + манифест» из того, что уходит в коммит (индекс/HEAD), — не рабочую копию.
+const FACTORY_REL = 'modules/learning-v2/content/factory_native/factory_native_course_v1.ts';
+const MANIFEST_REL = 'modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts';
+const factoryText = read(FACTORY_REL);
+const manifestText = read(MANIFEST_REL);
+if (factoryText && manifestText) {
+  const factoryRequiresAuxiliary = /if\s*\(\s*!\s*row\.loadAuxiliary\s*\)/.test(factoryText)
+    && factoryText.includes('learning_v2_factory_native_auxiliary_missing');
+  // Строки данных — `loadIntro: () => <загрузчик>`; объявление типа `loadIntro: () => unknown` не считаем.
+  const rowCount = (manifestText.match(/\bloadIntro:\s*\(\)\s*=>\s*(?!unknown\b)/g) ?? []).length;
+  const auxiliaryRowCount = (manifestText.match(/\bloadAuxiliary:\s*\(\)\s*=>\s*(?!unknown\b)/g) ?? []).length;
+  console.log(`[RELEASE-GUARD] factory requiresAuxiliary=${factoryRequiresAuxiliary} manifestRows=${rowCount} auxiliaryRows=${auxiliaryRowCount}`);
+  if (rowCount === 0) {
+    problems.push(
+      `${MANIFEST_REL}: не найдено ни одной строки занятия (loadIntro: () => …).\n` +
+        '   Либо формат манифеста изменился, либо сторож смотрит не туда — проверь, иначе защита молча выключилась.',
+    );
+  } else if (factoryRequiresAuxiliary && auxiliaryRowCount < rowCount) {
+    problems.push(
+      `Фабрика (${FACTORY_REL}) требует loadAuxiliary у каждой строки манифеста,\n` +
+        `   а в манифесте он есть у ${auxiliaryRowCount} из ${rowCount}. Каждое занятие без него падает с\n` +
+        '   learning_v2_factory_native_auxiliary_missing → «Сессия недоступна» в стор-сборке.\n' +
+        '   Коммить фабрику ОДНИМ коммитом с перегенерированным манифестом и копиями auxiliary.json,\n' +
+        '   затем прогони tests/learning_v2_lesson1_bundle_builds.test.ts.\n' +
+        '   Подробно: docs/phraseman-2.0/handoff/CODEX_URGENT_FACTORY_2026-10-11.md',
+    );
+  }
+} else {
+  console.log(`[RELEASE-GUARD] factory/manifest pair skipped: factory=${Boolean(factoryText)} manifest=${Boolean(manifestText)}`);
+}
+
 if (problems.length > 0) {
   console.error('\n⛔ СТОРОЖ ВЫПУСКА СЕССИЙ LEARNING V2: коммит остановлен\n');
   problems.forEach((p, i) => console.error(`${i + 1}. ${p}\n`));

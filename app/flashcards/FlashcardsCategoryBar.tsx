@@ -4,6 +4,7 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
 import { Category, CategoryId } from './types';
+import { RowDivider } from '../../components/v2/RowDivider';
 
 type Props = {
   categories: Category[];
@@ -21,7 +22,8 @@ export default function FlashcardsCategoryBar({
   onSwitchCategory,
 }: Props) {
   return (
-    <View style={{ borderTopWidth: 0.5, borderTopColor: t.border }}>
+    <View>
+      <RowDivider color={t.border} />
       <ScrollView horizontal decelerationRate="fast" showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingTop: 6, paddingBottom: 4 }}>
         {categories.map((cat) => {
           const active = cat.id === activeCat;

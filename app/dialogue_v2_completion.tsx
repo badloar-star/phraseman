@@ -25,6 +25,7 @@ import type { DialogueV2CoachingMood } from './dialogue_v2_turn_coaching_client'
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
+import { RowDivider } from '../components/v2/RowDivider';
 
 // зачем (владелец 2026-09-30, макет dialogs.html D1–D5 = practice.html «Завершение»): итог
 // диалога — тот же экран, что во всех режимах: «✕», заголовок «Диалог пройден» / «Разговор
@@ -233,11 +234,13 @@ export default function DialogueV2CompletionRoute() {
                   return (
                     <View
                       key={objective.objectiveId}
-                      style={[styles.goalRow, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
+                      style={styles.goalRow}
                       accessible
                       accessibilityLabel={goalLabel(objective.objectiveId, objective.label)}
                       accessibilityState={{ checked: met }}
                     >
+                      {/* зачем (владелец 12.10, стиль «Тень»): разделитель — линия-View, не borderTop */}
+                      {index > 0 ? <RowDivider color={glass.line} /> : null}
                       <View style={[styles.goalBadge, { backgroundColor: met ? glass.cta : glass.opaqueControl }]}>
                         {met ? <Ionicons name="checkmark" size={15} color={glass.ctaInk} /> : (
                           <Text maxFontSizeMultiplier={1.2} style={[styles.goalIndex, { color: glass.secondary }]}>{index + 1}</Text>
@@ -258,8 +261,9 @@ export default function DialogueV2CompletionRoute() {
                   {errorRows.map((correction, index) => (
                     <View
                       key={`${correction.original}-${index}`}
-                      style={[styles.errorRow, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
+                      style={styles.errorRow}
                     >
+                      {index > 0 ? <RowDivider color={glass.line} /> : null}
                       <Text maxFontSizeMultiplier={1.4} style={[styles.was, { color: LV2_BAD, textDecorationColor: LV2_BAD }]}>{correction.original}</Text>
                       <Ionicons name="arrow-forward" size={16} color={glass.mutedText} />
                       <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
@@ -311,7 +315,8 @@ function Stat({ glass, value, suffix, label, color, divider }: Readonly<{
   glass: ReturnType<typeof useDialogueGlass>; value: string; suffix?: string; label: string; color?: string; divider?: boolean;
 }>) {
   return (
-    <View style={[styles.stat, divider ? { borderLeftWidth: 1, borderLeftColor: glass.line } : null]} accessible accessibilityLabel={`${value}${suffix ?? ''} ${label}`}>
+    <View style={styles.stat} accessible accessibilityLabel={`${value}${suffix ?? ''} ${label}`}>
+      {divider ? <RowDivider edge="left" color={glass.line} /> : null}
       <Text maxFontSizeMultiplier={1.2} style={[styles.statValue, { color: color ?? glass.text }]}>
         {value}
         {suffix ? <Text style={[styles.statSuffix, { color: glass.secondary }]}>{suffix}</Text> : null}

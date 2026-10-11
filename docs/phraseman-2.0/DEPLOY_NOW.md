@@ -51,8 +51,8 @@ firebase deploy --only firestore:rules --project phraseman-ea0b3
 | Группа | Функции | Безопасно для 1.6.24 | Что включает |
 |---|---|---|---|
 | Диалоги V2 | `dialogueV2Catalogue`, `dialogueV2SessionStart`, `dialogueV2TextTurn`, `dialogueV2SessionComplete`, `dialogueV2FreeformSessionStart`, `dialogueV2FreeformSessionTurn`, `dialogueV2FreeformPreparedBotVoiceResolve`, `dialogueV2MemoryView`, `dialogueV2MemoryResume`, `dialogueV2MemoryClear` | да — новые имена | хаб «Диалоги» (сейчас «Диалоги не загрузились»). Тратят OpenAI только когда 2.0 ведёт диалог |
-| Шпиль | `spireJoinRoom`, `spireReportSteps`, `spireFinalizeCron`, `spireZoneWarningCron` | да — комнат у 1.6.24 нет, кроны работают только по существующим комнатам | игровая часть Шпиля |
-| Шпиль, админка | `adminSpireConfigGet`, `adminSpireConfigSet`, `adminSpireTaskReportList`, `adminSpireTaskIncidentStates`, `adminSpireTaskIncidentSetState` | да — только админ | включение Шпиля из админки, жалобы на задания |
+| Шпиль | `spireJoinRoom`, `spireReportSteps`, `spireFinalizeCron`, `spireZoneWarningCron`, `spirePackWeeklyCron` | да — комнат у 1.6.24 нет, кроны работают только по существующим комнатам; сборщик пакетов пишет файлы недели в Storage | игровая часть Шпиля и недельные наборы заданий |
+| Шпиль, админка | `adminSpireConfigGet`, `adminSpireConfigSet`, `adminSpirePackBuild`, `adminSpireTaskFlagList`, `adminSpireTaskFlagAdd`, `adminSpireTaskFlagRemove`, `adminSpireTaskReportList`, `adminSpireTaskIncidentStates`, `adminSpireTaskIncidentSetState` | да — только админ | включение Шпиля из админки («Контент Spire» → «Шпиль для игроков»), ручная подготовка наборов, снятие заданий, жалобы |
 | Озвучка карточек D128 | `cardTtsPackWorker`, `adminCardTtsRequeuePack` | да | авто-озвучка набора при одобрении в админке (OpenAI, копейки) |
 | Видео-наборы | `adminAlignVideoPhraseTranscript`, `adminBackfillVideoPacks` | да — только админ | транскрипция фраз видео в админке |
 | Прочее 2.0 | `dailyPollVote`, `customCardMilestoneNotify`, `profileCardBioSetMine`, `giftsToCoinsMigrationReport` | да — новые имена | опрос дня, уведомление о своих карточках, «о себе» в визитке, строка-итог миграции подарков |
@@ -70,7 +70,7 @@ firebase deploy --only functions:dialogueV2Catalogue,functions:dialogueV2Session
 ```
 
 ```bash
-firebase deploy --only functions:adminSpireConfigGet,functions:adminSpireConfigSet,functions:adminSpireTaskReportList,functions:adminSpireTaskIncidentStates,functions:adminSpireTaskIncidentSetState,functions:spireJoinRoom,functions:spireReportSteps,functions:spireFinalizeCron,functions:spireZoneWarningCron --project phraseman-ea0b3
+firebase deploy --only functions:adminSpireConfigGet,functions:adminSpireConfigSet,functions:adminSpirePackBuild,functions:adminSpireTaskFlagList,functions:adminSpireTaskFlagAdd,functions:adminSpireTaskFlagRemove,functions:adminSpireTaskReportList,functions:adminSpireTaskIncidentStates,functions:adminSpireTaskIncidentSetState,functions:spireJoinRoom,functions:spireReportSteps,functions:spireFinalizeCron,functions:spireZoneWarningCron,functions:spirePackWeeklyCron --project phraseman-ea0b3
 ```
 
 ```bash
@@ -176,7 +176,7 @@ firebase deploy --only functions:stripeWebhook,functions:paypalOrderCapture --pr
 
 ## Шаг 3. После выкладки — в админке
 
-1. Админка → Пульт → Шпиль: включить «Шпиль для игроков» (`config/spire_v1.enabled`). Админская функция сама создаст документ с правильной версией схемы — документа в проде сейчас **нет**.
+1. Админка → вкладка «Контент Spire» → блок «Шпиль для игроков» → «Включить Шпиль» (`config/spire_v1.enabled`). Админская функция сама создаст документ с правильной версией схемы — документа в проде сейчас **нет**. (Переключатель добавлен 11.10; до этого кнопки не было вовсе.)
 2. Проверить, что на 2.0 (эмулятор/дев-сборка) в «Диалогах» открывается сценарий и проходит
    первая реплика (каталог виден и без выкладки; проверяем именно разговор).
 3. Набор сообщества: одобрить тестовый набор → убедиться, что появилась озвучка (лог `[CARD-TTS]`).

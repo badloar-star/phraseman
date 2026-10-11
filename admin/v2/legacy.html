@@ -15565,6 +15565,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div id="arena-content-status" role="status" aria-live="polite">Загружаем состояние заданий…</div>
       <div class="arena-content-player-note">Подготовка не включает язык и не публикует задания игрокам.</div>
     </div>
+    <!-- зачем (Ядро 11.10): включить Шпиль владельцу было нечем — adminSpireConfigSet на сервере есть, кнопки не было,
+         а OWNER_RELEASE_STEPS §4 отправлял в несуществующий переключатель. Документ config/spire_v1 пишет только сервер,
+         целиком и со схемой; переключатель сохраняет таймер/монеты/ботов как есть и меняет только «включено». -->
+    <section class="spire-admin-section" aria-labelledby="spire-live-title">
+      <div class="spire-admin-section-head">
+        <div><h3 id="spire-live-title" class="spire-admin-section-title">Шпиль для игроков</h3><p class="spire-admin-section-copy">Включает игру на сервере сразу для всех языков.</p></div>
+        <div class="arena-content-actions"><button type="button" id="spire-live-toggle" class="spire-admin-primary" onclick="toggleSpireLive()" disabled>Загружаем…</button></div>
+      </div>
+      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>вкладка «Шпиль» появится только вместе с рубильником spire_tab_enabled в remote_config/app.</span></div>
+      <div id="spire-live-status" class="spire-admin-status" role="status" aria-live="polite">Состояние ещё не загружено.</div>
+    </section>
     <section class="spire-admin-section" aria-labelledby="spire-review-title">
       <div class="spire-admin-section-head">
         <div><h3 id="spire-review-title" class="spire-admin-section-title">На проверке</h3><p class="spire-admin-section-copy">Жалобы игроков на задания выбранного языка. Задание уже убрано из следующих наборов.</p></div>
@@ -21614,7 +21625,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   window._spireTaskFlagsByTarget = Object.create(null);
   window._spireTaskReportsByTarget = Object.create(null);
   window._spireTaskFlagsRequestId = 0;
-  window._spireAdminBusy = { flags:false, review:false, build:false };
+  window._spireAdminBusy = { flags:false, review:false, build:false, live:false };
 
   function arenaContentSetText(id, value) {
     const node = document.getElementById(id);
@@ -21711,6 +21722,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       window.renderArenaContentTarget();
       void window.loadSpireTaskFlags(false);
       void window.loadSpireTaskReports(false);
+      void window.loadSpireLiveStatus(false);
       return window._arenaContentStatus;
     } catch (error) {
       spireAdminRecordTechnicalError('content_status', error);
@@ -22072,6 +22084,69 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       arenaContentSetText('spire-admin-flags-status', 'Не удалось вернуть задание. Повторите чуть позже.');
     } finally {
       spireAdminSetBusy('flags', false);
+    }
+  };
+
+  // зачем (Ядро 11.10): единственный способ включить Шпиль игрокам без ручной правки базы. Одно чтение
+  // adminSpireConfigGet на заход во вкладку (кэш в памяти), запись — только по нажатию с подтверждением.
+  window._spireLiveStatus = null;
+  function renderSpireLiveStatus() {
+    const button = document.getElementById('spire-live-toggle');
+    const status = window._spireLiveStatus;
+    if (!status) return;
+    const enabled = status.config?.enabled === true;
+    if (button) {
+      button.textContent = enabled ? 'Выключить Шпиль' : 'Включить Шпиль';
+      button.className = enabled ? 'spire-admin-danger' : 'spire-admin-primary';
+      button.disabled = window._spireAdminBusy.live === true;
+    }
+    arenaContentSetText('spire-live-status', !status.valid
+      ? 'Документ настроек повреждён — сохранение перезапишет его правильной версией.'
+      : enabled ? 'Шпиль включён на сервере.' : status.exists ? 'Шпиль выключен.' : 'Шпиль ещё ни разу не включали.');
+  }
+
+  window.loadSpireLiveStatus = async function(force) {
+    if (window._spireLiveStatus && !force) { renderSpireLiveStatus(); return window._spireLiveStatus; }
+    try {
+      const response = await httpsCallable(functionsUs, 'adminSpireConfigGet')({});
+      window._spireLiveStatus = response?.data?.status || null;
+      console.log('[SPIRE-LIVE] состояние', JSON.stringify({ exists: window._spireLiveStatus?.exists ?? null, valid: window._spireLiveStatus?.valid ?? null, enabled: window._spireLiveStatus?.config?.enabled ?? null }));
+      renderSpireLiveStatus();
+      return window._spireLiveStatus;
+    } catch (error) {
+      console.warn('[SPIRE-LIVE] чтение состояния не удалось', error?.code || '', error?.message || String(error));
+      spireAdminRecordTechnicalError('spire_live_status', error);
+      arenaContentSetText('spire-live-status', 'Не удалось узнать состояние Шпиля. Повторите чуть позже.');
+      return null;
+    }
+  };
+
+  window.toggleSpireLive = async function() {
+    const status = window._spireLiveStatus;
+    if (window._spireAdminBusy.live || !status) return;
+    const next = status.config?.enabled !== true;
+    if (!confirm(next ? 'Включить Шпиль для игроков на сервере?' : 'Выключить Шпиль для игроков?')) return;
+    spireAdminSetBusy('live', true);
+    const button = document.getElementById('spire-live-toggle');
+    if (button) button.disabled = true;
+    arenaContentSetText('spire-live-status', next ? 'Включаем…' : 'Выключаем…');
+    try {
+      const config = status.config || {};
+      const response = await httpsCallable(functionsUs, 'adminSpireConfigSet')({
+        enabled: next,
+        timer: config.timer, coins: config.coins, residents: config.residents, integrity: config.integrity,
+        reason: next ? 'spire_enabled_from_admin_ui' : 'spire_disabled_from_admin_ui',
+      });
+      window._spireLiveStatus = response?.data?.status || null;
+      console.log('[SPIRE-LIVE] сохранено', JSON.stringify({ requested: next, enabled: window._spireLiveStatus?.config?.enabled ?? null }));
+      showToast(next ? 'Шпиль включён на сервере.' : 'Шпиль выключен.', 'ok');
+    } catch (error) {
+      console.warn('[SPIRE-LIVE] сохранение не удалось', error?.code || '', error?.message || String(error));
+      spireAdminRecordTechnicalError('spire_live_toggle', error);
+      showToast('Не удалось изменить состояние Шпиля. Повторите чуть позже.', 'err');
+    } finally {
+      spireAdminSetBusy('live', false);
+      renderSpireLiveStatus();
     }
   };
 

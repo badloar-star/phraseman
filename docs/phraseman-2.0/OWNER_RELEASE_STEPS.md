@@ -167,13 +167,22 @@ git apply docs/work/tasks/learning-v2-gate-store-skip.patch
 
 ## 4. Шпиль и рубильники — порядок включения
 
-Только после того, как выложены функции Шпиля (п. 1.2) и 2.0 вышла в магазинах:
-1. Админка → «Пульт» → раздел «Шпиль» → включить игру. Это пишет `config/spire_v1.enabled`, документ создастся сам.
-2. Показать вкладку «Шпиль» игрокам. Отдельного рубильника в админке нет:
+Только после того, как 2.0 вышла в магазинах. Порядок важен: сначала сервер, потом наборы, потом вкладка.
+1. Выложить функции Шпиля по именам (одна команда, все 14 функций; для 1.6.24 безопасно — у неё нет комнат Шпиля):
+
+   ```bash
+   firebase deploy --only functions:adminSpireConfigGet,functions:adminSpireConfigSet,functions:adminSpirePackBuild,functions:adminSpireTaskFlagList,functions:adminSpireTaskFlagAdd,functions:adminSpireTaskFlagRemove,functions:adminSpireTaskReportList,functions:adminSpireTaskIncidentStates,functions:adminSpireTaskIncidentSetState,functions:spireJoinRoom,functions:spireReportSteps,functions:spireFinalizeCron,functions:spireZoneWarningCron,functions:spirePackWeeklyCron --project phraseman-ea0b3
+   ```
+2. Админка (переключатель приходит с выкладкой админки `hosting:admin` из п. 1; обновить страницу) → вкладка «Контент Spire» → блок «Шпиль для игроков» →
+   «Включить Шпиль». Это пишет `config/spire_v1.enabled`; документ создастся сам, с правильной версией схемы.
+   Переключатель появился 11.10 — раньше кнопки не было, а этот шаг ссылался на несуществующий раздел «Пульта».
+3. Там же, для каждого языка в списке «Для какого языка готовим задания?» → «Подготовить задания для Шпиля».
+   Дальше наборы собирает недельный крон сам; ручной запуск нужен, чтобы первая неделя не была пустой.
+4. Показать вкладку «Шпиль» игрокам. Отдельного рубильника в админке нет:
    - Firebase Console → Firestore → `remote_config` → документ `app` → поле `bools` → ключ `spire_tab_enabled` =
      `true`;
    - клиенты подхватят при запуске или возврате, не позднее ~5 минут.
-3. Проверить на телефоне: вкладка «Шпиль» видна, можно войти в комнату.
+5. Проверить на телефоне: вкладка «Шпиль» видна, можно войти в комнату, ступень открывается с заданиями.
 
 Ещё два пункта:
 - Флаги Account V2 (`accounts_v2_client_enabled` и выключатель старой синхронизации) — **не трогать**, у них свой план.

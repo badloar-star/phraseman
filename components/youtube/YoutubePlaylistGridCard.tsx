@@ -38,8 +38,9 @@ function YoutubePlaylistGridCardBase({ playlist, onPress }: { playlist: YoutubeP
             : <Ionicons name="albums-outline" size={24} color={g.secondary} />}
         </View>
       </View>
-      <Text style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
-      <Text style={[styles.count, { color: g.secondary }]}>{playlist.itemCount} {countLabel}</Text>
+      {/* зачем (владелец 11.10): единый компактный стиль названий — как у роликов в сетке. */}
+      <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
+      <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[styles.count, { color: g.accentText }]}>{playlist.itemCount} {countLabel}</Text>
     </TouchableOpacity>
   );
 }
@@ -52,6 +53,6 @@ const baseStyles = StyleSheet.create({
   cover: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка обложки, как `.th` макета
   stackOne: { position: 'absolute', top: -6, left: 12, right: 12, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
   stackTwo: { position: 'absolute', top: -11, left: 24, right: 24, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
-  title: { marginTop: 8, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  count: { marginTop: 3, fontSize: 13, lineHeight: 17, fontWeight: '400' },
+  title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
+  count: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову
 });

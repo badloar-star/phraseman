@@ -148,16 +148,19 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
   return (
     <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
       <Wrapper g={g} plain={plain} style={styles.card}>
-        <View style={plain ? styles.rowPlain : styles.row}>
+        <RowShell plain={plain} disabled={disabled} onPress={() => { void hapticTap(); onOpen(pack); }} label={`${title}. ${phrasesText}`} testID={`video-pack-open-row-${pack.id}`}>
           {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
           <Pressable
             testID={`video-pack-play-${pack.id}`}
             accessibilityRole="button"
-            accessibilityLabel={playLabel}
+            accessibilityLabel={plain ? `${title}. ${phrasesText}` : playLabel}
             accessibilityState={{ disabled }}
             disabled={disabled}
             onPress={() => {
               void hapticTap();
+              // зачем (владелец 11.10, «при нажатии на сам блок должен открываться набор фраз»): во вкладке «Наборы» обложка — часть блока и
+              // открывает страницу набора; во внешний YouTube кадр ведёт только в разделе «Карточки» (прежнее поведение).
+              if (plain) { onOpen(pack); return; }
               void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
             }}
             style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
@@ -205,17 +208,31 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               onPress={() => { void hapticTap(); onOpen(pack); }}
               style={StyleSheet.absoluteFill}
             />
-            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.title, { color: g.text }]}>
+            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.title, plain && styles.titlePlain, { color: g.text }]}>
               {title}
             </FlowText>
-            <Text pointerEvents="none" style={[styles.count, { color: g.secondary }]}>{phrasesText}</Text>
+            <Text pointerEvents="none" maxFontSizeMultiplier={1.3} style={[styles.count, plain && styles.countPlain, { color: plain ? g.accentText : g.secondary }]}>{phrasesText}</Text>
           </View>
 
           {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
           <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant={plain ? 'videoAddRound' : 'videoAdd'} />
-        </View>
+        </RowShell>
       </Wrapper>
     </View>
+  );
+}
+
+/**
+ * Строка набора. Во вкладке «Наборы» (plain) вся строка — кнопка, открывающая страницу набора (владелец 11.10); кнопка «+» внутри остаётся
+ * быстрым добавлением (вложенное нажатие забирает она). В разделе «Карточки» — прежний View: там свои цели тапа у кадра, названия и кнопки.
+ */
+function RowShell({ plain, disabled, onPress, label, testID, children }: { plain: boolean; disabled: boolean; onPress: () => void; label: string; testID: string; children: React.ReactNode }) {
+  if (!plain) return <View style={baseStyles.row}>{children}</View>;
+  return (
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled}
+      onPress={onPress} style={({ pressed }) => [baseStyles.rowPlain, pressed && { opacity: 0.85 }]}>
+      {children}
+    </Pressable>
   );
 }
 
@@ -267,4 +284,7 @@ const baseStyles = StyleSheet.create({
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   count: { marginTop: 4, fontSize: 13, lineHeight: 17 },
+  // владелец 11.10: единый компактный стиль названий в списках роликов и наборов.
+  titlePlain: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
+  countPlain: { marginTop: 2, fontSize: 11, lineHeight: 14, opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову
 });

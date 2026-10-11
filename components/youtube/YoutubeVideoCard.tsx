@@ -84,7 +84,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
         <View style={styles.titleRow}>
           <View style={styles.titleCopy}>
             <Text numberOfLines={compactLayout ? 2 : undefined} style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{video.title}</Text>
-            {metaParts.length > 0 && <Text style={[styles.meta, { color: g.secondary }]}>{metaParts.join(' · ')}</Text>}
+            {metaParts.length > 0 && <Text style={[styles.meta, compactLayout && styles.metaCompact, { color: compactLayout ? g.accentText : g.secondary }]}>{metaParts.join(' · ')}</Text>}
           </View>
           {onToggleSave ? (
             <Pressable
@@ -146,8 +146,10 @@ const styles = StyleSheet.create({
   // `.du`: 22 высота, поля 7, радиус 7, чёрный 72%, 12/700 → 13 по D145.
   duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
-  titleCompact: { fontSize: 16, lineHeight: 21 },
+  // владелец 11.10: в списке роликов плейлиста название компактнее — 13/17 вес 600, мета 11/14 приглушённым акцентным тоном.
+  titleCompact: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },
+  metaCompact: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   titleCopy: { flex: 1, minWidth: 0 },
   saveBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },

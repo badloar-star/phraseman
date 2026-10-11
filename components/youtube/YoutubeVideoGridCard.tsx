@@ -69,8 +69,10 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
           <Image accessible={false} source={{ uri: feedThumbUrl(video.thumbnailUrl, true) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
           {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
         </View>
-        <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
-        {metaParts.length > 0 ? <Text style={[styles.meta, { color: g.secondary }]}>{metaParts.join(' · ')}</Text> : null}
+        {/* зачем (владелец 11.10: «названия слишком крупные — в половину меньше, компактно и красиво»): 13/17 вес 600, максимум 2 строки;
+            место под две строки резервируется всегда — карточки в ряду одной высоты. Мета — 11 приглушённым акцентным тоном темы. */}
+        <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{video.title}</Text>
+        {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentText }]}>{metaParts.join(' · ')}</Text> : null}
       </TouchableOpacity>
       {onToggleSave ? (
         <Pressable
@@ -114,7 +116,7 @@ const baseStyles = StyleSheet.create({
   // `.bm`: круг 38 справа-вверху на обложке, отступ 7.
   bookmark: { position: 'absolute', top: 7, right: 7, width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
-  // `.gt` 15/20 → шкала D145: 16/21; `.gm` 13/17.
-  title: { marginTop: 8, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  meta: { marginTop: 3, fontSize: 13, lineHeight: 17, fontWeight: '400' },
+  // владелец 11.10: название 13/17 вес 600 (2 строки, минимум две — ряды одной высоты), мета 11/14.
+  title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
+  meta: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову
 });

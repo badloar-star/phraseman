@@ -25,12 +25,21 @@ export type LiquidGlassSurfaceRoles = Readonly<{
   dropShadow: string;
   /** Тонкая разделительная линия на любой поверхности. */
   hairlineSoft: string;
+  /**
+   * Нетекстовые элементы (WCAG 1.4.11): декоративные значки («люди» в строке набора), приглушённые иконки — контраст ≥ 3:1 к
+   * карточке, шторке, плашке и фону темы. Для текста не использовать (там `secondary`/`mutedText`/`accentText`).
+   */
+  iconMuted: string;
+  /** Дорожка ВЫКЛЮЧЕННОГО переключателя, пустая часть слайдера: контраст ≥ 3:1 к тем же поверхностям. */
+  trackOff: string;
 }>;
 
 type SurfaceSource = Readonly<{
   bg: string;
   opaqueCard: string;
   opaqueControl: string;
+  opaqueSheet: string;
+  card: string;
   text: string;
   isLight: boolean;
   shadowTint: string;
@@ -49,7 +58,36 @@ export function mixSurfaceHex(from: string, to: string, k: number): string {
 const withAlpha = (hex: string, opacity: number): string =>
   `${hex6(hex)}${Math.round(opacity * 255).toString(16).padStart(2, '0').toUpperCase()}`;
 
+const lum = (hex: string): number => {
+  const n = Number.parseInt(hex6(hex).slice(1), 16);
+  const ch = (shift: number) => {
+    const c = ((n >> shift) & 255) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * ch(16) + 0.7152 * ch(8) + 0.0722 * ch(0);
+};
+const ratio = (a: string, b: string): number => {
+  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+  return (hi! + 0.05) / (lo! + 0.05);
+};
+
+/**
+ * Тон между поверхностью и текстом темы: доля текста растёт от `from`, пока контраст со ВСЕМИ поверхностями не станет ≥ `min`.
+ * зачем (находка Сверки 12.10): на светлых градиентных темах значки и дорожки выключенных переключателей были ≈ 1,5:1 — их
+ * красили тонами поверхности; здесь тон берётся от текста темы, поэтому читается в любой теме и на любом шаге ползунка.
+ */
+function nonTextTone(t: SurfaceSource, from: number, min: number): string {
+  const against = [t.opaqueCard, t.card, t.opaqueSheet, t.opaqueControl, t.bg].map(hex6);
+  for (let k = from; k <= 1.0001; k += 0.02) {
+    const tone = mixSurfaceHex(t.opaqueCard, t.text, Math.min(k, 1));
+    if (against.every((bg) => ratio(tone, bg) >= min)) return tone;
+  }
+  return hex6(t.text);
+}
+
 export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurfaceRoles {
+  const iconMuted = nonTextTone(t, 0.40, 3.2);
+  const trackOff = nonTextTone(t, 0.32, 3.1);
   if (t.isLight) {
     return Object.freeze({
       deepBase: mixSurfaceHex(t.opaqueControl, '#000000', 0.08),
@@ -61,6 +99,8 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
       bevelLo: 'rgba(0,0,0,0.10)',
       dropShadow: t.shadowTint.length > 7 ? t.shadowTint : 'rgba(0,0,0,0.16)',
       hairlineSoft: withAlpha(t.text, 0.10),
+      iconMuted,
+      trackOff,
     });
   }
   return Object.freeze({
@@ -73,5 +113,7 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
     bevelLo: 'rgba(0,0,0,0.45)',
     dropShadow: 'rgba(0,0,0,0.85)',
     hairlineSoft: withAlpha(t.text, 0.08),
+    iconMuted,
+    trackOff,
   });
 }

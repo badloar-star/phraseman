@@ -86,5 +86,8 @@
   }
   function init() { press(document.body); sheets(document.body); document.querySelectorAll('.scr').forEach(rubber); }
 
+
+  // зачем (12.10, стиль «Тень»): обводки контейнеров в макетах снимает nobord.js — подключаем из kit.js, чтобы все страницы с kit.js получили его сами
+  if (!window.__nobord) { const sc = document.createElement('script'); sc.src = (document.currentScript && document.currentScript.src ? document.currentScript.src.replace(/kit\.js.*$/, '') : '') + 'nobord.js'; document.head.appendChild(sc); }
   window.K = { icon, coin, coinImg, phone, col, block, sheet, energy, coins, init };
 })();

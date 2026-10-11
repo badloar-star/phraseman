@@ -46,6 +46,10 @@ export type CollectionMenuProps = Readonly<{
   onPublish?: () => void;
   showEdit?: boolean;
   onEdit?: () => void;
+  /** Название набора — заголовок шторки действий (макет cards-v2 `setActions`). */
+  title?: string;
+  /** «Новая карточка» в наборе (макет `setActions`). */
+  onNewCard?: () => void;
   /** Чужой набор сообщества: «Пожаловаться на набор». */
   onReport?: () => void;
 }>;
@@ -215,6 +219,10 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
     : [], [copy.all, copy.phrases, copy.words, menu.savedContentCounts]);
   return (
     <PanelSheet visible={visible} onClose={onClose} testID="fc-saved-actions-menu">
+      {menu.title ? (
+        // зачем (cards-v2 `setActions`): шторка действий набора начинается с его названия, 20/700
+        <Text accessibilityRole="header" style={{ color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700', paddingHorizontal: 6, paddingBottom: 6 }}>{menu.title}</Text>
+      ) : null}
       {menu.selectionMode && menu.selectedCount > 0 ? (
         <SheetRow g={g} testID="fc-menu-delete-selected" icon="trash-outline" title={copy.deleteSelected} danger onPress={run(menu.onDeleteSelected)} />
       ) : null}
@@ -241,6 +249,12 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
       ) : null}
       {menu.showEdit ? (
         <SheetRow g={g} testID="fc-pack-edit" icon="create-outline" title={copy.edit} onPress={run(menu.onEdit)} />
+      ) : null}
+      {menu.onNewCard ? (
+        <SheetRow g={g} testID="fc-pack-new-card" icon="add-outline" title={triLang(menu.lang, {
+          ru: 'Новая карточка', uk: 'Нова картка', en: 'New card', es: 'Nueva tarjeta', 'pt-BR': 'Novo cartão',
+          vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa karta',
+        })} onPress={run(menu.onNewCard)} />
       ) : null}
       {kindChips.length > 0 && menu.savedContentKind && menu.onSavedContentKindChange ? (
         <FilterChips g={g} chips={kindChips} activeId={menu.savedContentKind} onChange={(id) => menu.onSavedContentKindChange?.(id as SavedCardContentKind)} testIDPrefix="fc-saved-content" />

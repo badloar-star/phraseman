@@ -1635,6 +1635,8 @@ export default function FlashcardsScreen() {
             onPublish: onPublishPack,
             showEdit: packSurface && (showEditButton || packMine),
             onEdit: onEditPack,
+            title: packSurface ? packTitleText : undefined,
+            onNewCard: packSurface && (showEditButton || packMine) ? onEditPack : undefined,
             onReport: packSurface && !packMine && !!currentMarketPack?.isCommunityUgc ? () => setPackReportOpen(true) : undefined,
           }}
         />

@@ -10,6 +10,7 @@ import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
 import { colorWithAlpha } from '../../v2/plateAlpha';
 import { HOME_PLATE_ALPHA } from './homePlate';
+import { thumbTrace, traceThumbMissing } from '../../../app/thumb_trace';
 
 type Props = {
   videos: readonly LingmanYoutubeVideo[];
@@ -57,7 +58,9 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
               onPress={() => setActiveVideoId(video.id)}
               style={[s.card, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]}
             >
-              <Image source={{ uri: video.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={100} accessible={false} />
+              {/* зачем (координатор 12.10, [THUMB]): пустые плитки на кадре home-001 — журнал показывает адрес, источник (кэш/сеть), время и код ответа при ошибке */}
+              {video.thumbnailUrl ? null : traceThumbMissing('home_video_rail', video.id, 'thumbnailUrl пуст в данных ленты')}
+              <Image source={{ uri: video.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={100} accessible={false} {...thumbTrace('home_video_rail', video.id, video.thumbnailUrl)} />
               <View style={s.cardContent}>
                 <Ionicons name="play-circle" size={26} color="#FFFFFF" />
               </View>

@@ -32,6 +32,7 @@ import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import { DebugLogger } from '../debug-logger';
+import { thumbTrace, traceThumbMissing } from '../thumb_trace';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
@@ -172,8 +173,8 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
           <View style={[styles.largeShadow, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
             <View style={styles.largeThumb}>
               {thumbUrl ? (
-                <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={pack.videoId} cachePolicy="memory-disk" />
-              ) : null}
+                <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={pack.videoId} cachePolicy="memory-disk" {...thumbTrace('video_pack_card', pack.id, thumbUrl)} />
+              ) : traceThumbMissing('video_pack_card', pack.id, `videoId пуст в наборе (${String(pack.videoId ?? '')})`)}
               {duration ? (
                 <View style={styles.largeDuration} pointerEvents="none">
                   <Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text>
@@ -236,8 +237,9 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
                  */
                 recyclingKey={pack.videoId}
                 cachePolicy="memory-disk"
+                {...thumbTrace(plain ? 'video_pack_plain' : 'video_pack_card', pack.id, thumbUrl)}
               />
-            ) : null}
+            ) : traceThumbMissing(plain ? 'video_pack_plain' : 'video_pack_card', pack.id, `videoId пуст в наборе (${String(pack.videoId ?? '')})`)}
             {/* зачем (Сверка 11.10, макет video-redesign #c1, экран 4): на обложке строки вкладки «Наборы» нет ни ▶, ни длительности. */}
             {plain ? null : (
               <View style={styles.playCircle} pointerEvents="none">

@@ -19,7 +19,7 @@ import { StyleSheet, Text } from 'react-native';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import { useTheme } from '../../ThemeContext';
+import { useV2Palette } from '../../v2/useV2Palette';
 import { MOTION_SPRING } from '../../../constants/motion';
 import { useReduceMotion } from '../../../hooks/use_reduce_motion';
 import { subscribeNetStatus } from '../../../app/net_status';
@@ -35,7 +35,7 @@ export type OfflineDataNoticeProps = Readonly<{
 }>;
 
 export default function OfflineDataNotice({ message }: OfflineDataNoticeProps) {
-  const { theme: t, f } = useTheme();
+  const p = useV2Palette();
   const reduceMotion = useReduceMotion();
   const [online, setOnline] = useState(true);
   const enter = useSharedValue(0);
@@ -73,12 +73,13 @@ export default function OfflineDataNotice({ message }: OfflineDataNoticeProps) {
     <Reanimated.View
       accessibilityRole="alert"
       accessibilityLabel={message ?? undefined}
-      // Тон золотой, а не красный: ничего не сломалось, данные просто старые.
-      style={[styles.wrap, { backgroundColor: t.goldBg }, style]}
+      // зачем: паритет с макетом system.html (кадр system_07) — нейтральная графитовая карточка
+      // с тонкой кромкой, серый текст 14.5 и серый значок; никакого золота.
+      style={[styles.wrap, { backgroundColor: p.card, borderColor: p.hairline }, style]}
       testID="offline-data-notice"
     >
-      <Ionicons name="cloud-offline-outline" size={19} color={t.gold} />
-      <Text style={[styles.text, { color: t.textPrimary, fontSize: f.caption }]}>
+      <Ionicons name="cloud-offline-outline" size={20} color={p.textSecondary} />
+      <Text style={[styles.text, { color: p.textSecondary }]}>
         {message}
       </Text>
     </Reanimated.View>
@@ -89,12 +90,13 @@ const styles = StyleSheet.create({
   wrap: {
     marginHorizontal: 16,
     marginTop: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 11,
-    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 14,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка карточки kit.css
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 11,
+    gap: 12,
   },
-  text: { flex: 1, minWidth: 0, fontWeight: '700', lineHeight: 19 },
+  text: { flex: 1, minWidth: 0, fontSize: 14.5, fontWeight: '400', lineHeight: 20 },
 });

@@ -31,7 +31,8 @@ import PressableHybrid from './PressableHybrid';
 const TEXTS = {
   ru: {
     title: 'Это Компас. У меня кое-что новое',
-    body: 'Я немного подрос: внутри свежие штуки и пара починок. Обнови меня — и пойдём дальше вместе.',
+    // зачем: паритет с макетом system.html system_09 — короткий текст мягкого окна.
+    body: 'Доступна новая версия — быстрее и удобнее.',
     update: 'Обновить',
     close: 'Чуть позже',
   },
@@ -236,7 +237,8 @@ function UpdateModal({
         <PressableHybrid
           onPress={onClose}
           variant="secondary"
-          style={[styles.closeBtn, { backgroundColor: glass.selected }]}
+          // зачем: макет system_09 — «Чуть позже» без заливки и без рамки (прозрачная призрачная кнопка).
+          style={[styles.closeBtn, { backgroundColor: 'transparent' }]}
           contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
         >
           <Text style={[styles.closeBtnText, { color: glass.text }]}>
@@ -366,7 +368,7 @@ const styles = StyleSheet.create({
   },
   closeBtnText: {
     fontSize: 16,
-    lineHeight: 20,
+    lineHeight: 22,
     fontWeight: '700',
     textAlign: 'center',
   },

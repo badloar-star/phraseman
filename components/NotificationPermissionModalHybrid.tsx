@@ -71,7 +71,8 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
 }
 
 function ConfirmButton({ label, onPress, testID }: { label: string; onPress: () => void; testID: string }) {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const scale = useSharedValue(1);
 
@@ -95,9 +96,9 @@ function ConfirmButton({ label, onPress, testID }: { label: string; onPress: () 
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.primaryBtn, { backgroundColor: t.accent, shadowColor: t.accent }]}
+        style={[styles.primaryBtn, { backgroundColor: glass.accent }]}
       >
-        <Text style={[styles.primaryBtnText, { color: t.correctText, fontSize: f.body }]}>{label}</Text>
+        <Text style={[styles.primaryBtnText, { color: glass.accentInk }]}>{label}</Text>
       </Pressable>
     </Animated.View>
   );
@@ -113,7 +114,7 @@ function NotificationPermissionModalHybrid({
   confirmLabel,
   cancelLabel,
 }: Props) {
-  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
 
@@ -124,7 +125,7 @@ function NotificationPermissionModalHybrid({
 
   return (
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onCancel}>
-      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
+      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { backgroundColor: glass.scrim, paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
         <Pressable onPress={(event) => event.stopPropagation()} accessible={false} style={[styles.card, { backgroundColor: glass.sheet, paddingBottom: Math.max(18, insets.bottom + 12) }]}>
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
             <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
@@ -133,22 +134,23 @@ function NotificationPermissionModalHybrid({
           </View>
           <ScrollView testID="notification-permission-scroll-content-hybrid" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <CascadeItem index={0} style={styles.iconRow}>
-              <View style={[styles.iconWrap, { backgroundColor: t.accentBg }]}>
-                <Ionicons name="notifications-outline" size={26} color={t.accent} />
+              // зачем: паритет с макетом system.html system_19 — плашка 55pt/r14 на графите, белый колокольчик, без цвета темы.
+              <View style={[styles.iconWrap, { backgroundColor: glass.opaqueControl }]}>
+                <Ionicons name="notifications-outline" size={24} color={glass.text} />
               </View>
             </CascadeItem>
 
             <CascadeItem index={1}>
-              <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{title}</Text>
+              <Text style={[styles.title, { color: glass.text }]}>{title}</Text>
             </CascadeItem>
 
-            {body ? <CascadeItem index={2}><Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text></CascadeItem> : null}
+            {body ? <CascadeItem index={2}><Text style={[styles.body, { color: glass.secondary }]}>{body}</Text></CascadeItem> : null}
 
             <CascadeItem index={3} style={styles.points}>
               {points.map((p) => (
                 <View key={p} style={styles.pointRow}>
-                  <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-                  <Text style={[styles.pointText, { color: t.textMuted, fontSize: f.sub }]}>{p}</Text>
+                  <Ionicons name="checkmark" size={18} color={glass.text} />
+                  <Text style={[styles.pointText, { color: glass.text }]}>{p}</Text>
                 </View>
               ))}
             </CascadeItem>
@@ -162,7 +164,7 @@ function NotificationPermissionModalHybrid({
               onPress={handleCancel}
               style={styles.secondaryBtn}
             >
-              <Text style={[styles.secondaryBtnText, { color: t.textMuted, fontSize: f.body }]}>{cancelLabel}</Text>
+              <Text style={[styles.secondaryBtnText, { color: glass.text }]}>{cancelLabel}</Text>
             </Pressable>
           </CascadeItem>
         </Pressable>
@@ -174,8 +176,8 @@ function NotificationPermissionModalHybrid({
 export default memo(NotificationPermissionModalHybrid);
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: 'rgba(0,0,0,0.72)' },
-  card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 18, paddingHorizontal: 20, paddingTop: 20, overflow: 'hidden' },
+  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22 },
+  card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 26, paddingHorizontal: 20, paddingTop: 26, overflow: 'hidden' },
   scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
   scrollContentInner: { paddingBottom: 14 },
   iconRow: {
@@ -183,26 +185,29 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   iconWrap: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
+    width: 55,
+    height: 55,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
+    fontSize: 21,
     fontWeight: '700',
-    lineHeight: 28,
+    lineHeight: 27,
     textAlign: 'center',
     marginBottom: 10,
   },
   body: {
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 21,
     fontWeight: '400',
     textAlign: 'center',
     marginBottom: 16,
   },
   points: {
-    gap: 8,
+    gap: 10,
+    marginTop: 6,
     marginBottom: 20,
   },
   pointRow: {
@@ -212,32 +217,37 @@ const styles = StyleSheet.create({
   },
   pointText: {
     flex: 1,
+    fontSize: 16,
+    lineHeight: 21,
   },
   footer: {
     gap: 10,
   },
   primaryBtn: {
-    borderRadius: 18,
-    minHeight: 56,
+    borderRadius: 24,
+    minHeight: 48,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
-    shadowRadius: 14,
+    shadowColor: '#000000', // theme-exempt: тень кнопки всегда чёрная, не зависит от темы
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.22,
+    shadowRadius: 8,
     ...noAndroidOutline,
   },
   primaryBtnText: {
+    fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
-    letterSpacing: 0.3,
   },
   secondaryBtn: {
     minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
   secondaryBtnText: {
+    fontSize: 16,
     fontWeight: '700',
   },
 });

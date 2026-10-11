@@ -139,19 +139,24 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
           },
         ]}>
           <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
-          <Text style={[styles.eyebrow, { color: glass.secondary, fontSize: f.caption }]}>
+          <Text style={[styles.eyebrow, { color: glass.secondary }]}>
             {triLang(lang, { ru: 'Сообщение команды', uk: 'Повідомлення команди', en: 'Message from the team', es: 'Mensaje del equipo', 'pt-BR': 'Mensagem da equipe', vi: 'Tin nhắn từ đội ngũ', id: 'Pesan dari tim', tr: 'Ekipten mesaj', pl: 'Wiadomość od zespołu' })}
           </Text>
-          <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>{title}</Text>
-          <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>{body}</Text>
+          <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>{title}</Text>
+          <Text style={[styles.body, { color: glass.secondary }]}>{body}</Text>
 
           {reward && (
             <View style={styles.rewardBlock}>
               {isCoinReward ? (
-                <RuneGlyph size={64} color={glass.text} />
+                // зачем: паритет с макетом system.html system_16 — награда монетами это пилюля «монета + число».
+                <View style={[styles.coinPill, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+                  <RuneGlyph size={20} color={glass.text} />
+                  <Text style={[styles.coinPillNum, { color: glass.text }]}>{String(payload?.rewardAmount ?? '')}</Text>
+                </View>
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
+              {!isCoinReward ? (
               <Text style={[styles.rewardLine, { color: glass.text, fontSize: f.bodyLg }]}>
                 {triLang(lang, {
                   ru: reward.labelRu,
@@ -165,12 +170,13 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                   pl: reward.labelPl,
                 })}
               </Text>
+              ) : null}
             </View>
           )}
 
           {isReviewPromo && (
             <View style={styles.reviewNote}>
-              <Text style={[styles.reviewNoteText, { color: glass.secondary, fontSize: f.caption }]}>
+              <Text style={[styles.reviewNoteText, { color: glass.secondary }]}>
                 {triLang(lang, {
                   ru: 'Откроется страница приложения в магазине.',
                   uk: 'Відкриється сторінка застосунку в магазині.',
@@ -194,7 +200,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
             wrapStyle={styles.btnWrap}
             style={[styles.btn, { backgroundColor: glass.accent }]}
           >
-            <Text style={{ color: glass.accentInk, fontWeight: '800', fontSize: f.bodyLg }}>
+            <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: 16 }}>
               {isReviewPromo && payload
                 ? triLang(lang, {
                   ru: payload.reviewCtaRu,
@@ -227,7 +233,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
               onPress={() => { void closeOnce(); }}
               style={styles.secondaryBtn}
             >
-              <Text style={{ color: glass.secondary, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
+              <Text style={{ color: glass.text, fontWeight: '700', fontSize: 16, textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Позже',
                   uk: 'Пізніше',
@@ -256,7 +262,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 22,
   },
   card: {
     width: '100%',
@@ -269,30 +275,46 @@ const styles = StyleSheet.create({
     paddingBottom: 22,
     alignItems: 'center',
   },
+  // зачем: паритет с макетом system.html system_15 — оверлайн 12/700 (разрядка 3), заголовок 21/700, текст 15.
   eyebrow: {
     textAlign: 'center',
-    fontWeight: '800',
-    letterSpacing: 1.1,
+    fontSize: 13,
+    lineHeight: 17,
+    fontWeight: '700',
+    letterSpacing: 3,
     textTransform: 'uppercase',
     marginBottom: 10,
   },
   title: {
     textAlign: 'center',
-    fontWeight: '800',
+    fontSize: 21,
+    lineHeight: 27,
+    fontWeight: '700',
     marginBottom: 8,
   },
   body: {
     textAlign: 'center',
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 21,
   },
+  coinPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    height: 36,
+    paddingHorizontal: 14,
+    borderRadius: 18,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка пилюли kit.css
+  },
+  coinPillNum: { fontSize: 16, fontWeight: '700' },
   rewardBlock: {
     alignItems: 'center',
-    marginTop: 14,
-    marginBottom: 8,
+    marginTop: 16,
+    marginBottom: 0,
   },
   rewardLine: {
     marginTop: 6,
-    fontWeight: '800',
+    fontWeight: '700',
     textAlign: 'center',
   },
   rewardEmoji: {
@@ -305,24 +327,24 @@ const styles = StyleSheet.create({
   },
   reviewNoteText: {
     textAlign: 'center',
+    fontSize: 13,
     lineHeight: 18,
   },
   btnWrap: {
     width: '100%',
-    marginTop: 12,
+    marginTop: 20,
   },
   btn: {
-    borderRadius: 16,
-    paddingVertical: 15,
+    borderRadius: 24,
     alignItems: 'center',
-    minHeight: 52,
+    justifyContent: 'center',
+    minHeight: 48,
   },
   secondaryBtn: {
-    alignSelf: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginTop: 4,
-    minHeight: 44,
+    width: '100%',
+    marginTop: 10,
+    minHeight: 48,
+    borderRadius: 24,
     justifyContent: 'center',
   },
 });

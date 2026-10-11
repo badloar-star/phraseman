@@ -109,7 +109,22 @@ function storeUrlForPlatform(): string {
 // Голос Компаса (канон): даже блокирующее окно говорит от первого лица, тепло.
 // Не казённое «Доступно обновление / Мы улучшили приложение», а «это Компас, без
 // свежей версии дальше не пройдём — давай обновимся».
-function defaultTitle(lang: string): string {
+// зачем: паритет с макетом system.html (кадры system_08/09) — у обязательного и мягкого окна
+// разные русские заголовок и текст; остальные языки остаются как были.
+function defaultTitle(lang: string, mode: GateMode = 'force'): string {
+  if (mode === 'optional') {
+    return triLang(lang as Lang, {
+      ru: 'Это Компас. У меня кое-что новое',
+      uk: 'Це Компас. У мене дещо нове',
+      en: "It's Compass. I've got something new",
+      es: 'Soy la Brújula. Tengo algo nuevo',
+      'pt-BR': 'É a Bússola. Tenho uma novidade',
+      vi: 'Mình là La bàn. Mình có điều mới đây',
+      id: 'Ini Kompas. Ada yang baru dariku',
+      tr: 'Ben Pusula. Sana yeni bir şeyim var',
+      pl: 'Tu Kompas. Mam coś nowego',
+    });
+  }
   return triLang(lang as Lang, {
     ru: 'Это Компас. Без обновления дальше никак',
     uk: 'Це Компас. Без оновлення далі ніяк',
@@ -123,7 +138,21 @@ function defaultTitle(lang: string): string {
   });
 }
 
-function defaultBody(lang: string): string {
+function defaultBody(lang: string, mode: GateMode = 'force'): string {
+  if (mode === 'optional') {
+    return triLang(lang as Lang, {
+      ru: 'Доступна новая версия — быстрее и удобнее.',
+      uk: 'Доступна нова версія — швидше й зручніше.',
+      en: 'A new version is available — faster and easier.',
+      es: 'Hay una versión nueva: más rápida y cómoda.',
+      'pt-BR': 'Há uma nova versão — mais rápida e prática.',
+      vi: 'Đã có phiên bản mới — nhanh và tiện hơn.',
+      id: 'Versi baru tersedia — lebih cepat dan nyaman.',
+      tr: 'Yeni sürüm var — daha hızlı ve rahat.',
+      pl: 'Jest nowa wersja — szybsza i wygodniejsza.',
+    });
+  }
+  if (lang === 'ru') return 'Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.';
   return triLang(lang as Lang, {
     ru: 'Я заметно подрос, и старая версия меня уже не тянет. Обнови — и продолжим путь там же, где остановились.',
     uk: 'Я помітно підріс, і стара версія мене вже не тягне. Онови — і продовжимо шлях там само, де спинилися.',
@@ -246,8 +275,8 @@ async function readManualState(lang: string, userId: string | null): Promise<Gat
     campaignId, mode, platformFilter, platform: Platform.OS, targetBuild, currentBuild, storeUrl,
   });
 
-  const title = getManualUpdateTitle(lang).trim() || defaultTitle(lang);
-  const body = getManualUpdateBody(lang).trim() || defaultBody(lang);
+  const title = getManualUpdateTitle(lang).trim() || defaultTitle(lang, mode);
+  const body = getManualUpdateBody(lang).trim() || defaultBody(lang, mode);
   const cta = getManualUpdateCta(lang).trim() || defaultCta(lang);
   return { source: 'manual', mode, campaignId, title, body, cta, storeUrl };
 }
@@ -307,8 +336,8 @@ export default function ForceUpdateGate() {
         source: 'manual',
         mode,
         campaignId: 'dev_preview',
-        title: getManualUpdateTitle(lang).trim() || defaultTitle(lang),
-        body: getManualUpdateBody(lang).trim() || defaultBody(lang),
+        title: getManualUpdateTitle(lang).trim() || defaultTitle(lang, mode),
+        body: getManualUpdateBody(lang).trim() || defaultBody(lang, mode),
         cta: getManualUpdateCta(lang).trim() || defaultCta(lang),
         storeUrl,
       });
@@ -657,5 +686,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
   },
-  secondaryLabel: { fontSize: 16, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
+  secondaryLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
 });

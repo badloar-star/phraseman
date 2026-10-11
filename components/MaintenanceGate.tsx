@@ -31,7 +31,7 @@ interface MaintenanceState {
 
 function defaultText(lang: string): string {
   return triLang(lang as Lang, {
-    ru: 'Идут технические работы. Скоро вернемся.',
+    ru: 'Идут технические работы. Скоро вернёмся.',
     uk: 'Тривають технічні роботи. Скоро повернемось.',
     en: 'We\'re under maintenance. Back soon.',
     es: 'Estamos en mantenimiento. Volvemos pronto.',
@@ -172,9 +172,10 @@ export default function MaintenanceGate() {
           >
             <View
               style={{
-                width: 64,
-                height: 64,
-                borderRadius: 22,
+                // зачем: паритет с макетом system.html system_10 — плашка 61pt, радиус 16.
+                width: 61,
+                height: 61,
+                borderRadius: 16,
                 backgroundColor: glass.card,
                 borderWidth: StyleSheet.hairlineWidth,
                 borderColor: glass.glassEdge,
@@ -195,7 +196,7 @@ export default function MaintenanceGate() {
             </View>
             <Text
               accessibilityRole="header"
-              style={{ color: glass.text, fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}
+              style={{ color: glass.text, fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center', marginBottom: 8 }}
             >
               {maintenanceTitle}
             </Text>
@@ -203,7 +204,7 @@ export default function MaintenanceGate() {
               accessibilityRole="alert"
               accessibilityLiveRegion="assertive"
               accessibilityLabel={`${maintenanceTitle}. ${message}`}
-              style={{ color: glass.secondary, fontSize: 16, lineHeight: 23, textAlign: 'center', maxWidth: 420 }}
+              style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', maxWidth: 420 }}
             >
               {message}
             </Text>

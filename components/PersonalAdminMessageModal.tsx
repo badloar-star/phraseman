@@ -26,7 +26,7 @@ type Props = {
 function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVariant = 'classic' }: Props) {
   // зачем: личное сообщение команды (макет system.html SYS-07) — Liquid Glass 13 тем,
   // цвета только из токенов активной темы (без зелёного акцента и цветной рамки).
-  const { f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -43,19 +43,19 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
   }, [closing, message, onAcknowledge]);
 
   const titleSlot = (
-    <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+    <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
       {text?.title || triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', en: 'Message', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
     </Text>
   );
 
   const eyebrowSlot = (
-    <Text style={[styles.eyebrow, { color: glass.secondary, fontSize: f.caption }]}>
+    <Text style={[styles.eyebrow, { color: glass.secondary }]}>
       {triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', en: 'Message', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
     </Text>
   );
 
   const bodySlot = (
-    <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>
+    <Text style={[styles.body, { color: glass.secondary }]}>
       {text?.body || ''}
     </Text>
   );
@@ -71,7 +71,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       wrapStyle={styles.buttonWrap}
       style={[styles.button, { backgroundColor: glass.accent }]}
     >
-      <Text style={[styles.buttonText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
+      <Text style={[styles.buttonText, { color: glass.accentInk }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
     </DuoPressable>
   );
 
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 22,
     backgroundColor: 'rgba(0,0,0,0.62)',
   },
   card: {
@@ -124,12 +124,13 @@ const styles = StyleSheet.create({
     paddingTop: 26,
     paddingBottom: 20,
   },
-  eyebrow: { fontWeight: '800', textAlign: 'center', letterSpacing: 1.1, textTransform: 'uppercase', marginBottom: 10 },
-  title: { fontWeight: '800', textAlign: 'center' },
-  body: { marginTop: 12, lineHeight: 23, textAlign: 'center' },
-  buttonWrap: { marginTop: 22 },
-  button: { borderRadius: 16, minHeight: 52, paddingHorizontal: 18 },
-  buttonText: { fontWeight: '800' },
+  // зачем: паритет с макетом system.html system_16 — оверлайн 12/700 (разрядка 3), заголовок 21/700, текст 15, кнопка 48 пилюля.
+  eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 10 },
+  title: { fontSize: 21, lineHeight: 27, fontWeight: '700', textAlign: 'center' },
+  body: { marginTop: 8, fontSize: 16, lineHeight: 21, textAlign: 'center' },
+  buttonWrap: { marginTop: 20 },
+  button: { borderRadius: 24, minHeight: 48, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
+  buttonText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(PersonalAdminMessageModal);

@@ -105,9 +105,10 @@ const styles = StyleSheet.create({
   items: { marginTop: 16, gap: 9 },
   item: { flexDirection: 'row', gap: 14, alignItems: 'flex-start' },
   itemIcon: {
-    width: 42,
-    height: 42,
-    borderRadius: 13,
+    // зачем: паритет с макетом system.html system_14 — плашка 41pt, радиус 10 (.tile в kit.css).
+    width: 41,
+    height: 41,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
   itemTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   itemBody: { fontSize: 13, lineHeight: 18, fontWeight: '400', marginTop: 2 },
   ctaWrap: { width: '100%', marginTop: 12 },
-  cta: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  // зачем: макет system_14 — главная кнопка 48pt в форме пилюли (.cta в kit.css).
+  cta: { minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });

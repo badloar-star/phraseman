@@ -33,6 +33,11 @@ type State = {
 };
 const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null };
 let state: State = EMPTY;
+/**
+ * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
+ * отказывать, даже если флаги сняли (`switch=ok`/`logout=ok` при открытом окне) — настоящее стирание без синхронизации недостижимо. Сбрасывается перезапуском.
+ */
+let forcedRefusalLatched = false;
 
 function devAccountAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -76,10 +81,24 @@ export function isDevAuthNone(): boolean {
  */
 export function getDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   if (!devAccountAvailable()) return null;
+  const outcome = computeDevSignOutOutcome(forced);
+  if (outcome) forcedRefusalLatched = true;
+  return outcome;
+}
+
+function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   if (state.logoutMode === 'fail') return { reason: 'wipe_failed', detail: 'dev_logout_fail', delayMs: 0 };
   if (state.logoutMode === 'precommit') return { reason: 'sync_failed', delayMs: 0 };
   const mode = state.switchMode;
-  if (mode === null) return null; // нет флагов — настоящее поведение, как в стор-сборке
+  // зачем (ревью безопасности 12.10, R-1): при ЛЮБОМ включённом флаге зоны аккаунта (не только switch=/logout=) выход тоже отказывает — иначе тап «Сменить» в окне
+  // plustransfer=on / restore=retired / auth=none / delete=fail запускал бы настоящее стирание.
+  if (mode === null && (state.authNone || state.restoreRetired || state.deleteFail || state.plusTransfer)) {
+    return forced ? { reason: 'unknown', detail: 'dev_guard', delayMs: 0 } : { reason: 'sync_failed', delayMs: 0 };
+  }
+  if (mode === null) {
+    // нет флагов — настоящее поведение, как в стор-сборке; но если dev-отказ уже выдавался, форсированная попытка остаётся отказной (защёлка, R-2)
+    return forced && forcedRefusalLatched ? { reason: 'unknown', detail: 'dev_guard_latched', delayMs: 0 } : null;
+  }
   // зачем (ревью безопасности 12.10): при ЛЮБОМ включённом switch= настоящее стирание недостижимо — и для not_uploaded/backup_blocked (их экран — ошибка ВХОДА,
   // но в настройках вход идёт после выхода: выход тоже должен отказать, а не стереть данные).
   if (forced) return { reason: 'unknown', detail: 'dev_guard', delayMs: 0 };
@@ -91,6 +110,7 @@ export function getDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null 
     case 'backup_blocked':
     case 'unsaved_cards':
     case 'guard': return { reason: 'sync_failed', delayMs: 0 };
+    default: return { reason: 'unknown', detail: 'dev_guard', delayMs: 0 }; // R-3: незнакомый режим отказывает, а не пропускает к настоящему выходу
   }
 }
 
@@ -129,6 +149,7 @@ export function getDevGreetName(): string | null {
 /** Только для тестов. */
 export function resetDevAccountStateForTests(): void {
   state = EMPTY;
+  forcedRefusalLatched = false;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -99,11 +99,29 @@ describe('dev account states', () => {
     expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed');
     setDevAccountState({ switchMode: null, restoreRetired: true });
     expect(getDevSignInError()).toBe('identity_retired');
-    expect(getDevSignOutOutcome(false)).toBeNull(); // без switch/logout выход — настоящий, как в обычной сборке
+    expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed'); // restore=retired тоже защищает выход (ревью R-1)
+  });
+
+  it('refuses sign-out under every account-zone flag, and latches forced refusal after the first dev refusal', () => {
+    for (const patch of [{ authNone: true }, { restoreRetired: true }, { deleteFail: true }, { plusTransfer: true }] as const) {
+      resetDevAccountStateForTests();
+      setDevAccountState(patch);
+      expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed'); // ревью R-1: «Сменить» при таком флаге не стирает
+      expect(getDevSignOutOutcome(true)?.reason).toBe('unknown');
+    }
+    resetDevAccountStateForTests();
+    expect(getDevSignOutOutcome(false)).toBeNull(); // без флагов — настоящее поведение
+    expect(getDevSignOutOutcome(true)).toBeNull();
+    setDevAccountState({ switchMode: 'guard' });
+    expect(getDevSignOutOutcome(false)?.reason).toBe('sync_failed');
+    setDevAccountState({ switchMode: null }); // switch=ok при открытом окне
+    expect(getDevSignOutOutcome(false)).toBeNull(); // обычный выход вернулся к настоящему…
+    expect(getDevSignOutOutcome(true)).toMatchObject({ reason: 'unknown', detail: 'dev_guard_latched' }); // …но форсированный стирающий — нет (R-2)
   });
 
   it('does nothing in a store build', async () => {
     mockStoreRelease = true;
+    expect(getDevSignOutOutcome(true)).toBeNull();
     expect(setDevAccountState({ authNone: true, switchMode: 'guard', logoutMode: 'fail', deleteFail: true, restoreRetired: true, plusTransfer: true })).toBe(false);
     expect((await applyDevState({ auth: 'none', delete: 'fail' })).skipped).toEqual({ all: 'not_dev_build' });
     mockStoreRelease = false;

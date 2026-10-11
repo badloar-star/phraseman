@@ -3835,7 +3835,14 @@ export async function signOutAndWipeForAccountSwitch(
   if (devOutcome) {
     console.log(`[DEV-STATE] account: выход/смена подменены отказом ${devOutcome.reason} delayMs=${devOutcome.delayMs}`); // guard-ok: dev-ветка
     if (devOutcome.delayMs > 0) await new Promise<void>((resolve) => setTimeout(resolve, devOutcome.delayMs));
-    return { ok: false, reason: devOutcome.reason, ...(devOutcome.detail ? { detail: devOutcome.detail } : {}) } as SignOutSwitchResult;
+    // зачем (ревью безопасности 12.10, R-4): результат собирается по каждой причине — без приведения типа, несоответствие поймает tsc.
+    switch (devOutcome.reason) {
+      case 'wipe_failed': return { ok: false, reason: 'wipe_failed', detail: devOutcome.detail ?? 'dev' };
+      case 'sync_failed': return { ok: false, reason: 'sync_failed' };
+      case 'pending_shard_spend': return { ok: false, reason: 'pending_shard_spend' };
+      case 'shard_queue_quarantined': return { ok: false, reason: 'shard_queue_quarantined' };
+      case 'unknown': return { ok: false, reason: 'unknown', detail: devOutcome.detail };
+    }
   }
   let releaseTransitionReservation: () => void;
   const startedAt = Date.now();

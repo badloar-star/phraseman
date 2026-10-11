@@ -23,13 +23,8 @@ describe('admin analytics active access definitions', () => {
     }), NOW)?.kind).toBe('store_subscription');
   });
 
-  test('classifies active MAX monthly as a recurring store subscription', () => {
-    expect(classifyActiveAccess(user({
-      premium_plan: 'max_monthly',
-      premium_rc_product_id: 'phraseman_max_monthly_v1',
-      premium_rc_expiry_ms: String(NOW + DAY),
-    }), NOW)?.kind).toBe('store_subscription');
-  });
+  // зачем (Ядро 11.10): раздел MAX вычищен владельцем 2026-10-04 (tests/max_removed_contract.test.ts) —
+  // тарифа max_monthly больше нет, проверка снята вместе с ним.
 
   test('keeps an expired RevenueCat subscription only during the 72 hour grace period', () => {
     const inGrace = user({

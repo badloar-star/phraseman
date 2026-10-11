@@ -131,7 +131,8 @@ describe('tournament semantic receipt store', () => {
       receipt.contentSha256,
       receipt.reviewContractVersion,
       receipt.promptSetSha256,
-      { ...receipt, studyTarget: 'it' as any },
+      // зачем (Ядро 11.10): итальянский — законный контур Шпиля (D154), «неизвестный язык» теперь 'xx'.
+      { ...receipt, studyTarget: 'xx' as any },
     )).toThrow('receipt_identity_invalid');
   });
 

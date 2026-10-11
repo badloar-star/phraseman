@@ -185,7 +185,8 @@ describe('поиск неисправностей', () => {
 
     expect(arenaConfigProblems({
       ...good(),
-      targetPublications: { ...good().targetPublications, it: { studyTarget: 'it', enabled: false, ready: false } },
+      // зачем (Ядро 11.10): итальянский — законный контур Шпиля (D154), «неизвестный язык» теперь 'xx'.
+      targetPublications: { ...good().targetPublications, xx: { studyTarget: 'xx', enabled: false, ready: false } },
     })).toContain('target_publications');
 
     expect(arenaConfigProblems({

@@ -163,14 +163,8 @@ describe('admin analytics trends request and callable security contract', () => 
     expect(Object.isFrozen(parsed.filters)).toBe(true);
   });
 
-  test('accepts max_monthly as a fixed recurring plan filter', () => {
-    const parsed = parseAdminAnalyticsTrendsRequest({
-      scope: 'paywall',
-      filters: { plan: 'max_monthly' },
-    }, NOW);
-
-    expect(parsed.filters.plan).toBe('max_monthly');
-  });
+  // зачем (Ядро 11.10): раздел MAX вычищен владельцем 2026-10-04 (tests/max_removed_contract.test.ts) —
+  // тарифа max_monthly больше нет, проверка снята вместе с ним.
 
   test('uses v2 App Check, authenticated money.read claims, and a fixed index export', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_analytics_trends.ts'), 'utf8');

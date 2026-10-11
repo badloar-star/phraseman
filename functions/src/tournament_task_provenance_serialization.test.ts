@@ -13,7 +13,9 @@ describe('tournament provenance parsing and secret serialization', () => {
     const taskId = tournamentV11TaskId(TOURNAMENT_POOL_V11_VERSION, contentSha256);
     const task = parseTournamentTaskDocument(taskId, {
       mode: 'speed_match', difficulty: 2, isVoice: false, verified: true,
-      tags: [`pool:${TOURNAMENT_POOL_V11_VERSION}`], provenanceKeys,
+      // зачем (Ядро 11.10): фабрика v11 всегда ставит метку чётности (tournament_pool_v11_factory.ts), проверка её требует —
+      // документ без неё не настоящий v11 и законно отвергается.
+      tags: [`pool:${TOURNAMENT_POOL_V11_VERSION}`, 'provenance-parity:0'], provenanceKeys,
       source: 'ai', poolVersion: TOURNAMENT_POOL_V11_VERSION,
       exposureBucket: `${TOURNAMENT_POOL_V11_VERSION}:speed_match:000`, lifecycle: 'published',
       semanticSignature: createHash('sha256').update('signature:speed-v11', 'utf8').digest('hex'),

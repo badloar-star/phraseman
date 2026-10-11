@@ -5,6 +5,22 @@ jest.mock('./auth_identity', () => ({
   resolveStableUidForAuth: jest.fn(async () => 'stable-player'),
 }));
 
+// зачем (Ядро 11.10): турниры выключены владельцем навсегда (tournament_release_gate.ts: «тест, который ждёт
+// включённых турниров, — чинить тест»). Код обзора раунда законсервирован, а не удалён — его логику проверяем,
+// подменив ТОЛЬКО замок в этом файле; что настоящий замок отвечает отказом, сторожит отдельный тест ниже.
+jest.mock('./tournament_release_gate', () => ({
+  ...jest.requireActual('./tournament_release_gate'),
+  assertTournamentsReleased: jest.fn(),
+}));
+
+describe('tournament release gate (настоящий)', () => {
+  it('турниры выключены: вызов отвечает tournaments_disabled_by_owner', () => {
+    const actual = jest.requireActual('./tournament_release_gate') as typeof import('./tournament_release_gate');
+    expect(actual.TOURNAMENTS_RELEASED).toBe(false);
+    expect(() => actual.assertTournamentsReleased()).toThrow('tournaments_disabled_by_owner');
+  });
+});
+
 type CallableRunner = (request: { auth?: { uid: string }; data?: unknown }) => Promise<unknown>;
 type Snapshot = { id: string; exists: boolean; data: () => Record<string, unknown> };
 

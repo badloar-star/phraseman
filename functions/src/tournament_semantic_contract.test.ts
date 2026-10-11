@@ -137,7 +137,8 @@ describe('tournament semantic study-target identity', () => {
       .toThrow('invalid_tournament_semantic_candidate:study_target_invalid');
     expect(() => createTournamentSemanticCandidate({
       ...baseInput,
-      studyTarget: 'it',
+      // зачем (Ядро 11.10): итальянский — законный контур Шпиля (D154), «неизвестный язык» теперь 'xx'.
+      studyTarget: 'xx',
     } as unknown as TournamentSemanticCandidateInput))
       .toThrow('invalid_tournament_semantic_candidate:study_target_invalid');
   });

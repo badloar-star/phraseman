@@ -100,8 +100,8 @@ describe('режим турниров «активно весь день»', () 
   it('боевой вход создаёт мгновенную платную комнату, а банк отдаёт 24-часовое окно', () => {
     const tournaments = readFileSync(path.resolve(__dirname, 'tournaments.ts'), 'utf8');
     const weekly = readFileSync(path.resolve(__dirname, 'tournament_weekly_payout.ts'), 'utf8');
-    const app = readFileSync(path.resolve(__dirname, '../../app/(tabs)/tournaments.tsx'), 'utf8');
-    const tickets = readFileSync(path.resolve(__dirname, '../../app/tournament_tickets.tsx'), 'utf8');
+    // зачем (Ядро 11.10): клиентские экраны турниров удалены вместе с Ареной (D83, tests/d83_arena_client_deleted.probe.ts) —
+    // проверки цены входа на экранах сняты, серверная часть законсервированного кода сторожится как раньше.
     const shardStart = tournaments.indexOf('async function createTournamentShardRoom');
     const shardEnd = tournaments.indexOf('async function ensureRoomPlayable', shardStart);
     const shardWriter = tournaments.slice(shardStart, shardEnd);
@@ -113,11 +113,6 @@ describe('режим турниров «активно весь день»', () 
     expect(shardWriter).toContain('botArrivalPotEvents(botPlan.players, 0, economySnapshot.botEntryGems)');
     expect(shardWriter).toContain('potGems: lobbyEvents.at(-1)?.potGemsAfter ?? 0');
     expect(weekly).toContain('entryWindowMs: tournamentEntryWindowMsFromEconomy(economySnap.data())');
-    expect(app).toContain('const DEFAULT_ENTRY_GEMS = 5;');
-    expect(app).toContain(
-      'const entryGems = schedule?.entryGems ?? bankInfo?.entryGems ?? DEFAULT_ENTRY_GEMS;',
-    );
-    expect(tickets).toContain('const DEFAULT_ENTRY_GEMS = 5;');
   });
 
   /**

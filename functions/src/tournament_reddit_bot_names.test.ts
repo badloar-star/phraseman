@@ -137,8 +137,11 @@ describe('tournament Reddit bot names', () => {
     // Порог 80→70 (2026-08-03): кап уровня ботов ≤50 сжал пул уровневых
     // аватаров с 60 до 50 значений, уникальных комбинаций на 200 профилей
     // стало 75. Смысл стража прежний — боты не вырождаются в горстку близнецов.
+    // Порог 70→60 (Ядро 2026-10-11): лиги удалены (efe19ae9d) — уровень жителя теперь из очков
+    // (residentRankFromScore), а не из опыта; на тех же 200 профилях уникальных обликов стало 66.
+    // Турниры законсервированы (tournament_release_gate.ts); смысл стража прежний — не горстка близнецов.
     expect(new Set(profiles.map((profile) => `${profile.avatarEmoji}|${profile.avatarAura ?? ''}`)).size)
-      .toBeGreaterThanOrEqual(70);
+      .toBeGreaterThanOrEqual(60);
     // Владелец 2026-08-03: бот не может выглядеть выше 50 уровня.
     for (const profile of levelAvatars) {
       expect(Number(profile.avatarEmoji)).toBeGreaterThanOrEqual(1);

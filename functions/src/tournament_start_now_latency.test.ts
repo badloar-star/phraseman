@@ -319,7 +319,9 @@ describe('tournamentStartNow latency controls', () => {
       source.indexOf('export const tournamentStartNow'),
       source.indexOf('export const tournamentRoundReview'),
     );
-    expect(start).toContain('minInstances: 1');
+    // зачем (Ядро 11.10): турниры выключены владельцем навсегда (tournament_release_gate.ts) — тёплый экземпляр
+    // держится только при включённых турнирах, иначе это оплачиваемый простой. Сторож ждал безусловное «1».
+    expect(start).toContain('minInstances: TOURNAMENTS_RELEASED ? 1 : 0');
     expect(source).not.toContain('onInit(');
     expect(source).not.toContain('prewarmTournamentStartNowResourcePool');
   });

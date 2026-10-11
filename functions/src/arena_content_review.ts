@@ -32,6 +32,13 @@ function normalized(value: unknown): string {
   return String(value ?? '').normalize('NFKC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase('und');
 }
 
+// зачем (Ядро 11.10): варианты «Sí.» и « sí » для ученика — один и тот же ответ; сторож arena_content_review.test
+// ждал `options_not_unique`, а сравнение учитывало точку — дубль проходил в пул. Знаки препинания при сравнении
+// вариантов выбора не различают.
+function optionKey(value: unknown): string {
+  return normalized(value).replace(/[\p{P}\s]+/gu, ' ').trim();
+}
+
 export type ArenaQualityRole =
   | 'mode_guardian'
   | 'target_linguist_primary'
@@ -135,7 +142,7 @@ function choiceModeFacts(draft: Record<string, unknown>, mode: ArenaTaskMode, fi
   const reasons = Array.isArray(explanation.wrongOptionReasons) ? explanation.wrongOptionReasons : [];
   const expectedOptions = mode === 'guess_phrase' || mode === 'fill_gap' || mode === 'find_oddity' ? 4 : 0;
   if (optionStrings.length !== expectedOptions) findings.push('mode_option_count_invalid');
-  if (new Set(optionStrings.map(normalized)).size !== optionStrings.length) findings.push('options_not_unique');
+  if (new Set(optionStrings.map(optionKey)).size !== optionStrings.length) findings.push('options_not_unique');
   if (!Number.isInteger(correctIndex) || correctIndex < 0 || correctIndex >= optionStrings.length) {
     findings.push('correct_index_invalid');
   }
@@ -411,10 +418,18 @@ export function assessArenaPoolPublication(input: Readonly<{
     semanticLedgerSha256: input.receipts[0]?.semanticLedgerSha256 ?? '',
     deterministicFactsSha256: manifest.taskBundleSha256,
   };
+  // зачем (Ядро 11.10): отпечаток манифеста (manifestSha256) считается от тела БЕЗ самого поля отпечатка
+  // (validPoolManifest). Квитанции сверялись с манифестом целиком — совпасть не могло никогда, и любая публикация
+  // пула вечно получала HOLD receipt_invalid (сторож arena_content_review.test ждал PASS).
+  const { manifestSha256: _manifestHash, ...manifestBody } = manifest;
   const runIds = new Set<string>();
   for (const receipt of input.receipts) {
-    if (runIds.has(receipt.runId)
-      || !validateArenaQualityReceipt(receipt, { identity, draft: manifest, evidencePack: input.evidencePack }).ok) {
+    const check = validateArenaQualityReceipt(receipt, { identity, draft: manifestBody, evidencePack: input.evidencePack });
+    if (runIds.has(receipt.runId) || !check.ok) {
+      console.warn('[ARENA-POOL-GATE] квитанция пула отклонена', JSON.stringify({
+        role: receipt.role, runId: receipt.runId, duplicateRun: runIds.has(receipt.runId),
+        reason: check.ok ? null : check.reason, poolVersion: manifest.poolVersion,
+      }));
       return { decision: 'HOLD', reason: 'receipt_invalid' };
     }
     runIds.add(receipt.runId);

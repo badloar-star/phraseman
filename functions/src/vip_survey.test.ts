@@ -77,7 +77,7 @@ afterEach(() => {
 
 describe('VIP survey free-tier authorization', () => {
   it.each([
-    ['MAX monthly', { premium_plan: 'max_monthly', premium_expiry: String(NOW + 86_400_000) }],
+    // зачем (Ядро 11.10): MAX вычищен владельцем 2026-10-04 — случай «активный MAX» снят вместе с тарифом.
     ['Pro/lifetime', { premium_plan: 'lifetime', premium_expiry: '0' }],
   ])('rejects active %s before granting the 30-day VIP reward', async (_label, progress) => {
     docs.set('users/stable-1', { progress });

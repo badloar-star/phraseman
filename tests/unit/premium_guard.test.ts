@@ -96,13 +96,16 @@ describe('getVerifiedPremiumStatus', () => {
       ['premium_plan', null],
       ['premium_expiry', '0'],
     ]);
+    // Считаем только чтения ключей Plus: флаги тестера в dev читаются каждый вызов НАМЕРЕННО (6bb14d3f5 —
+    // «Снять премиум» срабатывает сразу; в стор-сборке хранилище не трогается), это не промах кэша.
+    const premiumKeyReads = () => mockMultiGet.mock.calls
+      .filter(([keys]) => Array.isArray(keys) && (keys as string[]).includes('premium_active')).length;
     await getVerifiedPremiumStatus();
-    const callsAfterFirst = mockMultiGet.mock.calls.length;
+    const callsAfterFirst = premiumKeyReads();
+    expect(callsAfterFirst).toBeGreaterThan(0);
     await getVerifiedPremiumStatus();
-    // Второй вызов берёт результат из кэша — НИ ОДНОГО нового чтения хранилища.
-    // (Точное число чтений за первый проход — деталь реализации: real/vip/intro
-    // читают разные ключи; важно лишь, что кэш гасит повторный проход.)
-    expect(mockMultiGet).toHaveBeenCalledTimes(callsAfterFirst);
+    // Второй вызов берёт результат из кэша — ни одного нового чтения ключей Plus.
+    expect(premiumKeyReads()).toBe(callsAfterFirst);
   });
 
   it('invalidatePremiumCache forces re-check', async () => {

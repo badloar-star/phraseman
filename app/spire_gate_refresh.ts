@@ -14,8 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { refreshRemoteConfigNow } from './remote_config_client';
 import { loadSpireConfig } from './spire_config_client';
-import { isSpireTabEnabled, rereadSpireTabFlag } from './spire_tab_flag';
-import { peekAppLang } from './app_snapshot_bootstrap';
+import { isSpireTabEnabled, rereadSpireTabFlag, spireGateUiLang } from './spire_tab_flag';
 import { spireUiLangDecision } from './spire/spire_ui_lang_gate';
 
 // зачем (координатор 11.10): не чаще раза в 60 с — владелец ждёт «сейчас», а закрытые ворота бывают у немногих.
@@ -96,10 +95,16 @@ async function runGate(kind: GateKind, where: string, open: boolean, refresh: ()
 export function refreshSpireTabFlagIfClosed(where: string, options: { force?: boolean } = {}): Promise<boolean> {
   // зачем (владелец 11.10, Шпиль только ru/uk): при другом языке интерфейса вкладка закрыта языком, а не кэшем —
   // перечит рубильников её не откроет, а стоил бы чтение на каждый заход в «Сообщество».
-  const langDecision = spireUiLangDecision(peekAppLang());
-  if (!langDecision.allowed) {
-    DebugLogger.info(LOG, `tab: перечит не нужен (${langDecision.reason}, lang=${String(langDecision.lang)}) where=${where}`);
+  // зачем (координатор 12.10): «язык ещё неизвестен» — не отказ. Пропускаем перечит только при точно неподходящем
+  // языке; при неизвестном перечит идёт, а вкладку откроет пересчёт замка, когда LangContext опубликует язык.
+  const ui = spireGateUiLang();
+  const langDecision = spireUiLangDecision(ui.lang);
+  if (langDecision.reason === 'ui_lang_not_supported') {
+    DebugLogger.info(LOG, `tab: перечит не нужен (${langDecision.reason}, lang=${String(langDecision.lang)}, source=${ui.source}) where=${where}`);
     return Promise.resolve(false);
+  }
+  if (langDecision.reason === 'ui_lang_unknown') {
+    DebugLogger.info(LOG, `tab: язык интерфейса ещё неизвестен (source=${ui.source}) — перечит не отменяем, замок пересчитается при публикации языка where=${where}`);
   }
   return runGate('tab', where, isSpireTabEnabled(), async () => {
     await refreshRemoteConfigNow();

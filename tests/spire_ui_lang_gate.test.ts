@@ -15,8 +15,10 @@ jest.mock('../app/spire_config_client', () => ({
   loadSpireConfig: jest.fn(async () => null),
 }));
 
+import { act, renderHook } from '@testing-library/react-native';
 import { writePeekAppLang } from '../app/app_snapshot_bootstrap';
-import { isSpireTabEnabled, setSpireTabDevOverride } from '../app/spire_tab_flag';
+import { isSpireTabEnabled, primeSpireTabFlag, setSpireTabDevOverride, spireGateUiLang, useSpireTabEnabled } from '../app/spire_tab_flag';
+import { __resetResolvedUiLangForTests, publishResolvedUiLang } from '../app/ui_lang_resolved';
 import { refreshSpireTabFlagIfClosed } from '../app/spire_gate_refresh';
 import { SPIRE_UI_LANGS, spireUiLangDecision } from '../app/spire/spire_ui_lang_gate';
 
@@ -35,6 +37,7 @@ describe('Шпиль только для интерфейса ru/uk', () => {
   });
 
   it('язык ещё не известен — скрыт; список разрешённых — ровно ru и uk', () => {
+    __resetResolvedUiLangForTests();
     writePeekAppLang(null);
     expect(isSpireTabEnabled()).toBe(false);
     expect([...SPIRE_UI_LANGS]).toEqual(['ru', 'uk']);
@@ -60,6 +63,52 @@ describe('Шпиль только для интерфейса ru/uk', () => {
     mockRefreshRemoteConfigNow.mockClear();
     await expect(refreshSpireTabFlagIfClosed('test', { force: true })).resolves.toBe(false);
     expect(mockRefreshRemoteConfigNow).not.toHaveBeenCalled();
+  });
+});
+
+// зачем (координатор 12.10, 🔴 community-001): у кого язык ни разу не выбирался вручную, сохранённого app_lang нет —
+// peek навсегда null, а интерфейс нарисован языком устройства. null — «ещё не знаем», а не «нет».
+describe('язык интерфейса неизвестен → стал известен', () => {
+  beforeAll(async () => {
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    await setSpireTabDevOverride(true);
+    await primeSpireTabFlag();
+  });
+  beforeEach(() => {
+    __resetResolvedUiLangForTests();
+    writePeekAppLang(null);
+  });
+  afterAll(() => jest.restoreAllMocks());
+
+  it('null → ru (публикация LangContext) открывает Шпиль во вкладке без перезапуска', async () => {
+    const { result } = await renderHook(() => useSpireTabEnabled());
+    expect(result.current).toBe(false);
+    await act(async () => { publishResolvedUiLang('ru', 'hydrated'); });
+    expect(result.current).toBe(true);
+  });
+
+  it('сохранённого app_lang нет, интерфейс uk — замок берёт фактический язык', () => {
+    publishResolvedUiLang('uk', 'initial');
+    expect(spireGateUiLang()).toEqual({ lang: 'uk', source: 'context' });
+    expect(isSpireTabEnabled()).toBe(true);
+  });
+
+  it('фактический язык важнее сырого сохранённого значения', () => {
+    writePeekAppLang('ru');
+    publishResolvedUiLang('es', 'state');
+    expect(isSpireTabEnabled()).toBe(false);
+  });
+
+  it('при неизвестном языке перечит при фокусе НЕ отменяется', async () => {
+    mockRefreshRemoteConfigNow.mockClear();
+    await refreshSpireTabFlagIfClosed('community_focus', { force: true });
+    expect(mockRefreshRemoteConfigNow).toHaveBeenCalledTimes(1);
+  });
+
+  it('LangContext публикует язык первого кадра и каждое фактическое значение (контракт по исходнику)', () => {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'components/LangContext.tsx'), 'utf8');
+    expect(src).toContain("publishResolvedUiLang(initial, 'initial');");
+    expect(src).toContain("publishResolvedUiLang(lang, langHydrated ? 'hydrated' : 'state');");
   });
 });
 

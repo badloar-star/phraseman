@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
+import { publishResolvedUiLang } from '../app/ui_lang_resolved';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -1213,7 +1214,11 @@ export function stringsForLang(lang: Lang): Strings {
 // раньше, используем локаль устройства; useEffect ниже досинхронизирует как обычно.
 function initialLangFromPeekOrDevice(): Lang {
   const peeked = coerceInterfaceLang(peekAppLang());
-  return peeked ?? getDeviceBootstrapLocale();
+  const initial = peeked ?? getDeviceBootstrapLocale();
+  // зачем (координатор 12.10, 🔴 Шпиль): замки вне React (Шпиль) должны знать язык, которым нарисован ПЕРВЫЙ кадр,
+  // а не сырое app_lang (у кого язык не выбирался вручную, его нет). Запись идемпотентна — повторный вызов безвреден.
+  publishResolvedUiLang(initial, 'initial');
+  return initial;
 }
 
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
@@ -1322,6 +1327,12 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const s = useMemo(() => stringsForLang(lang), [lang]);
+  // зачем (координатор 12.10): гидрация и откаты меняют язык без события app_lang_changed — публикуем каждое
+  // фактическое значение, чтобы замок Шпиля пересчитался, когда язык стал известен.
+  useEffect(() => {
+    publishResolvedUiLang(lang, langHydrated ? 'hydrated' : 'state');
+  }, [lang, langHydrated]);
+
   const value = useMemo<LangCtx>(() => ({ lang, langHydrated, s, setLang }), [lang, langHydrated, s, setLang]);
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;

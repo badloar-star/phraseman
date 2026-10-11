@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { DeviceEventEmitter } from 'react-native';
 import { peekAppLang } from './app_snapshot_bootstrap';
 import { logSpireUiLangGate, spireUiLangDecision } from './spire/spire_ui_lang_gate';
+import { peekResolvedUiLang, subscribeResolvedUiLang } from './ui_lang_resolved';
 import { onAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { readRemoteConfigCacheRaw } from './remote_config_client'; // зачем: [COLD-START-IO] — одно чтение кэша на всех
@@ -80,20 +81,44 @@ function isSpireFlagOn(): boolean {
  */
 export function isSpireTabEnabled(): boolean {
   if (!isSpireFlagOn()) return false;
-  const decision = spireUiLangDecision(peekAppLang());
-  logSpireUiLangGate(decision, 'isSpireTabEnabled');
+  const ui = spireGateUiLang();
+  const decision = spireUiLangDecision(ui.lang);
+  logSpireUiLangGate(decision, `isSpireTabEnabled source=${ui.source}`);
   return decision.allowed;
+}
+
+/**
+ * Язык для замка Шпиля: фактический язык интерфейса из LangContext, до его монтирования — сохранённый `app_lang`.
+ * зачем (координатор 12.10, 🔴 community-001): peek — СЫРОЕ сохранённое значение; кто язык не выбирал вручную, у того
+ * он навсегда null, а интерфейс рисуется языком устройства (ru) — Шпиль пропадал у русских и украинских игроков.
+ */
+export function spireGateUiLang(): { lang: string | null; source: 'context' | 'stored_peek' | 'none' } {
+  const resolved = peekResolvedUiLang();
+  if (resolved) return { lang: resolved, source: 'context' };
+  const stored = peekAppLang();
+  if (stored) return { lang: stored, source: 'stored_peek' };
+  return { lang: null, source: 'none' };
 }
 
 // зачем: смена языка ru → es посреди недели — Шпиль пропадает сразу, без перезапуска. LangContext пишет peek
 // языка ДО события 'app_lang_changed', поэтому подписчики видят уже новый язык. Подписка одна на процесс.
+// зачем (координатор 12.10): null — не «нет», а «ещё не знаем». Вторая подписка — на публикацию фактического языка
+// (первый кадр LangContext и гидрация события 'app_lang_changed' не шлют), замок пересчитывается, когда язык стал известен.
 let _langSub: { remove: () => void } | null = null;
+let _resolvedLangUnsub: (() => void) | null = null;
 function ensureLangSubscription(): void {
-  if (_langSub) return;
-  _langSub = DeviceEventEmitter.addListener('app_lang_changed', () => {
-    DebugLogger.info(LOG, `tab flag: язык интерфейса сменился → пересчёт замка (lang=${String(peekAppLang())})`);
-    notify();
-  });
+  if (!_langSub) {
+    _langSub = DeviceEventEmitter.addListener('app_lang_changed', () => {
+      DebugLogger.info(LOG, `tab flag: язык интерфейса сменился → пересчёт замка (lang=${String(spireGateUiLang().lang)})`);
+      notify();
+    });
+  }
+  if (!_resolvedLangUnsub) {
+    _resolvedLangUnsub = subscribeResolvedUiLang((lang) => {
+      DebugLogger.info(LOG, `tab flag: язык интерфейса стал известен/сменился (lang=${lang}) → пересчёт замка, подписчиков=${listeners.size}`);
+      notify();
+    });
+  }
 }
 
 /** Перечитать флаг из кэша рубильников сейчас (после принудительного перечита) и уведомить подписчиков. */

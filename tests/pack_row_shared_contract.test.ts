@@ -279,7 +279,7 @@ describe('ClampedText — одно видимое исключение стор�
     expect(read('components/text-integrity/index.ts')).not.toContain('ClampedText');
   });
 
-  it('трещотка потребителей: ClampedText импортирует ТОЛЬКО components/packs/PackRow.tsx', () => {
+  it('трещотка потребителей: ClampedText импортируют ТОЛЬКО PackRow.tsx и VideoPackRow.tsx (решение координатора 11.10)', () => {
     const importers: string[] = [];
     const walk = (dir: string): void => {
       for (const name of fs.readdirSync(path.join(ROOT, dir))) {
@@ -295,7 +295,8 @@ describe('ClampedText — одно видимое исключение стор�
       if (fs.existsSync(path.join(ROOT, dir))) walk(dir);
     }
     // Новый потребитель — только по решению владельца или координатора (журнал п.9).
-    expect(importers.sort()).toEqual(['components/packs/PackRow.tsx']);
+    // зачем (координатор 11.10, ночная задача Карточек п.5): строка ролика «Из видео» — название до 2 строк с «…» (app/flashcards/VideoPackRow.tsx).
+    expect(importers.sort()).toEqual(['app/flashcards/VideoPackRow.tsx', 'components/packs/PackRow.tsx']);
   });
 
   it('в остальных файлах наборов — ни одного eslint-disable сторожа обрезки', () => {

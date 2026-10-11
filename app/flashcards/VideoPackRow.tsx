@@ -16,6 +16,8 @@ import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'r
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { KitCard } from '../../components/cards-grid/CardsKit';
+// зачем (координатор 11.10, ночная задача Карточек п.5; журнал владельца п.9 «название до 2 строк, многоточие только если не влезает»): название ролика в крупной карточке — максимум 2 строки. Новый потребитель ClampedText разрешён координатором; трещотка — tests/pack_row_shared_contract.test.ts.
+import { ClampedText } from '../../components/text-integrity/ClampedText';
 import { KitTouchable } from '../../components/KitTouchable';
 import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { pluralWord } from '../../constants/plural';
@@ -192,7 +194,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
         </KitTouchable>
         <View style={styles.largeMeta}>
           <KitTouchable testID={`video-pack-open-${pack.id}`} accessibilityRole="button" accessibilityLabel={`${title}. ${phrasesText}`} accessibilityState={{ disabled }} disabled={disabled} onPress={open} style={styles.largeText}>
-            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.largeTitle, { color: g.text }]}>{title}</FlowText>
+            <ClampedText testID={`video-pack-title-${pack.id}`} maxLines={2} pointerEvents="none" style={[styles.largeTitle, { color: g.text }]}>{title}</ClampedText>
             <Text pointerEvents="none" maxFontSizeMultiplier={1.3} style={[styles.largeCount, { color: g.secondary }]}>{phrasesText}</Text>
           </KitTouchable>
           {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}

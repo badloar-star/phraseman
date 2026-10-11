@@ -7,7 +7,7 @@
  * как на списке «Сохранённые». Логика экрана (загрузка, открытие, удаление, оптимистичный откат) остаётся в flashcards_my_packs.tsx.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
@@ -101,6 +101,25 @@ function MyPacksV2Inner(props: Props) {
     ru: 'На проверке', uk: 'На перевірці', en: 'In review', es: 'En revisión',
     'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
   });
+  // зачем (координатор 11.10, «сперва лог», ночная задача Карточек п.6): у добавленного набора на снимке не было подписи автора. Лог показывает ОТКУДА
+  // берётся подпись: официальный набор, ник из документа набора или нейтральный фолбэк (поля ника нет). Без имён и uid — только наличие и длина.
+  const authorSource = (pack: FlashcardMarketPack): 'official' | 'nick' | 'fallback' => {
+    if (officialPackAuthorName(pack)) return 'official';
+    return communityAuthorLabel(pack.authorName ?? '', lang) === communityAuthorLabel('', lang) ? 'fallback' : 'nick';
+  };
+  const addedAuthorKey = added.map((pack) => `${pack.id}:${authorSource(pack)}`).join('|');
+  useEffect(() => {
+    if (added.length === 0) return;
+    const rows = added.map((pack) => ({
+      id: pack.id,
+      source: authorSource(pack),
+      hasAuthorName: typeof pack.authorName === 'string' && pack.authorName.trim().length > 0,
+      authorNameLen: typeof pack.authorName === 'string' ? pack.authorName.trim().length : 0,
+      hasAuthorStableId: typeof pack.authorStableId === 'string' && pack.authorStableId.trim().length > 0,
+    }));
+    console.log('[MYPACKS-AUTHOR] added', JSON.stringify({ count: added.length, fallback: rows.filter((r) => r.source === 'fallback').length, rows })); // guard-ok: трассировка, без имён и uid
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: ключ состава и источника подписи, а не ссылка на массив
+  }, [addedAuthorKey]);
   const row = (pack: FlashcardMarketPack, own: boolean) => {
     const title = labelFor(pack);
     const authorName = own ? null : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));

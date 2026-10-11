@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 
-type Props = { glass: Pick<GlassTokens, 'level' | 'cardSmoke'> };
+type Props = { glass: Pick<GlassTokens, 'level' | 'cardSmoke' | 'isLight'> };
 
 const solid = (hex: string) => (hex.length === 9 ? hex.slice(0, 7) : hex);
 const opacityOf = (hex: string) => (hex.length === 9 ? parseInt(hex.slice(7), 16) / 255 : 1);
@@ -22,6 +22,9 @@ export const ThemeGlassSmoke = memo(function ThemeGlassSmoke({ glass }: Props) {
   const idRef = useRef<string | null>(null);
   if (idRef.current === null) idRef.current = `lgsmoke${smokeSeq++}`;
   if (glass.level !== 'max' || !glass.cardSmoke) return null;
+  // зачем (приказ владельца 14.10: «тёмные пятна в светлых темах проявляются на белом»): цветная дымка на белой плашке всегда темнее неё
+  // (серо-голубое пятно в углу). Правило светлых тем — внутри плашки ничего темнее неё, поэтому в светлом оформлении дымка не рисуется. Тёмные темы без изменений.
+  if (glass.isLight) return null;
   const [a, b] = glass.cardSmoke;
   const id = idRef.current;
   return (

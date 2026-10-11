@@ -6,6 +6,8 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { useV2Palette } from './useV2Palette';
 import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, useShadowGlass } from './ShadowSurface';
 import { colorWithAlpha } from './plateAlpha';
+import { logPlateToneOnce, plateToneFor } from './plateTone';
+import { useTheme } from '../ThemeContext';
 
 /**
  * «Дымка» стекла — вторая серия референсов владельца 24.09 («вот такую
@@ -30,11 +32,19 @@ let smokeId = 0;
 
 export const V2GlassSheen = memo(function V2GlassSheen({ seed = 0 }: { seed?: number }) {
   const p = useV2Palette();
+  const shadowGlass = useShadowGlass();
+  const { liquidGlassThemeId } = useTheme();
+  // зачем (приказ владельца 14.10: «тёмные пятна в светлых темах проявляются на белом»): в светлых темах дымка только белая и без усиления,
+  // тёмные темы — как задала палитра. Лог [PLATE-TONE] — один раз на сочетание тема/оформление/уровень/насыщенность.
+  const tone = plateToneFor(shadowGlass, p);
+  React.useEffect(() => {
+    logPlateToneOnce(liquidGlassThemeId, shadowGlass, p, tone);
+  }, [liquidGlassThemeId, shadowGlass, p]); // eslint-disable-line react-hooks/exhaustive-deps -- tone выводится из shadowGlass и p
   // id градиента уникален на экземпляр: у SVG общее пространство имён id.
   const idRef = React.useRef(`v2smoke${smokeId++}`);
   const spot = SMOKE_SPOTS[Math.abs(Math.trunc(seed)) % SMOKE_SPOTS.length]!;
   // зачем (темы 2.0): в «Максимуме» дымка цвета темы заметнее (smokeBoost), в остальных — как было.
-  const o = Math.min(0.5, spot.o * p.smokeBoost);
+  const o = Math.min(0.5, spot.o * tone.smokeBoost);
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <LinearGradient
@@ -46,9 +56,9 @@ export const V2GlassSheen = memo(function V2GlassSheen({ seed = 0 }: { seed?: nu
       <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id={idRef.current} cx={spot.cx} cy={spot.cy} r={spot.r} fx={spot.cx} fy={spot.cy}>
-            <Stop offset="0" stopColor={p.smoke} stopOpacity={o} />
-            <Stop offset="0.55" stopColor={p.smoke} stopOpacity={o * 0.35} />
-            <Stop offset="1" stopColor={p.smoke} stopOpacity={0} />
+            <Stop offset="0" stopColor={tone.smoke} stopOpacity={o} />
+            <Stop offset="0.55" stopColor={tone.smoke} stopOpacity={o * 0.35} />
+            <Stop offset="1" stopColor={tone.smoke} stopOpacity={0} />
           </RadialGradient>
         </Defs>
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${idRef.current})`} />

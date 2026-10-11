@@ -3,6 +3,9 @@ import { Animated, StyleSheet, View, type ViewStyle } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from './SafeLinearGradient';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useTheme } from './ThemeContext';
+import { topFadeScrim } from './topFadeScrim';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,1)'; // theme-exempt: маска затухания: цвет задаёт только альфу, не вид
 const EXEMPT_COLOR_2 = 'rgba(0,0,0,0)'; // theme-exempt: маска затухания: цвет задаёт только альфу, не вид
@@ -31,6 +34,8 @@ export interface TopFadeMaskProps {
   style?: ViewStyle;
 }
 
+const loggedScrims = new Set<string>();
+
 function rgbaWithAlpha(rgb: string, a: number): string {
   const clamped = Math.min(1, Math.max(0, a));
   return `rgba(${rgb},${clamped.toFixed(3)})`;
@@ -47,6 +52,8 @@ export default function TopFadeMask({
   style,
 }: TopFadeMaskProps) {
   const insets = useStableSafeAreaInsets();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
 
   const maskOpacity = useRef(new Animated.Value(scrollY ? 0 : 1)).current;
   const shownRef = useRef(!scrollY);
@@ -70,10 +77,13 @@ export default function TopFadeMask({
   if (height <= 0) return null;
 
   const animatedOpacity = scrollY ? maskOpacity : undefined;
-  const resolvedTone = tone ?? 'dark';
-  const rgb = resolvedTone === 'light' ? '255,255,255' : '0,0,0';
-  const strength = Math.min(1, Math.max(0, maxOpacity));
-  const scrim = rgbaWithAlpha(rgb, strength * 0.62);
+  const resolved = topFadeScrim(glass.isLight, glass.bgTop, maxOpacity, tone);
+  const scrim = rgbaWithAlpha(resolved.rgb, resolved.alpha);
+  const logKey = `${liquidGlassThemeId}/${glass.isLight ? 'light' : 'dark'}/${tone ?? 'auto'}`;
+  if (!loggedScrims.has(logKey)) {
+    loggedScrims.add(logKey);
+    console.log(`[HOME-PLATE] topscrim theme=${liquidGlassThemeId} isLight=${String(glass.isLight)} tone=${tone ?? 'auto'} scrim=${scrim} source=${resolved.source} height=${height}`);
+  }
   const featherStart = Math.max(0, Math.min(1, (height - extra) / height));
 
   return (

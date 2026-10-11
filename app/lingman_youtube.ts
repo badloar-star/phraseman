@@ -392,24 +392,75 @@ export function getLingmanYoutubeUnreadCount(videos: Pick<LingmanYoutubeVideo, '
   return Math.max(0, index);
 }
 
-async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
+async function readCachedVideoEntry(): Promise<{ videos: LingmanYoutubeVideo[]; fetchedAtMs: number } | null> {
   try {
     // зачем (пакет 09:26: video:cache_read 3303/8682 мс при hit): сколько ждали хранилище и сколько разбор.
     const startedAt = Date.now();
     const raw = await AsyncStorage.getItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT);
     const getItemMs = Date.now() - startedAt;
     if (!raw) { console.warn('[HOME-COLD] video_cache:miss', JSON.stringify({ getItemMs })); return null; } // guard-ok: ранний выход логируется
-    const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[]; channelId?: string };
+    const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[]; channelId?: string; fetchedAtMs?: number };
     console.warn('[HOME-COLD] video_cache:read', JSON.stringify({ getItemMs, parseMs: Date.now() - startedAt - getItemMs, bytes: raw.length })); // guard-ok: временная трассировка
     // Кэш привязан к channelId: если «Пульт» переключил канал, старый список не
     // показываем (иначе под новым именем висели бы видео прошлого канала).
     const activeChannelId = getActiveYoutubeChannel().channelId;
     if (parsed.channelId && parsed.channelId !== activeChannelId) return null;
     const videos = Array.isArray(parsed.videos) ? parsed.videos.filter(isLingmanLongFormVideo) : [];
-    return videos.length ? videos : null;
+    const fetchedAtMs = Number(parsed.fetchedAtMs);
+    return videos.length ? { videos, fetchedAtMs: Number.isFinite(fetchedAtMs) ? fetchedAtMs : 0 } : null;
   } catch (error) {
     // зачем (правило «немой catch запрещён»): битый кэш ленты — причина в журнале, значение прежнее (null).
     console.warn('[HOME-COLD] video_cache:read_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+    return null;
+  }
+}
+
+async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
+  return (await readCachedVideoEntry())?.videos ?? null;
+}
+
+// зачем (Сверка cold4 05:35 + проверка 11.10: RSS YouTube отвечает 404 даже для правильного id канала и для чужих
+// каналов — сбой на стороне YouTube): лента не должна застревать на старом кэше или пустоте. Берём ролики ТОГО ЖЕ канала
+// из серверного каталога (youtube_catalog — сервер синхронизирует его через YouTube Data API, без RSS). Firebase-экономия:
+// только когда сохранённый список старше 6 ч, один запрос за запуск, ≤ 12 роликов (манифест + корень + канал + ролики).
+const CATALOG_FALLBACK_MIN_CACHE_AGE_MS = 6 * 60 * 60 * 1000;
+const CATALOG_FALLBACK_LIMIT = 12;
+let catalogFallbackInFlight: Promise<LingmanYoutubeVideo[] | null> | null = null;
+
+/** Только для тестов. */
+export function resetLingmanCatalogFallbackForTests(): void {
+  catalogFallbackInFlight = null;
+}
+
+async function loadVideosFromServerCatalog(activeChannelId: string): Promise<LingmanYoutubeVideo[] | null> {
+  const startedAt = Date.now();
+  try {
+    const client = await import('./youtube_catalog_client');
+    const { resolveVideoChannelForStudyTarget } = await import('./video_language_contour');
+    const { catalogVideoToRailVideo } = await import('./home_video_rail_source');
+    const manifest = await client.fetchYoutubeCatalogManifest();
+    const candidates = [...new Set([
+      manifest.localeDefaults?.en,
+      resolveVideoChannelForStudyTarget(manifest.channels, 'en')?.id,
+    ].filter((id): id is string => !!id && manifest.channels.some((channel) => channel.id === id)))];
+    for (const catalogChannelId of candidates) {
+      const rail = await client.fetchYoutubeHomeRailCatalog(catalogChannelId, manifest, CATALOG_FALLBACK_LIMIT);
+      // Чужие ролики под именем нашего канала не показываем: каталог должен быть ровно этим каналом YouTube.
+      if (rail.channel.youtubeChannelId !== activeChannelId) {
+        console.warn('[HOME-COLD] video_feed:catalog_channel_mismatch', JSON.stringify({ catalogChannelId, catalogYoutubeId: rail.channel.youtubeChannelId, activeChannelId })); // guard-ok: ветка логируется
+        continue;
+      }
+      const videos = rail.videos
+        .filter((video) => video.state !== 'upcoming')
+        .map(catalogVideoToRailVideo)
+        .filter(isLingmanLongFormVideo);
+      console.warn('[HOME-COLD] video_feed:catalog_fallback', JSON.stringify({ catalogChannelId, videos: videos.length, ms: Date.now() - startedAt })); // guard-ok: временная трассировка
+      return videos.length ? videos : null;
+    }
+    console.warn('[HOME-COLD] video_feed:catalog_no_matching_channel', JSON.stringify({ activeChannelId, candidates })); // guard-ok: ранний выход логируется
+    return null;
+  } catch (error) {
+    console.warn('[HOME-COLD] video_feed:catalog_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
     return null;
   }
 }
@@ -543,7 +594,28 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
     // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
     // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
     const isDefaultChannel = !getActiveYoutubeChannel().isOverride;
-    const cached = await readCachedVideos();
+    const cachedEntry = await readCachedVideoEntry();
+    const cacheAgeMs = cachedEntry ? Date.now() - cachedEntry.fetchedAtMs : null;
+    if (cacheAgeMs === null || cacheAgeMs >= CATALOG_FALLBACK_MIN_CACHE_AGE_MS) {
+      const activeChannelId = getActiveYoutubeChannel().channelId;
+      if (!catalogFallbackInFlight) {
+        catalogFallbackInFlight = loadVideosFromServerCatalog(activeChannelId);
+      }
+      const catalogVideos = await catalogFallbackInFlight;
+      if (catalogVideos?.length) {
+        void cacheSuccessfulVideos(catalogVideos);
+        const videos = mergePinnedVideos(pinned, catalogVideos);
+        return {
+          videos,
+          latestVideoId: videos[0]?.id ?? null,
+          unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
+          fetchedAtMs: Date.now(),
+        };
+      }
+    } else {
+      console.warn('[HOME-COLD] video_feed:catalog_skipped_fresh_cache', JSON.stringify({ cacheAgeMs })); // guard-ok: ветка логируется
+    }
+    const cached = cachedEntry?.videos ?? null;
     console.warn('[HOME-COLD] video_feed:network_failed', JSON.stringify({
       ms: Date.now() - networkStartedAt,
       reason: error instanceof Error ? error.message : String(error),

@@ -257,7 +257,7 @@ function FeatureIntroModal({
           onPress={() => requestAction(onSecondary ?? onLater, requestDismiss)}
           style={styles.secondaryBtn}
           // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром, а не текст.
-          contentStyle={[styles.secondaryFace, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge }]}
+          contentStyle={[styles.secondaryFace, { backgroundColor: glass.opaqueControl }]} // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень («Позже» — капсула тоном)
         >
           <Text
             testID={`${testIdPrefix}-later`}
@@ -343,7 +343,6 @@ const styles = StyleSheet.create({
   secondaryFace: {
     minHeight: 48,
     borderRadius: 24,
-    borderWidth: 1, // guard-ok: `.cta.gh` — 1px полупрозрачный контур капсулы
     alignItems: 'center',
     justifyContent: 'center',
   },

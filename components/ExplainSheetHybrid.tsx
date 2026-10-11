@@ -41,6 +41,7 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { RowDivider } from './v2/RowDivider';
 
 interface Props {
   visible: boolean;
@@ -169,7 +170,8 @@ function ExplainSheetHybrid({ visible, onClose, phraseEn, phraseMeaning, lang, o
       </CascadeItem>
 
       {!display.showSkeleton ? (
-        <CascadeItem index={3} style={[styles.footer, { borderTopColor: glass.line }]}>
+        <CascadeItem index={3} style={styles.footer}>
+          <RowDivider color={glass.line} />
           {!display.degraded ? <ExplainReportButton phraseEn={phraseEn} lang={lang} /> : null}
           <Pressable
             onPress={requestDismiss}
@@ -227,7 +229,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   footer: {
-    borderTopWidth: 1,
     marginTop: 4,
     paddingTop: 10,
     flexDirection: 'row',

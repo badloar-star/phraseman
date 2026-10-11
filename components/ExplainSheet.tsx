@@ -56,6 +56,7 @@ import ExplainReportButton from './ExplainReportButton';
 import { useStudyTarget } from './StudyTargetContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import ExplainSheetHybrid from './ExplainSheetHybrid';
+import { RowDivider } from './v2/RowDivider';
 
 interface Props {
   visible: boolean;
@@ -256,8 +257,7 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
             style={[
               styles.sheet,
               {
-                backgroundColor: glass.opaqueSheet,
-                borderColor: glass.glassEdge,
+                backgroundColor: glass.opaqueSheet, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень (шторка)
                 shadowColor: glass.bg,
                 paddingBottom: 20 + bottomInset,
               },
@@ -342,7 +342,8 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
 
           {/* Футер: «Непонятно объяснили» */}
           {!display.showSkeleton ? (
-          <View style={[styles.footer, { borderTopColor: glass.line }]}>
+          <View style={styles.footer}>
+            <RowDivider color={glass.line} />
             {!display.degraded ? <ExplainReportButton phraseEn={phraseEn} lang={effLang} /> : null}
             <Pressable
               onPress={dismissSheet}
@@ -377,8 +378,6 @@ const styles = StyleSheet.create({
     maxHeight: '86%',
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    borderWidth: 1,
-    borderBottomWidth: 0,
     overflow: 'hidden',
     paddingHorizontal: 18,
     paddingTop: 8,
@@ -464,7 +463,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   footer: {
-    borderTopWidth: 1,
     marginTop: 12,
     paddingTop: 10,
     flexDirection: 'row',

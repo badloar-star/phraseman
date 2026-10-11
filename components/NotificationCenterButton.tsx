@@ -656,7 +656,7 @@ function NotificationCenterButton({
                 accessibilityLabel={copy.back}
                 onPress={backToList}
                 hitSlop={5}
-              style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+              style={[styles.closeButton, { backgroundColor: t.bgSurface }]}
               >
                 <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
               </TouchableOpacity>
@@ -677,7 +677,7 @@ function NotificationCenterButton({
               accessibilityLabel={copy.close}
               onPress={close}
               hitSlop={5}
-              style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+              style={[styles.closeButton, { backgroundColor: t.bgSurface }]}
             >
               <Ionicons name="close" size={18} color={t.textPrimary} />
             </TouchableOpacity>
@@ -772,7 +772,7 @@ const styles = StyleSheet.create({
     width: 9,
     height: 9,
     borderRadius: 4.5,
-    borderWidth: 1.5,
+    borderWidth: 1.5, // shadow-ok: кольцо-отбивка точки «непрочитано» от кнопки — индикатор, не контейнер
   },
   badgeText: {
     color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,

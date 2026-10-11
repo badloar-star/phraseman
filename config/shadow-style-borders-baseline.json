@@ -1,5 +1,5 @@
 {
-  "total": 183,
+  "total": 174,
   "files": {
     "app/(tabs)/settings.tsx": 1,
     "app/ai_companion_session.tsx": 14,
@@ -26,9 +26,6 @@
     "components/ExamResultPreviewAdminModal.tsx": 12,
     "components/ExplainButton.tsx": 1,
     "components/ExplainReportButton.tsx": 6,
-    "components/ExplainSheet.tsx": 3,
-    "components/ExplainSheetHybrid.tsx": 1,
-    "components/FeatureIntroModal.tsx": 2,
     "components/FeedbackRatingCard.tsx": 4,
     "components/GlassSurface.tsx": 1,
     "components/GlobalBroadcastModal.tsx": 4,
@@ -43,7 +40,6 @@
     "components/MaintenanceGate.tsx": 4,
     "components/MistakeEli5Modal.tsx": 1,
     "components/mistakes-panel/PracticeKit.tsx": 2,
-    "components/NotificationCenterButton.tsx": 3,
     "components/PersonalAdminMessageModal.tsx": 2,
     "components/PlayerProfileModal.tsx": 1,
     "components/PlusBadge.tsx": 1,

@@ -8,6 +8,36 @@
 - **Вывод пока (ограниченный):** даже со срезанными Learning V2 и лабораториями главный процесс набирает ~3 ГБ за первые 2 минуты — тот же скачок, что в dev. Значит, основной вес не в контенте Learning V2 (моя оценка 37 % веса проекта этого не объясняет); подозрение смещается на `node_modules`/карты/сам бандлер. Это ещё одна точка, не плато — финал по 10–15-й минуте, замеряет координатор.
 - Моя причина раздувания по коду по-прежнему **не найдена**; следующий дешёвый шаг — E1 (куча 4096) и E5.
 
+## 14.10 ночь — токены контраста (2)(3)(4) сделаны; список файлов с `accent` в цвете для Сверки (пункт 1)
+
+### Токены — по твоему «да» (п.63), коммит см. ниже
+- (2) `good/bad/warn/info` теперь считаются и по верхнему тону фона (`bgTop`): `constants/liquidGlassPaletteRoles.ts`. Светлое: ≥ 4,5 на `bgTop` во всех 23 темах.
+- (3)+(4) `iconMuted/trackOff`: подбор идёт и по `bgTop`, и по `raisedFillFrom` (выбранная плашка): `constants/liquidGlassSurfaceRoles.ts`. ≥ 3 везде (светлое на `bgTop`, тёмное на выбранной плашке).
+- Сдвиг по шагу 5 % / 2 % ровно до порога, оттенок не менялся. Тёмное: значки на ~14 единиц светлее на интенсивностях 0–0,5 (например graphite `#737374 → #818182`, trackOff `#737374 → #7C7C7D`), выше проходили и не тронуты. Светлое: сдвиг на 3–9 единиц только в grad_iris / magma / midnight / orchid / coral / lilac (например `info #1870A1 → #126C9E`, `good #17793A → #097234`, `iconMuted #838385 → #7E7E80`).
+- Таблица «было → стало» по каждой теме, оформлению и интенсивности (252 строки): `docs/phraseman-2.0/evidence/token-contrast-fix-2026-10-14.md`.
+- Эталоны «байт-в-байт» переписывать не пришлось: 23 набора тестов темы (108 проверок) зелёные без правок, закреплённых значений этих токенов в них нет. Добавлен сторож `tests/theme_contrast_audit_2026_10_14.test.ts` (23 темы × 2 × 5 шагов: статусы ≥ 4,5 на `bgTop`; значки/дорожки ≥ 3 на `bgTop`, выбранной плашке, плашке, карточке).
+- Вернуть: `git revert` коммита токенов.
+
+### Пункт (1): файлы, где `accent` идёт в цвет текста или значка (29 → смотреть 23 вне dev-лабораторий)
+Проверять только «светлая тема + Максимум (интенсивность 1)» в 10 градиентных темах (aurora, iris, magma, midnight, champagne, jade, orchid, ice, coral, lilac); на тёмной и на 0 / 0,5 нарушений нет.
+
+**На экранах R1 напрямую (по реестру `visual_parity.json`, поле `code`) — снимать в первую очередь:**
+| Файл | Экраны реестра | Что красится |
+|---|---|---|
+| `components/dialogs/DialogHowToSaySheet.tsx` | dialogs-015, dialogs-021 | значки «язык», «стрелка вверх» — `t.accent` |
+| `components/AppMessagesInbox.tsx` | system-014, system-015 | значок и «мета» вариантов опроса — локальная `accent` |
+| `app/streak_stats.tsx` | results-007, results-008, results-009 | значки заморозки/снежинки, иконки пунктов — локальная `accent` |
+| `components/youtube/YoutubeInlinePlayer.tsx` | video-011 | индикатор загрузки — `chrome.accent` |
+| `components/learning-v2/horizons/LearningV2Horizons.tsx` | learning-v2-004 | значок и «eyebrow» — `p.accent` |
+| `app/learning-v2/session/[id].tsx` | learning-v2-067 | значок `meta.icon` — `meta.accent` |
+
+**Скорее всего видны на R1 косвенно (файл подключается внутри экранов R1, в реестре отдельной строки нет) — снять, если кадр уже есть:**
+`components/dialogs/DialogHelperRow.tsx` (диалоги: значки «лампа», «язык»), `components/ExplainButton.tsx` (кнопка-лампа в заданиях), `components/MedalToast.tsx` (подпись тира), `components/RankChangeBanner.tsx` (значок и числа смены ранга), `components/SpeakingPanel.tsx` («Устно»: значки, «Повторить»), `components/ui/new/UndoSnackbar.tsx` (подпись и «Отменить»), `components/paywall/PaywallProofCards.tsx` (значки карточек доказательств), `components/stats/AiBlockNote.tsx` и `components/stats/StatProgressRow.tsx` (Статистика), `components/feedback/FeedbackPlashka.tsx` (галочка/«!» и заголовок), `components/LearningSemanticBlock.tsx` (заголовки блоков и значки), `components/mistake-practice/MistakePracticeLoopNode.tsx` (подпись «Plus»), `app/pack_opening.tsx` (значок набора, кнопка-текст).
+
+**Не R1 (dev/превью/лаборатории) — не снимать:** `components/dev/DevHubSheet.tsx`, `components/dev/motion_showcase/sections/*`, `components/friends_together/DevBotsSheet.tsx`, `components/tabbar/TabBarHybridPreview.tsx`, `components/learning-v2-lab/*`, `app/_learning_v2_*`, `app/_pos_analytics_audit.tsx`, `app/community_packs/UgcPackEditorCardPreview.tsx` (предпросмотр).
+
+Оговорка: у части файлов (в таблице «локальная `accent`») цвет приходит из локальной переменной — прямо `theme.accent` это или другой токен, видно только на кадре/в коде файла; я их по одному не вскрывал. Если на кадре значок или текст пастельный и почти невидим — присылай экран, перекрашу в `accentText` в тех файлах, что принадлежат моей зоне, остальное — хозяину файла через координатора.
+
 ## 14.10 ночь — (1) рубильник теней `shadows=off` — `7c5f83f32`; (2) контраст «Тени» по токенам, список «где ниже»
 
 ### 1) Рубильник теней для гипотезы падения qemu — готов

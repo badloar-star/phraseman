@@ -2174,19 +2174,23 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-062.png",
+      "evidence_at": "2026-10-11T23:31:40.893Z",
+      "evidence_sha256": "8495417be4c33b0e9ea348e6ec991c830cd8672c9382563865601556380f53ef",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр испорчен] Экран приложения пустой светло-серый (белый фон, видна только системная строка) — редактор не отрисован в момент съёмки (возможно, ждал клавиатуру или съёмка пришлась на переход); переснять после появления формы.",
+        "[состояние] Нужен редактор «Новая карточка» с введёнными словами и тихой строкой/тостом об ошибке сохранения; образец cards-v2 №24 показывает превью живое («Layover», «пересадка»), без состояния ошибки — после пересъёмки сверить с cards-gaps (состояние ошибки)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-11T23:39:14.446Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:31Z): снято не то — вместо редактора «Новая карточка» (состояние «Не удалось сохранить») на кадре пустой светлый экран без содержимого."
     },
     {
       "id": "cards-063",
@@ -2591,20 +2595,25 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-075.png",
+      "evidence_at": "2026-10-11T23:33:13.469Z",
+      "evidence_sha256": "1c595d45115dc504b2974d07a69c9b0dd546fc96c6ddbb3e454bfe1d194fc692",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец устарел — cards-states] В образце заголовок «Устная тренировка» с мятной кнопкой «Начать» (серой) и строками-заглушками со значком слева; в приложении крупный заголовок с плиткой режима («Правда / ложь»), раздел «Что повторяем» и четыре плитки-заглушки в два столбца, пилюля «30/30» справа. Перепривязать на экран подготовки cards-v2 («Блиц / Что повторяем / Время», №28) и добавить туда кадр «загрузка наборов» либо обновить cards-states №70.",
+        "[состояние/возможный дефект] Внизу кнопка «Режим недоступен» (серая) во время загрузки наборов — в образце «Начать»; уточнить у Дизайна, показывает ли код «Режим недоступен» именно при загрузке или режим «Правда / ложь» выключен флагом.",
+        "[тема] Фон и плитки по теме приложения, без зелёного и фиолетового свечения образца."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-11T23:39:14.446Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:33Z): снято состояние загрузки подготовки тренировки «Правда / ложь», образец cards-states №70 — загрузка «Устной тренировки» (устаревший цветной образец)."
     },
     {
       "id": "cards-076",
@@ -34568,17 +34577,20 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-004.png",
+      "evidence_at": "2026-10-11T23:34:31.068Z",
+      "evidence_sha256": "fccca4a2c2bbb0634e354ee4310a8039d1c1d519041155a1f3cdf36337a2d207",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] На кадре хаб «Карточки» со стопкой «Layover», «Тренироваться · осталось 30 из 30» и четырьмя плитками (Сохранённые 64, Мои наборы 4, Из видео 5 наборов, Сообщество 5): у тестового аккаунта карточки есть, пустого состояния нет. Снимать «быстрый старт без карточек» на аккаунте без сохранённых (или через dev-состояние), иначе строка не сверяется."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "release": "r1"
+      "reviewed_at": "2026-10-11T23:39:14.446Z",
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:34Z): снято не то состояние — вместо экрана «Нет карточек для тренировки» («Сохрани карточки или добавь набор…» и кнопка «Обновить») на кадре обычный хаб Карточек."
     },
     {
       "id": "cards-gap-005",
@@ -34628,17 +34640,20 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-006.png",
+      "evidence_at": "2026-10-11T23:35:38.506Z",
+      "evidence_sha256": "f6420177eb6814fd687f1d0d1c58446275d605f83279a9f265ff03c4992b3748",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Нужен экран подготовки (список «Наборы» с плитками «Сохранённые карточки» и «Путешествия», красная строка ошибки лимита, «Начать»); на кадре хаб с «Тренироваться · осталось 30 из 30». Нужен сбой проверки лимита (dev-состояние или сеть выключена при нажатии «Тренироваться»)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "release": "r1"
+      "reviewed_at": "2026-10-11T23:39:14.446Z",
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:35Z): снято не то состояние — вместо подготовки «Тренировка карточек» с красной строкой «Не удалось проверить лимит тренировки. Попробуй ещё раз.» на кадре обычный хаб Карточек."
     },
     {
       "id": "cards-gap-007",
@@ -34748,17 +34763,20 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-010.png",
+      "evidence_at": "2026-10-11T23:37:11.139Z",
+      "evidence_sha256": "94b1a7913c5fd2a24120b354b3902fce779a5adfc34f00417a724ec3defafba0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Нужен экран «Устно» без карточек для озвучивания (три сердца, иконка микрофона, «Здесь пока нечего говорить — выбери наборы», «Выбрать наборы»); на кадре хаб с 30 карточками и стопкой. Воспроизводить на аккаунте без карточек для устной тренировки или dev-состоянием."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "release": "r1"
+      "reviewed_at": "2026-10-11T23:39:14.446Z",
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:37Z): снято не то состояние — вместо «Устно» с пустым экраном «Здесь пока нечего говорить — выбери наборы» и кнопкой «Выбрать наборы» на кадре обычный хаб Карточек."
     },
     {
       "id": "cards-gap-011",

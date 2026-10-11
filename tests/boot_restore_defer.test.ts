@@ -5,6 +5,7 @@ import { emitStorageMutation } from '../app/storage_mutation_bus';
 import {
   BOOT_RESTORE_OWNER_KEY,
   bootRestoreDeferFlagFromCacheRaw,
+  bootRestoreIdentityClean,
   decideBootRestoreDefer,
   startDeferredBootRestore,
   type BootRestoreDeferInput,
@@ -230,5 +231,21 @@ describe('предотправка ждёт только до чтения до�
     await expect(waited).resolves.toBe('doc_read');
     (release as unknown as () => void)();
     await promise;
+  });
+});
+
+describe('личность чиста для отсрочки (Сверка 12.10: pending_auth/prepared у обычного пользователя)', () => {
+  it.each([
+    ['ready', 'empty', true],
+    ['ready', 'active', true],
+    ['pending_auth', 'empty', true],
+    ['pending_auth', 'active', false],
+    ['pending_auth', 'expired', false],
+    ['pending_auth', 'malformed', false],
+    ['pending_auth', 'read_failed', false],
+    ['pending_offline', 'empty', false],
+    ['fatal_local_guard', 'empty', false],
+  ] as const)('%s + замок %s → %s', (freshStatus, deleteLock, expected) => {
+    expect(bootRestoreIdentityClean({ freshStatus, deleteLock })).toBe(expected);
   });
 });

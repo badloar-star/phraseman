@@ -53,6 +53,20 @@ export function decideBootRestoreDefer(input: BootRestoreDeferInput): BootRestor
   return { defer: true, reason: 'deferred' };
 }
 
+export type BootRestoreDeleteLockState = 'empty' | 'malformed' | 'active' | 'expired' | 'read_failed';
+
+/**
+ * Чиста ли личность для отсрочки.
+ * зачем (Сверка 12.10, 🔴): ensureFreshPostDeletionIdentity при ОТСУТСТВИИ замка удаления (обычный пользователь) отдаёт
+ * {status:'pending_auth', phase:'prepared'}, а 'ready' — только после завершённого удаления. Условие «только 'ready'»
+ * делало отсрочку недостижимой. Та же пара бывает и при настоящем незавершённом удалении — поэтому смотрим на сам замок:
+ * чисто, если 'ready' ИЛИ ('pending_auth' и замка нет). Любой замок или сбой его чтения — не чисто.
+ */
+export function bootRestoreIdentityClean(input: Readonly<{ freshStatus: string; deleteLock: BootRestoreDeleteLockState }>): boolean {
+  if (input.freshStatus === 'ready') return true;
+  return input.freshStatus === 'pending_auth' && input.deleteLock === 'empty';
+}
+
 /** Рубильник из сырого кэша remote_config (без сети). Нечитаемый кэш — значение по умолчанию (включено), с логом. */
 export function bootRestoreDeferFlagFromCacheRaw(raw: string | null): boolean {
   if (!raw) return true;

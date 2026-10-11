@@ -204,9 +204,12 @@ import { hydrateStatsCacheFromStorage } from './statsCache';
 import { primeRemoteConfigCacheFromStorage, readRemoteConfigCacheRaw } from './remote_config_client';
 import { isMutationTrackingActive } from './storage_mutation_bus';
 import { isDeferredBootRestoreActive, requestDeferredBootRestoreStart } from './boot_restore_dirty_keys';
+import { inspectAccountDeletePendingAuth, readAccountDeletePendingAuthRaw } from './account_delete_quarantine';
 import {
   BOOT_RESTORE_OWNER_KEY,
   bootRestoreDeferFlagFromCacheRaw,
+  bootRestoreIdentityClean,
+  type BootRestoreDeleteLockState,
   decideBootRestoreDefer,
   startDeferredBootRestore,
   writeBootRestoreOwnerMark,
@@ -2507,7 +2510,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // зачем (пункт (а), координатор 11.10): вернувшемуся на этом телефоне человеку облако приходит после кадра
         // Главной и простоя (не позже 8 с) — восстановление больше не делит поток с первым кадром. Промис назначается
         // СРАЗУ: второе место запуска (runHeavyInit) берёт его же и не стартует своё восстановление.
-        const identityReady = freshIdentity.status === 'ready';
+        // зачем (Сверка 12.10, 🔴): «личность готова» решается в async-блоке ниже по статусу И замку удаления —
+        // 'pending_auth/prepared' отдаётся и обычному пользователю без замка (см. bootRestoreIdentityClean).
+        const freshStatus = freshIdentity.status;
+        const freshPhase = 'phase' in freshIdentity ? String(freshIdentity.phase ?? '') : '';
         const recoveryProceed = recoveryGate.result === 'proceed';
         const deferToken = captureAccountGeneration();
         // зачем (ревью Opus): повторный вход в bootstrap (повтор после дочистки удаления) не запускает второе
@@ -2518,13 +2524,21 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           requestDeferredBootRestoreStart('bootstrap_reentry');
         }
         cloudHydratePromise = liveDeferred ?? (async () => {
-          const [identityPairs, cacheRaw] = await Promise.all([
+          const [identityPairs, cacheRaw, deleteLock] = await Promise.all([
             startupIdentityPairsPromise,
             readRemoteConfigCacheRaw().catch((error: unknown) => {
               console.warn('[BOOT-RESTORE-DEFER] кэш рубильника не прочитан — по умолчанию включено', String(error));
               return null;
             }),
+            readAccountDeletePendingAuthRaw()
+              .then((raw): BootRestoreDeleteLockState => inspectAccountDeletePendingAuth(raw).status)
+              .catch((error: unknown): BootRestoreDeleteLockState => {
+                console.warn('[BOOT-RESTORE-DEFER] замок удаления не прочитан — личность не считается чистой', String(error));
+                return 'read_failed';
+              }),
           ]);
+          const identityReady = bootRestoreIdentityClean({ freshStatus, deleteLock });
+          console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'identity', freshStatus, freshPhase, deleteLock, identityReady }));
           const identity = new Map(identityPairs);
           const decision = decideBootRestoreDefer({
             flagEnabled: bootRestoreDeferFlagFromCacheRaw(cacheRaw),

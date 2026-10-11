@@ -1831,7 +1831,8 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
   }
 
   const user = data.user ?? data;
-  if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: success, email=', user?.email);
+  // зачем (прогон 11.10): полная почта попадала в журнал — печатаем только маску.
+  if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: success, email=', typeof user?.email === 'string' && user.email.indexOf('@') > 0 ? `${user.email.slice(0, 1)}***${user.email.slice(user.email.indexOf('@'))}` : '***');
   const providerSubject = String(user?.id ?? '').trim() || providerSubjectFromIdToken(idToken);
   return {
     idToken,

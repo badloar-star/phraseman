@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { accountOwnedStorageKeysFrom } from './cloud_sync';
 import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
 import { DebugLogger } from './debug-logger';
+import { identityErrorCode, identityTrace, redactStorageKey } from './identity_trace';
 import { LEARNING_LANGUAGE_TARGETS } from './learning_language_contour';
 import { languageProfileKey } from './study_languages';
 
@@ -75,15 +76,30 @@ export async function hasMeaningfulLocalAccountData(
 export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
   storage: LocalAccountStorage = AsyncStorage,
 ): Promise<boolean> {
+  // зачем (прогон 11.10, «сперва логи»): гость без прогресса получил «Телефон уже связан с другим
+  // аккаунтом» из-за localClean:false, но КАКИЕ данные сочли прогрессом — было не видно. Печатаем
+  // только безопасные имена ключей (redactStorageKey), без значений; немого catch больше нет.
   try {
-    if (typeof storage.getAllKeys !== 'function') return false;
+    if (typeof storage.getAllKeys !== 'function') {
+      identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof unavailable', { reason: 'no_getAllKeys' });
+      return false;
+    }
     const keys = await storage.getAllKeys();
     const rows = await storage.multiGet(accountOwnedStorageKeysFrom(keys));
-    if (rows.some(([key, value]) => (
-      !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value)
-    ))) return false;
+    const dirtyKeys = rows
+      .filter(([key, value]) => !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value))
+      .map(([key]) => key);
+    if (dirtyKeys.length > 0) {
+      identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof dirty', {
+        count: dirtyKeys.length,
+        keys: dirtyKeys.slice(0, 12).map(redactStorageKey).join(','),
+      });
+      return false;
+    }
+    identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof clean', { checked: rows.length });
     return true;
-  } catch {
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof failed', { code: identityErrorCode(error) });
     return false;
   }
 }

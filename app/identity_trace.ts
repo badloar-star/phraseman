@@ -115,7 +115,9 @@ export function identityTrace(
 ): void {
   let line = `${prefix} ${event}`;
   try {
-    line = `${prefix} ${event} ${JSON.stringify(boundFields(fields))}`;
+    // зачем (прогон 11.10: вход 42 с, смена 74 с, а в выжимке логов нет времени): поле `t` —
+    // монотонные мс процесса, по разнице соседних строк видно, какая стадия съела время.
+    line = `${prefix} ${event} ${JSON.stringify({ ...boundFields(fields), t: identityTraceClockMs() })}`;
     console.warn(line);
     if (options.persist === true) {
       DebugLogger.error(`${prefix} ${event}`, new Error(line), 'warning');

@@ -91,7 +91,8 @@ describe('identity_trace — correlation tags without identifiers', () => {
   test('a trace line is one warn with the task prefix and bounded JSON fields', () => {
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
     trace.identityTrace('[PROFILE-FLIP]', 'startup source', { source: 'secure_store', stable: trace.identityTag('abc') });
-    expect(warn).toHaveBeenCalledWith(expect.stringMatching(/^\[PROFILE-FLIP\] startup source \{"source":"secure_store","stable":"h:[0-9a-f]{8}"\}$/));
+    // 12.10: каждая строка трассировки несёт `t` — монотонные мс (замер стадий входа/выхода).
+    expect(warn).toHaveBeenCalledWith(expect.stringMatching(/^\[PROFILE-FLIP\] startup source \{"source":"secure_store","stable":"h:[0-9a-f]{8}","t":\d+\}$/));
     warn.mockRestore();
   });
 });

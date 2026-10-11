@@ -49,7 +49,7 @@ import {
   classifyAnonMergeNonceRejection,
   forgetAnonMergeNonce,
 } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
-import { identityErrorCode, identityTag, identityTrace, redactStorageKey } from './identity_trace';
+import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs, redactStorageKey } from './identity_trace';
 import {
   clearAccountSwitchBackupMergeAlias,
   readAccountSwitchBackupMergeAlias,
@@ -5470,10 +5470,42 @@ export async function saveAccountSwitchEmergencyBackup(
   return true;
 }
 
+// зачем (прогон 11.10, «сперва логи»): стирание держало замок аккаунта 32 с из 74 с смены аккаунта,
+// а по какому шагу — не видно. Каждая стадия пишет длительность и число ключей; одна итоговая строка
+// [ACC-SWITCH-WIPE] wipe_stages на всё стирание (и при сбое — с последней дошедшей стадией).
+type WipeStageTimings = Record<string, number>;
+let activeWipeStages: WipeStageTimings | null = null;
+let activeWipeStageAt = 0;
+function markWipeStage(stage: string, count?: number): void {
+  if (!activeWipeStages) return;
+  const now = identityTraceClockMs();
+  activeWipeStages[`${stage}Ms`] = now - activeWipeStageAt;
+  if (typeof count === 'number') activeWipeStages[`${stage}Keys`] = count;
+  activeWipeStageAt = now;
+}
+
 async function wipeLocalAccountDataUnsafe(): Promise<void> {
-  const { closePhoneStateBeforeLocalWipe } = await import('./phone_state_bootstrap');
-  await closePhoneStateBeforeLocalWipe();
-  await wipeLocalAccountDataUnsafeBody();
+  const startedAt = identityTraceClockMs();
+  activeWipeStages = {};
+  activeWipeStageAt = startedAt;
+  let failure: string | null = null;
+  try {
+    const { closePhoneStateBeforeLocalWipe } = await import('./phone_state_bootstrap');
+    await closePhoneStateBeforeLocalWipe();
+    markWipeStage('closePhoneState');
+    await wipeLocalAccountDataUnsafeBody();
+  } catch (error) {
+    failure = identityErrorCode(error);
+    throw error;
+  } finally {
+    const stages = activeWipeStages ?? {};
+    activeWipeStages = null;
+    identityTrace('[ACC-SWITCH-WIPE]', 'wipe_stages', {
+      ...stages,
+      totalMs: identityTraceClockMs() - startedAt,
+      failure,
+    });
+  }
 }
 
 async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
@@ -5483,8 +5515,10 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
+  markWipeStage('collectKeys', accountKeys.length);
   // зачем (AA 2.0, S1e-2 п.2): непустой ключ S1e, не попавший в копию, стирается — делаем это видимым.
   await noteFutureKeptStashBeforeWipe(receiptOwnerStableId);
+  markWipeStage('noteStash');
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>([
     'app_theme',
@@ -5528,21 +5562,27 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     !KEEP.has(key) && !isCustomizationAccountLocalKey(key)
   ));
   await removeExactly(toRemove);
+  markWipeStage('removeKeys', toRemove.length);
   if (receiptOwnerStableId) {
     await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
   }
+  markWipeStage('giftReceipts');
   await clearCustomizationAccountLocalState();
+  markWipeStage('customization');
   // зачем (04.10, политика fe079cd49): копия «Памяти диалогов» на устройстве стирается при выходе и смене
   // аккаунта. Функция никогда не бросает — общую чистку не ломает.
   await clearAllDialogueV2MemoryDiskCache();
+  markWipeStage('dialogueMemory');
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
     .filter((key) => !KEEP.has(key));
   await removeExactly(lateLearningV2Keys);
+  markWipeStage('lateLearningV2', lateLearningV2Keys.length);
   if (receiptOwnerStableId) {
     await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
   }
+  markWipeStage('giftReceipts2');
   const knownAccountKeys = new Set(accountLocalDataKeysForToday());
   const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
     !KEEP.has(key) && (
@@ -5551,6 +5591,7 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       || isCustomizationAccountLocalKey(key)
       || isVipSnapshotStorageKey(key)
     ));
+  markWipeStage('finalScan');
   if (finalResidue.length > 0) {
     identityTrace('[ACC-SWITCH-WIPE]', 'residue', {
       stage: 'final_scan',
@@ -5590,6 +5631,7 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     clearTimeout(syncTimer);
     syncTimer = null;
   }
+  markWipeStage('resetMemory');
 }
 
 export async function wipeLocalAccountData(

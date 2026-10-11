@@ -3748,7 +3748,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: тур 3 слово в слово как в коде (tour3Title/tour3Text — «пятеро»); в коде это расходится с правилом 5 («15 %») — вопрос Дизайну/владельцу, образец следует коду."
     },
     {
       "id": "spire-004",
@@ -3883,7 +3884,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: зона «Остаются» (spire_strings.ts zoneStay) вместо «Остаются в Граните»."
     },
     {
       "id": "spire-007",
@@ -4198,11 +4200,11 @@
       "mockup": {
         "file": "docs/design/v2-app/spire.html",
         "phone": 14,
-        "label": "Поднялся в Базальт",
+        "label": "Ты поднимаешься в Базальт",
         "mapping": "label_match"
       },
       "screen": "9. Итог недели",
-      "state": "Поднялся в Базальт",
+      "state": "Ты поднимаешься в Базальт",
       "code": [
         "components/spire/SpireWeekResultCard.tsx",
         "app/spire/spire_week_result_client.ts"
@@ -4235,7 +4237,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: тексты итога недели — как в коде (spire_game_strings.ts weekUp; sub: «N место · M ступеней · +150 · +100 монет»)."
     },
     {
       "id": "spire-015",
@@ -4243,11 +4246,11 @@
       "mockup": {
         "file": "docs/design/v2-app/spire.html",
         "phone": 15,
-        "label": "Остаёшься в Граните",
+        "label": "Остаёшься в шпиле Гранит",
         "mapping": "label_match"
       },
       "screen": "9. Итог недели",
-      "state": "Остаёшься в Граните",
+      "state": "Остаёшься в шпиле Гранит",
       "code": [
         "components/spire/SpireWeekResultCard.tsx",
         "app/spire/spire_week_result_client.ts"
@@ -4280,7 +4283,8 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
-      }
+      },
+      "mockup_pinned": "Макеты 12.10: «Остаёшься в шпиле {камень}» (weekStay); «спускаешься» — кадр в spire-gaps-states.html (spire-gap-017)."
     },
     {
       "id": "spire-016",
@@ -4390,8 +4394,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/video-001.png",
-      "evidence_at": "2026-10-10T22:06:29.727Z",
-      "evidence_sha256": "5f630e3c48b6e8d1e32790d69372dbed06b231dbd9ebe1663b521741ced141d7",
+      "evidence_at": "2026-10-11T15:50:35.977Z",
+      "evidence_sha256": "756572af83e6bfce2521065aafba542a717365dd67644b38998622c8aafa758d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -13906,7 +13910,7 @@
       "mockup": {
         "file": "docs/design/v2-app/community.html",
         "phone": 4,
-        "label": "правила Шпиля · шторка",
+        "label": "правила Шпиля · шторка — 8 правил",
         "mapping": "label_match"
       },
       "screen": "Вкладка и Шпиль",
@@ -13935,7 +13939,8 @@
         "flag_source": "app/spire_tab_flag.ts",
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "mockup_pinned": "Макеты 12.10: 8 правил из spire_game_strings.ts (rule1…rule8, значения монет по умолчанию config_contract.ts), заголовок «Правила Шпиля», кнопка «Закрыть»."
     },
     {
       "id": "community-005",
@@ -13943,11 +13948,11 @@
       "mockup": {
         "file": "docs/design/v2-app/community.html",
         "phone": 5,
-        "label": "итог недели · анимация",
+        "label": "итог недели — карточка на главном экране Шпиля",
         "mapping": "label_match"
       },
       "screen": "Вкладка и Шпиль",
-      "state": "итог недели · анимация",
+      "state": "итог недели — карточка на главном экране Шпиля",
       "code": [],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -13972,7 +13977,8 @@
         "flag_source": "app/spire_tab_flag.ts",
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "mockup_pinned": "Макеты 12.10: полноэкранный «Итоги недели» заменён карточкой на главном Шпиля (SpireWeekResultCard.tsx), как в spire.html §9; монета выпрыгивает (anim-pop)."
     },
     {
       "id": "community-006",

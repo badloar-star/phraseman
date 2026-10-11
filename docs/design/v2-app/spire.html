@@ -341,12 +341,12 @@ const allMembers = () => {
   const row = (m, i) => `<div class="mrow t${m.me ? ' me' : ''}"><div class="pl">${i + 1}</div>${coinImg(m.rank, 40)}<div class="nm">${m.name}${m.me ? '<span class="you">Вы</span>' : ''}</div>${i < 5 ? `<span style="color:var(--good)">${icon('up', 's16')}</span>` : i >= 25 ? `<span style="color:var(--bad)">${icon('down', 's16')}</span>` : ''}<div class="sp">${m.steps}<span>ступ.</span></div></div>`;
   return phone(`<div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow"><div style="font-size:26px;line-height:30px;font-weight:700;letter-spacing:-.3px">Все участники</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Гранит · 30 человек · место по ступеням</div></div></div>
     <div class="zone up">Зона повышения</div><div class="stack" style="--g:4px">${sorted.slice(0, 5).map(row).join('')}</div>
-    <div class="zone sf">Остаются в Граните</div><div class="stack">${sorted.slice(5, 25).map((m, i) => row(m, i + 5)).join('')}</div>
+    <div class="zone sf">Остаются</div><div class="stack">${sorted.slice(5, 25).map((m, i) => row(m, i + 5)).join('')}</div>
     <div class="zone dn">Зона понижения</div><div class="stack">${sorted.slice(25).map((m, i) => row(m, i + 25)).join('')}</div>`, { time: '9:41' });
 };
 
 /* ===================== 9–11. ИТОГ НЕДЕЛИ, НЕТ ЭНЕРГИИ, НЕТ СЕТИ ===================== */
-const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднялся в Базальт' : 'Остаёшься в Граните'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 и +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
+const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься в шпиле Гранит'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 · +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
 const weekUp = () => phone(spireBody({ top: weekCard(true), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const weekStay = () => phone(spireBody({ top: weekCard(false), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Поднимайся без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
@@ -371,7 +371,7 @@ document.getElementById('root').innerHTML = [
   block('floor', '8. Этаж пройден и Вершина', 'Празднование на экране башни фактом. Этаж N даёт 10×N (Страж ×2), вершина +200 и дальше «над облаками».', [
     col('Этаж 4 пройден — впереди Страж', floorPassed()), col('Вершина — 15 этаж', summit())]),
   block('week', '9. Итог недели', 'При первом заходе новой недели — карточка фактом, не модалка. Все снова на 1 этаже.', [
-    col('Поднялся в Базальт', weekUp()), col('Остаёшься в Граните', weekStay())]),
+    col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься в шпиле Гранит', weekStay())]),
   block('edge', '10–11. Нет энергии · Нет сети', 'Без блокирующих модалок: таймер до энергии и мягкий Plus; при отсутствии сети свой маркер живой, чужие цифры приглушены.', [
     col('Нет энергии', noEnergy()), col('Нет сети', noNet())]),
 ].join('');

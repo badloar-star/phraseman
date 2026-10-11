@@ -166,6 +166,15 @@ function assertDevBuild(what: string): void {
   }
 }
 
+// зачем (координатор 12.10, безопасность): фикстуры, ПИШУЩИЕ карточки/наборы, работают только на анонимном госте — эти ключи уходят в облако
+// (cloud_sync + Account V2 card_snapshot); на настоящем тестовом аккаунте №2/№3 пустой или демо-список затёр бы облачные данные.
+// Проверка живёт в отдельном модуле (там чтение Firebase Auth; исходники этого файла сторожит тест «не ходят в сеть»).
+async function assertWritableAccount(what: string): Promise<void> {
+  assertDevBuild(what);
+  const { assertDisposableGuest } = await import('./dev_state_account_guard');
+  assertDisposableGuest(what);
+}
+
 export const DEMO_CUSTOM_COUNT = 50;
 
 /** 50 своих карточек — лимит Free (cards-v2-046): categoryId 'custom', не системные. */
@@ -183,7 +192,7 @@ export function demoCustomCards(count: number = DEMO_CUSTOM_COUNT): CardItem[] {
 }
 
 export async function applyCustomCards(count: number = DEMO_CUSTOM_COUNT): Promise<string> {
-  assertDevBuild('cards=custom50');
+  await assertWritableAccount('cards=custom50');
   const { updateCustomCards } = await import('./flashcards/custom_cards_store');
   const cards = demoCustomCards(count);
   await updateCustomCards(() => cards, TARGET);
@@ -199,7 +208,7 @@ export const DEMO_PUBLISHED_LOCAL_ID = 'local_pack_dev_demo_published';
  * при удалении) + набор в кэше каталога от моего stableId с чужими откликами, помеченный как мой в «Мои из сообщества». Сервер не вызывается.
  */
 export async function applyDemoPublished(stableId: string): Promise<string> {
-  assertDevBuild('cards=demo_published');
+  await assertWritableAccount('cards=demo_published');
   const own: DemoOwnPack = { packId: DEMO_PUBLISHED_LOCAL_ID, title: 'Мой опубликованный', count: 10, level: 'B1', words: ['Layover', 'Gate', 'Customs'] };
   const { saveLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
   await saveLocalAuthorPack({
@@ -235,7 +244,7 @@ export async function applyDemoPublished(stableId: string): Promise<string> {
 
 /** Сохранённые карточки без перевода (R1 Н-11: cards-gap-007/008): `answerFor` пуст для любого языка интерфейса. */
 export async function applyNoTranslationCards(): Promise<string> {
-  assertDevBuild('cards=notranslation');
+  await assertWritableAccount('cards=notranslation');
   const { saveFlashcards } = await import('../hooks/use-flashcards');
   const words = ['Layover', 'Gate', 'Customs', 'Boarding', 'Luggage', 'Passport'];
   const cards = words.map((en, i) => ({
@@ -348,7 +357,13 @@ export async function applyCardsEmpty(): Promise<CardsDemoResult> {
       console.warn('[DEV-STATE] cards empty step failed', key, skipped[key]); // guard-ok: сбой шага виден в логе
     }
   };
-  assertDevBuild('cards=empty');
+  try {
+    await assertWritableAccount('cards=empty');
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.warn('[DEV-STATE] cards=empty mode=refused', reason); // guard-ok: причина отказа
+    return { applied, skipped: { refused: reason } };
+  }
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');
     await saveFlashcards([], TARGET);
@@ -385,6 +400,13 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = 
     }
   };
 
+  try {
+    await assertWritableAccount(options.lessons === true ? 'cards=demo_lessons' : 'cards=demo');
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.warn('[DEV-STATE] cards=demo mode=refused', reason); // guard-ok: причина отказа
+    return { applied, skipped: { refused: reason } };
+  }
   await step('view', resetCardsViewPrefs);
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');

@@ -7,6 +7,8 @@ jest.mock('../app/dev_plus_controls', () => ({
 }));
 jest.mock('../app/dev_as_free_flag', () => ({ setDevAsFreeFlag: jest.fn(async () => true) }));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-1') }));
+// зачем (12.10): защита «только анонимный гость» проверяется в tests/dev_state_account_guard.test.ts; здесь фикстуры гоняются как на госте
+jest.mock('../app/dev_state_account_guard', () => ({ assertDisposableGuest: jest.fn(), classifyGuestUser: jest.fn() }));
 jest.mock('../app/spire_tab_flag', () => ({ setSpireTabDevOverride: jest.fn(async () => undefined) }));
 // зачем (R1_SHOT_LIST): локальное хранилище в памяти — проверяем, что новые переключатели пишут только свои ключи и читаются настоящими модулями.
 const mockStore = new Map<string, string>();

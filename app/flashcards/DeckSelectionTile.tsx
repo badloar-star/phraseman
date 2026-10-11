@@ -13,6 +13,7 @@ import Reanimated, {
 
 import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
 import type { Theme } from '../../constants/theme';
+import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, useShadowGlass } from '../../components/v2/ShadowSurface';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';
 import type { FcDeckId } from './mode_prefs';
@@ -63,6 +64,7 @@ export default function DeckSelectionTile({
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом, но не больше предела maxFontSizeMultiplier самих текстов
   const lh = useLineScale();
+  const gs = useShadowGlass(); // зачем (Тень 12.10): токены тени для строки без liquidGlass-пропса (экран настройки тренировки)
   const { width: viewportWidth } = useWindowDimensions();
   const disabled = deck.count <= 0;
   const enter = useSharedValue(simpleMotion ? 1 : 0);
@@ -124,7 +126,7 @@ export default function DeckSelectionTile({
             testID={`${testIDPrefix}-cover-${deck.deckId}`}
             style={[
               styles.compactCover,
-              { backgroundColor: liquidGlass.opaqueControl, borderColor: liquidGlass.glassEdge },
+              { backgroundColor: liquidGlass.opaqueControl, boxShadow: nestedBoxShadow(gs) },
             ]}
           >
             <LinearGradient
@@ -163,7 +165,7 @@ export default function DeckSelectionTile({
             style={[
               styles.compactCheckbox,
               {
-                borderColor: selected ? liquidGlass.cta : liquidGlass.glassEdge,
+                borderColor: selected ? liquidGlass.cta : liquidGlass.glassEdge, // shadow-ok: индикатор выбора (чекбокс)
                 backgroundColor: selected ? liquidGlass.cta : 'transparent',
               },
             ]}
@@ -192,8 +194,9 @@ export default function DeckSelectionTile({
         style={({ pressed }) => [
           styles.row,
           {
-            borderColor: selected ? t.accent : t.border,
-            backgroundColor: selected ? `${t.accent}14` : t.bgSurface,
+            // зачем (Тень 12.10): строка без обводки; выбранный набор приподнят (raised), выбор показывает ещё и галочка
+            backgroundColor: selected ? gs.raisedFillFrom : gs.plateFillFrom,
+            boxShadow: selected ? raisedBoxShadow(gs) : plateBoxShadow(gs),
             opacity: disabled ? 0.42 : pressed ? 0.82 : 1,
           },
         ]}
@@ -237,7 +240,7 @@ export default function DeckSelectionTile({
           </AdaptiveLabel>
         </View>
 
-        <View style={[styles.countBadge, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+        <View style={[styles.countBadge, { backgroundColor: t.bgCard, boxShadow: nestedBoxShadow(gs) }]}>
           <Text style={[styles.countText, { color: t.accentText, fontSize: f.caption }]}>{deck.count}</Text>
         </View>
 
@@ -271,7 +274,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 10,
     borderRadius: 14,
-    borderWidth: 1, // зачем (координатор 11.10): обводка плитки — hairline, выбор показывает заливка и галочка
   },
   cover: {
     width: 44,
@@ -288,7 +290,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 9,
-    borderWidth: 2,
+    borderWidth: 2, // shadow-ok: индикатор выбора (чекбокс)
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
@@ -298,7 +300,6 @@ const styles = StyleSheet.create({
     minHeight: 24,
     paddingHorizontal: 7,
     borderRadius: 9,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
@@ -312,13 +313,12 @@ const styles = StyleSheet.create({
     gap: 14,
     paddingVertical: 10,
     paddingHorizontal: 4,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: разделитель-линия между строками списка
   },
   compactCover: {
     width: 52,
     height: 52,
     borderRadius: 10,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 7,
-    borderWidth: 1.5,
+    borderWidth: 1.5, // shadow-ok: индикатор выбора (чекбокс)
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,

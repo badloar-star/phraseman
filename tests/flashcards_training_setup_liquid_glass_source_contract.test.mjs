@@ -19,7 +19,8 @@ const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 const PROTECTED_FILES = new Map([
-  ['app/flashcards/DeckSelectionTile.tsx', 'b58d32e5f893912304f7aa25530b3456a2ff185a0e8efa83472c0e050aaff162'], // 11.10 (координатор): рамка плитки 1.5 → 1 pt (D145); галочка — t.textOnGold; иконка набора — t.accentText (акцент как текст)
+  // хэш обновлён 12.10 (Тень): строка без обводки (плашка raised/plate с boxShadow), обложка и бейдж счётчика — малая тень; логика и пропсы те же
+  ['app/flashcards/DeckSelectionTile.tsx', 'fa3796b0014271a4b125688813b6c8f057bf6be47f1605a37edf0ee1a1f214d7'], // 11.10 (координатор): рамка плитки 1.5 → 1 pt (D145); галочка — t.textOnGold; иконка набора — t.accentText (акцент как текст)
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
   // зачем (text-integrity 01.10): сняты обрезки подписей, кнопки и плашки растут по тексту — бизнес-логика не менялась.
   // зачем (FONTSCALE2, координатор 05.10): межстрочный растёт с системным шрифтом (useScaledTextStyles), поле поиска minHeight;

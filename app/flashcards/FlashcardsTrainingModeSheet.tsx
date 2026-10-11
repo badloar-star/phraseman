@@ -22,6 +22,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { iconTileColors, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import type { CardsTrainingMode } from './training_entry';
@@ -285,10 +286,9 @@ export default function FlashcardsTrainingModeSheet({
                     onPress={() => onSelect(row.mode)}
                     style={({ pressed }) => [styles.row, rowIndex > 0 && [styles.rowLine, { borderTopColor: g.line }], { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
                   >
-                    <View style={styles.icon}>
+                    <View style={[styles.icon, { boxShadow: nestedBoxShadow(g) }]}>
                       <LinearGradient pointerEvents="none" colors={iconTileColors(g, ga, gb)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
                       <Ionicons name={rowIcon} size={24} color={g.text} />
-                      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, boxShadow: [{ inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: g.hairlineSoft }] }]} />
                     </View>
                     <View style={styles.copy}>
                       <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
@@ -300,7 +300,7 @@ export default function FlashcardsTrainingModeSheet({
               })}
             </View>
           </ScrollView>
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]} />
+          {/* зачем (Тень 12.10): внутренняя кромка шторки убрана — шторку отделяет затемнение */}
         </Animated.View>
       </View>
     </Modal>
@@ -328,7 +328,7 @@ const baseStyles = StyleSheet.create({
   content: { paddingTop: 10, paddingBottom: 0 },
   // cards-section `mode()`: поля 16/4, промежуток 20 — высота строки 16 + 57 + 16.
   row: { minHeight: 89, paddingVertical: 16, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 20 },
-  rowLine: { borderTopWidth: StyleSheet.hairlineWidth }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
+  rowLine: { borderTopWidth: StyleSheet.hairlineWidth }, // shadow-ok: разделитель-линия строк меню; разделитель строк меню (макет «Режим тренировки»), не контейнер
   icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 23, fontWeight: '700' },

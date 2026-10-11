@@ -8,21 +8,20 @@ const hub = readFileSync(new URL('../app/flashcards/FlashcardsCategoryHub.tsx', 
 test('community catalog uses live 13-theme tokens for static shell and controls', () => {
   assert.match(screen, /liquidGlassThemeId/);
   assert.match(screen, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.match(screen, /<CatalogGlass/);
-  assert.match(screen, /backgroundColor: g\.card/);
-  assert.match(screen, /borderColor: g\.glassEdge/);
-  assert.match(screen, /dimezisBlurView/);
+  // зачем (Тень 12.10): кнопки и поле шапки каталога — плашки с тенью темы, без блюр-блика и кромки glassEdge
+  assert.doesNotMatch(screen, /CatalogGlass/);
+  assert.match(screen, /backgroundColor: g\.plateFillFrom, boxShadow: plateBoxShadow\(g\)/);
+  assert.doesNotMatch(screen, /borderColor: g\.glassEdge/);
 });
 
 test('community tiles use tinted translucent material, real diffusion and readable semantic text', () => {
   assert.match(hub, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.match(hub, /<CatalogTileGlass/);
-  assert.match(hub, /backgroundColor: g\.card/);
-  assert.match(hub, /borderColor: g\.glassEdge/);
-  // зачем (сверка packs-simple-001, 04.10): на Android dimezisBlurView в строках каталога давал белый ореол вокруг
-  // текста строки (захват собственного содержимого). Размытие строк каталога — без этого метода на всех платформах.
-  assert.match(hub, /<BlurView[^>]*experimentalBlurMethod="none"/);
-  assert.doesNotMatch(hub, /experimentalBlurMethod=\{[^}]*'dimezisBlurView'/);
+  // зачем (Тень 12.10): строка «Продолжить создание набора» — плашка PlateFill + тень, без кромки glassEdge. Блюра в каталоге больше нет
+  // (белый ореол вокруг текста на Android из сверки packs-simple-001 по определению невозможен).
+  assert.match(hub, /<PlateFill g=\{g\} radius=\{16\} \/>/);
+  assert.match(hub, /boxShadow: plateBoxShadow\(g\)/);
+  assert.doesNotMatch(hub, /borderColor: g\.glassEdge/);
+  assert.doesNotMatch(hub, /<BlurView/);
   assert.doesNotMatch(hub, /a11y=\{`qa-flashcards-pack-card-/);
 });
 
@@ -31,5 +30,5 @@ test('catalog preserves separate real empty versus filtered search states in gla
   assert.match(hub, /Здесь появятся наборы после публикации\./);
   assert.match(hub, /Ничего не найдено\./);
   assert.match(hub, /testID="flashcards-community-empty"/);
-  assert.match(hub, /<CatalogTileGlass g=\{g\} \/>/);
+  assert.match(hub, /boxShadow: nestedBoxShadow\(g\), alignItems: 'center', justifyContent: 'center' \}\}>/);
 });

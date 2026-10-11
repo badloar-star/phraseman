@@ -36,6 +36,7 @@ import {
 import { PackMenuRow, PackPopoverMenu } from './community_packs/PackCreateGlassParts';
 import { AddCardRow, EditorCardRow, EditorField, EditorHeader, EditorSheet, VisibilitySegment } from './community_packs/PackEditorV2';
 import { KitCta, KitSectionHead } from '../components/cards-grid/CardsKit';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
@@ -1100,7 +1101,7 @@ export default function CommunityPackCreateScreen() {
                 accessibilityLabel={menuLabel}
                 hitSlop={8}
                 onPress={() => setPackMenuOpen(true)}
-                style={{ width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: kg.glassEdge }] }}
+                style={{ width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: kg.plateFillFrom, boxShadow: plateBoxShadow(kg) }}
               >
                 <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
               </TouchableOpacity>

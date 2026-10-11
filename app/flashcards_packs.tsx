@@ -16,7 +16,6 @@
  *     «Новые» (спарклы), без подписей, с обязательным accessibilityLabel.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -42,6 +41,7 @@ import { KitTouchable } from '../components/KitTouchable';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { actionBoxShadow, plateBoxShadow, raisedBoxShadow } from '../components/v2/ShadowSurface';
 import { hapticTap } from '../hooks/use-haptics';
 import { AdaptiveLabel } from '../components/text-integrity/AdaptiveLabel';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -87,15 +87,7 @@ export type FlashcardsPacksScreenProps = {
   presentation?: 'push' | 'embedded';
 };
 
-function CatalogGlass({ tint, edge }: { tint: string; edge: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 10 : 16} blurReductionFactor={3}
-      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
-      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: edge }} />
-  </View>;
-}
+// зачем (Тень 12.10): прежний блюр-блик каталога с кромкой-линией убран — кнопки и поле шапки каталога это плашки с тенью темы
 
 export default function FlashcardsPacksScreen({ presentation = 'push' }: FlashcardsPacksScreenProps = {}) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -446,14 +438,12 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               style={[
                 styles.headerRoundBtn,
                 embedded ? styles.headerRoundBtnLarge : null,
-                {
-                  borderColor: g.glassEdge,
-                  backgroundColor: searchOpen || communityQuery.trim().length > 0 ? g.selected : g.card,
-                  overflow: 'hidden',
-                },
+                // выбранное (поиск открыт или задан) приподнято, иначе обычная плашка
+                searchOpen || communityQuery.trim().length > 0
+                  ? { backgroundColor: g.raisedFillFrom, boxShadow: raisedBoxShadow(g) }
+                  : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
               ]}
             >
-              <CatalogGlass tint={g.selected} edge={g.glassEdge} />
               <Ionicons
                 name={searchOpen ? 'search' : 'search-outline'}
                 size={18}
@@ -502,11 +492,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 styles.headerSearchField,
                 embedded
                   // `.sf`: поле 52, скругление 26, заливка .08 и тонкая ВНУТРЕННЯЯ кромка (не обводка-контейнер).
-                  ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.hairlineSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] }]
-                  : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }, // guard-ok: исключение 2.0 (24.09) — прежняя 1px кромка push-режима
+                  ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]
+                  : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, // зачем (Тень 12.10): поле поиска без кромки
               ]}
             >
-              {embedded ? null : <CatalogGlass tint={g.selected} edge={g.glassEdge} />}
               <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.secondary : t.accentText} />
               <TextInput
                 ref={searchInputRef}
@@ -645,7 +634,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                       void hapticTap();
                       router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
                     }}
-                    style={[styles.createBtn, { backgroundColor: g.accent }]}
+                    style={[styles.createBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
                   >
                     <Ionicons name="add" size={22} color={g.accentInk} />
                   </KitTouchable>
@@ -653,8 +642,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 <View
                   accessibilityRole="tablist"
                   style={[styles.segment, {
-                    backgroundColor: g.hairlineSoft,
-                    boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }],
+                    backgroundColor: g.plateFillFrom,
+                    boxShadow: plateBoxShadow(g),
                   }]}
                 >
                   {(['new', 'popular'] as const).map((sort) => {
@@ -672,7 +661,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                           void hapticTap();
                           setCommunitySort(sort);
                         }}
-                        style={[styles.segmentItem, on ? { backgroundColor: g.accent } : null]}
+                        style={[styles.segmentItem, on ? { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) } : null]}
                       >
                         <Text style={[styles.segmentText, { color: on ? g.accentInk : g.secondary }]}>{label}</Text>
                       </KitTouchable>
@@ -730,7 +719,7 @@ const baseStyles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 8,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 0.5, // shadow-ok: разделитель-линия под шапкой экрана, не контейнер
   },
   headerBack: { width: 36, height: 36, alignItems: 'flex-start', justifyContent: 'center' },
   headerTitle: {
@@ -741,7 +730,7 @@ const baseStyles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 0.2,
   },
-  headerActions: { flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
+  headerActions: { flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }, // зачем (Тень 12.10): между плашками ≥ 10
   /** Лупа и фильтры — один размер и один стиль (замечание владельца). */
   headerRoundBtn: {
     width: 36,
@@ -749,7 +738,6 @@ const baseStyles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
   },
   /**
    * Слой поиска. Yoga кладёт абсолютных детей от ПАДДИНГ-бокса родителя, поэтому
@@ -770,7 +758,7 @@ const baseStyles = StyleSheet.create({
   // зачем (community-redesign.html #c1 экран 2, `.flex` + `.sf`): слой на месте строки вкладок: «назад» 44 без подложки,
   // промежуток 8, поле 52 со скруглением 26, поля 0/6/0/16, внутри промежуток 10, справа крестик 44 без подложки.
   headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  headerSearchFieldEmbedded: { flex: 1, minHeight: 52, height: 52, borderRadius: 26, paddingLeft: 16, paddingRight: 6, gap: 10, borderWidth: 0 },
+  headerSearchFieldEmbedded: { flex: 1, minHeight: 52, height: 52, borderRadius: 26, paddingLeft: 16, paddingRight: 6, gap: 10 },
   searchBareBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
   headerSearchInputEmbedded: { height: 44, fontSize: 16 },
@@ -781,7 +769,6 @@ const baseStyles = StyleSheet.create({
     height: 36,
     paddingHorizontal: 12,
     borderRadius: 18,
-    borderWidth: 1,
   },
   headerSearchInput: {
     flex: 1,

@@ -25,6 +25,7 @@ import { triLang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { fcHaptic } from './flashcards/SoundService';
+import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
 import { getVoicesOnce, type FcVoiceLike } from './flashcards/tts_voices';
 import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
 import { safeRouterBack } from './navigation_back';
@@ -149,6 +150,7 @@ export default function FlashcardsVoicePickerScreen() {
     [selectedId, speak, stop],
   );
 
+  const gs = useShadowGlass(); // зачем (Тень 12.10): токены тени для пилюли «Улучшенный» и кнопки превью
   const leave = useCallback(() => {
     fcHaptic('tap');
     stop();
@@ -223,9 +225,8 @@ export default function FlashcardsVoicePickerScreen() {
               <View
                 style={{
                   borderRadius: 999,
-                  borderWidth: 1,
-                  borderColor: `${t.gold}77`,
                   backgroundColor: t.goldBg,
+                  boxShadow: nestedBoxShadow(gs),
                   paddingHorizontal: 8,
                   paddingVertical: 2,
                 }}
@@ -254,9 +255,8 @@ export default function FlashcardsVoicePickerScreen() {
             borderRadius: 18,
             alignItems: 'center',
             justifyContent: 'center',
-            borderWidth: 1,
-            borderColor: t.border,
             backgroundColor: t.bgCard,
+            boxShadow: nestedBoxShadow(gs),
           }}
         >
           <Ionicons name="volume-medium" size={17} color={t.accentText} />

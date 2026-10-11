@@ -20,8 +20,9 @@ test('My Packs retains real Created then Added data, create, edit and delete act
 test('My Packs uses exact live liquid tokens, glass materials and approved typography', () => {
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(source.includes('colors={[g.bgTop, g.bg, g.bgBottom]}'));
-  assert.ok(source.includes('<MyPacksGlass'));
-  assert.ok(source.includes("'dimezisBlurView'"));
+  // зачем (Тень 12.10): окно удаления — PlateFill и тень плашки, блюр-блик MyPacksGlass убран
+  assert.ok(source.includes('<PlateFill g={g} radius={26} />'));
+  assert.ok(source.includes('boxShadow: plateBoxShadow(g)'));
   // размеры из макета: заголовок 40/46, подпись 16/22, поиск 46
   assert.ok(kit.includes('fontSize: 40, lineHeight: 46'));
   assert.ok(kit.includes('fontSize: 16, lineHeight: 22'));

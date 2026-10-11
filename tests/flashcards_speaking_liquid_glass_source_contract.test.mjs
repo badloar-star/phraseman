@@ -261,7 +261,8 @@ test('adds an opt-in PhraseCard geometry seam while preserving default geometry 
   assert.match(phraseCardSource, /facePadH: presentation\?\.paddingHorizontal \?\? adaptiveFacePadH/);
   assert.match(phraseCardSource, /facePadTop: presentation\?\.paddingTop \?\? adaptiveFacePadV/);
   assert.match(phraseCardSource, /facePadBottom: presentation\?\.paddingBottom \?\? adaptiveFacePadV/);
-  assert.equal((phraseCardSource.match(/borderRadius: faceRadius/g) ?? []).length, 5);
+  // зачем (Тень 12.10): слои тонировки граней заменены на <PlateFill radius={faceRadius}> — литералов `borderRadius: faceRadius` стало 3
+  assert.equal((phraseCardSource.match(/borderRadius: faceRadius/g) ?? []).length, 3);
   assert.match(phraseCardSource, /<PhraseCardSizer[\s\S]*paddingTop=\{facePadTop\}[\s\S]*paddingBottom=\{facePadBottom\}/);
 
   assert.match(sizerSource, /paddingTop\?: number;/);
@@ -363,7 +364,8 @@ test('uses a passive 13-theme scored surface and only a retained runtime transcr
   assert.match(sessionSource, /colors=\{\[glass\.lightTint, 'transparent'\]\}/);
   assert.doesNotMatch(sessionSource, /BlurView/);
   assert.match(active, /backgroundColor: speakingGlass\.opaqueCard/);
-  assert.match(active, /borderColor: speakingGlass\.glassEdge/);
+  assert.doesNotMatch(active, /borderColor: speakingGlass\.glassEdge/); // зачем (Тень 12.10): карточка результата без кромки
+  assert.match(active, /boxShadow: plateBoxShadow\(speakingGlass\)/);
   assert.match(active, /<SpeakingResultSheen glass=\{speakingGlass\} \/>/);
   assert.match(resultCard, /borderRadius: 16/);
   assert.match(resultCard, /paddingHorizontal: 18/);

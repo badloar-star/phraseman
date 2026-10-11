@@ -167,6 +167,16 @@ function themeGlass(themeId) {
   };
 }
 
+// зачем (Тень 12.10): заглушка ShadowSurface — каждая тень это маркер вида `<вид>:<тема>`, по нему тесты проверяют, что плашка берёт тень темы
+const shadowStub = {
+  plateBoxShadow: g => `plate:${g.opaqueCard}`,
+  nestedBoxShadow: g => `nested:${g.opaqueCard}`,
+  raisedBoxShadow: g => `raised:${g.opaqueCard}`,
+  actionBoxShadow: g => `action:${g.opaqueCard}`,
+  useShadowGlass: () => themeGlass('graphite'),
+  PlateFill: 'PlateFill',
+};
+
 function loadPicker({
   themeId = 'graphite', lang = 'en', fontSize = 'large', uiScale = 1.2,
   height = 420, width = 320, summaryCopy,
@@ -190,6 +200,8 @@ function loadPicker({
     '../../constants/i18n': { triLang: (active, copy) => copy[active] },
     '../../constants/flashcards_motion': { FC_TIMING: { base: 1, fast: 1, enter: 1 } },
     '../../constants/liquidGlassThemePalette': { liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; } },
+    // зачем (Тень 12.10): тени плашек берутся из components/v2/ShadowSurface — в харнессе это маркеры темы, а не числа
+    '../../components/v2/ShadowSurface': shadowStub,
     '../../components/ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
       useTheme: () => ({ liquidGlassThemeId: themeId, fontSize, uiScale }),
@@ -288,6 +300,7 @@ function loadTile({ themeId = 'graphite', presentation, selected = true, countLa
     './SoundService': { fcHaptic: () => { calls.haptic += 1; } },
     // зачем (координатор 05.10, FONTSCALE2): плитка берёт межстрочный из общего хука; при шрифте 1.0 он возвращает число как есть
     '../../hooks/useLineScale': { useLineScale: () => lineHeight => lineHeight },
+    '../../components/v2/ShadowSurface': shadowStub,
     './DeckPickerSheet': {},
   };
   const module = { exports: {} };
@@ -357,8 +370,11 @@ test('protects pre-edit business, classic, default tile, and dependency contract
     count: 18,
     hash: 'de0ad33d93b0190fe26645e2b23f5dbeae11b03adfd592fb74ff52327feec66f',
   });
-  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '83d8a194736fa8c698ce5f516184a845c74684435d94955d6e54bfa7d920d40c');
-  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '3ce216c20e6a9dea0e4afe8859268b6bca25c55fab032719205855cb2f04dd41'); // 11.10: иконка выбора — accentText (акцент как текст на карточке) // 11.10: галочка выбора берёт цвет из t.textOnGold (текст на акценте по теме), не из t.correctText
+  // зачем (Тень 12.10): хэш последнего return листа обновлён — менялся ТОЛЬКО стиль (кнопка закрытия, чипы размера и «Начать» без border,
+  // с boxShadow плашки/действия; gap чипов 8→10); логика и разметка не менялись.
+  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '4841c3a2dd0edf4b2b71f3743cb55c164977d4a5e4379b935c4e6eb2e6078fea');
+  // зачем (Тень 12.10): хэш обновлён — менялся ТОЛЬКО стиль плитки (обложка без border, строка/бейдж с boxShadow плашки); логика и разметка те же.
+  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '63b9fe0e63cd04627e25262ad2d91c5f97fd0467b816c5aa916740e69f12c169'); // 11.10: иконка выбора — accentText (акцент как текст на карточке) // 11.10: галочка выбора берёт цвет из t.textOnGold (текст на акценте по теме), не из t.correctText
   assert.deepEqual(protectedShellCoordination(shellSource), {
     count: 32,
     // зачем (координатор 10.10, гейт «приложение = макет»): хэш обновлён — вход и выход шторки перешли на kit.css `.sheet`

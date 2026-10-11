@@ -53,6 +53,7 @@ import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
 import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
 import { useLineScale } from '../hooks/useLineScale';
@@ -1327,7 +1328,7 @@ export default function FlashcardsBlitzSession() {
             </View>
 
             <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
-              <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
+              <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, boxShadow: plateBoxShadow(blitzGlass) }]}>
                 <SkeletonBlock width="70%" height={(f.h1 ?? 24) + 2} />
               </View>
               <View style={{ gap: 10 }}>
@@ -1498,7 +1499,7 @@ export default function FlashcardsBlitzSession() {
           {/* Вопрос + 4 варианта. зачем (practice.html): карточка вопроса стоит сверху (38 от строки таймера), варианты
               через 23 и между собой 13 — не по центру экрана. */}
           <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
-            <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
+            <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, boxShadow: plateBoxShadow(blitzGlass) }]}>
               <BlitzGlassSurface radius={16} />
               {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}
               <Text style={{ color: blitzGlass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
@@ -1538,10 +1539,12 @@ export default function FlashcardsBlitzSession() {
                     onPress={() => pick(i)}
                     disabled={locked}
                     activeOpacity={0.75}
-                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: edge }, faded ? { opacity: ANSWER_FADE_OPACITY } : null]} // guard-ok: исключение 2.0 — 1px полупрозрачная обводка .opt
+                    // зачем (Тень 12.10): у варианта нет обводки-контейнера — плашка с тенью; кольцо `edge` остаётся ТОЛЬКО как исход ответа «верно/неверно»
+                    // (state correct/wrong), у idle оно прозрачное (borderWidth 1 держим, чтобы раскладка не прыгала при ответе)
+                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: state === 'idle' ? 'transparent' : edge, boxShadow: plateBoxShadow(blitzGlass) }, faded ? { opacity: ANSWER_FADE_OPACITY } : null]}
                   >
                     <BlitzGlassSurface radius={14} sheen={state === 'idle'} />
-                    {tint ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} /> : null}
+                    {tint ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, backgroundColor: tint }]} /> : null}
                     <Text  style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
                       {opt}
                     </Text>
@@ -1599,20 +1602,18 @@ const styles = StyleSheet.create({
   // зачем (`.qc`): 160 высотой, поля 22/28, тонкая кромка.
   questionBox: {
     borderRadius: 16,
-    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная кромка `.qc`
     paddingVertical: 22,
     paddingHorizontal: 28,
     alignItems: 'center',
     minHeight: 160,
     justifyContent: 'center',
   },
-  glassSurface: {
-    overflow: 'hidden',
-  },
+  // зачем (Тень 12.10): overflow убран — клип тени плашки; содержимое (KitGlassLayer, подкраска ответа) скруглено само
+  glassSurface: {},
   questionText: { fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
   optionBtn: {
     borderRadius: 14,
-    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — тонкая полупрозрачная обводка `.opt` макета practice.html
+    borderWidth: 1, // shadow-ok: KEEP_STATE кольцо исхода ответа «верно/неверно» (idle — transparent, см. разметку варианта)
     minHeight: 58,
     paddingVertical: 12,
     paddingHorizontal: 40,

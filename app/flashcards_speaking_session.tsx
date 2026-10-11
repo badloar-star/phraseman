@@ -55,6 +55,7 @@ import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { mixDark } from '../components/mistakes-panel/panelPaint'; // зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
@@ -1678,7 +1679,7 @@ RU: ${card.translation}`}
               <View
                 style={[
                   styles.resultCard,
-                  { backgroundColor: speakingGlass.opaqueCard, borderColor: speakingGlass.glassEdge },
+                  { backgroundColor: speakingGlass.opaqueCard, boxShadow: plateBoxShadow(speakingGlass) },
                 ]}
                 testID="fc-speak-attempt-result"
               >
@@ -1863,7 +1864,6 @@ const styles = StyleSheet.create({
   inlineSlot: { paddingHorizontal: 20 },
   resultCard: {
     borderRadius: 16,
-    borderWidth: 1,
     paddingHorizontal: 18,
     paddingVertical: 16,
     alignItems: 'center',

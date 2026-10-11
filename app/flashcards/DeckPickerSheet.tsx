@@ -42,6 +42,7 @@ import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import PressableHybrid from '../../components/PressableHybrid';
 import { compactDeckCountLabel } from '../../lib/flashcards/compact_deck_count_label';
 import DeckSelectionTile from './DeckSelectionTile';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import {
   deckSelectionLabel,
   summarizeDeckSelection,
@@ -370,9 +371,8 @@ export default function DeckPickerSheet({
                   height: 44,
                   alignSelf: 'center',
                   borderRadius: 22,
-                  backgroundColor: glass.opaqueControl,
-                  borderWidth: 1,
-                  borderColor: glass.glassEdge,
+                  backgroundColor: glass.plateFillFrom,
+                  boxShadow: plateBoxShadow(glass), // зачем (Тень 12.10): кнопка закрытия без кромки
                 }}
                 contentStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
@@ -422,7 +422,7 @@ export default function DeckPickerSheet({
               </Text>
             )}
             {mode === 'blitz' ? null : (
-              <View style={{ flexDirection: 'row', gap: 8 }}>
+              <View style={{ flexDirection: 'row', gap: 10 }}>
                 {FC_SESSION_SIZES.map((n) => {
                   const active = n === size;
                   return (
@@ -437,8 +437,7 @@ export default function DeckPickerSheet({
                         minHeight: 44,
                         borderRadius: 22,
                         backgroundColor: active ? glass.cta : glass.opaqueControl,
-                        borderWidth: active ? 0 : 1,
-                        borderColor: glass.glassEdge,
+                        boxShadow: active ? actionBoxShadow(glass) : nestedBoxShadow(glass), // зачем (Тень 12.10): чип без кромки
                       }}
                       contentStyle={{ flex: 1, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' }}
                     >
@@ -469,8 +468,7 @@ export default function DeckPickerSheet({
                 marginTop: 20,
                 borderRadius: 24,
                 backgroundColor: canStart ? glass.cta : glass.opaqueControl,
-                borderWidth: canStart ? 0 : 1,
-                borderColor: glass.glassEdge,
+                boxShadow: canStart ? actionBoxShadow(glass) : undefined, // зачем (Тень 12.10): выключенная кнопка — плотный тон без кромки
               }}
               contentStyle={{ minHeight: 48, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' }}
             >

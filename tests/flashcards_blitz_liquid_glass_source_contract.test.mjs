@@ -35,7 +35,8 @@ assert.match(source, /ANSWER_OK_SURFACE = 'rgba\(111,208,140,0\.14\)'/);
 assert.match(source, /ANSWER_BAD_SURFACE = 'rgba\(224,80,80,0\.14\)'/);
 assert.match(source, /ANSWER_FADE_OPACITY = 0\.38/);
 assert.match(activeGame, /const tint = state === 'correct' \? ANSWER_OK_SURFACE : state === 'wrong' \? ANSWER_BAD_SURFACE : null;/);
-assert.match(activeGame, /backgroundColor: blitzGlass\.card, borderColor: edge \}, faded \? \{ opacity: ANSWER_FADE_OPACITY \} : null/);
+// зачем (Тень 12.10): у варианта нет обводки-контейнера — плашка с тенью; кольцо `edge` только как исход ответа (idle — transparent)
+assert.match(activeGame, /backgroundColor: blitzGlass\.card, borderColor: state === 'idle' \? 'transparent' : edge, boxShadow: plateBoxShadow\(blitzGlass\) \}, faded \? \{ opacity: ANSWER_FADE_OPACITY \} : null/);
 assert.match(activeGame, /color: t\.textPrimary, fontSize: f\.body/);
 assert.match(activeGame, /<BlitzGlassSurface radius=\{14\} sheen=\{state === 'idle'\} \/>/);
 assert.doesNotMatch(source.slice(source.indexOf('glassSurface:'), source.indexOf('questionText:')), /borderWidth/);

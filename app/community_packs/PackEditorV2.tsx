@@ -12,6 +12,7 @@ import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 're
 
 import { KitCard, KitIconTile, KitSurface } from '../../components/cards-grid/CardsKit';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { actionBoxShadow, nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 
@@ -57,7 +58,7 @@ export const VisibilitySegment = memo(function VisibilitySegment({ g, label, val
       accessibilityState={{ selected: on, disabled: !!disabled }}
       disabled={disabled}
       onPress={() => onChange(next)}
-      style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}1F` }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: g.dropShadow }] }, disabled && styles.segDisabled]}>
+      style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, disabled && styles.segDisabled]}>
       <Ionicons name={icon} size={16} color={on ? g.accentInk : g.secondary} />
       <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary }]}>{text}</Text>
     </Pressable>
@@ -131,12 +132,12 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         <View style={styles.sheetHead}>
           <Text accessibilityRole="header" style={[styles.sheetTitle, { color: g.text }]}>{title}</Text>
-          <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={8} onPress={onClose} style={({ pressed }) => [styles.closeBtn, { backgroundColor: g.glassEdge }, pressed && styles.pressed]}>
+          <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={8} onPress={onClose} style={({ pressed }) => [styles.closeBtn, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, pressed && styles.pressed]}>
             <Ionicons name="close" size={18} color={g.text} />
           </Pressable>
         </View>
         {children}
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]} />
+        {/* зачем (Тень 12.10): внутренняя кромка шторки убрана — шторку отделяет затемнение */}
       </Animated.View>
     </View>
   );

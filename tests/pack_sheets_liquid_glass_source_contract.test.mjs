@@ -88,8 +88,8 @@ test('report pack modal keeps props, hide-on-device flow and both shell variants
   ]) assert.ok(reportPack.includes(needle), `ReportPackModal keeps ${needle}`);
 });
 
-test('actions menu and delete-pack modal were already migrated: stay on tokens with thin edges', () => {
-  assert.ok(actionsMenu.includes('fc-saved-actions-menu') && actionsMenu.includes('g.sheet') && actionsMenu.includes('g.glassEdge'), 'CollectionHeader actions menu on glass tokens');
-  assert.ok(deleteModal.includes('fc-delete-pack-confirm-modal') && deleteModal.includes('g.sheet') && deleteModal.includes('g.glassEdge'), 'delete-pack modal on glass tokens');
+test('actions menu and delete-pack modal: glass tokens, shadow plate without edges (Тень 12.10)', () => {
+  assert.ok(actionsMenu.includes('fc-saved-actions-menu') && actionsMenu.includes('g.sheet') && actionsMenu.includes('boxShadow: plateBoxShadow(g)') && !actionsMenu.includes('g.glassEdge'), 'CollectionHeader actions menu on glass tokens, shadow plate without edge');
+  assert.ok(deleteModal.includes('fc-delete-pack-confirm-modal') && deleteModal.includes('g.sheet') && deleteModal.includes('boxShadow: plateBoxShadow(g)') && !deleteModal.includes('g.glassEdge'), 'delete-pack modal on glass tokens, shadow plate without edge');
   assert.ok(deleteModal.includes('fc-delete-pack-confirm-confirm') && deleteModal.includes('deletePackBusy'), 'delete confirm and busy state present');
 });

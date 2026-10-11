@@ -18,6 +18,7 @@ import { V2IconButton } from '../components/v2/V2Kit';
 import V2Pressable from '../components/v2/V2Pressable';
 import { V2 } from '../constants/v2Style';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { compactDeckCountLabel } from '../lib/flashcards/compact_deck_count_label';
 import { canStartBlitz } from './flashcards/blitz_logic';
 import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
@@ -86,7 +87,7 @@ function SetupSurface({
   return (
     <View
       testID={testID}
-      style={[styles.stateSurface, style, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}
+      style={[styles.stateSurface, style, { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass) }]}
     >
       <LinearGradient
         pointerEvents="none"
@@ -684,12 +685,12 @@ const styles = StyleSheet.create({
   headerTitle: { flex: 1, minWidth: 0, textAlign: 'left', fontWeight: '700' },
   summaryRow: { marginTop: 15, flexDirection: 'row', alignItems: 'center' },
   summary: { flex: 1, minWidth: 0, fontWeight: '700' },
-  stateSurface: { position: 'relative', overflow: 'hidden', borderRadius: 16, borderWidth: 1 },
+  stateSurface: { position: 'relative', borderRadius: 16 }, // зачем (Тень 12.10): без кромки и без overflow (клип тени); блик скруглён сам (surfaceSheen)
   surfaceSheen: { borderRadius: 16 },
   loadingBox: { minHeight: 150, marginTop: 14, padding: 14 },
   loadingContent: { width: '100%', gap: 12 },
   loadingRows: { width: '100%', gap: 10 },
-  loadingRow: { minHeight: 58, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 13, borderWidth: 1 },
+  loadingRow: { minHeight: 58, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 13 },
   loadingIcon: { width: 44, height: 44, borderRadius: 12 },
   loadingCopy: { flex: 1, minWidth: 0, gap: 7 },
   loadingLineLong: { width: '72%', height: 10, borderRadius: 5 },
@@ -698,7 +699,7 @@ const styles = StyleSheet.create({
   emptyBox: { minHeight: 150, marginTop: 14, paddingHorizontal: 16, paddingVertical: 18, alignItems: 'center', justifyContent: 'center', gap: 16 },
   suggestHeading: { textAlign: 'center', fontWeight: '900' },
   suggestRow: { alignSelf: 'stretch', flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  suggestTile: { flexGrow: 1, flexBasis: 94, minWidth: 0, minHeight: 118, borderRadius: V2.radius.card, borderWidth: 1, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
+  suggestTile: { flexGrow: 1, flexBasis: 94, minWidth: 0, minHeight: 118, borderRadius: V2.radius.card, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
   suggestIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   suggestTitle: { minWidth: 0, textAlign: 'center', fontWeight: '800' },
   message: { textAlign: 'center', fontWeight: '600' },

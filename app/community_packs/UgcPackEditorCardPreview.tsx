@@ -3,6 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
 import { useTheme } from '../../components/ThemeContext';
+import { plateBoxShadow, useShadowGlass } from '../../components/v2/ShadowSurface';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -80,6 +81,7 @@ export default function UgcPackEditorCardPreview({
   editing,
 }: Props) {
   const { themeMode } = useTheme();
+  const gs = useShadowGlass(); // зачем (Тень 12.10): тень плашки описания
   const [cardSide, setCardSide] = useState<'front' | 'back'>('front');
   const [detailsExpanded, setDetailsExpanded] = useState(false);
 
@@ -189,7 +191,7 @@ export default function UgcPackEditorCardPreview({
               colors={[...frontGradient]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={[StyleSheet.absoluteFillObject, { borderRadius: 20, borderWidth: 1, borderColor: borderAccent }]}
+              style={[StyleSheet.absoluteFillObject, { borderRadius: 20, borderWidth: 1, borderColor: borderAccent /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */ }]}
             />
             {canScrollFront ? (
               <ScrollView
@@ -239,7 +241,7 @@ export default function UgcPackEditorCardPreview({
               colors={[...backGradient]}
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
-              style={[StyleSheet.absoluteFillObject, { borderRadius: 20, borderWidth: 1, borderColor: borderAccent }]}
+              style={[StyleSheet.absoluteFillObject, { borderRadius: 20, borderWidth: 1, borderColor: borderAccent /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */ }]}
             />
             <Text
               style={{
@@ -338,10 +340,9 @@ export default function UgcPackEditorCardPreview({
             marginTop: 8,
             paddingVertical: 14,
             paddingHorizontal: 16,
-            backgroundColor: t.bgSurface,
+            backgroundColor: gs.plateFillFrom,
             borderRadius: 20,
-            borderWidth: 1,
-            borderColor: t.border,
+            boxShadow: plateBoxShadow(gs), // зачем (Тень 12.10): плашка описания без рамки
           }}
         >
           <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700', letterSpacing: 0.5, marginBottom: 8 }}>

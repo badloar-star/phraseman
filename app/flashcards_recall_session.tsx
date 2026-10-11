@@ -34,6 +34,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
@@ -988,7 +989,7 @@ export default function FlashcardsRecallSession() {
                 runeFlight.originRef.current = node as unknown as View;
               }}
               collapsable={false}
-              style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card, borderColor: recallGlass.line }]}
+              style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card, boxShadow: plateBoxShadow(recallGlass) }]}
             >
               <RecallGlassSurface chrome={recallGlass} />
               <View
@@ -1046,11 +1047,8 @@ export default function FlashcardsRecallSession() {
                   styles.compactInputShell,
                   {
                     backgroundColor: recallGlass.opaqueControl,
-                    // зачем (`.inp`): кромка 1 px полупрозрачная (guard-ok). Цветную кромку
-                    // вердикта из макета не переносим — запрет владельца на цветные обводки;
-                    // вердикт читается карточкой ответа ниже.
-                    borderWidth: 1,
-                    borderColor: recallGlass.glassEdge,
+                    // зачем (`.inp`; Тень 12.10): поле ввода — плашка с тенью, без кромки; вердикт читается карточкой ответа ниже.
+                    boxShadow: plateBoxShadow(recallGlass),
                   },
                 ]}
               >
@@ -1207,9 +1205,9 @@ const styles = StyleSheet.create({
   content: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 28 },
   loadingBody: { flex: 1, paddingHorizontal: 16, paddingTop: 22, gap: 18, alignItems: 'flex-start' },
   loadingCta: { width: '100%', marginTop: 'auto', paddingBottom: 28 },
-  // зачем (practice.html `.qc` «Вспомни»): радиус 16, минимум 140, кромка 1 px (guard-ok).
+  // зачем (practice.html `.qc` «Вспомни»): радиус 16, минимум 140; кромки нет (Тень 12.10).
   focusCard: {
-    minHeight: 140, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, // guard-ok
+    minHeight: 140, borderRadius: 16,
     paddingHorizontal: 28, paddingVertical: 22, justifyContent: 'center',
   },
   glassSurface: { overflow: 'hidden' },

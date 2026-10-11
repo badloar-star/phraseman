@@ -868,7 +868,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <View
                 testID="pack-comment-menu"
                 accessibilityRole="menu"
-                style={{ backgroundColor: glass.opaqueSheet, borderTopLeftRadius: 26, borderTopRightRadius: 26, padding: 10, paddingBottom: menuBottomPad, borderWidth: 1, borderColor: glass.glassEdge, borderBottomWidth: 0 }}
+                style={{ backgroundColor: glass.opaqueSheet, borderTopLeftRadius: 26, borderTopRightRadius: 26, padding: 10, paddingBottom: menuBottomPad }} // зачем (Тень 12.10): шторка без кромки — её отделяет затемнение
               >
                 {isPackAuthor && menuFor ? (
                   <TouchableOpacity accessibilityRole="menuitem" onPress={() => handleTogglePin(menuFor)} style={menuRowStyle}>

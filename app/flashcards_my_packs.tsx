@@ -19,7 +19,6 @@
  * Лэйаут стабилен с первого кадра: пока владение читается, показываем тот же
  * каркас (заголовок + сетка-заглушка), а не пустоту, которая потом «прыгает».
  */
-import { BlurView } from 'expo-blur';
 import { DebugLogger } from './debug-logger';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -43,6 +42,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { MyPacksV2 } from './flashcards/MyPacksV2';
@@ -91,13 +91,7 @@ const EXEMPT_COLOR_1 = '#D9565D'; // theme-exempt: белый текст на к
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: белый текст на красной кнопке «Удалить набор»
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-function MyPacksGlass({ tint, edge }: { tint: string; edge: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: edge }} />
-  </View>;
-}
+// зачем (Тень 12.10): MyPacksGlass (блюр + блик + кромка-линия) убран — окно удаления это плашка PlateFill с тенью
 
 /** Два раздела экрана: что добавил себе и что создал сам. */
 type MyPacksGroups = {
@@ -813,8 +807,8 @@ export default function FlashcardsMyPacksScreen() {
         <Modal visible={!!deletePackTarget} transparent animationType="fade" statusBarTranslucent onRequestClose={() => { if (!deletePackBusy) setDeletePackTarget(null); }}>
           <View style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#00000099' /* theme-exempt: затемнение под окном удаления — тёмный скрим в любой теме */ }}>
             <Pressable accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => { if (!deletePackBusy) setDeletePackTarget(null); }} style={StyleSheet.absoluteFill} />
-            <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
-              <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+            <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, backgroundColor: g.sheet, boxShadow: plateBoxShadow(g) }}>
+              <PlateFill g={g} radius={26} />
               <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, fontWeight: '800' }}>{copy.deletePack}</Text>
               <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, marginTop: 10 }}>
                 {deletePackTarget ? `«${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)}» — ${triLang(lang, {
@@ -823,7 +817,7 @@ export default function FlashcardsMyPacksScreen() {
                 })}` : ''}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10, marginTop: 24 }}>
-                <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card }}>
+                <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }}>
                   <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: EXEMPT_COLOR_1 }}>

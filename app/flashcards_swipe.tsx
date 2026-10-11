@@ -49,6 +49,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
@@ -3697,14 +3698,15 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           pl: `Nieprawidłowo. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
         });
 
-    // зачем (`.tfb .b` макета): круг 88 с кромкой 1 px; после ответа выбранный круг — прежняя
+    // зачем (`.tfb .b` макета; Тень 12.10): круг 88 — плашка с тенью, без кромки; после ответа выбранный круг — прежняя
     // заливка верно/неверно, второй гаснет до 0.4. Цветную кромку не рисуем (запрет владельца).
     const answerStyle = (saysMatch: boolean) => {
-      if (!feedback) return { backgroundColor: swipeGlass.opaqueControl, borderColor: swipeGlass.glassEdge, opacity: 1 };
-      if (selectedMatch !== saysMatch) return { backgroundColor: swipeGlass.opaqueControl, borderColor: swipeGlass.glassEdge, opacity: 0.4 };
+      const shadow = plateBoxShadow(swipeGlass);
+      if (!feedback) return { backgroundColor: swipeGlass.opaqueControl, boxShadow: shadow, opacity: 1 };
+      if (selectedMatch !== saysMatch) return { backgroundColor: swipeGlass.opaqueControl, boxShadow: shadow, opacity: 0.4 };
       return {
         backgroundColor: verdictCorrect ? t.correctBg : t.wrongBg,
-        borderColor: swipeGlass.glassEdge,
+        boxShadow: shadow,
         opacity: 1,
       };
     };
@@ -3746,7 +3748,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
         <View ref={runeFlight.originRef} collapsable={false} style={styles.trueFalseBody}>
           {/* `.tf` макета: радиус 16, кромка 1 px полупрозрачная, вопрос 16, фраза 32/38, перевод 22/28. */}
-          <View testID="flashcards-truefalse-prompt" style={[styles.trueFalseCard, { backgroundColor: swipeGlass.opaqueCard, borderColor: swipeGlass.line }]}>
+          <View testID="flashcards-truefalse-prompt" style={[styles.trueFalseCard, { backgroundColor: swipeGlass.opaqueCard, boxShadow: plateBoxShadow(swipeGlass) }]}>
             <SwipeTrainingCardGlass chrome={swipeGlass} sheen={!feedback} />
             <Text style={[styles.trueFalseQuestion, { color: swipeGlass.secondary }]}>{question}</Text>
             <FlowText testID="true-false-word" provenance="authored" style={[styles.trueFalseWord, { color: t.textPrimary, fontSize: Math.max(32, f.h1 + 7), lineHeight: Math.max(38, Math.round((f.h1 + 7) * 1.2)) }]}>
@@ -4582,10 +4584,9 @@ const styles = StyleSheet.create({
     paddingTop: 38,
     paddingBottom: 18,
   },
-  // `.tf` макета: радиус 16, кромка 1 px (guard-ok), поля 26/28/28.
+  // `.tf` макета: радиус 16, без кромки (Тень 12.10), поля 26/28/28.
   trueFalseCard: {
     borderRadius: 16,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok
     paddingHorizontal: 28,
     paddingTop: 26,
     paddingBottom: 28,
@@ -4623,7 +4624,6 @@ const styles = StyleSheet.create({
     width: 88,
     height: 88,
     borderRadius: 44,
-    borderWidth: 1, // guard-ok: `.tfb .b` — 1 px полупрозрачная кромка
     alignItems: 'center',
     justifyContent: 'center',
   },

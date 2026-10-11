@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Визитка игрока — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 2 — «Визитка игрока», реестр overlays-players-001…007):
+     визитка — отдельный арт-экран (components/PlayerProfileModal.tsx + components/profile-card/*), он НЕ зависит от темы приложения: у обычной визитки своя палитра
+     (фон #151518, кант 1px 10%, монета ранга, имя 33/800, плашка ранга) — поэтому 7 состояний нарисованы один раз, а не парами «тёмная/светлая». Темы зависят только шторки
+     (Про визитка) и окно «Удалить друга?» — они показаны в обеих. Тексты — из кода (profile_card_copy.ts, usePlayerProfileSocial.ts); монеты — ассеты приложения coin_rank_XX.
+     Размеры текста 16 и 13 (имя 33/38 — по коду). Обводки только 1px полупрозрачные. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --v-sheet: rgba(24,24,29,.985); --v-surf: #1D1D22; --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); color: #fff; }
+  .ph.lite { --v-sheet: #FBFBFD; --v-surf: #ECECF1; --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.11); --v-ink: #fff; --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .vund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .vund .t1 { font-size: 28px; font-weight: 700; } .vund .r { height: 66px; border-radius: 18px; background: var(--v-surf); margin-top: 12px; }
+  .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }
+  /* ---- сама визитка (PlayerProfileModal: left/right 10, r38, высота 640) ---- */
+  .vcard { position: absolute; left: 10px; right: 10px; bottom: 18px; height: 640px; z-index: 30; border-radius: 38px; overflow: hidden; background: #151518; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  .vcard::after { content: ""; position: absolute; inset: 0; border-radius: 38px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); pointer-events: none; z-index: 14; }
+  .vstage { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+  /* фон обычной визитки (NormalLayers): мягкое свечение и два тонких кольца вокруг монеты */
+  .vglow { position: absolute; left: 50%; top: 36%; width: 418px; height: 418px; margin: -209px 0 0 -209px; border-radius: 50%; background: radial-gradient(closest-side, rgba(200,194,180,.26), rgba(200,194,180,0) 62%); }
+  .vring { position: absolute; left: 50%; top: 36%; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); } .vring.a { width: 282px; height: 282px; margin: -141px 0 0 -141px; } .vring.b { width: 211px; height: 211px; margin: -105px 0 0 -105px; }
+  .vcoin { position: absolute; left: 50%; top: 36%; width: 165px; height: 165px; margin: -82px 0 0 -82px; }
+  .vcoin img { width: 100%; height: 100%; display: block; border-radius: 50%; }
+  .vtop { position: absolute; top: 16px; left: 16px; right: 16px; z-index: 12; display: flex; justify-content: flex-end; align-items: center; gap: 8px; min-height: 44px; }
+  .vic { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.34); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); color: #fff; }
+  .vbody { position: absolute; left: 0; right: 0; bottom: 14px; padding: 0 22px; display: flex; flex-direction: column; align-items: center; z-index: 6; }
+  .vname { align-self: stretch; text-align: center; font-size: 33px; line-height: 38px; font-weight: 800; letter-spacing: -.7px; color: #fff; }
+  .vrank { margin-top: 10px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+  .vchip { height: 36px; border-radius: 18px; padding: 0 14px 0 7px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.13); font-size: 16px; font-weight: 700; color: #fff; }
+  .vchip img { width: 24px; height: 24px; border-radius: 50%; display: block; } .vchip .nc { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.18); display: block; }
+  .vlock { margin-top: 12px; min-height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-size: 13px; font-weight: 700; color: rgba(255,255,255,.72); }
+  /* ---- нижняя полоса кнопок ---- */
+  .vfoot { display: flex; gap: 10px; align-items: stretch; padding: 12px 16px 16px; z-index: 8; background: #151518; }
+  .vbtn { flex: 1; min-width: 0; min-height: 56px; padding: 8px 14px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 9px; overflow: hidden; background: #fff; color: #111; font-size: 16px; font-weight: 800; }
+  .vbtn.alt { background: rgba(255,255,255,.13); color: #fff; } .vbtn.off { background: rgba(255,255,255,.09); color: rgba(255,255,255,.55); } .vbtn.sq { flex: none; width: 80px; }
+  .v2l { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; } .v2l .a { font-size: 16px; line-height: 22px; font-weight: 700; } .v2l .b { display: flex; align-items: center; gap: 4px; font-size: 13px; line-height: 17px; font-weight: 700; opacity: .75; } .v2l .b img { width: 15px; height: 15px; border-radius: 50%; }
+  .vtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: rgba(30,30,34,.97); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 14px 34px rgba(0,0,0,.4); font-size: 16px; line-height: 22px; font-weight: 600; color: #fff; }
+  .vspin { width: 20px; height: 20px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); border-top-color: rgba(255,255,255,.8); animation: vsp 900ms linear infinite; flex: none; } @keyframes vsp { to { transform: rotate(360deg); } }
+  /* ---- шторка «Про визитка» (ProfileCardProSheet) и окно «Удалить друга?» ---- */
+  .vsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 40; border-radius: 34px 34px 0 0; padding: 12px 18px 30px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 -20px 30px rgba(0,0,0,.4); }
+  .vsh .hd { width: 42px; height: 5px; border-radius: 5px; background: var(--v-edge); margin: 0 auto; } .vsh .ti { margin-top: 12px; font-size: 24px; line-height: 30px; font-weight: 800; color: var(--v-tx); }
+  .vhero { position: relative; height: 250px; margin-top: 14px; border-radius: 28px; overflow: hidden; background: #0A0907; box-shadow: inset 0 0 0 1.5px rgba(233,200,130,.62); }
+  .vhero .g { position: absolute; left: 50%; top: 44%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(closest-side, rgba(233,200,130,.28), rgba(233,200,130,0) 65%); }
+  .vhero .c { position: absolute; left: 50%; top: 44%; width: 118px; height: 118px; margin: -59px 0 0 -59px; } .vhero .c img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+  .vhero .bd { position: absolute; left: 14px; top: 14px; height: 30px; padding: 0 12px; border-radius: 12px; display: flex; align-items: center; background: linear-gradient(145deg, #FFF1C9, #D9B56C 55%, #F6DC9C); color: #2A1F0C; font-size: 13px; font-weight: 900; letter-spacing: 3px; }
+  .vhero .nm { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; color: #fff; font-size: 16px; font-weight: 700; }
+  .vsw { display: flex; gap: 10px; margin-top: 14px; justify-content: space-between; } .vsw i { flex: 1; max-width: 60px; aspect-ratio: 1; border-radius: 18px; padding: 2px; display: block; } .vsw i b { display: block; width: 100%; height: 100%; border-radius: 16px; } .vsw i.on { box-shadow: inset 0 0 0 2px var(--acc); }
+  .vcap { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--v-sc); } .vcap b { color: var(--v-tx); font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-items: center; gap: 5px; } .vcap img { width: 18px; height: 18px; border-radius: 50%; }
+  .vbuy { margin-top: 14px; min-height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--acc); color: var(--v-ink); font-size: 16px; font-weight: 800; } .vbuy.off { background: var(--v-surf); color: var(--v-mu); } .vbuy img { width: 20px; height: 20px; border-radius: 50%; }
+  .vcf { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 24px 60px rgba(0,0,0,.45); }
+  .vcf .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; color: var(--v-tx); } .vcf .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--v-sc); }
+  .vcf .ac { display: flex; gap: 9px; margin-top: 18px; } .vcf .bt { flex: 1; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--v-ink); } .vcf .bt.gh { background: var(--v-surf); color: var(--v-tx); }
+  .vnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Визитка игрока — состояния</h1>
+  <p class="page-lead">Группа 2 из «экранов без макета» (реестр overlays-players-001…007): своя визитка, чужая без ID, незнакомый игрок, заявка отправляется, заявка отправлена, друг, лайк поставлен. Ниже — то, что внутри визитки: шторка покупки «Про визитки» (хватает / не хватает монет) и окно «Удалить друга?», в тёмной и светлой темах. Сама визитка от темы приложения не зависит. Тексты — из кода, монеты — ассеты приложения.</p>
+  <div class="page-nav"><a href="#cards">7 состояний визитки</a><a href="#extra">Покупка «Про» и удаление друга</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const coin = (r) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
+const T = ['Стажёр', 'Кадет', 'Скаут', 'Агент', 'Спикер', 'Лектор', 'Эксперт', 'Профи', 'Мастер', 'Эрудит', 'Дипломат', 'Консул', 'Стратег', 'Магистр', 'Лидер', 'Элита', 'Кумир', 'Икона', 'Легенда', 'Титан'];
+const share = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v7h14v-7"/></svg>';
+const lockI = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg>';
+const arrowUp = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M6 11l6-6 6 6"/></svg>';
+const star = '<svg class="i s20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.5l6-.8z"/></svg>';
+const heart = (on) => `<svg class="i s20" viewBox="0 0 24 24" style="color:${on ? '#FF5C7A' : '#fff'}"><path d="M12 20s-7-4.4-9-8.6C1.6 8.3 3.6 5 7 5c2 0 3.2 1.1 5 3 1.8-1.9 3-3 5-3 3.4 0 5.4 3.3 4 6.4C19 15.6 12 20 12 20z" ${on ? 'fill="currentColor" stroke="none"' : 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"'}/></svg>`;
+const und = '<div class="vund"><div class="t1">Друзья</div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="vdim"></div>';
+const chip = (r) => (r === null ? '<span class="vchip"><span class="nc"></span>—</span>' : `<span class="vchip"><img src="${coin(r)}" alt="">${T[r]} · ранг ${r}</span>`);
+// o: name, rank, menu(показывать «⋯»), self, foot(html), lock, toast
+const card = (o) => `<div class="vcard"><div class="vstage"><div class="vglow"></div><div class="vring a"></div><div class="vring b"></div>
+  <div class="vcoin">${o.rank === null ? '<div style="width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,.12)"></div>' : `<img src="${coin(o.rank)}" alt="">`}</div>
+  <div class="vtop">${o.self ? `<span class="vic t">${share}</span>` : o.menu ? `<span class="vic t">${icon('dotsH', 's20')}</span>` : ''}<span class="vic t">${icon('close', 's20')}</span></div>
+  <div class="vbody"><div class="vname">${o.name}</div><div class="vrank">${chip(o.rank)}</div>${o.lock ? `<span class="vlock t">${lockI}Свой текст — в Про визитке</span>` : ''}</div></div>
+  <div class="vfoot">${o.foot}</div></div>${o.toast ? `<div class="vtoast"><span class="vspin" style="display:${o.toast.spin ? 'block' : 'none'}"></span>${o.toast.text}</div>` : ''}`;
+const add = (cls, label, ico) => `<span class="vbtn ${cls} t">${icon(ico, 's20')}${label}</span>`;
+const like = (n, on, cls = 'alt sq') => `<span class="vbtn ${cls} t">${heart(on)}${n}</span>`;
+const two = (title, sub, r) => `<div class="v2l"><div class="a">${title}</div><div class="b"><img src="${coin(r)}" alt="">${sub}</div></div>`;
+const selfFoot = `<span class="vbtn t">${arrowUp}${two('Повысить ранг', '6 000', 5)}</span><span class="vbtn alt t">${star}${two('Про визитка', '10 000', 5)}</span>`;
+const S = [
+  ['001 · Своя визитка', 'Монета и звание, имя, «Поделиться» и закрыть; внизу «Повысить ранг» (цена или «ещё N», если монет не хватает) и «Про визитка» за монеты. Своя обычная визитка показывает замок «Свой текст — в Про визитке».', card({ name: 'Ирина', rank: 5, self: true, lock: true, foot: selfFoot })],
+  ['002 · Чужая визитка без ID', 'Нет идентификатора (профиль только для просмотра): ни «⋯», ни «Добавить в друзья»; лайк недоступен — одна неактивная кнопка с сердцем.', card({ name: 'Natalia', rank: 6, foot: like(0, false, 'off') })],
+  ['003 · Незнакомый игрок', 'Не друг: «Добавить в друзья» и лайк за активность; «⋯» открывает жалобу на игрока.', card({ name: 'Anna K', rank: 9, menu: true, foot: add('', 'Добавить в друзья', 'plus') + like(12, false) })],
+  ['004 · Заявка отправляется', 'Кнопка гаснет, пока заявка уходит (подпись для чтения с экрана — «Отправляем заявку…»); повторно нажать нельзя.', card({ name: 'Natalia', rank: 6, menu: true, foot: add('off', 'Добавить в друзья', 'plus') + like(3, false) })],
+  ['005 · Заявка отправлена', 'Кнопка меняется на «Заявка отправлена» с галочкой, сверху короткое сообщение «Заявка отправлена!».', card({ name: 'Ol Zar', rank: 5, menu: true, toast: { text: 'Заявка отправлена!' }, foot: add('alt', 'Заявка отправлена', 'check') + like(3, false) })],
+  ['006 · Уже друг', 'Кнопка «Вы друзья» с галочкой; нажатие предлагает «Удалить друга?» (окно ниже).', card({ name: 'Дмитрий', rank: 11, menu: true, foot: add('alt', 'Вы друзья', 'check') + like(21, false) })],
+  ['007 · Лайк поставлен', 'Сердце заливается розовым, счётчик растёт сразу, не дожидаясь сервера; повторное нажатие снимает лайк.', card({ name: 'Лидия', rank: 8, menu: true, foot: add('alt', 'Вы друзья', 'check') + like(22, true) })],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const col = (t, n, html, lite) => `<div class="col"><div class="lbl">${t}</div>${ph(html, lite)}<div class="vnote">${n}</div></div>`;
+const swatches = (on) => `<div class="vsw">${['#0C0B10', '#0A0907', '#120D1C', '#0D1620', '#05060F', '#07030D'].map((c, i) => `<i${i === on ? ' class="on"' : ''}><b style="background:${c}"></b></i>`).join('')}</div>`;
+const proSheet = (poor) => `<div class="vdim"></div><div class="vsh"><div class="hd"></div><div class="ti">Про визитка</div>
+  <div class="vhero"><div class="g"></div><span class="bd">PRO</span><div class="c"><img src="${coin(5)}" alt=""></div><div class="nm">Ирина</div></div>${swatches(1)}
+  <div class="vcap"><span>Обсидиан</span><span>У тебя <b><img src="${coin(5)}" alt="">${poor ? '7 842' : '12 400'}</b></span></div>
+  <div class="vbuy${poor ? ' off' : ''}">${poor ? 'Нужно ещё 2 158 монет' : `Взять за <img src="${coin(5)}" alt="">10 000`}</div></div>`;
+const confirm = `<div class="vdim"></div><div class="vcf"><div class="tt">Удалить друга?</div><div class="bd">Дмитрий</div><div class="ac"><span class="bt gh t">Отмена</span><span class="bt t">Удалить</span></div></div>`;
+const cardBg = card({ name: 'Ирина', rank: 5, self: true, lock: true, foot: selfFoot });
+const E = [
+  ['008 · Про визитка: монет хватает', 'Шторка поверх своей визитки: превью выбранного стиля, шесть плиток стилей, баланс и «Взять за 10 000».', und + cardBg + proSheet(false)],
+  ['009 · Про визитка: монет не хватает', 'Кнопка честно пишет, сколько монет ещё нужно, и неактивна; баланс показан предупреждающим тоном.', und + cardBg + proSheet(true)],
+  ['010 · Удалить друга?', 'Подтверждение после нажатия «Вы друзья»: «Отмена» / «Удалить».', und + card({ name: 'Дмитрий', rank: 11, menu: true, foot: add('alt', 'Вы друзья', 'check') + like(21, false) }) + confirm],
+];
+document.getElementById('root').innerHTML =
+  `<section class="block" id="cards"><h2>7 состояний визитки</h2><div class="phones">${S.map(([t, n, h]) => col(t, n, und + h, false)).join('')}</div></section>` +
+  `<section class="block" id="extra"><h2>Покупка «Про» и удаление друга · тёмная и светлая</h2><div class="phones">${E.map(([t, n, h]) => col(t, n, h, false)).join('')}${E.map(([t, n, h]) => col(t + ' · светлая', n, h, true)).join('')}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

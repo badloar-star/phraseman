@@ -21146,10 +21146,10 @@
       "id": "overlays-players-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 1,
-        "label": null,
-        "mapping": "no_page"
+        "label": "001 · Своя визитка",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Своя визитка",
@@ -21166,18 +21166,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-002",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 2,
-        "label": null,
-        "mapping": "no_page"
+        "label": "002 · Чужая визитка без ID",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Чужая визитка без ID",
@@ -21194,18 +21195,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-003",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 3,
-        "label": null,
-        "mapping": "no_page"
+        "label": "003 · Незнакомый игрок",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Незнакомый игрок",
@@ -21222,18 +21224,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-004",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 4,
-        "label": null,
-        "mapping": "no_page"
+        "label": "004 · Заявка отправляется",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Заявка отправляется",
@@ -21250,18 +21253,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 5,
-        "label": null,
-        "mapping": "no_page"
+        "label": "005 · Заявка отправлена",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Заявка отправлена",
@@ -21278,18 +21282,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 6,
-        "label": null,
-        "mapping": "no_page"
+        "label": "006 · Уже друг",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Друг",
@@ -21306,18 +21311,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-players-007",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/player-card-states.html",
         "phone": 7,
-        "label": null,
-        "mapping": "no_page"
+        "label": "007 · Лайк поставлен",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохраняемые состояния",
       "state": "Лайк поставлен · отправка лайка по кнопке",
@@ -21334,9 +21340,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 2, визитка игрока), эталон сразу"
     },
     {
       "id": "overlays-campaigns-001",

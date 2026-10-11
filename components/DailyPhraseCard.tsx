@@ -61,6 +61,7 @@ import { useV2Palette } from './v2/useV2Palette';
 import { V2IconTile } from './v2/V2Glass';
 import { colorWithAlpha } from './v2/plateAlpha';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './home/v2/homePlate';
+import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
@@ -101,6 +102,7 @@ function DailyPhraseCard({
   const homeV2 = variant === 'homeV2';
   const homeAdditional = variant === 'homeAdditional' || homeV2;
   const v2 = useV2Palette();
+  const shadowGlass = useShadowGlass();
   const v2Glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
@@ -664,7 +666,7 @@ function DailyPhraseCard({
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
                 onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }, pressed && styles.pressed]} // guard-ok: D43
               >
                 <Ionicons name="volume-medium-outline" size={18} color={v2.iconTint} />
               </Pressable>
@@ -676,7 +678,7 @@ function DailyPhraseCard({
                 // зачем: сохранить фразу можно только после ответа на вопрос дня —
                 // звезда открывает шторку, где закладка и сам вопрос.
                 onPress={openDetails}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }, pressed && styles.pressed]} // guard-ok: D43
               >
                 <Ionicons name="star-outline" size={18} color={v2.iconTint} />
               </Pressable>
@@ -1074,7 +1076,7 @@ const styles = StyleSheet.create({
   v2Card: {
     minHeight: 80,
     borderRadius: V2.radius.card,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    // зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): без обводок — кнопку отделяют тон фона и малая внешняя тень: рамки у карточки нет, отделяет тон и тень плашки.
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
@@ -1096,7 +1098,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    // зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): без обводок — кнопку отделяют тон фона и малая внешняя тень.
     alignItems: 'center',
     justifyContent: 'center',
   },

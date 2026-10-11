@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import Svg, { Defs, LinearGradient as SvgLinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -68,28 +68,9 @@ type Props = {
   reduceMotion: boolean;
 };
 
+// зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): у таб-бара НЕТ обводок — ни SVG-ободка капсулы, ни второй кромки, ни рамки вокруг активной
+// вкладки. Капсулу отделяют тон заливки (стекло темы + плашка активной вкладки) и внешняя тень бара.
 const RIM_SHEEN = '#FFFFFF'; // theme-exempt: белый блик кромки и заливки плашки таб-бара — как на утверждённом варианте «В · Тёплая кромка»
-
-const BarRim = memo(function BarRim({ width, color }: { width: number; color: string }) {
-  const h = V2_TAB_BAR_HEIGHT;
-  return (
-    <Svg pointerEvents="none" width={width} height={h} style={StyleSheet.absoluteFill}>
-      <Defs>
-        <SvgLinearGradient id="v2TabRim" x1="0" y1="0" x2="1" y2="0">
-          {/* зачем (владелец 11.10, капсом «обрезано справа»; диагноз координатора): кромка капсулы справа почти исчезала (0.08–0.1) и читалась
-              как срез. Теперь правый конец не бледнее 0.45, середина — не бледнее 0.2: капсула видна по всему периметру. */}
-          <Stop offset="0" stopColor={color} stopOpacity={0.62} />
-          <Stop offset="0.22" stopColor={color} stopOpacity={0.32} />
-          <Stop offset="0.55" stopColor={RIM_SHEEN} stopOpacity={0.2} />
-          <Stop offset="0.8" stopColor={RIM_SHEEN} stopOpacity={0.24} />
-          <Stop offset="1" stopColor={color} stopOpacity={0.45} />
-        </SvgLinearGradient>
-      </Defs>
-      {/* зачем (урок c014f2b9c: Android округляет ширину холста SVG вниз до целого px — линия на самом краю срезается): кромка капсулы тоже с запасом CAP_EDGE_INSET */}
-      <Rect x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2} height={h - CAP_EDGE_INSET * 2} rx={(h - CAP_EDGE_INSET * 2) / 2} fill="none" stroke="url(#v2TabRim)" strokeWidth={1} />
-    </Svg>
-  );
-});
 
 const CapFill = memo(function CapFill({ width, color }: { width: number; color: string }) {
   return (
@@ -101,18 +82,11 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
           <Stop offset="0.55" stopColor={color} stopOpacity={0.16} />
           <Stop offset="1" stopColor={RIM_SHEEN} stopOpacity={0.1} />
         </RadialGradient>
-        <SvgLinearGradient id="v2TabCapRim" x1="0" y1="0" x2="1" y2="1">
-          {/* зачем: кромка плашки равномерная по периметру (было 0.8 → 0.14 → 0.32 по диагонали: справа-снизу почти пропадала) */}
-          <Stop offset="0" stopColor={color} stopOpacity={0.7} />
-          <Stop offset="0.5" stopColor={color} stopOpacity={0.5} />
-          <Stop offset="1" stopColor={color} stopOpacity={0.6} />
-        </SvgLinearGradient>
       </Defs>
       {/* зачем (владелец 11.10, 8-й раз: «капсула обрезается справа»; виден на кадре эмулятора 09:35 — у плашки активной вкладки пропадает ПРАВАЯ рамка):
           Android округляет ширину холста SVG вниз до целого пикселя (73,9 dp × 2,625 = 193,95 px → 193), а рамка 1 dp лежала ровно на краю — правая линия
           и закругления обрезались, плашка выглядела срезанной. Рисуем с запасом CAP_EDGE_INSET (≥1 пикселя целого холста) от всех краёв. */}
       <Rect x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2} height={CAP_H - CAP_EDGE_INSET * 2} rx={CAP_RADIUS - CAP_EDGE_INSET} fill="url(#v2TabCapFill)" />
-      <Rect x={CAP_EDGE_INSET + 0.5} y={CAP_EDGE_INSET + 0.5} width={width - CAP_EDGE_INSET * 2 - 1} height={CAP_H - CAP_EDGE_INSET * 2 - 1} rx={CAP_RADIUS - CAP_EDGE_INSET - 0.5} fill="none" stroke="url(#v2TabCapRim)" strokeWidth={1} />
     </Svg>
   );
 });
@@ -381,9 +355,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       <View pointerEvents="none" style={s.clip}>
         {Platform.OS === 'ios' ? <BlurView intensity={22} tint={palette.isLight ? 'light' : 'dark'} style={StyleSheet.absoluteFill} /> : null}
         <LinearGradient colors={glassFill} style={StyleSheet.absoluteFill} />
-        <View style={s.innerRim} />
       </View>
-      {width > 0 ? <BarRim width={width} color={palette.isLight ? palette.secondary : palette.cta} /> : null}
       {slotW > 0 && activeIndex >= 0 ? (
         <Animated.View
           pointerEvents="none"
@@ -453,16 +425,6 @@ const s = StyleSheet.create({
     elevation: 14,
   },
   clip: { ...StyleSheet.absoluteFillObject, borderRadius: V2_TAB_BAR_HEIGHT / 2, overflow: 'hidden' },
-  innerRim: {
-    position: 'absolute',
-    top: 5,
-    left: 5,
-    right: 5,
-    bottom: 5,
-    borderRadius: V2_TAB_BAR_HEIGHT / 2 - 5,
-    borderWidth: 1, // guard-ok: D43 вторая кромка «толщины стекла», как на референсе
-    borderColor: 'rgba(255,255,255,0.045)', // guard-ok: D43 // theme-exempt: вторая кромка «толщины стекла» таб-бара (D43), белая тонкая
-  },
   cap: {
     position: 'absolute',
     top: PAD,

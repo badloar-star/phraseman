@@ -11,7 +11,8 @@ test('live tab bar takes surface, rim, cap and labels from the selected glass th
   assert.match(source, /const\s+\{\s*liquidGlassThemeId\s*\}\s*=\s*useTheme\(\)/);
   assert.match(source, /const palette = liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /backgroundColor:\s*Platform\.OS === 'android' \? palette\.bgBottom/);
-  assert.match(source, /<BarRim\s+width=\{width\}\s+color=\{palette\.isLight \? palette\.secondary : palette\.cta\}/);
+  // зачем (владелец 12.10, стиль «Тень»): ободка капсулы больше нет — бар отделяют тон стекла темы и внешняя тень.
+  assert.doesNotMatch(source, /<BarRim/);
   // зачем (темы 2.0): капсула и активный значок — роли цвета темы; в «Спокойно» они равны cta (проверено ниже).
   assert.match(source, /<CapFill\s+width=\{slotW\}\s+color=\{palette\.accentCap\}/);
   assert.match(source, /const color = on \? palette\.accentBright/);

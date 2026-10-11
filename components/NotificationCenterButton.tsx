@@ -40,6 +40,7 @@ import PressableScale from './PressableScale';
 import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { colorWithAlpha } from './v2/plateAlpha';
+import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -181,6 +182,7 @@ function NotificationCenterButton({
   onRequestedReportReplyHandled,
 }: NotificationCenterButtonProps) {
   const v2 = useV2Palette();
+  const shadowGlass = useShadowGlass();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -625,7 +627,7 @@ function NotificationCenterButton({
         accessibilityLabel={combinedUnreadCount > 0 ? `${copy.title}: ${combinedUnreadCount}` : copy.title}
         onPress={open}
         style={styles.headerPressable}
-        contentStyle={[styles.headerButton, { backgroundColor: colorWithAlpha(v2.glassRaised, 0.5), borderColor: v2.stroke }]} // зачем: приказ владельца 11.10 19:2x — фон кнопки Главной 50 % (альфа цвета, значок и бейдж 100 %)
+        contentStyle={[styles.headerButton, { backgroundColor: colorWithAlpha(v2.glassRaised, 0.5), boxShadow: nestedBoxShadow(shadowGlass) }]} // зачем: приказ владельца 11.10 19:2x — фон кнопки Главной 50 % (альфа цвета, значок и бейдж 100 %)
       >
         {/* зачем (2.0, референс владельца 24.09): круглая кнопка на графите,
             непрочитанное — светлая точка, число уходит в подпись для скринридера. */}
@@ -753,7 +755,7 @@ const styles = StyleSheet.create({
     width: V2.iconButton,
     height: V2.iconButton,
     borderRadius: V2.iconButton / 2,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    // зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): без обводок — кнопку отделяют тон фона и малая внешняя тень.
     alignItems: 'center',
     justifyContent: 'center',
   },

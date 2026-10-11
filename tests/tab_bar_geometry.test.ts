@@ -50,24 +50,27 @@ describe('V2TabBar source', () => {
     expect(src).toContain('OVERFLOW');
   });
 
-  test('rims and fills never fade out on the right side (owner 11.10: «обрезано справа» was a visual cut)', () => {
-    const opacities = (id: string): number[] => {
-      const block = src.slice(src.indexOf(`id="${id}"`), src.indexOf('</SvgLinearGradient>', src.indexOf(`id="${id}"`)) + 30);
-      return [...block.matchAll(/stopOpacity=\{([\d.]+)\}/g)].map((m) => Number(m[1]));
-    };
-    const bar = opacities('v2TabRim');
-    expect(bar[bar.length - 1]).toBeGreaterThanOrEqual(0.45);
-    expect(Math.min(...bar.slice(2, 4))).toBeGreaterThanOrEqual(0.2);
-    expect(Math.min(...opacities('v2TabCapRim'))).toBeGreaterThanOrEqual(0.5);
+  // зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): у таб-бара нет обводок. Прежний тест следил, чтобы ободок не бледнел справа; теперь ободка нет,
+  // а заливка активной плашки по-прежнему не гаснет к правому краю («обрезано справа» было визуальным срезом).
+  test('the active cap fill never fades out on the right side (owner 11.10: «обрезано справа» was a visual cut)', () => {
     const radial = src.slice(src.indexOf('id="v2TabCapFill"'), src.indexOf('</RadialGradient>'));
     const fill = [...radial.matchAll(/stopOpacity=\{([\d.]+)\}/g)].map((m) => Number(m[1]));
     expect(fill[fill.length - 1]).toBeGreaterThanOrEqual(0.1);
   });
 
-  test('the capsule rim keeps the same safe inset from the SVG canvas edge as the cap (Android rounds the canvas down)', () => {
-    const rim = src.slice(src.indexOf('const BarRim'), src.indexOf('const CapFill'));
-    expect(rim).toContain('x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2}');
-    expect(rim).not.toContain('x={0.5} y={0.5}');
+  test('no outlines on the tab bar: no SVG rim, no second rim, no stroke around the active tab', () => {
+    expect(src).not.toContain('v2TabRim');
+    expect(src).not.toContain('v2TabCapRim');
+    expect(src).not.toContain('const BarRim');
+    expect(src).not.toContain('innerRim');
+    expect(src).not.toMatch(/stroke="url\(#/);
+    expect(src).not.toMatch(/borderWidth: 1, \/\/ guard-ok: D43 вторая кромка/);
+  });
+
+  test('the cap fill keeps the safe inset from the SVG canvas edge (Android rounds the canvas down)', () => {
+    const fill = src.slice(src.indexOf('const CapFill'), src.indexOf('function V2TabBar'));
+    expect(fill).toContain('x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2}');
+    expect(fill).not.toContain('x={0.5} y={0.5}');
   });
 
   test('the cap is placed instantly when the slot width changes, springs only between tabs (no mint tail)', () => {

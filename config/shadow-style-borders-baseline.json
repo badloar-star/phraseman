@@ -1,5 +1,5 @@
 {
-  "total": 273,
+  "total": 266,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -28,7 +28,7 @@
     "components/AppMessagesInbox.tsx": 6,
     "components/celebration/RewardImpactRings.tsx": 1,
     "components/coins/CoinRankCatalog.tsx": 2,
-    "components/DailyPhraseCard.tsx": 13,
+    "components/DailyPhraseCard.tsx": 9,
     "components/DeleteAccountConfirmModal.tsx": 2,
     "components/dialogs/DialogGoalsSheet.tsx": 1,
     "components/dialogs/DialogueV2BriefingScreen.tsx": 1,
@@ -62,7 +62,7 @@
     "components/MistakeEli5Modal.tsx": 1,
     "components/mistakes-panel/PracticeKit.tsx": 2,
     "components/NoEnergyModal.tsx": 4,
-    "components/NotificationCenterButton.tsx": 5,
+    "components/NotificationCenterButton.tsx": 3,
     "components/paywall/PaywallBenefitComparison.tsx": 3,
     "components/paywall/PaywallProofCards.tsx": 3,
     "components/paywall/paywallShared.tsx": 1,
@@ -86,7 +86,7 @@
     "components/ui/new/OfflineDataNotice.tsx": 2,
     "components/ui/PrimaryButton.tsx": 1,
     "components/v2/V2Kit.tsx": 1,
-    "components/v2/V2TabBar.tsx": 2,
+    "components/v2/V2TabBar.tsx": 1,
     "components/VerbLetterBank.tsx": 5,
     "components/VipSurveyModal.tsx": 13,
     "components/YearWheel.tsx": 2,

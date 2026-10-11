@@ -30,7 +30,7 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
     return triLang(lang, {
       ru: 'Не получилось сохранить прогресс перед сменой — нет связи. Проверь интернет и попробуй снова. Прогресс на месте.',
       uk: 'Не вдалося зберегти прогрес перед зміною — немає зв’язку. Перевір інтернет і спробуй знову. Прогрес на місці.',
-      en: 'Couldn’t save your progress before switching — no connection. Check the internet and try again. Your progress is safe.',
+      en: 'Couldn’t save your progress before switching — no connection. Check your connection and try again. Your progress is safe.',
       es: 'No se pudo guardar el progreso antes del cambio: no hay conexión. Revisa internet e inténtalo de nuevo. Tu progreso sigue ahí.',
       'pt-BR': 'Não deu para salvar o progresso antes da troca: sem conexão. Verifique a internet e tente de novo. Seu progresso está salvo.',
       vi: 'Chưa lưu được tiến trình trước khi đổi — không có kết nối. Hãy kiểm tra mạng và thử lại. Tiến trình vẫn còn nguyên.',
@@ -60,7 +60,7 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
   if (reason === 'recovery_required' || reason === 'wipe_failed') {
     return triLang(lang, {
       ru: 'Смена аккаунта началась, но не завершилась. Перезапусти приложение — восстановление продолжится.',
-      uk: 'Зміна акаунту почалася, але не завершилася. Перезапусти застосунок — відновлення продовжиться.',
+      uk: 'Зміна акаунта почалася, але не завершилася. Перезапусти застосунок — відновлення продовжиться.',
       en: 'The account switch started but didn’t finish. Restart the app to continue the recovery.',
       es: 'El cambio de cuenta empezó, pero no terminó. Reinicia la app para continuar la recuperación.',
       'pt-BR': 'A troca de conta começou, mas não terminou. Reinicie o app para continuar a recuperação.',

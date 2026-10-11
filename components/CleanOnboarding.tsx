@@ -198,7 +198,7 @@ function onboardingSwitchedSignInAgainText(lang: Lang): string {
   return triLang(lang, {
     ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
     uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
-    en: 'Account switched. Sign in again the way you need.',
+    en: 'Account switched. Sign in again with the method you prefer.',
     es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
     'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
     vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
@@ -383,7 +383,7 @@ async function offerAccountRestore(lang: Lang): Promise<boolean> {
       triLang(lang, {
         ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`,
         uk: `Цей акаунт позначено на видалення. Лишилося ${days} дн. — увесь прогрес на місці й повернеться повністю.`,
-        en: `This account is scheduled for deletion. ${days} day(s) left — all your progress is intact and comes back in full.`,
+        en: `This account is scheduled for deletion. ${days} ${days === 1 ? 'day' : 'days'} left — all your progress is still here and will come back in full.`,
         es: `Esta cuenta está marcada para eliminarse. Quedan ${days} día(s): todo tu progreso sigue intacto y vuelve completo.`,
         'pt-BR': `Esta conta está marcada para exclusão. Faltam ${days} dia(s): todo o seu progresso está intacto e volta completo.`,
         vi: `Tài khoản này đang chờ xóa. Còn ${days} ngày — toàn bộ tiến trình vẫn nguyên và sẽ trở lại đầy đủ.`,
@@ -423,12 +423,12 @@ function describeAuthError(raw: string, lang: Lang): string {
   // зачем (04.10): язык интерфейса известен (lang) — раньше 9 веток отдавали русский текст любому языку.
   let human = triLang(lang, { ru: 'Не получилось войти. Попробуй ещё раз.', uk: 'Не вдалося увійти. Спробуй ще раз.', en: "Couldn't sign in. Try again.", es: 'No se pudo iniciar sesión. Inténtalo de nuevo.', 'pt-BR': 'Não deu para entrar. Tente de novo.', vi: 'Chưa đăng nhập được. Hãy thử lại.', id: 'Belum bisa masuk. Coba lagi.', tr: 'Giriş yapılamadı. Tekrar dene.', pl: 'Nie udało się zalogować. Spróbuj ponownie.' });
   if (code === 'account_delete_pending' || code.includes('user-disabled')) {
-    human = triLang(lang, { ru: 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.', uk: 'Цей акаунт ще видаляється. Спробуй увійти за кілька хвилин.', en: 'This account is still being deleted. Try signing in in a few minutes.', es: 'Esta cuenta aún se está eliminando. Intenta entrar en unos minutos.', 'pt-BR': 'Esta conta ainda está sendo excluída. Tente entrar em alguns minutos.', vi: 'Tài khoản này vẫn đang được xóa. Hãy thử đăng nhập sau vài phút.', id: 'Akun ini masih dihapus. Coba masuk beberapa menit lagi.', tr: 'Bu hesap hâlâ siliniyor. Birkaç dakika sonra giriş yapmayı dene.', pl: 'To konto jest jeszcze usuwane. Spróbuj zalogować się za kilka minut.' });
+    human = triLang(lang, { ru: 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.', uk: 'Цей акаунт ще видаляється. Спробуй увійти за кілька хвилин.', en: 'This account is still being deleted. Try signing in again in a few minutes.', es: 'Esta cuenta aún se está eliminando. Intenta entrar en unos minutos.', 'pt-BR': 'Esta conta ainda está sendo excluída. Tente entrar em alguns minutos.', vi: 'Tài khoản này vẫn đang được xóa. Hãy thử đăng nhập sau vài phút.', id: 'Akun ini masih dihapus. Coba masuk beberapa menit lagi.', tr: 'Bu hesap hâlâ siliniyor. Birkaç dakika sonra giriş yapmayı dene.', pl: 'To konto jest jeszcze usuwane. Spróbuj zalogować się za kilka minut.' });
   } else if (code === 'account_switch_required') {
     human = triLang(lang, {
       ru: 'Локальный прогресс сохранён. Сначала подтверди безопасную смену аккаунта, затем повтори вход.',
       uk: 'Локальний прогрес збережено. Спочатку підтвердь безпечну зміну акаунта, потім повтори вхід.',
-      en: 'Local progress is preserved. Confirm the safe account switch first, then sign in again.',
+      en: 'Your progress on this phone is safe. Confirm the account switch first, then sign in again.',
       es: 'El progreso local está guardado. Confirma primero el cambio seguro de cuenta y vuelve a entrar.',
       'pt-BR': 'O progresso local foi preservado. Primeiro confirme a troca segura de conta e entre novamente.',
       vi: 'Tiến trình cục bộ đã được giữ nguyên. Trước tiên hãy xác nhận đổi tài khoản an toàn rồi đăng nhập lại.',
@@ -444,7 +444,7 @@ function describeAuthError(raw: string, lang: Lang): string {
   } else if (code === 'identity_retired') {
     human = triLang(lang, {
       ru: 'Старые данные удалены и не восстановятся. Открывается новый пустой профиль.',
-      uk: 'Старі дані видалено й вони не відновляться. Відкривається новий порожній профіль.',
+      uk: 'Старі дані видалено, і вони не відновляться. Відкривається новий порожній профіль.',
       en: 'The old data was deleted and cannot be restored. A new empty profile is opening.',
       es: 'Los datos anteriores se eliminaron y no se pueden restaurar. Se abre un perfil nuevo y vacío.',
       'pt-BR': 'Os dados antigos foram excluídos e não podem ser restaurados. Um novo perfil vazio será aberto.',
@@ -2728,7 +2728,7 @@ function CleanOnboarding({
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
-            en: 'Your account is restored. Sign in again — all progress is there.',
+            en: 'Your account is restored. Sign in again — all your progress is still there.',
             es: 'Tu cuenta está restaurada. Entra de nuevo: todo el progreso sigue ahí.',
             'pt-BR': 'Sua conta foi restaurada. Entre de novo: todo o progresso está lá.',
             vi: 'Tài khoản đã được khôi phục. Hãy đăng nhập lại — toàn bộ tiến trình vẫn còn.',
@@ -2876,7 +2876,7 @@ function CleanOnboarding({
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
-            en: 'Your account is restored. Sign in again — all progress is there.',
+            en: 'Your account is restored. Sign in again — all your progress is still there.',
             es: 'Tu cuenta está restaurada. Entra de nuevo: todo el progreso sigue ahí.',
             'pt-BR': 'Sua conta foi restaurada. Entre de novo: todo o progresso está lá.',
             vi: 'Tài khoản đã được khôi phục. Hãy đăng nhập lại — toàn bộ tiến trình vẫn còn.',

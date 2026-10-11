@@ -1084,6 +1084,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const [selectedIds, setSelectedIds] = useState<Set<string>>(() => initialSelectedIds);
   const [loadingSources, setLoadingSources] = useState(() => initialSources.length === 0);
   const [starting, setStarting] = useState(false);
+  // зачем (журнал 27): панель «Начать» сплошная, цвета низа фона экрана; её высота нужна затуханию над ней.
+  const [selectStartBarHeight, setSelectStartBarHeight] = useState(96);
+  const selectStartBarColor = (t.bgGradient?.[1] ?? t.bgPrimary).slice(0, 7);
   const [loadError, setLoadError] = useState('');
   // Старт тренировки карточек = 10 ⚡ (numeric energy —
   // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
@@ -3618,16 +3621,20 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     </Animated.ScrollView>
       {/* Закреплённая панель: кнопка запуска всегда под большим пальцем, сколько
           бы наборов ни было в списке. */}
+      {/* зачем (журнал 27, «подложка под кнопкой просвечивает»): сплошной цвет НИЗА фона экрана (bgGradient[1]), без прозрачности — раньше
+          здесь был bgSurface с альфой .94: серая плита светлее/темнее страницы и просвет строк списка. Над панелью — короткое затухание. */}
+      <View pointerEvents="none" style={[styles.selectStartFade, { bottom: selectStartBarHeight }]}>
+        <LinearGradient colors={[`${selectStartBarColor}00`, selectStartBarColor]} style={StyleSheet.absoluteFill} />
+      </View>
       <View
+        onLayout={(e) => setSelectStartBarHeight(e.nativeEvent.layout.height)}
         style={[
           styles.selectStartBar,
           {
             paddingHorizontal: ds.spacing.lg,
             paddingBottom: Math.max(12, bottomInset + 12),
-            // зачем: подложка в тон фона — иначе строки списка просвечивают
-            // сквозь панель и «наезжают» на кнопку при прокрутке. Обводки нет,
-            // отделяем тоном (правило владельца: без рамок).
-            backgroundColor: glassFill(t.bgSurface, 0.94),
+            // Обводки нет, отделяем тоном (правило владельца: без рамок).
+            backgroundColor: selectStartBarColor,
           },
         ]}
       >
@@ -4353,6 +4360,13 @@ const styles = StyleSheet.create({
   },
   selectRoot: {
     flex: 1,
+  },
+  /** Затухание над закреплённой панелью «Начать»: высота 22, лежит сразу над ней. */
+  selectStartFade: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 22,
   },
   selectStartBar: {
     // Панель поверх списка, а не в потоке: список прокручивается под ней, а

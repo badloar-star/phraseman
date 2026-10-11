@@ -1,0 +1,87 @@
+ОНБОРДИНГ ru, прогретый сборщик (2026-10-12 00:04–00:06): метки времени шагов и строки [ONB-TAP]/[ONB-PAYWALL-WAIT]/[ONB-STALL]
+ВАЖНО: тап «Продолжить» на экране «Приятно познакомиться» (niceToMeet) 00:04:31.6 → slide:start promise только в 00:04:47.05 — задержка ~15 с (пустой лаг без JS-STALL). Остальные шаги 0,3–0,4 с.
+Пейвол: тап 00:05:24.10 → effects 60 мс → slide:enter onboardingPaywall 00:05:24.65 — пустого экрана 20–35 с в этом прогоне нет.
+
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/onboarding-001.png bytes=
+00:04:21.198 shot onboarding-001 done
+00:04:21.227 tap Start
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/onboarding-007.png bytes=
+00:04:27.361 shot onboarding-007 done
+00:04:27.394 tap Later
+00:04:31.629 tap nice-continue
+00:04:51.247 tap promise-continue
+00:04:55.406 tap improve-continue
+00:04:59.561 tap tiktok
+00:05:01.757 tap source-continue
+00:05:05.893 tap language-continue
+00:05:10.106 tap notif-skip
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/onboarding-019.png bytes=
+00:05:14.073 shot onboarding-019 done
+00:05:14.099 tap age-no
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/onboarding-021.png bytes=
+00:05:16.641 shot onboarding-021 done
+00:05:16.664 tap age-yes
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/onboarding-020.png bytes=
+00:05:19.059 shot onboarding-020 done
+00:05:19.080 tap finish
+00:05:24.216 tap trial-continue
+00:05:24.351 waiting for paywall
+00:06:50.508 paywall wait lines seen
+10-12 00:04:21.633 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=privacy from=welcome instant=true reduceMotion=false exitMs=260
+10-12 00:04:21.682 I/ReactNativeJS(10205): [ONB-TAP] slide:shown step=privacy via=instant
+10-12 00:04:21.684 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=privacy
+10-12 00:04:21.853 W/ReactNativeJS(10205): [JS-STALL] onboarding step=privacy поток стоял 726ms
+10-12 00:04:22.522 W/ReactNativeJS(10205): [JS-STALL] onboarding step=privacy поток стоял 430ms
+10-12 00:04:23.584 W/ReactNativeJS(10205): [JS-STALL] onboarding step=privacy поток стоял 260ms
+10-12 00:04:24.660 W/ReactNativeJS(10205): [JS-STALL] onboarding step=privacy поток стоял 717ms
+10-12 00:04:27.312 I/ReactNativeJS(10205): [ONB-TAP] later:press step=privacy authInFlight=false authSlow=false authLoading=null
+10-12 00:04:27.313 I/ReactNativeJS(10205): [ONB-TAP] later:go_called target=niceToMeet
+10-12 00:04:27.398 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=niceToMeet from=privacy instant=false reduceMotion=false exitMs=260
+10-12 00:04:27.747 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=niceToMeet finished=true afterMs=350
+10-12 00:04:27.851 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=niceToMeet afterMs=453
+10-12 00:04:27.852 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=niceToMeet
+10-12 00:04:47.054 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=promise from=niceToMeet instant=false reduceMotion=false exitMs=260
+10-12 00:04:47.379 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=promise finished=true afterMs=326
+10-12 00:04:47.497 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=promise afterMs=445
+10-12 00:04:47.501 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=promise
+10-12 00:04:51.154 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=improve from=promise instant=false reduceMotion=false exitMs=260
+10-12 00:04:51.447 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=improve finished=true afterMs=294
+10-12 00:04:51.559 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=improve afterMs=405
+10-12 00:04:51.561 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=improve
+10-12 00:04:55.315 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=source from=improve instant=false reduceMotion=false exitMs=260
+10-12 00:04:55.612 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=source finished=true afterMs=299
+10-12 00:04:55.695 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=source afterMs=382
+10-12 00:04:55.697 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=source
+10-12 00:05:01.633 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=language from=source instant=false reduceMotion=false exitMs=260
+10-12 00:05:01.922 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=language finished=true afterMs=289
+10-12 00:05:02.034 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=language afterMs=399
+10-12 00:05:02.051 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=language
+10-12 00:05:05.786 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=notifications from=language instant=false reduceMotion=false exitMs=260
+10-12 00:05:06.097 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=notifications finished=true afterMs=311
+10-12 00:05:06.224 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=notifications afterMs=438
+10-12 00:05:06.226 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=notifications
+10-12 00:05:06.591 W/ReactNativeJS(10205): [JS-STALL] onboarding step=notifications поток стоял 281ms
+10-12 00:05:10.104 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=name from=notifications instant=false reduceMotion=false exitMs=260
+10-12 00:05:10.418 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=name finished=true afterMs=316
+10-12 00:05:10.552 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=name afterMs=449
+10-12 00:05:10.557 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=name
+10-12 00:05:18.910 I/ReactNativeJS(10205): [ONB-STALL] name_finish:enter analyticsAllowed=false source=tiktok age=yes +0ms
+10-12 00:05:18.933 I/ReactNativeJS(10205): [ONB-STALL] name_finish:multiSet_done +23ms
+10-12 00:05:18.945 I/ReactNativeJS(10205): [ONB-STALL] name_finish:ageAttestation_done +35ms
+10-12 00:05:18.965 I/ReactNativeJS(10205): [ONB-STALL] name_finish:consent_to_cloud_started +56ms
+10-12 00:05:18.969 I/ReactNativeJS(10205): [ONB-PAYWALL-WAIT] effects:skip preparePaywall=false busy=false
+10-12 00:05:18.969 I/ReactNativeJS(10205): [ONB-STALL] name_finish:advance_done +60ms
+10-12 00:05:19.099 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=trialReminder from=name instant=false reduceMotion=false exitMs=260
+10-12 00:05:19.136 W/ReactNativeJS(10205): [JS-STALL] onboarding step=trialReminder поток стоял 260ms
+10-12 00:05:19.405 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=trialReminder finished=true afterMs=307
+10-12 00:05:19.507 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=trialReminder afterMs=409
+10-12 00:05:19.509 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=trialReminder
+10-12 00:05:24.103 I/ReactNativeJS(10205): [ONB-PAYWALL-WAIT] effects:start createPending=true trackView=true +0ms
+10-12 00:05:24.161 I/ReactNativeJS(10205): [ONB-PAYWALL-WAIT] effects:createPendingPlan_done +59ms
+10-12 00:05:24.162 I/ReactNativeJS(10205): [ONB-PAYWALL-WAIT] effects:preparePaywall_done +60ms
+10-12 00:05:24.162 I/ReactNativeJS(10205): [ONB-PAYWALL-WAIT] effects:trackPaywallView_done +60ms
+10-12 00:05:24.227 I/ReactNativeJS(10205): [ONB-TAP] slide:start step=onboardingPaywall from=trialReminder instant=false reduceMotion=false exitMs=260
+10-12 00:05:24.523 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_done step=onboardingPaywall finished=true afterMs=296
+10-12 00:05:24.645 I/ReactNativeJS(10205): [ONB-TAP] slide:exit_stop step=onboardingPaywall afterMs=419
+10-12 00:05:24.654 I/ReactNativeJS(10205): [ONB-TAP] slide:enter shown=onboardingPaywall
+ALLDONEW

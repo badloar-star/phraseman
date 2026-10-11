@@ -1,0 +1,13 @@
+streakJump=5:12 (Сверка 2026-10-12 00:11): на экране через 5 с и 17 с — 5 дней при cloud=12
+10-12 00:11:20.432 I/ReactNativeJS(11464): '[DEV-STATE] streak_jump', '{"step":"local_written","local":5}'
+10-12 00:11:20.434 W/ReactNativeJS(11464): '[DEV-STATE] route: фикстуры применены', '2867мс', '{"applied":{"streakJump":"5:12"},"skipped":{},"next":"/(tabs)/home"}'
+10-12 00:11:22.448 I/ReactNativeJS(11464): [STREAK] cloud_restore local=5@null cloud=0@undefined merged=5@null restore=true phoneOwns=false serverAuth=true pending=false
+10-12 00:11:26.913 I/ReactNativeJS(11464): '[DEV-STATE] streak_jump', '{"step":"cloud_written","cloud":12,"painted":"painted"}'
+10-12 00:11:26.914 I/ReactNativeJS(11464): '[DEV-STATE] streak_jump', '{"step":"event_emitted","event":"cloud_profile_hydrated"}'
+10-12 00:11:26.927 W/ReactNativeJS(11464): '[DEV-STATE] route: replace вызван →', '/(tabs)/home'
+10-12 00:11:27.654 I/ReactNativeJS(11464): '[HOME-RESTORE-JUMP]', '{"memoryStreak":5,"storedStreak":12,"snapshotStreak":5,"snapshotSource":"local","runes":0,"homeActive":false,"willReload":"next_loadData_only"}'
+10-12 00:11:28.242 I/ReactNativeJS(11464): [STREAK] home:hydration personal=5 snapshot=5@local streakVal=5 -> 5
+10-12 00:11:28.755 I/ReactNativeJS(11464): [STREAK] home:hydration personal=5 snapshot=5@local streakVal=5 -> 5
+10-12 00:11:29.045 I/ReactNativeJS(11464): [STREAK] cloud_restore local=5@null cloud=0@undefined merged=5@null restore=true phoneOwns=false serverAuth=true pending=false
+10-12 00:11:36.613 I/ReactNativeJS(11464): '[HOME-RESTORE-JUMP]', '{"memoryStreak":5,"storedStreak":5,"snapshotStreak":5,"snapshotSource":"storage","runes":0,"homeActive":false,"willReload":"next_loadData_only"}'
+10-12 00:11:36.615 I/ReactNativeJS(11464): '[HOME-RESTORE-JUMP]', '{"memoryStreak":5,"storedStreak":5,"snapshotStreak":5,"snapshotSource":"storage","runes":0,"homeActive":true,"willReload":"next_loadData_only"}'

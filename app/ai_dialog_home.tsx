@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,26 +17,6 @@ import { V2 } from '../constants/v2Style';
 import { safeRouterBack } from './navigation_back';
 
 export default function AiDialogHome() {
-  // зачем (Сверка dialogs-001, «пустой кадр ~3 с»; сперва логи): момент монтирования экрана — сравнить с [DIALOGS-OPEN] hub:* и с тапом на Главной.
-  console.log('[DIALOGS-OPEN] home:render', JSON.stringify({ at: Date.now() }));
-  // зачем (Сверка 21:00: пустой кадр ПОСЛЕ first_commit, данные ни при чём): первые 6 с пишем разрывы между кадрами JS-потока (> 120 мс) —
-  // видно, держит ли пустоту занятый JS (тяжёлая отрисовка/работа) или она нативная (слой, переход, графика эмулятора).
-  useEffect(() => {
-    const t0 = Date.now();
-    let last = t0;
-    let frames = 0;
-    let raf = 0;
-    const tick = () => {
-      const now = Date.now();
-      frames += 1;
-      if (now - last > 120) console.log('[DIALOGS-OPEN] home:js_gap', JSON.stringify({ gapMs: now - last, sinceMountMs: now - t0, frame: frames }));
-      last = now;
-      if (now - t0 < 6000) raf = requestAnimationFrame(tick);
-      else console.log('[DIALOGS-OPEN] home:js_frames', JSON.stringify({ frames, over: 'ms', spanMs: now - t0 }));
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
   const { lang } = useLang();
   const router = useRouter();
   const { width, fontScale } = useWindowDimensions();
@@ -73,18 +53,6 @@ export default function AiDialogHome() {
   const quota = useDialogueHubQuota();
   const dialogueGlass = useDialogueGlass();
   const hubCopy = dialogueV2HubCopy(lang);
-  // ВРЕМЕННО ([DIALOGS-OPEN], Сверка 22:46): что заставляет весь экран «Диалоги» перерисоваться после открытия —
-  // каждая такая перерисовка тянет за собой каталог (render_cost 36/47 мс вслед за home:render).
-  const traceHomeRef = useRef<{ n: number; prev: Record<string, unknown> | null }>({ n: 0, prev: null });
-  {
-    const inputs: Record<string, unknown> = { lang, router, width, fontScale, quota, dialogueGlass };
-    const trace = traceHomeRef.current;
-    trace.n += 1;
-    const previousInputs = trace.prev;
-    const changed = previousInputs ? Object.keys(inputs).filter((key) => !Object.is(inputs[key], previousInputs[key])) : ['first'];
-    console.log('[DIALOGS-OPEN] home:rerender', JSON.stringify({ n: trace.n, changed }));
-    trace.prev = inputs;
-  }
   const headerRight = (
     <View style={{ alignItems: 'flex-end', gap: 14 }}>
       {/* зачем (эмулятор 30.09): без glass тут жила старая тёмная капсула — в светлой теме чёрное пятно. */}

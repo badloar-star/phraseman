@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { Profiler, memo, useCallback, useEffect, useMemo, useState, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { InteractionManager, Text, View } from 'react-native';
 
 import {
@@ -39,11 +39,6 @@ import {
 } from './DialogueV2HubNotices';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
-
-// зачем (Сверка dialogs-001, 10.10: «раздел открывается ~3 с пустого тёмного кадра»; правило «сперва логи»): замер, что именно
-// держит первый кадр хаба — синхронное чтение встроенного снимка каталога, проверка проекции или что-то до экрана.
-// Префикс [DIALOGS-OPEN] — вытащить всю цепочку одним поиском в логе сборщика.
-const dialogsOpenNow = (): number => (typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now());
 
 type CatalogueState =
   | Readonly<{ kind: 'loading' }>
@@ -106,12 +101,6 @@ export type DialogueV2CatalogueContainerProps = Readonly<{
  * Owns only the V2 learner catalogue loading boundary. The callable response
  * is revalidated before rendering and no legacy dialog surface is involved.
  */
-// ВРЕМЕННО (Сверка 21:55): отрисовки каталога дольше 16 мс — фаза, собственное и базовое время.
-function logCatalogueRender(id: string, phase: string, actualDuration: number, baseDuration: number): void {
-  if (actualDuration < 16) return;
-  console.log('[DIALOGS-OPEN] hub:render_cost', JSON.stringify({ id, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration) }));
-}
-
 function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
@@ -121,17 +110,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   const palette = useV2Palette();
   // зачем (владелец 01.10: «Диалоги не загрузились» не должно быть нигде): первый кадр —
   // сразу из кэша этого запуска или встроенного снимка, без «Загрузка…» и без сети.
-  const renderStartRef = useRef(dialogsOpenNow());
-  const [state, setState] = useState<CatalogueState>(() => {
-    const t0 = dialogsOpenNow();
-    const initial = initialCatalogueState(studyTarget);
-    console.log('[DIALOGS-OPEN] hub:initial_state', JSON.stringify({ studyTarget: String(studyTarget), kind: initial.kind, ms: Math.round(dialogsOpenNow() - t0) }));
-    return initial;
-  });
-  useEffect(() => {
-    console.log('[DIALOGS-OPEN] hub:first_commit', JSON.stringify({ sinceFirstRenderMs: Math.round(dialogsOpenNow() - renderStartRef.current), stateKind: state.kind }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- только момент первого коммита
-  }, []);
+  const [state, setState] = useState<CatalogueState>(() => initialCatalogueState(studyTarget));
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
@@ -199,8 +178,6 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
         && previous.envelope === local.envelope ? previous : local;
     });
     // Вход в хаб: сеть только если кэш старше 12 ч (окно — в клиенте каталога).
-    // зачем (ВРЕМЕННО, Сверка 21:55 «JS стоит 2,7 + 2,3 с после открытия Диалогов»; сперва логи): сколько идёт
-    // запрос каталога и приходит ли НОВЫЙ объект (тогда проекция и все 76 карточек перерисовываются заново).
     // зачем (Сверка cold5a/b 23:30): пауза кадров при входе (580 / 2605 мс) оба раза кончалась ровно к ответу функции
     // каталога (586 / 2607 мс). Каталог уже на экране из кэша/встроенного снимка, перепроверка нужна раз в 12 ч —
     // поэтому она стартует ПОСЛЕ анимации входа (как прогрев), а уход с экрана до этого её отменяет.
@@ -211,9 +188,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
       startRevalidation();
     });
     function startRevalidation(): void {
-    const fetchStart = dialogsOpenNow();
     void fetchReleasedDialogueV2Catalogue(revalidationTarget, { awaitRefresh: true }).then((envelope) => {
-      console.log('[DIALOGS-OPEN] hub:fetch_done', JSON.stringify({ studyTarget, active, ms: Math.round(dialogsOpenNow() - fetchStart), hasEnvelope: Boolean(envelope), packets: envelope?.packets.length ?? null }));
       if (!active) return;
       if (!envelope) {
         // Остаёмся на локальном каталоге; повтор — тихо в фоне.
@@ -228,7 +203,6 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
       // Тот же объект — не трогаем состояние (без лишнего ре-рендера и «прыжка»).
       setState((previous) => {
         const same = previous.kind === 'available' && previous.envelope === envelope;
-        console.log('[DIALOGS-OPEN] hub:fetch_apply', JSON.stringify({ sameEnvelope: same, previousKind: previous.kind }));
         return same ? previous : { kind: 'available', envelope };
       });
     }).catch((error: unknown) => {
@@ -243,27 +217,10 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     };
   }, [reloadNonce, studyTarget]);
 
-  // ВРЕМЕННО ([DIALOGS-OPEN], Сверка 22:46: first_commit 445 → 680 мс, render_cost nested-update 126 мс до него):
-  // какой вход хаба сменился на каждой перерисовке — найти, кто запускает повторную отрисовку на первом коммите.
-  const traceRenderRef = useRef<{ n: number; prev: Record<string, unknown> | null }>({ n: 0, prev: null });
-  {
-    const inputs: Record<string, unknown> = {
-      state, studyTarget, lang, accessResolved, hasPremiumAccess, localCoinRank, palette, quotaRemaining, reloadNonce, onPressItem, showQuotaRow,
-    };
-    const trace = traceRenderRef.current;
-    trace.n += 1;
-    const previousInputs = trace.prev;
-    const changed = previousInputs ? Object.keys(inputs).filter((key) => !Object.is(inputs[key], previousInputs[key])) : ['first'];
-    console.log('[DIALOGS-OPEN] hub:render', JSON.stringify({ n: trace.n, sinceFirstRenderMs: Math.round(dialogsOpenNow() - renderStartRef.current), changed }));
-    trace.prev = inputs;
-  }
-
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
     const input = { studyTarget, localCoinRank, worldHeadings: headings };
-    const projectStart = dialogsOpenNow();
     const projected = projectAuthorizedDialogueV2Catalogue({ ...input, packets: state.envelope.packets });
-    console.log('[DIALOGS-OPEN] hub:projection', JSON.stringify({ studyTarget, ok: projected !== null, items: projected?.items.length ?? null, packets: state.envelope.packets.length, ms: Math.round(dialogsOpenNow() - projectStart) }));
     if (projected) return projected;
     // зачем: ответ сети/кэша не прошёл повторную проверку — показываем встроенный
     // одобренный каталог, а не карточку ошибки.
@@ -334,15 +291,12 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   return (
     <>
       {plusTools}
-      {/* зачем (ВРЕМЕННО, Сверка 21:55; сперва логи): длительность каждой отрисовки каталога — виновата ли она в паузах JS. */}
-      <Profiler id="dialogs-catalogue" onRender={logCatalogueRender}>
-        <DialogueV2CatalogueSection
-          worlds={projection.worlds}
-          items={localizedItems}
-          labels={copy}
-          onPressItem={onPressItem}
-        />
-      </Profiler>
+      <DialogueV2CatalogueSection
+        worlds={projection.worlds}
+        items={localizedItems}
+        labels={copy}
+        onPressItem={onPressItem}
+      />
       {freeTier && quotaRemaining !== 0 && localizedItems.some((item) => item.status === 'locked') ? (
         <DialogueV2HubLockedNote title={hubCopy.lockedNoteTitle} text={hubCopy.lockedNoteText} />
       ) : null}

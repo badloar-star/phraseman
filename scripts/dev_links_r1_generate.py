@@ -244,7 +244,9 @@ for title, secs in AREAS:
         if entry:
             is_unique = bool(entry['unique'])
         else:
-            is_unique = bool(link) and link_usage[link] == 1 and 'тапами' not in prep and secs is not O
+            # зачем: ссылка, уникальная в таблице, ещё НЕ значит «открывает свой кадр» (она может вести лишь на хаб, а состояние добирается позже);
+            # по умолчанию «да» только для прямых ссылок на состояние пейвола (premium_modal?…&_dev_state=…), остальное — явной записью в dev_links_r1_steps.py
+            is_unique = bool(link) and 'premium_modal' in link and link_usage[link] == 1 and 'тапами' not in prep and secs is not O
         unique_count += 1 if is_unique else 0
         prep = prep.replace('|', '¦')  # зачем: «|» в тексте подготовки сдвигал колонки «тапы»/«уникальна» (разбор роботом по номеру колонки)
         out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} | {steps_cell} | {'да' if is_unique else 'нет'} |")

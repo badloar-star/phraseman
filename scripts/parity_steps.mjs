@@ -9,6 +9,7 @@
  *   tap:#fc-saved-actions        нажать элемент с testID (resource-id)
  *   tap:Отметить несколько       нажать элемент с таким текстом / content-desc (сначала точное совпадение, потом «содержит»)
  *   tap:#fc-gallery-tile-*       testID по префиксу (любая плитка); `@2` в конце — второй подходящий элемент: `tap:#fc-gallery-tile-*@2`
+ *   see:#id | see:Текст          прокрутить так, чтобы элемент оказался на экране (без нажатия); tap/long/swipe сами подкручивают, если элемент за краем
  *   long:#id | long:Текст        долгое нажатие (900 мс)
  *   swipe-left:Текст | swipe-right:Текст   свайп поперёк рамки элемента (удаление свайпом)
  *   type:abc                     ввести ASCII-текст в сфокусированное поле (кириллицу `input text` не умеет)
@@ -17,7 +18,7 @@
  *   wait:600                     пауза, мс
  *   xy:540,1200                  последнее средство: тап по координатам
  */
-const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right']);
+const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see']);
 const OPS_NO_TARGET = new Set(['back']);
 const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy']);
 
@@ -121,11 +122,36 @@ export async function runSteps(run, steps, opts = {}) {
   const waitNode = async (selector) => {
     const started = Date.now();
     for (;;) {
-      const node = findNode(snapshot(), selector);
-      if (node) return node;
+      const nodes = snapshot();
+      const node = findNode(nodes, selector);
+      if (node) return { node, screen: nodes[0] ?? null };
       if (Date.now() - started >= stepTimeoutMs) throw new Error(`step_target_not_found:${selector}`);
       await sleep(pollMs);
     }
+  };
+  const swipeScreen = (screen, dir) => {
+    const height = screen ? screen.bottom - screen.top : 2400;
+    const x = screen ? Math.round((screen.left + screen.right) / 2) : 540;
+    const [from, to] = dir === 'down' ? [Math.round(height * 0.7), Math.round(height * 0.3)] : [Math.round(height * 0.3), Math.round(height * 0.7)];
+    run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
+  };
+  // зачем: элемент ниже/выше экрана (блок «Free и Plus» на пейволе) tap-ом не достать — прокручиваем до 6 раз, каждый раз заново снимая дерево
+  const bringIntoView = async (selector) => {
+    let found = await waitNode(selector);
+    for (let attempt = 0; attempt < 6; attempt += 1) {
+      const { node, screen } = found;
+      const top = screen ? screen.top : 0;
+      const bottom = screen ? screen.bottom : 2400;
+      const centreY = (node.top + node.bottom) / 2;
+      // зачем: прокручиваем только если ЦЕНТР за краем экрана — кнопки у нижней кромки («Начать», «Купить») трогать прокруткой нельзя
+      if (centreY > bottom - 60) swipeScreen(screen, 'down');
+      else if (centreY < top + 60) swipeScreen(screen, 'up');
+      else return node;
+      await sleep(600);
+      found = await waitNode(selector);
+    }
+    log(`элемент ${selector} не удалось вывести на экран за 6 прокруток — жмём как есть`); // guard-ok: причина, по которой тап может промахнуться
+    return found.node;
   };
   for (const step of steps) {
     log(`шаг ${step.op}${step.value ? `:${step.value}` : ''}`);
@@ -141,9 +167,10 @@ export async function runSteps(run, steps, opts = {}) {
       const [from, to] = step.value === 'down' ? [Math.round(height * 0.7), Math.round(height * 0.3)] : [Math.round(height * 0.3), Math.round(height * 0.7)];
       run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
     } else {
-      const node = await waitNode(step.value);
+      const node = await bringIntoView(step.value);
       const [cx, cy] = centre(node);
-      if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);
+      if (step.op === 'see') { /* только прокрутка до видимости */ }
+      else if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);
       else if (step.op === 'long') run(['shell', 'input', 'swipe', String(cx), String(cy), String(cx), String(cy), '900']);
       else {
         const width = node.right - node.left;

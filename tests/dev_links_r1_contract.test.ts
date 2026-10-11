@@ -60,7 +60,7 @@ describe('DEV_LINKS_R1', () => {
     const rows = doc.split(String.fromCharCode(10)).filter((line) => /^\| [a-z0-9-]+-\d{3} \|/.test(line));
     const badColumns = rows.filter((line) => line.split('|').length !== 9).map((line) => line.slice(0, 60));
     expect(badColumns).toEqual([]); // «|» в тексте сдвигал колонки, а робот читает «тапы»/«уникальна» по номеру
-    const stepRx = /^(tap|long|swipe-left|swipe-right):\S.*$|^(back)$|^(type|key|scroll|wait|xy):\S+$/;
+    const stepRx = /^(tap|long|swipe-left|swipe-right|see):\S.*$|^(back)$|^(type|key|scroll|wait|xy):\S[ -~]*$/;
     const problems: string[] = [];
     let unique = 0;
     for (const line of rows) {

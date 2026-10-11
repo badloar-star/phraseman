@@ -29,11 +29,9 @@ import {
   AppState,
   FlatList,
   Platform,
-  Pressable,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -43,7 +41,6 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
-import { pluralWord } from '../constants/plural';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -68,10 +65,10 @@ import {
 } from './community_packs/communityCatalogFilter';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import VideoPackRow from './flashcards/VideoPackRow';
-import { KitEmpty, KitFound, KitSearchField, KitTitle } from '../components/cards-grid/CardsKit';
-import { plateBoxShadow } from '../components/v2/ShadowSurface';
+import { KitEmpty, KitFound, KitSearchField } from '../components/cards-grid/CardsKit';
+import { PackBackBare, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../components/packs/PackScreenKit';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, SheetRow } from '../components/mistakes-panel/PanelKit';
+import { SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
 import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
@@ -208,6 +205,8 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<CommunityPacksSort>('popular');
   const [menuOpen, setMenuOpen] = useState(false);
+  // зачем (cards-v2 videoAll()): в макете только «назад» и заголовок — поиск открывается из меню «⋮», как у «Моих наборов».
+  const [searchOpen, setSearchOpen] = useState(false);
   // зачем: части экрана рисуются токенами 2.0 (макет cards-section «Из видео»)
   const kg = useLv2Glass();
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
@@ -261,6 +260,12 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     checkInternet: triLang(lang, {
       ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
       'pt-BR': 'Verifique sua conexão', vi: 'Kiểm tra kết nối', id: 'Periksa koneksi', tr: 'Bağlantını kontrol et', pl: 'Sprawdź połączenie',
+    }),
+    searchOpenLabel: triLang(lang, {
+      ru: 'Поиск', uk: 'Пошук', en: 'Search', es: 'Buscar', 'pt-BR': 'Buscar', vi: 'Tìm', id: 'Cari', tr: 'Ara', pl: 'Szukaj',
+    }),
+    language: triLang(lang, {
+      ru: 'Язык наборов', uk: 'Мова наборів', en: 'Pack language', es: 'Idioma de los packs', 'pt-BR': 'Idioma dos pacotes', vi: 'Ngôn ngữ bộ thẻ', id: 'Bahasa paket', tr: 'Paket dili', pl: 'Język zestawów',
     }),
     menu: triLang(lang, {
       ru: 'Меню', uk: 'Меню', en: 'Menu', es: 'Menú', 'pt-BR': 'Menu', vi: 'Menu', id: 'Menu', tr: 'Menü', pl: 'Menu',
@@ -479,21 +484,8 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     return () => sub.remove();
   }, [catalogExhausted, retryCatalog]);
   const showEmpty = searching && visible.length === 0;
-  const phraseTotal = visible.reduce((sum, pack) => sum + (Number(pack.cardCount) || 0), 0);
+  const showSearch = searchOpen || searching;
 
-  const summaryText = visible.length > 0
-    ? triLang(lang, {
-      ru: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набор', few: 'набора', many: 'наборов' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фразы', many: 'фраз' })}`,
-      uk: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набір', few: 'набори', many: 'наборів' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фрази', many: 'фраз' })}`,
-      en: `${visible.length} packs · ${phraseTotal} phrases`,
-      es: `${visible.length} paquetes · ${phraseTotal} frases`,
-      'pt-BR': `${visible.length} pacotes · ${phraseTotal} frases`,
-      vi: `${visible.length} bộ · ${phraseTotal} cụm từ`,
-      id: `${visible.length} paket · ${phraseTotal} frasa`,
-      tr: `${visible.length} paket · ${phraseTotal} ifade`,
-      pl: `${visible.length} ${pluralWord(lang, visible.length, { one: 'zestaw', few: 'zestawy', many: 'zestawów' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'fraza', few: 'frazy', many: 'fraz' })}`,
-    })
-    : null;
   // зачем (video-redesign #c1, `.row + .row`): во вкладке строки разделяет тонкая линия, без карточек и зазоров.
   const rowSeparator = useMemo(
     () => (embedded ? function HairlineGap() { return <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: g.line }} />; } : RowGap),
@@ -569,26 +561,19 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
           <View style={styles.top}>
-            <BackButton g={kg} onPress={() => safeRouterBack(router, '/flashcards' as never)} label={copy.back} />
-            <Pressable
-              testID="fc-video-packs-menu"
-              accessibilityRole="button"
-              accessibilityLabel={copy.menu}
-              hitSlop={8}
-              onPress={() => setMenuOpen(true)}
-              style={({ pressed }) => [styles.square, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.82 : 1 }]}
-            >
-              <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
-            </Pressable>
+            <PackTopBarRow
+              left={<PackBackBare g={kg} testID="mp-back" label={copy.back} onPress={() => safeRouterBack(router, '/flashcards' as never)} />}
+              right={<PackSquareButton g={kg} testID="fc-video-packs-menu" label={copy.menu} onPress={() => setMenuOpen(true)} />}
+            />
           </View>
           <View style={styles.headBlock}>
-            <KitTitle g={kg} title={copy.title} subtitle={summaryText} testID="fc-video-packs-title" />
-            <View style={styles.langRow}>
-              <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
-            </View>
-            <View style={styles.searchWrap}>
-              <KitSearchField g={kg} value={query} onChangeText={setQuery} placeholder={copy.search} clearLabel={copy.clear} testID="fc-video-packs-search" />
-            </View>
+            {/* cards-v2 videoAll(): «Из видео 12» — заголовок 34/40 и приглушённое число роликов. */}
+            <PackScreenTitle g={kg} title={copy.title} count={packs.length > 0 ? packs.length : null} testID="fc-video-packs-title" />
+            {showSearch ? (
+              <View style={styles.searchWrap}>
+                <KitSearchField g={kg} value={query} onChangeText={setQuery} placeholder={copy.search} clearLabel={copy.clear} testID="fc-video-packs-search" />
+              </View>
+            ) : null}
             {searching && visible.length > 0 ? <KitFound g={kg} label={`${copy.found} · ${visible.length}`} /> : null}
           </View>
 
@@ -596,6 +581,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
         </ContentWrap>
         {/* зачем: сортировка «Популярные / Новые» в макете не нарисована, но нужна — живёт в меню «⋮» */}
         <PanelSheet visible={menuOpen} onClose={() => setMenuOpen(false)} testID="fc-video-packs-menu-sheet">
+          <SheetRow g={kg} testID="fc-video-packs-menu-search" icon="search-outline" title={copy.searchOpenLabel} onPress={() => { void hapticTap(); setMenuOpen(false); setSearchOpen(true); }} />
           {(['popular', 'new'] as const).map((option) => (
             <SheetRow
               key={option}
@@ -606,6 +592,10 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
               onPress={() => { void hapticTap(); setSort(option); setMenuOpen(false); }}
             />
           ))}
+          <View style={styles.langRow}>
+            <Text style={{ color: kg.secondary, fontSize: 16, lineHeight: 20 }}>{copy.language}</Text>
+            <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
+          </View>
         </PanelSheet>
       </SafeAreaView>
     </View>
@@ -619,12 +609,12 @@ function RowGap() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
-  top: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  top: { marginTop: 6, paddingHorizontal: 20 },
   headBlock: { paddingHorizontal: 20 },
-  langRow: { marginTop: 14, flexDirection: 'row' },
+  langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
   searchWrap: { marginTop: 16 },
-  listContent: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 32, gap: 10 },
+  // зачем (cards-v2 videoAll()): `margin-bottom: 22` между карточками роликов, 20 от заголовка.
+  listContent: { paddingHorizontal: 20, paddingTop: 20, paddingBottom: 32, gap: 22 },
   // зачем (video-redesign #c1, экран 4): во вкладке поля задаёт сам экран «Видео», строки без карточек — без зазора, разделяет линия.
   embedded: { flex: 1, minHeight: 0 },
   listContentEmbedded: { paddingHorizontal: 0, paddingTop: 4, gap: 0 },

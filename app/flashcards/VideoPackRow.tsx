@@ -16,6 +16,8 @@ import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'r
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { KitCard } from '../../components/cards-grid/CardsKit';
+import { KitTouchable } from '../../components/KitTouchable';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { pluralWord } from '../../constants/plural';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -93,6 +95,17 @@ export async function openVideo(videoId: string | undefined, onFail: () => void)
   }
 }
 
+/**
+ * Доля просмотра ролика 0…1 для полосы внизу кадра (cards-v2 `.vprog`). Поля в документе пока нет (ждём от Ядра: `watchProgress`) —
+ * нет поля, мусор или 0 — полосы нет; ничего не выдумываем.
+ */
+export function packVideoProgress(pack: unknown): number {
+  if (!pack || typeof pack !== 'object') return 0;
+  const raw = (pack as { watchProgress?: unknown }).watchProgress;
+  if (typeof raw !== 'number' || !Number.isFinite(raw) || raw <= 0) return 0;
+  return Math.min(1, raw);
+}
+
 export function formatDuration(totalSec?: number): string {
   if (!totalSec || !Number.isFinite(totalSec) || totalSec <= 0) return '';
   const sec = Math.floor(totalSec % 60);
@@ -145,6 +158,49 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
       en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade',
       pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
     })}`;
+  if (!plain) {
+    // зачем (владелец 12.10, cards-v2 videoAll()): раздел «Из видео» — крупные карточки роликов: кадр 16:9 r18 на всю ширину, длительность,
+    // полоса просмотра, под ним название 19/700 и «N фраз» слева и «Добавить +» справа. Вся карточка открывает набор (экран набора из видео);
+    // сам ролик открывается ▶ на экране набора. Полоса просмотра скрыта, пока поля нет (packVideoProgress).
+    const progress = packVideoProgress(pack);
+    const open = () => { void hapticTap(); onOpen(pack); };
+    return (
+      <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
+        <KitTouchable testID={`video-pack-open-row-${pack.id}`} accessibilityRole="button" accessibilityLabel={`${title}. ${phrasesText}`} accessibilityState={{ disabled }} disabled={disabled} onPress={open}>
+          <View style={[styles.largeShadow, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
+            <View style={styles.largeThumb}>
+              {thumbUrl ? (
+                <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={pack.videoId} cachePolicy="memory-disk" />
+              ) : null}
+              {duration ? (
+                <View style={styles.largeDuration} pointerEvents="none">
+                  <Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text>
+                </View>
+              ) : null}
+              {progress > 0 ? (
+                <View style={[styles.largeProgress, { backgroundColor: g.mediaScrim }]} pointerEvents="none">
+                  <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.round(progress * 100)}%`, backgroundColor: g.mediaInk }} />
+                </View>
+              ) : null}
+              {opening ? (
+                <View style={[StyleSheet.absoluteFillObject, styles.openingVeil, { backgroundColor: g.opaqueCard }]} pointerEvents="none">
+                  <ActivityIndicator color={g.accentText} />
+                </View>
+              ) : null}
+            </View>
+          </View>
+        </KitTouchable>
+        <View style={styles.largeMeta}>
+          <KitTouchable testID={`video-pack-open-${pack.id}`} accessibilityRole="button" accessibilityLabel={`${title}. ${phrasesText}`} accessibilityState={{ disabled }} disabled={disabled} onPress={open} style={styles.largeText}>
+            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.largeTitle, { color: g.text }]}>{title}</FlowText>
+            <Text pointerEvents="none" maxFontSizeMultiplier={1.3} style={[styles.largeCount, { color: g.secondary }]}>{phrasesText}</Text>
+          </KitTouchable>
+          {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="videoAdd" />
+        </View>
+      </View>
+    );
+  }
   return (
     <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
       <Wrapper g={g} plain={plain} style={styles.card}>
@@ -281,6 +337,15 @@ const baseStyles = StyleSheet.create({
   },
   durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
+  // cards-v2 videoAll(): кадр 16:9 r18; тень на внешнем слое, клип по скруглению — на внутреннем.
+  largeShadow: { borderRadius: 18 },
+  largeThumb: { aspectRatio: 16 / 9, borderRadius: 18, overflow: 'hidden' },
+  largeDuration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.72)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  largeProgress: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3 },
+  largeMeta: { marginTop: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  largeText: { flex: 1, minWidth: 0 },
+  largeTitle: { fontSize: 19, lineHeight: 24, fontWeight: '700' },
+  largeCount: { marginTop: 2, fontSize: 13, lineHeight: 18 },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   count: { marginTop: 4, fontSize: 13, lineHeight: 17 },

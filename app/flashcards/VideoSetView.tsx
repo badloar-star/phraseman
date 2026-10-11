@@ -1,9 +1,11 @@
 /**
- * Экран набора из видео — макет docs/design/v2-app/cards-section.html (кадры «Набор из видео», «Набор из видео — уже у вас»).
+ * Экран набора из видео — макет docs/design/v2-app/cards-v2.html, кадр «Набор из видео» (videoSet()).
  *
- * зачем (владелец: «в приложении запрещены любые различия с макетом»): заголовок 30/36, широкое превью ролика 218 высотой с кнопкой «играть»,
- * три пилюли (число фраз · язык · длительность), строки фраз с таймкодом и кнопкой озвучки, внизу мятная кнопка («Учить набор» до добавления,
- * «Тренировать» после). Данные и обработчики приходят от экрана набора; здесь только вид.
+ * зачем (владелец 12.10: cards-v2 утверждён целиком, «приложение = макет»): «назад» и «⋮», широкое превью ролика 16:9 r18 с кнопкой ▶,
+ * длительностью и полосой просмотра, название 28/34, строка «уровень · N фраз · ♥», ряд «Тренировать» и «Добавить +», подпись «Фразы N»
+ * и карточки фраз (таймкод-чип, озвучка, английская фраза 21/27 и перевод). Данные и обработчики приходят от экрана набора; здесь только вид.
+ *
+ * Данных пока нет (ждём от Ядра): уровень набора (`level`) — чип скрыт; доля просмотра ролика (`watchProgress` 0…1) — полосы нет.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
@@ -11,19 +13,19 @@ import React, { memo, useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
-import { KitCard } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
-import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
+import { packDeckLevel } from '../../components/packs/packDeckModel';
+import { PackBackBare, PackCta, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
+import { KitTouchable } from '../../components/KitTouchable';
+import { useTheme } from '../../components/ThemeContext';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../events';
+import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import type { FlashcardMarketPack } from './marketplace';
-import { packLanguageMeta } from './pack_languages';
-import { openVideo } from './VideoPackRow';
+import { formatDuration, openVideo, packVideoProgress } from './VideoPackRow';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 
 type Props = Readonly<{
@@ -38,21 +40,31 @@ type Props = Readonly<{
   onSpeak: (text: string) => void;
   /** Тап по строке фразы: открыть ролик на её секунде; null — строка только озвучивает. */
   onOpenMoment: ((card: CardItem) => void) | null;
-  /** Нижняя кнопка: готовый узел («Учить набор» с логикой добавления) или null — тогда рисуется «Тренировать» с onTrain. */
-  cta: React.ReactNode | null;
+  /** Набор уже у человека (экран открыт не в режиме просмотра): вместо «Добавить +» — «✓ В моих наборах». */
+  owned?: boolean;
+  /** После «Добавить +» (экран перечитывает набор). Вместе с `onRequestPurchase` включает кнопку «Добавить +» из макета. */
+  onAdded?: () => void;
+  /** Платный набор: экран показывает шит покупки. */
+  onRequestPurchase?: (pack: FlashcardMarketPack, priceRunes: number) => void;
+  /**
+   * @deprecated Старый способ: готовая нижняя кнопка («Учить набор») от экрана набора. Пока экран не передаёт onAdded/onRequestPurchase,
+   * узел показывается в ряду кнопок на месте «Добавить +», чтобы добавление не пропало.
+   */
+  cta?: React.ReactNode | null;
+  /** «Тренировать»; null — кнопки нет (набор ещё не добавлен или в нём нет карточек). */
   onTrain: (() => void) | null;
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', speak: 'Озвучить', play: 'Смотреть видео', train: 'Тренировать', min: 'мин', phrase: { one: 'фраза', few: 'фразы', many: 'фраз' } },
-  uk: { back: 'Назад', menu: 'Меню', speak: 'Озвучити', play: 'Дивитися відео', train: 'Тренувати', min: 'хв', phrase: { one: 'фраза', few: 'фрази', many: 'фраз' } },
-  en: { back: 'Back', menu: 'Menu', speak: 'Listen', play: 'Watch the video', train: 'Train', min: 'min', phrase: { one: 'phrases', few: 'phrases', many: 'phrases' } },
-  es: { back: 'Atrás', menu: 'Menú', speak: 'Escuchar', play: 'Ver el vídeo', train: 'Entrenar', min: 'min', phrase: { one: 'frases', few: 'frases', many: 'frases' } },
-  'pt-BR': { back: 'Voltar', menu: 'Menu', speak: 'Ouvir', play: 'Assistir ao vídeo', train: 'Treinar', min: 'min', phrase: { one: 'frases', few: 'frases', many: 'frases' } },
-  vi: { back: 'Quay lại', menu: 'Menu', speak: 'Nghe', play: 'Xem video', train: 'Luyện tập', min: 'phút', phrase: { one: 'cụm từ', few: 'cụm từ', many: 'cụm từ' } },
-  id: { back: 'Kembali', menu: 'Menu', speak: 'Dengarkan', play: 'Tonton video', train: 'Latihan', min: 'mnt', phrase: { one: 'frasa', few: 'frasa', many: 'frasa' } },
-  tr: { back: 'Geri', menu: 'Menü', speak: 'Dinle', play: 'Videoyu izle', train: 'Çalış', min: 'dk', phrase: { one: 'ifade', few: 'ifade', many: 'ifade' } },
-  pl: { back: 'Wstecz', menu: 'Menu', speak: 'Posłuchaj', play: 'Obejrzyj film', train: 'Trenuj', min: 'min', phrase: { one: 'fraza', few: 'frazy', many: 'fraz' } },
+  ru: { back: 'Назад', menu: 'Меню', speak: 'Озвучить', play: 'Смотреть видео', train: 'Тренировать', phrases: 'Фразы', phrase: { one: 'фраза', few: 'фразы', many: 'фраз' } },
+  uk: { back: 'Назад', menu: 'Меню', speak: 'Озвучити', play: 'Дивитися відео', train: 'Тренувати', phrases: 'Фрази', phrase: { one: 'фраза', few: 'фрази', many: 'фраз' } },
+  en: { back: 'Back', menu: 'Menu', speak: 'Listen', play: 'Watch the video', train: 'Train', phrases: 'Phrases', phrase: { one: 'phrases', few: 'phrases', many: 'phrases' } },
+  es: { back: 'Atrás', menu: 'Menú', speak: 'Escuchar', play: 'Ver el vídeo', train: 'Entrenar', phrases: 'Frases', phrase: { one: 'frases', few: 'frases', many: 'frases' } },
+  'pt-BR': { back: 'Voltar', menu: 'Menu', speak: 'Ouvir', play: 'Assistir ao vídeo', train: 'Treinar', phrases: 'Frases', phrase: { one: 'frases', few: 'frases', many: 'frases' } },
+  vi: { back: 'Quay lại', menu: 'Menu', speak: 'Nghe', play: 'Xem video', train: 'Luyện tập', phrases: 'Cụm từ', phrase: { one: 'cụm từ', few: 'cụm từ', many: 'cụm từ' } },
+  id: { back: 'Kembali', menu: 'Menu', speak: 'Dengarkan', play: 'Tonton video', train: 'Latihan', phrases: 'Frasa', phrase: { one: 'frasa', few: 'frasa', many: 'frasa' } },
+  tr: { back: 'Geri', menu: 'Menü', speak: 'Dinle', play: 'Videoyu izle', train: 'Çalış', phrases: 'İfadeler', phrase: { one: 'ifade', few: 'ifade', many: 'ifade' } },
+  pl: { back: 'Wstecz', menu: 'Menu', speak: 'Posłuchaj', play: 'Obejrzyj film', train: 'Trenuj', phrases: 'Frazy', phrase: { one: 'fraza', few: 'frazy', many: 'fraz' } },
 });
 
 const stamp = (sec?: number): string => {
@@ -62,104 +74,114 @@ const stamp = (sec?: number): string => {
   return `${m}:${String(s).padStart(2, '0')}`;
 };
 
-function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, onMore, onSpeak, onOpenMoment, cta, onTrain }: Props) {
+function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, onMore, onSpeak, onOpenMoment, owned = false, onAdded, onRequestPurchase, cta = null, onTrain }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
+  const { theme } = useTheme();
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const [a, b] = themePair(g);
   const videoId = String(pack.videoId ?? '').trim();
   const thumbUrl = videoId ? `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg` : null;
   const count = cards.length > 0 ? cards.length : pack.cardCount;
-  const minutes = pack.videoDurationSec && pack.videoDurationSec > 0 ? Math.max(1, Math.round(pack.videoDurationSec / 60)) : 0;
+  const duration = formatDuration(pack.videoDurationSec);
+  const progress = packVideoProgress(pack);
+  const level = packDeckLevel(pack);
   const failToast = useMemo(() => actionToastTri('error', {
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.',
   }), []);
-  const pills = [
-    `${count} ${pluralWord(lang, count, copy.phrase)}`,
-    packLanguageMeta(pack.packLanguage ?? pack.studyTarget).nativeName,
-    minutes > 0 ? `${minutes} ${copy.min}` : '',
-  ].filter(Boolean);
 
   return (
     <View testID="video-set-view" style={styles.root}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
-        <View style={styles.top}>
-          <BackButton g={g} onPress={onBack} label={copy.back} />
-          {onMore ? (
-            <Pressable testID="video-set-more" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={onMore} style={({ pressed }) => [styles.square, pressed && styles.pressed]}>
-              <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
-            </Pressable>
+        <PackTopBarRow
+          left={<PackBackBare g={g} testID="mp-back" label={copy.back} onPress={onBack} />}
+          right={onMore ? <PackSquareButton g={g} testID="video-set-more" label={copy.menu} onPress={onMore} /> : undefined}
+        />
+
+        {/* `vthumb(…, { play, prog })`: 16:9 r18, ▶ по центру, длительность справа внизу, полоса просмотра 3 внизу. */}
+        <View style={[styles.heroShadow, { boxShadow: plateBoxShadow(g) }]}>
+          <Pressable
+            testID="video-set-hero"
+            accessibilityRole="button"
+            accessibilityLabel={copy.play}
+            onPress={() => { void hapticTap(); void openVideo(pack.videoId, () => emitAppEvent('action_toast', failToast)); }}
+            style={({ pressed }) => [styles.hero, pressed && styles.pressed]}
+          >
+            {thumbUrl ? <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} cachePolicy="memory-disk" /> : null}
+            <View style={styles.play}><Ionicons name="play" size={24} color={g.mediaInk} /></View>
+            {duration ? <View style={styles.duration} pointerEvents="none"><Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text></View> : null}
+            {progress > 0 ? <View style={styles.progressTrack} pointerEvents="none"><View style={[styles.progressFill, { width: `${Math.round(progress * 100)}%`, backgroundColor: g.mediaInk }]} /></View> : null}
+          </Pressable>
+        </View>
+
+        <Text testID="video-set-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+        <View style={styles.metaRow}>
+          {level ? <View style={[styles.lvl, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}><Text style={[styles.lvlText, { color: g.text }]}>{level}</Text></View> : null}
+          <Text style={[styles.metaText, { color: g.secondary }]}>{`${count} ${pluralWord(lang, count, copy.phrase)}`}</Text>
+          {pack.isCommunityUgc && (pack.likesCount ?? 0) > 0 ? (
+            <View style={styles.likes} accessible accessibilityLabel={String(pack.likesCount)}>
+              <Ionicons name="heart-outline" size={18} color={g.secondary} />
+              <Text style={[styles.metaText, { color: g.secondary }]}>{pack.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+            </View>
           ) : null}
         </View>
-        <Text testID="video-set-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
 
-        <Pressable
-          testID="video-set-hero"
-          accessibilityRole="button"
-          accessibilityLabel={copy.play}
-          onPress={() => { void hapticTap(); void openVideo(pack.videoId, () => emitAppEvent('action_toast', failToast)); }}
-          style={({ pressed }) => [styles.hero, pressed && styles.pressed]}
-        >
-          <LinearGradient pointerEvents="none" colors={[mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBase, 0.5)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
-          {thumbUrl ? <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} cachePolicy="memory-disk" /> : null}
-          <View style={styles.play}><Ionicons name="play" size={26} color={g.mediaInk} /></View>
-        </Pressable>
-
-        <View style={styles.pills}>
-          {pills.map((text) => (
-            <View key={text} style={styles.pill}><Text style={styles.pillText}>{text}</Text></View>
-          ))}
+        <View style={styles.actions}>
+          {onTrain ? <PackCta g={g} grow icon="play" label={copy.train} onPress={onTrain} testID="video-set-train" /> : null}
+          {pack.isCommunityUgc && onAdded && onRequestPurchase ? (
+            <CommunityPackSocialBar
+              pack={pack}
+              lang={lang}
+              t={theme}
+              owned={owned}
+              variant="setAdd"
+              addStyle={onTrain ? 'ghost' : 'primary'}
+              onAdded={onAdded}
+              onRequestPurchase={onRequestPurchase}
+            />
+          ) : cta ? <View style={styles.ctaSlot}>{cta}</View> : null}
         </View>
+
+        <Text accessibilityRole="header" style={[styles.sectionTitle, { color: g.text }]}>
+          {copy.phrases}
+          <Text style={{ color: g.mutedText }}>{`  ${count}`}</Text>
+        </Text>
 
         <View style={styles.rows}>
           {cards.map((card) => {
             const back = resolveFlashcardBackText(card, cardContentLang);
             const time = stamp(card.videoStartSec);
             return (
-              <KitCard
+              <KitTouchable
                 key={card.id}
-                g={g}
-                radius={20}
                 testID={`video-set-row-${card.id}`}
+                accessibilityRole="button"
                 accessibilityLabel={back ? `${card.en}, ${back}` : card.en}
                 onPress={() => { void hapticTap(); if (onOpenMoment && time) onOpenMoment(card); else onSpeak(card.en); }}
+                style={[styles.phraseCard, { boxShadow: plateBoxShadow(g) }]}
               >
-                <View style={styles.row}>
-                  {time ? <Text style={styles.time}>{time}</Text> : null}
-                  <View style={styles.rowText}>
-                    <Text style={[styles.phrase, { color: g.text }]}>{card.en}</Text>
-                    {back ? <Text style={[styles.tr, { color: g.secondary }]}>{back}</Text> : null}
-                  </View>
-                  <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={6} onPress={() => onSpeak(card.en)} style={({ pressed }) => [styles.vol, pressed && styles.pressed]}>
-                    <Ionicons name="volume-high" size={18} color={g.text} />
+                <PlateFill g={g} radius={16} />
+                <View style={styles.phraseTop}>
+                  {time ? (
+                    <View style={[styles.stamp, { backgroundColor: g.dividerTone }]}>
+                      <Ionicons name="play" size={16} color={g.text} />
+                      <Text style={[styles.stampText, { color: g.text }]}>{time}</Text>
+                    </View>
+                  ) : <View />}
+                  <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={6} onPress={() => onSpeak(card.en)} style={({ pressed }) => [styles.vol, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, pressed && styles.pressed]}>
+                    <Ionicons name="volume-high" size={16} color={g.text} />
                   </Pressable>
                 </View>
-              </KitCard>
+                <Text style={[styles.phrase, { color: g.text }]}>{card.en}</Text>
+                {back ? <Text style={[styles.tr, { color: g.secondary }]}>{back}</Text> : null}
+              </KitTouchable>
             );
           })}
         </View>
       </ScrollView>
-
-      <PanelDock>
-        <View style={styles.dock}>
-          {cta ?? (onTrain ? (
-            <Pressable
-              testID="video-set-train"
-              accessibilityRole="button"
-              accessibilityLabel={copy.train}
-              onPress={onTrain}
-              style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}
-            >
-              <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
-              <Ionicons name="arrow-forward" size={20} color={g.accentInk} />
-            </Pressable>
-          ) : null)}
-        </View>
-      </PanelDock>
     </View>
   );
 }
@@ -169,23 +191,31 @@ export const VideoSetView = memo(VideoSetViewInner);
 const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   root: { flex: 1 },
   pressed: { opacity: 0.82 },
-  scroll: { paddingHorizontal: 20, paddingBottom: 140 },
-  top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) },
-  title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4 },
-  hero: { marginTop: 18, height: 218, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', boxShadow: plateBoxShadow(g) },
-  play: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', backgroundColor: g.mediaScrim },
-  pills: { marginTop: 14, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft },
-  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', color: g.text },
-  rows: { marginTop: 10, gap: 10 }, // зачем (Тень 12.10): отступ между плашками ≥ 10 — тень должна «дышать»
-  row: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
-  time: { width: 40, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.accentText },
-  rowText: { flex: 1, minWidth: 0 },
-  phrase: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  tr: { marginTop: 2, fontSize: 16, lineHeight: 21 },
-  vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) },
-  dock: { paddingHorizontal: 20 },
-  train: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
-  trainText: { fontSize: 16, fontWeight: '700' },
+  scroll: { paddingHorizontal: 20, paddingBottom: 48 },
+  // зачем: тень на внешнем слое, клип кадра по скруглению — на внутреннем (overflow:hidden на контейнере с boxShadow режет тень).
+  heroShadow: { marginTop: 14, borderRadius: 18, backgroundColor: g.opaqueControl },
+  hero: { aspectRatio: 16 / 9, borderRadius: 18, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  play: { width: 58, height: 58, borderRadius: 29, alignItems: 'center', justifyContent: 'center', backgroundColor: g.mediaScrim },
+  duration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center', backgroundColor: g.mediaScrim },
+  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  progressTrack: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, backgroundColor: g.mediaScrim },
+  progressFill: { position: 'absolute', left: 0, top: 0, bottom: 0 },
+  title: { marginTop: 16, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
+  metaRow: { marginTop: 8, flexDirection: 'row', alignItems: 'center', gap: 18, flexWrap: 'wrap' },
+  metaText: { fontSize: 16, lineHeight: 22 },
+  likes: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  lvl: { minWidth: 38, height: 26, paddingHorizontal: 9, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
+  lvlText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  actions: { marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  ctaSlot: { flex: 1, minWidth: 0 },
+  sectionTitle: { marginTop: 26, marginBottom: 14, marginHorizontal: 2, fontSize: 19, lineHeight: 24, fontWeight: '600' },
+  rows: { gap: 13 },
+  // `phrase()` макета: карточка r16 от 118 высотой, поля 14/18/16; таймкод-чип и озвучка в верхней строке.
+  phraseCard: { minHeight: 118, borderRadius: 16, paddingTop: 14, paddingHorizontal: 18, paddingBottom: 16 },
+  phraseTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  stamp: { minHeight: 26, borderRadius: 13, paddingLeft: 8, paddingRight: 10, flexDirection: 'row', alignItems: 'center', gap: 5 },
+  stampText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  vol: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
+  phrase: { marginTop: 10, fontSize: 21, lineHeight: 27, fontWeight: '600' },
+  tr: { marginTop: 3, fontSize: 16, lineHeight: 21 },
 });

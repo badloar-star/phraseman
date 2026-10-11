@@ -57,3 +57,5 @@ Governance-ID: TG-3051B6E93A30 (11.10 ~18:15, очередь координат�
 Governance-ID: TG-1AEE7AF553AF (11.10 ~18:20: bc9787ab8 захватил чужую незаконченную правку CleanOnboarding (Дизайн) — исправлено ba1af540d; отчёт в инбокс; урок в память; в скрипт коммита — вывод numstat и стоп по AA_MAX_LINES.)
 
 Governance-ID: TG-284436D1E9EE
+
+Governance-ID: TG-F725A1E35474 (логи [AUTH-SWITCH-OFFER]/[OVERLAY-ARBITER]: окно подтверждения смены в онбординге «показано», но не видно — кто держит арбитра)

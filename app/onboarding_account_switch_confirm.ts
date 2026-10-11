@@ -99,7 +99,10 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
 export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<OnboardingAccountSwitchOutcome> {
   // зачем (прогон 11.10): в онбординге это всегда гость — свой честный текст вместо «Телефон уже связан…».
   const copy = accountSwitchRequiredGuestCopy(lang);
-  console.log('[AUTH-SWITCH-OFFER] onboarding confirm shown');
+  // зачем (прогон Сверки 11.10, 🔴 «окно не видно, busy висит»): прежняя строка «confirm shown» писалась ДО показа —
+  // окно лишь ставится в очередь, показывает его хост по решению арбитра. Пишем факт постановки и время до ответа.
+  const confirmEnqueuedAtMs = Date.now();
+  console.log('[AUTH-SWITCH-OFFER] onboarding confirm enqueued (waiting for ThemedBlockingAlertHost)');
   const choice = await enqueueThemedBlockingChoiceAlert<'cancel' | 'switch'>(copy.title, copy.body, [
     {
       label: triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' }),
@@ -108,6 +111,7 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
     },
     { label: copy.action, value: 'switch' },
   ]);
+  console.log(`[AUTH-SWITCH-OFFER] onboarding confirm answered choice=${String(choice)} waitedMs=${Date.now() - confirmEnqueuedAtMs}`);
   if (choice !== 'switch') {
     console.log(`[AUTH-SWITCH-OFFER] onboarding cancelled choice=${choice === THEMED_ALERT_DISMISSED ? 'dismiss' : choice}`);
     return { kind: 'cancelled' };

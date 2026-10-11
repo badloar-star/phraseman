@@ -164,6 +164,14 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
     return () => clearTimeout(t);
   }, [active, wantsMap]);
 
+  // зачем (прогон Сверки 11.10): окно подтверждения смены аккаунта ждало слот вечно — без этих строк не видно, кто его держит.
+  // Пишем только при смене владельца или списка желающих (редко), без значений самих окон.
+  useEffect(() => {
+    const waiting = (Object.keys(wantsMap) as OverlayKey[]).filter((k) => wantsMap[k] && k !== active);
+    if (!active && waiting.length === 0) return;
+    console.log('[OVERLAY-ARBITER] state', JSON.stringify({ active, waiting }));
+  }, [active, wantsMap]);
+
   const occupied = deriveOverlayOccupied(active, handoffGapRef.current);
   const value = useMemo<Ctx>(() => ({ active, occupied, setWants }), [active, occupied, setWants]);
 
@@ -207,6 +215,11 @@ export function useOverlayVisible(key: OverlayKey, ownState: boolean): boolean {
 
   if (disabled) return ownState;
   return ownState && active === key;
+}
+
+/** Кто сейчас держит слот арбитра (для логов хостов; без подписки на желающих). */
+export function useOverlayActiveKey(): OverlayKey | null {
+  return useOverlayArbiter().active;
 }
 
 /** Read-only signal for inline UI that must stay hidden while any overlay owns the slot. */

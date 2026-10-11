@@ -251,7 +251,7 @@ function communityPackValidationToast(
     default:
       return {
         ru: 'Проверь название, описание и все карточки.',
-        uk: 'Перевірте назву, опис і всі картки.',
+        uk: 'Перевір назву, опис і всі картки.',
         es: 'Revisa el título, la descripción y todas las tarjetas.',
         'pt-BR': 'Verifique o título, a descrição e todos os cartões.',
         vi: 'Kiểm tra tên, mô tả và tất cả thẻ.',

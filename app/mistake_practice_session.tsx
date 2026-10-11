@@ -84,6 +84,7 @@ import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
@@ -1424,6 +1425,8 @@ function MistakePracticeSessionScreen() {
         {/* зачем (DQA / PM-134 A2, 04.10): у крестика роль кнопки — диктор объявляет «Закрыть, кнопка». */}
         <RoundButton g={g} icon="close" label={copy.close} onPress={leavePractice} testID="mistake-practice-close" />
         <View style={styles.topRight}>
+          {/* зачем (Ядро 12.10, сторож session_attempts_screen_wiring_gate): сердечки на отработке ошибок работали, а индикатора не было. Режим энергии Б здесь не включён — HUD покажет сердечки. */}
+          <SessionAttemptsHud remaining={attempts.state.remainingAttempts} attempts={attempts} locale={lang} testID="mistake-practice-attempts" />
           <Text style={[styles.counter, { color: g.secondary }]}>{`${answeredProgress.answered} / ${answeredProgress.total}`}</Text>
           <RoundButton g={g} icon="ellipsis-horizontal" label={pcopy.menu} onPress={() => { hapticTap(); setMenuOpen(true); }} testID="mistake-practice-menu" />
         </View>

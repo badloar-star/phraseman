@@ -17,7 +17,7 @@ import { triLang, type Lang } from '../constants/i18n';
 export type ThemeDisplayName = Readonly<{
   ru: string;
   uk: string;
-  en?: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -53,15 +53,15 @@ export const THEME_DISPLAY_NAMES: Readonly<Record<string, ThemeDisplayName>> = O
   grad_ice: { ru: 'Лёд', uk: 'Лід', en: 'Ice', es: 'Hielo', 'pt-BR': 'Gelo', vi: 'Băng', id: 'Es', tr: 'Buz', pl: 'Lód' },
   grad_coral: { ru: 'Коралл', uk: 'Корал', en: 'Coral', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
   grad_lilac: { ru: 'Сирень', uk: 'Бузок', en: 'Lilac', es: 'Lila', 'pt-BR': 'Lilás', vi: 'Tử đinh hương', id: 'Lilak', tr: 'Leylak', pl: 'Bez' },
-  indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
-  sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
+  indigo: { ru: 'Индиго', uk: 'Індиго', en: 'Indigo', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
+  sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', en: 'Jade', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
   olive: { ru: 'Саванна', uk: 'Савана', en: 'Savanna', es: 'Sabana', 'pt-BR': 'Savana', vi: 'Thảo nguyên', id: 'Sabana', tr: 'Savan', pl: 'Sawanna' },
-  midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
-  ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
-  aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
-  volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
-  dark: { ru: 'Форест', uk: 'Форест', es: 'Forest', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
-  gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
+  midnight: { ru: 'Полночь', uk: 'Північ', en: 'Midnight', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
+  ember: { ru: 'Янтарь', uk: 'Бурштин', en: 'Amber', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
+  aurora: { ru: 'Сияние', uk: 'Сяйво', en: 'Aurora', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
+  volt: { ru: 'Лайм', uk: 'Лайм', en: 'Lime', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
+  dark: { ru: 'Форест', uk: 'Форест', en: 'Forest', es: 'Forest', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
+  gold: { ru: 'Золото', uk: 'Золото', en: 'Gold', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
 });
 
 /** Имя темы на языке интерфейса. Пустая строка — тема неизвестна. */

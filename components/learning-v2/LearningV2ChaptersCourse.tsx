@@ -7,6 +7,7 @@ import PressableHybrid from "../PressableHybrid";
 import LearningV2MapNode from "../LearningV2MapNode";
 import CoinRewardFlight, { type CoinRewardFlightPoint } from "../rewards/CoinRewardFlight";
 import { triLang, type Lang } from "../../constants/i18n";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../../modules/learning-v2/content/course_topology_v1";
 import {
   buildLearningV2CourseAccordionMapFromPreparedProgressV1,
   type LearningV2AccordionSessionStateV1,
@@ -138,11 +139,28 @@ export default function LearningV2ChaptersCourse(props: Props) {
   const [allLessonsOpen, setAllLessonsOpen] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
   const canonicalCurrentLessonOrdinal = currentLessonOrdinal(props.currentSessionId);
-  const [selectedLessonOrdinal, setSelectedLessonOrdinal] = useState(canonicalCurrentLessonOrdinal);
+  const [requestedLessonOrdinal, setSelectedLessonOrdinal] = useState(canonicalCurrentLessonOrdinal);
   useEffect(() => {
     setSelectedLessonOrdinal(canonicalCurrentLessonOrdinal);
   }, [canonicalCurrentLessonOrdinal]);
-  const { onSessionPress } = props;
+  const { onSessionPress, isSessionMaterialAvailable } = props;
+  // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): занятия, которые не открываются, НЕ
+  // рисуются вовсе (раньше — серый узел со «стройкой» и тупик «Сессия недоступна»). Урок без единого видимого занятия
+  // не попадает в «Все уроки»; если текущий урок целиком скрыт — показываем последний урок, где занятия есть.
+  const isSessionVisible = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) => isSessionMaterialAvailable?.(lessonOrdinal, sessionOrdinal) ?? true,
+    [isSessionMaterialAvailable],
+  );
+  const visibleLessonOrdinals = useMemo(
+    () => props.titles
+      .map((_, index) => index + 1)
+      .filter((ordinal) => Array.from({ length: LEARNING_V2_LESSON_SESSION_COUNT_V1 }, (_, index) => index + 1)
+        .some((sessionOrdinal) => isSessionVisible(ordinal, sessionOrdinal))),
+    [isSessionVisible, props.titles],
+  );
+  const selectedLessonOrdinal = visibleLessonOrdinals.includes(requestedLessonOrdinal)
+    ? requestedLessonOrdinal
+    : (visibleLessonOrdinals[visibleLessonOrdinals.length - 1] ?? requestedLessonOrdinal);
   const rows = useMemo(
     () => buildLearningV2CourseAccordionMapFromPreparedProgressV1({
       projectionScopeKey: props.scopeKey,
@@ -160,8 +178,8 @@ export default function LearningV2ChaptersCourse(props: Props) {
     [lessonRows],
   );
   const sessionRows = useMemo(
-    () => lessonRows.filter((row): row is SessionRow => row.kind === "session"),
-    [lessonRows],
+    () => lessonRows.filter((row): row is SessionRow => row.kind === "session" && isSessionVisible(row.lessonOrdinal, row.sessionOrdinal)),
+    [isSessionVisible, lessonRows],
   );
   const completed = useMemo(() => new Set(props.completedSessionIds), [props.completedSessionIds]);
   const currentLessonTitle = props.titles[selectedLessonOrdinal - 1] ?? "";
@@ -197,6 +215,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
       <ScrollView testID="learning-v2-all-lessons-list" contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
         {props.titles.map((title, index) => {
           const ordinal = index + 1;
+          if (!visibleLessonOrdinals.includes(ordinal)) return null;
           const lessonSessions = rows.filter((row): row is SessionRow => row.kind === "session" && row.lessonOrdinal === ordinal);
           const completedSessionCount = lessonSessions.filter((row) => completed.has(row.id)).length;
           const cardProps = { title, ordinal, completedSessionCount, isCurrent: ordinal === selectedLessonOrdinal, isAvailable: true, isInProgress: false, onPress: () => openLesson(ordinal) };
@@ -222,6 +241,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
     <ScrollView contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
       {chapterRows.map((chapter, chapterIndex) => {
         const chapterSessions = sessionRows.filter((row) => row.chapterOrdinal === chapter.chapterOrdinal);
+        if (chapterSessions.length === 0) return null;
         const completedCount = chapterSessions.filter((row) => row.state === "completed").length;
         const isExpanded = expandedChapter === chapter.chapterOrdinal;
         const chapterState = chapterSessions.length > 0 && completedCount === chapterSessions.length

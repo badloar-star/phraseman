@@ -33,7 +33,8 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
   const lessons = read('app', '(tabs)', 'lessons.tsx');
 
   test('ручное открытие курса выражено одной константой (открыт с 2026-09-19)', () => {
-    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE);$/m);
+    // зачем (владелец 11.10: «столько, сколько доступно»): вход есть, только если хоть одно занятие реально открывается.
+    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS);$/m);
     // зачем (10.10, релизный пол): в стор-сборке маршруты V2 вырезаны из роутера, чип «Новые уроки» там скрыт — иначе тупик «неизвестный маршрут».
   });
 

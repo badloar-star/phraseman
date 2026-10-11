@@ -264,6 +264,7 @@ import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
 import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
+import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import {
   factoryNativeLearningV2AvailabilityV1,
@@ -1363,9 +1364,12 @@ type LessonsTabProps = {
 // доступностью не управляет.
 //
 // зачем (владелец 11.10: «ВСЁ ПОПАДАЕТ В СБОРКУ! LEARNING V2 ПОПАДАЕТ!!!», курс виден всем сразу, без серверного ключа):
-// вырез 10.10 снят — маршруты курса и занятия входят в стор-сборку (router.ctx.js режет только дев-экраны V2), поэтому
-// вход открыт во всех сборках. Доступ к урокам решает learning_v2_access_policy (бесплатные уроки / Plus).
-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true;
+// вырез 10.10 снят — маршруты курса и занятия входят в стор-сборку (router.ctx.js режет только дев-экраны V2). Доступ к
+// урокам решает learning_v2_access_policy (бесплатные уроки / Plus).
+// зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход в курс есть, только если хоть одно
+// занятие реально открывается (app/learning_v2_session_availability_v1.ts) — без пустых экранов и тупиков. Дев-сборка
+// входит всегда: там проверяют невыпущенные занятия кнопкой массовой разблокировки.
+const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS;
 
 /**
  * Потолок ожидания подготовки занятия.
@@ -2971,14 +2975,19 @@ export default function LessonsTab({
         selectedLearningV2Session.sessionOrdinal,
       )
     : null;
-  const learningV2FactoryNativeSessionIds = useMemo(
-    () => new Set(
-      factoryNativeLearningV2AvailabilityV1().sessions.map(
-        (session) => session.courseSessionId,
-      ),
-    ),
-    [],
-  );
+  // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): множество занятий, которые игрок видит и
+  // может открыть, — написанные И выпущенные (собираются из бандла, непрерывный префикс курса). Им пользуются карта,
+  // прогрев и вход в занятие — одно правило на всех. Кнопка массовой разблокировки (только дев) показывает все написанные.
+  const learningV2FactoryNativeSessionIds = useMemo(() => {
+    const authored = factoryNativeLearningV2AvailabilityV1().sessions;
+    const shown = learningV2DevUnlockAllActive
+      ? authored
+      : authored.filter((session) => isLearningV2SessionReleasedV1(session.lessonOrdinal, session.sessionOrdinal));
+    if (__DEV__) {
+      console.log('[V2-AVAILABILITY] shown', JSON.stringify({ authored: authored.length, shown: shown.length, devUnlockAll: learningV2DevUnlockAllActive }));
+    }
+    return new Set(shown.map((session) => session.courseSessionId));
+  }, [learningV2DevUnlockAllActive]);
   type LearningV2PreparedSessionLaunch = Readonly<{
     key: string;
     sessionRunId: string;
@@ -3150,7 +3159,7 @@ export default function LessonsTab({
       learningV2FactoryNativeSessionIds.has(
         learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
       ),
-    [studyTarget],
+    [learningV2FactoryNativeSessionIds, studyTarget],
   );
   const currentLessonOrdinal = currentLearningV2SessionCoordinates?.lessonOrdinal ?? 1;
   const prepareLearningV2AudioSession = useCallback(

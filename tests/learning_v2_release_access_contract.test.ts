@@ -36,7 +36,8 @@ const lessons = read('app/(tabs)/lessons.tsx');
 assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)|<Redirect/u);
 assert.doesNotMatch(layout, /isBlockedLearningV2RoutePath/u);
 // зачем (владелец 11.10: «LEARNING V2 ПОПАДАЕТ», курс виден всем сразу): вырез 10.10 снят — вход в курс открыт во всех сборках.
-assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true;/u);
+// зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход — только если есть выпущенные занятия.
+assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS;/u);
 assert.doesNotMatch(
   lessons,
   /\{ENABLE_DEV_TOOLS \? \(\s*<TabUnderlineButton\s*\n\s*label="V2"/u,

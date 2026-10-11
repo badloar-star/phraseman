@@ -125,9 +125,12 @@ describe('«Мои наборы»: иконки и два раздела', () =>
   // (layers у созданных, people у добавленных); разметка живёт в MyPacksV2, логика групп — в экране.
   const view = read('flashcards', 'MyPacksV2.tsx');
 
-  it('строка набора: плитка-иконка макета, название, подпись, число', () => {
-    expect(view).toContain("icon={own ? 'layers-outline' : 'people-outline'}");
+  // зачем (Карточки 2.0, cards-v2 mySets(), 12.10): строка набора — «стопка» PackDeck с названием, «40 · A2», кнопкой «играть»; у добавленных — автор
+  it('набор: стопка с названием, числом карточек, автором добавленного и кнопкой «играть»', () => {
+    expect(view).toContain('<PackDeck');
     expect(view).toContain('count={pack.cardCount}');
+    expect(view).toContain('author={authorName ? { name: authorName } : null}');
+    expect(view).toContain('<PackDeckPlayButton');
   });
 
   it('добавленные из сообщества и созданные мной — разные разделы, пустой не рисуется', () => {
@@ -136,8 +139,9 @@ describe('«Мои наборы»: иконки и два раздела', () =>
     // зачем: 13c9f3012 (PM-093..096) — разделы рисуются из отфильтрованных поиском групп.
     expect(myPacks).toContain('created={visibleGroups.created}');
     expect(myPacks).toContain('added={visibleGroups.added}');
-    expect(view).toContain('created.length > 0');
-    expect(view).toContain('added.length > 0');
+    // зачем (cards-v2 mySets()): один список без разделов — сначала созданные, затем добавленные (у них аватар автора)
+    expect(view).toContain('created.map((pack) => row(pack, true))');
+    expect(view).toContain('added.map((pack) => row(pack, false))');
   });
 
   it('заголовки разделов есть во всех 8 локалях', () => {

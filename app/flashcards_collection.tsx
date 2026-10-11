@@ -1321,18 +1321,11 @@ export default function FlashcardsScreen() {
             onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackReportOpen(true) : null}
             onSpeak={(text) => onSpeakCb(text)}
             onOpenMoment={videoMomentPack ? openVideoMoment : null}
-            cta={previewMode ? (
-              <CommunityPackSocialBar
-                pack={currentMarketPack}
-                lang={lang}
-                t={t}
-                owned={false}
-                variant="previewCta"
-                ctaLabel={triLang(lang, { ru: 'Учить набор', uk: 'Вчити набір', en: 'Learn this pack', es: 'Aprender el pack', 'pt-BR': 'Aprender o pacote', vi: 'Học bộ thẻ', id: 'Pelajari paket', tr: 'Paketi öğren', pl: 'Ucz się zestawu' })}
-                onAdded={() => { void loadAll(); }}
-                onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
-              />
-            ) : null}
+            // зачем (cards-v2 videoSet(), 12.10): «Добавить +» / «✓ В моих наборах» — кнопка ряда под названием (CommunityPackSocialBar variant="setAdd"),
+            // а не нижняя «Учить набор»; логика добавления и покупки прежняя.
+            owned={!previewMode}
+            onAdded={() => { void loadAll(); }}
+            onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
             onTrain={!previewMode && listCards.length > 0 ? onTrainThisPack : null}
           />
         ) : previewMode && currentMarketPack ? (

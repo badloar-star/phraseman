@@ -10,8 +10,8 @@
  * `CommunityPackSocialBar` (оптимистично, откат при отказе, защита от двойного нажатия),
  * жалоба — `ReportPackModal`, обсуждение — `PackCommentsSheet`.
  *
- * Полосы масштаба (ползунок с четырьмя остановками) в общем kit пока нет — её делает исполнитель «Сохранённых»; до тех пор размер
- * меняется щипком (как в галерее). Уровень набора (A1–C2) в документах пока нет — чип скрыт (packDeckLevel).
+ * Шаг сетки (1/2/3/5 колонок) меняется щипком и ползунком ZoomBar, запоминается общим для всех списков карточек (useCardsGridStep).
+ * Уровень набора (A1–C2) в документах пока нет — чип скрыт (packDeckLevel).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -19,7 +19,8 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensio
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { CardsGallery } from '../../components/cards-grid/CardsGallery';
-import { useCardsScale } from '../../components/cards-grid/useCardsScale';
+import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
+import { ZoomBar } from '../../components/cards-grid/ZoomBar';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { packCardsWord } from '../../components/packs/PackRow';
 import { PackBackBare, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
@@ -144,13 +145,36 @@ export default function CommunityPackPreview({
     console.log('[PACK-OPEN] preview:cards', JSON.stringify({ packId: pack.id, cards: cards.length, sinceMountMs: Date.now() - mountedAtRef.current }));
   }, [cards.length, pack.id]);
 
-  // ── сетка карточек: общая галерея, шаг 0 макета (одна колонка, 118) ──
+  // ── сетка карточек: общая галерея и полоса масштаба (шаги 1/2/3/5 колонок, щипок и ползунок; шаг запоминается общим для всех списков) ──
   const width = screenW - SIDE * 2;
-  const { scale, gesture } = useCardsScale(0);
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollYRef = useRef(0);
+  const gridTopRef = useRef(260);
   const [scrollY, setScrollY] = useState(0);
   const [gridTop, setGridTop] = useState(260);
+  const { step, setStep, gesture, morph, morphFrom } = useCardsGridStep({
+    count: cards.length,
+    width,
+    viewportH: screenH,
+    sideInset: SIDE,
+    getGridTop: () => gridTopRef.current,
+    getScrollY: () => scrollYRef.current,
+    scrollTo: (y) => {
+      // зачем: докрутка при смене шага — мгновенная (плитки перетекают от прежних позиций с учётом этого сдвига)
+      scrollYRef.current = y;
+      scrollRef.current?.scrollTo({ y, animated: false });
+    },
+  });
+  const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
+  const zoomCopy = useMemo(() => triLang(lang, {
+    ru: { smaller: 'Мельче', larger: 'Крупнее' }, uk: { smaller: 'Дрібніше', larger: 'Крупніше' }, en: { smaller: 'Smaller', larger: 'Larger' },
+    es: { smaller: 'Más pequeño', larger: 'Más grande' }, 'pt-BR': { smaller: 'Menor', larger: 'Maior' }, vi: { smaller: 'Nhỏ hơn', larger: 'Lớn hơn' },
+    id: { smaller: 'Lebih kecil', larger: 'Lebih besar' }, tr: { smaller: 'Daha küçük', larger: 'Daha büyük' }, pl: { smaller: 'Mniejsze', larger: 'Większe' },
+  }), [lang]);
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const y = Math.round(event.nativeEvent.contentOffset.y / 40) * 40;
+    const raw = event.nativeEvent.contentOffset.y;
+    scrollYRef.current = raw;
+    const y = Math.round(raw / 40) * 40;
     setScrollY((prev) => (prev === y ? prev : y));
   }, []);
   // зачем: перевод едет в плитке отдельным полем (галерея показывает его, когда kit научится рисовать лицо карточки с переводом).
@@ -172,10 +196,12 @@ export default function CommunityPackPreview({
     <View testID="pack-preview" style={styles.root}>
       <GestureDetector gesture={gesture}>
         <ScrollView
+          ref={scrollRef}
           testID="pack-preview-scroll"
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
-          scrollEventThrottle={32}
+          scrollEventThrottle={16}
+          stickyHeaderIndices={[1]}
           onScroll={onScroll}
           keyboardShouldPersistTaps="handled"
           decelerationRate="fast"
@@ -186,6 +212,7 @@ export default function CommunityPackPreview({
           }}
           onContentSizeChange={(_w, h) => console.log('[PACK-OPEN] preview:content-size', JSON.stringify({ packId: pack.id, h: Math.round(h), sinceMountMs: Date.now() - mountedAtRef.current }))}
         >
+          <View>
           <PackTopBarRow
             left={<PackBackBare g={g} testID="pack-preview-back" label={backLabel} onPress={onBack} />}
             right={<PackSquareButton g={g} testID="pack-preview-more" label={moreLabel} onPress={onMore} />}
@@ -218,14 +245,23 @@ export default function CommunityPackPreview({
 
           {/* Набор из ролика (D131): превью ролика остаётся — у обычных наборов блока нет. */}
           {pack.videoId ? <View style={{ marginTop: 18 }}><PackVideoHero pack={pack} lang={lang} t={t} /></View> : null}
+          </View>
 
-          <View style={styles.gridWrap} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
+          {/* `zoomBar()` макета: прилипающая полоса масштаба между кнопками и сеткой. */}
+          <ZoomBar g={g} step={step} onStep={onZoomStep} smallerLabel={zoomCopy.smaller} largerLabel={zoomCopy.larger} />
+
+          <View
+            style={styles.gridWrap}
+            onLayout={(event) => { const y = Math.round(event.nativeEvent.layout.y); gridTopRef.current = y; setGridTop(y); }}
+          >
             {cards.length > 0 ? (
               <CardsGallery
                 g={g}
                 cards={items}
                 width={width}
-                scale={scale}
+                step={step}
+                morph={morph}
+                morphFrom={morphFrom}
                 scrollY={Math.max(0, scrollY - gridTop)}
                 viewportH={screenH}
                 onOpen={speakCard}
@@ -260,7 +296,6 @@ const baseStyles = StyleSheet.create({
   lvl: { minWidth: 38, height: 26, paddingHorizontal: 9, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   lvlText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   actions: { marginTop: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  // зачем: полоса масштаба (когда появится в kit) встанет между кнопками и сеткой; пока 14 — как её верхний отступ в макете.
-  gridWrap: { marginTop: 14 },
+  gridWrap: { marginTop: 0 },
   skeletons: { gap: 10 },
 });

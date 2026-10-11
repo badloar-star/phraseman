@@ -1,6 +1,6 @@
 # Task packet: «Мои ошибки» в приложении 1 в 1 с макетом «Панель»
 
-Governance-ID: TG-30510D7EB55F
+Governance-ID: TG-737391EA58FB
 Status: In progress
 Owner: сессия 3 · МАКЕТЫ ВЛАДЕЛЬЦА
 Related epic/enabler: PhraseMan 2.0, паритет макет↔приложение (visual_parity.json, строки mistakes-panel-*)

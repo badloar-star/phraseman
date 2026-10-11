@@ -1,7 +1,7 @@
 # Task packet: Админка «Видео» — подключение каналов YouTube: ложное «Выбран другой канал» и подключение «один раз навсегда»
 
-Governance-ID: TG-F9327C333AE0
-Governance-ID: TG-B04D18158F5E
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: In progress — решение владельца 04.10: без новых секретов, без серверного code-flow
 Owner: Ядро; срочное поручение координатора 04.10 от владельца
 

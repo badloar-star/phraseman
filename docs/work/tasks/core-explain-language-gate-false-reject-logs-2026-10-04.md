@@ -1,6 +1,6 @@
 # Task packet: explainMistake — проверка языка бракует правильные русские объяснения (503) — сперва логи
 
-Governance-ID: TG-1E6E68948196
+Governance-ID: TG-94EA8E61CB15
 Status: Logs (шаг 1) — выкладку explainMistake делает координатор
 Owner: Ядро; найдено по логам [EXPLAIN-MISTAKE] после выкладки 649b06e2d
 

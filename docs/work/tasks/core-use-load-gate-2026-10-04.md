@@ -1,6 +1,6 @@
 # Task packet: общий хук useLoadGate (D158) для «Сохранённых», «Моих наборов», свайпа и Plus-окна
 
-Governance-ID: TG-D93A5D8AFD89
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: Ядро (поручение координатора 04.10, после PM-214)
 

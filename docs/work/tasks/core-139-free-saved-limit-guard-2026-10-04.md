@@ -1,6 +1,6 @@
 # Task packet: §139 побочно — сторож лимита сохранённых карточек ждал 20, а лимит 50
 
-Governance-ID: TG-8988BBC7BF87
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (владелец сторожа)
 

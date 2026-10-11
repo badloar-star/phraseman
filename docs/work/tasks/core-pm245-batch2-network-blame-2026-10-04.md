@@ -1,6 +1,6 @@
 # Task packet: PM-245 пачка 2 — служебные тексты без «Проверь интернет» и «Что-то пошло не так»
 
-Governance-ID: TG-46A6EFB2011B
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; PM-245 (очередь координатора, пункт 1), тон D158
 

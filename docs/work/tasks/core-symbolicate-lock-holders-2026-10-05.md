@@ -1,6 +1,6 @@
 # Task packet: символизация держателей замка из пакета замеров (Metro /symbolicate)
 
-Governance-ID: TG-AF3DE7654555
+Governance-ID: TG-2DD8F4A75ABC
 Status: In progress
 Owner: сессия 1 · ЯДРО (координатор 05.10, после пакета 01:26)
 

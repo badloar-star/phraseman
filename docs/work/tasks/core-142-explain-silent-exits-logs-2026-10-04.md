@@ -1,6 +1,6 @@
 # Task packet: §142 — explainMistake: логи на немых выходах (pending 503, invalid-argument 400)
 
-Governance-ID: TG-A94759F3DC37
+Governance-ID: TG-94EA8E61CB15
 Status: Logs (шаг 1) — выкладка у координатора
 Owner: Ядро; найдено при разборе логов выкладки 04.10 (ревизия explainmistake-00050, 05:10Z)
 

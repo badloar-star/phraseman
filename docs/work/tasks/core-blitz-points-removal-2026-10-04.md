@@ -1,6 +1,6 @@
 # Task packet: Блиц без очков и комбо — считаем только монеты
 
-Governance-ID: TG-02FC10309D27
+Governance-ID: TG-94EA8E61CB15
 Status: Done — блиц без очков/комбо/рекорда, монеты те же (тест fc_blitz_coins_unchanged)
 Owner: сессия 1 · ЯДРО (по задаче владельца через координатора, 04.10)
 Related epic/enabler: PhraseMan 2.0 упрощение

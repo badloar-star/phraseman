@@ -1,6 +1,6 @@
 # Task packet: чужие красные сторожа (находка Дизайна, 68 файлов в лёгком режиме)
 
-Governance-ID: TG-EAB1EC9FA837
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: сессия 1 · ЯДРО (координатор 04.10, ночь)
 

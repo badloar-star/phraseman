@@ -1,7 +1,7 @@
 # Task packet: Блиц «28 из 30» — тест гипотезы «подхваченная запись списывает ноль» + мигание «waiting»
 
-Governance-ID: TG-EAC98EEB1C2A
-Governance-ID: TG-7CC47DFBCEB2
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done (тест + мигание); починка самой причины — после воспроизведения [BLITZ-LIMIT] на эмуляторе
 Owner: Ядро; поручение координатора 04.10
 

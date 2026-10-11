@@ -744,3 +744,34 @@ decision. An unadapted shared-prompt invocation is `HOLD`.
 - The receipt still excludes the requirement-manifest identity: the manifest
   binds this receipt SHA-256 after this text is finalized. This one-way binding
   avoids a receipt↔manifest content-address cycle.
+
+## 2026-10-08 shared locale-judge source-identity repair
+
+The shared locale-judge prompt changed from SHA-256
+`2d1f2df6be7dadc221ee139aefea6ab4db0c4d9246aae98de362f51a481a0d45` to
+`7c75761015964913d1d6ed4ad0aca0c8fcbe0f05cb3851f0ff3768f9844af02a`.
+The German requirement manifest is rebound to those current bytes and adapts
+their general learner-option rules into `DE-JUDGES-005`: every visible
+`responseOption` and selectable localized meaning is one atomic word, phrase or
+meaning; packages using `;`, `；`, `|`, newlines, list markers, repeated
+`word — meaning` pairs or three-word glossary bundles are forbidden;
+multiline explanation belongs only in a separate non-selectable word-card; and
+Markdown must have exact target/options/audio parity with the atomic source.
+
+The prompt's humor cadence applies specifically to the English Codex L2/S33+
+series and is an editorial target, not a literal numeric owner requirement. It
+does not create `DE-HUMOR-001`, a German numeric humor quota or permission to
+import English-series cadence. German `DE-OWNER-007`, `DE-OPENING-005`,
+`DE-JUDGES-001`, `DE-RESEARCH-003`, `DE-INTERACTION-001` and the German
+`OWNER_DECISIONS.md` remain unchanged authority for natural, useful,
+non-glued-on voice, exact German target granularity and shared-prompt
+target-adaptation. The RU/UK native-locale judge remains independent and must
+preserve German target and diagnostic intent.
+
+This source-identity repair does not claim that a fresh independent review has
+completed. Historical Task 6A3–A11 TEMP packets and their reviews remain bound
+to their own earlier manifest/receipt anchors; they are not reprinted, resealed
+or promoted to a fresh live-anchor PASS. The next Task 6A12 packet must accept
+the new live manifest and receipt anchors through a fresh guardian while
+preserving the parent A11 bytes. No numbered task advances, and no learner
+session, audio, mockup, publish or release is authorized by this note.

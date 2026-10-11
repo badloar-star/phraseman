@@ -1,6 +1,6 @@
 # Task packet: сторож входа в «Старые уроки» падал на удалённых картинках вступительного экрана
 
-Governance-ID: TG-A848198EECF7
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро; поручение координатора 04.10
 

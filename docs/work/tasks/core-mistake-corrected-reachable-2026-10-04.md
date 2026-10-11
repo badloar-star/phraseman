@@ -1,7 +1,7 @@
 # Task packet: ошибка уходит из счётчика — правило «2 режима» только где 2 режима возможны
 
-Governance-ID: TG-052C0CAC8347
-Governance-ID: TG-998FBDED5D0C
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done — «да» координатора §130
 Owner: Ядро (находка «Дизайна», «17 не уменьшается», §126)
 

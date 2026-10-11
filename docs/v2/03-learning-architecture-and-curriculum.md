@@ -332,6 +332,8 @@ Canonical cap `V2_MAX_MANDATORY_LEARNING_RETRIES=2` относится к `HYP-V
 
 ### Эпизод 9. My home and neighborhood
 
+**Связь с фабрикой (2026-10-04):** factory `en/l04` — авторитетный 56-сессионный грамматический разворот материала E09 про наличие и место. Эта связь не меняет машинную адресацию: runtime и native-проекция сохраняют `lesson-04` / `en/l04`; E09 остаётся номером сценарного эпизода в этом документе. Источник точных session deltas и новых lexical senses — `content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md`, раздел «Урок 4».
+
 **Can-do:** описать комнату и район, спросить, есть ли нужное место или предмет.
 
 **Фразы:** I live in a small apartment; There is a table near the window; There are two shops nearby; Is there a pharmacy here?; There isn’t a lift; It’s under/next to/opposite …

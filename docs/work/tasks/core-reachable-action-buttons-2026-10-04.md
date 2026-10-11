@@ -1,6 +1,6 @@
 # Task packet: сторож «до кнопки действия можно добраться» — разбор 11 новых и 2 устаревших
 
-Governance-ID: TG-5B7549060534
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: сессия 1 · ЯДРО (координатор 04.10)
 Related epic/enabler: UX — кнопка «Готово» не уходит за экран на низких телефонах

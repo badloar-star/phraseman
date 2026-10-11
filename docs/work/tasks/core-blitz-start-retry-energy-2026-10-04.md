@@ -1,6 +1,6 @@
 # Task packet: Блиц — запуск без потери энергии и без таймера за экраном ошибки
 
-Governance-ID: TG-395191079A1B
+Governance-ID: TG-94EA8E61CB15
 Status: Done (логика); причина минут — ждём логи [PREMIUM-RESOLVE] с эмулятора
 Owner: сессия 1 · ЯДРО (срочно, координатор 04.10; отчёт сессии 6 INBOX_COORDINATOR_FROM_SVERKA 16:50)
 Related epic/enabler: PM-220 (мгновенное открытие), экономика энергии/квоты тренировок

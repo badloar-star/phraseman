@@ -1,6 +1,6 @@
 # Task packet: сторожа админки — на живую админку, без устаревших ожиданий
 
-Governance-ID: TG-B6D2D18765A7
+Governance-ID: TG-94EA8E61CB15
 Status: Done — 30/30 зелёные
 Owner: сессия 1 · ЯДРО (координатор 04.10; админка освобождена владельцем)
 Related epic/enabler: PhraseMan 2.0 — очистка после снимка efe19ae9d (удалён admin/legacy.html)

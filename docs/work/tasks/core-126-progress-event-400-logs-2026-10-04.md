@@ -1,6 +1,6 @@
 # Task packet: §126 п.9 — progressSubmitEvent 400: причина отказа в журнале
 
-Governance-ID: TG-052C0CAC8347
+Governance-ID: TG-94EA8E61CB15
 Status: Logs first (no behaviour change)
 Owner: Ядро
 

@@ -1,7 +1,7 @@
 # Task packet: PM-221-A1 — удалить мёртвые statsInsightsGenerate и weeklyReviewGenerate
 
-Governance-ID: TG-908628011C76
-Governance-ID: TG-44FD0738DF5B
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done — решение координатора 04.10 (техника)
 Owner: Ядро
 

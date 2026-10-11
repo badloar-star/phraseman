@@ -1,6 +1,6 @@
 # Task packet: память корневого jest — найти и убрать причину
 
-Governance-ID: TG-B77414A60125
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: сессия 1 · ЯДРО (координатор 04.10: первое задание в окне jest)
 

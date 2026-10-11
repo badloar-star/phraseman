@@ -1,7 +1,7 @@
 # Task packet: PM-252 п.3 — сообщения приложения без принудительного чтения на каждом возврате
 
-Governance-ID: TG-A7BA9CA259CA
-Governance-ID: TG-54F4C0B203AF
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро; поручение координатора 04.10 (PM-252 п.3)
 

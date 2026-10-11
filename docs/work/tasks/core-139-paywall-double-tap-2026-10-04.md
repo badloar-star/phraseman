@@ -1,6 +1,6 @@
 # Task packet: §139 п.1 — Plus: защита от двойного тапа (покупка / восстановление / закрытие)
 
-Governance-ID: TG-6A9A9D57F8D8
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (аудит Optimistic UI сессии App Check, INBOX §139)
 

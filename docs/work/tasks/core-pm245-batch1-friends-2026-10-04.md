@@ -1,6 +1,6 @@
 # Task packet: PM-245 пачка 1 — «Друзья»: без «Что-то пошло не так» и «Проверь интернет»
 
-Governance-ID: TG-A848198EECF7
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро; PM-245, тон D158 (координатор 04.10)
 

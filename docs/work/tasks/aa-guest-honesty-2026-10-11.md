@@ -54,3 +54,4 @@ Governance-ID: TG-880D897B926D — ревью APPROVE; LOW-1: «прогресс
 Governance-ID: TG-AA6884B7A6D7 — префикс [AUTH-AVAIL] в IdentityTracePrefix (ошибка типов после a350f04ba).
 Governance-ID: TG-0F2E8636E5DF — запись AA-42 (тип [AUTH-AVAIL], сорванный прогон).
 Governance-ID: TG-34DA5570D750 — сторож legal_document_liquid_glass_source_contract после правок политики.
+Governance-ID: TG-ECE8CEBE949C — сводка по очереди 22:45 (всё сделано ранее).

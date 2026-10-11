@@ -1,6 +1,6 @@
 # Task packet: сторож старта «Устно»/Блица считает простой, а не время с начала
 
-Governance-ID: TG-75E054396FCB
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (находка «Дизайна», 04.10)
 

@@ -1,6 +1,6 @@
 # Task packet: §141 — окно Plus открывается сразу по последнему известному доступу
 
-Governance-ID: TG-CC55A80B9290
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (аудит «мгновенное открытие», INBOX §141; правило владельца b7b843867)
 

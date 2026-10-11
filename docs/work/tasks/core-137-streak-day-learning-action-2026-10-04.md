@@ -1,7 +1,7 @@
 # Task packet: §137 — день серии засчитывается за завершённое учебное действие
 
-Governance-ID: TG-934BE4D43930
-Governance-ID: TG-2DEAB50DDC04
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done (ждёт вето владельца утром — VETO_LIST)
 Owner: Ядро (логика и сигнал); «Дизайн» — текст и отклик
 

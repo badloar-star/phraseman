@@ -1,6 +1,6 @@
 # Task packet: логи [PACK-AUDIO] — «Не воспроизводится запись» со страницы набора
 
-Governance-ID: TG-0CF68C553F0B
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро
 

@@ -1,6 +1,6 @@
 # Task packet: PM-214 (контур Ядра) — окно Plus открывается из кэша без вечного ожидания + список функций для выкладки логов PM-229
 
-Governance-ID: TG-9B87F538EA2D
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; очередь координатора, п.4 (PM-214)
 

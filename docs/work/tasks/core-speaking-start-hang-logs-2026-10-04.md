@@ -1,6 +1,6 @@
 # Task packet: «Устно» висит на старте — трассировка загрузки после start:begin
 
-Governance-ID: TG-052C0CAC8347
+Governance-ID: TG-94EA8E61CB15
 Status: Logs first (no behaviour change)
 Owner: Ядро
 

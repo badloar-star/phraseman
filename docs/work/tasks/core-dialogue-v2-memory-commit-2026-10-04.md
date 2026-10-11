@@ -1,6 +1,6 @@
 # Task packet: закоммитить модуль «Диалоги V2: память» — functions из чистого HEAD снова собираются
 
-Governance-ID: TG-0CF68C553F0B
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (модуль создан сессией Ядра 27.09, не был закоммичен)
 

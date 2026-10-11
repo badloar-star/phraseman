@@ -1,6 +1,6 @@
 # Task packet: §126 п.9 — mistakePracticeSyncEvents 400 (~50%): причина отказа в журнале
 
-Governance-ID: TG-0CF68C553F0B
+Governance-ID: TG-94EA8E61CB15
 Status: Done (logs first)
 Owner: Ядро
 

@@ -1,6 +1,6 @@
 # Task packet: лимит Блица «28 из 30» не меняется после раунда — сперва логи [BLITZ-LIMIT]
 
-Governance-ID: TG-A94759F3DC37
+Governance-ID: TG-94EA8E61CB15
 Status: Logs (шаг 1) — починка после воспроизведения
 Owner: Ядро; находка DQA через координатора 04.10
 

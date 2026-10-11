@@ -1,7 +1,7 @@
 # Task packet: «Мои ошибки» — убрать тексты про «верно в 3 разных дня» (§126/§130)
 
-Governance-ID: TG-B04D18158F5E
-Governance-ID: TG-A848198EECF7
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро; поручение координатора 04.10
 

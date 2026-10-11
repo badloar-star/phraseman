@@ -1,6 +1,6 @@
 # Task packet: §141 — сторож mistakes_hub_contract «daily limit and free short sessions» по смыслу
 
-Governance-ID: TG-CC55A80B9290
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (аудит «мгновенное открытие», INBOX §141)
 

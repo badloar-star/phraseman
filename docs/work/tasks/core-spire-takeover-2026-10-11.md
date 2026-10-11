@@ -1,6 +1,6 @@
 # Task packet: Шпиль — серверная часть и тесты к релизу, переключатель «Шпиль для игроков» в админке
 
-Governance-ID: TG-363B364D997B
+Governance-ID: TG-C68ACC2219FD
 Status: In progress
 Owner: сессия «1 · Ядро» (координатор 13:30, владелец: «ШПИЛЬ… ЭТО ТВОЯ ЗАДАЧА»); экраны Шпиля — сессия «Дизайн»
 Related: OWNER_RELEASE_STEPS.md §4, DEPLOY_NOW.md (группа «Шпиль»)

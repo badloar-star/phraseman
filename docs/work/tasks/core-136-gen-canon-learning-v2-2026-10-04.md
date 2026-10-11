@@ -1,6 +1,6 @@
 # Task packet: §136 — .gen единственный источник уроков 1–16; Learning V2 читает .gen; генераторы заблокированы
 
-Governance-ID: TG-0CF68C553F0B
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро
 

@@ -1,6 +1,6 @@
 # Task packet: сторож выпуска сессий Learning V2 читает индекс/HEAD, а не рабочую копию
 
-Governance-ID: TG-2D2D4C7E51F4
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: сессия 1 · ЯДРО (срочно, координатор 04.10)
 Related epic/enabler: инфраструктура pre-commit (scripts/guard_learning_v2_session_release.mjs)

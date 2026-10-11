@@ -1,6 +1,6 @@
 # Task packet: доводка волны 03.10 «fail-closed по языку изучения» для карточек
 
-Governance-ID: TG-5B7549060534
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: сессия 1 · ЯДРО (решение владельца через координатора 04.10: «правильно он и сделал! коммит, доведи правку»)
 Related epic/enabler: D129/D130 — разделы по языку изучения

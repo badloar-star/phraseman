@@ -1,7 +1,7 @@
 # Task packet: PM-252 — проверка хеша бана при входе + лимит попыток promoCodeRedeem
 
-Governance-ID: TG-CD5DDF2E3ED5
-Governance-ID: TG-A7BA9CA259CA
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: Ядро; решение координатора 04.10 (ответ на 3a3486319, п.2) и PM-252 п.2
 

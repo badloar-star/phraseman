@@ -2,7 +2,9 @@
 
 Governance-ID: TG-62AB48B12221
 Governance-ID: TG-069818A1C7E3
-Status: Done
+Governance-ID: TG-0C48CA4BC44C
+Governance-ID: TG-DB5237663D16
+Status: Done (ждём, что телефон подхватит связку)
 Owner: Claude session 2026-09-24 (поддержка)
 Related epic/enabler: none
 
@@ -59,3 +61,24 @@ auth_links, затем точечный план и явное «да» влад
 Удалены: auth `Pmm11…`, users/`4f4ecb4b…` с 7 подколлекциями (18 док.), auth_links/`Pmm11…`.
 Проверка: getUserByEmail → auth/user-not-found, почта свободна. Копия: scratchpad
 `backup_ganiyev_4f4ecb4b.json`. Профили `8fa2507d…` (grace до 03.10) и `cc8c0429…` не тронуты.
+
+## 2026-09-30: вход прошёл наполовину — чиним сервером (владелец явно разрешил)
+
+Телефон вошёл Google-входом `EpQiv…` (28.09), но шлёт на связку локальный stable
+`f00e4339…`, удалённый 17.09 (tombstone + permanent denial). `ensureStableLinkForAuth`
+первым делом зовёт `assertStableDeletionNotPending(f00e)` → identity_retired; связка
+падает по кругу, Plus-листенер без связки не стартует.
+
+План: снять tombstone + denial `f00e`; users/f00e.firebaseAuthUid=EpQiv + linkedAuth;
+auth_links/EpQiv → f00e; затем год Plus тем же патчем, что adminGrantAccess
+(vip_* + access_projection + admin_log). Копия трогаемых документов — scratchpad.
+Откат: восстановить из копии.
+
+## Выполнено 2026-09-30 13:05 UTC (скрипты запустил владелец)
+
+relink: отменена очередная задача удаления `adel_f09f…` (срок был 01.10 09:56), сняты
+tombstone и denial `f00e…`, запись в account_deletion_restores; users/f00e →
+firebaseAuthUid=EpQiv + linkedAuth google; auth_links/EpQiv → f00e.
+Plus: vip до 2027-09-30, access_projection vipActive=true, запись в admin_log.
+Проверка чтением: всё на месте, запретов нет. Копия: scratchpad backup_ganiyev_relink.json.
+Не проверено: связка с телефона — на момент проверки он ещё не заходил.

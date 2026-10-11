@@ -1,6 +1,6 @@
 # Task packet: PM-245 пачка 3 — длинные служебные сообщения короче + вход «Нет связи»
 
-Governance-ID: TG-46A6EFB2011B
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; PM-245 (очередь координатора, пункт 1), тон D158
 

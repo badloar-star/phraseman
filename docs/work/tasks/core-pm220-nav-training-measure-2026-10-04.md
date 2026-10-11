@@ -1,6 +1,6 @@
 # Task packet: PM-220 — способ измерения навигации и тренировок ([NAV-PAINT]) + команда ворот navpaint
 
-Governance-ID: TG-9B87F538EA2D
+Governance-ID: TG-94EA8E61CB15
 Status: Done (метод измерения); числовые бюджеты — после baseline на устройствах (владелец)
 Owner: 1 · Ядро; очередь координатора, п.5 (PM-220)
 

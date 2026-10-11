@@ -1,6 +1,6 @@
 # Task packet: §142 — прогрев цен окна Plus после первого кадра + уборка флага gate_mistake_practice_premium
 
-Governance-ID: TG-CC55A80B9290
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (поручение координатора 04.10; правило владельца «каждый раздел открывается мгновенно»)
 

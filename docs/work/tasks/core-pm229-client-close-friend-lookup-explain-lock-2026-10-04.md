@@ -1,6 +1,6 @@
 # Task packet: PM-229 клиент закрыт (app_snapshot_bootstrap) + сторож friend_lookup + проверка срока блокировки разбора фразы
 
-Governance-ID: TG-097B19920F64
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; поручение координатора 04.10 (три пункта после 17047a3c8)
 

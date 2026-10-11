@@ -1,6 +1,6 @@
 # Task packet: PM-252 п.1 — удаление аккаунта стирает все ~12 оставшихся персональных коллекций
 
-Governance-ID: TG-41000B123D3D
+Governance-ID: TG-94EA8E61CB15
 Status: Done — решение координатора 04.10; текст Privacy Policy публикует координатор
 Owner: Ядро
 

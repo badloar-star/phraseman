@@ -1,7 +1,7 @@
 # Task packet: §126 п.9 — видео не помнит позицию
 
-Governance-ID: TG-052C0CAC8347
-Governance-ID: TG-75E054396FCB
+Governance-ID: TG-94EA8E61CB15
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро
 

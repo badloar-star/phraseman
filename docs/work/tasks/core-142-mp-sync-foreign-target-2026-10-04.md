@@ -1,6 +1,6 @@
 # Task packet: §142 — журнал «Моих ошибок» одного языка получал события других языков (188 отказов [MP-SYNC])
 
-Governance-ID: TG-CC55A80B9290
+Governance-ID: TG-94EA8E61CB15
 Status: Done (клиент) — серверная часть «it» у владельца правки
 Owner: Ядро; найдено по логам выкладки mistakePracticeSyncEvents (5e1ce053e)
 

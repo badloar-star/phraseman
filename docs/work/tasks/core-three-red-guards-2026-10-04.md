@@ -1,6 +1,6 @@
 # Task packet: три красных сторожа (промокод, удержание подписки, опрос Plus) — причина и правка
 
-Governance-ID: TG-EA37289C467A
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; поручение координатора 04.10 (очередь, п.2)
 

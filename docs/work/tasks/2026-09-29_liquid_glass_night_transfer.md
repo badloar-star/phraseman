@@ -323,3 +323,103 @@ Governance-ID: TG-2B6F9D2FC59C
 Governance-ID: TG-74D0E1474584
 — 01.10 «Дизайн»: D139 — оставшиеся 3 файла (Настройки, уведомления, окно покупки набора).
 Governance-ID: TG-3436B7A2D52D
+Governance-ID: TG-3436B7A2D52D — Дизайн: перенумерация D142–D146 (коллизия 03_DECISIONS)
+Governance-ID: TG-B0A78ECD9DB2 — Дизайн: D147 убрать видимые тексты «Супер-воскресенье» (9 языков) + скриншоты DESIGN gate PM-043/044/045
+Governance-ID: TG-657332291E4C — Дизайн: пачка скриншотов DESIGN gate PM-043/044/045/141/145 (только чтение кода, эмулятор)
+Governance-ID: TG-8001C2FD1885 — Дизайн: text-integrity 29 мест без обрезки (продолжение)
+Governance-ID: TG-A5B5D7ECB11A — Дизайн: удаление мёртвого FlashcardsTabBar и его помощников
+Governance-ID: TG-49A5C97D3057 — Дизайн: вкладка «Видео» на FlashList (вид без изменений) + сторож
+Governance-ID: TG-B44F3829F5BA — Дизайн: эмулятор — скриншоты PM-141/145/044, клавиатура «Добавить друга», локали, переход на Про
+Governance-ID: TG-04835A586961 — Дизайн: «Добавить друга» в верхней трети на коротких экранах; Главная без скачков монет и карточки «Продолжить» + сторож
+Governance-ID: TG-964AC155EA12 — Дизайн: сырой след [STREAK] для Ядра + [HOME-FIRST-FRAME] на холодном старте
+Governance-ID: TG-82FE12C88FE9 — Дизайн: пересъёмка DESIGN gate (PM-044/141/145/144/197) + след [STREAK]
+Governance-ID: TG-C2816BCD78A5 — Дизайн: Главная — первый кадр (монеты «—», заготовка «Продолжить»), сторож layout_stability; след [STREAK]
+Governance-ID: TG-56E911F05E42 — Дизайн: срочно — continueResolvedRef в тестах Главной, rune_balance_snapshot_preservation, след [STREAK]
+Governance-ID: TG-2B3DE8BBDE4B — Дизайн: обвязка home_lesson_progress_single_pass и rune_balance_snapshot_preservation под заготовку и «—»
+Governance-ID: TG-4BCD030B2068 — Дизайн: пейвол — крестик залипает после «Оформить» в дев-сборке; подтверждение cloud=6
+Governance-ID: TG-137299BB0291 — Дизайн: пересъёмка PM-141/145/144/197, вес арта
+Governance-ID: TG-C6EA51BE3051 — Дизайн: проверка починки серии Ядра (холодный старт), мёртвая «Начать диалог» (energy operation_id_conflict)
+Governance-ID: TG-63189596B7EA — Дизайн: home_learning_cta_contract (бюджет арта), просмотр экранов на п.6–7
+Governance-ID: TG-94886C4095C5 — Дизайн: след [ENERGY-CONFLICT] для «Начать диалог» по запросу Ядра
+Governance-ID: TG-45B06497D1FE — Дизайн: жемчуг снят со всех видимых экранов (D70/D78, PM-289 этап 2)
+Governance-ID: TG-FB09292B347F — Дизайн: «Монетная заначка» — прогресс по монетам, дев-рынок за жемчуг
+Governance-ID: TG-5A780A2A1F11 — Дизайн: повтор хода social_01 после выкладки, PM-144
+Governance-ID: TG-D69C347D92EE — Дизайн: ход social_01 до итогов, энергия acknowledge
+Governance-ID: TG-53978FA6DAB9 — Дизайн: прогон диалога до итога с таймингом реплик и целей
+Governance-ID: TG-EF8DFCB9F041 — Дизайн: проверка итога диалога после выкладки 1d589d1d0
+Governance-ID: TG-774EB9223559 — Дизайн: полный прогон social_01 до итога по целям
+Governance-ID: TG-FC336965AAE3 — Дизайн: облегчение списка уроков, Q112 «по всем языкам», лёгкие обложки «Видео», проверка сжатого арта
+Governance-ID: TG-F4C67E533A5C — Дизайн: лёгкие обложки «Видео» и облегчение списка уроков
+Governance-ID: TG-D69D96DACFF4 — Дизайн: FINAL_PHASE п.6–7 (Настройки/Профиль/Друзья/Сообщество/Карточки): safe-area, пустые/офлайн-состояния, Optimistic UI, хаптик только на кнопках
+Governance-ID: TG-A0F984EFBC81 — Дизайн: FINAL_PHASE п.7 продолжение (Настройки: обработка разрешения уведомлений, немые catch) + повтор итога диалога после выкладки
+Governance-ID: TG-6FF12B5EB1FE — Дизайн: вариант В координатора — открытие набора с тихими повторами и мягкой подсказкой во всех 7 местах (общий помощник app/community_packs/stage_with_retry.ts)
+Governance-ID: TG-D6DAFF64AB62 — Дизайн: диагностика phone_state HMAC для Ядра (только логи и эмулятор, без правок кода) + проверка варианта В офлайн
+Governance-ID: TG-EAC1EAA6C822 — Дизайн: разбор 10 красных UI-контрактов карточек (законный сдвиг → обновить контракт с зачем; регрессия → чинить код)
+Governance-ID: TG-A0A7B6632EC8 — Дизайн: проверка пересоздания phone_state базы (2 холодных старта) для Ядра + продолжение разбора красных контрактов карточек
+Governance-ID: TG-67AF68DC504E — Дизайн: проверка 001fa6b0c (пересоздание phone-state при ошибке целостности) на эмуляторе для Ядра
+Governance-ID: TG-594498412C23 — Дизайн: FINAL_PHASE п.7 — Optimistic UI удаления своего набора в «Моих наборах» (мгновенно убрать из списка, откат при ошибке)
+Governance-ID: TG-F271231ABE53 — Дизайн: трасса холодного старта для Ядра (COLD-START/PHONE-STATE-DB/FC-TRAIN-ENTRY/HOME-PAINT), только логи на эмуляторе
+Governance-ID: TG-8BACBE79E0BF — Дизайн: §80 DESIGN-gate — основания/кадры по 20 задачам в evidence/DESIGN_GATE_OWNER_REVIEW.md + живая проверка ветки пересоздания cipher
+Governance-ID: TG-2A2BB3263548 — Дизайн: §80 строки DESIGN-gate (20 задач) + замер холодного старта «после» 415f9ec83 для Ядра
+Governance-ID: TG-7F219401258F — Дизайн: §84 замер холодного старта на слабом профиле AVD (2 ядра/2 ГБ, ≥5 стартов), возврат обычного профиля
+Governance-ID: TG-ED41406F336D — Дизайн: ответ Ядру по PM-052 (CoinRewardFlight вместо LearningV2RuneFlight) + продолжение §84
+Governance-ID: TG-66DF92420F5D — Дизайн: §84 слабый профиль, добор прогонов с таймстемпами
+Governance-ID: TG-3EA87EA02902 — Дизайн: правка итога §80 + холодный старт на слабом профиле на HEAD с e420cfa2e (логи ключа) для Ядра
+Governance-ID: TG-607498F09CE0 — Дизайн: CoinRewardFlight (D75, PM-052 ч.2 визуал) — переименование/перекраска LearningV2RuneFlight с прежним API
+Governance-ID: TG-5598D75D5DD1 — Дизайн: CoinRewardFlight — reduce motion внутри компонента (без полёта, сразу onDone), лимит частиц, UI-поток
+Governance-ID: TG-B7C0A90C67AC — Дизайн: commit CoinRewardFlight reduce-motion + повторный замер ключа на слабом профиле (677d8c1f8)
+Governance-ID: TG-1CDA8220655E — Дизайн: повтор трассы ключа 677d8c1f8 на слабом профиле, возврат профиля
+Governance-ID: TG-AB03FFBDE124 — Дизайн: 5 красных тестов карточек/Learning V2 (blitz_access, speaking_quota, swipe_access, fc_recall_contract, session1 owner UI gate) — разбор §77
+Governance-ID: TG-EE2056E342E3 — Дизайн: холодный старт на release-сборке (HEAD ≥ 2d97d6dfd) на слабом профиле для Ядра ([COLD-START-IO] summary)
+Governance-ID: TG-7930AC6AA735 — Дизайн: release-замер [COLD-START-IO] на слабом профиле + кадры окна режимов «Готовим тренировку…/Не получилось» (5364cd28b) + 5 красных тестов
+Governance-ID: TG-BE0C38CD1216 — Дизайн: кадры окна «Тренироваться» (ожидание/Повторить) на слабом профиле, INBOX COLD-START-IO, возврат профиля, затем Блиц и красные тесты
+Governance-ID: TG-D4A255681189 — Дизайн: после падения сессии — коммит своих правок тестов, INBOX COLD-START-IO, эмулятор, далее очередь §86
+Governance-ID: TG-DA695BF2C2AE — Дизайн: перенос реализации CoinRewardFlight в components/rewards + звук pm.coin.flight_start; повторный release-замер 31cfd76c4
+Governance-ID: TG-AD999892946D — Дизайн: повторный release-замер [COLD-START-IO] (31cfd76c4) + доводка тестов переноса CoinRewardFlight
+Governance-ID: TG-33EA2896C2DE — Дизайн: store-release сборка (EXPO_PUBLIC_STORE_RELEASE=1) на HEAD с 8daaec362 для [COLD-START-IO]; тест «Устно»
+Governance-ID: TG-C4D0CA56A46A — Дизайн: коммит теста «Устно», store-release замер [COLD-START-IO] на слабом профиле
+Governance-ID: TG-74CBE8908ED1 — Дизайн: store-замер отправлен; возврат эмулятора; sound_director (xp_counter_tick), lifecycle-тест полёта; далее Блиц
+Governance-ID: TG-3C59A79BE539 — Дизайн: коммит sound_director (__DEV__, звук completion) и coin_reward_flight_lifecycle (testMatch)
+Governance-ID: TG-6246E86AB07A
+Governance-ID: TG-9F2EAC359731
+Governance-ID: TG-EC8451DFE6E6
+Governance-ID: TG-92E71F5E52E5
+Governance-ID: TG-39DAB2D2A171
+Governance-ID: TG-64D3B3D561A2
+Governance-ID: TG-CC19CF92BCDF
+Governance-ID: TG-411387BF3770
+Governance-ID: TG-1101FE88ACA7
+Governance-ID: TG-736E2C42F4E3
+Governance-ID: TG-FFBD371A3D98
+Governance-ID: TG-6ABACFFFA8E7
+Governance-ID: TG-0395A1A4B9CB
+Governance-ID: TG-3FF324EAF61A
+Governance-ID: TG-45C5B91C9046
+Governance-ID: TG-79DE6F64F327
+Governance-ID: TG-28601E5015FF
+Governance-ID: TG-8FFAFB844753
+Governance-ID: TG-553D4052BF3D
+Governance-ID: TG-38BC25066F73
+Governance-ID: TG-68139C3A46AA
+Governance-ID: TG-53ADAA209307
+Governance-ID: TG-1C00DD92A7F1
+Governance-ID: TG-33AF0B10B284
+Governance-ID: TG-796B4D6E91F3
+Governance-ID: TG-CAA638A95CF0
+Governance-ID: TG-3F7F884DE2D0
+Governance-ID: TG-77D7A9F0132A
+Governance-ID: TG-F893F58BA85B
+Governance-ID: TG-D522AAC1CC0E
+Governance-ID: TG-D45689EC2031
+Governance-ID: TG-36C3D180AAD2
+Governance-ID: TG-54B80762F4B2
+Governance-ID: TG-65A38037BC5C
+Governance-ID: TG-DF3E18877B89
+Governance-ID: TG-5145A5C4BDEA
+Governance-ID: TG-E9E08D20001C
+Governance-ID: TG-8A6CB5916E3A
+Governance-ID: TG-9F936235292E
+Governance-ID: TG-2174D05907D3
+Governance-ID: TG-B12A0877C5D1
+Governance-ID: TG-9ECBEE4ABEBF
+Governance-ID: TG-830652D031C8

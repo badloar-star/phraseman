@@ -1,6 +1,6 @@
 # Task packet: сторож «Глаголов» irregular_verbs_portion_transition — заготовка устарела после 738ce914a8
 
-Governance-ID: TG-658290083CAF
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро (логика уроков)
 

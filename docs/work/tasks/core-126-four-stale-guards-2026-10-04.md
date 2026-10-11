@@ -1,6 +1,6 @@
 # Task packet: четыре устаревших сторожа (распределение координатора 04.10)
 
-Governance-ID: TG-4FE2487BBFF3
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро
 

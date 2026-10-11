@@ -14206,15 +14206,17 @@
       "BASELINE_SHA_APPROVED",
       "IMPLEMENTATION_AND_MIGRATION_READY"
     ],
-    "audit_sha": null,
+    "audit_sha": "26886db91",
     "result_sha": null,
-    "owner": null,
+    "owner": "Ядро",
     "reviewer": null,
     "evidence": [
       "bbc9323e2: реестр блокирующих замечаний обновлён в evidence/E24_release_process_2026-10-01.md"
     ],
     "notes": [
-      "2026-10-01: A1/A2 NOT_MET — финальный проход невозможен до закрытия planned; открыты TTL-выкладка, генератор PM-221 vs D148, economy_constitution_contract:234"
+      "2026-10-01: A1/A2 NOT_MET — финальный проход невозможен до закрытия planned; открыты TTL-выкладка, генератор PM-221 vs D148, economy_constitution_contract:234",
+      "Политика §19 (90 дней) выложена; бэкфилл expireAt: app_errors 6360, app_activity 4572 (итого 10 932), ошибок 0; повторный прогон: без срока 0. TTL удалит ~4443 в первые сутки — проверить 05.10.",
+      "Политика §19 (90 дней) выложена; бэкфилл expireAt: app_errors 6360, app_activity 4572 (итого 10 932), ошибок 0; повторный прогон: без срока 0. TTL удалит ~4443 в первые сутки — проверить 05.10."
     ],
     "actual_cost": null,
     "kind": "unclassified",

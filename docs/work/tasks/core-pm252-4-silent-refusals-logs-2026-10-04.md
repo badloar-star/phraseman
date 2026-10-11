@@ -1,6 +1,6 @@
 # Task packet: PM-252 п.4 — логи причин в немых отказах + проверка бана «закрыто при сбое» для записей
 
-Governance-ID: TG-B04D18158F5E
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: Ядро; поручение координатора 04.10 (PM-252 п.4)
 

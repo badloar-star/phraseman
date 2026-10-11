@@ -1,6 +1,6 @@
 # Task packet: PM-229 на сервере — немые обработчики ошибок в functions/src пишут причину + храповик
 
-Governance-ID: TG-B1E9E74B7DBA
+Governance-ID: TG-94EA8E61CB15
 Status: Done — 60 мест вне MAX пишут причину, проба functions: 24 (только MAX)
 Owner: 1 · Ядро; очередь координатора, п.3 (PM-229)
 

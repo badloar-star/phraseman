@@ -1,6 +1,6 @@
 # Task packet: вернуть окно отзыва после опроса Plus (решение владельца 04.10)
 
-Governance-ID: TG-EA37289C467A
+Governance-ID: TG-94EA8E61CB15
 Status: Done (логика); внешний вид окна — сессия 2 по макету system.html
 Owner: 1 · Ядро; решение владельца через координатора 04.10
 

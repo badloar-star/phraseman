@@ -1,6 +1,6 @@
 # Task packet: §126 п.9 — репорты с platform 'unknown'
 
-Governance-ID: TG-052C0CAC8347
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: Ядро
 

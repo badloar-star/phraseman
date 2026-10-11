@@ -1,6 +1,6 @@
 # Task packet: §126 п.5 — «Мои ошибки» не открываются: логи на каждую проверку целостности журнала
 
-Governance-ID: TG-4FE2487BBFF3
+Governance-ID: TG-94EA8E61CB15
 Status: Logs first (no behaviour change)
 Owner: Ядро
 

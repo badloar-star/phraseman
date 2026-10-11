@@ -1,6 +1,6 @@
 # Task packet: админка — убрать мёртвые ранние копии функций; документ генератора про admin/v2
 
-Governance-ID: TG-19ED56FB6FA3
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: сессия 1 · ЯДРО (координатор 04.10)
 Related epic/enabler: очистка админки после 2.0 (d9b5dfe31)

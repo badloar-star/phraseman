@@ -1,6 +1,6 @@
 # Task packet: §126 п.6 — голосовая проверка «слишком мягкая»: итог оценки виден в релизе
 
-Governance-ID: TG-4FE2487BBFF3
+Governance-ID: TG-94EA8E61CB15
 Status: Logs first (no behaviour change)
 Owner: Ядро
 

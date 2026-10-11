@@ -1,6 +1,6 @@
 # Task packet: сторож admin_vip_survey_preview под решение владельца вернуть окно отзыва
 
-Governance-ID: TG-EC3BA0E3104A
+Governance-ID: TG-94EA8E61CB15
 Status: Done
 Owner: 1 · Ядро; поручение координатора 04.10 (моя c56cbd6a2 уронила сторож)
 

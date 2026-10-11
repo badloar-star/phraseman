@@ -1,6 +1,6 @@
 # Task packet: §126 п.9 — видео гаснет через 5 минут
 
-Governance-ID: TG-052C0CAC8347
+Governance-ID: TG-94EA8E61CB15
 Status: Done (keep-awake); позиция — отдельно
 Owner: Ядро
 

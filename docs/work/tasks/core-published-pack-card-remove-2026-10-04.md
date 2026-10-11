@@ -1,6 +1,6 @@
 # Task packet: удаление одной карточки из своего опубликованного набора
 
-Governance-ID: TG-70136847BAD7
+Governance-ID: TG-94EA8E61CB15
 Status: In progress
 Owner: сессия 1 · ЯДРО (задача от сессии 3 «Карточки» через координатора 04.10)
 

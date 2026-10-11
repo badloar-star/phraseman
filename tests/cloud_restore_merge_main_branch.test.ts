@@ -67,6 +67,23 @@ describe('ветка «облако главнее» — ключи из таб�
     expect(await AsyncStorage.getItem('achievement_access_pro_paid_v1')).toBe('true');
   });
 
+  it('пп.13–14: заморозка и бонус входа — правило прежнее (облако), но есть лог с обеими сторонами', async () => {
+    const logSpy = console.log as unknown as jest.Mock;
+    await AsyncStorage.multiSet([
+      ['streak_count', '0'],
+      ['streak_freeze', JSON.stringify({ active: true, date: '2026-10-11' })],
+    ]);
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      streak_count: '5',
+      last_active_date: '2026-10-10',
+      streak_freeze: JSON.stringify({ active: false, date: '2026-10-09' }),
+    }));
+    expect(await AsyncStorage.getItem('streak_freeze')).toBe(JSON.stringify({ active: false, date: '2026-10-09' }));
+    const line = logSpy.mock.calls.find((call) => call[0] === '[FREEZE-RESTORE]');
+    expect(line).toBeDefined();
+    expect(JSON.parse(String(line?.[1]))).toMatchObject({ winner: 'cloud', local: JSON.stringify({ active: true, date: '2026-10-11' }) });
+  });
+
   it('основной цикл зовёт таблицу слияний (контракт по исходнику)', () => {
     const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8') as string;
     const loopStart = source.indexOf('for (const key of getRuntimeSyncKeys()) {', source.indexOf('const mergeStrategyRuntimeKeys'));

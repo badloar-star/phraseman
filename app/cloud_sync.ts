@@ -1758,6 +1758,23 @@ async function buildCardRestoreMergeStrategies(
   return strategies;
 }
 
+/**
+ * Пп.13–14 (координатор 11.10): заморозки и бонус входа — тратимые значения, правило не меняем (облако),
+ * максимум здесь означал бы подарок. Только лог: локальное, облачное (с их датами внутри), кто победил.
+ * Значения маленькие и без личных данных ({active, date} / состояние бонуса), печатаем как есть (≤200 знаков).
+ */
+const SPENDABLE_RESTORE_LOG_KEYS: ReadonlySet<string> = new Set(['streak_freeze', 'login_bonus_v1']);
+function logSpendableRestore(key: string, localValue: string | null | undefined, cloudValue: unknown, skippedByPhoneState: boolean): void {
+  const tag = key === 'streak_freeze' ? '[FREEZE-RESTORE]' : '[LOGIN-BONUS-RESTORE]';
+  const cloud = cloudValue === null || cloudValue === undefined ? null : String(cloudValue);
+  const winner = skippedByPhoneState ? 'phone_state' : cloud === null ? 'local_kept_no_cloud' : cloud === localValue ? 'same' : 'cloud';
+  console.log(tag, JSON.stringify({
+    local: localValue == null ? null : localValue.slice(0, 200),
+    cloud: cloud === null ? null : cloud.slice(0, 200),
+    winner,
+  }));
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
@@ -4182,10 +4199,12 @@ async function applyRestoreFromUserDocTraced(
       ...ownedUnionRuntimeKeys,
       ...mergeStrategyRuntimeKeys,
       ...Object.keys(cardRestoreStrategies),
+      ...SPENDABLE_RESTORE_LOG_KEYS,
     ]),
   ) as Record<string, string | null>;
   assertCurrent();
   for (const key of getRuntimeSyncKeys()) {
+    if (SPENDABLE_RESTORE_LOG_KEYS.has(key)) logSpendableRestore(key, localLessonRestoreMap[key], cloudData[key], phoneStateOwnsCore && isPhoneStateCoreProgressKey(key));
     if (phoneStateOwnsCore && isPhoneStateCoreProgressKey(key)) continue;
     if (
       key === 'streak_count' ||

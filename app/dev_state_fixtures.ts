@@ -112,6 +112,8 @@ export type DevStateRequest = Readonly<{
   greet?: string;
   /** Строка про перенос Plus в окне смены аккаунта (auth-gap-012). */
   plustransfer?: 'on' | 'off';
+  /** Конфетти онбординга замирает на кадре пика (onboarding-019/020/021): hold — заморозить, off — как обычно. */
+  confetti?: 'hold' | 'off';
   /** План подписки только в памяти (экран «Управление подпиской», значение «Год» в Настройках): yearly|monthly|lifetime, off снимает. */
   plan?: 'yearly' | 'monthly' | 'lifetime' | 'off';
   /** Сбой смены языка изучения (settings-gap-021). */
@@ -214,6 +216,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.delete = pick('delete', ['fail', 'ok'] as const);
   request.restore = pick('restore', ['retired', 'ok'] as const);
   request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
+  request.confetti = pick('confetti', ['hold', 'off'] as const);
   // зачем: регистр имени важен — берём сырую строку (one() приводит к нижнему), обрезаем до 24 как настоящее первое слово имени.
   const greetRaw = Array.isArray(params.greet) ? params.greet[0] : params.greet;
   if (typeof greetRaw === 'string') request.greet = greetRaw.trim().slice(0, 24);
@@ -445,6 +448,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.greet !== undefined) await step('greet', request.greet || 'off', async () => setDevAccountState({ greetName: request.greet || null }));
   if (request.plustransfer !== undefined) await step('plustransfer', request.plustransfer, async () => setDevAccountState({ plusTransfer: request.plustransfer === 'on' }));
+  if (request.confetti !== undefined) await step('confetti', request.confetti, async () => setDevAccountState({ confettiHold: request.confetti === 'hold' }));
   if (request.plan !== undefined) {
     await step('plan', request.plan, async () => {
       const { setDevPlanOverride } = await import('./dev_vip_override');

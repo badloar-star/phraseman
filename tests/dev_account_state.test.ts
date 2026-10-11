@@ -22,7 +22,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { applyDevState, parseDevStateParams } from '../app/dev_state_fixtures';
 import {
-  getDevGreetName, getDevSignInError, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
+  getDevGreetName, getDevSignInError, isDevConfettiHold, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
 } from '../app/dev_account_state';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
@@ -74,6 +74,18 @@ describe('dev account states', () => {
     setDevAccountState({ greetName: 'Alex' });
     mockStoreRelease = true;
     expect(getDevGreetName()).toBeNull(); // в стор-сборке имя не отдаётся, даже если уже стояло
+  });
+
+  // зачем (координатор 12.10): конфетти онбординга замирает на пике для кадров onboarding-019/020/021 — только dev, только память.
+  it('holds the onboarding confetti only in a dev build and off clears it', async () => {
+    expect(parseDevStateParams({ confetti: 'hold' }).request.confetti).toBe('hold');
+    await applyDevState({ confetti: 'hold' });
+    expect(isDevConfettiHold()).toBe(true);
+    await applyDevState({ confetti: 'off' });
+    expect(isDevConfettiHold()).toBe(false);
+    setDevAccountState({ confettiHold: true });
+    mockStoreRelease = true;
+    expect(isDevConfettiHold()).toBe(false);
   });
 
   it('refuses both the plain and the forced sign-out so real wiping is unreachable', () => {

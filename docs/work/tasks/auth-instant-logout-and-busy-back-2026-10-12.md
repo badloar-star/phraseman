@@ -43,3 +43,5 @@ Governance-ID: TG-6DBE31BD9948 (R1: лог выбора гостевого те�
 Governance-ID: TG-513EEB0D471A (логи [PROFILE-RENDER] на экранах языков profile-004/005 — падения qemu; заготовка варианта Б выхода в C:/Temp/claude/auth_logout_B.patch, без коммита)
 
 Governance-ID: (тот же пакет) применение варианта Б выхода (потолок синхронизации 3 с) + лог кода отказа синхронизации [ACC-SIGNOUT] force_sync_refused
+
+Governance-ID: (тот же пакет) [ONB-STEP-WAIT] — «Продолжить» на «Приятно познакомиться» 15 с до перехода; dev confetti=hold

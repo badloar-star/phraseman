@@ -83,7 +83,7 @@ import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
-import { getDevGreetName } from '../app/dev_account_state';
+import { getDevGreetName, isDevConfettiHold } from '../app/dev_account_state';
 import { getEnabledOnboardingSteps, getRemoteBool } from '../app/remote_flags';
 import {
   decideOnboardingTransition,
@@ -844,8 +844,16 @@ function PrimaryButton({
   return (
     <Pressable
       testID={testID}
-      onPressIn={() => { if (!disabled && !loading) void hapticTap(); }}
-      onPress={onPress}
+      // зачем (прогон Сверки 12.10: «Продолжить» на «Приятно познакомиться» → переход через 15 с без JS-STALL): дошло ли
+      // касание до JS и сработало ли нажатие — по каждой основной кнопке онбординга. Сперва логи, без починки.
+      onPressIn={() => {
+        console.log(`[ONB-STEP-WAIT] press_in testID=${testID ?? 'none'} disabled=${disabled ? 'yes' : 'no'} loading=${loading ? 'yes' : 'no'}`);
+        if (!disabled && !loading) void hapticTap();
+      }}
+      onPress={() => {
+        console.log(`[ONB-STEP-WAIT] press testID=${testID ?? 'none'}`);
+        onPress();
+      }}
       disabled={disabled || loading}
       style={({ pressed }) => [styles.primaryButtonOuter, (pressed || loading) && styles.pressed, loading && styles.disabled]}
       accessibilityRole="button"
@@ -2224,6 +2232,13 @@ function ConfettiBurst() {
   const values = useRef(CONFETTI_PIECES.map(() => new Animated.Value(0))).current;
   useEffect(() => {
     if (reduceMotion) return;
+    // зачем (координатор 12.10, кадры onboarding-019/020/021): dev `confetti=hold` — замереть на кадре пика (все кусочки видны:
+    // прозрачность 1 на отрезке 0,08…0,75), чтобы Сверка успела снять кадр. Вне dev isDevConfettiHold() → false, вид не меняется.
+    if (isDevConfettiHold()) {
+      values.forEach((value) => value.setValue(0.4));
+      console.log('[ONB-CONFETTI] hold at peak progress=0.4');
+      return;
+    }
     const a = Animated.parallel(CONFETTI_PIECES.map((p, i) => Animated.timing(values[i], {
       toValue: 1,
       duration: p.duration,
@@ -2470,6 +2485,7 @@ function CleanOnboarding({
 
   const go = useCallback((requested: CleanOnboardingStep) => {
     const next = resolveOnboardingStep(enabledOrder, requested, 'current-or-forward');
+    console.log(`[ONB-STEP-WAIT] go requested=${requested} next=${next}`);
     setStep(next);
     void persistStep(next);
     trackOnboardingStepView({ step: next });

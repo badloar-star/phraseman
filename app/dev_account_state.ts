@@ -30,8 +30,10 @@ type State = {
   plusTransfer: boolean;
   /** `greet=<строка>`: имя на экране приветствия онбординга (onboarding-010, длинное имя). */
   greetName: string | null;
+  /** `confetti=hold`: конфетти онбординга замирает на кадре пика (onboarding-019/020/021), только в памяти. */
+  confettiHold: boolean;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null, confettiHold: false };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -52,6 +54,7 @@ export function setDevAccountState(patch: Partial<{
   restoreRetired: boolean;
   plusTransfer: boolean;
   greetName: string | null;
+  confettiHold: boolean;
 }>): boolean {
   if (!devAccountAvailable()) {
     console.warn(`${LOG} account: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -65,6 +68,7 @@ export function setDevAccountState(patch: Partial<{
     restoreRetired: patch.restoreRetired ?? state.restoreRetired,
     plusTransfer: patch.plusTransfer ?? state.plusTransfer,
     greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
+    confettiHold: patch.confettiHold ?? state.confettiHold,
   };
   console.log(`${LOG} account: ${JSON.stringify(state)}`); // guard-ok: единичный лог на ссылку
   return true;
@@ -142,6 +146,14 @@ export function isDevPlusTransferNotice(): boolean {
  * `greet=<строка>`: имя для экрана приветствия вместо имени из Google (onboarding-010 — длинное имя). Строка обрезается до 24 символов (как у
  * настоящего первого слова имени), нигде не хранится и никуда не уходит. Вне dev — всегда null. Вставку в CleanOnboarding делает Авторизация.
  */
+/**
+ * `confetti=hold`: конфетти онбординга останавливается на кадре пика, чтобы Сверка успела снять кадр (onboarding-019/020/021).
+ * Только в памяти; вне dev / в стор-сборке — всегда false. Вставку в CleanOnboarding делает Авторизация.
+ */
+export function isDevConfettiHold(): boolean {
+  return devAccountAvailable() && state.confettiHold;
+}
+
 export function getDevGreetName(): string | null {
   return devAccountAvailable() ? state.greetName : null;
 }

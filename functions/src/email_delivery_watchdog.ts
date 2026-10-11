@@ -58,6 +58,13 @@ export const RETRY_BATCH_LIMIT = 20;
 export const RETRY_SCAN_LIMIT = 100;
 /** Заявка с битым адресом не будет долбиться вечно. */
 export const MAX_RETRY_ATTEMPTS = 5;
+/**
+ * Старше этого — не досылаем (тот же потолок, что у напоминаний web_activation_reminders.ts).
+ * зачем (ревью Opus 11.10): досылка месяцами не работала из-за пробы ключа; после починки она не должна
+ * присылать «спасибо за покупку» спустя месяцы.
+ */
+export const RETRY_MAX_ORDER_AGE_MS = 60 * 24 * 60 * 60 * 1000;
+const PROMO_CODES_COLLECTION = 'promo_codes';
 
 /** Статусы заявки «деньги получены». Провал письма тут — потеря денег. */
 const PAID_ORDER_STATUSES = new Set([
@@ -111,6 +118,8 @@ export function isAuthFailure(httpStatus: unknown, errorText: unknown): boolean 
   const code = Number(httpStatus);
   if (code === 401 || code === 403) return true;
   const text = String(errorText ?? '').toLowerCase();
+  // Строка про ключ «только отправка» — наследие пробы; при отправке письма такой ответ не приходит. Для пробы это,
+  // наоборот, признак ЖИВОГО ключа (isSendOnlyKeyResponse).
   return text.includes('api key is invalid')
     || text.includes('restricted to only send emails')
     || text.includes('resend_api_key пуст');
@@ -271,6 +280,19 @@ export interface KeyProbeResult {
 }
 
 /**
+ * Ответ Resend на пробу от ключа «только отправка»: 401 + `restricted_api_key` / «restricted to only send emails».
+ * Ключ принят сервисом, ему закрыто только чтение списка ключей. Чистая функция.
+ */
+export function isSendOnlyKeyResponse(httpStatus: number, body: string): boolean {
+  if (httpStatus !== 401 && httpStatus !== 403) return false;
+  const text = String(body ?? '').toLowerCase();
+  return text.includes('restricted to only send emails') || text.includes('restricted_api_key');
+}
+
+/**
+ * Проба доказывает только «Resend узнал ключ». Неподтверждённый домен, квоту или блокировку аккаунта она не видит —
+ * их ловит notifyActivationEmailFailure в момент отправки (ревью Opus 11.10).
+ *
  * Один дешёвый запрос к Resend: GET /api-keys ничего не отправляет и не стоит
  * писем, но валидность ключа проверяет.
  */
@@ -290,6 +312,14 @@ export async function probeResendKey(key: string, fetchImpl: typeof fetch = fetc
       logger.warn(`${LOG} probe body unreadable`, { reason: String(e).slice(0, 200) });
       return '';
     });
+    // зачем (Ядро 11.10, логи прода с 08.10): боевой ключ ограничен «только отправкой» (минимальные права). Ему закрыт
+    // список ключей, и Resend отвечает 401 «restricted to only send emails». Это ЖИВОЙ ключ: сервис его принял, а
+    // отправка писем разрешена. Раньше такой ответ считался мёртвым ключом — досылка писем оплатившим пропускалась на
+    // каждом запуске, а владельцу шла ложная тревога. Отозванный ключ отвечает иначе («API key is invalid»).
+    if (isSendOnlyKeyResponse(response.status, body)) {
+      logger.info(`${LOG} probe: send-only key accepted by Resend — alive`, { httpStatus: response.status });
+      return { alive: true, httpStatus: response.status, reason: 'send_only_key' };
+    }
     // зачем: тело ответа режем — в нём может быть эхо запроса.
     return { alive: false, httpStatus: response.status, reason: body.slice(0, 200) || `HTTP ${response.status}` };
   } catch (e) {
@@ -388,13 +418,54 @@ export const resendKeyHealthCron = onSchedule(
   }),
 );
 
-/** Попадает ли заявка в дорассылку. Чистая функция. */
-export function shouldRetryOrder(order: Record<string, unknown>): boolean {
-  if (!RETRYABLE_ORDER_STATUSES.has(String(order.status ?? '').trim())) return false;
-  if (!isFailedEmailStatus(order.customerEmailStatus)) return false;
-  if (!String(order.activationCode ?? '').trim()) return false;
+/** Время оплаты заявки в мс (Timestamp / секунды / ISO), 0 — неизвестно. */
+export function orderPaidAtMs(order: Record<string, unknown>): number {
+  const value = order.paidAt as { toMillis?: () => number; seconds?: number; _seconds?: number } | number | null | undefined;
+  if (value && typeof value === 'object') {
+    if (typeof value.toMillis === 'function') return value.toMillis();
+    if (typeof value.seconds === 'number') return value.seconds * 1000;
+    if (typeof value._seconds === 'number') return value._seconds * 1000;
+  }
+  const numeric = Number(value);
+  if (Number.isFinite(numeric) && numeric > 0) return numeric;
+  const iso = Date.parse(String(order.paidAtIso ?? ''));
+  return Number.isFinite(iso) && iso > 0 ? iso : 0;
+}
+
+/**
+ * Почему заявка НЕ попадает в дорассылку (null — попадает). Чистая функция.
+ * зачем второй опоры (ревью Opus 11.10, как у напоминаний 22.09): статус заявки при активации обновлялся не всегда —
+ * человек с работающим Plus мог числиться «ожидающим». Поэтому спрашиваем ещё и сам код (usedCount в promo_codes).
+ */
+export function retrySkipReason(
+  order: Record<string, unknown>,
+  opts: { codeAlreadyRedeemed?: boolean; nowMs?: number } = {},
+): string | null {
+  if (!RETRYABLE_ORDER_STATUSES.has(String(order.status ?? '').trim())) return 'not_pending';
+  if (!isFailedEmailStatus(order.customerEmailStatus)) return 'email_not_failed';
+  if (!String(order.activationCode ?? '').trim()) return 'no_activation_code';
   const attempts = Number(order.customerEmailRetryCount ?? 0);
-  return !(attempts >= MAX_RETRY_ATTEMPTS);
+  if (attempts >= MAX_RETRY_ATTEMPTS) return 'attempts_exhausted';
+  if (opts.codeAlreadyRedeemed === true) return 'code_already_redeemed';
+  if (typeof opts.nowMs === 'number') {
+    const paidAtMs = orderPaidAtMs(order);
+    if (paidAtMs > 0 && opts.nowMs - paidAtMs > RETRY_MAX_ORDER_AGE_MS) return 'too_old';
+  }
+  return null;
+}
+
+/** Можно ли код использовать как id документа promo_codes (без «/», не «.» и не «..»). Чистая функция. */
+export function isLookupSafeCode(code: string): boolean {
+  return code.length > 0 && code.length <= 1500 && !code.includes('/') && code !== '.' && code !== '..'
+    && !/^__.*__$/.test(code);
+}
+
+/** Попадает ли заявка в дорассылку. Чистая функция. */
+export function shouldRetryOrder(
+  order: Record<string, unknown>,
+  opts: { codeAlreadyRedeemed?: boolean; nowMs?: number } = {},
+): boolean {
+  return retrySkipReason(order, opts) === null;
 }
 
 export interface RetryOrderDoc {
@@ -407,6 +478,9 @@ export async function runActivationEmailRetry(deps: {
   listFailed: () => Promise<RetryOrderDoc[]>;
   markAttempt: (orderId: string) => Promise<void>;
   send: (order: Record<string, unknown>, idempotencyKey: string) => Promise<boolean>;
+  /** Какие из кодов уже введены (usedCount > 0). Не задано — проверка кодов не выполняется (только тесты). */
+  listRedeemedCodes?: (codes: string[]) => Promise<Set<string>>;
+  now?: () => number;
 }): Promise<{ skipped: string | null; scanned: number; attempted: number; sent: number }> {
   const probe = await deps.probe();
   if (!probe.alive) {
@@ -423,8 +497,41 @@ export async function runActivationEmailRetry(deps: {
     return { skipped: 'query_failed', scanned: 0, attempted: 0, sent: 0 };
   }
 
-  const candidates = docs.filter((doc) => shouldRetryOrder(doc.data)).slice(0, RETRY_BATCH_LIMIT);
-  logger.info(`${LOG} retry cron scanning`, { scanned: docs.length, candidates: candidates.length });
+  const nowMs = deps.now ? deps.now() : Date.now();
+  // зачем (ревью Opus 11.10): код вида «a/b», «.» или «..» — не id документа; getAll бросил бы исключение и остановил
+  // досылку для ВСЕХ на каждом прогоне. Такой код проверить нельзя → эта заявка пропускается, остальные — нет.
+  // Коды заявок, отсеянных по возрасту, не читаем (лишние чтения).
+  const eligibleCodes = [...new Set(docs
+    .filter((doc) => retrySkipReason(doc.data, { nowMs }) === null)
+    .map((doc) => String(doc.data.activationCode ?? '').trim())
+    .filter((code) => isLookupSafeCode(code)))];
+  let redeemed = new Set<string>();
+  if (deps.listRedeemedCodes && eligibleCodes.length > 0) {
+    try {
+      redeemed = await deps.listRedeemedCodes(eligibleCodes);
+    } catch (e) {
+      // зачем: не знаем, введён ли код, — НЕ шлём в этот прогон. Лишнее «спасибо за покупку» человеку с работающим
+      // Plus хуже, чем досылка через 6 часов.
+      logger.error(`${LOG} retry cron skipped, redeemed-code lookup failed`, { codes: eligibleCodes.length, reason: String(e).slice(0, 300) });
+      return { skipped: 'redeemed_lookup_failed', scanned: docs.length, attempted: 0, sent: 0 };
+    }
+  }
+  const skipReasons: Record<string, number> = {};
+  const candidates = docs.filter((doc) => {
+    const code = String(doc.data.activationCode ?? '').trim();
+    const unverifiable = Boolean(deps.listRedeemedCodes) && code.length > 0 && !isLookupSafeCode(code);
+    const reason = unverifiable
+      ? 'activation_code_unverifiable'
+      : retrySkipReason(doc.data, { codeAlreadyRedeemed: code ? redeemed.has(code) : false, nowMs });
+    if (reason) skipReasons[reason] = (skipReasons[reason] ?? 0) + 1;
+    return reason === null;
+  }).slice(0, RETRY_BATCH_LIMIT);
+  logger.info(`${LOG} retry cron scanning`, {
+    scanned: docs.length,
+    candidates: candidates.length,
+    redeemedChecked: Boolean(deps.listRedeemedCodes),
+    skipReasons,
+  });
 
   let sent = 0;
   for (const doc of candidates) {
@@ -478,6 +585,16 @@ export const activationEmailRetryCron = onSchedule(
           .limit(RETRY_SCAN_LIMIT)
           .get();
         return snap.docs.map((doc) => ({ id: doc.id, data: (doc.data() ?? {}) as Record<string, unknown> }));
+      },
+      // Firebase-экономия: один getAll по кодам кандидатов (обычно ноль-единицы), а не чтение на заявку.
+      listRedeemedCodes: async (codes) => {
+        const refs = codes.map((code) => db().collection(PROMO_CODES_COLLECTION).doc(code));
+        const codeDocs = await db().getAll(...refs);
+        const used = new Set<string>();
+        for (const codeDoc of codeDocs) {
+          if (codeDoc.exists && Number((codeDoc.data() ?? {}).usedCount ?? 0) > 0) used.add(codeDoc.id);
+        }
+        return used;
       },
       markAttempt: async (orderId) => {
         await db().collection(ORDERS_COLLECTION).doc(orderId).set({

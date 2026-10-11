@@ -27,7 +27,9 @@ import {
   formatKeyDeadAlert,
   isAuthFailure,
   isFailedEmailStatus,
+  isLookupSafeCode,
   isPaidOrderStatus,
+  isSendOnlyKeyResponse,
   notifyActivationEmailFailure,
   probeResendKey,
   runActivationEmailRetry,
@@ -111,6 +113,29 @@ describe('probeResendKey — проверка живости ключа', () => 
     expect(result.alive).toBe(false);
     expect(result.httpStatus).toBe(401);
     expect(result.reason).toContain('API key is invalid');
+  });
+
+  // зачем (Ядро 11.10, логи прода с 08.10): боевой ключ ограничен «только отправкой» — проба видела 401 и считала его
+  // мёртвым, досылка писем оплатившим пропускалась на каждом запуске.
+  it('БОЕВОЙ СЛУЧАЙ 08.10.2026: ключ «только отправка» (401 restricted_api_key) → alive', async () => {
+    const fetchImpl = jest.fn().mockResolvedValue({
+      ok: false,
+      status: 401,
+      text: async () => '{"statusCode":401,"message":"This API key is restricted to only send emails","name":"restricted_api_key"}',
+    });
+    const result = await probeResendKey('re_send_only_key', fetchImpl as unknown as typeof fetch);
+    expect(result.alive).toBe(true);
+    expect(result.httpStatus).toBe(401);
+    expect(result.reason).toBe('send_only_key');
+    expect(shouldAlertOnProbe(result)).toBe(false);
+  });
+
+  it('isSendOnlyKeyResponse: только 401/403 с признаком ограниченного ключа', () => {
+    expect(isSendOnlyKeyResponse(401, '{"name":"restricted_api_key"}')).toBe(true);
+    expect(isSendOnlyKeyResponse(403, 'This API key is restricted to only send emails')).toBe(true);
+    expect(isSendOnlyKeyResponse(401, '{"message":"API key is invalid"}')).toBe(false);
+    expect(isSendOnlyKeyResponse(500, 'restricted_api_key')).toBe(false);
+    expect(isSendOnlyKeyResponse(401, '')).toBe(false);
   });
 
   it('сетевой сбой не выдаёт себя за ответ сервиса (httpStatus=null)', async () => {
@@ -397,6 +422,75 @@ describe('runActivationEmailRetry — дорассылка проваливши�
     });
     expect(r.sent).toBe(1);
     expect(send).toHaveBeenCalledTimes(2);
+  });
+
+  // зачем (ревью Opus 11.10): статус заявки при активации обновлялся не всегда — досылка обязана спросить сам код.
+  it('код уже введён (usedCount > 0) → письмо НЕ досылается, даже при статусе «ожидает»', async () => {
+    const send = jest.fn(async () => true);
+    const listRedeemedCodes = jest.fn(async () => new Set(['WEB-used']));
+    const r = await runActivationEmailRetry({
+      probe: async () => ({ alive: true, httpStatus: 401, reason: 'send_only_key' }),
+      listFailed: async () => [failedOrder('used'), failedOrder('fresh')],
+      markAttempt: jest.fn(async () => undefined),
+      send,
+      listRedeemedCodes,
+    });
+    expect(listRedeemedCodes).toHaveBeenCalledWith(['WEB-used', 'WEB-fresh']);
+    expect(r).toEqual({ skipped: null, scanned: 2, attempted: 1, sent: 1 });
+    expect(send).toHaveBeenCalledTimes(1);
+    expect((send.mock.calls[0] as unknown as [Record<string, unknown>])[0].orderId).toBe('fresh');
+  });
+
+  it('не прочитали состояние кодов → прогон пропущен целиком, ни одной отправки и ни одной метки', async () => {
+    const send = jest.fn(async () => true);
+    const markAttempt = jest.fn(async () => undefined);
+    const r = await runActivationEmailRetry({
+      probe: async () => ({ alive: true, httpStatus: 200, reason: 'ok' }),
+      listFailed: async () => [failedOrder('a')],
+      markAttempt,
+      send,
+      listRedeemedCodes: async () => { throw new Error('getAll failed'); },
+    });
+    expect(r.skipped).toBe('redeemed_lookup_failed');
+    expect(send).not.toHaveBeenCalled();
+    expect(markAttempt).not.toHaveBeenCalled();
+  });
+
+  it('код с «/» не валит прогон: его заявка пропускается, остальные досылаются', async () => {
+    const send = jest.fn(async () => true);
+    const listRedeemedCodes = jest.fn(async () => new Set<string>());
+    const r = await runActivationEmailRetry({
+      probe: async () => ({ alive: true, httpStatus: 200, reason: 'ok' }),
+      listFailed: async () => [failedOrder('bad', { activationCode: 'MANUAL/1' }), failedOrder('ok')],
+      markAttempt: jest.fn(async () => undefined),
+      send,
+      listRedeemedCodes,
+    });
+    expect(listRedeemedCodes).toHaveBeenCalledWith(['WEB-ok']);
+    expect(r).toEqual({ skipped: null, scanned: 2, attempted: 1, sent: 1 });
+    expect(isLookupSafeCode('MANUAL/1')).toBe(false);
+    expect(isLookupSafeCode('..')).toBe(false);
+    expect(isLookupSafeCode('WEB-AB12')).toBe(true);
+  });
+
+  it('заявка старше 60 дней не досылается; без даты оплаты — досылается', async () => {
+    const nowMs = Date.UTC(2026, 9, 11);
+    const day = 24 * 60 * 60 * 1000;
+    const send = jest.fn(async () => true);
+    const r = await runActivationEmailRetry({
+      probe: async () => ({ alive: true, httpStatus: 200, reason: 'ok' }),
+      listFailed: async () => [
+        failedOrder('old', { paidAt: nowMs - 61 * day }),
+        failedOrder('recent', { paidAtIso: new Date(nowMs - 20 * day).toISOString() }),
+        failedOrder('nodate'),
+      ],
+      markAttempt: jest.fn(async () => undefined),
+      send,
+      listRedeemedCodes: async () => new Set<string>(),
+      now: () => nowMs,
+    });
+    expect(r.attempted).toBe(2);
+    expect(send.mock.calls.map((c) => (c as unknown as [Record<string, unknown>])[0].orderId)).toEqual(['recent', 'nodate']);
   });
 
   it('сбой запроса заявок → честный ранний выход, не исключение', async () => {

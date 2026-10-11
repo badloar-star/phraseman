@@ -26,6 +26,8 @@ jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' }, FadeInDown: { duration: () => undefined }, FadeInUp: { duration: () => undefined }, useReducedMotion: () => true,
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
+// зачем (Карточки 2.0 12.10, «Продолжить»): запись позиции — отдельный хук (покрыт pack_continue_recorder.test.ts); в поведенческом тесте экрана он заглушка
+jest.mock('../app/flashcards/use_pack_continue_recorder', () => ({ usePackContinueRecorder: () => ({ record: () => undefined, flush: () => undefined }) }));
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
 // зачем (координатор §47, 2026-10-01): квота тренировок переехала из
 // revenue_quota_access.consumeFlashcardTrainingQuota в monthly_training_sessions;

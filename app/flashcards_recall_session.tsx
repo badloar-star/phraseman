@@ -67,6 +67,7 @@ import {
   type DeckRef,
 } from './flashcards/deck_sources';
 import { isFullPhraseFuzzyCorrect } from './flashcards/fuzzy_match';
+import { usePackContinueRecorder } from './flashcards/use_pack_continue_recorder';
 import { parseRecallDirection } from './flashcards/practice_setup_params';
 import { FC_DEFAULT_SESSION_SIZE, isValidSessionSize } from './flashcards/mode_prefs';
 import {
@@ -186,6 +187,11 @@ export default function FlashcardsRecallSession() {
   const [hintVisible, setHintVisible] = useState(false);
   const [masteredCount, setMasteredCount] = useState(0);
   const [totalCards, setTotalCards] = useState(0);
+  // зачем (координатор 12.10, «Продолжить»): позиция в наборе — выучено / всего; пишется локально с задержкой и при выходе, смешанные колоды не пишутся
+  const { record: recordPackContinue } = usePackContinueRecorder(deckRefs.map(deckRefKey), 'recall');
+  useEffect(() => {
+    if (totalCards > 0) recordPackContinue(masteredCount, totalCards);
+  }, [masteredCount, recordPackContinue, totalCards]);
   // зачем: остаток очереди больше не рисуется (строка прогресса макета — «выучено … всего»), сеттер оставлен для логики.
   const [, setRemainingQueueCount] = useState(0);
   const [result, setResult] = useState<RecallResult | null>(null);

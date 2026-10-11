@@ -94,7 +94,8 @@ assert.match(modes.recall, /<PracticeProgressRow[\s\S]{0,200}left=\{totalCards >
 
 // «Устно»: прогресс «позиция … всего» под полосой, задания — пилюли с подписью, стороны — тон стекла.
 assert.match(modes.speaking, /testID="fc-speak-progress"/);
-assert.match(modes.speaking, /\{progress\.position\}<\/Text>/);
+// зачем (Карточки 2.0 12.10, `sessHdr('Устно', '4 / 20')`): счёт сессии теперь в шапке справа от названия, а не отдельной строкой под полосой
+assert.match(modes.speaking, /\{`\$\{progress\.position\} \/ \$\{progress\.total\}`\}/);
 assert.match(modes.speaking, /styles\.taskPill/);
 assert.match(modes.speaking, /\{optionLabel\}/);
 assert.match(modes.speaking, /taskPill: \{[\s\S]{0,60}minHeight: 44/);

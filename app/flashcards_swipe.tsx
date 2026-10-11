@@ -87,6 +87,7 @@ import {
   swipeCommitDirection,
 } from './flashcards_swipe_session';
 import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
+import { usePackContinueRecorder } from './flashcards/use_pack_continue_recorder';
 import {
   canUseLegacySwipeGrantFailOpen,
   flashcardPendingGrantPreset,
@@ -1130,6 +1131,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
+  // зачем (координатор 12.10, «Продолжить»): позиция в наборе — выучено / всего; пишется локально с задержкой и при выходе, смешанные колоды не пишутся
+  const { record: recordPackContinue } = usePackContinueRecorder(requestedDeckIds, isTrueFalseSession ? 'truefalse' : 'swipe');
+  useEffect(() => {
+    if (stats.total > 0) recordPackContinue(stats.mastered, stats.total);
+  }, [recordPackContinue, stats.mastered, stats.total]);
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
   /**

@@ -196,7 +196,7 @@ function hashProtectedRuntimeElements() {
 test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged', () => {
   assert.deepEqual(hashProtectedRuntimeAst(), {
     // 10.10: f371d6122 — итог по cards-section (время раунда roundStartedAtRef, список ошибок); квоты/попытки не тронуты.
-    count: 35,
+    count: 36,
     // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
     // зачем (30.09): D128 — озвучка клипом OpenAI своего языка вместо голоса устройства (7b4631e7e).
     // зачем (03.10): логика старта Ядра — 85f9e7231 (сторож загрузки +1 useEffect, трассировка [FC-SPEAKING-GATE], reconcile missing → fail-open) и 94003821a (компактный manifest, снятие записи до локального старта; ревью Opus).
@@ -214,7 +214,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // зачем (Карточки 2.0 12.10): сверено — в защищённых узлах изменилась только строка setLastAward(...) в onScore (пилюля «+N» в панели «Верно» по макету cards-v2); квоты, попытки, удержание, озвучка, полёт, итог — без изменений.
     // зачем (Карточки 2.0 12.10, координатор: «ручное «Дальше» ДЕЛАЕМ»): в onScore убран автопереход после зачёта (таймеры advanceTimerRef, SPEAKING_AUTO_ADVANCE_MS) — остаётся эхо эталона и «Дальше» по нажатию;
     // квоты, попытки, озвучка, полёт монеты, итог — без изменений.
-    hash: 'a2c66b9c7ab1696e4c01096156b89960bb4e3b590e514f1b87de61be48038a69',
+    // зачем (Карточки 2.0 12.10, «Продолжить»): +1 useEffect — запись позиции в наборе через usePackContinueRecorder (локально, с задержкой, не для смешанных колод);
+    // квоты, попытки, озвучка, полёт монеты, итог — без изменений (число узлов 35 → 36, остальные побайтно прежние).
+    hash: 'abcace101c2fbec2944ca03734df191d7acd309b8751ceca9fe1f189b9d25821',
   });
   assert.equal(
     hashProtectedRuntimeElements(),

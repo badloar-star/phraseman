@@ -74,6 +74,7 @@ import { loadFcDeckOptions } from './flashcards/deck_options';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import SpeakMicButton from './flashcards/SpeakMicButton';
+import { usePackContinueRecorder } from './flashcards/use_pack_continue_recorder';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { estimateSpeechDurationMs } from './flashcards/audioSession';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
@@ -437,6 +438,13 @@ export default function FlashcardsSpeakingSession() {
 
   const card = currentSpeakingCard(session);
   const progress = speakingProgress(session);
+  // зачем (координатор 12.10, «Продолжить»): позиция в наборе пишется локально с задержкой и при выходе; смешанные колоды не пишутся (причина в журнале)
+  const { record: recordPackContinue } = usePackContinueRecorder(deckRefs.map(deckRefKey), 'speaking');
+  const speakingQueueLen = session.queue.length;
+  useEffect(() => {
+    if (speakingQueueLen === 0) return;
+    recordPackContinue(session.finished ? speakingQueueLen : session.index, speakingQueueLen);
+  }, [recordPackContinue, session.finished, session.index, speakingQueueLen]);
   const phase = session.phase;
 
   // ── Загрузка карточек + настроек ───────────────────────────────────────────

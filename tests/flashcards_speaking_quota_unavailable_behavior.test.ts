@@ -33,6 +33,8 @@ jest.mock('expo-router', () => ({
   useRouter: () => mockRouter,
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
+// зачем (Карточки 2.0 12.10, «Продолжить»): запись позиции — отдельный хук (покрыт pack_continue_recorder.test.ts); в поведенческом тесте экрана он заглушка
+jest.mock('../app/flashcards/use_pack_continue_recorder', () => ({ usePackContinueRecorder: () => ({ record: () => undefined, flush: () => undefined }) }));
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
 // зачем: экран «Устно» берёт отступы через useStableSafeAreaInsets (правило стабильной раскладки, Performance Bible).
 jest.mock('../app/stable_safe_area_metrics', () => ({

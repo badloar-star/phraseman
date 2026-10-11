@@ -276,7 +276,8 @@ test("production CLI rejects positional root overrides before checking their one
   assert.match(output, /UNSUPPORTED_ARGUMENTS/u);
 });
 
-test("release quality rejects scored single_choice without feedback dedicated to its correct response", (t) => {
+// зачем (координатор 11.10, P4 «а»): отклик на правильный ответ плеер не показывает — его отсутствие справка, не блок.
+test("release quality reports scored single_choice without correct-response feedback as an advisory, not a blocker", (t) => {
   const interactionId = "en:lesson-01:session-01:i01";
   const correctResponseId = `${interactionId}:r1`;
   const releaseRoot = makeReleaseQualityFixture(t, {
@@ -302,11 +303,13 @@ test("release quality rejects scored single_choice without feedback dedicated to
 
   const result = releaseParityGate.validateReleaseQuality?.(releaseRoot);
 
+  assert.deepEqual(result?.issues, []);
   assert.deepEqual(
-    result?.issues.map(({ code, interactionId: id, responseId }) => ({ code, interactionId: id, responseId })),
+    result?.advisories.map(({ code, interactionId: id, responseId }) => ({ code, interactionId: id, responseId })),
     [{ code: "CORRECT_RESPONSE_FEEDBACK_MISSING", interactionId, responseId: correctResponseId }],
   );
-  assert.equal(result?.ready, false);
+  assert.equal(result?.missingCorrectFeedback, 1);
+  assert.equal(result?.ready, true);
 });
 
 test("release quality accepts a dedicated correct-response feedback record", (t) => {
@@ -336,6 +339,7 @@ test("release quality accepts a dedicated correct-response feedback record", (t)
 
   assert.equal(result?.ready, true, JSON.stringify(result?.issues));
   assert.deepEqual(result?.issues, []);
+  assert.deepEqual(result?.advisories, []);
 });
 
 test("release quality blocks an audio target whose release has no target-to-asset-to-hash evidence", (t) => {

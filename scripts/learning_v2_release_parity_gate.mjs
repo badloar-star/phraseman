@@ -388,6 +388,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
     return {
       ready: false,
       issues: [{ code: "RELEASE_QUALITY_ROOT_MISSING", path: canonicalRoot }],
+      advisories: [],
       sessions: 0,
       scoredSingleChoiceInteractions: 0,
       missingCorrectFeedback: 0,
@@ -401,6 +402,10 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
   const resolveAudioEvidence = audioEvidenceResolver(audioManifestPath, audioAssetRoot);
   let scoredSingleChoiceInteractions = 0;
   let missingCorrectFeedback = 0;
+  // зачем (координатор 11.10, P4 вариант «а»): плеер отклик на ПРАВИЛЬНЫЙ ответ не показывает, а фабрика приложения
+  // (factory_native_course_v1.ts) раскладывает choiceFeedback по порядку на НЕВЕРНЫЕ варианты — запись для правильного
+  // сдвинула бы объяснения ошибок. Поэтому его отсутствие — справка (advisories), а не блок выпуска.
+  const advisories = [];
   let audioTargets = 0;
   let verifiedAudioTargets = 0;
   let unverifiedAudioTargets = 0;
@@ -459,7 +464,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
       scoredSingleChoiceInteractions += 1;
       if (!hasDedicatedCorrectFeedback(interaction, correctResponseId)) {
         missingCorrectFeedback += 1;
-        issues.push({
+        advisories.push({
           code: "CORRECT_RESPONSE_FEEDBACK_MISSING",
           path: relativePath,
           interactionId: interaction.interactionId,
@@ -472,6 +477,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
   return {
     ready: issues.length === 0,
     issues,
+    advisories,
     sessions: scope.length,
     scoredSingleChoiceInteractions,
     missingCorrectFeedback,
@@ -531,6 +537,11 @@ function printSemanticResult(result) {
 
 function printQualityResult(result) {
   const prefix = "Learning V2 release quality evidence";
+  if (result.missingCorrectFeedback > 0) {
+    console.log(
+      `${prefix}: ADVISORY (${result.missingCorrectFeedback} scored single-choice interactions without dedicated correct-response feedback — not shown by the player, does not block release)`,
+    );
+  }
   if (result.ready) {
     console.log(
       `${prefix}: PASS (${result.sessions} sessions, ${result.scoredSingleChoiceInteractions} scored single-choice interactions, ${result.audioTargets} audio targets)`,
@@ -538,7 +549,7 @@ function printQualityResult(result) {
     return;
   }
   console.error(
-    `${prefix}: BLOCKED (${result.sessions} sessions, ${result.missingCorrectFeedback} missing correct-response feedback records, ${result.verifiedAudioTargets}/${result.audioTargets} audio targets verified, ${result.unverifiedAudioTargets} AUDIO_EVIDENCE_UNVERIFIED, ${result.issues.length} total issues)`,
+    `${prefix}: BLOCKED (${result.sessions} sessions, ${result.verifiedAudioTargets}/${result.audioTargets} audio targets verified, ${result.unverifiedAudioTargets} AUDIO_EVIDENCE_UNVERIFIED, ${result.issues.length} blocking issues)`,
   );
   for (const issue of result.issues.slice(0, 20)) {
     console.error(

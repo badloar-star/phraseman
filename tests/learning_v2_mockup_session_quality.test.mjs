@@ -72,7 +72,9 @@ function expectedBySession() {
       });
     }
   }
-  for (const issue of quality.issues) {
+  // зачем (Ядро 11.10, P4 «а»): отклик на правильный ответ теперь справка ворот (advisories), а не блок — макет
+  // по-прежнему показывает его счётчик, поэтому считаем из обоих списков.
+  for (const issue of [...quality.issues, ...(quality.advisories ?? [])]) {
     if (issue.code !== "CORRECT_RESPONSE_FEEDBACK_MISSING" && issue.code !== "AUDIO_EVIDENCE_UNVERIFIED") continue;
     const entry = bySession.get(identityFromIssue(issue));
     assert.ok(entry, `quality issue points outside release scope: ${JSON.stringify(issue)}`);

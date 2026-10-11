@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-na
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
+import { RowDivider } from '../v2/RowDivider';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -74,10 +75,8 @@ export function SettingsGlassGroup({ glass, children, testID, marginTop }: { gla
       <KitGlassLayer radius={14} />
       <SettingsGroupContext.Provider value>
         {items.map((child, index) => (
-          <View
-            key={React.isValidElement(child) && child.key != null ? child.key : index}
-            style={index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone } : undefined}
-          >
+          <View key={React.isValidElement(child) && child.key != null ? child.key : index}>
+            {index > 0 ? <RowDivider color={glass.dividerTone} /> : null}
             {child}
           </View>
         ))}

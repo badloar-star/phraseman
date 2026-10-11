@@ -1,5 +1,5 @@
 {
-  "total": 252,
+  "total": 247,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -17,7 +17,6 @@
     "app/promo_code_entry.tsx": 1,
     "app/settings_edu.tsx": 1,
     "app/settings_notifications.tsx": 2,
-    "app/settings_themes.tsx": 3,
     "components/achievements/AchievementCategoryDock.tsx": 3,
     "components/achievements/AchievementShelfCarousel.tsx": 2,
     "components/achievements/AchievementShelfStageArt.tsx": 2,
@@ -77,7 +76,6 @@
     "components/ReportErrorButton.tsx": 4,
     "components/ReportPackModal.tsx": 2,
     "components/SectionSheetHeader.tsx": 1,
-    "components/settings/SettingsGlassRows.tsx": 2,
     "components/SoftContextualUpsellCard.tsx": 2,
     "components/SpeakingButton.tsx": 1,
     "components/ui/new/OfflineDataNotice.tsx": 2,

@@ -8,6 +8,7 @@ import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows
 import { nestedBoxShadow } from '../components/v2/ShadowSurface';
 import { ThemeSwatch } from '../components/settings/ThemeSwatch';
 import { ThemeGlassSmoke } from '../components/v2/ThemeGlassSmoke';
+import { RowDivider } from '../components/v2/RowDivider';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -135,15 +136,16 @@ const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, 
       withHaptic={false}
       withSound={false}
       variant="card"
-      contentStyle={[styles.row, first ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone }]}
+      contentStyle={styles.row}
     >
+      {first ? null : <RowDivider color={glass.dividerTone} />}
       <ThemeSwatch id={option.mode} vivid={vivid} />
       <View style={styles.rowText}>
         {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
             длинное имя темы переносится, а не режется троеточием. */}
         <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text, lineHeight: lh(styles.rowName.lineHeight) }]}>{label}</FlowText>
       </View>
-      <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* guard-ok: кольцо радио */}
+      <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* shadow-ok: кольцо радио — индикатор выбора, не контейнер */}
         {applied ? <View style={[styles.radioDot, { backgroundColor: mark }]} /> : null}
       </View>
     </PressableHybrid>
@@ -284,6 +286,6 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },
   rowName: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // guard-ok: кольцо радио
+  radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // shadow-ok: кольцо радио — индикатор выбора, не контейнер; guard-ok: кольцо радио
   radioDot: { width: 12, height: 12, borderRadius: 6 },
 });

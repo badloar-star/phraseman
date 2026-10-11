@@ -65,7 +65,9 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
   assert.match(rows, /fontSize: 16, lineHeight: grouped \? 22 : 21, fontWeight: grouped \? '600' : '700'/);
   // Группа макета A: одна карточка, пункты через тонкий разделитель, строки внутри плоские 60 / 9·16.
   assert.match(rows, /export function SettingsGlassGroup/);
-  assert.match(rows, /borderTopWidth: StyleSheet\.hairlineWidth, borderTopColor: glass\.dividerTone/);
+  // зачем (владелец 12.10, стиль «Тень»): разделитель строк — линия-View (RowDivider) в тоне dividerTone, а не borderTop.
+  assert.match(rows, /<RowDivider color=\{glass\.dividerTone\} \/>/);
+  assert.doesNotMatch(rows, /borderTopWidth/);
   assert.match(rows, /minHeight: 60,\s*paddingVertical: 9,\s*paddingHorizontal: 16/);
   assert.match(rows, /fontSize:\s*13,\s*lineHeight:\s*18,\s*marginTop:\s*3/);
   assert.match(rows, /name="chevron-forward"\s+size=\{18\}/);

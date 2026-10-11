@@ -65,7 +65,9 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
 
   const enabled = ready && !busy;
   const note = block === 'pack_offline' ? spireGameText(lang, 'packOffline')
-    : block === 'pack_missing' ? spireGameText(lang, 'packMissing') : null;
+    : block === 'pack_missing' ? spireGameText(lang, 'packMissing')
+      : block === 'no_identity' ? spireGameText(lang, 'noIdentity')
+        : block === 'no_tier' ? spireGameText(lang, 'noTier') : null;
   return (
     <View testID="spire-dock">
       {note ? <Text style={[s.note, { color: p.textSecondary }]} accessibilityLiveRegion="polite">{note}</Text> : null}

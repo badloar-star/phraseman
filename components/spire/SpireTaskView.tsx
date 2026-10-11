@@ -194,7 +194,12 @@ function SpireTaskView(props: Props) {
   const listenLabel = triLang(lang, { ru: 'Прослушать', uk: 'Прослухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });
   return (
     <View testID="spire-task">
-      <Text style={[s.overline, { color: p.textSecondary }]}>{spireGameText(lang, promptKey).toUpperCase()}</Text>
+      {/* зачем (spire-gaps-states, «Задания»): подпись задания по центру с линиями-разделителями по бокам */}
+      <View style={s.overRow}>
+        <View style={[s.overLine, { backgroundColor: p.divider }]} />
+        <Text style={[s.overline, { color: p.textSecondary }]}>{spireGameText(lang, promptKey).toUpperCase()}</Text>
+        <View style={[s.overLine, { backgroundColor: p.divider }]} />
+      </View>
       {phrase && task.kind !== 'match' && task.kind !== 'timeattack' ? (
         <View style={[s.question, { backgroundColor: p.cardRaised }]}>
           <View style={s.questionRow}>
@@ -219,23 +224,25 @@ function SpireTaskView(props: Props) {
 }
 
 const s = StyleSheet.create({
-  overline: { fontSize: 13, fontWeight: '700', letterSpacing: 1.5, marginTop: 28, marginHorizontal: 2 },
-  question: { marginTop: 14, minHeight: 72, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 16, justifyContent: 'center' },
-  phrase: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  overRow: { marginTop: 28, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  overLine: { flex: 1, height: 1 },
+  overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textAlign: 'center', flexShrink: 1 },
+  question: { marginTop: 14, minHeight: 96, borderRadius: 20, paddingHorizontal: 22, paddingVertical: 20, justifyContent: 'center' },
+  phrase: { fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.3, textAlign: 'center' },
   questionRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   phraseFlex: { flex: 1 },
   listen: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   body: { marginTop: 18 },
-  stack: { gap: 12 },
-  opt: { minHeight: 56, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
-  optText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  stack: { gap: 13 },
+  opt: { minHeight: 58, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 12, justifyContent: 'center' },
+  optText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
   answer: { minHeight: 64, borderRadius: 16, padding: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' },
-  bank: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  bank: { marginTop: 5, flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   token: { minHeight: 44, borderRadius: 12, paddingHorizontal: 14, justifyContent: 'center' },
   tokenText: { fontSize: 16, fontWeight: '700' },
   itemHead: { minHeight: 60, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   itemPrompt: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
-  itemCount: { fontSize: 16, fontWeight: '700' },
+  itemCount: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 
 export default memo(SpireTaskView);

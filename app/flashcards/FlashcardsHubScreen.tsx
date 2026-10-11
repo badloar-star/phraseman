@@ -48,6 +48,9 @@ import { logMemoryOnce } from '../mem_probe';
 
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
+import { hydrateLastKnownMyPacksCount, peekLastKnownMyPacksCount, rememberLastKnownMyPacksCount } from './myPacksCountLastKnown';
+import { peekStableId } from '../stable_id';
+import { subscribeAccountGeneration } from '../account_generation';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
@@ -156,6 +159,58 @@ export default function FlashcardsHubScreen() {
   // My Packs includes unpublished author packs that the Hub catalog does not know.
   // Only its settled account/target snapshot is a truthful count.
   const [myPackCount, setMyPackCount] = useState<number | null>(null);
+  // зачем (координатор 11.10, Optimistic UI; лог [HUB-TILES] mine:instant): плитка «Мои наборы» была пустой, пока не догрузится каталог, а после
+  // паузы (точный снимок живёт 15 с) — ещё и до следующего полного входа: фокус-эффект ниже сбрасывает myPackCount в null, когда снимка нет, а гейт
+  // «тёплого» входа не даёт локальному счёту пересчитаться. Показываем ПОСЛЕДНЕЕ ИЗВЕСТНОЕ число (память + диск, ключ — цель обучения и аккаунт), а
+  // точное/локальное значение после загрузки его уточняет. Фокус-эффект (под замком контракта хаба) не тронут; решения («хаб новичка») по этому числу
+  // не принимаются — только по подтверждённому myPackCount.
+  const mineIdentityRef = useRef<{ target: string; userId: string | null } | null>(null);
+  const myPackCountRef = useRef<number | null>(null);
+  const [heldMineCount, setHeldMineCount] = useState<number | null>(
+    () => peekLastKnownMyPacksCount(studyTarget, CLOUD_SYNC_ENABLED ? peekStableId() : null),
+  );
+  // Смена аккаунта (вход/выход/смена) — перечитать идентичность и число: чужое число не должно остаться на плитке.
+  const [mineIdentityEpoch, setMineIdentityEpoch] = useState(0);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(() => setMineIdentityEpoch((epoch) => epoch + 1));
+    return () => subscription.remove();
+  }, []);
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const userId = await getCanonicalUserId();
+      await hydrateLastKnownMyPacksCount();
+      if (cancelled) {
+        console.log('[HUB-TILES] mine:instant отменено — экран ушёл до чтения идентичности'); // guard-ok: ранний выход логируется
+        return;
+      }
+      const prevIdentity = mineIdentityRef.current;
+      const identityChanged = prevIdentity !== null && (prevIdentity.userId !== userId || prevIdentity.target !== String(studyTarget));
+      mineIdentityRef.current = { target: String(studyTarget), userId };
+      const known = peekLastKnownMyPacksCount(studyTarget, userId);
+      // Число другого аккаунта/цели сюда не попадает: ключ включает обоих. При смене аккаунта прежний подтверждённый счёт — чужой: сбрасываем и НЕ запоминаем.
+      if (identityChanged) setMyPackCount(null);
+      else if (myPackCountRef.current !== null) rememberLastKnownMyPacksCount(studyTarget, userId, myPackCountRef.current);
+      setHeldMineCount(known);
+      console.log('[HUB-TILES] mine:instant', JSON.stringify({ source: known === null ? 'none' : 'cache', value: known, confirmed: myPackCountRef.current, studyTarget, userId: userId ? 'есть' : 'нет' })); // guard-ok: трассировка
+    })().catch((error: unknown) => {
+      console.warn('[HUB-TILES] mine:instant FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: причина в лог
+    });
+    return () => { cancelled = true; };
+  }, [studyTarget, mineIdentityEpoch]);
+  useEffect(() => {
+    myPackCountRef.current = myPackCount;
+    if (myPackCount === null) return;
+    const identity = mineIdentityRef.current;
+    if (!identity || identity.target !== String(studyTarget)) return; // идентичность ещё не прочитана — запомним в эффекте выше
+    const prev = heldMineCount;
+    rememberLastKnownMyPacksCount(identity.target, identity.userId, myPackCount);
+    if (prev !== myPackCount) {
+      console.log('[HUB-TILES] mine:update', JSON.stringify({ from: prev, to: myPackCount, source: prev === null ? 'local' : 'refine' })); // guard-ok: трассировка уточнения
+      setHeldMineCount(myPackCount);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: реагируем только на смену подтверждённого счёта, heldMineCount читаем как есть
+  }, [myPackCount, studyTarget]);
   // зачем (владелец 01.10): у «Из видео» всегда стоял прочерк. Считаем по сохранённому каталогу
   // (тот же, что открывает раздел; кэш 6 ч — без лишних запросов) и тем же фильтром языка наборов.
   const countVideoPacks = useCallback((packs: readonly FlashcardMarketPack[] | null): number | null => {
@@ -661,7 +716,7 @@ export default function FlashcardsHubScreen() {
   const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
   const tiles = [
     { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount ?? heldMineCount), onPress: () => router.push('/flashcards_my_packs' as never) },
     { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
     { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
   ];

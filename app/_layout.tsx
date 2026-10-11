@@ -241,6 +241,7 @@ import {
   refreshAppMessagesSnapshotOnce,
   type AppMessageWithState,
 } from './app_messages';
+import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
@@ -1325,10 +1326,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     void refreshAppMessagesSnapshotOnce(isLoginRefresh
       ? { force: true }
       : { minIntervalMs: APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS })
-      .then((snapshot) => {
+      .then(async (snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
-        setAppMessageModalQueue(listPendingAppMessageModals(snapshot, hasPremiumAccess));
+        // зачем (координатор 12.10): новичку — после онбординга < суток — объявления «что нового» не показываем (app/fresh_install_gate.ts).
+        const queue = listPendingAppMessageModals(snapshot, hasPremiumAccess);
+        const verdict = queue.length > 0 ? await readFreshInstallVerdict() : null;
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        setAppMessageModalQueue(verdict ? skipAnnouncementsForFreshInstall(queue, verdict) : queue);
       })
       .catch(noteSwallowedHandler('_layout:useEffect.refreshAppMessagesSnapshotOnce'));
     return () => { cancelled = true; };

@@ -20,6 +20,7 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
+import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 
 export type DevVipKind = 'promo' | 'promo_lifetime' | 'referral' | 'survey' | 'idea' | 'tester' | 'admin' | 'admin_lifetime' | 'off';
 const VIP_KINDS = ['promo', 'promo_lifetime', 'referral', 'survey', 'idea', 'tester', 'admin', 'admin_lifetime', 'off'] as const;
@@ -66,6 +67,14 @@ export type DevStateRequest = Readonly<{
   cards?: 'demo' | 'demo_lessons' | 'custom50';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
   slot?: 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
+  /** Диалоги (R1 dialogs-*): отказ сервера, настроение, рубильник, удержание загрузки свободного разговора, отказ энергии. off — снять. */
+  dialogFail?: DevDialogFail | 'off';
+  dialogMood?: DevDialogMood | 'off';
+  dialogsPaused?: 'on' | 'off';
+  hold?: 'freeform_loading' | 'off';
+  energyFail?: 'on' | 'off';
+  /** Тост результата проверки статуса/восстановления покупок (R1 paywall-gap-011…013): показывается через ~0,9 с после ссылки. */
+  toast?: 'purchase_confirmed' | 'restored' | 'status_not_found' | 'no_active_subscriptions' | 'status_check_failed' | 'restore_failed';
   next?: string;
 }>;
 
@@ -113,6 +122,17 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.free = pick('free', ['on', 'off'] as const);
   request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
+  request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
+  request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
+  const onOff = (key: string): 'on' | 'off' | undefined => {
+    const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
+    if (value === undefined) return undefined;
+    return value === '1' || value === 'on' || value === 'true' ? 'on' : 'off';
+  };
+  request.dialogsPaused = onOff('dialogs_paused');
+  request.hold = pick('hold', ['freeform_loading', 'off'] as const);
+  request.energyFail = onOff('dev_energy_fail');
+  request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed'] as const);
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -222,6 +242,35 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const { devSeedSettingsMessageSlot } = await import('./app_messages');
       const seeded = await devSeedSettingsMessageSlot(request.slot!, await getStableId());
       if (!seeded.ok) throw new Error(seeded.reason);
+    });
+  }
+  // зачем (R1 «нет пути», Диалоги): флаги в памяти процесса; dialogs_paused=1 — тот же отказ 'paused', что отдаёт сервер при рубильнике раздела.
+  if (request.dialogFail !== undefined || request.dialogsPaused !== undefined) {
+    await step('dialogFail', String(request.dialogFail ?? (request.dialogsPaused === 'on' ? 'paused' : 'off')), async () => {
+      const fail = request.dialogFail !== undefined
+        ? (request.dialogFail === 'off' ? null : request.dialogFail)
+        : (request.dialogsPaused === 'on' ? 'paused' : null);
+      return setDevDialogState({ fail });
+    });
+  }
+  if (request.dialogMood !== undefined) {
+    await step('dialogMood', request.dialogMood, async () => setDevDialogState({ mood: request.dialogMood === 'off' ? null : request.dialogMood! }));
+  }
+  if (request.hold !== undefined) {
+    await step('hold', request.hold, async () => setDevDialogState({ holdFreeformLoading: request.hold === 'freeform_loading' }));
+  }
+  if (request.energyFail !== undefined) {
+    await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
+  }
+  if (request.toast) {
+    await step('toast', request.toast, async () => {
+      // зачем (R1 paywall-gap-011…013): те же тексты, что у покупателя (paywallRestoreToast); задержка — чтобы маршрут `next` успел открыться.
+      const { paywallRestoreToast } = await import('./paywall_purchase');
+      const kind = request.toast!;
+      setTimeout(() => {
+        console.log(`[DEV-STATE] toast: ${kind}`); // guard-ok: dev-ветка
+        emitAppEvent('action_toast', paywallRestoreToast(kind));
+      }, 900);
     });
   }
   const result = { applied, skipped, next: request.next ?? null };

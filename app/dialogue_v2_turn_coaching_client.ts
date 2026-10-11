@@ -6,6 +6,7 @@ import {
   parseDialogueV2PreparedBotVoiceSelection,
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
+import { getDevDialogFail, getDevDialogMood } from './dev_dialog_state';
 import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { DialogueV2TextTurnUnavailableError, type DialogueV2TextTurnStudyTarget } from './dialogue_v2_turn_client';
 
@@ -251,6 +252,12 @@ export async function sendDialogueV2CoachedTextTurn(
     console.warn('[DIALOGUE-V2] coached:send → request rejected locally', { scenarioId: selection.scenarioId });
     throw new DialogueV2TurnFailureError('service');
   }
+  // зачем (координатор 12.10, R1 «нет пути»): dev-отказ сервера для съёмки — до сети и без списаний; в стор-сборке getDevDialogFail() = null.
+  const devFail = getDevDialogFail();
+  if (devFail) {
+    console.log(`[DEV-STATE] dialogs: ход подменён отказом reason=${devFail} scenarioId=${request.scenarioId}`); // guard-ok: dev-ветка
+    throw new DialogueV2TurnFailureError(devFail);
+  }
   const startedAt = Date.now();
   let data: unknown;
   try {
@@ -277,6 +284,12 @@ export async function sendDialogueV2CoachedTextTurn(
       scenarioId: request.scenarioId, ms: Date.now() - startedAt,
     });
     throw new DialogueV2TurnFailureError('service');
+  }
+  // зачем (R1 «нет пути»): dev-настроение поверх настоящего ответа (разбор хода остаётся серверным); в стор-сборке null.
+  const devMood = getDevDialogMood();
+  if (devMood && parsed.kind === 'reply' && parsed.coaching) {
+    console.log(`[DEV-STATE] dialogs: настроение подменено ${String(parsed.coaching.mood)} → ${devMood}`); // guard-ok: dev-ветка
+    return { ...parsed, coaching: { ...parsed.coaching, mood: devMood } };
   }
   if (typeof __DEV__ !== 'undefined' && __DEV__) {
     console.log('[DIALOGUE-V2] coached:send → ok', {

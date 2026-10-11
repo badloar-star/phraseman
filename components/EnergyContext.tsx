@@ -61,6 +61,7 @@ import {
   type EnergyStateV2,
 } from '../app/energy_state_v2';
 import { energyVisualTransactions } from '../app/energy_visual_transactions';
+import { isDevDialogEnergyFail } from '../app/dev_dialog_state';
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type EnergyNotificationModule = Pick<
@@ -1023,9 +1024,14 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     confirmActivityStart(energyActivityForSessionKind(intent.grant.kind), intent)
   ), [confirmActivityStart]);
 
-  const confirmSpendOne = useCallback((intent: EnergySessionIntent): Promise<EnergyStartResult> => (
-    confirmActivityStart(energyActivityForSessionKind(intent.grant.kind), intent)
-  ), [confirmActivityStart]);
+  const confirmSpendOne = useCallback((intent: EnergySessionIntent): Promise<EnergyStartResult> => {
+    // зачем (координатор 12.10, R1 dialogs-gap-017): dev `dev_energy_fail=1` — отказ старта диалога ДО списания (тост «Не получилось начать диалог»); в стор-сборке false.
+    if (intent.grant.kind === 'ai_dialog' && isDevDialogEnergyFail()) {
+      console.log('[DEV-STATE] energy: confirmSpendOne(ai_dialog) → cancelled (dev_energy_fail)'); // guard-ok: dev-ветка
+      return Promise.resolve('cancelled');
+    }
+    return confirmActivityStart(energyActivityForSessionKind(intent.grant.kind), intent);
+  }, [confirmActivityStart]);
 
   const refundActivityStart = useCallback(async (operationId: string, reason: string): Promise<void> => {
     if (!energyReadyRef.current) await load();

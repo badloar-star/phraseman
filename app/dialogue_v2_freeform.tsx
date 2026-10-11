@@ -24,6 +24,7 @@ import {
 } from './dialogue_v2_freeform_prepared_bot_voice_runtime';
 import { parseDialogueV2FreeformSessionTurnShape } from '../shared/dialogue_v2_freeform_session_contract';
 import { safeRouterBack } from './navigation_back';
+import { isDevFreeformLoadingHeld } from './dev_dialog_state';
 
 const SUPPORTED_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -260,7 +261,8 @@ export default function DialogueV2FreeformRoute() {
   };
   sendRef.current = send;
 
-  if (!accessResolved) {
+  // зачем (координатор 12.10, R1 dialogs-gap-009): dev `hold=freeform_loading` держит экран «готовим разговор» для съёмки; в стор-сборке false.
+  if (!accessResolved || isDevFreeformLoadingHeld()) {
     return <DialogueGlassGate glass={glass} testID="dialogue-v2-freeform-loading" backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} loading title={labels.loading} />;
   }
   if (!hasPremiumAccess) {

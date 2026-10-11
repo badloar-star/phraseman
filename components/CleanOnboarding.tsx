@@ -104,10 +104,12 @@ import {
   type UserProfile,
 } from '../app/types/user_profile';
 import {
+  discardAccountSwitchResumeCredential,
   isAppleSignInAvailable,
   isGoogleSignInAvailableSync,
   peekAppleSignInAvailability,
   peekLinkedAuthFromCurrentUser,
+  resumeSignInAfterAccountSwitch,
   signInWithProvider,
   type AuthProviderId,
 } from '../app/auth_provider';
@@ -188,6 +190,22 @@ async function withOnboardingAuthSlowNotice<T>(task: Promise<T>, onSlow: () => v
   } finally {
     clearTimeout(timer);
   }
+}
+
+// Прежний текст ветки «аккаунт сменён» — теперь только запасной путь, когда вход
+// после смены не продолжился сам (нет/протух пропуск Google, Apple, отказ сервера).
+function onboardingSwitchedSignInAgainText(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
+    uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
+    en: 'Account switched. Sign in again the way you need.',
+    es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
+    'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
+    vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
+    id: 'Akun sudah diganti. Masuk lagi dengan cara yang kamu perlukan.',
+    tr: 'Hesap değiştirildi. İstediğin yolla tekrar giriş yap.',
+    pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
+  });
 }
 // зачем: D126 (владелец 2026-09-30) — «только включаем экран с выбором языка, он
 // уже есть», остальной онбординг не трогается. Поэтому рубильник разделён: выбор
@@ -2604,6 +2622,8 @@ function CleanOnboarding({
     result: string,
     attempt: number,
   ): Promise<void> => {
+    // зачем (ревью L-2): попытка брошена — пропуск входа после смены из неё тоже.
+    discardAccountSwitchResumeCredential('attempt_stale');
     const completion = authCompletionRef.current;
     const action = decideLateOnboardingAuthResult(result, completion.doneCalled);
     if (action === 'drop') {
@@ -2639,8 +2659,9 @@ function CleanOnboarding({
     setAuthError(null);
     setAuthSlow(false);
     try {
-      const result = await withOnboardingAuthSlowNotice(
-        signInWithProvider(provider),
+      let result = await withOnboardingAuthSlowNotice(
+        // зачем (ревью L-1): пропуск для входа после смены сохраняет только онбординг.
+        signInWithProvider(provider, { captureAccountSwitchResume: true }),
         () => setAuthSlow(true),
       );
       // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
@@ -2653,6 +2674,40 @@ function CleanOnboarding({
       if (result.result === 'cancelled') {
         setAuthSlow(false);
         return;
+      }
+      if (result.result === 'error') {
+        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
+        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
+        // Ветка стоит ПЕРВОЙ (ревью M-2): ответ входа после смены (удалён навсегда / на
+        // удалении) проходит дальше через те же окна, что и ответ первого входа.
+        if (result.error === 'account_switch_required') {
+          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
+          if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
+          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'switched') {
+            // зачем (ревью L-2): человек ушёл «Позже»/«Назад», пока шла смена, — не входим за него.
+            if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+              discardAccountSwitchResumeCredential('attempt_stale');
+              console.log(`[AUTH-SWITCH-OFFER] onboarding resume skipped provider=${provider} source=existing_account reason=attempt_stale`); // guard-ok: ранний выход пишет причину
+              return;
+            }
+            // зачем (шаг 3, прогон 11.10): человек уже выбрал аккаунт — вход продолжается сам
+            // тем же пропуском, без второго окна Google. Не вышло — прежний текст.
+            const resumed = await withOnboardingAuthSlowNotice(resumeSignInAfterAccountSwitch(provider), () => setAuthSlow(true));
+            if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+              await settleLateOnboardingAuthResult(provider, resumed?.result ?? 'error', attempt);
+              return;
+            }
+            if (!resumed) {
+              console.log(`[AUTH-SWITCH-OFFER] onboarding resume fallback provider=${provider} source=existing_account`); // guard-ok: ветка входа после смены (правило «сперва логи»)
+              setAuthError(onboardingSwitchedSignInAgainText(lang));
+              return;
+            }
+            console.log(`[AUTH-SWITCH-OFFER] onboarding resume continued provider=${provider} source=existing_account result=${resumed.result}`); // guard-ok: ветка входа после смены
+            result = resumed;
+          }
+        }
       }
       if (result.result === 'error') {
         if (result.error === 'identity_retired') {
@@ -2682,27 +2737,6 @@ function CleanOnboarding({
             pl: 'Konto zostało przywrócone. Zaloguj się ponownie — cały postęp jest na miejscu.',
           }));
           return;
-        }
-        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
-        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
-        if (result.error === 'account_switch_required') {
-          const switched = await confirmAndSwitchAccountInOnboarding(lang);
-          if (switched.kind === 'cancelled') { setAuthError(null); return; }
-          if (switched.kind === 'failed') { setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
-          if (switched.kind === 'switched') {
-            setAuthError(triLang(lang, {
-              ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
-              uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
-              en: 'Account switched. Sign in again the way you need.',
-              es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
-              'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
-              vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
-              id: 'Akun sudah diganti. Masuk lagi dengan cara yang kamu perlukan.',
-              tr: 'Hesap değiştirildi. İstediğin yolla tekrar giriş yap.',
-              pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
-            }));
-            return;
-          }
         }
         setAuthError(describeAuthError(result.error, lang));
         return;
@@ -2740,6 +2774,8 @@ function CleanOnboarding({
       const detail = error instanceof Error ? error.message : String(error);
       // зачем (аудит двойного тапа 11.10): catch только показывал текст — причина в логе, кодом без текста.
       console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=existing_account code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      // зачем (ревью L-4): обработчик упал (в т.ч. вокруг смены) — пропуск не переживает попытку.
+      discardAccountSwitchResumeCredential('handler_threw');
       if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
         console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
         return;
@@ -2769,8 +2805,9 @@ function CleanOnboarding({
     setAuthError(null);
     setAuthSlow(false);
     try {
-      const result = await withOnboardingAuthSlowNotice(
-        signInWithProvider(provider),
+      let result = await withOnboardingAuthSlowNotice(
+        // зачем (ревью L-1): пропуск для входа после смены сохраняет только онбординг.
+        signInWithProvider(provider, { captureAccountSwitchResume: true }),
         () => setAuthSlow(true),
       );
       // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
@@ -2783,6 +2820,39 @@ function CleanOnboarding({
       if (result.result === 'cancelled') {
         setAuthSlow(false);
         return;
+      }
+      if (result.result === 'error') {
+        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
+        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
+        // Ветка стоит ПЕРВОЙ (ревью M-2): ответ входа после смены (удалён навсегда / на
+        // удалении) проходит дальше через те же окна, что и ответ первого входа.
+        if (result.error === 'account_switch_required') {
+          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
+          if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
+          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'switched') {
+            // зачем (ревью L-2): человек ушёл «Позже»/«Назад», пока шла смена, — не входим за него.
+            if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+              discardAccountSwitchResumeCredential('attempt_stale');
+              console.log(`[AUTH-SWITCH-OFFER] onboarding resume skipped provider=${provider} source=privacy reason=attempt_stale`); // guard-ok: ранний выход пишет причину
+              return;
+            }
+            // зачем (шаг 3, прогон 11.10): вход продолжается сам тем же пропуском. Не вышло — прежний текст.
+            const resumed = await withOnboardingAuthSlowNotice(resumeSignInAfterAccountSwitch(provider), () => setAuthSlow(true));
+            if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+              await settleLateOnboardingAuthResult(provider, resumed?.result ?? 'error', attempt);
+              return;
+            }
+            if (!resumed) {
+              console.log(`[AUTH-SWITCH-OFFER] onboarding resume fallback provider=${provider} source=privacy`); // guard-ok: ветка входа после смены (правило «сперва логи»)
+              setAuthError(onboardingSwitchedSignInAgainText(lang));
+              return;
+            }
+            console.log(`[AUTH-SWITCH-OFFER] onboarding resume continued provider=${provider} source=privacy result=${resumed.result}`); // guard-ok: ветка входа после смены
+            result = resumed;
+          }
+        }
       }
       if (result.result === 'error') {
         if (result.error === 'identity_retired') {
@@ -2816,27 +2886,6 @@ function CleanOnboarding({
           }));
           return;
         }
-        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
-        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
-        if (result.error === 'account_switch_required') {
-          const switched = await confirmAndSwitchAccountInOnboarding(lang);
-          if (switched.kind === 'cancelled') { setAuthError(null); return; }
-          if (switched.kind === 'failed') { setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
-          if (switched.kind === 'switched') {
-            setAuthError(triLang(lang, {
-              ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
-              uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
-              en: 'Account switched. Sign in again the way you need.',
-              es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
-              'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
-              vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
-              id: 'Akun sudah diganti. Masuk lagi dengan cara yang kamu perlukan.',
-              tr: 'Hesap değiştirildi. İstediğin yolla tekrar giriş yap.',
-              pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
-            }));
-            return;
-          }
-        }
         setAuthError(describeAuthError(result.error, lang));
         return;
       }
@@ -2861,6 +2910,8 @@ function CleanOnboarding({
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
       console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=privacy code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      // зачем (ревью L-4): обработчик упал (в т.ч. вокруг смены) — пропуск не переживает попытку.
+      discardAccountSwitchResumeCredential('handler_threw');
       if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
         console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
         return;

@@ -59,7 +59,8 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('testID="onboarding-existing-account"');
     expect(source).toContain('GoogleSignInButton');
     expect(source).toContain('AppleSignInButton');
-    expect(source).toContain('signInWithProvider(provider)');
+    // зачем (шаг 3 auth-legacy-google-not-found, ревью L-1): онбординг просит сохранить пропуск для входа после смены.
+    expect(source).toContain('signInWithProvider(provider, { captureAccountSwitchResume: true })');
   });
 
   it('D126: English is the default before the language choice, the choice overrides it', () => {

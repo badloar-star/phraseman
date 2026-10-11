@@ -294,6 +294,18 @@ export type SignInWithProviderOptions = Readonly<{
    * rotating stable_id or clearing local progress.
    */
   requireCurrentStableIdOwnership?: boolean;
+  /**
+   * Вход сразу после подтверждённой смены аккаунта: вместо окна Google берём
+   * пропуск, который человек выбрал в ЭТОМ ЖЕ входе минуту назад (только память,
+   * одноразово, ≤ 10 мин). Нет пропуска → `resume_credential_<причина>` без окна.
+   */
+  resumeAfterAccountSwitch?: boolean;
+  /**
+   * Сохранить выбранный пропуск при `account_switch_required` — только вызывающий,
+   * который сам предлагает смену и затем продолжает вход (онбординг). Без флага
+   * (окно входа, Настройки) пропуск не сохраняется вовсе.
+   */
+  captureAccountSwitchResume?: boolean;
 }>;
 
 function emitAuthProviderLinked(): void {
@@ -1665,6 +1677,72 @@ interface NativeAuthCredential {
   appleNonce?: string;
 }
 
+// ── Пропуск Google через смену аккаунта (прогон 11.10, пакет auth-legacy-google-not-found, шаг 3) ──
+// зачем: гость в онбординге выбрал Google → конфликт → «Сменить аккаунт» → после стирания
+// телефона человек ОБЯЗАН был открыть окно Google второй раз и выбрать тот же аккаунт.
+// Держим только что выбранный им Google-пропуск в ПАМЯТИ процесса (не диск, не журнал,
+// не аналитика), чтобы вход после смены продолжился сам. Пропуск одноразовый: любая
+// попытка взять его (успех/отказ/протух/не тот провайдер) стирает его; живёт ≤ 10 мин.
+// Apple сюда НЕ кладём: его ID-токен связан с одноразовым nonce, Firebase повторно
+// его не примет — Apple после смены по-прежнему входит вторым тапом.
+const ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS = 10 * 60_000;
+
+type AccountSwitchResumeCredential = Readonly<{
+  provider: AuthProviderId;
+  credential: NativeAuthCredential;
+  capturedAtMs: number;
+}>;
+
+let accountSwitchResumeCredential: AccountSwitchResumeCredential | null = null;
+
+function storeAccountSwitchResumeCredential(
+  provider: AuthProviderId,
+  credential: NativeAuthCredential,
+): void {
+  if (provider !== 'google') {
+    console.log(`[AUTH-SWITCH-OFFER] resume_credential not_stored provider=${provider} reason=provider_not_reusable`);
+    accountSwitchResumeCredential = null;
+    return;
+  }
+  accountSwitchResumeCredential = Object.freeze({ provider, credential, capturedAtMs: Date.now() });
+  console.log(`[AUTH-SWITCH-OFFER] resume_credential stored provider=${provider} ttlMs=${ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS}`);
+}
+
+/**
+ * Стереть пропуск для входа после смены. Зовётся, когда смена не состоялась (отмена,
+ * сбой) или начался новый обычный вход — тогда старый выбор человека уже не действует.
+ */
+export function discardAccountSwitchResumeCredential(reason: string): void {
+  if (!accountSwitchResumeCredential) return;
+  console.log(`[AUTH-SWITCH-OFFER] resume_credential discarded provider=${accountSwitchResumeCredential.provider} reason=${reason}`);
+  accountSwitchResumeCredential = null;
+}
+
+type AccountSwitchResumeTake =
+  | Readonly<{ kind: 'used'; credential: NativeAuthCredential }>
+  | Readonly<{ kind: 'missing' | 'expired' | 'provider_mismatch' }>;
+
+function takeAccountSwitchResumeCredential(provider: AuthProviderId): AccountSwitchResumeTake {
+  const stored = accountSwitchResumeCredential;
+  // Одноразовость: стираем ДО любых проверок — второй попытки с тем же пропуском нет.
+  accountSwitchResumeCredential = null;
+  if (!stored) {
+    console.log(`[AUTH-SWITCH-OFFER] resume_credential missing provider=${provider}`);
+    return { kind: 'missing' };
+  }
+  const ageMs = Date.now() - stored.capturedAtMs;
+  if (stored.provider !== provider) {
+    console.warn(`[AUTH-SWITCH-OFFER] resume_credential provider_mismatch stored=${stored.provider} requested=${provider}`);
+    return { kind: 'provider_mismatch' };
+  }
+  if (ageMs < 0 || ageMs > ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS) {
+    console.warn(`[AUTH-SWITCH-OFFER] resume_credential expired provider=${provider} ageMs=${ageMs}`);
+    return { kind: 'expired' };
+  }
+  console.log(`[AUTH-SWITCH-OFFER] resume_credential used provider=${provider} ageMs=${ageMs}`);
+  return { kind: 'used', credential: stored.credential };
+}
+
 /**
  * Watchdog: native Google sign-in flow ОБЯЗАН вернуть результат за разумное время
  * (тапнул аккаунт в picker\'е → токен максимум за 30 секунд). Если промис висит
@@ -2140,14 +2218,20 @@ export async function acquireAuthRecoveryNativeCredential(
  * local-data, migration, or scope decisions; the authority lease decides the
  * accountId/sessionId after this callback returns.
  */
-async function runAccountAuthorityCredentialSignIn(provider: AuthProviderId): Promise<SignInResult> {
+async function runAccountAuthorityCredentialSignIn(
+  provider: AuthProviderId,
+  resumeCredential: NativeAuthCredential | null = null,
+): Promise<SignInResult> {
   if (!CLOUD_SYNC_ENABLED) return { result: 'error', error: 'cloud_sync_disabled' };
   const auth = getAuth();
   if (!auth) return { result: 'error', error: 'firebase_unavailable' };
 
   let nativeCredential: NativeAuthCredential | { cancelled: true };
   try {
-    nativeCredential = provider === 'google'
+    // зачем (шаг 3): вход после смены — без второго окна выбора, тем же пропуском.
+    nativeCredential = resumeCredential
+      ? resumeCredential
+      : provider === 'google'
       ? await runGoogleNativeSignIn()
       : Platform.OS === 'android'
         ? await runAppleAndroidOAuthSignIn()
@@ -2260,11 +2344,24 @@ export async function signInWithProvider(
     console.log(`[AUTH-SIGNIN] joined provider=${provider} reason=in_flight`);
     return providerSignInInFlight.task;
   }
+  // зачем (шаг 3, прогон 11.10): вход после смены берёт пропуск из памяти (одноразово);
+  // обычный вход открывает окно заново — тогда прежний пропуск уже не выбор человека.
+  let resumeCredential: NativeAuthCredential | null = null;
+  if (options.resumeAfterAccountSwitch) {
+    const taken = takeAccountSwitchResumeCredential(provider);
+    if (taken.kind !== 'used') {
+      console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=resume_credential_${taken.kind}`);
+      return { result: 'error', error: `resume_credential_${taken.kind}` };
+    }
+    resumeCredential = taken.credential;
+  } else {
+    discardAccountSwitchResumeCredential('fresh_sign_in');
+  }
   const reservation = createProviderCredentialModeReservation('signin', provider);
   providerCredentialModeReservation = reservation;
   const task = runAccountAuthorityProviderSignInTransition(
-    () => runAccountAuthorityCredentialSignIn(provider),
-    () => runSignInWithProvider(provider, options),
+    () => runAccountAuthorityCredentialSignIn(provider, resumeCredential),
+    () => runSignInWithProvider(provider, options, resumeCredential),
   );
   providerSignInInFlight = {
     provider,
@@ -2288,6 +2385,55 @@ let providerSignInInFlight: {
   startedAt: number;
   requireCurrentStableIdOwnership: boolean;
 } | null = null;
+
+/**
+ * Ошибки входа после смены, у которых в онбординге есть своё окно (удалён навсегда /
+ * на удалении — предложить вернуть). Их отдаём как есть, а не прячем в «Войди ещё раз».
+ */
+const RESUME_PASSTHROUGH_ERRORS = ['identity_retired', 'account_delete_pending'] as const;
+type ResumePassthroughError = typeof RESUME_PASSTHROUGH_ERRORS[number];
+
+export type AccountSwitchResumeSignInResult =
+  | Exclude<SignInResult, { result: 'error' } | { result: 'cancelled' }>
+  | Readonly<{ result: 'error'; error: ResumePassthroughError }>;
+
+function isResumePassthroughError(error: string): error is ResumePassthroughError {
+  return (RESUME_PASSTHROUGH_ERRORS as readonly string[]).includes(error);
+}
+
+/**
+ * Продолжить вход сразу после успешной смены аккаунта тем же Google-пропуском
+ * (без второго окна выбора). `null` — продолжить нельзя (пропуска нет, протух,
+ * Apple, сервер отклонил): вызывающий показывает прежнее «Войди ещё раз».
+ * `identity_retired` / `account_delete_pending` возвращаются как есть (ревью M-2).
+ */
+export async function resumeSignInAfterAccountSwitch(
+  provider: AuthProviderId,
+): Promise<AccountSwitchResumeSignInResult | null> {
+  try {
+    const result = await signInWithProvider(provider, { resumeAfterAccountSwitch: true });
+    // зачем (ревью L-3): присоединение к уже идущему входу не берёт пропуск — стираем
+    // его при ЛЮБОМ исходе, чтобы он не пережил эту попытку.
+    discardAccountSwitchResumeCredential('resume_settled');
+    if (result.result === 'error' && isResumePassthroughError(result.error)) {
+      console.warn(`[AUTH-SWITCH-OFFER] resume_sign_in passthrough provider=${provider} code=${result.error}`);
+      return { result: 'error', error: result.error };
+    }
+    if (result.result === 'error' || result.result === 'cancelled') {
+      // зачем: в журнал только код до «:» — после него у Firebase бывает почта.
+      const head = result.result === 'error' ? result.error.split(':')[0] : 'cancelled';
+      const code = /^[a-z0-9_./-]{1,64}$/i.test(head) ? head : 'redacted';
+      console.warn(`[AUTH-SWITCH-OFFER] resume_sign_in not_continued provider=${provider} result=${result.result} code=${code}`);
+      return null;
+    }
+    console.log(`[AUTH-SWITCH-OFFER] resume_sign_in ok provider=${provider} result=${result.result}`);
+    return result;
+  } catch (error) {
+    console.warn(`[AUTH-SWITCH-OFFER] resume_sign_in threw provider=${provider} code=${identityErrorCode(error)}`);
+    discardAccountSwitchResumeCredential('resume_threw');
+    return null;
+  }
+}
 
 type ProviderHandoffLeaseScope = {
   lease: AccountTransitionLockLease | null;
@@ -2328,10 +2474,11 @@ async function retainProviderHandoffTransitionLease(
 async function runSignInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions,
+  resumeCredential: NativeAuthCredential | null = null,
 ): Promise<SignInResult> {
   const handoffLeaseScope: ProviderHandoffLeaseScope = { lease: null, release: null };
   try {
-    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope);
+    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope, resumeCredential);
   } finally {
     // зачем (AA S2b, пункт 9): nonce M-1 нужен только внутри одного входа —
     // успех (merge/relink), отказ или отмена одинаково его стирают.
@@ -2344,6 +2491,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   provider: AuthProviderId,
   options: SignInWithProviderOptions,
   handoffLeaseScope: ProviderHandoffLeaseScope,
+  resumeCredential: NativeAuthCredential | null = null,
 ): Promise<SignInResult> {
   if (__DEV__) console.log(`[auth_provider] signInWithProvider(${provider}): start`);
   // зачем (AA S2c, случай §126 «после смены Google-аккаунта не привязывается»):
@@ -2460,7 +2608,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   // 1. Native / OAuth sign-in
   let cred: NativeAuthCredential | { cancelled: true };
   try {
-    if (provider === 'google') {
+    if (resumeCredential) {
+      // зачем (шаг 3): человек уже выбрал этот аккаунт в окне Google перед сменой —
+      // второе окно не открываем. Дальше путь тот же: свежий гость → конфликт →
+      // подтверждённая смена (post-completion handoff) → signInWithCredential.
+      identityTrace('[AUTH-LINK-GOOGLE]', 'native skipped', { provider, source: 'resume_credential' });
+      cred = resumeCredential;
+    } else if (provider === 'google') {
       cred = await runGoogleNativeSignIn();
     } else if (Platform.OS === 'android') {
       cred = await runAppleAndroidOAuthSignIn();
@@ -2628,6 +2782,16 @@ async function runSignInWithProviderWhileOwningHandoffLease(
               return { result: 'error', error: 'provider_handoff_recovery_required' };
             }
             logAuthEvent('auth_signin_account_switch_required', { provider, source: 'anonymous_link_conflict' });
+            // зачем (шаг 3): сохранить выбор человека на время окна «Сменить аккаунт»,
+            // чтобы после смены вход продолжился без второго окна Google. Повтор из
+            // пропуска сам пропуск НЕ перекладывает — иначе одноразовость ломается.
+            if (resumeCredential) {
+              console.warn(`[AUTH-SWITCH-OFFER] resume_credential rejected provider=${provider} reason=switch_still_required`);
+            } else if (options.captureAccountSwitchResume) {
+              storeAccountSwitchResumeCredential(provider, cred);
+            } else {
+              console.log(`[AUTH-SWITCH-OFFER] resume_credential not_stored provider=${provider} reason=caller_not_capturing`);
+            }
             return { result: 'error', error: 'account_switch_required' };
           }
           providerHandoffMarker = await markProviderCredentialHandoffCredentialReady(
@@ -3581,7 +3745,8 @@ function accountSwitchRecoveryDependencies() {
       ]);
       return premiumIdle && restoreIdle && cloudIdle;
     },
-    signOut: async (): Promise<void> => { await signOutCurrentProvider(); },
+    // зачем (шаг 3): выход внутри смены сохраняет пропуск, выбранный перед сменой.
+    signOut: async (): Promise<void> => { await signOutCurrentProviderKeepingSwitchResume(); },
     wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(); },
     clearStableId: async (): Promise<void> => {
       await clearStableId();
@@ -4056,6 +4221,8 @@ export type DeleteAccountHandoff =
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  // зачем (ревью L-1): удаление аккаунта отменяет любой отложенный вход после смены.
+  discardAccountSwitchResumeCredential('account_delete');
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
   // зачем (владелец, 2026-09-13): «сперва логи» — путь удаления был нем.
@@ -4711,6 +4878,7 @@ export type RemoteAccountDeleteResult =
 
 /** Clears a device whose still-signed-in provider account was deleted elsewhere. */
 export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccountDeleteResult> {
+  discardAccountSwitchResumeCredential('account_deleted_elsewhere');
   const freshIdentity = await ensureFreshPostDeletionIdentity('identity_retired', {
     subject: 'auth',
   });
@@ -4739,6 +4907,17 @@ export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
  * когда нужен ТОЛЬКО Firebase signOut без очистки прогресса.
  */
 export async function signOutCurrentProvider(): Promise<void> {
+  // зачем (ревью L-1): обычный выход отменяет отложенный вход после смены.
+  discardAccountSwitchResumeCredential('provider_sign_out');
+  return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);
+}
+
+/**
+ * Тот же выход, но пропуск входа после смены НЕ стирается. Только для шага выхода
+ * внутри самой смены аккаунта (deps.signOut): ради этого пропуска смена и делается —
+ * после неё вход продолжается тем же выбранным аккаунтом.
+ */
+function signOutCurrentProviderKeepingSwitchResume(): Promise<void> {
   return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);
 }
 

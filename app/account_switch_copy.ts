@@ -93,6 +93,53 @@ export function accountSwitchRequiredCopy(lang: Lang): AccountSwitchRequiredCopy
   };
 }
 
+/**
+ * Тот же случай для ГОСТЯ в онбординге («У меня уже есть аккаунт» → Google, который уже есть в Phraseman).
+ * зачем (прогон 11.10): общий заголовок «Телефон уже связан с другим аккаунтом» гостю неверен и пугает —
+ * телефон ни с чем не связан, просто выбранный Google уже существует (credential-already-in-use — это
+ * «пользователь есть», а не «есть прогресс», ревью 12.10). Честно говорим, что начатое без входа не
+ * перенесётся (смена стирает гостевые данные телефона; войти обратно гостю нечем).
+ */
+export function accountSwitchRequiredGuestCopy(lang: Lang): AccountSwitchRequiredCopy {
+  return {
+    title: triLang(lang, {
+      // зачем (ревью M-1): ветка срабатывает по credential-already-in-use — аккаунт существует,
+      // а прогресса у него может не быть. Заголовок говорит только правду: аккаунт уже есть.
+      ru: 'Этот аккаунт уже есть в Phraseman',
+      uk: 'Цей акаунт уже є в Phraseman',
+      en: 'This account already exists in Phraseman',
+      es: 'Esta cuenta ya existe en Phraseman',
+      'pt-BR': 'Esta conta já existe no Phraseman',
+      vi: 'Tài khoản này đã có trong Phraseman',
+      id: 'Akun ini sudah ada di Phraseman',
+      tr: "Bu hesap zaten Phraseman'de var",
+      pl: 'To konto już istnieje w Phraseman',
+    }),
+    body: triLang(lang, {
+      ru: 'Чтобы войти в него, начатое на этом телефоне без входа придётся оставить — оно не перенесётся.',
+      uk: 'Щоб увійти в нього, розпочате на цьому телефоні без входу доведеться залишити — воно не перенесеться.',
+      en: "To sign in to it, what you started on this phone without signing in stays behind — it won't carry over.",
+      es: 'Para entrar en ella, lo que empezaste en este teléfono sin iniciar sesión se queda atrás: no se transfiere.',
+      'pt-BR': 'Para entrar nela, o que você começou neste celular sem entrar fica para trás — não será transferido.',
+      vi: 'Để đăng nhập, phần bạn đã bắt đầu trên điện thoại này khi chưa đăng nhập sẽ không được chuyển sang.',
+      id: 'Untuk masuk ke akun ini, yang kamu mulai di ponsel ini tanpa masuk tidak akan ikut pindah.',
+      tr: 'Bu hesaba girmek için bu telefonda giriş yapmadan başladıkların geride kalır — aktarılmaz.',
+      pl: 'Aby się zalogować, postęp z tego telefonu sprzed logowania zostanie tutaj — nie przeniesie się.',
+    }),
+    action: triLang(lang, {
+      ru: 'Войти в этот аккаунт',
+      uk: 'Увійти в цей акаунт',
+      en: 'Sign in to this account',
+      es: 'Entrar en esta cuenta',
+      'pt-BR': 'Entrar nesta conta',
+      vi: 'Đăng nhập tài khoản này',
+      id: 'Masuk ke akun ini',
+      tr: 'Bu hesaba gir',
+      pl: 'Zaloguj się na to konto',
+    }),
+  };
+}
+
 /** Параметр маршрута Настроек: открыть окно «Сменить аккаунт?» сразу (кнопка из окна входа). */
 export const SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM = 'switchAccount';
 

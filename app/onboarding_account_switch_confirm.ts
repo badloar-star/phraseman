@@ -10,7 +10,7 @@
  * в Настройках (аварийная копия прогресса сохраняется до стирания).
  */
 import { triLang, type Lang } from '../constants/i18n';
-import { accountSwitchRequiredCopy } from './account_switch_copy';
+import { accountSwitchRequiredGuestCopy } from './account_switch_copy';
 import { readAccountSwitchUnsavedCardsDecision } from './account_switch_unsaved_cards';
 import { signOutAndWipeForAccountSwitch } from './auth_provider';
 import { identityErrorCode } from './identity_trace';
@@ -97,7 +97,8 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
 }
 
 export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<OnboardingAccountSwitchOutcome> {
-  const copy = accountSwitchRequiredCopy(lang);
+  // зачем (прогон 11.10): в онбординге это всегда гость — свой честный текст вместо «Телефон уже связан…».
+  const copy = accountSwitchRequiredGuestCopy(lang);
   console.log('[AUTH-SWITCH-OFFER] onboarding confirm shown');
   const choice = await enqueueThemedBlockingChoiceAlert<'cancel' | 'switch'>(copy.title, copy.body, [
     {

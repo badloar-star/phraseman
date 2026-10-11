@@ -32,7 +32,8 @@ describe('clean onboarding auth placement contract', () => {
     expect(welcomeBlock).toContain('GoogleSignInButton');
     expect(welcomeBlock).toContain('AppleSignInButton');
     expect(src).toContain('const handleAuth = useCallback(async (provider: AuthProviderId)');
-    expect(src).toContain('signInWithProvider(provider)');
+    // зачем (шаг 3 auth-legacy-google-not-found, ревью L-1): онбординг просит сохранить пропуск для входа после смены.
+    expect(src).toContain('signInWithProvider(provider, { captureAccountSwitchResume: true })');
     expect(src).not.toContain('Promise.race([');
     expect(src).not.toContain("new Error('signin_deadline-exceeded')");
     expect(src).toContain('return await task;');

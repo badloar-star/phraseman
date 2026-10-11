@@ -2,6 +2,13 @@
 
 Governance-ID: TG-2A134CA06654
 Governance-ID: TG-48E50B8B2A3F
+Governance-ID: TG-B700F2552862
+Governance-ID: TG-74A8377DC736
+Governance-ID: TG-A7D321BF1205
+Governance-ID: TG-A2CF90D75169
+Governance-ID: TG-6A45D097C910
+Governance-ID: TG-BB106B27A200
+Governance-ID: TG-EEBDBDBA8A60
 
 ## Outcome
 Разобрать по логам и коду (сперва логи, потом починка), почему при входе Google (аккаунт ba***@gmail, Firebase-пользователь существует: credential-already-in-use, handoff targetUid h:f9197251) `auth_links/{providerUid}` не найден (`link_lookup found:false remoteStable:none`) и сервер привязал провайдера к свежему гостевому stable id (`outcome created_new`). Ответить координатору: есть ли у этого аккаунта прогресс на сервере. Если связь для пользователей до 2.0 хранится иначе — починить поиск. Попутно: текст «Телефон уже связан с другим аккаунтом» у гостя без прогресса, двойной вход после смены, время 42/74/30 с. Отчёт координатора: docs/phraseman-2.0/AUTH_RUN_2026-10-11.md.
@@ -30,6 +37,11 @@ Governance-ID: TG-48E50B8B2A3F
 - `wipeLocalAccountDataUnsafe` — одна итоговая строка `[ACC-SWITCH-WIPE] wipe_stages` с мс и числом ключей по каждому шагу;
 - маска почты в dev-логе `runGoogleNativeSignIn: success`.
 Затем повторный прогон на тестовых аккаунтах №2/№3 (разрешение владельца), потом починка.
+
+## Шаг 3 — починка (координатор 12.10: «продолжай по списку»)
+- Текст гостю: отдельная копия для гостя в онбординге (`accountSwitchRequiredGuestCopy` в app/account_switch_copy.ts) — честно: у этого Google свой прогресс, начатое на телефоне без входа не перенесётся. Общий текст окна входа из Настроек не меняется.
+- Повторный вход после смены: перенос Google-пропуска через смену (исполнитель + ревью).
+- Время: после повторного прогона с d5b5fb6ac.
 
 ## Rollback
 Откат коммита.

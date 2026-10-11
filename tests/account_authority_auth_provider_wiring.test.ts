@@ -41,8 +41,10 @@ describe('Account Authority 2.0 provider wiring', () => {
     const signIn = functionBody(source, 'export async function signInWithProvider(');
     const signOut = functionBody(source, 'export async function signOutCurrentProvider(');
     expect(signIn).toContain('runAccountAuthorityProviderSignInTransition(');
-    expect(signIn).toContain('runAccountAuthorityCredentialSignIn(provider)');
-    expect(signIn).toContain('runSignInWithProvider(provider, options)');
+    // зачем (шаг 3 пакета auth-legacy-google-not-found): обе ветки получают одноразовый
+    // пропуск входа после смены аккаунта (null при обычном входе).
+    expect(signIn).toContain('runAccountAuthorityCredentialSignIn(provider, resumeCredential)');
+    expect(signIn).toContain('runSignInWithProvider(provider, options, resumeCredential)');
     expect(signOut).toContain('runAccountAuthorityProviderSignOutTransition(');
 
     for (const body of [signIn, signOut]) {

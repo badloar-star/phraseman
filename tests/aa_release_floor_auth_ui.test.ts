@@ -140,6 +140,69 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(onboarding.match(/onboardingAccountSwitchFailureText\(lang, switched\.reason\)/g)).toHaveLength(2);
   });
 
+  it('после смены вход продолжается сам тем же пропуском; без пропуска — прежний текст (шаг 3, прогон 11.10)', () => {
+    const onboarding = read('components/CleanOnboarding.tsx');
+    // Оба пути: после switched — продолжение входа, а не сразу «Войди ещё раз».
+    expect(onboarding.match(/await withOnboardingAuthSlowNotice\(resumeSignInAfterAccountSwitch\(provider\), \(\) => setAuthSlow\(true\)\)/g)).toHaveLength(2);
+    expect(onboarding.match(/if \(!resumed\) \{[\s\S]{0,400}?setAuthError\(onboardingSwitchedSignInAgainText\(lang\)\);/g)).toHaveLength(2);
+    expect(onboarding.match(/result = resumed;/g)).toHaveLength(2);
+    // Поздний ответ после ухода «Позже»/«Назад» не рисует текст поверх чужого шага.
+    expect(onboarding.match(/settleLateOnboardingAuthResult\(provider, resumed\?\.result \?\? 'error', attempt\)/g)).toHaveLength(2);
+    // Смена не состоялась — пропуск стирается сразу.
+    expect(onboarding.match(/discardAccountSwitchResumeCredential\('switch_cancelled'\)/g)).toHaveLength(2);
+    expect(onboarding.match(/discardAccountSwitchResumeCredential\('switch_failed'\)/g)).toHaveLength(2);
+    // Прежний текст сохранён дословно как запасной путь.
+    expect(onboarding).toContain("ru: 'Аккаунт сменён. Войди ещё раз нужным способом.'");
+    // Ревью L-1: пропуск сохраняет только онбординг (явный флаг), окно входа — нет.
+    expect(onboarding.match(/signInWithProvider\(provider, \{ captureAccountSwitchResume: true \}\)/g)).toHaveLength(2);
+    expect(read('components/RegistrationPromptModal.tsx')).not.toContain('captureAccountSwitchResume');
+    // Ревью L-2: брошенная попытка не входит за человека и сжигает пропуск.
+    // 2 — перед продолжением входа в обоих путях, 1 — в settleLateOnboardingAuthResult (любой поздний ответ).
+    expect(onboarding.match(/discardAccountSwitchResumeCredential\('attempt_stale'\)/g)).toHaveLength(3);
+    const settle = onboarding.slice(onboarding.indexOf('const settleLateOnboardingAuthResult = useCallback('));
+    expect(settle.indexOf("discardAccountSwitchResumeCredential('attempt_stale');")).toBeLessThan(settle.indexOf('decideLateOnboardingAuthResult('));
+    expect(onboarding.match(/onboarding resume skipped provider=\$\{provider\} source=(existing_account|privacy) reason=attempt_stale/g)).toHaveLength(2);
+    for (const source of ['existing_account', 'privacy']) {
+      const skip = onboarding.indexOf(`onboarding resume skipped provider=\${provider} source=${source}`);
+      const resume = onboarding.indexOf('resumeSignInAfterAccountSwitch(provider)', skip);
+      expect(skip).toBeGreaterThan(0);
+      expect(resume).toBeGreaterThan(skip);
+    }
+    // Ревью L-4: упавший обработчик сжигает пропуск.
+    expect(onboarding.match(/discardAccountSwitchResumeCredential\('handler_threw'\)/g)).toHaveLength(2);
+    // Ревью M-2: смена обрабатывается ПЕРВОЙ, ответ входа после смены проходит через окна
+    // «удалён навсегда» / «вернуть аккаунт», как ответ первого входа.
+    for (const marker of ['source=existing_account result=${resumed.result}', 'source=privacy result=${resumed.result}']) {
+      const continued = onboarding.indexOf(marker);
+      expect(continued).toBeGreaterThan(0);
+      expect(onboarding.indexOf("result.error === 'identity_retired'", continued)).toBeGreaterThan(continued);
+      expect(onboarding.indexOf("result.error === 'account_delete_pending' && await offerAccountRestore(lang)", continued)).toBeGreaterThan(continued);
+    }
+
+    const auth = read('app/auth_provider.ts');
+    // Пропуск — только память процесса: ни AsyncStorage, ни SecureStore, ни журнал с токеном.
+    const stashStart = auth.indexOf('const ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS');
+    const stashEnd = auth.indexOf('function takeAccountSwitchResumeCredential', stashStart);
+    const stash = auth.slice(stashStart, auth.indexOf('\n}\n', stashEnd) + 2);
+    expect(stashStart).toBeGreaterThan(0);
+    expect(stash).toContain('10 * 60_000');
+    expect(stash).not.toMatch(/AsyncStorage|SecureStore|setItem|idToken|appleNonce|email/);
+    // Apple пропуск не переносит: одноразовый nonce.
+    expect(stash).toContain("if (provider !== 'google')");
+    // Ревью L-1: сохранение только по флагу; обычный выход и удаление стирают пропуск,
+    // а выход внутри самой смены — нет.
+    expect(auth).toContain('} else if (options.captureAccountSwitchResume) {');
+    expect(auth).toContain("discardAccountSwitchResumeCredential('provider_sign_out');");
+    expect(auth).toContain("discardAccountSwitchResumeCredential('account_delete');");
+    expect(auth).toContain('signOut: async (): Promise<void> => { await signOutCurrentProviderKeepingSwitchResume(); },');
+    // Ревью L-3/M-2: пропуск сгорает при любом исходе продолжения; две ошибки идут как есть.
+    const resume = auth.slice(auth.indexOf('export async function resumeSignInAfterAccountSwitch('));
+    const settled = resume.indexOf("discardAccountSwitchResumeCredential('resume_settled');");
+    expect(settled).toBeGreaterThan(0);
+    expect(settled).toBeLessThan(resume.indexOf("if (result.result === 'error' && isResumePassthroughError(result.error))"));
+    expect(auth).toContain("const RESUME_PASSTHROUGH_ERRORS = ['identity_retired', 'account_delete_pending'] as const;");
+  });
+
   it('сбой смены — причина простыми словами, не повтор «подтверди смену»', () => {
     expect(onboardingAccountSwitchFailureText('ru', 'sync_failed')).toContain('Проверь интернет');
     expect(onboardingAccountSwitchFailureText('ru', 'pending_shard_spend')).toContain('через минуту');

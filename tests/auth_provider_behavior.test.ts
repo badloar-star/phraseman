@@ -2703,3 +2703,207 @@ test('S2d r4 L-R3-2: alias write failure after a confirmed merge shelves the gue
   expect(await storage.getItem(MERGE_ALIAS_KEY)).toBeNull();
   expect(shelveAccountSwitchEmergencyBackupOf).toHaveBeenCalledWith('local-stable-id');
 });
+
+// ── Шаг 3 пакета auth-legacy-google-not-found: вход продолжается после смены аккаунта ──
+// зачем (прогон 11.10): гость → Google → конфликт → «Сменить аккаунт» → после стирания
+// человек открывал окно Google второй раз и выбирал тот же аккаунт. Пропуск, выбранный
+// в первом окне, живёт только в памяти, одноразово и ≤ 10 минут.
+describe('resume sign-in after a confirmed account switch', () => {
+  const conflictOnLink = () => {
+    authState.linkImpl = async () => {
+      const err: any = new Error('credential already in use');
+      err.code = 'auth/credential-already-in-use';
+      throw err;
+    };
+  };
+
+  // Пропуск сохраняет только онбординг — явным флагом (ревью L-1).
+  const CAPTURE = { captureAccountSwitchResume: true } as const;
+  const providerSignedIn = () => {
+    authState.signInImpl = async () => {
+      authState.isAnonymous = false;
+      return { user: authFactory().currentUser };
+    };
+  };
+
+  test('continues with the credential chosen before the switch, without a second picker, once', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+
+    await expect(auth.signInWithProvider('google', CAPTURE)).resolves.toEqual({ result: 'error', error: 'account_switch_required' });
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(authState.calls).not.toContain('signin');
+
+    // Смена стёрла телефон: прогресса гостя больше нет.
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    const signedInWith: unknown[] = [];
+    authState.signInImpl = async (credential) => {
+      signedInWith.push(credential);
+      authState.isAnonymous = false;
+      return { user: authFactory().currentUser };
+    };
+
+    const resumed = await auth.resumeSignInAfterAccountSwitch('google');
+
+    expect(resumed).not.toBeNull();
+    expect(resumed!.result).not.toBe('error');
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(signedInWith).toEqual([{ providerId: 'google.com', idToken: 'fake-google-id-token' }]);
+
+    // Одноразовый: второй раз без окна выбора не войти.
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  });
+
+  test('without a stored credential the caller falls back to the old text and no picker opens', async () => {
+    const auth = loadAuthProvider();
+
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+    expect(googleSignInImpl).not.toHaveBeenCalled();
+    expect(authState.calls).toHaveLength(0);
+  });
+
+  test('a credential older than 10 minutes is refused and erased', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    const realNow = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(realNow + 10 * 60_000 + 1);
+    try {
+      await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+        .resolves.toEqual({ result: 'error', error: 'resume_credential_expired' });
+    } finally {
+      nowSpy.mockRestore();
+    }
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(authState.calls).not.toContain('signin');
+  });
+
+  test('a cancelled switch or a fresh picker erases the credential', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+    auth.discardAccountSwitchResumeCredential('switch_cancelled');
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+
+    // Пропуск под другого провайдера не подходит и тоже сгорает.
+    await auth.signInWithProvider('google', CAPTURE);
+    expect(googleSignInImpl).toHaveBeenCalledTimes(2);
+    await expect(auth.signInWithProvider('apple', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_provider_mismatch' });
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+
+    // Новый обычный вход (окно открыто заново) стирает пропуск предыдущего окна.
+    await auth.signInWithProvider('google', CAPTURE);
+    expect(googleSignInImpl).toHaveBeenCalledTimes(3);
+    authState.linkImpl = null;
+    await expect(auth.signInWithProvider('google')).resolves.not.toEqual(expect.objectContaining({ result: 'error' }));
+    expect(googleSignInImpl).toHaveBeenCalledTimes(4);
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+    expect(googleSignInImpl).toHaveBeenCalledTimes(4);
+    expect(authState.calls).not.toContain('signin');
+  });
+
+  test('a resumed attempt that still needs a switch does not re-store the credential', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+
+    // Телефон НЕ стёрт и смены не было — повтор из пропуска снова упирается в смену.
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true, ...CAPTURE }))
+      .resolves.toEqual({ result: 'error', error: 'account_switch_required' });
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(authState.calls).not.toContain('signin');
+  });
+
+  test('L-1: a caller without the capture flag (sign-in modal, Settings) never stores the credential', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    // Ровно так зовёт RegistrationPromptModal: без captureAccountSwitchResume.
+    await expect(auth.signInWithProvider('google', { requireCurrentStableIdOwnership: false }))
+      .resolves.toEqual({ result: 'error', error: 'account_switch_required' });
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    providerSignedIn();
+
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(authState.calls).not.toContain('signin');
+  });
+
+  test('(b) Apple never stores a resume credential: its token is bound to a one-time nonce', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+    await expect(auth.signInWithProvider('apple', CAPTURE))
+      .resolves.toEqual({ result: 'error', error: 'account_switch_required' });
+    expect(appleSignInImpl).toHaveBeenCalledTimes(1);
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    providerSignedIn();
+
+    await expect(auth.signInWithProvider('apple', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+    await expect(auth.resumeSignInAfterAccountSwitch('apple')).resolves.toBeNull();
+    expect(appleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(authState.calls).not.toContain('signin');
+  });
+
+  test('(e) M-2: identity_retired after the switch is passed through, not hidden as "sign in again"', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    providerSignedIn();
+    ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+      ok: false,
+      requestedStableId: 'local-stable-id',
+      stableUid: null,
+      authUid: authState.providerUid,
+      source: 'callable',
+      failure: 'identity_retired',
+      retiredSubject: 'auth',
+    });
+
+    await expect(auth.resumeSignInAfterAccountSwitch('google'))
+      .resolves.toEqual({ result: 'error', error: 'identity_retired' });
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    // Пропуск сгорел вместе с попыткой.
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+  });
+
+  test('ordinary provider sign-out erases the credential, the switch’s own sign-out keeps it', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+    await auth.signOutCurrentProvider();
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+
+    // Смена аккаунта: её шаг выхода пропуск не трогает — ради него смена и делается.
+    authState.isAnonymous = true;
+    await auth.signInWithProvider('google', CAPTURE);
+    expect(googleSignInImpl).toHaveBeenCalledTimes(2);
+    authState.isAnonymous = false;
+    await expect(auth.signOutAndWipeForAccountSwitch()).resolves.toEqual({ ok: true, synced: true });
+    expect(authState.calls).toContain('signout');
+    await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
+    providerSignedIn();
+    const resumed = await auth.resumeSignInAfterAccountSwitch('google');
+    expect(resumed).not.toBeNull();
+    expect(googleSignInImpl).toHaveBeenCalledTimes(2);
+  });
+
+  test('account deletion erases the credential', async () => {
+    conflictOnLink();
+    const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    await auth.signInWithProvider('google', CAPTURE);
+    await auth.beginAccountDeletion().catch(() => undefined);
+    await expect(auth.signInWithProvider('google', { resumeAfterAccountSwitch: true }))
+      .resolves.toEqual({ result: 'error', error: 'resume_credential_missing' });
+  });
+});

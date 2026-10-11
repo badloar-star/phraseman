@@ -2,9 +2,11 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import {
   Animated,
   PanResponder,
+  PixelRatio,
   Platform,
   StyleSheet,
   View,
+  useWindowDimensions,
   type LayoutChangeEvent,
   type StyleProp,
   type ViewStyle,
@@ -17,6 +19,9 @@ import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { DebugLogger } from '../../app/debug-logger';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, computeTabBarGeometry, tabCapRightFits } from './tab_bar_geometry';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -32,10 +37,10 @@ export type V2TabBarItem = Readonly<{
 // зачем: размеры сняты с референса владельца 24.09 и утверждены на макете
 // docs/design/tabbar/tabbar-variants.html (вариант «В · Тёплая кромка»).
 export const V2_TAB_BAR_HEIGHT = 66;
-const PAD = 9;
+const PAD = TAB_BAR_PAD;
 const CAP_H = V2_TAB_BAR_HEIGHT - PAD * 2;
 const CAP_RADIUS = 18;
-const SIDE_MARGIN = 12;
+const SIDE_MARGIN = TAB_BAR_SIDE_MARGIN;
 // зачем: подписи убраны по просьбе владельца 29.09 — иконка занимает место текста и крупнее (капсула 48dp).
 const ICON_SIZE = 28;
 const HOLD_TO_DRAG_MS = 170;
@@ -115,6 +120,12 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
   [palette.opaqueControl, palette.bgBottom]);
   const count = items.length;
+  // зачем (владелец 11.10, «кнопки справа обрезаны»): боковые отступы считаем от ширины ОКНА и безопасных зон слева/справа, а капсула
+  // не шире окна — даже если родитель по какой-то причине шире экрана. Реальная геометрия пишется в журнал [TABBAR].
+  const { width: windowWidth } = useWindowDimensions();
+  const insets = useStableSafeAreaInsets();
+  const geo = computeTabBarGeometry({ windowWidth, insetLeft: insets.left, insetRight: insets.right, count });
+  const barRef = useRef<View>(null);
   const [width, setWidth] = useState(0);
   const slotW = width > 0 ? (width - PAD * 2) / count : 0;
   const capX = useRef(new Animated.Value(0)).current;
@@ -273,27 +284,41 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   // в коде у капсулы нет обрезающего родителя — СПЕРВА лог реальной геометрии, потом починка.
   const handleLayout = useCallback((e: LayoutChangeEvent) => {
     const { width: w, height: h } = e.nativeEvent.layout;
-    if (__DEV__) {
-      const slot = w > 0 ? (w - PAD * 2) / count : 0;
-      console.log('[TABBAR-CAP] layout', {
-        barW: w, barH: h, expectedH: V2_TAB_BAR_HEIGHT, count, slotW: slot,
-        capH: CAP_H, capTop: PAD, capBottomGap: h - PAD - CAP_H, capRadius: CAP_RADIUS,
-        iconSize: ICON_SIZE, activeIndex, capLeft: PAD + Math.max(0, activeIndex) * slot,
-        capRightEdge: PAD + (Math.max(0, activeIndex) + 1) * slot, barInnerRight: w - PAD,
+    const slot = w > 0 ? (w - PAD * 2) / count : 0;
+    const fits = tabCapRightFits(w, slot, Math.max(0, activeIndex));
+    // зачем: журнал нужен и в релизе (баг владельца со скриншота) — один короткий ряд на изменение раскладки, без спама
+    const snapshot = {
+      windowW: Math.round(windowWidth * 10) / 10, fontScale: PixelRatio.getFontScale(), pixelRatio: PixelRatio.get(),
+      insetL: insets.left, insetR: insets.right, count, activeIndex,
+      barX: Math.round(e.nativeEvent.layout.x * 10) / 10, barW: Math.round(w * 10) / 10, barH: h, expectedH: V2_TAB_BAR_HEIGHT,
+      expectedW: Math.round(geo.width * 10) / 10, slotW: Math.round(slot * 10) / 10, slotsOverflow: Math.round(geo.overflow * 100) / 100,
+      capLeft: PAD + Math.max(0, activeIndex) * slot, capRight: PAD + (Math.max(0, activeIndex) + 1) * slot, barInnerRight: w - PAD, capFits: fits,
+    };
+    DebugLogger.info('[TABBAR]', `layout ${JSON.stringify(snapshot)}`);
+    // абсолютное положение на экране: правый край капсулы за краем окна — это и есть «обрезано справа»
+    requestAnimationFrame(() => {
+      barRef.current?.measureInWindow?.((x, y, mw, mh) => {
+        const right = x + mw;
+        const out = x < -0.5 || right > windowWidth + 0.5;
+        const line = `window x=${Math.round(x * 10) / 10} y=${Math.round(y)} w=${Math.round(mw * 10) / 10} h=${Math.round(mh)} right=${Math.round(right * 10) / 10} windowW=${Math.round(windowWidth * 10) / 10}${out ? ' OVERFLOW' : ''}`;
+        if (out || !fits) DebugLogger.warn('[TABBAR]', line); else DebugLogger.info('[TABBAR]', line);
       });
-    }
+    });
     setWidth(w);
-  }, [count, activeIndex]);
+  }, [count, activeIndex, windowWidth, insets.left, insets.right, geo.width, geo.overflow]);
   const capScale = capLift.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
   const capBright = capLift.interpolate({ inputRange: [0, 1], outputRange: [0, 0.08] });
   const iconPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.88] });
 
   return (
     <Animated.View
+      ref={barRef as never}
       testID="v2-tab-bar"
       onLayout={handleLayout}
       style={[
         s.bar,
+        // зачем: ширина задана явно от окна (а не left+right от родителя) — если родитель шире экрана, правые кнопки всё равно целиком в окне
+        { left: geo.left, width: geo.width },
         { bottom: bottomOffset, backgroundColor: Platform.OS === 'android' ? palette.bgBottom : 'transparent' },
         // зачем (темы 2.0, светлое): тень в тон темы и мягче — чёрная .55 на светлом фоне грязнит.
         palette.isLight ? { shadowColor: palette.shadowTint, shadowOpacity: 1, elevation: 8 } : null,
@@ -360,7 +385,6 @@ const s = StyleSheet.create({
   bar: {
     position: 'absolute',
     left: SIDE_MARGIN,
-    right: SIDE_MARGIN,
     height: V2_TAB_BAR_HEIGHT,
     borderRadius: V2_TAB_BAR_HEIGHT / 2,
     // Android рисует тень elevation только у вида с фоном.

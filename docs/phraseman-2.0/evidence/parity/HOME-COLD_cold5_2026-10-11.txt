@@ -1,0 +1,18 @@
+10-11 03:52:01.624 13315 13371 W ReactNativeJS: '[HOME-COLD] first_frame', '{"lessonCard":"boot_snapshot","lessonId":1,"hydrationInMemory":false,"videos":0,"videoStatus":"loading","catalogRail":false}', { [Stack] name: 'Stack' }
+10-11 03:52:01.721 13315 13371 W ReactNativeJS: '[HOME-COLD] video:start', '{"sinceFirstRenderMs":1085,"catalogRail":false,"focusTick":0,"homeRuntimeActive":true,"studyTarget":"en","pipelineRunning":false}', { [Stack] name: 'Stack' }
+10-11 03:52:03.201 13315 13371 W ReactNativeJS: '[HOME-COLD] video:start', '{"sinceFirstRenderMs":2565,"catalogRail":false,"focusTick":1,"homeRuntimeActive":true,"studyTarget":"en","pipelineRunning":true}', { [Stack] name: 'Stack' }
+10-11 03:52:03.246 13315 13371 W ReactNativeJS: '[HOME-COLD] video:joined_in_flight', '{"sinceFirstRenderMs":2569}', { [Stack] name: 'Stack' }
+10-11 03:52:03.965 13315 13371 W ReactNativeJS: '[HOME-COLD] video:raw_cache', '{"ms":2248,"videos":15,"alive":true,"memo":false}'
+10-11 03:52:08.167 13315 13371 W ReactNativeJS: '[HOME-COLD] video:import_done', '{"ms":6447,"memo":true}'
+10-11 03:52:09.554 13315 13371 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":12048,"result":false,"steps":{"tester_flags":2,"tester_no_limits":1,"verified_local":0,"intro":124,"loyalty_gift_cloud":11921,"cloud_refresh:false":0}}'
+10-11 03:52:09.557 13315 13371 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":11699,"result":false,"steps":{"tester_flags":0,"tester_no_limits":0,"verified_local":1,"intro":0,"loyalty_gift_cloud":11696,"cloud_refresh:false":0}}'
+10-11 03:52:09.559 13315 13371 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":7538,"result":false,"steps":{"tester_flags":1,"tester_no_limits":9,"verified_local":1,"intro":1,"loyalty_gift_cloud":7522,"cloud_refresh:false":0}}'
+10-11 03:52:09.563 13315 13371 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:exit', '{"reason":"stale_after_verified_cloud","epoch":1,"currentEpoch":2,"totalMs":13426,"steps":{"identity_sync:false":225,"dev_override":5,"verified_local":1141,"verified_cloud:false":12055}}'
+10-11 03:52:09.565 13315 13371 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:not_resolved', '{"requestedEpoch":1,"currentEpoch":2,"resolvedEpoch":null}'
+10-11 03:52:09.591 13315 13371 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:done', '{"epoch":2,"totalMs":11966,"steps":{"identity_sync:false":27,"dev_override":0,"verified_local":205,"verified_cloud:false":11708,"tester_flags":1,"intro_state":2},"access":false}'
+10-11 03:52:15.548 13315 13371 W ReactNativeJS: '[HOME-COLD] video_feed:http_error', '{"status":404,"channelId":"UCIr8fwZjbDtcUlQ-IKIbndg","isOverride":true}'
+10-11 03:52:17.706 13315 13371 W ReactNativeJS: '[HOME-COLD] video_cache:read', '{"getItemMs":2155,"parseMs":0,"bytes":36560}'
+10-11 03:52:17.708 13315 13371 W ReactNativeJS: '[HOME-COLD] video_feed:catalog_skipped_fresh_cache', '{"cacheAgeMs":6773983}'
+10-11 03:52:17.709 13315 13371 W ReactNativeJS: '[HOME-COLD] video_feed:network_failed', '{"ms":6914,"reason":"YouTube feed failed: 404","cache":15,"fallback":"none"}'
+10-11 03:52:17.709 13315 13371 W ReactNativeJS: '[HOME-COLD] video:resolved', '{"source":"network","alive":true,"ms":14512,"sinceFirstRenderMs":17077,"videos":15,"error":"YouTube feed failed: 404"}'
+10-11 03:52:20.085 13315 13371 W ReactNativeJS: '[RC-IDENTITY] sync:slow', '{"totalMs":12181,"result":true,"steps":{"is_configured":2823,"canonical_user_id":0,"get_app_user_id":4479,"verify_app_user_id":3458,"set_attributes":1421}}'

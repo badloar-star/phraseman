@@ -36,6 +36,7 @@ import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
+import { packCardRemovalRefusalText } from './community_packs/packCardRemovalCopy';
 import { isLightThemeMode } from '../constants/theme';
 import { actionToastTri, emitAppEvent } from './events';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -1147,18 +1148,8 @@ export default function FlashcardsScreen() {
     if (!packDeeplink) return;
     console.log(`[PACK-CARD-REMOVE] экран: удалить из опубликованного cardId=${card.id} packId=${packDeeplink}`);
     setHiddenPackCardIds((prev) => new Set(prev).add(card.id));
-    const refusalText = (reason: string) => {
-      const ru: Record<string, string> = {
-        card_count: 'В наборе должно остаться минимум 10 карточек.',
-        update_pending: 'Набор на проверке — удалить сейчас нельзя.',
-        pack_removed: 'Набор уже удалён.',
-        not_author: 'Удалять карточки может только автор.',
-        pack_not_found: 'Набор не найден.',
-        not_published: 'Набор не опубликован.',
-        network: 'Нет связи — карточку не удалось удалить.',
-      };
-      return ru[reason] ?? 'Не удалось удалить карточку.';
-    };
+    // зачем (координатор 12.10): причина отказа переводится вместе с языком интерфейса (раньше русская строка шла во все 9 полей тоста)
+    const refusalText = (reason: string) => packCardRemovalRefusalText(reason, lang);
     void schedulePublishedPackCardRemoval({
       cloudPackId: packDeeplink,
       cardId: card.id,

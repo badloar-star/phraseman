@@ -149,7 +149,8 @@ function isTranslationDictionary(source) {
  * а добавленный en как раз и есть перевод. 'T(' — токен только в этом файле
  * (проверено git grep по всем .tsx), коллизий с другими хелперами нет.
  */
-const TRANSLATORS = ['triLang', 'pickLang', 'localized', 't(', 'L(', 'LP(', 'T('];
+// зачем 'actionToastTri(' (координатор 12.10): тост на 9 языков с объектом { ru, uk, en, … } — тот же класс ложного срабатывания, что и у triLang.
+const TRANSLATORS = ['triLang', 'pickLang', 'localized', 't(', 'L(', 'LP(', 'T(', 'actionToastTri('];
 
 function walk(dir, out = []) {
   let entries;

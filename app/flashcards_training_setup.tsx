@@ -564,8 +564,10 @@ export default function FlashcardsTrainingSetupScreen() {
 
   // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Блиц / Устно / Правда-ложь / Вспомни и напиши»):
   // разметка вынесена в TrainingSetupV2; здесь — только логика (загрузка наборов, выбор, квота, запуск).
+  // зачем (координатор 12.10): «Блиц» и подписи секунд были русскими на любом языке
+  const secondsLabel = (n: number) => triLang(lang, { ru: `${n} с`, uk: `${n} с`, en: `${n} s`, es: `${n} s`, 'pt-BR': `${n} s`, vi: `${n} giây`, id: `${n} dtk`, tr: `${n} sn`, pl: `${n} s` });
   const modeTitle = mode === 'blitz'
-    ? 'Блиц'
+    ? triLang(lang, { ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz' })
     : triLang(lang, {
       // зачем (Карточки 2.0 12.10): режим «Напиши» называется так же, как плитка шторки режимов и заголовок сессии в макете
       ru: mode === 'speaking' ? 'Устно' : mode === 'recall' ? 'Напиши' : 'Правда / ложь',
@@ -590,7 +592,7 @@ export default function FlashcardsTrainingSetupScreen() {
   const extra = mode === 'blitz'
     ? {
       title: triLang(lang, { ru: 'Время', uk: 'Час', en: 'Time', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas' }),
-      options: [{ id: '30', label: '30 с' }, { id: '60', label: '60 с' }, { id: '90', label: '90 с' }],
+      options: [{ id: '30', label: secondsLabel(30) }, { id: '60', label: secondsLabel(60) }, { id: '90', label: secondsLabel(90) }],
       value: secId,
       onChange: setSecId,
     }

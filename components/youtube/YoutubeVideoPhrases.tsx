@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
@@ -172,9 +173,18 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     setSelected(phrase);
   }, [videoId]);
 
-  const copy = useMemo(() => lang === 'ru'
-    ? { title: 'Фразы из видео', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' }
-    : { title: 'Phrases from this video', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' }, [lang]);
+  // зачем (координатор 12.10): раньше был только ru/en — украинец, испанец и остальные видели английский; теперь все 9 языков.
+  const copy = useMemo(() => triLang(lang, {
+    ru: { title: 'Фразы из видео', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' },
+    uk: { title: 'Фрази з відео', phrase: 'Фраза', translation: 'Переклад', explanation: 'Докладно', save: 'Зберегти фразу', saved: 'Фразу збережено', close: 'Закрити' },
+    en: { title: 'Phrases from this video', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' },
+    es: { title: 'Frases del vídeo', phrase: 'Frase', translation: 'Traducción', explanation: 'Explicación', save: 'Guardar frase', saved: 'Frase guardada', close: 'Cerrar' },
+    'pt-BR': { title: 'Frases do vídeo', phrase: 'Frase', translation: 'Tradução', explanation: 'Explicação', save: 'Salvar frase', saved: 'Frase salva', close: 'Fechar' },
+    vi: { title: 'Cụm từ trong video', phrase: 'Cụm từ', translation: 'Bản dịch', explanation: 'Giải thích', save: 'Lưu cụm từ', saved: 'Đã lưu cụm từ', close: 'Đóng' },
+    id: { title: 'Frasa dari video', phrase: 'Frasa', translation: 'Terjemahan', explanation: 'Penjelasan', save: 'Simpan frasa', saved: 'Frasa tersimpan', close: 'Tutup' },
+    tr: { title: 'Videodaki kalıplar', phrase: 'Kalıp', translation: 'Çeviri', explanation: 'Açıklama', save: 'Kalıbı kaydet', saved: 'Kalıp kaydedildi', close: 'Kapat' },
+    pl: { title: 'Zwroty z filmu', phrase: 'Zwrot', translation: 'Tłumaczenie', explanation: 'Wyjaśnienie', save: 'Zapisz zwrot', saved: 'Zwrot zapisany', close: 'Zamknij' },
+  }), [lang]);
 
   const save = useCallback(async (phrase: VideoPhrase) => {
     if (savedIds.has(phrase.id) || savingIdsRef.current.has(phrase.id)) return;

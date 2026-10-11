@@ -6,6 +6,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useLoadGate } from '../use_load_gate';
 import { packCategoryIonIcon, packTitleForInterface, type FlashcardMarketPack } from './marketplace';
@@ -108,7 +109,7 @@ function CommunityHighlightRow({ pack, lang, owned, opening, disabled, onOpen }:
       >
         <View
           testID={`saved-top-pack-cover-${pack.id}`}
-          style={[styles.cover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}
+          style={[styles.cover, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}
         >
           <Ionicons
             name={communityPackIconName(pack.category)}
@@ -259,7 +260,7 @@ export default function SavedTopCommunityPacks({
             >
               <View
                 testID={`saved-top-pack-loading-cover-${index}`}
-                style={[styles.cover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}
+                style={[styles.cover, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}
               />
               <View testID={`saved-top-pack-loading-title-${index}`} style={[styles.loadingTitle, { backgroundColor: g.opaqueControl }]} />
               <View testID={`saved-top-pack-loading-author-${index}`} style={[styles.loadingAuthor, { backgroundColor: g.opaqueControl }]} />
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
   unavailableAction: { minHeight: 44, paddingHorizontal: 20, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   unavailableActionLabel: { fontSize: 16, fontWeight: '600' },
   highlightRow: { width: 112 },
-  cover: { width: 112, height: 112, borderRadius: 12, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  cover: { width: 112, height: 112, borderRadius: 12, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   opening: { position: 'absolute', alignSelf: 'center' },
   owned: { position: 'absolute', left: 7, top: 7 },
   highlightTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 5 },

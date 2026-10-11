@@ -20,6 +20,7 @@ import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import type { Theme } from '../../constants/theme';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
@@ -191,7 +192,7 @@ export default function CommunityPackPreview({
           <Ionicons name="chevron-back" size={22} color={g.text} />
         </TouchableOpacity>
         <TouchableOpacity testID="pack-preview-more" accessibilityRole="button" accessibilityLabel={moreLabel} onPress={onMore} hitSlop={4}
-          style={[styles.round, { backgroundColor: g.hairlineSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]}>
+          style={[styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
           <Ionicons name="ellipsis-vertical" size={20} color={g.text} />
         </TouchableOpacity>
       </View>

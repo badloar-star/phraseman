@@ -179,6 +179,8 @@ function createRenderHarness(source, expose, { themeId = 'graphite' } = {}) {
     '../../components/text-integrity/FlowText': { FlowText: host('FlowText') },
     '../../components/ThemeContext': { useTheme: () => ({ liquidGlassThemeId: themeId, theme: { textSecond: '#aaa', textMuted: '#999', accent: '#fff' } }) },
     '../../constants/liquidGlassThemePalette': palette,
+    // зачем (Тень 12.10): плашки берут тень из components/v2/ShadowSurface; для харнесса — те же числа из constants/liquidGlassShadowStyle
+    '../../components/v2/ShadowSurface': { plateBoxShadow: loadConstantsModule('liquidGlassShadowStyle').plateShadowStyle },
     '../../constants/i18n': { triLang: (lang, labels) => labels[lang] ?? labels.en },
     '../../hooks/use-haptics': { hapticTap: () => { calls.haptic += 1; } },
     './marketplace': {
@@ -273,7 +275,9 @@ test('actual populated community rail is transparent outside 112dp category cove
     const tokens = themed.palette.liquidGlassTokens(themeId);
     assert.equal(themedOuter.backgroundColor, undefined, `${themeId}: outer remains transparent`);
     assert.equal(themedCover.backgroundColor, tokens.opaqueCard, `${themeId}: cover follows opaque theme material`);
-    assert.equal(themedCover.borderColor, tokens.glassEdge, `${themeId}: cover rim follows theme`);
+    // зачем (Тень 12.10): обложка без кромки — рамки нет, плашку отделяет тень темы
+    assert.equal(themedCover.borderColor, undefined, `${themeId}: cover has no rim`);
+    assert.ok(Array.isArray(themedCover.boxShadow) && themedCover.boxShadow.length > 0, `${themeId}: cover has a theme plate shadow`);
   }
 
   const harness = createRenderHarness(COMMUNITY_SOURCE, 'exports.__CommunityHighlightRow = CommunityHighlightRow;');
@@ -292,7 +296,7 @@ test('actual populated community rail is transparent outside 112dp category cove
   assert.equal(coverStyle.width, 112);
   assert.equal(coverStyle.height, 112);
   assert.equal(coverStyle.borderRadius, 12);
-  assert.equal(coverStyle.borderWidth, 1);
+  assert.equal(coverStyle.borderWidth, undefined, 'cover has no rim (Тень 12.10)');
   const icon = visit(cover).find(node => node.type === 'Ionicons' && node.props.name === 'briefcase-outline');
   assert.ok(icon, 'category icon is rendered from the canonical resolver');
   assert.equal(visit(cover).some(node => node.type === 'Image'), false, 'retired cover art is absent');

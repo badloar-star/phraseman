@@ -19,7 +19,7 @@ import { HOME_RUNE_ICON_SOURCE } from '../../components/home/homeRuneAsset';
 import { useLang } from '../../components/LangContext';
 import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
-import { GlassRim } from '../../components/mistakes-panel/GlassRim';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import { runeWord } from '../../constants/runes';
@@ -73,10 +73,10 @@ const FixRow = memo(function FixRow({ item, g, listenLabel, onSpeak }: { item: C
   const canSpeak = item.packLanguage !== 'none';
   // макет `wordRow`: карточка r14, мин. 68, слово 17/600, перевод 15 вторичным, справа кнопка озвучки `.rb.fill` 35.
   return (
-    <View style={[s.fixRow, { backgroundColor: g.opaqueCard, borderColor: g.line, overflow: 'hidden' }]}>
-      {/* зачем (DIFF_BURNDOWN, «Что исправить» с тоном темы): заливка строки — тон темы (accentSoft) поверх карточки + стеклянная кромка. */}
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: g.accentSoft }]} />
-      <GlassRim radius={14} />
+    <View style={[s.fixRow, { boxShadow: plateBoxShadow(g) }]}>
+      {/* зачем (DIFF_BURNDOWN, «Что исправить» с тоном темы; Тень 12.10): заливка строки — плашка PlateFill + тон темы (accentSoft) поверх; кромки (GlassRim) и обводки нет. */}
+      <PlateFill g={g} radius={14} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, backgroundColor: g.accentSoft }]} />
       <View style={s.fixText}>
         <Text style={[s.fixWord, { color: g.text }]}>{item.en}</Text>
         <Text style={[s.fixTr, { color: g.secondary }]}>{item.translation}</Text>
@@ -91,7 +91,7 @@ const FixRow = memo(function FixRow({ item, g, listenLabel, onSpeak }: { item: C
           pressScaleTo={KIT_MOTION.pressScale}
           withSound={false}
           style={s.volHit}
-          contentStyle={[s.vol, { backgroundColor: g.opaqueControl, borderColor: g.line }]}
+          contentStyle={[s.vol, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}
         >
           <Ionicons name="volume-high-outline" size={18} color={g.text} />
         </PressableHybrid>
@@ -149,7 +149,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
             pressScaleTo={KIT_MOTION.pressScale}
             withSound={false}
             style={s.closeHit}
-            contentStyle={[s.close, { backgroundColor: g.opaqueControl, borderColor: g.line }]}
+            contentStyle={[s.close, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}
           >
             <Ionicons name="close" size={20} color={g.text} />
           </PressableHybrid>
@@ -176,17 +176,18 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
           <Text style={[s.sub, { color: g.secondary }]}>{perfect ? c.perfect : c.correctOf}</Text>
         </View>
 
-        <View style={[s.stats, { backgroundColor: g.opaqueSheet, borderColor: g.line }]}>
+        <View style={[s.stats, { boxShadow: plateBoxShadow(g) }]}>
+          <PlateFill g={g} radius={22} />
           <View style={s.stat}>
             <Text style={[s.statNum, { color: g.text }]}>{`${accuracy}%`}</Text>
             <Text style={[s.statLabel, { color: g.secondary }]}>{c.accuracy}</Text>
           </View>
-          <View style={[s.stat, s.statDivider, { borderColor: g.line }]}>
+          <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]}>
             <Text style={[s.statNum, { color: g.text }]}>{formatDuration(props.durationSec)}</Text>
             <Text style={[s.statLabel, { color: g.secondary }]}>{c.time}</Text>
           </View>
           {/* guard-ok: только отображение начисленного, баланс не меняется */}
-          <View style={[s.stat, s.statDivider, { borderColor: g.line }]} accessible accessibilityLabel={`+${coins} ${runeWord(lang, coins)}`}>
+          <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]} accessible accessibilityLabel={`+${coins} ${runeWord(lang, coins)}`}>
             <View ref={coinFlight.originRef} collapsable={false} onLayout={() => setOriginReady(true)} style={s.coinLine}>
               <Image source={HOME_RUNE_ICON_SOURCE} style={s.coin} contentFit="contain" accessible={false} />
               <View style={s.plusNum}>
@@ -229,7 +230,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
               variant="secondary"
               pressScaleTo={KIT_MOTION.pressScale}
               style={s.flex}
-              contentStyle={[s.cta, s.ghost, { borderColor: `${g.text}4D` }]}
+              contentStyle={[s.cta, s.ghost, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}
             >
               <Ionicons name="refresh" size={18} color={g.text} />
               <Text style={[s.ctaText, { color: g.text }]}>{props.retryLabel}</Text>
@@ -242,7 +243,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
             variant="primary"
             pressScaleTo={KIT_MOTION.pressScale}
             style={s.flex}
-            contentStyle={[s.cta, { backgroundColor: g.accent }]}
+            contentStyle={[s.cta, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }]}
           >
             <ThemeAccentFill glass={g} radius={24} />
             <Text style={[s.ctaText, { color: g.accentInk }]}>{c.done}</Text>
@@ -271,8 +272,7 @@ const s = StyleSheet.create({
   // kit `.topbar` 44, `.rb` 42 круглая с кромкой
   topbar: { height: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   closeHit: { width: 42, height: 42, alignSelf: 'auto' },
-  // guard-ok: 1px кромка `.rb` — по макету 2.0
-  close: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  close: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   center: { alignItems: 'center' },
   // kit `.tile.t61`
   okTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
@@ -281,10 +281,9 @@ const s = StyleSheet.create({
   // cards-section `.big`
   big: { fontSize: 64, lineHeight: 70, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
   sub: { fontSize: 16, lineHeight: 22, marginTop: 4, textAlign: 'center' },
-  // guard-ok: 1px кромка `.card.c2` — по макету 2.0
-  stats: { flexDirection: 'row', marginTop: 30, borderRadius: 22, borderWidth: 1, paddingVertical: 18, paddingHorizontal: 8 },
+  stats: { flexDirection: 'row', marginTop: 30, borderRadius: 22, paddingVertical: 18, paddingHorizontal: 8 },
   stat: { flex: 1, minWidth: 0, alignItems: 'center' },
-  statDivider: { borderLeftWidth: 1 },
+  statDivider: { borderLeftWidth: 1 }, // shadow-ok: вертикальный разделитель ячеек статистики, не контейнер
   statNum: { fontSize: 22, lineHeight: 28, fontWeight: '700', fontVariant: ['tabular-nums'] },
   statLabel: { fontSize: 13, marginTop: 2 },
   coinLine: { flexDirection: 'row', alignItems: 'center', gap: 6 },
@@ -294,22 +293,20 @@ const s = StyleSheet.create({
   sec: { marginTop: 30, marginBottom: 14, marginHorizontal: 2 },
   secTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   secCount: { fontWeight: '600' },
-  stack: { gap: 9 },
-  // guard-ok: 1px кромка `.card` — по макету 2.0
-  fixRow: { minHeight: 68, borderRadius: 14, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 9, paddingLeft: 18, paddingRight: 16 },
+  stack: { gap: 10 }, // зачем (Тень 12.10): между плашками ≥ 10 — тень должна «дышать»
+  fixRow: { minHeight: 68, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 9, paddingLeft: 18, paddingRight: 16 },
   fixText: { flex: 1, minWidth: 0 },
   fixWord: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   fixTr: { fontSize: 16, lineHeight: 21, marginTop: 1 },
   volHit: { width: 35, height: 35, alignSelf: 'auto' },
-  // guard-ok: 1px кромка `.rb.fill` — по макету 2.0
-  vol: { width: 35, height: 35, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   // cards-section `.bot`: 18/20/34, затухание к фону
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 18, paddingHorizontal: 20 },
   two: { flexDirection: 'row', gap: 10 },
   flex: { flex: 1 },
   // kit `.cta` 48/r24, текст 17/700, зазор значка 12
   cta: { height: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, overflow: 'hidden' },
-  // guard-ok: контур `.cta.gh` 1px — по макету 2.0
-  ghost: { borderWidth: 1, backgroundColor: 'transparent' },
+  // зачем (Тень 12.10): контурная `.cta.gh` заменена плашкой с малой тенью; overflow снят, чтобы тень не клипалась
+  ghost: { overflow: 'visible' },
   ctaText: { fontSize: 16, fontWeight: '700' },
 });

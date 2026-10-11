@@ -15,11 +15,11 @@ describe('saved flashcard theme surfaces', () => {
     expect(listItemSource).toContain('{!usePackFace && (');
     expect(listItemSource).toContain('colors={t.cardGradient}');
     expect(listItemSource).toContain('colors={[t.cardGradient[1], t.cardGradient[0]]}');
-    expect(phraseCardSource).toContain('{!packTheme ? (');
-    // зачем (Liquid Glass, cards.html #8/#37, 30.09.2026): грани PhraseCard без пака — на токенах
-    // стекла активной темы (тон + мягкий блик), а не на cardGradient темы.
+    expect(phraseCardSource).toContain('{!packTheme ? <PlateFill g={g} radius={faceRadius} /> : null}');
+    // зачем (Liquid Glass, cards.html #8/#37, 30.09.2026; Тень 12.10): грани PhraseCard без пака — на токенах
+    // активной темы: заливка плашки (PlateFill) и тень плашки без кромки glassEdge, а не на cardGradient темы.
     expect(phraseCardSource).toContain('liquidGlassTokens(ctx.liquidGlassThemeId)');
-    expect(phraseCardSource).toContain('backgroundColor: g.opaqueCard, borderColor: g.glassEdge');
-    expect(phraseCardSource).toContain("colors={[g.selected, 'transparent']}");
+    expect(phraseCardSource).toContain('backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g)');
+    expect(phraseCardSource).not.toContain('borderColor: g.glassEdge');
   });
 });

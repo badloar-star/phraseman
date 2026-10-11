@@ -183,7 +183,7 @@ const baseStyles = StyleSheet.create({
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   selected: { marginTop: 30, marginBottom: 14, fontSize: 13, lineHeight: 17 },
-  stack: { gap: 9 },
+  stack: { gap: 10 }, // зачем (Тень 12.10): между плашками ≥ 10
   skeleton: { borderRadius: 14 },
   dim: { opacity: 0.45 },
   addTitle: { flex: 1, fontWeight: '600' },

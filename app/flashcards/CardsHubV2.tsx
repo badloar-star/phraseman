@@ -9,11 +9,12 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type BoxShadowValue, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 
 export type CardsHubTile = Readonly<{
   id: 'saved' | 'mine' | 'video' | 'community';
@@ -69,31 +70,10 @@ function themePair(g: GlassTokens): readonly [string, string] {
   return [g.accent, g.accentBorder];
 }
 
-// зачем (макет cards-section.css: границ у карточек НЕТ, «кромка» — внутренние тени): подсветка сверху-слева, тень снизу-справа и
-// тонкое кольцо 1px. Рисуем отдельным слоем поверх заливки (внутренняя тень лежит под детьми, а градиент перекрыл бы её).
-// зачем (замечание владельца 10.10): все цвета — токены выбранной темы (bevelHi/bevelLo/dropShadow/hairlineSoft/deepBase…), а не литералы под скриншот «Авроры».
-const bevel = (g: GlassTokens, hi: string, ring: string): BoxShadowValue[] => [
-  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: hi },
-  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelLo },
-  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: ring },
-];
-
-const dropShadow = (g: GlassTokens): BoxShadowValue[] => [{ offsetX: 0, offsetY: 14, blurRadius: 26, spreadDistance: -12, color: g.dropShadow }];
-const tileShadow = (g: GlassTokens): BoxShadowValue[] => [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: g.dropShadow }];
-/** Градиент заливки стеклянной плитки: цвета темы в тёмной базе темы, середина — база с альфой 0.58. */
-const tileGlass = (g: GlassTokens, a: string, b: string) =>
-  [`${mixDark(a, g.deepBase, 0.17)}B0`, `${g.deepBase}94`, `${mixDark(b, g.deepBase, 0.17)}A3`] as const;
+// зачем (владелец 12.10, стиль «Тень»): внутренних кромок-фасок (bevel) и колец больше нет — плитки и «Свежий» блок это плашки
+// (PlateFill + plateBoxShadow), карточки стопки — арт с градиентом и внешней тенью, значки — вложенные (nestedBoxShadow).
 /** Градиент плитки-значка: цвет темы 60 % / 32 % в базах темы. */
 const iconGlass = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
-const iconBevel = (g: GlassTokens): BoxShadowValue[] => [
-  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi },
-  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: g.hairlineSoft },
-];
-
-const Edge = ({ radius, shadows }: { radius: number; shadows: BoxShadowValue[] }) => (
-  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: shadows }]} />
-);
-
 /** Заливка карточки стопки: 145°, доля цвета темы 50 %/38 % в тёмном — как «.mc.solid» макета. */
 const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.5), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
 const DIAG_START = { x: 0.21, y: 0.09 } as const;
@@ -102,9 +82,8 @@ const DIAG_END = { x: 0.79, y: 0.91 } as const;
 const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: StyleProp<ViewStyle>; radius: number; opacity: number }) => {
   const [a, b] = themePair(g);
   return (
-    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: dropShadow(g) }]}>
+    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: plateBoxShadow(g) }]}>
       <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-      <Edge radius={radius} shadows={bevel(g, g.bevelHi, `${a}59`)} />
     </View>
   );
 };
@@ -145,18 +124,18 @@ function CardsHubV2Inner({
     <View style={styles.root} testID="fc-cards-hub-v2">
       <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
         <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
-          style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+          style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
           <Ionicons name="arrow-back" size={20} color={g.text} />
         </Pressable>
         <View style={styles.topRight}>
           {limitLabel ? (
-            <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.opaqueControl }]}>
+            <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
               <Ionicons name="albums-outline" size={16} color={g.text} />
               <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
             </View>
           ) : null}
           <Pressable testID="fc-cards-hub-create-pack" accessibilityRole="button" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8}
-            style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+            style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
             <Ionicons name="add" size={22} color={g.text} />
           </Pressable>
         </View>
@@ -168,34 +147,24 @@ function CardsHubV2Inner({
       {fresh ? (
         // зачем (Сверка cards-section-003, hubNewS): у новичка не было этого состояния — стопка показывала выдуманную
         // карточку «Boarding pass», которой у человека нет. Карточка по центру: плитка 64/r20, 24/700, подпись 16.
-        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: tileShadow(g) }]}>
-          <LinearGradient
-            pointerEvents="none"
-            colors={tileGlass(g, a, b)}
-            locations={[0, 0.6, 1]}
-            start={{ x: 0.25, y: 0.067 }}
-            end={{ x: 0.75, y: 0.933 }}
-            style={[StyleSheet.absoluteFill, styles.tileFill]}
-          />
-          <View style={styles.freshIcon}>
+        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: plateBoxShadow(g) }]}>
+          <PlateFill g={g} radius={26} />
+          <View style={[styles.freshIcon, { boxShadow: nestedBoxShadow(g) }]}>
             <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
             <Ionicons name="people-outline" size={28} color={faceInk} />
-            <Edge radius={20} shadows={iconBevel(g)} />
           </View>
           <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
           <Text style={[styles.freshSub, { color: g.secondary, lineHeight: lh(22) }]}>{fresh.sub}</Text>
-          <Edge radius={26} shadows={bevel(g, g.bevelHi, g.hairlineSoft)} />
         </View>
       ) : (
       <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
         <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
-        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: dropShadow(g) }, floatStyle]} pointerEvents="none">
+        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: plateBoxShadow(g) }, floatStyle]} pointerEvents="none">
           <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
           {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
           <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: faceInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
           {topIpa ? <Text style={[styles.topIpa, { color: faceInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
-          <Edge radius={30} shadows={bevel(g, g.bevelHi, `${a}59`)} />
         </Reanimated.View>
       </View>
       )}
@@ -203,7 +172,7 @@ function CardsHubV2Inner({
       <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
         style={({ pressed }) => [
           styles.cta,
-          { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+          { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
           // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
           !fresh && trainLocked ? styles.ctaLocked : null,
           pressed && styles.pressed,
@@ -212,7 +181,6 @@ function CardsHubV2Inner({
         <View style={styles.ctaIcon}>
           <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
         </View>
-        <Edge radius={26} shadows={[{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }]} />
       </Pressable>
 
       <View style={styles.tiles}>
@@ -220,28 +188,19 @@ function CardsHubV2Inner({
           <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
             style={({ pressed }) => [
               styles.tile,
-              { minHeight: tileH, boxShadow: tileShadow(g) },
+              { minHeight: tileH, boxShadow: plateBoxShadow(g) },
               pressed && styles.pressed,
             ]}>
-            {/* зачем: заливка плитки макета «.gl.pad» — 150°, цвета темы и тёмная середина; прозрачность оставляет пятна фона */}
-            <LinearGradient
-              pointerEvents="none"
-              colors={tileGlass(g, a, b)}
-              locations={[0, 0.6, 1]}
-              start={{ x: 0.25, y: 0.067 }}
-              end={{ x: 0.75, y: 0.933 }}
-              style={[StyleSheet.absoluteFill, styles.tileFill]}
-            />
-            <View style={styles.tileIcon}>
+            {/* зачем (Тень 12.10): плитка — плашка (градиент 180° + тень), без фасок и кольца */}
+            <PlateFill g={g} radius={26} />
+            <View style={[styles.tileIcon, { boxShadow: nestedBoxShadow(g) }]}>
               <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
               <Ionicons name={t.icon} size={24} color={faceInk} />
-              <Edge radius={15} shadows={iconBevel(g)} />
             </View>
             <View>
               <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
               <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count === '' ? ' ' : t.count}</Text>
             </View>
-            <Edge radius={26} shadows={bevel(g, g.bevelHi, g.hairlineSoft)} />
           </Pressable>
         ))}
       </View>
@@ -283,7 +242,6 @@ const styles = StyleSheet.create({
   ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
-  tileFill: { borderRadius: 26 },
   // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
   fresh: { marginTop: 26, borderRadius: 26, paddingHorizontal: 22, paddingVertical: 22, alignItems: 'center', justifyContent: 'center' },
   freshIcon: { width: 64, height: 64, borderRadius: 20, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },

@@ -53,6 +53,7 @@ import {
 } from '../../constants/flashcards_motion';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { computeHeightScale } from '../../constants/layout-scale';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { isLowPowerEffective } from './low_power';
@@ -565,7 +566,6 @@ function PhraseCardImpl({
     right: 0,
     bottom: 0,
     borderRadius: faceRadius,
-    borderWidth: 1,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
@@ -647,8 +647,7 @@ function PhraseCardImpl({
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: g.opaqueControl,
-            borderWidth: 1,
-            borderColor: g.glassEdge,
+            boxShadow: nestedBoxShadow(g), // зачем (Тень 12.10): кнопка озвучки без кромки — малая тень
           }}
         >
           <Ionicons name="volume-medium" size={18} color={packTheme ? accent : g.text} />
@@ -676,8 +675,9 @@ function PhraseCardImpl({
           style={[
             faceBaseStyle,
             packTheme
-              ? { backgroundColor: 'transparent', borderColor: packTheme.borderAccent }
-              : { backgroundColor: g.opaqueCard, borderColor: g.glassEdge },
+              // KEEP_ART: рамка borderAccent — часть оформления тематической карточки набора (PackCardTheme), не контейнерная кромка
+              ? { backgroundColor: 'transparent', borderWidth: 1 /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */, borderColor: packTheme.borderAccent }
+              : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, // зачем (Тень 12.10): грань — плашка без кромки
             frontStyle,
           ]}
         >
@@ -689,15 +689,7 @@ function PhraseCardImpl({
               style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
-          {!packTheme ? (
-            <LinearGradient
-              pointerEvents="none"
-              colors={[g.selected, 'transparent']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
-            />
-          ) : null}
+          {!packTheme ? <PlateFill g={g} radius={faceRadius} /> : null}
           {renderFront ? renderFront() : defaultFront}
           {speakBtn('front', onSpeakFront)}
           {/* E13: точки силы слова из новой проекции ошибок. */}
@@ -716,8 +708,9 @@ function PhraseCardImpl({
           style={[
             faceBaseStyle,
             packTheme
-              ? { backgroundColor: 'transparent', borderColor: packTheme.borderAccent }
-              : { backgroundColor: g.opaqueCard, borderColor: g.glassEdge },
+              // KEEP_ART: рамка borderAccent — часть оформления тематической карточки набора (PackCardTheme), не контейнерная кромка
+              ? { backgroundColor: 'transparent', borderWidth: 1 /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */, borderColor: packTheme.borderAccent }
+              : { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, // зачем (Тень 12.10): грань — плашка без кромки
             backStyle,
           ]}
         >
@@ -729,15 +722,7 @@ function PhraseCardImpl({
               style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
-          {!packTheme ? (
-            <LinearGradient
-              pointerEvents="none"
-              colors={[g.selected, 'transparent']}
-              start={{ x: 0, y: 1 }}
-              end={{ x: 1, y: 0 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
-            />
-          ) : null}
+          {!packTheme ? <PlateFill g={g} radius={faceRadius} /> : null}
           {renderBack ? renderBack() : defaultBack}
           {speakBtn('back', onSpeakBack)}
         </Reanimated.View>
@@ -761,7 +746,7 @@ function PhraseCardImpl({
               importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
-                { backgroundColor: `${t.correct}2E`, borderColor: `${t.correct}66`, borderWidth: 1 },
+                { backgroundColor: `${t.correct}2E`, borderColor: `${t.correct}66`, borderWidth: 1 /* shadow-ok: кольцо исхода свайпа «знаю» */ },
                 knowOverlayStyle,
               ]}
               testID={testID ? `${testID}-swipe-know` : 'fc-swipe-know'}
@@ -780,7 +765,7 @@ function PhraseCardImpl({
               importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
-                { backgroundColor: `${t.wrong}2E`, borderColor: `${t.wrong}66`, borderWidth: 1 },
+                { backgroundColor: `${t.wrong}2E`, borderColor: `${t.wrong}66`, borderWidth: 1 /* shadow-ok: кольцо исхода свайпа «учить» */ },
                 learnOverlayStyle,
               ]}
               testID={testID ? `${testID}-swipe-learn` : 'fc-swipe-learn'}

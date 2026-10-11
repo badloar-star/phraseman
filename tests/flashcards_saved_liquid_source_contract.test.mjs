@@ -39,7 +39,8 @@ test('Saved action menu has explicit List and Deck destinations with live action
   assert.ok(source.includes('onEnterSelection?.()'));
   assert.ok(source.includes('onDeleteSelected?.()'));
   assert.ok(source.includes('<SavedHeaderGlass'), 'Saved search, chips and menu diffuse the background');
-  assert.ok(source.includes("'dimezisBlurView'"), 'Saved controls retain Android diffusion');
+  // зачем (Тень 12.10): блюр-блик шапки заменён заливкой плашки (PlateFill) с тенью темы — кромки и блюра на Android нет
+  assert.ok(source.includes('<PlateFill g={g} radius={radius} />') && source.includes('boxShadow: plateBoxShadow(g)'), 'Saved controls are shadow plates');
   assert.ok(source.includes('testID={`fc-saved-content-label-${key}`}'), 'FlowText content labels satisfy required text identity');
   assert.ok(read('app/flashcards_collection.tsx').includes('savedGlass={activeCat === \'saved\' && !packDeeplink}'));
   assert.ok(read('app/flashcards/FlashcardsFilterDropdown.tsx').includes('<BlurView'), 'Saved filter popup diffuses its backdrop');
@@ -62,7 +63,7 @@ test('Saved Free20 footer and undo use live Plus copy and tinted glass', () => {
   const source = read('app/flashcards/CollectionListView.tsx');
   assert.ok(source.includes('hiddenByLimitCount > 0'));
   assert.ok(source.includes('Открыть все с Plus'));
-  assert.ok(source.includes('backgroundColor: g.card'));
+  assert.ok(source.includes('backgroundColor: g.plateFillFrom')); // зачем (Тень 12.10): плашка «скрыто лимитом» — заливка плашки темы
   assert.ok(source.includes('fc-undo-delete'));
   assert.ok(source.includes('onUndo={undoDelete}') || read('app/flashcards_collection.tsx').includes('onUndo={undoDelete}'));
 });
@@ -71,13 +72,12 @@ test('Saved card faces retain live gestures while using the approved translucent
   const source = read('app/flashcards/FlashcardListItem.tsx');
   assert.ok(source.includes('savedCollectionSurface && !usePackFace'));
   assert.ok(read('app/flashcards/CollectionListView.tsx').includes("savedCollectionSurface={activeCat === 'saved' && !packDeeplink}"));
-  assert.ok(source.includes('backgroundColor: g.card, borderColor: g.glassEdge'));
+  assert.ok(source.includes('backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g)')); // зачем (Тень 12.10): грань — плашка без кромки
   assert.ok(source.includes('onFlipCard(item.id)'));
   assert.ok(source.includes('onOpenDelete(item.id)'));
   assert.ok(source.includes('<ScrollView nestedScrollEnabled showsVerticalScrollIndicator'));
   assert.ok(source.includes('maxHeight: frontTextMaxH'));
-  assert.ok(source.includes('BlurView'));
-  assert.ok(source.includes("'dimezisBlurView'"), 'virtualized saved faces diffuse on Android too');
+  assert.ok(source.includes('<PlateFill g={g} radius={20} />'), 'saved faces use the shadow-style plate fill (без блюра и кромки)');
   assert.ok(source.includes('FlowText'));
   assert.ok(!source.includes('numberOfLines='), 'saved card content and actions must not be truncated');
   for (const token of ['fc-saved-row-number-', 'fc-saved-row-translation-', 'fc-saved-row-play-', 'fc-saved-row-menu-', 'WordStrengthDots strength={strength}']) {

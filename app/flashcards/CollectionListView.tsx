@@ -6,7 +6,6 @@
  * escort-скролл к деталям, free-limit секция и действия тренировки.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -23,7 +22,8 @@ import Reanimated, { FadeInDown, LinearTransition, type SharedValue } from 'reac
 import DuoPressable from '../../components/DuoPressable';
 import { FlowText } from '../../components/text-integrity';
 import { useTheme } from '../../components/ThemeContext';
-import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { liquidGlassTokens, type GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
 import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
@@ -57,12 +57,9 @@ const LIST_PAD_TOP = 12;
 const LIST_ROW_GAP = 12;
 const ListRowGap = () => <View style={{ height: LIST_ROW_GAP }} />;
 
-function SavedListGlass({ tint, edge }: { tint: string; edge: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: edge }} />
-  </View>;
+// зачем (Тень 12.10): заливка плашек списка «Сохранённых» — PlateFill (градиент 180° темы) вместо блюр-блика с кромкой-линией
+function SavedListGlass({ g, radius, raised = false }: { g: GlassTokens; radius: number; raised?: boolean }) {
+  return <PlateFill g={g} radius={radius} raised={raised} />;
 }
 
 export type PackCardTheme = {
@@ -457,10 +454,8 @@ export default function CollectionListView({
           contentStyle={{
             minHeight: 82,
             borderRadius: 16,
-            borderWidth: 1,
-            borderColor: g.glassEdge,
-            backgroundColor: selected ? g.selected : g.card,
-            overflow: 'hidden',
+            // зачем (Тень 12.10): карточка выбора — плашка без рамки; отмеченная приподнята (raised)
+            boxShadow: selected ? raisedBoxShadow(g) : plateBoxShadow(g),
             paddingHorizontal: 12,
             paddingVertical: 9,
             flexDirection: 'row',
@@ -468,8 +463,9 @@ export default function CollectionListView({
             gap: 10,
           }}
         >
-          <SavedListGlass tint={g.selected} edge={g.glassEdge} />
-          <View style={{ width: 30, height: 30, borderRadius: 10, borderWidth: 1.5, borderColor: g.glassEdge, backgroundColor: selected ? g.cta : g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+          <SavedListGlass g={g} radius={16} raised={selected} />
+          {/* индикатор выбора (чекбокс) — кольцо оставлено намеренно: это не контейнер */}
+          <View style={{ width: 30, height: 30, borderRadius: 10, borderWidth: 1.5, borderColor: g.glassEdge /* shadow-ok: индикатор выбора (чекбокс) */, backgroundColor: selected ? g.cta : g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
             {selected ? <Ionicons name="checkmark" size={18} color={g.ctaInk} /> : null}
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
@@ -592,6 +588,7 @@ export default function CollectionListView({
     g.ctaInk,
     g.glassEdge,
     g.opaqueControl,
+    g, // зачем (Тень 12.10): плашки берут заливку и тень из токенов темы целиком; объект токенов кэшируется по теме
     g.secondary,
     g.selected,
     g.text,
@@ -643,7 +640,7 @@ export default function CollectionListView({
               deleteHintAnim.setValue(0);
               onSetShowDeleteHint(true);
             }}
-            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' /* theme-exempt: DEV-кнопка, в магазинной сборке её нет */ }}
+            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1 /* shadow-ok: DEV-кнопка, в магазинной сборке её нет */, borderColor: '#FF6B00' /* theme-exempt: DEV-кнопка, в магазинной сборке её нет */ }}
           >
             <Text style={{ fontSize: 13, color: '#FF6B00' /* theme-exempt: DEV-кнопка */, fontWeight: '700' }}>
               {triLang(lang, {
@@ -665,10 +662,10 @@ export default function CollectionListView({
             position: 'absolute', bottom: 14, left: 16, right: 16, zIndex: 20,
             flexDirection: 'row', alignItems: 'center', gap: 10,
             backgroundColor: g.sheet,
-            borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, overflow: 'hidden',
+            borderRadius: 14, boxShadow: plateBoxShadow(g),
             paddingHorizontal: 14, paddingVertical: 10,
           }}>
-            <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+            <SavedListGlass g={g} radius={14} />
             <Ionicons name="trash-outline" size={18} color={g.secondary} />
             <Text style={{ flex: 1, color: g.text, fontSize: f.sub, lineHeight: 18 }}>
               {triLang(lang, {
@@ -769,9 +766,8 @@ export default function CollectionListView({
                     style={{
                       marginTop: 4,
                       borderRadius: 20,
-                      borderWidth: 1,
-                      borderColor: g.glassEdge,
-                      backgroundColor: g.card,
+                      backgroundColor: g.plateFillFrom,
+                      boxShadow: plateBoxShadow(g), // зачем (Тень 12.10): плашка «скрыто лимитом» без рамки
                       paddingVertical: 22,
                       paddingHorizontal: 20,
                       alignItems: 'center',
@@ -846,8 +842,8 @@ export default function CollectionListView({
       </View>
 
       {selectionMode ? (
-        <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: g.sheet, paddingHorizontal: 20, paddingTop: 12, paddingBottom: insets.bottom > 0 ? 12 : 20, borderTopWidth: 1, borderTopColor: g.glassEdge, overflow: 'hidden' }}>
-          <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+        <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: g.sheet, paddingHorizontal: 20, paddingTop: 12, paddingBottom: insets.bottom > 0 ? 12 : 20 }}>
+          <SavedListGlass g={g} radius={0} />
           {!canCreatePack ? (
             <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
@@ -1073,7 +1069,7 @@ export function CollectionEmptyState({
 
 // ─── Styles (перенесены из монолита — геометрия карточки-строки) ─────────────
 const st = StyleSheet.create({
-  sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
+  sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20 }, // зачем (Тень 12.10): стиль бейджа без рамки (в FlashcardListItem не используется)
   sourceBadgeText: { fontSize: 13, fontWeight: '700', textTransform:'uppercase', letterSpacing:0.6 },
   centerState:  { flex:1, alignItems:'center', justifyContent:'center', paddingHorizontal:32 },
 });

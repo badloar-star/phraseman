@@ -91,7 +91,7 @@ export default function FlashcardsFilterDropdown({
 
           {filterGroups.map((group) => (
             <View key={group.groupKey}>
-              <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 0.5, borderTopColor: savedGlass ? g.dividerTone : t.border, backgroundColor: savedGlass ? g.card : t.bgSurface }}>
+              <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 0.5 /* shadow-ok: разделитель-линия групп меню */, borderTopColor: savedGlass ? g.dividerTone : t.border, backgroundColor: savedGlass ? g.card : t.bgSurface }}>
                 <Text style={{ fontSize: f.caption, color: savedGlass ? g.secondary : t.accentText, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8 }}>{group.groupLabel}</Text>
               </View>
               {group.items.map((opt) => {
@@ -106,7 +106,7 @@ export default function FlashcardsFilterDropdown({
                       justifyContent: 'space-between',
                       paddingHorizontal: 24,
                       paddingVertical: 10,
-                      borderTopWidth: 0.5,
+                      borderTopWidth: 0.5, // shadow-ok: разделитель-линия между пунктами меню
                       borderTopColor: savedGlass ? g.dividerTone : t.border,
                     }}
                   >

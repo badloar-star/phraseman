@@ -24,7 +24,6 @@
  * transform/opacity, деградация при reduceMotion / lowPower.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -51,7 +50,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { LinearGradient } from '../../components/SafeLinearGradient';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { useTheme } from '../../components/ThemeContext';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import type { Lang } from '../../constants/i18n';
@@ -96,24 +95,8 @@ import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { NO_PACK_LANGUAGE, noPackLanguageLabel, PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
-type CatalogGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
-function CatalogTileGlass({ g }: { g: CatalogGlassTokens }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    {/* зачем (сверка packs-simple-001, 04.10, проверено на эмуляторе): на Android dimezisBlurView захватывает
-        текст самой строки и кладёт под него размытую копию — вокруг «Продолжить создание набора», «Топ», имени
-        автора был белый ореол, которого нет в макете. Без этого метода размытие на Android не рисуется (под строкой
-        однотонный фон — размывать нечего), ореол исчезает; iOS не меняется. */}
-    <BlurView intensity={Platform.OS === 'android' ? 6 : 12} blurReductionFactor={4}
-      experimentalBlurMethod="none"
-      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    {/* зачем (Темы 05.10, гейт «приложение = макет»): блик строки — 5-точечный --lg-sheen кита (150°: белый .10 → .035 → 0 → .02 → .055),
-        а не «g.selected → прозрачный»: иначе низ строки темнее макета. Цвет блика — mediaInk темы, как в KitGlassLayer. */}
-    <LinearGradient colors={[`${g.mediaInk}1A`, `${g.mediaInk}09`, `${g.mediaInk}00`, `${g.mediaInk}05`, `${g.mediaInk}0E`]} locations={[0, 0.26, 0.52, 0.78, 1]}
-      start={{ x: 0.25, y: 0.067 }} end={{ x: 0.75, y: 0.933 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: g.glassEdge }} />
-  </View>;
-}
+// зачем (Тень 12.10): CatalogTileGlass (блюр + блик 150° + кромка-линия) удалён — плашки каталога заливает PlateFill
 
 type Props = {
   lang: Lang;
@@ -248,7 +231,7 @@ type CommunityPackRowProps = {
   uiLang: Lang;
   /** Язык названия набора (как раньше у каталога). */
   titleLang: Lang;
-  g: CatalogGlassTokens;
+  g: ReturnType<typeof liquidGlassTokens>;
   owned: boolean;
   isTop: boolean;
   emphasis: PackRowEmphasis;
@@ -734,8 +717,7 @@ export default function FlashcardsCategoryHub({
         paddingHorizontal: 7,
         paddingVertical: 2,
         backgroundColor: t.bgCard,
-        borderWidth: 1,
-        borderColor: t.border,
+        boxShadow: nestedBoxShadow(g), // зачем (Тень 12.10): пилюля счётчика без рамки — малая тень
       }}
     >
       <Text style={{ fontSize: 13, fontWeight: '700', color: t.accentText }}>{label}</Text>
@@ -796,9 +778,9 @@ export default function FlashcardsCategoryHub({
                 width: tileW,
                 height: tileW,
                 borderRadius: TILE_RADIUS,
-                borderWidth: 1, // зачем (координатор 11.10): обводка плитки — hairline
-                borderColor: t.accent,
+                // зачем (Тень 12.10): обводка плитки (hairline accent) убрана — плитку отделяет тень плашки
                 backgroundColor: t.bgSurface,
+                boxShadow: plateBoxShadow(g),
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 4,
@@ -954,10 +936,7 @@ export default function FlashcardsCategoryHub({
         testID="flashcards-pack-actions-menu"
         style={[menuStyles.menu, {
           backgroundColor: `${g.opaqueSheet}F7`,
-          boxShadow: [
-            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft },
-            { offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: 0, color: g.dropShadow },
-          ],
+          boxShadow: plateBoxShadow(g), // зачем (Тень 12.10): внутреннее кольцо убрано, тень плашки из темы
         }]}
       >
         {actionRow('flashcards-pack-report', 'flag-outline', triLang(uiLang, {
@@ -1044,18 +1023,15 @@ export default function FlashcardsCategoryHub({
                 paddingHorizontal: 14,
                 borderRadius: 16,
                 // зачем (PM-092, cards.html «Продолжить создание набора»): строка-карточка как в
-                // макете — значок в плитке слева, текст 16/600 слева, стрелка справа; 1px обводка.
-                borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — тонкая полупрозрачная обводка
-                borderColor: g.glassEdge, // guard-ok: исключение 2.0
-                backgroundColor: g.card,
+                // макете — значок в плитке слева, текст 16/600 слева, стрелка справа; без обводки (Тень 12.10).
+                boxShadow: plateBoxShadow(g),
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 14,
-                overflow: 'hidden',
               }}
             >
-              <CatalogTileGlass g={g} />
-              <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+              <PlateFill g={g} radius={16} />
+              <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name="create-outline" size={20} color={g.text} />
               </View>
               <Text style={{ flex: 1, color: g.text, fontWeight: '600', fontSize: 16, lineHeight: 21 }}>
@@ -1083,8 +1059,7 @@ export default function FlashcardsCategoryHub({
           ) : visibleCommunityPacks.length === 0 ? (
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
             <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
-              <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.opaqueControl, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
-                <CatalogTileGlass g={g} />
+              <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
               </View>
               <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>

@@ -17,7 +17,7 @@ import { KitCard, KitCta } from '../../components/cards-grid/CardsKit';
 import { useLineScale } from '../../components/cards-grid/useLineScale';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { LinearGradient } from '../../components/SafeLinearGradient';
-import { bevelShadow, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
+import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { triLang, type Lang } from '../../constants/i18n';
 
 export type ExpandedCardData = Readonly<{
@@ -174,14 +174,14 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
                     {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : `${faceInk}38` }]} />)}
                   </View>
                 ) : null}
-                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
+                {/* зачем (Тень 12.10): фаска-кромка грани (bevelShadow) убрана — грань отделяет внешняя тень faceShadow */}
               </Animated.View>
               <Animated.View style={[styles.face, styles.faceBack, { boxShadow: faceShadow }, backStyle]}>
                 {faceLayers(`${card.id}b`)}
                 <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
                   <Text style={[styles.ru, { color: faceInk, lineHeight: lh(36) }]}>{card.back}</Text>
                 </View>
-                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
+                {/* зачем (Тень 12.10): фаска-кромка грани (bevelShadow) убрана — грань отделяет внешняя тень faceShadow */}
               </Animated.View>
             </Pressable>
           </Animated.View>

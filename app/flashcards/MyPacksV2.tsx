@@ -246,8 +246,8 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft },
   search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
-  stack: { gap: 9 },
-  loading: { marginTop: 30, gap: 9 },
+  stack: { gap: 10 }, // зачем (Тень 12.10): между плашками ≥ 10
+  loading: { marginTop: 30, gap: 10 },
   skeleton: { borderRadius: 14, backgroundColor: g.hairlineSoft },
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },

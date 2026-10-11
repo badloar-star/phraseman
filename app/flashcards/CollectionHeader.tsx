@@ -13,14 +13,12 @@
  *   • своя (ещё не опубликованная) коллекция получает кнопку «Отправить в сообщество».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import { FlowText } from '../../components/text-integrity';
 import React, { useMemo } from 'react';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { ActivityIndicator, Modal, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Modal, Pressable, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { useLineScale } from '../../hooks/useLineScale';
-import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -34,18 +32,14 @@ import type { FilterGroup, SavedCardContentKind } from './selectors';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
 import { noAndroidOutline } from '../../constants/androidGlow';
-
-const EXEMPT_COLOR_1 = '#000'; // theme-exempt: тень меню — чёрная в любой теме
+import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
 
 const VIEW_TOGGLE_SIZE = 40;
 const VIEW_TOGGLE_ICON_SIZE = 18;
 
-function SavedHeaderGlass({ tint, edge }: { tint: string; edge: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={{ height: 1, backgroundColor: edge }} />
-  </View>;
+// зачем (Тень 12.10): заливка плашек шапки «Сохранённых» — градиент 180° из токенов темы (PlateFill); блюр-блик с кромкой-линией убран
+function SavedHeaderGlass({ g, radius }: { g: ReturnType<typeof liquidGlassTokens>; radius: number }) {
+  return <PlateFill g={g} radius={radius} />;
 }
 
 type Props = {
@@ -350,9 +344,9 @@ export default function CollectionHeader({
                 accessibilityState={{ expanded: actionsOpen }}
                 accessible
                 onPress={onToggleActions}
-                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 13, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}
+                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 13, boxShadow: plateBoxShadow(g) }}
               >
-                <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
+                <SavedHeaderGlass g={g} radius={13} />
                 <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
               </TouchableOpacity>
             </>
@@ -372,9 +366,9 @@ export default function CollectionHeader({
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 13,
-                borderWidth: 1,
-                borderColor: viewMode === 'deck' ? t.accent : t.border,
-                backgroundColor: viewMode === 'deck' ? `${t.accent}18` : 'transparent',
+                // зачем (Тень 12.10): без рамки; режим «Стопка» (выбрано) приподнят, список — обычная плашка
+                backgroundColor: viewMode === 'deck' ? g.raisedFillFrom : g.plateFillFrom,
+                boxShadow: viewMode === 'deck' ? raisedBoxShadow(g) : plateBoxShadow(g),
               }}
             >
               <Ionicons
@@ -395,13 +389,12 @@ export default function CollectionHeader({
               style={{
                 flexDirection: 'row', alignItems: 'center', gap: 3,
                 minHeight: 40, paddingHorizontal: 10,
-                borderRadius: 12, borderWidth: 1,
-                borderColor: savedSurface ? g.glassEdge : activeFilter !== 'all' ? t.accent : t.border,
-                backgroundColor: savedSurface ? (activeFilter !== 'all' ? g.selected : g.card) : activeFilter !== 'all' ? t.accent + '18' : 'transparent',
-                overflow: 'hidden',
+                borderRadius: 12,
+                // зачем (Тень 12.10): чип фильтра без рамки; активный фильтр (выбрано) приподнят
+                backgroundColor: activeFilter !== 'all' ? g.raisedFillFrom : g.plateFillFrom,
+                boxShadow: activeFilter !== 'all' ? raisedBoxShadow(g) : plateBoxShadow(g),
               }}
             >
-              {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
               <Ionicons name="filter-outline" size={12} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accentText : t.accentText} />
               <FlowText testID="fc-filter-label" provenance="authored"
                 style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: savedSurface ? g.text : activeFilter !== 'all' ? t.accentText : t.accentText }}
@@ -423,9 +416,9 @@ export default function CollectionHeader({
             <View
               testID="fc-saved-actions-menu"
               accessibilityRole="menu"
-              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 250, padding: 8, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, shadowColor: EXEMPT_COLOR_1, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline, overflow: 'hidden' }}
+              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 250, padding: 8, borderRadius: 18, backgroundColor: g.sheet, boxShadow: plateBoxShadow(g), ...noAndroidOutline }}
             >
-              <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
+              <SavedHeaderGlass g={g} radius={18} />
               <TouchableOpacity
                 testID="fc-saved-view-list"
                 accessibilityRole="menuitem"
@@ -505,9 +498,9 @@ export default function CollectionHeader({
             paddingVertical: 11,
             paddingHorizontal: 14,
             borderRadius: 14,
-            borderWidth: 1, // зачем (D145/«обводки не толще hairline», координатор 11.10): кнопка-контейнер с обводкой — тонкая, не 1.5
-            borderColor: t.accent,
+            // зачем (Тень 12.10): кнопка «Опубликовать» без обводки — тон акцента и малая тень
             backgroundColor: `${t.accent}14`,
+            boxShadow: nestedBoxShadow(g),
             opacity: publishBusy ? 0.6 : 1,
           }}
         >
@@ -573,13 +566,11 @@ export default function CollectionHeader({
              */
             flexShrink: 0,
             borderRadius: 14,
-            borderWidth: 1,
-            borderColor: savedSurface ? g.glassEdge : searchActive ? `${t.accent}88` : t.border,
-            backgroundColor: savedSurface ? g.card : t.bgSurface,
-            overflow: 'hidden',
+            // зачем (Тень 12.10): поле поиска — плашка без рамки (в т.ч. без акцентной рамки активного поиска)
+            boxShadow: plateBoxShadow(g),
           }}
         >
-          {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
+          <SavedHeaderGlass g={g} radius={14} />
           <Ionicons name="search-outline" size={20} color={savedSurface ? g.secondary : searchActive ? t.accentText : t.textMuted} />
           <TextInput
             testID="fc-search-input"
@@ -638,13 +629,10 @@ export default function CollectionHeader({
             padding: 4,
             minHeight: 44,
             borderRadius: 15,
-            borderWidth: 1,
-            borderColor: savedSurface ? g.glassEdge : t.border,
-            backgroundColor: savedSurface ? g.card : t.bgSurface,
-            overflow: 'hidden',
+            boxShadow: plateBoxShadow(g), // зачем (Тень 12.10): переключатель видов контента — плашка без рамки
           }}
         >
-          <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
+          <SavedHeaderGlass g={g} radius={15} />
           {savedContentOptions.map(({ key, label }) => {
             const selected = key === savedContentKind;
             const count = savedContentCounts[key];

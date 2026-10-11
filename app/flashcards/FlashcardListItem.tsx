@@ -1,14 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../components/ThemeContext';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Reanimated, {
   cancelAnimation,
@@ -340,7 +340,6 @@ function FlashcardListItemImpl({
     return {
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
-      borderBottomWidth: interpolate(splitSV.value, [0, 1], [0, 1], Extrapolation.CLAMP),
     };
   }, [hasDetails]);
 
@@ -356,7 +355,6 @@ function FlashcardListItemImpl({
       maxHeight: h,
       minHeight: 0,
       overflow: 'hidden' as const,
-      borderTopWidth: interpolate(splitSV.value, [0, 1], [0, 1], Extrapolation.CLAMP),
     };
   });
 
@@ -635,9 +633,8 @@ function FlashcardListItemImpl({
                 justifyContent: 'center',
                 gap: 7,
                 borderRadius: 12,
-                borderWidth: 1,
-                borderColor: `${t.accent}66`,
                 backgroundColor: `${t.accent}14`,
+                boxShadow: nestedBoxShadow(g), // зачем (Тень 12.10): кнопка без обводки — тон и малая тень
                 paddingVertical: 11,
               }}
             >
@@ -661,9 +658,8 @@ function FlashcardListItemImpl({
                 justifyContent: 'center',
                 gap: 7,
                 borderRadius: 12,
-                borderWidth: 1,
-                borderColor: `${t.wrong}66`,
                 backgroundColor: `${t.wrong}12`,
+                boxShadow: nestedBoxShadow(g),
                 paddingVertical: 11,
               }}
             >
@@ -747,9 +743,9 @@ function FlashcardListItemImpl({
                   cardSplitEdgeStyle,
                   { overflow: 'hidden' },
                   usePackFace
-                    ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : savedGlass ? { backgroundColor: g.card, borderColor: g.glassEdge }
-                      : { backgroundColor: t.bgCard, borderColor: t.border },
+                    ? { backgroundColor: 'transparent', boxShadow: plateBoxShadow(g) }
+                    : savedGlass ? { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }
+                      : { backgroundColor: t.bgCard, boxShadow: plateBoxShadow(g) },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -759,17 +755,12 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 1 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */ },
                   ]}
                 />
               )}
               {!usePackFace && (
-                savedGlass ? <>
-                  <BlurView pointerEvents="none" intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
-                    experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-                  <LinearGradient pointerEvents="none" colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 1, right: 1, height: 1, backgroundColor: g.glassEdge }} />
-                </> :
+                savedGlass ? <PlateFill g={g} radius={20} /> :
                 <LinearGradient
                   pointerEvents="none"
                   colors={t.cardGradient}
@@ -785,8 +776,6 @@ function FlashcardListItemImpl({
                     top: 14,
                     right: voiceSpeakOnRight ? 46 : 14,
                     borderRadius: 999,
-                    borderWidth: 1,
-                    borderColor: `${t.accent}77`,
                     backgroundColor: `${t.accent}1F`,
                     paddingHorizontal: 8,
                     paddingVertical: 3,
@@ -905,9 +894,9 @@ function FlashcardListItemImpl({
                   cardSplitEdgeStyle,
                   { overflow: 'hidden' },
                   usePackFace
-                    ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : savedGlass ? { backgroundColor: g.card, borderColor: g.glassEdge }
-                      : { backgroundColor: t.bgSurface, borderColor: `${t.accent}80` },
+                    ? { backgroundColor: 'transparent', boxShadow: plateBoxShadow(g) }
+                    : savedGlass ? { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }
+                      : { backgroundColor: t.bgSurface, boxShadow: plateBoxShadow(g) },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -917,17 +906,12 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 0 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent /* shadow-ok: рамка тематической карточки набора (арт PackCardTheme) */ },
                   ]}
                 />
               )}
               {!usePackFace && (
-                savedGlass ? <>
-                  <BlurView pointerEvents="none" intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
-                    experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-                  <LinearGradient pointerEvents="none" colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 1, right: 1, height: 1, backgroundColor: g.glassEdge }} />
-                </> :
+                savedGlass ? <PlateFill g={g} radius={20} /> :
                 <LinearGradient
                   pointerEvents="none"
                   colors={[t.cardGradient[1], t.cardGradient[0]]}
@@ -943,8 +927,6 @@ function FlashcardListItemImpl({
                     top: 14,
                     right: 14,
                     borderRadius: 999,
-                    borderWidth: 1,
-                    borderColor: `${t.accent}77`,
                     backgroundColor: `${t.accent}1F`,
                     paddingHorizontal: 8,
                     paddingVertical: 3,
@@ -1049,8 +1031,7 @@ function FlashcardListItemImpl({
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: `${t.bgSurface}F0`,
-                      borderWidth: 1,
-                      borderColor: t.border,
+                      boxShadow: nestedBoxShadow(g),
                       opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
@@ -1080,8 +1061,7 @@ function FlashcardListItemImpl({
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: `${t.bgSurface}F0`,
-                      borderWidth: 1,
-                      borderColor: t.border,
+                      boxShadow: nestedBoxShadow(g),
                       opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
@@ -1105,8 +1085,7 @@ function FlashcardListItemImpl({
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: `${t.bgSurface}F0`,
-                    borderWidth: 1,
-                    borderColor: t.border,
+                    boxShadow: nestedBoxShadow(g),
                     opacity: voiceDisabled ? 0.42 : 1,
                   }}
                 >
@@ -1128,7 +1107,7 @@ function FlashcardListItemImpl({
                 accessibilityRole="button"
                 accessibilityLabel={`${videoMomentLabel ?? 'Play video'} ${formatVideoMoment(videoMomentSec)}`}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={[styles.videoMomentChip, { backgroundColor: `${t.bgSurface}F0`, borderColor: t.border }]}
+                style={[styles.videoMomentChip, { backgroundColor: `${t.bgSurface}F0`, boxShadow: nestedBoxShadow(g) }]}
               >
                 <Ionicons name="play" size={12} color={t.accentText} />
                 <Text style={[styles.videoMomentText, { color: t.accentText }]}>{formatVideoMoment(videoMomentSec)}</Text>
@@ -1173,11 +1152,9 @@ function FlashcardListItemImpl({
             renderToHardwareTextureAndroid={effectiveOs === 'android'}
             style={[
               {
-                backgroundColor: savedGlass ? g.card : t.bgSurface,
-                borderColor: savedGlass ? g.glassEdge : t.border,
-                borderLeftWidth: 1,
-                borderRightWidth: 1,
-                borderBottomWidth: 1,
+                // зачем (Тень 12.10): панель деталей — плашка без рамки (тень вместо borderLeft/Right/Bottom)
+                backgroundColor: savedGlass ? g.plateFillFrom : t.bgSurface,
+                boxShadow: plateBoxShadow(g),
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 20,
                 borderTopLeftRadius: 20,
@@ -1258,7 +1235,7 @@ const baseStyles = StyleSheet.create({
   savedActions: { alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center' },
   savedAction: { width: 31, height: 31, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   videoMomentWrap: { position: 'absolute', top: 8, zIndex: 5 },
-  videoMomentChip: { height: 30, borderRadius: 15, borderWidth: 1, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 4 },
+  videoMomentChip: { height: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 4 },
   videoMomentText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 

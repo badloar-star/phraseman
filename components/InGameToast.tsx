@@ -146,7 +146,7 @@ function InGameToastHybrid({
 
   return (
     <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
-    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor, borderColor: chrome.border }, cardStyle]}>
+    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor }, cardStyle]}>
       <InGameToastSurface chrome={chrome} />
       <View style={styles.hybridRow}>
         <View style={[styles.tile, { backgroundColor: chrome.tile }]}>
@@ -212,7 +212,7 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
         styles.toastCard,
         // зачем: обводка контейнера запрещена стилем владельца — разделяем тоном
         // и тенью; отступ сверху берём от безопасной зоны.
-        { shadowColor: chrome.shadowColor, borderColor: chrome.border, opacity: anim,
+        { shadowColor: chrome.shadowColor, opacity: anim,
           transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }] },
       ]}
     >
@@ -241,8 +241,7 @@ const styles = StyleSheet.create({
     zIndex: 999999,
   },
   toastCard: {
-    borderRadius: 19,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 19, // зачем (владелец 12.10, стиль «Тень»): тост без обводки — отделяют тон и тень
     overflow: 'hidden',
     minHeight: 58,
     justifyContent: 'center',

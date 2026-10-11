@@ -198,7 +198,6 @@ function ActionToastHybridCard({
         style={[
           styles.toast,
           {
-            borderColor: chrome.border,
             borderRadius: chrome.radius,
             shadowColor: chrome.shadowColor,
           },
@@ -218,7 +217,7 @@ function ActionToastHybridCard({
         <Reanimated.View
           style={[
             styles.iconBadge,
-            { backgroundColor: chrome.accentSoft, borderColor: chrome.border },
+            { backgroundColor: chrome.accentSoft },
             iconStyle,
           ]}
         >
@@ -515,7 +514,7 @@ function ActionToast() {
       <View style={[styles.lineAnchor, { top: Math.max(54, toastInsets.top + 8) }]} pointerEvents="none">
         <Animated.View
           testID="action-toast-top-line"
-          style={[styles.line, { backgroundColor: actionToastGlass.opaqueControl, borderColor: chrome.border, shadowColor: chrome.shadowColor, opacity, transform: [{ translateY: Animated.multiply(y, -1) }] }]}
+          style={[styles.line, { backgroundColor: actionToastGlass.opaqueControl, shadowColor: chrome.shadowColor, opacity, transform: [{ translateY: Animated.multiply(y, -1) }] }]}
           accessible
           accessibilityLabel={`${toneLabel}. ${message}`}
         >
@@ -570,7 +569,6 @@ function ActionToast() {
           style={[
             styles.toast,
             {
-              borderColor: chrome.border,
               borderRadius: chrome.radius,
               shadowColor: chrome.shadowColor,
             },
@@ -582,7 +580,6 @@ function ActionToast() {
               styles.iconBadge,
               {
                 backgroundColor: chrome.accentSoft,
-                borderColor: chrome.border,
               },
             ]}
           >
@@ -631,8 +628,7 @@ const styles = StyleSheet.create({
     minHeight: 58,
     paddingVertical: 12,
     paddingHorizontal: 14,
-    borderRadius: 19,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка `.or-toast` (исключение 2.0)
+    borderRadius: 19, // зачем (владелец 12.10, стиль «Тень»): тост без обводки — отделяют тон и тень (строка-тост `.or-toast`)
     flexDirection: 'row',
     alignItems: 'center',
     gap: 11,

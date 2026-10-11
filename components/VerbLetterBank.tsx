@@ -77,7 +77,7 @@ export default function VerbLetterBank({
       <View style={{
         minHeight: 56, flexDirection: 'row', flexWrap: 'wrap', gap: 6,
         alignItems: 'center', justifyContent: 'center',
-        borderBottomWidth: 2, borderBottomColor: t.border, paddingBottom: 8,
+        borderBottomWidth: 2, borderBottomColor: t.border, paddingBottom: 8, // shadow-ok: подчёркивание строки собранного ответа (линия-подсказка, не контейнер)
       }}>
         {picked.length === 0 ? (
           <Text style={{ color: t.accentText, fontSize: f.body, opacity: 0.6 }}>· · ·</Text>
@@ -90,7 +90,7 @@ export default function VerbLetterBank({
               disabled={disabled}
               style={{
                 paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10,
-                backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.correct + '80', // зачем (координатор 11.10): hairline
+                backgroundColor: t.correct + '2E', // зачем (владелец 12.10, стиль «Тень»): без обводки — состояние показывает тон заливки: выбранная буква ответа — тон «верно» вместо кольца
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>{tile.char}</Text>
@@ -113,7 +113,6 @@ export default function VerbLetterBank({
                 minWidth: 44, paddingHorizontal: 12, paddingVertical: 12, borderRadius: 12,
                 alignItems: 'center', justifyContent: 'center',
                 backgroundColor: isUsed ? 'transparent' : t.bgCard,
-                borderWidth: 0, borderColor: isUsed ? t.border + '40' : t.border,
                 opacity: isUsed ? 0.35 : 1,
               }}
             >
@@ -132,7 +131,6 @@ export default function VerbLetterBank({
           style={{
             paddingHorizontal: 14, paddingVertical: 12, borderRadius: 12,
             flexDirection: 'row', alignItems: 'center', gap: 6,
-            borderWidth: 0, borderColor: t.border,
             opacity: picked.length === 0 ? 0.4 : 1,
           }}
         >
@@ -145,7 +143,7 @@ export default function VerbLetterBank({
           style={{
             flex: 1, paddingVertical: 14, borderRadius: 14, alignItems: 'center',
             backgroundColor: canSubmit ? t.correct : t.bgCard,
-            borderWidth: 1, borderColor: canSubmit ? t.correct : t.border, // зачем (координатор 11.10): hairline
+            // зачем (владелец 12.10, стиль «Тень»): без обводки — состояние показывает тон заливки: кнопка ответа — зелёная заливка при готовности, иначе тон карточки
             opacity: canSubmit ? 1 : 0.6,
           }}
         >

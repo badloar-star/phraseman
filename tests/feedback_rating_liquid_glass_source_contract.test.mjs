@@ -181,6 +181,8 @@ function createHarness({
     '../constants/liquidGlassThemePalette': {
       liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; },
     },
+    // зачем (владелец 12.10, стиль «Тень»): карточка без рамки — тень плашки из ShadowSurface (в харнессе — заглушка)
+    './v2/ShadowSurface': { plateBoxShadow: () => [{ offsetX: 0, offsetY: 14, blurRadius: 26, spreadDistance: -14, color: '#shadow' }] },
     '../hooks/use-haptics': { hapticTap: () => calls.haptics.push('tap') },
     '../app/analytics': { trackEvent: (...args) => { calls.tracked.push(args); } },
     '../app/stable_id': { getStableId: async () => { calls.stableIds += 1; return 'account-1'; } },
@@ -284,9 +286,10 @@ test('renders a closed opaque liquid-glass card for all 13 themes with an access
     const card = byId(tree, 'feedback-probe');
     const cardStyle = flatStyle(card.props.style);
     assert.equal(cardStyle.backgroundColor, harness.glass.opaqueCard);
-    assert.equal(cardStyle.borderColor, harness.glass.glassEdge);
+    assert.equal(cardStyle.borderColor, undefined, 'стиль «Тень»: у карточки нет обводки');
+    assert.ok(Array.isArray(cardStyle.boxShadow) && cardStyle.boxShadow.length > 0, 'вместо рамки — тень плашки');
     assert.equal(cardStyle.borderRadius, 16);
-    assert.equal(cardStyle.borderWidth, 1);
+    assert.equal(cardStyle.borderWidth, undefined);
     assert.equal(cardStyle.paddingVertical, 15);
     assert.equal(cardStyle.paddingHorizontal, 16);
     assert.deepEqual(harness.calls.tokenIds, [themeId]);
@@ -313,9 +316,9 @@ test('renders a closed opaque liquid-glass card for all 13 themes with an access
     );
     assert.equal(closedContentHeight, 52, 'closed card content is 22dp title plus 30dp padding');
     assert.equal(
-      closedContentHeight + 2 * cardStyle.borderWidth,
-      54,
-      'the 1dp rim makes the rendered closed card 54dp externally',
+      closedContentHeight,
+      52,
+      'без рамки закрытая карточка снаружи 52dp (была 54 с рамкой 1dp)',
     );
     assert.equal(title.props.numberOfLines, undefined);
     assert.equal(title.props.maxFontSizeMultiplier, undefined);
@@ -464,7 +467,7 @@ test('negative mutations reject flat, clipped, inaccessible, capped, or state-re
     const titleStyle = flatStyle(byId(tree, 'feedback-probe-title').props.style);
     const closedContentHeight = effectiveClosedCardHeight(cardStyle, headerStyle, titleStyle.lineHeight);
     assert.equal(closedContentHeight, 52);
-    assert.equal(closedContentHeight + 2 * cardStyle.borderWidth, 54);
+    assert.equal(closedContentHeight, 52);
     header.props.onPress();
     tree = harness.render();
     const ratingStyle = flatStyle(byId(tree, 'feedback-probe-rating').props.style);

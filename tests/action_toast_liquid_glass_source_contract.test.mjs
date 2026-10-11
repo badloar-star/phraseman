@@ -9,7 +9,8 @@ test('ActionToast applies one active Liquid Glass material to all five real tone
   assert.ok(toast.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
   assert.ok(toast.includes('actionToastGlassChrome(actionToastGlass)'), 'both card variants receive the local glass chrome');
   assert.ok(toast.includes('glass.card'), 'toast surface uses translucent glass');
-  assert.ok(toast.includes('glass.glassEdge'), 'toast keeps a visible glass edge');
+  // зачем (владелец 12.10, стиль «Тень»): у тоста нет обводки.
+  assert.ok(!toast.includes('borderColor: chrome.border'), 'toast has no outline');
   assert.ok(toast.includes('chrome={chrome}'), 'hybrid branch receives the active passive glass chrome');
   assert.ok(toast.includes('colors={chrome.cardColors}'), 'classic rollback branch receives the active passive glass chrome');
   assert.ok(toast.includes('handleActionPress'), 'existing action callback remains present');

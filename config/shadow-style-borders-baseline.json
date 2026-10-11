@@ -1,5 +1,5 @@
 {
-  "total": 174,
+  "total": 156,
   "files": {
     "app/(tabs)/settings.tsx": 1,
     "app/ai_companion_session.tsx": 14,
@@ -12,7 +12,6 @@
     "app/promo_code_entry.tsx": 1,
     "app/settings_edu.tsx": 1,
     "app/settings_notifications.tsx": 2,
-    "components/ActionToast.tsx": 6,
     "components/ActivityHeatmap365.tsx": 1,
     "components/AiMistakeCard.tsx": 4,
     "components/AppMessagesInbox.tsx": 6,
@@ -26,10 +25,8 @@
     "components/ExamResultPreviewAdminModal.tsx": 12,
     "components/ExplainButton.tsx": 1,
     "components/ExplainReportButton.tsx": 6,
-    "components/FeedbackRatingCard.tsx": 4,
     "components/GlassSurface.tsx": 1,
     "components/GlobalBroadcastModal.tsx": 4,
-    "components/InGameToast.tsx": 3,
     "components/learning-v2/horizons/HorizonMistakeReview.tsx": 1,
     "components/learning-v2/horizons/HorizonResultGlass.tsx": 1,
     "components/learning-v2/horizons/LearningV2Horizons.tsx": 1,
@@ -56,7 +53,6 @@
     "components/ui/PrimaryButton.tsx": 1,
     "components/v2/V2Kit.tsx": 1,
     "components/v2/V2TabBar.tsx": 1,
-    "components/VerbLetterBank.tsx": 5,
     "components/VipSurveyModal.tsx": 13,
     "components/YearWheel.tsx": 2
   }

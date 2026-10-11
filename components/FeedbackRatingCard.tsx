@@ -26,6 +26,7 @@ import {
 import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
 import { type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from './v2/ShadowSurface';
 import { DebugLogger } from '../app/debug-logger';
 
 export interface FeedbackRatingCardProps {
@@ -135,7 +136,7 @@ export default function FeedbackRatingCard({
         testID={testID}
         style={[
           styles.liquidCard,
-          { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
+          { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass) }, // зачем (владелец 12.10, стиль «Тень»): карточка без обводки — тон и тень
         ]}
       >
         <LinearGradient
@@ -230,7 +231,7 @@ export default function FeedbackRatingCard({
                   fontSize: 16 * textScale,
                   lineHeight: 22 * textScale,
                   backgroundColor: glass.opaqueControl,
-                  borderColor: glass.glassEdge,
+                  borderColor: glass.glassEdge, // shadow-ok: контур поля ввода текста отзыва (TextInput), не контейнер
                 },
               ]}
             />
@@ -375,7 +376,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: 16,
-    borderWidth: 1,
     paddingVertical: 15,
     paddingHorizontal: 16,
   },
@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
   liquidInput: {
     minHeight: 56,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: 1, // shadow-ok: контур поля ввода (TextInput), не контейнер
     paddingHorizontal: 14,
     paddingTop: 12,
     paddingBottom: 12,

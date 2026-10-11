@@ -10,7 +10,8 @@ test('InGameToast renders both passive runtime tones with active Liquid Glass an
   assert.ok(toast.includes('inGameToastGlassChrome(inGameToastGlass)'), 'local passive glass chrome is used');
   assert.ok((toast.match(/colors=\{chrome\.sheenColors\}/g) ?? []).length === 1, 'the shared passive surface owns the glass sheen');
   assert.ok((toast.match(/<InGameToastSurface chrome=\{chrome\} \/>/g) ?? []).length === 2, 'both hybrid and classic cards consume that shared glass surface');
-  assert.ok((toast.match(/borderColor: chrome\.border/g) ?? []).length === 2, 'both cards expose a visible glass edge');
+  // зачем (владелец 12.10, стиль «Тень»): у тоста нет обводки — отделяют тон и тень.
+  assert.ok((toast.match(/borderColor: chrome\.border/g) ?? []).length === 0, 'no glass edge outline');
   assert.ok(toast.includes('Math.max(TOAST_TOP_MIN, insets.top + TOAST_TOP_GAP)'), 'existing top safe-area geometry remains');
   assert.ok(toast.includes('pointerEvents="none"'), 'toast remains passive to touches');
   assert.ok(toast.includes("duration = 3000"), 'existing default three-second duration remains');

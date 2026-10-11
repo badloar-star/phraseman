@@ -6,13 +6,11 @@
 //   без записи на диск; отпускание → одна запись (theme_intensity_drag.ts).
 // • Хаптик — только на опорных точках 0 / 25 / 50 / 75 / 100 %.
 // • Доступность: adjustable, шаг ±10 %, значение в процентах.
-import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, View, type AccessibilityActionEvent, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
-  interpolateColor,
   runOnJS,
   useAnimatedStyle,
   useReducedMotion,
@@ -20,18 +18,16 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
-import { liquidGlassTokens, type GlassTokens, type LiquidGlassThemeId } from '../../constants/liquidGlassThemePalette';
+import type { GlassTokens, LiquidGlassThemeId } from '../../constants/liquidGlassThemePalette';
 import { LIQUID_GLASS_INTENSITY_STEP } from '../../constants/liquidGlassThemeIntensity';
 import { createThemeIntensityDragController } from './theme_intensity_drag';
 
 // зачем: в части тестовых окружений глобального __DEV__ нет — лог [THEME-INTENSITY] не должен ронять гидратацию.
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
 const THUMB = 28;
-const TRACK_H = 8;
-const ROW_H = 56;
-const PAD_X = 14;
-const ICON = 18;
-const ICON_GAP = 12;
+// зачем: макет profile.html themes() — «голый» ползунок: дорожка 6, ручка 28; зона касания выше видимой (44), чтобы попадал палец.
+const TRACK_H = 6;
+const ROW_H = 44;
 // зачем: сильный ease-out — ответ на тап начинается сразу, а не «разгоняется».
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 const A11Y_STEP = 0.1;
@@ -45,19 +41,13 @@ type Props = Readonly<{
   onCommit: (intensity: number) => void;
 }>;
 
-function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onCommit }: Props) {
+function ThemeIntensitySliderImpl({ glass, value, label, onPreview, onCommit }: Props) {
   const reduceMotion = useReducedMotion();
   const progress = useSharedValue(value);
   const width = useSharedValue(0);
   const lastStep = useSharedValue(value);
   const pressed = useSharedValue(0);
   const dragging = useSharedValue(0);
-
-  // зачем: цвет заливки на UI-потоке — между опорными палитрами ЭТОЙ темы, а не общий.
-  const fill = useMemo(() => {
-    const at = (intensity: number) => liquidGlassTokens(themeId, { level: 'calm', appearance: glass.appearance, intensity });
-    return [at(0).accent, at(0.5).accent, at(1).accent] as const;
-  }, [themeId, glass.appearance]);
 
   const onPreviewRef = useRef(onPreview);
   const onCommitRef = useRef(onCommit);
@@ -151,7 +141,6 @@ function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onC
 
   const fillStyle = useAnimatedStyle(() => ({
     width: THUMB / 2 + progress.value * Math.max(0, width.value - THUMB),
-    backgroundColor: interpolateColor(progress.value, [0, 0.5, 1], [fill[0], fill[1], fill[2]]),
   }));
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [
@@ -179,24 +168,22 @@ function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onC
       accessibilityValue={{ min: 0, max: 100, now: percent, text: `${percent}%` }}
       accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
       onAccessibilityAction={onA11y}
-      style={[styles.row, { backgroundColor: glass.opaqueControl }]}
+      style={styles.row}
     >
-      <Ionicons name="water-outline" size={ICON} color={glass.secondary} />
       <GestureDetector gesture={gesture}>
         <View style={styles.hit} onLayout={onLayout}>
           <View style={[styles.track, { backgroundColor: glass.line }]}>
-            <Animated.View style={[styles.fill, fillStyle]} />
+            <Animated.View style={[styles.fill, { backgroundColor: glass.text }, fillStyle]} />
           </View>
           <Animated.View
             style={[
               styles.thumb,
-              { backgroundColor: glass.isLight ? '#FFFFFF' : glass.text, shadowColor: glass.isLight ? glass.shadowTint : '#000000' }, // theme-exempt: ручка ползунка: белая заливка и чёрная тень — постоянные
+              { backgroundColor: '#FFFFFF', shadowColor: '#000000' }, // theme-exempt: ручка ползунка по макету: белая заливка и чёрная тень — постоянные
               thumbStyle,
             ]}
           />
         </View>
       </GestureDetector>
-      <Ionicons name="water" size={ICON} color={glass.accentText} />
     </View>
   );
 }
@@ -204,19 +191,11 @@ function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onC
 export const ThemeIntensitySlider = memo(ThemeIntensitySliderImpl);
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: ICON_GAP,
-    height: ROW_H,
-    paddingHorizontal: PAD_X,
-    borderRadius: 16,
-    marginTop: 20,
-  },
-  // Зона касания на всю высоту строки — палец не обязан попадать в 8-пиксельную дорожку.
+  row: { height: ROW_H, marginTop: 20 },
+  // Зона касания на всю высоту строки — палец не обязан попадать в 6-пиксельную дорожку.
   hit: { flex: 1, height: ROW_H, justifyContent: 'center' },
   track: { height: TRACK_H, borderRadius: TRACK_H / 2, overflow: 'hidden', marginHorizontal: 0 },
-  fill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: TRACK_H / 2 },
+  fill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: TRACK_H / 2, opacity: 0.85 },
   thumb: {
     position: 'absolute',
     left: 0,
@@ -224,9 +203,9 @@ const styles = StyleSheet.create({
     width: THUMB,
     height: THUMB,
     borderRadius: THUMB / 2,
-    shadowOpacity: 0.28,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.45,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 4 },
     elevation: 3,
   },
 });

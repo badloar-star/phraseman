@@ -273,6 +273,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   return {
     live: gate !== null,
     uid: ids?.uid ?? null,
+    stableId: ids?.stableId ?? null,
     roomLoad, rows, myPlace, tier, friends, weekResult, dismissWeekResult,
     session, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
   };

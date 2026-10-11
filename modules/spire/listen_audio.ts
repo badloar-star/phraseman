@@ -7,12 +7,13 @@
 // вызов expo-speech делает экран (зона сессии «Дизайн», components/spire/*).
 // Нечитаемый URI — не молчим: возвращаем причину, экран её логирует.
 
-/** Языки Шпиля (D133): en/es/fr/de; it — нет. */
+/** Языки Шпиля: каждый контур говорит только своим голосом устройства. */
 export const SPIRE_LISTEN_SPEECH_LANGUAGE = Object.freeze({
   en: 'en-US',
   es: 'es-ES',
   fr: 'fr-FR',
   de: 'de-DE',
+  it: 'it-IT',
 } as const);
 
 export type SpireListenLang = keyof typeof SPIRE_LISTEN_SPEECH_LANGUAGE;

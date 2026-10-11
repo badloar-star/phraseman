@@ -25,6 +25,7 @@ import {
   createSpireStepState,
   pauseSpireStep,
   resumeSpireStep,
+  skipReportedSpireTask,
   submitSpireAnswer,
   tickSpireBudget,
   type SpireStepState,
@@ -345,11 +346,25 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     finish(next);
   }, [commit, finish, phase]);
 
+  const reportCurrentTask = useCallback((taskId: string) => {
+    const cur = stateRef.current;
+    const task = pick.tasks[cur.taskIndex];
+    if (phase !== 'playing' || cur.phase !== 'active' || !task || task.taskId !== taskId) {
+      DebugLogger.warn(LOG, `step: жалоба не совпала с текущим заданием (${taskId})`);
+      return;
+    }
+    const next = skipReportedSpireTask(cur, cur.elapsedBudgetMs);
+    DebugLogger.info(LOG, `step: задание ${cur.taskIndex + 1} снято по жалобе без штрафа`);
+    setFeedback(null);
+    commit(next);
+    if (next.phase === 'passed') finish(next);
+  }, [commit, finish, phase, pick.tasks]);
+
   const displayTaskIndex = feedback ? feedback.taskIndex : Math.min(state.taskIndex, pick.tasks.length - 1);
 
   return {
     phase, state, clock, feedback, exitOpen, displayTaskIndex,
-    submitChoice, submitTokens, submitItems, requestExit, cancelExit, confirmExit, continueAfterReveal,
+    submitChoice, submitTokens, submitItems, reportCurrentTask, requestExit, cancelExit, confirmExit, continueAfterReveal,
   };
 }
 

@@ -161,7 +161,7 @@ function withOutcome(state: SpireStepState, outcome: SpireTaskOutcome): SpireSte
   if (nextIndex >= SPIRE_STEP_TASK_COUNT) {
     return { ...state, outcomes, phase: 'passed', taskIndex: nextIndex };
   }
-  return { ...state, outcomes, phase: outcome.correct ? 'active' : 'revealing', taskIndex: nextIndex };
+  return { ...state, outcomes, phase: outcome.correct || outcome.skippedNoPenalty ? 'active' : 'revealing', taskIndex: nextIndex };
 }
 
 /** Обычный ответ (choice/translate/dictate) — правильность через answer_check.ts. */
@@ -215,6 +215,17 @@ export function submitSpireVoiceVerdict(
     };
   }
   return withOutcome(state, { taskIndex: state.taskIndex, correct: false, elapsedMs, skippedNoPenalty: true });
+}
+
+/** Жалоба на текущее задание: убрать его из этой попытки без ошибки и без сердца. */
+export function skipReportedSpireTask(state: SpireStepState, elapsedMs: number): SpireStepState {
+  if (state.phase !== 'active') return state;
+  return withOutcome(state, {
+    taskIndex: state.taskIndex,
+    correct: false,
+    elapsedMs,
+    skippedNoPenalty: true,
+  });
 }
 
 /** После показа правильного ответа (T20) — переход к следующему заданию. */

@@ -39,8 +39,7 @@ import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import V2Pressable from '../v2/V2Pressable';
-import { useSpirePalette } from './useSpirePalette';
-import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { useSpireBgBottom, useSpirePalette } from './useSpirePalette';
 import SpireAllMembers from './SpireAllMembers';
 import SpireClimbDock from './SpireClimbDock';
 import SpireFloorInfo from './SpireFloorInfo';
@@ -60,7 +59,7 @@ import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireRivalsByFloor, spireTimeLe
 
 const LOG = '[SPIRE]';
 const DASH = '—';
-const SPIRE_LANGS: readonly SpireLang[] = ['en', 'es', 'de', 'fr'];
+const SPIRE_LANGS: readonly SpireLang[] = ['en', 'es', 'de', 'fr', 'it'];
 
 function asSpireLang(value: unknown): SpireLang | null {
   return SPIRE_LANGS.includes(value as SpireLang) ? (value as SpireLang) : null;
@@ -86,13 +85,14 @@ async function readCurrentLocalWeek(lang: SpireLang): Promise<SpireWeekLocal | n
   DebugLogger.info(LOG, `home: локальная неделя ok (tier=${local.tier} floor=${local.floor} stepInFloor=${local.stepInFloor} steps=${local.stepsCleared}) из AsyncStorage`);
   return local;
 }
-
+
 /** D77: языки Шпиля с пометкой «бета» (первые 2–4 недели после 30.09). */
-const SPIRE_BETA_LANGS: readonly string[] = ['es', 'de', 'fr'];
+const SPIRE_BETA_LANGS: readonly string[] = ['es', 'de', 'fr', 'it'];
 
 export default function SpireHomeScreen() {
   const { lang } = useLang();
   const p = useSpirePalette();
+  const bgBottom = useSpireBgBottom();
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
   const { hasPremiumAccess } = usePremium();
@@ -242,7 +242,7 @@ export default function SpireHomeScreen() {
         </View>
       </ScrollView>
       <View pointerEvents="box-none" style={[s.dock, { bottom: bottomPad - 24 }]}>
-        <LinearGradient pointerEvents="none" colors={[lv2Alpha(p.bg, 0), lv2Alpha(p.bg, 0.96)]} style={s.scrim} />
+        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={s.scrim} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome ? (
           <SpireResultPanel
             lang={lang}
@@ -258,11 +258,12 @@ export default function SpireHomeScreen() {
           <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock} onClimb={climb} />
         )}
       </View>
-      {game.uid ? (
+      {game.uid && game.stableId ? (
         <SpireStepScreen
           lang={lang}
           session={game.session}
           uid={game.uid}
+          stableId={game.stableId}
           studyTarget={String(studyTarget)}
           showEnergy={!hasPremiumAccess}
           onFinish={game.onStepFinish}
@@ -283,7 +284,7 @@ const s = StyleSheet.create({
   title: { ...V2_TYPE.largeTitle, letterSpacing: -0.5 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   betaPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
-  betaText: { fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 0.3 },
+  betaText: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 0.3 }, // зачем (аудит D145, 11.10): межстрочный ≥ 1.25× — шкала V2_TYPE 13/17
   subtitle: { fontSize: 16, lineHeight: 20, marginTop: 6 },
   rulesBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },

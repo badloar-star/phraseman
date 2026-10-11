@@ -18,6 +18,9 @@ import { readRemoteConfigCacheRaw } from './remote_config_client'; // зачем
 
 const SPIRE_TAB_FLAG_KEY = 'spire_tab_enabled';
 const SPIRE_TAB_DEV_KEY = 'spire_tab_dev_override_v1';
+// зачем (координатор 11.10, Шпиль — обязательный пункт релиза): для съёмки экранов на эмуляторе без правки remote-конфига вкладку можно показать в dev
+// переменной EXPO_PUBLIC_SPIRE_DEV_TAB=1. Только __DEV__ (в релизе значение игнорируется), второй замок config.enabled сервера НЕ обходится.
+const DEV_TAB_ENV = process.env.EXPO_PUBLIC_SPIRE_DEV_TAB === '1';
 const LOG = '[SPIRE]';
 
 let _remoteEnabled = false;
@@ -58,7 +61,7 @@ export function primeSpireTabFlag(): Promise<void> {
 
 /** Синхронное чтение: до прогрева кэша всегда false. */
 export function isSpireTabEnabled(): boolean {
-  return _remoteEnabled || (__DEV__ && _devOverride);
+  return _remoteEnabled || (__DEV__ && (_devOverride || DEV_TAB_ENV));
 }
 
 /** __DEV__-переключатель. В релизной сборке ничего не делает. */

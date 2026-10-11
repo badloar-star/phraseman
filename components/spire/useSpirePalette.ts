@@ -7,6 +7,15 @@ import { getV2Palette, type V2Palette } from '../../constants/v2Style';
 // Оставляем прежние имена полей палитры (p.text, p.card…), чтобы разметка не менялась, но значения
 // берём из токенов стекла активной темы: плоские непрозрачные плиты, светлый текст, кромка — line.
 // Цвета «верно/неверно» (correct/wrong) остаются из V2-палитры — это смысловые цвета, не тон темы.
+/**
+ * Цвет низа градиента фона темы: затухание под нижней кнопкой красим им, а не плоским bg — на градиентных темах плоский давал серую полосу
+ * (зачем, Сверка 11.10 — то же, что PanelDock). Под самой кнопкой фон сплошной.
+ */
+export function useSpireBgBottom(): string {
+  const { liquidGlassThemeId } = useTheme();
+  return useMemo(() => liquidGlassTokens(liquidGlassThemeId).bgBottom, [liquidGlassThemeId]);
+}
+
 export function useSpirePalette(): V2Palette {
   const { theme, themeMode, liquidGlassThemeId } = useTheme();
   return useMemo(() => {

@@ -16,6 +16,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import type { SpireStepSession } from '../../app/spire/use_spire_game';
 import { useSpireStepRunner, type SpireStepFinish } from '../../app/spire/use_spire_step_runner';
 import { SPIRE_STEP_MAX_HEARTS, SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
+import SpireTaskReportButton from '../../modules/spire/SpireTaskReportButton';
 import { spireTierName } from '../../modules/spire/tier_names';
 import EnergyBar from '../EnergyBar';
 import V2Pressable from '../v2/V2Pressable';
@@ -31,6 +32,7 @@ type Props = Readonly<{
   lang: Lang;
   session: SpireStepSession;
   uid: string;
+  stableId: string;
   studyTarget: string;
   showEnergy: boolean;
   onFinish: (finish: SpireStepFinish) => void;
@@ -49,7 +51,7 @@ function Hearts({ lang, hearts }: Readonly<{ lang: Lang; hearts: number }>) {
   );
 }
 
-function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbort, exitRef }: Props & Readonly<{ exitRef: MutableRefObject<(() => void) | null> }>) {
+function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFinish, onAbort, exitRef }: Props & Readonly<{ exitRef: MutableRefObject<(() => void) | null> }>) {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   const runner = useSpireStepRunner({
@@ -63,6 +65,12 @@ function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbo
   const answering = runner.phase === 'playing' && runner.state.phase === 'active' && runner.feedback === null && !runner.exitOpen;
   const counter = Math.min(runner.displayTaskIndex + 1, SPIRE_STEP_TASK_COUNT);
   const fb = runner.feedback && !runner.feedback.ok ? runner.feedback : null;
+  const reportableTarget = studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de' || studyTarget === 'it'
+    ? studyTarget
+    : null;
+  const reportText = task && (typeof task.payload.phrase === 'string' || typeof task.payload.prompt === 'string')
+    ? String(task.payload.phrase ?? task.payload.prompt)
+    : task?.taskId;
   return (
     <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top + 6 }]} testID="spire-step">
       <View style={s.head}>
@@ -101,6 +109,27 @@ function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbo
             studyTarget={studyTarget}
           />
         )}
+        {answering && task && reportableTarget ? (
+          <View style={s.reportRow}>
+            <SpireTaskReportButton
+              claim={{
+                stableUid: stableId,
+                taskId: task.taskId,
+                studyTarget: reportableTarget,
+                weekId: ctx.weekKey,
+                tier: ctx.tier,
+                packHash: pick.plan.packHash,
+                floor: pick.packFloor,
+                step: ctx.stepInFloor + 1,
+                setIndex: pick.setIndex,
+                taskIndex: runner.displayTaskIndex,
+              }}
+              taskText={reportText}
+              removeFromRemainingRun={runner.reportCurrentTask}
+              testID={`spire-task-report-${runner.displayTaskIndex}`}
+            />
+          </View>
+        ) : null}
         {fb ? (
           <View style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }]} accessibilityLiveRegion="polite" testID="spire-step-hint">
             {fb.correctText ? (
@@ -159,6 +188,7 @@ const s = StyleSheet.create({
   onward: { marginTop: 10, minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   onwardText: { fontSize: 16, fontWeight: '700' },
   footer: { marginTop: 22, textAlign: 'center', fontSize: 16, fontWeight: '700' },
+  reportRow: { minHeight: 44, marginTop: 10, alignItems: 'flex-end', justifyContent: 'center' },
 });
 
 export default memo(SpireStepScreen);

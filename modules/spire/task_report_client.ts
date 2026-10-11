@@ -11,7 +11,7 @@ import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 �
 export type SpireTaskReportSubmissionInput = Readonly<{
   stableUid: string;
   taskId: string;
-  studyTarget: 'es' | 'fr' | 'de';
+  studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it';
   weekId: string;
   tier: number;
   packHash: string;

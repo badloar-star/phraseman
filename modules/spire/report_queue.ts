@@ -40,7 +40,7 @@ export const SPIRE_PENDING_MAX = 400;
 const BACKOFF_BASE_MS = 15_000;
 const BACKOFF_MAX_MS = 30 * 60_000;
 
-export type SpireLang = 'en' | 'es' | 'de' | 'fr';
+export type SpireLang = 'en' | 'es' | 'de' | 'fr' | 'it';
 export type SpireStepOutcome = 'passed' | 'failed';
 
 /** Одна строка отчёта — ровно то, что уходит на сервер (+ поля для UI/логов). */

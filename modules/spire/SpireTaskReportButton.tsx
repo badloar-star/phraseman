@@ -1,5 +1,7 @@
 import React from 'react';
 import ReportErrorButton from '../../components/ReportErrorButton';
+import { useLang } from '../../components/LangContext';
+import { triLang } from '../../constants/i18n';
 import {
   buildSpireTaskReportSubmission,
   type SpireTaskReportSubmissionInput,
@@ -13,8 +15,8 @@ export type SpireTaskReportButtonProps = Readonly<{
 }>;
 
 /**
- * Standard flag UX for the future real Spire task renderer. This deliberately
- * is not mounted into a fabricated route: no learner task renderer exists yet.
+ * Standard flag UX mounted by the real Spire step renderer. A confirmed report
+ * quarantines the task on the server and removes the local report action.
  */
 export function SpireTaskReportButton({
   claim,
@@ -22,13 +24,19 @@ export function SpireTaskReportButton({
   taskText,
   testID,
 }: SpireTaskReportButtonProps) {
+  const { lang } = useLang();
   return (
     <ReportErrorButton
       screen="spire"
       dataId={claim.taskId}
       dataText={taskText ?? claim.taskId}
       variant="icon-flag"
-      accessibilityLabel="Сообщить об ошибке в задании Spire"
+      // зачем (аудит 11.10): подпись для скринридера на языке интерфейса и под именем раздела «Шпиль», а не «Spire» по-русски
+      accessibilityLabel={triLang(lang, {
+        ru: 'Сообщить об ошибке в задании Шпиля', uk: 'Повідомити про помилку в завданні Шпиля', en: 'Report a mistake in this Spire task',
+        es: 'Informar de un error en esta tarea de la Aguja', 'pt-BR': 'Relatar um erro nesta tarefa da Torre', vi: 'Báo lỗi trong nhiệm vụ Tháp này',
+        id: 'Laporkan kesalahan di tugas Menara ini', tr: 'Bu Kule görevindeki hatayı bildir', pl: 'Zgłoś błąd w tym zadaniu Wieży',
+      })}
       testID={testID}
       submitOverride={async ({ comment }) => {
         let safeLocalRemoval = false;

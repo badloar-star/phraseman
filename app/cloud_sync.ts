@@ -298,7 +298,7 @@ import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
 import { gcDelta, gcSnapshot } from './mem_probe';
 import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
-import { diffAchievementUnlocks } from './achievement_restore_diff';
+import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -4162,8 +4162,13 @@ async function applyRestoreFromUserDocTraced(
   }
   if (cloudData['achievements_state']) {
     // зачем (координатор 11.10, сперва логи): облако пишет достижения целиком — видно, что затёрло бы локальные.
+    // п.1: вместо перезаписи — слияние по id (более ранняя дата), локально полученное не теряется.
+    const cloudAchievements = String(cloudData['achievements_state']);
+    let achievementsValue = cloudAchievements;
     try {
       const localAchievements = await AsyncStorage.getItem('achievements_v1');
+      achievementsValue = mergeAchievementStatesRaw(localAchievements, cloudAchievements);
+      logRestoreMerge('achievements_v1', localAchievements, cloudAchievements, achievementsValue);
       const diff = diffAchievementUnlocks(localAchievements, String(cloudData['achievements_state']));
       console.log('[ACH-RESTORE]', JSON.stringify({
         localUnlocked: diff.localUnlocked?.length ?? 'unparsed',
@@ -4173,7 +4178,7 @@ async function applyRestoreFromUserDocTraced(
     } catch (error) {
       console.warn('[ACH-RESTORE] сравнение не удалось', error instanceof Error ? error.message : String(error));
     }
-    pairs.push(['achievements_v1', cloudData['achievements_state']]);
+    pairs.push(['achievements_v1', achievementsValue]);
   }
   // ── Карточки из подколлекции flashcard_pages ───────────────────────────────
   // зачем: у мигрированных аккаунтов поля progress.flashcards_v1 в документе

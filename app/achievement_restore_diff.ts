@@ -35,5 +35,54 @@ export function diffAchievementUnlocks(localRaw: string | null | undefined, clou
   return { localUnlocked, cloudUnlocked, wouldLose };
 }
 
+type AchievementStateRow = { id: string; unlockedAt: string | null; notified?: boolean; shardClaimed?: boolean };
+
+function parseRows(raw: string | null | undefined): AchievementStateRow[] | null {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return null;
+    return (parsed as AchievementStateRow[]).filter((row) => row && typeof row.id === 'string');
+  } catch {
+    // зачем: битое значение не роняет восстановление — вызывающий решает, какую сторону оставить.
+    return null;
+  }
+}
+
+const isUnlocked = (row: AchievementStateRow | undefined): boolean =>
+  !!row && typeof row.unlockedAt === 'string' && row.unlockedAt.length > 0;
+
+/**
+ * Слияние достижений «локально + облако» при восстановлении (координатор 11.10, п.1).
+ * зачем: облако писало achievements_v1 целиком — полученное между синком и восстановлением пропадало.
+ * Правило: объединение по id; получено с обеих сторон — более ранняя дата; показ тоста — ИЛИ (поздравляем фактом,
+ * уже показанное на другом устройстве не повторяем). Порядок — облачный, локальные новые id в конце.
+ * Битое облако — оставляем локальное; битое локальное — облако как раньше.
+ */
+export function mergeAchievementStatesRaw(localRaw: string | null | undefined, cloudRaw: string): string {
+  const cloudRows = parseRows(cloudRaw);
+  const localRows = parseRows(localRaw);
+  if (cloudRows === null) return localRaw ?? cloudRaw;
+  if (localRows === null || localRows.length === 0) return cloudRaw;
+  const localById = new Map(localRows.map((row) => [row.id, row] as const));
+  const seen = new Set<string>();
+  const merged: AchievementStateRow[] = [];
+  for (const cloud of cloudRows) {
+    seen.add(cloud.id);
+    const local = localById.get(cloud.id);
+    if (!local) { merged.push(cloud); continue; }
+    if (isUnlocked(cloud) && isUnlocked(local)) {
+      const earlier = String(local.unlockedAt) < String(cloud.unlockedAt) ? local : cloud;
+      merged.push({ ...earlier, notified: !!(cloud.notified || local.notified) });
+    } else if (isUnlocked(local)) {
+      merged.push({ ...local, notified: !!(cloud.notified || local.notified) });
+    } else {
+      merged.push(cloud);
+    }
+  }
+  for (const local of localRows) if (!seen.has(local.id)) merged.push(local);
+  return JSON.stringify(merged);
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

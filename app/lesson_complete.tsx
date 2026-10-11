@@ -227,7 +227,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                   }}
                   onPress={handleNo}
                 >
-                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
+                  <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
                 </KitTouchable>
                 <KitTouchable
                   style={{
@@ -1338,7 +1338,7 @@ export default function LessonComplete() {
             />
           </View>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 }}>
-            <Text style={{ color: t.textSecond, fontSize: 16, textAlign: 'center' }}>
+            <Text style={{ color: t.accentText, fontSize: 16, textAlign: 'center' }}>
               {triLang(lang, {
                 ru: 'Сохраняю результат…',
                 en: 'Saving result…',
@@ -1407,7 +1407,7 @@ export default function LessonComplete() {
           )}
           {medalImproved && (
             <Animated.Text style={{
-              color: t.gold, fontSize: f.bodyLg, fontWeight: '700',
+              color: t.accentText, fontSize: f.bodyLg, fontWeight: '700',
               marginTop: 6, opacity: fadeAnim,
             }}>
               {medalTier === 'bronze' && triLang(lang, { ru: 'Новая медаль!', en: 'New medal!', uk: 'Нова медаль!', es: '¡Medalla nueva!', 'pt-BR': 'Nova medalha!', vi: 'Huy chương mới!', id: 'Medali baru!', tr: 'Yeni madalya!', pl: 'Nowy medal!' })}
@@ -1421,7 +1421,7 @@ export default function LessonComplete() {
           <Text style={{ color: t.textPrimary, fontSize: 30, fontWeight: '700', marginBottom: 10, textAlign: 'center' }}>
             {c.title}
           </Text>
-          <Text style={{ color: t.textSecond, fontSize: 16, marginBottom: 16, textAlign: 'center' }}>
+          <Text style={{ color: t.accentText, fontSize: 16, marginBottom: 16, textAlign: 'center' }}>
             {c.subtitle(lessonId)}
           </Text>
 
@@ -1439,7 +1439,7 @@ export default function LessonComplete() {
               <Ionicons
                 name="star"
                 size={22}
-                color={t.accent}
+                color={t.accentText}
                 accessible={false}
                 accessibilityElementsHidden
                 importantForAccessibility="no"
@@ -1458,7 +1458,7 @@ export default function LessonComplete() {
             flexDirection: 'row', alignItems: 'center', gap: 12,
             overflow: 'hidden',
           }}>
-            <Ionicons name="cafe-outline" size={24} color={t.textSecond} />
+            <Ionicons name="cafe-outline" size={24} color={t.accentText} />
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, flex: 1 }}>
               {c.rest}
             </Text>
@@ -1540,7 +1540,7 @@ export default function LessonComplete() {
                   } as any);
                 }}
               >
-                <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
+                <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
                   {triLang(lang, { ru: 'Следующий урок закрыт', en: 'Next lesson is locked', uk: 'Наступний урок закрито', es: 'La siguiente lección está bloqueada', 'pt-BR': 'Próxima lição bloqueada', vi: 'Bài tiếp theo đã bị khóa', id: 'Pelajaran berikutnya terkunci', tr: 'Sonraki ders kilitli', pl: 'Następna lekcja jest zablokowana' })}
                 </Text>
                 <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).ctaInk, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
@@ -1616,8 +1616,8 @@ export default function LessonComplete() {
               await Share.share({ message: msg }).catch(noteSwallowedHandler('lesson_complete:LessonComplete.share'));
             }}
           >
-            <Ionicons name="share-outline" size={18} color={t.textSecond} />
-            <Text style={{ color: t.textSecond, fontSize: 13 }}>
+            <Ionicons name="share-outline" size={18} color={t.accentText} />
+            <Text style={{ color: t.accentText, fontSize: 13 }}>
               {c.shareResult}
             </Text>
           </KitTouchable>

@@ -193,6 +193,8 @@ export interface SpeakingPanelTheme {
   border: string;
   /** Текст/иконка на залитых accent/correct кнопках (в моно-теме accent белый → нужен тёмный текст). */
   onAccent: string;
+  /** Акцент как ТЕКСТ/значок на карточке (≥ 4.5:1 в светлой теме) — не заливка accent. */
+  accentText: string;
   /** Цвет «нечётко» в пословной карте (жёлтый). Опционален — есть фолбэк. */
   warn?: string;
 }
@@ -225,6 +227,7 @@ export interface SpeakingPanelThemeSource {
   border: string;
   /** Текст на заливке акцента (accentInk темы) — кнопки панели на акценте. */
   textOnGold: string;
+  accentText: string;
 }
 
 /**
@@ -244,6 +247,7 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
     wrong: t.wrong,
     border: t.border,
     onAccent: t.textOnGold,
+    accentText: t.accentText,
   };
 }
 
@@ -2354,13 +2358,13 @@ export function SpeakingPanel({
             эквалайзер (он сам не схлопывается в ноль), при проверке — спиннер в той же высоте. */}
         {!showResult && (status === 'scoring' ? (
           <View style={{ height: VOICE_EQUALIZER_ROW_H, alignItems: 'center', justifyContent: 'center' }}>
-            <ActivityIndicator color={theme.accent} />
+            <ActivityIndicator color={theme.accentText} />
           </View>
         ) : (
           <VoiceEqualizer
             ref={equalizerRef}
             active={status === 'listening'}
-            color={theme.accent}
+            color={theme.accentText}
             idleColor={theme.textMuted}
           />
         ))}
@@ -2371,7 +2375,7 @@ export function SpeakingPanel({
             style={[
               styles.inlineStatus,
               {
-                color: theme.textSecond,
+                color: theme.accentText,
                 minHeight: scaled(18, 14),
                 fontSize: scaled(12, 10),
                 lineHeight: scaled(16, 13),
@@ -2408,6 +2412,7 @@ export function SpeakingPanel({
     textSecond: glass.secondary,
     textMuted: glass.secondary,
     accent: glass.cta,
+    accentText: glass.accentText,
     onAccent: glass.ctaInk,
     border: glass.line,
   };

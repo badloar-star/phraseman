@@ -1243,7 +1243,7 @@ const LessonContent = React.memo(function LessonContent({
                     })()
                   : ''
                 }{selectedWords.length > 0 && phraseWordIdx < phraseTokens.length ? '\u00A0' : ''}
-                <Animated.Text style={{ color: t.accent, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
+                <Animated.Text style={{ color: t.accentText, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
                   {selectedWords.length > 0 ? (phraseWordIdx < phraseTokens.length ? '…' : '') : '|'}
                 </Animated.Text>
               </Text>

@@ -580,7 +580,7 @@ function LessonExamThemeIcon({
   const { theme: t } = useTheme();
   return (
     <View accessible accessibilityLabel={label} style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-      <Ionicons name="school-outline" size={Math.round(size * 0.78)} color={t.accent} />
+      <Ionicons name="school-outline" size={Math.round(size * 0.78)} color={t.accentText} />
     </View>
   );
 }
@@ -1579,7 +1579,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
       >
         <Text
           style={{
-            color: theme.accent,
+            color: theme.accentText,
             fontSize: fonts.label,
             fontWeight: "900",
             letterSpacing: 1.2,
@@ -1829,7 +1829,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                 key={slot} // guard-ok: три фиксированных слота, вставок нет
                 name={slot < earnedStars ? "star" : "star-outline"}
                 size={9}
-                color={slot < earnedStars ? theme.gold : theme.textMuted}
+                color={slot < earnedStars ? theme.accentText : theme.textMuted}
               />
             ))}
           </View>
@@ -1881,7 +1881,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           >
             <Text
               style={{
-                color: theme.accent,
+                color: theme.accentText,
                 fontSize: fonts.label,
                 fontWeight: "900",
                 textAlign: wave >= 0 ? "left" : "right",
@@ -4865,7 +4865,7 @@ export default function LessonsTab({
                     justifyContent: "center",
                   }}
                 >
-                  <Ionicons name="book-outline" size={21} color={t.accent} />
+                  <Ionicons name="book-outline" size={21} color={t.accentText} />
                   {learningV2DictionaryWords.length > 0 ? (
                     <View
                       pointerEvents="none"
@@ -5156,7 +5156,7 @@ export default function LessonsTab({
                       paddingVertical: 7,
                     }}
                   >
-                    <Ionicons name="language-outline" size={14} color={t.gold} />
+                    <Ionicons name="language-outline" size={14} color={t.accentText} />
                     <Text
                       style={{
                         color: t.textPrimary,

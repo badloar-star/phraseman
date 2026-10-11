@@ -909,7 +909,7 @@ export function ResultsSequence({
                     key={`rs-star-${i}`}
                     filled={i < clampedStars}
                     progress={starSVs[i]}
-                    color={t.gold}
+                    color={t.accentText}
                     dim={t.border}
                     compact={orbitMode}
                   />
@@ -917,7 +917,7 @@ export function ResultsSequence({
               </View>
             ) : null}
             {eyebrow ? (
-              <Text style={[styles.pulseEyebrow, orbitMode ? styles.orbitEyebrow : null, { color: t.accent }]}>{eyebrow}</Text>
+              <Text style={[styles.pulseEyebrow, orbitMode ? styles.orbitEyebrow : null, { color: t.accentText }]}>{eyebrow}</Text>
             ) : null}
             <Text style={[styles.title, styles.pulseTitle, orbitMode ? styles.orbitTitle : null, { color: t.textPrimary }]}>{title}</Text>
             {subtitle ? (
@@ -951,7 +951,7 @@ export function ResultsSequence({
                   <ResultsRewardValue
                     progress={runesProgress}
                     valueWidth={Math.max(48, String(runesValue).length * 19 + 16)}
-                    color={t.gold}
+                    color={t.accentText}
                     accessibilityLabel={runesAccessibilityLabel ?? `${runesValue} ${runesLabel}`}
                     compact
                   />
@@ -1000,7 +1000,7 @@ export function ResultsSequence({
             ) : null}
             {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
               <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
-                <Text style={[styles.rewardText, { color: t.gold }]}>{multiplier.label}</Text>
+                <Text style={[styles.rewardText, { color: t.accentText }]}>{multiplier.label}</Text>
               </RewardPill>
             ))}
           </View>
@@ -1008,7 +1008,7 @@ export function ResultsSequence({
             <View style={styles.finaleSlot}>
               {finaleVisible ? (
                 <Animated.View style={[styles.finaleMark, finaleStyle]}>
-                  <Text style={[styles.finaleText, { color: t.gold }]}>✓</Text>
+                  <Text style={[styles.finaleText, { color: t.accentText }]}>✓</Text>
                 </Animated.View>
               ) : null}
             </View>
@@ -1027,7 +1027,7 @@ export function ResultsSequence({
                 key={`rs-star-${i}`}
                 filled={i < clampedStars}
                 progress={starSVs[i]}
-                color={t.gold}
+                color={t.accentText}
                 dim={t.border}
               />
             ))}
@@ -1041,11 +1041,11 @@ export function ResultsSequence({
 
         {runesVisible ? (
           <Animated.View style={[styles.rewardRow, runesRevealStyle]}>
-            <Text style={[styles.rewardPlus, { color: t.gold }]}>+</Text>
+            <Text style={[styles.rewardPlus, { color: t.accentText }]}>+</Text>
             <ResultsRewardValue
               progress={runesProgress}
               valueWidth={runesWidth}
-              color={t.gold}
+              color={t.accentText}
               accessibilityLabel={`${runesValue} монет`}
             />
             {/* guard-ok: декоративный ассет, смысл несёт accessibilityLabel выше */}
@@ -1084,7 +1084,7 @@ export function ResultsSequence({
           ) : null}
           {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
             <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
-              <Text style={[styles.rewardText, { color: t.gold }]}>{multiplier.label}</Text>
+              <Text style={[styles.rewardText, { color: t.accentText }]}>{multiplier.label}</Text>
             </RewardPill>
           ))}
         </View>
@@ -1092,7 +1092,7 @@ export function ResultsSequence({
           <View style={styles.finaleSlot}>
             {finaleVisible ? (
             <Animated.View style={[styles.finaleMark, finaleStyle]}>
-              <Text style={[styles.finaleText, { color: t.gold }]}>✓</Text>
+              <Text style={[styles.finaleText, { color: t.accentText }]}>✓</Text>
             </Animated.View>
             ) : null}
           </View>

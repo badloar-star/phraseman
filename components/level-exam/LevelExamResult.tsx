@@ -102,7 +102,7 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
               return (
                 <View key={format} style={{ gap: ds.spacing.xs }}>
                   <View style={styles.skillLabel}>
-                    <Text style={{ color: t.textSecond, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                    <Text style={{ color: t.accentText, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                       {copy.formatLabels[format as keyof typeof copy.formatLabels]}
                     </Text>
                     <Text style={{ color: t.textPrimary, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
@@ -124,8 +124,8 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
               </Text>
               {result.weakLessons.map((lesson) => (
                 <View key={lesson.lessonId} style={styles.lessonRow}>
-                  <Ionicons name="book-outline" size={18} color={t.accent} />
-                  <Text style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontFamily: ds.fontFamily }}>
+                  <Ionicons name="book-outline" size={18} color={t.accentText} />
+                  <Text style={{ flex: 1, color: t.accentText, fontSize: f.body, fontFamily: ds.fontFamily }}>
                     {lesson.title}
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
@@ -137,7 +137,7 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
           ) : null}
 
           <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.reward, { padding: ds.spacing.md }]}> 
-            <Ionicons name={result.passed ? 'sparkles' : 'bulb-outline'} size={22} color={result.passed ? t.gold : t.accent} />
+            <Ionicons name={result.passed ? 'sparkles' : 'bulb-outline'} size={22} color={result.passed ? t.accentText : t.accentText} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '800' }}>
               {rewardText}
             </Text>

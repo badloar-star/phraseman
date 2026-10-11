@@ -147,7 +147,7 @@ function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
           { flex: 1, paddingVertical: 8, paddingHorizontal: 6, alignItems: 'center' },
           i < cols.length - 1 && { borderRightWidth: 0.5, borderRightColor: t.border },
         ]}>
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
+          <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
             {col}
           </Text>
         </View>
@@ -179,7 +179,7 @@ function Table({ label, headers, rows, t, f, firstBold }: {
   return (
     <View style={{ marginBottom: 16 }}>
       {label && (
-        <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 8 }} maxFontSizeMultiplier={1}>
+        <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 8 }} maxFontSizeMultiplier={1}>
           {label}
         </Text>
       )}
@@ -1484,12 +1484,12 @@ function HintScreen() {
         {frenchHintCopy ? (
           <TonalSurface radius={16} style={{ borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
             <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="shield-checkmark-outline" size={30} color={t.textSecond} />
+              <Ionicons name="shield-checkmark-outline" size={30} color={t.accentText} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
               {frenchHintCopy.title}
             </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+            <Text style={{ color: t.accentText, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
               {frenchHintCopy.body}
             </Text>
           </TonalSurface>

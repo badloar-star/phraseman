@@ -393,7 +393,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Untuk apa topik ini?',
     defaultTitleTr: 'Bu konu ne işe yarar?',
     defaultTitlePl: 'Po co ten temat?',
-    color: (t) => t.accent,
+    color: (t) => t.accentText,
   },
   how: {
     icon: 'construct',
@@ -417,7 +417,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Perlu diketahui',
     defaultTitleTr: 'Bilmekte fayda var',
     defaultTitlePl: 'Warto wiedzieć',
-    color: (t) => t.gold,
+    color: (t) => t.accentText,
   },
   trap: {
     icon: 'warning',
@@ -441,7 +441,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Cara kerjanya',
     defaultTitleTr: 'Nasıl çalışır?',
     defaultTitlePl: 'Jak to działa?',
-    color: (t) => t.accent,
+    color: (t) => t.accentText,
   },
   core_idea: {
     icon: 'flash',
@@ -453,7 +453,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Ide utama',
     defaultTitleTr: 'Ana fikir',
     defaultTitlePl: 'Główna myśl',
-    color: (t) => t.accent,
+    color: (t) => t.accentText,
   },
   main_formula: {
     icon: 'calculator',
@@ -465,7 +465,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Rumus pelajaran',
     defaultTitleTr: 'Ders formülü',
     defaultTitlePl: 'Wzór lekcji',
-    color: (t) => t.gold,
+    color: (t) => t.accentText,
   },
   be_choice: {
     icon: 'git-branch',
@@ -489,7 +489,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Apa yang datang setelah kata kerja',
     defaultTitleTr: 'Fiilden sonra ne gelir?',
     defaultTitlePl: 'Co idzie po czasowniku',
-    color: (t) => t.gold,
+    color: (t) => t.accentText,
   },
   memory_tip: {
     icon: 'bulb',
@@ -501,7 +501,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Trik menyusun',
     defaultTitleTr: 'Kurma ipucu',
     defaultTitlePl: 'Sposób składania',
-    color: (t) => t.gold,
+    color: (t) => t.accentText,
   },
   negative_formula: {
     icon: 'close-circle',
@@ -525,7 +525,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Pertanyaan',
     defaultTitleTr: 'Soru',
     defaultTitlePl: 'Pytanie',
-    color: (t) => t.accent,
+    color: (t) => t.accentText,
   },
   after_be: {
     icon: 'list',
@@ -537,7 +537,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Apa yang datang setelah To Be',
     defaultTitleTr: 'To Be sonrasında ne gelir?',
     defaultTitlePl: 'Co idzie po To Be',
-    color: (t) => t.gold,
+    color: (t) => t.accentText,
   },
   negative_questions: {
     icon: 'alert-circle',
@@ -549,7 +549,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleId: 'Pertanyaan dengan not',
     defaultTitleTr: 'not ile sorular',
     defaultTitlePl: 'Pytania z not',
-    color: (t) => t.accent,
+    color: (t) => t.accentText,
   },
   mistakes: {
     icon: 'warning',

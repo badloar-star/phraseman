@@ -1458,7 +1458,7 @@ function MistakePracticeSessionScreen() {
                 <SpeechUnavailableNote lang={lang} color={g.secondary} testID="mistakes-speech-unavailable" />
               ) : null}
               {entry.exercise.renderer === 'listening' && entry.exercise.audioRef ? (
-                <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.accent} foreground={g.accentInk} accessibilityLabel={copy.listen} />
+                <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.accentText} foreground={g.accentInk} accessibilityLabel={copy.listen} />
               ) : null}
               <AnswerField>
                 <TextInput

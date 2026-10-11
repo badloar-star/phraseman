@@ -124,7 +124,7 @@ export function VictoryBurst({
           cardStyle,
         ]}
       >
-        <Ionicons name={heroIcon} size={56} color={t.accent} style={styles.hero} />
+        <Ionicons name={heroIcon} size={56} color={t.accentText} style={styles.hero} />
         <Text style={[styles.title, { color: t.textPrimary }]} numberOfLines={2}>
           {title}
         </Text>
@@ -137,7 +137,7 @@ export function VictoryBurst({
           <View style={styles.statsRow}>
             {stats.map((s, i) => (
               <View key={`vs-${i}`} style={[styles.statCard, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
-                <Text style={[styles.statValue, { color: t.accent }]}>{s.value}</Text>
+                <Text style={[styles.statValue, { color: t.accentText }]}>{s.value}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>{s.label}</Text>
               </View>
             ))}

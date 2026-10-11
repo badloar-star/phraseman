@@ -241,7 +241,7 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       // зачем (04.10, Ядро): 9ff9164b2 и 6b9e88612 — только логи [SPEAK-SCORE]/[SPEAK-FOCUS], поведение то же.
       // зачем (10.10, Дизайн, волна 4 цветов): из статического actionBtnText убран литерал color '#fff' — во всех трёх местах цвет и так
       // задаётся токеном темы (mTheme.onAccent); логика квот/записи/удержания не тронута.
-      panel: '2b556fa3d2cb23b8b603976192ab509da7df69b81d98d176ef9ccc8e637621d6', // 11.10: onAccent панели = t.textOnGold (accentInk темы), не t.correctText — светлая тема
+      panel: 'b77fb02ec28fc90f19ea9d43b9e8ec7249bc3f9b0f9ecf69846772b3e2d6b63d', // 11.10: onAccent панели = t.textOnGold (accentInk), акцент как текст = accentText (светлая тема)
       // зачем (04.10, §126 срез карточки речи): на коротких экранах тренажёр прижимает карточку к верху слота
       // (speakingInlineSlotAlign) — только выравнивание; геометрия слота и логика записи не тронуты.
       // зачем (04.10): + 8 dp воздуха сверху у прижатой карточки (кадр 450×800).

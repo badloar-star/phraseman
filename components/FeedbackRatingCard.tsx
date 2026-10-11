@@ -208,7 +208,7 @@ export default function FeedbackRatingCard({
                   <Ionicons
                     name={rating >= star ? 'star' : 'star-outline'}
                     size={34}
-                    color={rating >= star ? t.gold : glass.mutedText}
+                    color={rating >= star ? t.accentText : glass.mutedText}
                   />
                 </TouchableOpacity>
               ))}
@@ -312,7 +312,7 @@ export default function FeedbackRatingCard({
                 onPress={() => { hapticTap(); setRating(star); }}
                 style={[styles.starButton, compactStars ? styles.compactStarButton : null]}
               >
-                <Ionicons name={rating >= star ? 'star' : 'star-outline'} size={compactStars ? 28 : 26} color={rating >= star ? t.gold : t.textGhost} />
+                <Ionicons name={rating >= star ? 'star' : 'star-outline'} size={compactStars ? 28 : 26} color={rating >= star ? t.accentText : t.textGhost} />
               </TouchableOpacity>
             ))}
           </View>

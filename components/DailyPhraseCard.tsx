@@ -879,7 +879,7 @@ function DailyPhraseCard({
                       pressed && styles.pressed,
                     ]}
                   >
-                    <Ionicons name="volume-high" size={20} color={t.accent} />
+                    <Ionicons name="volume-high" size={20} color={t.accentText} />
                   </Pressable>
                 )}
                 <Pressable
@@ -1014,7 +1014,7 @@ function DailyPhraseCard({
                             : triLang(lang, { ru: 'Не совсем', uk: 'Не зовсім', en: 'Not quite', es: 'No exactamente', 'pt-BR': 'Não exatamente', vi: 'Chưa đúng', id: 'Belum tepat', tr: 'Tam değil', pl: 'Niezupełnie' })}
                         </Text>
                       </View>
-                      <Text style={[styles.questDiagnosticText, { color: t.textSecond, fontSize: f.body }]}>
+                      <Text style={[styles.questDiagnosticText, { color: t.accentText, fontSize: f.body }]}>
                         {selectedQuestOption.feedback}
                       </Text>
                     </TonalSurface>

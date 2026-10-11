@@ -178,7 +178,7 @@ export function WordDrillCard({
         </Pressable>
       </View>
 
-      <Text style={[styles.status, { color: clean ? theme.correct : theme.textSecond }]}>
+      <Text style={[styles.status, { color: clean ? theme.correct : theme.accentText }]}>
         {statusText}
       </Text>
 
@@ -232,7 +232,7 @@ export function WordDrillCard({
 
       {phase === 'no_speech' && onPlayMine && (
         <Pressable onPress={onPlayMine} hitSlop={6} style={styles.mineLink}>
-          <Text style={[styles.mineText, { color: theme.accent }]}>
+          <Text style={[styles.mineText, { color: theme.accentText }]}>
             {L(lang, {
               ru: 'Послушать свою запись',
               uk: 'Послухати свій запис',

@@ -688,7 +688,7 @@ function AchievementModal({
                 borderRadius: 999, backgroundColor: glass.selected,
               }}
             >
-              <Text style={{ color: glass.text, fontSize: 13, lineHeight: 16, fontWeight: '800' }}>
+              <Text style={{ color: glass.text, fontSize: 13, lineHeight: 17, fontWeight: '800' }}>
                 {obtainedLabel} · {formatDate(state.unlockedAt)}
               </Text>
             </View>

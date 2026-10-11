@@ -138,7 +138,7 @@ const groupStyles = StyleSheet.create({
   divider: { height: StyleSheet.hairlineWidth, marginHorizontal: 14 },
   head: { flexDirection: 'row', alignItems: 'center', gap: 7 },
   // `12/900` капсом с разрядкой .5 — шкала D145: 13.
-  title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 16, fontWeight: '900', letterSpacing: 0.5, textTransform: 'uppercase' },
+  title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 17, fontWeight: '900', letterSpacing: 0.5, textTransform: 'uppercase' },
   // `16/23`
   text: { fontSize: 16, lineHeight: 23 },
 });

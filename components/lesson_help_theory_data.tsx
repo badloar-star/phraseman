@@ -119,7 +119,7 @@ function ExampleCard({
     <View
       accessible
       accessibilityLabel={`${eng}. ${rus}`}
-      style={{ backgroundColor: c.cardBg, borderRadius: 10, borderWidth: 0, borderColor: c.border, borderLeftWidth: 3, borderLeftColor: `${c.roleVerb}99`, paddingVertical: 9, paddingHorizontal: 11, marginBottom: 7 }}
+      style={{ backgroundColor: c.cardBg, borderRadius: 10, borderWidth: 0, borderColor: c.border, borderLeftWidth: 1, borderLeftColor: `${c.roleVerb}99`, paddingVertical: 9, paddingHorizontal: 11, marginBottom: 7 }}
     >
       <ColoredPhrase text={eng} t={t} f={f} subject={subject} link={link} verb={verb} />
       <Text style={{ color: c.muted, fontSize: f.sub - 1, marginTop: 2 }} maxFontSizeMultiplier={1.2}>{rus}</Text>

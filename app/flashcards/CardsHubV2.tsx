@@ -291,5 +291,5 @@ const styles = StyleSheet.create({
   freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
-  tileCount: { fontSize: 16, lineHeight: 19 },
+  tileCount: { fontSize: 16, lineHeight: 21 },
 });

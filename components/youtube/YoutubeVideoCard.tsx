@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   // `.du`: 22 высота, поля 7, радиус 7, чёрный 72%, 12/700 → 13 по D145.
   duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 16, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   titleCompact: { fontSize: 16, lineHeight: 21 },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },

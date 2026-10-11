@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   kicker: { paddingTop: 12, paddingBottom: 4, fontSize: 13, lineHeight: 17, letterSpacing: 3, fontWeight: '700', textTransform: 'uppercase' },
   obj: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 11, minHeight: 48 },
   num: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
+  numText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   objText: { flex: 1, fontSize: 16, lineHeight: 22 },
   avatar: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   note: { marginTop: 2, fontSize: 13, lineHeight: 18 },

@@ -186,7 +186,7 @@ const baseStyles = StyleSheet.create({
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   addTitle: { flex: 1, fontWeight: '600' },
-  rowSub: { fontSize: 16, lineHeight: 19 },
+  rowSub: { fontSize: 16, lineHeight: 21 },
   hint: { marginTop: 14, fontSize: 13, lineHeight: 19, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
 });

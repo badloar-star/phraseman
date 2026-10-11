@@ -184,7 +184,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   time: { width: 40, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.accent },
   rowText: { flex: 1, minWidth: 0 },
   phrase: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  tr: { marginTop: 2, fontSize: 16, lineHeight: 19 },
+  tr: { marginTop: 2, fontSize: 16, lineHeight: 21 },
   vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: g.glassEdge },
   dock: { paddingHorizontal: 20 },
   train: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },

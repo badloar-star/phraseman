@@ -137,7 +137,7 @@ export function Example({ eng, rus, t, f }: { eng: string; rus: string; t: Theme
   const { themeMode } = useTheme();
   const c = useMemo(() => theoryColors(t, themeMode), [t, themeMode]);
   return (
-    <View style={{ marginLeft: 8, marginBottom: 7, paddingLeft: 10, borderLeftWidth: 2, borderLeftColor: `${c.accent}66` }}>
+    <View style={{ marginLeft: 8, marginBottom: 7, paddingLeft: 10, borderLeftWidth: 1, borderLeftColor: `${c.accent}66` }}>
       <Text style={{ fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }} maxFontSizeMultiplier={1.2}>
         <Text style={{ color: c.primary, fontWeight: '800' }}>{eng}</Text>
         <Text style={{ color: c.muted, fontSize: f.sub }}>{'  — ' + rus}</Text>

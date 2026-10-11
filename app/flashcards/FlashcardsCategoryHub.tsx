@@ -279,10 +279,10 @@ const baseRowStyles = StyleSheet.create({
   // зачем: макет 17/22 жирный; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
   title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   topTag: { minHeight: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
-  topTagText: { fontSize: 13, lineHeight: 16, fontWeight: '700' }, // зачем: макет 12, D145 — 13
-  author: { fontSize: 16, lineHeight: 19, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
+  topTagText: { fontSize: 13, lineHeight: 17, fontWeight: '700' }, // зачем: макет 12, D145 — 13
+  author: { fontSize: 16, lineHeight: 21, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
   pill: { minWidth: 33, minHeight: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  pillText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
+  pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
 });
 
 /**
@@ -685,7 +685,7 @@ export default function FlashcardsCategoryHub({
                 width: tileW,
                 height: tileW,
                 borderRadius: TILE_RADIUS,
-                borderWidth: 1.5,
+                borderWidth: 1, // зачем (координатор 11.10): обводка плитки — hairline
                 borderColor: t.accent,
                 backgroundColor: t.bgSurface,
                 alignItems: 'center',

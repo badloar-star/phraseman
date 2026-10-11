@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   kicker: {
     // зачем: `.ov` макета 12/3px; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 13.
     fontSize: 13,
-    lineHeight: 16,
+    lineHeight: 17,
     fontWeight: '700',
     letterSpacing: 3,
     paddingHorizontal: 4,

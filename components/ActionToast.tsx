@@ -703,7 +703,7 @@ const styles = StyleSheet.create({
   // `.tone` 12/760 капсом, разрядка .5 — шкала D145: 13.
   label: {
     fontSize: 13,
-    lineHeight: 16,
+    lineHeight: 17,
     fontWeight: '800',
     letterSpacing: 0.5,
     textTransform: 'uppercase',

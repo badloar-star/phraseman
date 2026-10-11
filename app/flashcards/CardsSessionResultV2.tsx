@@ -273,7 +273,7 @@ const s = StyleSheet.create({
   // kit `.tile.t61`
   okTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   // kit `.ov`
-  ov: { fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase', textAlign: 'center' },
+  ov: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase', textAlign: 'center' },
   // cards-section `.big`
   big: { fontSize: 64, lineHeight: 70, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
   sub: { fontSize: 16, lineHeight: 22, marginTop: 4, textAlign: 'center' },
@@ -295,7 +295,7 @@ const s = StyleSheet.create({
   fixRow: { minHeight: 68, borderRadius: 14, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 9, paddingLeft: 18, paddingRight: 16 },
   fixText: { flex: 1, minWidth: 0 },
   fixWord: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  fixTr: { fontSize: 16, lineHeight: 19, marginTop: 1 },
+  fixTr: { fontSize: 16, lineHeight: 21, marginTop: 1 },
   volHit: { width: 35, height: 35, alignSelf: 'auto' },
   // guard-ok: 1px кромка `.rb.fill` — по макету 2.0
   vol: { width: 35, height: 35, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },

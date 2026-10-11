@@ -93,6 +93,6 @@ const s = StyleSheet.create({
   },
   statIcon: { width: 20, height: 20, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   statCopy: { flex: 1, minWidth: 0 },
-  statValue: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
-  statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 16 },
+  statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
 });

@@ -1,0 +1,80 @@
+{
+  "surfaceFiles": 1507,
+  "totals": {
+    "tiny": 2,
+    "offScale": 15,
+    "lineHeight": 0,
+    "fit": 0,
+    "thickBorder": 25
+  },
+  "files": {
+    "app/flashcards/CollectionListView.tsx": {
+      "thickBorder": 1
+    },
+    "app/flashcards/DeckSelectionTile.tsx": {
+      "thickBorder": 2
+    },
+    "app/settings_themes.tsx": {
+      "thickBorder": 1
+    },
+    "components/ActivityHeatmap365.tsx": {
+      "thickBorder": 1
+    },
+    "components/AppMessagesInbox.tsx": {
+      "thickBorder": 2
+    },
+    "components/DailyPhraseCard.tsx": {
+      "thickBorder": 1
+    },
+    "components/ForceUpdateGate.tsx": {
+      "offScale": 2
+    },
+    "components/GlobalBroadcastModal.tsx": {
+      "tiny": 1,
+      "offScale": 4
+    },
+    "components/NotificationCenterButton.tsx": {
+      "thickBorder": 1
+    },
+    "components/NotificationPermissionModalHybrid.tsx": {
+      "offScale": 4
+    },
+    "components/PersonalAdminMessageModal.tsx": {
+      "tiny": 1,
+      "offScale": 2
+    },
+    "components/ReleaseNotesV2Modal.tsx": {
+      "offScale": 1
+    },
+    "components/UpdateModal.tsx": {
+      "offScale": 2
+    },
+    "components/celebration/RewardImpactRings.tsx": {
+      "thickBorder": 1
+    },
+    "components/energy/EnergyInfoPopover.tsx": {
+      "thickBorder": 4
+    },
+    "components/friends_together/FriendEventMarker.tsx": {
+      "thickBorder": 2
+    },
+    "components/home/v2/HomeV2TodayCard.tsx": {
+      "thickBorder": 1
+    },
+    "components/prize_arc.tsx": {
+      "thickBorder": 1
+    },
+    "components/profile-card/ProfileCardProSheet.tsx": {
+      "thickBorder": 1
+    },
+    "components/profile-card/ProfileCardRankUp.tsx": {
+      "thickBorder": 4
+    },
+    "components/session_attempts/SessionAttemptsHud.tsx": {
+      "thickBorder": 1
+    },
+    "components/v2/V2TabBar.tsx": {
+      "thickBorder": 1
+    }
+  }
+}

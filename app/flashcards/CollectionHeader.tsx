@@ -505,7 +505,7 @@ export default function CollectionHeader({
             paddingVertical: 11,
             paddingHorizontal: 14,
             borderRadius: 14,
-            borderWidth: 1.5,
+            borderWidth: 1, // зачем (D145/«обводки не толще hairline», координатор 11.10): кнопка-контейнер с обводкой — тонкая, не 1.5
             borderColor: t.accent,
             backgroundColor: `${t.accent}14`,
             opacity: publishBusy ? 0.6 : 1,

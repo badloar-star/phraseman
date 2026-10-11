@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   header: { marginTop: 4, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 16, minHeight: 46 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   headerTitle: { flex: 1, minWidth: 0, fontSize: 20, lineHeight: 26, fontWeight: '700' },
-  flab: { marginLeft: 4, marginBottom: 8, fontSize: 13, lineHeight: 16, fontWeight: '600' },
+  flab: { marginLeft: 4, marginBottom: 8, fontSize: 13, lineHeight: 17, fontWeight: '600' },
   field: { minHeight: 56, paddingHorizontal: 16, justifyContent: 'center' },
   fieldTall: { minHeight: 96, paddingVertical: 14, justifyContent: 'flex-start' },
   segWrap: { height: 50, padding: 4, flexDirection: 'row', gap: 0 },
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   cardRow: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 13, paddingLeft: 19, paddingRight: 16 },
   cardRowText: { flex: 1, minWidth: 0 },
   cardRowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  cardRowSub: { fontSize: 16, lineHeight: 19 },
+  cardRowSub: { fontSize: 16, lineHeight: 21 },
   dimLayer: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
   sheet: { position: 'absolute', left: 0, right: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },

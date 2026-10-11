@@ -4886,7 +4886,7 @@ export default function LessonsTab({
                         style={{
                           color: t.correctText,
                           fontSize: 13,
-                          lineHeight: 16,
+                          lineHeight: 17,
                           fontWeight: "700",
                         }}
                       >

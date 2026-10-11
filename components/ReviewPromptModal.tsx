@@ -118,7 +118,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
     <>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
         {/* зачем: кикер `.ov` макета system_20 (12/3px), размер по шкале D145 (01.10, новее макета) — 13. */}
-        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
           {labelForContext(context === 'streak_milestone' ? 'level_exam_pass' : context, lang)}
         </Text>
       </CascadeItem>
@@ -133,7 +133,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
             <Ionicons name={iconForContext.streak_milestone} size={20} color={glass.text} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 2 }}>{labelForContext('streak_milestone', lang)}</Text>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2 }}>{labelForContext('streak_milestone', lang)}</Text>
             <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
           </View>
         </View>

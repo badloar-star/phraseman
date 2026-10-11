@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   asset: { width: 18, height: 18 },
   value: {
     fontSize: 13,
-    lineHeight: 16,
+    lineHeight: 17,
     fontWeight: '900',
     // Моноширинные цифры: число меняется каждые пару секунд, и без этого
     // пилюля «дышала» бы шириной на каждом начислении.

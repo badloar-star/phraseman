@@ -233,7 +233,7 @@ const ss = StyleSheet.create({
     bottom: 6,
   },
   blockRail: {
-    borderLeftWidth: 3,
+    borderLeftWidth: 1, // зачем (координатор 11.10): боковая полоса толще 1 pt — запрещена; оставлена тонкая линия-направляющая
     paddingLeft: 12,
     paddingTop: 2,
     paddingBottom: 2,

@@ -115,7 +115,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  badgeText: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
+  badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   copy: { flex: 1, justifyContent: 'center', paddingVertical: 10, paddingLeft: 16, paddingRight: '34%' },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3 },
   counter: { ...V2_TYPE.subtitle, fontVariant: ['tabular-nums'] },

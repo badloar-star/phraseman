@@ -2427,7 +2427,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 }}>
                           {days.map((day) => (
-                            <Text key={day.date} style={{ color: statsGlass.mutedText, fontSize: 13, lineHeight: 16 }}>{day.shortLabel}</Text>
+                            <Text key={day.date} style={{ color: statsGlass.mutedText, fontSize: 13, lineHeight: 17 }}>{day.shortLabel}</Text>
                           ))}
                         </View>
                       </>

@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   dim: { backgroundColor: 'rgba(2,2,4,0.72)' }, // theme-exempt: затемнение под карточкой — тёмный скрим в любой теме
   center: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: SIDE, paddingVertical: 24 },
   stack: { alignSelf: 'stretch' },
-  overline: { textAlign: 'center', marginBottom: 12, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
+  overline: { textAlign: 'center', marginBottom: 12, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
   cardWrap: { minHeight: CARD_MIN_H },
   // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
   faceText: { alignSelf: 'stretch', alignItems: 'center' },
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   exampleWrap: { marginTop: 14 },
   example: { minHeight: 0 },
   examplePad: { paddingVertical: 14, paddingHorizontal: 18 },
-  exampleLabel: { fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
+  exampleLabel: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
   exampleText: { marginTop: 8, fontSize: 16, lineHeight: 23 },
   exampleTr: { marginTop: 4, fontSize: 16, lineHeight: 20 },
   acts: { marginTop: 14, flexDirection: 'row', gap: 10 },

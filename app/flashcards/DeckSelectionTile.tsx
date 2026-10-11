@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 10,
     borderRadius: 14,
-    borderWidth: 1.5,
+    borderWidth: 1, // зачем (координатор 11.10): обводка плитки — hairline, выбор показывает заливка и галочка
   },
   cover: {
     width: 44,

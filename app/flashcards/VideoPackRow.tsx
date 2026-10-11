@@ -236,9 +236,9 @@ const baseStyles = StyleSheet.create({
     paddingVertical: 1,
     backgroundColor: 'rgba(0,0,0,0.72)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   },
-  durationText: { fontSize: 13, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  title: { fontSize: 16, lineHeight: 19, fontWeight: '700' },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   count: { marginTop: 4, fontSize: 13, lineHeight: 17 },
 });

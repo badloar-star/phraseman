@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   // `.om-kicker` 11/800, разрядка 1.2; шкала D145 — 13.
   kicker: {
     fontSize: 13,
-    lineHeight: 16,
+    lineHeight: 17,
     fontWeight: '800',
     letterSpacing: 1.2,
     textTransform: 'uppercase',

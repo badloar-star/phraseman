@@ -104,7 +104,7 @@ const baseStyles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingBottom: 140 },
   topbar: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center' },
   big: { fontSize: 58, lineHeight: 60, fontWeight: '800', letterSpacing: -1.5 },
-  bigLabel: { marginTop: 2, fontSize: 16, lineHeight: 19 },
+  bigLabel: { marginTop: 2, fontSize: 16, lineHeight: 21 },
   counts: { marginTop: 22 },
   num: { marginLeft: 'auto', fontSize: 22, lineHeight: 28, fontWeight: '700' },
   section: { marginTop: 20, marginBottom: 8, fontSize: 16, lineHeight: 20, fontWeight: '600' },

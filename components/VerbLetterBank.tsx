@@ -90,7 +90,7 @@ export default function VerbLetterBank({
               disabled={disabled}
               style={{
                 paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10,
-                backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.correct + '80',
+                backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.correct + '80', // зачем (координатор 11.10): hairline
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>{tile.char}</Text>
@@ -145,7 +145,7 @@ export default function VerbLetterBank({
           style={{
             flex: 1, paddingVertical: 14, borderRadius: 14, alignItems: 'center',
             backgroundColor: canSubmit ? t.correct : t.bgCard,
-            borderWidth: 1.5, borderColor: canSubmit ? t.correct : t.border,
+            borderWidth: 1, borderColor: canSubmit ? t.correct : t.border, // зачем (координатор 11.10): hairline
             opacity: canSubmit ? 1 : 0.6,
           }}
         >

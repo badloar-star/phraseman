@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: SIDE, paddingBottom: 150 },
   gridWrap: { marginTop: 16 },
   gridWrapFound: { marginTop: 12 },
-  found: { marginTop: 22, marginLeft: 4, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
+  found: { marginTop: 22, marginLeft: 4, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
   addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },
   addText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   limit: { marginTop: 16, borderRadius: 24, paddingVertical: 22, paddingHorizontal: 20, alignItems: 'center', gap: 6 },

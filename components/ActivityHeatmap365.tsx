@@ -608,7 +608,7 @@ function MonthExplorerModal({
               {weekdayLabels.map((label) => (
                 <Text
                   key={label}
-                  style={{ width: daySize, color: monthGlass.mutedText, fontSize: 13, lineHeight: 16, textAlign: 'center' }}
+                  style={{ width: daySize, color: monthGlass.mutedText, fontSize: 13, lineHeight: 17, textAlign: 'center' }}
                 >
                   {label}
                 </Text>

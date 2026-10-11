@@ -212,8 +212,8 @@ const baseStyles = StyleSheet.create({
   // зачем (сверка 02:30, «точки крупнее, «3» обрезана краем»): в макете `.stp` ширина 96, кружки сжимаются до (96−4·10)/3 ≈ 18.7, линии — нулевой длины
   stepsCompact: { width: '100%' },
   stepDot: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  stepNum: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
+  stepNum: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   stepDotCompact: { width: 18.5, height: 18.5, borderRadius: 9.25 },
-  stepNumCompact: { fontSize: 13, lineHeight: 14 },
+  stepNumCompact: { fontSize: 13, lineHeight: 17 },
   stepLine: { flex: 1, height: 2 },
 });

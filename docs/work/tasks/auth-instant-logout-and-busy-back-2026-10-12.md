@@ -45,3 +45,5 @@ Governance-ID: TG-513EEB0D471A (логи [PROFILE-RENDER] на экранах я
 Governance-ID: (тот же пакет) применение варианта Б выхода (потолок синхронизации 3 с) + лог кода отказа синхронизации [ACC-SIGNOUT] force_sync_refused
 
 Governance-ID: (тот же пакет) [ONB-STEP-WAIT] — «Продолжить» на «Приятно познакомиться» 15 с до перехода; dev confetti=hold
+
+Governance-ID: TG-44389C64D484 (сводка статуса в инбоксе — координатор не видит прошлых разделов)

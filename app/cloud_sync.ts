@@ -299,6 +299,7 @@ import { noteSwallowed } from './swallow_log';
 import { gcDelta, gcSnapshot } from './mem_probe';
 import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mistake_restore_targets';
 import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
+import { mergeNumericMaxRestoreValue } from './restore_numeric_max_merge';
 import {
   customCardDeletionsForTarget,
   mergeCustomCardsRestoreValue,
@@ -466,6 +467,12 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   had_premium_ever: mergeTruthyFlagRestoreValue,
   [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY]: mergeTruthyFlagRestoreValue,
   [ACHIEVEMENT_ACCESS_PRO_PAID_KEY]: mergeTruthyFlagRestoreValue,
+  // зачем (пп.9–11, координатор 11.10): статистика и время в приложении только растут — по каждому полю
+  // (для daily_stats — внутри каждой даты) берём больше. Тратимое (заморозки, бонус входа) сюда не класть.
+  daily_stats: mergeNumericMaxRestoreValue,
+  phraseman_foreground_usage_ms_v1: mergeNumericMaxRestoreValue,
+  phraseman_foreground_daily_ms_v1: mergeNumericMaxRestoreValue,
+  ...Object.fromEntries(SYNC_STUDY_TARGETS.map((target) => [userStatsKey(target), mergeNumericMaxRestoreValue])),
 };
 
 export const SYNC_KEYS = [

@@ -10,7 +10,7 @@
  *
  * Согласие уже принято → рендерим переданный экран как есть, без задержки.
  */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -32,13 +32,22 @@ import {
   subscribeAiDialogConsent,
 } from './ai_dialog_consent';
 
-export default function AiDialogConsentGate({ children }: { children: React.ReactNode }) {
+export default function AiDialogConsentGate({ children, onDeclined }: {
+  children: React.ReactNode;
+  /** зачем (находка d8b078e8e): сессия, куда пришли со списанной энергией, при отказе от ИИ возвращает её. */
+  onDeclined?: () => void;
+}) {
+  const onDeclinedRef = useRef(onDeclined);
+  onDeclinedRef.current = onDeclined;
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const router = useRouter();
   const [ready, setReady] = useState(isAiDialogConsentHydrated() && isAiDialogConsentGranted());
+  // зачем (ревью 12.10): onDeclined — только пока чат НЕ показан; отзыв согласия посреди идущей сессии не возвращает её энергию.
+  const readyRef = useRef(ready);
+  readyRef.current = ready;
   const [declined, setDeclined] = useState(false);
   const [gateVisible, setGateVisible] = useState(false);
 
@@ -56,6 +65,7 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
     // denied — экран не открываем; показываем экран отказа с путём назад.
     setGateVisible(false);
     setDeclined(true);
+    if (!readyRef.current) onDeclinedRef.current?.();
   }, []);
 
   useEffect(() => {
@@ -80,6 +90,7 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
   const onDecline = useCallback(() => {
     setGateVisible(false);
     setDeclined(true);
+    onDeclinedRef.current?.();
     void setAiDialogConsent('denied').then(() => {
       void recordAiDialogConsentToCloud();
     });

@@ -21,11 +21,20 @@ import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2Briefi
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import AiDialogConsentModal from '../components/AiDialogConsentModal';
 import { usePremium } from '../components/PremiumContext';
 import { readAiDialogMonthlyQuota } from './ai_dialog_daily_quota';
 import { captureAccountGeneration } from './account_generation';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
+import {
+  hasAiDialogConsentDecision,
+  hydrateAiDialogConsentFromStorage,
+  isAiDialogConsentGranted,
+  isAiDialogConsentHydrated,
+  recordAiDialogConsentToCloud,
+  setAiDialogConsent,
+} from './ai_dialog_consent';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -36,6 +45,29 @@ type BriefingState =
 
 function supportedTarget(value: unknown): value is DialogueV2CatalogueStudyTarget {
   return typeof value === 'string' && V2_TARGETS.has(value);
+}
+
+type StartConsent = 'granted' | 'denied' | 'undecided';
+
+/** зачем (ревью 12.10, iOS): следующий родной Modal («Нет энергии») не показывается, пока закрывается шторка согласия;
+ *  тот же зазор, что у окон после модалки в проекте (delayMs: 360). */
+const AFTER_CONSENT_SHEET_MS = 360;
+
+/**
+ * Согласие на ИИ перед стартом — из памяти; не прочитано с диска — читаем (0 сети).
+ * зачем (находка Макетов d8b078e8e, координатор 12.10): «Начать диалог» списывал энергию ДО шторки согласия,
+ * а шторка жила внутри сессии; при отказе сессия не монтировалась и возврат энергии не срабатывал.
+ */
+async function readStartConsent(): Promise<StartConsent> {
+  if (!isAiDialogConsentHydrated()) {
+    try {
+      await hydrateAiDialogConsentFromStorage();
+    } catch (error: unknown) {
+      console.warn('[AI-CONSENT-ENERGY] briefing:consent hydrate failed', error instanceof Error ? error.message : String(error));
+    }
+  }
+  if (isAiDialogConsentGranted()) return 'granted';
+  return hasAiDialogConsentDecision() ? 'denied' : 'undecided';
 }
 
 function validScenarioId(value: unknown): value is string {
@@ -172,6 +204,8 @@ export default function DialogueV2BriefingRoute() {
     return () => { alive = false; };
   }, [freeTier, scenarioId, studyTarget]);
   const [noEnergy, setNoEnergy] = useState(false);
+  // зачем (макет dialogs.html B3: шторка согласия поверх брифинга): спрашиваем ДО списания энергии.
+  const [consentAsk, setConsentAsk] = useState(false);
   // зачем (владелец 01.10: «диалоги открываются без загрузки»): первый кадр — из каталога в
   // памяти/снимке (peek), сеть только обновляет фоном и не откатывает показанное на «недоступно».
   const [state, setState] = useState<BriefingState>(() => {
@@ -225,6 +259,68 @@ export default function DialogueV2BriefingRoute() {
     return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-unavailable" message={labels.unavailable} backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} />;
   }
 
+  // зачем (находка d8b078e8e): списание энергии и переход в сессию — только после согласия на ИИ.
+  const spendAndOpenSession = async (): Promise<void> => {
+    // зачем (Ядро 01.10, замер): «тап → готовность первого хода» — от момента, когда старт реально пошёл.
+    if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());
+    try {
+      const result = await confirmSpendOne(energyIntent);
+      console.log('[DIALOGUE-V2] start energy', { scenarioId, result, operationId: energyIntent.operationId, attempt: dialogueAttempt }); // guard-ok: ранний выход старта логируется
+      if (result === 'cancelled') {
+        // зачем (владелец: ни одной мёртвой кнопки): отказ старта — понятная реакция и
+        // новый номер попытки, чтобы следующий тап не упёрся в ту же запись.
+        setDialogueAttempt((n) => n + 1);
+        emitAppEvent('action_toast', dialogueStartFailedToast());
+        return;
+      }
+      if (result === 'insufficient') {
+        setNoEnergy(true);
+        return;
+      }
+      // зачем (баг 01.10, «Дизайн»: ход упал на сервере, а энергия списана; D87): старт
+      // подтверждает сессия после первого ответа собеседника, а при отказе сервиса на
+      // первом ходе возвращает энергию — сюда передаём номер операции (у Plus его нет).
+      setDialogueAttempt((n) => n + 1);
+      router.push({
+        pathname: '/dialogue_v2_session',
+        params: result === 'spent'
+          ? { scenarioId, energyOp: energyIntent.operationId }
+          : { scenarioId },
+      } as never);
+    } catch (error: unknown) {
+      console.warn('[DIALOGUE-V2] start energy failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });
+      setDialogueAttempt((n) => n + 1);
+      emitAppEvent('action_toast', dialogueStartFailedToast());
+    } finally {
+      startInFlightRef.current = false;
+    }
+  };
+  const onConsentAccept = () => {
+    setConsentAsk(false);
+    console.log('[AI-CONSENT-ENERGY] briefing:consent accepted → spend', JSON.stringify({ scenarioId, inFlight: startInFlightRef.current }));
+    // Optimistic: память согласия обновляется сразу (сессия откроется без повторной шторки), диск и облако догоняют.
+    void setAiDialogConsent('granted').then(() => recordAiDialogConsentToCloud()).catch((error: unknown) => {
+      console.warn('[AI-CONSENT-ENERGY] briefing:consent save failed', error instanceof Error ? error.message : String(error));
+    });
+    if (startInFlightRef.current) {
+      console.warn('[AI-CONSENT-ENERGY] briefing:consent accepted but start already in flight → ignored', JSON.stringify({ scenarioId }));
+      return;
+    }
+    startInFlightRef.current = true;
+    // зачем (ревью 12.10, iOS): списание и возможное окно «Нет энергии» — после того, как шторка закрылась.
+    setTimeout(() => { void spendAndOpenSession(); }, AFTER_CONSENT_SHEET_MS);
+  };
+  const onConsentDecline = () => {
+    setConsentAsk(false);
+    const alreadyDenied = hasAiDialogConsentDecision() && !isAiDialogConsentGranted();
+    console.log('[AI-CONSENT-ENERGY] briefing:consent declined → energy not spent', JSON.stringify({ scenarioId, alreadyDenied }));
+    // зачем (ревью 12.10, экономия): повторный отказ (смахнул шторку) не пишет диск и не зовёт облачную функцию ещё раз.
+    if (alreadyDenied) return;
+    void setAiDialogConsent('denied').then(() => recordAiDialogConsentToCloud()).catch((error: unknown) => {
+      console.warn('[AI-CONSENT-ENERGY] briefing:consent save failed', error instanceof Error ? error.message : String(error));
+    });
+  };
+
   return (
     <>
     <DialogueV2BriefingScreen
@@ -248,44 +344,21 @@ export default function DialogueV2BriefingRoute() {
           return;
         }
         startInFlightRef.current = true;
-        // зачем (Ядро 01.10, замер): «тап → готовность первого хода».
-        if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());
         void (async () => {
-          try {
-            const result = await confirmSpendOne(energyIntent);
-            console.log('[DIALOGUE-V2] start energy', { scenarioId, result, operationId: energyIntent.operationId, attempt: dialogueAttempt }); // guard-ok: ранний выход старта логируется
-            if (result === 'cancelled') {
-              // зачем (владелец: ни одной мёртвой кнопки): отказ старта — понятная реакция и
-              // новый номер попытки, чтобы следующий тап не упёрся в ту же запись.
-              setDialogueAttempt((n) => n + 1);
-              emitAppEvent('action_toast', dialogueStartFailedToast());
-              return;
-            }
-            if (result === 'insufficient') {
-              setNoEnergy(true);
-              return;
-            }
-            // зачем (баг 01.10, «Дизайн»: ход упал на сервере, а энергия списана; D87): старт
-            // подтверждает сессия после первого ответа собеседника, а при отказе сервиса на
-            // первом ходе возвращает энергию — сюда передаём номер операции (у Plus его нет).
-            setDialogueAttempt((n) => n + 1);
-            router.push({
-              pathname: '/dialogue_v2_session',
-              params: result === 'spent'
-                ? { scenarioId, energyOp: energyIntent.operationId }
-                : { scenarioId },
-            } as never);
-          } catch (error: unknown) {
-            console.warn('[DIALOGUE-V2] start energy failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });
-            setDialogueAttempt((n) => n + 1);
-            emitAppEvent('action_toast', dialogueStartFailedToast());
-          } finally {
+          const consent = await readStartConsent();
+          console.log('[AI-CONSENT-ENERGY] briefing:start', JSON.stringify({ scenarioId, consent, energySpent: false })); // guard-ok: ветка старта
+          if (consent !== 'granted') {
+            // Согласия нет — шторка поверх брифинга, энергию НЕ трогаем.
             startInFlightRef.current = false;
+            setConsentAsk(true);
+            return;
           }
+          await spendAndOpenSession();
         })();
       }}
     />
     {/* макет B5: закрытие окна уводит с экрана диалога */}
+    <AiDialogConsentModal visible={consentAsk} lang={lang} onAccept={onConsentAccept} onDecline={onConsentDecline} />
     <NoEnergyModal variant="dialogs" visible={noEnergy} onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
     </>
   );

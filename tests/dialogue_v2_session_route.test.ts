@@ -76,7 +76,9 @@ jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => moc
 jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => mockUseMyCoinRank() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => mockUseLang() }));
 // 30.09: пилюля энергии в шапке сессии (макет B6), у Plus её нет.
-jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ isUnlimited: false }) }));
+// 12.10 (находка d8b078e8e): отказ от согласия в сессии возвращает списанную на брифинге энергию.
+const mockRefundActivityStart = jest.fn(async (_op: string, _reason: string) => undefined);
+jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ isUnlimited: false, refundActivityStart: mockRefundActivityStart }) }));
 // Экран-гейт Liquid Glass (загрузка / недоступно / Plus) — простая замена для узлового теста.
 jest.mock('../components/dialogs/glass/DialogueGlassKit', () => {
   const mockReact = jest.requireActual('react') as typeof React;
@@ -120,6 +122,8 @@ const model = Object.freeze({
 describe('Dialogue V2 session route', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // зачем (ревью 12.10): тесты возврата подменяют шлюз — восстанавливаем до КАЖДОГО теста, а не в конце упавшего.
+    mockConsent.mockImplementation(({ children }: { children: React.ReactNode }) => children);
     mockParams.mockReturnValue({ scenarioId: 'work_01' });
     mockUseStudyTarget.mockReturnValue({ studyTarget: 'de' });
     mockUseMyCoinRank.mockReturnValue(3);
@@ -450,5 +454,28 @@ describe('Dialogue V2 session route', () => {
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toHaveLength(2));
     expect(mockScreen.mock.calls.at(-1)[0].quotaPill).toBeNull();
+  });
+
+  // зачем (находка Макетов d8b078e8e, координатор 12.10): пришли со списанной энергией, а согласие отклонено — сессия
+  // не монтируется, поэтому энергию возвращает обёртка маршрута; ровно один раз.
+  it('returns the briefing energy once when AI consent is declined inside the session', async () => {
+    mockParams.mockReturnValue({ scenarioId: 'work_01', energyOp: 'op-9' });
+    let gateProps: { onDeclined?: () => void } = {};
+    mockConsent.mockImplementation((props: { onDeclined?: () => void }) => { gateProps = props; return null; });
+    await render(h(DialogueV2SessionRoute));
+    await act(async () => {
+      gateProps.onDeclined?.();
+      gateProps.onDeclined?.();
+    });
+    expect(mockRefundActivityStart).toHaveBeenCalledTimes(1);
+    expect(mockRefundActivityStart).toHaveBeenCalledWith('op-9', 'ai_consent_declined_in_session');
+  });
+
+  it('declined consent without spent energy returns nothing', async () => {
+    let gateProps: { onDeclined?: () => void } = {};
+    mockConsent.mockImplementation((props: { onDeclined?: () => void }) => { gateProps = props; return null; });
+    await render(h(DialogueV2SessionRoute));
+    await act(async () => { gateProps.onDeclined?.(); });
+    expect(mockRefundActivityStart).not.toHaveBeenCalled();
   });
 });

@@ -98,6 +98,19 @@ async function secureTurnId(): Promise<string> {
   return `d2t_${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
 }
 
+/** После возврата энергии чат не открываем: заново со брифинга, где старт снова спишет энергию. */
+function RestartFromBriefing() {
+  const router = useRouter();
+  const params = useLocalSearchParams<{ scenarioId?: string | string[] }>();
+  useEffect(() => {
+    const scenarioId = typeof params.scenarioId === 'string' ? params.scenarioId : null;
+    console.warn('[AI-CONSENT-ENERGY] session:energy already returned → back to briefing', JSON.stringify({ scenarioId }));
+    if (scenarioId) router.replace({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);
+    else safeRouterBack(router, '/ai_dialog_home' as never);
+  }, [params.scenarioId, router]);
+  return null;
+}
+
 function interfaceLangFor(lang: string): string {
   return INTERFACE_LANGS.has(lang) ? lang : 'en';
 }
@@ -629,9 +642,37 @@ function SessionContent() {
 
 /** V2 text session remains behind the established, neutral AI-dialogue consent gate. */
 export default function DialogueV2SessionRoute() {
+  // зачем (находка Макетов d8b078e8e, координатор 12.10): брифинг теперь спрашивает согласие ДО списания энергии,
+  // но если сюда всё же пришли со списанной энергией (energyOp) и согласие отклонено — SessionContent не смонтируется
+  // и её возврат не сработает; возвращаем здесь, один раз.
+  const routeParams = useLocalSearchParams<{ energyOp?: string | string[] }>();
+  const { refundActivityStart } = useEnergy();
+  const consentRefundDoneRef = useRef(false);
+  // зачем (ревью 12.10): энергию вернули, а потом «Включить» на экране отказа — сессия с тем же energyOp прошла бы бесплатно.
+  // Вместо чата — обратно на брифинг, где старт снова спишет энергию.
+  const [energyReturned, setEnergyReturned] = useState(false);
+  const onConsentDeclined = () => {
+    const operationId = typeof routeParams.energyOp === 'string' ? routeParams.energyOp : null;
+    if (!operationId || consentRefundDoneRef.current) {
+      console.log('[AI-CONSENT-ENERGY] session:declined nothing to return', JSON.stringify({ hasOperation: operationId !== null, alreadyReturned: consentRefundDoneRef.current }));
+      return;
+    }
+    consentRefundDoneRef.current = true;
+    setEnergyReturned(true);
+    console.warn('[AI-CONSENT-ENERGY] session:declined → refund', JSON.stringify({ operationId }));
+    void refundActivityStart(operationId, 'ai_consent_declined_in_session').then(() => {
+      emitAppEvent('action_toast', actionToastTri('info', {
+        ru: 'Энергия возвращена', uk: 'Енергію повернено', en: 'Energy returned', es: 'Energía devuelta',
+        'pt-BR': 'Energia devolvida', vi: 'Đã hoàn lại năng lượng', id: 'Energi dikembalikan',
+        tr: 'Enerji iade edildi', pl: 'Energia zwrócona',
+      }));
+    }).catch((error: unknown) => {
+      console.warn('[AI-CONSENT-ENERGY] session:refund failed', error instanceof Error ? error.message : String(error));
+    });
+  };
   return (
-    <AiDialogConsentGate>
-      <SessionContent />
+    <AiDialogConsentGate onDeclined={onConsentDeclined}>
+      {energyReturned ? <RestartFromBriefing /> : <SessionContent />}
     </AiDialogConsentGate>
   );
 }

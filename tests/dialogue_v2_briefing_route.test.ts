@@ -70,6 +70,23 @@ jest.mock('../app/ai_dialog_daily_quota', () => ({
   readAiDialogMonthlyQuota: (...args: unknown[]) => mockReadMonthlyQuota(...(args as [])),
 }));
 
+// зачем (находка d8b078e8e, 12.10): брифинг спрашивает согласие на ИИ ДО списания энергии. По умолчанию согласие дано —
+// прежние проверки старта не меняются; отдельные тесты ниже снимают его.
+const mockConsent = { hydrated: true, granted: true, decided: true };
+const mockSetConsent = jest.fn(async (_state: string) => undefined);
+jest.mock('../app/ai_dialog_consent', () => ({
+  isAiDialogConsentHydrated: () => mockConsent.hydrated,
+  isAiDialogConsentGranted: () => mockConsent.granted,
+  hasAiDialogConsentDecision: () => mockConsent.decided,
+  hydrateAiDialogConsentFromStorage: async () => { mockConsent.hydrated = true; },
+  setAiDialogConsent: (state: string) => mockSetConsent(state),
+  recordAiDialogConsentToCloud: async () => undefined,
+}));
+const mockConsentModal = jest.fn((_props: unknown) => null);
+jest.mock('../components/AiDialogConsentModal', () => ({ __esModule: true, default: (props: unknown) => mockConsentModal(props) }));
+type ConsentModalProps = { visible: boolean; onAccept: () => void; onDecline: () => void };
+const lastConsentModal = () => mockConsentModal.mock.calls[mockConsentModal.mock.calls.length - 1][0] as ConsentModalProps;
+
 import DialogueV2BriefingRoute from '../app/dialogue_v2_briefing';
 
 const envelope = Object.freeze({ ok: true, packets: Object.freeze([{ scenario: { id: 'work_01' } }]) });
@@ -89,6 +106,7 @@ describe('Dialogue V2 briefing route', () => {
     mockUseLang.mockReturnValue({ lang: 'ru' });
     mockFetchCatalogue.mockResolvedValue(envelope);
     mockBuildModel.mockReturnValue(unlockedModel);
+    Object.assign(mockConsent, { hydrated: true, granted: true, decided: true });
   });
 
   it('accepts only the scenario route id and renders the revalidated V2 briefing model', async () => {
@@ -192,5 +210,75 @@ describe('Dialogue V2 briefing route', () => {
       pathname: '/dialogue_v2_session',
       params: { scenarioId: 'work_01', energyOp: 'op-1' },
     });
+  });
+
+  // зачем (находка Макетов d8b078e8e, координатор 12.10): без согласия на ИИ энергия НЕ списывается — шторка поверх брифинга.
+  it('asks for AI consent before spending energy and spends nothing until accepted', async () => {
+    Object.assign(mockConsent, { granted: false, decided: false });
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => {
+      mockScreen.mock.calls.at(-1)[0].onStart();
+    });
+    expect(mockConfirmSpendOne).not.toHaveBeenCalled();
+    expect(mockPush).not.toHaveBeenCalled();
+    expect(lastConsentModal().visible).toBe(true);
+
+    await act(async () => {
+      lastConsentModal().onAccept();
+    });
+    expect(mockSetConsent).toHaveBeenCalledWith('granted');
+    // списание — после закрытия шторки (зазор для iOS)
+    await waitFor(() => expect(mockConfirmSpendOne).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockPush).toHaveBeenCalled());
+    expect(mockPush).toHaveBeenCalledWith({
+      pathname: '/dialogue_v2_session',
+      params: { scenarioId: 'work_01', energyOp: 'op-1' },
+    });
+  });
+
+  it('declining AI consent on the briefing spends no energy and opens nothing', async () => {
+    Object.assign(mockConsent, { granted: false, decided: false });
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => {
+      mockScreen.mock.calls.at(-1)[0].onStart();
+    });
+    expect(lastConsentModal().visible).toBe(true);
+    await act(async () => {
+      lastConsentModal().onDecline();
+    });
+    expect(mockSetConsent).toHaveBeenCalledWith('denied');
+    expect(lastConsentModal().visible).toBe(false);
+    expect(mockConfirmSpendOne).not.toHaveBeenCalled();
+    expect(mockPush).not.toHaveBeenCalled();
+  });
+
+  it('accept without energy shows the no-energy window after the consent sheet, spending once on a double tap', async () => {
+    Object.assign(mockConsent, { granted: false, decided: false });
+    mockConfirmSpendOne.mockResolvedValueOnce('insufficient');
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onStart(); });
+    await act(async () => {
+      lastConsentModal().onAccept();
+      lastConsentModal().onAccept();
+    });
+    await waitFor(() => expect(mockConfirmSpendOne).toHaveBeenCalledTimes(1));
+    await waitFor(() => {
+      const last = mockNoEnergyModal.mock.calls[mockNoEnergyModal.mock.calls.length - 1][0] as { visible: boolean };
+      expect(last.visible).toBe(true);
+    });
+    expect(mockPush).not.toHaveBeenCalled();
+  });
+
+  it('a repeated decline (already denied) does not rewrite consent', async () => {
+    Object.assign(mockConsent, { granted: false, decided: true });
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onStart(); });
+    await act(async () => { lastConsentModal().onDecline(); });
+    expect(mockSetConsent).not.toHaveBeenCalled();
+    expect(mockConfirmSpendOne).not.toHaveBeenCalled();
   });
 });

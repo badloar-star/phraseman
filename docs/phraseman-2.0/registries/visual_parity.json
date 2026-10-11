@@ -18,10 +18,10 @@
       "id": "cards-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-v2.html",
         "phone": 1,
-        "label": "Хаб — вариант А",
-        "mapping": "manual_rebind"
+        "label": "Хаб",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Хаб и выбор режима",
       "state": "Хаб · четыре раздела",
@@ -39,21 +39,28 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "match",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": "owner-2026-10-11: владелец велел переводить сверенное в match; дубль строки cards-section-001 (тот же экран, склейка по тому же кадру)",
       "reviewed_at": "2026-10-11T08:45:42.585Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 1) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 1,
+        "label": "Хаб — вариант А",
+        "mapping": "manual_rebind"
+      },
+      "prev_status": "match"
     },
     {
       "id": "cards-002",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 32,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 27,
         "label": "Режим тренировки",
-        "mapping": "manual_rebind"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Хаб и выбор режима",
       "state": "Выбор режима · окно по центру",
@@ -67,12 +74,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "match",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": "owner-2026-10-11: владелец велел переводить сверенное в match; дубль строки cards-section-032 (тот же экран, склейка по тому же кадру)",
       "reviewed_at": "2026-10-11T08:45:42.586Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 32) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 32,
+        "label": "Режим тренировки",
+        "mapping": "manual_rebind"
+      },
+      "prev_status": "match"
     },
     {
       "id": "cards-003",
@@ -98,12 +112,14 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 4) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-004",
@@ -141,10 +157,10 @@
       "id": "cards-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-v2.html",
         "phone": 5,
-        "label": "Список",
-        "mapping": "manual_rebind"
+        "label": "Сохранённые — 1 колонка",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Список",
@@ -171,16 +187,22 @@
       "reviewed_at": null,
       "_remap_note": "телефон макета 3 (\"Список\") — склейка снята с 5; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 5) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 5,
+        "label": "Список",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 15,
-        "label": "Карточка удалена — «Вернуть»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 10,
+        "label": "Удалено — вернуть",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Карточка раскрыта · удаление свайпом · «Вернуть»",
@@ -204,7 +226,13 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 15) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 15,
+        "label": "Карточка удалена — «Вернуть»",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-007",
@@ -278,10 +306,10 @@
       "id": "cards-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 7,
-        "label": "Пусто",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 11,
+        "label": "Сохранённые — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Пусто",
@@ -303,7 +331,13 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 7) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 7,
+        "label": "Пусто",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-010",
@@ -410,10 +444,10 @@
       "id": "cards-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 11,
-        "label": "Пусто",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 13,
+        "label": "Мои наборы — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Мои наборы",
       "state": "Пусто",
@@ -435,7 +469,13 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 11) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 11,
+        "label": "Пусто",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-014",
@@ -535,10 +575,10 @@
       "id": "cards-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 23,
-        "label": "Ничего не найдено",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 26,
+        "label": "Каталог — ничего не найдено",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Наборы сообщества",
       "state": "Поиск без совпадений",
@@ -561,16 +601,22 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 23,
+        "label": "Ничего не найдено",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 13,
-        "label": "Чужой — до добавления",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 15,
+        "label": "Чужой набор — до добавления",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Набор",
       "state": "До добавления · лайк раньше времени",
@@ -592,16 +638,22 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 13) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 13,
+        "label": "Чужой — до добавления",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 14,
-        "label": "Чужой — добавлен, лайк",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 16,
+        "label": "Чужой набор — добавлен",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Набор",
       "state": "Добавлен · отклик",
@@ -623,7 +675,13 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 14) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 14,
+        "label": "Чужой — добавлен, лайк",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-020",
@@ -659,10 +717,10 @@
       "id": "cards-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 20,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
         "label": "Новая карточка",
-        "mapping": "manual_rebind"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новая карточка",
@@ -688,7 +746,13 @@
       "reviewed_at": null,
       "_remap_note": "телефон макета 17 (\"Новая карточка\") — склейка снята с 21; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 20) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 20,
+        "label": "Новая карточка",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-022",
@@ -725,10 +789,10 @@
       "id": "cards-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 19,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
         "label": "Новый набор",
-        "mapping": "manual_rebind"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новый набор",
@@ -754,7 +818,13 @@
       "reviewed_at": null,
       "_remap_note": "телефон макета 19 (\"Новый набор\") — склейка снята с 23; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 19) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 19,
+        "label": "Новый набор",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-024",
@@ -895,10 +965,10 @@
       "id": "cards-028",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 24,
-        "label": "Список наборов",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 12,
+        "label": "Мои наборы",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Наборы из видео",
       "state": "Список",
@@ -924,7 +994,13 @@
       "reviewed_at": null,
       "_remap_note": "телефон макета 24 (\"Список\") — склейка снята с 28; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 24) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 24,
+        "label": "Список наборов",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-029",
@@ -953,21 +1029,23 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "blocked_reason": null,
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 26) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-030",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 29,
-        "label": "Сейчас недоступно",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 44,
+        "label": "Каталог без сети",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Наборы из видео",
       "state": "Ошибка",
@@ -990,7 +1068,13 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 29) — одна съёмка закрывает обе строки",
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 29,
+        "label": "Сейчас недоступно",
+        "mapping": "manual_rebind"
+      }
     },
     {
       "id": "cards-031",
@@ -26167,10 +26251,10 @@
       "id": "cards-section-001",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-v2.html",
         "phone": 1,
-        "label": "Хаб — вариант А",
-        "mapping": "by_construction"
+        "label": "Хаб",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Хаб — вариант А",
       "state": "Хаб — вариант А",
@@ -26191,7 +26275,7 @@
       "anim_evidence_at": "2026-10-11T07:25:22.791Z",
       "anim_evidence_sha256": "7fc54794ae6730c34011a291c32b4e8602358f49af622c7d87e7dff2a0640509",
       "diffs": [],
-      "status": "match",
+      "status": "pending",
       "reviewed_by": "owner-2026-10-11: владелец прямым указанием в чате велел отметить сверенные экраны (сверка: сессия 6, склейка без различий)",
       "reviewed_at": "2026-10-11T06:05:59.204Z",
       "sverka_verdict": "Тёмная «Аврора»: СОВПАЛ по форме, составу и порядку: заголовок, подпись, чип счётчика, «+», стопка Boarding pass, кнопка «Тренироваться · осталось N из 30 →», 4 плитки (Сохранённые, Мои наборы, Из видео, Сообщество). | Принято с пометкой: кнопка «Тренироваться» белая — решение владельца (макет мятная); 23/30 и подписи плиток — данные. | Светлая «Аврора» — пересъёмка после a923b862f ещё впереди.",
@@ -26200,16 +26284,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Режим тренировки ¦ Минута на скорость ¦ Говорите вслух ¦ Правда / ложь ¦ Верен ли перевод ¦ Пишите по памяти. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 1,
+        "label": "Хаб — вариант А",
+        "mapping": "by_construction"
+      },
+      "prev_status": "match"
     },
     {
       "id": "cards-section-002",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 2,
-        "label": "Хаб — загрузка сообщества",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 3,
+        "label": "Хаб — загрузка",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Хаб — загрузка сообщества",
       "state": "Хаб — загрузка сообщества",
@@ -26236,16 +26327,22 @@
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; данные (названия, имена, карточки) не сверялись. Состав/порядок — по снимку."
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 2,
+        "label": "Хаб — загрузка сообщества",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-003",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 3,
-        "label": "Хаб — новичок, своих карточек нет",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 2,
+        "label": "Хаб — новичок",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Хаб — новичок, своих карточек нет",
       "state": "Хаб — новичок, своих карточек нет",
@@ -26273,6 +26370,12 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Добавьте набор из сообщества или из видео. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 3,
+        "label": "Хаб — новичок, своих карточек нет",
+        "mapping": "by_construction"
       }
     },
     {
@@ -26303,7 +26406,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -26311,16 +26414,18 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Обновится 1 ноября. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-005",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-v2.html",
         "phone": 5,
-        "label": "Список",
-        "mapping": "by_construction"
+        "label": "Сохранённые — 1 колонка",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Список",
       "state": "Список",
@@ -26343,16 +26448,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Сброситься, помочь ¦ Я вам перезвоню ¦ Принять решение ¦ Лучше бы ¦ Посадочный талон ¦ Режим тренировки ¦ Минута на скорость ¦ Говорите вслух ¦ Правда / ложь ¦ Верен ли перевод. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 5,
+        "label": "Список",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-006",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 6,
-        "label": "Поиск",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 9,
+        "label": "Сохранённые — поиск",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Поиск",
       "state": "Поиск",
@@ -26377,16 +26488,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Принять решение. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 6,
+        "label": "Поиск",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-007",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 7,
-        "label": "Пусто",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 11,
+        "label": "Сохранённые — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Пусто",
       "state": "Пусто",
@@ -26400,12 +26517,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Пересъёмка 10:51: без изменений — заголовок «Карточки» вместо «Сохранённые»",
-        "Значок закладки залитый; в макете контурный",
-        "Пустой блок ниже макетного"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -26419,16 +26532,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Пока пусто ¦ Сохраняйте слова в уроках ¦ Найти наборы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 7,
+        "label": "Пусто",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-008",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 8,
-        "label": "Карточки меняют размер и форму",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 6,
+        "label": "Сохранённые — 2 колонки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Карточки меняют размер и форму",
       "state": "Карточки меняют размер и форму",
@@ -26451,16 +26571,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Посадочный талон ¦ Ручная кладь ¦ Место у окна ¦ Выход на посадку ¦ /ˈkʌstəmz/ ¦ Место у прохода ¦ Туда и обратно ¦ /ˈkʌrənsi/. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 8,
+        "label": "Карточки меняют размер и форму",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-009",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 9,
-        "label": "Список",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 12,
+        "label": "Мои наборы",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Список",
       "state": "Список",
@@ -26474,15 +26600,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Совпадает: заголовок + «N набор», секция «Добавленные N», строка со значком, числом и стрелкой, «+ Создать набор» внизу",
-        "🟡 В строке набора нет второй строки (автор «Лидия» / «Только вы» / «В сообществе») — название прижато к верху, под ним пустое место",
-        "«Создать набор» уже макетного (≈435 против ≈500 px), не во всю ширину",
-        "Строка чуть выше макетной (≈85 против ≈80)",
-        "Связано с cards-section-001: при 1 наборе у плитки «Мои наборы» в хабе нет числа",
-        "Склейка макета: верх перекрыт панелью демо-кнопок макета («Проиграть появление…») — сравнивала по видимой части"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -26496,16 +26615,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): В сообществе ¦ B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 9,
+        "label": "Список",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-010",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 10,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 17,
         "label": "Действия с набором",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Действия с набором",
       "state": "Действия с набором",
@@ -26528,16 +26654,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): В сообществе ¦ Удалить набор. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 10,
+        "label": "Действия с набором",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-011",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 11,
-        "label": "Пусто",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 13,
+        "label": "Мои наборы — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Пусто",
       "state": "Пусто",
@@ -26560,16 +26692,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Наборов пока нет ¦ Создайте свой первый. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 11,
+        "label": "Пусто",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-012",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 12,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 14,
         "label": "Свой набор",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Свой набор",
       "state": "Свой набор",
@@ -26592,16 +26730,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Посадочный талон ¦ Ручная кладь ¦ Приготовьте посадочный талон.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 12,
+        "label": "Свой набор",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-013",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 13,
-        "label": "Чужой — до добавления",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 15,
+        "label": "Чужой набор — до добавления",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Чужой — до добавления",
       "state": "Чужой — до добавления",
@@ -26624,16 +26768,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 13,
+        "label": "Чужой — до добавления",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-014",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 14,
-        "label": "Чужой — добавлен, лайк",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 16,
+        "label": "Чужой набор — добавлен",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Чужой — добавлен, лайк",
       "state": "Чужой — добавлен, лайк",
@@ -26656,16 +26806,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 14,
+        "label": "Чужой — добавлен, лайк",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-015",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 15,
-        "label": "Карточка удалена — «Вернуть»",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 10,
+        "label": "Удалено — вернуть",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Карточка удалена — «Вернуть»",
       "state": "Карточка удалена — «Вернуть»",
@@ -26688,16 +26844,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Посадочный талон ¦ Ручная кладь ¦ Выход на посадку. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 15,
+        "label": "Карточка удалена — «Вернуть»",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-016",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 16,
-        "label": "Своя карточка",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 20,
+        "label": "Карточка — лицевая сторона",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Своя карточка",
       "state": "Своя карточка",
@@ -26722,16 +26884,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Посадочный талон ¦ Ручная кладь ¦ Приготовьте посадочный талон.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 16,
+        "label": "Своя карточка",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-017",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 17,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 21,
         "label": "Карточка — оборот",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Карточка — оборот",
       "state": "Карточка — оборот",
@@ -26756,16 +26924,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Посадочный талон ¦ Ручная кладь ¦ Приготовьте посадочный талон.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 17,
+        "label": "Карточка — оборот",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-018",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 18,
-        "label": "Карточка из чужого набора",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 20,
+        "label": "Карточка — лицевая сторона",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Карточка из чужого набора",
       "state": "Карточка из чужого набора",
@@ -26790,16 +26964,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Она убедила меня остаться.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 18,
+        "label": "Карточка из чужого набора",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-019",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 19,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 22,
         "label": "Новый набор",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Новый набор",
       "state": "Новый набор",
@@ -26824,16 +27004,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Новый набор ¦ Кто видит ¦ Добавить карточку. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 19,
+        "label": "Новый набор",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-020",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 20,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 24,
         "label": "Новая карточка",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Новая карточка",
       "state": "Новая карточка",
@@ -26858,16 +27044,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Новый набор ¦ Кто видит ¦ Слово или фраза ¦ Посадочный талон ¦ Билет на посадку ¦ Ещё одну. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 20,
+        "label": "Новая карточка",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-021",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 21,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 23,
         "label": "Изменить набор",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Изменить набор",
       "state": "Изменить набор",
@@ -26890,16 +27082,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Изменить набор ¦ Кто видит ¦ Добавить карточку. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 21,
+        "label": "Изменить набор",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-022",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 22,
-        "label": "Каталог",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог сообщества",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Каталог",
       "state": "Каталог",
@@ -26922,16 +27120,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 22,
+        "label": "Каталог",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-023",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 23,
-        "label": "Ничего не найдено",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 26,
+        "label": "Каталог — ничего не найдено",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Ничего не найдено",
       "state": "Ничего не найдено",
@@ -26956,16 +27160,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Ничего не нашли ¦ Попробуйте другое слово ¦ Сбросить фильтры. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 23,
+        "label": "Ничего не найдено",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-024",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 24,
-        "label": "Список наборов",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 25,
+        "label": "Каталог сообщества",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Список наборов",
       "state": "Список наборов",
@@ -26981,14 +27191,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снято 10:51 («Из видео» в хабе Карточек). Совпадает: «Из видео», «N набора · N фраз», выбор языка, поиск, строки с обложкой, «Добавить»",
-        "🔴 Названия наборов во всю длину в 7–10 строк, строка раздувается до ≈330 px; в макете 2 строки с «…» и строка ≈110 px",
-        "Обложка без длительности ролика (в макете «24:18» справа внизу)",
-        "«Добавить» — белая; в макете цветная акцентная (цвет темы не сравниваю)",
-        "Выбор языка: «🇬🇧 EN ⌄»; в макете «🇩🇪 Немецкий» без стрелки (данные/язык)"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -27002,7 +27206,14 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Самый лёгкий способ понять немецкий ¦ Немецкие фразы, которые помогут заговорить. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 24,
+        "label": "Список наборов",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-025",
@@ -27028,7 +27239,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27036,7 +27247,9 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Найдено · 1 ¦ Немецкие фразы, которые помогут заговорить. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-026",
@@ -27062,14 +27275,16 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; данные (названия, имена, карточки) не сверялись. Состав/порядок — по снимку."
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-027",
@@ -27093,7 +27308,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27101,7 +27316,9 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Пока пусто ¦ Наборы из роликов появятся здесь, как только выйдут.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-028",
@@ -27154,10 +27371,10 @@
       "id": "cards-section-029",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 29,
-        "label": "Сейчас недоступно",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 44,
+        "label": "Каталог без сети",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Сейчас недоступно",
       "state": "Сейчас недоступно",
@@ -27180,16 +27397,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Сейчас недоступно ¦ Проверьте интернет. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 29,
+        "label": "Сейчас недоступно",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-030",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 30,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 19,
         "label": "Набор из видео",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Набор из видео",
       "state": "Набор из видео",
@@ -27212,16 +27435,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Самый лёгкий способ понять немецкий ¦ Как у тебя дела? ¦ Я тебя не понимаю. ¦ Можешь повторить?. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 30,
+        "label": "Набор из видео",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-031",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 31,
-        "label": "Набор из видео — уже у вас",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 19,
+        "label": "Набор из видео",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Набор из видео — уже у вас",
       "state": "Набор из видео — уже у вас",
@@ -27244,16 +27473,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Самый лёгкий способ понять немецкий ¦ Как у тебя дела? ¦ Я тебя не понимаю. ¦ Можешь повторить?. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 31,
+        "label": "Набор из видео — уже у вас",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-032",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 32,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 27,
         "label": "Режим тренировки",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Режим тренировки",
       "state": "Режим тренировки",
@@ -27270,7 +27505,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "match",
+      "status": "pending",
       "reviewed_by": "owner-2026-10-11: владелец прямым указанием в чате велел отметить сверенные экраны (сверка: сессия 6, склейка без различий)",
       "reviewed_at": "2026-10-11T06:05:59.204Z",
       "sverka_verdict": "ВЕРДИКТ СВЕРКИ (по уточнению координатора 20:15): по самой шторке — СОВПАЛА в тёмной и светлой «Авроре» (форма, состав, порядок, цвет из темы). Фон за шторкой — устаревший modeSheet макета (cards-section.html:370), в сравнение не входит. Не отличия: 23/30 против 24/30, «ты/вы». Статус match — за координатором.",
@@ -27279,16 +27514,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Слова и фразы ¦ Минута на скорость ¦ Говорите вслух ¦ Верен ли перевод ¦ Пишите по памяти. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 32,
+        "label": "Режим тренировки",
+        "mapping": "by_construction"
+      },
+      "prev_status": "match"
     },
     {
       "id": "cards-section-033",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 33,
-        "label": "Блиц",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 28,
+        "label": "Настройка тренировки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Блиц",
       "state": "Блиц",
@@ -27305,7 +27547,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "match",
+      "status": "pending",
       "reviewed_by": "owner-2026-10-11: владелец прямым указанием в чате велел отметить сверенные экраны (сверка: сессия 6, склейка без различий)",
       "reviewed_at": "2026-10-11T06:05:59.204Z",
       "sverka_verdict": "ВЕРДИКТ СВЕРКИ (21:03, пересъёмка после a80ee9076, тёмная + светлая раньше): СОВПАЛ по форме, составу и порядку — строка «Добавить набор» убрана, остались заголовок «Блиц», подпись, «Наборы N выбрано», строки наборов с чекбоксом, «Время 30/60/90 с», «Начать →». | Принято с пометкой: белая «Начать» и белый сегмент «60 с» (решение владельца); число и названия наборов, 23/30 — данные аккаунта.",
@@ -27314,16 +27556,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Минута на скорость ¦ B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 33,
+        "label": "Блиц",
+        "mapping": "by_construction"
+      },
+      "prev_status": "match"
     },
     {
       "id": "cards-section-034",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 34,
-        "label": "Устно",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 28,
+        "label": "Настройка тренировки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Устно",
       "state": "Устно",
@@ -27346,16 +27595,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Говорите вслух ¦ B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 34,
+        "label": "Устно",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-035",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 35,
-        "label": "Правда / ложь",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 28,
+        "label": "Настройка тренировки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Правда / ложь",
       "state": "Правда / ложь",
@@ -27378,16 +27633,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Правда / ложь ¦ Верен ли перевод ¦ B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 35,
+        "label": "Правда / ложь",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-036",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 36,
-        "label": "Вспомни и напиши",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 28,
+        "label": "Настройка тренировки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Вспомни и напиши",
       "state": "Вспомни и напиши",
@@ -27410,6 +27671,12 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Пишите по памяти ¦ B2 глаголы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 36,
+        "label": "Вспомни и напиши",
+        "mapping": "by_construction"
       }
     },
     {
@@ -27434,7 +27701,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27442,16 +27709,18 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Минута на скорость ¦ Добавить набор. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-038",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 38,
-        "label": "Карточек нет",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 29,
+        "label": "Настройка — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Карточек нет",
       "state": "Карточек нет",
@@ -27474,16 +27743,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Говорите вслух ¦ Пока нет карточек ¦ Добавьте набор и начните ¦ Найти наборы. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 38,
+        "label": "Карточек нет",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-039",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 39,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 31,
         "label": "Блиц",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Блиц",
       "state": "Блиц",
@@ -27506,16 +27781,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Выберите перевод. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 39,
+        "label": "Блиц",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-040",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 40,
-        "label": "Устно — ожидание",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 32,
+        "label": "Устно",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Устно — ожидание",
       "state": "Устно — ожидание",
@@ -27538,16 +27819,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Скажите по-английски ¦ Я вам перезвоню ¦ Удерживайте и говорите ¦ Не могу говорить. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 40,
+        "label": "Устно — ожидание",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-041",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 41,
-        "label": "Устно — запись",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 32,
+        "label": "Устно",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Устно — запись",
       "state": "Устно — запись",
@@ -27574,16 +27861,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Скажите по-английски ¦ Я вам перезвоню ¦ Слушаю…. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 41,
+        "label": "Устно — запись",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-042",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 42,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 33,
         "label": "Правда / ложь",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Правда / ложь",
       "state": "Правда / ложь",
@@ -27606,16 +27899,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Правда / ложь. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 42,
+        "label": "Правда / ложь",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-043",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 43,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 34,
         "label": "Вспомни и напиши",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Вспомни и напиши",
       "state": "Вспомни и напиши",
@@ -27640,16 +27939,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Напишите по-английски ¦ Принять решение. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 43,
+        "label": "Вспомни и напиши",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-044",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 44,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 35,
         "label": "Блиц — верно",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Блиц — верно",
       "state": "Блиц — верно",
@@ -27663,10 +27968,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Тот же кадр, что practice-002 (Блиц — верно, 18:17). См. practice-002"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -27680,16 +27983,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Выберите перевод. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 44,
+        "label": "Блиц — верно",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-045",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 45,
-        "label": "Блиц — неверно, минус жизнь",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 36,
+        "label": "Блиц — неверно",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Блиц — неверно, минус жизнь",
       "state": "Блиц — неверно, минус жизнь",
@@ -27703,11 +28013,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снято 12:45: минус жизнь — одно сердце стало пустым сразу после ответа; подсветка неверного/верного как в practice-003",
-        "Шапка: сердца отдельно, без плашки «⚡ энергия» и без общей капсулы; монеты «0» справа — в макете «⚡4» и сердца в капсуле (шапка с сердцами и монетами — одобренное отличие владельца 04.10, проверить, действует ли)"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -27721,16 +28028,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Выберите перевод. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 45,
+        "label": "Блиц — неверно, минус жизнь",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-046",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 46,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 37,
         "label": "Устно — верно",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Устно — верно",
       "state": "Устно — верно",
@@ -27753,6 +28067,12 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Скажите по-английски ¦ Я вам перезвоню. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 46,
+        "label": "Устно — верно",
+        "mapping": "by_construction"
       }
     },
     {
@@ -27777,7 +28097,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27785,7 +28105,9 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ Скажите по-английски ¦ Я вам перезвоню. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-048",
@@ -27809,7 +28131,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27817,16 +28139,18 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Правда / ложь. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-049",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 49,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 38,
         "label": "Правда / ложь — неверно",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Правда / ложь — неверно",
       "state": "Правда / ложь — неверно",
@@ -27849,16 +28173,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Правда / ложь ¦ Stepmother — мачеха. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 49,
+        "label": "Правда / ложь — неверно",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-050",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 50,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 39,
         "label": "Напиши — верно",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Напиши — верно",
       "state": "Напиши — верно",
@@ -27881,6 +28211,12 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Напишите по-английски ¦ Принять решение. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 50,
+        "label": "Напиши — верно",
+        "mapping": "by_construction"
       }
     },
     {
@@ -27905,7 +28241,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -27913,16 +28249,18 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Напишите по-английски ¦ Принять решение ¦ Почти — опечатка ¦ Вы написали. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "cards-section-052",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 52,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 40,
         "label": "Напиши — неверно",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Напиши — неверно",
       "state": "Напиши — неверно",
@@ -27945,16 +28283,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Напишите по-английски ¦ Принять решение ¦ Вы написали. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 52,
+        "label": "Напиши — неверно",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-053",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 53,
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 41,
         "label": "Итог с ошибками",
-        "mapping": "by_construction"
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Итог с ошибками",
       "state": "Итог с ошибками",
@@ -27977,16 +28321,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Правда / ложь · Family ¦ Родня супруга. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 53,
+        "label": "Итог с ошибками",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-054",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 54,
-        "label": "Итог Блица",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 41,
+        "label": "Итог с ошибками",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Итог Блица",
       "state": "Итог Блица",
@@ -28000,14 +28350,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Снято 12:49 после Блица 30 с с ошибками. Совпадает: «БЛИЦ · НАБОР КАРТОЧЕК», крупный счёт, плашка точность/время/монеты, «Что исправить N» со строками и кнопкой озвучки, «Ещё разок! / Готово»",
-        "Главная цифра «0/4 верных ответов»; в макете очки «140 · очков · рекорд 180»",
-        "«Ещё разок!» с восклицанием; в макете «Ещё раз»",
-        "Строки «Что исправить» плоские тёмные; в макете стекло с градиентом темы",
-        "Плашка статистики и шапка без цвета темы «Аврора» (в макете зелёно-фиолетовое свечение)"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -28021,16 +28365,23 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Блиц · B2 глаголы ¦ очков · рекорд 180. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 54,
+        "label": "Итог Блица",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "cards-section-055",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 55,
-        "label": "Без ошибок",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 42,
+        "label": "Итог без ошибок",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Без ошибок",
       "state": "Без ошибок",
@@ -28053,16 +28404,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Без единой ошибки. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 55,
+        "label": "Без ошибок",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-056",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 56,
-        "label": "Лимит исчерпан (Free)",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 30,
+        "label": "Лимит Free — тренировки",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Лимит исчерпан (Free)",
       "state": "Лимит исчерпан (Free)",
@@ -28085,16 +28442,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Минута на скорость ¦ Лимит на этот месяц исчерпан ¦ Обновится 1 ноября. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 56,
+        "label": "Лимит исчерпан (Free)",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "cards-section-057",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
-        "phone": 57,
-        "label": "Нет сети и кэша",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 43,
+        "label": "Хаб без сети",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "Нет сети и кэша",
       "state": "Нет сети и кэша",
@@ -28117,6 +28480,12 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Сейчас недоступно ¦ Проверьте интернет. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 57,
+        "label": "Нет сети и кэша",
+        "mapping": "by_construction"
       }
     },
     {
@@ -28186,7 +28555,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -28194,16 +28563,18 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Фразовые глаголы с get ¦ Пожаловаться на набор ¦ Не показывать мне. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_status": "pending",
+      "removed_reason": "заменено cards-v2, решение владельца 11.10"
     },
     {
       "id": "packs-simple-003",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/packs-simple.html",
-        "phone": 3,
-        "label": "3 · Пока нет наборов",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 13,
+        "label": "Мои наборы — пусто",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "3 · Пока нет наборов",
       "state": "3 · Пока нет наборов",
@@ -28226,16 +28597,22 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): Здесь появятся наборы после публикации.. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/packs-simple.html",
+        "phone": 3,
+        "label": "3 · Пока нет наборов",
+        "mapping": "by_construction"
       }
     },
     {
       "id": "packs-simple-004",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/packs-simple.html",
-        "phone": 4,
-        "label": "4 · Набор до добавления",
-        "mapping": "by_construction"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 15,
+        "label": "Чужой набор — до добавления",
+        "mapping": "cards_v2_map_2026-10-12"
       },
       "screen": "4 · Набор до добавления",
       "state": "4 · Набор до добавления",
@@ -28249,15 +28626,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Пересъёмка 11:09 (чужой набор «Phrasal verbs from lesson N 16», ещё не добавлен). Открытие быстрое: экран с карточками на первом кадре (+2 с после тапа), лог fetch:done 110 мс, preview:cards 173 мс, first-layout 443 мс",
-        "Совпадает: шапка «‹ … ⋮», название, автор, лайки/участники справа, «Карточки N», список, «Добавить себе» внизу",
-        "Карточки — плоские тёмные с 1px обводкой; в макете стекло (градиент, светлая кромка сверху)",
-        "Название в 2 строки крупнее макетного (≈56 против ≈40)",
-        "«Добавить себе» белая; в макете акцентная (цвет темы не сравниваю)",
-        "Нет счётчика комментариев (в макете 💬 1) — у набора 0 комментариев (данные)"
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -28271,7 +28641,14 @@
         "verdict": "diff",
         "notes": "Текстов макета нет в коде (только статические; данные отфильтрованы): B2 глаголы ¦ класть ¦ утверждать ¦ убеждать. Часть может быть ты/вы-тоном → тогда править макет (Макеты); иначе → Дизайн.",
         "to": "Дизайн/Макеты"
-      }
+      },
+      "prev_mockup": {
+        "file": "docs/design/v2-app/packs-simple.html",
+        "phone": 4,
+        "label": "4 · Набор до добавления",
+        "mapping": "by_construction"
+      },
+      "prev_status": "diff"
     },
     {
       "id": "energy-modes-001",

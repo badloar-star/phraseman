@@ -108,7 +108,8 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
   const cloud = name => () => { order.push(`cloud:${name}`); return Promise.resolve(); };
   const router = { push: route => calls.push.push(route) };
   const modules = {
-    '../components/settings/switch_chrome': { switchTrackBorder: (glass) => glass.glassEdge }, // 11.10: граница дорожки переключателя по теме (светлая — secondary 65 %)
+    // 12.10 (стиль «Тень»): дорожка выключенного — тон без кромки (switchOffTrackTone; контраст тем — switch_track_border_contract).
+    '../components/settings/switch_chrome': { switchOffTrackTone: (glass) => ({ track: glass.opaqueControl, knob: glass.secondary }) },
     react: { __esModule: true, default: React, ...React },
     'react-native': { Text: 'Text', View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
@@ -324,7 +325,7 @@ test('every rendered row and local switch has the approved geometry, wrapping, g
     // зачем (стиль «Тень», владелец 12.10): вместо блика-градиента и рамки — заливка плашки и тень, кромок нет.
     assert.equal(descendants.filter(node => node.type === 'PlateFill').length, 1, `${id} has one plate fill`);
     assert.ok(style.boxShadow, `${id} carries the plate shadow`);
-    assert.ok(!descendants.some(node => node.type === 'View' && flatStyle(node.props.style).borderWidth === 1 && flatStyle(node.props.style).height !== 29 /* трек переключателя оставлен: switch_track_border_contract */), `${id} has no rim`);
+    assert.ok(!descendants.some(node => node.type === 'View' && flatStyle(node.props.style).borderWidth === 1), `${id} has no rim`);
     for (const text of descendants.filter(node => node.type === 'Text')) {
       assert.equal(text.props.numberOfLines, undefined);
       assert.equal(text.props.adjustsFontSizeToFit, undefined);
@@ -339,6 +340,8 @@ test('every rendered row and local switch has the approved geometry, wrapping, g
     const thumb = visit(track).find(node => node.type === 'View' && flatStyle(node.props.style).height === 21);
     assert.equal(flatStyle(track.props.style).width, 48);
     assert.equal(flatStyle(thumb.props.style).width, 21);
+    // зачем (стиль «Тень», координатор 12.10): дорожка без обводки — отделяется тоном.
+    assert.equal(flatStyle(track.props.style).borderWidth, undefined);
     assert.equal(typeof control.props.accessibilityLabel, 'string');
     assert.equal(typeof control.props.accessibilityState.checked, 'boolean');
   }

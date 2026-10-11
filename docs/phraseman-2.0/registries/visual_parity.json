@@ -5797,7 +5797,10 @@
       },
       "screen": "B. Брифинг и вход",
       "state": "Старт диалога: энергия 5 → 4",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
@@ -5817,7 +5820,8 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-013",
@@ -6279,7 +6283,10 @@
       },
       "screen": "C. Сессия диалога",
       "state": "Настроение собеседника упало",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": true,
       "anim_notes": [
@@ -6313,7 +6320,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-024",
@@ -6717,7 +6725,10 @@
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Лимит — последний ответ (1/30)",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
@@ -6737,7 +6748,8 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-035",
@@ -6750,7 +6762,10 @@
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Лимит закончился — «На этот месяц всё»",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
@@ -6785,7 +6800,8 @@
         "to": "Макеты",
         "reason": "осознанное отличие/устаревший макет — по решению Дизайна"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-036",
@@ -6844,7 +6860,10 @@
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Диалог завершён — финальная реплика",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
@@ -6863,7 +6882,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-038",
@@ -6876,7 +6896,10 @@
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Переписка после итога — пилюля «Итоги»",
-      "code": [],
+      "code": [
+        "components/dialogs/DialogueV2SessionScreen.tsx",
+        "components/dialogs/glass/DialogueGlassChat.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": true,
       "anim_notes": [
@@ -6909,7 +6932,8 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "dialogs-039",
@@ -14157,7 +14181,9 @@
       },
       "screen": "Вкладка и Шпиль",
       "state": "итог недели — карточка на главном экране Шпиля",
-      "code": [],
+      "code": [
+        "components/spire/SpireWeekResultCard.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": true,
       "anim_notes": [
@@ -14183,7 +14209,8 @@
       },
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: полноэкранный «Итоги недели» заменён карточкой на главном Шпиля (SpireWeekResultCard.tsx), как в spire.html §9; монета выпрыгивает (anim-pop).",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "community-006",
@@ -15850,7 +15877,9 @@
       },
       "screen": "Справочный макет · атрибуция приглашения",
       "state": "приглашение друга",
-      "code": [],
+      "code": [
+        "app/referrals.tsx"
+      ],
       "matrix_status": "➖",
       "has_animation": null,
       "anim_notes": [],
@@ -15879,7 +15908,8 @@
         "to": "Макеты"
       },
       "mockup_pinned": "Макеты 12.10: тон «ты» («Поделись кодом», «Твой код»).",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "profile-027",
@@ -26763,7 +26793,14 @@
       },
       "screen": "Список",
       "state": "Список",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CollectionListView.tsx",
+        "app/flashcards/CollectionGalleryView.tsx",
+        "app/flashcards/FlashcardListItem.tsx",
+        "app/flashcards/SavedCollectionStates.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -26789,7 +26826,8 @@
         "label": "Список",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-006",
@@ -26802,7 +26840,14 @@
       },
       "screen": "Поиск",
       "state": "Поиск",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CollectionListView.tsx",
+        "app/flashcards/CollectionGalleryView.tsx",
+        "app/flashcards/FlashcardListItem.tsx",
+        "app/flashcards/SavedCollectionStates.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -26830,7 +26875,8 @@
         "label": "Поиск",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-007",
@@ -26843,7 +26889,14 @@
       },
       "screen": "Пусто",
       "state": "Пусто",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CollectionListView.tsx",
+        "app/flashcards/CollectionGalleryView.tsx",
+        "app/flashcards/FlashcardListItem.tsx",
+        "app/flashcards/SavedCollectionStates.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -26883,7 +26936,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-008",
@@ -26896,7 +26950,14 @@
       },
       "screen": "Карточки меняют размер и форму",
       "state": "Карточки меняют размер и форму",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CollectionListView.tsx",
+        "app/flashcards/CollectionGalleryView.tsx",
+        "app/flashcards/FlashcardListItem.tsx",
+        "app/flashcards/SavedCollectionStates.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -26922,7 +26983,8 @@
         "label": "Карточки меняют размер и форму",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-009",
@@ -26935,7 +26997,10 @@
       },
       "screen": "Список",
       "state": "Список",
-      "code": [],
+      "code": [
+        "app/flashcards_my_packs.tsx",
+        "app/flashcards/MyPacksV2.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -26975,7 +27040,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-010",
@@ -26988,7 +27054,13 @@
       },
       "screen": "Действия с набором",
       "state": "Действия с набором",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/PackHeaderV2.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CommunityPackPreview.tsx",
+        "app/community_packs/CommunityPackSocialBar.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27014,7 +27086,8 @@
         "label": "Действия с набором",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-011",
@@ -27027,7 +27100,10 @@
       },
       "screen": "Пусто",
       "state": "Пусто",
-      "code": [],
+      "code": [
+        "app/flashcards_my_packs.tsx",
+        "app/flashcards/MyPacksV2.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27053,7 +27129,8 @@
         "label": "Пусто",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-012",
@@ -27066,7 +27143,13 @@
       },
       "screen": "Свой набор",
       "state": "Свой набор",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/PackHeaderV2.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CommunityPackPreview.tsx",
+        "app/community_packs/CommunityPackSocialBar.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27092,7 +27175,8 @@
         "label": "Свой набор",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-013",
@@ -27105,7 +27189,13 @@
       },
       "screen": "Чужой — до добавления",
       "state": "Чужой — до добавления",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/PackHeaderV2.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CommunityPackPreview.tsx",
+        "app/community_packs/CommunityPackSocialBar.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27131,7 +27221,8 @@
         "label": "Чужой — до добавления",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-014",
@@ -27144,7 +27235,13 @@
       },
       "screen": "Чужой — добавлен, лайк",
       "state": "Чужой — добавлен, лайк",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/PackHeaderV2.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CommunityPackPreview.tsx",
+        "app/community_packs/CommunityPackSocialBar.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27170,7 +27267,8 @@
         "label": "Чужой — добавлен, лайк",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-015",
@@ -27183,7 +27281,14 @@
       },
       "screen": "Карточка удалена — «Вернуть»",
       "state": "Карточка удалена — «Вернуть»",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CollectionListView.tsx",
+        "app/flashcards/CollectionGalleryView.tsx",
+        "app/flashcards/FlashcardListItem.tsx",
+        "app/flashcards/SavedCollectionStates.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27209,7 +27314,8 @@
         "label": "Карточка удалена — «Вернуть»",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-016",
@@ -27222,7 +27328,11 @@
       },
       "screen": "Своя карточка",
       "state": "Своя карточка",
-      "code": [],
+      "code": [
+        "app/flashcards/ExpandedCardV2.tsx",
+        "app/flashcards/PhraseCard.tsx",
+        "app/flashcards/FlashcardDetailsBody.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27250,7 +27360,8 @@
         "label": "Своя карточка",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-017",
@@ -27263,7 +27374,11 @@
       },
       "screen": "Карточка — оборот",
       "state": "Карточка — оборот",
-      "code": [],
+      "code": [
+        "app/flashcards/ExpandedCardV2.tsx",
+        "app/flashcards/PhraseCard.tsx",
+        "app/flashcards/FlashcardDetailsBody.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27291,7 +27406,8 @@
         "label": "Карточка — оборот",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-018",
@@ -27304,7 +27420,11 @@
       },
       "screen": "Карточка из чужого набора",
       "state": "Карточка из чужого набора",
-      "code": [],
+      "code": [
+        "app/flashcards/ExpandedCardV2.tsx",
+        "app/flashcards/PhraseCard.tsx",
+        "app/flashcards/FlashcardDetailsBody.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27332,7 +27452,8 @@
         "label": "Карточка из чужого набора",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-019",
@@ -27345,7 +27466,13 @@
       },
       "screen": "Новый набор",
       "state": "Новый набор",
-      "code": [],
+      "code": [
+        "app/community_pack_create.tsx",
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "app/community_packs/PackEditorV2.tsx",
+        "app/flashcards_card_editor.tsx",
+        "app/flashcards/CardsGlassKit.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27373,7 +27500,8 @@
         "label": "Новый набор",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-020",
@@ -27386,7 +27514,13 @@
       },
       "screen": "Новая карточка",
       "state": "Новая карточка",
-      "code": [],
+      "code": [
+        "app/community_pack_create.tsx",
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "app/community_packs/PackEditorV2.tsx",
+        "app/flashcards_card_editor.tsx",
+        "app/flashcards/CardsGlassKit.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27414,7 +27548,8 @@
         "label": "Новая карточка",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-021",
@@ -27427,7 +27562,13 @@
       },
       "screen": "Изменить набор",
       "state": "Изменить набор",
-      "code": [],
+      "code": [
+        "app/community_pack_create.tsx",
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "app/community_packs/PackEditorV2.tsx",
+        "app/flashcards_card_editor.tsx",
+        "app/flashcards/CardsGlassKit.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27453,7 +27594,8 @@
         "label": "Изменить набор",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-022",
@@ -27466,7 +27608,10 @@
       },
       "screen": "Каталог",
       "state": "Каталог",
-      "code": [],
+      "code": [
+        "app/flashcards_packs.tsx",
+        "app/flashcards/FlashcardsCategoryHub.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27492,7 +27637,8 @@
         "label": "Каталог",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-023",
@@ -27505,7 +27651,10 @@
       },
       "screen": "Ничего не найдено",
       "state": "Ничего не найдено",
-      "code": [],
+      "code": [
+        "app/flashcards_packs.tsx",
+        "app/flashcards/FlashcardsCategoryHub.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27533,7 +27682,8 @@
         "label": "Ничего не найдено",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-024",
@@ -27546,7 +27696,10 @@
       },
       "screen": "Список наборов",
       "state": "Список наборов",
-      "code": [],
+      "code": [
+        "app/flashcards_packs.tsx",
+        "app/flashcards/FlashcardsCategoryHub.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -27587,7 +27740,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-025",
@@ -27761,7 +27915,10 @@
       },
       "screen": "Сейчас недоступно",
       "state": "Сейчас недоступно",
-      "code": [],
+      "code": [
+        "app/flashcards_packs.tsx",
+        "components/ui/new/OfflineDataNotice.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27787,7 +27944,8 @@
         "label": "Сейчас недоступно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-030",
@@ -27800,7 +27958,12 @@
       },
       "screen": "Набор из видео",
       "state": "Набор из видео",
-      "code": [],
+      "code": [
+        "app/flashcards_video_packs.tsx",
+        "app/flashcards/VideoPackRow.tsx",
+        "app/flashcards/VideoSetView.tsx",
+        "app/flashcards/PackVideoHero.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27826,7 +27989,8 @@
         "label": "Набор из видео",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-031",
@@ -27839,7 +28003,12 @@
       },
       "screen": "Набор из видео — уже у вас",
       "state": "Набор из видео — уже у вас",
-      "code": [],
+      "code": [
+        "app/flashcards_video_packs.tsx",
+        "app/flashcards/VideoPackRow.tsx",
+        "app/flashcards/VideoSetView.tsx",
+        "app/flashcards/PackVideoHero.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -27865,7 +28034,8 @@
         "label": "Набор из видео — уже у вас",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-032",
@@ -27979,7 +28149,11 @@
       },
       "screen": "Устно",
       "state": "Устно",
-      "code": [],
+      "code": [
+        "app/flashcards_training_setup.tsx",
+        "app/flashcards/TrainingSetupV2.tsx",
+        "app/flashcards/DeckPickerSheet.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28005,7 +28179,8 @@
         "label": "Устно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-035",
@@ -28018,7 +28193,11 @@
       },
       "screen": "Правда / ложь",
       "state": "Правда / ложь",
-      "code": [],
+      "code": [
+        "app/flashcards_training_setup.tsx",
+        "app/flashcards/TrainingSetupV2.tsx",
+        "app/flashcards/DeckPickerSheet.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28044,7 +28223,8 @@
         "label": "Правда / ложь",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-036",
@@ -28057,7 +28237,11 @@
       },
       "screen": "Вспомни и напиши",
       "state": "Вспомни и напиши",
-      "code": [],
+      "code": [
+        "app/flashcards_training_setup.tsx",
+        "app/flashcards/TrainingSetupV2.tsx",
+        "app/flashcards/DeckPickerSheet.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28083,7 +28267,8 @@
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-037",
@@ -28130,7 +28315,11 @@
       },
       "screen": "Карточек нет",
       "state": "Карточек нет",
-      "code": [],
+      "code": [
+        "app/flashcards_training_setup.tsx",
+        "app/flashcards/TrainingSetupV2.tsx",
+        "app/flashcards/DeckPickerSheet.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28156,7 +28345,8 @@
         "label": "Карточек нет",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-039",
@@ -28169,7 +28359,9 @@
       },
       "screen": "Блиц",
       "state": "Блиц",
-      "code": [],
+      "code": [
+        "app/flashcards_blitz_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28195,7 +28387,8 @@
         "label": "Блиц",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-040",
@@ -28208,7 +28401,9 @@
       },
       "screen": "Устно — ожидание",
       "state": "Устно — ожидание",
-      "code": [],
+      "code": [
+        "app/flashcards_speaking_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28234,7 +28429,8 @@
         "label": "Устно — ожидание",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-041",
@@ -28247,7 +28443,9 @@
       },
       "screen": "Устно — запись",
       "state": "Устно — запись",
-      "code": [],
+      "code": [
+        "app/flashcards_speaking_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -28277,7 +28475,8 @@
         "label": "Устно — запись",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-042",
@@ -28290,7 +28489,9 @@
       },
       "screen": "Правда / ложь",
       "state": "Правда / ложь",
-      "code": [],
+      "code": [
+        "app/flashcards_truefalse_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28316,7 +28517,8 @@
         "label": "Правда / ложь",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-043",
@@ -28329,7 +28531,9 @@
       },
       "screen": "Вспомни и напиши",
       "state": "Вспомни и напиши",
-      "code": [],
+      "code": [
+        "app/flashcards_recall_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -28357,7 +28561,8 @@
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-044",
@@ -28370,7 +28575,9 @@
       },
       "screen": "Блиц — верно",
       "state": "Блиц — верно",
-      "code": [],
+      "code": [
+        "app/flashcards_blitz_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28410,7 +28617,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-045",
@@ -28423,7 +28631,9 @@
       },
       "screen": "Блиц — неверно, минус жизнь",
       "state": "Блиц — неверно, минус жизнь",
-      "code": [],
+      "code": [
+        "app/flashcards_blitz_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28462,7 +28672,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-046",
@@ -28475,7 +28686,9 @@
       },
       "screen": "Устно — верно",
       "state": "Устно — верно",
-      "code": [],
+      "code": [
+        "app/flashcards_speaking_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28501,7 +28714,8 @@
         "label": "Устно — верно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-047",
@@ -28582,7 +28796,9 @@
       },
       "screen": "Правда / ложь — неверно",
       "state": "Правда / ложь — неверно",
-      "code": [],
+      "code": [
+        "app/flashcards_truefalse_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28608,7 +28824,8 @@
         "label": "Правда / ложь — неверно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-050",
@@ -28621,7 +28838,9 @@
       },
       "screen": "Напиши — верно",
       "state": "Напиши — верно",
-      "code": [],
+      "code": [
+        "app/flashcards_recall_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28647,7 +28866,8 @@
         "label": "Напиши — верно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-051",
@@ -28694,7 +28914,9 @@
       },
       "screen": "Напиши — неверно",
       "state": "Напиши — неверно",
-      "code": [],
+      "code": [
+        "app/flashcards_recall_session.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28720,7 +28942,8 @@
         "label": "Напиши — неверно",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-053",
@@ -28733,7 +28956,10 @@
       },
       "screen": "Итог с ошибками",
       "state": "Итог с ошибками",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsSessionResultV2.tsx",
+        "app/flashcards/SessionResultScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28759,7 +28985,8 @@
         "label": "Итог с ошибками",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-054",
@@ -28772,7 +28999,10 @@
       },
       "screen": "Итог Блица",
       "state": "Итог Блица",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsSessionResultV2.tsx",
+        "app/flashcards/SessionResultScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28807,7 +29037,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-055",
@@ -28820,7 +29051,10 @@
       },
       "screen": "Без ошибок",
       "state": "Без ошибок",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsSessionResultV2.tsx",
+        "app/flashcards/SessionResultScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28846,7 +29080,8 @@
         "label": "Без ошибок",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-056",
@@ -28859,7 +29094,11 @@
       },
       "screen": "Лимит исчерпан (Free)",
       "state": "Лимит исчерпан (Free)",
-      "code": [],
+      "code": [
+        "app/flashcards_training_setup.tsx",
+        "app/flashcards/TrainingSetupV2.tsx",
+        "app/flashcards/DeckPickerSheet.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -28885,7 +29124,8 @@
         "label": "Лимит исчерпан (Free)",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "cards-section-057",
@@ -29026,7 +29266,10 @@
       },
       "screen": "3 · Пока нет наборов",
       "state": "3 · Пока нет наборов",
-      "code": [],
+      "code": [
+        "app/flashcards_my_packs.tsx",
+        "app/flashcards/MyPacksV2.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -29052,7 +29295,8 @@
         "label": "3 · Пока нет наборов",
         "mapping": "by_construction"
       },
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "packs-simple-004",
@@ -29065,7 +29309,13 @@
       },
       "screen": "4 · Набор до добавления",
       "state": "4 · Набор до добавления",
-      "code": [],
+      "code": [
+        "app/flashcards_collection.tsx",
+        "app/flashcards/PackHeaderV2.tsx",
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "app/flashcards/CommunityPackPreview.tsx",
+        "app/community_packs/CommunityPackSocialBar.tsx"
+      ],
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
@@ -29104,7 +29354,8 @@
         "mapping": "by_construction"
       },
       "prev_status": "pending",
-      "release": "r1"
+      "release": "r1",
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
     },
     {
       "id": "energy-modes-001",
@@ -30821,8 +31072,7 @@
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "prev_status": "pending",
-      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет поиска в хабе; поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)",
-      "release": "r1"
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет поиска в хабе; поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
     },
     {
       "id": "cards-v2-005",
@@ -32118,8 +32368,7 @@
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "prev_status": "pending",
-      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет кадра «Нет сети» у хаба (хаб в авиарежиме рисуется как обычно); поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)",
-      "release": "r1"
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет кадра «Нет сети» у хаба (хаб в авиарежиме рисуется как обычно); поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
     },
     {
       "id": "cards-v2-044",

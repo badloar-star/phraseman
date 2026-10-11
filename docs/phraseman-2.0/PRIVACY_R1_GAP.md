@@ -245,3 +245,33 @@ When you switch accounts on a device, the App may keep a temporary copy of the p
    - согласие на ИИ для наборов и жалоб;
    - сужение чтения комнат Шпиля до участников — тогда в §5 «members of your room»;
    - строка про ботов в условиях.
+
+---
+
+## П.60 журнала — 9 решений советника: что в коде, что ждёт владельца (12.10, ночь)
+
+| № | Решение | В коде | Ждёт владельца |
+|---|---|---|---|
+| 1 | TTL переписки свободного ИИ-чата | ✅ `005d6401b` — `firestore.indexes.json` | деплой индексов. После деплоя §11 можно сменить на вариант А («удаляется примерно через 24 часа») |
+| 2 | Боты Шпиля — в политике и условиях | ✅ политика §5 `4c71ca720`; условия §4 — одна строка-факт `9b905f582` («Some places in Spire rooms may be filled by computer-controlled participants rather than real people.») | публикация политики и условий |
+| 3 | Правило чтения комнат не сужать до релиза | ✅ ничего не меняли; §5 честно говорит «other app users who open the room» | — (сузить после релиза → вернуть «members of your room») |
+| 4 | Убрать «without a separate in-app checkbox», `adminSummarizeFeedback` не запускать до 2.1 | ✅ `4c71ca720`: фразы нет ни в источнике, ни в копиях (проверено grep: 0). §11 — «only if you have enabled AI features». `adminSummarizeFeedback` — ручной вызов из админки (`onCall`), не по расписанию | не вызывать её до 2.1. Перед 2.1 — проверка согласия на ИИ в коде |
+| 5 | ИИ на тексте наборов и жалоб — раскрытия достаточно | ✅ §6 `4c71ca720` | публикация |
+| 6 | Русскую политику до релиза не публиковать | ✅ RU — только черновики в этом документе | — |
+| 7 | iOS-страница политики | ✅ `knowly-www/legal/privacy-ios/` `78b23d514` | деплой `hosting:knowly-www` + ссылка в App Store Connect (до 17.10) |
+| 8 | Озвучку карточек не выкладывать без правки §6/§13 | ✅ пометка ⛔ у экспорта `cardTtsPackWorker` / `adminCardTtsRequeuePack` в `functions/src/index.ts` (коммит ниже); тексты — П9 ниже | 🔴 **не делать полный `firebase deploy --only functions`**: `cardTtsPackWorker` — триггер Firestore, он уйдёт в прод и начнёт слать текст карточек в OpenAI, а §13 сейчас обещает «только на устройстве». Только прицельные деплои — до публикации П9 |
+| 9 | Удалить webrtc/incall и ложное описание камеры | ✅ `f0be8d357`. Проверено ещё раз: в `package.json`, `package-lock.json`, `app.json` (плагины, `infoPlist`, `permissions`), `eas.json`, `android/settings.gradle`, `android/app/build.gradle`, `ios/Podfile*` упоминаний нет; в `node_modules` пакетов нет; `expo config --type introspect` — камеры нет ни в iOS, ни в Android | нативная сборка до 14.10; при загрузке в App Store — нет ли письма ITMS-90683 |
+
+### П9. Озвучка карточек через OpenAI TTS (для `cardTts*`, публиковать вместе с их выкладкой)
+
+**EN (§6, после абзаца об ИИ-проверке и переводе):**
+When a Community Pack is approved, the text of its cards may be sent to our AI provider (OpenAI) to generate audio for the cards. The generated audio is stored with the pack and played to users who open it. Only the pack's content is sent; it contains personal data only if the author included it in the pack.
+
+**EN (§13, в конец первого абзаца):**
+Some approved Community Packs also include pre-generated audio, created from the card text by our AI provider's text-to-speech service, as described in the Community Packs section.
+
+**RU (§6):**
+Когда набор сообщества одобрен, текст его карточек может отправляться нашему ИИ-провайдеру (OpenAI), чтобы озвучить карточки. Готовая озвучка хранится вместе с набором и проигрывается тем, кто его открывает. Отправляется только содержимое набора; персональные данные в нём есть, только если их добавил автор.
+
+**RU (§13):**
+У части одобренных наборов сообщества есть заранее подготовленная озвучка: её создаёт сервис синтеза речи нашего ИИ-провайдера по тексту карточек, как описано в разделе о наборах сообщества.

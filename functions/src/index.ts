@@ -602,6 +602,9 @@ export { communityAuthorRemoveCard } from "./community_pack_card_remove";
 // D128 (2026-09-30): озвучка одобренных наборов карточек через OpenAI TTS.
 // Деплой — только после релиза клиента 2.0 (D91), прицельно:
 //   firebase deploy --only "functions:cardTtsPackWorker,functions:adminCardTtsRequeuePack"
+// ⛔ Решение советника п.60(8), 12.10: НЕ выкладывать, пока в политике конфиденциальности нет §6/§13 об озвучке карточек
+// через OpenAI TTS (сейчас §13 обещает, что озвучка только на устройстве). Черновик текста — docs/phraseman-2.0/PRIVACY_R1_GAP.md, П9.
+// Полный `firebase deploy --only functions` выложил бы этот триггер — до правки политики только прицельные деплои без него.
 export { cardTtsPackWorker, adminCardTtsRequeuePack } from "./card_tts_worker";
 
 

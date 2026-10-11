@@ -382,6 +382,9 @@
 .topic .n { color: var(--sec); font-variant-numeric: tabular-nums; width: 40px; text-align: right; font-weight: 600; }
 .coinfly { position: absolute; z-index: 60; pointer-events: none; }
 .col > .lbl .note { display: block; font-weight: 400; color: var(--sec); margin-top: 2px; font-size: 13px; }
+/* зачем (координатор 11.10): вход в Learning V2 — полоса вкладок «Уроки | V2» под шапкой списка (lessons.tsx, TabUnderlineButton) рядом с чипом «Новые уроки» (значок ✦ справа от поиска); подробно — learning-v2-entry-states.html */
+.lvtabs { display: flex; gap: 16px; margin: 4px 0 0; box-shadow: inset 0 -1px 0 rgba(255,255,255,.12); }
+.lvt { position: relative; height: 44px; display: flex; align-items: center; font-size: 16px; font-weight: 700; color: var(--muted); } .lvt.on { color: #fff; } .lvt.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 2px; background: var(--acc); }
 </style>
 </head>
 <body>
@@ -451,6 +454,7 @@ const examCard = (lvl, st, dim) => `<div class="card c2 t exc${dim ? ' faint' : 
 const attestCard = () => `<div class="card c2 t attest"><div class="tile t55" style="background:#2A2A2C">${li('school', 's26')}</div><div class="grow"><div class="ov" style="letter-spacing:2px">B2 / CEFR</div><div style="font-size:20px;font-weight:700;margin-top:6px">Аттестация</div></div>${ch}</div>`;
 const listHead = (o = {}) => `
   <div class="lhd"><div class="ttl">Обучение</div>${coins(o.coins ?? 1240, { rank: 5, s: true })}${o.plus ? '' : `<span class="enp" data-energy="${o.en ?? 5}">${icon('bolt', 's20')}<span class="num">${o.en ?? 5}</span></span>`}</div>
+  <div class="lvtabs"><span class="lvt on">Уроки</span><span class="lvt t">V2</span></div>
   <div class="ltools"><div class="lsr">${icon('search', 's18')}${o.q ? `<span class="q">${o.q}</span><span class="cur"></span><span class="x t">${icon('close', 's18')}</span>` : '<span class="plc">Урок или тема</span>'}</div><span class="rb c40 t">${li('shuffle', 's20')}</span><span class="rb c40 t">${li('sparkleF', 's20')}</span></div>`;
 const reportBtn = () => `<div class="report t">${li('info', 's16')}Сообщить об ошибке</div>`;
 

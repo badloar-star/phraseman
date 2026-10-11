@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход в Learning V2 — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (координатор 11.10: «ВХОД В LEARNING V2 — сейчас единственные входы в сборке: вкладка «V2» и чип «Новые уроки» на экране «Уроки»; Learning V2 теперь в сборке по приказу владельца»):
+     spec_learn.md помечал их «Удалено в 2.0», но других входов нет — рисуем. Экран app/(tabs)/lessons.tsx: шапка «Обучение» (монеты и энергия), полоса вкладок «Уроки | V2» с акцентным подчёркиванием,
+     строка поиска «Урок или тема» с двумя круглыми кнопками 40 — «перемешать» (shuffle) и «Новые уроки» (sparkles, значок без подписи; ярлык для озвучки «Новые уроки»), список уроков.
+     Тап по чипу или вкладке → страница V2: тот же заголовок, но вместо энергии кнопка словаря, внизу нижнее меню скрыто (useHideTabBar), карта курса — в learning-v2.html.
+     Когда курс нельзя открыть вручную — под чипом строка «Этот курс находится в разработке» (код её оставил). Вкладка «Диалоги» показывается только если разделы диалогов включены в этой вкладке.
+     Тексты — из кода. Кегли 16/13. Обводки — только 1px полупрозрачные. Тёмная «Аврора» и светлая тема. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --e-ctl: #1D1D22; --e-card: #202027; --e-sel: rgba(255,255,255,.1); --e-tx: #fff; --e-sc: #A6A6A8; --e-mu: #75757A; --e-edge: rgba(255,255,255,.13); --e-ink: var(--on); --e-tint: var(--acc); --e-ok: #5FD6A0; color: var(--e-tx); }
+  .ph.lite { --e-ctl: #ECECF1; --e-card: #F6F6FA; --e-sel: rgba(0,0,0,.07); --e-tx: #0C0C10; --e-sc: #55555D; --e-mu: #86868E; --e-edge: rgba(0,0,0,.12); --e-ink: #fff; --e-ok: #1E8F5E; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .epg { position: absolute; inset: 0; padding-top: 50px; display: flex; flex-direction: column; overflow: hidden; }
+  .ehd { display: flex; align-items: center; gap: 10px; padding: 14px 18px 8px; } .ehd .tt { flex: 1; font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; }
+  .epl { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; background: var(--e-ctl); font-size: 16px; font-weight: 700; flex: none; box-shadow: inset 0 0 0 1px var(--e-edge); } .epl .i { width: 20px; height: 20px; color: var(--e-tint); }
+  .ecir { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--e-ctl); box-shadow: inset 0 0 0 1px var(--e-edge); flex: none; color: var(--e-tx); } .ecir .i { width: 20px; height: 20px; }
+  .etabs { display: flex; gap: 16px; padding: 0 18px; box-shadow: inset 0 -1px 0 var(--e-edge); margin-bottom: 2px; }
+  .etab { position: relative; height: 44px; display: flex; align-items: center; gap: 6px; font-size: 16px; line-height: 20px; font-weight: 700; color: var(--e-mu); } .etab.on { color: var(--e-tx); } .etab.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 2px; background: var(--e-tint); }
+  .etab .pb { height: 20px; padding: 0 7px; border-radius: 8px; display: inline-flex; align-items: center; background: var(--e-tint); color: var(--e-ink); font-size: 13px; font-weight: 700; }
+  .etools { display: flex; align-items: center; gap: 10px; padding: 12px 18px 0; } .esr { flex: 1; min-width: 0; height: 44px; border-radius: 22px; padding: 0 14px; display: flex; align-items: center; gap: 8px; background: var(--e-ctl); box-shadow: inset 0 0 0 1px var(--e-edge); font-size: 16px; color: var(--e-mu); } .esr .i { width: 18px; height: 18px; }
+  .enote { padding: 10px 20px 0; text-align: right; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--e-sc); }
+  .elv { display: flex; align-items: center; gap: 10px; padding: 22px 20px 10px; font-size: 16px; font-weight: 700; } .elv .l { height: 28px; padding: 0 12px; border-radius: 14px; display: inline-flex; align-items: center; background: var(--e-tint); color: var(--e-ink); font-size: 14px; font-weight: 800; } .elv .c { color: var(--e-sc); font-weight: 600; }
+  .elc { margin: 0 16px 10px; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; background: var(--e-card); box-shadow: inset 0 0 0 1px var(--e-edge); } .elc .n { width: 46px; height: 46px; border-radius: 14px; background: var(--e-ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex: none; } .elc .x { flex: 1; min-width: 0; font-size: 16px; line-height: 21px; font-weight: 700; } .elc .s { display: flex; gap: 3px; color: var(--e-tint); } .elc .s .i { width: 18px; height: 18px; } .elc .s .off { opacity: .25; }
+  .emap { position: relative; flex: 1; overflow: hidden; }
+  .ept { margin: 14px 20px 0; border-radius: 22px; padding: 16px 18px; display: flex; align-items: center; background: var(--e-card); box-shadow: inset 0 0 0 1px var(--e-edge); } .ept .k { font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 1px; color: var(--e-sc); } .ept .v { margin-top: 3px; font-size: 18px; line-height: 23px; font-weight: 800; } .ept .g { flex: 1; } .ept .cn { font-size: 16px; font-weight: 700; color: var(--e-sc); }
+  .enode { position: absolute; width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; background: var(--e-ctl); box-shadow: inset 0 0 0 1px var(--e-edge); }
+  .enode.done { background: color-mix(in srgb, var(--e-tint) 26%, var(--e-ctl)); } .enode.cur { background: var(--e-tint); color: var(--e-ink); box-shadow: 0 0 0 8px color-mix(in srgb, var(--e-tint) 22%, transparent); } .enode.lock { color: var(--e-mu); }
+  .enl { position: absolute; width: 140px; text-align: center; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--e-sc); } .enl.cur { color: var(--e-tx); }
+  .efoot { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(transparent, var(--e-bgf) 60%); } .ph { --e-bgf: rgba(12,12,13,.96); } .ph.lite { --e-bgf: rgba(227,227,234,.96); }
+  .ebtn { height: 48px; padding: 0 20px; border-radius: 24px; display: inline-flex; align-items: center; gap: 10px; background: var(--e-ctl); box-shadow: inset 0 0 0 1px var(--e-edge); font-size: 16px; font-weight: 700; } .ebtn .i { width: 20px; height: 20px; }
+  .ebot { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 22px 28px; display: flex; justify-content: space-between; align-items: center; background: color-mix(in srgb, var(--e-ctl) 94%, transparent); box-shadow: inset 0 1px 0 var(--e-edge); } .ebot .i { width: 26px; height: 26px; color: var(--e-mu); } .ebot .on { color: var(--e-tint); }
+  .ent { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Вход в Learning V2 — состояния</h1>
+  <p class="page-lead">Дополнение 11.10 по запросу координатора: единственные входы в Learning V2 в сборке — вкладка «V2» и чип «Новые уроки» на экране «Уроки». Карта курса, занятие, интро и плеер — в learning-v2.html (82 состояния); здесь — сам вход: список «Уроки» с чипом и вкладкой, переход на страницу V2, подсказка «в разработке» и вариант с вкладкой «Диалоги». Тёмная «Аврора» и светлая тема.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, coinImg } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const SHUF = svg('<path d="M3.5 7h3.2c3.3 0 5 2.4 6.6 5s3.3 5 6.6 5H21M3.5 17h3.2c1.5 0 2.7-.5 3.7-1.4M13.3 8.4c.9-.9 2.1-1.4 3.4-1.4H21"/><path d="M18.5 4.5L21 7l-2.5 2.5M18.5 14.5L21 17l-2.5 2.5"/>');
+const SPARK = svg('<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="currentColor" stroke="none"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="currentColor" stroke="none"/>');
+const BOOK = svg('<path d="M4 5.5A1.5 1.5 0 015.5 4H12v15H5.5A1.5 1.5 0 004 20.5z"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H12v15h6.5a1.5 1.5 0 011.5 1.5z"/>');
+const STAR = (on) => svg('<path d="M12 3.8l2.5 5.3 5.7.7-4.2 4 1.1 5.7L12 16.7 6.9 19.5 8 13.8 3.8 9.8l5.7-.7z" fill="currentColor" stroke="none"/>', on ? '' : 'off');
+const LIST = svg('<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" stroke-width="2.2"/>');
+const head = (v2) => `<div class="ehd"><div class="tt">Обучение</div>${v2 ? `<span class="ecir t">${BOOK}</span>` : `<span class="epl">${coinImg(5, 18)}1 240</span><span class="epl">${icon('bolt', 's20')}5</span>`}</div>`;
+const tabs = (on, withDialogs) => `<div class="etabs"><span class="etab t${on === 0 ? ' on' : ''}">Уроки</span>${withDialogs ? '<span class="etab t">Диалоги<span class="pb">Plus</span></span>' : ''}<span class="etab t${on === 1 ? ' on' : ''}">V2</span></div>`;
+const tools = `<div class="etools"><div class="esr">${icon('search', 's18')}Урок или тема</div><span class="ecir t">${SHUF}</span><span class="ecir t" aria-label="Новые уроки">${SPARK}</span></div>`;
+const lcard = (n, t, st) => `<div class="elc t"><span class="n">${n}</span><span class="x">${t}</span><span class="s">${[1, 2, 3].map((i) => STAR(i <= st)).join('')}</span></div>`;
+const list = (o = {}) => `<div class="epg">${head(false)}${tabs(0, o.dialogs)}${tools}${o.note ? '<div class="enote">Этот курс находится в разработке</div>' : ''}<div class="elv"><span class="l">A1</span><span class="c">1 из 8</span></div>${lcard(1, 'Местоимения и глагол To Be', 3)}${lcard(2, 'Отрицание и вопросы (To Be)', 2)}${lcard(3, 'Present Simple: Утверждение', 0)}</div>`;
+const NODES = [[1, 'done', 110, 20, 'Занятие 1'], [2, 'done', 236, 158, 'Занятие 2'], [3, 'cur', 110, 296, 'Занятие 3'], [4, 'lock', 236, 434, 'Занятие 4'], [5, 'lock', 110, 572, 'Занятие 5']];
+const map = () => `<div class="epg">${head(true)}${tabs(1, false)}<div class="ept"><div class="g"><div class="k">УРОК 1</div><div class="v">Местоимения и глагол To Be</div></div><span class="cn">3 / 56</span></div>
+  <div class="emap"><svg width="430" height="700" style="position:absolute;left:0;top:0" viewBox="0 0 430 700"><path d="M 146 76 C 272 76 272 194 272 194 C 272 260 146 250 146 332 C 146 400 272 400 272 470 C 272 540 146 540 146 608" fill="none" stroke="currentColor" stroke-opacity=".16" stroke-width="7" stroke-linecap="round"/></svg>
+  ${NODES.map(([n, st, x, y, l]) => `<div class="enode ${st} t" style="left:${x + 38}px;top:${y + 22}px">${st === 'lock' ? svg('<rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V8a4 4 0 018 0v2.5" stroke-width="2.2"/>') : n}</div><div class="enl${st === 'cur' ? ' cur' : ''}" style="left:${x + 4}px;top:${y + 100}px">${l}</div>`).join('')}</div>
+  <div class="efoot"><span class="ebtn t">${LIST}Все уроки</span></div></div>`;
+const S = [
+  ['Уроки · вкладки и чип «Новые уроки»', 'Шапка «Обучение» с монетами и энергией; полоса «Уроки | V2» (активная — подчёркнута цветом темы); справа от поиска два круглых значка: «перемешать» и «Новые уроки». Нижнее меню видно.', list() + '<div class="ebot">' + [icon('arrowL'), icon('book'), icon('trend'), icon('people'), icon('user')].map((x, i) => `<span class="${i === 1 ? 'on' : ''}">${x}</span>`).join('') + '</div>'],
+  ['Вход: тап по «V2» или по чипу «Новые уроки»', 'Мгновенно, без сети: вкладка «V2» подчёркнута, вместо энергии — кнопка словаря, нижнее меню скрыто, ниже — карта курса (подробно в learning-v2.html). Выход назад — «Все уроки».', map()],
+  ['Курс нельзя открыть вручную', 'Если вход закрыт (сборка без Learning V2): тап по чипу даёт мягкий отклик и строку под ним «Этот курс находится в разработке» — список сдвигается плавно. В релизной сборке с V2 не показывается.', list({ note: true }) + '<div class="ebot">' + [icon('arrowL'), icon('book'), icon('trend'), icon('people'), icon('user')].map((x, i) => `<span class="${i === 1 ? 'on' : ''}">${x}</span>`).join('') + '</div>'],
+  ['Вкладки с «Диалоги»', 'Если разделы диалогов включены в этой вкладке: «Уроки | Диалоги (Plus) | V2». Бейдж Plus — пока нет доступа.', list({ dialogs: true }) + '<div class="ebot">' + [icon('arrowL'), icon('book'), icon('trend'), icon('people'), icon('user')].map((x, i) => `<span class="${i === 1 ? 'on' : ''}">${x}</span>`).join('') + '</div>'],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="ent">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

@@ -12,7 +12,9 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('testID="home-personal-plan-card"');
     // зачем (01.10, удаление Главной V1): карточка «Продолжить» теперь HomeV2ContinueCard (testID внутри компонента).
     expect(source).toContain('<HomeV2ContinueCard');
-    expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never)");
+    // зачем (координатор 12.10, аудит Optimistic UI): переход идёт через nav.push (useGuardedNav) — повторный тап в окне 600 мс не открывает меню урока дважды
+    expect(source).toContain("nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never)");
+    expect(source).toMatch(/perfNavStart\(screenName\);[\s\S]{0,260}nav\.push\(path as any\);/);
   });
 
   // зачем (координатор §46, 2026-10-01): дизайн 2.0 — один утверждённый арт

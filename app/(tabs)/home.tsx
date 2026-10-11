@@ -2048,7 +2048,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const screenName = path.replace(/^\//, '').split('?')[0];
         // Навигация — первым делом: человек ждёт именно её.
         perfNavStart(screenName);
-        router.push(path as any);
+        // зачем (координатор 12.10, аудит Optimistic UI): прямой router.push не защищён от двойного тапа — экран открывался дважды; nav.push (useGuardedNav) пропускает повтор в окне 600 мс.
+        nav.push(path as any);
         // Вибрация и учёт открытия никого не держат и едут следом.
         void hapticTap();
         logFeatureOpened(screenName);
@@ -2347,7 +2348,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok
                   });
                   perfNavStart('lesson_menu');
-                  router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
+                  // зачем (аудит Optimistic UI): тот же гвард двойного тапа, что у плиток (раньше «Продолжить» открывал меню урока дважды при быстром втором тапе).
+                  nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
                 }}
               />
             ) : null}

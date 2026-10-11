@@ -42,6 +42,7 @@ import { isValidDeckId } from './deck_selection';
 import { FC_DEFAULT_SESSION_SIZE, setLastPreset } from './mode_prefs';
 import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
+import { getTranscription } from '../transcription';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
 import { loadSelectedSavedContour, peekFirstSavedCardAnyLanguage, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
 import { logMemoryOnce } from '../mem_probe';
@@ -128,12 +129,12 @@ const EARLY_TAP_CEILING_MS = 15_000;
 // зачем (координатор 11.10, «сперва логи»): у гостя с 64 сохранёнными стопка показывала заглушку «Boarding pass».
 // Итог верхней карточки — в журнал только при смене (компонент рендерится часто), вместе с причиной из контура.
 let lastHubTopCardLog = '';
-function logHubTopCardOutcome(word: string | null, trainingLocked: boolean): void {
+function logHubTopCardOutcome(word: string | null, trainingLocked: boolean, ipaFrom: 'stored' | 'dictionary' | 'none'): void {
   const outcome = trainingLocked ? 'limit_out' : word ? 'word' : 'stub_boarding_pass';
-  const key = `${outcome}|${word ?? ''}`;
+  const key = `${outcome}|${word ?? ''}|${ipaFrom}`;
   if (key === lastHubTopCardLog) return;
   lastHubTopCardLog = key;
-  console.log('[HUB-TOPCARD] shown', JSON.stringify({ outcome, word, contour: peekSelectedSavedContourDiagnostics() }));
+  console.log('[HUB-TOPCARD] shown', JSON.stringify({ outcome, word, ipaFrom, contour: peekSelectedSavedContourDiagnostics() }));
 }
 
 export default function FlashcardsHubScreen() {
@@ -683,7 +684,12 @@ export default function FlashcardsHubScreen() {
   const topCard = peekSelectedSavedContour(studyTarget)?.[0] ?? peekFirstSavedCardAnyLanguage();
   // зачем (координатор 11.10): ANR на тапе по «Карточкам» при 1,87 ГБ pss — размер кучи на первом открытии хаба.
   logMemoryOnce('cards_hub_open');
-  logHubTopCardOutcome(topCard?.en ?? null, trainingLocked);
+  // зачем (координатор 12.10, cards-v2-001): у верхней карточки стопки не было транскрипции — в сохранённой карточке она появляется только после открытия списка (там дозаполняется),
+  // а хаб читал лишь сохранённое поле. Берём сохранённую; нет — словарь (getTranscription отвечает пустой строкой, когда не уверен, — ничего не выдумываем).
+  const topStoredIpa = topCard?.transcription?.trim() ?? '';
+  const topDictIpa = topCard && !topStoredIpa ? getTranscription(topCard.en) : '';
+  const topIpaText = topStoredIpa || topDictIpa;
+  logHubTopCardOutcome(topCard?.en ?? null, trainingLocked, topStoredIpa ? 'stored' : topDictIpa ? 'dictionary' : 'none');
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
   const resetDate = (() => {
@@ -752,7 +758,7 @@ export default function FlashcardsHubScreen() {
             limitLabel={limitLabel}
             // зачем (Сверка cards-section-004, hubLimitS): лимит исчерпан — верхняя карточка стопки говорит об этом и о дате обновления.
             topWord={trainingLocked ? limitOutTitle : (topCard?.en ?? 'Boarding pass')}
-            topIpa={trainingLocked ? limitOutSub : (topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/')}
+            topIpa={trainingLocked ? limitOutSub : (topCard ? topIpaText : '/ˈbɔːdɪŋ pɑːs/')}
             trainLabel={trainLabel}
             trainLocked={trainingLocked}
             tiles={isDevCardsHeld('hub_loading') ? tiles.map((tile) => ({ ...tile, count: '' })) : tiles}

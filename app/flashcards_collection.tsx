@@ -1320,12 +1320,17 @@ export default function FlashcardsScreen() {
     example: expandedOpened.exampleEn?.trim() || expandedOpened.description?.trim() || null,
     exampleTr: (cardContentLang === 'uk' ? expandedOpened.exampleUk : cardContentLang === 'es' ? expandedOpened.exampleEs : expandedOpened.exampleRu)?.trim() || null,
   } : null;
-  const expandedOverline = savedSurface ? s.title : packBadge === 'in_you' && packAuthorName ? `${packTitleText} · ${packAuthorName}` : packTitleText;
+  // зачем (координатор 12.10, cards-005): в одобренном образце экран называется «Сохранённые 64», а не «Карточки» — так же названа плитка в хабе; общий s.title («Карточки») остаётся названием раздела.
+  const savedScreenTitle = triLang(lang, {
+    ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
+    vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
+  });
+  const expandedOverline = savedSurface ? savedScreenTitle : packBadge === 'in_you' && packAuthorName ? `${packTitleText} · ${packAuthorName}` : packTitleText;
 
   const savedTitleBlock = savedSurface ? (
     <CollectionTitleBlock
       lang={lang}
-      title={s.title}
+      title={savedScreenTitle}
       cardCount={savedCardsForPackLanguage.length}
       // зачем: кадр 7 «Пусто» — только заголовок; поиск нужен, пока он активен (результат «ничего не найдено»)
       titleOnly={isEmpty && !loadError && searchQuery.trim().length === 0 && searchInput.length === 0}

@@ -23,7 +23,7 @@ import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from '.
 import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
-import { normalizePackLevel, type PackLevel } from '../flashcards/pack_deck_meta';
+import { normalizePackLevel, packPreviewWords, type PackLevel } from '../flashcards/pack_deck_meta';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -339,6 +339,10 @@ export function localAuthorPackToMarketPack(
     packLanguage: normalizePackLanguage(pack.packLanguage),
     listingStatus: 'local_only',
     ugcCardThemeKey: pack.cardThemeKey,
+    // зачем (координатор 12.10, cards-011 «Мои наборы»): у своего локального набора на стопке не было «40 · A2» и чипов слов — уровень и карточки лежат в самом локальном наборе,
+    // но в метаданные витрины не переносились. Ничего не выдумываем: нет уровня → «· A2» скрыт, нет карточек → ряд чипов не рисуется.
+    ...(normalizePackLevel(pack.level) ? { level: normalizePackLevel(pack.level) } : {}),
+    previewWords: packPreviewWords(pack.cards, pack.packLanguage),
     updatedAt: new Date(pack.updatedAt).toISOString(),
   };
 }

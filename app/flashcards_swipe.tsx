@@ -1020,6 +1020,11 @@ type FlashcardsSwipeScreenProps = Readonly<{
 
 export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwipeScreenProps = {}) {
   const isTrueFalseSession = trainingMode === 'truefalse';
+  // зачем (координатор 13.10, cards-v2-033 / cards-gap-003: «Правда / ложь» зависает на «Готовим тренировку…», причина неизвестна; правило «сперва логи»): единый префикс [TF-PREP] — вся цепочка быстрого старта одним поиском. Только для «Правда / ложь».
+  const tfPrep = useCallback((step: string, data: Record<string, unknown> = {}) => {
+    if (!isTrueFalseSession) return;
+    console.log(`[TF-PREP] ${step} ${JSON.stringify(data)}`); // guard-ok: журнал цепочки быстрого старта обязан быть и в релизе (ранние выходы и catch)
+  }, [isTrueFalseSession]);
   const router = useRouter();
   const params = useLocalSearchParams<{
     quick?: string | string[];
@@ -1237,6 +1242,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
+  /** Последний записанный набор значений ворот автозапуска ([TF-PREP]): журнал только при смене, не на каждый рендер. */
+  const tfGateKeyRef = useRef('');
   const draftRestoreAttemptedRef = useRef(false);
   // Синхронный латч оплаты старта (см. комментарий внутри startSession).
   const startChargeInFlightRef = useRef(false);
@@ -2038,10 +2045,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   );
 
   const loadSources = useCallback(async (opts?: { quiet?: boolean }) => {
-    if (!swipeAccessGranted) return;
+    if (!swipeAccessGranted) { tfPrep('sources:exit:access_not_granted', { quiet: opts?.quiet ?? false }); return; }
     const accessEpoch = swipeAccessEpochRef.current;
     const accessIsCurrent = () => swipeAccessGrantedRef.current
       && swipeAccessEpochRef.current === accessEpoch;
+    tfPrep('sources:load:start', { quiet: opts?.quiet ?? false, studyTarget, requestedSourceId, requestedDeckIds, officialPacksEnabled, communityPacksEnabled });
     if (!opts?.quiet) setLoadingSources(true);
     setLoadError('');
     let keepSkeleton = false;
@@ -2051,7 +2059,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         readCustomCards(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useCallback.readCustomCards', [])),
         officialPacksEnabled ? loadAccessiblePackIds(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useCallback.loadAccessiblePackIds', [])) : Promise.resolve([] as string[]),
       ]);
-      if (!accessIsCurrent()) return;
+      if (!accessIsCurrent()) { tfPrep('sources:exit:access_changed_after_read', { saved: savedRaw.length, custom: customRaw.length, official: officialOwnedIds.length }); return; }
       const next: TrainingSource[] = [];
       const savedCards = filterCardsForRoute(
         savedRaw.map(flashcardToCardItem).filter((card) => s(card.en)),
@@ -2113,25 +2121,28 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       if (communityPacksEnabled) {
         next.push(...(await buildCommunitySources(lang, officialOwnedIds, studyTarget)));
       }
-      if (!accessIsCurrent()) return;
+      if (!accessIsCurrent()) { tfPrep('sources:exit:access_changed_after_build', { built: next.length }); return; }
       sourcesRetryRef.current = 0;
       setSourcesExhausted(false);
       hasVisibleSourcesRef.current = next.length > 0;
       setSources(next);
       setSelectedIds((cur) => {
         const valid = new Set(next.map((source) => source.id));
-        if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
+        if (requestedSourceId && valid.has(requestedSourceId)) { tfPrep('sources:selected', { by: 'requestedSourceId', ids: [requestedSourceId] }); return new Set([requestedSourceId]); }
         const kept = new Set([...cur].filter((id) => valid.has(id)));
-        if (kept.size > 0) return kept;
+        if (kept.size > 0) { tfPrep('sources:selected', { by: 'kept', ids: [...kept] }); return kept; }
         // Кэша наборов не было — предвыбор из `?deck=` делаем на приехавшем списке.
         const fromDecks = swipeSourceIdsForDeckIds(next, requestedDeckIds);
+        tfPrep('sources:selected', { by: fromDecks.length > 0 ? 'requestedDeckIds' : 'all_valid', ids: fromDecks.length > 0 ? fromDecks : [...valid], requestedDeckIds });
         return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
+      tfPrep('sources:loaded', { total: next.length, ids: next.map((source) => `${source.id}:${source.count}`), requestedSourceId, requestedDeckIds });
     } catch (error) {
       // зачем (владелец 01.10 + D158): текста «Наборы не загрузились» нет. Кэш/уже показанные наборы остаются,
       // а загрузка молча повторяется с паузами 1/3/8 с (app/load_gate_config.ts). Пока наборов нет совсем —
       // скелетон; повторы кончились — «Сейчас недоступно» + «Попробовать снова» (было: 5×20 с и вечный скелетон).
       console.warn('[FC-SWIPE] loadSources отклонён', { error: String(error), attempt: sourcesRetryRef.current, hasVisible: hasVisibleSourcesRef.current });
+      tfPrep('sources:catch', { error: String(error), attempt: sourcesRetryRef.current, hasVisible: hasVisibleSourcesRef.current });
       if (!accessIsCurrent()) {
         console.warn('[FC-SWIPE] loadSources: доступ сменился, повтор не планируем');
         return;
@@ -2154,7 +2165,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     } finally {
       if (accessIsCurrent() && !keepSkeleton) setLoadingSources(false);
     }
-  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved]);
+  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved, tfPrep]);
 
   loadSourcesRef.current = loadSources;
   useEffect(() => {
@@ -2341,7 +2352,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // зачем (координатор 12.10, «сперва логи», cards-v2-033: «Не удалось подготовить тренировку» у Верно/Неверно без подмены сбоя): единый префикс — вся цепочка «Начать» → подготовка → результат одним поиском
   const fsLog = useCallback((step: string, data: Record<string, unknown> = {}) => {
     console.log(`[FLASHCARDS-SESSION] ${step} ${JSON.stringify(data)}`); // guard-ok: журнал цепочки старта обязан быть и в релизе (ранние выходы и catch)
-  }, []);
+    tfPrep(`start:${step}`, data); // зеркало цепочки startSession под префиксом [TF-PREP] — только «Правда / ложь»
+  }, [tfPrep]);
 
   const startSession = useCallback(async () => {
     if (!accessResolved) { fsLog('exit:access_not_resolved', { mode: trainingMode ?? 'trainer' }); return; }
@@ -2752,6 +2764,19 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     quickStartDoneRef.current = true;
     void startSession();
   }, [loadingSources, phase, quickStart, selectedSources.length, startSession, starting, swipeAccessGranted]);
+
+  // зачем (cards-v2-033 / cards-gap-003, «сперва логи»): эффект автозапуска выше выходит МОЛЧА по любому из условий — именно так экран вечно «готовит тренировку». Журнал значений ворот при каждой их смене.
+  useEffect(() => {
+    if (!quickStart) return;
+    const gate = {
+      swipeAccessGranted, accessResolved, phase, loadingSources, starting, sources: selectedSources.length,
+      doneAlready: quickStartDoneRef.current, held: isDevCardsHeld('swipe_quickstart'), loadError: loadError ? String(loadError).slice(0, 80) : '',
+    };
+    const key = JSON.stringify(gate);
+    if (tfGateKeyRef.current === key) return;
+    tfGateKeyRef.current = key;
+    tfPrep('quickstart:gate', gate);
+  }, [accessResolved, loadError, loadingSources, phase, quickStart, selectedSources.length, starting, swipeAccessGranted, tfPrep]);
 
   const exitTraining = useCallback(() => {
     void hapticTap();

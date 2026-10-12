@@ -117,7 +117,8 @@ const INLINE_LOCALE_MAP = /(^\s*|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s
 // не маской: иначе UI-строка в похожей функции просочилась бы мимо сторожа. Новый помощник логов — дописать в альтернативу.
 // зачем (координатор 12.10, после ужесточения fe1bc0d65): logSpireLayout/logSpireDock (components/spire/spire_layout_log.ts —
 // только console.log в dev) и bootMark (app/_layout.tsx — только console.warn трассировки старта) — журналы, не экран.
-const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(traceThumbMissing|logSpireLayout|logSpireDock|bootMark)\s*\(/;
+// зачем (12.10, английский в R1): traceNick (components/account/NicknameEditModal.tsx — только console.log под __DEV__) — журнал шторки имени.
+const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(traceThumbMissing|logSpireLayout|logSpireDock|bootMark|traceNick)\s*\(/;
 
 /**
  * Файл — сам словарь переводов: русский в нём и есть перевод.
@@ -265,9 +266,26 @@ const LOCALE_KEY_ENTRY = /^\s*(?:\{\s*)?['"]?(ru|uk)['"]?\s*:\s*(?:[`'"]|\([^)]*
 const OTHER_LOCALE_ENTRY = /['"]?\b(en|es|pl|tr|vi|id|pt-BR)['"]?\s*:\s*(?:[`'"]|\([^)]*\)\s*=>)/;
 const LOCALE_WINDOW = 14;
 
+/**
+ * Тост `action_toast`: `messageRu: '…'` / `messageUk: '…'` на отдельных строках объекта.
+ * зачем (12.10, английский интерфейс в R1): строже, чем карта ru/uk выше, — переведённым тост считается только при соседнем `messageEn`.
+ * Иначе тост с es/pl/…, но без en (английский интерфейс показал бы русский) прошёл бы мимо сторожа.
+ */
+// Пара строго по виду: `messageRu` требует `messageEn`, `labelRu` (кнопка действия в тосте) — `labelEn`.
+const TOAST_RU_UK_ENTRY = /^\s*(message|label)(?:Ru|Uk)\s*:\s*[`'"]/;
+const TOAST_EN_ENTRY = /\b(message|label)En\s*:\s*[`'"]/;
+
 function maskLocaleKeyedEntries(source) {
   const lines = source.split('\n');
   const hasOther = lines.map((line) => OTHER_LOCALE_ENTRY.test(line));
+  const toastEnKind = lines.map((line) => line.match(TOAST_EN_ENTRY)?.[1] ?? null);
+  for (let i = 0; i < lines.length; i += 1) {
+    const kind = lines[i].match(TOAST_RU_UK_ENTRY)?.[1];
+    if (!kind) continue;
+    for (let j = Math.max(0, i - LOCALE_WINDOW); j <= Math.min(lines.length - 1, i + LOCALE_WINDOW); j += 1) {
+      if (j !== i && toastEnKind[j] === kind) { lines[i] = lines[i].replace(/[^\r\n]/g, ' '); break; }
+    }
+  }
   for (let i = 0; i < lines.length; i += 1) {
     if (!LOCALE_KEY_ENTRY.test(lines[i])) continue;
     let neighbour = false;

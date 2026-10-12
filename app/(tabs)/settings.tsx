@@ -259,6 +259,7 @@ export default function SettingsMain() {
         type: 'error',
         messageRu: 'Не удалось изменить напоминания. Попробуй ещё раз.',
         messageUk: 'Не вдалося змінити нагадування. Спробуй ще раз.',
+        messageEn: "Couldn't change the reminders. Try again.",
         messageEs: 'No se pudieron cambiar los recordatorios. Inténtalo de nuevo.',
         messagePtBr: 'Não foi possível alterar os lembretes. Tente de novo.',
         messageVi: 'Không thay đổi được lời nhắc. Hãy thử lại.',
@@ -1286,7 +1287,7 @@ export default function SettingsMain() {
               <TouchableOpacity
                 testID="settings-dev-hub-button"
                 accessibilityRole="button"
-                accessibilityLabel="Открыть Dev Hub"
+                accessibilityLabel={L('Открыть Dev Hub', 'Відкрити Dev Hub', 'Open Dev Hub', 'Abrir Dev Hub', 'Abrir Dev Hub', 'Mở Dev Hub', 'Buka Dev Hub', "Dev Hub'ı aç", 'Otwórz Dev Hub')}
                 activeOpacity={0.7}
                 hitSlop={12}
                 onPressIn={() => doHaptic()}

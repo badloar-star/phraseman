@@ -18,7 +18,7 @@ import {
   purchaseUnverifiedUi,
   restoreStaleUi,
 } from '../app/paywall_purchase_failure';
-import { previousAccountPurchaseCopy } from '../app/paywall_previous_account_copy';
+import { previousAccountPurchaseCopy, unverifiedSameAccountCopy } from '../app/paywall_previous_account_copy';
 import { packPurchaseGate } from '../app/community_packs/packPurchaseGate';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
@@ -242,7 +242,7 @@ describe('ревью (а): аккаунт сменился — отдельны�
   it('единый диалог проверяет аккаунт: при смене — инфо-окно с одной кнопкой, до showUnverifiedPurchaseAlert; stale и not_applied идут через него', () => {
     const dialog = between(body, 'const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {', 'try {');
     expect(dialog.indexOf('purchaseUnverifiedUi(isOperationAccountCurrent())')).toBeGreaterThan(-1);
-    expect(dialog.indexOf("ui === 'previous_account_alert'")).toBeLessThan(dialog.indexOf('showUnverifiedPurchaseAlert(lang)'));
+    expect(dialog.indexOf("ui === 'previous_account_alert'")).toBeLessThan(dialog.indexOf('showUnverifiedPurchaseAlert(lang, certainty)'));
     expect(dialog).toContain('previousAccountPurchaseCopy(lang, certainty)');
     expect(dialog).toContain('enqueueThemedBlockingInfoAlert(copy.title, copy.message');
     expect(body).toContain("presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown')");
@@ -373,5 +373,36 @@ describe('ревью fa6648f02 (4): сбой чтения разрешения �
     expect(block).toContain('try {');
     expect(block).toContain('purchase:permission_status_failed');
     expect(body).toContain('} else if (permission !== null && isOperationAccountCurrent()) {');
+  });
+});
+
+describe('третье ревью 0d76a9528: «оплата прошла» на том же аккаунте и .catch у выбора в диалоге', () => {
+  it('🟡2 текст: confirmed — «Оплата прошла…Восстановить», unknown — прежний общий текст (null), во всех 9 языках', () => {
+    expect(unverifiedSameAccountCopy('ru', 'unknown')).toBeNull();
+    const ru = unverifiedSameAccountCopy('ru', 'confirmed');
+    expect(ru?.title).toBe('Оплата прошла');
+    expect(ru?.message).toBe('Оплата прошла, но доступ не записался — нажми «Восстановить». Платить заново не нужно.');
+    for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      const copy = unverifiedSameAccountCopy(lang, 'confirmed');
+      expect(`${lang}:${Boolean(copy?.title.trim()) && Boolean(copy?.message.trim())}`).toBe(`${lang}:true`);
+    }
+  });
+
+  const src = read('app/paywall_purchase.ts');
+  it('🟡2 вызов: окно получает certainty; not_applied зовёт диалог с confirmed, stale и catch — с unknown', () => {
+    const dialog = between(src, 'const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {', 'try {');
+    expect(dialog).toContain('showUnverifiedPurchaseAlert(lang, certainty)');
+    expect(src).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed');");
+    expect(src).toContain("presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown');");
+    const alert = between(src, 'export function showUnverifiedPurchaseAlert(', '/**');
+    expect(alert).toContain("certainty: PurchaseCertainty = 'unknown'");
+    expect(alert.indexOf('unverifiedSameAccountCopy(lang, certainty)')).toBeLessThan(alert.indexOf("ru: 'Статус покупки не подтверждён'"));
+  });
+
+  it('🟡3: оба .then выбора в окне «статус не подтверждён» имеют .catch с логом', () => {
+    const dialog = between(src, 'const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {', 'try {');
+    expect(dialog).toContain("}).catch((error: unknown) => {");
+    expect(dialog).toContain("'[PAYWALL] unverified:choice_failed'");
+    expect(src).toContain("console.warn('[DEV-STATE] paywall: окно «статус не подтверждён» не показалось'");
   });
 });

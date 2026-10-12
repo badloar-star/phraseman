@@ -53,9 +53,11 @@ test('lingman: кнопка «Settings» по-прежнему открывае�
 
 test('paywall_purchase: логика покупки не тронута, окна идут через очередь стеклянных алертов', () => {
   assert.ok(files.paywall.includes("from './themed_blocking_alert_queue'"));
-  assert.equal((files.paywall.match(/void enqueueThemedBlockingInfoAlert\(/g) ?? []).length, 3);
+  // зачем (ревью fa6648f02, 12.10): четвёртое окно — «покупка на предыдущем аккаунте» (аккаунт сменился во время покупки)
+  assert.equal((files.paywall.match(/void enqueueThemedBlockingInfoAlert\(/g) ?? []).length, 4);
   // зачем (65а, макет 014): «Статус покупки не подтверждён» — окно выбора «Проверить статус / Восстановить покупки».
-  assert.equal((files.paywall.match(/return enqueueThemedBlockingChoiceAlert\(/g) ?? []).length, 1);
+  // Третье ревью 0d76a9528 (🟡2): тот же выбор с текстом «Оплата прошла, нажми Восстановить», когда магазин подтвердил оплату — второй return того же окна.
+  assert.equal((files.paywall.match(/return enqueueThemedBlockingChoiceAlert\(/g) ?? []).length, 2);
   // зачем (координатор 12.10): вызовы получили второй аргумент — ключ дедупликации «один показ на покупку»
   assert.ok(files.paywall.includes('showPurchasePendingAlert(lang, '));
   assert.ok(files.paywall.includes('showUnverifiedPurchaseAlert(lang)'));

@@ -48,3 +48,28 @@ export function previousAccountPurchaseCopy(lang: Lang, certainty: PurchaseCerta
     }),
   };
 }
+
+/**
+ * Третье ревью 0d76a9528 (🟡2): магазин ПОДТВЕРДИЛ доступ, а локально он не записался (замок не взят, сбой записи), аккаунт тот же.
+ * Общее «неизвестно, прошла ли оплата» здесь неправда и пугает: оплата прошла, нужно только «Восстановить». Для unknown — null (остаётся прежний текст).
+ */
+export function unverifiedSameAccountCopy(lang: Lang, certainty: PurchaseCertainty): { title: string; message: string } | null {
+  if (certainty !== 'confirmed') return null;
+  return {
+    title: triLang(lang, {
+      ru: 'Оплата прошла', uk: 'Оплата пройшла', en: 'Payment went through', es: 'El pago se realizó',
+      'pt-BR': 'O pagamento foi concluído', vi: 'Thanh toán đã hoàn tất', id: 'Pembayaran berhasil', tr: 'Ödeme alındı', pl: 'Płatność przeszła',
+    }),
+    message: triLang(lang, {
+      ru: 'Оплата прошла, но доступ не записался — нажми «Восстановить». Платить заново не нужно.',
+      uk: 'Оплата пройшла, але доступ не записався — натисни «Відновити». Платити заново не потрібно.',
+      en: 'Payment went through, but access wasn’t saved. Tap Restore. No need to pay again.',
+      es: 'El pago se realizó, pero el acceso no se guardó. Toca Restaurar. No hace falta pagar de nuevo.',
+      'pt-BR': 'O pagamento foi concluído, mas o acesso não foi salvo. Toque em Restaurar. Não é preciso pagar de novo.',
+      vi: 'Thanh toán đã hoàn tất nhưng quyền truy cập chưa được lưu. Hãy chọn Khôi phục. Không cần trả tiền lại.',
+      id: 'Pembayaran berhasil, tetapi akses belum tersimpan. Ketuk Pulihkan. Tidak perlu membayar lagi.',
+      tr: 'Ödeme alındı ama erişim kaydedilmedi. Geri Yükle’ye dokun. Yeniden ödemene gerek yok.',
+      pl: 'Płatność przeszła, ale dostęp się nie zapisał. Wybierz Przywróć. Nie trzeba płacić ponownie.',
+    }),
+  };
+}

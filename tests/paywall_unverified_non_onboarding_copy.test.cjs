@@ -9,7 +9,8 @@ const source = fs.readFileSync(path.join(__dirname, '../app/paywall_purchase.ts'
 // риск двойного списания; в окне есть «Не покупай повторно»). Срез окна раньше шёл до showDevPurchasePreviewAlert, но между ними позже встали тосты
 // результата проверки (paywallRestoreToast: «Try again later») — они не часть окна и роняли тест по ложной причине. Окно кончается перед блоком тостов.
 function unverifiedAlertSource() {
-  return source.split('function showUnverifiedPurchaseAlert(lang: Lang)')[1]
+  // третье ревью 0d76a9528 (🟡2): у окна второй параметр certainty — режем по началу сигнатуры
+  return source.split('function showUnverifiedPurchaseAlert(lang: Lang')[1]
     ?.split('export type PaywallRestoreToastKind')[0];
 }
 
@@ -28,11 +29,12 @@ test('non-onboarding purchase uncertainty has a separate safe alert', () => {
 });
 
 test('existing onboarding alert remains isolated from non-onboarding copy', () => {
-  const purchaseCatch = source.split('} catch (err: unknown) {')[1]
+  // зачем (12.10): после ревью fa6648f02 окно зовёт общий presentUnverifiedDialog, объявленный в handlePurchase ПЕРЕД try — смотрим всё тело покупки, а не только catch
+  const purchaseCatch = source.split('const handlePurchase = useCallback(')[1]
     ?.split('// ── восстановление ──')[0];
   assert.ok(purchaseCatch);
   assert.match(purchaseCatch, /ONBOARDING_PURCHASE_SOURCES\.has\(source\)/);
-  assert.match(purchaseCatch, /showUnverifiedPurchaseAlert\(lang\)/);
+  assert.match(purchaseCatch, /showUnverifiedPurchaseAlert\(lang, certainty\)/);
   assert.match(purchaseCatch, /showPurchasePendingAlert\(lang, /);
 });
 
@@ -49,7 +51,7 @@ test('unverified alert offers check status and restore, wired to the shared enti
   const helper = unverifiedAlertSource();
   assert.match(helper, /enqueueThemedBlockingChoiceAlert\(/);
   assert.match(helper, /unverifiedPurchaseAlertActions\(lang\)/);
-  const purchaseCatch = source.split('} catch (err: unknown) {')[1]?.split('// ── восстановление ──')[0];
+  const purchaseCatch = source.split('const handlePurchase = useCallback(')[1]?.split('// ── восстановление ──')[0];
   assert.match(purchaseCatch, /if \(choice === 'dismiss'\) return;/);
   assert.match(purchaseCatch, /entitlementSyncRef\.current\?\.\(choice\)/);
   const restore = source.split('const handleRestore = useCallback(')[1]?.split('const handleClose = useCallback')[0];

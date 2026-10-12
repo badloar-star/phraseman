@@ -65,7 +65,7 @@ import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import {
   onboardingFinishFailureAction, postAccessFailureAction, PURCHASE_FAILURE_PHASE_LABEL, purchaseFailurePhase, purchaseFailureUi, purchaseStaleUi, purchaseUnverifiedUi, restoreStaleUi,
 } from './paywall_purchase_failure';
-import { previousAccountPurchaseCopy, type PurchaseCertainty } from './paywall_previous_account_copy';
+import { previousAccountPurchaseCopy, unverifiedSameAccountCopy, type PurchaseCertainty } from './paywall_previous_account_copy';
 import { applyDevPaywallView, getDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
@@ -225,7 +225,10 @@ export function unverifiedPurchaseAlertActions(lang: Lang): readonly ThemedBlock
   ];
 }
 
-export function showUnverifiedPurchaseAlert(lang: Lang): Promise<UnverifiedPurchaseChoice | 'dismiss'> {
+export function showUnverifiedPurchaseAlert(lang: Lang, certainty: PurchaseCertainty = 'unknown'): Promise<UnverifiedPurchaseChoice | 'dismiss'> {
+  // зачем (третье ревью 0d76a9528, 🟡2): магазин подтвердил оплату (not_applied на том же аккаунте) — говорим «оплата прошла, нажми Восстановить», а не «неизвестно».
+  const confirmed = unverifiedSameAccountCopy(lang, certainty);
+  if (confirmed) return enqueueThemedBlockingChoiceAlert(confirmed.title, confirmed.message, unverifiedPurchaseAlertActions(lang));
   return enqueueThemedBlockingChoiceAlert(
     triLang(lang, {
       ru: 'Статус покупки не подтверждён',
@@ -1139,10 +1142,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         void enqueueThemedBlockingInfoAlert(copy.title, copy.message, 'OK');
         return;
       }
-      void showUnverifiedPurchaseAlert(lang).then((choice) => {
-        console.warn('[PAYWALL] unverified:choice', JSON.stringify({ choice })); // guard-ok: выбор пользователя логируется
+      void showUnverifiedPurchaseAlert(lang, certainty).then((choice) => {
+        console.warn('[PAYWALL] unverified:choice', JSON.stringify({ choice, certainty })); // guard-ok: выбор пользователя логируется
         if (choice === 'dismiss') return;
         void entitlementSyncRef.current?.(choice);
+      }).catch((error: unknown) => {
+        // зачем (третье ревью 0d76a9528, 🟡3): очередь окон или проверка статуса упали — без .catch отказ был бы немым (необработанный промис)
+        DebugLogger.error('[PAYWALL] unverified:choice_failed', error instanceof Error ? error : new Error(String(error)), 'warning');
       });
     };
     try {
@@ -1900,6 +1906,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         console.log('[DEV-STATE] paywall: диалог «статус покупки не подтверждён»'); // guard-ok: единичный лог на открытие
         void showUnverifiedPurchaseAlert(lang).then((choice) => {
           console.log(`[DEV-STATE] paywall: выбор в диалоге = ${choice} (в dev ничего не запускается)`); // guard-ok: единичный лог
+        }).catch((error: unknown) => {
+          console.warn('[DEV-STATE] paywall: окно «статус не подтверждён» не показалось', error instanceof Error ? error.message : String(error)); // guard-ok: немого catch нет
         });
       } else if (devState === 'status_unknown') {
         console.log('[DEV-STATE] paywall: тост «покупка пока не найдена»'); // guard-ok: единичный лог на открытие

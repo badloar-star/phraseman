@@ -34,6 +34,16 @@ export const raisedBoxShadow = (g: GlassTokens): BoxShadowValue[] => raisedShado
 export const actionBoxShadow = (g: Pick<GlassTokens, 'accent'>): BoxShadowValue[] => actionShadowStyle(g) as BoxShadowValue[];
 export { RAISED_LIFT };
 
+const sheetPlateCache = new WeakMap<object, unknown>();
+/** Токены для плитки НА ШТОРКЕ: градиент плашки считается от заливки шторки (sheetPlateFillFrom/To), остальное без изменений. Кэш по объекту токенов. */
+export function sheetPlateTokens<T extends GlassTokens>(g: T): T {
+  const hit = sheetPlateCache.get(g);
+  if (hit) return hit as T;
+  const next = { ...g, plateFillFrom: g.sheetPlateFillFrom, plateFillTo: g.sheetPlateFillTo };
+  sheetPlateCache.set(g, next);
+  return next;
+}
+
 /**
  * Заливка плашки: градиент 180° из токенов темы (полностью непрозрачный — под ним базовая заливка контейнера не нужна).
  * Первым ребёнком контейнера с тем же скруглением. Статично, без размытия.

@@ -36,6 +36,9 @@ export type LiquidGlassSurfaceRoles = Readonly<{
   /** Градиент плашки 180° (сверху → вниз): тёмная — белый 8,5 % → 4 % поверх фона (непрозрачный результат), светлая — белый → тон ниже. */
   plateFillFrom: string;
   plateFillTo: string;
+  /** Градиент плитки НА ШТОРКЕ: тёмная — белый 8,5 % → 4 % поверх заливки шторки (а не фона), светлая — как у плашки. */
+  sheetPlateFillFrom: string;
+  sheetPlateFillTo: string;
   /** Градиент выбранного/главного (приподнятого): тёмная — белый 15 % → 7 %, светлая — белый → чуть темнее. */
   raisedFillFrom: string;
   raisedFillTo: string;
@@ -148,6 +151,11 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
   const shadowStyle = t.isLight
     ? {
         plateFillFrom: hex6(t.opaqueCard),
+        sheetPlateFillFrom: hex6(t.opaqueCard),
+        sheetPlateFillTo: separatedFromBackground(
+          mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.55), t.text,
+          [t.bg, ...(t.bgTop ? [t.bgTop] : []), ...(t.bgBottom ? [t.bgBottom] : [])],
+        ),
         plateFillTo: separatedFromBackground(
           mixSurfaceHex(t.opaqueCard, t.opaqueControl, 0.55), t.text,
           [t.bg, ...(t.bgTop ? [t.bgTop] : []), ...(t.bgBottom ? [t.bgBottom] : [])],
@@ -164,6 +172,9 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
     : {
         plateFillFrom: mixSurfaceHex(t.bg, '#FFFFFF', 0.085),
         plateFillTo: mixSurfaceHex(t.bg, '#FFFFFF', 0.04),
+        // зачем (cards-v2-017/020, поручение координатора 15.10): плитки шторок считались от ФОНА, а шторка светлее фона — плитка выходила темнее шторки и сливалась. Тут — от заливки шторки.
+        sheetPlateFillFrom: mixSurfaceHex(t.opaqueSheet, '#FFFFFF', 0.085),
+        sheetPlateFillTo: mixSurfaceHex(t.opaqueSheet, '#FFFFFF', 0.04),
         raisedFillFrom: mixSurfaceHex(t.bg, '#FFFFFF', 0.15),
         raisedFillTo: mixSurfaceHex(t.bg, '#FFFFFF', 0.07),
         plateShadow: 'rgba(0,0,0,0.75)',

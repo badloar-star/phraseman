@@ -22,7 +22,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { iconTileColors, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { nestedBoxShadow, PlateFill, plateBoxShadow, sheetPlateTokens } from '../../components/v2/ShadowSurface';
 import KitTouchable from '../../components/KitTouchable';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -287,7 +287,7 @@ export default function FlashcardsTrainingModeSheet({
                         onPress={() => onSelect(row.mode)}
                         style={[styles.tile, { boxShadow: plateBoxShadow(g), opacity: disabled ? 0.48 : 1 }]}
                       >
-                        <PlateFill g={g} radius={20} />
+                        <PlateFill g={sheetPlateTokens(g)} radius={20} />
                         <View style={[styles.icon, { boxShadow: nestedBoxShadow(g) }]}>
                           <LinearGradient pointerEvents="none" colors={iconTileColors(g, ga, gb)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
                           <Ionicons name={rowIcon} size={22} color={g.text} />

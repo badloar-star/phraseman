@@ -3199,10 +3199,19 @@ async function runSignInWithProviderWhileOwningHandoffLease(
 
   // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
+    // зачем (координатор 12.10, вход в №2 за 55–61 с, 25 с внутри связки; СПЕРВА ЛОГИ): этапы хвоста свапа шли без строк
+    // между merge_skipped_fallback и merged_devices — теперь каждый печатает своё время (tookMs) и монотонное t.
+    let swapStageAt = identityTraceClockMs();
+    const swapStage = (stage: string, extra?: Record<string, string | number | boolean | null>): void => {
+      const now = identityTraceClockMs();
+      identityTrace('[AUTH-LINK-GOOGLE]', `swap stage ${stage}`, { provider, tookMs: now - swapStageAt, sinceStartMs: now - traceStartedAt, ...(extra ?? {}) });
+      swapStageAt = now;
+    };
     try {
       const preserveLocalProgress = providerHandoffMarker
         ? false
         : await hasMeaningfulLocalAccountData();
+      swapStage('local_data_checked', { preserveLocalProgress, handoff: providerHandoffMarker !== null });
       // AA S2d раунд 3 (§135 ❓2): в этом входе сохранена аварийная копия гостя A —
       // после свапа она либо получает метку подтверждённого merge, либо откладывается.
       let presyncBackupSaved = false;
@@ -3327,9 +3336,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // анонимный аккаунт НЕ принадлежит новому uid — merge тогда вернёт null. Это НЕ
       // ошибка: деградируем до простого свапа на remote (прежнее поведение), а не рвём
       // вход. canonicalStableId = победитель слияния, иначе сам remote.
+      swapStage('presync_phase_done');
       const merge = preserveLocalProgress
         ? await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)
         : null;
+      swapStage('server_merge_done', { called: preserveLocalProgress });
       identityTrace('[AUTH-LINK-GOOGLE]', 'swap merge_result', {
         provider,
         called: preserveLocalProgress,
@@ -3350,6 +3361,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           authLinkMetadata,
           { requireAuthoritative: true },
         );
+        swapStage('authoritative_link_read');
         // 🔴 для координатора (Plus): сюда попадаем, когда слияние не выполнено
         // (null) — свап на remote БЕЗ переноса premium-блока локального аккаунта.
         identityTrace('[AUTH-LINK-GOOGLE]', 'swap merge_skipped_fallback', {
@@ -3368,12 +3380,16 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // Хвост D: погасить фоновый/отложенный sync ДО смены stable_id, иначе debounce-sync
       // со старым прогрессом запишется в users/{новый canonical} и затрёт слитый аккаунт.
       await quiesceSyncBeforeStableIdSwap();
+      swapStage('sync_quiesced');
 
       // Clear account A while its id is still active, then install server-canonical B.
       // This prevents account A AsyncStorage from being observed under account B.
       await beginEntitlementSafeAccountTransition();
+      swapStage('entitlement_transition_begun');
       await withAccountTransitionLock(async (transitionLease) => {
+        swapStage('transition_lock_acquired');
         await wipeLocalAccountData(transitionLease);
+        swapStage('wipe_done');
         await setStableId(canonicalStableId);
         if (providerHandoffMarker) {
           await clearProviderCredentialHandoff(providerHandoffMarker);
@@ -3389,6 +3405,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           );
         }
       }, handoffLeaseScope.lease ?? undefined);
+      swapStage('stable_id_installed');
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
       // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
@@ -3396,6 +3413,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
 
       // Гарантируем Firebase Auth state ready (после signInWithCredential anon → google)
       await ensureAnonUser();
+      swapStage('auth_user_ready');
 
       // зачем: владелец 2026-08-29 «сделать мгновенным». Ядро свапа выше
       // (merge → wipe → setStableId) обязано быть блокирующим: до него на

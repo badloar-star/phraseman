@@ -201,6 +201,16 @@ describe('dev_state R1 (Ядро): прогресс уроков и экзаме
     expect((await tab.loadLessonsTabStateFromStorage('en', 'test')).examResults.A1).toEqual({ pct: 0, passed: false });
   });
 
+  test('lessonGates=real&legacyCap=8 — ворота уроков в памяти; плохое значение отклоняется; off снимает', async () => {
+    const paywall = require('../app/dev_paywall_state') as typeof import('../app/dev_paywall_state');
+    expect(parseDevStateParams({ legacyCap: '40' }).rejected).toHaveProperty('legacyCap');
+    expect(parseDevStateParams({ lessonGates: 'maybe' }).rejected).toHaveProperty('lessonGates');
+    await applyDevState(parseDevStateParams({ lessonGates: 'real', legacyCap: '8' }).request);
+    expect(paywall.getDevLessonGates()).toEqual({ real: true, legacyCap: 8 });
+    await applyDevState(parseDevStateParams({ lessonGates: 'off', legacyCap: 'off' }).request);
+    expect(paywall.getDevLessonGates()).toBeNull();
+  });
+
   test('dev_dialog_why=spent — бесплатных разборов 0, запись не идёт; off возвращает обычный счётчик', async () => {
     const why = require('../app/dialogue_v2_why_allowance') as typeof import('../app/dialogue_v2_why_allowance');
     const AsyncStorage = require('@react-native-async-storage/async-storage').default;

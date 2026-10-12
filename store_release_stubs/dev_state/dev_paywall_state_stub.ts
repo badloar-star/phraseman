@@ -13,4 +13,7 @@ export function isDevAiExplainLimit(): boolean { return false; }
 // зачем (Ядро 12.10, learn-007…013): подмена прогресса уроков в стор-сборке выключена
 export function setDevLessonsProgress(): boolean { return false; }
 export function getDevLessonsProgress(): null { return null; }
+// зачем (Ядро 13.10, learn-012/013): подмена ворот уроков в стор-сборке выключена
+export function setDevLessonGates(): boolean { return false; }
+export function getDevLessonGates(): null { return null; }
 export function applyDevPaywallView<T>(_state: unknown, view: T): T { return view; }

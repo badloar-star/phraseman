@@ -199,6 +199,10 @@ export type DevStateRequest = Readonly<{
   lessonsDone?: number | 'off';
   /** learn-007/008 (Ядро 12.10): результат экзамена A1 в памяти — «почти» (61%) или «сдан». */
   examA1?: 'almost' | 'passed' | 'off';
+  /** learn-012/013 (Ядро 13.10): ворота уроков как в релизе (без DEV_CONTENT_UNLOCK) — окна A11/A12 вместо экрана зачёта. */
+  lessonGates?: 'real' | 'off';
+  /** learn-013 (Ядро 13.10): сохранённый бесплатный потолок старого аккаунта (D122) при plus=off — только память. */
+  legacyCap?: number | 'off';
   /** dialogs-020 (Ядро 12.10): бесплатные «Почему так» на сегодня исчерпаны — только память. */
   dialogWhy?: 'spent' | 'off';
   /** «Не удалось» при очистке кеша (settings-gap-009). */
@@ -438,6 +442,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else rejected.lessonsDone = `ожидалось 0..32 или off, пришло ${lessonsDoneRaw}`;
   }
   request.examA1 = pick('examA1', ['almost', 'passed', 'off'] as const);
+  request.lessonGates = pick('lessonGates', ['real', 'off'] as const);
+  const legacyCapRaw = one(params.legacyCap);
+  if (legacyCapRaw !== undefined) {
+    const legacyCapN = Number(legacyCapRaw);
+    if (legacyCapRaw === 'off') request.legacyCap = 'off';
+    else if (Number.isInteger(legacyCapN) && legacyCapN >= 1 && legacyCapN <= 32) request.legacyCap = legacyCapN;
+    else rejected.legacyCap = `ожидалось 1..32 или off, пришло ${legacyCapRaw}`;
+  }
   request.dialogWhy = pick('dev_dialog_why', ['spent', 'off'] as const);
   request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
   request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
@@ -978,6 +990,15 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         done: typeof request.lessonsDone === 'number' ? request.lessonsDone : 0,
         examA1: request.examA1 === 'almost' || request.examA1 === 'passed' ? request.examA1 : null,
       });
+    });
+  }
+  if (request.lessonGates !== undefined || request.legacyCap !== undefined) {
+    // зачем (Макеты f5564eafa, learn-012/013): в dev-сборке весь курс открыт — тап по экзамену вёл на экран зачёта, а не в окно A11/A12
+    await step('lessonGates', `${request.lessonGates ?? '-'}/${String(request.legacyCap ?? '-')}`, async () => {
+      const { setDevLessonGates } = await import('./dev_paywall_state');
+      const real = request.lessonGates === 'real';
+      const legacyCap = typeof request.legacyCap === 'number' ? request.legacyCap : null;
+      return setDevLessonGates(!real && legacyCap === null ? null : { real, legacyCap });
     });
   }
   if (request.dialogWhy !== undefined) {

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { emitAppEvent } from './events';
+import { getDevLessonGates, type DevLessonGates } from './dev_paywall_state';
 
 export type DevLocalPlusOverride = 'granted' | 'removed' | 'inherit';
 
@@ -45,12 +46,17 @@ export function projectDevLessonAccess(
     freeLessonLimit: number;
   }>,
   override: DevLocalPlusOverride,
+  // зачем (Макеты f5564eafa, learn-012/013): dev-подмена «настоящих ворот» (dev_state lessonGates=real / legacyCap=N), только память.
+  gates: DevLessonGates | null = getDevLessonGates(),
 ): Readonly<{
   devContentUnlock: boolean;
   noLimits: boolean;
   legacyFreeLessonCap: number;
 }> {
   if (override !== 'removed') {
+    if (gates?.real) {
+      return { devContentUnlock: false, noLimits: false, legacyFreeLessonCap: access.legacyFreeLessonCap };
+    }
     return {
       devContentUnlock: access.devContentUnlock,
       noLimits: access.noLimits,
@@ -60,7 +66,8 @@ export function projectDevLessonAccess(
   return {
     devContentUnlock: false,
     noLimits: false,
-    legacyFreeLessonCap: access.freeLessonLimit,
+    // Free как в сторе; legacyCap — сохранённый потолок старого аккаунта (D122), иначе нынешние 3 урока.
+    legacyFreeLessonCap: gates?.legacyCap ?? access.freeLessonLimit,
   };
 }
 

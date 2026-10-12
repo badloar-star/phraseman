@@ -153,6 +153,30 @@ export function getDevLessonsProgress(): DevLessonsProgress | null {
   return devPaywallAvailable() ? lessonsProgress : null;
 }
 
+/**
+ * зачем (Макеты f5564eafa, learn-012/013): в dev-сборке DEV_CONTENT_UNLOCK открывает весь курс — тап по экзамену всегда вёл на
+ * экран зачёта, и окна «Уровень пока закрыт» (A11) и «Недоступно» (A12) были недостижимы. `real` — ворота как в релизе при Plus;
+ * `legacyCap` — сохранённый бесплатный потолок старого аккаунта (D122) при plus=off. Только память процесса.
+ */
+export type DevLessonGates = Readonly<{ real: boolean; legacyCap: number | null }>;
+let lessonGates: DevLessonGates | null = null;
+
+export function setDevLessonGates(value: DevLessonGates | null): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} lessons: ворота отклонены — не dev-сборка`, { value }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  lessonGates = value
+    ? Object.freeze({ real: value.real, legacyCap: value.legacyCap === null ? null : Math.max(1, Math.min(32, Math.floor(value.legacyCap))) })
+    : null;
+  console.log(`${LOG} lessons: ворота=${JSON.stringify(lessonGates)} (только память)`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function getDevLessonGates(): DevLessonGates | null {
+  return devPaywallAvailable() ? lessonGates : null;
+}
+
 export type PaywallDevView = {
   loading: boolean;
   offeringsSettled: boolean;

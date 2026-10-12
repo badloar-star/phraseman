@@ -1,0 +1,44 @@
+/* зачем (координатор 12.10, владелец приказал стиль «Тень» на всё приложение, SHADOW_STYLE_SPEC.md): слой подачи для КОПИЙ образцов под замком
+   (mistakes-panel, cards-section, cards-gallery, packs-simple *.shadow.html). Оригиналы не менялись. Состав, тексты, раскладка, номера телефонов — те же;
+   меняется только подача: плашки — градиент 180° (белый 8,5 % → 4 %) и падающая тень, БЕЗ кольца, кромок и бликов; вложенное — малая тень;
+   выбранное — подъём; диагональные цветные градиенты и «аврора» за экраном убраны (фон ровный графит темы).
+   Подключается после cards-glass.css и страничных стилей; все правила с !important, потому что страницы задают подачу через !important и inline. */
+
+.ph { --s1: rgba(255,255,255,.085); --s2: rgba(255,255,255,.04); --so1: rgba(255,255,255,.15); --so2: rgba(255,255,255,.07);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9); --ti: rgba(255,255,255,.07); }
+
+/* фон: без «авроры» (радиальные пятна цвета темы) */
+.ph::before, .ph::after { background: none !important; opacity: 0 !important; }
+
+/* плашки: заливка 180° + тень, без внутренних колец */
+.ph .card, .ph .card.c2, .ph .gl, .ph .panel, .ph .toast, .ph .modal, .ph .pack, .ph .week, .ph .note, .ph .finfo, .ph .hero, .ph .field, .ph .srch,
+.ph .fld, .ph .slot, .ph .opt, .ph .opt2, .ph .qc, .ph .pk, .ph .seg3 {
+  background: linear-gradient(180deg, var(--s1), var(--s2)) !important; box-shadow: var(--sh) !important; border: 0 !important; }
+.ph .gl::before, .ph .mc::before, .ph .card::before, .ph .panel::before { content: none !important; }
+.ph .sheet, .ph .tray { background: linear-gradient(180deg, rgba(40,40,46,.98), rgba(30,30,36,.98)) !important; box-shadow: 0 -18px 40px -14px rgba(0,0,0,.9) !important; border: 0 !important; }
+
+/* вложенное: плитки-иконки, пилюли, кнопки внутри плашки — малая тень, заливка тоном, без кромок */
+.ph .tile, .ph .gtile, .ph .rb, .ph .pill, .ph .cntp, .ph .chipbtn, .ph .lvl, .ph .tok, .ph .cta.gh, .ph .cta2, .ph .chbtn, .ph .tabs span, .ph .fchips span {
+  background: var(--ti) !important; box-shadow: var(--sh2) !important; border: 0 !important; }
+.ph .tile.t55, .ph .tile.t61, .ph .empty .tile { background: var(--ti) !important; color: #fff !important; }
+.ph .fchips span.on, .ph .tabs span.on, .ph .chipbtn.on { background: var(--acc) !important; color: var(--on) !important; }
+
+/* мини-карточка слова (.mc, .gcs): заливка тоном вместо диагонального цветного градиента */
+.ph .mc, .ph .gcs, .ph .gc { background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.07)) !important; box-shadow: var(--sho) !important; }
+.ph .gcs .face, .ph .gcs .fl { background: transparent !important; box-shadow: none !important; }
+
+/* строки внутри групповой панели: без своей плашки, разделитель — тон */
+.ph .pr + .pr, .ph .hist + .hist, .ph .stat3 > div + div { box-shadow: none !important; border-top: 0 !important; border-left: 0 !important; }
+.ph .pr + .pr, .ph .hist + .hist { background: linear-gradient(var(--ti), var(--ti)) top / 100% 1px no-repeat !important; }
+
+/* кнопка действия: цвет темы + цветная тень, без блика внутри */
+.ph .ac-cta, .ph .cta:not(.gh):not(.dis):not(.red) { background: var(--acc) !important; color: var(--on) !important; box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--acc) 60%, transparent) !important; }
+.ph .mic { background: var(--acc) !important; box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--acc) 60%, transparent) !important; }
+
+/* крупные цветные поверхности (шапка «Мои ошибки»): ровный тон вместо диагонали */
+.ph .hero2 { background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04)) !important; box-shadow: var(--sh) !important; }
+
+/* ответы в «стакане» (верно/неверно): цвет остаётся смысловым, но без контура 1.5px */
+.ph .tray .g > div { background: linear-gradient(180deg, var(--s1), var(--s2)) !important; box-shadow: var(--sh2) !important; }
+.ph .tray .g > div.ok { background: rgba(111,208,140,.22) !important; box-shadow: var(--sh2) !important; }
+.ph .tray .g > div.no { background: rgba(242,118,107,.2) !important; box-shadow: var(--sh2) !important; }

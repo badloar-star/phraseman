@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточки — масштаб как в галерее («Тень», копия на утверждение)</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10, капсом): карточки — как были раньше до дизайна 2.0, только чуть ниже по высоте; щипком менять масштаб и форму как в галерее телефона;
+     с градиентом, со стеклом, с прозрачностью; ползунок, чтобы проверить; всё анимировано; хаб — красивые варианты.
+     Старый вид карточки (PhraseCard до 2.0): прямоугольник с радиусом 24, диагональный градиент цвета набора к почти чёрному, на лицевой стороне английская фраза по центру
+     (22, обычный вес) и курсивная транскрипция, значок озвучки, точки силы слова; по нажатию — переворот на перевод с обратным градиентом. Высота одноколоночной карточки
+     здесь около 104 вместо прежних 120 и выше. Цвета — из утверждённых градиентных тем (themes-gradient.html). */
+  .ph { background: var(--bg) !important; --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+  .ph::before { content: ""; position: absolute; inset: -18%; z-index: 0; pointer-events: none; opacity: .62;
+    background: radial-gradient(38% 26% at 18% 16%, var(--g1), transparent 70%), radial-gradient(40% 28% at 88% 44%, var(--g2), transparent 70%), radial-gradient(48% 28% at 32% 96%, var(--g1), transparent 72%);
+    animation: drift 18s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
+  .ctl { position: sticky; top: 0; z-index: 90; background: rgba(5,5,6,.9); backdrop-filter: blur(14px); padding: 16px 0 16px; margin-top: 18px; border-bottom: 1px solid var(--line); }
+  .chips2 { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 7px 12px 7px 8px; border-radius: 999px; background: #161618; border: 1px solid var(--line); color: var(--sec); cursor: pointer; user-select: none; }
+  .chip.on { color: #fff; border-color: rgba(255,255,255,.4); background: #222224; }
+  .sw { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+  .sl { display: flex; align-items: center; gap: 16px; margin-top: 14px; max-width: 760px; }
+  .sl span { font-size: 14px; color: var(--sec); white-space: nowrap; }
+  .sl b { font-size: 15px; min-width: 190px; text-align: right; font-variant-numeric: tabular-nums; }
+  input[type=range] { flex: 1; accent-color: #fff; height: 28px; }
+  .btns { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .btn { height: 38px; padding: 0 16px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line-2); color: #fff; font: 600 14px Inter, sans-serif; cursor: pointer; }
+  .btn:hover { background: #262628; }
+
+/* LOCKED:cards-css:start */
+  /* ---------- галерея карточек ---------- */
+  #g { position: relative; margin-top: 18px; }
+  .gc { position: absolute; left: 0; top: 0; perspective: 900px; cursor: pointer; will-change: transform, width, height;
+    transition: transform 460ms cubic-bezier(.2,1,.3,1), width 460ms cubic-bezier(.2,1,.3,1), height 460ms cubic-bezier(.2,1,.3,1), opacity 300ms; }
+  #g.live .gc { transition-duration: 110ms, 110ms, 110ms, 300ms; transition-timing-function: linear; }
+  .gc.enter { opacity: 0; }
+  .gc .fl { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 560ms cubic-bezier(.3,1.25,.4,1); }
+  .gc.flipped .fl { transform: rotateY(180deg); }
+  .gc.press .fl { transform: scale(.965); }
+  .gc.flipped.press .fl { transform: rotateY(180deg) scale(.965); }
+  .face { position: absolute; inset: 0; border-radius: var(--r, 24px); overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--pd, 12px);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.28), inset -1px -1.5px 0 -.2px rgba(0,0,0,.5), inset 0 0 0 1px color-mix(in srgb, var(--t) 40%, rgba(255,255,255,.08)), 0 14px 30px -14px rgba(0,0,0,.8); }
+  .face::before { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.04) 28%, rgba(255,255,255,0) 54%, rgba(255,255,255,.05) 100%); pointer-events: none; }
+  .face::after { content: ""; position: absolute; width: 80%; aspect-ratio: 1; right: -30%; top: -40%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--g1) 70%, transparent), transparent); opacity: .55; pointer-events: none; }
+  .face.back { transform: rotateY(180deg); background: linear-gradient(325deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%); }
+  .face .en { position: relative; z-index: 1; font-weight: 500; letter-spacing: -.2px; line-height: 1.15; width: 100%; overflow-wrap: anywhere; transition: font-size .3s; }
+  .face .ru { position: relative; z-index: 1; font-weight: 600; line-height: 1.15; width: 100%; overflow-wrap: anywhere; transition: font-size .3s; }
+  .face .ipa { position: relative; z-index: 1; font-style: italic; color: rgba(255,255,255,.62); margin-top: 6px; transition: opacity .25s, font-size .3s; }
+  .face .spk { position: absolute; z-index: 2; right: 10px; top: 10px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; transition: opacity .25s; }
+  .face .dots { position: absolute; z-index: 2; left: 14px; bottom: 11px; display: flex; gap: 4px; transition: opacity .25s; }
+  .face .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.22); }
+  .face .dots i.on { background: var(--acc); }
+  #g[data-lv="s"] .ipa, #g[data-lv="s"] .spk, #g[data-lv="s"] .dots, #g[data-lv="xs"] .ipa, #g[data-lv="xs"] .spk, #g[data-lv="xs"] .dots { opacity: 0; }
+  #g[data-lv="m"] .spk, #g[data-lv="m"] .dots { opacity: 0; }
+/* LOCKED:cards-css:end */
+</style>
+<link rel="stylesheet" href="shadow-skin.css">
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Карточки — масштаб как в галерее телефона</h1>
+  <p class="page-lead">Двигайте ползунок «Масштаб» (или щипком двумя пальцами, или Ctrl + колесо над экраном): карточки плавно меняют размер, форму и число колонок; мелкие показывают только слово, крупные — слово, транскрипцию, озвучку и силу слова. Нажмите на карточку — она переворачивается на перевод. Ниже — пять вариантов хаба.</p>
+  <div class="ctl">
+    <div class="chips2" id="chips"></div>
+    <div class="sl"><span>Масштаб</span><input id="k" type="range" min="0" max="100" step="1" value="0"><b id="kv"></b></div>
+    <div class="btns"><button class="btn" id="b-intro">Проиграть появление</button><button class="btn" id="b-flip">Перевернуть все</button><button class="btn" id="b-auto">Автопоказ масштаба</button></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block } = K;
+const THEMES = [
+  ['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'],
+  ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'],
+  ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'],
+  ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'],
+  ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A'],
+];
+let theme = 0;
+const WORDS = [
+  ['Boarding pass', '/ˈbɔːdɪŋ pɑːs/', 'Посадочный талон'], ['Layover', '/ˈleɪoʊvər/', 'Пересадка'], ['Check in', '/tʃek ɪn/', 'Регистрация'], ['Carry-on', '/ˈkæri ɒn/', 'Ручная кладь'],
+  ['Window seat', '/ˈwɪndoʊ siːt/', 'Место у окна'], ['Gate', '/ɡeɪt/', 'Выход на посадку'], ['Delay', '/dɪˈleɪ/', 'Задержка'], ['Customs', '/ˈkʌstəmz/', 'Таможня'],
+  ['Passport', '/ˈpɑːspɔːt/', 'Паспорт'], ['Luggage', '/ˈlʌɡɪdʒ/', 'Багаж'], ['Departure', '/dɪˈpɑːtʃə/', 'Вылет'], ['Arrival', '/əˈraɪvl/', 'Прибытие'],
+  ['Take off', '/teɪk ɒf/', 'Взлетать'], ['Land', '/lænd/', 'Приземляться'], ['Aisle seat', '/aɪl siːt/', 'Место у прохода'], ['Round trip', '/raʊnd trɪp/', 'Туда и обратно'],
+  ['Visa', '/ˈviːzə/', 'Виза'], ['Currency', '/ˈkʌrənsi/', 'Валюта'], ['Souvenir', '/ˌsuːvəˈnɪə/', 'Сувенир'], ['Itinerary', '/aɪˈtɪnərəri/', 'Маршрут'],
+];
+document.head.insertAdjacentHTML('beforeend', '<style>.face{transition:border-radius .4s,padding .4s}#g .en{font-size:var(--fs)}#g .ru{font-size:var(--fr)}#g .ipa{font-size:var(--fi)}.gc.enter{transform:translate3d(0,40px,0) scale(.9)!important}</style>');
+const li = (n) => ({ cards: '<rect x="4" y="7.5" width="12" height="13" rx="2.5"/><path d="M8 4.5h9.5A2.5 2.5 0 0120 7v10"/>', globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.4 5.5 3.4 8.5s-1 5.9-3.4 8.5c-2.4-2.6-3.4-5.5-3.4-8.5s1-5.9 3.4-8.5z"/>' }[n]);
+const lic = (n, c = '') => `<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${li(n)}</svg>`;
+const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
+
+/* LOCKED:cards-engine:start */
+// ---------- движок галереи: колонки и форма карточки зависят от ползунка ----------
+const W = 390, GAP = 12;
+const LV = ['l', 'm', 's', 'xs'];
+const RATIO = [0.27, 0.8, 1.0, 1.15];
+const FS = [22, 18, 14.5, 12.5];
+const FI = [14, 12, 0, 0];
+const RAD = [24, 22, 18, 14];
+const PAD = [16, 12, 10, 8];
+let s = 0;
+function layoutFor(v) {
+  const band = Math.min(3.999, v * 3.999);
+  const idx = Math.floor(band);
+  const f = band - idx;
+  const cols = idx + 1;
+  const w = (W - GAP * (cols - 1)) / cols;
+  const h = Math.round(w * RATIO[idx] * (1.05 - 0.1 * f));
+  return { cols, idx, w, h, f };
+}
+function tint() { return THEMES[theme][1]; } // зачем (владелец 04.10): все карточки одного цвета — цвета темы; разноцветность только как градиент ВНУТРИ карточки
+function cardHtml(i, [en, ipa, ru]) {
+  const dots = [0, 1, 2, 3].map((d) => `<i class="${d < 1 + ((i * 7) % 4) ? 'on' : ''}"></i>`).join('');
+  return `<div class="gc enter" data-i="${i}" style="--t:${tint(i)}"><div class="fl">
+    <div class="face"><div class="en">${en}</div><div class="ipa">${ipa}</div><span class="spk">${icon('vol', 's16')}</span><span class="dots">${dots}</span></div>
+    <div class="face back"><div class="ru">${ru}</div><div class="ipa">${en}</div></div></div></div>`;
+}
+function apply(live) {
+  const g = document.getElementById('g');
+  if (!g) return;
+  const L = layoutFor(s);
+  g.classList.toggle('live', !!live);
+  g.dataset.lv = LV[L.idx];
+  g.style.setProperty('--fs', FS[L.idx] + 'px');
+  g.style.setProperty('--fr', (FS[L.idx] + 2) + 'px');
+  g.style.setProperty('--fi', FI[L.idx] + 'px');
+  g.style.setProperty('--r', RAD[L.idx] + 'px');
+  g.style.setProperty('--pd', PAD[L.idx] + 'px');
+  const cards = g.querySelectorAll('.gc');
+  cards.forEach((c, i) => {
+    const row = Math.floor(i / L.cols); const cc = i % L.cols;
+    c.style.width = L.w + 'px'; c.style.height = L.h + 'px';
+    c.style.transform = `translate3d(${cc * (L.w + GAP)}px, ${row * (L.h + GAP)}px, 0)`;
+  });
+  g.style.height = Math.ceil(cards.length / L.cols) * (L.h + GAP) + 'px';
+  document.getElementById('kv').textContent = `${L.cols} ${L.cols === 1 ? 'колонка' : L.cols < 5 ? 'колонки' : 'колонок'} · ${Math.round(L.w)}×${L.h}`;
+  document.getElementById('k').value = Math.round(s * 100);
+}
+let liveTimer = 0;
+function setScale(v, live = true) {
+  s = Math.max(0, Math.min(1, v));
+  apply(live);
+  clearTimeout(liveTimer);
+  liveTimer = setTimeout(() => apply(false), 160);
+}
+function intro() {
+  const g = document.getElementById('g');
+  g.querySelectorAll('.gc').forEach((c, i) => { c.classList.add('enter'); c.classList.remove('flipped'); setTimeout(() => c.classList.remove('enter'), 60 + i * 38); });
+}
+function applyTheme() {
+  const T = THEMES[theme];
+  document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); });
+  document.querySelectorAll('.gc').forEach((c) => { c.style.setProperty('--t', tint(+c.dataset.i)); });
+  document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme));
+}
+
+/* LOCKED:cards-engine:end */
+// ---------- общий «стеклянный» язык хаба ----------
+document.head.insertAdjacentHTML('beforeend', `<style>
+  .gl { position: relative; border-radius: 26px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); overflow: hidden;
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.26), inset -1px -1.5px 0 -.2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.07), 0 18px 40px -18px rgba(0,0,0,.85); }
+  .gl::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,0) 46%); }
+  .gl.pad { padding: 18px 18px 18px; }
+  .gl.sm { border-radius: 20px; }
+  .ac-cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); font-size: 17px; font-weight: 700; width: 100%;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent); position: relative; }
+  .ac-cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; }
+  .ac-cta .ar { position: absolute; right: 20px; }
+  .ac-round { width: 58px; height: 58px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 12px 26px -10px color-mix(in srgb, var(--acc) 80%, transparent); }
+  .ov2 { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--acc) 80%, #fff); }
+  .mc { position: relative; border-radius: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; letter-spacing: -.2px;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 48%, rgba(10,10,14,.9)), rgba(8,8,12,.86) 58%, color-mix(in srgb, var(--g2) 38%, rgba(8,8,12,.86)));
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.3), inset 0 0 0 1px color-mix(in srgb, var(--t) 42%, rgba(255,255,255,.08)), 0 14px 26px -12px rgba(0,0,0,.85); }
+  .mc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(255,255,255,.18), rgba(255,255,255,0) 52%); }
+  .mc::after { content: ""; position: absolute; width: 90%; aspect-ratio: 1; right: -34%; top: -44%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--t) 70%, transparent), transparent); opacity: .6; }
+  .mc > span { position: relative; z-index: 1; padding: 0 8px; }
+  .gpk { display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; margin-top: 10px; }
+  .gtile { width: 52px; height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none; position: relative; overflow: hidden;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.32), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .mc.solid { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 50%, #0d0d12), #08080b 58%, color-mix(in srgb, var(--g2) 38%, #08080b)); }
+  .rise > * { animation: rise 640ms cubic-bezier(.2,1,.3,1) both; }
+  .rise > *:nth-child(2) { animation-delay: 70ms; } .rise > *:nth-child(3) { animation-delay: 140ms; } .rise > *:nth-child(4) { animation-delay: 210ms; } .rise > *:nth-child(5) { animation-delay: 280ms; } .rise > *:nth-child(6) { animation-delay: 350ms; }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px) scale(.97); } }
+  .float { animation: floaty 5s ease-in-out infinite alternate; }
+  @keyframes floaty { to { transform: translateY(-8px) rotate(var(--rr, 0deg)); } }
+  .seg2 { display: flex; padding: 5px; border-radius: 22px; gap: 4px; }
+  .seg2 span { flex: 1; height: 42px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--sec); transition: background .3s, color .3s; cursor: pointer; position: relative; z-index: 1; }
+  .seg2 span.on { background: rgba(255,255,255,.14); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
+  .tabp { display: none; } .tabp.on { display: block; animation: rise 520ms cubic-bezier(.2,1,.3,1) both; }
+  .deckc { position: relative; width: 236px; height: 250px; border-radius: 30px; flex: none; padding: 20px; display: flex; flex-direction: column; scroll-snap-align: start; }
+  .hs { display: flex; gap: 14px; overflow-x: auto; margin: 0 -20px; padding: 6px 20px 24px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .hs::-webkit-scrollbar { display: none; }
+</style>`);
+const lvl = (l) => (l ? `<span class="lvl">${l}</span>` : '');
+const cnt = (n) => `<span class="cntp">${n}</span>`;
+const ch2 = `<span class="ch">${icon('fwd', 's20')}</span>`;
+const comm = [['Family', 'Лидия', 20, 'A2', 0], ['B2 глаголы', 'Ирина', 49, 'B2', 1], ['Антоніми дієслів', 'Natalia', 30, 'B1', 2]];
+const tintOf = () => `style="--t:var(--g1)"`;
+const commRow = (t, a, n, l, i) => `<div class="gl gpk t sm" ${tintOf(i)}><div class="gtile">${t[0]}</div><div class="grow"><div style="font-size:17px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${a}</div></div>${lvl(l)}${cnt(n)}</div>`;
+const lim2 = `<span class="pill s">${lic('cards', 's16')}2/3</span>`;
+const head2 = () => `${topRow(`${lim2}<span class="rb t">${icon('plus', 's20')}</span>`)}${title('Карточки', 'Слова и фразы')}`;
+const arrow = `<span class="ar">${icon('arrowR', 's20')}</span>`;
+</script>
+<script src="cards-gallery-main.js"></script>
+</body>
+</html>

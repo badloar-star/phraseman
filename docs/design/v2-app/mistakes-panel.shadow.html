@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мои ошибки — Панель, весь раздел («Тень», копия на утверждение)</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<link rel="stylesheet" href="shadow-skin.css">
+<style>
+  /* зачем (владелец 04.10: «вариант Б»): раздел «Мои ошибки» целиком в языке «Панель» — кольцо прогресса, ленты-фильтры, одна панель-список,
+     «стакан» ответов внизу под большим пальцем. НЕ повторяет «Карточки» (нет стопки-героя, плиток 2×2, сетки карточек, переворота). */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 40%); }
+  .center { text-align: center; }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); } .rd { color: #FF9C93; } .gr { color: #8DEBB0; }
+  .cta2 { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 26px; flex: 1; font-size: 17px; font-weight: 700; background: rgba(255,255,255,.1); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .row2 { display: flex; gap: 10px; } .ac-cta.f1 { flex: 1; width: auto; }
+  .ringw { position: relative; width: 236px; height: 236px; margin: 14px auto 0; } .ringw.sm { width: 150px; height: 150px; margin: 0; flex: none; }
+  .ringw svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ringw .c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .legend { display: flex; justify-content: center; gap: 22px; margin-top: 14px; font-size: 15px; color: var(--sec); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+  .fchips { display: flex; gap: 8px; margin: 22px 0 8px; overflow: hidden; }
+  .fchips span { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; background: rgba(255,255,255,.07); color: var(--sec); }
+  .fchips span.on { background: var(--acc); color: var(--on); }
+  .panel { border-radius: 24px; padding: 4px 18px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 14%, rgba(24,24,30,.7)), rgba(14,14,18,.7)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+  .pr { display: flex; align-items: center; gap: 14px; min-height: 64px; } .pr + .pr { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .pr .w { font-size: 18px; font-weight: 700; } .pr .t { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .mini { display: flex; gap: 4px; margin-left: auto; } .mini i { width: 14px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); } .mini i.on { background: var(--acc); }
+  .hero2 { margin: -8px -20px 0; padding: 70px 24px 28px; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 55%, #0b0b0f), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); border-radius: 0 0 36px 36px; }
+  .stat3 { display: flex; margin-top: 22px; } .stat3 > div { flex: 1; } .stat3 > div + div { box-shadow: inset 1px 0 0 rgba(255,255,255,.1); padding-left: 16px; }
+  .stat3 b { display: block; font-size: 26px; } .stat3 span { font-size: 13px; color: var(--sec); }
+  .tray { position: absolute; left: 0; right: 0; bottom: 0; z-index: 25; padding: 18px 16px 34px; border-radius: 30px 30px 0 0; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.96)), rgba(14,14,18,.97)); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+  .tray .g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tray .g > div { height: 62px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; background: rgba(255,255,255,.08); }
+  .tray .g > div.ok { background: rgba(111,208,140,.2); box-shadow: inset 0 0 0 1.5px rgba(111,208,140,.7); } .tray .g > div.no { background: rgba(242,118,107,.18); box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.7); }
+  .tray .res { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; margin-bottom: 12px; } .tray .res .sp { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .tray .why { font-size: 16px; line-height: 23px; color: #E2E2E6; padding: 0 2px 16px; }
+  .tmr { width: 74px; height: 74px; margin: 6px auto 0; position: relative; } .tmr svg { position: absolute; inset: 0; } .tmr b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .q { text-align: center; margin-top: 30px; } .q .k { font-size: 17px; color: var(--sec); } .q .v { font-size: 44px; line-height: 50px; font-weight: 700; letter-spacing: -1px; margin-top: 10px; }
+  .slot { min-height: 70px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px; border-radius: 20px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .tok { display: inline-flex; align-items: center; height: 46px; padding: 0 17px; border-radius: 14px; font-size: 17px; font-weight: 600; background: rgba(255,255,255,.1); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22); } .tok.used { opacity: .22; }
+  .fld { border-radius: 18px; min-height: 60px; display: flex; align-items: center; padding: 0 18px; font-size: 20px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .mic { width: 92px; height: 92px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 18px 34px -12px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .skel { border-radius: 10px; background: linear-gradient(90deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%); background-size: 200% 100%; animation: sh 1.4s linear infinite; } @keyframes sh { to { background-position: -200% 0; } }
+  .opt { display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; margin-top: 10px; min-height: 62px; } .opt .tx { flex: 1; font-size: 17px; font-weight: 700; text-align: left; }
+  .stp { display: flex; align-items: center; gap: 10px; } .stp i { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 13px; font-weight: 700; color: var(--sec); } .stp i.on { background: var(--acc); color: var(--on); }
+  .stp b { flex: 1; height: 2px; background: rgba(255,255,255,.12); } .stp b.on { background: var(--acc); }
+  .hist { display: flex; justify-content: space-between; align-items: center; min-height: 46px; font-size: 16px; } .hist + .hist { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .tabs { display: flex; gap: 8px; margin-top: 18px; } .tabs span { height: 38px; padding: 0 18px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: rgba(255,255,255,.07); } .tabs span.on { background: var(--acc); color: var(--on); }
+  .chip.on { background: #222224; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Мои ошибки — «Панель», весь раздел</h1>
+  <p class="page-lead">Выбранная владельцем концепция Б: кольцо прогресса, ленты-фильтры по типам, одна панель-список, ответы в «стакане» внизу. Все экраны и состояния раздела: вход с Главной, хаб, список, ошибка, отработка четырёх типов, ответы и разбор, итог, пустые состояния. Тема меняется чипами.</p>
+  <div class="page-nav"><a href="#hub">Вход и хаб</a><a href="#list">Список</a><a href="#card">Ошибка</a><a href="#run">Отработка</a><a href="#fb">Ответ и разбор</a><a href="#end">Итог и пустые</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, sheet } = K;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const back = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const barX = (r = '') => `<div class="flex" style="gap:14px;margin-top:6px"><span class="rb t">${icon('close', 's20')}</span><div class="grow">${r}</div></div>`;
+const ring = (p, big = false) => { const r = big ? 100 : 62, S = big ? 236 : 150, c = 2 * Math.PI * r, w = big ? 16 : 12; return `<svg viewBox="0 0 ${S} ${S}"><circle cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="${w}"/><circle cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke="var(--acc)" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${c * p} ${c}" transform="rotate(-90 ${S / 2} ${S / 2})"/></svg>`; };
+const mini = (n) => `<div class="mini">${[0, 1, 2].map((i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div>`;
+const prow = (w, t, n) => `<div class="pr"><div><div class="w">${w}</div><div class="t">${t}</div></div>${mini(n)}</div>`;
+const L = [['Grandchildren', 'Внуки', 0], ['I have been', 'Я был', 1], ['Ready', 'Готов', 2], ['Although', 'Хотя', 0], ['Make a decision', 'Принять решение', 1], ['Through', 'Через', 0], ['Would rather', 'Лучше бы', 2]];
+const chips = (on = 0) => `<div class="fchips">${['Все 12', 'Значение 5', 'Грамматика 4', 'Произношение 3'].map((t, i) => `<span class="${i === on ? 'on' : ''}">${t}</span>`).join('')}</div>`;
+const legend = `<div class="legend"><span><i style="background:var(--acc)"></i>38 исправлено</span><span><i style="background:rgba(255,255,255,.25)"></i>12 ждут</span></div>`;
+const hubHead = back() + `<div class="lt"><div class="ti">Мои ошибки</div></div>`;
+// зачем (владелец 04.10): кольцо-таймер на вопрос убрано; в шапке задания — крестик, счётчик «n / 12» и меню «⋯» (скрыть ошибку, сообщить об ошибке в задании).
+const runTop = (n) => `${barX(`<div class="flex" style="justify-content:flex-end;gap:12px"><div class="sec2" style="font-weight:600">${n} / 12</div><span class="rb t">${icon('dotsH', 's20')}</span></div>`)}`;
+const trayG = (opts, marks = {}) => `<div class="g">${opts.map((o) => `<div class="${marks[o] || ''}">${o}</div>`).join('')}</div>`;
+const Q = `<div class="q"><div class="k">Выберите перевод</div><div class="v">Grandchildren</div></div>`;
+const WHY = '<b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.';
+const menuRow = (ic, t, red) => `<div class="gl opt t"><div class="gtile" style="width:42px;height:42px;border-radius:13px${red ? ';color:#F2766B' : ''}">${icon(ic, 's20')}</div><div class="tx"${red ? ' style="color:#F2766B"' : ''}>${t}</div></div>`;
+const dim = (inner) => `<div class="dim on"></div>${inner}`;
+
+// ---------- вход и хаб ----------
+const homeEntry = () => phone(`<div class="lt"><div class="ti">Сегодня</div></div><div class="rise"><div class="panel" style="margin-top:28px;padding:18px"><div class="flex" style="gap:18px"><div class="ringw sm" style="width:96px;height:96px">${ring(0.76).replace(/viewBox="0 0 150 150"/, 'viewBox="0 0 150 150"')}<div class="c"><b style="font-size:22px">76%</b></div></div><div class="grow"><div style="font-size:20px;font-weight:700">Мои ошибки</div><div class="sec2" style="font-size:15px;margin-top:3px">12 ждут отработки</div></div></div>${cta('Отработать', ' style="margin-top:18px"')}</div><div class="panel" style="margin-top:12px;height:110px;opacity:.45"></div></div>`);
+const hub = () => phone(`${hubHead}<div class="ringw">${ring(0.76, true)}<div class="c"><div style="font-size:60px;line-height:62px;font-weight:800;letter-spacing:-1.5px">76%</div><div class="sec2" style="font-size:15px;margin-top:2px">исправлено</div></div></div>${legend}${chips(0)}<div class="panel">${L.slice(0, 3).map((r) => prow(...r)).join('')}</div>`, { fixed: bot(cta('Отработать 12', ' data-open="st"')), overlay: start(true) });
+const hubLoading = () => phone(`${hubHead}<div class="ringw"><svg viewBox="0 0 236 236"><circle cx="118" cy="118" r="100" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="16"/></svg></div><div class="center sec2" style="margin-top:14px">Загружаем…</div><div class="fchips" style="opacity:.5"><span class="on">Все</span><span>Значение</span><span>Грамматика</span></div><div class="panel">${[0, 1, 2].map(() => `<div class="pr"><div style="flex:1"><div class="skel" style="height:16px;width:50%"></div><div class="skel" style="height:12px;width:30%;margin-top:8px"></div></div></div>`).join('')}</div>`, { fixed: bot(`<div class="ac-cta" style="opacity:.5;box-shadow:none">Отработать</div>`) });
+const start = (closed) => sheet('st', `<div class="center"><div style="font-size:24px;font-weight:700">Отработка</div><div class="sec2" style="font-size:16px;margin-top:6px">12 ошибок · около 4 минут</div></div><div class="fchips" style="margin-top:18px"><span class="on">Все 12</span><span>Значение 5</span><span>Грамматика 4</span></div><div style="margin-top:10px">${cta(`Начать ${icon('boltF', 's18')} 1`)}</div>`, !closed);
+const startS = () => phone(`<div style="opacity:.3">${hubHead}</div>`, { overlay: start(false) });
+
+// ---------- список ----------
+const list = (done) => phone(`${back(`<span class="rb t">${icon('search', 's20')}</span>`)}<div class="lt"><div class="ti">Все ошибки</div></div><div class="tabs"><span class="${done ? '' : 'on'}">Ждут · 12</span><span class="${done ? 'on' : ''}">Исправлены · 38</span></div>${chips(0)}<div class="panel">${(done ? [['Would rather', 'Лучше бы', 3], ['Ready', 'Готов', 3], ['Although', 'Хотя', 3], ['Through', 'Через', 3]] : L).map((r) => prow(...r)).join('')}</div>`, { fixed: bot(cta(done ? 'Повторить исправленные' : 'Отработать 12')) });
+
+// ---------- ошибка ----------
+const detail = (hist) => phone(`<div class="hero2"><div class="topbar" style="margin:-46px 0 14px"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div><div style="font-size:42px;line-height:46px;font-weight:700;letter-spacing:-1px">Grandchildren</div><div style="font-size:20px;margin-top:6px;opacity:.8">Внуки</div><div class="stat3"><div><b>×3</b><span>ошибки</span></div><div><b>${hist ? '2/3' : '0/3'}</b><span>исправление</span></div><div><b>4 окт.</b><span>последняя</span></div></div></div>
+  <div class="panel" style="margin-top:22px"><div class="pr"><span class="sec2" style="width:90px">Ваш ответ</span><span class="rd" style="font-size:20px;font-weight:700;text-decoration:line-through">Дети</span></div><div class="pr"><span class="sec2" style="width:90px">Правильно</span><span class="gr" style="font-size:20px;font-weight:700">Внуки</span><span class="rnd" style="margin-left:auto;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center">${icon('vol', 's18')}</span></div></div>
+  ${hist ? `<div class="panel" style="margin-top:12px;padding:14px 18px"><div class="flex" style="justify-content:space-between;margin-bottom:12px"><b style="font-size:16px">Исправление</b><span class="sec2">2 из 3</span></div><div class="stp"><i class="on">${icon('check', 's14')}</i><b class="on"></b><i class="on">${icon('check', 's14')}</i><b></b><i>3</i></div></div><div class="panel" style="margin-top:12px"><div class="hist"><span>Карточки</span><span class="sec2">4 окт.</span></div><div class="hist"><span>Карточки</span><span class="sec2">3 окт.</span></div><div class="hist"><span>Урок 4</span><span class="sec2">3 окт.</span></div></div>` : `<div class="panel" style="margin-top:12px"><div class="pr"><b style="font-size:17px">Почему это ошибка</b><span class="sec2" style="margin-left:auto">${icon('fwd', 's18')}</span></div></div>`}`, { fixed: bot(cta('Отработать')) });
+const menu = () => phone(`<div style="opacity:.3"><div class="hero2" style="padding-top:90px"><div style="font-size:42px;font-weight:700">Grandchildren</div></div></div>`, { overlay: sheet('m', menuRow('check', 'Я это знаю') + menuRow('flag', 'Сообщить о неточности') + menuRow('trash', 'Удалить из ошибок', true), true) });
+
+// ---------- отработка ----------
+const runChoose = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>` });
+const runBuild = () => phone(`${runTop(5)}<div class="q"><div class="k">Собери фразу</div><div class="v" style="font-size:32px;line-height:38px">Я был здесь раньше</div></div><div class="slot" style="margin-top:26px"><span class="tok">I</span><span class="tok">have</span></div>`, { fixed: `<div class="tray"><div class="flex" style="flex-wrap:wrap;gap:10px;margin-bottom:16px"><span class="tok used">I</span><span class="tok">before</span><span class="tok used">have</span><span class="tok">been</span><span class="tok">here</span><span class="tok">was</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
+const runType = () => phone(`${runTop(7)}<div class="q"><div class="k">Напиши по-английски</div><div class="v" style="font-size:36px;line-height:42px">Принять решение</div></div><div class="fld" style="margin-top:26px">Make a decis<span style="width:2px;height:26px;background:var(--acc);margin-left:1px"></span></div>`, { fixed: `<div class="tray">${cta('Проверить')}</div>` });
+const runMenu = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>`, overlay: sheet('rm', menuRow('eyeOff', 'Скрыть ошибку') + menuRow('flag', 'Сообщить об ошибке в задании'), true) });
+const runSay = () => phone(`${runTop(9)}<div class="q"><div class="k">Скажи по-английски</div><div class="v">Через</div></div><div class="center" style="margin-top:44px"><span class="mic">${icon('mic', 's32')}</span><div class="sec2" style="margin-top:16px;font-size:15px">Зажми и говори</div></div>`, { fixed: `<div class="tray"><div class="cta2">Не могу сейчас говорить</div></div>` });
+
+// ---------- ответ и разбор ----------
+const fbOk = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray"><div class="res"><span class="sp" style="background:rgba(111,208,140,.22);color:#6FD08C">${icon('check', 's20')}</span><span>Верно</span><div class="stp" style="margin-left:auto;width:96px"><i class="on">${icon('check', 's14')}</i><b></b><i>2</i><b></b><i>3</i></div></div>${trayG(['Внуки', 'Дети'], { 'Внуки': 'ok' })}<div style="margin-top:16px">${cta('Дальше')}</div></div>` });
+const fbNo = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray"><div class="res"><span class="sp" style="background:rgba(242,118,107,.22);color:#F2766B">${icon('close', 's20')}</span><span>Почти</span></div>${trayG(['Внуки', 'Дети'], { 'Внуки': 'ok', 'Дети': 'no' })}<div class="why" style="margin-top:14px">${WHY}</div><div class="row2"><div class="cta2">Почему</div><div class="ac-cta f1">Дальше</div></div></div>` });
+const why = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray" style="padding-top:22px"><div class="flex" style="margin-bottom:12px"><div class="grow" style="font-size:22px;font-weight:700">Почему «внуки»</div><span class="rb fill t">${icon('close', 's18')}</span></div><div class="panel"><div class="pr"><span class="sec2" style="width:90px">Твой выбор</span><span class="rd" style="font-weight:700;font-size:19px;text-decoration:line-through">Дети</span></div><div class="pr" style="padding:12px 0"><span style="font-size:16px;line-height:23px;color:#E2E2E6">${WHY}</span></div><div class="pr"><span class="sec2" style="width:90px">Правильно</span><span class="gr" style="font-weight:700;font-size:19px">Внуки</span></div></div><div class="row2" style="margin-top:16px"><div class="cta2">Объясни проще</div><div class="ac-cta f1">Понятно</div></div></div>` });
+
+// ---------- итог и пустые ----------
+const result = () => phone(`${barX('')}<div class="ringw">${ring(0.75, true)}<div class="c"><div style="font-size:58px;line-height:60px;font-weight:800;letter-spacing:-1.5px">9/12</div><div class="sec2" style="font-size:15px;margin-top:2px">верно</div></div></div><div class="panel" style="margin-top:22px"><div class="pr"><span>Исправлено совсем</span><b style="margin-left:auto;font-size:22px">2</b></div><div class="pr"><span>Ближе к исправлению</span><b style="margin-left:auto;font-size:22px">7</b></div><div class="pr"><span>Ещё повторить</span><b style="margin-left:auto;font-size:22px">3</b></div></div><div style="font-size:15px;color:var(--sec);font-weight:600;margin:20px 0 8px">Исправлено</div><div class="panel">${prow('Would rather', 'Лучше бы', 3)}${prow('Ready', 'Готов', 3)}</div>`, { fixed: bot(`<div class="row2"><div class="cta2">Ещё 3</div><div class="ac-cta f1">Готово</div></div>`) });
+const emptyS = (ic, ti, su, btn, color = '', extra = '') => phone(`${hubHead}<div class="ringw" style="margin-top:20px"><svg viewBox="0 0 236 236"><circle cx="118" cy="118" r="100" fill="none" stroke="${color ? 'var(--acc)' : 'rgba(255,255,255,.1)'}" stroke-width="16"/></svg><div class="c"><div class="gtile" style="width:76px;height:76px;border-radius:24px${color ? ';color:' + color : ''}">${icon(ic, 's32')}</div></div></div><div class="center"><div style="font-size:26px;font-weight:700;margin-top:24px">${ti}</div>${su ? `<div class="sec2" style="font-size:16px;margin-top:8px">${su}</div>` : ''}</div>${extra}`, { fixed: bot(btn) });
+const empty = () => emptyS('check', 'Ошибок нет', 'Всё исправлено', cta('К урокам'), '#6FD08C');
+const allDone = () => emptyS('flag', 'На сегодня всё', 'Остальные ошибки вернутся завтра', cta('К урокам'), '', `<div class="panel" style="margin-top:26px"><div class="pr"><span>Ждут</span><b style="margin-left:auto;font-size:22px">10</b></div></div>`);
+const offline = () => emptyS('wifiOff', 'Сейчас недоступно', 'Проверьте интернет', `<div class="cta2">Попробовать снова</div>`, '');
+
+document.getElementById('root').innerHTML =
+  block('hub', 'Вход и хаб', 'Кольцо прогресса, ленты-фильтры по типам и одна панель с самыми частыми ошибками. Кнопка «Отработать» открывает выбор перед стартом.', [col('Главная — вход', homeEntry()), col('Хаб', hub()), col('Хаб — загрузка', hubLoading()), col('Перед отработкой', startS())]) +
+  block('list', 'Список', '', [col('Все ошибки — ждут', list(false)), col('Все ошибки — исправлены', list(true))]) +
+  block('card', 'Ошибка', '', [col('Ошибка', detail(false)), col('Ошибка — шаги и история', detail(true)), col('Меню ошибки', menu())]) +
+  block('run', 'Отработка — типы заданий', 'Ответы — в «стакане» внизу экрана, под большим пальцем.', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay()), col('Меню задания', runMenu())]) +
+  block('fb', 'Ответ и разбор', 'Результат и разбор выезжают в том же «стакане»; нижней шторки поверх экрана нет.', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
+  block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

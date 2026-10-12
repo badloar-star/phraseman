@@ -114,10 +114,20 @@ export function PerfR1Profile({ id, children }: { id: string; children: ReactNod
 // слушаем `__unsafe_action__` корневого контейнера навигации и пишем тип действия, имя/параметры и верх стека вызова (JS-стек в момент dispatch указывает на вызывающий код),
 // плюс `state` — ключи маршрутов верхнего стека. Только dev и не стор-релиз; ссылку на контейнер навигации передаёт вызывающий (useNavigationContainerRef) — сам модуль expo-router не импортирует.
 // ═════════════════════════════════════════════════════════════════════
+type NavTraceState = { routes?: Array<{ name?: string; key?: string; state?: NavTraceState }>; index?: number };
+
+/** Вложенные маршруты строкой: `__root#a1b2c3[(tabs)#d4e5f6,index#789abc*]`, звёздочка — сфокусированный (зачем: в журнале Сверки был виден только корень, а стек (tabs)+index — нет). */
+function describeNavState(state: NavTraceState | undefined): string {
+  return (state?.routes ?? []).map((route, i) => {
+    const inner = route.state ? `[${describeNavState(route.state)}]` : '';
+    return `${route.name}#${String(route.key).slice(-6)}${i === state?.index ? '*' : ''}${inner}`;
+  }).join(',');
+}
+
 type NavTraceRef = {
   current?: {
     addListener?: (type: string, cb: (e: { data?: { action?: { type?: string; payload?: Record<string, unknown> }; noop?: boolean } }) => void) => () => void;
-    getRootState?: () => { routes?: Array<{ name?: string; key?: string }> } | undefined;
+    getRootState?: () => NavTraceState | undefined;
   } | null;
 };
 
@@ -143,7 +153,7 @@ function useNavActionTraceImpl(navigationRef: NavTraceRef): void {
           console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'action', type: action?.type, name: payload.name, path: payload.path, noop: e?.data?.noop ?? null, atMs: Date.now() - MODULE_T0, stack })); // guard-ok: трассировка навигации, только dev
         });
         removeState = ref.addListener('state', () => {
-          const routes = (ref.getRootState?.()?.routes ?? []).map((r) => `${r.name}#${String(r.key).slice(-6)}`);
+          const routes = describeNavState(ref.getRootState?.());
           console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'state', routes, atMs: Date.now() - MODULE_T0 })); // guard-ok: трассировка навигации, только dev
         });
         console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'attached', attempt, atMs: Date.now() - MODULE_T0 })); // guard-ok: трассировка навигации, только dev

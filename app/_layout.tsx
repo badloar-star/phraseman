@@ -83,6 +83,7 @@ import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, create
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, useSegments, router as globalRouter, type Href } from 'expo-router';
+import { isTabsShellMounted } from './tabs_shell_state';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -1719,12 +1720,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       effectiveShowOnboarding,
       isBanned,
       target: rootTarget.split('?')[0],
+      // зачем (СПЕРВА ЛОГИ, просьба Сверки 12.10): значения, которые решают ветку navigate/replace — раньше их в строке не было, и ложное условие по сегментам осталось незамеченным
+      segments: JSON.stringify(rootSegmentsRef.current),
+      tabsShellMounted: isTabsShellMounted(),
     });
     // зачем (R1, двойной монтаж Главной; журнал [PERF-R1-NAV] Сверки 12.10: REPLACE name="(tabs)" через ≈1,5 с после первого кадра, затем весь каркас монтируется заново): холодный старт стоит на `/` ВНУТРИ группы
     // (tabs) — каркас табов уже показывает Главную. router.replace пересоздаёт маршрут (tabs) с новым ключом и перемонтирует весь каркас (≈1,8–2,1 с работы выбрасывается, устойчивый первый кадр откладывается).
     // navigate на ту же вкладку маршрут не пересоздаёт — так же переключаются табы. Подстраховка: если за 600 мс путь так и остался корневым — прежний replace (с ценой перемонтажа, но экран не залипнет на `/`).
-    if (rootTarget === '/(tabs)/home' && rootSegmentsRef.current[0] === '(tabs)') {
-      traceLessonExit('layout:rootIndex_navigate_home', { segments: rootSegmentsRef.current.join('/'), target: rootTarget });
+    // Условие — «каркас табов уже смонтирован» (app/tabs_shell_state.ts), а НЕ сегменты: на холодном старте фокус стоит на корневом `index` (сегменты пусты), каркас (tabs) живёт под ним;
+    // navigate к уже существующему маршруту (tabs) возвращает к нему и снимает `index`, не создавая новый.
+    if (rootTarget === '/(tabs)/home' && isTabsShellMounted()) {
+      traceLessonExit('layout:rootIndex_navigate_home', { segments: JSON.stringify(rootSegmentsRef.current), target: rootTarget });
       router.navigate(rootTarget as Href);
       const navigateFallback = setTimeout(() => {
         const stillRoot = !pathnameRef.current || pathnameRef.current === '/';

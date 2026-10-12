@@ -24,6 +24,7 @@ import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
+import { setTabsShellMounted } from '../tabs_shell_state';
 // Home stays behind the tab shell until React can commit the first frame. Its
 // screen/data tree is large enough that evaluating it synchronously delays boot.
 // Starting the promise here overlaps the module fetch/evaluation with the root
@@ -718,6 +719,11 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
 function ReleasedTabLayout() {
   useMountTrace('tabs_layout'); // зачем (R1, двойной монтаж Главной): верхний ярус каркаса табов
   const navigationContainerRef = useNavigationContainerRef();
+  // зачем (R1, двойной монтаж Главной): корневой эффект уходит с `/` на Главную через navigate (без пересоздания каркаса), только пока каркас уже смонтирован — см. app/tabs_shell_state.ts
+  useEffect(() => {
+    setTabsShellMounted(true);
+    return () => setTabsShellMounted(false);
+  }, []);
   useNavActionTrace(navigationContainerRef as never); // зачем (R1): какое действие навигации заменило маршрут (журнал [PERF-R1-NAV]); только dev
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();

@@ -17,11 +17,17 @@ function effectBlock(): string {
 describe('корневой переход на Главную не пересоздаёт каркас табов', () => {
   const block = effectBlock();
 
-  it('внутри группы (tabs) и для цели Главной — router.navigate; условие читает сегменты из ref', () => {
-    expect(block).toContain("if (rootTarget === '/(tabs)/home' && rootSegmentsRef.current[0] === '(tabs)') {");
+  it('для цели Главной и при уже смонтированном каркасе табов — router.navigate; условие НЕ по сегментам (на холодном старте они пусты)', () => {
+    expect(block).toContain("if (rootTarget === '/(tabs)/home' && isTabsShellMounted()) {");
+    expect(block).not.toContain("rootSegmentsRef.current[0] === '(tabs)'");
+    expect(block).toContain('tabsShellMounted: isTabsShellMounted(),');
+    expect(block).toContain('segments: JSON.stringify(rootSegmentsRef.current),');
     expect(block).toContain('router.navigate(rootTarget as Href);');
     expect(layout).toContain('const rootSegmentsRef = useRef(rootSegments);');
     expect(layout).toContain('const rootSegments: readonly string[] = useSegments();');
+    const tabsLayout = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', '_layout.tsx'), 'utf8');
+    expect(tabsLayout).toContain('setTabsShellMounted(true);');
+    expect(tabsLayout).toContain('return () => setTabsShellMounted(false);');
   });
 
   it('ветка navigate стоит ДО replace, возвращает очистку таймера и имеет подстраховку replace через 600 мс, если путь остался корневым', () => {
@@ -40,5 +46,17 @@ describe('корневой переход на Главную не пересо�
     expect(layout).toContain("const rootTarget = initialDeepLinkRef.current ?? '/(tabs)/home';");
     // после ветки navigate остаётся безусловный replace + повтор — для всех остальных случаев
     expect(block.slice(block.indexOf('router.navigate(rootTarget as Href);'))).toContain('router.replace(rootTarget as Href);\n    const retry = setTimeout(');
+  });
+});
+
+describe('флаг «каркас табов смонтирован» (app/tabs_shell_state.ts)', () => {
+  it('по умолчанию выключен, включается и выключается', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const state = require('../app/tabs_shell_state') as typeof import('../app/tabs_shell_state');
+    expect(state.isTabsShellMounted()).toBe(false);
+    state.setTabsShellMounted(true);
+    expect(state.isTabsShellMounted()).toBe(true);
+    state.setTabsShellMounted(false);
+    expect(state.isTabsShellMounted()).toBe(false);
   });
 });

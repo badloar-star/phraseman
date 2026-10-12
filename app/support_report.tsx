@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, Text, TextInput, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
+import CustomSwitch from '../components/CustomSwitch';
 import { useLang } from '../components/LangContext';
 import PressableHybrid from '../components/PressableHybrid';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
@@ -34,6 +35,14 @@ export default function SupportReportScreen() {
   const [state, setState] = useState<SubmitState>('idle');
   const [diagnosticsPreview, setDiagnosticsPreview] = useState<SupportDiagnosticBundle | null>(null);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
+  // зачем (решение владельца 12.10 (б)): журнал прикладывается по умолчанию, но человек может отключить — тогда он не захватывается и не уходит.
+  const [attachDiagnostics, setAttachDiagnostics] = useState(true);
+  const toggleAttachDiagnostics = useCallback((next: boolean) => {
+    hapticTap();
+    console.log(`[SUPPORT-DIAG] переключатель: приложить журнал=${next ? 'да' : 'нет'}`); // guard-ok: жест человека логируется
+    setAttachDiagnostics(next);
+    if (!next) setShowDiagnostics(false);
+  }, []);
   const submissionStartedRef = useRef(false);
   // зачем (координатор 12.10, Optimistic UI): «Отправлено» показываем сразу; если очередь и прямая отправка обе упали — откат на форму с сохранённым текстом, плашка и повтор
   const [sendFailed, setSendFailed] = useState(false);
@@ -79,8 +88,8 @@ export default function SupportReportScreen() {
       dataId: 'settings_support_request',
       dataText: 'In-app support request',
       comment,
-      ...(diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),
-    }, lang).then((outcome) => {
+      ...(attachDiagnostics && diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),
+    }, lang, {}, { attachDiagnostics }).then((outcome) => {
       console.log('[SUPPORT-SEND] экран получил итог', { outcome, mounted: mountedRef.current }); // guard-ok: единичный лог на жест человека
       if (outcome !== 'failed') return;
       submissionStartedRef.current = false; // повтор снова разрешён, текст в поле не очищали
@@ -91,7 +100,7 @@ export default function SupportReportScreen() {
       submissionStartedRef.current = false;
       if (mountedRef.current) { setState('idle'); setSendFailed(true); }
     });
-  }, [canSend, description, diagnosticsPreview, lang]);
+  }, [attachDiagnostics, canSend, description, diagnosticsPreview, lang]);
 
   return (
     <ScreenGradient artBackdrop="settings">
@@ -175,13 +184,33 @@ export default function SupportReportScreen() {
               <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, boxShadow: plateBoxShadow(glass), paddingVertical: 14, paddingHorizontal: 16 }}>
                 <PlateFill g={glass} radius={14} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                  <Ionicons name={diagnosticsEnabled ? 'checkmark' : 'information-circle-outline'} size={20} color={glass.secondary} />
+                  <Ionicons name={diagnosticsEnabled && attachDiagnostics ? 'checkmark' : 'information-circle-outline'} size={20} color={glass.secondary} />
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
-                      {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
-                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                      <Text style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
+                        {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
+                      </Text>
+                      {diagnosticsEnabled ? (
+                        <CustomSwitch
+                          testID="support-diagnostics-attach-switch"
+                          value={attachDiagnostics}
+                          onValueChange={toggleAttachDiagnostics}
+                          accessibilityLabel={L('Приложить журнал диагностики', 'Додати журнал діагностики', 'Attach diagnostics log', 'Adjuntar registro de diagnóstico', 'Anexar registro de diagnóstico', 'Đính kèm nhật ký chẩn đoán', 'Lampirkan log diagnostik', 'Tanılama günlüğünü ekle', 'Dołącz dziennik diagnostyki')}
+                        />
+                      ) : null}
+                    </View>
                     <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 2 /* зачем: паритет profile.html PRF-09 (13.10) */ }}>
-                      {diagnosticsEnabled ? L(
+                      {diagnosticsEnabled && !attachDiagnostics ? L(
+                        'Журнал не будет приложен к обращению.',
+                        'Журнал не буде додано до звернення.',
+                        'The log won’t be attached to your request.',
+                        'El registro no se adjuntará a tu solicitud.',
+                        'O registro não será anexado à solicitação.',
+                        'Nhật ký sẽ không được đính kèm vào yêu cầu.',
+                        'Log tidak akan dilampirkan ke permintaan.',
+                        'Günlük talebine eklenmeyecek.',
+                        'Dziennik nie zostanie dołączony do zgłoszenia.',
+                      ) : diagnosticsEnabled ? L(
                         'Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.',
                         'До цього звернення додадуться лише недавні технічні дії. Без тексту повідомлень, паролів і платіжних даних.',
                         'Only recent technical actions are attached to this request. Message text, passwords, and payment data are excluded.',
@@ -203,7 +232,7 @@ export default function SupportReportScreen() {
                         'Dziennik działań technicznych jest teraz wyłączony — nie jest wysyłany z Twoim zgłoszeniem.',
                       )}
                     </Text>
-                    {diagnosticsPreview?.events.length ? (
+                    {attachDiagnostics && diagnosticsPreview?.events.length ? (
                       <>
                         <PressableHybrid
                           testID="support-diagnostics-preview-toggle"

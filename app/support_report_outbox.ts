@@ -323,8 +323,11 @@ export async function sendSupportReportInBackground(
   payload: ErrorReportPayload,
   lang: Lang,
   options: SubmitErrorReportOptions = {},
+  // зачем (решение владельца 12.10 (б)): переключатель на форме. false — журнал не захватывается и не отправляется (даже если экран его не передал).
+  delivery: { attachDiagnostics?: boolean } = {},
 ): Promise<SupportSendOutcome> {
   const nowMs = Date.now();
+
   // зачем (координатор 12.10, R1 «нет пути»): dev `support=fail` — «Не отправилось / Повторить» без реальной отправки и очереди; в стор-сборке геттер выключен.
   if (isDevSettingsFail('support_send')) {
     console.warn(`${SEND_LOG} dev: отправка подменена отказом (support=fail)`); // guard-ok: dev-ветка
@@ -349,7 +352,9 @@ export async function sendSupportReportInBackground(
     if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (2)`); return null; }
     const userName = await AsyncStorage.getItem('user_name').catch((error: unknown) => { reportSwallowed('support_report_outbox:sendSupportReportInBackground', error); return null; });
     if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (3)`); return null; }
-    const capturedDiagnostics = payload.diagnostics
+    const attachDiagnostics = delivery.attachDiagnostics !== false;
+    if (!attachDiagnostics) console.log(`${SEND_LOG} журнал диагностики отключён на форме — не захватывается и не отправляется`); // guard-ok: ветвление логируется
+    const capturedDiagnostics = !attachDiagnostics ? null : payload.diagnostics
       ?? await captureSupportDiagnosticsWithDeadline();
     if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (4)`); return null; }
     const diagnostics = sanitizeSupportDiagnosticBundle(capturedDiagnostics);

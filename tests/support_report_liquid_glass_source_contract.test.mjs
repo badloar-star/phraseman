@@ -30,6 +30,9 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   // зачем (координатор 12.10, откат «Отправлено» при сбое): плашка «Не отправилось. Попробуй ещё раз» и кнопка «Повторить»
   ['1c9f3af94cbc30f07469c50c34a212a9231ec34ed7d25372bbaa6ee3cf6e98df', 1],
   ['3e17c2abebc832c494422cbceb2d7f0f0847d5299cde8831ed993ba69d51d8f4', 1],
+  // зачем (решение владельца 12.10 (б)): переключатель «Приложить журнал диагностики» — его подпись и текст «Журнал не будет приложен к обращению.»
+  ['61cb63e8498914bfe3e1d182405686cc80bf932ab0690c00cce5207a18e7254b', 1],
+  ['055841b39652220b0455f02542779c30f60f7cb75c306b2c8ccd2eac3dfd6800', 1],
 ]);
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const RUNTIME_COPY = {
@@ -54,7 +57,7 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 17, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label; +1 for the diagnostics-off card text');
+  assert.equal(calls.length, 19, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label; +1 for the diagnostics-off card text; +2 (owner 12.10 (b)) for the attach-log switch label and the «log won’t be attached» text');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);

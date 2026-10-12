@@ -17,7 +17,8 @@ describe('support report: карточка диагностики честная
     // у нейтрального текста нет слов-обещаний «прикреп» (ru) — в той же ветке нет и английского «attached»
     const neutral = screen.slice(neutralAt, screen.indexOf(')}', neutralAt));
     expect(neutral).not.toMatch(/прикреп|attached/i);
-    expect(screen).toContain("diagnosticsEnabled ? 'checkmark' : 'information-circle-outline'");
+    // решение владельца 12.10 (б): галочка — только когда журнал включён И приложение его прикладывает
+    expect(screen).toContain("diagnosticsEnabled && attachDiagnostics ? 'checkmark' : 'information-circle-outline'");
     expect(screen).toContain('[SUPPORT-DIAG] карточка:');
   });
 

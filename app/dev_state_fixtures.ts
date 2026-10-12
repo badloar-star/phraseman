@@ -31,7 +31,7 @@ import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { setDevAppearance } from './dev_appearance_override';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
-import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
+import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SIGNIN_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSignInMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
@@ -141,6 +141,8 @@ export type DevStateRequest = Readonly<{
   delete?: 'fail' | 'ok';
   /** `identity_retired` при входе (auth-gap-008); offer|restored — окно «Восстановить аккаунт?» без сервера (auth-gap-007/006). */
   restore?: 'retired' | 'offer' | 'restored' | 'ok';
+  /** Результат входа без сети (onboarding-003/004/008): hold — 60 с и «отменено», offline — «нет связи», generic — общая ошибка; off — снять. */
+  signin?: DevSignInMode | 'off';
   /** Имя на экране приветствия (onboarding-010): произвольная строка до 24 символов, пустая снимает. */
   greet?: string;
   /** Строка про перенос Plus в окне смены аккаунта (auth-gap-012). */
@@ -314,6 +316,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.namecheck = pick('namecheck', [...DEV_NAME_CHECKS, 'none'] as const);
   request.delete = pick('delete', ['fail', 'ok'] as const);
   request.restore = pick('restore', ['retired', ...DEV_RESTORE_MODES, 'ok'] as const);
+  request.signin = pick('signin', [...DEV_SIGNIN_MODES, 'off'] as const);
   request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
   request.confetti = pick('confetti', ['hold', 'off'] as const);
   // зачем: регистр имени важен — берём сырую строку (one() приводит к нижнему), обрезаем до 24 как настоящее первое слово имени.
@@ -687,6 +690,8 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     restoreRetired: request.restore === 'retired',
     restoreMode: request.restore === 'offer' || request.restore === 'restored' ? request.restore : null,
   }));
+  // зачем (координатор 12.10, onboarding-003/004/008): результат входа без сети и авиарежима; off — снять.
+  if (request.signin !== undefined) await step('signin', request.signin, async () => setDevAccountState({ signIn: request.signin === 'off' ? null : request.signin! }));
   if (request.streakJump !== undefined) {
     // зачем (координатор 12.10): у тестовых аккаунтов серия 0 — моделируем «облако принесло другую серию» (только dev).
     await step('streakJump', request.streakJump, async () => {

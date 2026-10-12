@@ -116,3 +116,15 @@ for _rid in GUEST_REQUIRED_IDS:
         _entry['link'] = _entry['link'].replace('dev_state?', 'dev_state?guest=required&', 1)
 if _GUEST_MISSING:
     raise SystemExit(f'guest=required: нет записи шагов для {_GUEST_MISSING} — ссылка без защиты недопустима')
+
+# ── Вход в онбординге без авиарежима: signin=hold|offline|generic (координатор 12.10, п.2; спецификация Ядра). Вход при подмене не
+# начинается (ни Google, ни сеть); онбординг открывается подменой onbstep (общий onboarding=done её не перебивает). guest=required — на
+# всякий случай: шаги входа только на госте.
+ONB_HOME = '/(tabs)/home'
+ONB_SIGNIN = ['tap:#onboarding-existing-account', 'wait:600', 'tap:#auth-google-button']
+add('onboarding-003', ONB_SIGNIN + ['wait:9500'], 'guest=required&onbstep=welcome&signin=hold', ONB_HOME,
+    note='«Вход всё ещё выполняется…» (появляется после 8 с; подмена держит 60 с и отменяет)')
+add('onboarding-004', ONB_SIGNIN + ['wait:1200'], 'guest=required&onbstep=welcome&signin=offline', ONB_HOME,
+    note='ошибка «Связь пропала. Попробуй ещё раз.» без кода dev_stub в тексте')
+add('onboarding-008', ['tap:#auth-google-button', 'wait:1200'], 'guest=required&onbstep=privacy&signin=generic', ONB_HOME,
+    note='общая ошибка входа на шаге «Твои данные» (без кода dev_stub в тексте)')

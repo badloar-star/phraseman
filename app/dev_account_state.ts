@@ -28,6 +28,15 @@ export type DevNameCheck = (typeof DEV_NAME_CHECKS)[number];
  */
 export const DEV_RESTORE_MODES = ['offer', 'restored'] as const;
 export type DevRestoreMode = (typeof DEV_RESTORE_MODES)[number];
+/**
+ * `signin=hold|offline|generic` (onboarding-003/004/008): результат входа ДО замков и сети. hold — ждёт 60 с и «отменено»
+ * (окно «Вход всё ещё выполняется…» видно после 8 с); offline — «нет связи»; generic — общая ошибка. Коды с префиксом dev_stub:
+ * онбординг в dev не дописывает к тексту (кадр = макет).
+ */
+export const DEV_SIGNIN_MODES = ['hold', 'offline', 'generic'] as const;
+export type DevSignInMode = (typeof DEV_SIGNIN_MODES)[number];
+export type DevSignInStub = Readonly<{ mode: DevSignInMode; delayMs: number; error: string | null }>;
+const DEV_SIGNIN_HOLD_MS = 60_000;
 /** Сколько держать «Выходим из аккаунта» при `logout=hold` (profile-028), потом отказ — стирание недостижимо. */
 const DEV_LOGOUT_HOLD_MS = 120_000;
 
@@ -41,6 +50,7 @@ type State = {
   deleteFail: boolean;
   restoreRetired: boolean;
   restoreMode: DevRestoreMode | null;
+  signIn: DevSignInMode | null;
   plusTransfer: boolean;
   /** `greet=<строка>`: имя на экране приветствия онбординга (onboarding-010, длинное имя). */
   greetName: string | null;
@@ -49,7 +59,7 @@ type State = {
   /** `namecheck=`: подменённый ответ проверки имени, только в памяти; сервер при подмене не вызывается. */
   nameCheck: DevNameCheck | null;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, restoreMode: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, restoreMode: null, signIn: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -69,6 +79,7 @@ export function setDevAccountState(patch: Partial<{
   deleteFail: boolean;
   restoreRetired: boolean;
   restoreMode: DevRestoreMode | null;
+  signIn: DevSignInMode | null;
   plusTransfer: boolean;
   greetName: string | null;
   confettiHold: boolean;
@@ -85,6 +96,7 @@ export function setDevAccountState(patch: Partial<{
     deleteFail: patch.deleteFail ?? state.deleteFail,
     restoreRetired: patch.restoreRetired ?? state.restoreRetired,
     restoreMode: patch.restoreMode === undefined ? state.restoreMode : patch.restoreMode,
+    signIn: patch.signIn === undefined ? state.signIn : patch.signIn,
     plusTransfer: patch.plusTransfer ?? state.plusTransfer,
     greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
     confettiHold: patch.confettiHold ?? state.confettiHold,
@@ -119,7 +131,7 @@ function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   const mode = state.switchMode;
   // зачем (ревью безопасности 12.10, R-1): при ЛЮБОМ включённом флаге зоны аккаунта (не только switch=/logout=) выход тоже отказывает — иначе тап «Сменить» в окне
   // plustransfer=on / restore=retired / auth=none / delete=fail запускал бы настоящее стирание.
-  if (mode === null && (state.authNone || state.restoreRetired || state.restoreMode !== null || state.deleteFail || state.plusTransfer)) {
+  if (mode === null && (state.authNone || state.restoreRetired || state.restoreMode !== null || state.signIn !== null || state.deleteFail || state.plusTransfer)) {
     return forced ? { reason: 'unknown', detail: 'dev_guard', delayMs: 0 } : { reason: 'sync_failed', delayMs: 0 };
   }
   if (mode === null) {
@@ -162,6 +174,14 @@ export function isDevUnsavedCardsPrompt(): boolean {
 /** `namecheck=`: ответ проверки занятости имени вместо сервера (null — нет подмены; вне dev всегда null). */
 export function getDevNameCheck(): DevNameCheck | null {
   return devAccountAvailable() ? state.nameCheck : null;
+}
+
+/** `signin=`: подставной результат входа (null — нет подмены; вне dev / в стор-сборке всегда null). */
+export function getDevSignInStub(): DevSignInStub | null {
+  if (!devAccountAvailable() || state.signIn === null) return null;
+  if (state.signIn === 'hold') return { mode: 'hold', delayMs: DEV_SIGNIN_HOLD_MS, error: null };
+  if (state.signIn === 'offline') return { mode: 'offline', delayMs: 0, error: 'dev_stub:network-request-failed' };
+  return { mode: 'generic', delayMs: 0, error: 'dev_stub:generic' };
 }
 
 /** `restore=offer|restored`: подставной режим окна восстановления (null — нет подмены; вне dev всегда null). */

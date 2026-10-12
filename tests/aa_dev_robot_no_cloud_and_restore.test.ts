@@ -157,3 +157,42 @@ describe('guest=required', () => {
     expect(block).toContain('[DEV-STATE] refused guest_required uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)}');
   });
 });
+
+describe('signin=hold|offline|generic', () => {
+  it('режимы дают подставной результат; вне dev — null; выход при флаге отказывает', () => {
+    const account = require('../app/dev_account_state');
+    account.resetDevAccountStateForTests();
+    expect(account.getDevSignInStub()).toBeNull();
+    account.setDevAccountState({ signIn: 'hold' });
+    expect(account.getDevSignInStub()).toEqual({ mode: 'hold', delayMs: 60_000, error: null });
+    account.setDevAccountState({ signIn: 'offline' });
+    expect(account.getDevSignInStub()).toEqual({ mode: 'offline', delayMs: 0, error: 'dev_stub:network-request-failed' });
+    account.setDevAccountState({ signIn: 'generic' });
+    expect(account.getDevSignInStub()).toEqual({ mode: 'generic', delayMs: 0, error: 'dev_stub:generic' });
+    expect(account.getDevSignOutOutcome(false)).toMatchObject({ reason: 'sync_failed' });
+    expect(account.getDevSignOutOutcome(true)).toMatchObject({ reason: 'unknown' });
+    delete (globalThis as { __DEV__?: boolean }).__DEV__;
+    expect(account.getDevSignInStub()).toBeNull();
+    (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+    account.resetDevAccountStateForTests();
+  });
+
+  it('auth_provider: подмена стоит до замков и сети, с меткой [AUTH-SIGNIN] … reason=dev_state', () => {
+    const src = read('app/auth_provider.ts');
+    const fn = src.indexOf('export async function signInWithProvider(');
+    const stub = src.indexOf('const devSignInStub = getDevSignInStub();', fn);
+    expect(stub).toBeGreaterThan(fn);
+    expect(stub).toBeLessThan(src.indexOf('assertNoCleanInstallRecoveryTransition()', fn));
+    expect(src.slice(stub, stub + 900)).toContain('[AUTH-SIGNIN] ignored provider=${provider} reason=dev_state');
+  });
+
+  it('онбординг не дописывает код dev_stub: к тексту ошибки', () => {
+    expect(read('components/CleanOnboarding.tsx')).toContain("return ENABLE_DEV_TOOLS && code && !code.startsWith('dev_stub:') ? `${human}");
+  });
+
+  it('стор-заглушка: подмены входа нет', () => {
+    const stub = require('../store_release_stubs/dev_state/dev_account_state_stub');
+    expect(stub.getDevSignInStub()).toBeNull();
+    expect(stub.DEV_SIGNIN_MODES).toEqual([]);
+  });
+});

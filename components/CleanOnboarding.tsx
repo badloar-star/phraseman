@@ -477,7 +477,8 @@ function describeAuthError(raw: string, lang: Lang): string {
   } else if (code.includes('invalid-credential') || code.includes('invalid_credential')) {
     human = triLang(lang, { ru: 'Вход не подтвердился. Попробуй ещё раз.', uk: 'Вхід не підтвердився. Спробуй ще раз.', en: "Sign-in wasn't confirmed. Try again.", es: 'No se confirmó el inicio de sesión. Inténtalo de nuevo.', 'pt-BR': 'O login não foi confirmado. Tente de novo.', vi: 'Đăng nhập chưa được xác nhận. Hãy thử lại.', id: 'Masuk belum terkonfirmasi. Coba lagi.', tr: 'Giriş onaylanmadı. Tekrar dene.', pl: 'Logowanie nie zostało potwierdzone. Spróbuj ponownie.' });
   }
-  return ENABLE_DEV_TOOLS && code ? `${human}\n${code.slice(0, 120)}` : human;
+  // зачем (координатор 12.10, съёмка onboarding-004/008): код подмены входа dev_stub:… не дописываем — кадр должен совпасть с макетом.
+  return ENABLE_DEV_TOOLS && code && !code.startsWith('dev_stub:') ? `${human}\n${code.slice(0, 120)}` : human;
 }
 
 // ── Даты и «дни» на 9 языках — components/onboarding/clean_onboarding_dates.ts (зачем: координатор 12.10) ──

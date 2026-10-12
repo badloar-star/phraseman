@@ -23,7 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getDevSignInError, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail } from './dev_account_state';
+import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail } from './dev_account_state';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
@@ -2295,6 +2295,15 @@ export async function signInWithProvider(
   if (devSignInError) {
     console.log(`[DEV-STATE] account: вход подменён ошибкой ${devSignInError} [AUTH-SIGNIN] ignored provider=${provider} reason=dev_state`); // guard-ok: dev-ветка; метка [AUTH-SIGNIN] ignored — сторож ранних выходов (aa_auth_double_tap_contract)
     return { result: 'error', error: devSignInError };
+  }
+  // зачем (координатор 12.10, onboarding-003/004/008 без авиарежима): dev `signin=hold|offline|generic` — результат входа ДО замков и сети.
+  const devSignInStub = getDevSignInStub();
+  if (devSignInStub) {
+    console.log(`[DEV-STATE] account: вход подменён signin=${devSignInStub.mode} delayMs=${devSignInStub.delayMs} [AUTH-SIGNIN] ignored provider=${provider} reason=dev_state`); // guard-ok: dev-ветка
+    if (devSignInStub.delayMs > 0) await new Promise<void>((resolve) => { setTimeout(resolve, devSignInStub.delayMs); });
+    const stubbed: SignInResult = devSignInStub.error ? { result: 'error', error: devSignInStub.error } : { result: 'cancelled' };
+    console.log(`[DEV-STATE] account: signin=${devSignInStub.mode} → result=${stubbed.result}${devSignInStub.error ? ` error=${devSignInStub.error}` : ''}`); // guard-ok: итог dev-ветки
+    return stubbed;
   }
   try {
     await assertNoCleanInstallRecoveryTransition();

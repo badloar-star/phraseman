@@ -2248,7 +2248,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Tháp', id: 'Menara', tr: 'Kule', pl: 'Wieża' }),
                 subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
-                art: require('../../assets/images/home_menu/home-forest-league.webp'),
+                // зачем (приказ владельца 15.10: «старые удалены»): вместо щита с Тауэрским мостом (1.0) — арт 2.0 «башня с флагом» (intro_arena, ASSETS_V2_BRIEF п.54), тёмный/светлый по тону Главной
+                art: resolveThemedArt('intro_arena', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'),
             },
             {
                 key: 'video_packs',

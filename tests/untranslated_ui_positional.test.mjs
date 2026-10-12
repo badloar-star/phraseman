@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   isNonEmptyEnglishLiteral,
+  maskToastEntriesWithEnglishInSameObject,
   maskPositionalTranslatorCalls,
   splitCallArgs,
 } from '../scripts/untranslated_ui_positional.mjs';
@@ -55,7 +56,8 @@ test('разбор аргументов учитывает вложенные с
 test('сторож: переводчик по целому имени, помощники подключены', () => {
   const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
   const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
-  assert.match(scanner, /import \{ maskPositionalTranslatorCalls \} from '\.\/untranslated_ui_positional\.mjs';/);
+  assert.match(scanner, /import \{ maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
+  assert.match(scanner, /const lines = maskToastEntriesWithEnglishInSameObject\(source, original\)\.split\('\\n'\);/);
   assert.match(scanner, /src = maskPositionalTranslatorCalls\(src\);/);
   assert.match(scanner, /\/\[A-Za-z0-9_\$\]\/\.test\(src\[found - 1\]\)/);
 });
@@ -73,4 +75,56 @@ test('журналы, а не экран: logSpireLayout / logSpireDock / bootMa
   for (const call of ["showSpireLayout('Текст')", "bootMarker('Текст')", "Alert.alert('Ошибка')"]) {
     assert.equal(re.test(call), false, call);
   }
+});
+
+// зачем (координатор 12.10, английский в R1): тост переведён, только если `messageEn` стоит В ТОМ ЖЕ объекте и непустой.
+// Окно ±строк засчитывало английский соседнего тоста; `messageEn: ''` показал бы английскому интерфейсу пустоту.
+test('тост: messageEn в том же объекте — перевод; в соседнем объекте рядом — находка; пустой en — находка', () => {
+  const sameObject = [
+    'showActionToast({',
+    "  messageRu: 'Не удалось сохранить',",
+    "  messageEn: \"Couldn't save\",",
+    '});',
+  ].join('\n');
+  assert.equal(hasCyrillic(maskToastEntriesWithEnglishInSameObject(sameObject)), false);
+
+  const neighbourObject = [
+    'showActionToast({',
+    "  messageRu: 'Не удалось сохранить',",
+    "  messageEs: 'No se pudo guardar',",
+    '});',
+    'showActionToast({',
+    "  messageRu: 'Сохранено',",
+    "  messageEn: 'Saved',",
+    '});',
+  ].join('\n');
+  const masked = maskToastEntriesWithEnglishInSameObject(neighbourObject);
+  assert.equal(masked.includes('Не удалось сохранить'), true);
+  assert.equal(masked.includes('Сохранено'), false);
+
+  for (const en of ["''", "'   '", 'enVar', "'Не удалось'"]) {
+    const src = `showActionToast({\n  messageRu: 'Не удалось сохранить',\n  messageEn: ${en},\n});`;
+    assert.equal(hasCyrillic(maskToastEntriesWithEnglishInSameObject(src).split('\n')[1]), true, en);
+  }
+});
+
+test('тост: labelRu ищет только labelEn, а messageEn вложенного объекта не засчитывается', () => {
+  const kindMismatch = "show({\n  labelRu: 'Повторить',\n  messageEn: 'Retry',\n});";
+  assert.equal(maskToastEntriesWithEnglishInSameObject(kindMismatch).includes('Повторить'), true);
+  const nested = "show({\n  messageRu: 'Ошибка',\n  extra: { messageEn: 'Error' },\n});";
+  assert.equal(maskToastEntriesWithEnglishInSameObject(nested).includes('Ошибка'), true);
+});
+
+test('тост: шаблон с подстановкой — перевод, если у него есть свой английский текст; голая подстановка — находка', () => {
+  const withText = 'show({\n  messageRu: `Позвал ${name}`,\n  messageEn: `You called ${name}`,\n});';
+  assert.equal(maskToastEntriesWithEnglishInSameObject(withText).includes('Позвал'), false);
+  const bare = 'show({\n  messageRu: `Позвал ${name}`,\n  messageEn: `${name}`,\n});';
+  assert.equal(maskToastEntriesWithEnglishInSameObject(bare).includes('Позвал'), true);
+});
+
+test('тост: объект определяется по исходнику, даже если маски сканера разрезали строку посреди литерала', () => {
+  const original = "L('a)'); show({\n  messageRu: 'Ошибка',\n  messageEn: \"Couldn't save\",\n});";
+  const cut = original.replace("L('a)", '     ');
+  assert.equal(cut.length, original.length);
+  assert.equal(maskToastEntriesWithEnglishInSameObject(cut, original).includes('Ошибка'), false);
 });

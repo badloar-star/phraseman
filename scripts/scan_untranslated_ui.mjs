@@ -24,7 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { maskPositionalTranslatorCalls } from './untranslated_ui_positional.mjs';
+import { maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(ROOT, 'config', 'untranslated-ui-baseline.json');
@@ -251,7 +251,7 @@ function stripLegal(source) {
     }
     src = result;
   }
-  return maskLocaleKeyedEntries(src);
+  return maskLocaleKeyedEntries(src, source);
 }
 
 /**
@@ -268,24 +268,14 @@ const LOCALE_WINDOW = 14;
 
 /**
  * Тост `action_toast`: `messageRu: '…'` / `messageUk: '…'` на отдельных строках объекта.
- * зачем (12.10, английский интерфейс в R1): строже, чем карта ru/uk выше, — переведённым тост считается только при соседнем `messageEn`.
+ * зачем (12.10, английский интерфейс в R1): строже, чем карта ru/uk выше, — переведённым тост считается только при `messageEn` в том же объекте.
  * Иначе тост с es/pl/…, но без en (английский интерфейс показал бы русский) прошёл бы мимо сторожа.
+ * Пара строго по виду: `messageRu` требует `messageEn`, `labelRu` (кнопка действия в тосте) — `labelEn`, только В ТОМ ЖЕ объекте/вызове и только
+ * с непустым литералом (координатор 12.10): окно ±строк засчитывало перевод соседнего тоста. Разбор — maskToastEntriesWithEnglishInSameObject.
  */
-// Пара строго по виду: `messageRu` требует `messageEn`, `labelRu` (кнопка действия в тосте) — `labelEn`.
-const TOAST_RU_UK_ENTRY = /^\s*(message|label)(?:Ru|Uk)\s*:\s*[`'"]/;
-const TOAST_EN_ENTRY = /\b(message|label)En\s*:\s*[`'"]/;
-
-function maskLocaleKeyedEntries(source) {
-  const lines = source.split('\n');
+function maskLocaleKeyedEntries(source, original = source) {
+  const lines = maskToastEntriesWithEnglishInSameObject(source, original).split('\n');
   const hasOther = lines.map((line) => OTHER_LOCALE_ENTRY.test(line));
-  const toastEnKind = lines.map((line) => line.match(TOAST_EN_ENTRY)?.[1] ?? null);
-  for (let i = 0; i < lines.length; i += 1) {
-    const kind = lines[i].match(TOAST_RU_UK_ENTRY)?.[1];
-    if (!kind) continue;
-    for (let j = Math.max(0, i - LOCALE_WINDOW); j <= Math.min(lines.length - 1, i + LOCALE_WINDOW); j += 1) {
-      if (j !== i && toastEnKind[j] === kind) { lines[i] = lines[i].replace(/[^\r\n]/g, ' '); break; }
-    }
-  }
   for (let i = 0; i < lines.length; i += 1) {
     if (!LOCALE_KEY_ENTRY.test(lines[i])) continue;
     let neighbour = false;

@@ -179,6 +179,18 @@ describe('dev account states', () => {
     expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('void checkNameAvailabilityDetailed(trimmed)'));
   });
 
+  // зачем (координатор 12.10, auth-gap-003/012): switch=required — вход отдаёт account_switch_required до сети, выход по-прежнему отказывает.
+  it('switch=required answers sign-in with account_switch_required and keeps sign-out refused', async () => {
+    const { request, rejected } = parseDevStateParams({ switch: 'required' });
+    expect([request.switch, rejected]).toEqual(['required', {}]);
+    await applyDevState({ switch: 'required' });
+    expect(getDevSignInError()).toBe('account_switch_required');
+    expect(getDevSignOutOutcome(false)).toMatchObject({ reason: 'sync_failed' });
+    expect(getDevSignOutOutcome(true)).toMatchObject({ reason: 'unknown', detail: 'dev_guard' });
+    mockStoreRelease = true;
+    expect(getDevSignInError()).toBeNull();
+  });
+
   it('holds the sign-out stage with logout=hold and still refuses both attempts', () => {
     setDevAccountState({ logoutMode: 'hold' });
     expect(getDevSignOutOutcome(false)).toMatchObject({ reason: 'sync_failed' });

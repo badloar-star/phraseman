@@ -8,6 +8,7 @@ import dev_links_r1_steps_spire  # noqa: F401  зачем (15.10): ссылки 
 import dev_links_r1_steps_cards2  # noqa: F401  зачем (12.10): ссылки и шаги Карточек для покрытия r1 (группа 2б: подмены уже есть в приложении)
 import dev_links_r1_steps_dialogs2  # noqa: F401  зачем (12.10): ссылки и шаги Диалогов для покрытия r1 (группа 2а, без сервера ИИ)
 import dev_links_r1_steps_misc2  # noqa: F401  зачем (12.10): Настройки и «Мои наборы» для покрытия r1 (группа 2а)
+import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки и шаги Авторизации (auth-gap-001/002/003/008…012, profile-023) — свой модуль, общий файл шагов не трогаем
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))

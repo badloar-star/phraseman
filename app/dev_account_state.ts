@@ -13,7 +13,8 @@ import { IS_STORE_RELEASE } from './config';
 const LOG = '[DEV-STATE]';
 
 /** Значения `switch=` (кроме ok). */
-export const DEV_SWITCH_MODES = ['not_uploaded', 'backup_blocked', 'unsaved_cards', 'pending_spend', 'quarantine', 'guard', 'slow'] as const;
+// зачем (координатор 12.10, auth-gap-003/012): `required` — вход отдаёт account_switch_required ДО сети (окно входа с «Сменить аккаунт»).
+export const DEV_SWITCH_MODES = ['not_uploaded', 'backup_blocked', 'unsaved_cards', 'pending_spend', 'quarantine', 'guard', 'slow', 'required'] as const;
 export type DevSwitchMode = (typeof DEV_SWITCH_MODES)[number];
 export const DEV_LOGOUT_MODES = ['fail', 'precommit', 'hold'] as const;
 export type DevLogoutMode = (typeof DEV_LOGOUT_MODES)[number];
@@ -125,6 +126,7 @@ function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
     case 'not_uploaded':
     case 'backup_blocked':
     case 'unsaved_cards':
+    case 'required':
     case 'guard': return { reason: 'sync_failed', delayMs: 0 };
     default: return { reason: 'unknown', detail: 'dev_guard', delayMs: 0 }; // R-3: незнакомый режим отказывает, а не пропускает к настоящему выходу
   }
@@ -136,6 +138,7 @@ export function getDevSignInError(): string | null {
   if (state.restoreRetired) return 'identity_retired';
   if (state.switchMode === 'not_uploaded') return 'local_progress_not_uploaded';
   if (state.switchMode === 'backup_blocked') return 'local_progress_backup_blocked';
+  if (state.switchMode === 'required') return 'account_switch_required';
   return null;
 }
 

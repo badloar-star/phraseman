@@ -32364,18 +32364,19 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-002.png",
+      "evidence_at": "2026-10-12T18:32:14.529Z",
+      "evidence_sha256": "0869ce01b22dce07dd088a50b02335b74c314b102a00ff21daaec5dcf7b76e2f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Реализовано (Дизайн 750314a24, ec6e3b471); снять кадры и анимацию Эмулятору: Dev Hub → «Режим энергии (проверка)» (Режим Б, Энергия 5/1/0, Plus). Тряска 520 мс, «−1» 900 мс, цифра через 260 мс — хронометраж макета."
+        "[состояние не то] Урок не открылся: после ссылки /lesson_menu?id=1 приложение оказалось на главной (шаг tap:#lesson-menu-primary не нашёл кнопку или меню урока вернуло назад) — нужен журнал [LESSON-MENU] / [DEV-STATE] route на пересъёмке; в образце экран «Урок 3 · A1», пилюли «⚡ 4» и «1 240», «Собери фразу: Она работает каждый день», слова works/She/every/day/work/is/at/the.",
+        "[образец ≠ код] В образце урок 3 (A1) и 7/50 заданий; ссылка открывает урок 1 — после открытия сверить заголовок и счётчик."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:34:04.031Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
@@ -32383,7 +32384,8 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:32, energy-modes-states №2 «Режим Б · ошибка: тряска и «−1»», ссылка /lesson_menu?id=1 + lesson-menu-primary + lesson1-word-option-wrong): сверка невозможна — на кадре главная «Главная» (Диалоги / Карточки / Шпиль, «Видео», «Сегодня», «Фраза дня»), занятие не открыто."
     },
     {
       "id": "energy-modes-003",
@@ -42016,21 +42018,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-034.png",
+      "evidence_at": "2026-10-12T18:31:45.294Z",
+      "evidence_sha256": "aa098f809dd493df58cff6c9bfdc3ebc1ead1033cd1c715de3ea1950baee5763",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] В приложении «Автопроверка» выключена, в образце включена; скорость «0.9x» вместо «1.0x»; голос «en-au-x-aua-local» (сырой идентификатор голоса устройства, переносится на две строки и сжимает название строки) вместо «Samantha».",
+        "[вёрстка, мелко] Включённый переключатель: в приложении серая дорожка и белый ползунок справа, в образце белая дорожка и чёрный ползунок — тон темы «Спокойно»; строки в приложении выше на ≈ 4–5 % (склейка по высоте — сверить в режиме --fit=width).",
+        "🟡 [UX] Сырой идентификатор голоса устройства (en-au-x-aua-local) в строке «Голос озвучки» читается плохо — показывать человеческое имя голоса (решение Дизайна/Ядра)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:34:04.031Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:31, settings-gaps №34 «Обучение — выбранный голос озвучки»): экран «Обучение» открыт верно: «Автопроверка», «Автопереход после ответа», «Ввод с клавиатуры», «Вибрация при ошибке», блок «ЗВУК» (звуковые эффекты, автопроизношение, «Скорость произношения»), «Голос озвучки (EN)». Состав и порядок совпали."
     },
     {
       "id": "settings-gap-035",

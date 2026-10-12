@@ -6293,16 +6293,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-011.png",
+      "evidence_at": "2026-10-12T02:12:24.069Z",
+      "evidence_sha256": "936383a76422ecf0d10d57bd56c49d95e2e30691216f338bc024b63092b4031a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо окна «Энергия закончилась · +1 вернётся через 7 мин · Позже / Получить Plus» на кадре брифинг с тостом «ЧТО-ТО ПОШЛО НЕ ТАК · Не получилось начать диалог. Попробуй ещё раз» и «⚡ 0» красным: нехватку энергии приложение показывает тостом ошибки, а не окном — это либо дефект кода (нет окна энергии на брифинге), либо образец устарел; решить с Ядром/Дизайном.",
+        "[данные] Другая сцена («Поздороваться после знакомства» вместо «Закажи кофе»), задания 1–5."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:15:08.693Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -6312,7 +6315,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&dev_energy_fail=1&coinRank=6&aiConsent=granted&overlays=off&n"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:12, dialogs.html №12 «Нет энергии — окно закрытие уводит с экрана диалога»): окна «Энергия закончилась» на кадре нет."
     },
     {
       "id": "dialogs-012",
@@ -6332,16 +6336,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-012.png",
+      "evidence_at": "2026-10-12T02:13:07.827Z",
+      "evidence_sha256": "3bf19c1fb174ec9cfc104e943c3fa282bcc36cb04bfaf11da4d3a22fe30e2946",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] Настроения («Доволен») и пилюли «30/30» нет (у Plus пилюли нет — ок); ряда «озвучка · Перевод · Почему так» под первой репликой нет — у dev-реплики нет разбора; в карточке цели нет лампочки «Подсказка».",
+        "[образец ≠ приказ 01.10] «⚡ 4» без капсулы.",
+        "[данные] Сцена «Поздороваться после знакомства», 6 целей против «Заказать капучино», 5."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:15:08.693Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -6353,7 +6361,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:13, dialogs.html №13 «Старт диалога: энергия 5 → 4»): первый кадр сессии совпал по составу — название сцены, «⚡ 4», карточка цели «Цель 1 из N», первая реплика собеседника, поле ввода, «Или зажми и говори»."
     },
     {
       "id": "dialogs-013",
@@ -7098,16 +7107,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-029.png",
+      "evidence_at": "2026-10-12T02:14:01.446Z",
+      "evidence_sha256": "5fbabcd4f24a1d30b51c68186493702991b1dbf61caa3805c8269d1cde888884",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] На кадре открыта клавиатура ОС, в ленте «Hello» отправлено, но индикатора «ИИ печатает» (три точки) нет — ответ ещё не пошёл или уже пришёл; переснять сразу после отправки (settle:0), клавиатуру закрыть.",
+        "[образец ≠ приказ 01.10] «⚡ 4» без капсулы."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:15:08.693Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -7117,7 +7129,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:13, dialogs.html №30 «ИИ печатает»): кадр сделан в момент ввода и не показывает ожидание ответа."
     },
     {
       "id": "dialogs-030",

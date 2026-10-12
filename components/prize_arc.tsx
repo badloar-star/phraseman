@@ -345,7 +345,6 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
                 styles.card,
                 {
                   backgroundColor: t.bgSurface,
-                  borderColor: t.border,
                   opacity: dimmed ? 0.42 : 1,
                   transform: [
                     { rotate: `${slot * SLOT_DEG}deg` },
@@ -410,8 +409,7 @@ const styles = StyleSheet.create({
     top: -CARD_H / 2,
     width: CARD_W,
     height: CARD_H,
-    borderRadius: 14,
-    borderWidth: 2,
+    borderRadius: 14, // зачем (стиль «Тень», отчёт координатору 15.10): рамка карточки приза снята — картинка заполняет карточку, обводки нет
     overflow: 'hidden',
   },
   cardImage: {

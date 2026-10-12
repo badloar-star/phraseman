@@ -78,8 +78,8 @@ export default memo(FriendEventMarker);
 
 const styles = StyleSheet.create({
   marker: { width: 58, minHeight: 58, alignItems: 'center', justifyContent: 'center' },
-  badge: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: PORCELAIN, borderWidth: 1.5, borderColor: TEAL /* shadow-ok: кольцо значка-маркера на карте — индикатор события, не контейнер */, shadowColor: GRAPHITE, shadowOpacity: 0.2, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, ...noAndroidOutline}, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
+  badge: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: PORCELAIN, borderWidth: 1.5, borderColor: TEAL /* shadow-ok: кольцо значка-маркера на карте — индикатор события, не контейнер. typo-exempt: кольцо-индикатор */, shadowColor: GRAPHITE, shadowOpacity: 0.2, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, ...noAndroidOutline}, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   accentDot: { position: 'absolute', right: 5, bottom: 5, width: 7, height: 7, borderRadius: 4, backgroundColor: AMBER },
-  flash: { position: 'absolute', right: 2, bottom: 2, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: AMBER, borderWidth: 1.5, borderColor: PORCELAIN }, // shadow-ok: кольцо-отбивка молнии на значке маркера — индикатор, не контейнер
+  flash: { position: 'absolute', right: 2, bottom: 2, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: AMBER, borderWidth: 1.5, borderColor: PORCELAIN }, // typo-exempt: кольцо-отбивка. shadow-ok: кольцо-отбивка молнии на значке маркера — индикатор, не контейнер
   countdown: { marginTop: -4, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 7, overflow: 'hidden', backgroundColor: PORCELAIN, color: GRAPHITE, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

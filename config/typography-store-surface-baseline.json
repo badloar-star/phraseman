@@ -5,7 +5,7 @@
     "offScale": 15,
     "lineHeight": 0,
     "fit": 0,
-    "thickBorder": 25
+    "thickBorder": 17
   },
   "files": {
     "app/flashcards/CollectionListView.tsx": {
@@ -49,19 +49,7 @@
     "components/UpdateModal.tsx": {
       "offScale": 2
     },
-    "components/celebration/RewardImpactRings.tsx": {
-      "thickBorder": 1
-    },
-    "components/energy/EnergyInfoPopover.tsx": {
-      "thickBorder": 4
-    },
-    "components/friends_together/FriendEventMarker.tsx": {
-      "thickBorder": 2
-    },
     "components/home/v2/HomeV2TodayCard.tsx": {
-      "thickBorder": 1
-    },
-    "components/prize_arc.tsx": {
       "thickBorder": 1
     },
     "components/profile-card/ProfileCardProSheet.tsx": {

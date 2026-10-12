@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     width: 92,
     height: 92,
     borderRadius: 46,
-    borderWidth: 1.5,
+    borderWidth: 1.5, // shadow-ok: расширяющееся кольцо-удар (анимация-эффект), не контейнер. typo-exempt: кольцо-эффект
   },
   mote: {
     position: 'absolute',

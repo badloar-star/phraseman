@@ -308,9 +308,9 @@ const styles = StyleSheet.create({
   scrollContent: { flexGrow: 0 },
   card: { borderRadius: 17, paddingVertical: 13, paddingHorizontal: 15, overflow: 'hidden' }, // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень: обводки нет, тень на обёртке cardShadow
   // зачем: стрелка-указатель окна — треугольник из границ View в цвет карточки (shadow-ok: это форма стрелки, не обводка); внешний контур стрелки убран вместе с рамкой карточки
-  arrowInner: { position: 'absolute', width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent' }, // shadow-ok: треугольник-указатель
-  arrowInnerAbove: { bottom: -7, borderTopWidth: 7 }, // shadow-ok: треугольник-указатель
-  arrowInnerBelow: { top: -7, borderBottomWidth: 7 }, // shadow-ok: треугольник-указатель
+  arrowInner: { position: 'absolute', width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent' }, // shadow-ok: треугольник-указатель typo-exempt: форма стрелки
+  arrowInnerAbove: { bottom: -7, borderTopWidth: 7 }, // shadow-ok: треугольник-указатель typo-exempt: форма стрелки
+  arrowInnerBelow: { top: -7, borderBottomWidth: 7 }, // shadow-ok: треугольник-указатель typo-exempt: форма стрелки
   primaryRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, minWidth: 0 },
   primaryText: { flex: 1, flexShrink: 1, fontWeight: '700' },
   countdownRow: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginTop: 10, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 10, minWidth: 0 },

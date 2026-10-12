@@ -1,5 +1,5 @@
 {
-  "total": 82,
+  "total": 79,
   "files": {
     "app/(tabs)/settings.tsx": 1,
     "app/combined_lesson_pick.tsx": 2,
@@ -8,7 +8,6 @@
     "app/privacy_settings.tsx": 1,
     "app/settings_edu.tsx": 1,
     "app/settings_notifications.tsx": 2,
-    "components/celebration/RewardImpactRings.tsx": 1,
     "components/DeleteAccountConfirmModal.tsx": 2,
     "components/ErrorBoundary.tsx": 2,
     "components/ExamResultPreviewAdminModal.tsx": 12,
@@ -24,7 +23,6 @@
     "components/MistakeEli5Modal.tsx": 1,
     "components/PlusBadge.tsx": 1,
     "components/premium_celebration/CelebrationSceneViews.tsx": 1,
-    "components/prize_arc.tsx": 2,
     "components/RankChangeBanner.tsx": 1,
     "components/ReportErrorButton.tsx": 4,
     "components/SpeakingButton.tsx": 1,

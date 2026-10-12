@@ -373,7 +373,7 @@ const gateOff = () => phone(`
   <div class="flex"><span class="rb l t">${icon('back', 's20')}</span></div>
   <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">AI-диалоги выключены</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>
     <div class="cta t">Включить</div><div class="cta gh t">Настройки приватности</div><div class="quiet t" style="margin-top:18px">Назад</div></div>`, { time: '13:01' });
-const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div class="h center"><span class="big">${icon('boltF')}</span>Энергия закончилась</div><div class="p center">+1 ⚡ вернётся через 7 мин. В Plus и Pro энергия безлимитная.</div><div class="btns"><div class="cta gh t">Позже</div><div class="cta t">Получить Plus</div></div></div>`;
+const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div class="h center"><span class="big">${icon('boltF')}</span>Недостаточно энергии</div><div class="p center">Для разговора нужно 1 ${icon('boltF', 's16')}. У тебя: 0. Plus и Pro открывают безлимит.</div><div class="btns"><div class="cta gh t">Позже</div><div class="cta t">Получить Plus</div></div></div>`;
 
 // ================= C. Сессия =================
 // Раскладка — ref_20: круглая «‹», «Диалог» + название, справа квота, «⋯»; карточка цели; реплики с кнопками под ними;

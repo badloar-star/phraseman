@@ -4350,9 +4350,9 @@
         "bucket_reason": "иллюстрация тура: образец (подложка с башней) ≠ арт приложения — решение Дизайна/владельца",
         "prev_bucket": "c_owner_decides",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -4402,13 +4402,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "иллюстрация тура: образец (таймер 1:42 в подложке) ≠ арт приложения — решение Дизайна/владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:09, spire.html №2 «Тур 2 — как устроена ступень»): текст и кнопка совпали — «10 заданий, общее время, 3 сердца», описание, пейджер (активная точка пилюлей), «Далее →», «Пропустить»."
@@ -4460,13 +4460,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off",
-        "bucket": "c_owner_decides",
+        "bucket": "b_reshoot",
         "bucket_reason": "иллюстрация тура: образец (игроки с монетами) ≠ арт приложения (ранги со стрелками) — решение Дизайна/владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
-        "final_group": "",
-        "final_note": "вопрос владельцу (утренний лист)",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:09, spire.html №3 «Тур 3 — повышение»): текст совпал — «Верхние 15% переходят в следующий шпиль», описание, пейджер, «Начать →», «Пропустить»."
@@ -4524,9 +4524,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -4583,13 +4583,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=room%26spirePanel=off",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "«Подняться» серая при комнате из 12 человек и светлая без комнаты (spire-gap-009) — условие активности, вероятно, перевёрнуто (подтверждено кадром 3:10)",
         "prev_bucket": "a_code_defect",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересъёмка 4:42, spire.html №5 «Шпиль — ниже: друзья, пьедестал»): правка подтверждена кадром — «Подняться» теперь светлая и активная при комнате из 12 человек (раньше серая). Состав совпал: башня с выделенным этажом и маркером, плашка «Этаж N», «Друзья на этой неделе», «Комната недели», пьедестал, «Все участники · N»."
@@ -4645,9 +4645,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -4704,7 +4704,7 @@
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
         "final_group": "ROBOT13",
-        "final_note": "кадр старше кода (разбор Тем 13ca45679, координатор 12.10) — переснять в очереди ROBOT13",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -4759,9 +4759,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -4811,13 +4811,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=step_choice%26spirePanel=of",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:59, spire.html №9 «Выход — подтверждение»): шторка «Выйти из ступени?» с текстом, «Продолжить ступень» и красной «Выйти» совпала по составу и тексту."
@@ -4873,13 +4873,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=passed%26spirePanel=off",
-        "bucket": "a_code_defect",
+        "bucket": "b_reshoot",
         "bucket_reason": "шапка главного экрана Шпиля: образец — название ранга + «Этаж N» + «⚡» в капсуле, приложение — «Шпиль» + «ранг · до конца недели» + «i» — решение Тем/владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "a_code_defect",
-        "final_who": "Темы",
-        "final_group": "",
-        "final_note": "spire-010: прокрутка башни к этажу не вызывается (в журнале нет [SPIRE-SCROLL]) при dev_spire_preview?state=passed&floor=7&spirePanel=off; диагноз только по логу — нужен прогон с логом прокрутки; SpireTower — зона Тем (4845ddd8f)",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:10, spire.html №10 «Ступень пройдена — «Выше» двигает маркер»): панель «СТУПЕНЬ ПРОЙДЕНА · Ещё одна выше · время, ошибки, ступени на этаже · монеты 10 · «Выше ↑»» совпала."
@@ -4992,13 +4992,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=guard%26spirePanel=off",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "шапка главного экрана Шпиля — как spire-010; решение Тем/владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №12 «Этаж 4 пройден — впереди Страж»): башня прокручена к своему этажу и выделен этаж 5 «Страж», панель «ЭТАЖ 4 ПРОЙДЕН · Впереди Страж · 5 этаж — смешанный набор, монеты ×2 · 10 · 40 · «Выше ↑»» совпала."
@@ -5055,9 +5055,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -5115,9 +5115,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -5172,13 +5172,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=weekresult_stay%26spirePane",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "шапка главного экрана Шпиля — как spire-010; решение Тем/владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №15 «Итог недели — остаёшься в шпиле Гранит»): карточка «ИТОГ НЕДЕЛИ · Остаёшься в шпиле … · место · ступени · монеты» с монетой-аватаром и закрытием в круге совпала; башня прокручена к своему этажу (7)."
@@ -5237,9 +5237,9 @@
         "bucket_reason": "Шпиль, нет энергии: на месте башни пустая серая плашка (кандидат, кадр 3:11 мог быть снят до отрисовки)",
         "prev_bucket": "a_code_defect",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "исправлено Дизайном (по HEAD: 079f4d61c, d99356919/5b9b9e47c, fc93bbb0b, de7139800, 660f23ed6, 862f055c5) или причина в ссылке/ожидании кадра — только пересъёмка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №16 «Нет энергии»): состав совпал — «⚡ 0» красным в шапке, плашка «Энергия через 9м 56с», «Поднимайся без ожидания с Plus ›»."
@@ -5296,9 +5296,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -6152,9 +6152,9 @@
         "bucket_reason": "хаб Диалогов: капсула «⚡ N» (приказ 01.10), стрелка «‹» назад и тон образца — решает владелец; «Свободный разговор» и «Тень» уже исправлены",
         "prev_bucket": "c_owner_decides",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "исправлено Дизайном (по HEAD: 079f4d61c, d99356919/5b9b9e47c, fc93bbb0b, de7139800, 660f23ed6, 862f055c5) или причина в ссылке/ожидании кадра — только пересъёмка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12",
         "theme_tone": true,
         "theme_tone_note": "тон темы «Спокойно» (графит) — решение владельца"
@@ -6210,13 +6210,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T07:58:52.000Z)",
-        "bucket": "c_owner_decides",
+        "bucket": "b_reshoot",
         "bucket_reason": "то же для Plus: капсула энергии, стрелка «‹», тон образца — решает владелец",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12",
         "theme_tone": true,
         "theme_tone_note": "тон темы «Спокойно» (графит) — решение владельца"
@@ -6271,13 +6271,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T07:58:52.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "образец ≠ код: подзаголовок под «Диалоги», карточка «Свободный разговор», одна иконка мира на всех строках (в образце иконка у каждого сценария) — решение владельца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6328,13 +6328,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T07:58:52.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6391,7 +6391,7 @@
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
         "final_group": "ROBOT16",
-        "final_note": "правка Дизайна 2c5b25ad2: dquota=30, стрелка в «К урокам» — переснять",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6442,13 +6442,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T07:58:52.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6502,9 +6502,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6554,13 +6554,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-11T10:18:35.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "энергия без фона по приказу владельца 01.10 (EnergyBar.tsx); в образце dialogs.html «⚡ N» в пилюле — убрать пилюлю из образца",
         "prev_bucket": "c_owner_decides",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6692,13 +6692,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&dev_energy_fail=1&coinRank=6&aiConsent=granted&overlays=off&n",
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "отличия уже исправлены или устарели — переснять",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:13, dialogs.html №12 «Нет энергии — окно»): ИСПРАВЛЕНО — окно энергии теперь открывается поверх брифинга (раньше был тост ошибки): значок молнии, заголовок, пояснение, «Позже» и светлая «Получить Плюс»; «⚡ 0» красным в шапке."
@@ -6746,13 +6746,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "отличия уже исправлены или устарели — переснять",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:14, dialogs.html №13 «Старт диалога: энергия 5 → 4»): первый кадр сессии совпал по составу: заголовок сцены, «⚡ 4», карточка цели «Цель 1 из 6», первая реплика собеседника, поле «Напиши или говори», «Или зажми и говори»."
@@ -6801,12 +6801,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "записи ссылки нет — путь есть в shot list (G-D05)",
-        "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "d_mockup_stale"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:26, dialogs №14 «Начало — приветствие баристы»): состав совпал — «‹» и «⋯», название сцены, карточка цели «Цель 1 из N», первая реплика собеседника, поле «Напиши или говори», «Или зажми и говори»."
     },
@@ -6850,13 +6851,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T22:19:26.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6906,9 +6907,9 @@
         "bucket_reason": "кадра нет — снять на телефоне (эмулятор роняет экран)",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -6962,9 +6963,9 @@
         "bucket_reason": "реплика: нет кнопки озвучки перед «Скрыть перевод»",
         "prev_bucket": "a_code_defect",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7017,9 +7018,9 @@
         "bucket_reason": "окно «Подсказка»: нет кнопки закрытия, окно без кромки и тени; текст повторяет цель",
         "prev_bucket": "a_code_defect",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7074,9 +7075,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7129,9 +7130,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7183,9 +7184,9 @@
         "bucket_reason": "разбор «Почему так»: прямые кавычки \"…\" вместо «ёлочек», разбор от первого лица (тексты с сервера)",
         "prev_bucket": "a_code_defect",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7277,9 +7278,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7336,9 +7337,9 @@
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7590,13 +7591,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "отличия уже исправлены или устарели — переснять",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:23, dialogs.html №30 «ИИ печатает»): индикатора «ИИ печатает» (три точки) на кадре по-прежнему нет — реплика «Hello» набрана в поле, но не отправлена (клавиатура открыта)."
@@ -7644,13 +7645,13 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T22:19:26.000Z)",
-        "bucket": "d_mockup_stale",
+        "bucket": "b_reshoot",
         "bucket_reason": "карточка цели: название с маленькой буквы («начать с приветствия»), плейсхолдер «Напиши или зажми микрофон» переносится на 2 строки (подтверждено кадром 2:31; пустая полоса после отправки устранена)",
         "prev_bucket": "a_code_defect",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7706,9 +7707,9 @@
         "bucket_reason": "кадр испорчен: пустой, окно поверх или не тот экран",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -7762,9 +7763,9 @@
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -7951,9 +7952,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -8051,7 +8052,7 @@
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
         "final_group": "ROBOT16",
-        "final_note": "правка Дизайна 2c5b25ad2: сессия с открытой клавиатурой — отправить реплику, клавиатуру не закрывать — переснять",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -8103,12 +8104,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D10",
-        "bucket": "d_mockup_stale",
-        "final_bucket": "d_mockup_stale",
-        "final_who": "Макеты",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "d_mockup_stale"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:28, dialogs №40 «Сессия — Plus: нет пилюли квоты, нет стены лимита»): у Plus в шапке нет пилюль «⚡» и «N/30», стены лимита нет — совпало; сессия идёт (карточка цели, реплика собеседника, поле ввода)."
     },
@@ -8196,7 +8198,7 @@
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
         "final_group": "ROBOT16",
-        "final_note": "правка Дизайна 2c5b25ad2: тост серии теперь строкой сверху — переснять",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "precheck": {
@@ -8366,12 +8368,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09",
-        "bucket": "c_owner_decides",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
-        "final_group": "",
-        "final_note": "вопрос владельцу (утренний лист)",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "c_owner_decides"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:26, dialogs.html №53 «Пустое состояние — «Что можно спросить»»): шапка «Свободный разговор · Помнит контекст этого языка» и поле «Напиши сообщение…» совпали."
     },
@@ -36788,9 +36791,9 @@
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&overlays=off&next=/dialogue_v2_memory",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "исправлено Дизайном (по HEAD: 079f4d61c, d99356919/5b9b9e47c, fc93bbb0b, de7139800, 660f23ed6, 862f055c5) или причина в ссылке/ожидании кадра — только пересъёмка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12",
         "prev_bucket": "a_code_defect"
       },
@@ -36831,12 +36834,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&overlays=off&next=/dialogue_v2_memory",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:44, dialogs-gaps-states №3 «Память диалогов — без Plus, только удаление»): состав и тексты совпали — «Память диалогов доступна в Plus», светлая «Посмотреть Plus», пояснение «Даже без Plus ты можешь удалить всю сохранённую память…», кнопка «Очистить память этого языка»."
     },
@@ -37079,12 +37083,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/dialogue_v2_freeform",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:44, dialogs-gaps-states №10 «Свободный разговор — доступен в Plus»): состав и тексты совпали — «‹», круглая плитка с замком, «Свободный разговор доступен в Plus» в две строки, светлая «Открыть Plus»."
     },
@@ -37159,12 +37164,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&dev_dialog_fail=plus_",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:45, dialogs-gaps-states №12 «Сессия — Plus, потолок на сегодня»): плашка потолка совпала по тексту и виду — значок «i», «На сегодня разговоров достаточно. Продолжим завтра.» в тёмной плашке под репликами; шапка («‹», название, «···»), карточка цели, поле ввода и «Или зажми и говори» на месте."
     },
@@ -37204,12 +37210,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:30, dialogs-gaps-states №13 «Сессия — распознавание речи не работает на устройстве»; образец нарисован с приложения): состояние показано и совпало — зачёркнутый микрофон слева от поля ввода и подпись «Распознавание речи не работает на этом устройстве» под полем. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
@@ -37285,9 +37292,9 @@
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "исправлено Темами (ActionToast / разделитель меню) — только пересъёмка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:45, dialogs-gaps-states №15 «Сессия — меню «⋯» открыто»; образец нарисован с приложения): состав совпал — шторка «Диалог» с «✕», две строки «Задания ›» и «Завершить диалог ›» с иконками на плитках, затемнённый диалог за ней. [образец нарисован с приложения, ждёт подтверждения владельца]"
@@ -37365,9 +37372,9 @@
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -37406,7 +37413,12 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:51, русский интерфейс, spire-gaps-states №1 «Задание — вставь слово»): структура совпала: шапка «Ступень 3 / Этаж 7 · Нефрит», сердца, энергия, таймер 1:12, «ВСТАВЬ СЛОВО», плашка с пропуском, четыре варианта, красный флажок «пожаловаться», счётчик 3/10.",
       "triage": {
-        "basis": "mockup_from_app"
+        "basis": "mockup_from_app",
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -37444,7 +37456,12 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:49, русский интерфейс, spire-gaps-states №2 «Задание — найди лишнее»): структура совпала: шапка в один ряд, сердца, энергия, таймер, «НАЙДИ ЛИШНЕЕ», плашка задания, четыре варианта, красный флажок, счётчик 5/10.",
       "triage": {
-        "basis": "mockup_from_app"
+        "basis": "mockup_from_app",
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -37486,9 +37503,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -37527,7 +37544,12 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:49, после правки превью Дизайна): красный флажок «пожаловаться» теперь на кадре (справа под ответами) — расхождение по флажку закрыто. Состав остальных элементов совпал: шапка «Ступень 3 / Этаж 7 · Нефрит», сердца, энергия, таймер 1:12, «ПОСЛУШАЙ И ВЫБЕРИ», «Прослушать» со звуком, четыре варианта, счётчик 2/10.",
       "triage": {
-        "basis": "mockup_from_app"
+        "basis": "mockup_from_app",
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -37566,7 +37588,12 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:49, русский интерфейс, №5 «Задание — послушай и собери»): структура совпала: шапка, сердца, энергия, таймер, «ПОСЛУШАЙ И СОБЕРИ», «Прослушать», полоса ответа, банк слов, красный флажок, счётчик.",
       "triage": {
-        "basis": "mockup_from_app"
+        "basis": "mockup_from_app",
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -37607,9 +37634,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -37649,12 +37676,13 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=block_offline%26spirePanel=",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:46, spire-gaps-states №7 «Старт — нет сети, задания недели не скачались»; образец нарисован с приложения): совпало — строка «Нет сети — задания недели не скачались» над светлой «Повторить →», башня с выделенным этажом, плашка «Этаж N», «Друзья на этой неделе», строка комнаты под кнопкой. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
@@ -37693,13 +37721,13 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:01, spire-gaps-states №8 «Старт — задания недели ещё готовятся»): подпись «Задания этой недели ещё готовятся» и кнопка «Повторить →» совпали по составу.",
       "triage": {
-        "bucket": "c_owner_decides",
+        "bucket": "b_reshoot",
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -37740,13 +37768,13 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересъёмка 4:43, spire-gaps-states №9 «Главный — комнаты ещё нет, «Подняться» неактивна»): оба подтверждённых дефекта исправлены — «Подняться» теперь серая и неактивная без комнаты, окно башни показывает нижние этажи 7…1 с выделенным этажом 1 (а не вершину «НАД ОБЛАКАМИ»). Состав совпал: «Шпиль», «i», «— · до конца недели», башня, плашка «Этаж 1 · 5 ступеней · 10 монет за этаж», «Комната недели —», «Все участники · —», «Подняться». [образец нарисован с приложения, ждёт подтверждения владельца]",
       "triage": {
-        "bucket": "a2_layout_candidate",
+        "bucket": "b_reshoot",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -37786,12 +37814,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S01",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:43, spire-gaps-states №10 «Главный — пьедестал и «Все участники» без комнаты»; образец нарисован с приложения): блоки без комнаты совпали — «Этаж 1 · 5 ступеней · 10 монет за этаж», «Комната недели —», «Все участники · —» (пьедестала нет), «Подняться» неактивна. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
@@ -37874,12 +37903,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:44, spire-gaps-states №12 «Провал — время вышло»; образец нарисован с приложения): окно результата совпало по составу и тексту — «СТУПЕНЬ НЕ ПРОЙДЕНА» красным, «Время вышло», «Остаёшься на N этаже. Новый набор из 10 заданий», «Ещё раз», «Позже». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
@@ -37920,12 +37950,13 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04",
-        "bucket": "a2_layout_candidate",
-        "final_bucket": "a2_layout_candidate",
-        "final_who": "Дизайн",
-        "final_group": "",
-        "final_note": "",
-        "final_at": "2026-10-12"
+        "bucket": "b_reshoot",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
+        "final_at": "2026-10-12",
+        "prev_bucket": "a2_layout_candidate"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:44, spire-gaps-states №13 «Провал — ступень прервана»; образец нарисован с приложения): окно результата совпало по составу и тексту — «Ступень прервана» вместо «Время вышло», остальное то же. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
@@ -37968,9 +37999,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -38089,13 +38120,13 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты», кадр 23:20Z, без диалога поверх): карточка «Итог недели» совпала — монета, «ИТОГ НЕДЕЛИ», «Ты спускаешься в …», строка «27 место · N ступеней · новая неделя, все с 1 этажа», крестик; шапка «Шпиль», «i», «⚡», подпись недели, кнопка «Подняться →» на месте.",
       "triage": {
-        "bucket": "c_owner_decides",
+        "bucket": "b_reshoot",
         "bucket_reason": "отличия уже исправлены или устарели — переснять",
         "prev_bucket": "b_reshoot",
-        "final_bucket": "c_owner_decides",
-        "final_who": "владелец",
-        "final_group": "",
-        "final_note": "",
+        "final_bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT17",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },
@@ -38216,9 +38247,9 @@
         "bucket_reason": "кадр старше правки кода — переснять и сверить заново",
         "prev_bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
-        "final_who": "",
+        "final_who": "Сверка",
         "final_group": "",
-        "final_note": "",
+        "final_note": "кадр старше кода (Дизайн b11891a70, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       }
     },

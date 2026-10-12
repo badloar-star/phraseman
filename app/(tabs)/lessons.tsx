@@ -78,6 +78,7 @@ import ScreenGradient from "../../components/ScreenGradient";
 import { useTopFadeScroll } from "../../components/TopFadeScrollContext";
 import { useBouncy, useBouncyStyle } from "../../components/BouncyScrollView";
 import { LinearGradient } from "../../components/SafeLinearGradient";
+import ListTopEdgeFade from "../../components/lessons/ListTopEdgeFade";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
 import { perfR1BodyMark, perfR1BodyStart, usePerfR1Probe } from "../perf_r1_probe";
@@ -6030,6 +6031,8 @@ export default function LessonsTab({
             */
               }}
             />
+            {/* зачем (learn-007, находка Тем 13.10): список листается под полем поиска — верхний край был жёстким срезом впритык к полю; мягкое растворение 16 px появляется только после прокрутки. */}
+            {topFadeScroll ? <ListTopEdgeFade g={learnGlass} scrollY={topFadeScroll.scrollY} /> : null}
           </BouncyWrap>
           </View>
           )}

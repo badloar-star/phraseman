@@ -67,6 +67,7 @@ import {
 } from './manage_subscription_purchase';
 import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
 import { peekHomeScreenHydration } from './home_screen_hydration';
+import { getDevSaveOfferProgress } from './dev_save_offer_progress';
 import {
   resolveSaveOffer,
   type SaveOfferKind,
@@ -654,12 +655,13 @@ export default function ManageSubscription() {
     // мгновенный рендер. peek сам вернёт null после смены аккаунта, поэтому
     // чужие цифры показаться не могут.
     const hydration = peekHomeScreenHydration();
-    const progress: SaveOfferProgress | null = hydration
+    // зачем (profile-022 / paywalls-024, dev): подмена прогресса из ссылки dev_state?offerProgress=on — шаг робота останавливается на шторке удержания, а не уходит в браузер магазина
+    const progress: SaveOfferProgress | null = getDevSaveOfferProgress() ?? (hydration
       ? {
           streak: hydration.displayStreak || hydration.streak || 0,
           lessonsCompleted: hydration.lessonsCompleted || 0,
         }
-      : null;
+      : null);
     const offer = resolveSaveOffer({ reason: cancelReason, progress });
 
     if (offer === 'none') {

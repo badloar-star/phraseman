@@ -211,7 +211,8 @@ add(['paywalls-021', 'profile-018'], [], 'plus=on&plan=lifetime', MANAGE, note='
 add(['paywalls-022', 'profile-024'], ['tap:#manage-subscription-restore'], PLAN_Y, MANAGE, note='«Восстановить» — покупок не найдено')
 add(['paywalls-023', 'profile-020'], [CANCEL], PLAN_Y, MANAGE, note='причины отмены, ничего не выбрано')
 add('profile-021', [CANCEL, 'tap:#manage-subscription-reason-other'], PLAN_Y, MANAGE, note='причина «Другое» (поле ввода)')
-add(['paywalls-024', 'profile-022'], [CANCEL, REASON, 'tap:#manage-subscription-reasons-continue'], PLAN_Y, MANAGE, note='оверлей удержания после выбора причины «Слишком дорого»')
+# зачем (Макеты 12.10, profile-022 / paywalls-024): без прогресса «Продолжить» сразу уводил в браузер магазина — offerProgress=on даёт 12 дней и 38 уроков, шаг остаётся на шторке удержания
+add(['paywalls-024', 'profile-022'], [CANCEL, REASON, 'tap:#manage-subscription-reasons-continue'], PLAN_Y + '&offerProgress=on', MANAGE, note='оверлей удержания после выбора причины «Слишком дорого»')
 
 # ───────────────────────── Настройки и профиль ─────────────────────────
 SETTINGS = '/(tabs)/settings'

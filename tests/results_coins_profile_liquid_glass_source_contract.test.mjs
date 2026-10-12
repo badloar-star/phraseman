@@ -46,8 +46,10 @@ test('spire screens use the glass palette hook, not the raw V2 palette', () => {
   }
 });
 
-test('practice energy pill is on glass in swipe trainings and prepositions', () => {
-  assert.match(read('app/flashcards_swipe.tsx'), /<EnergyBar ownerActive glass \/>/);
+// зачем (приказ владельца 01.10 «иконка энергии БЕЗ ФОНА НИГДЕ» + Карточки 2.0 12.10, макет `sessHdr`): в шапке swipe-сессии пилюли энергии больше нет
+// (✕ · название · попытки и руны, af9585203) — тест, ждавший там `<EnergyBar ownerActive glass />`, устарел. Пилюля остаётся в тренировке предлогов.
+test('practice energy pill is on glass in prepositions; swipe header no longer carries it', () => {
+  assert.doesNotMatch(read('app/flashcards_swipe.tsx'), /<EnergyBar\b/);
   assert.match(read('app/preposition_drill.tsx'), /<EnergyBar size=\{30\} glass \/>/);
 });
 

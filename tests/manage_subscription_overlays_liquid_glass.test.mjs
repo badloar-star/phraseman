@@ -177,6 +177,9 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     './events': { emitAppEvent: () => {} }, './premium_guard': { invalidatePremiumCache: () => {} },
     // зачем (10.10): ebc1a860d (S2d) обернул операции подписки в withPurchaseFlow — стенд выполняет операцию как есть.
     './swallow_log': { noteSwallowedHandler: () => () => {} },
+    // зачем (15.10, красные сторожи; тест устарел): экран спрашивает dev-подмену плана через './dev_vip_override' — в харнессе подмены нет, как в проде (getDevPlanOverride = () => null).
+    './dev_vip_override': { getDevPlanOverride: () => null },
+    './dev_save_offer_progress': { getDevSaveOfferProgress: () => null }, // зачем: dev-подмена прогресса оффера удержания — в харнессе выключена, как в проде
     './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => ({ status: 'stale' }), isManageSubscriptionOperationCurrent: () => true },

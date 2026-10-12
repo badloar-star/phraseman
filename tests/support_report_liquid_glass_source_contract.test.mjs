@@ -9,6 +9,8 @@ const source = fs.readFileSync('app/support_report.tsx', 'utf8');
 
 const CLOSE_L_CALL_SIGNATURE = 'b10987a61038050827494cb91e3e977d9ac635add22ddc0922b69a5b4a678e0d';
 const EXPECTED_L_CALL_COUNTS = new Map([
+  // зачем (15.10, красные сторожи; 9376e4e7f): +1 карта — нейтральный текст карточки диагностики, пока журнал выключен (remote_flags); остальные 16 карт побайтно прежние.
+  ['358b563c52f6c109ad9992e1cddf02f4d96d08111a465759e62b8cf4d759351f', 1],
   ['ea5b9e6ac07f9ca7724e6360493b3f857bf1ac870f9f062f0dbf5fbf4a252929', 1],
   ['2e5bd5812deeae94c75a593b252a5f6d850c40e051d27bab4c4ac8aea009683c', 1],
   ['c672a0ca30eabc1cf5e35c47fb0a74178bafe7936fb26fe6d46e9516739299ac', 1],
@@ -51,7 +53,7 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 16, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label');
+  assert.equal(calls.length, 17, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label; +1 for the diagnostics-off card text');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);
@@ -181,6 +183,8 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     './error_report': { ERROR_REPORT_COMMENT_MIN_LEN: 10 },
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.back.push(fallback) },
     './stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ top: 1, bottom: 2, left: 3, right: 4 }) },
+    // зачем (15.10, красные сторожи; тест устарел): экран спрашивает флаг диагностики через './remote_flags' — в харнессе он выключен, как в проде (isSupportDiagnosticsEnabled = () => false).
+    './remote_flags': { isSupportDiagnosticsEnabled: () => false },
     './support_diagnostics': { captureSupportDiagnosticBundle: () => capturePromise ?? Promise.resolve(diagnostics) },
     // зачем: PM-229 (db985607f) добавил в экран noteSwallowedHandler — обвязка теста его не знала.
     './swallow_log': { noteSwallowedHandler: () => () => undefined },

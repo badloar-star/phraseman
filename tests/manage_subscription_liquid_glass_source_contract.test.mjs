@@ -30,7 +30,8 @@ const PROTECTED = {
     localPremiumPlan: '5bf00fdbbd770828440f955b2c054728a9017d8c04ec5fb9a7fa62191071d3bd',
     saveOfferBusyRef: '11c098352306821bedbf7a32ef18b62ae645c019dda94b2b653918b9dc635837',
     screenAccountRef: 'a87c8a558d3d5d19cd493847ae71a1b398779e64459f4b2139345a25edf7fdd7',
-    metadata: 'b621be8319e71147b5f7a72cfd86b01b9dc69ff0e552e8e376caba785f1a24c8',
+    // зачем (15.10, красные сторожи; сверено по diff eb716d9a0 и 23a4eb6f7): только dev-подмены съёмки — план `plan=` в памяти (getDevPlanOverride) и прогресс оффера удержания (getDevSaveOfferProgress); покупка, отмена и сохранение плана без изменений.
+    metadata: 'f9927407e615e5b15ad74a3f6de16d3ccc5e7527f5fc32a9933e0f1d140ef1dc',
     currentPlan: 'b3faa9100cbf1afd53f96d18550e6df6642c75f06b6fbf41c8267fc92eeeefd8',
     nextDate: '66bf1de86141b5428c525d2697c97107074c60e15ef3481279cf1c85a465ed3e',
     isLifetime: '4f7491ad8e638bd4e6ed1e0e1d3c0d84f9c0c64406ed2c5d86231c72c8293668',
@@ -44,11 +45,11 @@ const PROTECTED = {
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
     openStoreCancel: '0b2945979dcd63ecc9bc77f93c13c0cc8d1a52b33711b824c8481112f3b71720',
-    submitCancel: '38777f1a8a224bef157733dd95500aeb1320553fe79f51fb1552de9d11df92b7',
+    submitCancel: '2516a18017d6460a9388c4195d80b6b710cce026bc673b3a51758fcfc723482a',
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '63f4a5adcfc7ebe170bc6c0b74c9bfaf99afceb852c8aac0340f28bfd2dcf3a5'],
+  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '4a4584e2dec5e41f5fbc1346fe37a7fe2343b2548b2d15d004c129b6a84abc72'],
 };
 
 function protectedSnapshot(candidate) {
@@ -220,6 +221,9 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './paywall_reference_prices': { resolvePaywallReferencePrices: () => ({ yearly: '€39,99', monthly: '€7,99', yearlyPerMonth: '€3,33', source: 'builtin' }) },
     // зачем (PM-229): экран подключил журнал проглоченных ошибок; заглушка ничего не пишет и ничего не меняет в поведении
     './swallow_log': { noteSwallowedHandler: () => () => {} },
+    // зачем (15.10, красные сторожи; тест устарел): dev-подмены плана и прогресса оффера удержания (eb716d9a0, 23a4eb6f7) — в харнессе выключены, как в проде.
+    './dev_vip_override': { getDevPlanOverride: () => null },
+    './dev_save_offer_progress': { getDevSaveOfferProgress: () => null },
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const mod = { exports: {} };

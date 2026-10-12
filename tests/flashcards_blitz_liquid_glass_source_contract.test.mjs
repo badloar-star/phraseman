@@ -43,7 +43,8 @@ assert.doesNotMatch(source.slice(source.indexOf('glassSurface:'), source.indexOf
 assert.match(source.slice(source.indexOf('optionBtn:'), source.indexOf('optionText:')), /borderWidth: 1,/);
 assert.ok(contrast('#6FD08C', '#0B0B0D') >= 4.5, 'correct mark must stay legible on the dark sheet');
 assert.ok(contrast('#E05050', '#0B0B0D') >= 4.5, 'wrong mark must stay legible on the dark sheet');
-assert.match(activeGame, /<BlitzGlassSurface radius=\{16\} \/>/);
+// зачем (Карточки 2.0 12.10, макет cards-v2 sessHdr; тест устарел): карточка вопроса Блица теперь с радиусом 20, прежний 16 снят.
+assert.match(activeGame, /<BlitzGlassSurface radius=\{20\} \/>/);
 assert.match(activeGame, /onPress=\{\(\) => pick\(i\)\}/);
 assert.match(activeGame, /disabled=\{locked\}/);
 // зачем (координатор 05.10): у окна «нет энергии» обязательный variant — макет выбирает место вызова.

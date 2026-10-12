@@ -63,7 +63,8 @@ const PROTECTED_FILES = new Map([
   // зачем (30.09): награда жемчугом за опрос удалена (PM-058/D70, efe19ae9d) — законно.
   ['app/survey_flow_controller.ts', '420e4a04cc27a63cf45ea604e2b00f19b87eef5d300d0d5acf0a7133b2977b30'],
     // зачем (10.10): диагностика замка аккаунта [ACCOUNT-LOCK] 04–05.10 (9b22f79fa, 3b156c292 и др.) — логика не менялась.
-  ['app/account_generation.ts', 'b0dae31f5b17d14385b01777e4c4d0928d3980d20bd80aa6ce370971fa9fd1e7'],
+  // зачем (15.10, красные сторожи; fdab41c40): в модуль добавлена только регистрация диагностического зонда кэша registerHubCacheProbe (журнал [HUB-LIFECYCLE]); поколения аккаунта не менялись.
+  ['app/account_generation.ts', '1c79c28d3a3c9d1fdaffab458179f982f5542efd197f5ba26976f2d16201cd92'],
     // зачем (10.10): модульный API Firebase (8798dc612) — getAuth через rnfbInstance.
   ['app/user_id_policy.ts', '7267cf972c901610f06266655f46fe5a5bff3175a06b08eb1a6454371f6a600c'],
 ]);

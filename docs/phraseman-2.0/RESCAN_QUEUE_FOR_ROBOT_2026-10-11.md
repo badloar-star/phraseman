@@ -83,3 +83,6 @@
 
 ## Новые ready-строки без проверки на кадре (Макеты 12.10, круг «по кадру»)
 Снять впервые (шаги вписаны, на кадре не проверены — сверять глазами): cards-022, cards-066, cards-section-016, cards-section-052, cards-section-056, cards-v2-040, cards-v2-044, cards-section-029, cards-v2-047, cards-v2-049, cards-v2-050, community-002, community-009, community-012, community-017, community-018, community-019, community-024, dialogs-010, dialogs-027, dialogs-043, spire-gap-019, spire-gap-022.
+
+## Подмены Авторизации вписаны (Макеты 12.10, ночь)
+Снять впервые (шаги по `DEV_SWITCHES_R1_CORE.md` «Авторизация — Карточки и Друзья», на кадре не проверены): cards-v2-038, cards-v2-039, cards-v2-041, cards-v2-042, cards-v2-051, cards-v2-052, cards-section-049, cards-section-050, cards-section-053, cards-section-054, cards-section-055, cards-026, cards-030, community-008, community-013, community-015, community-021. Итоги тренировок — через `/dev_cards_result_preview?state=…` (плашка баланса — настоящий баланс устройства).

@@ -79,3 +79,23 @@ put('cards-section-016', ['tap:Layover', 'wait:600'], 'cards=demo&plus=on&studyT
 put('spire-gap-022', ['see:#spire-beta-pill'], '', '/dev_spire_preview?state=room&spirePanel=off', unique=False, note='«бета» рядом с языком (es/de/fr/it): гость по умолчанию с изучаемым es; тап не нужен')
 put('community-024', ['wait:800', 'tap:#friend-row-body-dev-demo-friend-1', 'wait:800', 'tap:#friend-together-sheet-delete', 'wait:800'], 'friends=demo&spire=open&plus=off&free=on&cards=demo', '/(tabs)/community', unique=False, note='«Удалить друга?»: демо-друг Maria → шторка «вместе» → «Удалить» (подтверждение не жать)')
 put('community-012', ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input', 'type:ZZ98', 'tap:#friends-search', 'wait:1500'], 'friends=demo&spire=open&plus=off&free=on&cards=demo', '/(tabs)/community', unique=False, note='«ник или код не найден»: поиск по несуществующему коду ZZ98 — настоящий поиск (чтение), без подмены')
+
+# ── Подмены Авторизации (DEV_SWITCHES_R1_CORE.md, «Авторизация — Карточки и Друзья»): итоги тренировок, answer=, cards=demo_few, fail=video_list, друзья
+# зачем: переводит manual_conditional → ready; сеть в подменённых ветках не вызывается; итоги идут через /dev_cards_result_preview, не через настоящую тренировку
+_RES = '/dev_cards_result_preview?state='
+_T = 'tap:#fc-training-setup-deck-saved'
+_S = [_T, 'tap:#fc-training-setup-start', 'wait:2500']
+_F = 'friends=demo&spire=open&plus=off&free=on&cards=demo'
+_SRCH = ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input']
+put(['cards-v2-041', 'cards-section-053', 'cards-section-054'], ['wait:1500'], '', _RES + 'errors', note='итог тренировки с ошибками (/dev_cards_result_preview?state=errors; данные макета, монеты не зачисляются)')
+put(['cards-v2-042', 'cards-section-055'], ['wait:1500'], '', _RES + 'clean', note='итог тренировки без ошибок (state=clean)')
+put('cards-v2-051', ['wait:1500'], '', _RES + 'good', note='итог «Хороший результат» (state=good); плашка баланса показывает настоящий баланс устройства, не «1 240» из макета')
+put('cards-v2-052', ['wait:1500'], '', _RES + 'grow', note='итог «Есть куда расти» (state=grow); плашка баланса — настоящий баланс устройства')
+put(['cards-v2-038', 'cards-section-049'], _S + ['tap:#flashcards-truefalse-answer-target', 'wait:600'], 'cards=demo&plus=on&answer=wrong', '/flashcards_training_setup?mode=truefalse', note='«Правда/ложь»: неверный ответ — панель «Неверно» (answer=wrong помечает кнопку testID flashcards-truefalse-answer-target); слово — первая карточка демо, не Gate из макета')
+put(['cards-v2-039', 'cards-section-050'], _S + ['tap:#fc-recall-check', 'wait:600'], 'cards=demo&plus=on&answer=correct', '/flashcards_training_setup?mode=recall', note='«Напиши»: верный ответ вписан (answer=correct) → панель «Верно» +10; слово — первая карточка демо')
+put('cards-026', [_T, 'wait:500'], 'cards=demo_few&plus=on', '/flashcards_training_setup?mode=blitz', note='«Мало карточек для блица»: 3 карточки (cards=demo_few), подсказка «Для блица нужно минимум 4 карточки.»')
+put('cards-030', ['wait:800'], 'cards=demo&fail=video_list', '/flashcards_video_packs', note='«Из видео»: список не читается (fail=video_list)')
+put('community-008', _SRCH + ['type:ZZ99', 'tap:#friends-search'], _F + '&dev_friends_hold=search', '/(tabs)/community', note='поиск друга держится в скелетоне (dev_friends_hold=search) — снимать сразу после тапа')
+put('community-013', _SRCH + ['type:DEVSLF', 'tap:#friends-search', 'wait:800'], _F, '/(tabs)/community', unique=False, note='«это твой код» (код DEVSLF; фраза выбирается случайно из 5)')
+put('community-015', _SRCH + ['type:ZZ99', 'tap:#friends-search', 'wait:800'], _F + '&dev_friends_fail=search_offline', '/(tabs)/community', note='поиск без сети (dev_friends_fail=search_offline)')
+put('community-021', ['wait:1000'], _F + '&dev_friends_fail=list', '/(tabs)/community', note='«Связь пропала»: вкладка «Друзья» не загрузилась (dev_friends_fail=list)')

@@ -35,6 +35,7 @@ import { PracticeBackButton } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { safeRouterBack } from './navigation_back';
 import { lessonsGlassAlpha } from '../components/lessons/LessonsListGlassKit';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLineScale } from '../hooks/useLineScale';
 
 const TOPIC_COUNT = 32;
@@ -221,18 +222,17 @@ export default function CombinedLessonPickScreen() {
                   minHeight: 60,
                   paddingHorizontal: 16,
                   borderRadius: 16,
-                  overflow: 'hidden',
-                  // guard-ok: 1 px полупрозрачная кромка строки `.tp` макета (исключение PhraseMan 2.0).
-                  borderWidth: 1, // guard-ok
-                  borderColor: glass.line,
+                  // зачем (R1-PAGE 16:30, learn-016…018; стиль «Тень» выбран владельцем 12.10): строка темы отделена тенью плашки, без 1-px кромки.
+                  // overflow: 'hidden' снят — он обрезал бы тень на iOS; дымке выбранной строки ниже задан тот же радиус 16.
                   backgroundColor: glass.opaqueCard,
+                  boxShadow: plateBoxShadow(glass),
                   opacity: atCap ? 0.42 : 1,
                 }}
               >
                 {/* зачем (`.tp.on` 0x202022 поверх 0x151517): выбранная строка заметно светлее — белая дымка 5 %,
                     одинаково видна в любой теме (у части тем тон карточки и тон контрола совпадают). */}
                 {selected ? (
-                  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: lessonsGlassAlpha(glass.text, 0.05) }]} />
+                  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 16, backgroundColor: lessonsGlassAlpha(glass.text, 0.05) }]} />
                 ) : null}
                 <View
                   style={{

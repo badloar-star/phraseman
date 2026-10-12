@@ -14,6 +14,7 @@ import {
 import { accountScopeKey } from '../account_scope_key';
 import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../accounts_v2_client_flag';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
+import { devCommunityMarkOwned, getDevCommunityOwnedIds, isDevCommunityPackId } from '../dev_cards_state';
 
 const warmOwnedIdsByKey = new BoundedScopeCache<string[]>(16);
 
@@ -50,7 +51,9 @@ export async function loadCommunityOwnedPackIdsResult(
     }
     if (parsed.status === 'ready') {
       warmOwnedIdsByKey.set(cacheKey, parsed.items);
-      return { ids: parsed.items, status: 'ready' };
+      // зачем (съёмка R1): «добавленные» в памяти демо-наборы (dev `community=`) видны рядом с настоящими; в хранилище их нет.
+      const devOwned = getDevCommunityOwnedIds().filter((id) => !parsed.items.includes(id));
+      return { ids: devOwned.length ? [...parsed.items, ...devOwned] : parsed.items, status: 'ready' };
     }
     console.warn('[PACKS-OWNED] load:unreadable -> warm copy', JSON.stringify({ key, parseStatus: parsed.status }));
     return { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' };
@@ -118,6 +121,11 @@ export async function addCommunityOwnedPackId(
   studyTarget?: RuntimeStudyTarget,
   title?: CommunityOwnedPackTitle,
 ): Promise<void> {
+  // зачем (съёмка R1): демо-набор «добавляется» только в память — ни хранилища, ни операции Account V2.
+  if (isDevCommunityPackId(id)) {
+    devCommunityMarkOwned(id);
+    return;
+  }
   // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
   const v2Owner = captureAccountsV2OwnerUid();
   const cur = await loadCommunityOwnedPackIds(studyTarget);

@@ -35,6 +35,13 @@ import {
   type PackCommentReaction,
 } from './packComments';
 import { DebugLogger } from '../debug-logger';
+import { devCommunityRecordPosted, getDevCommunityComments, isDevCardsFail, isDevCardsHeld, isDevCommunityOwned, isDevCommunityPackId } from '../dev_cards_state';
+
+/** зачем (съёмка R1): действия с откликом демо-набора (удалить/скрыть/закрепить/реакция) — успех без записи в прод. */
+function devCommentNoop(action: string, packId: string, commentId: string): boolean {
+  console.warn(`[DEV-STATE] community: ${action} отклика без сети pack=${packId} comment=${commentId}`); // guard-ok: dev-ветка
+  return true;
+}
 
 const LOG = '[PACK-COMMENTS]';
 
@@ -155,6 +162,12 @@ export async function fetchPackComments(
   packId: string,
   myUserId: string | null,
 ): Promise<PackComment[]> {
+  // зачем (Макеты 12.10, cards-051…059): ветка демо-набора из памяти (`comments=demo|empty`), без сети.
+  const devComments = getDevCommunityComments(packId);
+  if (devComments) {
+    console.warn(`[DEV-STATE] community: ветка откликов из памяти pack=${packId} n=${devComments.length} me=${myUserId ? 'есть' : 'нет'}`); // guard-ok: dev-ветка
+    return sortPackComments(devComments);
+  }
   if (!socialEnabled() || !packId) {
     console.warn(`${LOG} чтение ветки пропущено`, { packId, enabled: socialEnabled() });
     return [];
@@ -189,6 +202,8 @@ export async function fetchPackComments(
 
 /** Проверить право писать: набор должен быть добавлен себе (то же правило, что у лайка). */
 export async function canWritePackComment(packId: string, userId: string): Promise<boolean> {
+  // зачем (съёмка R1): писать под демо-набором можно, только если он «добавлен» в памяти (то же правило, что у сервера).
+  if (isDevCommunityPackId(packId)) return isDevCommunityOwned(packId);
   if (!socialEnabled() || !packId || !userId) return false;
   try {
     const snap = await addMembershipRef(packId, userId).get();
@@ -221,6 +236,21 @@ export async function publishPackComment(
   authorName: string,
   text: string,
 ): Promise<PublishCommentResult> {
+  // зачем (Макеты 12.10, cards-054/056): «отправляется / отправлен / не отправлен» под демо-набором — без записи в прод.
+  if (isDevCommunityPackId(packId)) {
+    if (isDevCardsHeld('comment_send')) {
+      console.warn(`[DEV-STATE] community: отправка отклика удержана pack=${packId}`); // guard-ok: dev-ветка
+      return new Promise<PublishCommentResult>(() => undefined);
+    }
+    if (isDevCardsFail('comment_send')) {
+      console.warn(`[DEV-STATE] community: отправка отклика подменена сбоем pack=${packId}`); // guard-ok: dev-ветка
+      return { ok: false, reason: 'network' };
+    }
+    const commentId = `dev_cm_${Date.now()}`;
+    devCommunityRecordPosted({ id: commentId, packId, authorId: userId, authorName, text, createdAtMs: Date.now(), pinned: false, reactions: {}, myReactions: [], status: 'published' });
+    console.warn(`[DEV-STATE] community: отклик «отправлен» в память pack=${packId} id=${commentId}`); // guard-ok: dev-ветка
+    return { ok: true, commentId };
+  }
   if (!socialEnabled() || !packId || !userId || !text) {
     console.warn(`${LOG} публикация пропущена до сети`, {
       packId,
@@ -291,6 +321,7 @@ export async function deletePackComment(
   packId: string,
   commentId: string,
 ): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return devCommentNoop('delete', packId, commentId);
   if (!socialEnabled() || !packId || !commentId) return false;
   if (!(await ensureCommentsAuth())) return false;
   try {
@@ -348,6 +379,7 @@ export async function hidePackCommentByAuthor(
   hidden: boolean,
   wasPinned: boolean,
 ): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return devCommentNoop('hide', packId, commentId);
   if (!socialEnabled() || !packId || !commentId) return false;
   if (!(await ensureCommentsAuth())) return false;
   try {
@@ -389,6 +421,7 @@ export async function setPackCommentPinned(
   commentId: string,
   pinned: boolean,
 ): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return devCommentNoop('pin', packId, commentId);
   if (!socialEnabled() || !packId || !commentId) return false;
   if (!(await ensureCommentsAuth())) return false;
   try {
@@ -428,6 +461,7 @@ export async function togglePackCommentReaction(
   reaction: PackCommentReaction,
   nextOn: boolean,
 ): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return devCommentNoop('reaction', packId, commentId);
   if (!socialEnabled() || !packId || !commentId || !userId) return false;
   if (!(await ensureCommentsAuth())) return false;
   try {
@@ -472,6 +506,8 @@ export async function togglePackCommentReaction(
  * документа набора и НЕ зовут это (иначе +1 чтение на каждый элемент списка).
  */
 export async function fetchPackCommentsCount(packId: string): Promise<number> {
+  const devCount = getDevCommunityComments(packId);
+  if (devCount) return devCount.length;
   if (!socialEnabled() || !packId) return 0;
   try {
     const snap = await packRef(packId).get();

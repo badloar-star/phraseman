@@ -1,6 +1,6 @@
 # Task packet: dev-подмены для непокрытых кадров R1 (core_switch 37 + manual_conditional 42)
 
-Governance-ID: TG-52C485831EEF
+Governance-ID: TG-07C57490B5CD
 Status: In progress
 Owner: сессия «1 · Ядро». Координатор 12.10: «205 экранов R1 ни разу не сняты… Возьми core_switch и manual_conditional: для
 каждого экрана сделай dev-подмену состояния, чтобы робот снимал его по ссылке без ручных шагов и без прод-записей. Только

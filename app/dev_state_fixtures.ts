@@ -35,7 +35,7 @@ import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
-import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
+import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, setDevCommunityState, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
@@ -113,6 +113,14 @@ export type DevStateRequest = Readonly<{
   trainGate?: DevTrainGate | 'off';
   /** Блиц: пометить верный (`correct`) или неверный (`wrong`) вариант testID `fc-blitz-opt-target` для робота (app/dev_cards_state.ts). Только память. */
   blitzAnswer?: 'correct' | 'wrong' | 'off';
+  /** Сообщество без сети (съёмка R1 Карточек): демо-наборы с карточками в памяти (on) или режим без карточек (off). */
+  packcards?: 'on' | 'off';
+  /** Список голосов озвучки (cards-gap-036/038): demo — образцовый, none — пусто. */
+  voices?: 'demo' | 'none' | 'off';
+  /** Ветка откликов демо-набора: три отклика (demo) или пусто (empty). */
+  comments?: DevCommunityComments | 'off';
+  /** reset — забыть «добавленное»/лайки/отправленное; added — «добавлены» демо-наборы 2, 1, 3 (cards-044); off — выключить режим. */
+  community?: 'reset' | 'added' | 'off';
   /** «Мои ошибки» с данными (app/dev_mistakes_demo.ts): demo — хаб рисует шесть демо-ошибок, off — выключить. Только память, только одноразовый гость. */
   mistakes?: 'demo' | 'off';
   /** Друзья со входящей заявкой (app/dev_friends_demo.ts): demo — одна заявка и один друг, off — выключить. Только память, только одноразовый гость, без подписок Firestore. */
@@ -305,6 +313,10 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
   request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
+  request.packcards = pick('packcards', ['on', 'off'] as const);
+  request.voices = pick('voices', [...DEV_CARDS_VOICES, 'off'] as const);
+  request.comments = pick('comments', [...DEV_COMMUNITY_COMMENTS, 'off'] as const);
+  request.community = pick('community', ['reset', 'added', 'off'] as const);
   request.mistakes = pick('mistakes', ['demo', 'off'] as const);
   request.friends = pick('friends', ['demo', 'off'] as const);
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
@@ -664,6 +676,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.blitzAnswer !== undefined) {
     await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));
   }
+  if (request.voices !== undefined) {
+    await step('voices', request.voices, async () => setDevCardsState({ voices: request.voices === 'off' ? null : request.voices! }));
+  }
   if (request.mistakes !== undefined) {
     await step('mistakes', request.mistakes, async () => setDevMistakesDemo(request.mistakes === 'demo'));
   }
@@ -754,6 +769,25 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.friendEvent !== undefined) {
     await step('friend_event', request.friendEvent, async () => setDevSocialState({ friendEvent: request.friendEvent }));
+  }
+  // зачем (координатор + Макеты 12.10, съёмка R1 Карточек): чужой/свой опубликованный набор, ролик, лайк, отклики и жалобы —
+  // демо-наборы в памяти, сеть для dev_demo_* / video_devDemo* запрещена (dev_cards_state). Идёт ПОСЛЕ cards=/catalog=, чтобы
+  // его каталог (с мета-счётчиками и роликом) не затёрся.
+  if (request.packcards !== undefined || request.comments !== undefined || request.community !== undefined) {
+    await step('community', [request.packcards, request.comments, request.community].filter(Boolean).join(','), async () => {
+      if (request.community === 'off') return setDevCommunityState({ active: false, packs: new Map(), comments: null, reset: true });
+      if (request.packcards === 'on') {
+        const { demoCommunityPackData } = await import('./dev_state_cards_demo');
+        const data = demoCommunityPackData(await getStableId());
+        const { seedCommunityCatalogForDev } = await import('./community_packs/communityFirestore');
+        if (!seedCommunityCatalogForDev('en', data.catalog)) throw new Error('seed_refused');
+        if (!setDevCommunityState({ active: true, packs: data.packs })) return false;
+      } else if (request.packcards === 'off' && !setDevCommunityState({ active: true, packs: new Map() })) return false;
+      if (request.comments !== undefined && !setDevCommunityState({ active: true, comments: request.comments === 'off' ? null : request.comments })) return false;
+      if (request.community === 'reset' && !setDevCommunityState({ reset: true })) return false;
+      if (request.community === 'added') return setDevCommunityState({ active: true, owned: ['dev_demo_community_2', 'dev_demo_community_1', 'dev_demo_community_3'] });
+      return true;
+    });
   }
   if (request.moderation) {
     await step('moderation', request.moderation, async () => {

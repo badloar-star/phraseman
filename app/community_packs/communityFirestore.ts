@@ -19,6 +19,7 @@ import { normalizePackLevel, packPreviewWords, type PackLevel } from '../flashca
 import { cardVideoStartSecFromRaw } from '../flashcards/video_moment';
 import { cleanPackSourceTitle } from '../../shared/pack_source_title';
 import { captureAccountGeneration, subscribeAccountGeneration } from '../account_generation';
+import { getDevCommunityPack, isDevCommunityPackId } from '../dev_cards_state';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -746,6 +747,12 @@ export async function fetchCommunityPackCards(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<CardItem[]> {
+  // зачем (координатор 12.10, съёмка R1): демо-набор под dev `packcards=` — карточки из памяти, сеть не вызывается.
+  if (isDevCommunityPackId(packId)) {
+    const devPack = getDevCommunityPack(packId);
+    console.warn(`[DEV-STATE] community: карточки набора из памяти pack=${packId} cards=${devPack?.cards.length ?? 0}`); // guard-ok: dev-ветка
+    return devPack ? communityPackCardsToCardItems(packId, devPack.cards, normalizePackLanguage(devPack.meta.packLanguage)) : [];
+  }
   // зачем: [PACK-OPEN] — каждый ранний выход и время чтения документа (набор открывался 138 с, причина неизвестна)
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
     console.log(`[PACK-OPEN] cards:skip packId=${packId} expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED}`);
@@ -796,6 +803,8 @@ export async function fetchCommunityPackMeta(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<FlashcardMarketPack | null> {
+  // зачем (съёмка R1): мета демо-набора из памяти, без сети.
+  if (isDevCommunityPackId(packId)) return (getDevCommunityPack(packId)?.meta as unknown as FlashcardMarketPack | undefined) ?? null;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
@@ -823,6 +832,12 @@ export async function fetchCommunityPackMetaResult(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<CommunityPackMetaResult> {
+  // зачем (съёмка R1, cards-044): мета демо-набора из памяти, без сети; без `packcards=on` — «нет документа».
+  if (isDevCommunityPackId(packId)) {
+    const devMeta = getDevCommunityPack(packId)?.meta as unknown as FlashcardMarketPack | undefined;
+    console.warn(`[DEV-STATE] community: мета набора из памяти pack=${packId} found=${!!devMeta}`); // guard-ok: dev-ветка
+    return devMeta ? { status: 'found', pack: devMeta } : { status: 'missing', reason: 'not_found' };
+  }
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { status: 'missing', reason: 'cloud_disabled' };
   try {
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();

@@ -2742,6 +2742,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     if (!swipeAccessGranted) return;
     if (!quickStart || quickStartDoneRef.current || phase !== 'select') return;
     if (loadingSources || starting || selectedSources.length === 0) return;
+    // зачем (координатор 12.10, cards-gap-003): dev `hold=swipe_quickstart` держит «Готовим тренировку…» — автозапуск не стартует.
+    if (isDevCardsHeld('swipe_quickstart')) {
+      console.warn('[DEV-STATE] swipe: быстрый старт удержан (hold=swipe_quickstart)'); // guard-ok: dev-ветка
+      return;
+    }
     quickStartDoneRef.current = true;
     void startSession();
   }, [loadingSources, phase, quickStart, selectedSources.length, startSession, starting, swipeAccessGranted]);

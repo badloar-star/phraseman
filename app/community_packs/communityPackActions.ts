@@ -186,6 +186,11 @@ export function toggleCommunityPackLike(packId: string): Promise<ToggleLikeResul
 }
 
 async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeResult> {
+  // зачем (координатор 12.10, cards-gap-033): dev `fail=pack_like` — исключение, на которое экран показывает откат сердца и тост.
+  if (isDevCardsFail('pack_like')) {
+    console.warn(`[DEV-STATE] community: лайк подменён сбоем pack=${packId}`); // guard-ok: dev-ветка
+    throw new Error('dev_pack_like_failed');
+  }
   const wasLiked = await isCommunityPackLikedLocally(packId);
   const nextLiked = !wasLiked;
   const changed = await setCommunityPackLikedLocally(packId, nextLiked);

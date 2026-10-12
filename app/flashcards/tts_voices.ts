@@ -16,6 +16,8 @@
  * Чистая pickVoiceForLang(voices, lang) — для юнит-тестов (tests/fc_tts_voices).
  */
 
+import { getDevVoices } from '../dev_cards_state';
+
 export type FcTtsLang = 'en' | 'uk' | 'ru' | 'es';
 
 /** Подмножество Speech.Voice, достаточное для выбора (quality — enum или строка). */
@@ -134,6 +136,12 @@ export function peekVoicesCache(): FcVoiceLike[] | null {
  * Таймаут → [] БЕЗ записи в кэш: медленный ответ системы не должен навсегда оставить список пустым (только «Системный (авто)»).
  */
 export function getVoicesOnce(): Promise<FcVoiceLike[]> {
+  // зачем (координатор 12.10, cards-gap-036/038): dev `voices=demo|none` — список голосов как на образце вместо голосов эмулятора; кэш не трогаем.
+  const devVoices = getDevVoices();
+  if (devVoices) {
+    console.warn(`[DEV-STATE] voices: список подменён n=${devVoices.length}`); // guard-ok: dev-ветка
+    return Promise.resolve([...devVoices]);
+  }
   if (voicesCache) return Promise.resolve(voicesCache);
   if (voicesInflight) return voicesInflight;
   voicesInflight = (async () => {

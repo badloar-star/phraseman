@@ -93,6 +93,12 @@ export async function publishLocalAuthorPack(
     logPublish('submit:daily_limit', { packId, dev: true });
     return 'daily_limit';
   }
+  // зачем (координатор 12.10, cards-gap-028 / cards-072): dev `fail=publish_error` — «не удалось отправить набор на публикацию»
+  // без сети (авиарежим не воспроизводил кадр: отказ приходит до сервера по-разному). В стор-сборке геттер выключен.
+  if (isDevCardsFail('publish_error')) {
+    logPublish('submit:error', { packId, dev: true });
+    return 'error';
+  }
   const token = captureAccountGeneration();
   // зачем: КАЖДЫЙ ранний выход обязан назвать причину. Немой выход — это
   // «нажал, ничего не произошло, в логе пусто»; именно так баги живут месяцами.

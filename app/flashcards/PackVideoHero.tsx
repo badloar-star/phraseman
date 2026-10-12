@@ -21,6 +21,7 @@ import { nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurfa
 import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
+import { isDevCardsFail } from '../dev_cards_state';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import type { FlashcardMarketPack } from './marketplace';
 
@@ -70,6 +71,11 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
   const onPress = async () => {
     // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     /** Проверка домена — существующая; значение приходит из документа Firestore. */
+    if (isDevCardsFail('video_open')) {
+      console.warn(`[DEV-STATE] video: открытие ролика (герой) подменено отказом videoId=${videoId}`); // guard-ok: dev-ветка
+      emitAppEvent('action_toast', failToast);
+      return;
+    }
     const trusted = getTrustedLingmanYoutubeUrl(getLingmanYoutubeWatchUrl(videoId), videoId);
     if (!trusted) {
       DebugLogger.warn('[VIDEO-PACK]', `герой: ссылка отклонена проверкой домена, videoId="${videoId}"`);

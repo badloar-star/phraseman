@@ -14,3 +14,17 @@ export function describeDevCardsState(): Record<string, unknown> { return { buil
 export function devSpeechTranscriptFor(): null { return null; }
 export function resetDevCardsStateForTests(): void {}
 export default function __RouteShim() { return null; }
+// зачем (12.10, съёмка R1 Карточек): режим «сообщество без сети» в стор-сборке всегда выключен
+export const DEV_COMMUNITY_COMMENTS = [] as const;
+export function setDevCommunityState(): boolean { return false; }
+export function isDevCommunityPackId(): boolean { return false; }
+export function getDevCommunityPack(): null { return null; }
+export function getDevCommunityOwnedIds(): readonly string[] { return []; }
+export function devCommunityMarkOwned(): void {}
+export function isDevCommunityOwned(): boolean { return false; }
+export function isDevCommunityLiked(): boolean { return false; }
+export function devCommunitySetLiked(): boolean { return false; }
+export function getDevCommunityComments(): null { return null; }
+export function devCommunityRecordPosted(): void {}
+export const DEV_CARDS_VOICES = [] as const;
+export function getDevVoices(): null { return null; }

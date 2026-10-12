@@ -30,6 +30,7 @@ import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import { DebugLogger } from '../debug-logger';
+import { isDevCardsFail } from '../dev_cards_state';
 import VideoThumb from './VideoThumb';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
@@ -77,6 +78,12 @@ export async function openVideo(videoId: string | undefined, onFail: () => void)
   const id = String(videoId ?? '').trim();
   if (!id) {
     DebugLogger.warn('[VIDEO-PACK]', 'тап по кадру без videoId — ролик не открыт');
+    onFail();
+    return;
+  }
+  // зачем (координатор 12.10, cards-082): dev `fail=video_open` — тост «Видео сейчас не открывается» без браузера.
+  if (isDevCardsFail('video_open')) {
+    console.warn(`[DEV-STATE] video: открытие ролика подменено отказом videoId=${id}`); // guard-ok: dev-ветка
     onFail();
     return;
   }

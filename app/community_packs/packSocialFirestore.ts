@@ -25,6 +25,15 @@ import {
   type PackSocialWriteResult,
 } from './packSocial';
 import { DebugLogger } from '../debug-logger';
+import { getDevCommunityPack, isDevCommunityLiked, isDevCommunityOwned, isDevCommunityPackId } from '../dev_cards_state';
+
+/** зачем (съёмка R1): счётчики демо-набора — из его меты в памяти (лайк/добавление «этого телефона» учтены). */
+function devCommunityCounts(packId: string): PackSocialCounts {
+  const meta = getDevCommunityPack(packId)?.meta;
+  const likes = Number(meta?.likesCount ?? 0) || 0;
+  const added = Number(meta?.addedCount ?? 0) || 0;
+  return { likesCount: likes + (isDevCommunityLiked(packId) ? 1 : 0), addedCount: added + (isDevCommunityOwned(packId) ? 1 : 0) };
+}
 
 /** Операция не дошла до сервера: `ok:false` запрещает ставить локальный флаг «уже учтено». */
 const NOOP_RESULT: PackSocialWriteResult = { changed: false, delta: 0, ok: false };
@@ -133,6 +142,11 @@ export async function setCommunityPackLikeRemote(
   userId: string,
   nextLiked: boolean,
 ): Promise<PackSocialWriteResult> {
+  // зачем (съёмка R1): лайк демо-набора не уходит в Firestore.
+  if (isDevCommunityPackId(packId)) {
+    console.warn(`[DEV-STATE] community: лайк без сети pack=${packId} liked=${nextLiked}`); // guard-ok: dev-ветка
+    return { changed: true, delta: nextLiked ? 1 : -1, ok: true };
+  }
   if (!socialEnabled() || !packId || !userId) {
     DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк пропущен: облако=${socialEnabled()} packId=${packId || '—'} userId=${userId ? 'есть' : 'нет'}`);
     return NOOP_RESULT;
@@ -166,6 +180,10 @@ export async function registerCommunityPackAddRemote(
   packId: string,
   userId: string,
 ): Promise<PackSocialWriteResult> {
+  if (isDevCommunityPackId(packId)) {
+    console.warn(`[DEV-STATE] community: добавление без сети pack=${packId}`); // guard-ok: dev-ветка
+    return { changed: true, delta: 1, ok: true };
+  }
   if (!socialEnabled() || !packId || !userId) {
     DebugLogger.warn('packSocialFirestore:add', `[PACK-SOCIAL] регистрация добавления пропущена: облако=${socialEnabled()} packId=${packId || '—'} userId=${userId ? 'есть' : 'нет'}`);
     return NOOP_RESULT;
@@ -193,6 +211,7 @@ export async function registerCommunityPackAddRemote(
 
 /** Счётчики набора с сервера (для экрана набора / обновления плитки). */
 export async function fetchCommunityPackSocialCounts(packId: string): Promise<PackSocialCounts> {
+  if (isDevCommunityPackId(packId)) return devCommunityCounts(packId);
   if (!socialEnabled() || !packId) return { likesCount: 0, addedCount: 0 };
   try {
     const snap = await packRef(packId).get();
@@ -218,6 +237,10 @@ export async function fetchCommunityPackSocialState(
   userId: string | null,
 ): Promise<PackSocialServerState> {
   const empty: PackSocialServerState = { counts: { likesCount: 0, addedCount: 0 }, membership: null };
+  // зачем (съёмка R1): счётчики демо-набора — из его меты, «я» — из памяти; сети нет.
+  if (isDevCommunityPackId(packId)) {
+    return { counts: devCommunityCounts(packId), membership: { liked: isDevCommunityLiked(packId), added: isDevCommunityOwned(packId) } };
+  }
   if (!socialEnabled() || !packId) return empty;
   try {
     const [packSnap, likeSnap, addSnap] = await Promise.all([
@@ -238,6 +261,7 @@ export async function fetchCommunityPackSocialState(
 
 /** Лайкнул ли пользователь набор (сервер; локальный флаг — в `packSocialStorage`). */
 export async function fetchCommunityPackLikedByUser(packId: string, userId: string): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return isDevCommunityLiked(packId);
   if (!socialEnabled() || !packId || !userId) return false;
   try {
     const snap = await membershipRef('like', packId, userId).get();

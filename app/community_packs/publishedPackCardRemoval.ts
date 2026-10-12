@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration } from '../account_generation';
 import { invalidateCommunityPackCatalog } from './communityFirestore';
 import { callCommunityAuthorRemoveCard, type CommunityAuthorRemoveCardResult } from './functionsClient';
+import { isDevCardsFail } from '../dev_cards_state';
 import { loadLocalAuthorPacks, saveLocalAuthorPack, type LocalAuthorPack } from './localAuthorPacks';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 
@@ -150,8 +151,18 @@ async function applyRemovalToLocalPack(cloudPackId: string, rawCardId: string): 
 async function sendEntry(entry: PublishedPackCardRemovalEntry): Promise<void> {
   const startedAt = Date.now();
   let response: CommunityAuthorRemoveCardResult;
+  // зачем (координатор 12.10, cards-gap-031): dev `fail=pack_remove_net` — сразу «нет связи», без шести повторов и без сервера.
+  if (isDevCardsFail('pack_remove_net')) {
+    console.warn(LOG, 'send:dev_network_refused', JSON.stringify({ key: entry.key })); // guard-ok: dev-ветка
+    await mutateOutbox((entries) => ({ next: entries.filter((item) => item.key !== entry.key), result: undefined }));
+    emit({ kind: 'refused', key: entry.key, cloudPackId: entry.cloudPackId, cardId: entry.cardId, reason: 'network' });
+    return;
+  }
   try {
-    response = await callCommunityAuthorRemoveCard({ packId: entry.cloudPackId, cardId: entry.cardId });
+    // зачем (cards-gap-029): dev `fail=pack_remove_min` — ответ «минимум 10 карточек» вместо вызова сервера.
+    response = isDevCardsFail('pack_remove_min')
+      ? { ok: false, reason: 'card_count', cardCount: 10 }
+      : await callCommunityAuthorRemoveCard({ packId: entry.cloudPackId, cardId: entry.cardId });
   } catch (error) {
     const attempts = entry.attempts + 1;
     console.warn(LOG, 'send:network_failed', JSON.stringify({

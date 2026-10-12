@@ -7,6 +7,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../debug-logger';
+import { devCommunitySetLiked, isDevCommunityLiked, isDevCommunityPackId } from '../dev_cards_state';
 
 const LIKED_KEY = 'community_pack_liked_ids_v1';
 const ADDED_KEY = 'community_pack_added_registered_ids_v1';
@@ -43,11 +44,14 @@ export async function loadLikedCommunityPackIds(): Promise<string[]> {
 }
 
 export async function isCommunityPackLikedLocally(packId: string): Promise<boolean> {
+  // зачем (съёмка R1): лайк демо-набора живёт в памяти, хранилище не трогаем.
+  if (isDevCommunityPackId(packId)) return isDevCommunityLiked(packId);
   return (await loadLikedCommunityPackIds()).includes(packId);
 }
 
 /** Сохранить локальный флаг лайка; возвращает true, если состояние реально изменилось. */
 export async function setCommunityPackLikedLocally(packId: string, liked: boolean): Promise<boolean> {
+  if (isDevCommunityPackId(packId)) return devCommunitySetLiked(packId, liked);
   const cur = await loadLikedCommunityPackIds();
   const has = cur.includes(packId);
   if (has === liked) return false;
@@ -70,6 +74,8 @@ export async function loadAddCountedCommunityPackIds(): Promise<string[]> {
  * только по факту успеха.
  */
 export async function isCommunityPackAddCounted(packId: string): Promise<boolean> {
+  // зачем (съёмка R1): для демо-набора «сервер уже учёл» — бампа счётчика в сеть не будет.
+  if (isDevCommunityPackId(packId)) return true;
   return (await loadAddCountedCommunityPackIds()).includes(packId);
 }
 

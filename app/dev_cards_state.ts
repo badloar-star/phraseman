@@ -7,16 +7,24 @@
  * Только `__DEV__ && !IS_STORE_RELEASE`: в стор-сборке геттеры всегда «выключено», а установка отклоняется. Логи: [DEV-STATE].
  */
 import { IS_STORE_RELEASE } from './config';
+import type { PackComment } from './community_packs/packComments';
 
 /** Удержание состояния загрузки до снятия (`hold=off`). */
 export const DEV_CARDS_HOLDS = [
   'hub_loading', 'saved_loading', 'catalog_loading', 'setup_loading', 'quota_waiting', 'quota_failed', 'voices_loading', 'swipe_quickstart',
+  // зачем (Макеты 12.10, cards-054…059): «отклик отправляется» — публикация отклика под демо-набором висит.
+  'comment_send',
 ] as const;
 export type DevCardsHold = (typeof DEV_CARDS_HOLDS)[number];
 
 /** Искусственный сбой чтения/записи (`fail=off` снимает всё). */
 export const DEV_CARDS_FAILS = [
   'saved_load', 'setup_decks', 'recall_load', 'card_write', 'pack_write', 'publish_daily_limit',
+  // зачем (координатор 12.10, съёмка R1 Карточек): лайк не прошёл (gap-033), публикация не ушла (gap-028, cards-072),
+  // удаление карточки опубликованного набора — «минимум 10» / «нет связи» (gap-029/031), отклик/жалоба не отправились.
+  'pack_like', 'publish_error', 'pack_remove_min', 'pack_remove_net', 'comment_send', 'report_send',
+  // зачем (cards-082): ролик не открылся — без браузера на эмуляторе.
+  'video_open',
 ] as const;
 export type DevCardsFail = (typeof DEV_CARDS_FAILS)[number];
 
@@ -30,6 +38,10 @@ export const DEV_BLITZ_ANSWERS = ['correct', 'wrong'] as const;
 export type DevBlitzAnswer = (typeof DEV_BLITZ_ANSWERS)[number];
 
 export const DEV_TRAIN_GATES = ['fail_blitz', 'fail_speaking', 'fail_swipe_prepare', 'fail_swipe_quota'] as const;
+
+/** Голоса озвучки (cards-gap-036/038): demo — образцовый список, none — голосов нет (только «Системный»). */
+export const DEV_CARDS_VOICES = ['demo', 'none'] as const;
+export type DevCardsVoices = (typeof DEV_CARDS_VOICES)[number];
 export type DevTrainGate = (typeof DEV_TRAIN_GATES)[number];
 
 const LOG = '[DEV-STATE]';
@@ -41,8 +53,10 @@ type State = {
   trainGate: DevTrainGate | null;
   /** Блиц: какой вариант помечать для робота — верный или заведомо неверный (`blitz_answer=correct|wrong`). */
   blitzAnswer: DevBlitzAnswer | null;
+  /** Список голосов озвучки вместо голосов эмулятора (`voices=demo|none`). */
+  voices: DevCardsVoices | null;
 };
-const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null };
+const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null, voices: null };
 let state: State = EMPTY;
 // зачем (координатор 12.10, «сперва логи», cards-v2-033): подмены живут в памяти процесса и переживают переход на следующую ссылку робота — в журнале старта нужно видеть, когда и какими ключами их выставили
 let lastPatch: { atMs: number; keys: string[]; count: number } | null = null;
@@ -52,7 +66,7 @@ function devCardsAvailable(): boolean {
 }
 
 /** Выставить флаги. Любое поле необязательно: не переданное не меняется. В стор-сборке — отказ с логом, ничего не меняется. */
-export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null }>): boolean {
+export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null; voices: DevCardsVoices | null }>): boolean {
   if (!devCardsAvailable()) {
     console.warn(`${LOG} cards: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
     return false;
@@ -63,6 +77,7 @@ export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]
     speech: patch.speech !== undefined ? patch.speech : state.speech,
     trainGate: patch.trainGate !== undefined ? patch.trainGate : state.trainGate,
     blitzAnswer: patch.blitzAnswer !== undefined ? patch.blitzAnswer : state.blitzAnswer,
+    voices: patch.voices !== undefined ? patch.voices : state.voices,
   };
   lastPatch = { atMs: Date.now(), keys: Object.keys(patch), count: (lastPatch?.count ?? 0) + 1 };
   console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer })}`); // guard-ok: единичный лог на ссылку
@@ -83,6 +98,18 @@ export function getDevSpeechMode(): DevSpeechMode | null {
 
 export function getDevBlitzAnswer(): DevBlitzAnswer | null {
   return devCardsAvailable() ? state.blitzAnswer : null;
+}
+
+/** Подменённый список голосов озвучки (вне dev — всегда null). Форма — как у Speech.getAvailableVoicesAsync. */
+export function getDevVoices(): readonly { identifier: string; name: string; quality: string; language: string }[] | null {
+  if (!devCardsAvailable() || state.voices === null) return null;
+  if (state.voices === 'none') return [];
+  return [
+    { identifier: 'dev_voice_samantha', name: 'Samantha', quality: 'Enhanced', language: 'en-US' },
+    { identifier: 'dev_voice_daniel', name: 'Daniel', quality: 'Enhanced', language: 'en-GB' },
+    { identifier: 'dev_voice_karen', name: 'Karen', quality: 'Default', language: 'en-AU' },
+    { identifier: 'dev_voice_moira', name: 'Moira', quality: 'Default', language: 'en-IE' },
+  ];
 }
 
 export function getDevTrainGate(): DevTrainGate | null {
@@ -113,9 +140,112 @@ export function devSpeechTranscriptFor(targetText: string): string | null {
   return null;
 }
 
+// ───────────────────── Сообщество без сети (координатор + Макеты 12.10, съёмка R1 Карточек) ─────────────────────
+// зачем: кадры чужого/своего опубликованного набора, лайка, откликов и жалоб требуют серверного документа набора, которого у
+// демо-наборов нет, а лайк/добавление/отклик/жалоба на настоящем сервере — запись в прод. Здесь всё в ПАМЯТИ процесса: карточки и
+// мета демо-наборов (кладёт dev_state `packcards=on`), владение, лайки и ветка откликов. Для id `dev_demo_*` / `video_devDemo*`
+// при включённом режиме сеть не вызывается вообще — ни чтение, ни запись. В стор-сборке всё выключено (заглушка).
+
+export const DEV_COMMUNITY_COMMENTS = ['demo', 'empty'] as const;
+export type DevCommunityComments = (typeof DEV_COMMUNITY_COMMENTS)[number];
+export type DevCommunityPack = Readonly<{ meta: Readonly<Record<string, unknown>>; cards: readonly unknown[] }>;
+
+const DEV_COMMUNITY_ID = /^(dev_demo_|video_devDemo)/;
+type Community = {
+  active: boolean;
+  packs: ReadonlyMap<string, DevCommunityPack>;
+  comments: DevCommunityComments | null;
+  owned: ReadonlySet<string>;
+  liked: ReadonlySet<string>;
+  /** Отклики, «отправленные» в этом процессе (по набору). */
+  posted: ReadonlyMap<string, readonly PackComment[]>;
+};
+const EMPTY_COMMUNITY: Community = { active: false, packs: new Map(), comments: null, owned: new Set(), liked: new Set(), posted: new Map() };
+let community: Community = EMPTY_COMMUNITY;
+
+/** Включить/обновить режим «сообщество без сети». `reset: true` — очистить владение, лайки и отправленные отклики. */
+export function setDevCommunityState(patch: Partial<{
+  active: boolean; packs: ReadonlyMap<string, DevCommunityPack>; comments: DevCommunityComments | null; owned: readonly string[]; reset: boolean;
+}>): boolean {
+  if (!devCardsAvailable()) {
+    console.warn(`${LOG} community: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  const base: Community = patch.reset ? { ...EMPTY_COMMUNITY, active: community.active, packs: community.packs, comments: community.comments } : community;
+  community = {
+    ...base,
+    active: patch.active ?? base.active,
+    packs: patch.packs ?? base.packs,
+    comments: patch.comments !== undefined ? patch.comments : base.comments,
+    owned: patch.owned ? new Set([...base.owned, ...patch.owned]) : base.owned,
+  };
+  console.log(`${LOG} community: ${JSON.stringify({ active: community.active, packs: [...community.packs.keys()], comments: community.comments, owned: [...community.owned], liked: [...community.liked] })}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Демо-набор под режимом «без сети»: для такого id ни чтений, ни записей в Firestore/callable. */
+export function isDevCommunityPackId(packId: string | null | undefined): boolean {
+  return devCardsAvailable() && community.active && !!packId && DEV_COMMUNITY_ID.test(packId);
+}
+
+export function getDevCommunityPack(packId: string): DevCommunityPack | null {
+  return isDevCommunityPackId(packId) ? community.packs.get(packId) ?? null : null;
+}
+
+export function getDevCommunityOwnedIds(): readonly string[] {
+  return devCardsAvailable() && community.active ? [...community.owned] : [];
+}
+
+export function devCommunityMarkOwned(packId: string): void {
+  if (!isDevCommunityPackId(packId)) return;
+  community = { ...community, owned: new Set([...community.owned, packId]) };
+  console.log(`${LOG} community: «добавлено» в памяти pack=${packId}`); // guard-ok: единичный лог на действие
+}
+
+export function isDevCommunityOwned(packId: string): boolean {
+  return isDevCommunityPackId(packId) && community.owned.has(packId);
+}
+
+export function isDevCommunityLiked(packId: string): boolean {
+  return isDevCommunityPackId(packId) && community.liked.has(packId);
+}
+
+/** Лайк в памяти; true — состояние изменилось. */
+export function devCommunitySetLiked(packId: string, liked: boolean): boolean {
+  if (!isDevCommunityPackId(packId) || community.liked.has(packId) === liked) return false;
+  const next = new Set(community.liked);
+  if (liked) next.add(packId); else next.delete(packId);
+  community = { ...community, liked: next };
+  console.log(`${LOG} community: лайк в памяти pack=${packId} liked=${liked}`); // guard-ok: единичный лог на действие
+  return true;
+}
+
+/** Ветка откликов демо-набора: null — режим выключен или не демо-набор. */
+export function getDevCommunityComments(packId: string): PackComment[] | null {
+  if (!isDevCommunityPackId(packId)) return null;
+  const posted = [...(community.posted.get(packId) ?? [])];
+  if (community.comments !== 'demo') return posted;
+  const meta = community.packs.get(packId)?.meta;
+  const base = Date.UTC(2026, 9, 12, 9, 0, 0);
+  const demo: PackComment[] = [
+    { id: 'dev_demo_cm_1', packId, authorId: String(meta?.authorStableId ?? 'dev_demo_author'), authorName: String(meta?.authorName ?? 'Автор'), text: 'Добавила примеры к каждому глаголу — так легче запомнить.', createdAtMs: base - 3 * 3_600_000, pinned: true, reactions: { like: 4 }, myReactions: [], status: 'published' },
+    { id: 'dev_demo_cm_2', packId, authorId: 'dev_demo_user_2', authorName: 'Олег', text: 'Claim и convince путал всё время, теперь разобрался.', createdAtMs: base - 2 * 3_600_000, pinned: false, reactions: { like: 2 }, myReactions: [], status: 'published' },
+    { id: 'dev_demo_cm_3', packId, authorId: 'dev_demo_user_3', authorName: 'Мария', text: 'Хорошая подборка, прошла за два дня.', createdAtMs: base - 3_600_000, pinned: false, reactions: {}, myReactions: [], status: 'published' },
+  ];
+  return [...posted, ...demo];
+}
+
+/** Запомнить «отправленный» отклик (только память). */
+export function devCommunityRecordPosted(comment: PackComment): void {
+  if (!isDevCommunityPackId(comment.packId)) return;
+  const list = [comment, ...(community.posted.get(comment.packId) ?? [])];
+  community = { ...community, posted: new Map([...community.posted, [comment.packId, list]]) };
+}
+
 /** Только для тестов. */
 export function resetDevCardsStateForTests(): void {
   state = EMPTY;
+  community = EMPTY_COMMUNITY;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

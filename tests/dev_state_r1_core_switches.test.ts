@@ -106,3 +106,49 @@ describe('dev_state R1 (Ядро): Диалоги, Друзья, промоко�
     expect(social.isDevFoundFriendUid(social.DEV_FOUND_FRIEND_UID)).toBe(true);
   });
 });
+
+describe('dev_state R1 (Ядро): Карточки — сообщество без сети', () => {
+  test('packcards/comments/community/voices/fail разбираются', () => {
+    const { request, rejected } = parseDevStateParams({
+      packcards: 'on', comments: 'demo', community: 'reset', voices: 'none', fail: 'pack_like,publish_error,pack_remove_min,video_open,report_send,comment_send',
+    });
+    expect(rejected).toEqual({});
+    expect(request).toMatchObject({ packcards: 'on', comments: 'demo', community: 'reset', voices: 'none' });
+    expect(request.fail).toEqual(['pack_like', 'publish_error', 'pack_remove_min', 'video_open', 'report_send', 'comment_send']);
+  });
+
+  test('демо-наборы в памяти: карточки «B2 глаголы» как на образце, владение/лайк/отклики — только память', () => {
+    const cards = require('../app/dev_cards_state') as typeof import('../app/dev_cards_state');
+    const demo = require('../app/dev_state_cards_demo') as typeof import('../app/dev_state_cards_demo');
+    cards.resetDevCardsStateForTests();
+    const data = demo.demoCommunityPackData('stable-1');
+    expect(cards.isDevCommunityPackId('dev_demo_community_2')).toBe(false); // режим выключен — обычный путь
+    expect(cards.setDevCommunityState({ active: true, packs: data.packs, comments: 'demo' })).toBe(true);
+    const b2 = cards.getDevCommunityPack('dev_demo_community_2');
+    expect((b2?.cards as { en: string }[]).slice(0, 5).map((c) => c.en)).toEqual(['Convince', 'Claim', 'Afford', 'Borrow', 'Deserve']);
+    expect(b2?.cards).toHaveLength(49);
+    expect(cards.getDevCommunityPack('dev_demo_published_own')?.meta.authorStableId).toBe('stable-1');
+    expect((cards.getDevCommunityPack(demo.DEMO_VIDEO_COMMUNITY_PACK_ID)?.cards as { videoStartSec?: number }[])[0].videoStartSec).toBe(12);
+    expect(cards.isDevCommunityPackId('real_pack_123')).toBe(false);
+    expect(cards.isDevCommunityOwned('dev_demo_community_2')).toBe(false);
+    cards.devCommunityMarkOwned('dev_demo_community_2');
+    expect(cards.getDevCommunityOwnedIds()).toEqual(['dev_demo_community_2']);
+    expect(cards.devCommunitySetLiked('dev_demo_community_2', true)).toBe(true);
+    expect(cards.devCommunitySetLiked('dev_demo_community_2', true)).toBe(false);
+    expect(cards.getDevCommunityComments('dev_demo_community_2')).toHaveLength(3);
+    cards.setDevCommunityState({ reset: true });
+    expect(cards.getDevCommunityOwnedIds()).toEqual([]);
+    expect(cards.isDevCommunityLiked('dev_demo_community_2')).toBe(false);
+    expect(cards.getDevCommunityPack('dev_demo_community_2')).not.toBeNull(); // reset не трогает данные наборов
+  });
+
+  test('voices: demo — список образца, none — пусто', async () => {
+    const cards = require('../app/dev_cards_state') as typeof import('../app/dev_cards_state');
+    await applyDevState(parseDevStateParams({ voices: 'demo' }).request);
+    expect(cards.getDevVoices()?.map((v) => v.name)).toEqual(['Samantha', 'Daniel', 'Karen', 'Moira']);
+    await applyDevState(parseDevStateParams({ voices: 'none' }).request);
+    expect(cards.getDevVoices()).toEqual([]);
+    await applyDevState(parseDevStateParams({ voices: 'off' }).request);
+    expect(cards.getDevVoices()).toBeNull();
+  });
+});

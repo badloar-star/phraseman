@@ -3,6 +3,15 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { submitClientReport as submitClientReportCallable } from './client_reports';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { isDevCardsFail, isDevCommunityPackId } from './dev_cards_state';
+
+/** зачем (Макеты 12.10, съёмка R1): жалоба на демо-набор/его отклик — исход без сети и без троттлинга; null — обычный путь. */
+function devCommunityReportOutcome(packId: string): 'sent' | 'failed' | null {
+  if (!isDevCommunityPackId(packId)) return null;
+  const outcome = isDevCardsFail('report_send') ? 'failed' : 'sent';
+  console.warn(`[DEV-STATE] community: жалоба без сети pack=${packId} исход=${outcome}`); // guard-ok: dev-ветка
+  return outcome;
+}
 
 const THROTTLE_KEY = 'last_user_report_ts';
 const THROTTLE_MS = 30_000;
@@ -93,6 +102,9 @@ export const submitPackReport = async (params: {
   reason: PackReportReason;
   comment?: string;
 }): Promise<'sent' | 'throttled' | 'failed'> => {
+  // зачем (Макеты 12.10, cards-058/059): жалоба на демо-набор не уходит в прод; `fail=report_send` — «не отправилась».
+  const devPackReport = devCommunityReportOutcome(params.packId);
+  if (devPackReport) return devPackReport;
   const now = Date.now();
   if (await isReportThrottled(now)) return 'throttled';
 
@@ -138,6 +150,8 @@ export const submitPackCommentReport = async (params: {
   reason: PackReportReason;
   comment?: string;
 }): Promise<'sent' | 'throttled' | 'failed'> => {
+  const devCommentReport = devCommunityReportOutcome(params.packId);
+  if (devCommentReport) return devCommentReport;
   const now = Date.now();
   if (await isReportThrottled(now)) return 'throttled';
 

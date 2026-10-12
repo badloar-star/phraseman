@@ -155,6 +155,52 @@ export function demoCommunityPacks(): FlashcardMarketPack[] {
   } as FlashcardMarketPack));
 }
 
+/**
+ * Демо-наборы сообщества С КАРТОЧКАМИ для режима «без сети» (dev_state `packcards=on`; координатор + Макеты 12.10, съёмка R1).
+ * зачем: экран чужого/своего опубликованного набора и ролика берёт мету из кэша каталога, а карточки — из документа набора,
+ * которого у демо нет. Здесь мета (с authorStableId, счётчиками, видео) + карточки; dev_cards_state держит их в памяти.
+ * «B2 глаголы» — первые карточки как на образце cards-v2 №15/16 (Convince, Claim, Afford, Borrow, Deserve).
+ */
+export const DEMO_VIDEO_COMMUNITY_PACK_ID = 'video_devDemoVid0';
+
+export function demoCommunityPackData(stableId: string): Readonly<{
+  packs: ReadonlyMap<string, Readonly<{ meta: Readonly<Record<string, unknown>>; cards: readonly unknown[] }>>;
+  catalog: FlashcardMarketPack[];
+}> {
+  const cardHeads: Readonly<Record<string, readonly string[]>> = { dev_demo_community_2: ['Convince', 'Claim', 'Afford', 'Borrow', 'Deserve'] };
+  const community = demoCommunityPacks().map((pack, i) => ({
+    ...pack,
+    authorStableId: `dev_demo_author_${i + 1}`,
+    addedCount: 5 + i,
+    commentsCount: 3,
+  } as FlashcardMarketPack));
+  const published = {
+    id: DEMO_PUBLISHED_PACK_ID,
+    ...demoTitles('Мой опубликованный'),
+    category: 'daily', cardCount: 10, priceShards: 0, salesCount: 0, likesCount: 12, addedCount: 5, commentsCount: 3,
+    authorName: 'Ты', authorStableId: stableId, isOfficial: false, isCommunityUgc: true, packLanguage: 'en',
+    listingStatus: 'published', level: 'B1', previewWords: ['Layover'], updatedAt: new Date(NOW_BASE).toISOString(),
+  } as unknown as FlashcardMarketPack;
+  const video = {
+    id: DEMO_VIDEO_COMMUNITY_PACK_ID,
+    ...demoTitles(DEMO_VIDEOS[0][0]),
+    category: 'daily', cardCount: DEMO_VIDEOS[0][2], priceShards: 0, salesCount: 0, likesCount: 9, addedCount: 14, commentsCount: 0,
+    authorName: 'Professor Lingman', authorStableId: 'dev_demo_author_video', isOfficial: false, isCommunityUgc: true, packLanguage: 'en',
+    listingStatus: 'published', level: 'A2', previewWords: ['Receipt'], videoId: 'devDemoVid0', videoTitle: DEMO_VIDEOS[0][0],
+    videoDurationSec: durationToSec(DEMO_VIDEOS[0][1]), updatedAt: new Date(NOW_BASE).toISOString(),
+  } as unknown as FlashcardMarketPack;
+  const packs = new Map<string, Readonly<{ meta: Readonly<Record<string, unknown>>; cards: readonly unknown[] }>>();
+  community.forEach((pack, i) => {
+    const words = cardHeads[pack.id] ?? (pack.previewWords ?? []);
+    packs.set(pack.id, { meta: pack as unknown as Record<string, unknown>, cards: demoPackCards({ packId: pack.id, title: DEMO_COMMUNITY[i][0], count: pack.cardCount, words }) }); // guard-ok: Map в памяти процесса, не Firestore
+  });
+  packs.set(published.id, { meta: published as unknown as Record<string, unknown>, cards: demoPackCards({ packId: published.id, title: 'Мой опубликованный', count: 10, words: ['Layover', 'Gate', 'Customs'] }) }); // guard-ok: Map в памяти процесса, не Firestore
+  const videoCards = demoPackCards({ packId: video.id, title: DEMO_VIDEOS[0][0], count: DEMO_VIDEOS[0][2], words: ['Receipt', 'Refund', 'Booking'] })
+    .map((card, i) => ({ ...card, videoStartSec: 12 + i * 11 }));
+  packs.set(video.id, { meta: video as unknown as Record<string, unknown>, cards: videoCards }); // guard-ok: Map в памяти процесса, не Firestore
+  return { packs, catalog: [published, ...community, video] };
+}
+
 export type CardsDemoResult = Readonly<{ applied: Record<string, string>; skipped: Record<string, string> }>;
 
 // ───────────────────────── новые переключатели (координатор 12.10) ─────────────────────────

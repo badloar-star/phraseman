@@ -3024,24 +3024,28 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-077.png",
+      "evidence_at": "2026-10-12T03:13:57.925Z",
+      "evidence_sha256": "0d1639ca03b17aa4c35a005a05eb15f7f26a84e042f7eb04d44abd6344eecb0c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[привязка не та] Кадр приложения — экран подготовки «Правда / ложь» с пилюлей «30/30» и той же панелью; образец №44 — каталог «Сообщество». Перепривязать на «Ошибка сети» в блоке «Подготовка тренировки» (cards-states.html, setupError) или нарисовать актуальный кадр в конец cards-v2 (рисую я).",
+        "[вёрстка] Значок панели: в приложении облако с перечёркнутой линией, в образце значок Wi-Fi с перечёркиванием; кнопка и текст крупнее (кнопка ≈62 против 60 px)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:15:03.741Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:13, привязан cards-v2 №44 «Каталог без сети»): панель-сообщение совпала по тексту и раскладке — плитка со значком, «Сейчас недоступно», «Проверь интернет», светлая «Попробовать снова» со стрелкой повтора; но строка о «Подготовке тренировки», а образец — каталог Сообщества."
     },
     {
       "id": "cards-078",
@@ -3061,24 +3065,28 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-078.png",
+      "evidence_at": "2026-10-12T03:14:17.804Z",
+      "evidence_sha256": "8b9e38fb12dc9948043a1b0f3728bec4eb1b7508037001a580ccfa2d72c50666",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Образец старой подачи: зелёно-фиолетовые пятна, плитка с замком, мятная кнопка «Назад», заголовок «Режим недоступен» в шапке; в приложении тёмный фон без пятен, плитка с «!», светлая «Назад», вместо заголовка шапка «Правда / ложь» с пилюлей «30/30». Образец устарел — нарисовать актуальный кадр в конец cards-v2 (рисую я), либо решение владельца по копиям «Тень».",
+        "[вёрстка, мелко] Сообщение в приложении крупнее и в три строки (в образце две)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:15:03.741Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C09"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:14, cards-states №73 «Режим недоступен» — образец старой подачи, зелёная «Аврора»): текст панели совпал — «Этот режим сейчас недоступен. Вернись и выбери другой режим.» и кнопка «Назад»."
     },
     {
       "id": "cards-079",

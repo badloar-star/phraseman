@@ -331,6 +331,20 @@ function createStoredZip(entries: readonly { readonly name: string; readonly byt
 // функция Get-SanitizedRunnerFailure найдена) — берём pwsh, если он есть, иначе встроенный powershell.exe. Проверки те же.
 const POWERSHELL_EXE = spawnSync('where', ['pwsh.exe'], { encoding: 'utf8' }).status === 0 ? 'pwsh.exe' : 'powershell.exe';
 
+/** Общий обезличенный отказ запускателя — 8 полей, как канонический конверт внутреннего запускателя. */
+function GENERIC_LAUNCHER_FAILURE(correlation: string): Record<string, unknown> {
+  return {
+    schemaVersion: 1,
+    status: 'failure',
+    failureCode: 'account_provision_lock_runtime_failed',
+    stage: 'android-account-provision-lock-campaign',
+    cleanupFailed: false,
+    cleanupFailures: [],
+    databaseRootDiagnostic: { schemaVersion: 1, category: 'unobserved' },
+    correlation,
+  };
+}
+
 function launcherFailureEnvelope(child: unknown, expectedCorrelation: string): ReturnType<typeof spawnSync> {
   const command = [
     '$tokens=$null',
@@ -339,6 +353,12 @@ function launcherFailureEnvelope(child: unknown, expectedCorrelation: string): R
     "if($errors.Count){throw 'launcher_parse_failed'}",
     "$functionAst=$ast.Find({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -ceq 'Get-SanitizedRunnerFailure'},$true)",
     "if($null -eq $functionAst){throw 'launcher_failure_reducer_missing'}",
+    // зачем (Авторизация 12.10, вердикт по RED_TESTS): редьюсер 8-польного конверта опирается на Assert-JsonIntegerValue и два списка
+    // скрипта ($script:CleanupFailureOrder, $script:DatabaseRootDiagnosticCategories). Без них любой вход уходил в общий отказ — в том числе
+    // настоящий конверт внутреннего запускателя, и принятие правильного отказа нельзя было проверить. Подгружаем ровно эти три определения.
+    "$helpers=@($ast.FindAll({param($node) ($node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -ceq 'Assert-JsonIntegerValue') -or ($node -is [Management.Automation.Language.AssignmentStatementAst] -and @('$script:CleanupFailureOrder','$script:DatabaseRootDiagnosticCategories') -ccontains $node.Left.Extent.Text)},$true))",
+    "if($helpers.Count -ne 3){throw 'launcher_failure_reducer_helpers_missing'}",
+    'foreach($helper in $helpers){Invoke-Expression $helper.Extent.Text}',
     'Invoke-Expression $functionAst.Extent.Text',
     '$raw=[Text.UTF8Encoding]::new($false,$true).GetString([Convert]::FromBase64String($env:ACCOUNT_LOCK_CHILD_BASE64))',
     '$child=$raw | ConvertFrom-Json',
@@ -1974,33 +1994,17 @@ describe('Android Account V2 provision-lock entrypoint and host runner', () => {
     const correlation = 'c'.repeat(64);
     const result = launcherFailureEnvelope(child, correlation);
     expect(result.status).toBe(0);
-    expect(JSON.parse(String(result.stdout))).toEqual({
-      schemaVersion: 1,
-      status: 'failure',
-      failureCode: 'account_provision_lock_runtime_failed',
-      stage: 'android-account-provision-lock-campaign',
-      cleanupFailed: false,
-      correlation,
-    });
+    // зачем (Авторизация 12.10): договор конверта — 8 полей, как пишет внутренний запускатель (run-proof.ps1, FailureEnvelope);
+    // общий отказ несёт пустой список сбоев уборки и диагностику «не наблюдалась». Прежнее ожидание из 6 полей устарело.
+    expect(JSON.parse(String(result.stdout))).toEqual(GENERIC_LAUNCHER_FAILURE(correlation));
     expect(String(result.stdout)).not.toMatch(/secret|bearer-token|not-json/u);
   });
 
   test('launcher accepts one canonical allowlisted child failure and has a failure-only receipt branch', () => {
     const correlation = 'c'.repeat(64);
+    // зачем (Авторизация 12.10, вердикт RED_TESTS): канонический конверт — 8 полей в порядке внутреннего запускателя (run-proof.ps1).
+    // Он принимается без изменений; конверт старой схемы (6 полей, без сбоев уборки и диагностики) — уже не канонический → общий отказ.
     const envelope = {
-      schemaVersion: 1,
-      status: 'failure',
-      failureCode: 'primary_launch_failed',
-      stage: 'android-account-provision-lock-campaign',
-      cleanupFailed: true,
-      correlation,
-    };
-    const result = launcherFailureEnvelope({
-      exitCode: 1, stdout: '', stderr: `${JSON.stringify(envelope)}\n`,
-    }, correlation);
-    expect(result.status).toBe(0);
-    expect(JSON.parse(String(result.stdout))).toEqual(envelope);
-    const expandedEnvelope = {
       schemaVersion: 1,
       status: 'failure',
       failureCode: 'account_provision_lock_database_root_invalid',
@@ -2010,20 +2014,32 @@ describe('Android Account V2 provision-lock entrypoint and host runner', () => {
       databaseRootDiagnostic: { schemaVersion: 1, category: 'file_uri' },
       correlation,
     };
-    const mismatch = launcherFailureEnvelope({
-      exitCode: 1, stdout: '', stderr: `${JSON.stringify(expandedEnvelope)}\n`,
+    const result = launcherFailureEnvelope({
+      exitCode: 1, stdout: '', stderr: `${JSON.stringify(envelope)}\n`,
     }, correlation);
-    expect(mismatch.status).toBe(0);
-    expect(JSON.parse(String(mismatch.stdout))).toEqual({
+    expect(result.status).toBe(0);
+    expect(JSON.parse(String(result.stdout))).toEqual(envelope);
+    const legacySixFieldEnvelope = {
       schemaVersion: 1,
       status: 'failure',
-      failureCode: 'account_provision_lock_runtime_failed',
+      failureCode: 'primary_launch_failed',
       stage: 'android-account-provision-lock-campaign',
-      cleanupFailed: false,
+      cleanupFailed: true,
       correlation,
-    });
+    };
+    const legacy = launcherFailureEnvelope({
+      exitCode: 1, stdout: '', stderr: `${JSON.stringify(legacySixFieldEnvelope)}\n`,
+    }, correlation);
+    expect(legacy.status).toBe(0);
+    expect(JSON.parse(String(legacy.stdout))).toEqual(GENERIC_LAUNCHER_FAILURE(correlation));
+    // диагностика пути базы допустима только у отказа database_root_invalid — у другого кода конверт не канонический
+    const diagnosticOnOtherCode = launcherFailureEnvelope({
+      exitCode: 1, stdout: '', stderr: `${JSON.stringify({ ...envelope, failureCode: 'primary_launch_failed' })}\n`,
+    }, correlation);
+    expect(JSON.parse(String(diagnosticOnOtherCode.stdout))).toEqual(GENERIC_LAUNCHER_FAILURE(correlation));
     const launcher = source(LAUNCHER);
-    expect(launcher).not.toMatch(/cleanupFailures|databaseRootDiagnostic/u);
+    expect(launcher).toMatch(/cleanupFailures/u);
+    expect(launcher).toMatch(/databaseRootDiagnostic/u);
     expect(launcher).toContain('account-provision-lock-failure-$receiptNonce.json');
     expect(launcher).toContain("owner = 'account-provision-lock-failure-v1'");
     expect(launcher.indexOf('Get-SanitizedRunnerFailure $child'))

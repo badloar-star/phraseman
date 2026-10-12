@@ -27,9 +27,9 @@ add('spire-003', [NEXT_TOUR, NEXT_TOUR], '', preview('tour'), note='тур, ст
 
 # ── Главный экран
 add(['spire-004'], [], '', preview('room'), note='башня, этаж 7 (превью)')
-add('spire-005', ['scroll:down'], '', preview('room'), note='ниже башни: друзья и пьедестал')
+add('spire-005', ['see:#spire-all-members'], '', preview('room'), note='ниже башни: друзья и пьедестал (see: подкручивает страницу, scroll:down крутил окно башни)')
 add('spire-gap-009', [], '', preview('empty'), note='комнаты ещё нет, «Подняться» зависит от данных превью')
-add('spire-gap-010', ['scroll:down'], '', preview('empty'), note='пьедестал и «Все участники» без комнаты — по превью «empty», прокрутка вниз')
+add('spire-gap-010', ['see:#spire-all-members'], '', preview('empty'), note='пьедестал и «Все участники» без комнаты — по превью «empty», прокрутка вниз')
 add('spire-gap-007', [], '', preview('block_offline'), note='нет сети — задания недели не скачались')
 add('spire-gap-008', [], '', preview('block_missing'), note='задания недели ещё готовятся')
 add('spire-gap-011', [], '', preview('locked'), note='«Шпиль откроется чуть позже»')

@@ -997,6 +997,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Entre Mila y Zoe se está gestando un conflicto silencioso. Separa los hechos de las suposiciones, da la palabra a cada una y formula una solución sin perdedores."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Es tu primer día en el equipo — preséntate a Marina, cuéntale en qué trabajas y hazle una pregunta de trabajo. Marina valora lo concreto, así que ve directo al grano."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pídele a Oleg el archivo que necesitas — dile para qué lo quieres y para cuándo. A Oleg le gusta el orden, y cuanto más clara la petición, más rápida la respuesta."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Confirma la llamada con Sam — di el día, la hora y la zona horaria, y no olvides el enlace. Sam es tranquilo, pero sin una hora exacta la llamada no ocurrirá."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Llegas tarde a una reunión con Marina. Avisa enseguida, discúlpate, di cuándo llegarás y pregunta si empiezan sin ti o te esperan. Marina perdonará el retraso, no el silencio."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg te envió unas instrucciones. Dale las gracias, aclara el paso que te genera dudas y confirma qué harás después — a Oleg le gusta que los acuerdos queden por escrito."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam y Marina te encargaron una tarea. Aclara qué resultado esperan, para cuándo y en qué formato, y luego repite el plan con tus palabras — así hay menos riesgo de rehacerlo."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "No vas a llegar al plazo. Avisa a Marina con tiempo, cuéntale en qué punto estás y qué te frena, da una fecha realista y ofrece un resultado intermedio."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg espera una actualización. Di brevemente qué está hecho, qué sigue y qué te bloquea, y pide la ayuda que necesitas — sin rodeos, Oleg lo agradecerá."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Necesitas acceso a un sistema de trabajo. Explícales a Sam y Marina para qué lo necesitas, qué nivel y para cuándo, y averigua a quién más escribir."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tu primer día de trabajo ha terminado. Escríbele a Marina qué te resultó útil, qué ya lograste y confirma la tarea de mañana — breve y al grano, como a ella le gusta."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "La discusión del equipo se ha alargado. Haz un resumen, señala lo que sigue pendiente y acuerda con Oleg y Sam el siguiente paso, el responsable y la fecha."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ha surgido un problema en el trabajo. Explícale a Sam en qué consiste y a qué afecta, propón dos soluciones y ayuda a elegir — Sam no se altera, pero tampoco deja que te desvíes."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tienes que reunir a Marina y Oleg en una reunión. Propón tres horarios, ten en cuenta las zonas horarias, resuelve el choque y envía la confirmación."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg quiere el resultado antes de lo que es realista. Reconoce la urgencia, muestra el volumen y los riesgos de las prisas y propón hacerlo por etapas — un plazo justo para todos."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam te pidió tu opinión sobre su trabajo. Empieza por un punto fuerte, analiza una parte concreta, propón una mejora y pregúntale qué piensa — una crítica que ayuda en vez de herir."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "No hay recursos para todo. Repasa las opciones con Marina y decide con ella qué es prioritario y qué se aplaza — Marina quiere un orden claro, no un «lo haremos todo»."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "La decisión de Oleg y Sam te parece arriesgada. Reconoce su objetivo, da tus argumentos y propón una alternativa — se puede discrepar y seguir en el mismo bando."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Entre equipos se está gestando un riesgo. Reúne las posturas, separa la responsabilidad de la búsqueda de culpables y acuerda con Sam las medidas de protección, los responsables y la fecha de revisión."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "En un hilo de trabajo hay una negociación difícil con Marina y Oleg. Fija los hechos, encuentra un marco de compromiso, responde a las objeciones y cierra el acuerdo — con acciones y un criterio de éxito."
       }
     },
     "pt-BR": {
@@ -1075,6 +1151,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Um conflito silencioso está surgindo entre a Mila e a Zoe. Separe fatos de suposições, dê a palavra a cada uma e formule uma solução sem perdedores."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "É seu primeiro dia na equipe — apresente-se à Marina, conte no que você está trabalhando e faça uma pergunta de trabalho. A Marina valoriza objetividade, então vá direto ao ponto."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Peça ao Oleg o arquivo de que você precisa — diga para que serve e até quando. O Oleg gosta de ordem, e quanto mais claro o pedido, mais rápida a resposta."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Confirme a chamada com o Sam — diga o dia, a hora e o fuso horário, e não esqueça o link. O Sam é tranquilo, mas sem um horário exato a chamada não acontece."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você vai se atrasar para a reunião com a Marina. Avise logo, peça desculpas, diga quando chega e pergunte se começam sem você ou esperam. A Marina perdoa o atraso, não o silêncio."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Oleg mandou as instruções. Agradeça, tire a dúvida sobre o passo que não ficou claro e confirme o que você vai fazer em seguida — o Oleg gosta de combinados registrados."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Sam e a Marina te passaram uma tarefa. Esclareça qual resultado eles esperam, para quando e em que formato, e depois repita o plano com suas palavras — assim é menor a chance de refazer."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Não vai dar para cumprir o prazo. Avise a Marina com antecedência, conte em que ponto você está e o que atrapalha, dê uma data realista e ofereça um resultado parcial."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Oleg está esperando uma atualização. Diga rapidamente o que já foi feito, o que vem a seguir e o que está travando, e peça a ajuda necessária — sem rodeios, o Oleg vai gostar."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você precisa de acesso a um sistema de trabalho. Explique ao Sam e à Marina para que precisa, qual nível e até quando, e descubra para quem mais escrever."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O primeiro dia de trabalho acabou. Escreva para a Marina o que foi útil, o que você já conseguiu e confirme a tarefa de amanhã — curto e direto, do jeito que ela gosta."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A discussão da equipe se arrastou. Faça um resumo, aponte o que ainda está em aberto e combine com o Oleg e o Sam o próximo passo, o responsável e a data."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Surgiu um problema no trabalho. Explique ao Sam o que é e o que ele afeta, proponha duas soluções e ajude a escolher — o Sam não entra em pânico, mas também não deixa a conversa desviar."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você precisa reunir a Marina e o Oleg numa reunião. Sugira três horários, considere os fusos, resolva o conflito de agenda e envie a confirmação."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Oleg quer o resultado antes do que é realista. Reconheça a urgência, mostre o volume e os riscos da pressa e proponha fazer por etapas — um prazo justo para todos."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Sam pediu um retorno sobre o trabalho dele. Comece por um ponto forte, analise um trecho específico, sugira uma melhoria e pergunte a opinião dele — um retorno que ajuda em vez de magoar."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Não há recursos para tudo. Avalie as opções com a Marina e decidam o que é mais importante e o que fica para depois — a Marina quer uma ordem clara, não um “vamos fazer tudo”."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A decisão do Oleg e do Sam parece arriscada para você. Reconheça o objetivo dela, apresente seus argumentos e proponha uma alternativa — dá para discordar e continuar do mesmo lado."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Um risco está surgindo entre as equipes. Reúna as posições, separe responsabilidade de busca por culpados e combine com o Sam as proteções, os responsáveis e a data de revisão."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Numa conversa de trabalho rola uma negociação difícil com a Marina e o Oleg. Registre os fatos, encontre uma base de acordo, responda às objeções e feche o resultado — com ações e um critério de sucesso."
       }
     },
     "vi": {
@@ -1153,6 +1305,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Giữa Mila và Zoe đang âm ỉ một mâu thuẫn. Hãy tách sự thật khỏi phỏng đoán, để mỗi người được nói và đưa ra giải pháp không ai phải thua."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hôm nay là ngày đầu bạn vào nhóm — hãy giới thiệu bản thân với Marina, nói bạn đang làm gì và hỏi một câu về công việc. Marina thích sự cụ thể, nên hãy vào thẳng vấn đề."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Xin Oleg tệp bạn cần — nói rõ bạn cần nó để làm gì và hạn chót là khi nào. Oleg thích sự ngăn nắp, yêu cầu càng rõ thì trả lời càng nhanh."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Xác nhận cuộc gọi với Sam — nêu ngày, giờ và múi giờ, đừng quên đường link. Sam rất điềm tĩnh, nhưng không có giờ chính xác thì cuộc gọi sẽ không diễn ra."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn đến muộn buổi họp với Marina. Báo ngay, xin lỗi, nói khi nào bạn tới và hỏi nên bắt đầu trước hay chờ bạn. Marina sẽ bỏ qua chuyện muộn, nhưng không bỏ qua sự im lặng."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg đã gửi hướng dẫn. Hãy cảm ơn, hỏi rõ một bước bạn còn thắc mắc và xác nhận việc bạn sẽ làm tiếp — Oleg thích mọi thỏa thuận được ghi lại rõ ràng."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam và Marina giao cho bạn một việc. Hãy hỏi rõ cần kết quả gì, hạn khi nào và ở dạng nào, rồi nhắc lại kế hoạch bằng lời của bạn — như vậy ít phải làm lại hơn."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn sẽ không kịp hạn chót. Hãy báo trước cho Marina, kể bạn đang ở bước nào và điều gì cản trở, đưa ra hạn mới thực tế và đề xuất một kết quả tạm thời."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg đang chờ cập nhật tiến độ. Nói ngắn gọn việc đã xong, việc tiếp theo và điều đang vướng, rồi nhờ trợ giúp cần thiết — gọn gàng, Oleg sẽ đánh giá cao."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn cần quyền truy cập vào một hệ thống công việc. Giải thích với Sam và Marina vì sao cần, mức quyền nào và hạn khi nào, rồi hỏi xem còn phải nhắn cho ai."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ngày làm việc đầu tiên đã qua. Nhắn cho Marina điều gì hữu ích, bạn đã làm được gì và xác nhận việc của ngày mai — ngắn gọn, đúng trọng tâm như cô ấy thích."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Cuộc thảo luận của nhóm đã kéo dài. Hãy tóm tắt, nêu điều chưa giải quyết và thống nhất với Oleg và Sam bước tiếp theo, người phụ trách và ngày hoàn thành."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Công việc vừa phát sinh một vấn đề. Giải thích cho Sam đó là gì và ảnh hưởng đến đâu, đề xuất hai cách xử lý và giúp chọn một — Sam không hoảng nhưng cũng không để bạn lạc đề."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn cần sắp xếp một buổi họp với Marina và Oleg. Đề xuất ba khung giờ, tính đến múi giờ, giải quyết chỗ trùng lịch và gửi xác nhận giờ đã chọn."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg muốn có kết quả sớm hơn mức thực tế. Hãy thừa nhận sự gấp gáp, chỉ ra khối lượng và rủi ro của việc làm vội, rồi đề xuất làm theo từng giai đoạn — một thời hạn công bằng cho mọi người."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam nhờ bạn nhận xét công việc của anh ấy. Hãy mở đầu bằng điểm mạnh, phân tích một phần cụ thể, đề xuất cải thiện và hỏi ý kiến anh ấy — lời nhận xét giúp ích chứ không làm tổn thương."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nguồn lực không đủ cho mọi việc. Cùng Marina xem xét các phương án, quyết định việc gì quan trọng hơn và việc gì hoãn lại — Marina cần một thứ tự rõ ràng, không phải “làm hết”."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn thấy quyết định của Oleg và Sam có rủi ro. Hãy công nhận mục tiêu của nó, đưa ra lập luận và đề xuất phương án khác — có thể phản đối mà vẫn đứng cùng một phía."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Một rủi ro đang hình thành giữa các nhóm. Tập hợp các quan điểm, tách trách nhiệm khỏi việc tìm người có lỗi và thống nhất với Sam biện pháp phòng ngừa, người phụ trách và ngày kiểm tra."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trong chuỗi tin nhắn công việc đang diễn ra một cuộc đàm phán khó với Marina và Oleg. Hãy chốt các sự thật, tìm khung thỏa hiệp, xử lý phản đối và chốt kết quả — kèm hành động và tiêu chí thành công."
       }
     },
     "id": {
@@ -1231,6 +1459,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Ada konflik diam-diam yang memanas antara Mila dan Zoe. Pisahkan fakta dari dugaan, beri kesempatan bicara pada masing-masing, dan rumuskan solusi tanpa pihak yang kalah."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ini hari pertamamu di tim — perkenalkan diri ke Marina, ceritakan apa yang sedang kamu kerjakan, dan ajukan satu pertanyaan kerja. Marina suka hal yang konkret, jadi langsung saja ke intinya."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Minta file yang kamu butuhkan ke Oleg — jelaskan untuk apa dan kapan batasnya. Oleg suka keteraturan; makin jelas permintaannya, makin cepat jawabannya."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Konfirmasi panggilan dengan Sam — sebutkan hari, jam, dan zona waktunya, dan jangan lupa tautannya. Sam santai, tapi tanpa jam yang pasti panggilannya tidak akan terjadi."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu terlambat ke rapat dengan Marina. Kabari segera, minta maaf, bilang kapan kamu sampai, dan tanyakan mau mulai tanpamu atau menunggu. Marina memaafkan keterlambatan, tapi bukan diam."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg mengirim instruksi. Ucapkan terima kasih, tanyakan satu langkah yang masih membingungkan, dan pastikan apa yang akan kamu lakukan berikutnya — Oleg suka kesepakatan yang tercatat."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam dan Marina memberimu tugas. Pastikan hasil yang diharapkan, tenggatnya, dan formatnya, lalu ulangi rencananya dengan kata-katamu sendiri — supaya tidak perlu mengulang pekerjaan."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tenggatnya tidak akan terkejar. Kabari Marina lebih awal, ceritakan posisimu sekarang dan apa hambatannya, sebutkan tenggat yang realistis, dan tawarkan hasil sementara."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg menunggu kabar progres. Sampaikan singkat apa yang sudah selesai, apa berikutnya, dan apa yang menghambat, lalu minta bantuan yang perlu — tanpa bertele-tele, Oleg akan menghargainya."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu butuh akses ke sistem kerja. Jelaskan ke Sam dan Marina untuk apa, tingkat akses apa, dan kapan dibutuhkan, lalu cari tahu siapa lagi yang perlu dihubungi."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hari kerja pertama sudah lewat. Tulis ke Marina apa yang berguna, apa yang sudah kamu capai, dan pastikan tugas besok — singkat dan langsung ke inti, seperti yang dia suka."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Diskusi tim sudah berlarut-larut. Buat ringkasan, sebutkan yang belum diputuskan, dan sepakati dengan Oleg dan Sam langkah berikutnya, penanggung jawab, dan tanggalnya."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Muncul masalah di pekerjaan. Jelaskan ke Sam apa masalahnya dan apa dampaknya, tawarkan dua solusi, dan bantu memilih — Sam tidak panik, tapi juga tidak membiarkan obrolan melenceng."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu perlu mengumpulkan Marina dan Oleg dalam satu rapat. Usulkan tiga slot waktu, perhatikan zona waktu, selesaikan bentrok jadwal, dan kirim konfirmasinya."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg ingin hasilnya lebih cepat dari yang realistis. Akui urgensinya, tunjukkan beban kerja dan risiko terburu-buru, lalu usulkan pengerjaan bertahap — tenggat yang adil untuk semua."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam meminta masukan tentang pekerjaannya. Mulailah dari kelebihannya, bahas satu bagian tertentu, usulkan perbaikan, dan tanyakan pendapatnya — masukan yang membantu, bukan menyakiti."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sumber daya tidak cukup untuk semuanya. Bahas pilihan bersama Marina, putuskan mana yang lebih penting dan mana yang ditunda — Marina ingin urutan yang jelas, bukan “kita kerjakan semua”."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Keputusan Oleg dan Sam terasa berisiko bagimu. Akui tujuannya, sampaikan argumenmu, dan usulkan alternatif — kamu bisa tidak setuju dan tetap berada di pihak yang sama."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada risiko yang mulai muncul antartim. Kumpulkan posisi masing-masing, pisahkan tanggung jawab dari mencari kambing hitam, dan sepakati dengan Sam langkah pengaman, penanggung jawab, dan tanggal pemeriksaan."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Di utas kerja sedang berlangsung negosiasi alot dengan Marina dan Oleg. Catat faktanya, temukan kerangka kompromi, tangani keberatan, dan kunci hasilnya — lengkap dengan tindakan dan ukuran keberhasilan."
       }
     },
     "tr": {
@@ -1309,6 +1613,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Mila ile Zoe arasında sessiz bir çatışma büyüyor. Gerçekleri varsayımlardan ayır, ikisine de söz ver ve kaybedeni olmayan bir çözüm bul."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ekipte ilk günün — kendini Marina'ya tanıt, ne üzerinde çalıştığını söyle ve işle ilgili bir soru sor. Marina somutluğu sever, o yüzden doğrudan konuya gir."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg'den ihtiyacın olan dosyayı iste — ne için ve ne zamana kadar gerektiğini söyle. Oleg düzeni sever; istek ne kadar netse yanıt o kadar hızlı gelir."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam ile görüşmeyi teyit et — günü, saati ve saat dilimini söyle, bağlantıyı da unutma. Sam sakin biridir ama kesin bir saat olmadan görüşme olmaz."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Marina ile toplantıya geç kalıyorsun. Hemen haber ver, özür dile, ne zaman orada olacağını söyle ve sensiz mi başlasınlar, beklesinler mi sor. Marina gecikmeyi affeder, sessizliği değil."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg talimatları gönderdi. Teşekkür et, kafana takılan adımı netleştir ve sırada ne yapacağını teyit et — Oleg anlaşmaların kayda geçmesini sever."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam ve Marina sana bir iş verdi. Nasıl bir sonuç beklendiğini, ne zamana kadar ve hangi biçimde olacağını netleştir, sonra planı kendi cümlelerinle tekrarla — böylece baştan yapma ihtimali azalır."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Teslim tarihine yetişemeyeceksin. Marina'ya önceden haber ver, şu an nerede olduğunu ve neyin engel olduğunu anlat, gerçekçi bir tarih ver ve ara bir sonuç öner."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg işin durumunu bekliyor. Neyin bittiğini, sırada ne olduğunu ve neyin engel olduğunu kısaca söyle, gereken yardımı iste — lafı uzatmadan, Oleg bunu takdir eder."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bir iş sistemine erişime ihtiyacın var. Sam ve Marina'ya neden gerektiğini, hangi seviyede ve ne zamana kadar lazım olduğunu açıkla, başka kime yazman gerektiğini öğren."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "İlk iş günün bitti. Marina'ya neyin faydalı olduğunu, neler başardığını yaz ve yarınki işi netleştir — onun sevdiği gibi kısa ve öz."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ekip tartışması uzadı. Özetle, henüz çözülmeyeni belirt ve Oleg ile Sam'le bir sonraki adımı, sorumluyu ve tarihi kararlaştır."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "İşte bir sorun çıktı. Sam'e sorunun ne olduğunu ve neyi etkilediğini anlat, iki çözüm öner ve seçmeye yardım et — Sam paniğe kapılmaz ama konudan sapmana da izin vermez."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Marina ve Oleg'i bir toplantıda bir araya getirmen gerek. Üç zaman aralığı öner, saat dilimlerini hesaba kat, çakışmayı çöz ve seçilen saatin teyidini gönder."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg sonucu gerçekçi olandan daha erken istiyor. Aciliyeti kabul et, iş yükünü ve acele etmenin risklerini göster, aşama aşama yapmayı öner — herkes için adil bir süre."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam işi hakkında geri bildirim istedi. Güçlü bir yanla başla, belirli bir bölümü ele al, bir iyileştirme öner ve onun fikrini sor — kırıcı değil, yardımcı bir geri bildirim."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Her şeye yetecek kaynak yok. Marina ile seçenekleri gözden geçirin, neyin daha önemli olduğuna ve neyin erteleneceğine karar verin — Marina net bir sıra ister, “hepsini yaparız” değil."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg ve Sam'in kararı sana riskli görünüyor. Amacını kabul et, gerekçelerini sun ve bir alternatif öner — itiraz edip yine de aynı tarafta kalmak mümkün."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ekipler arasında bir risk büyüyor. Görüşleri topla, sorumluluğu suçlu aramaktan ayır ve Sam'le önlemleri, sorumluları ve kontrol tarihini kararlaştır."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bir iş yazışmasında Marina ve Oleg ile zorlu bir pazarlık sürüyor. Gerçekleri netleştir, bir uzlaşma çerçevesi bul, itirazları karşıla ve sonucu sabitle — eylemler ve başarı ölçütüyle birlikte."
       }
     },
     "pl": {
@@ -1387,6 +1767,82 @@
       "social_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Między Milą a Zoe narasta cichy konflikt. Oddziel fakty od domysłów, daj głos każdej z nich i sformułuj rozwiązanie bez przegranych."
+      },
+      "work_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "To twój pierwszy dzień w zespole — przedstaw się Marinie, powiedz, czym się zajmujesz, i zadaj pytanie o pracę. Marina ceni konkrety, więc od razu przejdź do rzeczy."
+      },
+      "work_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Poproś Olega o potrzebny plik — powiedz, do czego go potrzebujesz i na kiedy. Oleg lubi porządek, a im dokładniejsza prośba, tym szybsza odpowiedź."
+      },
+      "work_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Potwierdź z Samem rozmowę — podaj dzień, godzinę i strefę czasową i nie zapomnij o linku. Sam jest spokojny, ale bez dokładnej godziny rozmowa się nie odbędzie."
+      },
+      "work_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Spóźniasz się na spotkanie z Mariną. Uprzedź od razu, przeproś, powiedz, kiedy będziesz, i zapytaj, czy zacząć bez ciebie, czy poczekać. Marina wybaczy spóźnienie, ale nie milczenie."
+      },
+      "work_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg przysłał instrukcję. Podziękuj, dopytaj o jeden niejasny krok i potwierdź, co robisz dalej — Oleg lubi, gdy ustalenia są zapisane."
+      },
+      "work_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam i Marina dali ci zadanie. Dopytaj, jakiego wyniku oczekują, na kiedy i w jakiej formie, a potem powtórz plan własnymi słowami — będzie mniej poprawiania."
+      },
+      "work_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nie zdążysz w terminie. Uprzedź Marinę zawczasu, powiedz, na jakim etapie jesteś i co przeszkadza, podaj realny termin i zaproponuj wynik pośredni."
+      },
+      "work_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg czeka na status. Krótko powiedz, co zrobione, co dalej i co blokuje, i poproś o potrzebną pomoc — bez zbędnych słów, Oleg to doceni."
+      },
+      "work_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Potrzebujesz dostępu do systemu w pracy. Wyjaśnij Samowi i Marinie, po co, jaki poziom i na kiedy, i dowiedz się, do kogo jeszcze napisać."
+      },
+      "work_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pierwszy dzień w pracy za tobą. Napisz Marinie, co było przydatne, co już udało się osiągnąć, i ustal zadanie na jutro — krótko i konkretnie, jak lubi."
+      },
+      "work_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Dyskusja w zespole się przeciągnęła. Podsumuj, wskaż, co jeszcze nierozstrzygnięte, i ustal z Olegiem i Samem następny krok, osobę odpowiedzialną i datę."
+      },
+      "work_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "W pracy wyskoczył problem. Wyjaśnij Samowi, na czym polega i na co wpływa, zaproponuj dwa rozwiązania i pomóż wybrać — Sam nie panikuje, ale nie da zboczyć z tematu."
+      },
+      "work_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trzeba zebrać Marinę i Olega na spotkanie. Zaproponuj trzy terminy, uwzględnij strefy czasowe, rozwiąż kolizję i wyślij potwierdzenie wybranej godziny."
+      },
+      "work_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oleg chce wyniku szybciej, niż to realne. Przyznaj, że sprawa jest pilna, pokaż zakres i ryzyko pośpiechu i zaproponuj pracę etapami — termin uczciwy dla wszystkich."
+      },
+      "work_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sam poprosił o opinię o swojej pracy. Zacznij od mocnej strony, omów konkretny fragment, zaproponuj poprawkę i zapytaj o jego zdanie — opinia, która pomaga, a nie rani."
+      },
+      "work_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zasobów nie starczy na wszystko. Przejrzyjcie z Mariną opcje, zdecydujcie, co ważniejsze, a co odkładacie — Marina oczekuje jasnej kolejności, a nie „zrobimy wszystko”."
+      },
+      "work_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Decyzja Olega i Sama wydaje ci się ryzykowna. Uznaj jej cel, przedstaw argumenty i zaproponuj alternatywę — można się nie zgadzać i nadal grać do jednej bramki."
+      },
+      "work_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Między zespołami narasta ryzyko. Zbierz stanowiska, oddziel odpowiedzialność od szukania winnych i ustal z Samem zabezpieczenia, osoby odpowiedzialne i datę przeglądu."
+      },
+      "work_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "W wątku służbowym toczą się trudne negocjacje z Mariną i Olegiem. Ustal fakty, znajdź ramy kompromisu, odpowiedz na zastrzeżenia i zamknij ustalenia — z działaniami i miarą sukcesu."
       }
     }
   }

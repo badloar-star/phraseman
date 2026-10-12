@@ -7,6 +7,7 @@
 | Функция | Что даёт | Коммиты (с прошлой выкладки) | Нужно «да» |
 |---|---|---|---|
 | `dialogueV2TextTurn` | «Почему так» — разбор наставником, не «я», конкретная фраза в кавычках языка; сервер больше не принимает от модели «диалог окончен» до последней цели (dialogs-038) | b7c1fd1e8 (acceptDialogueEnded), 6e89ed5cc (промпт). Группа Диалогов V2 выложена 11.10 10:2x–10:47 (реестр п.46), оба коммита позже — в проде их нет. Встроенный выпуск Диалогов не менялся. | общее «да» на выкладку |
+| `dialogueV2SessionComplete` | ничего видимого: в журнал пишется настоящая причина «Итог пока недоступен» (dialogs-041 — модель не успела за 20 с / ошибка провайдера / протухший контекст); по ней чиним итог | 468ceebc0 (только лог). Выложена 11.10 с группой Диалогов V2 — других изменений после нет | общее «да» |
 | `reEngagePushCron` | пуши «серия ждёт / давно не был» на английском (при английском интерфейсе) | 7d9064944 и, если не выкладывались, 2a277357e — таблица ниже | общее «да» |
 | `premiumExpiryReminderCron` | напоминание «Plus скоро продлится / закончится» на английском | 7d9064944 и, если не выкладывались, ещё 6 изменений — таблица ниже | **ОТДЕЛЬНОЕ «да» владельца** (напоминание о платеже) |
 
@@ -30,6 +31,15 @@ gcloud functions describe premiumExpiryReminderCron --gen2 --region us-central1 
 
 Другие серверные коммиты с 11.10 (Шпиль b9f716cc9/70bffbcad, озвучка карточек, письма) — в других функциях, этой выкладкой
 не уезжают. Брифинги Диалогов (shared/generated) — клиент, серверу не нужны.
+
+### `dialogueV2SessionComplete` (прошлая выкладка 11.10 ~10:47, группа Диалогов V2)
+
+| Коммит | Дата | Что меняется для человека | Риск |
+|---|---|---|---|
+| 468ceebc0 | 12.10 17:10 | ничего: при отказе модели в итоге диалога в журнал пишется причина `[DIALOGUE-V2-COMPLETE] provider_failed {reason, elapsedMs, model, httpStatus, turns}` — без текста реплик и ключа | нулевой: тот же отказ, только с причиной |
+
+Проверка после: `firebase functions:log --only dialogueV2SessionComplete -n 50 --project phraseman-ea0b3` — при «Итог пока недоступен»
+должна появиться строка `provider_failed` с `reason`.
 
 ### `reEngagePushCron` (дата прошлой выкладки — по команде выше)
 
@@ -61,7 +71,7 @@ gcloud functions describe premiumExpiryReminderCron --gen2 --region us-central1 
 последнего коммита во временной папке. Два файла окружения `functions/.env` и `functions/.env.phraseman-ea0b3` НЕ в git,
 а deploy их подхватывает: срез их КОПИРУЕТ (без чтения), иначе функции уйдут без переменных окружения.
 
-## Команда (Git Bash, одна строка) — `dialogueV2TextTurn` + `reEngagePushCron`
+## Команда (Git Bash, одна строка) — `dialogueV2TextTurn` + `dialogueV2SessionComplete` + `reEngagePushCron`
 
 > **Проверено 12.10 ~04:05 (Ядро):** срез коммита 5d62e7e38, выгрузка `git -c core.autocrlf=false archive`, переходы на
 > node_modules, `PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1` + полный id → `npm --prefix functions run build` **rc=0 за 35 с**:
@@ -69,7 +79,7 @@ gcloud functions describe premiumExpiryReminderCron --gen2 --region us-central1 
 > Выкладка не запускалась. Две первые проверки нашли и закрыли две поломки пути: нет .git в срезе и CRLF при выгрузке.
 
 ```bash
-R=/c/appsprojects/phraseman; FULL=$(git -C $R rev-parse HEAD); D=/c/Temp/phraseman_deploy/${FULL:0:9}; [ ! -e "$D" ] && mkdir -p "$D" && git -C $R -c core.autocrlf=false archive $FULL | tar -x -C "$D" && cp $R/functions/.env $R/functions/.env.phraseman-ea0b3 "$D/functions/" && W=$(cygpath -w "$D") && powershell -NoProfile -c "New-Item -ItemType Junction -Path '$W\functions\node_modules' -Target 'C:\appsprojects\phraseman\functions\node_modules' | Out-Null; New-Item -ItemType Junction -Path '$W\node_modules' -Target 'C:\appsprojects\phraseman\node_modules' | Out-Null" && cd "$D" && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && npx tsx scripts/dialogue_v2_embedded_release.ts --check && firebase deploy --only functions:dialogueV2TextTurn,functions:reEngagePushCron --project phraseman-ea0b3
+R=/c/appsprojects/phraseman; FULL=$(git -C $R rev-parse HEAD); D=/c/Temp/phraseman_deploy/${FULL:0:9}; [ ! -e "$D" ] && mkdir -p "$D" && git -C $R -c core.autocrlf=false archive $FULL | tar -x -C "$D" && cp $R/functions/.env $R/functions/.env.phraseman-ea0b3 "$D/functions/" && W=$(cygpath -w "$D") && powershell -NoProfile -c "New-Item -ItemType Junction -Path '$W\functions\node_modules' -Target 'C:\appsprojects\phraseman\functions\node_modules' | Out-Null; New-Item -ItemType Junction -Path '$W\node_modules' -Target 'C:\appsprojects\phraseman\node_modules' | Out-Null" && cd "$D" && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && npx tsx scripts/dialogue_v2_embedded_release.ts --check && firebase deploy --only functions:dialogueV2TextTurn,functions:dialogueV2SessionComplete,functions:reEngagePushCron --project phraseman-ea0b3
 ```
 
 Сборку (`npm --prefix functions run build`) firebase запускает сам (predeploy). В срезе нет `.git`, поэтому сборка

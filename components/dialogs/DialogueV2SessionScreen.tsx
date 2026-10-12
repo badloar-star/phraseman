@@ -561,10 +561,10 @@ export function DialogueV2SessionScreen({
                   <View
                     pointerEvents="none"
                     testID="dialogue-v2-voice-plus-badge"
-                    // зачем (координатор 13.10, D145/D139: обычный текст — только 16/13; храповик размеров был красным из-за 10): надпись 13, бейдж подрос с 17 до 20 по высоте и до 42 по ширине, чтобы 13 влезало без ужатия; расхождение с макетом (10 px) вынесено координатору
-                    style={{ position: 'absolute', right: -6, bottom: -4, minWidth: 42, height: 20, borderRadius: 10, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta }}
+                    // зачем (координатор 13.10, решение по макету п.82 и dialogs-028; D145 §129): значок «PLUS» на углу кнопки микрофона — исключение «d145-micro» (микро-бейдж, которому 13 физически не влезает): 10 px и 17×32 ровно как в образце `.ibar .rbtn .plus`. Паритет с макетом важнее; файл внесён в MICRO_FILES храповика.
+                    style={{ position: 'absolute', right: -5, bottom: -3, minWidth: 32, height: 17, borderRadius: 9, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta }}
                   >
-                    <Text style={{ color: glass.ctaInk, fontSize: 13, lineHeight: 16, fontWeight: '800', letterSpacing: 0.3 }} maxFontSizeMultiplier={1.1}>PLUS</Text>
+                    <Text style={{ color: glass.ctaInk, fontSize: 10, /* d145-micro: бейдж PLUS на углу кнопки микрофона, макет dialogs-028 (.rbtn .plus 10px) */ lineHeight: 13, fontWeight: '800', letterSpacing: 0.5 }} maxFontSizeMultiplier={1.1}>PLUS</Text>
                   </View>
                 ) : null}
               </Pressable>

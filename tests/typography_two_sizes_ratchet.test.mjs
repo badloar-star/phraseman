@@ -24,7 +24,9 @@ const ALLOWED = new Set([13, 16]);
 const MICRO_MARKER = /d145-micro:\s*\S/;
 // зачем (владелец 11.10, прямое слово): мета видео-карточек (длительность/автор/число фраз) — 11 sp; только эти четыре файла.
 const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx',
-  'app/flashcards/VideoPackRow.tsx', 'components/youtube/YoutubePlaylistGridCard.tsx', 'components/youtube/YoutubeVideoCard.tsx', 'components/youtube/YoutubeVideoGridCard.tsx']);
+  'app/flashcards/VideoPackRow.tsx', 'components/youtube/YoutubePlaylistGridCard.tsx', 'components/youtube/YoutubeVideoCard.tsx', 'components/youtube/YoutubeVideoGridCard.tsx',
+  // зачем (координатор 13.10, макет п.82, dialogs-028): значок «PLUS» на углу кнопки микрофона — бейдж на углу кнопки (§129), 10 px как в образце; помечена одна строка `d145-micro:`.
+  'components/dialogs/DialogueV2SessionScreen.tsx']);
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);

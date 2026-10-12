@@ -258,7 +258,10 @@ function NoEnergyModal({
       // вариантов, и один жёстко говорил про экзамен. Цена бралась из
       // activity и была верной — а занятие называлось чужое. Теперь текст
       // тоже строится по activity: раздел определяет строку, а не случай.
-      setLineText(energyGateMessage(activity ?? 'classic_lesson', lang, requiredEnergy, totalAvailable));
+      // зачем (dialogs-011, СПЕРВА ЛОГИ): вызов без activity молча брал «урок» — теперь это видно в журнале (activityMissing) и закрыто сторожем tests/no_energy_modal_activity_guard.test.mjs.
+      const gateActivity = activity ?? 'classic_lesson';
+      console.log('[NO-ENERGY-WINDOW] gate: текст по разделу', JSON.stringify({ variant, lang, activity: activity ?? null, activityMissing: activity === undefined, usedActivity: gateActivity, required: requiredEnergy, have: totalAvailable })); // guard-ok: одна строка при открытии окна
+      setLineText(energyGateMessage(gateActivity, lang, requiredEnergy, totalAvailable));
       return;
     }
     const list = lessonEnergyMessages(lang);
@@ -337,7 +340,7 @@ function NoEnergyModal({
     pl: 'Później',
   });
   const goldCtaLabel = triLang(lang, {
-    ru: 'Получить Плюс',
+    ru: 'Получить Plus', // зачем (Макеты 2bac25805): бренд пишется «Plus» — так в макетах (dialogs/learn/paywall) и в остальных окнах (level_exam, LangContext)
     uk: 'Отримати Plus',
     en: 'Get Plus',
     es: 'Obtener Plus',

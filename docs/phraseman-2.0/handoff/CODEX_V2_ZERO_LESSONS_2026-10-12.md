@@ -68,3 +68,6 @@ _(впишите сюда: что сделано, хэши, реальный п�
 
 ## Координатор 12.10 20:05 — красный ratchet цветов
 `tests/theme_hardcoded_colors_ratchet` красный из-за `modules/learning-v2/modes/mode_feedback_v1.tsx`: +5 цветовых литералов вне токенов темы. Просьба: заменить на токены темы (useTheme / glassTone), либо пометить theme-exempt с причиной, если цвет сознательно постоянный. Иначе release:precheck красный.
+
+## Координатор 12.10 21:3x — РЕШЕНИЕ ВЛАДЕЛЬЦА: V2 НЕ вырезаем из R1, ждём Codex
+Владелец (журнал поручений п.81) решил не вырезать Learning V2 из сборки 16.10. Значит, к 15.10 должны стать зелёными: learning_v2_release_parity_gate (сейчас CONTENT_MISMATCH 188) и learning_v2_audio_coverage_gate (собирается 56 из 186, audio_missing 130), плюс ratchet цветов mode_feedback_v1.tsx (+5 литералов). Без этого release:precheck красный и сборка не идёт. Просьба: план и сроки по этим трём пунктам в этом файле.

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import type { IntroBuildInteraction } from '../../app/lesson_data_types';
 import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
@@ -71,6 +71,22 @@ function shuffle<T>(arr: T[], seed: number): T[] {
   return a;
 }
 
+// зачем (владелец 12.10, реестр п.76: английский интерфейс входит в R1): подсказка при ошибке в сборке правила была только
+// по-русски, со вставкой слова из ответа. Запасное «этого слова» — тоже по языку.
+function almostFeedback(lang: Lang, slot: string, expected: string): string {
+  return triLang(lang, {
+    ru: `Почти. Сверь с формулой: на месте «${slot || 'этого слова'}» должно быть ${expected}.`,
+    uk: `Майже. Звір із формулою: на місці «${slot || 'цього слова'}» має бути ${expected}.`,
+    en: `Almost. Check the formula: in place of "${slot || 'this word'}" it should be ${expected}.`,
+    es: `Casi. Compara con la fórmula: en lugar de «${slot || 'esta palabra'}» va ${expected}.`,
+    'pt-BR': `Quase. Confira a fórmula: no lugar de "${slot || 'esta palavra'}" deve vir ${expected}.`,
+    vi: `Gần đúng. Đối chiếu công thức: ở vị trí "${slot || 'từ này'}" phải là ${expected}.`,
+    id: `Hampir. Cocokkan dengan rumus: di tempat "${slot || 'kata ini'}" seharusnya ${expected}.`,
+    tr: `Neredeyse. Formülle karşılaştır: "${slot || 'bu kelime'}" yerinde ${expected} olmalı.`,
+    pl: `Prawie. Sprawdź wzór: w miejscu „${slot || 'tego słowa'}” powinno być ${expected}.`,
+  });
+}
+
 export default function WordBankBuilder({
   data,
   lang,
@@ -99,6 +115,12 @@ export default function WordBankBuilder({
 
   const prompt = introText(data.prompt, lang);
   const allFilled = slots.every((s) => s !== null);
+  const checkLabel = triLang(lang, {
+    ru: 'Проверить', uk: 'Перевірити', en: 'Check', es: 'Comprobar', 'pt-BR': 'Verificar', vi: 'Kiểm tra', id: 'Periksa', tr: 'Kontrol et', pl: 'Sprawdź',
+  });
+  const doneLabel = triLang(lang, {
+    ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',
+  });
 
   useEffect(() => {
     const nextSlots = slotsFromProgress(initialProgress, answer.length) ?? answer.map(() => null);
@@ -208,7 +230,10 @@ export default function WordBankBuilder({
               key={`slot-${i}`}
               onPress={() => popSlot(i)}
               accessibilityRole="button"
-              accessibilityLabel={`Убрать ${slot.word}`}
+              accessibilityLabel={triLang(lang, {
+                ru: `Убрать ${slot.word}`, uk: `Прибрати ${slot.word}`, en: `Remove ${slot.word}`, es: `Quitar ${slot.word}`,
+                'pt-BR': `Remover ${slot.word}`, vi: `Bỏ ${slot.word}`, id: `Hapus ${slot.word}`, tr: `${slot.word} kaldır`, pl: `Usuń ${slot.word}`,
+              })}
               style={[
                 styles.slotFilled,
                 {
@@ -263,7 +288,7 @@ export default function WordBankBuilder({
         withHaptic={false}
         disabled={!allFilled || status === 'solved'}
         accessibilityRole="button"
-        accessibilityLabel="Проверить"
+        accessibilityLabel={checkLabel}
         style={[
           styles.check,
           {
@@ -277,22 +302,25 @@ export default function WordBankBuilder({
             { color: allFilled && status !== 'solved' ? theme.onAccentText : theme.textMuted },
           ]}
         >
-          {status === 'solved' ? 'Готово' : 'Проверить'}
+          {status === 'solved' ? doneLabel : checkLabel}
         </Text>
       </TapScale>
 
       {status === 'solved' && (
         <View style={[styles.fb, { backgroundColor: `${theme.correct}22` }]}>
           <Text style={[styles.fbText, { color: theme.correct }]}>
-            Узнал правило руками: {answer.join(' ')}
+            {triLang(lang, {
+              ru: 'Узнал правило руками: ', uk: 'Засвоїв правило на практиці: ', en: 'You built the rule yourself: ',
+              es: 'Aprendiste la regla con tus manos: ', 'pt-BR': 'Você montou a regra na prática: ', vi: 'Bạn đã tự ghép đúng quy tắc: ',
+              id: 'Kamu menyusun aturannya sendiri: ', tr: 'Kuralı kendin kurdun: ', pl: 'Regułę złożyłeś sam: ',
+            })}{answer.join(' ')}
           </Text>
         </View>
       )}
       {status === 'wrong' && wrongSlot != null && (
         <View style={[styles.fb, { backgroundColor: `${theme.wrong}1A` }]}>
           <Text style={[styles.fbText, { color: theme.wrong }]}>
-            Почти. Сверь с формулой: на месте «{slotLabel(wrongSlot) || 'этого слова'}» должно быть{' '}
-            {answer[wrongSlot]}.
+            {almostFeedback(lang, slotLabel(wrongSlot), answer[wrongSlot] ?? '')}
           </Text>
         </View>
       )}

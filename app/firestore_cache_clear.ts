@@ -3,13 +3,15 @@
  *
  * зачем (координатор 12.10, требование удаления данных): после удаления на телефоне оставался кэш Firestore SDK (~1 МБ, документы
  * старого uid). Чистить его в момент удаления нельзя: clearPersistence() работает только до первого обращения к Firestore или после
- * terminate(), а terminate() посреди процесса ломает всё, что дальше ходит в Firestore (онбординг новой личности). Поэтому:
- * удаление ставит метку → на СЛЕДУЮЩЕМ холодном старте модуль из index.js (раньше expo-router и всех модулей приложения) синхронно
- * читает метку и, только если она есть, вызывает clearPersistence(). Отказ (failed-precondition — Firestore уже успели тронуть)
- * оставляет метку: повтор на следующем старте. Метка — в SecureStore (синхронное чтение на старте, стирание данных аккаунта её не
- * трогает). Без метки старт не загружает Firestore вовсе. Лог: [ACC-MUT] firestore_cache_clear.
+ * terminate(), а terminate() посреди процесса ломает всё, что дальше ходит в Firestore (онбординг новой личности). Поэтому удаление
+ * ставит метку, а на СЛЕДУЮЩЕМ холодном старте бутстрап очищает кэш до своих обращений к Firestore.
+ *
+ * зачем (координатор 12.10, замер эмулятора ~20 мс у КАЖДОГО на синхронном чтении SecureStore): метка лежит в AsyncStorage и читается
+ * в составе уже существующего стартового multiGet (app/_layout.tsx, startupIdentityKeys) — ни одного отдельного нативного вызова
+ * у тех, кто не удалял аккаунт. Метку пишем ПОСЛЕ проверенного стирания (AsyncStorage.clear — граница приватности).
+ * Отказ (failed-precondition — Firestore уже успели тронуть) оставляет метку: повтор на следующем старте. Лог: [ACC-MUT] firestore_cache_clear.
  */
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LOG = '[ACC-MUT] firestore_cache_clear';
 export const FIRESTORE_CACHE_CLEAR_MARKER_KEY = 'firestore_cache_clear_pending_v1';
@@ -20,10 +22,10 @@ function errorCode(error: unknown): string {
   return error instanceof Error ? error.name : typeof error;
 }
 
-/** Поставить метку «очистить кэш Firestore на следующем старте». Никогда не бросает. */
+/** Поставить метку «очистить кэш Firestore на следующем старте». Только после проверенного стирания. Никогда не бросает. */
 export async function markFirestoreCacheClearPending(reason: string): Promise<boolean> {
   try {
-    await SecureStore.setItemAsync(FIRESTORE_CACHE_CLEAR_MARKER_KEY, `${Date.now()}:${reason.slice(0, 40)}`);
+    await AsyncStorage.setItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY, `${Date.now()}:${reason.slice(0, 40)}`);
     console.log(`${LOG} marked reason=${reason}`); // guard-ok: одна запись на удаление
     return true;
   } catch (error) {
@@ -35,25 +37,19 @@ export async function markFirestoreCacheClearPending(reason: string): Promise<bo
 type FirestoreForClear = { clearPersistence(): Promise<void> };
 
 /**
- * Холодный старт: метка есть → clearPersistence(), успех снимает метку, отказ оставляет. Возвращает промис итога (для тестов);
- * вызывающий его не ждёт. `getFirestoreForClear` подменяется в тестах; по умолчанию Firestore грузится ТОЛЬКО при наличии метки.
+ * Холодный старт: значение метки уже прочитано стартовым multiGet. Нет метки — ничего (ни нативных вызовов, ни Firestore).
+ * Есть — clearPersistence(); успех снимает метку, отказ оставляет. Возвращает промис итога (для тестов); бутстрап его не ждёт.
  */
-export function runFirestoreCacheClearOnColdStart(
+export function runFirestoreCacheClearFromStartupRead(
+  markerValue: string | null,
   getFirestoreForClear: () => FirestoreForClear = defaultFirestoreForClear,
 ): Promise<'none' | 'cleared' | 'failed'> {
-  let marker: string | null = null;
-  // зачем (координатор 12.10): чтение синхронное и идёт на холодном старте у КАЖДОГО — его цена видна в журнале на каждом старте.
   const checkStartedAt = Date.now();
-  try {
-    marker = SecureStore.getItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
-  } catch (error) {
-    console.warn(`${LOG} check ms=${Date.now() - checkStartedAt} read_failed code=${errorCode(error)} — очистка отложена до следующего старта`); // guard-ok: catch логирует код
-    return Promise.resolve('failed');
-  }
-  console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${marker ? 1 : 0}`); // guard-ok: одна строка на холодный старт
-  if (!marker) return Promise.resolve('none');
+  // Проверка — только значение из уже сделанного чтения: стоимость ~0 мс, нативного вызова нет.
+  console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${markerValue ? 1 : 0} source=startup_multiget`); // guard-ok: одна строка на холодный старт
+  if (!markerValue) return Promise.resolve('none');
   const startedAt = Date.now();
-  console.log(`${LOG} start marker=${marker.split(':')[1] ?? '?'}`); // guard-ok: только когда метка есть
+  console.log(`${LOG} start marker=${markerValue.split(':')[1] ?? '?'}`); // guard-ok: только когда метка есть
   let firestore: FirestoreForClear;
   try {
     firestore = getFirestoreForClear();
@@ -64,7 +60,7 @@ export function runFirestoreCacheClearOnColdStart(
   return firestore.clearPersistence().then(
     async () => {
       try {
-        await SecureStore.deleteItemAsync(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
+        await AsyncStorage.removeItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
       } catch (error) {
         console.warn(`${LOG} unmark_failed code=${errorCode(error)} — на следующем старте очистка повторится (безвредно)`); // guard-ok
       }

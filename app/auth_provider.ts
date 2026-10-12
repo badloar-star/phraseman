@@ -882,6 +882,8 @@ async function completePreparedAccountDeleteLocalExit(
     if (__DEV__) console.warn('[auth_provider] pending account delete: stable id clear failed', e);
   }
   if (!firebaseSignedOut || !localExitVerified) return false;
+  // зачем (координатор 12.10): путь возобновления удаления при старте чистит AsyncStorage сам — метка очистки кэша Firestore после.
+  if (!alreadyWipedLocally) await markFirestoreCacheClearPending('account_delete_resume');
 
   const localClearedLock: AccountDeletePendingAuthLock = {
     ...pendingDelete,
@@ -963,6 +965,9 @@ async function executePostDeleteLocalWipe(
     const verified = await verifyPostDeleteLocalWipe();
     traceAccountDeleteLocal(`readback_verified=${verified ? 1 : 0}`);
     if (!verified) return false;
+    // зачем (координатор 12.10, удаление данных + замер ~20 мс SecureStore на каждом старте): метка очистки кэша Firestore SDK —
+    // в AsyncStorage, ТОЛЬКО после проверки стирания (граница приватности); на следующем старте её читает уже существующий multiGet.
+    await markFirestoreCacheClearPending('account_delete');
     invalidatePremiumCache();
     return true;
   } catch (e) {
@@ -4398,9 +4403,6 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   let releaseTransitionReservation: () => void;
   // зачем (владелец, 2026-09-13): «сперва логи» — путь удаления был нем.
   console.log('[ACC-MUT] delete:in');
-  // зачем (координатор 12.10, удаление данных): кэш Firestore SDK (документы старого uid) чистится на СЛЕДУЮЩЕМ холодном старте —
-  // метку ставим сразу (гость и связанный проходят здесь); не ждём, отказ записи метки печатается внутри.
-  void markFirestoreCacheClearPending('account_delete');
   try {
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
   } catch (reserveError) {

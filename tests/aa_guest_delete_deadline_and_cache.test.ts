@@ -34,98 +34,96 @@ describe('B(1) дедлайн постановки удаления', () => {
   });
 });
 
-// ── B(2): очистка кэша Firestore SDK на следующем холодном старте (координатор 12.10)
-const mockSecure: Record<string, string> = {};
-jest.mock('expo-secure-store', () => ({
-  getItem: (key: string) => (key in mockSecure ? mockSecure[key] : null),
-  setItemAsync: async (key: string, value: string) => { mockSecure[key] = value; },
-  deleteItemAsync: async (key: string) => { delete mockSecure[key]; },
+// ── B(2): очистка кэша Firestore SDK на следующем холодном старте (координатор 12.10).
+// Метка — в AsyncStorage после проверенного стирания; читается уже существующим стартовым multiGet (ни одного отдельного вызова).
+const mockStore: Record<string, string> = {};
+let mockSecureCalls = 0;
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: {
+    setItem: async (key: string, value: string) => { mockStore[key] = value; },
+    removeItem: async (key: string) => { delete mockStore[key]; },
+    getItem: async (key: string) => (key in mockStore ? mockStore[key] : null),
+  },
 }));
-
-describe('B(2) очистка кэша Firestore SDK', () => {
-  beforeEach(() => { for (const k of Object.keys(mockSecure)) delete mockSecure[k]; });
-
-  it('без метки — Firestore не трогается вовсе', async () => {
-    const { runFirestoreCacheClearOnColdStart } = require('../app/firestore_cache_clear');
-    const get = jest.fn();
-    await expect(runFirestoreCacheClearOnColdStart(get)).resolves.toBe('none');
-    expect(get).not.toHaveBeenCalled();
-  });
-
-  it('метка → clearPersistence → метка снята', async () => {
-    const mod = require('../app/firestore_cache_clear');
-    await mod.markFirestoreCacheClearPending('account_delete');
-    expect(mockSecure[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toMatch(/:account_delete$/);
-    const clearPersistence = jest.fn(async () => undefined);
-    await expect(mod.runFirestoreCacheClearOnColdStart(() => ({ clearPersistence }))).resolves.toBe('cleared');
-    expect(clearPersistence).toHaveBeenCalledTimes(1);
-    expect(mockSecure[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeUndefined();
-  });
-
-  it('failed-precondition — метка остаётся, повтор на следующем старте', async () => {
-    const mod = require('../app/firestore_cache_clear');
-    await mod.markFirestoreCacheClearPending('account_delete');
-    const err = Object.assign(new Error('x'), { code: 'firestore/failed-precondition' });
-    await expect(mod.runFirestoreCacheClearOnColdStart(() => ({ clearPersistence: async () => { throw err; } }))).resolves.toBe('failed');
-    expect(mockSecure[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeDefined();
-  });
-
-  it('СТОРОЖ порядка: index.js запускает очистку раньше expo-router и модулей с работой при импорте', () => {
-    const idx = read('index.js');
-    const boot = idx.indexOf("import './app/firestore_cache_clear_boot';");
-    expect(boot).toBeGreaterThan(idx.indexOf("import './app/firebase_emulator_dev_boot';"));
-    for (const later of ["import './app/energy_peek_cache';", "import './app/runes_system';", "import './app/net_status';", "import 'expo-router/entry';"]) {
-      expect(boot).toBeLessThan(idx.indexOf(later));
-    }
-    // модули до очистки Firestore не трогают
-    for (const early of ['app/cold_start_entry_mark.ts', 'app/rnfb_release_quiet.ts', 'app/async_storage_null_bind_guard.ts']) {
-      if (fs.existsSync(path.join(root, early))) expect(read(early)).not.toMatch(/firestore\(|getFirestore|@react-native-firebase\/firestore/);
-    }
-    // сама очистка грузит Firestore только при наличии метки
-    expect(read('app/firestore_cache_clear.ts')).not.toMatch(/^import .*@react-native-firebase\/firestore/m);
-  });
-
-  it('СТОРОЖ: метка ставится в beginAccountDeletion (гость и связанный) после dev-подмен', () => {
-    const auth = read('app/auth_provider.ts');
-    const fn = auth.indexOf('export async function beginAccountDeletion()');
-    const mark = auth.indexOf("void markFirestoreCacheClearPending('account_delete');", fn);
-    expect(mark).toBeGreaterThan(fn);
-    expect(mark).toBeGreaterThan(auth.indexOf('if (isDevDeleteFail())', fn));
-    expect(mark).toBeLessThan(auth.indexOf('\nexport ', fn + 10));
-  });
-});
-
-// ── Цена проверки на каждом старте (координатор 12.10): без метки Firestore НЕ загружается вовсе.
+jest.mock('expo-secure-store', () => ({
+  getItem: () => { mockSecureCalls += 1; return null; },
+  getItemAsync: async () => { mockSecureCalls += 1; return null; },
+  setItemAsync: async () => { mockSecureCalls += 1; },
+  deleteItemAsync: async () => { mockSecureCalls += 1; },
+}));
 let mockFirestoreModuleLoaded = 0;
 jest.mock('@react-native-firebase/firestore', () => {
   mockFirestoreModuleLoaded += 1;
   return { __esModule: true, default: () => ({ clearPersistence: async () => undefined }) };
 });
 
-describe('B(2) проверка на старте без метки', () => {
-  beforeEach(() => { for (const k of Object.keys(mockSecure)) delete mockSecure[k]; });
+describe('B(2) очистка кэша Firestore SDK', () => {
+  beforeEach(() => { for (const k of Object.keys(mockStore)) delete mockStore[k]; mockSecureCalls = 0; });
 
-  it('без метки модуль Firestore не загружается (рантайм), в лог — время проверки', async () => {
-    jest.isolateModules(() => {
-      const logs: string[] = [];
-      const spy = jest.spyOn(console, 'log').mockImplementation((...a: unknown[]) => { logs.push(a.join(' ')); });
-      const before = mockFirestoreModuleLoaded;
-      const { runFirestoreCacheClearOnColdStart } = require('../app/firestore_cache_clear');
-      void runFirestoreCacheClearOnColdStart();
-      expect(mockFirestoreModuleLoaded).toBe(before);
-      expect(logs.some((l) => /\[ACC-MUT\] firestore_cache_clear check ms=\d+ marker=0/.test(l))).toBe(true);
-      spy.mockRestore();
-    });
+  it('без метки — ни SecureStore, ни Firestore; в лог — проверка ≤2 мс', async () => {
+    const logs: string[] = [];
+    const spy = jest.spyOn(console, 'log').mockImplementation((...a: unknown[]) => { logs.push(a.join(' ')); });
+    const before = mockFirestoreModuleLoaded;
+    const { runFirestoreCacheClearFromStartupRead } = require('../app/firestore_cache_clear');
+    await expect(runFirestoreCacheClearFromStartupRead(null)).resolves.toBe('none');
+    expect(mockFirestoreModuleLoaded).toBe(before);
+    expect(mockSecureCalls).toBe(0);
+    const line = logs.find((l) => l.includes('firestore_cache_clear check'));
+    expect(line).toMatch(/check ms=(\d+) marker=0 source=startup_multiget/);
+    expect(Number(/ms=(\d+)/.exec(line!)![1])).toBeLessThanOrEqual(2);
+    spy.mockRestore();
   });
 
-  it('с меткой модуль Firestore загружается и очищает', async () => {
+  it('метка → clearPersistence → метка снята', async () => {
     const mod = require('../app/firestore_cache_clear');
     await mod.markFirestoreCacheClearPending('account_delete');
-    await expect(mod.runFirestoreCacheClearOnColdStart()).resolves.toBe('cleared');
-    expect(mockFirestoreModuleLoaded).toBeGreaterThan(0);
+    const marker = mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY];
+    expect(marker).toMatch(/:account_delete$/);
+    const clearPersistence = jest.fn(async () => undefined);
+    await expect(mod.runFirestoreCacheClearFromStartupRead(marker, () => ({ clearPersistence }))).resolves.toBe('cleared');
+    expect(clearPersistence).toHaveBeenCalledTimes(1);
+    expect(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeUndefined();
+    expect(mockSecureCalls).toBe(0);
   });
 
-  it('boot-модуль не импортирует Firestore сам', () => {
-    expect(read('app/firestore_cache_clear_boot.ts')).not.toMatch(/firestore['"]/);
+  it('failed-precondition — метка остаётся, повтор на следующем старте', async () => {
+    const mod = require('../app/firestore_cache_clear');
+    await mod.markFirestoreCacheClearPending('account_delete');
+    const err = Object.assign(new Error('x'), { code: 'firestore/failed-precondition' });
+    await expect(mod.runFirestoreCacheClearFromStartupRead(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY], () => ({ clearPersistence: async () => { throw err; } })))
+      .resolves.toBe('failed');
+    expect(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeDefined();
+  });
+
+  it('СТОРОЖ: модуль очистки не использует SecureStore и не импортирует Firestore на верхнем уровне; boot-модуля в index.js нет', () => {
+    const src = read('app/firestore_cache_clear.ts');
+    expect(src).not.toMatch(/expo-secure-store/);
+    expect(src).not.toMatch(/^import .*@react-native-firebase\/firestore/m);
+    expect(read('index.js')).not.toContain('firestore_cache_clear');
+    expect(fs.existsSync(path.join(root, 'app/firestore_cache_clear_boot.ts'))).toBe(false);
+  });
+
+  it('СТОРОЖ порядка: метка — ключ уже существующего стартового multiGet; обработчик раньше восстановления из облака', () => {
+    const layout = read('app/_layout.tsx');
+    expect(layout).toContain("const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY];");
+    const handler = layout.indexOf('void startupIdentityPairsPromise.then((pairs) => runFirestoreCacheClearFromStartupRead(');
+    expect(handler).toBeGreaterThan(layout.indexOf('const startupIdentityPairsPromise'));
+    expect(handler).toBeLessThan(layout.indexOf('cloudHydratePromise = liveDeferred ?? (async () => {'));
+    // отдельного чтения метки нет
+    expect((layout.match(/FIRESTORE_CACHE_CLEAR_MARKER_KEY/g) ?? []).length).toBe(3); // импорт, ключ, разбор
+  });
+
+  it('СТОРОЖ: метка ставится ПОСЛЕ проверенного стирания и в конце пути возобновления; не в начале удаления', () => {
+    const auth = read('app/auth_provider.ts');
+    const verify = auth.indexOf("    if (!verified) return false;\n    // зачем (координатор 12.10, удаление данных + замер");
+    const mark = auth.indexOf("await markFirestoreCacheClearPending('account_delete');");
+    expect(verify).toBeGreaterThan(0);
+    expect(mark).toBeGreaterThan(verify);
+    const resume = auth.indexOf("if (!alreadyWipedLocally) await markFirestoreCacheClearPending('account_delete_resume');");
+    expect(resume).toBeGreaterThan(auth.indexOf('async function completePreparedAccountDeleteLocalExit('));
+    const begin = auth.indexOf('export async function beginAccountDeletion()');
+    const beginBody = auth.slice(begin, auth.indexOf('\nexport ', begin + 10));
+    expect(beginBody).not.toContain('markFirestoreCacheClearPending');
   });
 });

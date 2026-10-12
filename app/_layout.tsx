@@ -235,6 +235,7 @@ import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+import { FIRESTORE_CACHE_CLEAR_MARKER_KEY, runFirestoreCacheClearFromStartupRead } from './firestore_cache_clear';
 import { hydrateDailyPhrasePeekFromStorage } from './daily_phrase_system';
 import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
@@ -2648,9 +2649,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       // Чтение onboarding_done стартует параллельно с локальной гидрацией,
       // чтобы первый кадр не ждал дополнительный дисковый round-trip.
-      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY];
+      // зачем (координатор 12.10): метка очистки кэша Firestore после удаления аккаунта читается этим же чтением — ни одного
+      // отдельного нативного вызова на старте (было ~20 мс SecureStore у каждого).
+      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
+      // Обработчик метки вешается РАНЬШЕ всех остальных потребителей этого чтения (восстановление из облака ниже) — clearPersistence
+      // уходит до обращений бутстрапа к Firestore. Без метки — только проверка значения в памяти.
+      if (!forceOnboardingForQA) {
+        void startupIdentityPairsPromise.then((pairs) => runFirestoreCacheClearFromStartupRead(
+          new Map(pairs).get(FIRESTORE_CACHE_CLEAR_MARKER_KEY) ?? null,
+        ));
+      }
 
       // Start cloud hydration early, but do not hold the first app frame on network.
       // зачем: прежде восстановление из облака ждало прогрев App Check до 1,2 с;

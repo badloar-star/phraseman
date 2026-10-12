@@ -7,7 +7,7 @@
 # Безопасность: все подмены — dev_state, только память процесса, в стор-сборке маршрут вырезан и геттеры = null.
 # Ни один шаг не входит в аккаунт и не стирает данные: вход подменён ошибкой ДО сети (switch=…, restore=retired), окна удаления только
 # открываются (delete=fail — страховка), подтверждение удаления роботу не даётся (auth-gap-011 — вручную).
-from dev_links_r1_steps import ACCT, CANCEL, ENTRIES, MANAGE, PLAN_Y, SIGNIN, add
+from dev_links_r1_steps import ACCT, CANCEL, ENTRIES, MANAGE, PLAN_Y, SETTINGS, SIGNIN, add
 
 DELETE_OPEN = ['see:#account-delete-button', 'tap:#account-delete-button']
 
@@ -38,3 +38,25 @@ add('profile-023', [CANCEL, 'tap:#manage-subscription-reason-missing_features', 
 ENTRIES.pop('profile-017', None)
 add('profile-017', ['scroll:down'], 'plus=on&plan=monthly', MANAGE,
     note='управление подпиской, месячная, прокручено вниз; карточки «Перейти на годовой» без магазина нет (нужен store-аккаунт)')
+
+# ── Покрытие pending r1 зоны Авторизации (координатор 12.10 вечер, «помочь съёмке»). Только существующие подмены.
+# paywalls-025 — дубль profile-023 по shot list G-A06 («Поддержка или отмена»): те же шаги.
+add('paywalls-025', [CANCEL, 'tap:#manage-subscription-reason-missing_features', 'tap:#manage-subscription-reasons-continue'], PLAN_Y, MANAGE,
+    note='то же, что profile-023: «Не хватает функций» → «Продолжить» → «Поддержка или отмена»; offer-decline НЕ жать')
+
+# settings-gap-006 «Pro без срока (выдан из админки)»: vip=admin_lifetime (vip_until=0) → isLifetimeVipValues → тир Pro
+# (premium_guard.ts); заголовок «Выданный Pro», срок «Pro без срока окончания» (settings.tsx vipAccessTitle/vipExpiryText).
+# VIP читается при старте — робот перезапускает приложение сам, как для settings-gap-004/005.
+add('settings-gap-006', ['see:#settings-plus-access-details'], 'vip=admin_lifetime&plus=inherit', SETTINGS,
+    note='главная Настроек: «Выданный Pro · Pro без срока окончания» (vip=admin_lifetime), блок доступа прокручен в экран')
+
+# auth-gap-016 «Смена — прогресс не сохранён»: switch=not_uploaded → выход отвечает sync_failed (dev_account_state.ts) →
+# окно «Прогресс не сохранён» (settings.tsx, ветка res.reason === 'sync_failed'). Вторую кнопку НЕ жать (это auth-gap-017).
+add('auth-gap-016', ['tap:#settings-switch-continue', 'wait:1500'], 'switch=not_uploaded', '/(tabs)/settings?switchAccount=1',
+    note='окно «Прогресс не сохранён»: «Остаться» / «Сменить без сохранения» — ничего не жать; настоящая смена и стирание недостижимы при switch=')
+
+# settings-gap-034 «Обучение — выбранный голос»: первый настоящий голос (@2 — после «Системный (авто)»), назад кнопкой экрана.
+# Пишет выбор голоса гостя на устройстве (локальная настройка, без облака); вернуть — выбрать «Системный (авто)».
+add('settings-gap-034', ['see:#fc-voice-picker-row', 'tap:#fc-voice-picker-row', 'tap:#fc-voice-row-*@2', 'tap:#fc-voice-picker-back',
+                         'see:#fc-voice-picker-row'], 'plus=off', '/settings_edu',
+    note='в строке «Голос озвучки» имя голоса; нужен хотя бы один английский голос TTS на эмуляторе (имя — как отдаёт TTS, в макете «Samantha» — iOS)')

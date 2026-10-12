@@ -330,3 +330,22 @@ add('dialogs-023', DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok&dev
 # Настройки: блок доступа Plus (vip читается при старте — робот перезапускает приложение сам)
 add('settings-gap-004', ['see:#settings-plus-access-details'], 'vip=promo&plus=inherit', SETTINGS, note='главная Настроек: Plus по промокоду (vip=promo), блок доступа прокручен в экран')
 add('settings-gap-005', ['see:#settings-plus-access-details'], 'vip=referral&plus=inherit', SETTINGS, note='главная Настроек: Plus за приглашения (vip=referral), блок доступа прокручен в экран')
+
+
+# ───────────────────────── Раунд 6: Настройки и Диалоги (координатор 12.10) ─────────────────────────
+# Не выводятся ссылкой/шагами (причины — для координатора): имя (profile-003, settings-gap-024…026/031…033) — окно живёт в app/account_details.tsx (зона Авторизации);
+# приватность/согласие на ИИ (profile-009/010, settings-gap-016/017, dialogs-009) — согласие пишется в облако, фикстурой не трогаем; выход/удаление (profile-028…030) — зона
+# Авторизации; уведомления «выключено / телефон не разрешает / сохранено» (settings-gap-010/012/013/027) меняют сохранённые настройки и системный диалог;
+# тосты языка изучения (settings-gap-020/021) — у шторки нет testID, названия языков зависят от интерфейса; Pro без срока (settings-gap-006) — тир Pro выводится из плана, фикстуры нет.
+CACHE_CLEAR = ['see:#settings-clear-cache-row', 'tap:#settings-clear-cache-row', 'tap:Очистить', 'wait:300']
+add('settings-gap-030', [], 'plus=off&referral=off', SETTINGS, note='«Пригласить друга» скрыта (referral=off — рубильник приглашений)')
+add('settings-gap-029', ['see:#settings-message-slot-top'], 'plus=off&slot=top', SETTINGS, note='верхний слот сообщений в Настройках (slot=top)')
+add('settings-gap-008', CACHE_CLEAR, 'plus=off&slot=poll_voted', SETTINGS, note='«Очистить кеш» → подтвердить → «Готово» (итог гаснет через 2,2 с — кадр на грани) + слот: опрос после голосования')
+add('settings-gap-009', CACHE_CLEAR, 'plus=off&slot=message&cache=failed', SETTINGS, note='«Очистить кеш» → подтвердить → «не удалось» (cache=failed, итог живёт 3,2 с) + слот без опроса')
+add('settings-gap-028', ['tap:#notif-time-label'], S_FREE, '/settings_notifications', note='окно выбора времени (строка «Время» активна, если ежедневное напоминание включено)')
+
+# Диалоги: закрытый по рангу брифинг и сессия (подставной старт dev_dialog_send=ok, ранг показа coinRank)
+add('dialogs-008', [WORLD, ROW], 'plus=off&dquota=reset&energy=5&coinRank=0', DLG, note='брифинг закрытого по рангу диалога: coinRank=0 (все диалоги закрыты, строка открывает брифинг)')
+add('dialogs-012', DLG_START, SESSION_FREE + '&dev_dialog_send=ok', DLG, note='старт диалога: энергия 5 → 4 в пилюле сессии (кадр спустя 3 с после «Начать»)')
+add(['dialogs-014', 'dialogs-030'], DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok', DLG, note='разговор идёт: после отправки сообщения ответ собеседника на месте (подставной ход, 1,5 с)')
+add('dialogs-036', DLG_START + ['back'], SESSION_FREE + '&dev_dialog_send=ok', DLG, note='внутри сессии: системная «назад» → подтверждение выхода')

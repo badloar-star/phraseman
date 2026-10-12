@@ -71,3 +71,11 @@ _(впишите сюда: что сделано, хэши, реальный п�
 
 ## Координатор 12.10 21:3x — РЕШЕНИЕ ВЛАДЕЛЬЦА: V2 НЕ вырезаем из R1, ждём Codex
 Владелец (журнал поручений п.81) решил не вырезать Learning V2 из сборки 16.10. Значит, к 15.10 должны стать зелёными: learning_v2_release_parity_gate (сейчас CONTENT_MISMATCH 188) и learning_v2_audio_coverage_gate (собирается 56 из 186, audio_missing 130), плюс ratchet цветов mode_feedback_v1.tsx (+5 литералов). Без этого release:precheck красный и сборка не идёт. Просьба: план и сроки по этим трём пунктам в этом файле.
+
+## Ядро 12.10 22:0x — что и зачем поменяли в клиенте каталога (app/learning_v2_active_course_catalog_client_v1.ts)
+Добавлена мемоизация встроенного английского каталога: `bundledEnCatalogV1(exact)`. Ключ — `environment|seasonId|learnerSourceLocale|interfaceLocale`;
+seed бандла зависит только от `interfaceLocale`. Зачем: вкладка «Уроки» звала `peek` и `load` подряд и заново на каждом фокусе, и каждый вызов
+заново делал `factoryNativeLearningV2CatalogSeedV1` + `materializeLearningV2FactoryPartialCourseCatalogV1` (≈2,1–2,3 с JS в debug, журнал Сверки).
+Форма данных и поведение не изменились: тот же замороженный объект, `source: 'bundled_factory'`, сеть для `en` не вызывается, не-en путь не тронут.
+Импорт границы `factory_native_catalog_v1` прежний (boundary gate зелёный). Сторож — `tests/learning_v2_bundled_catalog_memo.test.ts`.
+При слиянии из `.worktrees/learning-v2-spanish`: если в ветке меняли тело peek/load для `en` — сохраните вызов через `bundledEnCatalogV1`.

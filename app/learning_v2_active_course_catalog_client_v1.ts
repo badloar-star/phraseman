@@ -200,34 +200,43 @@ async function loadLkg(locator: LearningV2ActiveCourseCatalogLocatorV1, accountS
   }
 }
 
+// зачем (координатор/Дизайн 12.10, R1 «Уроки ≈2 с до первого кадра»): для `en` каталог собирается из бандла
+// (seed + materialize: 32 урока × 56 занятий, хеш каждого урока) — ≈2,1–2,3 с JS в debug-сборке. peek и load звали это
+// ПОДРЯД, плюс заново на каждом фокусе вкладки. Результат — замороженный объект и чистая функция от этих четырёх полей
+// (seed бандла зависит только от interfaceLocale), поэтому запоминаем его: второй и последующие вызовы бесплатны.
+// Форма данных не меняется. Записано в handoff/CODEX_V2_ZERO_LESSONS_2026-10-12.md для Codex.
+const bundledEnCatalogMemo = new Map<string, LearningV2ActiveCourseCatalogV1>();
+
+function bundledEnCatalogV1(exact: LearningV2ActiveCourseCatalogLocatorV1): LearningV2ActiveCourseCatalogV1 {
+  const memoKey = [exact.environment, exact.seasonId, exact.learnerSourceLocale, exact.interfaceLocale].join('|');
+  const memo = bundledEnCatalogMemo.get(memoKey);
+  if (memo) return memo;
+  const startedAtMs = Date.now();
+  const seed = factoryNativeLearningV2CatalogSeedV1(exact.interfaceLocale);
+  const catalog = materializeLearningV2FactoryPartialCourseCatalogV1({
+    environment: exact.environment, seasonId: exact.seasonId,
+    learnerSourceLocale: exact.learnerSourceLocale, interfaceLocale: exact.interfaceLocale,
+    activeRootFingerprint: seed.activeRootFingerprint, activeHeadFingerprint: seed.activeHeadFingerprint,
+    lessons: seed.lessons,
+  });
+  bundledEnCatalogMemo.set(memoKey, catalog);
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    console.log(`[LESSONS-BOOT] v2_catalog:materialized ${JSON.stringify({ interfaceLocale: exact.interfaceLocale, ms: Date.now() - startedAtMs, lessons: catalog.lessons.length, memoSize: bundledEnCatalogMemo.size })}`);
+  }
+  return catalog;
+}
+
 export function peekLearningV2ActiveCourseCatalogV1(locator: LearningV2ActiveCourseCatalogLocatorV1, accountScopeHash: string): LearningV2ActiveCourseCatalogV1 | null {
   const exact = exactLocator(locator);
-  if (exact.targetLanguage === 'en') {
-    const seed = factoryNativeLearningV2CatalogSeedV1(exact.interfaceLocale);
-    return materializeLearningV2FactoryPartialCourseCatalogV1({
-      environment: exact.environment, seasonId: exact.seasonId,
-      learnerSourceLocale: exact.learnerSourceLocale, interfaceLocale: exact.interfaceLocale,
-      activeRootFingerprint: seed.activeRootFingerprint, activeHeadFingerprint: seed.activeHeadFingerprint,
-      lessons: seed.lessons,
-    });
-  }
+  if (exact.targetLanguage === 'en') return bundledEnCatalogV1(exact);
   return peek.get(key(exact, accountScopeHash)) ?? null;
 }
 
 export async function loadLearningV2ActiveCourseCatalogV1(rawLocator: LearningV2ActiveCourseCatalogLocatorV1): Promise<LearningV2ActiveCourseCatalogResultV1> {
   const locator = exactLocator(rawLocator);
   if (locator.targetLanguage === 'en') {
-    const seed = factoryNativeLearningV2CatalogSeedV1(locator.interfaceLocale);
     return Object.freeze({
-      catalog: materializeLearningV2FactoryPartialCourseCatalogV1({
-        environment: locator.environment,
-        seasonId: locator.seasonId,
-        learnerSourceLocale: locator.learnerSourceLocale,
-        interfaceLocale: locator.interfaceLocale,
-        activeRootFingerprint: seed.activeRootFingerprint,
-        activeHeadFingerprint: seed.activeHeadFingerprint,
-        lessons: seed.lessons,
-      }),
+      catalog: bundledEnCatalogV1(locator),
       source: 'bundled_factory' as const,
       cacheAuthority: 'availability_only_not_release_or_correctness_authority' as const,
     });

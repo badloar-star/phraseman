@@ -39,12 +39,13 @@ const PROTECTED = {
     planLabel: '4452e54660a8def87df4a03d96a9e4b7673931a615c7c3a233dcc80726512200',
     // зачем (PM-229, db985607f, проверено по диффу): в этих трёх функциях изменились ТОЛЬКО немые `.catch(() => {})` → `.catch(noteSwallowedHandler(...))`:
     // причина сбоя пишется в журнал, значение по умолчанию и порядок платёжных шагов прежние. Хеши перечислены заново после этого осмотра.
-    handleChangePlan: '1c022e9a9f992f4656295b8578a42ca2196ac26806beac5448c7e7322d492e0d',
+    // зачем (15.10 вечер, перепрогон красных; сверено по diff d35cf5cec): в результаты handleChangePlan и openStoreCancel добавлено только поле messageEn (английский текст сообщения) — покупка, отмена и смена плана без изменений.
+    handleChangePlan: 'edcaed7e3f6dc294a9030a9ae3802d8b1abd25231fb7f328fd257c3e6462892a',
     // хэш обновлён 10.10: в handleRestore добавлен синхронный замок restoringRef от двойного тапа (деньги/активация не менялись).
     handleRestore: '4c5bf95c1a31d05e13d9a41cfd4f313d0a140a2bef4f21aa8d4a3c780b845497',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
-    openStoreCancel: '0b2945979dcd63ecc9bc77f93c13c0cc8d1a52b33711b824c8481112f3b71720',
+    openStoreCancel: 'bc53a7375ec8a9bab103ec11d2302ff01c79fa2995cc4424cd17aaf5ccee8892',
     submitCancel: '2516a18017d6460a9388c4195d80b6b710cce026bc673b3a51758fcfc723482a',
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',

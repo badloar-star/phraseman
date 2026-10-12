@@ -43,7 +43,8 @@ const PROTECTED_RUNTIME = {
   // зачем (координатор 04.10): трассировка [FC-TRAIN-ENTRY] на каждом выходе тапа «Начать» + тап во время загрузки запоминается и срабатывает сам — сознательная правка базовой линии
   // зачем (15.10, координатор: красные сторожи; сверено по diff d70c92fcc и e531e6408): +1 useEffect с трассировкой [TRAIN-PREP] (cards-075) и dev-подмена статуса
   // экрана (`hold=setup_loading` / `fail=setup_decks`, computedSetupStatus) — только для съёмки и журнала; выдача наборов, квота и старт без изменений (число узлов 25 → 26).
-  hash: 'cb1959529872adb5065887f3bd0fa8f75bad8918426a42048a15236ade6cce48',
+  // зачем (15.10 вечер, перепрогон красных; сверено по diff 8fd8adbab): только журнал цепочки «Начать» ([FLASHCARDS-SESSION] setup:tap и setup:push) и describeDevCardsState; выдача наборов, квота и старт без изменений.
+  hash: '5423287df10bbc3569bcc35e7fd1187d9980997ab23fc6659c1708c0af91c473',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);

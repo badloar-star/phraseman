@@ -76,8 +76,8 @@ function ZoomBarInner({ g, step, onStep, smallerLabel, largerLabel, search }: Pr
   const pan = useMemo(() => Gesture.Pan()
     .runOnJS(true)
     .minDistance(0)
-    .onBegin((event) => { dragging.current = true; moveTo(event.x, 'касание'); })
-    .onUpdate((event) => { moveTo(event.x, 'перетаскивание'); })
+    .onBegin((event) => { dragging.current = true; moveTo(event.x, 'touch'); })
+    .onUpdate((event) => { moveTo(event.x, 'drag'); })
     .onFinalize(() => { settle(); }), [moveTo, settle]);
 
   const thumbStyle = useAnimatedStyle(() => ({ transform: [{ translateX: p.value * trackW - THUMB / 2 }] }));

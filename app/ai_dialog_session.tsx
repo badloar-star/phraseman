@@ -201,6 +201,7 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
     category: 'everyday',
     titleRu: `Диалог урока ${lessonId}`,
     titleEs: `Diálogo de la lección ${lessonId}`,
+    titleEn: `Lesson ${lessonId} dialogue`, // зачем (12.10, английский интерфейс входит в R1): без него в en стояло русское название
     goalRu: `Используй фразы и конструкции урока ${lessonId} в короткой живой сцене`,
     goalEs: `Usa las frases y construcciones de la lección ${lessonId} en una escena breve y realista`,
     role: 'a patient English practice partner',
@@ -219,6 +220,7 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
     requiredPhraseIds: [],
     nextStepHintRu: 'Ответь одной короткой фразой из урока или похожей конструкцией.',
     nextStepHintEs: 'Responde con una frase corta de la lección o una construcción parecida.',
+    nextStepHintEn: 'Reply with one short phrase from the lesson or a similar construction.',
   };
 }
 

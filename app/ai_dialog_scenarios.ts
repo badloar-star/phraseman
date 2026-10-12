@@ -36,6 +36,8 @@ export interface DialogScenario {
   collection?: 'course' | 'challenge';
   titleRu: string;
   titleEs?: string;
+  /** Английское название для интерфейса en (необязательно: у сценариев каталога названия на en ещё нет — тогда как раньше). */
+  titleEn?: string;
   goalRu: string;
   goalEs?: string;
   role: string;
@@ -52,6 +54,8 @@ export interface DialogScenario {
   active: boolean;
   nextStepHintRu: string;
   nextStepHintEs?: string;
+  /** Английская подсказка следующего шага для интерфейса en (необязательно). */
+  nextStepHintEn?: string;
   requiredAccountLevel?: number;
   sourceLessonId?: number;
   hiddenFromHome?: boolean;
@@ -798,7 +802,8 @@ export function dialogScenarioTitle(scenario: DialogScenario, lang: Lang): strin
   return triLang(lang, {
     ru: scenario.titleRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.title ?? scenario.titleRu,
-    en: scenario.titleRu,
+    // зачем (12.10, «английский входит в R1»): у сценария может быть своё английское название; нет — прежнее поведение (русское)
+    en: scenario.titleEn ?? scenario.titleRu,
     es: scenario.titleEs ?? esCopy.titleEs,
     'pt-BR': batchCopy['pt-BR'].title,
     vi: batchCopy.vi.title,
@@ -830,7 +835,7 @@ export function dialogScenarioNextStepHint(scenario: DialogScenario, lang: Lang)
   return triLang(lang, {
     ru: scenario.nextStepHintRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.nextStepHint ?? scenario.nextStepHintRu,
-    en: scenario.nextStepHintRu,
+    en: scenario.nextStepHintEn ?? scenario.nextStepHintRu,
     es: scenario.nextStepHintEs ?? esCopy.nextStepHintEs,
     'pt-BR': batchCopy['pt-BR'].nextStepHint,
     vi: batchCopy.vi.nextStepHint,

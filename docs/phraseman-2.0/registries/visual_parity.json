@@ -33195,22 +33195,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-020.png",
+      "evidence_at": "2026-10-12T02:39:23.856Z",
+      "evidence_sha256": "d2bba0cdd4c948593829961a46879f83bb0a3018cef2089de7aa62a85a4e7187",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Значок «В набор»: в образце баночка/архив, в приложении стопка слоёв (тот же вопрос, что в cards-v2-013); значки «Озвучить» в приложении крупнее и контурные, в образце маленькие заливные.",
+        "[данные] Слово Gate без транскрипции, в образце Layover с «/ˈleɪoʊvər/» — у карточки в приложении транскрипции нет (она показывается только для слов из словаря); открыта другая плитка.",
+        "[вёрстка, мелко] Карточка в приложении ровная тёмная, в образце с лёгким градиентом и бликом стиля «Тень»; шторка выше на ~10 px (y≈752 против 763); подписи действий крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:40:13.200Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:39, утверждённый cards-v2 №20 «Карточка открыта — лицевая сторона»): шторка совпала по составу — ручка, карточка с «EN», словом по центру, кнопкой озвучки справа сверху и значком переворота справа снизу, три действия «Озвучить / В набор / Удалить» в круглых плитках (удаление красным), затемнённый список «Сохранённые» за шторкой."
     },
     {
       "id": "cards-v2-021",
@@ -33232,22 +33237,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-021.png",
+      "evidence_at": "2026-10-12T02:39:48.483Z",
+      "evidence_sha256": "e359de5fd623384f329ebfd79253fc890ccfd1e7225bf4cd34ec80f3356dbb74",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] У оборота в приложении только перевод «выход на посадку», в образце перевод «пересадка» и два примера под ним («We have a two-hour layover.» и «У нас пересадка два часа.») — у карточки в приложении примера нет; проверить, что приложение показывает пример, когда он есть в данных.",
+        "[вёрстка] Значок «В набор» (баночка в образце, стопка в приложении) и значки действий — как в cards-v2-020."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:40:13.200Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:39, утверждённый cards-v2 №21 «Карточка открыта — оборот»): шторка и действия те же, что в cards-v2-020; оборот карточки с «RU», переводом по центру и значком переворота."
     },
     {
       "id": "cards-v2-022",

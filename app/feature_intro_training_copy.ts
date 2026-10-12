@@ -11,7 +11,7 @@ export const TRAINING_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   title: lang => triLang(lang, { ru: 'Сначала — услышать', uk: 'Спершу — почути', en: 'Hear it first', es: 'Primero, escuchar', 'pt-BR': 'Primeiro, escutar', vi: 'Nghe trước đã', id: 'Dengar dulu', tr: 'Önce duymak', pl: 'Najpierw usłysz' }),
   body: lang => triLang(lang, {
     ru: 'Здесь фраза звучит, а ты учишься узнавать её на слух. Выбери наборы, слушай столько раз, сколько нужно, и двигайся в своём темпе — это не экзамен, а тренировка слуха.',
-    uk: 'Тут фраза звучить, а ти вчишся впізнавати її на слух. Вибери набори, слухай стільки разів, скільки потрібно, і рухайся у своєму темпі — це не іспит, а тренування слуху.',
+    uk: 'Тут вислів звучить, а ти вчишся впізнавати його на слух. Вибери набори, слухай стільки разів, скільки потрібно, і рухайся у своєму темпі — це не іспит, а тренування слуху.',
     en: 'Here, a phrase plays and you learn to recognise it by ear. Choose your packs, listen as many times as you need, and move at your own pace — this is listening practice, not an exam.',
     es: 'Aquí suena una frase y aprendes a reconocerla de oído. Elige tus packs, escucha las veces que necesites y avanza a tu ritmo: es práctica de escucha, no un examen.',
     'pt-BR': 'Aqui uma frase toca e você aprende a reconhecê-la de ouvido. Escolha seus pacotes, ouça quantas vezes precisar e siga no seu ritmo — é prática de escuta, não uma prova.',
@@ -25,7 +25,7 @@ export const TRAINING_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   title: lang => triLang(lang, { ru: 'Теперь твой голос', uk: 'Тепер твій голос', en: 'Your voice, your turn', es: 'Ahora, tu voz', 'pt-BR': 'Agora, sua voz', vi: 'Đến lượt giọng của bạn', id: 'Kini giliran suaramu', tr: 'Şimdi sıra sesinde', pl: 'Teraz twój głos' }),
   body: lang => triLang(lang, {
     ru: 'Вспоминай фразу по переводу или слушай и повторяй. Зажми микрофон, пока говоришь, и отпусти, когда закончишь. Здесь можно пробовать — идеальный дубль с первого раза не требуется.',
-    uk: 'Пригадуй фразу за перекладом або слухай і повторюй. Утримуй мікрофон, поки говориш, і відпусти, коли закінчиш. Ідеальний дубль із першої спроби не потрібен.',
+    uk: 'Пригадуй вислів за перекладом або слухай і повторюй. Утримуй мікрофон, поки говориш, і відпусти, коли закінчиш. Ідеальний дубль із першої спроби не потрібен.',
     en: 'Recall a phrase from its translation, or listen and repeat. Hold the microphone while speaking, then release it. You can try things out here; a perfect first take is not required.',
     es: 'Recuerda la frase a partir de su traducción o escucha y repite. Mantén pulsado el micrófono mientras hablas y suéltalo al terminar. No necesitas una primera toma perfecta.',
     'pt-BR': 'Lembre a frase pela tradução ou ouça e repita. Segure o microfone enquanto fala e solte ao terminar. Não precisa acertar tudo na primeira tentativa.',
@@ -36,7 +36,7 @@ export const TRAINING_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   }),
 }, {
   id: 'training_blitz_first_visit', trigger: 'first_visit', screenRoute: '/flashcards_training_setup?mode=blitz', family: 'orbit', art: 'training_blitz', icon: 'flash', ctaLabel: choosePacks,
-  title: lang => triLang(lang, { ru: 'Фразы на быстром старте', uk: 'Фрази на швидкому старті', en: 'A quick start for your phrases', es: 'Un arranque rápido', 'pt-BR': 'Frases em ritmo rápido', vi: 'Khởi động nhanh với các câu', id: 'Mulai cepat dengan frasa', tr: 'Cümlelerle hızlı başlangıç', pl: 'Szybki start z frazami' }),
+  title: lang => triLang(lang, { ru: 'Фразы на быстром старте', uk: 'Вислови на швидкому старті', en: 'A quick start for your phrases', es: 'Un arranque rápido', 'pt-BR': 'Frases em ritmo rápido', vi: 'Khởi động nhanh với các câu', id: 'Mulai cepat dengan frasa', tr: 'Cümlelerle hızlı başlangıç', pl: 'Szybki start z frazami' }),
   body: lang => triLang(lang, {
     ru: 'Выбирай ответ из вариантов и проверяй, что уже вспоминается без долгих раздумий. Для блица нужны хотя бы 4 карточки: из них собираются варианты. Сначала выбери наборы — гонка ещё не началась.',
     uk: 'Вибирай відповідь із варіантів і перевіряй, що вже пригадується швидко. Для бліцу потрібні хоча б 4 картки: з них складаються варіанти. Спочатку вибери набори — перегони ще не почалися.',

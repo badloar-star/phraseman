@@ -115,7 +115,7 @@ type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dis
 // открывает всё приложение. Общий текст курса («впереди 29 уроков») сюда не подходит — это после 1-го урока.
 const MAIN_COURSE_ACCESS_BODY: Record<Lang, string> = {
   ru: 'Дальше курс ведёт от простых фраз до свободного разговора. С Plus открывается весь курс, а с ним и всё остальное: разговоры вслух, тренировки без счётчика и статистика.',
-  uk: 'Далі курс веде від простих фраз до вільної розмови. З Plus відкривається увесь курс, а з ним і все інше: розмови вголос, тренування без лічильника і статистика.',
+  uk: 'Далі курс веде від простих висловів до вільної розмови. З Plus відкривається увесь курс, а з ним і все інше: розмови вголос, тренування без лічильника і статистика.',
   en: 'Next, the course takes you from simple phrases to free conversation. Plus opens the whole course, and everything else with it: speaking out loud, training without a counter and statistics.',
   es: 'Después, el curso te lleva de las frases simples a la conversación libre. Con Plus se abre el curso completo y, con él, todo lo demás: hablar en voz alta, entrenamientos sin contador y estadísticas.',
   'pt-BR': 'Daqui em diante, o curso vai das frases simples à conversa livre. Com o Plus abre o curso inteiro e, junto com ele, todo o resto: falar em voz alta, treinos sem contador e estatísticas.',

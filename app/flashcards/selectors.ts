@@ -144,7 +144,7 @@ export function buildFilterOptions(
 
 const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase', string>> = {
   ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня', video_phrase: 'Фразы из видео' },
-  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня', video_phrase: 'Фрази з відео' },
+  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня', video_phrase: 'Вислови з відео' },
   en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day', video_phrase: 'Video phrases' },
   es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día', video_phrase: 'Frases de vídeo' },
   'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia', video_phrase: 'Frases de vídeo' },

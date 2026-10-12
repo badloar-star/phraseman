@@ -41,7 +41,7 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
   // звучания; подписи не обещают «чисто/чётко».
   excellent: {
     ru: 'Отлично! Совпало с фразой',
-    uk: 'Чудово! Збіглося з фразою',
+    uk: 'Чудово! Збіглося з висловом',
     es: '¡Excelente! Coincide con la frase', en: 'Excellent! Matches the phrase',
     'pt-BR': 'Excelente! Bateu com a frase',
     vi: 'Xuất sắc! Khớp với câu',
@@ -140,7 +140,7 @@ type HintTexts = Readonly<Record<string, string>>;
 const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTexts>> = {
   say_clearer: {
     ru: 'Фраза распознаётся только с подсказкой — скажи чётче и чуть медленнее',
-    uk: 'Фраза розпізнається лише з підказкою — скажи чіткіше й трохи повільніше',
+    uk: 'Вислів розпізнається лише з підказкою — скажи чіткіше й трохи повільніше',
     es: 'La frase solo se reconoce con ayuda — dilo más claro y un poco más despacio', en: 'The phrase is only recognized with a hint — say it clearer and a bit slower',
     'pt-BR': 'A frase só é reconhecida com ajuda — fale mais claro e um pouco mais devagar',
     vi: 'Câu chỉ được nhận ra khi có gợi ý — hãy nói rõ và chậm hơn một chút',
@@ -170,7 +170,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   },
   incomplete: {
     ru: 'Скажи фразу целиком, не обрывая конец',
-    uk: 'Скажи фразу повністю, не обриваючи кінець',
+    uk: 'Скажи вислів повністю, не обриваючи кінець',
     es: 'Di la frase completa, sin cortar el final', en: 'Say the whole phrase, don\'t cut off the ending',
     'pt-BR': 'Diga a frase inteira, sem cortar o final',
     vi: 'Hãy nói trọn câu, đừng bỏ dở phần cuối',
@@ -190,7 +190,7 @@ const HINT_TEXTS: Readonly<Record<Exclude<SpeakingHint['kind'], 'none'>, HintTex
   },
   stress: {
     ru: 'Обрати внимание на ударение во фразе',
-    uk: 'Зверни увагу на наголос у фразі',
+    uk: 'Зверни увагу на наголос у вислові',
     es: 'Cuida el acento de la frase', en: 'Mind the stress in the phrase',
     'pt-BR': 'Atenção à ênfase da frase',
     vi: 'Chú ý trọng âm của câu',

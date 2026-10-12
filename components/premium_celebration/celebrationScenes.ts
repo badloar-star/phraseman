@@ -104,7 +104,7 @@ export const ALL_SCENES: readonly CelebrationScene[] = [
     sound: 'voice_score',
     icon: 'mic',
     durationMs: 1170,
-    title: L8('Голос с оценкой фразы', 'Голос з оцінкою фрази', 'Voz con evaluación', 'Voz com avaliação', 'Giọng nói có chấm điểm', 'Suara dengan penilaian', 'Puanlı ses pratiği', 'Głos z oceną frazy', 'Voice with phrase scoring'),
+    title: L8('Голос с оценкой фразы', 'Голос з оцінкою вислову', 'Voz con evaluación', 'Voz com avaliação', 'Giọng nói có chấm điểm', 'Suara dengan penilaian', 'Puanlı ses pratiği', 'Głos z oceną frazy', 'Voice with phrase scoring'),
     sub: L8('Говори — приложение проверит', 'Говори — застосунок перевірить', 'Habla y la app corrige', 'Fale e o app avalia', 'Nói và ứng dụng kiểm tra', 'Bicara, aplikasi menilai', 'Konuş, uygulama kontrol etsin', 'Mów, a aplikacja sprawdzi', 'Speak — the app checks you'),
   },
   {
@@ -129,7 +129,7 @@ export const ALL_SCENES: readonly CelebrationScene[] = [
     icon: 'list',
     durationMs: 1060,
     title: L8('Персональный план', 'Персональний план', 'Plan personal', 'Plano pessoal', 'Kế hoạch cá nhân', 'Rencana pribadi', 'Kişisel plan', 'Osobisty plan', 'Personal plan'),
-    sub: L8('Уроки, фразы и повторы под тебя', 'Уроки, фрази й повтори під тебе', 'Lecciones y repasos a tu medida', 'Lições e revisões sob medida', 'Bài học và ôn tập riêng cho bạn', 'Pelajaran dan ulangan sesuai kamu', 'Sana göre dersler ve tekrarlar', 'Lekcje i powtórki pod ciebie', 'Lessons, phrases and reviews built for you'),
+    sub: L8('Уроки, фразы и повторы под тебя', 'Уроки, вислови й повтори під тебе', 'Lecciones y repasos a tu medida', 'Lições e revisões sob medida', 'Bài học và ôn tập riêng cho bạn', 'Pelajaran dan ulangan sesuai kamu', 'Sana göre dersler ve tekrarlar', 'Lekcje i powtórki pod ciebie', 'Lessons, phrases and reviews built for you'),
   },
   {
     id: 'stats',

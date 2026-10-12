@@ -185,7 +185,7 @@ export async function computeFrenchPhraseAnalytics(
           'blue',
           {
             ru: `Фраза для повторения: ${topPhrase.phrase}.`,
-            uk: `Фраза для повторення: ${topPhrase.phrase}.`,
+            uk: `Вислів для повторення: ${topPhrase.phrase}.`,
             en: `Phrase to review: ${topPhrase.phrase}.`,
             es: `Frase para repasar: ${topPhrase.phrase}.`,
             ptBR: `Frase para revisar: ${topPhrase.phrase}.`,

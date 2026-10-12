@@ -989,7 +989,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     type LifetimeRow = { label: string; numValue: number; kind: LifetimeTotalsChartKind };
     const lifetimeRows: LifetimeRow[] = [
         { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', en: 'Words learned', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
-        { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
+        { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Висловів вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
         { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
         // зачем (D70/D78, координатор 01.10): «Монет заработано/потрачено» считали ЖЕМЧУГ (shards) —
         // жемчуг удалён владельцем; строки сняты с экрана, данные уберёт ядро вместе с кодом (PM-289).

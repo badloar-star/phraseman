@@ -599,7 +599,7 @@ function makeCopy(
       "Odtwórz nagranie lokalne",
     ),
     audioUnavailableHint: phrase(
-      "Аудіо недоступне, фразу показано нижче",
+      "Аудіо недоступне, вислів показано нижче",
       "El audio no está disponible; la frase aparece abajo",
       "O áudio não está disponível; a frase aparece abaixo",
       "Âm thanh không khả dụng; câu ở bên dưới",
@@ -626,7 +626,7 @@ function makeCopy(
       "Nagranie lokalne jest niedostępne. Fraza jest pokazana jako tekst.",
     ),
     localAudioFailed: phrase(
-      "Не вдалося відтворити запис. Фразу показано текстом.",
+      "Не вдалося відтворити запис. Вислів показано текстом.",
       "No se pudo reproducir la grabación. Se muestra la frase.",
       "Não foi possível reproduzir a gravação. A frase foi exibida.",
       "Không thể phát bản ghi. Câu được hiển thị bằng chữ.",
@@ -635,7 +635,7 @@ function makeCopy(
       "Nie udało się odtworzyć nagrania. Fraza jest pokazana jako tekst.",
     ),
     listenPrompt: phrase(
-      "Прослухай фразу й вибери її значення",
+      "Прослухай вислів і вибери його значення",
       "Escucha la frase y elige su significado",
       "Ouça a frase e escolha o significado",
       "Nghe câu và chọn nghĩa",
@@ -743,7 +743,7 @@ function makeCopy(
       "Zapisano pierwszą fiszkę. Poćwicz ją kiedy chcesz w sekcji «Fiszki»",
     ),
     saveDuplicate: phrase(
-      "Фраза вже є в картках",
+      "Вислів уже є в картках",
       "La frase ya está en tus tarjetas",
       "A frase já está nos cartões",
       "Câu đã có trong thẻ",

@@ -742,7 +742,7 @@ export const scheduleD1PersonalizedReminder = async (
 
     const title = pickNotif(lang, notificationCopy({
       ru: `Вчера ты выучил ${phrasesLearned} фраз.`,
-      uk: `Вчора ти вивчив ${phrasesLearned} фраз.`,
+      uk: `Вчора ти вивчив ${phrasesLearned} висловів.`,
       es: `Ayer consolidaste ${phrasesLearned} frases nuevas.`, en: `Yesterday you learned ${phrasesLearned} ${phrasesLearned === 1 ? 'phrase' : 'phrases'}.`,
       'pt-BR': `Ontem você aprendeu ${phrasesLearned} frases.`,
       vi: `Hôm qua bạn đã học ${phrasesLearned} cụm từ.`,
@@ -923,7 +923,7 @@ export const scheduleIntroExpiringNotification = async (
     }));
     const body = pickNotif(lang, notificationCopy({
       ru: 'Ты выучил первые фразы — не останавливайся. Сохрани доступ к урокам и энергии навсегда.',
-      uk: 'Ти вивчив перші фрази — не зупиняйся. Збережи доступ до уроків і енергії назавжди.',
+      uk: 'Ти вивчив перші вислови — не зупиняйся. Збережи доступ до уроків і енергії назавжди.',
       es: 'Ya aprendiste tus primeras frases. No pares ahora — conserva el acceso ilimitado.', en: 'You learned your first phrases — keep going. Keep access to lessons and energy for good.',
       'pt-BR': 'Você aprendeu suas primeiras frases. Não pare agora — mantenha o acesso ilimitado.',
       vi: 'Bạn đã học những cụm từ đầu tiên — đừng dừng lại. Giữ quyền truy cập không giới hạn.',
@@ -2267,7 +2267,7 @@ export const schedulePhraseOfDayNotification = async (
       `"${phrase.english}" — відкрий додаток, щоб дізнатись зміст.`,
       `"${phrase.english}" — natives кажуть так щодня. А ти знаєш навіщо?`,
       `"${phrase.english}" — це не те, що ти думаєш.`,
-      `"${phrase.english}" — одна фраза, що змінить твій English.`,
+      `"${phrase.english}" — один вислів, що змінить твій English.`,
     ];
     const TEASERS_ES = [
       `"${phrase.english}" — ¿sabes qué significa?`,
@@ -2330,8 +2330,8 @@ export const schedulePhraseOfDayNotification = async (
     }));
     const teaserIdx = getDayIndex() % teasers.length;
     const title = pickNotif(lang, notificationCopy({
-      ru: '☀️ Фраза дня',
-      uk: '☀️ Фраза дня',
+      ru: '☀️ Вислів дня',
+      uk: '☀️ Вислів дня',
       es: '☀️ Frase del día', en: '☀️ Phrase of the day',
       'pt-BR': '☀️ Frase do dia',
       vi: '☀️ Cụm từ hôm nay',

@@ -384,7 +384,7 @@ export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
   },
   how: {
     icon: 'construct',
-    defaultTitle: { ru: 'Как строится фраза', uk: 'Як будується фраза', en: 'How the phrase is built', es: '¿Cómo se forma la frase?', 'pt-BR': 'Como a frase é formada?', vi: 'Câu được tạo như thế nào?', id: 'Bagaimana frasa dibentuk?', tr: 'Cümle nasıl kurulur?', pl: 'Jak zbudować zdanie?' },
+    defaultTitle: { ru: 'Как строится фраза', uk: 'Як будується вислів', en: 'How the phrase is built', es: '¿Cómo se forma la frase?', 'pt-BR': 'Como a frase é formada?', vi: 'Câu được tạo như thế nào?', id: 'Bagaimana frasa dibentuk?', tr: 'Cümle nasıl kurulur?', pl: 'Jak zbudować zdanie?' },
     color: (t) => t.correct,
   },
   tip: {

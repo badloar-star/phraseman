@@ -45,7 +45,7 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
             <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
               {triLang(lang, {
                 ru: 'Пройденные фразы',
-                uk: 'Пройдені фрази',
+                uk: 'Пройдені вислови',
                 en: 'Completed phrases',
                 es: 'Frases completadas',
                 'pt-BR': 'Frases concluídas',
@@ -73,7 +73,7 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
               onPress={onPrev}
               disabled={atStart}
               accessibilityLabel={triLang(lang, {
-                ru: 'Предыдущая фраза', uk: 'Попередня фраза', en: 'Previous phrase', es: 'Frase anterior', 'pt-BR': 'Frase anterior',
+                ru: 'Предыдущая фраза', uk: 'Попередній вислів', en: 'Previous phrase', es: 'Frase anterior', 'pt-BR': 'Frase anterior',
                 vi: 'Câu trước', id: 'Frasa sebelumnya', tr: 'Önceki cümle', pl: 'Poprzednia fraza',
               })}
               style={[styles.arrow, { opacity: atStart ? 0.25 : 1 }]}
@@ -88,7 +88,7 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
               <TapScale
                 onPress={() => { if (current?.en) onPlay(current.en); }}
                 accessibilityLabel={triLang(lang, {
-                  ru: 'Озвучить фразу', uk: 'Озвучити фразу', en: 'Play the phrase', es: 'Reproducir audio',
+                  ru: 'Озвучить фразу', uk: 'Озвучити вислів', en: 'Play the phrase', es: 'Reproducir audio',
                   'pt-BR': 'Reproduzir audio', vi: 'Phát âm thanh', id: 'Putar audio',
                   tr: 'Sesi çal', pl: 'Odtwórz dźwięk',
                 })}
@@ -102,7 +102,7 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
               onPress={onNext}
               disabled={atEnd}
               accessibilityLabel={triLang(lang, {
-                ru: 'Следующая фраза', uk: 'Наступна фраза', en: 'Next phrase', es: 'Frase siguiente', 'pt-BR': 'Próxima frase',
+                ru: 'Следующая фраза', uk: 'Наступний вислів', en: 'Next phrase', es: 'Frase siguiente', 'pt-BR': 'Próxima frase',
                 vi: 'Câu tiếp theo', id: 'Frasa berikutnya', tr: 'Sonraki cümle', pl: 'Następna fraza',
               })}
               style={[styles.arrow, { opacity: atEnd ? 0.25 : 1 }]}

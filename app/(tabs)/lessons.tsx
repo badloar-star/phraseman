@@ -1377,7 +1377,7 @@ function neutralLearningV2SessionOutcome(sessionOrdinal: number, lang: Lang): st
   if (sessionOrdinal <= 4) {
     return triLang(lang, {
       ru: 'Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.',
-      uk: 'Ти зрозумієш, як am, is і are перетворюють окремі слова на закінчену фразу.',
+      uk: 'Ти зрозумієш, як am, is і are перетворюють окремі слова на закінчений вислів.',
       en: 'You will see how am, is and are turn separate words into a whole phrase.',
       es: 'Entenderás cómo am, is y are convierten palabras sueltas en una frase completa.',
       "pt-BR": 'Você vai entender como am, is e are transformam palavras soltas em uma frase completa.',
@@ -1390,7 +1390,7 @@ function neutralLearningV2SessionOutcome(sessionOrdinal: number, lang: Lang): st
   if (sessionOrdinal <= 8) {
     return triLang(lang, {
       ru: 'Ты научишься собирать простые фразы с глаголом to be.',
-      uk: 'Ти навчишся складати прості фрази з дієсловом to be.',
+      uk: 'Ти навчишся складати прості вислови з дієсловом to be.',
       en: 'You will learn to build simple phrases with the verb to be.',
       es: 'Aprenderás a formar frases sencillas con el verbo to be.',
       "pt-BR": 'Você vai aprender a montar frases simples com o verbo to be.',
@@ -5714,7 +5714,7 @@ export default function LessonsTab({
                     <Text style={{ color: learnGlass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Попробуй короче — например «прош» вместо целой фразы.",
-                        uk: "Спробуй коротше — наприклад «мин» замість цілої фрази.",
+                        uk: "Спробуй коротше — наприклад «мин» замість цілого вислову.",
                         en: "Try something shorter — for example “past” instead of a whole phrase.",
                         es: "Prueba algo más corto, por ejemplo «pas» en vez de la frase entera.",
                         "pt-BR": "Tente algo mais curto — por exemplo “pass” em vez da frase toda.",

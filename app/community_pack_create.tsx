@@ -1117,7 +1117,7 @@ export default function CommunityPackCreateScreen() {
     void trackEvent('paywall_shown', { context: creatorPaywallContext('pack'), source: 'pack_create_limit' });
     router.push({ pathname: '/premium_modal', params: { context: creatorPaywallContext('pack'), source: 'pack_create_limit' } } as never);
   };
-  const wordLabel = L('Слово или фраза', 'Слово або фраза', 'Word or phrase', 'Palabra o frase', 'Palavra ou frase', 'Từ hoặc cụm từ', 'Kata atau frasa', 'Kelime veya ifade', 'Słowo lub fraza');
+  const wordLabel = L('Слово или фраза', 'Слово або вислів', 'Word or phrase', 'Palabra o frase', 'Palavra ou frase', 'Từ hoặc cụm từ', 'Kata atau frasa', 'Kelime veya ifade', 'Słowo lub fraza');
   const translationLabel = L('Перевод', 'Переклад', 'Translation', 'Traducción', 'Tradução', 'Bản dịch', 'Terjemahan', 'Çeviri', 'Tłumaczenie');
   const anotherLabel = L('Ещё одну', 'Ще одну', 'Add another', 'Otra más', 'Mais um', 'Thêm nữa', 'Satu lagi', 'Bir tane daha', 'Jeszcze jedną');
   const addLabel = L('Добавить', 'Додати', 'Add', 'Añadir', 'Adicionar', 'Thêm', 'Tambah', 'Ekle', 'Dodaj');

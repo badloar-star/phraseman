@@ -309,7 +309,7 @@ export const AHA_STRINGS = {
   },
   listenAgainHint: {
     ru: 'Тапни по фразе — повторю',
-    uk: 'Тапни по фразі — повторю',
+    uk: 'Тапни по вислову — повторю',
     es: 'Toca la frase para repetir',
   },
   assembledPraise: {
@@ -400,7 +400,7 @@ export const AHA_STRINGS = {
   },
   payoffBody: {
     ru: 'Это была первая фраза. Дальше — тысячи живых фраз твоего маршрута.',
-    uk: 'Це була перша фраза. Далі — тисячі живих фраз твого маршруту.',
+    uk: 'Це був перший вислів. Далі — тисячі живих висловів твого маршруту.',
     es: 'Esa fue la primera. Adelante te esperan miles de frases vivas de tu ruta.',
   },
   payoffCta: {

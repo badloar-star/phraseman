@@ -269,7 +269,7 @@ export default function FlashcardsHubScreen() {
 
   const copy = useMemo(() => ({
     subtitleShort: triLang(lang, {
-      ru: 'Слова и фразы', uk: 'Слова й фрази', en: 'Words and phrases', es: 'Palabras y frases',
+      ru: 'Слова и фразы', uk: 'Слова й вислови', en: 'Words and phrases', es: 'Palabras y frases',
       'pt-BR': 'Palavras e frases', vi: 'Từ và cụm từ', id: 'Kata dan frasa', tr: 'Kelimeler ve ifadeler', pl: 'Słowa i zwroty',
     }),
     videoShort: triLang(lang, {
@@ -281,7 +281,7 @@ export default function FlashcardsHubScreen() {
       vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty',
     }),
     subtitle: triLang(lang, {
-      ru: 'Учи слова и фразы эффективнее', uk: 'Вивчай слова й фрази ефективніше',
+      ru: 'Учи слова и фразы эффективнее', uk: 'Вивчай слова й вислови ефективніше',
       en: 'Learn words and phrases more effectively', es: 'Aprende palabras y frases de forma más eficaz',
       'pt-BR': 'Aprenda palavras e frases com mais eficiência', vi: 'Học từ và cụm từ hiệu quả hơn',
       id: 'Pelajari kata dan frasa dengan lebih efektif', tr: 'Kelimeleri ve ifadeleri daha etkili öğren',

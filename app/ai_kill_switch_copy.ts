@@ -598,7 +598,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
     message: {
       ru: 'Официант-робот завис на фразе «Would you like fries with that» и ушёл в цикл. Перезагрузка…',
       en: 'The robot waiter got stuck on "Would you like fries with that" and looped forever. Rebooting…',
-      uk: 'Офіціант-робот завис на фразі «Would you like fries with that» і пішов у цикл. Перезавантаження…',
+      uk: 'Офіціант-робот завис на вислові «Would you like fries with that» і пішов у цикл. Перезавантаження…',
       es: 'El camarero robot se colgó en «Would you like fries with that» y entró en bucle. Reiniciando…',
       'pt-BR': 'O garçom robô travou em «Would you like fries with that» e entrou em loop. Reiniciando…',
       vi: 'Robot phục vụ bị kẹt ở câu «Would you like fries with that» và lặp vô tận. Đang khởi động lại…',

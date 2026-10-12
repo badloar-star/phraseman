@@ -286,7 +286,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     } },
     { isNew: true, text: {
       ru: 'Новый блок на карточке: выученные слова и фразы',
-      uk: 'Новий блок на картці: вивчені слова та фрази',
+      uk: 'Новий блок на картці: вивчені слова та вислови',
       es: 'Nuevo bloque en la tarjeta: palabras y frases aprendidas', en: 'New block on the card: learned words and phrases',
       'pt-BR': 'Novo bloco no cartão: palavras e frases aprendidas',
       vi: 'Khối mới trên thẻ: từ và cụm từ đã học',

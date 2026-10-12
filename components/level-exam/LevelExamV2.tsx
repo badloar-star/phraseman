@@ -92,7 +92,7 @@ function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
     guess_phrase: { ru: 'Живая ситуация', uk: 'Жива ситуація', en: 'Real situation', es: 'Situación real', 'pt-BR': 'Situação real', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durum', pl: 'Prawdziwa sytuacja' },
     fill_gap: { ru: 'Пропущенное слово', uk: 'Пропущене слово', en: 'Missing word', es: 'Palabra faltante', 'pt-BR': 'Palavra faltante', vi: 'Từ còn thiếu', id: 'Kata yang hilang', tr: 'Eksik kelime', pl: 'Brakujące słowo' },
     find_oddity: { ru: 'Так не говорят', uk: 'Так не кажуть', en: 'That\'s not how you say it', es: 'Así no se dice', 'pt-BR': 'Não se diz assim', vi: 'Không nói như vậy', id: 'Tidak diucapkan seperti itu', tr: 'Böyle söylenmez', pl: 'Tak się nie mówi' },
-    translate_build: { ru: 'Собери фразу', uk: 'Збери фразу', en: 'Build the phrase', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
+    translate_build: { ru: 'Собери фразу', uk: 'Збери вислів', en: 'Build the phrase', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
     speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', en: 'Quick pairs', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
   } as const;
   return triLang(lang, labels[task.format]);
@@ -100,7 +100,7 @@ function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
 
 function taskPrompt(task: LevelExamTask, lang: Lang): string {
   if (task.format === 'find_oddity') return triLang(lang, {
-    ru: 'Какая фраза составлена неправильно?', uk: 'Яку фразу складено неправильно?', en: 'Which phrase is built incorrectly?', es: '¿Qué frase está mal construida?',
+    ru: 'Какая фраза составлена неправильно?', uk: 'Який вислів складено неправильно?', en: 'Which phrase is built incorrectly?', es: '¿Qué frase está mal construida?',
     'pt-BR': 'Qual frase está construída incorretamente?', vi: 'Câu nào được tạo không đúng?', id: 'Kalimat mana yang disusun salah?',
     tr: 'Hangi cümle yanlış kurulmuş?', pl: 'Które zdanie jest zbudowane niepoprawnie?',
   });

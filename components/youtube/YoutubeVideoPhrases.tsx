@@ -54,7 +54,7 @@ function toastPhraseSaveRollback(reason: string): void {
     })
     : actionToastTri('error', {
       ru: 'Не удалось сохранить фразу. Попробуй ещё раз',
-      uk: 'Не вдалося зберегти фразу. Спробуй ще раз',
+      uk: 'Не вдалося зберегти вислів. Спробуй ще раз',
       en: "Couldn't save the phrase. Try again",
       es: 'No se pudo guardar la frase. Inténtalo de nuevo',
       'pt-BR': 'Não foi possível salvar a frase. Tente de novo',
@@ -176,7 +176,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   // зачем (координатор 12.10): раньше был только ru/en — украинец, испанец и остальные видели английский; теперь все 9 языков.
   const copy = useMemo(() => triLang(lang, {
     ru: { title: 'Фразы из видео', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' },
-    uk: { title: 'Фрази з відео', phrase: 'Фраза', translation: 'Переклад', explanation: 'Докладно', save: 'Зберегти фразу', saved: 'Фразу збережено', close: 'Закрити' },
+    uk: { title: 'Вислови з відео', phrase: 'Фраза', translation: 'Переклад', explanation: 'Докладно', save: 'Зберегти фразу', saved: 'Фразу збережено', close: 'Закрити' },
     en: { title: 'Phrases from this video', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' },
     es: { title: 'Frases del vídeo', phrase: 'Frase', translation: 'Traducción', explanation: 'Explicación', save: 'Guardar frase', saved: 'Frase guardada', close: 'Cerrar' },
     'pt-BR': { title: 'Frases do vídeo', phrase: 'Frase', translation: 'Tradução', explanation: 'Explicação', save: 'Salvar frase', saved: 'Frase salva', close: 'Fechar' },

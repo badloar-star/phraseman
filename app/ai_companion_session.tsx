@@ -611,7 +611,7 @@ function AiCompanionSession() {
                   >
                     {triLang(lang, {
                       ru: 'Спроси про фразу, прогресс или свой следующий шаг. Можно ответить собеседнику на изучаемом языке одной короткой фразой.',
-                      uk: 'Запитай про фразу, прогрес або свій наступний крок. Можна відповісти співрозмовнику мовою, яку вивчаєш, однією короткою фразою.',
+                      uk: 'Запитай про вислів, прогрес або свій наступний крок. Можна відповісти співрозмовнику мовою, яку вивчаєш, одним коротким висловом.',
                       en: 'Ask about a phrase, your progress, or your next step. You can also reply in the language you are learning with one short phrase.',
                       es: 'Pregunta por una frase, tu progreso o el siguiente paso. También puedes responder en el idioma que estás aprendiendo con una frase corta.',
                       'pt-BR': 'Pergunte sobre uma frase, seu progresso ou o próximo passo. Você também pode responder no idioma que está aprendendo com uma frase curta.',
@@ -642,7 +642,7 @@ function AiCompanionSession() {
               onChangeText={setInput}
               placeholder={triLang(lang, {
                 ru: 'Спроси о фразе или своём пути',
-                uk: 'Запитай про фразу або свій шлях',
+                uk: 'Запитай про вислів або свій шлях',
                 en: 'Ask about a phrase or your journey',
                 es: 'Pregunta por una frase o tu progreso',
                 'pt-BR': 'Pergunte sobre uma frase ou seu progresso',

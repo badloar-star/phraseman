@@ -208,7 +208,7 @@ export default function CollectionHeader({
     {
       key: 'phrase' as const,
       label: triLang(lang, {
-        ru: 'Фразы', uk: 'Фрази', en: 'Phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy',
+        ru: 'Фразы', uk: 'Вислови', en: 'Phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy',
       }),
     },
   ], [lang]);

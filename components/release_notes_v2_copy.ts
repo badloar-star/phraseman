@@ -33,7 +33,7 @@ const TEXTS: Readonly<Record<Locale, ReleaseNotesV2Texts>> = {
   uk: {
     eyebrow: 'Що нового · 2.0', title: 'Новий PhraseMan', hero: 'Новий дизайн і теми',
     items: [
-      { icon: 'layers-outline', title: 'Картки з відео', body: 'Фрази з роликів — одним натисканням у свої набори' },
+      { icon: 'layers-outline', title: 'Картки з відео', body: 'Вислови з роликів — одним натисканням у свої набори' },
       { icon: 'flash-outline', title: 'Енергія простіша', body: 'П’ять поділок, одне заняття — одна поділка' },
       { icon: 'checkmark-outline', title: 'Лише монети', body: 'Досвід пішов, нагорода одна — монети' },
     ],

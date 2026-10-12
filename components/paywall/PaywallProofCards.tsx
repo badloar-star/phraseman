@@ -55,7 +55,7 @@ function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label
   const stats: { value: number; label: string }[] = [];
   if (mirror.phrases > 0) stats.push({ value: mirror.phrases, label: triLang(lang, {
     ru: 'фраз',
-    uk: 'фраз',
+    uk: 'висловів',
     en: 'phrases',
     es: 'frases',
     'pt-BR': 'frases',
@@ -350,12 +350,12 @@ const VALUE_CARDS: ValueCard[] = [
   {
     icon: 'mic-outline',
     title: { ru: 'Устный ввод', uk: 'Усне введення', en: 'Voice input', es: 'Entrada por voz', 'pt-BR': 'Entrada por voz', vi: 'Nhập bằng giọng nói', id: 'Input suara', tr: 'Sesli giriş', pl: 'Wprowadzanie głosem' },
-    desc: { ru: 'Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.', uk: 'Вимовляєш фразу вголос, а Phraseman оцінює, наскільки точно й правильно її сказано.', en: 'You say the phrase out loud, and Phraseman rates how accurately and correctly it was said.', es: 'Dices la frase en voz alta y Phraseman evalúa qué tan precisa y correcta fue.', 'pt-BR': 'Você diz a frase em voz alta e o Phraseman avalia se ela foi dita com precisão e correção.', vi: 'Bạn nói câu đó thành tiếng, còn Phraseman đánh giá mức độ chính xác và đúng của câu nói.', id: 'Ucapkan frasa dengan suara, lalu Phraseman menilai seberapa tepat dan benar pengucapannya.', tr: 'Cümleyi sesli söylersin; Phraseman ne kadar doğru ve isabetli söylediğini değerlendirir.', pl: 'Wypowiadasz frazę na głos, a Phraseman ocenia, jak dokładnie i poprawnie została powiedziana.' },
+    desc: { ru: 'Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.', uk: 'Вимовляєш вислів уголос, а Phraseman оцінює, наскільки точно й правильно його сказано.', en: 'You say the phrase out loud, and Phraseman rates how accurately and correctly it was said.', es: 'Dices la frase en voz alta y Phraseman evalúa qué tan precisa y correcta fue.', 'pt-BR': 'Você diz a frase em voz alta e o Phraseman avalia se ela foi dita com precisão e correção.', vi: 'Bạn nói câu đó thành tiếng, còn Phraseman đánh giá mức độ chính xác và đúng của câu nói.', id: 'Ucapkan frasa dengan suara, lalu Phraseman menilai seberapa tepat dan benar pengucapannya.', tr: 'Cümleyi sesli söylersin; Phraseman ne kadar doğru ve isabetli söylediğini değerlendirir.', pl: 'Wypowiadasz frazę na głos, a Phraseman ocenia, jak dokładnie i poprawnie została powiedziana.' },
   },
   {
     icon: 'navigate-outline',
     title: { ru: 'Слабые места', uk: 'Слабкі місця', en: 'Weak spots', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
-    desc: { ru: 'Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.', uk: 'Помилкові й складні фрази повертаються в повторення, доки не стануть упевненими.', en: 'Wrong and tricky phrases keep coming back for review until you say them with confidence.', es: 'Las frases difíciles o con errores vuelven al repaso hasta que salgan con seguridad.', 'pt-BR': 'Frases difíceis ou com erro voltam para revisão até ficarem firmes.', vi: 'Câu khó hoặc câu sai quay lại phần ôn cho đến khi bạn nói chắc hơn.', id: 'Frasa sulit atau salah kembali diulang sampai terasa mantap.', tr: 'Hatalı ve zor ifadeler güvenli hale gelene kadar tekrara döner.', pl: 'Błędne i trudne frazy wracają do powtórki, aż staną się pewne.' },
+    desc: { ru: 'Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.', uk: 'Помилкові й складні вислови повертаються в повторення, доки не стануть упевненими.', en: 'Wrong and tricky phrases keep coming back for review until you say them with confidence.', es: 'Las frases difíciles o con errores vuelven al repaso hasta que salgan con seguridad.', 'pt-BR': 'Frases difíceis ou com erro voltam para revisão até ficarem firmes.', vi: 'Câu khó hoặc câu sai quay lại phần ôn cho đến khi bạn nói chắc hơn.', id: 'Frasa sulit atau salah kembali diulang sampai terasa mantap.', tr: 'Hatalı ve zor ifadeler güvenli hale gelene kadar tekrara döner.', pl: 'Błędne i trudne frazy wracają do powtórki, aż staną się pewne.' },
   },
   {
     icon: 'infinite-outline',
@@ -478,7 +478,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         // входит», — поэтому оставлен перечень, но без внутренней терминологии
         // и без пересказа того, что у человека уже есть бесплатно.
         ru: 'Весь курс, разговорная практика вслух, диалоги с ИИ без дневного счётчика, тренировки карточек, своя коллекция фраз, подробная статистика и темы оформления. Энергия при этом не тратится — заниматься можно сколько хочется.',
-        uk: 'Увесь курс, розмовна практика вголос, діалоги з ШІ без денного лічильника, тренування карток, власна колекція фраз, докладна статистика й теми оформлення. Енергія при цьому не витрачається — займатися можна скільки завгодно.',
+        uk: 'Увесь курс, розмовна практика вголос, діалоги з ШІ без денного лічильника, тренування карток, власна колекція висловів, докладна статистика й теми оформлення. Енергія при цьому не витрачається — займатися можна скільки завгодно.',
         en: 'The whole course, speaking practice out loud, AI dialogues with no daily counter, flashcard training, your own phrase collection, detailed statistics and app themes. Energy is never spent, so you can study as much as you like.',
         es: 'El curso completo, práctica oral en voz alta, diálogos con IA sin contador diario, entrenamientos de tarjetas, tu propia colección de frases, estadísticas detalladas y temas de la app. La energía no se gasta, así que puedes estudiar todo lo que quieras.',
         'pt-BR': 'O curso inteiro, prática de fala em voz alta, diálogos com IA sem contador diário, treinos de cartões, sua coleção de frases, estatísticas detalhadas e temas do app. A energia não é gasta, então você estuda o quanto quiser.',

@@ -55,7 +55,7 @@ export function voiceOutLabel(lang: Lang): string {
 export function voiceOutSub(lang: Lang): string {
   return triLang(lang, {
     ru: 'Произношение слов и фраз',
-    uk: 'Вимова слів і фраз',
+    uk: 'Вимова слів і висловів',
     en: 'Pronunciation of words and phrases',
     es: 'Pronunciación de palabras y frases',
     'pt-BR': 'Pronúncia de palavras e frases',

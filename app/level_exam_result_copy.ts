@@ -90,7 +90,7 @@ export function getLevelExamResultCopy(
       guess_phrase: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', en: 'Situations', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
       fill_gap: triLang(lang, { ru: 'Пропуски', uk: 'Пропуски', en: 'Gaps', es: 'Huecos', 'pt-BR': 'Lacunas', vi: 'Điền từ', id: 'Kata hilang', tr: 'Boşluklar', pl: 'Luki' }),
       find_oddity: triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }),
-      translate_build: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання фраз', en: 'Build phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
+      translate_build: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання висловів', en: 'Build phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
       speed_match: triLang(lang, { ru: 'Быстрые пары', uk: 'Швидкі пари', en: 'Speed match', es: 'Pares', 'pt-BR': 'Pares', vi: 'Ghép cặp', id: 'Pasangan', tr: 'Eşleştirme', pl: 'Pary' }),
     },
   };

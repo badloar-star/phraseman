@@ -9,7 +9,7 @@ const understood = (lang: Lang) => triLang(lang, {
 export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   id: 'cards_hub_first_visit', trigger: 'first_visit', screenRoute: '/flashcards', icon: 'albums', family: 'orbit', art: 'cards_hub',
   title: lang => triLang(lang, {
-    ru: 'Фразы — в твою коллекцию', uk: 'Фрази — до твоєї колекції', en: 'Build your phrase collection', es: 'Tu colección de frases',
+    ru: 'Фразы — в твою коллекцию', uk: 'Вислови — до твоєї колекції', en: 'Build your phrase collection', es: 'Tu colección de frases',
     'pt-BR': 'Sua coleção de frases', vi: 'Bộ sưu tập câu của bạn', id: 'Koleksi frasamu', tr: 'Kendi ifade koleksiyonun', pl: 'Twoja kolekcja zwrotów',
   }),
   body: lang => triLang(lang, {
@@ -43,12 +43,12 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
 }, {
   id: 'daily_phrase_first_visit', trigger: 'first_visit', screenRoute: '/(tabs)/home', icon: 'chatbubble-ellipses', family: 'orbit', art: 'daily_phrase',
   title: lang => triLang(lang, {
-    ru: 'Одна фраза на сегодня', uk: 'Одна фраза на сьогодні', en: 'One phrase for today', es: 'Una frase para hoy',
+    ru: 'Одна фраза на сегодня', uk: 'Один вислів на сьогодні', en: 'One phrase for today', es: 'Una frase para hoy',
     'pt-BR': 'Uma frase para hoje', vi: 'Một câu cho hôm nay', id: 'Satu frasa untuk hari ini', tr: 'Bugün için bir ifade', pl: 'Jeden zwrot na dziś',
   }),
   body: lang => triLang(lang, {
     ru: 'Каждый день здесь новая фраза: узнай её смысл, послушай произношение и проверь себя в коротком задании. Понравилась — сохрани в карточки. Маленькая находка, а в разговоре пригодится.',
-    uk: 'Щодня тут нова фраза: дізнайся її значення, послухай вимову та перевір себе в короткому завданні. Сподобалася — збережи до карток. Маленька знахідка, а в розмові знадобиться.',
+    uk: 'Щодня тут новий вислів: дізнайся його значення, послухай вимову та перевір себе в короткому завданні. Сподобався — збережи до карток. Маленька знахідка, а в розмові знадобиться.',
     en: 'A new phrase every day: discover its meaning, hear the pronunciation and try a short question. Like it? Save it to your cards. A little find that may come in handy in conversation.',
     es: 'Cada día, una frase nueva: descubre su significado, escucha la pronunciación y prueba una pregunta breve. Si te gusta, guárdala en tus tarjetas. Un pequeño hallazgo para tus conversaciones.',
     'pt-BR': 'Uma frase nova por dia: descubra o significado, ouça a pronúncia e responda a uma pergunta rápida. Gostou? Salve nos cartões. Uma pequena descoberta para usar nas conversas.',

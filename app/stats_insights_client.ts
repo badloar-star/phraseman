@@ -223,7 +223,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
       ? localText(
           briefing.lang,
           `Всего закреплено ${totalItems} слов/фраз. Слабая зона: ${weak.label} (${Math.round(weak.pct)}%) — начни с неё.`,
-          `Усього закріплено ${totalItems} слів/фраз. Слабка зона: ${weak.label} (${Math.round(weak.pct)}%) — почни з неї.`,
+          `Усього закріплено ${totalItems} слів/висловів. Слабка зона: ${weak.label} (${Math.round(weak.pct)}%) — почни з неї.`,
           `Total mastered: ${totalItems} words/phrases. Weak zone: ${weak.label} (${Math.round(weak.pct)}%) — start there.`,
           `Tienes ${totalItems} palabras/frases trabajadas. Zona débil: ${weak.label} (${Math.round(weak.pct)}%); empieza ahí.`,
           `Você trabalhou ${totalItems} palavras/frases. Zona fraca: ${weak.label} (${Math.round(weak.pct)}%); comece por ela.`,
@@ -235,7 +235,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
       : localText(
           briefing.lang,
           `Всего закреплено ${totalItems} слов/фраз. Продолжай маленькими повторениями.`,
-          `Усього закріплено ${totalItems} слів/фраз. Продовжуй малими повтореннями.`,
+          `Усього закріплено ${totalItems} слів/висловів. Продовжуй малими повтореннями.`,
           `Total mastered: ${totalItems} words/phrases. Keep going with small reviews.`,
           `Tienes ${totalItems} palabras/frases trabajadas. Sigue con repasos pequeños.`,
           `Você trabalhou ${totalItems} palavras/frases. Continue com pequenas revisões.`,

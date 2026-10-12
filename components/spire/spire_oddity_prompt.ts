@@ -14,7 +14,7 @@ type OddityCopy = { ru: string; uk: string; en: string; es: string; 'pt-BR': str
 
 const FIND_PHRASE_TO_FIX: OddityCopy = {
   ru: 'Найди фразу, которую нужно исправить.',
-  uk: 'Знайди фразу, яку треба виправити.',
+  uk: 'Знайди вислів, який треба виправити.',
   en: 'Find the phrase that needs fixing.',
   es: 'Encuentra la frase que hay que corregir.',
   'pt-BR': 'Encontre a frase que precisa ser corrigida.',

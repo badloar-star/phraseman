@@ -1494,7 +1494,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       empty: triLang(lang, {
         ru: 'Наборы откроются здесь — добавь свои фразы или загляни в магазин.',
         en: 'Packs will show up here — add your own phrases or check the shop.',
-        uk: 'Набори з\'являться тут — додай свої фрази або зазирни в магазин.',
+        uk: 'Набори з\'являться тут — додай свої вислови або зазирни в магазин.',
         es: 'Aquí aparecerán tus packs — añade tus frases o pásate por la tienda.',
         'pt-BR': "Seus pacotes vão aparecer aqui — adicione frases ou veja a loja.",
         vi: "Các gói sẽ hiện ở đây — thêm cụm từ của bạn hoặc ghé cửa hàng.",
@@ -1618,7 +1618,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       continue: triLang(lang, {
         ru: 'Следующая фраза',
         en: 'Next phrase',
-        uk: 'Наступна фраза',
+        uk: 'Наступний вислів',
         es: 'Siguiente frase',
         'pt-BR': "Próxima frase",
         vi: "Câu tiếp theo",
@@ -1704,9 +1704,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         pl: "Czy to tłumaczenie pasuje?",
       }),
       phraseLabel: triLang(lang, {
-        ru: 'Фраза',
+        ru: 'Вислів',
         en: 'Phrase',
-        uk: 'Фраза',
+        uk: 'Вислів',
         es: 'Frase',
         'pt-BR': "Frase",
         vi: "Cụm từ",
@@ -2010,7 +2010,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       swipeHint: triLang(lang, {
         ru: 'Смахни карточку вправо/влево или используй кнопки. Значок динамика озвучит фразу.',
         en: 'Swipe the card right or left, or use the buttons. The speaker icon reads the phrase aloud.',
-        uk: 'Змахни картку вправо/вліво або використай кнопки. Значок динаміка озвучить фразу.',
+        uk: 'Змахни картку вправо/вліво або використай кнопки. Значок динаміка озвучить вислів.',
         es: 'Desliza la tarjeta a la derecha o izquierda, o usa los botones. El icono del altavoz la pronuncia.',
         'pt-BR': 'Deslize o cartão para a direita/esquerda ou use os botões. O ícone de som lê a frase.',
         vi: 'Vuốt thẻ sang phải/trái hoặc dùng các nút. Biểu tượng loa sẽ đọc cụm từ.',

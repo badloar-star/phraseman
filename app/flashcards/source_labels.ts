@@ -27,7 +27,7 @@ function sourcePrefix(source: string, lang: Lang): string {
     'pt-BR': 'Fonte: Vídeo', vi: 'Nguồn: Video', id: 'Sumber: Video', tr: 'Kaynak: Video', pl: 'Źródło: Wideo',
   });
   if (source === 'daily_phrase') return triLang(lang, {
-    ru: 'Источник: Фраза дня', uk: 'Джерело: Фраза дня', en: 'Source: Phrase of the day', es: 'Fuente: Frase del día',
+    ru: 'Источник: Фраза дня', uk: 'Джерело: Вислів дня', en: 'Source: Phrase of the day', es: 'Fuente: Frase del día',
     'pt-BR': 'Fonte: Frase do dia', vi: 'Nguồn: Cụm từ trong ngày', id: 'Sumber: Frasa hari ini', tr: 'Kaynak: Günün ifadesi', pl: 'Źródło: Fraza dnia',
   });
   if (source === 'word') return triLang(lang, {

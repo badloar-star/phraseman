@@ -1289,13 +1289,13 @@ export default function FlashcardsSpeakingSession() {
       verdictOk: triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Dobrze' }),
       back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
       recallHint: triLang(lang, {
-        ru: 'Вспомни фразу по переводу. Нажми на микрофон и отвечай.', uk: 'Згадай фразу за перекладом. Натисни на мікрофон і відповідай.',
+        ru: 'Вспомни фразу по переводу. Нажми на микрофон и отвечай.', uk: 'Згадай вислів за перекладом. Натисни на мікрофон і відповідай.',
         en: 'Recall the phrase from its translation. Tap the microphone and answer.', es: 'Recuerda la frase a partir de la traducción. Toca el micrófono y responde.',
         'pt-BR': 'Lembre a frase pela tradução. Toque no microfone e responda.', vi: 'Nhớ lại câu từ bản dịch. Chạm vào micrô rồi trả lời.',
         id: 'Ingat frasa dari terjemahannya. Ketuk mikrofon lalu jawab.', tr: 'Çeviriden ifadeyi hatırla. Mikrofona dokun ve yanıtla.', pl: 'Przypomnij sobie zwrot na podstawie tłumaczenia. Stuknij mikrofon i odpowiedz.',
       }),
       repeatHint: triLang(lang, {
-        ru: 'Послушай фразу и повтори её. Нажми на микрофон и говори.', uk: 'Послухай фразу й повтори її. Натисни на мікрофон і говори.',
+        ru: 'Послушай фразу и повтори её. Нажми на микрофон и говори.', uk: 'Послухай вислів і повтори його. Натисни на мікрофон і говори.',
         en: 'Listen to the phrase and repeat it. Tap the microphone and speak.', es: 'Escucha la frase y repítela. Toca el micrófono y habla.',
         'pt-BR': 'Ouça a frase e repita. Toque no microfone e fale.', vi: 'Nghe câu rồi nhắc lại. Chạm vào micrô rồi nói.',
         id: 'Dengarkan frasa lalu ulangi. Ketuk mikrofon lalu bicara.', tr: 'İfadeyi dinle ve tekrarla. Mikrofona dokun ve konuş.', pl: 'Posłuchaj zwrotu i powtórz go. Stuknij mikrofon i mów.',

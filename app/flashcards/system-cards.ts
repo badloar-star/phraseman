@@ -1335,7 +1335,7 @@ const SYSTEM_CARDS_SOURCE: CardItem[] = [
   { id: 'tr15', en:'Prospect',          ru:'перспектива ≠ проспект (улица)', uk:'перспектива ≠ проспект (вулиця)',  categoryId:'traps', isSystem:true },
   { id: 'tr16', en:'Brilliant',         ru:'замечательный (брит.) ≠ яркий',  uk:'чудовий (брит.) ≠ лише яскравий', categoryId:'traps', isSystem:true },
   { id: 'tr17', en:'Cabinet',           ru:'шкаф / каб. министров ≠ кабинет врача', uk:'шафа / кабінет міністрів ≠ кабінет лікаря', categoryId:'traps', isSystem:true },
-  { id: 'tr18', en:'Phrase',            ru:'фраза ≠ предложение (sentence)', uk:'фраза ≠ речення (sentence)',       categoryId:'traps', isSystem:true },
+  { id: 'tr18', en:'Phrase',            ru:'фраза ≠ предложение (sentence)', uk:'вислів ≠ речення (sentence)',       categoryId:'traps', isSystem:true },
   { id: 'tr19', en:'Proper',            ru:'настоящий / правильный ≠ собственный', uk:'справжній ≠ власний',       categoryId:'traps', isSystem:true },
   { id: 'tr20', en:'Comprehensive',     ru:'полный / всеобъемлющий ≠ понятный', uk:'повний ≠ зрозумілий (comprehensible)', categoryId:'traps', isSystem:true },
 

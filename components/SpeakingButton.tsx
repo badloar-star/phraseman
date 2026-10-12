@@ -35,7 +35,7 @@ const SPEAKING_LABELS: Record<string, string> = {
 
 const SPEAKING_A11Y: Record<string, string> = {
   ru: 'Сказать фразу вслух',
-  uk: 'Сказати фразу вголос',
+  uk: 'Сказати вислів вголос',
   es: 'Decir la frase en voz alta', en: 'Say the phrase out loud',
   'pt-BR': 'Dizer a frase em voz alta',
   vi: 'Nói cụm từ thành tiếng',

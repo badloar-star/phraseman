@@ -495,7 +495,7 @@ export default function DialogVerdictScreen({
                 <Text style={{ color: t.accentText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }} maxFontSizeMultiplier={1.2}>
                   {triLang(lang, {
                     ru: 'Разбор твоих фраз',
-                    uk: 'Розбір твоїх фраз',
+                    uk: 'Розбір твоїх висловів',
                     en: 'Breakdown of your phrases',
                     es: 'Análisis de tus frases',
                     'pt-BR': 'Análise das suas frases',
@@ -547,7 +547,7 @@ export default function DialogVerdictScreen({
                     >
                       {triLang(lang, {
                         ru: 'Готовим подробный разбор твоих фраз…',
-                        uk: 'Готуємо докладний розбір твоїх фраз…',
+                        uk: 'Готуємо докладний розбір твоїх висловів…',
                         en: 'Preparing a detailed breakdown of your messages…',
                         es: 'Estamos preparando un análisis detallado de tus mensajes…',
                         'pt-BR': 'Estamos preparando uma análise detalhada das suas mensagens…',
@@ -796,7 +796,7 @@ export default function DialogVerdictScreen({
               {[
                 triLang(lang, {
                   ru: 'где фраза звучала неестественно',
-                  uk: 'де фраза звучала неприродно',
+                  uk: 'де вислів звучав неприродно',
                   en: 'where a phrase sounded unnatural',
                   es: 'dónde la frase sonó poco natural',
                   'pt-BR': 'onde a frase soou pouco natural',

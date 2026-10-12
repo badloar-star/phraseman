@@ -156,7 +156,7 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleUk: 'Почни говорити, а не зубрити',
     titleEs: 'Empieza a hablar, no a memorizar',
     subtitleRu: 'Курс из живых фраз, разговоры вслух и повторы ровно того, что забывается — всё открыто с первого дня.',
-    subtitleUk: 'Курс із живих фраз, розмови вголос і повтори саме того, що забувається — усе відкрито з першого дня.',
+    subtitleUk: 'Курс із живих висловів, розмови вголос і повтори саме того, що забувається — усе відкрито з першого дня.',
     subtitleEs: 'Un curso de frases reales, práctica oral y repasos de justo lo que se olvida: todo abierto desde el primer día.',
   },
   language_add: {
@@ -198,7 +198,7 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleUk: 'Зберігай усе, що подобається',
     titleEs: 'Guarda todo lo que te guste',
     subtitleRu: 'Бесплатно помещается двадцать фраз, с подпиской — сколько угодно. Плюс тренировки без счётчика, весь курс и разговорная практика.',
-    subtitleUk: 'Безкоштовно вміщається двадцять фраз, із передплатою — скільки завгодно. Плюс тренування без лічильника, увесь курс і розмовна практика.',
+    subtitleUk: 'Безкоштовно вміщається двадцять висловів, із передплатою — скільки завгодно. Плюс тренування без лічильника, увесь курс і розмовна практика.',
     subtitleEs: 'Gratis caben veinte frases; con la suscripción, todas las que quieras. Además, entrenamientos sin contador, el curso completo y práctica oral.',
   },
   theme: {
@@ -260,7 +260,7 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleUk: 'Повторюй раунди без обмежень',
     titleEs: 'Repite rondas sin límites',
     subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания монет.',
-    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання монет.',
+    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні вислови без списання монет.',
     subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar monedas.',
   },
   // зачем (владелец, 2026-09-22): три статистических экрана заканчивались на
@@ -308,7 +308,7 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleUk: 'Увесь застосунок цілком',
     titleEs: 'Toda la app, completa',
     subtitleRu: 'Весь курс, разговоры вслух, тренировки без дневного счётчика, своя коллекция фраз, статистика и темы оформления.',
-    subtitleUk: 'Увесь курс, розмови вголос, тренування без денного лічильника, власна колекція фраз, статистика й теми оформлення.',
+    subtitleUk: 'Увесь курс, розмови вголос, тренування без денного лічильника, власна колекція висловів, статистика й теми оформлення.',
     subtitleEs: 'El curso completo, práctica oral, entrenamientos sin contador diario, tu propia colección de frases, estadísticas y temas visuales.',
   },
 };
@@ -340,7 +340,7 @@ PAYWALL_COPY.speaking = {
   titleUk: 'Говори вголос скільки потрібно',
   titleEs: 'Habla en voz alta cuanto necesites',
   subtitleRu: `Бесплатно — ${DAILY_SPEAKING} попытки в день, а произношение ставится повторами. С подпиской повторяй, пока не зазвучит правильно: приложение слушает каждую фразу и показывает, где звук ушёл. Плюс весь курс, диалоги и тренировки.`,
-  subtitleUk: `Безкоштовно — ${DAILY_SPEAKING} спроби на день, а вимова ставиться повторами. Із передплатою повторюй, доки не зазвучить правильно: застосунок слухає кожну фразу й показує, де звук пішов не туди. Плюс увесь курс, діалоги та тренування.`,
+  subtitleUk: `Безкоштовно — ${DAILY_SPEAKING} спроби на день, а вимова ставиться повторами. Із передплатою повторюй, доки не зазвучить правильно: застосунок слухає кожен вислів і показує, де звук пішов не туди. Плюс увесь курс, діалоги та тренування.`,
   subtitleEs: `Gratis son ${DAILY_SPEAKING} intentos al día, y la pronunciación se logra repitiendo. Con la suscripción repite hasta que suene bien: la app escucha cada frase y te muestra dónde se desvió el sonido. Además, el curso completo, los diálogos y los entrenamientos.`,
 };
 
@@ -360,7 +360,7 @@ PAYWALL_COPY.dialog_analysis = {
   titleUk: 'Подивися, як звучала твоя мова',
   titleEs: 'Mira cómo sonó lo que dijiste',
   subtitleRu: 'После разговора видно, где фраза прозвучала неестественно, как её поправить и что сказать живее в следующий раз. Открывается вместе со всеми диалогами, курсом и тренировками.',
-  subtitleUk: 'Після розмови видно, де фраза прозвучала неприродно, як її виправити й що сказати живіше наступного разу. Відкривається разом з усіма діалогами, курсом і тренуваннями.',
+  subtitleUk: 'Після розмови видно, де вислів прозвучав неприродно, як його виправити й що сказати живіше наступного разу. Відкривається разом з усіма діалогами, курсом і тренуваннями.',
   subtitleEs: 'Al terminar la conversación se ve qué sonó poco natural, cómo corregirlo y qué decir de forma más viva la próxima vez. Se abre junto con todos los diálogos, el curso y los entrenamientos.',
 };
 
@@ -392,7 +392,7 @@ PAYWALL_COPY.flashcard_training = {
   titleUk: 'Тренуйся скільки хочеться',
   titleEs: 'Entrena todo lo que quieras',
   subtitleRu: `Бесплатно — ${MONTHLY_TRAINING} тренировок в месяц на все режимы. С подпиской счётчика нет, а слабые фразы возвращаются чаще, пока не закрепятся. Вместе с этим открывается весь курс, разговоры вслух и статистика.`,
-  subtitleUk: `Безкоштовно — ${MONTHLY_TRAINING} тренувань на місяць на всі режими. Із передплатою лічильника немає, а слабкі фрази повертаються частіше, доки не закріпляться. Разом із цим відкривається увесь курс, розмови вголос і статистика.`,
+  subtitleUk: `Безкоштовно — ${MONTHLY_TRAINING} тренувань на місяць на всі режими. Із передплатою лічильника немає, а слабкі вислови повертаються частіше, доки не закріпляться. Разом із цим відкривається увесь курс, розмови вголос і статистика.`,
   subtitleEs: `Gratis son ${MONTHLY_TRAINING} entrenamientos al mes en todos los modos. Con la suscripción no hay contador y las frases flojas vuelven más seguido hasta fijarse. Junto con esto se abre el curso completo, la práctica oral y las estadísticas.`,
 };
 
@@ -914,7 +914,7 @@ PAYWALL_COPY.premium_expired = {
   titleUk: 'Усе на місці — продовжимо?',
   titleEs: 'Todo sigue ahí, ¿continuamos?',
   subtitleRu: 'Подписка закончилась, но серия, сохранённые фразы и пройденные уроки никуда не делись. Подключай — и продолжай с той же страницы.',
-  subtitleUk: 'Передплата завершилася, але серія, збережені фрази та пройдені уроки нікуди не зникли. Підключай — і продовжуй із тієї ж сторінки.',
+  subtitleUk: 'Передплата завершилася, але серія, збережені вислови та пройдені уроки нікуди не зникли. Підключай — і продовжуй із тієї ж сторінки.',
   subtitleEs: 'La suscripción terminó, pero tu racha, tus frases guardadas y las lecciones completadas siguen ahí. Reactívala y continúa en la misma página.',
 };
 PAYWALL_COPY.vip_expired = {
@@ -943,10 +943,10 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   lesson_b1: MAIN_COURSE_PLUS_BENEFITS,
   flashcard_limit: [
     { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', en: 'Unlimited personal card collection', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
-    { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave', en: 'Keep all your key phrases', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
+    { ru: 'Храни все важные фразы', uk: 'Зберігай усі важливі вислови', es: 'Guarda todas tus frases clave', en: 'Keep all your key phrases', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
     // зачем (владелец, 2026-09-22): «Лучше долгосрочное запоминание» — обрубок
     // фразы, звучит как заметка в блокноте, а не как обещание человеку.
-    { ru: 'Фразы не теряются со временем', uk: 'Фрази не губляться з часом', es: 'Las frases no se pierden con el tiempo', en: 'Phrases don\'t get lost over time', 'pt-BR': 'As frases não se perdem com o tempo', vi: 'Các cụm từ không mất đi theo thời gian', id: 'Frasa tidak hilang seiring waktu', tr: 'İfadeler zamanla kaybolmaz', pl: 'Zwroty nie giną z czasem' },
+    { ru: 'Фразы не теряются со временем', uk: 'Вислови не губляться з часом', es: 'Las frases no se pierden con el tiempo', en: 'Phrases don\'t get lost over time', 'pt-BR': 'As frases não se perdem com o tempo', vi: 'Các cụm từ không mất đi theo thời gian', id: 'Frasa tidak hilang seiring waktu', tr: 'İfadeler zamanla kaybolmaz', pl: 'Zwroty nie giną z czasem' },
   ],
   streak: [
     // зачем (владелец, 2026-09-22): «Серия не ломает твой темп» — фраза наизнанку
@@ -979,7 +979,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   mistake_practice: [
     { ru: 'Все ошибки из уроков и карточек в одном месте', uk: 'Усі помилки з уроків і карток в одному місці', es: 'Todos tus errores de lecciones y tarjetas en un lugar', en: 'All mistakes from lessons and cards in one place', 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },
-    { ru: 'Слова и фразы смешиваются автоматически', uk: 'Слова й фрази змішуються автоматично', es: 'Palabras y frases se mezclan automáticamente', en: 'Words and phrases are mixed automatically', 'pt-BR': 'Palavras e frases se misturam automaticamente', vi: 'Từ và câu được trộn tự động', id: 'Kata dan frasa dicampur otomatis', tr: 'Kelimeler ve ifadeler otomatik karışır', pl: 'Słowa i frazy mieszają się automatycznie' },
+    { ru: 'Слова и фразы смешиваются автоматически', uk: 'Слова й вислови змішуються автоматично', es: 'Palabras y frases se mezclan automáticamente', en: 'Words and phrases are mixed automatically', 'pt-BR': 'Palavras e frases se misturam automaticamente', vi: 'Từ và câu được trộn tự động', id: 'Kata dan frasa dicampur otomatis', tr: 'Kelimeler ve ifadeler otomatik karışır', pl: 'Słowa i frazy mieszają się automatycznie' },
     { ru: 'Режимы меняются по твоему прогрессу', uk: 'Режими змінюються за твоїм прогресом', es: 'Los modos cambian según tu progreso', en: 'Modes adapt to your progress', 'pt-BR': 'Os modos mudam conforme seu progresso', vi: 'Chế độ thay đổi theo tiến độ của bạn', id: 'Mode berubah mengikuti progresmu', tr: 'Modlar ilerlemene göre değişir', pl: 'Tryby zmieniają się wraz z postępem' },
   ],
   mastery: [
@@ -999,7 +999,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   patterns: [
     { ru: 'Точки роста: что чаще всего проседает', uk: 'Точки росту: що найчастіше просідає', es: 'Puntos de crecimiento concretos', en: 'Growth areas: what slips most often', 'pt-BR': 'Pontos de crescimento: o que ainda oscila', vi: 'Điểm cần phát triển: phần còn chưa chắc', id: 'Titik berkembang: bagian yang belum kuat', tr: 'Gelişim noktaları: en çok ne aksıyor', pl: 'Punkty wzrostu: co najczęściej siada' },
-    { ru: 'Конкретные темы и фразы для отработки', uk: 'Конкретні теми та фрази для відпрацювання', es: 'Temas y frases específicos a entrenar', en: 'Specific topics and phrases to practice', 'pt-BR': 'Temas e frases específicos para treinar', vi: 'Chủ đề và cụm từ cụ thể để luyện', id: 'Topik dan frasa spesifik untuk dilatih', tr: 'Çalışılacak somut konular ve ifadeler', pl: 'Konkretne tematy i frazy do przećwiczenia' },
+    { ru: 'Конкретные темы и фразы для отработки', uk: 'Конкретні теми та вислови для відпрацювання', es: 'Temas y frases específicos a entrenar', en: 'Specific topics and phrases to practice', 'pt-BR': 'Temas e frases específicos para treinar', vi: 'Chủ đề và cụm từ cụ thể để luyện', id: 'Topik dan frasa spesifik untuk dilatih', tr: 'Çalışılacak somut konular ve ifadeler', pl: 'Konkretne tematy i frazy do przećwiczenia' },
     { ru: 'Тренируй именно слабое — без распыления', uk: 'Тренуй саме слабке — без розпорошення', es: 'Entrena lo importante, no todo a la vez', en: 'Train what\'s weak, not everything at once', 'pt-BR': 'Treine o ponto fraco sem dispersar', vi: 'Luyện đúng điểm yếu, không bị phân tán', id: 'Latih bagian lemah tanpa menyebar fokus', tr: 'Dağılmadan zayıf noktayı çalış', pl: 'Trenuj dokładnie słabe miejsce, bez rozproszenia' },
   ],
   percentiles: [
@@ -1031,7 +1031,7 @@ CONTEXT_BENEFITS.avatar_aura = [
 ];
 
 CONTEXT_BENEFITS.speaking = [
-  { ru: 'Произноси фразы вслух — приложение слушает', uk: 'Вимовляй фрази вголос — застосунок слухає', es: 'Di las frases en voz alta: la app te escucha', en: 'Say phrases out loud and the app listens', 'pt-BR': 'Diga as frases em voz alta — o app escuta', vi: 'Nói câu thành tiếng — ứng dụng lắng nghe', id: 'Ucapkan frasa dengan lantang — aplikasi mendengarkan', tr: 'Cümleleri sesli söyle — uygulama dinler', pl: 'Mów frazy na głos — aplikacja słucha' },
+  { ru: 'Произноси фразы вслух — приложение слушает', uk: 'Вимовляй вислови вголос — застосунок слухає', es: 'Di las frases en voz alta: la app te escucha', en: 'Say phrases out loud and the app listens', 'pt-BR': 'Diga as frases em voz alta — o app escuta', vi: 'Nói câu thành tiếng — ứng dụng lắng nghe', id: 'Ucapkan frasa dengan lantang — aplikasi mendengarkan', tr: 'Cümleleri sesli söyle — uygulama dinler', pl: 'Mów frazy na głos — aplikacja słucha' },
   { ru: 'Мгновенная подсказка по каждому слову', uk: 'Миттєва підказка щодо кожного слова', es: 'Pista instantánea en cada palabra', en: 'Instant hint on every word', 'pt-BR': 'Dica instantânea em cada palavra', vi: 'Gợi ý tức thì cho từng từ', id: 'Petunjuk instan untuk tiap kata', tr: 'Her kelime için anında ipucu', pl: 'Natychmiastowa podpowiedź dla każdego słowa' },
   { ru: 'Самый быстрый путь заговорить уверенно', uk: 'Найшвидший шлях заговорити впевнено', es: 'El camino más rápido para hablar con seguridad', en: 'The fastest way to speak with confidence', 'pt-BR': 'O caminho mais rápido para falar com confiança', vi: 'Cách nhanh nhất để nói tự tin', id: 'Cara tercepat untuk bicara percaya diri', tr: 'Kendinden emin konuşmanın en hızlı yolu', pl: 'Najszybsza droga, by mówić pewnie' },
 ];
@@ -1076,7 +1076,7 @@ CONTEXT_BENEFITS.ai_voice_input = [
 
 CONTEXT_BENEFITS.dialog_analysis = [
   { ru: 'Разбор появляется на экране завершения', uk: 'Розбір зʼявляється на екрані завершення', es: 'El análisis aparece al terminar', en: 'The breakdown appears on the finish screen', 'pt-BR': 'A análise aparece ao terminar', vi: 'Phân tích xuất hiện ở màn hình kết thúc', id: 'Analisis muncul di layar selesai', tr: 'Analiz bitiş ekranında görünür', pl: 'Analiza pojawia się na ekranie zakończenia' },
-  { ru: 'Видно, где фраза звучит неестественно', uk: 'Видно, де фраза звучить неприродно', es: 'Ves qué frase suena poco natural', en: 'See where a phrase sounds unnatural', 'pt-BR': 'Você vê onde a frase soa pouco natural', vi: 'Thấy câu nào nghe chưa tự nhiên', id: 'Terlihat bagian yang kurang alami', tr: 'İfadenin nerede doğal gelmediği görünür', pl: 'Widać, gdzie fraza brzmi nienaturalnie' },
+  { ru: 'Видно, где фраза звучит неестественно', uk: 'Видно, де вислів звучить неприродно', es: 'Ves qué frase suena poco natural', en: 'See where a phrase sounds unnatural', 'pt-BR': 'Você vê onde a frase soa pouco natural', vi: 'Thấy câu nào nghe chưa tự nhiên', id: 'Terlihat bagian yang kurang alami', tr: 'İfadenin nerede doğal gelmediği görünür', pl: 'Widać, gdzie fraza brzmi nienaturalnie' },
   { ru: 'Есть вариант, как сказать живее', uk: 'Є варіант, як сказати живіше', es: 'Incluye una forma más viva de decirlo', en: 'Includes a more natural way to say it', 'pt-BR': 'Inclui uma forma mais viva de dizer', vi: 'Có cách nói tự nhiên hơn', id: 'Ada versi yang lebih hidup', tr: 'Daha canlı söyleme biçimi var', pl: 'Jest żywszy wariant wypowiedzi' },
 ];
 
@@ -1087,7 +1087,7 @@ CONTEXT_BENEFITS.dialog_locked_level = [
 ];
 
 CONTEXT_BENEFITS.flashcard_training = [
-  { ru: 'Игровая тренировка сохранённых фраз', uk: 'Ігрове тренування збережених фраз', es: 'Entrenamiento lúdico de frases guardadas', en: 'Game-style training of saved phrases', 'pt-BR': 'Treino em jogo com frases salvas', vi: 'Luyện dạng trò chơi với câu đã lưu', id: 'Latihan gim untuk frasa tersimpan', tr: 'Kayıtlı ifadelerle oyunlu antrenman', pl: 'Trening zapisanych fraz w formie gry' },
+  { ru: 'Игровая тренировка сохранённых фраз', uk: 'Ігрове тренування збережених висловів', es: 'Entrenamiento lúdico de frases guardadas', en: 'Game-style training of saved phrases', 'pt-BR': 'Treino em jogo com frases salvas', vi: 'Luyện dạng trò chơi với câu đã lưu', id: 'Latihan gim untuk frasa tersimpan', tr: 'Kayıtlı ifadelerle oyunlu antrenman', pl: 'Trening zapisanych fraz w formie gry' },
   { ru: 'Слабые карточки вспоминаются активнее', uk: 'Слабкі картки згадуються активніше', es: 'Recuerdas mejor las tarjetas débiles', en: 'Weak cards come back to you more actively', 'pt-BR': 'Cartões fracos são lembrados de forma ativa', vi: 'Thẻ yếu được nhớ chủ động hơn', id: 'Kartu lemah diingat lebih aktif', tr: 'Zayıf kartlar daha aktif hatırlanır', pl: 'Słabe fiszki wracają aktywniej' },
   { ru: 'Сохранённое превращается в практику', uk: 'Збережене перетворюється на практику', es: 'Lo guardado se convierte en práctica', en: 'What you save becomes practice', 'pt-BR': 'O que você salvou vira prática', vi: 'Mục đã lưu biến thành luyện tập', id: 'Simpanan berubah jadi latihan', tr: 'Kaydedilenler pratiğe dönüşür', pl: 'Zapisane rzeczy zmieniają się w praktykę' },
 ];
@@ -1369,7 +1369,7 @@ PAYWALL_COPY.flashcard_create = {
   // раздела в приложении нет. Текст даёт повод: человек вспоминает момент,
   // когда ему это было нужно.
   titleRu: 'Добавь свою фразу',
-  titleUk: 'Додай свою фразу',
+  titleUk: 'Додай свій вислів',
   titleEs: 'Añade tu propia frase',
   subtitleRu: 'Услышал что-то в сериале или на работе — сохрани, и приложение будет тренировать это вместе с остальным. В подписке ещё весь курс, разговоры вслух и статистика.',
   subtitleUk: 'Почув щось у серіалі чи на роботі — збережи, і застосунок тренуватиме це разом з усім іншим. У передплаті ще увесь курс, розмови вголос і статистика.',
@@ -1396,7 +1396,7 @@ PAYWALL_PLANNED_COPY.flashcard_create = {
 };
 
 CONTEXT_BENEFITS.flashcard_create = [
-  { ru: 'Свои фразы с переводом и озвучкой', uk: 'Свої фрази з перекладом і озвучкою', es: 'Tus frases con traducción y audio', en: 'Your own phrases with translation and audio', 'pt-BR': 'Suas frases com tradução e áudio', vi: 'Cụm từ của bạn kèm bản dịch và audio', id: 'Frasamu dengan terjemahan dan audio', tr: 'Kendi ifadelerin çeviri ve sesle', pl: 'Własne frazy z tłumaczeniem i audio' },
+  { ru: 'Свои фразы с переводом и озвучкой', uk: 'Свої вислови з перекладом і озвучкою', es: 'Tus frases con traducción y audio', en: 'Your own phrases with translation and audio', 'pt-BR': 'Suas frases com tradução e áudio', vi: 'Cụm từ của bạn kèm bản dịch và audio', id: 'Frasamu dengan terjemahan dan audio', tr: 'Kendi ifadelerin çeviri ve sesle', pl: 'Własne frazy z tłumaczeniem i audio' },
   { ru: 'Учишь то, что нужно именно тебе', uk: 'Вчиш те, що потрібно саме тобі', es: 'Aprendes justo lo que te hace falta', en: 'Learn exactly what you need', 'pt-BR': 'Você estuda exatamente o que precisa', vi: 'Học đúng thứ bạn cần', id: 'Belajar persis yang kamu butuhkan', tr: 'Tam sana gerekeni öğrenirsin', pl: 'Uczysz się dokładnie tego, czego potrzebujesz' },
   { ru: 'Созданное остаётся у тебя навсегда', uk: 'Створене залишається в тебе назавжди', es: 'Lo que creas se queda contigo para siempre', en: 'What you create stays with you for good', 'pt-BR': 'O que você cria fica com você para sempre', vi: 'Thứ bạn tạo ở lại với bạn mãi mãi', id: 'Yang kamu buat tetap milikmu selamanya', tr: 'Oluşturduğun her şey sonsuza dek sende kalır', pl: 'To, co stworzysz, zostaje z tobą na zawsze' },
 ];
@@ -1414,7 +1414,7 @@ PAYWALL_COPY.pack_create = {
   titleUk: 'Збери набір під своє завдання',
   titleEs: 'Arma un set para lo que necesitas',
   subtitleRu: 'Фразы для поездки, собеседования или сериала — в одном месте. Учи набор целиком и делись им с друзьями. А с подпиской открывается и весь курс с разговорной практикой.',
-  subtitleUk: 'Фрази для поїздки, співбесіди чи серіалу — в одному місці. Вчи набір цілком і ділися ним із друзями. А з передплатою відкривається й увесь курс із розмовною практикою.',
+  subtitleUk: 'Вислови для поїздки, співбесіди чи серіалу — в одному місці. Вчи набір цілком і ділися ним із друзями. А з передплатою відкривається й увесь курс із розмовною практикою.',
   subtitleEs: 'Frases para un viaje, una entrevista o una serie, todas en un sitio. Estudia el set entero y compártelo con amigos. Y con la suscripción se abre también el curso completo con práctica oral.',
 };
 
@@ -1439,7 +1439,7 @@ PAYWALL_PLANNED_COPY.pack_create = {
 
 CONTEXT_BENEFITS.pack_create = [
   { ru: 'Своя колода под поездку, работу или сериал', uk: 'Своя колода під поїздку, роботу чи серіал', es: 'Tu mazo para un viaje, el trabajo o una serie', en: 'Your own deck for a trip, work or a show', 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
-  { ru: 'Фразы собраны в одном месте, а не вразброс', uk: 'Фрази зібрані в одному місці, а не врозсип', es: 'Las frases juntas en un sitio, no dispersas', en: 'Phrases collected in one place, not scattered', 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
+  { ru: 'Фразы собраны в одном месте, а не вразброс', uk: 'Вислови зібрані в одному місці, а не врозсип', es: 'Las frases juntas en un sitio, no dispersas', en: 'Phrases collected in one place, not scattered', 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
   { ru: 'Набор можно учить целиком и делиться им', uk: 'Набір можна вчити цілком і ділитися ним', es: 'Estudia el mazo entero y compártelo', en: 'Study the whole deck and share it', 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
 ];
 

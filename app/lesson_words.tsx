@@ -3191,7 +3191,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         message={
           pickTriLang(lang, {
             ru: 'Твой путь сохранён. Это тренировка — выученные фразы не сбросятся.',
-            uk: 'Твій шлях збережено. Це тренування — виучені фрази не скинуться.',
+            uk: 'Твій шлях збережено. Це тренування — виучені вислови не скинуться.',
             es: 'El progreso está guardado. Es solo práctica: las palabras aprendidas no se reinician.', en: 'Your path is saved. This is practice — learned phrases won\'t reset.',
             'pt-BR': 'O progresso foi salvo. Isto é só treino: as palavras aprendidas não serão reiniciadas.',
             vi: 'Tiến độ đã được lưu. Đây chỉ là luyện tập: các từ đã học sẽ không bị đặt lại.',

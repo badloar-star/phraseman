@@ -2224,7 +2224,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             {
                 key: 'cards',
                 title: quickItems[2]!.label,
-                subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, фрази й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
+                subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, вислови й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
                 onPress: quickItems[2]!.onPress,
                 ...tileArt('cards', require('../../assets/images/v2/notecard_stack.png')),
             },
@@ -2254,7 +2254,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 key: 'video_packs',
                 available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
                 title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
-                subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Фрази з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
+                subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Вислови з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
                 ...tileArt('cards_from_video', require('../../assets/images/v2/spiral_notepad.png')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },

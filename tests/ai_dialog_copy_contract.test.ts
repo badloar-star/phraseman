@@ -38,8 +38,9 @@ describe('ai dialog Phraseman copy contract', () => {
 
   it('labels companion as an open learning conversation, not a fixed scenario', () => {
     expect(companionSource).toContain('Вільна розмова');
-    expect(companionSource).toContain('Запитай про фразу, прогрес або свій наступний крок');
-    expect(companionSource).toContain('Запитай про фразу або свій шлях');
+    // зачем (владелец 12.10 через Сверку): на украинском «вислів», не «фраза».
+    expect(companionSource).toContain('Запитай про вислів, прогрес або свій наступний крок');
+    expect(companionSource).toContain('Запитай про вислів або свій шлях');
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
   });

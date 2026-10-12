@@ -2274,7 +2274,7 @@ export function SpeakingPanel({
       case 'scoring':
         return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', en: 'Checking…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
-        return L(lang, { ru: 'Отлично! Совпало с фразой', uk: 'Чудово! Збіглося з фразою', es: '¡Genial! Coincide con la frase', en: 'Great! Matches the phrase', 'pt-BR': 'Ótimo! Bateu com a frase', vi: 'Tuyệt! Khớp với câu', id: 'Bagus! Cocok dengan frasa', tr: 'Harika! İfadeyle eşleşti', pl: 'Świetnie! Zgadza się z frazą' }); // Q61: совпадение, не оценка звучания
+        return L(lang, { ru: 'Отлично! Совпало с фразой', uk: 'Чудово! Збіглося з висловом', es: '¡Genial! Coincide con la frase', en: 'Great! Matches the phrase', 'pt-BR': 'Ótimo! Bateu com a frase', vi: 'Tuyệt! Khớp với câu', id: 'Bagus! Cocok dengan frasa', tr: 'Harika! İfadeyle eşleşti', pl: 'Świetnie! Zgadza się z frazą' }); // Q61: совпадение, не оценка звучания
       case 'failed':
         return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', en: 'Almost. Try again', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
       case 'no_speech':
@@ -2602,7 +2602,7 @@ export function SpeakingPanel({
             <Text style={[styles.perfectLine, { color: mTheme.correct }]}>
               {L(lang, {
                 ru: '✓ Фраза идеальна — все слова чисто',
-                uk: '✓ Фраза ідеальна — усі слова чисто',
+                uk: '✓ Вислів ідеальний — усі слова чисто',
                 es: '✓ Frase perfecta: todas las palabras limpias', en: '✓ Perfect phrase — every word clean',
                 'pt-BR': '✓ Frase perfeita — todas as palavras limpas',
                 vi: '✓ Cụm từ hoàn hảo — mọi từ đều rõ',

@@ -81,8 +81,8 @@ function usedOf(lang: PaywallTextLang, n: number, genitive: Forms): string {
 // Существительные: обычные формы при числе (count) и родительный после «из» (of).
 const SESSION_COUNT: Forms = { ru: ['подход', 'подхода', 'подходов'], uk: ['підхід', 'підходи', 'підходів'], en: ['session', 'sessions'], es: ['sesión', 'sesiones'], 'pt-BR': ['sessão', 'sessões'], vi: ['lượt'], id: ['sesi'], tr: ['seans'], pl: ['podejście', 'podejścia', 'podejść'] };
 const SESSION_OF: Forms = { ru: ['подхода', 'подходов'], uk: ['підходу', 'підходів'], en: ['session', 'sessions'], es: ['sesión', 'sesiones'], 'pt-BR': ['sessão', 'sessões'], vi: ['lượt'], id: ['sesi'], tr: ['seans'], pl: ['podejścia', 'podejść'] };
-const PHRASE_COUNT: Forms = { ru: ['фраза', 'фразы', 'фраз'], uk: ['фраза', 'фрази', 'фраз'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['fraza', 'frazy', 'fraz'] };
-const PHRASE_OF: Forms = { ru: ['фразы', 'фраз'], uk: ['фрази', 'фраз'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['frazy', 'fraz'] };
+const PHRASE_COUNT: Forms = { ru: ['фраза', 'фразы', 'фраз'], uk: ['вислів', 'вислови', 'висловів'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['fraza', 'frazy', 'fraz'] };
+const PHRASE_OF: Forms = { ru: ['фразы', 'фраз'], uk: ['вислову', 'висловів'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['frazy', 'fraz'] };
 const TRAINING_COUNT: Forms = { ru: ['тренировка', 'тренировки', 'тренировок'], uk: ['тренування', 'тренування', 'тренувань'], en: ['practice session', 'practice sessions'], es: ['entrenamiento', 'entrenamientos'], 'pt-BR': ['treino', 'treinos'], vi: ['buổi luyện tập'], id: ['sesi latihan'], tr: ['antrenman'], pl: ['trening', 'treningi', 'treningów'] };
 const TRAINING_OF: Forms = { ru: ['тренировки', 'тренировок'], uk: ['тренування', 'тренувань'], en: ['practice session', 'practice sessions'], es: ['entrenamiento', 'entrenamientos'], 'pt-BR': ['treino', 'treinos'], vi: ['buổi luyện tập'], id: ['sesi latihan'], tr: ['antrenman'], pl: ['treningu', 'treningów'] };
 const REPLY_COUNT: Forms = { ru: ['ответ', 'ответа', 'ответов'], uk: ['відповідь', 'відповіді', 'відповідей'], en: ['reply', 'replies'], es: ['respuesta', 'respuestas'], 'pt-BR': ['resposta', 'respostas'], vi: ['câu trả lời'], id: ['balasan'], tr: ['yanıt'], pl: ['odpowiedź', 'odpowiedzi', 'odpowiedzi'] };
@@ -127,7 +127,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     course_after_lesson3: {
       ru: t('Дальше — в Plus', `Впереди ещё ${n('ru', c, LESSON_COUNT)}: от простых фраз до свободного разговора.`, 'Весь курс целиком'),
-      uk: t('Далі — у Plus', `Попереду ще ${n('uk', c, LESSON_COUNT)}: від простих фраз до вільної розмови.`, 'Увесь курс повністю'),
+      uk: t('Далі — у Plus', `Попереду ще ${n('uk', c, LESSON_COUNT)}: від простих висловів до вільної розмови.`, 'Увесь курс повністю'),
       en: t('The rest is in Plus', `${c} more lessons ahead: from simple phrases to free conversation.`, 'The whole course'),
       es: t('Lo que sigue está en Plus', `Te quedan ${c} lecciones: de frases sencillas a conversar con soltura.`, 'El curso completo'),
       'pt-BR': t('O resto está no Plus', `Ainda faltam ${c} lições: de frases simples à conversa livre.`, 'O curso inteiro'),
@@ -204,7 +204,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     flashcard_training: {
       ru: t('Тренировки на месяц закончились', `Бесплатно — ${n('ru', L.training, TRAINING_COUNT)} в месяц. С Plus счётчика нет.`, 'Игровая тренировка сохранённых фраз'),
-      uk: t('Тренування на місяць закінчилися', `Безкоштовно — ${n('uk', L.training, TRAINING_COUNT)} на місяць. З Plus лічильника немає.`, 'Ігрове тренування збережених фраз'),
+      uk: t('Тренування на місяць закінчилися', `Безкоштовно — ${n('uk', L.training, TRAINING_COUNT)} на місяць. З Plus лічильника немає.`, 'Ігрове тренування збережених висловів'),
       en: t('This month’s practice is used up', `Free: ${n('en', L.training, TRAINING_COUNT)} a month. With Plus there’s no counter.`, 'Game-style practice of saved phrases'),
       es: t('Se acabaron los entrenamientos del mes', `Gratis: ${n('es', L.training, TRAINING_COUNT)} al mes. Con Plus no hay contador.`, 'Práctica en forma de juego con tus frases'),
       'pt-BR': t('Os treinos do mês acabaram', `Grátis: ${n('pt-BR', L.training, TRAINING_COUNT)} por mês. Com o Plus não há contador.`, 'Treino em forma de jogo com suas frases'),
@@ -215,7 +215,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     flashcard_create: {
       ru: t('Добавь свою фразу', 'Услышал в сериале или на работе — сохрани, и приложение будет её тренировать.', 'Свои фразы с переводом и озвучкой'),
-      uk: t('Додай свою фразу', 'Почув у серіалі чи на роботі — збережи, і застосунок її тренуватиме.', 'Власні фрази з перекладом і озвученням'),
+      uk: t('Додай свою фразу', 'Почув у серіалі чи на роботі — збережи, і застосунок її тренуватиме.', 'Власні вислови з перекладом і озвученням'),
       en: t('Add your own phrase', 'Heard it in a show or at work? Save it and the app will train it.', 'Your phrases with translation and audio'),
       es: t('Añade tu propia frase', '¿La oíste en una serie o en el trabajo? Guárdala y la app te la hará practicar.', 'Tus frases con traducción y audio'),
       'pt-BR': t('Adicione sua própria frase', 'Ouviu numa série ou no trabalho? Salve e o app vai treinar com você.', 'Suas frases com tradução e áudio'),
@@ -226,7 +226,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     pack_create: {
       ru: t('Собери свой набор', 'Фразы для поездки, работы или сериала — в одном месте.', 'Своя колода под любую задачу'),
-      uk: t('Збери свій набір', 'Фрази для подорожі, роботи чи серіалу — в одному місці.', 'Власна колода під будь-яку задачу'),
+      uk: t('Збери свій набір', 'Вислови для подорожі, роботи чи серіалу — в одному місці.', 'Власна колода під будь-яку задачу'),
       en: t('Build your own set', 'Phrases for a trip, work or a show — all in one place.', 'Your own deck for any goal'),
       es: t('Arma tu propio set', 'Frases para un viaje, el trabajo o una serie, en un solo lugar.', 'Tu propio mazo para cualquier meta'),
       'pt-BR': t('Monte seu próprio conjunto', 'Frases para viagem, trabalho ou uma série — tudo em um só lugar.', 'Seu baralho para qualquer objetivo'),
@@ -270,7 +270,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     dialog_analysis: {
       ru: t('Разбор твоей речи', 'Увидишь, где фраза звучала неестественно и как сказать живее.', 'Разбор на экране завершения'),
-      uk: t('Розбір твого мовлення', 'Побачиш, де фраза звучала неприродно і як сказати живіше.', 'Розбір на екрані завершення'),
+      uk: t('Розбір твого мовлення', 'Побачиш, де вислів звучав неприродно і як сказати живіше.', 'Розбір на екрані завершення'),
       en: t('A review of how you spoke', 'See where a phrase sounded unnatural and how to say it more naturally.', 'Review on the finish screen'),
       es: t('Análisis de cómo hablaste', 'Verás dónde una frase sonó poco natural y cómo decirla mejor.', 'Análisis en la pantalla final'),
       'pt-BR': t('Análise da sua fala', 'Veja onde a frase soou estranha e como dizer de um jeito mais natural.', 'Análise na tela final'),
@@ -292,7 +292,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     speaking: {
       ru: t('Говори вслух сколько нужно', `Бесплатно — ${n('ru', L.speaking, ATTEMPT_COUNT)} в день. С Plus повторяй, пока не получится.`, 'Произноси фразы вслух — приложение слушает'),
-      uk: t('Говори вголос скільки треба', `Безкоштовно — ${n('uk', L.speaking, ATTEMPT_COUNT)} на день. З Plus повторюй, поки не вийде.`, 'Вимовляй фрази вголос — застосунок слухає'),
+      uk: t('Говори вголос скільки треба', `Безкоштовно — ${n('uk', L.speaking, ATTEMPT_COUNT)} на день. З Plus повторюй, поки не вийде.`, 'Вимовляй вислови вголос — застосунок слухає'),
       en: t('Speak out loud as much as you need', `Free: ${n('en', L.speaking, ATTEMPT_COUNT)} a day. With Plus, repeat until you get it.`, 'Say phrases out loud — the app listens'),
       es: t('Habla en voz alta lo que necesites', `Gratis: ${n('es', L.speaking, ATTEMPT_COUNT)} al día. Con Plus, repite hasta que te salga.`, 'Di las frases en voz alta: la app escucha'),
       'pt-BR': t('Fale em voz alta quanto precisar', `Grátis: ${n('pt-BR', L.speaking, ATTEMPT_COUNT)} por dia. Com o Plus, repita até acertar.`, 'Fale as frases em voz alta — o app escuta'),
@@ -413,7 +413,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     onboarding_plan: {
       ru: t('Начни говорить, а не зубрить', 'Живые фразы, разговоры вслух и повторы того, что забываешь.', 'Весь курс целиком'),
-      uk: t('Почни говорити, а не зубрити', 'Живі фрази, розмови вголос і повтори того, що забуваєш.', 'Увесь курс повністю'),
+      uk: t('Почни говорити, а не зубрити', 'Живі вислови, розмови вголос і повтори того, що забуваєш.', 'Увесь курс повністю'),
       en: t('Start speaking, not cramming', 'Real phrases, speaking out loud and reviews of what you forget.', 'The whole course'),
       es: t('Empieza a hablar, no a memorizar', 'Frases reales, práctica en voz alta y repaso de lo que olvidas.', 'El curso completo'),
       'pt-BR': t('Comece a falar, não a decorar', 'Frases reais, fala em voz alta e revisão do que você esquece.', 'O curso inteiro'),
@@ -435,7 +435,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     premium_expired: {
       ru: t('Всё на месте — продолжим?', 'Серия, фразы и уроки никуда не делись. Подключи Plus и продолжай.', 'Продолжаешь ровно с того места, где остановился'),
-      uk: t('Усе на місці — продовжимо?', 'Серія, фрази й уроки нікуди не зникли. Підключи Plus і продовжуй.', 'Продовжуєш саме з того місця, де зупинився'),
+      uk: t('Усе на місці — продовжимо?', 'Серія, вислови й уроки нікуди не зникли. Підключи Plus і продовжуй.', 'Продовжуєш саме з того місця, де зупинився'),
       en: t('Everything’s still here — continue?', 'Your streak, phrases and lessons are all here. Turn on Plus and carry on.', 'Pick up exactly where you left off'),
       es: t('Todo sigue aquí, ¿continuamos?', 'Tu racha, frases y lecciones siguen aquí. Activa Plus y sigue.', 'Sigues justo donde lo dejaste'),
       'pt-BR': t('Está tudo aqui — vamos continuar?', 'Sua sequência, frases e lições continuam aqui. Ative o Plus e siga.', 'Continue exatamente de onde parou'),
@@ -490,7 +490,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     },
     generic: {
       ru: t('Всё приложение целиком', 'Весь курс, разговоры вслух, тренировки, коллекция фраз и статистика.', 'Говоришь вслух с первого дня'),
-      uk: t('Увесь застосунок повністю', 'Увесь курс, розмови вголос, тренування, колекція фраз і статистика.', 'Говориш уголос із першого дня'),
+      uk: t('Увесь застосунок повністю', 'Увесь курс, розмови вголос, тренування, колекція висловів і статистика.', 'Говориш уголос із першого дня'),
       en: t('The whole app', 'The full course, speaking out loud, practice, a phrase collection and stats.', 'You speak out loud from day one'),
       es: t('Toda la app, completa', 'Curso completo, práctica oral, entrenamientos, colección de frases y estadísticas.', 'Hablas en voz alta desde el primer día'),
       'pt-BR': t('O app inteiro', 'Curso completo, fala em voz alta, treinos, coleção de frases e estatísticas.', 'Você fala em voz alta desde o primeiro dia'),

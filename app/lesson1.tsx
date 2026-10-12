@@ -1594,7 +1594,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityRole="button"
               accessibilityLabel={speechNa ? speechUnavailableOnDeviceText(lang) : triLang(lang, {
                 ru: 'Сказать фразу вслух',
-                uk: 'Сказати фразу вголос',
+                uk: 'Сказати вислів вголос',
                 en: 'Say the phrase out loud',
                 es: 'Decir la frase en voz alta',
                 'pt-BR': 'Dizer a frase em voz alta',
@@ -1641,7 +1641,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
                 ru: 'Посмотреть пройденные фразы',
-                uk: 'Переглянути пройдені фрази',
+                uk: 'Переглянути пройдені вислови',
                 en: 'View completed phrases',
                 es: 'Ver frases ya completadas',
                 'pt-BR': 'Ver frases já concluídas',
@@ -1682,7 +1682,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
                 ru: 'Объяснить фразу простыми словами',
-                uk: 'Пояснити фразу простими словами',
+                uk: 'Пояснити вислів простими словами',
                 en: 'Explain the phrase simply',
                 es: 'Explicar la frase con palabras simples',
                 'pt-BR': 'Explicar a frase em palavras simples',
@@ -1721,7 +1721,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
                 ru: 'Повторить озвучку фразы',
-                uk: 'Повторити озвучку фрази',
+                uk: 'Повторити озвучку вислову',
                 en: 'Replay the phrase audio',
                 es: 'Repetir audio de la frase',
                 'pt-BR': 'Repetir audio da frase',

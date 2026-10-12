@@ -748,7 +748,7 @@ export default function FlashcardsRecallSession() {
       vi: 'Bắt đầu bằng', id: 'Diawali dengan', tr: 'Başlangıç', pl: 'Początek',
     }),
     placeholder: triLang(lang, {
-      ru: 'Введи фразу целиком', uk: 'Введи фразу повністю', en: 'Type the complete phrase', es: 'Escribe la frase completa',
+      ru: 'Введи фразу целиком', uk: 'Введи вислів повністю', en: 'Type the complete phrase', es: 'Escribe la frase completa',
       'pt-BR': 'Digite a frase completa', vi: 'Nhập toàn bộ cụm từ', id: 'Ketik seluruh frasa',
       tr: 'İfadeyi tamamen yaz', pl: 'Wpisz całe wyrażenie',
     }),

@@ -137,7 +137,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   uk: {
     listen: 'Прослухати', unsupported: 'Ця мова поки не підтримується в розділі помилок.',
-    noLongerDue: 'Цю фразу вже не потрібно тренувати.', minFive: 'Готових до розбору помилок зараз немає.',
+    noLongerDue: 'Цей вислів уже не потрібно тренувати.', minFive: 'Готових до розбору помилок зараз немає.',
     prepareFailed: 'Не вдалося підготувати тренування. Спробуй ще раз.', noEnergy: 'Недостатньо енергії для продовження.',
     speechUncertain: 'Не розчув. Спробуй ще раз — енергію не витрачено.',
     speechRetry: 'Спробуй ще раз — енергію не витрачено.', sessionEnded: 'Сесію завершено', back: 'Повернутися',
@@ -148,11 +148,11 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Правильна відповідь', why: 'Чому так', stopToday: 'На сьогодні досить повторів цієї помилки — повернемося до неї пізніше.',
     hidden: 'Помилку сховано', undo: 'Повернути', continue: 'Продовжити', check: 'Перевірити',
     hideTitle: 'Сховати помилку?', cancel: 'Скасувати', hide: 'Сховати',
-    explanationWordOrder: 'Звір порядок слів: в англійській фразі позиція кожного слова змінює зміст.',
-    explanationMissing: 'Перевір пропущене слово й прочитай усю фразу ще раз.',
-    explanationMeaning: 'Пов’яжи значення з усією фразою, а не з одним знайомим словом.',
-    explanationPronunciation: 'Скажи фразу спокійно й чітко, зберігаючи наголос і закінчення.',
-    explanationListening: 'Спочатку знайди опорні слова на слух, потім віднови повну фразу.',
+    explanationWordOrder: 'Звір порядок слів: в англійському вислові позиція кожного слова змінює зміст.',
+    explanationMissing: 'Перевір пропущене слово й прочитай увесь вислів ще раз.',
+    explanationMeaning: 'Пов’яжи значення з усім висловом, а не з одним знайомим словом.',
+    explanationPronunciation: 'Скажи вислів спокійно й чітко, зберігаючи наголос і закінчення.',
+    explanationListening: 'Спочатку знайди опорні слова на слух, потім віднови повний вислів.',
     explanationDefault: 'Порівняй свій варіант із правильною формою та зверни увагу на закінчення і службові слова.',
   },
   en: {
@@ -1382,7 +1382,7 @@ function MistakePracticeSessionScreen() {
               <PanelCta g={g} testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
             </View>
           )}
-          {feedback.stopForToday ? <Text style={[styles.trayStop, { color: g.secondary }]}>{triLang(lang, { ru: 'Повторим эту фразу завтра: три попытки подряд утомляют, а не учат.', uk: 'Повторимо цю фразу завтра: три спроби поспіль втомлюють, а не вчать.', en: "We'll come back to this phrase tomorrow: three tries in a row tire you out rather than teach.", es: 'Volveremos a esta frase mañana: tres intentos seguidos cansan, no enseñan.', 'pt-BR': 'Voltamos a esta frase amanhã: três tentativas seguidas cansam, não ensinam.', vi: 'Ta sẽ quay lại câu này vào ngày mai: ba lần liên tiếp làm mệt chứ không giúp học.', id: 'Kita ulang frasa ini besok: tiga kali berturut-turut melelahkan, bukan mengajarkan.', tr: 'Bu ifadeye yarın döneriz: üst üste üç deneme öğretmez, yorar.', pl: 'Wrócimy do tej frazy jutro: trzy próby pod rząd męczą, a nie uczą.' })}</Text> : null}
+          {feedback.stopForToday ? <Text style={[styles.trayStop, { color: g.secondary }]}>{triLang(lang, { ru: 'Повторим эту фразу завтра: три попытки подряд утомляют, а не учат.', uk: 'Повторимо цей вислів завтра: три спроби поспіль втомлюють, а не вчать.', en: "We'll come back to this phrase tomorrow: three tries in a row tire you out rather than teach.", es: 'Volveremos a esta frase mañana: tres intentos seguidos cansan, no enseñan.', 'pt-BR': 'Voltamos a esta frase amanhã: três tentativas seguidas cansam, não ensinam.', vi: 'Ta sẽ quay lại câu này vào ngày mai: ba lần liên tiếp làm mệt chứ không giúp học.', id: 'Kita ulang frasa ini besok: tiga kali berturut-turut melelahkan, bukan mengajarkan.', tr: 'Bu ifadeye yarın döneriz: üst üste üç deneme öğretmez, yorar.', pl: 'Wrócimy do tej frazy jutro: trzy próby pod rząd męczą, a nie uczą.' })}</Text> : null}
         </Tray>
       );
     }

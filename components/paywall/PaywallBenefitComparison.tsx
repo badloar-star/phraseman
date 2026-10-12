@@ -60,7 +60,7 @@ export const PAYWALL_MAIN_BENEFITS: readonly MainBenefit[] = [
 ];
 
 export const PAYWALL_COMPARISON_ROWS: readonly ComparisonRow[] = [
-  { id: 'saved_phrases', label: LP('Сохранённые фразы', 'Збережені фрази', 'Saved phrases', 'Frases guardadas', 'Frases salvas', 'Cụm từ đã lưu', 'Frasa tersimpan', 'Kaydedilen ifadeler', 'Zapisane zwroty'),
+  { id: 'saved_phrases', label: LP('Сохранённые фразы', 'Збережені вислови', 'Saved phrases', 'Frases guardadas', 'Frases salvas', 'Cụm từ đã lưu', 'Frasa tersimpan', 'Kaydedilen ifadeler', 'Zapisane zwroty'),
     free: LP('До 50', 'До 50', 'Up to 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'), plus: UNLIMITED },
   { id: 'own_cards', label: LP('Свои карточки', 'Власні картки', 'Your own cards', 'Tus tarjetas', 'Seus cartões', 'Thẻ của bạn', 'Kartu buatanmu', 'Kendi kartların', 'Własne karty'),
     free: LP('До 50', 'До 50', 'Up to 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'), plus: UNLIMITED },

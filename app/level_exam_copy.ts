@@ -26,7 +26,7 @@ export type LevelExamCopy = {
 
 const formatNames = {
   ru: ['Контекст', 'Сборка фраз', 'Смысл', 'Поиск ошибки', 'Быстрые пары'],
-  uk: ['Контекст', 'Складання фраз', 'Значення', 'Пошук помилки', 'Швидкі пари'],
+  uk: ['Контекст', 'Складання висловів', 'Значення', 'Пошук помилки', 'Швидкі пари'],
   es: ['Contexto', 'Construir frases', 'Significado', 'Detectar el error', 'Pares rápidos'], en: ['Context', 'Phrase building', 'Meaning', 'Error spotting', 'Quick pairs'],
   'pt-BR': ['Contexto', 'Montar frases', 'Significado', 'Encontrar o erro', 'Pares rápidos'],
   vi: ['Ngữ cảnh', 'Ghép câu', 'Ý nghĩa', 'Tìm lỗi', 'Ghép cặp nhanh'],
@@ -53,7 +53,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     }),
     lead: triLang(lang, {
       ru: 'Покажи, как уверенно ты используешь темы этого уровня в живых фразах.',
-      uk: 'Покажи, наскільки впевнено ти використовуєш теми цього рівня в живих фразах.',
+      uk: 'Покажи, наскільки впевнено ти використовуєш теми цього рівня в живих висловах.',
       en: 'Show how confidently you use this level\'s topics in real phrases.',
       es: 'Demuestra cómo usas los temas de este nivel en frases reales.',
       'pt-BR': 'Mostre como você usa os temas deste nível em frases reais.',

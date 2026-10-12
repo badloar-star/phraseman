@@ -16,7 +16,7 @@ export const MAIN_COURSE_PLUS_TITLE: Record<Lang, string> = {
 
 export const MAIN_COURSE_PLUS_DESCRIPTION: Record<Lang, string> = {
   ru: 'Впереди ещё двадцать девять уроков — от простых фраз до свободного разговора. А вместе с ними открывается и всё остальное: разговоры вслух, тренировки без счётчика, своя коллекция фраз и статистика.',
-  uk: 'Попереду ще двадцять дев’ять уроків — від простих фраз до вільної розмови. А разом із ними відкривається і все інше: розмови вголос, тренування без лічильника, власна колекція фраз і статистика.',
+  uk: 'Попереду ще двадцять дев’ять уроків — від простих висловів до вільної розмови. А разом із ними відкривається і все інше: розмови вголос, тренування без лічильника, власна колекція висловів і статистика.',
   en: 'Twenty-nine more lessons ahead — from simple phrases to free conversation. And everything else opens up with them: speaking out loud, training without a daily counter, your own phrase collection and statistics.',
   es: 'Quedan veintinueve lecciones más: de las frases simples a la conversación libre. Y con ellas se abre todo lo demás: hablar en voz alta, entrenamientos sin contador, tu propia colección de frases y estadísticas.',
   'pt-BR': 'Faltam mais vinte e nove lições — das frases simples à conversa livre. E junto com elas abre tudo o mais: falar em voz alta, treinos sem contador diário, sua coleção de frases e estatísticas.',

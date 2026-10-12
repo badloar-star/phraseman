@@ -43,7 +43,7 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
   }, [modalVisible]);
   const introduction = triLang(lang, {
         ru: 'Попробуй ответить собеседнику в выбранной ситуации. Здесь можно искать слова и начинать фразу заново — это практика, а не собеседование.',
-        uk: 'Спробуй відповісти співрозмовнику в обраній ситуації. Тут можна шукати слова й починати фразу заново — це практика, а не співбесіда.',
+        uk: 'Спробуй відповісти співрозмовнику в обраній ситуації. Тут можна шукати слова й починати вислів заново — це практика, а не співбесіда.',
         en: 'Try replying to your conversation partner in the chosen situation. You can search for words and start a sentence again — this is practice, not a job interview.',
         es: 'Prueba a responder en la situación elegida. Puedes buscar palabras y volver a empezar la frase: es práctica, no una entrevista de trabajo.',
         'pt-BR': 'Tente responder na situação escolhida. Pode procurar palavras e recomeçar a frase — é prática, não uma entrevista de emprego.',

@@ -26,7 +26,7 @@ export function buildMistakeExplainFallbackText(lang: Lang, input: MistakeFallba
   if (expected && picked) {
     return triLang(lang, {
       ru: `Здесь нужно «${expected}», а у тебя «${picked}». Скажи правильную фразу вслух ещё раз.`,
-      uk: `Тут потрібно «${expected}», а в тебе «${picked}». Скажи правильну фразу вголос ще раз.`,
+      uk: `Тут потрібно «${expected}», а в тебе «${picked}». Скажи правильний вислів вголос ще раз.`,
       en: `Here you need “${expected}”, and you wrote “${picked}”. Say the correct phrase out loud once more.`,
       es: `Aquí va «${expected}», y tú pusiste «${picked}». Di la frase correcta en voz alta otra vez.`,
       'pt-BR': `Aqui vai «${expected}», e você escreveu «${picked}». Diga a frase certa em voz alta mais uma vez.`,
@@ -39,7 +39,7 @@ export function buildMistakeExplainFallbackText(lang: Lang, input: MistakeFallba
   if (expected) {
     return triLang(lang, {
       ru: `Здесь не хватает «${expected}». Скажи правильную фразу вслух ещё раз.`,
-      uk: `Тут бракує «${expected}». Скажи правильну фразу вголос ще раз.`,
+      uk: `Тут бракує «${expected}». Скажи правильний вислів вголос ще раз.`,
       en: `“${expected}” is missing here. Say the correct phrase out loud once more.`,
       es: `Aquí falta «${expected}». Di la frase correcta en voz alta otra vez.`,
       'pt-BR': `Aqui falta «${expected}». Diga a frase certa em voz alta mais uma vez.`,

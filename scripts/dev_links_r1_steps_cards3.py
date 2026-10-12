@@ -66,3 +66,19 @@ put(['cards-section-040', 'cards-v2-032'], [], 'cards=demo&plus=on&speech=correc
 put('cards-section-041', ['tap:#fc-speak-mic'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=saved&size=all', note='«Устно»: микрофон нажат — запись идёт')
 put('cards-079', ['tap:#fc-speak-pick-decks-empty'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=custom&size=all', note='шторка выбора наборов «Что говорим?» (кнопка fc-speak-pick-decks-empty)')
 put('cards-gap-023', ['tap:#fc-saved-actions', 'tap:#fc-saved-content-phrase', 'tap:#fc-menu-filter'], 'cards=demo_lessons&plus=on', '/flashcards_collection?cat=saved', note='фильтр по уроку: меню «⋯» → «Фразы» → «Фильтр» (выбрано «Все»)')
+
+
+# ── Ядро 12.10, пункты после партии 2 (5b1caa8ee, faa66282b)
+# cards-072: черновик нового набора «В аэропорту» (12 карточек, в сообщество) + публикация не удалась без сети (packdraft=on + fail=publish_error); без fresh
+put('cards-072', ['tap:#ugc-pack-save', 'wait:600'], 'plus=on&packdraft=on&fail=publish_error', '/community_pack_create', note='создание набора: черновик «В аэропорту» (12 карточек), тост «Набор сохранён на устройстве. Публикация не завершена…» (packdraft=on + fail=publish_error)')
+
+# ── Диалоги: голос вместо микрофона устройства (speech=… как в Карточках); сессия — подставной старт dev_dialog_send=ok
+from dev_links_r1_steps import DLG, DLG_START  # noqa: E402
+DLG_VOICE = 'plus=off&dquota=reset&energy=5&dev_dialog_send=ok'
+HOLD_VOICE = 'long:#dialogue-v2-voice-input'
+put('dialogs-026', DLG_START + [HOLD_VOICE, 'wait:800'], DLG_VOICE + '&speech=correct', DLG, note='голосовой ввод: распознано — текст встаёт в поле (speech=correct; удержание микрофона 1,5 с)')
+put('dialogs-028', DLG_START + [HOLD_VOICE, 'wait:600'], DLG_VOICE + '&speech=denied', DLG, unique=False, note='«Нет доступа к микрофону» (speech=denied → dialogue-v2-session-voice-hint); часть образца «попытки кончились + PLUS» в коде отсутствует — строка blocked')
+put('dialogs-gap-014', DLG_START + [HOLD_VOICE, 'wait:800', 'tap:#dialogue-v2-session-send', 'wait:600'], DLG_VOICE + '&speech=correct', DLG, note='голосовое сообщение в ленте: распознано и отправлено (speech=correct)')
+put('dialogs-024', DLG_START + [HOLD_VOICE], DLG_VOICE + '&speech=correct', DLG, unique=False, note='«Готовлю микрофон…» — снимать во время удержания (шаг long держит 1,5 с; снять кадр в удержании робот не умеет — нужен hold-режим Ядра)')
+put('dialogs-025', DLG_START + [HOLD_VOICE], DLG_VOICE + '&speech=correct', DLG, unique=False, note='«Говори…» — запись идёт (статус recording во время удержания; нужен hold-режим Ядра)')
+put('dialogs-027', DLG_START + [HOLD_VOICE, 'wait:800'], DLG_VOICE + '&speech=no_speech', DLG, unique=False, note='«Ошибка распознавания» (speech=no_speech; соответствие образцу проверить глазами)')

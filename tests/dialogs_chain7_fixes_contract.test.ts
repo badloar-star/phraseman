@@ -106,3 +106,13 @@ describe('генератор DEV_LINKS_R1: исправления живут в 
     expect(rowOf('cards-030')).toContain('`wait:14000`');
   });
 });
+
+// зачем (R1 dialogs-005, Макеты 12.10): у маленькой кнопки со стрелкой («К урокам →» в карточке языкового гейта) ширина — по тексту, абсолютная стрелка (right: 22) наезжала на последнюю букву.
+describe('кнопка DialogueGlassCta: стрелка маленькой не накладывается на текст', () => {
+  const kit = read('components/dialogs/glass/DialogueGlassKit.tsx');
+  it('у size="small" стрелка — обычный элемент строки (после текста, через gap), абсолютная только у полной 52/26', () => {
+    expect(kit).toContain('style={small ? undefined : styles.ctaArrow}');
+    expect(kit).toContain('name="arrow-forward" size={small ? 18 : 20}');
+    expect(kit).toContain("ctaArrow: { position: 'absolute', right: 22, top: 0, bottom: 0, justifyContent: 'center' }");
+  });
+});

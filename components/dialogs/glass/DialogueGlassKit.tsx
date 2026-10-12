@@ -143,8 +143,10 @@ export function DialogueGlassCta({
       {icon ? <Ionicons name={icon} size={small ? 18 : 20} color={ink} /> : null}
       <Text maxFontSizeMultiplier={1.3} style={[small ? styles.ctaSmallText : styles.ctaText, { color: ink }]}>{label}</Text>
       {trailingArrow ? (
-        <View pointerEvents="none" style={styles.ctaArrow}>
-          <Ionicons name="arrow-forward" size={20} color={ink} />
+        // зачем (R1 dialogs-005, Макеты 12.10): у маленькой кнопки ширина «по тексту» — абсолютная стрелка (right: 22, как у полной 52/26) наезжала на «м» в «К урокам».
+        // Стрелка идёт обычным элементом строки после текста через gap, как в образце (`.cta.sm`: текст + стрелка 18).
+        <View pointerEvents="none" style={small ? undefined : styles.ctaArrow}>
+          <Ionicons name="arrow-forward" size={small ? 18 : 20} color={ink} />
         </View>
       ) : null}
     </PressableHybrid>

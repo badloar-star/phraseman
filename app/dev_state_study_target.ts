@@ -8,7 +8,7 @@
  */
 import { IS_STORE_RELEASE } from './config';
 
-export const DEV_STUDY_TARGETS = ['en', 'es', 'de', 'fr'] as const;
+export const DEV_STUDY_TARGETS = ['en', 'es', 'de', 'fr', 'it'] as const;
 export type DevStudyTarget = (typeof DEV_STUDY_TARGETS)[number];
 
 export async function applyDevStudyTarget(target: DevStudyTarget): Promise<string> {

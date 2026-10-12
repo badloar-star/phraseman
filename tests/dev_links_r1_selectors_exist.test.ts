@@ -41,6 +41,10 @@ describe('dev links r1: step selectors exist in the app source', () => {
     { template: 'fc-training-mode-${', prefix: 'fc-training-mode-', values: ['blitz', 'speaking', 'truefalse', 'recall'] },
     { template: 'flashcards-pack-card-${', prefix: 'flashcards-pack-card-', values: ['dev_demo_community_1', 'dev_demo_community_2'] },
     { template: 'manage-subscription-reason-${', prefix: 'manage-subscription-reason-', values: ['too_expensive', 'missing_features'] },
+    // зачем (12.10): шаги Макетов/Дизайна на testID, собираемые шаблоном: ответ онбординга, сегмент сообщества, строка заявки (uid вымышленной заявки friends=demo)
+    { template: 'onboarding-source-${', prefix: 'onboarding-source-', values: ['tiktok'] },
+    { template: 'community-sections-${', prefix: 'community-sections-', values: ['spire'] },
+    { template: 'friend-request-row-${', prefix: 'friend-request-row-', values: ['dev-demo-friend-request-1'] },
   ];
   const exists = (needle: string): boolean => corpus.includes(needle)
     || DYNAMIC.some((d) => needle.startsWith(d.prefix) && d.values.includes(needle.slice(d.prefix.length)) && corpus.includes(d.template));

@@ -170,7 +170,7 @@ export type DevStateRequest = Readonly<{
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
   uiLang?: 'en' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
-  studyTarget?: 'en' | 'es' | 'de' | 'fr';
+  studyTarget?: 'en' | 'es' | 'de' | 'fr' | 'it';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -249,7 +249,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.animations = pick('animations', ['on', 'off'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
-  request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr'] as const);
+  request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {

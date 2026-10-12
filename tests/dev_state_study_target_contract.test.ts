@@ -15,7 +15,7 @@ describe('dev_state studyTarget=', () => {
 
   it('параметр разбирается из ссылки и применяется до карточных фикстур', () => {
     const fx = read('app/dev_state_fixtures.ts');
-    expect(fx).toContain("request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr'] as const);");
+    expect(fx).toContain("request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);");
     expect(fx.indexOf("await step('studyTarget'")).toBeGreaterThan(0);
     expect(fx.indexOf("await step('studyTarget'")).toBeLessThan(fx.indexOf("await step('cards', request.cards"));
   });

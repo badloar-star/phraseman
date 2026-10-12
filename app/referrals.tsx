@@ -550,11 +550,11 @@ export default function ReferralsScreen() {
           await Clipboard.setStringAsync(value);
         },
       });
-      if (!copied) rollback('копирование отклонено (сменился аккаунт или код)');
+      if (!copied) rollback('copy_rejected_account_or_code_changed');
     } catch (e) {
       // буфер недоступен — код всё равно виден на экране
       DebugLogger.error('referrals:copied', e instanceof Error ? e : new Error(String(e)), 'warning');
-      rollback('буфер обмена недоступен');
+      rollback('clipboard_unavailable');
     }
   }, [referralCode, renderAccountScope, renderToken]);
 

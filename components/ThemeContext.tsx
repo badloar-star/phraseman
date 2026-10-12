@@ -293,6 +293,8 @@ const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
 // зачем (оптимизация тем, координатор 15.10; [THEMES-PERF]): сколько подписчиков useTheme перерисовалось после смены значения контекста.
 // Считаем ВЫЗОВЫ useTheme (один вызов = один рендер подписчика); только в dev, в боевой сборке счётчик не растёт.
 let themePerfConsumerCalls = 0;
+// зачем ([THEMES-PERF], поручение координатора 13.10): сколько записей в хранилище ушло за шаг ползунка/смену темы; на шагах превью должно быть 0, на отпускании — 1.
+let themePerfWrites = 0;
 const THEME_STORAGE_KEY = 'liquid_glass_theme';
 // зачем (ползунок 2026-10-04): уровень пишется рядом с интенсивностью — прошлая сборка
 // при откате прочитает ближайший уровень и не сбросит человека в «Спокойно».
@@ -339,6 +341,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   if (persisterRef.current === null) {
     persisterRef.current = createThemePersister({
       write: (kind, value) => {
+        if (IS_DEV) themePerfWrites += 1; // guard-ok: счётчик [THEMES-PERF], в боевой сборке IS_DEV=false
         if (kind === 'theme') return AsyncStorage.setItem(THEME_STORAGE_KEY, value);
         if (kind === 'appearance') return AsyncStorage.setItem(APPEARANCE_STORAGE_KEY, value);
         return AsyncStorage.multiSet([[INTENSITY_STORAGE_KEY, value], [COLOR_LEVEL_STORAGE_KEY, liquidGlassLevelForIntensity(Number(value))]]);
@@ -646,9 +649,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     }
     const changed = (Object.keys(now) as Array<keyof typeof now>).filter((key) => now[key] !== prev[key]);
     const callsAtChange = themePerfConsumerCalls;
+    const writesAtChange = themePerfWrites;
     const changedAt = Date.now();
     setTimeout(() => {
-      console.log('[THEMES-PERF] change', JSON.stringify({ changed, from: changed.map((key) => prev[key]), to: changed.map((key) => now[key]), buildMs: themeBuildMsRef.current, consumersRendered: themePerfConsumerCalls - callsAtChange, settleMs: Date.now() - changedAt })); // guard-ok: dev-замер смены темы/шага ползунка
+      console.log('[THEMES-PERF] change', JSON.stringify({ changed, from: changed.map((key) => prev[key]), to: changed.map((key) => now[key]), buildMs: themeBuildMsRef.current, consumersRendered: themePerfConsumerCalls - callsAtChange, writes: themePerfWrites - writesAtChange, settleMs: Date.now() - changedAt })); // guard-ok: dev-замер смены темы/шага ползунка
     }, 250);
     return undefined; // зачем: таймер не отменяем — на жесте ползунка нужна строка на КАЖДЫЙ шаг, а не только последний
   }, [liquidGlassThemeId, liquidGlassColorLevel, liquidGlassAppearance, liquidGlassIntensity, fontSize]);

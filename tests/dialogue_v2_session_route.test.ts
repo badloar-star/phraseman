@@ -228,11 +228,15 @@ describe('Dialogue V2 session route', () => {
     }));
     expect(mockScreen.mock.calls.at(-1)[0]).toEqual(expect.objectContaining({
       voiceDraft: voice,
-      onStartVoice: mockStartVoice,
+      micPlusBadge: false,
       onStopVoice: mockStopVoice,
       onDiscardVoice: mockDiscardVoice,
       onPlayVoice: mockPlayVoice,
     }));
+    // зачем (владелец 12.10, п.81): старт голоса идёт через проверку дневного лимита Free; ниже лимита — та же запись.
+    mockStartVoice.mockClear();
+    mockScreen.mock.calls.at(-1)[0].onStartVoice();
+    expect(mockStartVoice).toHaveBeenCalledTimes(1);
     expect(mockTakeVoiceAttachment).toHaveBeenCalledWith('Guten Tag!');
   });
 

@@ -18,3 +18,5 @@ export function isDevDialogBetter(): boolean { return false; }
 export function getDevDialogCompletion(): null { return null; }
 export const DEV_DIALOG_MEMORY = [] as const;
 export function getDevDialogMemory(): null { return null; }
+// зачем (владелец 12.10, п.81, dialogs-028): подмена «голосовые попытки исчерпаны» в стор-сборке всегда выключена
+export function isDevDialogVoiceSpent(): boolean { return false; }

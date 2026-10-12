@@ -34,12 +34,15 @@ const LOG = '[DEV-STATE]';
 // зачем (координатор 12.10, dialogs-005): holdLanguageGate — хаб рисует карточку «Диалоги на этом языке ещё проверяются», хотя язык поддержан (таблицу готовности правит только владелец, D129/D130).
 // зачем (Макеты 12.10, съёмка R1): end — подставной ход завершает диалог (dialogs-037); better — в разборе хода «Лучше так» (dialogs-021);
 // completion — итог без сервера. Всё только в памяти, работает в паре с подставным ходом dev_dialog_send.
+// зачем (владелец 12.10, п.81, dialogs-028): voiceSpent — дневные голосовые попытки Free исчерпаны, на микрофоне бейдж PLUS (dev_dialog_voice=spent).
 type State = {
   fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean;
   send: DevDialogSendMode | null; end: boolean; better: boolean; completion: DevDialogCompletion | null; memory: DevDialogMemory | null;
+  voiceSpent: boolean;
 };
 const EMPTY: State = {
   fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null, memory: null,
+  voiceSpent: false,
 };
 let state: State = EMPTY;
 
@@ -102,6 +105,11 @@ export function getDevDialogCompletion(): DevDialogCompletion | null {
 /** Память диалогов без сервера (`dev_dialog_memory=…`). В стор-сборке — всегда null. */
 export function getDevDialogMemory(): DevDialogMemory | null {
   return devDialogAvailable() ? state.memory : null;
+}
+
+/** Голосовые попытки Free на сегодня исчерпаны (`dev_dialog_voice=spent`). В стор-сборке всегда false. */
+export function isDevDialogVoiceSpent(): boolean {
+  return devDialogAvailable() && state.voiceSpent;
 }
 
 /** Только для тестов. */

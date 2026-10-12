@@ -71,7 +71,7 @@
 
 ### Нельзя по коду (решение координатора)
 
-- **dialogs-028** «попытки кончились + PLUS»: в коде нет голосовой квоты и значка PLUS на микрофоне — только в макете.
+- ~~**dialogs-028** «попытки кончились + PLUS»~~ — сделано 12.10 (D165: лимит голоса Free 3/день, бейдж PLUS); ссылка в таблице ниже.
 - **community-010** «Отправляем заявку…»: подпись мёртвая, карточка скрывается в тот же тик.
 
 ## Партия 2 — Карточки (коммит ae44078f4 + дополнение)
@@ -179,6 +179,7 @@
 | dialogs-024/025 | `B&dev_dialog_send=ok&speech=hold\|preparing&next=/ai_dialog_home` | `E; long:#dialogue-v2-voice-input; wait:400` |
 | dialogs-026 | `…&speech=correct…` | `E; long:#dialogue-v2-voice-input; wait:800` |
 | dialogs-028 (часть «нет доступа») | `…&speech=denied…` | `E; long:#dialogue-v2-voice-input; wait:600` |
+| dialogs-028 (целиком: нет доступа + PLUS на микрофоне, D165) | `B&dev_dialog_send=ok&speech=denied&dev_dialog_voice=spent&next=/ai_dialog_home` | `E; wait:600` — бейдж PLUS виден сразу; НЕ жать микрофон (тап ведёт в пейвол Plus); для «нет доступа» без бейджа — строка выше |
 | dialogs-gap-014 | `…&speech=correct…` | `E; long:#dialogue-v2-voice-input; wait:800; tap:#dialogue-v2-session-send; wait:600` |
 | dialogs-gap-001 | `B&plus=on&dev_dialog_memory=demo&next=/dialogue_v2_memory` | — |
 | dialogs-gap-004 | то же | `tap:#dialogue-v2-memory-clear-confirm` (окно) |

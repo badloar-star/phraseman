@@ -183,6 +183,19 @@ describe('dev_state R1 (Ядро): packcards=meta и packdraft', () => {
   });
 });
 
+describe('dev_state R1 (Ядро): голосовые попытки Диалога исчерпаны (dialogs-028)', () => {
+  test('dev_dialog_voice=spent — бейдж PLUS на микрофоне без трёх настоящих записей; off снимает', async () => {
+    const dialog = require('../app/dev_dialog_state') as typeof import('../app/dev_dialog_state');
+    const limit = require('../app/dialogue_v2_voice_daily_limit') as typeof import('../app/dialogue_v2_voice_daily_limit');
+    expect(parseDevStateParams({ dev_dialog_voice: 'nope' }).rejected).toHaveProperty('dev_dialog_voice');
+    await applyDevState(parseDevStateParams({ dev_dialog_voice: 'spent' }).request);
+    expect(dialog.isDevDialogVoiceSpent()).toBe(true);
+    expect(limit.dialogVoiceLimitDecision({ accessResolved: true, hasPremiumAccess: false, count: 0 })).toBe('limit_reached');
+    await applyDevState(parseDevStateParams({ dev_dialog_voice: 'off' }).request);
+    expect(dialog.isDevDialogVoiceSpent()).toBe(false);
+  });
+});
+
 describe('dev_state R1 (Ядро): память диалогов и свободный разговор без сервера', () => {
   test('dev_dialog_memory=demo — сводка и прогресс; clear «успешен» в памяти; clear_fail — отказ', async () => {
     const dialog = require('../app/dev_dialog_state') as typeof import('../app/dev_dialog_state');

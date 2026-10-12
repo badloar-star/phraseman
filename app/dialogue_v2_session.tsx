@@ -48,6 +48,14 @@ import {
 } from '../components/dialogs/DialogueV2SessionScreen';
 import { safeRouterBack } from './navigation_back';
 import { getLocalDayKey } from './local_date';
+import {
+  FREE_DIALOG_VOICE_DAILY_LIMIT,
+  dialogVoiceLimitDecision,
+  hydrateDialogVoiceAttempts,
+  peekDialogVoiceAttempts,
+  recordDialogVoiceAttempt,
+  subscribeDialogVoiceAttempts,
+} from './dialogue_v2_voice_daily_limit';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
@@ -271,6 +279,29 @@ function SessionContent() {
     disabled: sending || !model?.unlocked,
     onTranscript: setDraft,
   });
+  // зачем (владелец 12.10, п.81, вариант А; макет C15 / dialogs-028): Free — 3 голосовые попытки в день, после третьей на
+  // микрофоне PLUS и тап ведёт в Plus; Plus — без лимита. Первый кадр берёт счётчик из памяти, диск догоняет фоном.
+  const [voiceAttempts, setVoiceAttempts] = useState(() => peekDialogVoiceAttempts());
+  useEffect(() => {
+    const sync = () => setVoiceAttempts(peekDialogVoiceAttempts());
+    const unsubscribe = subscribeDialogVoiceAttempts(sync);
+    void hydrateDialogVoiceAttempts().then(sync);
+    return unsubscribe;
+  }, []);
+  const voiceLimitDecision = dialogVoiceLimitDecision({ accessResolved, hasPremiumAccess, count: voiceAttempts });
+  // Попытка = НАЧАТАЯ запись: считаем переход в recording, а не тап (отмена до старта и отказ микрофона — не попытка).
+  const prevVoiceStatusRef = useRef(voice.status);
+  useEffect(() => {
+    const previous = prevVoiceStatusRef.current;
+    prevVoiceStatusRef.current = voice.status;
+    if (voice.status !== 'recording' || previous === 'recording') return;
+    if (hasPremiumAccess) {
+      console.log('[DIALOG-VOICE] attempt:not_counted', JSON.stringify({ reason: 'plus_unlimited', previous }));
+      return;
+    }
+    const count = recordDialogVoiceAttempt();
+    console.log('[DIALOG-VOICE] attempt:counted', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, accessResolved, previous }));
+  }, [voice.status, hasPremiumAccess, accessResolved]);
   const preparedBotVoiceAssets = useMemo(() => messages.flatMap((message) => (
     message.author === 'persona' && message.preparedBotVoice
       ? [Object.freeze({ messageId: message.id, localUri: message.preparedBotVoice.localUri })]
@@ -710,6 +741,18 @@ function SessionContent() {
     pathname: '/premium_modal',
     params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
   } as never);
+  // зачем (п.81): на исчерпанном лимите тап по микрофону — тот же вход в Plus, что у стены Диалогов; запись не стартует.
+  const startVoice = () => {
+    const count = peekDialogVoiceAttempts();
+    const decision = dialogVoiceLimitDecision({ accessResolved, hasPremiumAccess, count });
+    console.log('[DIALOG-VOICE] start:tap', JSON.stringify({ count, limit: FREE_DIALOG_VOICE_DAILY_LIMIT, decision, voiceStatus: voice.status }));
+    if (decision === 'limit_reached') {
+      console.log('[DIALOG-VOICE] start:blocked', JSON.stringify({ count, decision, shown: 'premium_modal' }));
+      openPlus();
+      return;
+    }
+    void voice.start();
+  };
 
   return (
     <DialogueV2SessionScreen
@@ -768,7 +811,8 @@ function SessionContent() {
       onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
       onChangeDraft={setDraft}
       onSend={() => { void send(); }}
-      onStartVoice={voice.start}
+      micPlusBadge={voiceLimitDecision === 'limit_reached'}
+      onStartVoice={startVoice}
       onStopVoice={voice.stop}
       onDiscardVoice={voice.discard}
       onPlayVoice={voice.play}

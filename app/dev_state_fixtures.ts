@@ -108,6 +108,7 @@ export type DevStateRequest = Readonly<{
   dialogCompletion?: DevDialogCompletion | 'off';
   /** Память диалогов без сервера (dialogs-gap-001/004/005/006). */
   dialogMemory?: DevDialogMemory | 'off';
+  dialogVoice?: 'spent' | 'off';
   /** Подставной ход Диалога без ИИ и без Firestore (координатор 12.10, «N/30»): ok / отказы; off — снять. */
   dialogSend?: DevDialogSendMode | 'off';
   dialogsPaused?: 'on' | 'off';
@@ -297,6 +298,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogBetter = pick('dev_dialog_better', ['on', 'off'] as const);
   request.dialogCompletion = pick('dev_dialog_completion', [...DEV_DIALOG_COMPLETIONS, 'off'] as const);
   request.dialogMemory = pick('dev_dialog_memory', [...DEV_DIALOG_MEMORY, 'off'] as const);
+  request.dialogVoice = pick('dev_dialog_voice', ['spent', 'off'] as const);
   request.dialogSend = pick('dev_dialog_send', [...DEV_DIALOG_SENDS, 'off'] as const);
   const onOff = (key: string): 'on' | 'off' | undefined => {
     const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
@@ -675,6 +677,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.dialogMemory !== undefined) {
     await step('dialogMemory', request.dialogMemory, async () => setDevDialogState({ memory: request.dialogMemory === 'off' ? null : request.dialogMemory! }));
+  }
+  if (request.dialogVoice !== undefined) {
+    // зачем (владелец 12.10, п.81, dialogs-028): бейдж PLUS на микрофоне без трёх настоящих записей; только память
+    await step('dialogVoice', request.dialogVoice, async () => setDevDialogState({ voiceSpent: request.dialogVoice === 'spent' }));
   }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));

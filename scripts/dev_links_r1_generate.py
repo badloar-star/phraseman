@@ -12,6 +12,7 @@ import dev_links_r1_steps_robot as STEPS_ROBOT  # зачем (12.10, Макет�
 import dev_links_r1_steps_core1  # noqa: F401  зачем (Ядро 12.10, партия 1): ссылки и шаги по новым подменам (настройки, диалоги, друзья, промокод)
 import dev_links_r1_steps_cards3  # noqa: F401  зачем (Ядро 12.10, партия 2): Карточки — сообщество без сети, отклики, жалобы, голоса; ДО links3 (двойники копируют записи)
 import dev_links_r1_steps_dialogs3  # noqa: F401  зачем (Ядро 12.10, b25cab943/dfeeb913e): память диалогов, свободный разговор, каталог без сети; ДО links3
+import dev_links_r1_steps_design3  # noqa: F401  зачем (Дизайн 12.10): profile-015 «отправлено» — support=sent вместо fail
 import dev_links_r1_steps_links3  # noqa: F401  зачем (12.10): двойники и служебные маршруты (link_missing → ready); ПОСЛЕ всех остальных модулей шагов — копирует их записи
 import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки и шаги Авторизации (auth-gap-001/002/003/008…012, profile-023) — свой модуль, общий файл шагов не трогаем
 

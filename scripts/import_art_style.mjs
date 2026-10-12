@@ -4,7 +4,8 @@
 // Источник — ART_STYLE_FOR_CODEX/trials/<код>/{dark,light}/<имя>.webp и <имя>.accent.webp. Файл сжимается до ≤ 400 КБ (webp q≈85, при нужде ниже),
 // проверяется сторожем [THEMED-ART-GUARD] (настоящая альфа), копируется в assets/images/v2art/{dark,light}/, затем запускается gen_themed_art_assets.mjs.
 // «Всё или ничего»: если хоть один файл не прошёл сторож — ничего не записывается. Заменяемые файлы сохраняются в ART_STYLE_FOR_CODEX/_backup/<код>-<время>/.
-// --dry-run только печатает, что заменится. Скрытые опции для теста: --src-root, --dest-root, --no-gen.
+// --dry-run только печатает, что заменится. --skip a,b — исключить предметы по имени (например --skip spire_tile: файл Codex ещё не одобрен владельцем).
+// Скрытые опции для теста: --src-root, --dest-root, --no-gen.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -50,7 +51,7 @@ async function compress(file) {
   return { buf: null, quality: null, from: original.length };
 }
 
-export async function importStyle({ style, srcRoot, destRoot, dryRun, gen }) {
+export async function importStyle({ style, srcRoot, destRoot, dryRun, gen, skip = [] }) {
   const styleDir = path.join(srcRoot, 'trials', style);
   if (!fs.existsSync(styleDir)) {
     const known = fs.existsSync(path.join(srcRoot, 'trials')) ? fs.readdirSync(path.join(srcRoot, 'trials')).join(', ') : '(папки trials нет)';
@@ -66,6 +67,7 @@ export async function importStyle({ style, srcRoot, destRoot, dryRun, gen }) {
     for (const file of fs.readdirSync(dir).sort()) {
       const m = file.match(/^([a-z0-9_]+)(\.accent)?\.webp$/);
       if (!m) { console.warn(`${LOG} пропуск ${brightness}/${file}: имя не <имя>[.accent].webp`); continue; }
+      if (skip.includes(m[1])) { console.log(`${LOG} пропуск ${brightness}/${file}: предмет «${m[1]}» исключён опцией --skip`); continue; }
       if (!names.has(m[1])) { console.warn(`${LOG} пропуск ${brightness}/${file}: имя «${m[1]}» нет в реестре THEMED_ART_NAMES`); continue; }
       const src = path.join(dir, file);
       const packed = await compress(src);
@@ -110,7 +112,7 @@ export async function importStyle({ style, srcRoot, destRoot, dryRun, gen }) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const style = process.argv.slice(2).find((arg, i, all) => !arg.startsWith('--') && !['--src-root', '--dest-root'].includes(all[i - 1] ?? ''));
+  const style = process.argv.slice(2).find((arg, i, all) => !arg.startsWith('--') && !['--src-root', '--dest-root', '--skip'].includes(all[i - 1] ?? ''));
   if (!style) { console.error(`Использование: node scripts/import_art_style.mjs <код стиля, например S3_pearl> [--dry-run]`); process.exit(2); }
   try {
     await importStyle({
@@ -119,6 +121,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       destRoot: path.resolve(option('--dest-root') ?? path.join(root, 'assets', 'images', 'v2art')),
       dryRun: process.argv.includes('--dry-run'),
       gen: !process.argv.includes('--no-gen'),
+      skip: (option('--skip') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
     });
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));

@@ -39,6 +39,7 @@ out.afterDry = { oldIntact: fs.readFileSync(path.join(dest, 'dark', 'lessons.web
 try { await importStyle({ style: 'BAD', srcRoot: src, destRoot: dest, dryRun: false, gen: false }); out.bad = 'no-error'; } catch (e) { out.bad = String(e.message); }
 out.afterBad = list(dest);
 try { await importStyle({ style: 'NOPE', srcRoot: src, destRoot: dest, dryRun: true, gen: false }); out.missing = 'no-error'; } catch (e) { out.missing = String(e.message); }
+out.skipDry = (await importStyle({ style: 'OK', srcRoot: src, destRoot: dest, dryRun: true, gen: false, skip: ['lessons'] })).map((p) => p.file);
 out.applied = (await importStyle({ style: 'OK', srcRoot: src, destRoot: dest, dryRun: false, gen: false })).map((p) => p.file);
 out.sizeKb = Math.round(fs.statSync(path.join(dest, 'dark', 'lessons.webp')).size / 1024);
 out.destFiles = list(path.join(dest, 'dark'));
@@ -61,6 +62,11 @@ describe('приёмка стиля арта scripts/import_art_style.mjs', () =
   it('«всё или ничего»: картинка с непрозрачными углами останавливает приёмку стиля без записи', () => {
     expect(out.bad).toMatch(/приёмка остановлена/);
     expect(out.afterBad).toEqual(['dark', 'dark/lessons.webp']);
+  });
+
+  // зачем (координатор 15.10): spire_tile Codex от 16:34 ещё не одобрен — приёмка очереди должна уметь исключить предмет по имени
+  it('--skip исключает предмет по имени (и основу, и accent)', () => {
+    expect(out.skipDry).toEqual([]);
   });
 
   it('несуществующий стиль — понятная ошибка со списком доступных', () => {

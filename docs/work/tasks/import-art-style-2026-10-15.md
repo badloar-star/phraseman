@@ -24,3 +24,6 @@ scripts/import_art_style.mjs (новый), tests/import_art_style.test.ts (на 
 
 ## Rollback
 git revert; файлы, заменённые при реальной приёмке, лежат в _backup.
+
+## Дополнение ([R1-PAGE] 16:55): опция --skip
+`--skip a,b` исключает предметы по имени из приёмки (нужно, чтобы не принять неодобренный spire_tile Codex от 16:34 вместе с очередью 1 S2). Только скрипт и тест; assets не затрагиваются. Откат: git revert.

@@ -78,7 +78,7 @@ import {
   peekStagedCommunityPackMeta,
   stagedCommunityPackCardsPromise,
 } from '../community_packs/staging';
-import { peekCommunityPackOpen } from '../community_packs/stage_with_retry';
+import { peekCommunityPackOpen, startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
 import {
@@ -258,6 +258,34 @@ export type CollectionLoadedInfo = {
   communityPublished: FlashcardMarketPack[];
   activePackId: string | null;
 };
+
+/**
+ * Карточки просматриваемого набора ОДНИМ запросом на набор.
+ *
+ * зачем (координатор 12.10, аудит скорости R1, cards-v2-015): по прямой ссылке карточки набора начинают грузиться сразу, по id из ссылки (эффект ниже), а не после
+ * шести загрузчиков loadAll. loadAll не должен запускать второй такой же запрос: берёт память сессии или идущую загрузку (`peekCommunityPackOpen`), и только если
+ * ни того ни другого нет — загружает сам. Чтений столько же, только раньше. Журнал: `[PACK-OPEN] cards_fetch start|reuse|done` с источником и мс.
+ */
+async function fetchPreviewPackCardsOnce(packId: string, studyTarget: Parameters<typeof peekStagedCommunityPackCards>[1]): Promise<CardItem[]> {
+  const memo = peekStagedCommunityPackCards(packId, studyTarget);
+  if (memo) {
+    console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'reuse', source: 'memo', packId, cards: memo.length })); // guard-ok: журнал загрузки карточек просмотра
+    return memo;
+  }
+  const opening = peekCommunityPackOpen(packId, studyTarget);
+  if (opening) {
+    const waitStartedAt = Date.now();
+    console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'reuse', source: 'inflight', packId })); // guard-ok: журнал загрузки карточек просмотра
+    const cards = await opening.catch((error: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_14b', error); return []; });
+    console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'done', source: 'inflight', packId, cards: cards.length, ms: Date.now() - waitStartedAt })); // guard-ok: журнал загрузки карточек просмотра
+    return cards;
+  }
+  const startedAt = Date.now();
+  console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'start', source: 'loadAll', packId })); // guard-ok: журнал загрузки карточек просмотра
+  const cards = await fetchCommunityPackCards(packId, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_14', swallowedError); return []; });
+  console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'done', source: 'loadAll', packId, cards: cards.length, ms: Date.now() - startedAt })); // guard-ok: журнал загрузки карточек просмотра
+  return cards;
+}
 
 export function useCollectionData(opts: {
   isDevMarketEnabled: boolean;
@@ -630,7 +658,7 @@ export function useCollectionData(opts: {
         const pvCardsStartedAt = Date.now();
         const [communityCardLists, previewCardLists] = await Promise.all([
           Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_13', swallowedError); return []; }))),
-          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_14', swallowedError); return []; }))),
+          Promise.all(previewIdsToLoad.map((id) => fetchPreviewPackCardsOnce(id, studyTarget))),
         ]);
         if (previewPackId) {
           console.warn('[FC-PREVIEW] cards', JSON.stringify({
@@ -710,12 +738,21 @@ export function useCollectionData(opts: {
       setDeeplinkCardsState('ready');
       return;
     }
-    const opening = peekCommunityPackOpen(deeplinkPackId, studyTarget);
+    // зачем (координатор 12.10, аудит скорости R1, cards-v2-015): просмотр по прямой ссылке (`?pack=…&preview=1`) — карточек в памяти нет, плитку никто не готовил.
+    // Раньше они грузились только внутри loadAll, ПОСЛЕ шести загрузчиков и сборки каталога (~1,7 с). id известен из ссылки — стартуем сразу. Один запрос на набор:
+    // startCommunityPackOpen держит идущую загрузку по ключу (второй вызов получает тот же промис), loadAll берёт её же (fetchPreviewPackCardsOnce).
+    const parallelStartedAt = Date.now();
+    const opening = peekCommunityPackOpen(deeplinkPackId, studyTarget)
+      ?? (previewPackIdRef.current === deeplinkPackId
+        ? (console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'start', source: 'deeplink_parallel', packId: deeplinkPackId })), // guard-ok: журнал загрузки карточек просмотра
+          startCommunityPackOpen(deeplinkPackId, studyTarget, undefined, 'deeplink'))
+        : null);
     if (opening) {
       let cancelledOpen = false;
       setDeeplinkCardsState('pending');
       const startedAt = Date.now();
       void opening.then((cards) => {
+        console.log('[PACK-OPEN] cards_fetch', JSON.stringify({ stage: 'done', source: 'deeplink_effect', packId: deeplinkPackId, cards: cards.length, ms: Date.now() - parallelStartedAt, cancelled: cancelledOpen })); // guard-ok: журнал загрузки карточек просмотра
         console.warn('[FC-PACK-OPEN] collection:resolved', JSON.stringify({ pack: deeplinkPackId, cards: cards.length, ms: Date.now() - startedAt, cancelled: cancelledOpen })); // guard-ok: временная трассировка packs-simple-004
         if (cancelledOpen) return;
         apply(cards);

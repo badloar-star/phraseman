@@ -32,3 +32,27 @@ describe('просмотр набора сообщества: нет ложно�
     expect(data).toContain('peekPublishedCommunityMarketPacks,');
   });
 });
+
+describe('просмотр по прямой ссылке: карточки грузятся сразу, одним запросом на набор', () => {
+  const data = read('app/flashcards/useCollectionData.ts');
+
+  it('эффект ссылки стартует загрузку по id из ссылки (startCommunityPackOpen) только для просмотра этого набора', () => {
+    expect(data).toContain("import { peekCommunityPackOpen, startCommunityPackOpen } from '../community_packs/stage_with_retry';");
+    expect(data).toContain('previewPackIdRef.current === deeplinkPackId');
+    expect(data).toContain("startCommunityPackOpen(deeplinkPackId, studyTarget, undefined, 'deeplink')");
+  });
+
+  it('loadAll не запускает второй такой же запрос: память сессии → идущая загрузка → только потом свой запрос', () => {
+    expect(data).toContain('Promise.all(previewIdsToLoad.map((id) => fetchPreviewPackCardsOnce(id, studyTarget)))');
+    const helper = data.slice(data.indexOf('async function fetchPreviewPackCardsOnce'), data.indexOf('export function useCollectionData('));
+    expect(helper.indexOf('peekStagedCommunityPackCards')).toBeLessThan(helper.indexOf('peekCommunityPackOpen'));
+    expect(helper.indexOf('peekCommunityPackOpen')).toBeLessThan(helper.indexOf('fetchCommunityPackCards('));
+  });
+
+  it('журнал [PACK-OPEN] cards_fetch: start / reuse / done с источником и мс', () => {
+    for (const marker of ["stage: 'start', source: 'deeplink_parallel'", "stage: 'reuse', source: 'memo'", "stage: 'reuse', source: 'inflight'", "stage: 'start', source: 'loadAll'", "source: 'deeplink_effect'"]) {
+      expect(data).toContain(marker);
+    }
+    expect(data).toContain('ms: Date.now() - parallelStartedAt');
+  });
+});

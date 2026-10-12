@@ -34,8 +34,8 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
 /**
  * Факты из кода на 2026-09-30 (почему клетка такая):
  * - lessons / learning_v2 / diagnostic_and_exam — курс; готов только английский (D129).
- * - daily_phrase — банк фраз есть у en и fr (daily_phrase_target_gate.ts);
- *   у es/de гейт отдаёт «native_daily_phrase_pack_not_available», у it банка нет.
+ * - daily_phrase — банк фраз есть у en и fr (daily_phrase_target_gate.ts); у es/de/it — принятые пакеты в сборке
+ *   (D163, владелец 12.10: «Фразы дня должны быть подключены для ВСЕХ языков», app/daily_phrase_bundled_packs.ts).
  * - dialogues — es/fr/de выпущены владельцем 2026-09-20 (dialogue_language_activation.ts);
  *   для it раздела нет (D130).
  * - arena — удалена в 2.0 (D83), скрыта у всех.
@@ -65,7 +65,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   es: Object.freeze({
     lessons: hidden('D129'),
     learning_v2: hidden('D129'),
-    daily_phrase: hidden('D129'),
+    daily_phrase: ready('D163'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
     videos: ready('D132'),
@@ -87,7 +87,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   de: Object.freeze({
     lessons: hidden('D129'),
     learning_v2: hidden('D129'),
-    daily_phrase: hidden('D129'),
+    daily_phrase: ready('D163'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
     videos: ready('D132'),
@@ -98,7 +98,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   it: Object.freeze({
     lessons: hidden('D130'),
     learning_v2: hidden('D130'),
-    daily_phrase: hidden('D130'),
+    daily_phrase: ready('D163'),
     dialogues: hidden('D130'),
     arena: hidden('D83'),
     videos: ready('D130'),

@@ -8,6 +8,7 @@ import {
   type DailyPhraseDevSourceLocale,
   type DailyPhraseDevTarget,
 } from './daily_phrase_remote_registration';
+import { hasBundledDailyPhrasePack, loadBundledDailyPhrasePack } from './daily_phrase_bundled_packs';
 
 type TargetDailyPhraseEntry = {
   id?: string;
@@ -72,9 +73,13 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
 async function fetchText(url: string): Promise<string | null> {
   try {
     const response = await withTimeout(fetch(url), LOAD_TIMEOUT_MS);
-    if (!response?.ok) return null;
+    if (!response?.ok) {
+      console.warn('[DAILY-PHRASE-GATE] remote fetch not ok', JSON.stringify({ status: response?.status ?? 'timeout' })); // guard-ok: ранний выход называет причину
+      return null;
+    }
     return await response.text();
-  } catch {
+  } catch (error) {
+    console.warn('[DAILY-PHRASE-GATE] remote fetch failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
     return null;
   }
 }
@@ -144,20 +149,69 @@ export function entryToTargetDailyPhrase(
   };
 }
 
+const EXPECTED_ROWS = 176;
+
+function gateLog(step: string, data: Record<string, unknown>): void {
+  console.log(`[DAILY-PHRASE-GATE] ${step}`, JSON.stringify(data)); // guard-ok: каждый шаг загрузки называет источник и причину
+}
+
+/**
+ * зачем (владелец 12.10, D163: «Фразы дня должны быть подключены для ВСЕХ языков… ВКЛЮЧАЙ»): принятые пакеты es/de/it теперь
+ * в сборке — без сети и без чтений на старте. Тексты те же, что прошли редакторскую приёмку; поля ru и uk в пакете одинаковы
+ * для обоих языков источника. Отметка «активна» в принятом пакете стояла false (пакет ждал выпуска) — выпуск решён D163.
+ */
+function bundledTargetDailyPhrases(
+  studyTarget: DailyPhraseDevTarget,
+  sourceLocale: DailyPhraseDevSourceLocale,
+  today: string,
+): readonly DailyPhrase[] | null {
+  if (!hasBundledDailyPhrasePack(studyTarget)) return null;
+  const pack = loadBundledDailyPhrasePack(studyTarget);
+  if (!pack) {
+    gateLog('bundled: no pack', { studyTarget, sourceLocale });
+    return null;
+  }
+  const rows = pack.entries.map((entry) => entryToTargetDailyPhrase(
+    { ...entry, studyTarget, sourceLocale, surface: 'daily_phrase', active: true } as TargetDailyPhraseEntry,
+    studyTarget,
+    sourceLocale,
+    today,
+  ));
+  const invalid = rows.filter((row) => row == null).length;
+  if (rows.length !== EXPECTED_ROWS || invalid > 0) {
+    gateLog('bundled: rejected', { studyTarget, sourceLocale, rows: rows.length, invalid, expected: EXPECTED_ROWS });
+    return null;
+  }
+  gateLog('bundled: ready', { studyTarget, sourceLocale, rows: rows.length, version: pack.contentVersion, decision: pack.decision });
+  return Object.freeze(rows as DailyPhrase[]);
+}
+
 async function loadTargetDailyPhrasePayload(
   studyTarget: DailyPhraseDevTarget,
   sourceLocale: DailyPhraseDevSourceLocale,
 ): Promise<readonly DailyPhrase[]> {
+  const today = new Date().toISOString().split('T')[0]!;
+  const bundled = bundledTargetDailyPhrases(studyTarget, sourceLocale, today);
+  if (bundled) return bundled;
+
+  // Запасной путь — только dev-сервер (dev-сборка): облачные пакеты не выложены (uploadPerformed: false).
   const registration = getDailyPhraseDevServerPackRegistration(studyTarget, sourceLocale);
-  if (!registration) return [];
+  if (!registration) {
+    gateLog('remote: skipped — dev server runtime off', { studyTarget, sourceLocale, source: 'none' });
+    return [];
+  }
 
   const manifestText = await fetchText(registration.manifestUrl);
-  if (!manifestText) return [];
+  if (!manifestText) {
+    gateLog('remote: manifest fetch failed', { studyTarget, sourceLocale });
+    return [];
+  }
 
   let manifest: TargetDailyPhraseManifest;
   try {
     manifest = JSON.parse(manifestText) as TargetDailyPhraseManifest;
-  } catch {
+  } catch (error) {
+    gateLog('remote: manifest parse failed', { studyTarget, sourceLocale, message: error instanceof Error ? error.message : String(error) });
     return [];
   }
   if (
@@ -166,35 +220,51 @@ async function loadTargetDailyPhrasePayload(
     manifest.surface !== 'daily_phrase' ||
     manifest.devOnly !== true ||
     manifest.uploadPerformed !== false
-  ) return [];
+  ) {
+    gateLog('remote: manifest header mismatch', { studyTarget, sourceLocale, manifestTarget: manifest.studyTarget, manifestLocale: manifest.sourceLocale });
+    return [];
+  }
 
   const expectedHash = required(manifest.payloadSha256 || manifest.sha256).toLowerCase();
   const filename = payloadFilename(manifest);
-  if (!/^[a-f0-9]{64}$/.test(expectedHash) || !filename) return [];
+  if (!/^[a-f0-9]{64}$/.test(expectedHash) || !filename) {
+    gateLog('remote: manifest has no valid hash or filename', { studyTarget, sourceLocale });
+    return [];
+  }
 
   const payloadText = await fetchText(registration.rowUrl(filename));
-  if (!payloadText || (await sha256(payloadText)).toLowerCase() !== expectedHash) return [];
+  if (!payloadText || (await sha256(payloadText)).toLowerCase() !== expectedHash) {
+    gateLog('remote: payload missing or sha256 mismatch', { studyTarget, sourceLocale, fetched: Boolean(payloadText) });
+    return [];
+  }
 
   let payload: TargetDailyPhrasePayload;
   try {
     payload = JSON.parse(payloadText) as TargetDailyPhrasePayload;
-  } catch {
+  } catch (error) {
+    gateLog('remote: payload parse failed', { studyTarget, sourceLocale, message: error instanceof Error ? error.message : String(error) });
     return [];
   }
   if (
     payload.studyTarget !== studyTarget ||
     payload.sourceLocale !== sourceLocale ||
     payload.surface !== 'daily_phrase'
-  ) return [];
+  ) {
+    gateLog('remote: payload header mismatch', { studyTarget, sourceLocale });
+    return [];
+  }
 
-  const today = new Date().toISOString().split('T')[0]!;
   const rows = (payload.entries ?? []).map((entry) => entryToTargetDailyPhrase(
     entry,
     studyTarget,
     sourceLocale,
     today,
   ));
-  if (rows.length !== 176 || rows.some((row) => row == null)) return [];
+  if (rows.length !== EXPECTED_ROWS || rows.some((row) => row == null)) {
+    gateLog('remote: rows rejected', { studyTarget, sourceLocale, rows: rows.length });
+    return [];
+  }
+  gateLog('remote: ready', { studyTarget, sourceLocale, rows: rows.length, source: 'remote' });
   return Object.freeze(rows as DailyPhrase[]);
 }
 
@@ -212,7 +282,8 @@ export function prefetchTargetRemoteDailyPhrases(
       resolvedPayloadCache.set(key, rows);
       return rows;
     })
-    .catch(() => {
+    .catch((error: unknown) => {
+      gateLog('load failed', { studyTarget, sourceLocale, message: error instanceof Error ? error.message : String(error) });
       resolvedPayloadCache.set(key, []);
       return [];
     });

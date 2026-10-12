@@ -8,12 +8,13 @@ import { dailyPhraseKey } from '../app/target_storage_keys';
 
 describe('Daily Phrase ES/DE/IT target isolation', () => {
   it.each(['es', 'de', 'it'] as const)(
-    'opens the dev server contour for %s without substituting an English idiom before its pack is cached',
+    // зачем (владелец 12.10, D163): es/de/it открыты встроенным принятым пакетом, а не dev-сервером.
+    'opens the bundled pack for %s without substituting an English idiom before its pack is cached',
     (target) => {
       expect(dailyPhraseContentAvailableForTarget(target)).toBe(true);
       expect(dailyPhraseContentGateForTarget(target)).toMatchObject({
         enabled: true,
-        reason: 'target_daily_phrase_dev_server_pack',
+        reason: 'target_daily_phrase_bundled_pack',
       });
       expect(getTodayPhraseSyncForTarget(target, 'ru')).toBeNull();
       expect(dailyPhraseKey(target)).not.toBe(dailyPhraseKey('en'));

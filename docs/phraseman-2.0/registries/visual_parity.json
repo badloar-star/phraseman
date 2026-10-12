@@ -16640,9 +16640,9 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/profile-024.png",
+      "evidence_at": "2026-10-12T02:17:53.251Z",
+      "evidence_sha256": "5f85b86991a268e72ed34be57b3723a907e830a0f31ee0aa2784c30cb6f53243",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

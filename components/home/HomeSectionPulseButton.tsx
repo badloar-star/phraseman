@@ -77,7 +77,7 @@ function HomeSectionPulseButton({
   }));
 
   const accented = tone === 'accent';
-  const fill = accented ? t.accent : t.bgSurface2;
+  const fill = accented ? (t.accentGraphic ?? t.accent) : t.bgSurface2; // зачем (светлый акцент): заливка-индикатор — графика
   const surface = accented ? t.accentBg : t.bgCard;
   const counterText = accented ? t.correctText : t.textMuted;
   const counterLabel = homeMistakesCounterLabel(count);
@@ -85,7 +85,7 @@ function HomeSectionPulseButton({
   return (
     <View style={styles.slot}>
       {pulsePeriodMs !== null ? (
-        <Animated.View pointerEvents="none" style={[styles.halo, { backgroundColor: t.accent }, haloStyle]} />
+        <Animated.View pointerEvents="none" style={[styles.halo, { backgroundColor: t.accentGraphic ?? t.accent }, haloStyle]} />
       ) : null}
       <AnimatedPressable
         testID={testID}

@@ -381,7 +381,7 @@ export default function HybridSheetShell({
                 </View>
               ) : <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />}
               <LinearGradient
-                colors={[`${glowColor || t.accent}1F`, 'transparent']}
+                colors={[`${glowColor || t.accent}1F`, 'transparent']} // light-accent-ok: 1F вуаль свечения
                 start={{ x: 0.5, y: 0 }}
                 end={{ x: 0.5, y: 0.5 }}
                 style={styles.sheetGlow}

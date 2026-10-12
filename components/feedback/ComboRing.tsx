@@ -69,7 +69,7 @@ export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
     strokeDashoffset: circumference * (1 - progress.value),
   }));
 
-  const ringColor = level >= 1 ? t.gold : t.accent;
+  const ringColor = level >= 1 ? t.gold : (t.accentGraphic ?? t.accent); // зачем (светлый акцент): кольцо — графика
   const showGlow = level >= 2;
   const numberColor = level >= 1 ? t.accentText : t.textPrimary;
 

@@ -102,7 +102,7 @@ const CountTile = memo(function CountTile({ g, lang, count, height }: Readonly<{
   const { fontScale } = useWindowDimensions();
   const [, b] = themePair(g);
   const m = PACK_ROW_METRICS.plate;
-  const colors = useMemo(() => [mixDark(g.accent, g.deepBase, 0.3), mixDark(b, g.deepBaseAlt, 0.34)] as const, [g.accent, g.deepBase, g.deepBaseAlt, b]);
+  const colors = useMemo(() => [mixDark(g.accent, g.deepBase, 0.3), mixDark(b, g.deepBaseAlt, 0.34)] as const, [g.accent, g.deepBase, g.deepBaseAlt, b]); // light-accent-ok: тёмная плитка, акцент смешан с глубоким фоном (mixDark)
   // зачем (ревью 11.10, п.6): при шрифте 1.1–1.3 «карточек» рвалось посередине в ширине 60. Тексты плитки растут не больше
   // COUNT_TILE_MAX_FONT_SCALE (это предел масштаба, а не ужатие шрифта), а ширина плитки растёт тем же множителем —
   // слово и 4-значное число помещаются при любом системном шрифте (расчёт — countTileWidth / тест pack_row_title_author).

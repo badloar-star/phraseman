@@ -25,7 +25,7 @@ export interface DevBotsSheetProps {
 
 function Row({ label, icon, onPress, tone = 'default', testID }: { label: string; icon: keyof typeof Ionicons.glyphMap; onPress: () => void; tone?: 'default' | 'danger'; testID?: string }) {
   const { theme: t, f, ds } = useTheme();
-  const color = tone === 'danger' ? t.wrong : t.accent;
+  const color = tone === 'danger' ? t.wrong : (t.accentTextSafe ?? t.accent); // зачем (светлый акцент): значок и подпись — текст
   return (
     <TapScale testID={testID} onPress={onPress} style={[styles.row, { backgroundColor: t.bgSurface }]} accessibilityLabel={label}>
       {/* зачем (ловушка TapScale 10.10): строка раскладки — во внутреннем View, стиль TapScale на детей не действует */}
@@ -76,7 +76,7 @@ function DevBotsSheet({
                 </View>
                 <View style={styles.botActs}>
                   <TapScale onPress={() => onAdvanceOne(b.uid)} style={[styles.chip, { backgroundColor: t.accentBg }]} accessibilityLabel={`${b.name}: +1 day`}>
-                    <Text style={{ color: t.accent, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>+1 day</Text>
+                    <Text style={{ color: t.accentTextSafe ?? t.accent, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>+1 day</Text>
                   </TapScale>
                   <TapScale onPress={() => onIncomingNudge(b.uid)} style={[styles.chip, { backgroundColor: t.goldBg }]} accessibilityLabel={`${b.name}: nudges me`}>
                     <Text style={{ color: t.gold, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>Nudges me</Text>

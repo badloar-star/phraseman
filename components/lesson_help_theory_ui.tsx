@@ -233,7 +233,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
       {/* Кастомный индикатор горизонтального скролла */}
       {canScroll && (
         <View style={{ height: 4, marginTop: 5, marginHorizontal: 4, backgroundColor: c.border, borderRadius: 2, overflow: 'hidden' }}>
-          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: c.accent, transform: [{ translateX: thumbTranslate }] }} />
+          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: c.accent, transform: [{ translateX: thumbTranslate }] }} />{/* light-accent-ok: c.accent = accentText (theoryColors) */}
         </View>
       )}
     </View>

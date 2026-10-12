@@ -120,7 +120,7 @@ export function VictoryBurst({
       <Animated.View
         style={[
           styles.card,
-          { backgroundColor: t.bgCard, borderColor: t.accent },
+          { backgroundColor: t.bgCard, borderColor: t.accentGraphic ?? t.accent }, // зачем (светлый акцент): кромка — графика
           cardStyle,
         ]}
       >

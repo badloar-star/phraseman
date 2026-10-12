@@ -50,7 +50,7 @@ export function useProfileSheetPaint(): ProfileSheetPaint {
     fieldShadow: nestedBoxShadow(g),
     fieldInk: g.text,
     placeholder: g.mutedText,
-    selection: g.accent,
+    selection: g.accentGraphic, // зачем (светлый акцент): выделение — графика
     hint: g.secondary,
     warn: g.warn,
     selectedRing: g.text,

@@ -37,7 +37,7 @@ export default function YoutubeChannelTabs({ value, onChange }: {
             onPress={() => onChange(tab)}
             // зачем (эмулятор 30.09): в «Акценте/Максимуме» активная черта — цвет темы, как всё
             // выбранное рядом (таб-бар, кнопки); в «Спокойно» — прежняя нейтральная.
-            style={[styles.tab, active && { borderBottomWidth: 2 /* shadow-ok: подчёркивание активной вкладки — индикатор выбора, не контейнер */, borderBottomColor: g.level === 'accent' || g.level === 'max' ? g.accent : g.text, marginBottom: -1 }]}
+            style={[styles.tab, active && { borderBottomWidth: 2 /* shadow-ok: подчёркивание активной вкладки — индикатор выбора, не контейнер */, borderBottomColor: g.level === 'accent' || g.level === 'max' ? g.accentGraphic : g.text, marginBottom: -1 }]}
           >
             <Text style={[styles.label, { color: active ? g.text : g.secondary }]}>{labels[tab]}</Text>
           </TouchableOpacity>

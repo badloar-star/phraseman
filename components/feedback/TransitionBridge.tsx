@@ -91,7 +91,7 @@ export function TransitionBridge({
         ]}
       >
         {icon ? (
-          <View style={[styles.iconRing, { backgroundColor: t.accentBg, borderColor: t.accent }]}>
+          <View style={[styles.iconRing, { backgroundColor: t.accentBg, borderColor: t.accentGraphic ?? t.accent }]}>
             {icon}
           </View>
         ) : null}

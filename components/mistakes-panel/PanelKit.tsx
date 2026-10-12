@@ -68,7 +68,7 @@ export const PanelRing = memo(function PanelRing({ g, progress, big = true, chil
             cy={size / 2}
             r={r}
             fill="none"
-            stroke={g.accent}
+            stroke={g.accentGraphic} // зачем (светлый акцент): кольцо — графика, берёт accentGraphic
             strokeWidth={w}
             strokeLinecap="round"
             strokeDasharray={`${c * p} ${c}`}
@@ -125,7 +125,7 @@ export const MiniDots = memo(function MiniDots({ g, n }: Readonly<{ g: Lv2Glass;
   const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.mini}>
-      {/* guard-ok: ровно три полоски */ [0, 1, 2].map((i) => <View key={i} style={[styles.miniDot, { backgroundColor: i < n ? g.accent : g.glassEdge }]} />)}
+      {/* guard-ok: ровно три полоски */ [0, 1, 2].map((i) => <View key={i} style={[styles.miniDot, { backgroundColor: i < n ? g.accentGraphic : g.glassEdge }]} />)}
     </View>
   );
 });

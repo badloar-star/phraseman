@@ -21,8 +21,8 @@ export default function HybridRefreshControl(props: HybridRefreshControlProps) {
   return (
     <RefreshControl
       {...props}
-      tintColor={t.accent}
-      colors={[t.accent]}
+      tintColor={t.accentGraphic ?? t.accent} // зачем (светлый акцент): индикатор — графика
+      colors={[t.accentGraphic ?? t.accent]}
       progressBackgroundColor={t.bgCard}
     />
   );

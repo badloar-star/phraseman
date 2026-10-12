@@ -143,7 +143,7 @@ export function SpeakingButton({
           <SpeakingQuotaDots
             quota={speechNa ? { ...gate.quota, limit: null } : gate.quota}
             spentColor={t.textMuted}
-            remainingColor={t.accent}
+            remainingColor={t.accentGraphic ?? t.accent} // зачем (светлый акцент): остаток кольца — графика
             style={{ marginTop: 3 }}
           />
         </Pressable>
@@ -178,7 +178,7 @@ export function SpeakingButton({
           <SpeakingQuotaDots
             quota={speechNa ? { ...gate.quota, limit: null } : gate.quota}
             spentColor={t.textMuted}
-            remainingColor={t.accent}
+            remainingColor={t.accentGraphic ?? t.accent} // зачем (светлый акцент): остаток кольца — графика
           />
           {!isPremium && !speechNa && <PlusBadge themeMode={themeMode} size="xs" />}
         </Pressable>

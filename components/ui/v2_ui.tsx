@@ -416,7 +416,7 @@ const V2Segment = memo(function V2Segment({ filled, palette }: { filled: boolean
     <View style={[styles.seg, { backgroundColor: palette.elev2 }]}>
       <Animated.View style={[StyleSheet.absoluteFill, styles.segFillWrap, style]}>
         <LinearGradient
-          colors={[palette.accent, palette.okGradA]}
+          colors={[palette.accentGraphic, palette.okGradA]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={StyleSheet.absoluteFill}

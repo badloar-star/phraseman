@@ -177,9 +177,9 @@ export default function YoutubeInlinePlayer({
   }, [playerError, active, videoId, playerKey]);
   const renderLoading = useCallback(() => (
     <View style={styles.playerLoading}>
-      <ActivityIndicator color={chrome.accent} />
+      <ActivityIndicator color={t.accentGraphic ?? chrome.accent} />
     </View>
-  ), [chrome.accent]);
+  ), [chrome.accent, t.accentGraphic]); // зачем (светлый акцент): спиннер — графика, deps включают токен
   const handleLoadStart = useCallback(() => setPlayerError(false), []);
   const handlePlayerError = useCallback(() => {
     console.warn('[VIDEO-PLAYER] player error', JSON.stringify({ videoId }));

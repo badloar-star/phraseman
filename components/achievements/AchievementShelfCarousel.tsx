@@ -306,7 +306,7 @@ export default function AchievementShelfCarousel({
             key={index}
             style={[
               styles.dot,
-              { backgroundColor: index === indicator.active ? t.accent : t.textGhost + '55' },
+              { backgroundColor: index === indicator.active ? (t.accentGraphic ?? t.accent) : t.textGhost + '55' },
             ]}
           />
         )) : (

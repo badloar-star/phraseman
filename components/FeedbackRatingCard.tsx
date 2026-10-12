@@ -349,7 +349,7 @@ export default function FeedbackRatingCard({
               style={[
                 styles.sendButton,
                 compactStars ? styles.compactSendButton : null,
-                { backgroundColor: text.trim() === '' && rating === 0 ? glassFill(t.bgCard, 0.6) : t.accent },
+                { backgroundColor: text.trim() === '' && rating === 0 ? glassFill(t.bgCard, 0.6) : t.accent }, // light-accent-ok: кнопка с текстом
               ]}
             >
               {compactStars ? (

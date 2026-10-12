@@ -896,7 +896,7 @@ export function ResultsSequence({
             {!orbitMode ? (
               <View
                 pointerEvents="none"
-                style={[styles.pulseGlow, { backgroundColor: t.accent }]}
+                style={[styles.pulseGlow, { backgroundColor: t.accent }]} // light-accent-ok: свечение пульса, не график
               />
             ) : null}
             {badge ? (
@@ -1126,7 +1126,7 @@ export function ResultsSequence({
           activeOpacity={0.9}
           disabled={!ctaReady}
           onPress={handleCtaPrimary}
-          style={[styles.ctaPrimary, pulseMode ? null : styles.glassDefaultCta, { backgroundColor: t.accent }]}
+          style={[styles.ctaPrimary, pulseMode ? null : styles.glassDefaultCta, { backgroundColor: t.accent }]} // light-accent-ok: кнопка с текстом
           accessibilityRole="button"
         >
           <Text style={[styles.ctaPrimaryText, { color: t.textOnGold }]}>

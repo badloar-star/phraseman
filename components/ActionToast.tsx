@@ -220,7 +220,7 @@ export function ActionToastHybridCard({
             ]}
           />
         )}
-        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
+        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />{/* light-accent-ok: chrome.accent — фиксированный цвет рельсы тоста, не токен темы */}
         <Reanimated.View
           style={[
             styles.iconBadge,
@@ -626,7 +626,7 @@ function ActionToast() {
             },
           ]}
         >
-          <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
+          <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />{/* light-accent-ok: chrome.accent — фиксированный цвет рельсы тоста, не токен темы */}
           <View
             style={[
               styles.iconBadge,

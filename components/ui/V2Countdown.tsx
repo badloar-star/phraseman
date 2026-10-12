@@ -139,7 +139,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
         />
         <AnimatedCircle
           cx={size / 2} cy={size / 2} r={r}
-          stroke={low ? P.danger : P.accent}
+          stroke={low ? P.danger : P.accentGraphic}
           strokeWidth={stroke}
           fill="none"
           strokeLinecap="round"

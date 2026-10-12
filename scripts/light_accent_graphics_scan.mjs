@@ -37,6 +37,8 @@ function classify(lines, i, obj) {
   const back = lines.slice(Math.max(0, i - 3), i + 1).join('\n');
   const acc = `${obj}\\.accent\\b(?![A-Za-z])`;
   if (/light-accent-ok|theme-exempt/.test(line)) return 'exempt';
+  // зачем (светлый акцент): строка уже читает accentGraphic/accentTextSafe (токены 12.10) — `?? t.accent` это лишь запасной вариант для старых тем
+  if (/accentGraphic|accentTextSafe/.test(line)) return 'exempt';
   // полупрозрачная вуаль/свечение: X.accent + '1F', `${X.accent}33`, alpha(X.accent, …), shadowColor/boxShadow — не графика с контрастом
   if (new RegExp(`${acc}\\s*\\+\\s*['"\`]`).test(line) || new RegExp('\\$\\{' + obj + '\\.accent\\}[0-9A-Fa-f]{2}').test(line) || new RegExp(`(withAlpha|alpha|hexAlpha|rgba)\\([^)]*${acc}`).test(line) || /shadowColor|boxShadow|textShadow/.test(line)) return 'wash';
   if (/Ionicons|MaterialCommunityIcons|MaterialIcons|Feather|FontAwesome|AntDesign|<Icon\b/.test(back) && new RegExp(`color\\s*[=:]\\s*\\{?[^,}]*${acc}`).test(line)) return 'icon';

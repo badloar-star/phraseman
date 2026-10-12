@@ -42,7 +42,7 @@ function CollectionLimitHeaderBase({ saved, isPremium, t }: CollectionLimitHeade
 
   const ratio = Math.max(0, Math.min(1, saved / FREE_FLASHCARD_LIMIT));
   // Тон предупреждения: спокойный → жёлтый с 75% → красный на упоре.
-  const barColor = ratio >= 1 ? t.wrong : ratio >= 0.75 ? t.gold : t.accent;
+  const barColor = ratio >= 1 ? t.wrong : ratio >= 0.75 ? t.gold : (t.accentGraphic ?? t.accent); // зачем (светлый акцент): полоса — графика
 
   return (
     <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 6 }}>

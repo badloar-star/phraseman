@@ -83,7 +83,7 @@ export default function GlassSurface({
   // зачем: тут была несуществующая alpha() — ReferenceError на тёмных темах при
   // highlight. glassFill для hex-акцента даёт ту же полупрозрачную rgba.
   const highlightStyle: ViewStyle | null = highlight
-    ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
+    ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) } // light-accent-ok: 14% вуаль подсветки, не контур
     : null;
 
   return (

@@ -884,8 +884,15 @@ export default function FlashcardsScreen() {
     router.push({ pathname: '/flashcards_card_editor', params: { create: '1', cat: 'custom' } } as any);
   }, [router]);
 
+  // зачем (аудит Optimistic UI Карточек, 12.10): `selectionCreateBusy` — состояние, второй тап в том же кадре проходил; синхронный замок — ref
+  const selectionCreateLockRef = useRef(false);
   const openCreatePackFromSelection = useCallback(async () => {
     if (selectionCreateBusy || !canCreatePackFromSelection(selectedCardIds)) return;
+    if (selectionCreateLockRef.current) {
+      console.log('[OPT-UI] pack_from_selection ignored reason=double_tap'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    selectionCreateLockRef.current = true;
     setSelectionCreateBusy(true);
     try {
       const stageKey = await stageSavedCardSet({
@@ -895,9 +902,11 @@ export default function FlashcardsScreen() {
       });
       exitSelectionMode();
       router.push({ pathname: '/community_pack_create', params: { fresh: '1', stage: stageKey, origin: 'saved' } } as never);
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[OPT-UI] pack_from_selection rollback reason=stage_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
       emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.' }));
     } finally {
+      selectionCreateLockRef.current = false;
       setSelectionCreateBusy(false);
     }
   }, [exitSelectionMode, packLanguage, router, savedCardsForPackLanguage, selectedCardIds, selectionCreateBusy]);

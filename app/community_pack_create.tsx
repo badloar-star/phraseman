@@ -964,7 +964,10 @@ export default function CommunityPackCreateScreen() {
           router.push({ pathname: '/premium_modal', params: { context: creatorPaywallContext('pack'), source: 'pack_create_limit' } } as never);
           return;
         }
-        const short = msg.slice(0, 140);
+        // зачем (аудит Optimistic UI Карточек, 12.10): раньше в тост шёл текст исключения («Account changed», «Local pack not found») — английский в русском интерфейсе;
+        // человеку — локализованный текст, причина — в журнал.
+        console.warn('[OPT-UI] pack_save rollback reason=exception', msg.slice(0, 200)); // guard-ok: catch пишет причину
+        const short = '';
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: short || 'Не удалось сохранить набор.',
           uk: short || 'Не вдалося зберегти набір.',

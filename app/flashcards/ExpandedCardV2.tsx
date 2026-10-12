@@ -9,7 +9,7 @@
  * Сама карточка — общий FlipCard (его же использует превью «Новой карточки»); высота растёт по тексту, а не режет его.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { KitCta } from '../../components/cards-grid/CardsKit';
@@ -96,6 +96,8 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
   // зачем (решение координатора 12.10): есть только опубликованные наборы — добавлять некуда, но «Своих наборов нет» было бы неправдой
   const [onlyPublished, setOnlyPublished] = useState(false);
   const [adding, setAdding] = useState(false);
+  // зачем (аудит Optimistic UI Карточек, 12.10): `adding` — состояние, второй тап в том же кадре видел его «ещё свободным»; синхронный замок — ref
+  const addingRef = useRef(false);
   const cardId = card?.id ?? null;
 
   // зачем: при открытии новой карточки — лицевая сторона и режим «карточка»
@@ -104,6 +106,7 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
     setMode('card');
     setPacks(null);
     setAdding(false);
+    addingRef.current = false;
   }, [cardId]);
 
   const toggleFlip = useCallback(() => {
@@ -127,6 +130,11 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
 
   const addTo = useCallback((packId: string) => {
     if (!sourceCard || adding) return;
+    if (addingRef.current) {
+      console.log(`[OPT-UI] card_to_pack ignored reason=double_tap packId=${packId}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    addingRef.current = true;
     setAdding(true);
     void addCardToLocalPack(packId, sourceCard).then((result) => {
       console.log(`${TAG} «В набор»: результат=${result} packId=${packId}`);
@@ -135,15 +143,18 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
         onClose();
       } else if (result === 'duplicate') {
         emitAppEvent('action_toast', actionToastTri('info', toastCopy.duplicate));
+        addingRef.current = false;
         setAdding(false);
       } else {
         emitAppEvent('action_toast', actionToastTri('error', toastCopy.failed));
+        addingRef.current = false;
         setAdding(false);
       }
     }).catch((error: unknown) => {
       // зачем (аудит Optimistic UI 12.10): отказ записи без catch оставлял кнопку «занятой» навсегда и не говорил человеку, что карточка не добавилась
       console.warn(`${TAG} «В набор»: запись упала packId=${packId}: ${error instanceof Error ? error.message : String(error)}`);
       emitAppEvent('action_toast', actionToastTri('error', toastCopy.failed));
+      addingRef.current = false;
       setAdding(false);
     });
   }, [adding, onClose, sourceCard]);

@@ -217,6 +217,10 @@ export default function FlashcardsBlitzSession() {
   const [question, setQuestion] = useState<BlitzQuestion | null>(null);
   const [btnStates, setBtnStates] = useState<BtnState[]>(IDLE_BTNS);
   const [locked, setLocked] = useState(false);
+  // зачем (аудит Optimistic UI Карточек, 12.10): `locked` — состояние, и два тапа в одном кадре видели его «ещё свободным» и писали ответ дважды
+  // (двойная запись в eventsRef, двойной applyBlitzAnswer). Синхронный замок — ref; снимается, когда состояние вернулось в «свободно».
+  const pickLockRef = useRef(false);
+  useEffect(() => { if (!locked) pickLockRef.current = false; }, [locked]);
   // зачем (Карточки 2.0 12.10, cards-v2.html «Блиц — верно»: пилюля «+10» в углу карточки вопроса): сколько рун дал верный ответ; 0 — нет пилюли
   const [lastAward, setLastAward] = useState(0);
   const [blitz, setBlitz] = useState<BlitzState>(() => initialBlitzState());
@@ -953,6 +957,11 @@ export default function FlashcardsBlitzSession() {
   const pick = useCallback(
     (optIdx: number) => {
       if (!blitzAccessGrantedRef.current || locked || finishingRef.current || !question) return;
+      if (pickLockRef.current) {
+        console.log(`[OPT-UI] blitz_pick ignored reason=double_tap card=${question.card.id} opt=${optIdx}`); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      pickLockRef.current = true;
       setLocked(true);
       const isOk = optIdx === question.correctIndex;
 

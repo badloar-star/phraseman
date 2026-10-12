@@ -109,9 +109,12 @@ describe('старт платной активности: без окна под
       // Латч обязан быть синхронным ref, а не useState.
       expect(source).toContain(`const ${latch} = useRef(false)`);
       // Он читается как условие раннего выхода (до любого await).
+      // зачем (12.10, сперва логи): ранний выход теперь с журналом — `if (… || latch.current) { fsLog(…); return; }`; смысл тот же:
+      // латч читается условием выхода до любого await.
       const readsBeforeCharge =
         source.includes(`|| ${latch}.current) return`)
-        || source.includes(`if (${latch}.current) return`);
+        || source.includes(`if (${latch}.current) return`)
+        || new RegExp(`\\|\\| ${latch}\\.current\\) \\{[\\s\\S]{0,300}?return`).test(source);
       expect(readsBeforeCharge).toBe(true);
       // ...взводится...
       expect(source).toContain(`${latch}.current = true`);

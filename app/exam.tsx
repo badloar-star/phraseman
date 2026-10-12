@@ -493,7 +493,9 @@ export default function ExamScreen() {
       .then((rows) => {
         if (!cancelled) setFrenchQuestions(rows);
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        // зачем (аудит Optimistic UI, 12.10): сбой загрузки вопросов был немым — экран просто оставался без вопросов
+        console.warn(`[EXAM] вопросы не загрузились locale=${frenchExamSourceLocale}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
         if (!cancelled) setFrenchQuestions([]);
       })
       .finally(() => {
@@ -714,7 +716,15 @@ export default function ExamScreen() {
     }
   };
 
+  // зачем (аудит Optimistic UI, 12.10): второй тап «Завершить» в том же кадре запускал вторую сдачу — второй сертификат,
+  // второй showName и повторные записи ошибок. Замок синхронный; страница итога открывается один раз.
+  const submitExamInFlightRef = useRef(false);
   const submitExam = async () => {
+    if (submitExamInFlightRef.current) {
+      console.warn('[EXAM] submit: уже в пути — повторный тап пропущен'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    submitExamInFlightRef.current = true;
     try {
       const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
       const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
@@ -786,8 +796,11 @@ export default function ExamScreen() {
       }, 'exam');
       setPhase('result');
     } catch (e) {
+      console.warn(`[EXAM] submit: сбой подсчёта/записи — показываю итог без сертификата: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch пишет причину
       void trackFeatureError('exam', 'complete', e, { answered: choices.filter(c => c !== null).length, total: questions.length }, 'exam');
       setPhase('result');
+    } finally {
+      submitExamInFlightRef.current = false;
     }
   };
 

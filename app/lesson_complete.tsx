@@ -784,7 +784,10 @@ export default function LessonComplete() {
       if (!progressRaw) return false;
       const progress = JSON.parse(progressRaw);
       return Array.isArray(progress) && progress.length > 0;
-    } catch {
+    } catch (error: unknown) {
+      // зачем (аудит Optimistic UI «Главная и Уроки», 12.10): false здесь для французского отправляет человека в список уроков без наград —
+      // причина обязана быть в журнале, иначе это выглядит как «награда пропала сама»
+      console.warn(`[LESSON-COMPLETE] прогресс урока не прочитан lessonId=${lessonId} target=${studyTarget} → награды не выдаём: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
       return false;
     }
   }, [lessonId, studyTarget]);
@@ -940,7 +943,9 @@ export default function LessonComplete() {
         }
         return;
       }
-      void grantBonus().finally(() => {
+      void grantBonus().catch((error: unknown) => {
+        console.warn(`[LESSON-COMPLETE] выдача награды упала lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)} — экран итога открыт, повтор при следующем заходе`); // guard-ok: catch пишет причину
+      }).finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
       void markLessonFinishedOnce(lessonId, studyTarget);
@@ -1060,7 +1065,8 @@ export default function LessonComplete() {
         // Gem achievements
         const gems = await checkGemAchievements(lessonId, studyTarget);
         gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useEffect.checkAchievements_2')));
-      } catch {
+      } catch (error: unknown) {
+        console.warn(`[LESSON-COMPLETE] медаль/разблокировка не посчитаны lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)} — показываю последнюю сохранённую`); // guard-ok: catch пишет причину
         const info = await loadMedalInfo(lessonId, studyTarget);
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
@@ -1168,7 +1174,8 @@ export default function LessonComplete() {
     try {
       markNextNavigationAsReplace();
       router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
-    } catch {
+    } catch (error: unknown) {
+      console.warn(`[LESSON-COMPLETE] повтор урока не открылся lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
       repeatOpeningRef.current = false;
       setRepeatOpening(false);
     }

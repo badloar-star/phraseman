@@ -888,8 +888,15 @@ function MistakePracticeSessionScreen() {
       const modeDefinition = MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode];
       const independent = modeDefinition.countsAsIndependentProduction;
       const answerJournal = getAnswerJournal(accountScope, studyTarget as 'en' | 'fr');
-      const journalBefore = await answerJournal.current();
-      const beforeStatus = projectMistakes(journalBefore.events).items.get(entry.mistakeId)?.status ?? 'active';
+      // зачем (аудит Optimistic UI «Главная и Уроки», 12.10): сбой чтения журнала ДО записи ответа обрывал функцию — ответ не
+      // попадал в журнал вовсе. Статус «до» нужен лишь для награды; при сбое считаем 'active', а запись ответа идёт дальше.
+      let journalBefore: Awaited<ReturnType<typeof answerJournal.current>> | null = null;
+      try {
+        journalBefore = await answerJournal.current();
+      } catch (error: unknown) {
+        console.warn('[MISTAKE-SESSION] journal:current_failed — статус «до» = active, ответ записываем', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+      }
+      const beforeStatus = (journalBefore ? projectMistakes(journalBefore.events).items.get(entry.mistakeId)?.status : undefined) ?? 'active';
       const eventId = `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({ attemptId, type: 'practice_answered' }))}`;
       const event: MistakeEvent = {
         eventId,
@@ -954,7 +961,9 @@ function MistakePracticeSessionScreen() {
               ...snapshot,
               studyTarget,
             }),
-          );
+          ).catch((error: unknown) => {
+            console.warn('[MISTAKES-GATE] achievements:catch (ответ)', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+          });
         }
       }).catch((error: unknown) => {
         // Learning evidence is already durable. Reward delivery is replay-safe
@@ -1045,7 +1054,9 @@ function MistakePracticeSessionScreen() {
             perfectSession: pendingSession.initialCount >= 5 && wrongAnswers === 0,
             studyTarget,
           }),
-        );
+        ).catch((error: unknown) => {
+          console.warn('[MISTAKES-GATE] achievements:catch (итог)', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+        });
         if (persistSession) void clearMistakePracticeSession({ accountScope, studyTarget, pool: reviewPool });
       }
     }

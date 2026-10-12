@@ -2990,7 +2990,13 @@ function LessonScreen() {
     // Правильный ответ → ячейка зеленеет
     // Неправильный ответ → ячейка краснеет
     //   В режиме повтора (isReplay) ошибка может перекрыть зелёную ячейку → оценка падает
-    if (isCompletingRef.current) return;
+    if (isCompletingRef.current) {
+      // зачем (аудит Optimistic UI «Главная и Уроки», 12.10): ранний выход держал замок ответа взведённым и молчал — если экран
+      // остаётся (возврат со страницы итога), ответы перестали бы приниматься. Замок снимаем, причину пишем.
+      answerInFlightRef.current = false;
+      console.warn(`[LESSON-ANSWER] ответ пропущен: урок уже завершается (lessonId=${lessonId} cell=${cellIndex})`); // guard-ok: ранний выход называет причину
+      return;
+    }
     sessionAnswerCount.current += 1;
     const attemptEffect = attempts.registerVerdict({
       answerAttemptId: [

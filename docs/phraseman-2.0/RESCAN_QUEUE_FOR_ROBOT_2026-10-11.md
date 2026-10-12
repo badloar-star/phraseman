@@ -274,3 +274,15 @@ dev-подменой `uiLang=en` (только память; флаг `ENGLISH_U
 | en-dialog-completion-001 | Итог диалога (завершён вручную) | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&studyTarget=en&overlays=off&enStudyPrompt=off&uiLang=en&next=/ai_dialog_home` | `tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-input; type:Hello; tap:#dialogue-v2-session-send; wait:2500; tap:#dialogue-v2-session-more; tap:#dialogue-v2-session-menu-complete; wait:3000` | en+off |
 
 Всего строк: 73. Итог прохода — в `evidence/parity_en/EN_PASS_FINDINGS_2026-10-12.md` (новый раздел «повторный проход»), дыры — Ядру/зонам по списку.
+
+## «Переснять: состояние» — какой шаг ссылки не сработал (Макеты 12.10, ночь)
+- **cards-gap-011** (шторка режима «Готовим тренировку…»): кадр без шторки — тап по кнопке режима (⇄ на хабе) не сработал или снят раньше; добавить `wait:800` после тапа.
+- **cards-v2-025/026** (каталог, «ничего не нашли»): над списком висит «Продолжить создание набора» (черновик набора на эмуляторе) — очистить черновик (`/community_pack_create` → ⋮ → «Очистить черновик») или снять после `pm clear`; в 026 снять БЕЗ клавиатуры (`hidekb`), запрос xyzq.
+- **cards-v2-046** («Лимит — свои карточки 50/50»): форма пустая — перед кадром ввести `type:Layover`, `type:пересадка` в поля.
+- **cards-047** («Каталог — загрузка»): каталог уже загружен — снимать сразу после открытия (`settle:0`), без `wait`.
+- **overlays-campaigns-014/016/017**: клавиатура ОС на кадре — `hidekb` перед снимком; 014 требует подмену «промокоды выключены» (Ядро).
+- **paywall-gap-012**: пейвол не открыт — нужны шаги «открыть пейвол → Восстановить покупки» с подменой успешного восстановления (Ядро/Авторизация).
+- **dialogs-036**: приложение показало Главную — сессию диалога не открыли; шаги `DLG_START` + «назад» в сессии.
+- **profile-003**: ввести имя (`type:Alex`) перед кадром. **profile-014**: после тапа «Посмотреть» подождать раскрытия списка. **community-007**: код `DEVFND` + `hidekb`.
+- **packs-simple-001**: ссылка переписана — вкладка «Наборы» внутри «Сообщества» (`#community-sections-packs`), в коде она есть.
+- **cards-033, cards-040**: записать анимацию (anim_evidence) — без неё match не ставится.

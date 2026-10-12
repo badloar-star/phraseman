@@ -24,5 +24,4 @@ twin('cards-v2-037', 'cards-section-046', '«Устно — верно» = cards
 # ── Карточки: служебное состояние «Недоступен для правки» (shot list G-C09): маршрут несуществующего облачного набора → ugc-pack-load-error
 add('cards-074', ['see:#ugc-pack-load-error'], 'cards=demo&plus=on', '/community_pack_create?packId=dev_missing_cloud_pack', note='создание набора: набор недоступен для правки (packId несуществующего облачного набора → ugc-pack-load-error)')
 
-# ── Карточки: редактор новой карточки, заметка раскрыта (testID поля заметки — fc-editor-description; раскрытие тапом — по коду, не проверено на кадре)
-add('cards-061', ['tap:#fc-editor-description', 'wait:400'], 'cards=demo&plus=on', '/flashcards_card_editor?create=1&cat=custom', unique=False, note='редактор новой карточки: заметка раскрыта (тап по fc-editor-description; не проверено на кадре)')
+# cards-061 — теперь в dev_links_r1_steps_cards3.py (Ядро c35b9f8ad: заметка всегда открыта, «раскрыта» = фокус)

@@ -33,3 +33,60 @@
 | community-007 | diff | в приложении видна клавиатурная панель Samsung, нет результата поиска «Ирина» |
 | community-020 | diff мелкое | ближе всего; в приложении плавающая нижняя панель, у образца нет |
 | overlays-041 | diff | у образца иконка слоя, у приложения иллюстрация набора; другой заголовок/отступы |
+
+## Пропущенные при съёмке chain7 (48)
+
+Причина «нет строки» — id отсутствует в таблице DEV_LINKS_R1.md (нужна ссылка и шаги от владельца экрана). «Ссылка есть, но не готова» — строка есть, но без ссылки (coverage != ready).
+
+| id | причина |
+|---|---|
+| cards-001 | нет строки в DEV_LINKS_R1 |
+| cards-section-001 | нет строки в DEV_LINKS_R1 |
+| profile-027 | нет строки в DEV_LINKS_R1 |
+| profile-031 | нет строки в DEV_LINKS_R1 |
+| profile-032 | нет строки в DEV_LINKS_R1 |
+| profile-033 | нет строки в DEV_LINKS_R1 |
+| profile-034 | нет строки в DEV_LINKS_R1 |
+| profile-035 | нет строки в DEV_LINKS_R1 |
+| overlays-runtime-017 | нет строки в DEV_LINKS_R1 |
+| overlays-runtime-018 | ссылка есть, но не готова: ссылка — по shot list (фикстуры не мои) |
+| dialogs-015 | ссылка есть, но не готова: ручной путь — см. shot list |
+| dialogs-016 | ссылка есть, но не готова: ручной путь — см. shot list |
+| dialogs-019 | ссылка есть, но не готова: ручной путь — см. shot list |
+| dialogs-020 | ссылка есть, но не готова: ручной путь — см. shot list |
+| dialogs-022 | ссылка есть, но не готова: ручной путь — см. shot list |
+| dialogs-041 | ссылка есть, но не готова: ручной путь — см. shot list |
+| learn-001 | нет строки в DEV_LINKS_R1 |
+| learn-003 | нет строки в DEV_LINKS_R1 |
+| learn-004 | нет строки в DEV_LINKS_R1 |
+| learn-007 | нет строки в DEV_LINKS_R1 |
+| learn-008 | нет строки в DEV_LINKS_R1 |
+| learn-011 | нет строки в DEV_LINKS_R1 |
+| learn-012 | нет строки в DEV_LINKS_R1 |
+| learn-013 | нет строки в DEV_LINKS_R1 |
+| learn-014 | нет строки в DEV_LINKS_R1 |
+| learn-028 | нет строки в DEV_LINKS_R1 |
+| learn-029 | нет строки в DEV_LINKS_R1 |
+| learn-031 | нет строки в DEV_LINKS_R1 |
+| learn-032 | нет строки в DEV_LINKS_R1 |
+| video-001 | нет строки в DEV_LINKS_R1 |
+| video-004 | нет строки в DEV_LINKS_R1 |
+| video-008 | нет строки в DEV_LINKS_R1 |
+| video-009 | нет строки в DEV_LINKS_R1 |
+| video-011 | нет строки в DEV_LINKS_R1 |
+| coins-001 | нет строки в DEV_LINKS_R1 |
+| coins-003 | нет строки в DEV_LINKS_R1 |
+| coins-004 | нет строки в DEV_LINKS_R1 |
+| practice-001 | нет строки в DEV_LINKS_R1 |
+| practice-002 | нет строки в DEV_LINKS_R1 |
+| practice-003 | нет строки в DEV_LINKS_R1 |
+| community-025 | ссылка есть, но не готова: ссылка — по shot list (фикстуры не мои) |
+| system-010 | нет строки в DEV_LINKS_R1 |
+| system-012 | нет строки в DEV_LINKS_R1 |
+| system-015 | нет строки в DEV_LINKS_R1 |
+| results-007 | нет строки в DEV_LINKS_R1 |
+| results-009 | нет строки в DEV_LINKS_R1 |
+| mistakes-panel-004 | нет строки в DEV_LINKS_R1 |
+| mistakes-panel-021 | нет строки в DEV_LINKS_R1 |
+
+profile-027 и overlays-runtime-017 — removed_by_owner (п.85), пропуск верный.

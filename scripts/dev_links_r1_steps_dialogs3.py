@@ -65,3 +65,17 @@ put('energy-modes-007', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:1500'], 
 put('energy-modes-012', ['wait:4000', 'await:#fc-blitz-opt-target', 'tap:#fc-blitz-opt-target', 'wait:300'], 'cards=demo&plus=off&free=on&mode=b&energy=5&blitz_answer=wrong', '/flashcards_blitz_session?deck=saved&sec=60', note='Режим Б: блиц, неверный ответ — −1 энергия, сердец нет (blitz_answer=wrong)')
 put('energy-modes-013', _DS + ['tap:#dialogue-v2-session-input', 'type:I goed home', 'tap:#dialogue-v2-session-send', 'wait:2500'], 'plus=off&mode=b&energy=5&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok', _DLG, unique=False, note='Режим Б: диалог, реплика с ошибкой — пилюля энергии не меняется (dev_dialog_send=ok)')
 put('energy-modes-014', ['tap:#home-v2-phrase-of-day', 'wait:800'], 'plus=off&mode=b&energy=5', '/(tabs)/home', unique=False, note='Режим Б: фраза дня энергию не тратит (пилюля на Главной)')
+
+# ── Круг «40 строк по кадру» (Макеты 12.10, по просьбе координатора): шаги по подменам Ядра/кодам экранов
+# зачем: «Вспомни и напиши» — подсказка / ответ показан / неверный ввод детерминированы (карточка не нужна); верный ввод и «Правда/ложь»
+# зависят от случайного порядка карточек (shuffle в сессии) — для них нужна подмена Ядра (запрос отправлен), строки manual_conditional.
+from dev_links_r1_steps import RECALL_ROUTE as _RR  # noqa: E402
+_RECALL = 'cards=demo&plus=on&studyTarget=en'
+_R0 = ['wait:4000', 'await:#fc-recall-input']
+put('cards-v2-049', _R0 + ['tap:#fc-recall-hint', 'wait:500'], _RECALL, _RR, unique=False, note='«Вспомни и напиши»: подсказка (fc-recall-hint); шаг не проверен на кадре')
+put('cards-v2-050', _R0 + ['tap:#fc-recall-reveal', 'wait:600'], _RECALL, _RR, unique=False, note='«Вспомни и напиши»: ответ показан, «Знал / Не знал» (fc-recall-reveal); шаг не проверен на кадре')
+put(['cards-v2-040', 'cards-section-052'], _R0 + ['tap:#fc-recall-input', 'type:zzzz', 'tap:#fc-recall-check', 'wait:800'], _RECALL, _RR, unique=False, note='«Напиши — неверно»: введено zzzz → проверка; шаг не проверен на кадре')
+put('cards-section-016', ['tap:Layover', 'wait:600'], 'cards=demo&plus=on&studyTarget=en', '/flashcards_collection?cat=saved', unique=False, note='«Своя карточка»: раскрытая карточка Layover (лицевая сторона) — тап по плитке')
+put('spire-gap-022', ['see:#spire-beta-pill'], '', '/dev_spire_preview?state=room&spirePanel=off', unique=False, note='«бета» рядом с языком (es/de/fr/it): гость по умолчанию с изучаемым es; тап не нужен')
+put('community-024', ['wait:800', 'tap:#friend-row-body-dev-demo-friend-1', 'wait:800', 'tap:#friend-together-sheet-delete', 'wait:800'], 'friends=demo&spire=open&plus=off&free=on&cards=demo', '/(tabs)/community', unique=False, note='«Удалить друга?»: демо-друг Maria → шторка «вместе» → «Удалить» (подтверждение не жать)')
+put('community-012', ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input', 'type:ZZ98', 'tap:#friends-search', 'wait:1500'], 'friends=demo&spire=open&plus=off&free=on&cards=demo', '/(tabs)/community', unique=False, note='«ник или код не найден»: поиск по несуществующему коду ZZ98 — настоящий поиск (чтение), без подмены')

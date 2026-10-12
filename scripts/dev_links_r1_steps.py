@@ -92,9 +92,9 @@ add(['cards-section-012', 'cards-v2-014'], [ROW_WORK], DEMO_PLUS, MYPACKS, note=
 add('cards-v2-017', [ROW_WORK, 'tap:#fc-pack-menu'], DEMO_PLUS, MYPACKS, note='действия с набором (шторка ⋯)')
 add('cards-gap-030', [ROW_TRAVEL], DEMO_PLUS, MYPACKS, note='набор «Путешествия» — на проверке')
 
-add(['cards-section-019', 'cards-v2-022', 'cards-023'], [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (черновик сбрасывается фикстурой)')
+add(['cards-section-019', 'cards-v2-022', 'cards-023', 'cards-066'], [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (черновик сбрасывается фикстурой)')
 add('cards-section-020', ['tap:#ugc-pack-first-card'], EMPTY_PLUS, CREATE, note='шторка «Новая карточка»')
-add('cards-v2-024', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
+add(['cards-v2-024', 'cards-022'], ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
 add('cards-067', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — меню набора)')
 # зачем (R1_DIFF_ONE_FIX / координатор 12.10, cards-070 «Проверь поля»): состояние достижимо без подмены — «Создать набор» всегда нажимается; при пустом названии (форма пуста, cards=empty очищает черновик) сохранение не уходит и показывает тост «Укажи название и описание набора.» (в образце cards-states №65 текст «Проверь название, описание и все карточки.» — Макеты сверят по приложению). Ничего не пишется ни в облако, ни на устройство.
 # зачем (сторож Ядра 69a4230ba): тап «Создать набор» без подмены публикации мог дойти до сети — fail=publish_error гасит запись (пустая форма и так отсекается до сети)
@@ -162,7 +162,7 @@ add('cards-gap-015', [], 'moderation=rejected', HUB, note='окно «Твой �
 add('cards-gap-016', [], 'moderation=revision', HUB, note='окно «Нужна доработка» (revision_requested) приходит само через 0,9 с')
 add('cards-gap-017', [], 'moderation=removed', HUB, note='окно «Набор снят с продажи» приходит само через 0,9 с')
 add('cards-gap-037', [], 'cards=demo&hold=voices_loading', '/flashcards_voice_picker', note='голос озвучки — загрузка (hold=voices_loading)')
-add('cards-v2-030', [], 'plus=off&cards=demo&quota=exhausted', '/flashcards_training_setup?mode=blitz', note='Free: тренировки 30/30 — настройка с пилюлей и «Безлимит с Plus» (прямой маршрут; тап «Тренироваться» при исчерпанном лимите ведёт на пейвол, а не на настройку)')
+add(['cards-v2-030', 'cards-section-056'], [], 'plus=off&cards=demo&quota=exhausted', '/flashcards_training_setup?mode=blitz', note='Free: тренировки 30/30 — настройка с пилюлей и «Безлимит с Plus» (прямой маршрут; тап «Тренироваться» при исчерпанном лимите ведёт на пейвол, а не на настройку)')
 
 
 # ───────────────────────── Диалоги (/ai_dialog_home и вложенные) ─────────────────────────

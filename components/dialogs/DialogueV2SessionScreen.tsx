@@ -327,7 +327,9 @@ export function DialogueV2SessionScreen({
                   accessibilityLabel={headerMood?.label ?? labels.subtitle}
                 >
                   {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
-                  <Text maxFontSizeMultiplier={1.3} style={{ flexShrink: 1, color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
+                  {/* зачем (dialogs-023, Макеты 12.10): «Насторожён» рвалось на «Настороже / н» — рядом энергия и плашка лимита, места на слово не хватало. Макет: `.dmood` — white-space: nowrap;
+                      одна строка, без переноса посреди слова и без сжатия шрифта; целиком подпись читает озвучка (accessibilityLabel выше). */}
+                  <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={{ flexShrink: 1, color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
                     {headerMood?.label ?? labels.subtitle}
                   </Text>
                 </View>

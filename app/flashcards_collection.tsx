@@ -24,7 +24,6 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
@@ -1366,7 +1365,11 @@ export default function FlashcardsScreen() {
         <LinearGradient colors={[glass.bgTop, glass.bg, glass.bgBottom]} locations={[0, 0.58, 1]} style={StyleSheet.absoluteFill} />
       </View>
     ) : null}
-    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
+    {/* зачем (координатор 12.10, Сверка cards-042: панель «‹ … ⋮» набора лежала ПОД строкой состояния, сдвиг ≈75 px): родной SafeAreaView берёт отступы
+        у системы уже после первого кадра — пока экран входит в стек и ещё не приклеен к окну, inset сверху = 0 и панель стоит под часами. Отступы берём
+        из useStableSafeAreaInsets (родной или запасной по высоте строки состояния — не меньше), как требует Performance Bible. Равнозначно SafeAreaView
+        по всем четырём краям. Журнал положения панели — [CARDS-SET-HEADER] (PackHeaderV2). */}
+    <View style={[st.safe, { backgroundColor: 'transparent', paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 
         {/* зачем (packs-simple.html кадр 4, указание координатора 04.10): набор ДО добавления рисует отдельный
@@ -1842,7 +1845,7 @@ export default function FlashcardsScreen() {
         />
       ) : null}
 
-    </SafeAreaView>
+    </View>
     {expandedData ? (
       <ExpandedCardV2
         card={expandedData}

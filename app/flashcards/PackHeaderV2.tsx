@@ -10,8 +10,9 @@
  * Уровень набора (A1–C2) в документах пока нет — чип `level` скрыт, пока поле не придёт от Ядра (packDeckLevel).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useMemo, useRef } from 'react';
+import { Platform, StatusBar, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -39,8 +40,29 @@ export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Rea
   const g = useLv2Glass();
   const styles = useMemo(() => makeStyles(g), [g]);
   const copy = useMemo(() => copyFor(lang), [lang]);
+  // зачем (координатор 12.10, Сверка cards-042: «‹ … ⋮» лежит ПОД строкой состояния, сдвиг ≈75 px; сперва логи): каждое новое положение панели
+  // в окне + откуда взялся отступ сверху («стабильный» inset, inset первого замера окна, высота строки состояния). Строка пишется только при
+  // изменении положения/высоты, чтобы не засорять журнал; по ней видно, на каком кадре панель стояла не там и чему равнялись отступы.
+  const stableInsets = useStableSafeAreaInsets();
+  const { height: windowH } = useWindowDimensions();
+  const wrapRef = useRef<View>(null);
+  const lastLogRef = useRef('');
+  const mountedAtRef = useRef(Date.now());
+  const logPosition = useCallback((layoutY: number, layoutH: number) => {
+    wrapRef.current?.measureInWindow((_x, y, _w, h) => {
+      const key = `${Math.round(y)}:${Math.round(h)}`;
+      if (key === lastLogRef.current) return;
+      lastLogRef.current = key;
+      console.log('[CARDS-SET-HEADER]', JSON.stringify({ // guard-ok: журнал положения шапки набора (расследование сдвига под строкой состояния)
+        windowY: Math.round(y), height: Math.round(h), layoutY: Math.round(layoutY), layoutH: Math.round(layoutH),
+        insetTopStable: stableInsets.top, insetTopInitialWindow: stableInitialWindowMetrics.insets.top,
+        statusBarH: Platform.OS === 'android' ? StatusBar.currentHeight ?? null : null, windowH: Math.round(windowH),
+        sinceMountMs: Date.now() - mountedAtRef.current,
+      }));
+    });
+  }, [stableInsets.top, windowH]);
   return (
-    <View style={styles.topWrap}>
+    <View ref={wrapRef} collapsable={false} onLayout={(e) => logPosition(e.nativeEvent.layout.y, e.nativeEvent.layout.height)} style={styles.topWrap}>
       <PackTopBarRow
         left={<PackBackBare g={g} testID="fc-collection-back" label={copy.back} onPress={onBack} />}
         right={<PackSquareButton g={g} testID="fc-pack-menu" label={copy.menu} onPress={onMenu} />}

@@ -28,6 +28,44 @@ function logAccountsV2ClientFlag(source: 'cache' | 'network'): void {
   accountsV2FlagLogged.add(key);
   console.log(`[ACCOUNT-V2] client_flag accounts_v2_client_enabled=${String(value)} source=${source}`);
 }
+
+// зачем (координатор 12.10, решение владельца к R1 «продавать или раздавать»): какие замки сейчас открыты в проде —
+// значения флагов «Пульта» как они пришли (кэш / сеть), одна строка на источник за процесс, только dev. Флага нет в
+// документе — `default` (действует значение по умолчанию в коде), чтобы не путать с явным false.
+export const REMOTE_GATES_LOGGED_KEYS: readonly (readonly [string, string])[] = [
+  ['lessons', 'gate_lessons_premium'],
+  ['flashcards', 'gate_flashcards_premium'],
+  ['dialog', 'gate_ai_dialog_premium'],
+  ['energy', 'gate_energy_premium'],
+  ['speaking', 'gate_speaking_premium'],
+  ['stats', 'gate_stats_premium'],
+  ['themes', 'gate_themes_premium'],
+  ['mistakes', 'gate_mistake_practice_premium'],
+  ['extra_languages', 'gate_extra_languages_premium'],
+  ['spire_tab', 'spire_tab_enabled'],
+  ['accounts_v2_client', 'accounts_v2_client_enabled'],
+  ['boot_restore_defer', 'boot_restore_defer_enabled'],
+];
+
+/** Строка значений флагов: `lessons=true flashcards=default …`. Чистая функция. */
+export function formatRemoteGates(bools: Readonly<Record<string, unknown>> | undefined): string {
+  return REMOTE_GATES_LOGGED_KEYS
+    .map(([label, key]) => {
+      const value = bools?.[key];
+      return `${label}=${typeof value === 'boolean' ? String(value) : 'default'}`;
+    })
+    .join(' ');
+}
+
+const remoteGatesLogged = new Set<string>();
+function logRemoteGates(source: 'cache' | 'network', bools: Readonly<Record<string, unknown>> | undefined): void {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+  const line = formatRemoteGates(bools);
+  const key = `${source}:${line}`;
+  if (remoteGatesLogged.has(key)) return;
+  remoteGatesLogged.add(key);
+  console.log(`[REMOTE-GATES] ${line} source=${source}`);
+}
 import { DebugLogger, reportSwallowed } from './debug-logger';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
@@ -195,6 +233,7 @@ function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.no
   }
   applyRemoteConfigSnapshot(clean);
   logAccountsV2ClientFlag('network');
+  logRemoteGates('network', clean.bools);
   // зачем (11.10, «Шпиль не виден»): зеркало кэша обновляется ДО события. Раньше событие уходило первым, и слушатели,
   // читающие кэш (флаг вкладки Шпиля, «Вместе»), синхронно получали из зеркала СТАРОЕ значение — вкладка не появлялась
   // до перезапуска, а при свежем кэше на диске — до 6 часов.
@@ -250,8 +289,10 @@ async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
     }
     boundedUtf8Bytes(raw, REMOTE_CONFIG_MAX_CACHE_BYTES);
     const parsed = JSON.parse(raw) as RawConfig;
-    applyRemoteConfigSnapshot(sanitizeRaw(parsed));
+    const cleanFromCache = sanitizeRaw(parsed);
+    applyRemoteConfigSnapshot(cleanFromCache);
     logAccountsV2ClientFlag('cache');
+    logRemoteGates('cache', cleanFromCache.bools);
     emitAppEvent('remote_config_changed');
     return true;
   } catch (e) {

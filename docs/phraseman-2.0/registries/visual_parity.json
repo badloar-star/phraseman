@@ -35340,21 +35340,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-010.png",
+      "evidence_at": "2026-10-12T02:44:43.744Z",
+      "evidence_sha256": "9019e9a401497a7686e8f6a4fe316541e1595b279c99de434fa803d073388183",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Блок по центру в приложении ниже образца на ~150 px (плитка с замком на y≈570 против 430, кнопка на y≈810 против 640; центр блока на 52 % высоты экрана против 39 %).",
+        "[вёрстка] Значок замка: в образце заливной белый, в приложении контурный; зазоры внутри блока в приложении больше (плитка→заголовок ≈50 против ≈35 px), кнопка выше (68 против 62 px) с более сильной тенью."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:45:53.154Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/dialogue_v2_freeform"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:44, dialogs-gaps-states №10 «Свободный разговор — доступен в Plus»): состав и тексты совпали — «‹», круглая плитка с замком, «Свободный разговор доступен в Plus» в две строки, светлая «Открыть Plus»."
     },
     {
       "id": "dialogs-gap-011",

@@ -11,7 +11,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
@@ -242,8 +242,14 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   const holder = useRef<View>(null);
   const [pageTop, setPageTop] = useState<number | null>(null);
   const measure = useCallback(() => {
-    holder.current?.measureInWindow((_x, y) => { setPageTop((prev) => (prev === y ? prev : y)); });
-  }, []);
+    holder.current?.measureInWindow((_x, y, _w, h) => {
+      // зачем (координатор 12.10, cards-009: блок «Пока пусто» ниже образца на ≈45 dp; «сперва логи»): все числа, из которых считается верх блока, — в [CARDS-EMPTY]
+      const screenH = Dimensions.get('screen').height;
+      const top = Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - y);
+      console.log(`[CARDS-EMPTY] measure testID=${String(testID)} windowH=${Math.round(height)} screenH=${Math.round(screenH)} pageTop(y)=${Math.round(y)} holderH=${Math.round(h)} blockTop=${top} blockCenterOnScreen=${Math.round(y + top + EMPTY_BLOCK_H / 2)} centerShare=${((y + top + EMPTY_BLOCK_H / 2) / screenH).toFixed(3)}`); // guard-ok: числа раскладки пустого блока
+      setPageTop((prev) => (prev === y ? prev : y));
+    });
+  }, [height, testID]);
   return (
     <View ref={holder} onLayout={measure} testID={testID} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
       <View pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - (pageTop ?? 0)), opacity: pageTop === null ? 0 : 1 }]}>

@@ -35,7 +35,7 @@ describe('dev-подмены монет, экрана ошибки и окна �
     expect(request).toMatchObject({ coins: 12480, coinUpgrade: 'hold', errorScreen: 'on', appMessage: 'announcement' });
     expect(rejected).toEqual({});
     const bad = parseDevStateParams({ coins: '-1', coinupgrade: 'yes', errorscreen: 'boom', appmessage: 'poll' });
-    expect(Object.keys(bad.rejected).sort()).toEqual(['appmessage', 'coinupgrade', 'coins', 'errorscreen']);
+    expect(Object.keys(bad.rejected).sort()).toEqual(['appmessage', 'coins', 'coinupgrade', 'errorscreen']);
     expect(parseDevStateParams({ coins: '10000001' }).rejected.coins).toBeDefined();
     expect(parseDevStateParams({ coins: 'off' }).request.coins).toBe('off');
   });

@@ -40,7 +40,8 @@ describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта
     const steps = read('scripts/dev_links_r1_steps.py');
     expect(steps).toContain("add('dialogs-001', [], 'plus=off&dquota=30', DLG,");
     expect(steps).toContain("add('dialogs-006', [WORLD], 'plus=off&dquota=30', DLG,");
-    expect(steps).toContain("add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE,");
+    // зачем (Авторизация 13.10): dc9b10b85 добавил fail=publish_error — тап «Создать набор» без подмены публикации мог дойти до сети (сторож Ядра 69a4230ba)
+    expect(steps).toContain("add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS + '&fail=publish_error', CREATE,");
   });
 
   it('cards-034 / cards-section-010: затемнение шторки тянется вверх до статус-бара (PanelSheet меряет верх родителя в окне)', () => {

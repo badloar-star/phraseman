@@ -79,3 +79,26 @@ describe('L1: ячейки и экран подключены к стабиль�
     expect(src).not.toContain('() => onLearningV2PressOverride()');
   });
 });
+
+describe('R1: каталог курса не собирается синхронно в рендере вкладки «Уроки» на странице списка', () => {
+  it('начальное состояние каталога: не-v2 страница — null (каталог подтянет прогрев), v2 — peek как раньше', () => {
+    const src = read('app/(tabs)/lessons.tsx');
+    const start = src.indexOf('const [learningV2Catalog, setLearningV2Catalog] =');
+    expect(start).toBeGreaterThan(-1);
+    const block = src.slice(start, start + 2600);
+    expect(block).toContain('if (page !== "v2") return null;');
+    expect(block.indexOf('if (page !== "v2") return null;')).toBeLessThan(block.indexOf('peekLearningV2ActiveCourseCatalogV1('));
+  });
+
+  it('названия уроков из каталога берутся только на странице v2 (список на странице lessons от каталога не зависит)', () => {
+    const src = read('app/(tabs)/lessons.tsx');
+    expect(src).toContain('if (page !== "v2" || !learningV2Catalog) return legacyTitles;');
+  });
+
+  it('прогрев каталога остаётся: peek + load в useFocusEffect, взводится после первого кадра и взаимодействий', () => {
+    const src = read('app/(tabs)/lessons.tsx');
+    expect(src).toContain('const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2" || learningV2WarmupArmed;');
+    expect(src).toContain('void loadLearningV2ActiveCourseCatalogV1(learningV2CatalogLocator)');
+    expect(src).toContain('timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);');
+  });
+});

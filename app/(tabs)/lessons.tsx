@@ -2772,6 +2772,12 @@ export default function LessonsTab({
   );
   const [learningV2Catalog, setLearningV2Catalog] =
     useState<LearningV2ActiveCourseCatalogV1 | null>(() => {
+      // зачем (R1, «Уроки ≈2 с до первого кадра»; журнал Сверки with_lessons_body2: ВЕСЬ блок ≈2,07–2,3 с — именно этот инициализатор, между метками j_v2_scope и k_v2_warmup):
+      // для `en` peekLearningV2ActiveCourseCatalogV1 синхронно собирает весь каталог курса (factoryNativeLearningV2CatalogSeedV1 + materializeLearningV2FactoryPartialCourseCatalogV1) прямо в рендере
+      // вкладки. На странице «lessons» (по умолчанию, и в премаунте невидимой вкладки) каталог не нужен ни на первом кадре, ни в списке: названия уроков из него берутся только при page === "v2" (см. legacyTitles),
+      // остальные места читают его с `?.` и запасными значениями. Поэтому не-v2 страница стартует с null, а каталог подтягивает прогрев ниже (peek + load в useFocusEffect, взводится после первого кадра
+      // и взаимодействий), как и было задумано в комментарии к прогреву. Страница v2 (в том числе возврат из сессии с initialPage="v2") получает каталог синхронно, как раньше.
+      if (page !== "v2") return null;
       const stableId = peekStableId();
       return stableId
         ? peekLearningV2ActiveCourseCatalogV1(

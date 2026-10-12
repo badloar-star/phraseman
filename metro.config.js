@@ -278,6 +278,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_animations_off',
     // зачем (Макеты 15.10): dev_state?appearance=light|dark — подмена оформления в памяти; в стор-сборке заглушка (ThemeContext импортирует модуль из боевого кода)
     'dev_appearance_override',
+    // зачем (координатор 12.10): dev_state?robot_no_cloud=1 — робот съёмки не пишет согласия/уведомления; в стор-сборке заглушка
+    'dev_robot_no_cloud',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

@@ -50,8 +50,9 @@ const protectedHashes = {
   ensurePermissionIfEnabling: '5bea29535c1dc1de592053f15b6b8f3736046f4e1e9a0c5dd3a93047057213e3',
   // зачем (30.09): немой .catch(() => {}) заменён на swallowError('settings_notifications:persistPrefs') в efe19ae9d — правило «немых catch нет».
   // 11.10: в catch добавлен лог [NOTIF-PREFS] persist_failed (правило владельца: немых catch нет), логика отката прежняя.
-  persistPrefs: '04ff7ee1d2c561d71495a1fecd11f9c3c2069c3df7e483c0e308408e8db85e42',
-  persistSchedule: 'fdb0dddf9017df4f718dc898feb09182e13a2f61545cfbda62f5f9b25181b47f',
+  // 12.10 (координатор, съёмка R1): dev robot_no_cloud=1 — после мгновенного обновления экрана выход ДО сохранения и облака (только dev, app/dev_robot_no_cloud.ts).
+  persistPrefs: 'aac4653efa549df6fcb77dada44ceed0f3b567fd681e5dbc51cb4e7e5b0249f7',
+  persistSchedule: '62f21433377dfa1a0d7663e1a12bd2ab39839931633c5818394bd2ddb6894fb3', // 12.10: тот же выход robot_no_cloud
   toggleMaster: '48e7e186a958d38d5d0bd17198b5bfc65f5867b7bdd4b73d58c9bb2cd117b387',
   toggleCategory: 'c735bcda2ed9177b35deec2f91bc78663f8e2f25083628f76e3469de63a9c4f5',
   toggleDaily: 'bc7abe406862ba6802cc9bbdf7c7dd53cc7f7eaedd44a9481d649d9be0839a94',

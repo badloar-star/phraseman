@@ -17,6 +17,7 @@ import { IS_STORE_RELEASE } from './config';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
 import { setDevAnimationsOff } from './dev_animations_off';
+import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferProgress } from './dev_save_offer_progress';
 import { setDevUiLang } from './dev_ui_lang';
 import { setDevMistakesDemo } from './dev_mistakes_demo';
@@ -30,7 +31,7 @@ import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { setDevAppearance } from './dev_appearance_override';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
-import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
+import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
@@ -134,8 +135,8 @@ export type DevStateRequest = Readonly<{
   namecheck?: DevNameCheck | 'none';
   /** «Удаление не завершилось» (auth-gap-011): имитация отказа, удаление не вызывается. */
   delete?: 'fail' | 'ok';
-  /** `identity_retired` при входе (auth-gap-008). */
-  restore?: 'retired' | 'ok';
+  /** `identity_retired` при входе (auth-gap-008); offer|restored — окно «Восстановить аккаунт?» без сервера (auth-gap-007/006). */
+  restore?: 'retired' | 'offer' | 'restored' | 'ok';
   /** Имя на экране приветствия (onboarding-010): произвольная строка до 24 символов, пустая снимает. */
   greet?: string;
   /** Строка про перенос Plus в окне смены аккаунта (auth-gap-012). */
@@ -168,6 +169,8 @@ export type DevStateRequest = Readonly<{
   overlays?: 'on' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
   animations?: 'on' | 'off';
+  /** `robot_no_cloud=1`: тумблеры Уведомлений и Приватности меняют только экран — без сохранения и облака (только память). */
+  robotNoCloud?: '1' | '0';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
@@ -251,6 +254,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
+  request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -291,7 +295,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.logout = pick('logout', [...DEV_LOGOUT_MODES, 'ok'] as const);
   request.namecheck = pick('namecheck', [...DEV_NAME_CHECKS, 'none'] as const);
   request.delete = pick('delete', ['fail', 'ok'] as const);
-  request.restore = pick('restore', ['retired', 'ok'] as const);
+  request.restore = pick('restore', ['retired', ...DEV_RESTORE_MODES, 'ok'] as const);
   request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
   request.confetti = pick('confetti', ['hold', 'off'] as const);
   // зачем: регистр имени важен — берём сырую строку (one() приводит к нижнему), обрезаем до 24 как настоящее первое слово имени.
@@ -538,6 +542,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.animations !== undefined) {
     await step('animations', request.animations, async () => setDevAnimationsOff(request.animations === 'off'));
   }
+  // зачем (координатор 12.10: «записи в облако с робота — НЕТ»): флаг в памяти (app/dev_robot_no_cloud.ts); тумблеры не пишут ни на устройство, ни в облако.
+  if (request.robotNoCloud !== undefined) {
+    await step('robot_no_cloud', request.robotNoCloud, async () => setDevRobotNoCloud(request.robotNoCloud === '1'));
+  }
   if (request.uiLang !== undefined) {
     // зачем (координатор 12.10, п.76): проход разделов в английском до включения флага; только память
     await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!));
@@ -630,7 +638,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.logout !== undefined) await step('logout', request.logout, async () => setDevAccountState({ logoutMode: request.logout === 'ok' ? null : request.logout! }));
   if (request.namecheck !== undefined) await step('namecheck', request.namecheck, async () => setDevAccountState({ nameCheck: request.namecheck === 'none' ? null : request.namecheck! }));
   if (request.delete !== undefined) await step('delete', request.delete, async () => setDevAccountState({ deleteFail: request.delete === 'fail' }));
-  if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({ restoreRetired: request.restore === 'retired' }));
+  if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({
+    restoreRetired: request.restore === 'retired',
+    restoreMode: request.restore === 'offer' || request.restore === 'restored' ? request.restore : null,
+  }));
   if (request.streakJump !== undefined) {
     // зачем (координатор 12.10): у тестовых аккаунтов серия 0 — моделируем «облако принесло другую серию» (только dev).
     await step('streakJump', request.streakJump, async () => {

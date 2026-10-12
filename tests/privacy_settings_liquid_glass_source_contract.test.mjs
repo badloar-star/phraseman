@@ -148,6 +148,8 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     // 12.10 (Дизайн через координатора, R1 E-2): облако идёт через склейку тапов (app/consent_cloud_coalescer.ts — свои тесты);
     // здесь склейка отправляет сразу, чтобы порядок «локально → облако» проверялся как прежде. Тост отката — через событие.
     './consent_cloud_coalescer': { scheduleConsentCloudRecord: (_key, send) => { void send(); } },
+    // 12.10 (координатор, съёмка R1): dev robot_no_cloud выключен — порядок «локально → облако» проверяется как в продукте.
+    './dev_robot_no_cloud': { isDevRobotNoCloud: () => false, noteRobotNoCloudSkip: () => undefined },
     './events': { emitAppEvent: (name, payload) => { order.push(`event:${name}:${payload?.type}:${payload?.messageEn}`); } },
     './ai_explain_consent': {
       getAiExplainConsentState: () => initial.explain,

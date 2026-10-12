@@ -37,6 +37,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 
 import { swallowError } from './debug-logger';
+import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 const VISIBLE = 3;
@@ -158,11 +159,14 @@ type LocalSwitchProps = {
   accessibilityLabel: string;
   disabled?: boolean;
   glass: ReturnType<typeof liquidGlassTokens>;
+  /** зачем (координатор 12.10, робот съёмки settings-gap-010/027): по тексту робот попадал в подпись строки, а не в переключатель. */
+  testID?: string;
 };
 
-function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = false, glass }: LocalSwitchProps) {
+function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = false, glass, testID }: LocalSwitchProps) {
   return (
     <PressableHybrid
+      testID={testID}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="switch"
       accessibilityState={{ checked: value, disabled }}
@@ -191,7 +195,8 @@ function RowIcon({ name, glass }: { name: keyof typeof Ionicons.glyphMap; glass:
   );
 }
 
-function ToggleRow({ label, icon, value, onValueChange, disabled, glass, titleColor, rowStyle }: {
+function ToggleRow({ label, icon, value, onValueChange, disabled, glass, titleColor, rowStyle, switchTestID }: {
+  switchTestID?: string;
   label: string;
   icon: keyof typeof Ionicons.glyphMap;
   value: boolean;
@@ -208,7 +213,7 @@ function ToggleRow({ label, icon, value, onValueChange, disabled, glass, titleCo
       <FlowText testID="notif-toggle-label" provenance="authored" style={{ color: titleColor, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>
         {label}
       </FlowText>
-      <LocalSwitch value={value} onValueChange={onValueChange} accessibilityLabel={label} disabled={disabled} glass={glass} />
+      <LocalSwitch testID={switchTestID} value={value} onValueChange={onValueChange} accessibilityLabel={label} disabled={disabled} glass={glass} />
     </View>
   );
 }
@@ -296,6 +301,12 @@ export default function SettingsNotifications() {
     // Optimistic: тумблер реагирует мгновенно, сеть и планирование догоняют фоном.
     setPrefs(next);
     flashSaved();
+    // зачем (координатор 12.10: «записи в облако с робота — НЕТ»): dev robot_no_cloud=1 — меняется только экран; ни сохранения на
+    // устройство, ни pushPrefs/push-токена в облаке, ни системного окна разрешения. Вне dev / в стор-сборке флаг всегда false.
+    if (isDevRobotNoCloud()) {
+      noteRobotNoCloudSkip(`notif-prefs master=${next.master} (сохранение, pushPrefs, push-токен, разрешение ОС)`);
+      return;
+    }
     try {
       await saveNotifPrefs(next);
       const permitted = await ensurePermissionIfEnabling(enabling);
@@ -323,6 +334,10 @@ export default function SettingsNotifications() {
     const seq = ++scheduleSeqRef.current;
     setS(next);
     flashSaved();
+    if (isDevRobotNoCloud()) {
+      noteRobotNoCloudSkip(`notif-schedule enabling=${enabling} (сохранение, планирование, разрешение ОС)`);
+      return;
+    }
     try {
       await saveNotifSettings(next);
       const permitted = await ensurePermissionIfEnabling(enabling);
@@ -498,14 +513,14 @@ export default function SettingsNotifications() {
                   {masterHint}
                 </FlowText>
               </View>
-              <LocalSwitch value={master} onValueChange={toggleMaster} accessibilityLabel={masterLabel} glass={glass} />
+              <LocalSwitch testID="notif-master-switch" value={master} onValueChange={toggleMaster} accessibilityLabel={masterLabel} glass={glass} />
             </View>
 
             {/* Категории видны всегда; мастер приглушает их и делает недоступными для нажатия и accessibility. */}
             <View style={{ opacity: master ? 1 : 0.45 }}>
               <Text style={sectionTitleStyle}>{sectionStudy}</Text>
               <View style={{ gap: 10 }}>
-                <ToggleRow label={dailyLabel} icon="flame-outline" value={dailyEnabled} onValueChange={toggleDaily} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
+                <ToggleRow label={dailyLabel} icon="flame-outline" value={dailyEnabled} onValueChange={toggleDaily} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-daily-switch" />
                 <PressableHybrid
                   accessibilityLabel={timeLabel}
                   accessibilityRole="button"
@@ -527,23 +542,23 @@ export default function SettingsNotifications() {
                     <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
                   </View>
                 </PressableHybrid>
-                <ToggleRow label={streakLabel} icon="flame-outline" value={prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
-                <ToggleRow label={phraseLabel} icon="bookmark-outline" value={prefs.categories.phrase_of_day} onValueChange={toggleCategory('phrase_of_day')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
-                <ToggleRow label={energyLabel} icon="flash-outline" value={prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
+                <ToggleRow label={streakLabel} icon="flame-outline" value={prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-streak" />
+                <ToggleRow label={phraseLabel} icon="bookmark-outline" value={prefs.categories.phrase_of_day} onValueChange={toggleCategory('phrase_of_day')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-phrase_of_day" />
+                <ToggleRow label={energyLabel} icon="flash-outline" value={prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-energy" />
               </View>
 
               <Text style={sectionTitleStyle}>{sectionRecaps}</Text>
               <View style={{ gap: 10 }}>
-                <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
-                <ToggleRow label={monthlyLabel} icon="calendar-outline" value={prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
-                <ToggleRow label={spireLabel} icon="people-outline" value={prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
+                <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-weekly_recap" />
+                <ToggleRow label={monthlyLabel} icon="calendar-outline" value={prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-monthly_recap" />
+                <ToggleRow label={spireLabel} icon="people-outline" value={prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-spire" />
               </View>
 
               <Text style={sectionTitleStyle}>{sectionMore}</Text>
               <View style={{ gap: 10 }}>
                 {/* «Вместе» (friends_together §4/§5): категория «Друзья» — пуш «Позвал(а)». */}
-                <ToggleRow label={friendsLabel} icon="people-outline" value={prefs.categories.friends} onValueChange={toggleCategory('friends')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
-                <ToggleRow label={offersLabel} icon="pricetag-outline" value={prefs.categories.offers} onValueChange={toggleCategory('offers')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
+                <ToggleRow label={friendsLabel} icon="people-outline" value={prefs.categories.friends} onValueChange={toggleCategory('friends')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-friends" />
+                <ToggleRow label={offersLabel} icon="pricetag-outline" value={prefs.categories.offers} onValueChange={toggleCategory('offers')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-offers" />
               </View>
             </View>
           </BouncyScrollView>

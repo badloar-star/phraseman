@@ -14,6 +14,7 @@ import { Alert } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
+import { getDevAccountRestoreMode } from './dev_account_state';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 
 /**
@@ -92,9 +93,15 @@ export function accountRestoreFailedCopy(lang: Lang): { title: string; body: str
 
 export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promise<AccountRestorePromptOutcome> {
   console.log('[ACCOUNT-RESTORE] prompt start');
+  // зачем (координатор 12.10, съёмка auth-gap-006/007): dev `restore=offer|restored` — подставной статус без сервера;
+  // настоящее восстановление при подмене недостижимо (см. ниже). Вне dev / в стор-сборке — всегда null.
+  const devRestoreMode = getDevAccountRestoreMode();
   let status: Awaited<ReturnType<typeof fetchAccountDeleteStatus>>;
   try {
-    status = await fetchAccountDeleteStatus();
+    status = devRestoreMode
+      ? { pending: true, restorable: true, daysLeft: 13 }
+      : await fetchAccountDeleteStatus();
+    if (devRestoreMode) console.log(`[ACCOUNT-RESTORE] dev restore=${devRestoreMode}: статус подставлен (13 дней), сервер не вызван`); // guard-ok: dev-ветка
   } catch (error) {
     console.warn(`[ACCOUNT-RESTORE] status_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`);
     return 'not_restorable';
@@ -143,6 +150,11 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
   if (!agreed) {
     console.log('[ACCOUNT-RESTORE] declined');
     return 'declined';
+  }
+  if (devRestoreMode) {
+    const devOutcome: AccountRestorePromptOutcome = devRestoreMode === 'restored' ? 'restored' : 'restore_failed';
+    console.log(`[ACCOUNT-RESTORE] dev restore=${devRestoreMode}: «Восстановить» → ${devOutcome}, restoreDeletedAccount не вызван`); // guard-ok: dev-ветка
+    return devOutcome;
   }
   const outcome = await restoreDeletedAccount();
   console.log(`[ACCOUNT-RESTORE] restore ok=${outcome.ok ? 'yes' : 'no'}`);

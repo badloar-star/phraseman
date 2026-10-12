@@ -60,3 +60,37 @@ add('auth-gap-016', ['tap:#settings-switch-continue', 'wait:1500'], 'switch=not_
 add('settings-gap-034', ['see:#fc-voice-picker-row', 'tap:#fc-voice-picker-row', 'tap:#fc-voice-row-*@2', 'tap:#fc-voice-picker-back',
                          'see:#fc-voice-picker-row'], 'plus=off', '/settings_edu',
     note='в строке «Голос озвучки» имя голоса; нужен хотя бы один английский голос TTS на эмуляторе (имя — как отдаёт TTS, в макете «Samantha» — iOS)')
+
+# ── Поправки по коду (Ядро 12.10 вечер). Общий dev_links_r1_steps.py не трогаем — перекрываем здесь.
+# Двухкнопочное окно useGlassAlert рисуется ThemedConfirmModal без testID (hooks/use-glass-alert.tsx: 2 кнопки) — жать по тексту.
+SWITCH = '/(tabs)/settings?switchAccount=1'
+SWITCH_FORCE_TEXT = ['tap:#settings-switch-continue', 'wait:1500', 'tap:Сменить без сохранения', 'wait:1500']
+for _rid in ('auth-gap-012', 'auth-gap-013', 'auth-gap-017', 'auth-gap-018'):
+    ENTRIES.pop(_rid, None)
+add('auth-gap-013', SWITCH_FORCE_TEXT, 'switch=unsaved_cards', SWITCH, note='«Прогресс не сохранён» → «Сменить без сохранения» → окно про несохранённые карточки')
+add('auth-gap-017', SWITCH_FORCE_TEXT, 'switch=guard', SWITCH,
+    note='«Прогресс не сохранён» → «Сменить без сохранения» → «Смена аккаунта отменена» (форсированная отклонена защитной проверкой)')
+# окно «смена ещё идёт» живёт 45–50 с (switch=slow держит 50 с) — снимок сразу после 46 с
+add('auth-gap-018', ['tap:#settings-switch-continue', 'wait:46000', 'settle:0'], 'switch=slow', SWITCH,
+    note='смена дольше 45 с → окно «смена ещё идёт»; снимать сразу (через 50 с отказ)')
+# «Сменить аккаунт?» с переносом Plus: окно открывается параметром switchAccount, строка про Plus — plus=on + plustransfer=on
+# (plus_transfer_hold.ts); switch=required страхует от настоящей смены, если «Продолжить» нажмут.
+add('auth-gap-012', [], 'plus=on&plustransfer=on&switch=required', SWITCH,
+    note='окно «Сменить аккаунт?» со строкой «У тебя активен Plus…»; «Продолжить» НЕ жать')
+
+# ── Окно восстановления аккаунта (restore=offer|restored — только память, сервер и настоящее восстановление недостижимы)
+add('auth-gap-007', SIGNIN, 'restore=offer', ACCT, note='вход → «Восстановить аккаунт?» (13 дней, подставной статус); кнопки не жать; ТОЛЬКО ГОСТЬ')
+add('auth-gap-006', SIGNIN + ['tap:Восстановить', 'wait:1200'], 'restore=restored', ACCT,
+    note='вход → «Восстановить» → в окне входа «Аккаунт восстановлен · Войди ещё раз»; restoreDeletedAccount не вызывается; ТОЛЬКО ГОСТЬ')
+
+# ── Уведомления и Приватность под robot_no_cloud=1: тумблеры меняют только экран — ни сохранения, ни облака (координатор 12.10).
+NOTIF = '/settings_notifications'
+add('settings-gap-010', ['tap:#notif-master-switch', 'wait:1600', 'tap:#notif-daily-switch', 'settle:0'], 'robot_no_cloud=1', NOTIF,
+    note='мастер вкл → «Ежедневное напоминание» вкл → сразу «Сохранено» и «Время 19:00» (время по умолчанию; в образце может быть другое)')
+add('settings-gap-027', ['tap:#notif-master-switch', 'wait:1600'], 'robot_no_cloud=1', NOTIF,
+    note='мастер вкл, ежедневное выкл (исходно) → «Время» приглушено; «Сохранено» погасло (1,4 с)')
+add('settings-gap-017', ['tap:#privacy-analytics-consent-switch', 'tap:#privacy-ai-explain-consent-switch',
+                         'tap:#privacy-ai-dialog-consent-switch', 'see:#privacy-delete-account'], 'robot_no_cloud=1', '/privacy_settings',
+    note='аналитика выкл, оба ИИ вкл (исходно: аналитика вкл, ИИ выкл), прокручено до «Документы»/«Удалить аккаунт» (НЕ жать)')
+# settings-gap-012 («телефон не разрешает») — ручной шаг Сверки: pm revoke + системное окно «Не разрешать» (координатор 12.10).
+# settings-gap-001 («профиль привязан») — только настоящий вход (G-A10, аккаунт №3): ручной, в утренний лист владельцу.

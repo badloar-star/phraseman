@@ -16,3 +16,6 @@ export function isDevConfettiHold(): boolean { return false; }
 // зачем (12.10, сторож паритета заглушек): окно проверки имени (namecheck, 85812a2a3) в стор-сборке не подменяется — тот же набор экспортов, значения «нет подмены»
 export const DEV_NAME_CHECKS = [] as const;
 export function getDevNameCheck(): null { return null; }
+// зачем (координатор 12.10, auth-gap-006/007): подмена окна восстановления аккаунта в стор-сборке недоступна — всегда «нет подмены».
+export const DEV_RESTORE_MODES = [] as const;
+export function getDevAccountRestoreMode(): null { return null; }

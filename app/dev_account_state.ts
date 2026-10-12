@@ -21,6 +21,13 @@ export type DevLogoutMode = (typeof DEV_LOGOUT_MODES)[number];
 /** `namecheck=`: ответ проверки занятости имени в окне «Изменить имя» (settings-gap-024/025/026/031). */
 export const DEV_NAME_CHECKS = ['checking', 'available', 'taken', 'error'] as const;
 export type DevNameCheck = (typeof DEV_NAME_CHECKS)[number];
+/**
+ * `restore=offer|restored` (auth-gap-007/006): вход отдаёт account_delete_pending ДО сети, окно «Восстановить аккаунт?» получает
+ * подставной статус (13 дней). offer — только окно; restored — «Восстановить» даёт итог «Аккаунт восстановлен». Настоящее
+ * восстановление (restoreDeletedAccount) и сервер при подмене не вызываются.
+ */
+export const DEV_RESTORE_MODES = ['offer', 'restored'] as const;
+export type DevRestoreMode = (typeof DEV_RESTORE_MODES)[number];
 /** Сколько держать «Выходим из аккаунта» при `logout=hold` (profile-028), потом отказ — стирание недостижимо. */
 const DEV_LOGOUT_HOLD_MS = 120_000;
 
@@ -33,6 +40,7 @@ type State = {
   logoutMode: DevLogoutMode | null;
   deleteFail: boolean;
   restoreRetired: boolean;
+  restoreMode: DevRestoreMode | null;
   plusTransfer: boolean;
   /** `greet=<строка>`: имя на экране приветствия онбординга (onboarding-010, длинное имя). */
   greetName: string | null;
@@ -41,7 +49,7 @@ type State = {
   /** `namecheck=`: подменённый ответ проверки имени, только в памяти; сервер при подмене не вызывается. */
   nameCheck: DevNameCheck | null;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, restoreMode: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -60,6 +68,7 @@ export function setDevAccountState(patch: Partial<{
   logoutMode: DevLogoutMode | null;
   deleteFail: boolean;
   restoreRetired: boolean;
+  restoreMode: DevRestoreMode | null;
   plusTransfer: boolean;
   greetName: string | null;
   confettiHold: boolean;
@@ -75,6 +84,7 @@ export function setDevAccountState(patch: Partial<{
     logoutMode: patch.logoutMode === undefined ? state.logoutMode : patch.logoutMode,
     deleteFail: patch.deleteFail ?? state.deleteFail,
     restoreRetired: patch.restoreRetired ?? state.restoreRetired,
+    restoreMode: patch.restoreMode === undefined ? state.restoreMode : patch.restoreMode,
     plusTransfer: patch.plusTransfer ?? state.plusTransfer,
     greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
     confettiHold: patch.confettiHold ?? state.confettiHold,
@@ -109,7 +119,7 @@ function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   const mode = state.switchMode;
   // зачем (ревью безопасности 12.10, R-1): при ЛЮБОМ включённом флаге зоны аккаунта (не только switch=/logout=) выход тоже отказывает — иначе тап «Сменить» в окне
   // plustransfer=on / restore=retired / auth=none / delete=fail запускал бы настоящее стирание.
-  if (mode === null && (state.authNone || state.restoreRetired || state.deleteFail || state.plusTransfer)) {
+  if (mode === null && (state.authNone || state.restoreRetired || state.restoreMode !== null || state.deleteFail || state.plusTransfer)) {
     return forced ? { reason: 'unknown', detail: 'dev_guard', delayMs: 0 } : { reason: 'sync_failed', delayMs: 0 };
   }
   if (mode === null) {
@@ -136,6 +146,8 @@ function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
 export function getDevSignInError(): string | null {
   if (!devAccountAvailable()) return null;
   if (state.restoreRetired) return 'identity_retired';
+  // зачем (координатор 12.10, auth-gap-006/007): аккаунт «на удалении, 14 дней ещё идут» — ветка окна восстановления, без сети.
+  if (state.restoreMode !== null) return 'account_delete_pending';
   if (state.switchMode === 'not_uploaded') return 'local_progress_not_uploaded';
   if (state.switchMode === 'backup_blocked') return 'local_progress_backup_blocked';
   if (state.switchMode === 'required') return 'account_switch_required';
@@ -150,6 +162,11 @@ export function isDevUnsavedCardsPrompt(): boolean {
 /** `namecheck=`: ответ проверки занятости имени вместо сервера (null — нет подмены; вне dev всегда null). */
 export function getDevNameCheck(): DevNameCheck | null {
   return devAccountAvailable() ? state.nameCheck : null;
+}
+
+/** `restore=offer|restored`: подставной режим окна восстановления (null — нет подмены; вне dev всегда null). */
+export function getDevAccountRestoreMode(): DevRestoreMode | null {
+  return devAccountAvailable() ? state.restoreMode : null;
 }
 
 /** `delete=fail`: локальная фаза удаления отказывает ДО любого побочного эффекта (auth-gap-011). */

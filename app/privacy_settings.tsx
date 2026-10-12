@@ -32,6 +32,7 @@ import { recordConsentToCloud } from './age_consent_cloud';
 import { getAiExplainConsentState, setAiExplainConsent, recordAiExplainConsentToCloud } from './ai_explain_consent';
 import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToCloud } from './ai_dialog_consent';
 import { scheduleConsentCloudRecord } from './consent_cloud_coalescer';
+import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
 import { emitAppEvent } from './events';
 
 /** Строка на 9 UI-языках (форма triLang). */
@@ -55,12 +56,15 @@ interface LocalSwitchProps {
   onValueChange: (value: boolean) => void;
   accessibilityLabel: string;
   glass: Glass;
+  /** зачем (координатор 12.10, робот съёмки settings-gap-017): по тексту робот попадал в подпись строки, а не в переключатель. */
+  testID?: string;
 }
 
-function LocalSwitch({ value, onValueChange, accessibilityLabel, glass }: LocalSwitchProps) {
+function LocalSwitch({ value, onValueChange, accessibilityLabel, glass, testID }: LocalSwitchProps) {
   const offTone = switchOffTrackTone(glass);
   return (
     <PressableHybrid
+      testID={testID}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="switch"
       accessibilityState={{ checked: value }}
@@ -177,6 +181,12 @@ export default function PrivacySettings() {
     const seq = (consentSeqRef.current[key] ?? 0) + 1;
     consentSeqRef.current[key] = seq;
     if (__DEV__) console.log(`[PRIVACY-CONSENT] ${key}: тап → ${val ? 'granted' : 'denied'} seq=${seq}`);
+    // зачем (координатор 12.10: «записи в облако с робота — НЕТ»): dev robot_no_cloud=1 — меняется только экран; ни локального
+    // сохранения, ни отметки «не доставлено», ни облака — досылать потом нечего. Вне dev / в стор-сборке флаг всегда false.
+    if (isDevRobotNoCloud()) {
+      noteRobotNoCloudSkip(`consent:${key}=${val ? 'granted' : 'denied'} (локальное сохранение + запись в облако)`);
+      return;
+    }
     void (async () => {
       try {
         await save(val ? 'granted' : 'denied');
@@ -289,7 +299,7 @@ export default function PrivacySettings() {
                 label={analyticsLabel}
                 // зачем: паритет profile.html PRF-07 (13.10): подпись постоянная, состояние показывает переключатель и примечание ниже
                 sub={L({ ru: 'Приложение работает и без этого', uk: 'Застосунок працює і без цього', en: "The app works without it", es: 'La app funciona sin esto', 'pt-BR': 'O app funciona sem isso', vi: 'Ứng dụng vẫn chạy khi tắt', id: 'Aplikasi tetap jalan tanpa ini', tr: 'Uygulama bunsuz da çalışır', pl: 'Aplikacja działa i bez tego' })}
-                right={<LocalSwitch value={analyticsOn} onValueChange={toggleAnalytics} accessibilityLabel={analyticsLabel} glass={glass} />}
+                right={<LocalSwitch testID="privacy-analytics-consent-switch" value={analyticsOn} onValueChange={toggleAnalytics} accessibilityLabel={analyticsLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
                 scaled={scaled}
@@ -332,7 +342,7 @@ export default function PrivacySettings() {
                 sub={aiExplainOn
                   ? L({ ru: 'При ошибке ИИ объясняет, что не так, и может упростить объяснение', uk: 'При помилці ІІ пояснює, що не так, і може спростити пояснення', en: "When you make a mistake, AI explains what went wrong and can simplify the explanation", es: 'Al fallar, la IA explica qué salió mal y puede simplificarlo', 'pt-BR': 'No erro, a IA explica o que houve e pode simplificar', vi: 'Khi sai, AI giải thích lỗi và có thể đơn giản hoá', id: 'Saat salah, AI menjelaskan dan bisa menyederhanakan', tr: 'Hatada yapay zeka açıklar ve basitleştirebilir', pl: 'Przy błędzie AI wyjaśnia i może uprościć wyjaśnienie' })
                   : L({ ru: 'Сейчас не используется', uk: 'Зараз не використовується', en: "Not in use right now", es: 'Ahora no se usa', 'pt-BR': 'Agora não é usada', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywana' })}
-                right={<LocalSwitch value={aiExplainOn} onValueChange={toggleAiExplain} accessibilityLabel={aiExplainLabel} glass={glass} />}
+                right={<LocalSwitch testID="privacy-ai-explain-consent-switch" value={aiExplainOn} onValueChange={toggleAiExplain} accessibilityLabel={aiExplainLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
                 scaled={scaled}
@@ -344,7 +354,7 @@ export default function PrivacySettings() {
                 sub={aiDialogOn
                   ? L({ ru: 'Можно общаться с ИИ-собеседником', uk: 'Можна спілкуватися з ІІ-співрозмовником', en: "You can chat with an AI conversation partner", es: 'Puedes hablar con el interlocutor de IA', 'pt-BR': 'Você pode conversar com o interlocutor de IA', vi: 'Có thể trò chuyện với bạn đồng hành AI', id: 'Bisa mengobrol dengan teman bicara AI', tr: 'Yapay zeka konuşma partneriyle sohbet edebilirsin', pl: 'Możesz rozmawiać z rozmówcą AI' })
                   : L({ ru: 'Сейчас не используются', uk: 'Зараз не використовуються', en: "Not in use right now", es: 'Ahora no se usan', 'pt-BR': 'Agora não são usados', vi: 'Hiện không dùng', id: 'Sekarang tidak digunakan', tr: 'Şu an kullanılmıyor', pl: 'Teraz nieużywane' })}
-                right={<LocalSwitch value={aiDialogOn} onValueChange={toggleAiDialog} accessibilityLabel={aiDialogLabel} glass={glass} />}
+                right={<LocalSwitch testID="privacy-ai-dialog-consent-switch" value={aiDialogOn} onValueChange={toggleAiDialog} accessibilityLabel={aiDialogLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
                 scaled={scaled}

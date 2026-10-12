@@ -19,10 +19,10 @@ export const ART_MAX_BYTES = 400 * 1024;
 const ART_CORNER_MAX_ALPHA = 16;
 
 // зачем (координатор 12.10): слой .accent красится tintColor и обязан совпадать с деталью основы (scripts/accent_alignment.mjs). Сторож отвергает несовпавший слой
-// (accent_misaligned). Файлы ниже — ИЗВЕСТНЫЙ ДОЛГ: лежат в assets до замены (аудит 12.10: intro_* — заглушки; слои lessons/dialogs заменены вырезкой из основы 12.10 и из долга убраны).
+// (accent_misaligned). Файлы ниже — ИЗВЕСТНЫЙ ДОЛГ: лежат в assets до замены (аудит 12.10: intro_* — заглушки; слои lessons/dialogs/intro_cards_hub/intro_cards_swipe(тёмный) заменены вырезкой из основы 12.10 и из долга убраны).
 // Список может только УМЕНЬШАТЬСЯ (убирать строку при замене слоя); добавлять сюда новое — нельзя, это отключает сторож.
 export const ACCENT_MISALIGNED_DEBT = new Set([
-  'dark/intro_cards_hub.accent.webp', 'light/intro_cards_hub.accent.webp', 'dark/intro_cards_swipe.accent.webp', 'light/intro_cards_swipe.accent.webp',
+  'light/intro_cards_swipe.accent.webp', // светлая стрелка не вырезается автоматически (сливается с тенью) — пересдача Codex
   'dark/intro_legacy_lessons.accent.webp', 'light/intro_legacy_lessons.accent.webp',
 ]);
 

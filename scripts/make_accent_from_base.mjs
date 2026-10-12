@@ -42,7 +42,9 @@ const SPEC = {
   intro_cards_swipe: {
     kind: 'contrast',
     dark: { roi: [720, 585, 885, 650], sign: 1, delta: 10, bgSigma: 25, fgSigma: 2, closeR: 4 },
-    light: { roi: [720, 585, 885, 650], sign: 1, delta: 10, bgSigma: 25, fgSigma: 2, closeR: 4 },
+    // светлый кадр: стрелка отличается от карточки на 20–40 из 255 и сливается с тенью под собой — ни «светлее», ни «отличается», ни расширение области не дают чистой маски
+    // (правильный кусок + затёкшая тень); слой в светлом режиме НЕ вырезается и остаётся в долге сторожа до пересдачи Codex по новому правилу
+    light: null,
   },
   // intro_legacy_lessons: тёмная закладка-лента раскрытой книги: на кремовых страницах — по контрасту; где лента лежит на тёмной обложке (контраста нет) — полоса по оси ленты
   intro_legacy_lessons: {
@@ -158,7 +160,7 @@ async function contrastMask(img, cfg) {
     for (let x = x0; x < x1; x += 1) {
       const i = y * w + x;
       if (img.data[i * 4 + 3] < 200 || !inBand(x, y)) continue;
-      const hit = cfg.absMax !== undefined ? fg[i] < cfg.absMax : cfg.sign * (fg[i] - bg[i]) > cfg.delta;
+      const hit = cfg.absMax !== undefined ? fg[i] < cfg.absMax : (cfg.sign === 0 ? Math.abs(fg[i] - bg[i]) : cfg.sign * (fg[i] - bg[i])) > cfg.delta; // sign 0 — отличие в любую сторону (деталь частично светлее, частично темнее фона)
       if (hit) m[i] = 1;
     }
   }

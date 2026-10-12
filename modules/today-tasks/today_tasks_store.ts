@@ -84,6 +84,14 @@ let current: TodayTasksDayState | null = null;
 let availableKinds: readonly TodayTaskKindCore[] | null = null;
 let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: TodayTasksDayState | null) => void>();
+/**
+ * зачем (аудит Optimistic UI «Главная и Уроки», 99ba26b1e; координатор 12.10): раньше при сбое записи на диск событие
+ * отбрасывалось (`event:dropped`) — прогресс дня тихо терялся. Теперь состояние показывается сразу, держится в памяти
+ * помеченным «не сохранено» и пишется повторно: при следующем событии, открытии Главной (refresh) и уходе приложения в фон.
+ * Ни одного чтения Firestore — это только локальный диск. Монеты за задание выдаются лишь после успешной записи.
+ */
+let unsavedSince: number | null = null;
+let backgroundRetryHooked = false;
 
 function log(event: string, fields: Record<string, unknown>): void {
   console.log(`${LOG} ${event} ${JSON.stringify(fields)}`);
@@ -147,6 +155,45 @@ async function persist(state: TodayTasksDayState): Promise<boolean> {
     warn('persist:failed', { ownerKey: state.ownerKey.slice(0, 8), dayKey: state.dayKey, error: errText(error) });
     return false;
   }
+}
+
+/** Повторить запись несохранённого состояния. Вызывать только внутри serialized. Возвращает true, если на диске актуально. */
+async function retryUnsaved(trigger: string): Promise<boolean> {
+  if (unsavedSince === null) return true;
+  const state = current;
+  if (!state) {
+    warn('retry:no_state', { trigger, unsavedForMs: deps.now() - unsavedSince, action: 'flag_cleared' });
+    unsavedSince = null;
+    return true;
+  }
+  if (!(await persist(state))) {
+    warn('retry:failed', { trigger, dayKey: state.dayKey, unsavedForMs: deps.now() - unsavedSince, status: 'stays_in_memory' });
+    return false;
+  }
+  log('retry:saved', { trigger, dayKey: state.dayKey, unsavedForMs: deps.now() - unsavedSince, kinds: state.tasks.map((t) => `${t.kind}:${t.units}${t.done ? '✓' : ''}`) });
+  unsavedSince = null;
+  // Выполненное, пока запись не ложилась, — теперь на диске: доводим выплаты (ключ идемпотентен).
+  if (state.tasks.some((task) => task.rewardStatus === 'pending')) await settlePendingRewards(state);
+  return true;
+}
+
+function hookBackgroundRetry(): void {
+  if (backgroundRetryHooked) return;
+  backgroundRetryHooked = true;
+  void import('react-native')
+    .then(({ AppState }) => {
+      AppState.addEventListener('change', (next) => {
+        if (unsavedSince === null || (next !== 'background' && next !== 'active')) return;
+        void serialized(() => retryUnsaved(`app_state:${next}`)).catch((error: unknown) => {
+          warn('retry:app_state_failed', { next, error: errText(error) });
+        });
+      });
+      log('retry:background_hooked', {});
+    })
+    .catch((error: unknown) => {
+      backgroundRetryHooked = false;
+      warn('retry:background_hook_failed', { error: errText(error) });
+    });
 }
 
 /** Загрузить (или создать) состояние текущего дня. Вызывать только внутри serialized. */
@@ -246,6 +293,7 @@ export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
     .catch((error: unknown) => warn('streak_touch:import_failed', { error: errText(error) }));
   return serialized(async () => {
     try {
+      await retryUnsaved(`event:${event.kind}`);
       const day = await loadDay();
       const result = applyTodayTaskEvent(day, event, deps.now());
       const fields = {
@@ -263,8 +311,11 @@ export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
       }
       log(result.outcome === 'completed' ? 'event:completed' : 'event:counted', fields);
       if (!(await persist(result.state))) {
-        // Не публикуем то, что не легло на диск: иначе после перезапуска цифра «откатится».
-        warn('event:dropped', { ...fields, reason: 'persist_failed' });
+        // Показываем сразу (Optimistic UI) и держим в памяти; запись повторится — см. retryUnsaved. Монеты — только после записи.
+        if (unsavedSince === null) unsavedSince = deps.now();
+        publish(result.state);
+        hookBackgroundRetry();
+        warn('event:kept_unsaved', { ...fields, reason: 'persist_failed', retry: 'next_event|home_open|app_background' });
         return;
       }
       publish(result.state);
@@ -286,6 +337,7 @@ export function refreshTodayTasks(
 ): Promise<TodayTasksDayState | null> {
   return serialized(async () => {
     try {
+      await retryUnsaved('home_open');
       const normalized = Object.freeze(TODAY_TASK_POOL.filter((kind) => kinds.includes(kind)));
       if (!availableKinds || availableKinds.join(',') !== normalized.join(',')) {
         availableKinds = normalized;
@@ -341,6 +393,7 @@ export const __todayTasksStoreTestHooks = Object.freeze({
   reset(): void {
     deps = DEFAULT_DEPS;
     current = null;
+    unsavedSince = null;
     availableKinds = null;
     queue = Promise.resolve();
     listeners.clear();
@@ -348,6 +401,7 @@ export const __todayTasksStoreTestHooks = Object.freeze({
   /** Сбросить только память процесса (имитация перезапуска приложения). */
   simulateRestart(): void {
     current = null;
+    unsavedSince = null;
     availableKinds = null;
     queue = Promise.resolve();
   },

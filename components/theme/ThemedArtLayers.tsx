@@ -1,10 +1,15 @@
 // зачем (приказ координатора 15.10): плитки и карточка «Сегодня» Главной рисуют предмет двумя слоями — основа и необязательный слой `.accent`,
 // который красится в цвет темы (tintColor = accentBright, как в ThemedArt). Слоя нет у большинства предметов — тогда рисуется один Image, как раньше.
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { StyleSheet, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { liquidGlassLevelForIntensity } from '../../constants/liquidGlassThemeIntensity';
+
+// зачем (координатор 15.10, кадры clay_home: деталь рисуется, но бледно): dev-журнал реального цвета слоя .accent — тема, уровень, оттенок tint. Одна строка на смену ключа.
+const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
+const loggedTints = new Set<string>();
 
 type Props = Readonly<{
   source: ImageSourcePropType;
@@ -20,6 +25,15 @@ function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'conta
   const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity } = useTheme();
   // Палитра уже кэширована по теме+оформлению+шагу ползунка — тот же объект, без расчётов.
   const tint = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }).accentBright;
+  const hasAccent = Boolean(accent);
+  useEffect(() => {
+    if (!IS_DEV || !hasAccent) return;
+    const level = liquidGlassLevelForIntensity(liquidGlassIntensity);
+    const key = `${liquidGlassThemeId}|${liquidGlassAppearance}|${level}|${tint}`;
+    if (loggedTints.has(key)) return;
+    loggedTints.add(key);
+    console.log(`[THEMED-ART] tint=${tint} level=${level} intensity=${liquidGlassIntensity} theme=${liquidGlassThemeId} appearance=${liquidGlassAppearance}`); // guard-ok: dev-журнал цвета слоя accent, одна строка на смену
+  }, [hasAccent, tint, liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity]);
   return (
     <View style={style} pointerEvents="none">
       <Image source={source} style={StyleSheet.absoluteFill} contentFit={contentFit} contentPosition={contentPosition} transition={0} accessible={false} />

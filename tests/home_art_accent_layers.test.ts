@@ -8,6 +8,8 @@ jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({ liquidGlassThemeId: 'graphite', liquidGlassAppearance: 'dark', liquidGlassIntensity: 0 }),
 }));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
+// зачем (журнал [THEMED-ART] tint=… 15.10): компонент зовёт useEffect для dev-журнала; вне рендера хук недоступен — подменяем пустым (журнал не часть проверяемой структуры слоёв)
+jest.mock('react', () => ({ ...jest.requireActual('react'), useEffect: () => undefined }));
 jest.mock('react-native', () => ({ StyleSheet: { absoluteFill: { position: 'absolute' } }, View: 'View' })); // зачем: проверяем структуру слоёв, а не нативный рендер
 
 import { ThemedArtLayers } from '../components/theme/ThemedArtLayers';

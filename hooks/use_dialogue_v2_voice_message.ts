@@ -401,7 +401,9 @@ export function useDialogueV2VoiceMessage({
       let player: AudioPlayer;
       try {
         player = createAudioPlayer(uri);
-      } catch {
+      } catch (error: unknown) {
+        // зачем (аудит Optimistic UI Диалогов, 12.10): немой catch запрещён — повтор своей записи молча не играл
+        console.warn('[DIALOGUE-V2] voice:replay → createAudioPlayer failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
         stopVoiceMessagePlayback();
         return;
       }
@@ -416,7 +418,10 @@ export function useDialogueV2VoiceMessage({
           || playbackGeneration !== voiceMessagePlaybackGenerationRef.current) return;
         if (event.didJustFinish) stopVoiceMessagePlayback();
       });
-      try { player.play(); } catch { stopVoiceMessagePlayback(); }
+      try { player.play(); } catch (error: unknown) {
+        console.warn('[DIALOGUE-V2] voice:replay → play failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+        stopVoiceMessagePlayback();
+      }
     });
   }, [playingVoiceUri, stopVoiceMessagePlayback]);
 

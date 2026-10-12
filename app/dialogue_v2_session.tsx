@@ -37,6 +37,7 @@ import {
 } from '../hooks/use_dialogue_v2_session_coaching';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
+import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { useDialogueV2PreparedBotVoicePlayback } from '../hooks/use_dialogue_v2_prepared_bot_voice_playback';
 import {
@@ -127,6 +128,8 @@ type TurnFailureView = Readonly<{ reason: DialogueV2TurnFailureReason }>;
 function SessionContent() {
   const params = useLocalSearchParams<{ scenarioId?: string | string[]; energyOp?: string | string[] }>();
   const router = useRouter();
+  // зачем (аудит Optimistic UI Диалогов, 12.10): «Итоги» и «Plus» открывались прямым router.push — двойной тап давал два экрана; nav пропускает повтор в окне 600 мс
+  const nav = useGuardedNav();
   const { studyTarget } = useStudyTarget();
   const localCoinRank = useMyCoinRank();
   const { lang } = useLang();
@@ -184,6 +187,9 @@ function SessionContent() {
     });
   };
   const turnStartingRef = useRef(false);
+  // зачем (аудит Optimistic UI Диалогов, 12.10): ход, отправленный до готовности серверной сессии, ждёт в очереди. Раньше очередь означала `sending=true`, а эффект
+  // отправки требовал `!sending` — реплика зависала навсегда («печатает…» без ответа). Флаг очереди — отдельный ref, как у свободного разговора.
+  const queuedTurnRef = useRef(false);
   // зачем: Free-лимиты включаются только когда доступ точно известен как Free — Plus не должен
   // увидеть стену или счётчик из-за медленной проверки подписки.
   const freeTier = accessResolved && !hasPremiumAccess;
@@ -294,11 +300,26 @@ function SessionContent() {
   // Ход, отправленный до готовности сессии, уходит сам, как только сервер ответил (мягкое «отправка…»).
   useEffect(() => {
     const pending = pendingTurnRef.current;
-    if (!serverSession || !pending || sending) return;
+    if (!serverSession || !pending) return;
+    if (!queuedTurnRef.current) {
+      console.log('[DIALOGUE-V2] turn:flush → nothing queued', { scenarioId, hasPending: true, sending }); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    queuedTurnRef.current = false;
     console.log('[DIALOGUE-V2] turn:flush → session ready, sending queued turn', { scenarioId });
     void runPendingTurn(pending);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [serverSession]);
+
+  // зачем (аудит Optimistic UI Диалогов, 12.10): после 5 неудачных стартов сессии ход в очереди не должен висеть молча — панель ошибки и «Повторить» (retry перезапускает старт).
+  useEffect(() => {
+    if (serverSessionState !== 'unavailable' || !queuedTurnRef.current) return;
+    queuedTurnRef.current = false;
+    console.warn('[DIALOGUE-V2] turn:queued → session start unavailable, showing error', { scenarioId, startAttempt }); // guard-ok: ветвление называет причину
+    setSending(false);
+    setTurnFailure(Object.freeze({ reason: 'network' }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serverSessionState]);
 
   // зачем (C19): «слишком много сообщений» — без «Повторить», пока не остынет; потом повтор можно.
   useEffect(() => {
@@ -460,7 +481,15 @@ function SessionContent() {
       }
       if (!serverSession) {
         // Сессия ещё стартует — пузырь уже на экране, ход уйдёт эффектом выше.
-        console.log('[DIALOGUE-V2] turn:send → queued until session ready', { scenarioId });
+        if (serverSessionState === 'unavailable') {
+          // зачем (аудит Optimistic UI Диалогов, 12.10): старт уже провалился 5 раз — очередь не поможет; сразу панель ошибки с «Повторить» (пузырь остаётся)
+          console.warn('[DIALOGUE-V2] turn:send → session start unavailable, error panel at once', { scenarioId }); // guard-ok: ветвление называет причину
+          setTurnFailure(Object.freeze({ reason: 'network' }));
+          turnStartingRef.current = false;
+          return;
+        }
+        console.log('[DIALOGUE-V2] turn:send → queued until session ready', { scenarioId, sessionState: serverSessionState });
+        queuedTurnRef.current = true;
         setSending(true);
         turnStartingRef.current = false;
         return;
@@ -475,6 +504,15 @@ function SessionContent() {
 
   const retry = () => {
     const pending = pendingTurnRef.current;
+    if (pending && !serverSession && !sending && !turnStartingRef.current) {
+      // зачем (аудит Optimistic UI Диалогов, 12.10): сессия так и не стартовала — «Повторить» ставит ход в очередь и заново запускает старт (счётчик попыток с нуля)
+      console.log('[DIALOGUE-V2] turn:retry → no session, queue again and restart start', { scenarioId, sessionState: serverSessionState });
+      queuedTurnRef.current = true;
+      setTurnFailure(null);
+      setSending(true);
+      if (serverSessionState === 'unavailable') setStartAttempt(0);
+      return;
+    }
     if (!pending || !serverSession || sending || turnStartingRef.current) {
       console.warn('[DIALOGUE-V2] turn:retry → ignored', { hasPending: !!pending, sending });
       return;
@@ -544,12 +582,12 @@ function SessionContent() {
       },
     };
     if (endedBy === 'manual') {
-      router.replace(route);
+      nav.replace(route as never);
       return;
     }
     // зачем (C24/C38): к итогу — поверх переписки; «назад» с итога вернёт ленту с пилюлей «Итоги».
     coaching.markSummarySeen();
-    router.push(route);
+    nav.push(route as never);
   };
 
   // зачем (владелец 30.09, макет B6): энергия как в уроке — пилюля в шапке, у Plus её нет.
@@ -647,7 +685,7 @@ function SessionContent() {
       : voice.failure === 'unavailable' || voice.unavailableOnDevice
         ? { text: voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : coachingLabels.voiceUnavailable }
         : null;
-  const openPlus = () => router.push({
+  const openPlus = () => nav.push({
     pathname: '/premium_modal',
     params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
   } as never);

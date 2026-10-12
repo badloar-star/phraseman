@@ -291,7 +291,9 @@ export default function DialogueV2MemoryRoute() {
         onCancel={() => setConfirmOpen(false)}
         onConfirm={() => { setConfirmOpen(false); void clearMemory(); }}
         destructive
-        testIDPrefix="dialogue-v2-memory-clear"
+        // зачем (съёмка R1 dialogs-gap-005/006): с префиксом «dialogue-v2-memory-clear» кнопка окна получала тот же id
+        // «…-clear-confirm», что и кнопка экрана под окном, — робот жал не ту. Отдельный префикс окна.
+        testIDPrefix="dialogue-v2-memory-clear-dialog"
       />
     </>
   );

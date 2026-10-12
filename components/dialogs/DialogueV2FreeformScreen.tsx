@@ -166,6 +166,8 @@ export function DialogueV2FreeformScreen({
               )}
             </Pressable>
             <TextInput
+              // зачем (съёмка R1 dialogs-046/gap-011): поле и отправка свободного разговора были без testID — робот не мог написать реплику.
+              testID="dialogue-v2-freeform-input"
               value={draft}
               onChangeText={onChangeDraft}
               editable={!sending && !voiceBusy}
@@ -189,6 +191,7 @@ export function DialogueV2FreeformScreen({
               </PressableScale>
             ) : null}
             <PressableScale
+              testID="dialogue-v2-freeform-send"
               onPress={onSend}
               disabled={sending || !canSend}
               variant="flat"

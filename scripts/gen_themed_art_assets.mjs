@@ -11,11 +11,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { accentAlignment } from './accent_alignment.mjs';
 
 // зачем (координатор 15.10, [THEMED-ART-GUARD]): Codex положил в v2art фэнтези-башню по 1,7 МБ с нарисованной шахматкой вместо прозрачности — такое не должно
 // попадать в сборку. Файл тяжелее 400 КБ или с непрозрачными углами (нет настоящей альфы) в реестр не регистрируется, причина пишется в журнал.
 export const ART_MAX_BYTES = 400 * 1024;
 const ART_CORNER_MAX_ALPHA = 16;
+
+// зачем (координатор 12.10): слой .accent красится tintColor и обязан совпадать с деталью основы (scripts/accent_alignment.mjs). Сторож отвергает несовпавший слой
+// (accent_misaligned). Файлы ниже — ИЗВЕСТНЫЙ ДОЛГ: лежат в assets до замены (аудит 12.10: у lessons/dialogs слой от Codex стоит мимо детали, intro_* — заглушки).
+// Список может только УМЕНЬШАТЬСЯ (убирать строку при замене слоя); добавлять сюда новое — нельзя, это отключает сторож.
+export const ACCENT_MISALIGNED_DEBT = new Set([
+  'dark/lessons.accent.webp', 'light/lessons.accent.webp', 'dark/dialogs.accent.webp', 'light/dialogs.accent.webp',
+  'dark/intro_cards_hub.accent.webp', 'light/intro_cards_hub.accent.webp', 'dark/intro_cards_swipe.accent.webp', 'light/intro_cards_swipe.accent.webp',
+  'dark/intro_legacy_lessons.accent.webp', 'light/intro_legacy_lessons.accent.webp',
+]);
 
 /** Проверка одного файла арта: { ok, reason }. Не бросает — причина отказа всегда в reason. */
 export async function checkArtFile(file) {
@@ -48,6 +58,18 @@ export async function rejectedArtFiles() {
       if (!verdict.ok) {
         rejected.set(`${brightness}/${file}`, verdict.reason);
         console.error(`[THEMED-ART-GUARD] отказ: ${brightness}/${file} — ${verdict.reason}`);
+        continue;
+      }
+      const accentName = file.match(/^([a-z0-9_]+)\.accent\.webp$/)?.[1];
+      if (accentName) {
+        const baseFile = path.join(dir, `${accentName}.webp`);
+        if (!fs.existsSync(baseFile)) continue; // слой без основы — предмет и так не соберётся; основа проверяется отдельно
+        const align = await accentAlignment(baseFile, path.join(dir, file));
+        if (!align.ok) {
+          const key = `${brightness}/${file}`;
+          if (ACCENT_MISALIGNED_DEBT.has(key)) console.warn(`[THEMED-ART-GUARD] долг ${key} — ${align.reason}`);
+          else { rejected.set(key, align.reason); console.error(`[THEMED-ART-GUARD] отказ: ${key} — ${align.reason}`); }
+        }
       }
     }
   }

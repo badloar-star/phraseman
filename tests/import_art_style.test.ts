@@ -17,8 +17,8 @@ const src = path.join(base, 'src');
 const dest = path.join(base, 'dest');
 const png = async (raw, w, h) => sharp(raw, { raw: { width: w, height: h, channels: 4 } }).webp({ lossless: true }).toBuffer();
 const shape = (size) => { const b = Buffer.alloc(size * size * 4, 0); for (let y = size / 4; y < (size * 3) / 4; y += 1) for (let x = size / 4; x < (size * 3) / 4; x += 1) { const i = (y * size + x) * 4; b[i] = 255; b[i + 1] = 255; b[i + 2] = 255; b[i + 3] = 255; } return b; };
-// градиент + слабый шум: без потерь тяжёлый (> 400 КБ), с потерями сжимается легко — как настоящая картинка
-const noisy = () => { const b = Buffer.alloc(900 * 900 * 4); const r = crypto.randomBytes(900 * 900); for (let y = 0; y < 900; y += 1) for (let x = 0; x < 900; x += 1) { const i = (y * 900 + x) * 4; const n = r[y * 900 + x] & 15; b[i] = (x >> 2) + n; b[i + 1] = (y >> 2) + n; b[i + 2] = ((x + y) >> 3) + n; b[i + 3] = (x < 8 || x >= 892) && (y < 8 || y >= 892) ? 0 : 255; } return b; };
+// градиент + слабый шум: без потерь тяжёлый (> 400 КБ), с потерями сжимается легко — как настоящая картинка; центральный квадрат светлее — «деталь», под него строится accent (сторож совпадения accent с основой)
+const noisy = () => { const b = Buffer.alloc(900 * 900 * 4); const r = crypto.randomBytes(900 * 900); for (let y = 0; y < 900; y += 1) for (let x = 0; x < 900; x += 1) { const i = (y * 900 + x) * 4; const n = r[y * 900 + x] & 15; const lift = x >= 225 && x < 675 && y >= 225 && y < 675 ? 70 : 0; b[i] = Math.min(255, (x >> 2) + n + lift); b[i + 1] = Math.min(255, (y >> 2) + n + lift); b[i + 2] = Math.min(255, ((x + y) >> 3) + n + lift); b[i + 3] = (x < 8 || x >= 892) && (y < 8 || y >= 892) ? 0 : 255; } return b; };
 const put = (dir, name, buf) => { fs.mkdirSync(path.join(src, 'trials', dir.style, dir.b), { recursive: true }); fs.writeFileSync(path.join(src, 'trials', dir.style, dir.b, name), buf); };
 // стиль OK: тяжёлая основа (шум, будет сжата), accent-силуэт, незнакомое имя
 put({ style: 'OK', b: 'dark' }, 'lessons.webp', await png(noisy(), 900, 900));

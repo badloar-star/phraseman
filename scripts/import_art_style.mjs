@@ -13,6 +13,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { ART_MAX_BYTES, checkArtFile, knownNames } from './gen_themed_art_assets.mjs';
+import { accentAlignment } from './accent_alignment.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const QUALITIES = [85, 80, 74, 68, 62, 56, 50, 44];
@@ -82,6 +83,13 @@ export async function importStyle({ style, srcRoot, destRoot, dryRun, gen, skip 
         if (stats.visiblePct < 0.2) { problems.push(`${brightness}/${file}: слой accent пустой (видно ${stats.visiblePct.toFixed(2)} % кадра)`); continue; }
         if (stats.whitePct < 60) notes.push(`ℹ accent не белый (белого ${stats.whitePct.toFixed(0)} % видимого) — не ошибка: tintColor берёт только альфу и красит её целиком в цвет темы`);
         if (stats.visiblePct > 45) notes.push(`⚠ accent занимает ${stats.visiblePct.toFixed(0)} % кадра — «одна деталь» превращается в заливку`);
+        // зачем (координатор 12.10): слой обязан совпадать с деталью основы (основа — из этой же папки стиля, иначе та, что уже лежит в assets)
+        const baseCandidates = [path.join(dir, `${m[1]}.webp`), path.join(destRoot, brightness, `${m[1]}.webp`)];
+        const baseFile = baseCandidates.find((candidate) => fs.existsSync(candidate));
+        if (!baseFile) { problems.push(`${brightness}/${file}: accent_misaligned: нет основы ${m[1]}.webp ни в папке стиля, ни в assets — совпадение не проверить`); continue; }
+        const align = await accentAlignment(baseFile, tmp);
+        if (!align.ok) { problems.push(`${brightness}/${file}: ${align.reason}`); continue; }
+        notes.push(`✓ ${align.reason}`);
       }
       const dest = path.join(destRoot, brightness, file);
       plan.push({ notes, brightness, file, dest, tmp, bytes: packed.buf.length, from: packed.from, quality: packed.quality, replaces: fs.existsSync(dest) });

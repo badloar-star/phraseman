@@ -3079,8 +3079,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:45–6:46, cards-v2 №22 «Новый набор» против «Создание набора · Офлайн — сохранено на устройстве»): сверка невозможна — на кадре «Мои наборы», образец — экран «Новый набор» (название «Путешествия», «Кто видит: Только я», уровень A2, 2 карточки)."
     },
@@ -7583,8 +7583,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37400,8 +37400,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {

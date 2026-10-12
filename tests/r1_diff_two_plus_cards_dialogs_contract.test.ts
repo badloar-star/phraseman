@@ -42,4 +42,16 @@ describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта
     expect(steps).toContain("add('dialogs-006', [WORLD], 'plus=off&dquota=30', DLG,");
     expect(steps).toContain("add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE,");
   });
+
+  it('cards-034 / cards-section-010: затемнение шторки тянется вверх до статус-бара (PanelSheet меряет верх родителя в окне)', () => {
+    const sheet = read('components/mistakes-panel/PanelSheet.tsx');
+    expect(sheet).toContain('const [scrimExtend, setScrimExtend] = useState(0);');
+    expect(sheet).toContain('rootRef.current?.measureInWindow((_x, y) => {');
+    expect(sheet).toContain('top: -scrimExtend');
+    expect(sheet).toContain('[PANEL-SHEET] scrim');
+  });
+
+  it('cards-gap-020: для «Добавлено» берётся плитка ниже по списку (первая — дубль в наборе «Работа»)', () => {
+    expect(read('scripts/dev_links_r1_steps.py')).toContain("add('cards-gap-020', ['scroll:down', 'scroll:down', 'scroll:down', 'scroll:down', 'tap:#fc-gallery-tile-*@3', TO_PACK, PACK_WORK], DEMO, SAVED,");
+  });
 });

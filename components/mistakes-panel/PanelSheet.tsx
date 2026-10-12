@@ -5,7 +5,7 @@
  * (а не системным Modal), чтобы затемнение и шторка двигались раздельно: затемнение проявляется 260 мс, шторка выезжает снизу 440 мс
  * cubic-bezier(.2,1,.3,1) в обе стороны — числа kit.css `.sheet`/`.dim` из KIT_MOTION (координатор 05.10, Motion п.8).
  */
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, Pressable, StyleSheet, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
@@ -40,6 +40,18 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   const reduceMotion = useReduceMotion();
   const dimMs = reduceMotion ? 0 : KIT_MOTION.dimMs;
   const sheetMs = reduceMotion ? 0 : KIT_MOTION.sheetMs;
+  // зачем (R1_DIFF_ONE_FIX, cards-034 / cards-section-010, список Макетов 12.10): слой шторки — absoluteFill РОДИТЕЛЯ, а родитель начинается под статус-баром, поэтому затемнение не доходило до верха
+  // (светлая полоса y<120). Меряем верх родителя в окне и тянем затемнение вверх на эту величину; сама шторка стоит у нижнего края как раньше.
+  const rootRef = useRef<View>(null);
+  const [scrimExtend, setScrimExtend] = useState(0);
+  useEffect(() => {
+    if (!visible) return;
+    rootRef.current?.measureInWindow((_x, y) => {
+      const extend = Math.max(0, Math.round(y));
+      if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[PANEL-SHEET] scrim testID=${String(testID)} rootWindowY=${Math.round(y)} → затемнение тянется вверх на ${extend}`); // guard-ok: числа раскладки
+      setScrimExtend(extend);
+    });
+  }, [testID, visible]);
   useEffect(() => {
     if (!visible) return undefined;
     // зачем: системная кнопка «назад» закрывает шторку, а не уводит с экрана.
@@ -48,8 +60,8 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   }, [onClose, visible]);
   if (!visible) return null;
   return (
-    <View style={StyleSheet.absoluteFill} pointerEvents="box-none" testID={testID}>
-      <Animated.View entering={FadeIn.duration(dimMs)} exiting={FadeOut.duration(dimMs)} style={[styles.dim, { backgroundColor: dimColor }]}>
+    <View ref={rootRef} collapsable={false} style={StyleSheet.absoluteFill} pointerEvents="box-none" testID={testID}>
+      <Animated.View entering={FadeIn.duration(dimMs)} exiting={FadeOut.duration(dimMs)} style={[styles.dim, { backgroundColor: dimColor, top: -scrimExtend }]}>
         <Pressable accessibilityRole="button" accessibilityLabel="close" style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
       <Animated.View

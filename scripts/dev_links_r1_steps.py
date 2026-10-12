@@ -139,7 +139,8 @@ add('cards-v2-046', [], CUSTOM50, '/flashcards_card_editor?create=1&cat=custom',
 TO_PACK = 'tap:#fc-expanded-to-pack'
 PACK_WORK = f'tap:#fc-expanded-pack-{WORK}'
 add('cards-gap-018', [TILE, TO_PACK], DEMO, SAVED, note='шторка «В какой набор?» — список')
-add('cards-gap-020', [TILE, TO_PACK, PACK_WORK], DEMO, SAVED, note='карточка добавлена в «Работа» — тост «Добавлено»')
+# зачем (R1_DIFF_ONE_FIX, cards-gap-020): набор «Работа» в демо содержит первые 19 сохранённых слов (demoPackCards), поэтому первая плитка (Layover) — дубль и тост «Эта карточка уже в наборе» ложился поверх шторки; для «Добавлено» берём плитку ниже по списку (после прокрутки), которой в наборе нет
+add('cards-gap-020', ['scroll:down', 'scroll:down', 'scroll:down', 'scroll:down', 'tap:#fc-gallery-tile-*@3', TO_PACK, PACK_WORK], DEMO, SAVED, note='карточка добавлена в «Работа» — тост «Добавлено»')
 # зачем (сбои ROBOT9, 12.10): после первого добавления шторка карточки закрывается — для второго «В набор» карточку открываем заново; паузы — анимация шторок
 add('cards-gap-021', [TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK, 'wait:1500', TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
 

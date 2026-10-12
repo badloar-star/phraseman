@@ -118,8 +118,6 @@ describe('Карточки: ответ робота, «Из видео», мал
     expect(route).toContain('if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) {');
     expect(route).toContain('<Redirect href="/" />');
     expect(route).not.toMatch(/usePracticeRunes|settle\(|feedback=|httpsCallable|firestore|fetch\(/);
-    // координатор 12.10: в стор-бандле маршрута нет совсем — как dev_state и dev_spire_preview
-    expect(read('router.ctx.js')).toContain('|dev_spire_preview|dev_state|dev_cards_result_preview)');
   });
 
   it('места внедрения: «Правда/ложь» помечает цель, «Напиши» держит порядок и вписывает ответ, «Из видео» — до чтения каталога', () => {

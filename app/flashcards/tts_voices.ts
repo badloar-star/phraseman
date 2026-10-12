@@ -17,6 +17,7 @@
  */
 
 import { getDevVoices } from '../dev_cards_state';
+import { isTechnicalVoiceName, technicalVoiceDisplayName } from './voice_display_name';
 
 export type FcTtsLang = 'en' | 'uk' | 'ru' | 'es';
 
@@ -142,7 +143,10 @@ export function getVoicesOnce(): Promise<FcVoiceLike[]> {
     console.warn(`[DEV-STATE] voices: список подменён n=${devVoices.length}`); // guard-ok: dev-ветка
     return Promise.resolve([...devVoices]);
   }
-  if (voicesCache) return Promise.resolve(voicesCache);
+  if (voicesCache) {
+    console.log(`[VOICE-NAME] voices:source ${JSON.stringify({ source: 'cache', count: voicesCache.length })}`);
+    return Promise.resolve(voicesCache);
+  }
   if (voicesInflight) return voicesInflight;
   voicesInflight = (async () => {
     try {
@@ -161,6 +165,7 @@ export function getVoicesOnce(): Promise<FcVoiceLike[]> {
         return [];
       }
       voicesCache = Array.isArray(list) ? list : [];
+      console.log(`[VOICE-NAME] voices:source ${JSON.stringify({ source: 'expo-speech', count: voicesCache.length, sample: voicesCache.slice(0, 3).map((v) => ({ id: v.identifier, name: v.name ?? null, language: v.language, quality: v.quality ?? null })) })}`);
     } catch (error) {
       console.warn('[TTS-VOICES] getAvailableVoicesAsync упал —', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
       voicesCache = [];
@@ -187,13 +192,34 @@ export async function resolveVoiceForLang(lang: FcTtsLang): Promise<ResolvedVoic
   return pickVoiceForLang(voices, lang, preferred);
 }
 
+const voiceNameLogged = new Set<string>();
+
 /** Читаемое имя: «Samantha» без служебных суффиксов (Enhanced)/(Premium).
- *  зачем: одно правило имени для экрана выбора голоса и строки «Голос озвучки (EN)» в Настройках обучения. */
-export function voiceTitle(v: FcVoiceLike): string {
+ *  зачем: одно правило имени для экрана выбора голоса и строки «Голос озвучки (EN)» в Настройках обучения.
+ *  зачем (settings-gap-034, координатор 12.10): Android отдаёт в name технический id («en-au-x-aua-local») — такой голос
+ *  подписывается «English (Australia) · 2» на языке интерфейса; uiLang и список голосов (для номера) необязательны. */
+export function voiceTitle(v: FcVoiceLike, uiLang?: string, voices?: readonly FcVoiceLike[]): string {
   const name = (v.name ?? '').trim();
-  if (name) return name.replace(/\s*\((enhanced|premium)\)\s*/i, '').trim() || name;
-  const parts = v.identifier.split('.');
-  return parts[parts.length - 1] || v.identifier;
+  const technical = isTechnicalVoiceName(name, v.identifier);
+  let branch: string;
+  let title: string;
+  if (name && !technical) {
+    branch = 'human_name';
+    title = name.replace(/\s*\((enhanced|premium)\)\s*/i, '').trim() || name;
+  } else if (technical && (name || /^[a-z]{2,3}[-_]/i.test(v.identifier))) {
+    branch = 'technical_id_formatted';
+    title = technicalVoiceDisplayName(v, uiLang, voices);
+  } else {
+    // iOS-идентификатор вида com.apple.voice.compact.en-US.Samantha без имени — последний сегмент
+    branch = 'identifier_tail';
+    const parts = v.identifier.split('.');
+    title = parts[parts.length - 1] || v.identifier;
+  }
+  if (!voiceNameLogged.has(v.identifier)) {
+    voiceNameLogged.add(v.identifier);
+    console.log(`[VOICE-NAME] ${JSON.stringify({ identifier: v.identifier, name: v.name ?? null, language: v.language, quality: v.quality ?? null, branch, title, uiLang: uiLang ?? null, listSize: voices?.length ?? null })}`);
+  }
+  return title;
 }
 
 /** Только для юнит-тестов: сброс кэша модульного состояния. */

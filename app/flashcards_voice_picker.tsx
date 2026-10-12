@@ -100,7 +100,9 @@ export default function FlashcardsVoicePickerScreen() {
 
   /** Enhanced сверху; внутри групп: Android — local первыми, затем по имени. */
   const sorted = useMemo(() => {
-    const byName = (a: FcVoiceLike, b: FcVoiceLike) => voiceTitle(a).localeCompare(voiceTitle(b));
+    // зачем (settings-gap-034): номер голоса считается по ПОЛНОМУ списку устройства — как в Настройках, чтобы «· 2» совпадало
+    const allDeviceVoices = peekVoicesCache() ?? voices;
+    const byName = (a: FcVoiceLike, b: FcVoiceLike) => voiceTitle(a, lang, allDeviceVoices).localeCompare(voiceTitle(b, lang, allDeviceVoices));
     const localScore = (v: FcVoiceLike) =>
       effectiveOs === 'android' && v.identifier.toLowerCase().includes('local') ? 0 : 1;
     return [...voices].sort((a, b) => {
@@ -110,7 +112,7 @@ export default function FlashcardsVoicePickerScreen() {
       if (l !== 0) return l;
       return byName(a, b);
     });
-  }, [voices, effectiveOs]);
+  }, [voices, effectiveOs, lang]);
 
   const previewWith = useCallback(
     (voiceId: string | null) => {
@@ -177,7 +179,7 @@ export default function FlashcardsVoicePickerScreen() {
     const id = v?.identifier ?? null;
     const active = selectedId === id;
     const title = v
-      ? voiceTitle(v)
+      ? voiceTitle(v, lang, peekVoicesCache() ?? voices)
       : triLang(lang, {
           ru: 'Системный (авто)', uk: 'Системний (авто)', en: 'System (auto)', es: 'Sistema (auto)',
           'pt-BR': 'Sistema (auto)', vi: 'Hệ thống (tự động)', id: 'Sistem (otomatis)', tr: 'Sistem (otomatik)', pl: 'Systemowy (auto)',

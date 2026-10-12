@@ -143,7 +143,8 @@ export default function SettingsEdu() {
           const voices = await getVoicesOnce();
           const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
           // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
-          const next = match ? voiceTitle(match) : null;
+          // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
+          const next = match ? voiceTitle(match, lang, voices) : null;
           lastShownVoiceValue = next;
           if (alive) setVoiceValue(next);
         })

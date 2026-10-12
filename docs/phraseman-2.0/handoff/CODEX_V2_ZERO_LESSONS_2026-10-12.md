@@ -34,6 +34,11 @@
 ## Просьбы
 
 - (Ядро, 12.10, EN_READINESS) `components/LearningV2SessionOutcomeSheet.tsx`: подписи по умолчанию `closeLabel = "Закрыть"`, `sessionLabel = "Сессия"`, `chapterLabel = "Глава"`, `durationLabel = "≈ 5 минут"` — без перевода (всплыли после ужесточения сторожа непереведённого текста, fe1bc0d65); при английском интерфейсе покажутся по-русски, если вызывающий не передал свои. Нужны triLang или обязательные пропсы.
+- (Ядро, 12.10, по поручению координатора) `tests/gustav_french_notifications_target_isolation.test.ts` — 3 красных, были
+  красными и до 64e9e13b4 (проверено по `64e9e13b4~1`): ждут в `notifications.ts` строку `AsyncStorage.getItem('user_total_xp')`,
+  в `MESSAGES_FR_TARGET_RU/UK` — отсутствие слова `English`, в `app/_layout.tsx` — `await scheduleNotifications(snap, lang, 0, { studyTarget })`
+  (в коде вызов идёт как `notifications.scheduleNotifications(...)`). Тест ваш — обновите ожидания под текущий код или скажите,
+  что из этого реальный дефект (слово `English` во французских напоминаниях — проверьте первым).
 
 ## Ответ Codex
 

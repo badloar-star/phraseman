@@ -6765,8 +6765,8 @@
       "mockup_pinned": "Макеты 12.10: «AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.» (ты, как в ai_dialog_consent_gate.tsx).",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -7626,8 +7626,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -8404,8 +8404,8 @@
       "mockup_pinned": "Макеты 12.10: «Разговор завершён»: «Твоих реплик: 3.» (без «Ориентир…») и плашка настроения — как dialogue_v2_completion.tsx.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -15861,8 +15861,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -16149,8 +16149,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -16183,8 +16183,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -16217,8 +16217,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -30708,8 +30708,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C01)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       }
     },
     {
@@ -35995,8 +35995,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-029: записи ссылки нет — путь есть в shot list (G-C01)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:02, cards-v2 №44 «Каталог без сети»): сверка невозможна — на кадре обычный каталог «Сообщество» (поиск, чипы «Популярные / Новые / A1 / A2 / B1», наборы Family, B2 глаголы, Антоніми дієслів, Small talk), а не экран ошибки."
     },
@@ -36123,8 +36123,8 @@
       "reviewed_at": "2026-10-12T18:05:53.616Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C07"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:02, cards-v2 №47 «Новый набор · Лимит — свои наборы 3/3»): сверка невозможна — на кадре «Мои наборы» в загрузке (скелетоны), образец — экран «Новый набор» с пилюлей «3/3» и кнопкой «Безлимит с Plus»."
     },

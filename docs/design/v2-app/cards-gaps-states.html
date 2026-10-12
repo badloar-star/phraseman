@@ -207,6 +207,7 @@
     layers26: icon('layers', 's26'),
     mic26: icon('mic', 's26'),
     refresh: svg('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/>', 's18'),
+    refreshCw: svg('<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3L19.5 9"/><path d="M19.5 4.5V9H15"/>', 's18'),
     albums20: svg('<rect x="3" y="8.25" width="18" height="12" rx="1.4"/><path d="M6.75 3.75h10.5M4.5 6h15"/>', 's20'),
     lock18: svg('<rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V8a4 4 0 018 0v2.5" stroke-width="2.2"/>', 's18'),
     checkC: svg('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>', 's22'),
@@ -230,6 +231,8 @@
   const wc = ([w, tr]) => `<div class="gs-wc gs-pl"><div class="lg">EN</div><div class="w">${w}</div><div class="tr">${tr}</div><span class="vb">${ic('vol', 's16')}</span></div>`;
   const grid2 = (list) => `<div class="gs-grid2">${list.map(wc).join('')}</div>`;
   const zoomBar = () => `<div class="gs-zs"><span class="gs-zi">${X.zoomS}</span><div class="gs-ztr"><i class="gs-zf" style="width:33%"></i>${[0, 1, 2, 3].map((k) => `<i class="gs-zd" style="left:${(k / 3) * 100}%"></i>`).join('')}<b class="gs-zth" style="left:33%"></b></div><span class="gs-zi">${X.zoomL}</span></div>`;
+  // зачем (координатор 12.10): в приложении «назад» на Правде/лжи — на круглой подложке (cards-gap-004/005/006)
+  const backC = (arrow) => `<div class="topbar"><span class="rb t">${ic(arrow || 'back', 's24')}</span></div>`;
   const back = (r = '') => `<div class="topbar"><span class="rb bare t">${ic('back', 's24')}</span><span class="flex" style="gap:10px">${r}</span></div>`;
   const ttl = (t, n) => `<div class="gs-ttl">${t}${n != null ? `<span>${n}</span>` : ''}</div>`;
   const likes = (n, on) => `<span class="gs-likes">${ic(on ? 'heartF' : 'heart', 's18')}${n}</span>`;
@@ -303,23 +306,23 @@
   // ---------- состояния ----------
   const stage = (o) => `<div class="gs-stage" style="top:${o.top || 50}px"><span class="gs-tl b61">${o.icon}</span>
       ${o.title ? `<div class="gs-st-t">${o.title}</div><div class="gs-st-s${o.bad ? ' gs-bad' : ''}">${o.msg}</div>` : `<div class="gs-st-m${o.bad ? ' gs-bad' : ''}">${o.msg}</div>`}
-      ${o.btn ? `<span class="cta sm t gs-st-b">${o.btnIcon || ''}${o.btn}</span>` : ''}</div>`;
+      ${o.btn ? `<span class="cta sm t gs-st-b"${o.btnBig ? ' style="height:58px;border-radius:29px;box-shadow:0 14px 26px -10px rgba(255,255,255,.34)"' : ''}>${o.btnIcon || ''}${o.btn}</span>` : ''}</div>`;
   // зачем: в «Напиши» шапка — плашка монет сверху справа, затем «закрыть», название и кнопка «Выбрать наборы» (значок albums); счёта нет, полоса пустая
   const recallHdr = (energy) => `<div class="flex" style="justify-content:flex-end;margin-top:6px">${coinPill('1 240')}</div>
       <div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">Напиши</div>${energy ? hudEnergy() : hud()}<span class="gs-rb t">${X.albums20}</span></div>${prog(0)}`;
 
   // 1–2. Блиц / Устно: «Тренировка не открылась» — только панель, без шапки
-  const quotaFail = () => phone('', { time: '9:41', fixed: stage({ icon: X.cloudOff, msg: 'Тренировка не открылась. Попробуй ещё раз.', btn: 'Попробовать снова', btnIcon: X.refresh }) });
+  const quotaFail = () => phone('', { time: '9:41', fixed: stage({ top: 30, icon: X.cloudOff, msg: 'Тренировка не открылась. Попробуй ещё раз.', btn: 'Попробовать снова', btnIcon: X.refreshCw, btnBig: 1 }) });
   // 3. Правда / ложь — быстрый старт: «Готовим тренировку…»
   const swipePreparing = () => phone('', { time: '9:41', fixed: stage({ icon: X.sparkles, title: 'Тренировка карточек', msg: 'Готовим тренировку…' }) });
   // 4. Правда / ложь — быстрый старт: нет карточек
-  const swipeNoCards = () => phone(back(), { time: '9:41', fixed: stage({ top: 100, icon: X.layers26, title: 'Нет карточек для тренировки', msg: 'Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.', btn: 'Обновить', btnIcon: X.refresh }) });
+  const swipeNoCards = () => phone(backC(), { time: '9:41', fixed: stage({ top: 35, btnBig: 1, icon: X.layers26, title: 'Нет карточек для тренировки', msg: 'Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.', btn: 'Обновить', btnIcon: X.refreshCw }) });
   // 5–7. Правда / ложь — экран выбора наборов с красной строкой под подписью «Наборы»
   const srcRow = (iconHtml, t, s, on) => `<div class="gs-src gs-pl${on ? ' on' : ''}"><span class="gs-tl">${iconHtml}</span><div class="grow"><div class="t1">${t}</div><div class="t2">${s}</div></div><span class="gs-chk${on ? ' on' : ''}">${on ? ic('check', 's16') : ''}</span></div>`;
-  const swipeSelect = (err) => phone(`${back()}<div class="gs-ttl" style="margin-top:8px">Тренировка карточек</div>
-      <div class="gs-flab">Наборы</div><div class="gs-err">${err}</div>
-      ${srcRow(ic('bookmark', 's22'), 'Сохранённые карточки', 'Личный список · 64 карточек', true)}${srcRow(ic('people', 's22'), 'Путешествия', 'Community pack · 40 карточек', true)}`, { time: '9:41',
-    fixed: `<div class="gs-bot"><div class="cta t">${ic('play', 's18')}Начать</div></div>` });
+  const swipeSelect = (err) => phone(`${backC('arrowL')}<div class="gs-ttl" style="margin-top:20px;font-size:37px;line-height:43px">Тренировка карточек</div>
+      <div class="gs-flab" style="margin-top:34px">Наборы</div><div class="gs-err">${err}</div>
+      ${srcRow(ic('bookmark', 's22'), 'Сохранённые карточки', 'Личный список · 64 карточек', true)}`, { time: '9:41',
+    fixed: `<div class="gs-bot" style="padding-bottom:50px"><div class="cta t" style="height:54px;border-radius:20px">${ic('play', 's18')}Начать</div></div>` });
   // 8–9. Напиши
   const recallEmpty = (energy) => phone(recallHdr(energy), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'В выбранных наборах нет карточек с переводом.', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
   const recallUnavailable = () => phone(recallHdr(), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'Сейчас недоступно', btn: 'Попробовать снова', btnIcon: X.refresh }) });

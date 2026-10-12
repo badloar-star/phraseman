@@ -380,6 +380,7 @@
     ['Give up', 'сдаваться'], ['Look after', 'присматривать'], ['Run out', 'закончиться'], ['Set off', 'отправиться'], ['Turn down', 'отклонить'],
     ['Bring up', 'поднять тему'], ['Catch up', 'наверстать'], ['Put off', 'откладывать'], ['Lay', 'класть'], ['Pitch in', 'вложиться'],
   ];
+  const phraseWord = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'фраза' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'фразы' : 'фраз');
   const VIDS = [
     ['Заказ в кафе', '4:12', 18, 0, 64], ['Собеседование', '7:38', 24, 1, 0], ['В аэропорту', '5:05', 21, 2, 30], ['Первое свидание', '6:20', 16, 3, 0], ['Сериал: офис', '3:47', 12, 4, 0],
   ];
@@ -474,7 +475,7 @@
         <div class="yft"><div class="grow"><div class="ytt">Мои наборы</div><div class="ysu">${empty ? 'Создать' : '4'}</div></div>${X.albums}</div></div>
     </div>`;
   const videoRail = () => `<div class="sec"><div class="ti">Из видео</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
-    <div class="rail">${VIDS.map(([t, d, n, k, p]) => `<div class="vcard t">${vthumb(k, d, { prog: p })}<div class="vt">${t}</div><div class="vm">${n} фраз</div></div>`).join('')}</div>`;
+    <div class="rail">${VIDS.map(([t, d, n, k, p]) => `<div class="vcard t">${vthumb(k, d, { prog: p })}<div class="vt">${t}</div><div class="vm">${n} ${phraseWord(n)}</div></div>`).join('')}</div>`;
   const commChart = (n = 3) => `<div class="sec"><div class="ti">Лучшее у сообщества</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
     <div class="chart">${COMM.slice(0, n).map(([t, a, c, l, h, w], i) => `<div class="cr t"><span class="rk">${i + 1}</span><span class="cov"><span class="mc">${w}</span></span><div class="grow"><div class="tt">${t}</div><div class="st">${a} · ${c}</div></div>${likes(h)}</div>`).join('')}</div>`;
   const modeSheet = sheet('mode', modeSheetInner);
@@ -558,7 +559,7 @@
   // =====================================================================
   const videoAll = () => phone(`${back(rbMenu())}${ttl('Из видео', 12)}
       <div class="stack rise" style="margin-top:20px">${VIDS.slice(0, 3).map(([t, d, n, k, p]) => `<div class="t" style="margin-bottom:22px">${vthumb(k, d, { prog: p, style: 'border-radius:18px' })}
-        <div class="flex" style="margin-top:12px;align-items:flex-start"><div class="grow"><div class="vt" style="font-size:19px;line-height:24px;font-weight:700;margin:0">${t}</div><div class="vm" style="font-size:13px;line-height:18px">${n} фраз</div></div><span class="cta sm t" style="height:38px">Добавить ${icon('plus', 's16')}</span></div></div>`).join('')}</div>`, { time: '9:41' });
+        <div class="flex" style="margin-top:12px;align-items:flex-start"><div class="grow"><div class="vt" style="font-size:19px;line-height:24px;font-weight:700;margin:0">${t}</div><div class="vm" style="font-size:13px;line-height:18px">${n} ${phraseWord(n)}</div></div><span class="cta sm t" style="height:38px">Добавить ${icon('plus', 's16')}</span></div></div>`).join('')}</div>`, { time: '9:41' });
   const phrase = (tm, en, ru) => `<div class="wc" style="min-height:118px;height:auto"><div class="ct" style="position:relative;align-items:flex-start;flex-direction:column;gap:0;padding:14px 18px 16px">
       <div class="flex" style="width:100%;justify-content:space-between"><span class="tch">${icon('play', 's16')}${tm}</span><span class="vb" style="width:34px;height:34px">${icon('vol', 's16')}</span></div>
       <div style="font-size:21px;line-height:27px;font-weight:600;margin-top:10px">${en}</div><div style="font-size:16px;line-height:21px;color:var(--sec);margin-top:3px">${ru}</div></div></div>`;
@@ -633,7 +634,7 @@
   // =====================================================================
   // ТРЕНИРОВКА: режим, настройка, лимит
   // =====================================================================
-  const modePick = () => phone(`<div style="opacity:.35">${hubTop}${hero()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
+  const modePick = () => phone(`<div style="opacity:.35"><div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span class="flex" style="gap:10px">${limPill('copy', '30/30')}<span class="rb t">${icon('plus', 's20')}</span></span></div><div class="lt"><div class="ti">Карточки</div><div class="su">Слова и фразы</div></div>${hero()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
   const pk = (t, n, on) => `<div class="pk${on ? ' on' : ''}" data-pk><div class="t1">${t}</div><div class="t2">${n}</div><span class="chk">${icon('check', 's16')}</span></div>`;
   // зачем (код, TrainingSetupV2 / flashcards_training_setup): справа вверху пилюля остатка тренировок (copy-outline, «24/30»); у Блица вместо «Сколько» и «Показывать» — «Время» (30 с / 60 с / 90 с); колоды: «Все сохранённые», «Мои карточки», наборы; под названием — «N карточек»
   const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', o.limit || '24/30')}</div>

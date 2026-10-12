@@ -11,6 +11,7 @@ import { router, usePathname } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { isStudyTargetAllowedForUi } from '../app/study_target';
+import { isDevEnStudyPromptOff } from '../app/dev_ui_lang';
 
 const LOG = '[EN-UI-STUDY-TARGET]';
 /** После первого кадра вкладок — не мешаем первому кадру и прогревам. */
@@ -27,6 +28,10 @@ export function useEnUiStudyTargetMigration(): void {
   useEffect(() => {
     if (promptedThisProcess) return undefined;
     if (isStudyTargetAllowedForUi(studyTarget, lang)) return undefined;
+    if (isDevEnStudyPromptOff()) {
+      console.log(`${LOG} пара ui=${lang} target=${studyTarget} не разрешена, но dev enStudyPrompt=off — выбор языка не открываем (съёмка робота)`);
+      return undefined;
+    }
     if (pathname?.startsWith('/settings_language')) {
       console.log(`${LOG} пара ui=${lang} target=${studyTarget} — уже на экране языков, шторку откроет он сам`);
       return undefined;

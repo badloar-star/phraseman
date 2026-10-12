@@ -138,3 +138,139 @@ verlays-campaigns-016, overlays-campaigns-017 (подпись 017 «введён
 
 ## Вердикты 144 (Макеты 12.10, ночь): что ждёт Сверку
 Статичная часть cards-040 и cards-033 совпала, но в образце есть анимация — match не выставляется без anim_evidence: **записать анимацию cards-040, cards-033** (parity_shot anim). Остальное из пересклейки: 18 → match, 11 → diff с причинами. Снять заново (состояние не то): cards-gap-011 (шторка режима), cards-v2-025/026 (очистить черновик набора на эмуляторе, снять без клавиатуры), cards-v2-046 (ввод Layover/пересадка), cards-047 (снять до ответа каталога), overlays-campaigns-014/016/017 (hidekb; 014 — подмена «промокоды выключены» от Ядра), paywall-gap-012 (пейвол + «Восстановить покупки» с подменой), packs-simple-001 (вкладка «Наборы» внутри «Сообщества»).
+
+## EN-проход R1 (шаг 6 EN_UI_READINESS; Ядро 12.10 ночь) — после ночных пачек
+
+Повторный проход английского интерфейса по всем экранам R1 (73 ссылки из `DEV_LINKS_EN_PASS.md`, Дизайн). Английский открывается
+dev-подменой `uiLang=en` (только память; флаг `ENGLISH_UI_LOCALE_ENABLED` НЕ включён). **Важно после D164 (a4dd58182):** при паре
+«интерфейс en + изучаю en» приложение через 1,2 с само открывает выбор языка изучения (`[EN-UI-STUDY-TARGET]`) и перекрывает кадр.
+Поэтому ссылки ниже уже исправлены: где язык изучения не задан — `studyTarget=es` (так у настоящего англоязычного человека); где кадру
+нужны английские демо-данные Карточек (`studyTarget=en`) — добавлено `enStudyPrompt=off` (новая dev-подмена Ядра, только память).
+
+**Как проходить:** `adb shell am force-stop app.phraseman` → ссылка → «DEV-STATE OK» → тапы (только `#testID`: текстовые `tap:Текст`
+в английском не сработают) → кадр. Журнал одного прохода — `.expo/metro-console.log`.
+
+**Что проверять глазами на каждом кадре:**
+1. **Нет кириллицы** — ни одной русской/украинской буквы в интерфейсе (контент на языке изучения es — не дыра).
+2. **Нет испанского в интерфейсе** вместо английского — это подстановка `[I18N-FALLBACK]` (es при отсутствии en).
+3. **Нет ключей вместо текста** — строк вида `lesson.menu.start`, `settings_edu_voice`, `undefined`, `[object Object]`, пустых кнопок.
+4. **Нет обрезки длинных EN-строк** — английский длиннее русского в кнопках/чипах/заголовках: многоточие посреди слова, текст под
+   иконкой, кнопка в две строки там, где в образце одна, переполнение плашки.
+5. Числа/даты/падежи: «1 days», «2 day», русские сокращения «мин/с» в счётчиках.
+
+**Строки журнала (grep после каждого кадра):**
+- `[I18N-FALLBACK]` — любая строка = дыра перевода: `lang=en: в словаре нет ключа en, показываю es (ru="…")` — в скобках русский текст,
+  по нему ищется место в коде; `… lang=en→es: словарь только ru/uk/es` — помощник без английского.
+- `[DEV-STATE] uiLang=en` — подмена применилась (если нет — кадр не в английском, переснять).
+- `[EN-UI-STUDY-TARGET]` — автопереход D164 сработал (на строках «es» его быть не должно; на «en+off» должна быть строка «dev enStudyPrompt=off — выбор языка не открываем»).
+
+Колонка «язык изучения»: **es** — подставлен `studyTarget=es`; **en+off** — английские данные + `enStudyPrompt=off`; **как есть** — ссылка уже несла свой язык.
+Пустые экраны на es там, где раздел для es закрыт (D129/D130: уроки, Learning V2, экзамены) — не дыра, а правило; фиксировать только язык строк.
+
+### Диалоги — хаб, брифинг, сессия
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| dialogs-001 | A. Хаб «Диалоги» · Хаб — Free | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=30&coinRank=6&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | — | es |
+| dialogs-003 | A. Хаб «Диалоги» · Категория раскрыта — все виды строк | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=30&dialogsDone=3&coinRank=6&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-* | es |
+| dialogs-007 | B. Брифинг и вход · Брифинг — цель и задания | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&coinRank=6&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-* | es |
+| dialogs-013 | C. Сессия диалога · Начало — приветствие баристы | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000 | es |
+| dialogs-014 | C. Сессия диалога · Разговор идёт | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-input; type:Hello; tap:#dialogue-v2-session-send; wait:2500 | es |
+| dialogs-017 | C. Сессия диалога · Подсказка — окно | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-hint | es |
+| dialogs-018 | C. Сессия диалога · Задания — шторка | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-goals | es |
+| dialogs-023 | C. Сессия диалога · Настроение собеседника упало | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&dev_dialog_mood=sad&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-input; type:Hello; tap:#dialogue-v2-session-send; wait:2500 | es |
+| dialogs-035 | C. Лимиты, завершение и выход · Лимит закончился — «На этот месяц всё» | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=1&energy=5&dev_dialog_send=quota_exhausted&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-input; type:Hello; tap:#dialogue-v2-session-send; wait:2500 | es |
+| dialogs-036 | C. Лимиты, завершение и выход · Выход из диалога — подтверждение | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&overlays=off&studyTarget=es&uiLang=en&next=/ai_dialog_home` | tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; back | es |
+| dialogs-045 | F. Свободный разговор · Пустое состояние — «Что можно спросить» | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/dialogue_v2_freeform` | — | es |
+| dialogs-gap-002 | Диалоги · Память · Память диалогов — Plus, пока пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&overlays=off&studyTarget=es&uiLang=en&next=/dialogue_v2_memory` | wait:3000 | es |
+### Карточки — хаб, сохранённые, каталог
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| cards-v2-001 | Хаб · Хаб | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&animations=off&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards` | — | en+off |
+| cards-002 | Хаб и выбор режима · Выбор режима · окно по центру | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&animations=off&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards?train=1` | — | en+off |
+| cards-005 | Сохранённые · Список | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_collection?cat=saved` | tap:#fc-zoom-larger | en+off |
+| cards-007 | Сохранённые · Режим выделения | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_collection?cat=saved` | tap:#fc-saved-actions; tap:#fc-menu-select | en+off |
+| cards-009 | Сохранённые · Пусто | `phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_collection?cat=saved` | — | es |
+| cards-010 | Сохранённые · Лимит free: первые 50 | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_collection?cat=saved` | — | en+off |
+| cards-014 | Наборы сообщества · Каталог · «Новые» | `phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_packs` | — | es |
+| cards-015 | Наборы сообщества · Поиск · действия долгим нажатием | `phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_packs` | — | es |
+| cards-017 | Наборы сообщества · Поиск без совпадений | `phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_packs` | tap:#flashcards-packs-search; type:zzzqq | es |
+| cards-020 | Набор · Жалоба на набор | `phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_packs` | long:#flashcards-pack-card-dev_demo_community_1; tap:#flashcards-pack-report | es |
+| cards-021 | Редактор карточки и создание набора · Новая карточка | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_card_editor?create=1%26cat=custom` | — | en+off |
+| cards-023 | Редактор карточки и создание набора · Новый набор | `phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&studyTarget=es&uiLang=en&next=/community_pack_create` | — | es |
+| cards-028 | Наборы из видео · Список | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_video_packs` | — | en+off |
+### Карточки — тренировки
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| cards-v2-029 | Тренировка · Настройка — пусто | `phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&studyTarget=es&overlays=off&uiLang=en&next=/flashcards_training_setup?mode=blitz` | — | как есть |
+| cards-v2-031 | Сессии · Блиц | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_blitz_session?deck=saved%26sec=60` | — | en+off |
+| cards-v2-033 | Сессии · Правда / ложь | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_truefalse_session?deck=saved%26quick=1%26size=all` | — | en+off |
+| cards-v2-034 | Сессии · Вспомни и напиши | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_recall_session?deck=saved%26size=all%26dir=to_target` | — | en+off |
+| cards-section-046 | Устно — верно · Устно — верно | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&speech=correct&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/flashcards_speaking_session?deck=saved%26size=all` | tap:#fc-speak-mic; wait:900; tap:#fc-speak-mic; wait:1200 | en+off |
+| cards-gap-010 | Карточки · Устно — «Здесь пока нечего говорить» | `phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&studyTarget=es&uiLang=en&next=/flashcards_speaking_session?deck=saved%26size=all` | — | es |
+### Пейволы
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| paywall-gap-001 | Пейвол Plus · Вход «Plus» из Настроек — верх (что входит) | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium` | — | es |
+| paywall-gap-004 | Пейвол Plus · Лента пробного периода | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium%26_force_trial_ui=1%26_force_trial_days=3` | — | es |
+| paywall-gap-005 | Пейвол Plus · Выбран «Месяц» | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium` | tap:#paywall-plan-monthly | es |
+| paywall-gap-009 | Пейвол Plus · Карточки — добавь свою фразу | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=flashcard_create%26source=card_editor_create` | — | es |
+| paywalls-011 | Цена и покупка · Загрузка условий | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium%26_dev_state=loading` | — | es |
+| paywalls-012 | Цена и покупка · Ошибка до checkout | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium%26_dev_state=store_unreachable` | — | es |
+| paywalls-018 | Цена и покупка · Промо от магазина | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&studyTarget=es&uiLang=en&next=/premium_modal?context=generic%26source=settings_premium%26_dev_state=store_promo` | — | es |
+| paywalls-019 | Управление действующим Plus · Управление подпиской | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&studyTarget=es&uiLang=en&next=/manage_subscription` | — | es |
+| paywalls-023 | Управление действующим Plus · Причина отмены | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&studyTarget=es&uiLang=en&next=/manage_subscription` | tap:#manage-subscription-cancel | es |
+### Настройки и профиль
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| settings-gap-002 | Настройки · Главная — Plus не активна | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings` | — | es |
+| profile-004 | Профиль и основные настройки · языки | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/settings_language` | — | es |
+| profile-006 | Обучение и внешний вид · уведомления | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/settings_notifications` | — | es |
+| profile-007 | Обучение и внешний вид · обучение и озвучка | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/settings_edu` | — | es |
+| profile-008 | Обучение и внешний вид · темы · 13 + 10 градиентных, светлое/тёмное, насыщенность | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/settings_themes` | — | es |
+| profile-011 | Обучение и внешний вид · Privacy Policy · прокручиваемый документ | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/privacy_settings` | tap:#privacy-policy-row | es |
+| profile-013 | Помощь и подписка · форма поддержки · пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/support_report` | — | es |
+| profile-016 | Помощь и подписка · статический пример · годовая подписка | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&studyTarget=es&uiLang=en&next=/manage_subscription` | — | es |
+### Вход, аккаунт, удаление, приватность
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| auth-gap-001 | Аккаунт · Аккаунт — гость | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | — | es |
+| profile-003 | Профиль и основные настройки · смена имени · шторка | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=none&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-change-name | es |
+| settings-gap-024 | Настройки · Имя — проверяем | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=checking&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-change-name; tap:#nickname-input; key:MOVE_END; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; type:Alexey | es |
+| settings-gap-025 | Настройки · Имя — свободно | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=available&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-change-name; tap:#nickname-input; key:MOVE_END; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; type:Alexey | es |
+| settings-gap-026 | Настройки · Имя — занято | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=taken&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-change-name; tap:#nickname-input; key:MOVE_END; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; key:DEL; type:Delta28 | es |
+| auth-gap-003 | Вход · Окно входа — телефон уже связан с другим аккаунтом | `phraseman://dev_state?onboarding=done&intros=seen&switch=required&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500 | es |
+| auth-gap-004 | Вход · Окно входа — прогресс на месте, вход отменён | `phraseman://dev_state?onboarding=done&intros=seen&switch=not_uploaded&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500 | es |
+| auth-gap-005 | Вход · Окно входа — ждёт прогресс другого аккаунта | `phraseman://dev_state?onboarding=done&intros=seen&switch=backup_blocked&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500 | es |
+| auth-gap-008 | Вход · Аккаунт удалён | `phraseman://dev_state?onboarding=done&intros=seen&restore=retired&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500 | es |
+| auth-gap-012 | Аккаунт · Сменить аккаунт? — с переносом Plus | `phraseman://dev_state?onboarding=done&intros=seen&switch=required&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500; tap:#auth-switch-account; wait:1500 | es |
+| auth-gap-009 | Аккаунт · Удалить аккаунт? — с входом (14 дней) | `phraseman://dev_state?onboarding=done&intros=seen&delete=fail&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | es |
+| auth-gap-010 | Аккаунт · Удалить аккаунт? — гость | `phraseman://dev_state?onboarding=done&intros=seen&delete=fail&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | es |
+| auth-gap-011 | Аккаунт · Удаление не завершилось | `phraseman://dev_state?onboarding=done&intros=seen&delete=fail&overlays=off&studyTarget=es&uiLang=en&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | es |
+| settings-gap-016 | Настройки · Приватность — ИИ выключен | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/privacy_settings` | — | es |
+| profile-012 | Обучение и внешний вид · Terms · прокручиваемый документ | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/privacy_settings` | tap:#privacy-terms-row | es |
+| onboarding-001 | Онбординг · Онбординг · Приветствие | `phraseman://dev_state?onboarding=done&intros=seen&onbstep=welcome&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/home` | wait:1800 | es |
+| onboarding-007 | Онбординг · Онбординг · Сейф: «Твои данные — только твои» | `phraseman://dev_state?onboarding=done&intros=seen&onbstep=privacy&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/home` | — | es |
+| auth-gap-013 | Аккаунт · Смена — несохранённые карточки | `phraseman://dev_state?onboarding=done&intros=seen&switch=unsaved_cards&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings?switchAccount=1` | tap:#settings-switch-continue; wait:1500; tap:#glass-alert-action-1; wait:1500 | es |
+| auth-gap-014 | Аккаунт · Смена — покупка ещё синхронизируется | `phraseman://dev_state?onboarding=done&intros=seen&switch=pending_spend&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings?switchAccount=1` | tap:#settings-switch-continue; wait:1500 | es |
+| auth-gap-015 | Аккаунт · Смена — нужна проверка монет | `phraseman://dev_state?onboarding=done&intros=seen&switch=quarantine&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings?switchAccount=1` | tap:#settings-switch-continue; wait:1500 | es |
+| auth-gap-017 | Аккаунт · Смена — отменена защитной проверкой | `phraseman://dev_state?onboarding=done&intros=seen&switch=guard&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings?switchAccount=1` | tap:#settings-switch-continue; wait:1500; tap:#glass-alert-action-1; wait:1500 | es |
+| auth-gap-018 | Аккаунт · Смена — ещё идёт | `phraseman://dev_state?onboarding=done&intros=seen&switch=slow&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/settings?switchAccount=1` | tap:#settings-switch-continue; wait:47000 | es |
+### Главная и Уроки
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| en-home-001 | Главная | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=es&uiLang=en&next=/(tabs)/home` | — | es |
+| en-lessons-001 | Уроки — карта — карта старых уроков существует только для языка изучения en; при интерфейсе en (D164) человек её не видит — снимаем с enStudyPrompt=off только ради строк оболочки | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&studyTarget=en&enStudyPrompt=off&uiLang=en&next=/(tabs)/lessons` | — | en+off |
+### Диалоги — итог
+
+| id | экран · состояние | ссылка | тапы | язык изучения |
+|---|---|---|---|---|
+| en-dialog-completion-001 | Итог диалога (завершён вручную) | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&studyTarget=en&overlays=off&enStudyPrompt=off&uiLang=en&next=/ai_dialog_home` | `tap:#dialogue-v2-world-toggle-*; tap:#dialogue-v2-catalogue-row-*; tap:#dialogue-v2-briefing-start; wait:3000; tap:#dialogue-v2-session-input; type:Hello; tap:#dialogue-v2-session-send; wait:2500; tap:#dialogue-v2-session-more; tap:#dialogue-v2-session-menu-complete; wait:3000` | en+off |
+
+Всего строк: 73. Итог прохода — в `evidence/parity_en/EN_PASS_FINDINGS_2026-10-12.md` (новый раздел «повторный проход»), дыры — Ядру/зонам по списку.

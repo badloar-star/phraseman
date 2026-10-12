@@ -5,6 +5,8 @@ import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { recordSupportDiagnostic } from './support_diagnostics';
+// зачем (координатор 12.10): планировщик пакетного сброса журнала — регистрируется при импорте (без ввода-вывода)
+import './support_diagnostics_flush';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 type ActivityValue = string | number | boolean | null | undefined;

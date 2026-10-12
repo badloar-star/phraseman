@@ -951,3 +951,45 @@ adb жив, сборщик :8081 running. Ссылка `phraseman://dev_state?on
 - `app/dialogue_v2_session.tsx`: подсказка «Голосовой ввод недоступен» теперь строится по `voice.failure === 'unavailable' || voice.unavailableOnDevice` — виден сразу, без тапа по микрофону (флаг уже используется в строках 558 и 572, новых зависимостей нет). Для кадра dialogs-gaps-states «Голосовой ввод недоступен»: на эмуляторе распознаватель есть (SPEECH-AVAIL: recognizer_present), поэтому кадр состояния получить нельзя без принудительного флага — нужна фикстура Ядра или пометка «снять на устройстве без распознавателя».
 - Потолок Plus: `retryAvailable` ложно при `failureReason === 'plus_daily_cap'` — кнопки «Повторить» нет вовсе (раньше была заблокированной). Совпадает с описанием кадра «На сегодня разговоров достаточно»; снимать после включения плюса и исчерпания лимита (фикстура Ядра), без неё кадр недостижим.
 - Вывод: по коду расхождений нет; два кадра требуют фикстур от Ядра, остальные состояния — по очереди съёмки.
+
+## Для Ядра 12.10 (Сверка, 19:20) — cards-section-041 и cards-v2-015, с журналом
+
+### cards-section-041 — «Устно», тап по микрофону: сессия НЕ закрылась (не воспроизводится)
+Условия: гость (stable 6fc4d8fd…), холодный старт (force-stop, 55 с), ссылка из DEV_LINKS_R1 (speech=correct, cards=demo, plus=on, studyTarget=en, next=/flashcards_speaking_session?deck=saved&size=all), шаги wait:3000 → tap:#fc-speak-mic.
+Журнал (evidence/parity/cards-section-041_mic_tap.log): replace вызван 14:44.567 → [FC-SPEAKING-GATE] start→load(64 карточки)→account→prepare=prepared→reconcile=found→energy=unlimited→quota=allowed→ok (691 мс) → [FC-PENDING-GRANT] ack:begin skipEnergyAck:true → тап микрофона: [FC-SPEAK] hold:start {cardId:dev_demo_saved_50,index:0,phase:idle,stuck:false,remountPanel:true,attemptKey:1,task:recall} → [FC-SPEAK] panel:status idle(live) → [SPEAK-MIC] panel:mount → [FC-SPEAK] panel:status listening(live).
+Дальше сессия остаётся открытой: на кадре через ~12 с после тапа экран «Устно 1/64», «Сказано: 0», микрофон и волна, route=/flashcards_speaking_session (MEM-TICK tSec 25 и 30) — кадры cards-section-041.png и cards-section-041_after_mic_12s.png. Закрытия/выхода/abandon в журнале нет. [FLASHCARDS-SESSION] для «Устно» не пишется (путь [FC-SPEAKING-GATE]). [SPEECH-AVAIL] probe в этом журнале не появился (до тапа не было вызова).
+Вывод: при speech=correct и холодном старте тап по микрофону сессию НЕ закрывает; прежний «закрыл» — вероятно, перезагрузка JS от чужих правок (в 16:28–16:46 были массовые reload) или состояние до старта.
+
+### cards-v2-015 — предпросмотр чужого набора (сборка ≥ ae44078f4, HEAD 482345644)
+Ссылка: packcards=on&community=reset … next=/flashcards_collection?pack=dev_demo_community_2&preview=1.
+[DEV-STATE] route: старт request{onboarding:done,intros:seen,overlays:off,packcards:on,community:reset,next:…} rejected:{} → [DEV-STATE] community: {active:true, packs:[dev_demo_community_1..5, dev_demo_published_own, video_devDemoVid0], comments:null, owned:[], liked:[]} → route: фикстуры применены 475 мс applied{onboarding:done,overlays:off,intros:seen,community:"on,reset"} skipped:{} → [FC-PREVIEW] loaders {pack:dev_demo_community_2, marketplace:864, communityPublished:864, accessibleIds:871, communityOwned:1, localAuthored:872, marketStartAfterLoadAllMs:130, inCatalog:true} → [DEV-STATE] community: карточки набора из памяти pack=dev_demo_published_own cards=10.
+Обратить внимание: строка «карточки набора из памяти» называет pack=dev_demo_published_own (cards=10), хотя в ссылке pack=dev_demo_community_2 — проверьте, не подставляется ли не тот набор. Журнал: evidence/parity/cards-v2-015_preview.log, кадр cards-v2-015.png.
+
+## Для Ядра: меню урока (Сверка, 20:08) — energy-modes-002, кнопка «Начать»
+Гость, холодный старт (force-stop + 55 с), свежий бандл (HEAD ≥ 9c431eea6, логи [LESSON-MENU] есть). Журналы и кадры: evidence/lesson_menu_start/.
+Базовая ссылка: dev_state?…plus=off&free=on&lessonintro=skip&mode=b&energy=5&overlays=off.
+
+| вариант | replace вызван | тап по «Начать» | lock:resolved | что в журнале | итог |
+|---|---|---|---|---|---|
+| СТАРАЯ /lesson_menu?id=1, тап СРАЗУ (через 60 мс после replace) | 20:04:25.093 | 20:04:25.153 | 20:04:26.738 (+1645 мс от replace) {lessonId:1,studyTarget:en,locked:false,by:always_open_lesson} | row:tap НЕТ, row:tap_ignored НЕТ, primary:* НЕТ | тап потерян до монтирования меню (меню появилось на 1,6 с позже); экран остался «Урок 1» с кнопкой «Начать», на Главную НЕ ушло |
+| СТАРАЯ, тап через 6 с | 20:05:36.013 | 20:05:42.228 | 20:05:36.093 (+80 мс) | 20:05:42.124 row:tap {lockStateLoaded:true,isLessonLocked:false,lockReason:progress,lessonLaunchBlocked:false,energy:5,…} → 20:05:42.137 primary:start → 20:05:42.142 primary:navigate | «Начать» работает (13 мс от row:tap до navigate) |
+| НОВАЯ /lesson1?id=1&from=lesson_menu | 20:06:54.040 | — | — | строк [LESSON-MENU] нет (меню минуется) | урок открывается напрямую |
+
+Ответ на главный вопрос: row:tap_ignored не было ни разу. При раннем тапе (до появления меню) журнал пуст — тап не дошёл до строки; lock:resolved приходит через 1,6 с на холодном старте (80 мс на тёплом). На Главную «Начать» не выбрасывало ни в одном из прогонов.
+
+## Для Дизайна: скорость (Сверка, 20:12) — [PERF-R1] / [HOME-RENDER], холодный старт гостя ×3
+Pixel_8 (эмулятор), dev-бандл (HEAD ≥ 9c431eea6, usePerfR1Probe есть), force-stop → запуск → Главная (28 с) → вкладка «Уроки» → «Главная» → плитка «Карточки». Журналы: evidence/perf_r1_2026-10-12/run1..3.log (+ .t метки, .png).
+
+| метрика | заход 1 | заход 2 | заход 3 |
+|---|---|---|---|
+| [HOME-RENDER] first: moduleToRenderMs | 2556 | 2388 | 2491 |
+| [HOME-RENDER] first: renderToCommitMs | 617 | 705 | 1106 |
+| home first_frame, мс (коммитов) | 2489 (3) | 2539 (3) | 2460 (2) |
+| home commits_3s (коммитов, мс) | 4 (3714) | 4 (3579) | 4 (3929) |
+| home left_early (коммитов, мс) | 2 (1152) | 2 (995) | — |
+| lessons first_frame, мс (коммитов) | 3605 (3) | 3708 (3) | 3672 (3) |
+| lessons commits_3s (коммитов, мс) | 5 (5409) | 6 (5626) | 5 (5547) |
+| cards_hub first_frame, мс (коммитов) | 535 (2) | 626 (2) | 833 (2) |
+| cards_hub commits_3s (коммитов, мс) | 4 (3262) | 4 (3279) | 4 (3377) |
+
+Замечания: (1) «Главная» на холодном старте появляется ≈2,5 с от начала рендера корня (moduleToRender ≈2,4–2,6 с + renderToCommit 0,6–1,1 с); за первые 3 с корень перерисовывается 4 раза. (2) «left_early» у Главной в заходах 1 и 2 (коммитов 2, ≈1 с) — экран размонтировался/перемонтировался в первую секунду (двойной монтаж до первого кадра), в заходе 3 нет. (3) Проба «lessons» срабатывает без моего тапа — вкладка монтируется заранее (first_frame 3,6–3,7 с от её монтажа, 5–6 коммитов за 3 с — самая «шумная» по перерисовкам); «cards_hub» открывается быстро (0,5–0,8 с), 4 коммита за 3 с.

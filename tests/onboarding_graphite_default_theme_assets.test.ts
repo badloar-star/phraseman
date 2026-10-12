@@ -8,9 +8,8 @@ const ROOT = process.cwd();
 // удалены), поэтому убраны. Остаётся живая гарантия: у домашнего меню нет собственных ассетов onboarding-graphite.
 describe('removed graphite theme assets', () => {
   test('home menu has no own onboarding-graphite assets', () => {
-    const homeMenuSource = fs.readFileSync(path.join(ROOT, 'app', 'home_menu_icons.ts'), 'utf8');
-
-    expect(homeMenuSource).not.toContain('assets/images/home_menu/onboarding-graphite');
+    // зачем (15.10): home_menu_icons.ts удалён вместе с иконками меню 1.0 — собственных ассетов у меню нет вовсе.
+    expect(fs.existsSync(path.join(ROOT, 'app', 'home_menu_icons.ts'))).toBe(false);
     expect(fs.existsSync(path.join(ROOT, 'assets', 'images', 'home_menu', 'onboarding-graphite'))).toBe(false);
   });
 });

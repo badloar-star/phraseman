@@ -79,9 +79,9 @@ const FALLBACKS: Readonly<Partial<Record<ThemedArtName, ImageSourcePropType>>> =
   mistakes_entry: require('../../assets/images/home_mistakes/home-mistakes-dark.webp'), // app/home_mistakes_assets.ts
   cards_empty_saved: require('../../assets/images/v2/cards_hub_saved.webp'), // home.tsx — «Сохранённые»
   cards_from_video: require('../../assets/images/v2/spiral_notepad.png'), // home.tsx — «Наборы из видео»
-  exam: require('../../assets/images/levels/exam-dark.webp'), // app/home_menu_icons.ts (dark: exam)
-  diagnostic: require('../../assets/images/home_menu/home-forest-diagnostic-test.webp'), // home_menu_icons.ts (dark: test)
-  practice: require('../../assets/images/home_menu/home-forest-practice.webp'), // home_menu_icons.ts (dark: practice)
+  exam: require('../../assets/images/levels/exam-dark.webp'), // запасной арт «Экзамен» (иконки меню 1.0 удалены 15.10)
+  diagnostic: require('../../assets/images/home_menu/home-forest-diagnostic-test.webp'), // запасной арт «Диагностика»
+  practice: require('../../assets/images/home_menu/home-forest-practice.webp'), // запасной арт «Практика»
   league_bronze: require('../../assets/images/levels/bronza.webp'), // app/(tabs)/lessons.tsx — медали ступеней
   league_silver: require('../../assets/images/levels/serebro.webp'),
   league_gold: require('../../assets/images/levels/zoloto.webp'),
@@ -111,7 +111,7 @@ const FALLBACKS: Readonly<Partial<Record<ThemedArtName, ImageSourcePropType>>> =
   prize_3m: require('../../assets/roulette/card-3m.webp'),
   prize_6m: require('../../assets/roulette/card-6m.webp'),
   prize_1y: require('../../assets/roulette/card-1y.webp'),
-  shop: require('../../assets/images/levels/SHOP FOREST.webp'), // home_menu_icons.ts (dark: shop)
+  shop: require('../../assets/images/levels/SHOP FOREST.webp'), // запасной арт «Магазин»
 };
 
 /**

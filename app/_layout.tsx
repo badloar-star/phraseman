@@ -901,19 +901,8 @@ function GlobalLevelUpRewards() {
     return () => sub.remove();
   }, [hasPremiumAccess]);
 
-  // зачем: владелец: «открываю раздел — он чуть подпрыгивает, будто ассеты грузятся».
-  // Иконки разделов и плитки хаба карточек не входили в image_preload, поэтому
-  // декодировались уже во время показа экрана. Греем их для АКТИВНОЙ темы строго после
-  // первого кадра (главная уже видна), и повторно при смене темы — к моменту тапа по
-  // разделу картинки лежат в кэше и первый кадр раздела сразу финальный.
-  useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => {
-      void import('./section_asset_preload')
-        .then((m) => m.preloadSectionAssets(themeMode))
-        .catch(noteSwallowedHandler('_layout:useEffect.call_2'));
-    });
-    return () => task.cancel();
-  }, [themeMode]);
+  // зачем (координатор 15.10): прогрев иконок меню 1.0 снят — плитки Главной берут арт 2.0 через реестр, а прогреваемые
+  // картинки нигде не рисовались; лишнее декодирование на каждом старте и смене темы убрано.
 
   return null;
 }

@@ -94,7 +94,6 @@ import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
-import { getHomeMenuImages } from '../home_menu_icons';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
 import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contracts';
@@ -2083,7 +2082,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         return <ScreenGradient><View /></ScreenGradient>;
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
-        const menuImages = getHomeMenuImages(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
         // и после смены языка интерфейса оставалось на старом языке (укр. экран —
@@ -2147,7 +2145,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 key: 'lesson',
                 iconKey: 'lesson' as const,
                 testID: 'home-quick-lesson',
-                img: menuImages.lesson,
                 label: triLang(lang, {
                     ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições',
                     vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
@@ -2158,7 +2155,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 key: 'dialogs',
                 iconKey: 'dialogs' as const,
                 testID: 'home-quick-dialogs',
-                img: menuImages.dialogs,
                 label: triLang(lang, {
                     ru: 'Диалоги', uk: 'Діалоги', en: 'Dialogues', es: 'Diálogos', 'pt-BR': 'Diálogos',
                     vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
@@ -2172,7 +2168,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 key: 'flashcards',
                 iconKey: 'cards' as const,
                 testID: 'home-quick-flashcards',
-                img: menuImages.cards,
                 label: s.tabs.flashcards,
                 onPress: () => { go('/flashcards'); },
             },

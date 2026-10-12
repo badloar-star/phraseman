@@ -8,7 +8,6 @@ const removedThemeAssetPattern = /minimalDark|minimal-dark|candyBlue|candy-blue/
 const sourceFiles = [
   'app/coin_icons.ts',
   'app/flashcards/FlashcardsCategoryHub.tsx',
-  'app/home_menu_icons.ts',
   'app/image_preload.ts',
   'components/ReferralInviteBannerArt.tsx',
   'constants/streakIconAssets.ts',

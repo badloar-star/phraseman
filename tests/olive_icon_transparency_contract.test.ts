@@ -5,7 +5,6 @@ import sharp from 'sharp';
 const ROOT = path.resolve(__dirname, '..');
 
 const ICON_SOURCES = [
-  'app/home_menu_icons.ts',
   'app/home_last_lesson_assets.ts',
   'app/coin_icons.ts',
   'app/flashcards/FlashcardsCategoryHub.tsx',

@@ -19,40 +19,11 @@ function read(relativePath: string): string {
  * Тест фиксирует вычищенное состояние.
  */
 describe('прогрев ассетов разделов и стабильная высота главной', () => {
-  it('прогрев покрывает все иконки разделов с главной', () => {
-    const source = read('app/section_asset_preload.ts');
-    // зачем (координатор §46, 2026-10-01): плитка Лиги ушла вместе с лигой (2.0) —
-    // menu.league больше не греется. Остальные иконки разделов — в силе.
-    expect(source).not.toContain('menu.league');
-    for (const slot of [
-      'menu.lesson', 'menu.cards', 'menu.test',
-      'menu.practice', 'menu.dialogs', 'menu.exam', 'menu.shop', 'menu.heroMap',
-    ]) {
-      expect(source).toContain(slot);
-    }
-  });
-
-  // Карточки 2.0 больше не рисуют тематические плитки-иконки хаба (лента из
-  // векторных иконок и обложек наборов) — греть нечего, и реестр снят.
-  it('не греет снятые тематические плитки хаба карточек', () => {
-    const source = read('app/section_asset_preload.ts');
-    expect(source).not.toMatch(/hub\.(?:saved|custom|training|audio|collection|arena)/);
-    // Имя реестра осталось только в шапке-комментарии — запрещаем сам импорт.
-    expect(source).not.toMatch(/import[^;]*FLASHCARDS_MODE_ICON_ASSETS/);
-  });
-
-  it('греет только активную тему, а не все 12 сразу', () => {
-    const source = read('app/section_asset_preload.ts');
-    expect(source).toContain('preloadSectionAssets(themeMode: ThemeMode)');
-    // Идемпотентность: повторный вызов на той же теме не гоняет декодирование заново.
-    expect(source).toContain('warmedThemes');
-  });
-
-  it('прогрев запускается после первого кадра и переживает смену темы', () => {
-    const source = read('app/_layout.tsx');
-    expect(source).toContain('m.preloadSectionAssets(themeMode)');
-    const call = source.slice(source.indexOf('m.preloadSectionAssets(themeMode)') - 400);
-    expect(call).toContain('InteractionManager.runAfterInteractions');
+  // зачем (координатор 15.10): прогрев иконок меню 1.0 снят вместе с home_menu_icons.ts — модуль и эффект в _layout удалены, иконки нигде не рисовались.
+  it('прогрев иконок меню 1.0 удалён целиком', () => {
+    expect(fs.existsSync(path.join(__dirname, '..', 'app', 'section_asset_preload.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(__dirname, '..', 'app', 'home_menu_icons.ts'))).toBe(false);
+    expect(read('app/_layout.tsx')).not.toContain('section_asset_preload');
   });
 
   it('карточка статистики на главной держит одну высоту в обоих состояниях (V1-карточка удалена 01.10, схлопывание не вернуть)', () => {

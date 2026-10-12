@@ -30,7 +30,6 @@ const LEGACY_THEME_TOMBSTONES = [
 const THEME_MAP_FILES = [
   "app/coin_icons.ts",
   "app/home_last_lesson_assets.ts",
-  "app/home_menu_icons.ts",
   "components/ReferralInviteBannerArt.tsx",
   "constants/streakIconAssets.ts",
   "constants/screenBackground.ts",

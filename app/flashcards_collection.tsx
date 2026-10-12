@@ -57,6 +57,7 @@ import {
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
 import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionGalleryView from './flashcards/CollectionGalleryView';
+import CommunityPackPreviewSkeleton from './flashcards/CommunityPackPreviewSkeleton';
 import { CollectionMenuSheet, CollectionSearchField, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { FREE_SAVED_CARD_LIMIT } from './flashcards/free_limit';
 import { claimPackDelete, deleteOwnPackEverywhere, releasePackDelete } from './community_packs/deleteOwnPack';
@@ -1279,7 +1280,11 @@ export default function FlashcardsScreen() {
   // (ролик-герой, «момент из видео») остаются на прежнем виде — они в группе «Из видео».
   // зачем (макет cards-section «Набор из видео»): набор из ролика (есть videoId) — свой экран: заголовок, превью, пилюли, фразы с таймкодом, кнопка внизу
   const videoSetSurface = !!packDeeplink && !!currentMarketPack?.videoId;
-  const packSurface = !!packDeeplink && !(previewMode && currentMarketPack) && !videoMomentPack && !currentMarketPack?.videoId;
+  // зачем (координатор 12.10, аудит скорости R1, cards-v2-015): просмотр чужого набора открыт, а метаданных набора ещё нет (прямая ссылка: нет ни выбранной
+  // плитки, ни тёплого каталога). Раньше в эти ~1,7 с рисовался экран СВОЕГО набора с «0 карточек» и пустой сеткой, потом экран перескакивал на просмотр.
+  // Пока каталог не ответил (collectionDataReady=false) — заготовки той же геометрии, без чисел. Каталог ответил, а набора нет — прежнее поведение.
+  const previewResolving = previewMode && !!packDeeplink && !currentMarketPack && !videoMomentPack && !collectionDataReady;
+  const packSurface = !!packDeeplink && !(previewMode && currentMarketPack) && !videoMomentPack && !currentMarketPack?.videoId && !previewResolving;
   const packMine = !!packDeeplink && (
     isLocalAuthorPackId(packDeeplink)
     || (!!currentMarketPack?.isCommunityUgc && !!currentMarketPack.authorStableId && currentMarketPack.authorStableId === accessStableId)
@@ -1408,6 +1413,8 @@ export default function FlashcardsScreen() {
             onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
             onTrain={!previewMode && listCards.length > 0 ? onTrainThisPack : null}
           />
+        ) : previewResolving ? (
+          <CommunityPackPreviewSkeleton lang={lang} onBack={handleCollectionBack} />
         ) : previewMode && currentMarketPack ? (
           <CommunityPackPreview
             pack={currentMarketPack}

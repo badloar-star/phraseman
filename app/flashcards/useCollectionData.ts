@@ -89,6 +89,7 @@ import {
 import {
   fetchCommunityPackCards,
   loadPublishedCommunityMarketPacks,
+  peekPublishedCommunityMarketPacks,
 } from '../community_packs/communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
 import { noteSwallowed, noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -351,8 +352,11 @@ export function useCollectionData(opts: {
    */
   const marketCatalogSeed = useMemo(() => {
     const base = officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : [];
+    // зачем (координатор 12.10, аудит скорости R1, cards-v2-015): выбранной плитки нет (прямая ссылка), но тёплый каталог сообщества в памяти может знать этот набор —
+    // тогда шапка и счётчики известны с первого кадра, без ожидания шести загрузчиков loadAll (~1,7 с). Тёплого каталога нет — экран показывает заготовки.
     const stagedMeta = communityPacksEnabled
       ? peekStagedCommunityPackMeta(opts.deeplinkPackId ?? null, studyTarget)
+        ?? (opts.deeplinkPackId ? peekPublishedCommunityMarketPacks(studyTarget)?.find((pack) => pack.id === opts.deeplinkPackId) ?? null : null)
       : null;
     return stagedMeta && !base.some((pack) => pack.id === stagedMeta.id)
       ? [...base, stagedMeta]

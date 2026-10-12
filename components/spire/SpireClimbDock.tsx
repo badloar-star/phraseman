@@ -20,7 +20,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
-import { logSpireLayout, roundLayout } from './spire_layout_log';
+import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
 
 type Props = Readonly<{
   lang: Lang;
@@ -66,6 +66,10 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
   }
 
   const enabled = ready && !busy;
+  // зачем (Макеты spire-gap-009, образец `.cta.dis` kit.css: заливка контрола, приглушённый текст): пока старт невозможен (нет комнаты/уровня) кнопка выглядит как неактивная,
+  // а не светлая с прозрачностью. Идущий старт (busy) остаётся прежним — светлая кнопка с прозрачностью, Optimistic UI Шпиля не затронут.
+  const dis = !ready && !busy;
+  logSpireDock('button', { ready, busy, enabled, dis, block: block ?? 'none', source: 'props: ready=climbReady(HomeScreen), busy=game.starting' });
   const note = block === 'pack_offline' ? spireGameText(lang, 'packOffline')
     : block === 'pack_missing' ? spireGameText(lang, 'packMissing')
       : block === 'no_identity' ? spireGameText(lang, 'noIdentity')
@@ -84,13 +88,15 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
         disabled={!enabled}
         accessibilityLabel={note ? `${spireText(lang, 'climb')}. ${note}` : spireText(lang, 'climb')}
         accessibilityState={{ disabled: !enabled, busy }}
-        style={[s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }, enabled ? sh.action(p.cta) : null]}
+        style={dis
+          ? [s.cta, { backgroundColor: p.control }, sh.nested]
+          : [s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }, enabled ? sh.action(p.cta) : null]}
         testID="spire-climb"
         onLayout={(e) => logSpireLayout('dock.cta', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height) })}
       >
-        <Text style={[s.ctaText, { color: p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
+        <Text style={[s.ctaText, { color: dis ? p.textMuted : p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
         {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки, текст остаётся по центру */}
-        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={p.ctaText} /></View>
+        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={dis ? p.textMuted : p.ctaText} /></View>
       </V2Pressable>
     </View>
   );

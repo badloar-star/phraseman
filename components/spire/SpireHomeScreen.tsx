@@ -45,7 +45,7 @@ import { useSpireShadow } from './useSpireShadow';
 import SpireEnergyPill from './SpireEnergyPill';
 import SpireAllMembers from './SpireAllMembers';
 import SpireClimbDock from './SpireClimbDock';
-import { logSpireLayout, roundLayout } from './spire_layout_log';
+import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
 import SpireFloorInfo from './SpireFloorInfo';
 import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
@@ -184,6 +184,21 @@ export default function SpireHomeScreen() {
   // Маркер поднялся на новый этаж — карточка этажа следует за ним.
   useEffect(() => { if (myFloor !== null) setSelected(myFloor); }, [myFloor]);
   const shownFloor = selected ?? myFloor ?? 1;
+  // зачем (Макеты spire-gap-009, поручение координатора 15.10; правило «сперва логи»): что именно решает вид кнопки и окна башни — этаж, комната, откуда значения.
+  useEffect(() => {
+    const reasons: string[] = [];
+    if (!game.live) reasons.push('live=false');
+    if (game.tier === null) reasons.push('tier=null');
+    if (game.session !== null) reasons.push('session!=null');
+    if (game.pending !== null) reasons.push('pending!=null');
+    logSpireDock('home', {
+      source: preview ? 'DEV-превью (моки)' : 'живые данные (week из локального хранилища, комната из кэша)',
+      weekFloor: week ? week.floor : null, myFloor, selected, shownFloor,
+      rows: game.rows ? game.rows.length : null, tier: game.tier, live: game.live, startBlock: game.startBlock ?? 'none',
+      notReadyBecause: reasons.length > 0 ? reasons.join(',') : 'готово', premium: hasPremiumAccess,
+      towerWillScrollTo: myFloor !== null ? `свой этаж ${myFloor}` : `низ башни (этажа нет; выбран ${shownFloor})`,
+    });
+  }, [preview, week, myFloor, selected, shownFloor, game.rows, game.tier, game.live, game.startBlock, game.session, game.pending, hasPremiumAccess]);
   const onSelect = useCallback((floor: number) => setSelected(floor), []);
   const openAll = useCallback(() => setShowAll(true), []);
   const closeAll = useCallback(() => setShowAll(false), []);

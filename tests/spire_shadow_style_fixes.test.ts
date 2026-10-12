@@ -60,7 +60,10 @@ describe('Шпиль: стиль «Тень» и пилюля энергии', (
   it('пилюля энергии: и в шапке главного, и в шапке ступени; превью показывает её', () => {
     expect(read('components', 'spire', 'SpireHomeScreen.tsx')).toMatch(/<SpireEnergyPill ownerActive=/);
     expect(read('components', 'spire', 'SpireStepScreen.tsx')).toMatch(/<SpireEnergyPill ownerActive=\{false\} \/>/);
-    expect(read('components', 'spire', 'SpireEnergyPill.tsx')).toMatch(/height: 37, borderRadius: 19/);
+    // приказ владельца 01.10 (подтверждён 15.10): энергия в шапке без фона и тени, высота 37 как у сердец
+    const pill = read('components', 'spire', 'SpireEnergyPill.tsx');
+    expect(pill).toMatch(/height: 37, paddingHorizontal: 6/);
+    expect(pill).not.toMatch(/backgroundColor|nested|boxShadow|borderRadius/);
     expect(read('app', 'dev_spire_preview.tsx')).toMatch(/\n\s+showEnergy\b/);
   });
 

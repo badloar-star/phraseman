@@ -1149,6 +1149,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "El viaje se ha torcido y en el chat común todos esperan decisiones. Dales a Lea y Niko un estado breve, separa lo urgente de lo secundario, compara opciones y confirma la nueva logística."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pídele consejo a Ira — dile el tema, pide una opción y responde si te sirve. Ira aconseja con gusto, pero quiere saber qué eliges."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nikita todavía tiene algo tuyo. Recuérdaselo, dile dónde está y fija cuándo te viene bien recogerlo — sin reproches, Nikita lo resolverá con calma."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera tiene una buena noticia. Felicítala con cariño, añade un deseo y pregúntale por sus planes — a Vera le encanta que se alegren de verdad por ella."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Quieres ver a Ira. Pregúntale si tiene tiempo, explica para qué y propón algo corto — y si dice que no, acuerda escribirle más tarde."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "La situación fue incómoda y a Nikita le causó molestias. Discúlpate brevemente, di qué pasó exactamente y propón cómo arreglarlo — sin presionar, a Nikita no le van los dramas."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Necesitas una pequeña ayuda de Vera o de Ira. Pregunta si es buen momento, explica lo que necesitas y cuánto llevará — y acepta con calma cualquier respuesta."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Te vas de viaje y no tienes con quién dejar a tu mascota. Pídele a Ira que la cuide — dile las fechas y qué hay que hacer, acuerda lo de las llaves y ofrece ayuda a cambio."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "En el chat del grupo están buscando un regalo y Nikita espera ideas. Propón un presupuesto, compara opciones, recoge los votos y decide quién lo compra."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tu pedido ya está en camino, pero los detalles no están claros. Confirma con Vera e Ira la fecha y la dirección, di cómo contactarte y pregunta si aún se puede cambiar algo."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira te sacó de un apuro. Cuéntale cómo salió todo, dale las gracias de corazón y ofrece ayudarla tú — y si se hace la modesta, no dejes que le quite importancia."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Toca armar un plan para el fin de semana. Proponles una idea a Nikita y Vera, averigua quién está libre y cuándo y qué le importa a cada uno, y reparte las tareas pequeñas."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hay varias opciones y Vera te ayuda a elegir. Define con ella qué importa, sopesa los pros y los contras y acuerda el siguiente paso."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El mismo problema doméstico se repite. Descríbeselo con educación a Ira y Nikita, di cómo te afecta, pregunta cuál puede ser la causa y propón una solución."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Es hora de acordar con Nikita unas normas de convivencia. Propón una norma, explica para qué sirve, escucha qué le resulta incómodo y decide con él las excepciones."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Algo te molesta, pero no quieres discutir con Vera. Describe la situación con neutralidad, pregúntale su punto de vista, admite que puede ser un malentendido y propón una solución."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El grupo se inclina por una idea dudosa. Reconoce las otras propuestas, plantea criterios claros, responde a las objeciones de Ira y lleva a todos a una elección sensata."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Es una conversación difícil y da un poco de miedo empezarla. Pídeles un momento a Nikita y Vera, nombra la situación con precisión, di sin culpar lo que sientes y marca tu límite."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Circulan rumores contradictorios. Con Vera, separa los hechos de las suposiciones, busca las fuentes, decide qué comprobar y acuerda cuándo volver al tema."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira y Nikita se han peleado y te toca reconciliarlos. Marca un tono tranquilo, deja hablar a los dos, encuentra lo que tienen en común y propón un acuerdo que ambos acepten."
       }
     },
     "pt-BR": {
@@ -1379,6 +1455,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "A viagem desandou e no grupo todos esperam decisões. Dê à Lea e ao Niko um resumo rápido, separe o urgente do secundário, compare as opções e confirme a nova logística."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Peça um conselho à Ira — diga o assunto, peça uma opção e responda se ela serve. A Ira aconselha com prazer, mas quer saber o que você escolhe."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Nikita ainda está com uma coisa sua. Lembre ele disso, diga onde está e combinem quando dá para buscar — sem cobranças, o Nikita resolve tudo com calma."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Vera tem uma notícia feliz. Dê os parabéns com carinho, acrescente um desejo e pergunte sobre os planos dela — a Vera adora quando as pessoas ficam felizes por ela de verdade."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você quer ver a Ira. Pergunte se ela tem tempo, explique o motivo e sugira algo rápido — e se for um “não”, combinem de se falar depois."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ficou uma situação chata e isso incomodou o Nikita. Peça desculpas rapidamente, diga o que exatamente aconteceu e proponha como resolver — sem pressão, o Nikita não gosta de drama."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você precisa de uma pequena ajuda da Vera ou da Ira. Pergunte se é uma boa hora, explique o pedido e quanto tempo leva — e aceite qualquer resposta com tranquilidade."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você vai viajar e não tem com quem deixar seu pet. Peça para a Ira cuidar dele — diga as datas e as tarefas, combinem as chaves e ofereça ajuda em troca."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "No grupo estão decidindo um presente e o Nikita espera ideias. Proponha um orçamento, compare as opções, colete os votos e decida quem compra."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Seu pedido já está a caminho, mas os detalhes não estão claros. Confirme com a Vera e a Ira a data e o endereço, diga como falar com você e pergunte se ainda dá para mudar algo."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Ira te salvou. Conte como tudo terminou, agradeça de coração e ofereça ajuda em troca — e se ela ficar modesta, não deixe que diminua o que fez."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hora de montar um plano para o fim de semana. Sugira uma ideia ao Nikita e à Vera, descubra quem está livre e quando e o que importa para cada um, e divida as pequenas tarefas."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Há várias opções e a Vera ajuda a escolher. Decidam o que importa, pesem os prós e os contras e combinem o próximo passo."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O mesmo problema doméstico se repete. Descreva com educação para a Ira e o Nikita, diga como isso te atrapalha, pergunte qual pode ser a causa e proponha uma solução."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hora de combinar com o Nikita as regras da casa. Proponha uma regra, explique para que serve, ouça o que incomoda e decidam juntos as exceções."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Uma coisa está te incomodando, mas você não quer brigar com a Vera. Descreva a situação de forma neutra, pergunte a visão dela, admita que pode ser um mal-entendido e proponha uma solução."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O grupo está pendendo para uma ideia duvidosa. Reconheça as outras sugestões, proponha critérios claros, responda às objeções da Ira e leve todos a uma escolha sensata."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "É uma conversa difícil e dá um pouco de medo começar. Peça um tempo ao Nikita e à Vera, descreva a situação com precisão, diga o que sente sem acusar e deixe claro o seu limite."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Estão circulando boatos contraditórios. Com a Vera, separe fatos de suposições, descubra as fontes, decida o que verificar e combine quando voltar ao assunto."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Ira e o Nikita brigaram e cabe a você fazer as pazes entre eles. Mantenha um tom calmo, deixe os dois falarem, encontre o ponto em comum e proponha um acordo que ambos aceitem."
       }
     },
     "vi": {
@@ -1609,6 +1761,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Chuyến đi đã đổ bể và trong nhóm chat ai cũng chờ quyết định. Cập nhật nhanh tình hình cho Lea và Niko, tách việc gấp khỏi việc phụ, so sánh phương án và xác nhận kế hoạch di chuyển mới."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Xin Ira lời khuyên — nêu chủ đề, xin một gợi ý và cho biết nó có hợp với bạn không. Ira sẵn lòng khuyên, nhưng muốn nghe bạn chọn gì."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nikita vẫn giữ một món đồ của bạn. Hãy nhắc anh ấy, nói nó đang ở đâu và hẹn lúc tiện để lấy — không trách móc, Nikita sẽ bình tĩnh lo liệu."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera vừa có tin vui. Hãy chúc mừng cô ấy thật ấm áp, thêm một lời chúc và hỏi về dự định — Vera rất thích khi người khác thật lòng vui cho mình."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn muốn gặp Ira. Hỏi xem cô ấy có thời gian không, nói lý do và đề xuất điều gì đó ngắn gọn — nếu cô ấy bảo “không”, hẹn nhắn lại sau."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Có chuyện không hay xảy ra và Nikita thấy phiền. Hãy xin lỗi ngắn gọn, nói rõ chuyện gì đã xảy ra và đề xuất cách khắc phục — đừng gây áp lực, Nikita không thích làm to chuyện."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn cần Vera hoặc Ira giúp một chút. Hỏi xem bây giờ có tiện không, nói rõ việc cần nhờ và mất bao lâu — rồi bình thản đón nhận mọi câu trả lời."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn sắp đi xa mà không có ai chăm thú cưng. Hãy nhờ Ira chăm giúp — nói ngày và những việc cần làm, thống nhất chuyện chìa khóa và đề nghị giúp lại cô ấy."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Cả nhóm đang tìm quà và Nikita đang chờ ý tưởng. Đề xuất ngân sách, so sánh các lựa chọn, gom phiếu bầu và quyết định ai đi mua."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Đơn hàng đang trên đường giao nhưng chi tiết còn chưa rõ. Hỏi Vera và Ira về ngày và địa chỉ, nói cách liên lạc với bạn và hỏi xem còn đổi được gì không."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira đã giúp bạn một phen ra trò. Kể cho cô ấy kết quả ra sao, cảm ơn thật lòng và đề nghị giúp lại — nếu cô ấy khiêm tốn gạt đi, đừng để cô ấy xua đi như vậy."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Đến lúc lên kế hoạch cho cuối tuần. Đề xuất ý tưởng với Nikita và Vera, hỏi ai rảnh lúc nào và mỗi người quan tâm điều gì, rồi chia các việc nhỏ."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Có vài phương án và Vera đang giúp bạn chọn. Cùng xác định điều gì quan trọng, cân nhắc ưu nhược điểm và thống nhất bước tiếp theo."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Một sự cố trong nhà cứ lặp lại. Lịch sự mô tả nó với Ira và Nikita, nói nó gây phiền thế nào, hỏi nguyên nhân có thể là gì và đề xuất cách giải quyết."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Đã đến lúc thỏa thuận với Nikita về nội quy trong nhà. Đề xuất một quy tắc, giải thích để làm gì, lắng nghe điều anh ấy thấy bất tiện và cùng quyết định các ngoại lệ."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Có điều khiến bạn phiền lòng, nhưng bạn không muốn cãi nhau với Vera. Mô tả tình huống một cách trung lập, hỏi cô ấy nghĩ sao, chấp nhận rằng có thể chỉ là hiểu lầm và đề xuất cách giải quyết."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Cả nhóm đang nghiêng về một ý tưởng đáng ngờ. Ghi nhận các đề xuất khác, đưa ra tiêu chí rõ ràng, trả lời phản đối của Ira và dẫn mọi người đến lựa chọn hợp lý."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Đây là cuộc trò chuyện khó và bắt đầu thì hơi ngại. Xin Nikita và Vera chút thời gian, nêu rõ tình huống, nói cảm nhận của bạn mà không trách móc và vạch ra giới hạn."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Đang có những tin đồn trái ngược nhau. Cùng Vera tách sự thật khỏi suy đoán, tìm nguồn tin, quyết định cần kiểm tra gì và hẹn khi nào bàn lại."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira và Nikita vừa cãi nhau và bạn được giao việc hòa giải. Giữ giọng điệu bình tĩnh, để cả hai được nói, tìm điểm chung và đề xuất cách dung hòa mà cả hai đồng ý."
       }
     },
     "id": {
@@ -1839,6 +2067,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Perjalanannya kacau, dan semua orang di grup menunggu keputusan. Beri Lea dan Niko kabar singkat, pisahkan yang mendesak dari yang tidak, bandingkan pilihan, dan konfirmasi logistik baru."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Minta saran ke Ira — sebutkan topiknya, minta satu pilihan, dan jawab apakah itu cocok. Ira senang memberi saran, tapi ingin tahu apa pilihanmu."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Barangmu masih ada di Nikita. Ingatkan dia, sebutkan letaknya, dan sepakati kapan enaknya diambil — tanpa menyalahkan, Nikita akan mengurusnya dengan tenang."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera punya kabar bahagia. Beri selamat dengan hangat, tambahkan harapan, dan tanyakan rencananya — Vera senang kalau orang tulus ikut bahagia untuknya."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu ingin bertemu Ira. Tanyakan apakah dia punya waktu, jelaskan alasannya, dan usulkan sesuatu yang singkat — kalau jawabannya “tidak”, sepakati untuk mengobrol lagi nanti."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada kejadian canggung dan Nikita jadi repot karenanya. Minta maaf singkat, sebutkan apa yang terjadi, dan tawarkan cara memperbaikinya — tanpa memaksa, Nikita tidak suka drama."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu butuh sedikit bantuan dari Vera atau Ira. Tanyakan apakah sekarang waktunya pas, jelaskan permintaanmu dan berapa lama, lalu terima jawaban apa pun dengan tenang."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu akan pergi dan tidak ada yang menjaga hewan peliharaanmu. Minta Ira merawatnya — sebutkan tanggal dan tugasnya, sepakati soal kunci, dan tawarkan bantuan balik."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grup sedang mencari hadiah dan Nikita menunggu ide. Usulkan anggaran, bandingkan pilihan, kumpulkan suara, dan putuskan siapa yang membeli."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pesananmu sudah dalam perjalanan, tapi detailnya belum jelas. Pastikan tanggal dan alamat dengan Vera dan Ira, beri tahu cara menghubungimu, dan tanyakan apakah masih bisa diubah."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira benar-benar menolongmu. Ceritakan hasilnya, ucapkan terima kasih dengan tulus, dan tawarkan bantuan balik — kalau dia merendah, jangan biarkan dia mengabaikannya."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Saatnya menyusun rencana akhir pekan. Usulkan ide ke Nikita dan Vera, cari tahu siapa yang senggang kapan dan apa yang penting bagi masing-masing, lalu bagi tugas-tugas kecil."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada beberapa pilihan, dan Vera membantumu memilih. Tentukan apa yang penting, timbang plus-minusnya, dan sepakati langkah berikutnya."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Masalah rumah tangga yang sama terus terulang. Jelaskan dengan sopan ke Ira dan Nikita, sebutkan bagaimana itu mengganggumu, tanyakan kemungkinan penyebabnya, dan usulkan solusi."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Saatnya menyepakati aturan rumah dengan Nikita. Usulkan satu aturan, jelaskan gunanya, dengarkan apa yang tidak nyaman, lalu putuskan pengecualiannya bersama."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada yang mengganggumu, tapi kamu tidak mau bertengkar dengan Vera. Gambarkan situasinya secara netral, tanyakan pandangannya, akui bahwa mungkin ini salah paham, dan usulkan solusi."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grup cenderung memilih ide yang meragukan. Hargai usulan lain, ajukan kriteria yang jelas, tanggapi keberatan Ira, dan arahkan semua ke pilihan yang masuk akal."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ini percakapan yang sulit dan agak menegangkan untuk dimulai. Minta waktu ke Nikita dan Vera, sebutkan situasinya dengan tepat, sampaikan perasaanmu tanpa menyalahkan, dan tegaskan batasmu."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada kabar burung yang saling bertentangan. Bersama Vera, pisahkan fakta dari dugaan, cari sumbernya, putuskan apa yang perlu dicek, dan sepakati kapan membahasnya lagi."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira dan Nikita bertengkar, dan kamu kebagian mendamaikan mereka. Jaga nada tetap tenang, biarkan keduanya bicara, cari kesamaan, dan usulkan kompromi yang disetujui keduanya."
       }
     },
     "tr": {
@@ -2069,6 +2373,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Seyahat aksadı ve ortak sohbette herkes karar bekliyor. Lea ve Niko'ya kısa bir durum özeti ver, aciliyi ikincilden ayır, seçenekleri karşılaştır ve yeni lojistiği teyit et."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira'dan tavsiye iste — konuyu söyle, bir seçenek iste ve sana uyup uymadığını söyle. Ira seve seve tavsiye verir ama neyi seçtiğini duymak ister."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nikita'da senin bir eşyan kaldı. Ona hatırlat, nerede olduğunu söyle ve ne zaman almanın uygun olduğunu kararlaştırın — sitem etmeden, Nikita her şeyi sakince halleder."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera'nın sevindirici bir haberi var. Onu içtenlikle tebrik et, bir dilek ekle ve planlarını sor — Vera başkalarının onun için gerçekten sevinmesini çok sever."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira ile görüşmek istiyorsun. Vakti olup olmadığını sor, nedenini açıkla ve kısa bir şey öner — “hayır” derse sonra yazışmak üzere anlaşın."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tatsız bir şey oldu ve Nikita bundan rahatsız oldu. Kısaca özür dile, tam olarak ne olduğunu söyle ve nasıl düzelteceğini öner — baskı yapmadan, Nikita dramı sevmez."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera ya da Ira'dan ufak bir yardıma ihtiyacın var. Şimdi uygun olup olmadığını sor, ne istediğini ve ne kadar süreceğini açıkla — ve her cevabı sakince karşıla."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bir yere gidiyorsun ve evcil hayvanını bırakacak kimse yok. Ira'dan ona bakmasını iste — tarihleri ve yapılacakları söyle, anahtar konusunu ayarla ve karşılığında yardım öner."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grupta hediye aranıyor ve Nikita fikir bekliyor. Bir bütçe öner, seçenekleri karşılaştır, oyları topla ve kimin alacağına karar ver."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Siparişin yolda ama ayrıntılar belirsiz. Vera ve Ira'yla tarihi ve adresi netleştir, sana nasıl ulaşılacağını söyle ve hâlâ bir şey değiştirilebilir mi diye sor."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira seni gerçekten kurtardı. Sonucun nasıl olduğunu anlat, içtenlikle teşekkür et ve karşılığında yardım öner — alçakgönüllülük ederse geçiştirmesine izin verme."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hafta sonu için bir plan kurmanın zamanı. Nikita ve Vera'ya bir fikir öner, kimin ne zaman müsait olduğunu ve kime neyin önemli olduğunu öğren, küçük işleri paylaştır."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Birkaç seçenek var ve Vera seçmene yardım ediyor. Neyin önemli olduğuna karar verin, artıları ve eksileri tartın ve bir sonraki adımda anlaşın."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Aynı ev sorunu tekrar tekrar yaşanıyor. Ira ve Nikita'ya kibarca anlat, seni nasıl etkilediğini söyle, olası nedeni sor ve bir çözüm öner."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nikita ile ev kurallarında anlaşmanın zamanı. Bir kural öner, neden gerektiğini açıkla, neyin rahatsız ettiğini dinle ve istisnalara birlikte karar verin."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bir şey seni rahatsız ediyor ama Vera ile tartışmak istemiyorsun. Durumu tarafsızca anlat, onun görüşünü sor, bir yanlış anlaşılma olabileceğini kabul et ve bir çözüm öner."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grup şüpheli bir fikre yöneliyor. Diğer önerileri kabul et, net ölçütler koy, Ira'nın itirazlarını yanıtla ve herkesi makul bir seçime yönlendir."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zor bir konuşma ve başlamak biraz ürkütücü. Nikita ve Vera'dan biraz zaman iste, durumu tam olarak anlat, suçlamadan ne hissettiğini söyle ve sınırını belirt."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Etrafta çelişkili söylentiler dolaşıyor. Vera ile birlikte gerçekleri tahminlerden ayırın, kaynakları bulun, neyin kontrol edileceğine karar verin ve konuya ne zaman döneceğinizi kararlaştırın."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira ile Nikita küstü ve onları barıştırmak sana düştü. Sakin bir ton tut, ikisine de konuşma fırsatı ver, ortak noktayı bul ve ikisinin de kabul edeceği bir orta yol öner."
       }
     },
     "pl": {
@@ -2299,6 +2679,82 @@
       "travel_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Wyjazd się sypie, a na wspólnym czacie wszyscy czekają na decyzje. Daj Lei i Niko krótki status, oddziel pilne od drugorzędnego, porównaj opcje i potwierdź nową logistykę."
+      },
+      "everyday_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Poproś Irę o radę — podaj temat, poproś o jedną propozycję i odpowiedz, czy ci pasuje. Ira chętnie doradzi, ale chce usłyszeć, co wybierasz."
+      },
+      "everyday_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nikita wciąż ma twoją rzecz. Przypomnij mu o niej, powiedz, gdzie leży, i ustalcie, kiedy można ją odebrać — bez wyrzutów, Nikita spokojnie to załatwi."
+      },
+      "everyday_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vera ma radosną nowinę. Pogratuluj jej ciepło, dodaj życzenie i zapytaj o plany — Vera lubi, gdy ktoś szczerze się z nią cieszy."
+      },
+      "everyday_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Chcesz zobaczyć się z Irą. Zapytaj, czy ma czas, wyjaśnij po co i zaproponuj coś krótkiego — a jeśli usłyszysz „nie”, umówcie się, że napiszecie później."
+      },
+      "everyday_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Wyszło niezręcznie i Nikita ma przez to kłopot. Krótko przeproś, powiedz, co dokładnie się stało, i zaproponuj, jak to naprawić — bez nacisków, Nikita nie lubi dramatów."
+      },
+      "everyday_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Potrzebujesz drobnej przysługi od Very albo Iry. Zapytaj, czy to dobry moment, wyjaśnij prośbę i ile to zajmie — i spokojnie przyjmij każdą odpowiedź."
+      },
+      "everyday_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Wyjeżdżasz i nie masz z kim zostawić zwierzaka. Poproś Irę, żeby się nim zajęła — podaj daty i obowiązki, ustalcie sprawę kluczy i zaproponuj pomoc w zamian."
+      },
+      "everyday_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Na grupowym czacie szukacie prezentu, a Nikita czeka na pomysły. Zaproponuj budżet, porównaj opcje, zbierz głosy i zdecyduj, kto kupuje."
+      },
+      "everyday_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zamówienie jest już w drodze, ale szczegóły są niejasne. Ustal z Verą i Irą datę i adres, powiedz, jak się z tobą skontaktować, i zapytaj, czy można coś jeszcze zmienić."
+      },
+      "everyday_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira naprawdę cię wyratowała. Powiedz, co z tego wyszło, podziękuj od serca i zaproponuj pomoc w rewanżu — a jeśli będzie skromna, nie pozwól jej tego zbagatelizować."
+      },
+      "everyday_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Czas ułożyć plan na weekend. Zaproponuj pomysł Nikicie i Verze, dowiedz się, kto kiedy ma czas i na czym komu zależy, i podziel drobne zadania."
+      },
+      "everyday_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Jest kilka opcji, a Vera pomaga wybrać. Ustalcie, co jest dla was ważne, zważcie plusy i minusy i zdecydujcie, co robicie dalej."
+      },
+      "everyday_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ten sam domowy problem ciągle wraca. Uprzejmie opisz go Irze i Nikicie, powiedz, w czym przeszkadza, zapytaj o możliwą przyczynę i zaproponuj rozwiązanie."
+      },
+      "everyday_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Czas umówić się z Nikitą co do domowych zasad. Zaproponuj zasadę, wyjaśnij, po co jest, wysłuchaj, co jest niewygodne, i razem ustalcie wyjątki."
+      },
+      "everyday_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Coś ci przeszkadza, ale nie chcesz kłócić się z Verą. Opisz sytuację neutralnie, zapytaj o jej zdanie, dopuść, że to nieporozumienie, i zaproponuj rozwiązanie."
+      },
+      "everyday_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grupa skłania się ku wątpliwemu pomysłowi. Uznaj inne propozycje, zaproponuj jasne kryteria, odpowiedz na zastrzeżenia Iry i doprowadź wszystkich do rozsądnego wyboru."
+      },
+      "everyday_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "To trudna rozmowa i trochę strach ją zacząć. Poproś Nikitę i Verę o chwilę, dokładnie nazwij sytuację, powiedz bez oskarżeń, co czujesz, i wyznacz granicę."
+      },
+      "everyday_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Krążą sprzeczne plotki. Razem z Verą oddzielcie fakty od domysłów, ustalcie źródła, zdecydujcie, co sprawdzić, i umówcie się, kiedy wrócić do tematu."
+      },
+      "everyday_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ira i Nikita się pokłócili, a tobie przypadło ich godzić. Nadaj spokojny ton, daj się wypowiedzieć obojgu, znajdź wspólny grunt i zaproponuj kompromis, na który oboje się zgodzą."
       }
     }
   }

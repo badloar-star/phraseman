@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { SETTINGS_SURFACES } from '../components/settings/settingsSurfaces';
 import { DAILY_PHRASE_CHROME, dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { themedToastChrome } from '../constants/themedToastChrome';
 import { statsPageField, statsSoftBg, statsThemeAccent } from '../constants/statsThemeChrome';
@@ -21,9 +20,8 @@ function sourceEntry(relativePath: string, nextTheme: string): string {
 describe('Sage Porcelain surface chrome contract', () => {
   it('defines a dedicated Sage Porcelain entry in every surface chrome map', () => {
     const sources: Array<[string, string]> = [
-      ['components/settings/settingsSurfaces.ts', 'midnight'],
-      // зачем: локальная карта SETTINGS_SURFACES в settings.tsx удалена при переносе корня Настроек
-      // на Liquid Glass (была мёртвой, цвета берутся из liquidGlassTokens) — проверять её больше нечего.
+      // зачем: карта SETTINGS_SURFACES (components/settings/settingsSurfaces.ts) удалена 15.10 как мёртвый код прежней системы тем
+      // (никто не импортировал, цвета Настроек берутся из liquidGlassTokens) — её проверок здесь больше нет.
       ['app/daily_phrase_chrome.ts', 'midnight'],
       ['constants/themedToastChrome.ts', 'midnight'],
       ['constants/statsThemeChrome.ts', 'midnight'],
@@ -35,13 +33,6 @@ describe('Sage Porcelain surface chrome contract', () => {
       expect(entry).not.toMatch(/as any|Partial|businessLight/);
       expect(entry).not.toMatch(/#(?:000000|0A0A0A)/i);
     }
-  });
-
-  it('uses the approved page, panel, border, text, and accent roles in the settings map', () => {
-    expect(SETTINGS_SURFACES.sagePorcelain).toEqual({
-      panel: '#FCFDF9', chip: '#FCFDF9', border: '#CFD6CE', divider: '#CFD6CE',
-      notice: '#E1E5DC', accent: '#315F50', chipOn: '#D1D9D1',
-    });
   });
 
   it('resolves the Sage daily phrase and toast chrome from porcelain roles', () => {

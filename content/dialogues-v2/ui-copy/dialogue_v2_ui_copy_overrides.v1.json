@@ -920,6 +920,474 @@
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Ira and Nikita have fallen out, and it’s up to you to make peace. Set a calm tone, let both speak, find common ground and propose a compromise they’ll both accept."
       }
+    },
+    "es": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Escríbele a Mila después de conocerla — salúdala, recuérdale dónde se conocieron y hazle una pregunta. A Mila le encanta charlar, así que con un «hola» no basta."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tu cita con Zoe cae a una hora que no te viene bien. Recuérdale el plan, propón otra opción y cierra la hora definitiva. Zoe no se molestará; solo no la dejes adivinando."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pregúntale a Denis cómo llegar al sitio y qué transporte tomar. Denis responde con calma y con detalle, y si algo no queda claro, vuelve a preguntar sin miedo."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila te echó una mano — cuéntale qué le agradeces exactamente y en qué te ayudó. Le gustarán más los detalles que un simple «gracias»."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe tiene algo que celebrar. Felicítala, añade un deseo breve y pregúntale por el evento — te lo contará encantada."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "En un chat sobre una afición en común están Denis y Mila. Preséntate, cuenta tu experiencia y pregúntales por la suya — la charla dura mientras sea interesante para ambos lados."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Organiza un encuentro con Mila — propón dos horarios, acuerda el lugar y explica cómo reconocerte. Mila se apunta a cualquier plan si está claro."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Invita a Zoe a un evento — dile la fecha y la hora y explica por qué quieres que venga ella. Si duda, encuentra un buen motivo para que valga la pena ir."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tienes que cancelar los planes con Denis y Mila. Discúlpate, explica brevemente el motivo y propón otra opción — así no sonará a «me da igual»."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El encuentro con Mila salió bien — escríbele unas palabras. Recuerda un momento concreto, propón repetir y fija cuándo."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "En el chat de grupo están Zoe y Denis, y cada uno tiene planes distintos. Propón una opción, averigua las limitaciones de cada uno y llega a un plan que todos confirmen."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis lo está pasando mal. Pregúntale si quiere hablar, escucha sin dar consejos y ofrécele una ayuda concreta — pero no insistas si dice que no."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila y Zoe entendieron tu mensaje a su manera. Aclara con calma qué querías decir, reconoce tu parte del malentendido y devuelve la ligereza a la charla."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe te invita, pero tendrás que decir que no. Agradécele, rechaza con claridad pero con cariño y ofrece algo a cambio — así la puerta queda abierta para la próxima."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "En el grupo cada uno espera algo distinto, y Denis te pide que lo ordenes. Escucha las posturas, encuentra lo común, nombra el desacuerdo sin culpar a nadie y propón una regla que todos acepten."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila necesita una opinión sincera, y hay que dársela con tacto. Apóyate en hechos, describe el efecto, propón un cambio concreto y no olvides sus puntos fuertes."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "La misma situación se repite, y es hora de poner un límite. Explícales a Zoe y Denis qué es importante para ti, sin reproches, y propón una opción que funcione para todos."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Por un error tuyo, Denis ya no confía en ti. Reconócelo sin excusas, discúlpate con claridad, propón un paso real — y dale tiempo para responder."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Entre Mila y Zoe se está gestando un conflicto silencioso. Separa los hechos de las suposiciones, da la palabra a cada una y formula una solución sin perdedores."
+      }
+    },
+    "pt-BR": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mande mensagem para a Mila depois de conhecê-la — cumprimente, lembre onde vocês se conheceram e faça uma pergunta. A Mila adora conversar, então um “oi” não basta."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O encontro com a Zoe está num horário ruim. Lembre o plano, sugira outra opção e combine o horário final. A Zoe não vai se chatear — só não a deixe adivinhando."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pergunte ao Denis como chegar ao lugar e qual transporte pegar. O Denis responde com calma e em detalhes — e se algo não ficar claro, pergunte de novo sem medo."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Mila te deu uma força — diga pelo que exatamente você agradece e como isso ajudou. Ela vai gostar mais dos detalhes do que de um simples “valeu”."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Zoe tem algo para comemorar. Dê os parabéns, acrescente um desejo curto e pergunte sobre o evento — ela vai adorar contar."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Num chat sobre um hobby em comum estão o Denis e a Mila. Apresente-se, conte sua experiência e pergunte sobre a deles — a conversa segue enquanto for interessante para os dois lados."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Marque um encontro com a Mila — sugira dois horários, combinem o lugar e como vão se reconhecer. A Mila topa qualquer plano, desde que seja claro."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Convide a Zoe para um evento — diga a data e a hora e explique por que você quer que ela vá. Se ela hesitar, encontre um bom motivo para valer a pena."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você vai ter que cancelar os planos com o Denis e a Mila. Peça desculpas, explique o motivo rapidamente e sugira outra opção — assim não vai soar como “tanto faz”."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O encontro com a Mila foi ótimo — mande algumas palavras. Lembre um momento específico, proponha repetir e combinem quando."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "No grupo estão a Zoe e o Denis, e cada um tem planos diferentes. Sugira uma opção, descubra as limitações de cada um e chegue a um plano que todos confirmem."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Denis está passando por um momento difícil. Pergunte se ele quer conversar, escute sem dar conselhos e ofereça uma ajuda concreta — mas não insista se ele recusar."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Mila e a Zoe entenderam sua mensagem do jeito delas. Esclareça com calma o que você quis dizer, reconheça sua parte na confusão e devolva a leveza à conversa."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Zoe está te convidando, mas você vai ter que recusar. Agradeça, recuse de forma clara mas carinhosa e ofereça outra coisa — assim a porta fica aberta para a próxima."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "No grupo cada um espera uma coisa, e o Denis pede que você organize isso. Ouça as posições, ache o ponto em comum, aponte a divergência sem culpar ninguém e proponha uma regra que todos aceitem."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A Mila precisa de um retorno sincero, e ele tem que ser dado com cuidado. Baseie-se em fatos, descreva o impacto, proponha uma mudança concreta e não esqueça os pontos fortes dela."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A mesma situação se repete, e é hora de estabelecer um limite. Explique para a Zoe e o Denis o que é importante para você, sem cobranças, e proponha uma opção que funcione para todos."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Por causa de um erro seu, o Denis não confia mais em você. Assuma sem desculpas, peça perdão com clareza, proponha um passo real — e dê tempo para ele responder."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Um conflito silencioso está surgindo entre a Mila e a Zoe. Separe fatos de suposições, dê a palavra a cada uma e formule uma solução sem perdedores."
+      }
+    },
+    "vi": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nhắn cho Mila sau buổi làm quen — chào cô ấy, nhắc lại hai người gặp nhau ở đâu và đặt một câu hỏi. Mila rất thích trò chuyện, nên một câu “chào” là chưa đủ."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Buổi hẹn với Zoe rơi vào giờ không tiện. Nhắc lại kế hoạch, đề xuất giờ khác và chốt giờ cuối cùng. Zoe sẽ không phật ý — miễn là đừng để cô ấy phải đoán."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hỏi Denis cách đến nơi cần đến và nên đi bằng phương tiện gì. Denis trả lời bình tĩnh và chi tiết — chỗ nào chưa rõ thì cứ hỏi lại."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila đã giúp bạn một tay — hãy nói cụ thể bạn cảm ơn vì điều gì và nó đã giúp ra sao. Cô ấy sẽ vui khi nghe chi tiết hơn là chỉ một câu “cảm ơn”."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe có chuyện vui đáng ăn mừng. Chúc mừng cô ấy, thêm một lời chúc ngắn và hỏi về sự kiện — Zoe sẽ hào hứng kể thêm."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trong nhóm chat về sở thích chung có Denis và Mila. Hãy giới thiệu bản thân, kể về trải nghiệm của bạn và hỏi về trải nghiệm của họ — cuộc trò chuyện kéo dài khi cả hai phía đều thấy thú vị."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hẹn gặp Mila — đề xuất hai khung giờ, chọn địa điểm và thống nhất cách nhận ra nhau. Mila đồng ý mọi kế hoạch, miễn là rõ ràng."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rủ Zoe đi một sự kiện — nói ngày giờ và giải thích vì sao bạn muốn mời chính cô ấy. Nếu cô ấy còn lưỡng lự, hãy tìm một lý do khiến việc đến đó thật đáng."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn phải hủy kế hoạch với Denis và Mila. Hãy xin lỗi, giải thích ngắn gọn lý do và đề xuất phương án khác — như vậy lời từ chối sẽ không nghe như “sao cũng được”."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Buổi gặp với Mila rất vui — hãy nhắn vài dòng. Nhắc lại một khoảnh khắc cụ thể, rủ gặp lại và hẹn thời gian."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trong nhóm chat có Zoe và Denis, mỗi người một kế hoạch. Hãy đề xuất một phương án, tìm hiểu giới hạn của từng người và đi đến kế hoạch mà ai cũng xác nhận."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis đang gặp chuyện khó khăn. Hãy hỏi xem anh ấy có muốn nói chuyện không, lắng nghe mà không khuyên bảo và đề nghị giúp một việc cụ thể — nhưng đừng ép nếu anh ấy từ chối."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila và Zoe hiểu tin nhắn của bạn theo cách khác. Hãy bình tĩnh làm rõ ý bạn, nhận phần lỗi của mình trong sự nhầm lẫn và đưa cuộc trò chuyện trở lại vui vẻ."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe mời bạn, nhưng bạn phải từ chối. Hãy cảm ơn, từ chối rõ ràng nhưng ấm áp và đề xuất điều khác thay thế — như vậy cánh cửa cho lần sau vẫn mở."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trong nhóm mỗi người kỳ vọng một kiểu, và Denis nhờ bạn gỡ rối. Hãy lắng nghe các quan điểm, tìm điểm chung, nêu chỗ bất đồng mà không đổ lỗi và đề xuất một quy tắc ai cũng đồng ý."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila cần một lời nhận xét thật lòng, và phải nói thật khéo. Hãy dựa vào sự thật, mô tả ảnh hưởng, đề xuất một thay đổi cụ thể và đừng quên điểm mạnh của cô ấy."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Một tình huống cứ lặp đi lặp lại, và đã đến lúc vạch ra giới hạn. Hãy nói với Zoe và Denis điều gì quan trọng với bạn, không trách móc, và đề xuất phương án hợp với mọi người."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vì một sai lầm của bạn, Denis không còn tin bạn nữa. Hãy thừa nhận mà không bào chữa, xin lỗi rõ ràng, đề xuất một bước cụ thể — và cho anh ấy thời gian để trả lời."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Giữa Mila và Zoe đang âm ỉ một mâu thuẫn. Hãy tách sự thật khỏi phỏng đoán, để mỗi người được nói và đưa ra giải pháp không ai phải thua."
+      }
+    },
+    "id": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kirim pesan ke Mila setelah berkenalan — sapa dia, ingatkan di mana kalian bertemu, dan ajukan satu pertanyaan. Mila suka mengobrol, jadi satu “halo” saja tidak cukup."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Janji dengan Zoe jatuh di jam yang tidak pas. Ingatkan rencananya, usulkan waktu lain, dan sepakati waktu akhirnya. Zoe tidak akan kesal — asal jangan biarkan dia menebak-nebak."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tanyakan ke Denis cara menuju tempat itu dan naik apa. Denis menjawab dengan tenang dan rinci — kalau ada yang kurang jelas, tanyakan lagi saja."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila sudah membantumu — sampaikan untuk apa tepatnya kamu berterima kasih dan bagaimana itu membantu. Dia akan lebih senang mendengar detailnya daripada sekadar “makasih”."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe punya kabar gembira. Beri dia selamat, tambahkan harapan singkat, lalu tanyakan soal acaranya — Zoe akan senang bercerita."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Di grup obrolan tentang hobi yang sama ada Denis dan Mila. Perkenalkan diri, ceritakan pengalamanmu, dan tanyakan pengalaman mereka — obrolan berlanjut selama kedua pihak merasa tertarik."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Atur pertemuan dengan Mila — usulkan dua waktu, pilih tempat, dan sepakati cara saling mengenali. Mila setuju rencana apa pun asalkan jelas."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ajak Zoe ke sebuah acara — sebutkan tanggal dan jamnya, lalu jelaskan kenapa kamu ingin dia datang. Kalau dia ragu, berikan alasan yang membuatnya layak datang."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu harus membatalkan rencana dengan Denis dan Mila. Minta maaf, jelaskan alasannya singkat, dan tawarkan pilihan lain — supaya penolakannya tidak terdengar seperti “terserah”."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pertemuan dengan Mila berjalan lancar — kirim beberapa kata. Sebut satu momen tertentu, ajak bertemu lagi, dan sepakati waktunya."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Di grup obrolan ada Zoe dan Denis, dan rencana semua orang berbeda. Usulkan satu pilihan, cari tahu batasan masing-masing, dan capai rencana yang disetujui semua."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis sedang mengalami masa sulit. Tanyakan apakah dia mau bicara, dengarkan tanpa menasihati, dan tawarkan bantuan yang konkret — tapi jangan memaksa kalau dia menolak."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila dan Zoe menangkap pesanmu dengan cara mereka sendiri. Jelaskan dengan tenang maksudmu, akui bagianmu dalam salah paham ini, dan kembalikan suasana santai."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe mengajakmu, tapi kamu harus menolak. Ucapkan terima kasih, tolak dengan jelas tapi hangat, lalu tawarkan hal lain — supaya pintu untuk lain kali tetap terbuka."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Di grup, harapan tiap orang berbeda, dan Denis memintamu menengahi. Dengarkan tiap posisi, temukan kesamaan, sebutkan perbedaan tanpa menyalahkan, dan usulkan aturan yang disepakati semua."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila butuh masukan yang jujur, dan harus disampaikan dengan hati-hati. Berpeganglah pada fakta, jelaskan dampaknya, usulkan satu perubahan konkret, dan jangan lupakan kelebihannya."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Situasi yang sama terus berulang, dan sudah waktunya menetapkan batas. Jelaskan ke Zoe dan Denis apa yang penting bagimu tanpa menyalahkan, lalu tawarkan pilihan yang cocok untuk semua."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Karena kesalahanmu, Denis tidak lagi percaya padamu. Akui tanpa alasan, minta maaf dengan jelas, tawarkan langkah nyata — lalu beri dia waktu untuk menjawab."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada konflik diam-diam yang memanas antara Mila dan Zoe. Pisahkan fakta dari dugaan, beri kesempatan bicara pada masing-masing, dan rumuskan solusi tanpa pihak yang kalah."
+      }
+    },
+    "tr": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tanıştıktan sonra Mila'ya yaz — selam ver, nerede tanıştığınızı hatırlat ve bir soru sor. Mila sohbeti sever, tek bir “merhaba” yetmez."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe ile buluşma uygun olmayan bir saate denk geliyor. Planı hatırlat, yeni bir seçenek öner ve son saati netleştir. Zoe alınmaz — yeter ki onu tahmin etmeye bırakma."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis'e gideceğin yere nasıl ulaşacağını ve neye bineceğini sor. Denis sakin ve ayrıntılı anlatır — anlaşılmayan bir şey olursa çekinmeden tekrar sor."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila sana yardım etti — tam olarak neye teşekkür ettiğini ve bunun nasıl işe yaradığını yaz. Ayrıntıları duymak ona kuru bir teşekkürden daha iyi gelir."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe'nin kutlayacak bir şeyi var. Onu tebrik et, kısa bir dilek ekle ve olayı sor — Zoe ayrıntıları seve seve anlatır."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ortak bir hobi sohbetinde Denis ve Mila var. Kendini tanıt, deneyimini anlat ve onlarınkini sor — sohbet iki taraf da ilgilendiği sürece sürer."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila ile buluşma ayarla — iki saat öner, yeri seçin ve birbirinizi nasıl tanıyacağınızı kararlaştırın. Mila net olduğu sürece her plana varır."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe'yi bir etkinliğe çağır — tarihi ve saati söyle, neden özellikle onu çağırdığını açıkla. Tereddüt ederse gelmeye değecek bir sebep bul."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis ve Mila ile planları iptal etmen gerekiyor. Özür dile, nedenini kısaca açıkla ve başka bir seçenek öner — böylece umursamıyormuşsun gibi durmaz."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila ile buluşma güzel geçti — ona birkaç satır yaz. Belirli bir anı hatırlat, tekrarlamayı öner ve zamanını kararlaştırın."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grup sohbetinde Zoe ve Denis var, herkesin planı farklı. Bir seçenek öner, herkesin kısıtlarını öğren ve herkesin onaylayacağı bir plana ulaş."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis zor bir dönemden geçiyor. Konuşmak isteyip istemediğini sor, öğüt vermeden dinle ve somut bir yardım öner — ama reddederse üsteleme."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila ve Zoe mesajını kendilerine göre anladı. Ne demek istediğini sakince açıkla, karışıklıktaki payını kabul et ve sohbete eski rahatlığını geri getir."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe seni davet ediyor ama reddetmen gerekecek. Teşekkür et, açıkça ama sıcak bir dille reddet ve yerine başka bir şey öner — böylece bir dahaki sefere kapı açık kalır."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grupta herkesin beklentisi farklı ve Denis bunu çözmeni istiyor. Görüşleri dinle, ortak noktayı bul, anlaşmazlığı kimseyi suçlamadan dile getir ve herkesin kabul edeceği bir kural öner."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila'nın dürüst bir geri bildirime ihtiyacı var ve bunu incelikle söylemek gerek. Gerçeklere dayan, etkisini anlat, somut bir değişiklik öner ve onun güçlü yanlarını unutma."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Aynı durum tekrar tekrar yaşanıyor ve bir sınır koymanın zamanı geldi. Zoe ve Denis'e senin için neyin önemli olduğunu sitem etmeden anlat ve herkese uyan bir seçenek öner."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Senin bir hatan yüzünden Denis artık sana güvenmiyor. Bahane üretmeden kabul et, açıkça özür dile, gerçek bir adım öner — ve cevap vermesi için ona zaman tanı."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila ile Zoe arasında sessiz bir çatışma büyüyor. Gerçekleri varsayımlardan ayır, ikisine de söz ver ve kaybedeni olmayan bir çözüm bul."
+      }
+    },
+    "pl": {
+      "social_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Napisz do Mili po poznaniu — przywitaj się, przypomnij, gdzie się poznaliście, i zadaj pytanie. Mila uwielbia pogadać, więc samo „cześć” nie wystarczy."
+      },
+      "social_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Spotkanie z Zoe wypada o niewygodnej porze. Przypomnij plan, zaproponuj inny termin i ustalcie ostateczny. Zoe się nie obrazi — byle nie zostawiać jej w niepewności."
+      },
+      "social_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zapytaj Denisa, jak dojechać na miejsce i czym jechać. Denis odpowiada spokojnie i szczegółowo — a jeśli coś jest niejasne, śmiało dopytaj."
+      },
+      "social_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila ci pomogła — napisz, za co dokładnie dziękujesz i w czym to pomogło. Szczegóły ucieszą ją bardziej niż zwykłe „dzięki”."
+      },
+      "social_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe ma okazję do świętowania. Pogratuluj jej, dodaj krótkie życzenie i zapytaj o wydarzenie — chętnie opowie więcej."
+      },
+      "social_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Na czacie o wspólnym hobby są Denis i Mila. Przedstaw się, opowiedz o swoim doświadczeniu i zapytaj o ich — rozmowa trwa, dopóki obu stronom jest ciekawie."
+      },
+      "social_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Umów się z Milą — zaproponuj dwie godziny, wybierzcie miejsce i ustalcie, jak się rozpoznacie. Mila zgodzi się na każdy plan, byle był jasny."
+      },
+      "social_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zaproś Zoe na wydarzenie — podaj datę i godzinę i wyjaśnij, dlaczego zapraszasz właśnie ją. Jeśli się zawaha, znajdź powód, dla którego warto przyjść."
+      },
+      "social_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Musisz odwołać plany z Denisem i Milą. Przeproś, krótko wyjaśnij powód i zaproponuj coś innego — wtedy nie zabrzmi to jak „wszystko mi jedno”."
+      },
+      "social_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Spotkanie z Milą się udało — napisz jej kilka słów. Wspomnij konkretny moment, zaproponuj powtórkę i ustalcie termin."
+      },
+      "social_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Na czacie grupowym są Zoe i Denis, a każdy ma inne plany. Zaproponuj opcję, poznaj ograniczenia każdego i doprowadź do planu, który wszyscy potwierdzą."
+      },
+      "social_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Denis przechodzi trudny czas. Zapytaj, czy chce porozmawiać, wysłuchaj bez dawania rad i zaproponuj konkretną pomoc — ale nie naciskaj, jeśli odmówi."
+      },
+      "social_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila i Zoe zrozumiały twoją wiadomość po swojemu. Spokojnie wyjaśnij, o co ci chodziło, przyznaj się do swojej części nieporozumienia i przywróć rozmowie lekkość."
+      },
+      "social_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zoe cię zaprasza, ale musisz odmówić. Podziękuj, odmów wprost, ale ciepło, i zaproponuj coś w zamian — wtedy drzwi na następny raz zostaną otwarte."
+      },
+      "social_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "W grupie każdy oczekuje czegoś innego, a Denis prosi, żeby to uporządkować. Wysłuchaj stanowisk, znajdź wspólny grunt, nazwij różnicę zdań bez obwiniania i zaproponuj zasadę, na którą wszyscy się zgodzą."
+      },
+      "social_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Mila potrzebuje szczerej opinii, a trzeba ją przekazać delikatnie. Opieraj się na faktach, opisz wpływ, zaproponuj jedną konkretną zmianę i nie zapomnij o jej mocnych stronach."
+      },
+      "social_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ta sama sytuacja się powtarza i czas postawić granicę. Wyjaśnij Zoe i Denisowi bez wyrzutów, co jest dla ciebie ważne, i zaproponuj rozwiązanie, które pasuje wszystkim."
+      },
+      "social_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Przez twój błąd Denis przestał ci ufać. Przyznaj się bez wymówek, wyraźnie przeproś, zaproponuj realny krok — i daj mu czas na odpowiedź."
+      },
+      "social_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Między Milą a Zoe narasta cichy konflikt. Oddziel fakty od domysłów, daj głos każdej z nich i sformułuj rozwiązanie bez przegranych."
+      }
     }
   }
 }

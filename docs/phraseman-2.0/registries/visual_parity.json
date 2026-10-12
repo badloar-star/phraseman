@@ -38166,20 +38166,24 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-011.png",
-      "evidence_at": "2026-10-11T22:30:50.518Z",
-      "evidence_sha256": "b131db28738604b2ccacf681f69e37b70dc08754c4af269662824fbee9842324",
+      "evidence_at": "2026-10-12T02:52:31.695Z",
+      "evidence_sha256": "cf7595cc930892d18688f9c1dae00554c2736601fad1001f00e1f624f0f70c5f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр до перехода — пересъёмка] Под тостом не экран, а служебная страница dev-ссылки «DEV-STATE OK» с JSON применённых параметров: переход next=/(tabs)/settings не успел сработать (или не сработал). В образце тост лежит поверх шторки «Энергия закончилась». Переснять с задержкой после применения ссылки и убедиться, что открыт нужный экран под тостом.",
+        "[вёрстка, мелко] Значок в приложении — белый заливной круг с галочкой, в образце галочка в кольце на тёмной плитке; тост в приложении выше нижнего края на ~60 px и уже (500 против 518 в масштабе образца)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:52:59.892Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=purchase_confirmed&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:52, paywall-gaps-states №11 «Тост — покупка подтверждена»; образец нарисован с приложения): сам тост совпал по составу — плашка с вертикальной чертой слева, значок-галочка, «ГОТОВО» и «Покупка подтверждена». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "paywall-gap-012",

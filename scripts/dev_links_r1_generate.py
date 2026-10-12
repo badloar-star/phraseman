@@ -15,6 +15,7 @@ import dev_links_r1_steps_dialogs3  # noqa: F401  зачем (Ядро 12.10, b2
 import dev_links_r1_steps_design3  # noqa: F401  зачем (Дизайн 12.10): profile-015 «отправлено» — support=sent вместо fail
 import dev_links_r1_steps_links3  # noqa: F401  зачем (12.10): двойники и служебные маршруты (link_missing → ready); ПОСЛЕ всех остальных модулей шагов — копирует их записи
 import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки и шаги Авторизации (auth-gap-001/002/003/008…012, profile-023) — свой модуль, общий файл шагов не трогаем
+import dev_links_r1_steps_chain7  # noqa: F401  зачем (Авторизация 12.10): пропущенные Сверкой в chain7 id — ссылки из существующих подмен; ПОСЛЕ auth (копии блица)
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))
@@ -169,7 +170,9 @@ O = ['spire', 'spire-gap', 'community', 'onboarding', 'onboarding-paywall', 'aut
 rule(O, r'.', '', '')  # заглушка: только текст из shot list
 
 # зачем (Сверка 12.10, ROBOT13): learn/coins/video/overlays не входили ни в одну область — 11 id оставались «нет_в_DEV_LINKS_R1»; ссылки и шаги — scripts/dev_links_r1_steps_robot.py
-LV = ['learn', 'coins', 'video', 'overlays']
+# зачем (Авторизация 12.10, chain7): блиц practice.html, серия/статистика results.html и системные сообщения system.html не входили ни в одну область —
+# их строки (dev_links_r1_steps_chain7.py) не выводились в таблицу
+LV = ['learn', 'coins', 'video', 'overlays', 'practice', 'results', 'system']
 rule(LV, r'.', '', '')
 
 def section_of(rid):

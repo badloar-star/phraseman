@@ -447,15 +447,23 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // сожжён прежним багом (ставился до серверной записи и не откатывался),
       // обычный путь добавления больше никогда не пойдёт в сеть. Этот вызов
       // идемпотентен и чинит такие устройства прямо перед отправкой отклика.
-      if (!serverConfirmedWriteRef.current) {
-        if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] жду подтверждение pack_adds перед отправкой', { packId, uid: myUserId });
-        const addRes = await registerCommunityPackAddRemote(packId, myUserId);
-        // ok:false — сервер отказал; не запоминаем ложный успех, чтобы
-        // «Повторить» сделало новую попытку регистрации, а не только отклика.
-        if (addRes.ok !== false) serverConfirmedWriteRef.current = true;
-        if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] registerCommunityPackAddRemote вернул', { packId, ok: addRes.ok, changed: addRes.changed });
+      // зачем (аудит Optimistic UI, 12.10): исключение в одном из двух ожиданий оставляло `sending` и замок отправки взведёнными
+      // навсегда, а строку — вечно «отправляется». Теперь это тот же откат, что у отказа сервера: строка `failed` с «Повторить».
+      let res: Awaited<ReturnType<typeof publishPackComment>>;
+      try {
+        if (!serverConfirmedWriteRef.current) {
+          if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] жду подтверждение pack_adds перед отправкой', { packId, uid: myUserId });
+          const addRes = await registerCommunityPackAddRemote(packId, myUserId);
+          // ok:false — сервер отказал; не запоминаем ложный успех, чтобы
+          // «Повторить» сделало новую попытку регистрации, а не только отклика.
+          if (addRes.ok !== false) serverConfirmedWriteRef.current = true;
+          if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] registerCommunityPackAddRemote вернул', { packId, ok: addRes.ok, changed: addRes.changed });
+        }
+        res = await publishPackComment(packId, myUserId, optimistic.authorName, text);
+      } catch (error: unknown) {
+        console.warn(`[PACK-COMMENTS-COMPOSER] отправка бросила исключение packId=${packId} — строка помечена failed: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
+        res = { ok: false, reason: 'network' };
       }
-      const res = await publishPackComment(packId, myUserId, optimistic.authorName, text);
       // зачем: шторка могла закрыться (размонтироваться) пока запрос летел —
       // сервер уже принял комментарий, локальный state больше никому не нужен.
       if (unmountedRef.current) {
@@ -476,16 +484,32 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     })();
   }, [myUserId, sending, draft, canWrite, packId, lang]);
 
+  // зачем (аудит Optimistic UI, 12.10): «Повторить» — второй тап в том же кадре отправлял отклик дважды (статус `sending`
+  // появляется после перерисовки); замок по id строки синхронный, как у основной отправки.
+  const retryLocksRef = useRef<Set<string>>(new Set());
   const handleRetry = useCallback((comment: PackComment) => {
     if (!myUserId) return;
+    if (retryLocksRef.current.has(comment.id)) {
+      console.warn(`[PACK-COMMENTS-COMPOSER] повтор ${comment.id}: уже в пути — повторный тап пропущен`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    retryLocksRef.current.add(comment.id);
     hapticTap();
     setComments((prev) => prev.map((c) => (c.id === comment.id ? { ...c, status: 'sending' } : c)));
     void (async () => {
-      if (!serverConfirmedWriteRef.current) {
-        const addRes = await registerCommunityPackAddRemote(packId, myUserId);
-        if (addRes.ok !== false) serverConfirmedWriteRef.current = true;
+      let res: Awaited<ReturnType<typeof publishPackComment>>;
+      try {
+        if (!serverConfirmedWriteRef.current) {
+          const addRes = await registerCommunityPackAddRemote(packId, myUserId);
+          if (addRes.ok !== false) serverConfirmedWriteRef.current = true;
+        }
+        res = await publishPackComment(packId, myUserId, comment.authorName, comment.text);
+      } catch (error: unknown) {
+        console.warn(`[PACK-COMMENTS-COMPOSER] повтор бросил исключение packId=${packId} commentId=${comment.id}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
+        res = { ok: false, reason: 'network' };
+      } finally {
+        retryLocksRef.current.delete(comment.id);
       }
-      const res = await publishPackComment(packId, myUserId, comment.authorName, comment.text);
       if (unmountedRef.current) {
         if (res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
         return;

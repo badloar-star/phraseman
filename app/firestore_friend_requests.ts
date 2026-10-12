@@ -353,7 +353,36 @@ function deleteSentRequestIndex(
  *
  * Writes: users/{toUid}/friend_requests/{myUid} = { status: 'pending', createdAt, fromName? }
  */
+// зачем (аудит Optimistic UI, 12.10): «Заявка отправлена!» показывается сразу, а сама отправка — 3–5 последовательных
+// чтений и запись. При зависшей сети плашка висела без конца и кнопка не возвращалась. Потолок: через 15 с экран получает
+// 'network' (откат: найденный человек и код возвращаются, «Связь пропала»). Если запись всё же дошла позже, повтор даст
+// 'already_sent' — честный ответ.
+export const SEND_FRIEND_REQUEST_TIMEOUT_MS = 15_000;
+
 export async function sendFriendRequest(toUid: string): Promise<SendRequestResult> {
+  const startedAt = Date.now();
+  let timedOut = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const ceiling = new Promise<SendRequestResult>((resolve) => {
+    timer = setTimeout(() => {
+      timedOut = true;
+      console.warn(`[FRIEND-REQUEST] send ${toUid}: нет ответа за ${SEND_FRIEND_REQUEST_TIMEOUT_MS} мс — отдаю network, запись может дойти позже`);
+      resolve('network');
+    }, SEND_FRIEND_REQUEST_TIMEOUT_MS);
+  });
+  const work = sendFriendRequestInner(toUid);
+  void work.then(
+    (late) => { if (timedOut) console.warn(`[FRIEND-REQUEST] send ${toUid}: ответ пришёл после потолка через ${Date.now() - startedAt} мс — result=${late}`); },
+    (error: unknown) => { if (timedOut) console.warn(`[FRIEND-REQUEST] send ${toUid}: после потолка упало — ${error instanceof Error ? error.message : String(error)}`); },
+  );
+  try {
+    return await Promise.race([work, ceiling]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+async function sendFriendRequestInner(toUid: string): Promise<SendRequestResult> {
   const myUid = await ensureAnonUser();
   if (!myUid) {
     logFriendsHealth('friends:send_request_no_canonical_uid', new Error('canonical uid unavailable'), {

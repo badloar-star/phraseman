@@ -116,3 +116,29 @@ describe('источники: правки аудита на месте', () => 
     expect(game).toContain('итог ступени ${finish.report.reportId} потерян');
   });
 });
+
+describe('источники: второй проход аудита (отклики, избранное видео, потолок заявки)', () => {
+  it('Отклики: исключение в отправке/повторе не оставляет замок и «отправляется» навсегда; повтор имеет замок', () => {
+    const sheet = read('app/community_packs/PackCommentsSheet.tsx');
+    expect(sheet.match(/res = \{ ok: false, reason: 'network' \};/g)?.length).toBe(2);
+    expect(sheet).toContain('const retryLocksRef = useRef<Set<string>>(new Set());');
+    expect(sheet).toContain('retryLocksRef.current.add(comment.id);');
+    expect(sheet).toContain('retryLocksRef.current.delete(comment.id);');
+    expect(sheet).toContain('отправка бросила исключение packId=');
+  });
+
+  it('Избранное видео: тап не гасится на время записи в облако, только дребезг в пределах кадра; направление — по свежему состоянию', () => {
+    const hook = read('hooks/use_video_favorites.ts');
+    expect(hook).not.toContain('inFlightRef');
+    expect(hook).toContain('export const VIDEO_FAVORITE_TAP_DEBOUNCE_MS = 350;');
+    expect(hook).toContain('const next = !savedSetRef.current.has(videoId);');
+    expect(hook).toContain('hook: дребезг тапа — пропуск');
+  });
+
+  it('Заявка в друзья: у sendFriendRequest есть потолок ожидания и лог позднего ответа', () => {
+    const src = read('app/firestore_friend_requests.ts');
+    expect(src).toContain('export const SEND_FRIEND_REQUEST_TIMEOUT_MS = 15_000;');
+    expect(src).toContain('ответ пришёл после потолка');
+    expect(src).toContain('async function sendFriendRequestInner(toUid: string)');
+  });
+});

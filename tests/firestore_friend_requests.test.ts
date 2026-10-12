@@ -349,6 +349,28 @@ test('D02: declineFriendRequest бросает ошибку без личнос�
   expect(mockDocs.has('users/my-uid-111/friend_requests/from-uid-333')).toBe(true);
 });
 
+// зачем (аудит Optimistic UI, 12.10): «Заявка отправлена!» стоит на экране с первого тапа; при зависшей сети отправка не должна
+// висеть без конца — через потолок экран получает 'network' и откатывается (найденный человек и код возвращаются).
+test('S99: sendFriendRequest через потолок отдаёт network, если связь зависла', async () => {
+  jest.useFakeTimers();
+  const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  try {
+    stableAuthLinkImplementation = () => new Promise<boolean>(() => undefined);
+    const { sendFriendRequest, SEND_FRIEND_REQUEST_TIMEOUT_MS } = require('../app/firestore_friend_requests');
+    const pending: Promise<SendRequestResult> = sendFriendRequest('target-uid-555');
+    await jest.advanceTimersByTimeAsync(SEND_FRIEND_REQUEST_TIMEOUT_MS - 1);
+    let settled = false;
+    void pending.then(() => { settled = true; });
+    await Promise.resolve();
+    expect(settled).toBe(false);
+    await jest.advanceTimersByTimeAsync(2);
+    await expect(pending).resolves.toBe('network');
+  } finally {
+    warn.mockRestore();
+    jest.useRealTimers();
+  }
+});
+
 test('X01: deleteFriend deletes users/myUid/friends/friendUid', async () => {
   mockDocs.set('users/my-uid-111/friends/friend-uid-444', { createdAt: 700 });
   mockDocs.set('users/friend-uid-444/friends/my-uid-111', { createdAt: 700 });

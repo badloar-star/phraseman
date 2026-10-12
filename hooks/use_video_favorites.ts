@@ -12,6 +12,9 @@ let lastFavorites: VideoFavoritesState | null = null;
 
 export type VideoFavoriteToggleOutcome = 'ok' | 'failed';
 
+/** Тапы чаще этого — один и тот же жест (дребезг), следующий осмысленный тап проходит даже при незавершённой записи. */
+export const VIDEO_FAVORITE_TAP_DEBOUNCE_MS = 350;
+
 export function useVideoFavorites(): Readonly<{
   savedIds: readonly string[];
   isSaved: (videoId: string) => boolean;
@@ -19,7 +22,11 @@ export function useVideoFavorites(): Readonly<{
   state: VideoFavoritesState | null;
 }> {
   const [state, setState] = useState<VideoFavoritesState | null>(lastFavorites);
-  const inFlightRef = useRef<Set<string>>(new Set());
+  // зачем (аудит Optimistic UI, 12.10): раньше повторный тап гасился, пока идёт ЗАПИСЬ В ОБЛАКО (до 12 с при слабой сети),
+  // — человек видел «сохранено» и не мог убрать закладку, тап пропадал молча. Стор сам устойчив к тапам поверх незавершённой
+  // записи (поздний ответ не затирает новый тап, записи одного клиента идут по порядку), поэтому гасим только дребезг
+  // в пределах одного кадра, а направление считаем по самому свежему состоянию.
+  const lastTapRef = useRef<Map<string, number>>(new Map());
 
   useEffect(() => {
     const store = getVideoFavoritesStore();
@@ -46,16 +53,20 @@ export function useVideoFavorites(): Readonly<{
   const savedIds = useMemo(() => favoriteVideoIds(state), [state]);
   const savedSet = useMemo(() => new Set(savedIds), [savedIds]);
   const isSaved = useCallback((videoId: string) => savedSet.has(videoId), [savedSet]);
+  const savedSetRef = useRef(savedSet);
+  savedSetRef.current = savedSet;
 
   const toggle = useCallback(async (videoId: string): Promise<VideoFavoriteToggleOutcome> => {
-    // Двойной тап по той же карточке, пока запись идёт, гасим.
-    if (inFlightRef.current.has(videoId)) {
-      console.log('[PM111-FAV] hook: повторный тап во время записи — пропуск', JSON.stringify({ videoId }));
+    const tapAt = Date.now();
+    const sinceLast = tapAt - (lastTapRef.current.get(videoId) ?? 0);
+    if (sinceLast < VIDEO_FAVORITE_TAP_DEBOUNCE_MS) {
+      console.log('[PM111-FAV] hook: дребезг тапа — пропуск', JSON.stringify({ videoId, sinceLastMs: sinceLast }));
       return 'ok';
     }
-    inFlightRef.current.add(videoId);
+    lastTapRef.current.set(videoId, tapAt);
     try {
-      const next = !savedSet.has(videoId);
+      const next = !savedSetRef.current.has(videoId);
+      console.log('[PM111-FAV] hook: тап', JSON.stringify({ videoId, next, sinceLastMs: sinceLast }));
       const result = await getVideoFavoritesStore().toggle(videoId, next);
       if (!result.ok) {
         console.warn('[PM111-FAV] hook: не сохранено', JSON.stringify({ videoId, reason: result.reason }));
@@ -65,10 +76,8 @@ export function useVideoFavorites(): Readonly<{
     } catch (error: unknown) {
       console.warn('[PM111-FAV] hook: toggle бросил', error instanceof Error ? error.message : String(error));
       return 'failed';
-    } finally {
-      inFlightRef.current.delete(videoId);
     }
-  }, [savedSet]);
+  }, []);
 
   return { savedIds, isSaved, toggle, state };
 }

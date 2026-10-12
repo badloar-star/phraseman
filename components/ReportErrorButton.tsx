@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { isDevOverlaysOff } from '../app/dev_overlays_off';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import {
@@ -571,6 +572,12 @@ function ReportErrorButtonGate(props: Props) {
   // Исключение: свой транспорт (submitOverride) — это не «Нашёл ошибку?», а рабочая функция режима
   // (Шпиль убирает плохое задание из забега), её не прячем.
   if (!REPORT_ERROR_ENABLED && !props.submitOverride) {
+    if (props.openRef) props.openRef.current = null;
+    return null;
+  }
+  // зачем (Макеты 12.10, community-020): тестерский триггер «Нашёл ошибку?» не должен попадать в кадры сверки — при dev `overlays=off` его нет (в сторе isDevOverlaysOff() всегда false;
+  // рабочий флажок Шпиля со своим транспортом submitOverride не трогаем).
+  if (!props.submitOverride && isDevOverlaysOff()) {
     if (props.openRef) props.openRef.current = null;
     return null;
   }

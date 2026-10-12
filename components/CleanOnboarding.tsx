@@ -3780,7 +3780,9 @@ function CleanOnboarding({
   // Приветствие по имени (Bevel «Nice to meet you», кадр 3). Имя: из входа на
   // сейфе → синхронный peek текущего пользователя → без имени.
   const renderNiceToMeet = () => {
-    const name = greetName ?? firstNameOf(peekLinkedAuthFromCurrentUser()?.displayName);
+    // зачем (Макеты 12.10, onboarding-009): dev `greet=Alex` ставил имя только ПОСЛЕ входа на экране-сейфе (setGreetName(getDevGreetName() ?? …)); при открытии шага напрямую (`onbstep=niceToMeet`) входа нет,
+    // и приветствие шло без имени. Теперь подмена читается и здесь; вне dev getDevGreetName() === null — поведение прежнее.
+    const name = greetName ?? getDevGreetName() ?? firstNameOf(peekLinkedAuthFromCurrentUser()?.displayName);
     return (
       <ScreenFrame
         step="niceToMeet"

@@ -74,6 +74,7 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
 import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
 import { devFriendsDemoData, isDevFriendsDemoOn } from '../dev_friends_demo';
+import { isDevOverlaysOff } from '../dev_overlays_off';
 import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -2206,7 +2207,8 @@ export default function FriendsTabScreen() {
         ) : null}
       </View>
       {/* DEV-only: панель ботов «Вместе» — сквозная ручная проверка сценариев (owner, 2026-08-17). */}
-      {ENABLE_DEV_TOOLS && (
+      {/* зачем (Макеты 12.10, community-020): плашка «DEV» не должна попадать в кадры сверки — при dev overlays=off её нет */}
+      {ENABLE_DEV_TOOLS && !isDevOverlaysOff() && (
         <TouchableOpacity
           testID="friends-together-dev-open"
           onPressIn={() => hapticTap()}

@@ -117,7 +117,8 @@ describe('friends_together DEV bots', () => {
     const togetherSheet = source.slice(togetherDisplayStart, togetherSheetEnd);
 
     expect(source).toContain('const friendsTogetherUiEnabled = false;');
-    expect(source).toMatch(/\{ENABLE_DEV_TOOLS\s*&&\s*\(\s*<TouchableOpacity[\s\S]*?testID="friends-together-dev-open"/);
+    // зачем (Макеты 12.10, community-020): к условию добавлено `!isDevOverlaysOff()` — плашка DEV не попадает в кадры сверки; в разработке она по-прежнему только под ENABLE_DEV_TOOLS
+    expect(source).toMatch(/\{ENABLE_DEV_TOOLS\s*&&\s*!isDevOverlaysOff\(\)\s*&&\s*\(\s*<TouchableOpacity[\s\S]*?testID="friends-together-dev-open"/);
     expect(devBotsSource).toContain("import { ENABLE_DEV_TOOLS } from '../config'");
     expect(devBotsSource).toContain('return ENABLE_DEV_TOOLS;');
     expect(source).toContain('devBotToFriendProfile');

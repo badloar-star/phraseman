@@ -122,6 +122,7 @@ import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
+import { isDevOverlaysOff } from './dev_overlays_off';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { MOTION_DURATION } from '../constants/motion';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
@@ -1801,7 +1802,8 @@ const LessonContent = React.memo(function LessonContent({
         )}
         </View>
 
-        {__DEV__ && (
+        {/* зачем (координатор 12.10): плашка не должна попадать в кадры робота — при dev overlays=off её нет */}
+        {__DEV__ && !isDevOverlaysOff() && (
           <TapScale
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }} // theme-exempt: DEV-подсказка и нативная рябь касания — вне темы
             onPress={() => {

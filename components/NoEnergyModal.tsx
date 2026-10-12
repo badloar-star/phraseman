@@ -243,6 +243,14 @@ function NoEnergyModal({
     // «Нет энергии» в проде = пользователь уже увидел систему; не дублировать отдельным тутором на главной
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
+    if (variant === 'learn') {
+      // зачем (координатор 12.10, energy-modes-017, образец энергия-modes-states А3 №25): окно старта урока = образец — одна фиксированная фраза «Дай знаниям немного уложиться. +1 ⚡ вернётся через {время}. Или забудь о паузах с Плюс прямо сейчас.»
+      // (первая в пуле lesson1_energy.ts) с живым таймером, а не случайная из двадцати и не «Для урока нужно 1 ⚡…». Пул остаётся в коде (его читают другие места).
+      const fixedLine = lessonEnergyMessages(lang)[0] ?? '';
+      console.log(`[NO-ENERGY-WINDOW] learn: текст выбран детерминированно (образец А3) lang=${lang} isGate=${String(isGate)} activity=${activity ?? 'нет'} required=${requiredEnergy} have=${totalAvailable} lineLen=${fixedLine.length}`); // guard-ok: ветка решает значение
+      setLineText(fixedLine);
+      return;
+    }
     if (isGate) {
       // зачем БЕЗ рулетки (владелец 2026-09-15: «в диалоге модал говорит
       // экзамен требует 20! какого хуй экзамен!!! исправь все тексты чтобы
@@ -256,7 +264,7 @@ function NoEnergyModal({
     const list = lessonEnergyMessages(lang);
     const raw = list[Math.floor(Math.random() * list.length)] ?? list[0] ?? '';
     setLineText(raw);
-  }, [modalVisible, isGate, lang, requiredEnergy, totalAvailable]);
+  }, [modalVisible, isGate, lang, requiredEnergy, totalAvailable, variant, activity]);
 
   const missingToStart = Math.max(0, requiredEnergy - totalAvailable);
   const timeToStartMs = missingToStart > 0
@@ -289,11 +297,12 @@ function NoEnergyModal({
   const gateFallback = isGate
     ? energyGateMessage(activity ?? 'classic_lesson', lang, requiredEnergy, totalAvailable)
     : '';
-  const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
+  const showBody = ((isGate && variant !== 'learn') ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
   const reduceMotion = useReduceMotion();
   const hybrid = motionVariant === 'hybrid';
 
-  const titleText = isGate
+  // зачем (координатор 12.10, образец А3): у варианта learn заголовок всегда «Энергия закончилась» (не «Недостаточно энергии»), как на макете
+  const titleText = isGate && variant !== 'learn'
     ? triLang(lang, {
         ru: 'Недостаточно энергии',
         uk: 'Недостатньо енергії',

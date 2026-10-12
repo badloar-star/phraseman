@@ -561,21 +561,25 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
 export async function declineFriendRequest(fromUid: string): Promise<void> {
   const myUid = await ensureAnonUser();
   if (!myUid) {
-    logFriendsHealth('friends:decline_request_no_canonical_uid', new Error('canonical uid unavailable'), {
+    const err = new Error('declineFriendRequest: canonical UID unavailable');
+    logFriendsHealth('friends:decline_request_no_canonical_uid', err, {
       action: 'decline_friend_request',
       fromUid,
     });
-    return;
+    // зачем (аудит Optimistic UI, 12.10): тихий return давал экрану «успех» — заявка исчезала локально, а на сервере
+    // оставалась; откат и сообщение срабатывают только по исключению (как у acceptFriendRequest).
+    throw err;
   }
 
   const db = getFirestore();
   if (!db) {
-    logFriendsHealth('friends:decline_request_firestore_unavailable', new Error('Firestore unavailable'), {
+    const err = new Error('declineFriendRequest: Firestore unavailable');
+    logFriendsHealth('friends:decline_request_firestore_unavailable', err, {
       action: 'decline_friend_request',
       myUid,
       fromUid,
     });
-    return;
+    throw err; // зачем: см. выше — экран должен откатить заявку и сказать об ошибке
   }
 
   try {

@@ -104,6 +104,7 @@ import {
 } from '../friend_activity_likes';
 import { trackActivity } from '../app_activity';
 import { friendsAccountStore } from '../friends_account_store';
+import { createPendingFriendOps } from '../friends_pending_ops';
 import { emitAppEvent, onAppEvent } from '../events';
 import { checkAchievements } from '../achievements';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
@@ -1230,6 +1231,9 @@ export default function FriendsTabScreen() {
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
   const swrHadFriendsRef = useRef(false);
+  // зачем (аудит Optimistic UI, 12.10): заявки «в пути» — снимки подписок не возвращают принятую/отклонённую заявку и не
+  // убирают только что добавленного друга, пока сервер не ответил (см. app/friends_pending_ops.ts).
+  const pendingFriendOpsRef = useRef(createPendingFriendOps<FriendEntry, FriendRequestEntry>());
   /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
   const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
 
@@ -1434,7 +1438,11 @@ export default function FriendsTabScreen() {
         setFriendsListError(false);
         const fromCache = meta?.fromCache === true;
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
-        setFriends(data);
+        const mergedFriends = pendingFriendOpsRef.current.mergeFriends(data, Date.now());
+        if (mergedFriends.length !== data.length) {
+          console.log(`[FRIEND-REQUEST] снимок друзей: из сервера ${data.length}, добавлено «в пути» ${mergedFriends.length - data.length}`); // guard-ok: ветка решает значение
+        }
+        setFriends(mergedFriends);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(noteSwallowedHandler('friends:useEffect.checkAchievements_2'));
         }
@@ -1445,7 +1453,14 @@ export default function FriendsTabScreen() {
       });
 
       unsubRequests = subscribeToIncomingRequests(
-        data => { if (!cancelled) setRequests(data); },
+        data => {
+          if (cancelled) return;
+          const visible = pendingFriendOpsRef.current.filterRequests(data, Date.now());
+          if (visible.length !== data.length) {
+            console.log(`[FRIEND-REQUEST] снимок заявок: из сервера ${data.length}, скрыто «в пути» ${data.length - visible.length}`); // guard-ok: ветка решает значение
+          }
+          setRequests(visible);
+        },
         () => {},
       );
     })();
@@ -1796,6 +1811,7 @@ export default function FriendsTabScreen() {
       createdAt: Date.now(),
       ...(request.fromName ? { displayName: request.fromName } : {}),
     };
+    pendingFriendOpsRef.current.begin(request.fromUid, 'accept', hadFriend ? undefined : optimisticFriend);
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     if (!hadFriend) {
       setFriends(prev => prev.some(friend => friend.uid === request.fromUid) ? prev : [...prev, optimisticFriend]);
@@ -1804,7 +1820,9 @@ export default function FriendsTabScreen() {
       soundDirector.request('pm.social.friend_added', { scope: 'friends' });
     }
     acceptFriendRequest(request.fromUid)
+      .then(() => { pendingFriendOpsRef.current.settle(request.fromUid, true, Date.now()); })
       .catch((error: unknown) => {
+        pendingFriendOpsRef.current.settle(request.fromUid, false, Date.now());
         console.warn(`[FRIEND-REQUEST] accept ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
         if (!hadFriend) {
@@ -1828,9 +1846,12 @@ export default function FriendsTabScreen() {
     }
     requestOpsInFlightRef.current.add(request.fromUid);
     hapticTap();
+    pendingFriendOpsRef.current.begin(request.fromUid, 'decline');
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     declineFriendRequest(request.fromUid)
+      .then(() => { pendingFriendOpsRef.current.settle(request.fromUid, true, Date.now()); })
       .catch((error: unknown) => {
+        pendingFriendOpsRef.current.settle(request.fromUid, false, Date.now());
         console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
         showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');

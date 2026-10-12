@@ -19,6 +19,7 @@ import {
 } from './packSocialStorage';
 import { registerCommunityPackAddRemote, setCommunityPackLikeRemote } from './packSocialFirestore';
 import { DebugLogger } from '../debug-logger';
+import { createSerialPerKey } from './serial_per_key';
 
 export type AddPackToLibraryResult =
   /** Добавлен сейчас. */
@@ -175,8 +176,16 @@ export type ToggleLikeResult = {
  * Лайк активности набора. Локальный флаг переключаем сразу (для оптимистичного UI),
  * сервер догоняет; при отсутствии облака остаётся только локальное состояние.
  */
-export async function toggleCommunityPackLike(packId: string): Promise<ToggleLikeResult> {
-  if (!packId) return { liked: false, changed: false };
+// зачем (аудит Optimistic UI, 12.10): два быстрых тапа по сердцу шли параллельно и читали флаг до записи первого —
+// экран и хранилище расходились. Тапы по одному набору идут строго по очереди (см. serial_per_key.ts).
+const likeQueue = createSerialPerKey();
+
+export function toggleCommunityPackLike(packId: string): Promise<ToggleLikeResult> {
+  if (!packId) return Promise.resolve({ liked: false, changed: false });
+  return likeQueue(`like:${packId}`, () => toggleCommunityPackLikeNow(packId));
+}
+
+async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeResult> {
   const wasLiked = await isCommunityPackLikedLocally(packId);
   const nextLiked = !wasLiked;
   const changed = await setCommunityPackLikedLocally(packId, nextLiked);

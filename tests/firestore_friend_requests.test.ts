@@ -340,6 +340,15 @@ test('D01: declineFriendRequest DELETES users/myUid/friend_requests/fromUid doc'
 
 // ── deleteFriend tests ─────────────────────────────────────────────────────
 
+// зачем (аудит Optimistic UI, 12.10): без личности отказ раньше был тихим return — экран считал заявку отклонённой и не откатывал.
+test('D02: declineFriendRequest бросает ошибку без личности — экран откатит заявку и покажет сообщение', async () => {
+  canonicalUidOverride = null;
+  mockDocs.set('users/my-uid-111/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
+  const { declineFriendRequest } = require('../app/firestore_friend_requests');
+  await expect(declineFriendRequest('from-uid-333')).rejects.toThrow('declineFriendRequest');
+  expect(mockDocs.has('users/my-uid-111/friend_requests/from-uid-333')).toBe(true);
+});
+
 test('X01: deleteFriend deletes users/myUid/friends/friendUid', async () => {
   mockDocs.set('users/my-uid-111/friends/friend-uid-444', { createdAt: 700 });
   mockDocs.set('users/friend-uid-444/friends/my-uid-111', { createdAt: 700 });

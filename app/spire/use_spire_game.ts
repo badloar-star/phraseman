@@ -305,7 +305,11 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const onStepFinish = useCallback((finish: SpireStepFinish) => {
     const s = session;
     setSession(null);
-    if (!s || !ids || !lang || !config) return;
+    if (!s || !ids || !lang || !config) {
+      // зачем (аудит Optimistic UI, 12.10): итог ступени терялся молча — раннему выходу нужна причина (сперва логи)
+      DebugLogger.warn(LOG, `game: итог ступени ${finish.report.reportId} потерян — session=${s ? 'есть' : 'нет'} ids=${ids ? 'есть' : 'нет'} lang=${lang ?? '—'} config=${config ? 'есть' : 'нет'}`);
+      return;
+    }
     const base = weekRef.current && weekRef.current.weekKey === finish.report.weekKey
       ? weekRef.current
       : spireCreateWeekLocal({ lang, weekKey: finish.report.weekKey, tier: finish.report.tier, packHash: finish.report.packHash });

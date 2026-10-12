@@ -93,7 +93,9 @@ async function readPendingUnlocked(stableUid: string, nowMs = Date.now()): Promi
     const kept = parsed.filter((row) => isPending(row, stableUid, nowMs)).slice(-OUTBOX_MAX);
     if (kept.length !== parsed.length) await writePendingUnlocked(stableUid, kept);
     return kept;
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит Optimistic UI, 12.10): битая очередь жалоб стиралась молча — теперь причина и размер записи в журнале
+    console.warn('[SPIRE-REPORT]', JSON.stringify({ step: 'outbox_corrupt_reset', length: raw.length, reason: error instanceof Error ? error.message : String(error) }));
     await AsyncStorage.removeItem(outboxKey(stableUid)).catch(noteSwallowedAs('task_report_client:promise_1', undefined));
     return [];
   }
@@ -117,7 +119,8 @@ async function enqueuePendingSpireTaskReport(report: PendingSpireTaskReport): Pr
       await writePendingUnlocked(report.stableUid, [...withoutSame, report]);
       return true;
     });
-  } catch {
+  } catch (error: unknown) {
+    console.warn('[SPIRE-REPORT]', JSON.stringify({ step: 'enqueue_failed', taskId: report.id.slice(-12), reason: error instanceof Error ? error.message : String(error) })); // зачем: жалоба без очереди остаётся в забеге — причину нужно видеть
     return false;
   }
 }
@@ -142,10 +145,14 @@ export async function retryPendingSpireTaskReports(
         expectedStableUid: stableUid,
         idempotencyKey: row.id,
       });
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[SPIRE-REPORT]', JSON.stringify({ step: 'retry_send_threw', sent, reason: error instanceof Error ? error.message : String(error) }));
       break;
     }
-    if (result?.ok !== true) break;
+    if (result?.ok !== true) {
+      console.warn('[SPIRE-REPORT]', JSON.stringify({ step: 'retry_not_ok', sent }));
+      break;
+    }
     await removePendingSpireTaskReport(stableUid, row.id);
     sent += 1;
   }

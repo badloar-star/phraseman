@@ -35,7 +35,8 @@ function getFirestore(): unknown | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (error: unknown) {
+    console.warn('[SPIRE-CONFIG] firestore недоступен —', error instanceof Error ? error.message : String(error)); // зачем: молчаливый null выглядел как «Шпиль выключен»
     return null;
   }
 }

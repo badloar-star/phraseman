@@ -143,6 +143,9 @@ export default function CommunityPackSocialBar({
    * результат чтения применяется только если за время запроса не было нажатий.
    */
   const opSeqRef = useRef(0);
+  // зачем (аудит Optimistic UI, 12.10): второй тап по «Добавить» в том же кадре (до перерисовки на «В моих наборах»)
+  // запускал вторую запись и второй onAdded (двойной тост/переход). Замок меняется синхронно и снимается по завершении записи.
+  const addInFlightRef = useRef(false);
 
   useEffect(() => {
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
@@ -307,6 +310,11 @@ export default function CommunityPackSocialBar({
       onRequestPurchase(pack, price);
       return;
     }
+    if (addInFlightRef.current) {
+      console.warn(`[PACK-SOCIAL] добавление pack=${pack.id}: уже в пути — повторный тап пропущен`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    addInFlightRef.current = true;
     opSeqRef.current += 1;
     /** Снимок ДО оптимистичного шага — только по нему можно честно откатиться. */
     const before = snapshot;
@@ -344,7 +352,7 @@ export default function CommunityPackSocialBar({
       // зачем (баг владельца 11.10): добавление — локальная запись без сети, единственный отказ — `unavailable`
       // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
       emitAppEvent('action_toast', packAddFailureToast(res));
-    })();
+    })().finally(() => { addInFlightRef.current = false; });
   }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);
 
   const addedLabel = triLang(lang, {

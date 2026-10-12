@@ -60,7 +60,9 @@ export const submitUserReport = async (params: {
       platform: Platform.OS,
       appVersion,
     });
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит Optimistic UI, 12.10): отказ отправки жалобы был немым — экран откатывает «Готово», а причины в журнале не было
+    console.warn(`[REPORT] user_report: отправка не удалась — ${error instanceof Error ? error.message : String(error)}`);
     return 'failed';
   }
 
@@ -111,7 +113,9 @@ export const submitPackReport = async (params: {
       platform: Platform.OS,
       appVersion,
     });
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит Optimistic UI, 12.10): отказ отправки жалобы был немым — экран откатывает «Готово», а причины в журнале не было
+    console.warn(`[REPORT] community_pack_report: отправка не удалась — ${error instanceof Error ? error.message : String(error)}`);
     return 'failed';
   }
 
@@ -155,7 +159,9 @@ export const submitPackCommentReport = async (params: {
       platform: Platform.OS,
       appVersion,
     });
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит Optimistic UI, 12.10): отказ отправки жалобы был немым — экран откатывает «Готово», а причины в журнале не было
+    console.warn(`[REPORT] community_pack_comment_report: отправка не удалась — ${error instanceof Error ? error.message : String(error)}`);
     return 'failed';
   }
 

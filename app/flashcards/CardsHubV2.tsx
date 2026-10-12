@@ -38,8 +38,8 @@ type Props = Readonly<{
   trainLocked: boolean;
   tiles: readonly CardsHubTile[];
   reduceMotion: boolean;
-  /** Высота, доступная под содержимое (экран минус вырезы): стопка и плитки сжимаются на невысоких экранах, чтобы не было прокрутки. */
-  availableHeight: number;
+  /** Сумма вырезов сверху и снизу: высота под содержимое = высота окна минус они; стопка и плитки сжимаются на невысоких экранах, чтобы не было прокрутки. */
+  verticalInsets: number;
   onBack: () => void;
   onCreate: () => void;
   onTrain: () => void;
@@ -93,7 +93,7 @@ const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: Style
 
 function CardsHubV2Inner({
   g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
-  onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight, fresh,
+  onBack, onCreate, onTrain, trainButtonRef, labels, verticalInsets, fresh,
 }: Props) {
   useHubLifecycle('CardsHubV2'); // зачем (координатор 12.10, утечка памяти в хабе; сперва логи)
   // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
@@ -121,8 +121,9 @@ function CardsHubV2Inner({
   const [a, b] = themePair(g);
   // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
   const fixed = 4 + 44 + 8 + 46 + 6 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
-  const rem = Math.max(0, availableHeight - fixed);
-  const { fontScale } = useWindowDimensions();
+  // зачем (R1, C4): высоту окна читаем здесь, а не в корне экрана — смена размера окна/клавиатуры не перерисовывает корень хаба
+  const { fontScale, height: windowHeight } = useWindowDimensions();
+  const rem = Math.max(0, windowHeight - verticalInsets - fixed);
   const fs = Math.max(1, fontScale);
   // при крупном шрифте превью-карточке нужно больше места под слово и транскрипцию (до ×1.5), иначе слово режется по высоте
   const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)) * (fs > 1 ? Math.min(fs, 1.5) : 1));

@@ -6,7 +6,6 @@ import {
   AccessibilityInfo,
   findNodeHandle,
   StatusBar,
-  useWindowDimensions,
   StyleSheet,
   View,
 } from 'react-native';
@@ -746,7 +745,7 @@ export default function FlashcardsHubScreen() {
   const hubLoadingHeld = isDevCardsHeld('hub_loading');
   const hubTiles = useMemo(() => (hubLoadingHeld ? tiles.map((tile) => ({ ...tile, count: '' })) : tiles), [hubLoadingHeld, tiles]);
   const reduceMotion = useFcReduceMotion();
-  const windowHeight = useWindowDimensions().height;
+  // зачем (аудит скорости R1, C4, координатор 12.10): высоту окна читает сам CardsHubV2, корень не подписан на размеры окна/клавиатуры
   // зачем (Сверка cards-section-003, hubNewS): своих карточек и наборов нет (оба числа уже известны, не «загрузка») —
   // хаб новичка: «Начните с готового» и «Выбрать набор» ведёт в каталог сообщества. Раньше показывалась выдуманная «Boarding pass».
   const showFresh = savedCount === 0 && myPackCount === 0;
@@ -788,7 +787,7 @@ export default function FlashcardsHubScreen() {
             trainLocked={trainingLocked}
             tiles={hubTiles}
             reduceMotion={reduceMotion}
-            availableHeight={windowHeight - insets.top - insets.bottom}
+            verticalInsets={insets.top + insets.bottom}
             onBack={handleHubBack}
             onCreate={openCreatePack}
             onTrain={handleHubTrain}

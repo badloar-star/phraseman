@@ -37,4 +37,13 @@ describe('FlashcardsHubScreen: стабильные пропсы CardsHubV2', ()
       expect(m![1]).toContain(dep);
     }
   });
+  // зачем (R1, C4): корень хаба не подписан на размеры окна; высоту читает CardsHubV2, корень отдаёт только сумму вырезов
+  it('корень не читает useWindowDimensions, высоту окна берёт CardsHubV2', () => {
+    const hub = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
+    expect(SRC).not.toMatch(/useWindowDimensions|windowHeight/);
+    expect(HUB_TAG).toContain('verticalInsets={insets.top + insets.bottom}');
+    expect(HUB_TAG).not.toContain('availableHeight');
+    expect(hub).toMatch(/height: windowHeight\s*\}\s*=\s*useWindowDimensions\(\)/);
+    expect(hub).toContain('windowHeight - verticalInsets - fixed');
+  });
 });

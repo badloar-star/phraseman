@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image as RNImage, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Image as RNImage, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -204,20 +204,23 @@ export function FriendsRoundButton({ glass, icon, onPress, label, testID, disabl
 
 /** `.cf-feedback` макета: значок + 13/18, ошибка — цвет ошибки темы, успех — цвет успеха темы (семантика не перекрашивается). */
 export function FriendsFeedbackRow({ tone, text, testID, textScale, style }: {
-  tone: 'error' | 'success';
+  /** `pending` — «Отправляем заявку…» (решение владельца 12.10, п.81 (13), community-010): тихий тон и крутилка вместо значка результата. */
+  tone: 'error' | 'success' | 'pending';
   text: string;
   testID?: string;
   textScale: number;
   style?: StyleProp<ViewStyle>;
 }) {
   const { theme: t } = useTheme();
-  const color = tone === 'error' ? t.wrong : t.correct;
+  const color = tone === 'error' ? t.wrong : tone === 'pending' ? t.textMuted : t.correct;
   const nl = text.indexOf('\n');
   const title = nl < 0 ? text : text.slice(0, nl);
   const hint = nl < 0 ? '' : text.slice(nl + 1).trim();
   return (
     <View testID={testID} accessibilityRole="alert" accessibilityLiveRegion="polite" style={[{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }, style]}>
-      <Ionicons name={tone === 'error' ? 'flag-outline' : 'checkmark-circle-outline'} size={18} color={color} />
+      {tone === 'pending'
+        ? <ActivityIndicator size="small" color={color} style={{ width: 18, height: 18 }} />
+        : <Ionicons name={tone === 'error' ? 'flag-outline' : 'checkmark-circle-outline'} size={18} color={color} />}
       {/* зачем (community.html, телефон 9 «Ответы поиска»): ответ = заголовок + короткая подсказка;
           вторая строка приходит через \n, без неё остаётся прежний однострочный вид. */}
       <View style={{ flex: 1 }}>

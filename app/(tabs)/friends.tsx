@@ -628,7 +628,7 @@ function AddFriendModal({
   visible: boolean; onClose: () => void;
   codeInput: string; setCodeInput: (v: string) => void;
   isSearching: boolean; foundUser: FriendProfile | null; searchError: string | null;
-  isAdding: boolean; addFeedback: string | null; addFeedbackTone: 'success' | 'error';
+  isAdding: boolean; addFeedback: string | null; addFeedbackTone: 'success' | 'error' | 'pending';
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
   lang: string;
   /** «Поделиться своим кодом» (community.html find); null — реферальный вход скрыт, кнопки нет. */
@@ -781,6 +781,9 @@ function AddFriendModal({
 }
 
 // ── Main screen ───────────────────────────────────────────────────────────────
+
+// зачем (community-010): страховочный потолок состояния «Отправляем заявку…» — больше таймаута отправки заявки (15 с), чтобы результат успел заменить его
+const FRIEND_FEEDBACK_PENDING_CEILING_MS = 20_000;
 
 export default function FriendsTabScreen() {
   const tabContentBottomPad = useTabContentBottomPad();
@@ -1161,7 +1164,7 @@ export default function FriendsTabScreen() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [addFeedback, setAddFeedback] = useState<string | null>(null);
-  const [addFeedbackTone, setAddFeedbackTone] = useState<'success' | 'error'>('success');
+  const [addFeedbackTone, setAddFeedbackTone] = useState<'success' | 'error' | 'pending'>('success');
 
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -1557,11 +1560,12 @@ export default function FriendsTabScreen() {
 
   // зачем: ошибки (сеть, откат принятия/блока/удаления) шли тем же рядом, что и успех, и рисовались зелёным
   // тоном успеха; тон теперь передаётся вместе с текстом (владелец/координатор 03:15).
-  const showFeedback = useCallback((msg: string, tone: 'success' | 'error' = 'success') => {
+  const showFeedback = useCallback((msg: string, tone: 'success' | 'error' | 'pending' = 'success') => {
     setAddFeedbackTone(tone);
     setAddFeedback(msg);
     if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
-    feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
+    // зачем (community-010, «Отправляем заявку…»): ожидание держится, пока не пришёл результат (его покажет следующий showFeedback); страховочный потолок — на случай, если ответ так и не придёт.
+    feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), tone === 'pending' ? FRIEND_FEEDBACK_PENDING_CEILING_MS : 2500);
   }, []);
 
   const handleSearch = useCallback(async () => {
@@ -1740,7 +1744,9 @@ export default function FriendsTabScreen() {
     setIsAdding(true);
     setFoundUser(null);
     setCodeInput('');
-    showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', 'Request sent!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!')+'\n'+L('Ответ появится в активных заявках.', 'Відповідь з’явиться в активних заявках.', 'The reply will appear in active requests.', 'La respuesta aparecerá en las solicitudes activas.', 'A resposta aparecerá nas solicitações ativas.', 'Phản hồi sẽ hiện trong lời mời đang hoạt động.', 'Balasan akan muncul di permintaan aktif.', 'Yanıt etkin isteklerde görünecek.', 'Odpowiedź pojawi się w aktywnych zaproszeniach.'));
+    // зачем (решение владельца 12.10, п.81 (13), community-010): карточка найденного скрывается мгновенно (Optimistic UI), а вместо преждевременного «Заявка отправлена!» — честное «Отправляем заявку…»;
+    // «Заявка отправлена!» появится, когда придёт результат (ветка 'sent' ниже). Ошибка вернёт карточку и покажет причину, как раньше.
+    showFeedback(L('Отправляем заявку…', 'Надсилаємо заявку…', 'Sending request…', 'Enviando solicitud…', 'Enviando solicitação…', 'Đang gửi lời mời…', 'Mengirim permintaan…', 'İstek gönderiliyor…', 'Wysyłamy zaproszenie…'), 'pending');
     try {
       await trackActivity('friends:add_request_start', {
         feature: 'friends',

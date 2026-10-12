@@ -181,6 +181,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   onBack: () => void;
   onChangeDraft: (value: string) => void;
   onSend: () => void;
+  /** Бейдж «PLUS» на микрофоне: голосовые попытки на день исчерпаны / голос только в Plus (решение владельца 12.10, п.81 (13); сам вид — тут, правило «когда голос только Plus» — у Ядра). */
+  micPlusBadge?: boolean;
   onStartVoice: () => void;
   onStopVoice: () => void;
   onDiscardVoice: () => void;
@@ -223,6 +225,7 @@ export function DialogueV2SessionScreen({
   limitWallMessage,
   voiceFailure = null,
   voiceUnavailable = false,
+  micPlusBadge = false,
   turnError,
   turnErrorMessage,
   inputLocked = false,
@@ -536,7 +539,7 @@ export function DialogueV2SessionScreen({
                 onPressOut={onStopVoice}
                 disabled={sending} // guard-ok: accessibilityState ниже
                 accessibilityRole="button"
-                accessibilityLabel={voiceUnavailable && voiceFailure ? voiceFailure.text : voiceBusy ? labels.voiceRecording : labels.voiceIdle}
+                accessibilityLabel={`${voiceUnavailable && voiceFailure ? voiceFailure.text : voiceBusy ? labels.voiceRecording : labels.voiceIdle}${micPlusBadge ? ', Plus' : ''}`}
                 accessibilityState={{ disabled: sending || voiceUnavailable, selected: voiceBusy }}
                 testID="dialogue-v2-voice-input"
                 style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending || voiceUnavailable ? 0.55 : 1 }]}
@@ -546,6 +549,16 @@ export function DialogueV2SessionScreen({
                 ) : (
                   <Ionicons name={voiceUnavailable ? 'mic-off-outline' : 'mic-outline'} size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
                 )}
+                {/* зачем (dialogs-028, dialogs.html C15 «бейдж PLUS на микрофоне»): значок «PLUS» в правом нижнем углу кнопки — голосовые попытки закончились, дальше голос в Plus. Цвета — токены темы (cta / ctaInk). */}
+                {micPlusBadge ? (
+                  <View
+                    pointerEvents="none"
+                    testID="dialogue-v2-voice-plus-badge"
+                    style={{ position: 'absolute', right: -5, bottom: -3, minWidth: 32, height: 17, borderRadius: 9, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta }}
+                  >
+                    <Text style={{ color: glass.ctaInk, fontSize: 10, lineHeight: 13, fontWeight: '800', letterSpacing: 0.5 }} maxFontSizeMultiplier={1.1}>PLUS</Text>
+                  </View>
+                ) : null}
               </Pressable>
               <TextInput
                 value={draft}

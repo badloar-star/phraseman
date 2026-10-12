@@ -38,11 +38,13 @@ add('spire-gap-011', [], '', preview('locked'), note='«Шпиль открое�
 # зачем (сторож селекторов 12.10): testID кнопки «Все участники» — spire-all-members (SpirePodium); прежний spire-open-all не существовал
 add('spire-006', ['tap:#spire-all-members'], '', preview('room'), note='«Все участники»')
 add('community-003', [], '', preview('all'), note='в превью нет состояния offline-safe: плашки «Последнее обновление…» нет', unique=False)
-add(['community-004', 'spire-gap-018'], [], '', preview('rules'), note='шторка правил, начало списка')
+# зачем (координатор 12.10, Темы f8c38da27): превью принимает tier= (0 = Гранит) и floor= — данные образцов «Гранит, этаж 4» (spire-007/011/gap-018) и «Базальт, этаж 1» (gap-015)
+add('community-004', [], '', preview('rules'), note='шторка правил, начало списка')
+add('spire-gap-018', [], '', preview('rules', 'tier=0&floor=4'), note='шторка правил, начало списка (данные образца: Гранит, этаж 4)')
 add('spire-gap-019', ['scroll:down'], '', preview('rules'), note='прокрутка списка внутри шторки — шаг не отлажен', unique=False)
 
 # ── Ступень
-add('spire-007', [], '', preview('step_choice'), note='задание с выбором ответа')
+add('spire-007', [], '', preview('step_choice', 'tier=0&floor=4'), note='задание с выбором ответа')
 add('spire-008', [], '', preview('step_wrong'), note='ошибка — правильный ответ')
 add('spire-009', [], '', preview('step_choice', 'exit=1'), note='выход — шторка подтверждения')
 # зачем (12.10, координатор): флажок «пожаловаться» теперь есть и в превью (Дизайн 8390b34c9: testID spire-task-report-0, состояния step_* при answering) —
@@ -57,7 +59,7 @@ add('spire-gap-020', [], '', preview('step_prep'), note='готовим ступ
 
 # ── Итоги ступени
 add('spire-010', [], '', preview('passed'), note='ступень пройдена')
-add('spire-011', [], '', preview('lose'), note='ступень провалена')
+add('spire-011', [], '', preview('lose', 'tier=0&floor=4'), note='ступень провалена')
 add('spire-012', [], '', preview('guard'), note='этаж 4 пройден — впереди Страж')
 add('spire-013', [], '', preview('summit'), note='вершина, 15 этаж')
 # зачем (координатор 12.10): в превью появились причины провала lose_timeout / lose_aborted (components/spire/spire_preview_fixtures.ts) — строки различаются
@@ -66,7 +68,8 @@ add('spire-gap-013', [], '', preview('lose_aborted'), note='провал — с�
 add('spire-gap-014', [], '', preview('save_failed'), note='ступень не сохранилась')
 
 # ── Итог недели
-add(['spire-014', 'spire-gap-015', 'community-005'], [], '', preview('weekresult'), note='поднимаешься (Нефрит)')
+add(['spire-014', 'community-005'], [], '', preview('weekresult'), note='поднимаешься (Нефрит)')
+add('spire-gap-015', [], '', preview('weekresult', 'tier=1&floor=1'), note='итог недели — поднимаешься (данные образца: Базальт, этаж 1)')
 add(['spire-015', 'spire-gap-016'], [], '', preview('weekresult_stay'), note='остаёшься')
 add('spire-gap-017', [], '', preview('weekresult_down'), note='спускаешься')
 

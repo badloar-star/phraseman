@@ -2045,9 +2045,10 @@ export const DEV_SETTINGS_SLOT_KINDS: readonly DevSettingsSlotKind[] = ['poll', 
 // зачем (settings-gap-002): у сидов есть en — английский интерфейс иначе не видел бы dev-плашку вовсе (пустой en скрывает сообщение).
 type DevCampaignText = Readonly<Record<'ru' | 'uk' | 'es' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl' | 'en', string>>;
 const DEV_POLL_QUESTION: DevCampaignText = {
-  ru: 'Что улучшить в первую очередь?', uk: 'Що покращити насамперед?', es: '¿Qué mejoramos primero?', ptBr: 'O que melhorar primeiro?',
-  vi: 'Nên cải thiện điều gì trước?', id: 'Apa yang harus diperbaiki dulu?', tr: 'Önce neyi geliştirelim?', pl: 'Co poprawić w pierwszej kolejności?',
-  en: 'What should we improve first?',
+  // зачем (settings-gap-008, Дизайн 12.10): вопрос и ответы опроса — как в макете settings-gaps-states.html («Что добавить…», 4 варианта, 41/27/21/11 %), иначе кадр и образец расходятся по тексту
+  ru: 'Что добавить в первую очередь?', uk: 'Що додати насамперед?', es: '¿Qué añadimos primero?', ptBr: 'O que adicionar primeiro?',
+  vi: 'Nên thêm gì trước tiên?', id: 'Apa yang harus ditambahkan dulu?', tr: 'Önce neyi ekleyelim?', pl: 'Co dodać w pierwszej kolejności?',
+  en: 'What should we add first?',
 };
 // зачем (settings-gap-008, Макеты 12.10): сид клал вопрос и в заголовок, и в текст сообщения — на кадре «Что улучшить…» стояло трижды (заголовок, абзац, вопрос).
 // Это данные сида, а не шаблон карточки (SettingsMessageSlotCard выводит title / body / question из РАЗНЫХ полей). Теперь заголовок — «Важное от Phraseman» (макет `.gs-sti`), абзаца у опроса нет.
@@ -2056,11 +2057,20 @@ const DEV_POLL_TITLE: DevCampaignText = {
   vi: 'Quan trọng từ Phraseman', id: 'Penting dari Phraseman', tr: "Phraseman'dan önemli", pl: 'Ważne od Phraseman',
   en: 'Important from Phraseman',
 };
-const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '', en: '' };
+// зачем (settings-gap-008): абзац над вопросом — как в макете («Расскажи, чего тебе не хватает…»); он отличается от вопроса, поэтому прежнего тройного повтора нет
+const DEV_POLL_BODY: DevCampaignText = {
+  ru: 'Расскажи, чего тебе не хватает в приложении — мы читаем каждый ответ.', uk: 'Розкажи, чого тобі не вистачає в застосунку — ми читаємо кожну відповідь.',
+  es: 'Cuéntanos qué te falta en la app: leemos cada respuesta.', ptBr: 'Conte o que falta no app: lemos cada resposta.',
+  vi: 'Hãy cho chúng tôi biết bạn còn thiếu gì trong ứng dụng — chúng tôi đọc từng câu trả lời.', id: 'Ceritakan apa yang kurang di aplikasi — kami membaca setiap jawaban.',
+  tr: 'Uygulamada neyi eksik bulduğunu söyle — her yanıtı okuyoruz.', pl: 'Napisz, czego brakuje ci w aplikacji — czytamy każdą odpowiedź.',
+  en: 'Tell us what the app is missing — we read every answer.',
+};
+// зачем: счётчики 41/27/21/11 дают в сумме 100 — проценты на кадре совпадают с макетом без округления
 const DEV_POLL_OPTIONS: ReadonlyArray<{ id: string; text: DevCampaignText; count: number }> = [
-  { id: 'speed', count: 42, text: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', ptBr: 'Velocidade', vi: 'Tốc độ', id: 'Kecepatan', tr: 'Hız', pl: 'Szybkość', en: 'Speed' } },
-  { id: 'content', count: 31, text: { ru: 'Больше заданий', uk: 'Більше завдань', es: 'Más ejercicios', ptBr: 'Mais exercícios', vi: 'Thêm bài tập', id: 'Lebih banyak latihan', tr: 'Daha fazla görev', pl: 'Więcej zadań', en: 'More exercises' } },
-  { id: 'design', count: 27, text: { ru: 'Оформление', uk: 'Оформлення', es: 'Diseño', ptBr: 'Visual', vi: 'Giao diện', id: 'Tampilan', tr: 'Tasarım', pl: 'Wygląd', en: 'Design' } },
+  { id: 'lessons', count: 41, text: { ru: 'Больше уроков', uk: 'Більше уроків', es: 'Más lecciones', ptBr: 'Mais lições', vi: 'Thêm bài học', id: 'Lebih banyak pelajaran', tr: 'Daha fazla ders', pl: 'Więcej lekcji', en: 'More lessons' } },
+  { id: 'dialogs', count: 27, text: { ru: 'Больше диалогов', uk: 'Більше діалогів', es: 'Más diálogos', ptBr: 'Mais diálogos', vi: 'Thêm hội thoại', id: 'Lebih banyak dialog', tr: 'Daha fazla diyalog', pl: 'Więcej dialogów', en: 'More dialogs' } },
+  { id: 'cards', count: 21, text: { ru: 'Больше карточек', uk: 'Більше карток', es: 'Más tarjetas', ptBr: 'Mais cartões', vi: 'Thêm thẻ', id: 'Lebih banyak kartu', tr: 'Daha fazla kart', pl: 'Więcej kart', en: 'More cards' } },
+  { id: 'other', count: 11, text: { ru: 'Другое', uk: 'Інше', es: 'Otro', ptBr: 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne', en: 'Other' } },
 ];
 const DEV_MESSAGE_TITLE: DevCampaignText = {
   ru: 'Новое в Phraseman', uk: 'Нове в Phraseman', es: 'Novedades en Phraseman', ptBr: 'Novidades no Phraseman',
@@ -2085,7 +2095,7 @@ function devCampaignRow(id: string, slot: SettingsMessageSlot, kind: 'poll' | 'm
     id, kind, active: true, audience: 'all', deliverySurface: 'settings', settingsSlot: slot, controlPercent: 0, priority: 1,
     createdAtMs: nowMs, updatedAtMs: nowMs, expiresAtMs: nowMs + APP_MESSAGE_TTL_MS,
     ...texts('title', kind === 'poll' ? DEV_POLL_TITLE : DEV_MESSAGE_TITLE),
-    ...texts('message', kind === 'poll' ? DEV_POLL_EMPTY_BODY : DEV_MESSAGE_BODY),
+    ...texts('message', kind === 'poll' ? DEV_POLL_BODY : DEV_MESSAGE_BODY),
   };
   if (kind === 'poll') {
     row.poll = {

@@ -50,7 +50,7 @@ describe('dev-кампании слота сообщений Настроек', 
     const selection = selectSettingsMessageSlots(peekAppMessagesSnapshot(), CTX);
     expect(selection.bottom?.id).toBe(`${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`);
     expect(selection.bottom?.kind).toBe('poll');
-    expect(selection.bottom?.poll?.options.length).toBe(3);
+    expect(selection.bottom?.poll?.options.length).toBe(4); // зачем (settings-gap-008): 4 варианта, как в макете
     expect(selection.top).toBeNull();
     expect(await readSettingsPollVote('stable-1', `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`)).toBeNull();
   });
@@ -58,7 +58,7 @@ describe('dev-кампании слота сообщений Настроек', 
   it('poll_voted: тот же опрос, но голос отдан локально и помечен синхронизированным', async () => {
     await devSeedSettingsMessageSlot('poll_voted', 'stable-1');
     const vote = await readSettingsPollVote('stable-1', `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`);
-    expect(vote).toMatchObject({ optionId: 'speed', status: 'synced' });
+    expect(vote).toMatchObject({ optionId: 'lessons', status: 'synced' });
   });
 
   it('message и top: сообщение в нужном слоте', async () => {
@@ -86,7 +86,7 @@ describe('dev-кампании слота сообщений Настроек', 
     const res = await devSeedSettingsMessageSlot('poll_voted', 'stable-1');
     expect(res).toEqual({ ok: false, reason: 'not_dev_build' });
     expect(mockStore.size).toBe(0);
-    expect(await devSetSettingsPollVote('stable-1', `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`, 'speed')).toBe(false);
+    expect(await devSetSettingsPollVote('stable-1', `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`, 'lessons')).toBe(false);
     expect(mockStore.size).toBe(0);
     expect(String(warn.mock.calls[0]?.[0])).toContain('[DEV-STATE]');
   });

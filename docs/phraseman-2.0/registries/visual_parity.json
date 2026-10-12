@@ -39485,21 +39485,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-033.png",
+      "evidence_at": "2026-10-12T03:04:04.683Z",
+      "evidence_sha256": "34ea4c01959b1861d199325761ba2b5f9cc70e2a8af7c2a8285f4cc0839422bf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Шторка «Изменить имя» и окно проверки не видны: клавиатура закрывает нижнюю половину (тот же дефект, что settings-gap-025/026/031/032). Переснять после его исправления либо со скрытой клавиатурой, затем тап «Сохранить» с одним символом.",
+        "[состояние не то] Под затемнением «Аккаунт» без привязки, в образце «Имя · Алекс», «Способ входа · Google»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:04:19.578Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=none&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:03, settings-gaps-states №33 «Имя — один символ: окно «Минимум 2 символа»»; образец нарисован с приложения): окна «Сообщение · Минимум 2 символа · OK» на кадре нет — затемнённый «Аккаунт» и открытая клавиатура с подсказками «lot / little / few» (в поле введена одна буква). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-034",

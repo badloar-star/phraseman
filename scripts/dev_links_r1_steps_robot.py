@@ -78,7 +78,8 @@ add('overlays-041', ['wait:1500'], 'intros=reset&plus=on&cards=demo', '/flashcar
 
 # ── core_switch / link_missing: подмены уже есть в dev_state — ссылки и шаги (координатор 12.10, «link_missing — твоя часть»)
 # зачем: у этих строк подмена Ядра существует (app/dev_state_fixtures.ts, app/dev_social_state.ts), не хватало только строки со ссылкой.
-add('onboarding-006', [], 'onbstep=privacy&auth=none', HOME, note='онбординг: вход недоступен (auth=none: Google и Apple выключены), шаг privacy')
+# зачем (Ядро 12.10): текст «Вход недоступен» появляется при тапе «У меня уже есть аккаунт» на приветствии (шаг welcome) с auth=none, а не на шаге privacy.
+add('onboarding-006', ['wait:1800', 'tap:#onboarding-existing-account', 'wait:800'], 'onbstep=welcome&auth=none', HOME, note='онбординг: вход недоступен (auth=none: Google и Apple выключены), шаг privacy')
 add('onboarding-010', [], 'onbstep=niceToMeet&greet=Alexander-Maximilian-Fitzgerald', HOME, note='онбординг: знакомство с длинным именем (greet до 24 символов)')
 add('onboarding-025', [], 'onbstep=onboardingPaywall&paywall=loading', HOME, note='онбординг: цена Plus — загрузка (paywall=loading)')
 add('onboarding-paywall-001', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=live', HOME, note='онбординг: цена Plus — «настоящая» цена (paywall=live; на эмуляторе без магазина может остаться справочной)', unique=False)

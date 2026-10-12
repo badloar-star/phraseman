@@ -8,6 +8,7 @@ import { emitEnergyToast } from '../components/energy/energy_toasts';
 let mockUnlimited = false;
 let mockEnergy = 2;
 const mockBack = jest.fn();
+const mockSafeBack = jest.fn();
 const mockStopProps: { current: { visible: boolean; onResume: () => void; onExit: () => void } | null } = { current: null };
 const mockHudProps: { current: Record<string, unknown> | null } = { current: null };
 
@@ -16,6 +17,8 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('../components/energy/energy_toasts', () => ({ emitEnergyToast: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack }) }));
+// зачем (координатор 12.10, сторож navigation_back_underlay): выход из остановленного занятия — через safeRouterBack, не голый router.back().
+jest.mock('../app/navigation_back', () => ({ safeRouterBack: (...args: unknown[]) => mockSafeBack(...args) }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../constants/liquidGlassThemePalette', () => ({
   liquidGlassTokens: () => ({ accent: '#0f0', secondary: '#aaa', text: '#fff', opaqueControl: '#333', glassEdge: '#444' }),
@@ -68,15 +71,17 @@ describe('EnergyAttemptsHud', () => {
     expect(resume).toHaveBeenCalledTimes(1);
   });
 
-  test('«Выйти»: по умолчанию назад по стеку, со своим обработчиком — он', async () => {
+  test('«Выйти»: по умолчанию безопасный возврат по истории, со своим обработчиком — он', async () => {
     const view = await render(<EnergyAttemptsHud attempts={attempts('stopped_no_energy')} locale="ru" testID="hud" />);
     mockStopProps.current?.onExit();
-    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(mockSafeBack).toHaveBeenCalledTimes(1);
+    expect(mockSafeBack.mock.calls[0][0]).toEqual(expect.objectContaining({ back: mockBack }));
+    expect(mockBack).not.toHaveBeenCalled();
     const custom = jest.fn();
     await view.rerender(<EnergyAttemptsHud attempts={attempts('stopped_no_energy')} locale="ru" testID="hud" onStoppedExit={custom} />);
     mockStopProps.current?.onExit();
     expect(custom).toHaveBeenCalledTimes(1);
-    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(mockSafeBack).toHaveBeenCalledTimes(1);
   });
 
   test('последняя энергия (1 с подарочной 0): предупреждение один раз, не у Plus и не в остановке (макет Б3)', async () => {

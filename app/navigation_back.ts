@@ -104,6 +104,9 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   // ошибки открываются только изнутри хаба и наследуют его владельца так же.
   '/support_report',
   '/coin_rank',
+  // зачем (координатор 12.10, сторож navigation_back_underlay; экран 97099c35d): каталог рангов открывается только с /coin_rank
+  // и наследует его владельца так же, как список ошибок — владельца хаба.
+  '/coin_rank_catalog',
   '/mistakes_hub',
   '/mistakes_list',
   '/mistake_detail',

@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'expo-router';
 
 import { DebugLogger } from '../../app/debug-logger';
+import { safeRouterBack } from '../../app/navigation_back';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang } from '../../constants/i18n';
 import { useEnergy } from '../EnergyContext';
@@ -64,7 +65,9 @@ function EnergyAttemptsHud({ attempts, testID, onStoppedExit }: Props) {
   const onResume = useCallback(() => { resumeAfterPlus(); }, [resumeAfterPlus]);
   const onExit = useCallback(() => {
     DebugLogger.info(TAG, `выход из остановленного занятия testID=${testID} customExit=${String(Boolean(onStoppedExit))}`);
-    if (onStoppedExit) onStoppedExit(); else router.back();
+    // зачем (координатор 12.10, сторож navigation_back_underlay): голый router.back() мог вернуть в закрытое одноразовое
+    // занятие или в чужой раздел; safeRouterBack выбирает безопасную цель из истории (иначе Главная) и пишет [NAV-BACK].
+    if (onStoppedExit) onStoppedExit(); else safeRouterBack(router);
   }, [onStoppedExit, router, testID]);
 
   const label = triLang(lang, {

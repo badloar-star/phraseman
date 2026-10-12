@@ -15,9 +15,9 @@ const SKIP = /^(node_modules|__tests__|_archive|\.git)$/;
 // `transform: X ? [...] : undefined`, `transform: X ? undefined : [...]`, `transform: undefined` — в одной строке или с переносом.
 const UNDEFINED_TRANSFORM = /\btransform:\s*(?:undefined\b|[^,;}\n]*?\?[^\n]*?:\s*undefined\b|[^,;}\n]*?\?\s*undefined\s*:)/;
 
-// Исключение с условием выхода: файл закреплён контрольной суммой (survey_unavailable_liquid_glass_source_contract).
-// Выход — правка `: undefined` → `: []` вместе с новым отпечатком, по согласию координатора; тогда строку удалить.
-const KNOWN_PENDING = new Map([['components/survey/SurveySheetModal.tsx', 1]]);
+// Исключений нет: последнее место (опрос, закреплённый контрольной суммой) исправлено по разрешению координатора 12.10.
+// Новое исключение — только с условием выхода и записью причины.
+const KNOWN_PENDING = new Map();
 
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

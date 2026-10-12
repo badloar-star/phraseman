@@ -702,7 +702,7 @@ function SurveyQuestionFields({
                 accessibilityLabel={option.label}
                 accessibilityState={{ selected, disabled }}
                 // зачем (стиль «Тень», владелец 12.10): вариант — плашка с тенью без кромки; выбранный приподнят (сдвиг на внешней обёртке, высота ряда не меняется)
-                style={[styles.option, { backgroundColor: glass.plateFillFrom, boxShadow: selected ? raisedBoxShadow(glass) : plateBoxShadow(glass), transform: selected ? [{ translateY: RAISED_LIFT }] : undefined }]}
+                style={[styles.option, { backgroundColor: glass.plateFillFrom, boxShadow: selected ? raisedBoxShadow(glass) : plateBoxShadow(glass), transform: selected ? [{ translateY: RAISED_LIFT }] : [] }]}
                 contentStyle={styles.optionContent}
               >
                 {selected ? (

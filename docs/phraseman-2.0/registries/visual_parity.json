@@ -28348,10 +28348,11 @@
       "id": "mistakes-panel-001",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 1,
         "label": "Главная — вход",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Главная — вход",
       "state": "Главная — вход",
@@ -28370,16 +28371,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-002",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 2,
         "label": "Хаб",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Хаб",
       "state": "Хаб",
@@ -28404,16 +28409,20 @@
       "status": "diff",
       "reviewed_by": "owner-2026-10-11: владелец прямым указанием в чате велел отметить сверенные экраны (сверка: сессия 6, склейка без различий)",
       "reviewed_at": "2026-10-12T16:22:35.217Z",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:21, русский интерфейс, mistakes=demo, mistakes-panel.html №2 «Хаб»): подмена mistakes=demo сработала — открылся хаб «Мои ошибки» с данными: «‹», заголовок, кольцо «33% исправлено», «2 исправлено · 4 ждут», чипы «Все 4 · Значение 1 · Грамматика 3», группа строк «фраза / перевод» с тремя точками прогресса, кнопка «Отработать 2». Состав и порядок совпали с образцом."
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:21, русский интерфейс, mistakes=demo, mistakes-panel.html №2 «Хаб»): подмена mistakes=demo сработала — открылся хаб «Мои ошибки» с данными: «‹», заголовок, кольцо «33% исправлено», «2 исправлено · 4 ждут», чипы «Все 4 · Значение 1 · Грамматика 3», группа строк «фраза / перевод» с тремя точками прогресса, кнопка «Отработать 2». Состав и порядок совпали с образцом.",
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-003",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 3,
         "label": "Хаб — загрузка",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Хаб — загрузка",
       "state": "Хаб — загрузка",
@@ -28432,7 +28441,10 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-004",
@@ -28485,10 +28497,11 @@
       "id": "mistakes-panel-005",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 5,
         "label": "Все ошибки — ждут",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Все ошибки — ждут",
       "state": "Все ошибки — ждут",
@@ -28521,17 +28534,19 @@
         "final_who": "Сверка",
         "final_group": "ROBOT14",
         "final_note": "кадр старше кода (Дизайн 9f1c5bfa4, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {
       "id": "mistakes-panel-006",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 6,
         "label": "Все ошибки — исправлены",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Все ошибки — исправлены",
       "state": "Все ошибки — исправлены",
@@ -28548,7 +28563,10 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-007",
@@ -28596,10 +28614,11 @@
       "id": "mistakes-panel-008",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 8,
         "label": "Ошибка — шаги и история",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Ошибка — шаги и история",
       "state": "Ошибка — шаги и история",
@@ -28616,16 +28635,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-009",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 9,
         "label": "Меню ошибки",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Меню ошибки",
       "state": "Меню ошибки",
@@ -28642,7 +28665,10 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-010",
@@ -28692,10 +28718,11 @@
       "id": "mistakes-panel-011",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 11,
         "label": "Собери фразу",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Собери фразу",
       "state": "Собери фразу",
@@ -28712,16 +28739,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-012",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 12,
         "label": "Напиши",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Напиши",
       "state": "Напиши",
@@ -28738,16 +28769,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-013",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 13,
         "label": "Скажи вслух",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Скажи вслух",
       "state": "Скажи вслух",
@@ -28764,7 +28799,10 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-014",
@@ -28858,10 +28896,11 @@
       "id": "mistakes-panel-016",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 17,
         "label": "Почему",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Почему",
       "state": "Почему",
@@ -28895,17 +28934,19 @@
         "final_who": "Сверка",
         "final_group": "ROBOT14",
         "final_note": "кадр старше кода (Дизайн 9f1c5bfa4, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {
       "id": "mistakes-panel-017",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 18,
         "label": "Итог отработки",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Итог отработки",
       "state": "Итог отработки",
@@ -28938,17 +28979,19 @@
         "final_who": "Сверка",
         "final_group": "ROBOT14",
         "final_note": "кадр старше кода (Дизайн 9f1c5bfa4, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {
       "id": "mistakes-panel-018",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 19,
         "label": "Ошибок нет",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Ошибок нет",
       "state": "Ошибок нет",
@@ -28965,16 +29008,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-019",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 20,
         "label": "На сегодня всё",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "На сегодня всё",
       "state": "На сегодня всё",
@@ -28991,16 +29038,20 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-020",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 21,
         "label": "Нет сети и кэша",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/mistakes-panel.html"
       },
       "screen": "Нет сети и кэша",
       "state": "Нет сети и кэша",
@@ -29017,7 +29068,10 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "triage": {
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
+      }
     },
     {
       "id": "mistakes-panel-021",
@@ -29283,10 +29337,11 @@
       "id": "cards-section-004",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-section.shadow.html",
         "phone": 4,
         "label": "Хаб — лимит исчерпан (Free)",
-        "mapping": "by_construction"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/cards-section.html"
       },
       "screen": "Хаб — лимит исчерпан (Free)",
       "state": "Хаб — лимит исчерпан (Free)",
@@ -29333,7 +29388,8 @@
         "final_who": "Сверка",
         "final_group": "ROBOT14",
         "final_note": "кадр старше кода (Дизайн 11a040d40, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {
@@ -32098,10 +32154,11 @@
       "id": "packs-simple-001",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/packs-simple.html",
+        "file": "docs/design/v2-app/packs-simple.shadow.html",
         "phone": 1,
         "label": "1 · Каталог наборов",
-        "mapping": "manual_rebind_2026-10-12"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/packs-simple.html"
       },
       "screen": "1 · Каталог наборов",
       "state": "1 · Каталог наборов",
@@ -32153,7 +32210,8 @@
         "final_who": "Сверка",
         "final_group": "ROBOT15",
         "final_note": "кадр старше кода (Дизайн 11a040d40, координатор 12.10) — только пересъёмка",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {
@@ -34125,10 +34183,11 @@
       "id": "cards-v2-001",
       "source": "OWNER_PIN_54_2026-10-12",
       "mockup": {
-        "file": "docs/design/v2-app/cards-section.html",
+        "file": "docs/design/v2-app/cards-section.shadow.html",
         "phone": 1,
         "label": "Хаб — вариант А",
-        "mapping": "manual_rebind"
+        "mapping": "shadow_copy_2026-10-12",
+        "prev_file": "docs/design/v2-app/cards-section.html"
       },
       "mockup_pinned": "Владелец 12.10 утвердил «Карточки 2.0» (журнал, пункт 54): хаб и все состояния страницы — в работу | Макеты 12.10: решение владельца 11.10 — хаб Карточек целиком вариантом А; перепривязано с cards-v2.html#1 на cards-section.html телефон 1.",
       "screen": "Хаб",
@@ -34168,7 +34227,8 @@
         "final_who": "",
         "final_group": "",
         "final_note": "",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "shadow_note": "образец под замком заменён копией «Тень» (решение владельца п.81, 12.10); номера телефонов те же; нужна пересклейка"
       }
     },
     {

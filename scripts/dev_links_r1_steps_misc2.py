@@ -11,7 +11,8 @@ add('settings-gap-013', [], 'plus=off', '/settings_notifications', note='уве�
 add('settings-gap-016', [], 'plus=off', '/privacy_settings', note='приватность: ИИ выключен (исходное состояние)')
 
 # Настройки → «Очистить кеш»: кадр во время очистки («чистим…») + слот сообщений с опросом до голосования (slot=poll)
-add('settings-gap-007', ['see:#settings-clear-cache-row', 'tap:#settings-clear-cache-row', 'tap:Очистить', 'settle:0'], 'plus=off&slot=poll', '/(tabs)/settings', note='«Очистить кеш» → подтвердить → кадр сразу после нажатия («чистим…») + слот с опросом до голосования (slot=poll)')
+# зачем (кадр settings-gap-007 7:28: окно «Очистить кеш?» осталось открытым — тап по тексту «Очистить» не попал в кнопку): кнопки окна — glass-alert-action-<N>, «Очистить» вторая (N=1; первая «Не сейчас»)
+add('settings-gap-007', ['see:#settings-clear-cache-row', 'tap:#settings-clear-cache-row', 'wait:400', 'tap:#glass-alert-action-1', 'settle:0'], 'plus=off&slot=poll', '/(tabs)/settings', note='«Очистить кеш» → подтвердить → кадр сразу после нажатия («чистим…») + слот с опросом до голосования (slot=poll)')
 
 # «Мои наборы» без наборов (cards=empty): та же раскладка, что у cards-013
 add('packs-simple-003', [], EMPTY_FREE, MYPACKS, note='«Мои наборы»: пока нет наборов (cards=empty)')

@@ -21,7 +21,6 @@ import {
 } from '../app/activity_365_analytics';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { statsThemeAccent } from '../constants/statsThemeChrome';
 import type { ThemeMode } from '../constants/theme';
 import { LinearGradient } from './SafeLinearGradient';
 import { FlowText } from './text-integrity/FlowText';
@@ -148,14 +147,16 @@ function monthComparisonSummary(
   }, { activeDays: 0, minutes: 0 });
 }
 
-function heatPalette(themeMode: ThemeMode): readonly string[] {
+// зачем (координатор 12.10, R1_THEMEMODE_LEGACY_MAP): акцент тепловой карты — акцент ТЕМЫ (theme.accent), а не statsThemeAccent(themeMode):
+// themeMode в приложении всегда 'dark', и карта была зелёной на любой теме и в светлом оформлении.
+function heatPalette(themeMode: ThemeMode, themeAccent: string): readonly string[] {
   // BUG 2: palette[0] (пустые дни) обязан быть виден на фоне поверхности —
   // раньше он совпадал с цветом фона, и годовая сетка выглядела «пустой».
   // BUG 4: вся рампа — от главного акцента темы (единый hue), gold — из GOLD_RICH.
   if (themeMode === 'gold') {
     return [GOLD_RICH.bronzeWashStrong, GOLD_RICH.agedGold, GOLD_RICH.antiqueGold, GOLD_RICH.metalGold, GOLD_RICH.champagne];
   }
-  const accent = statsThemeAccent(themeMode);
+  const accent = themeAccent;
   return [
     withAlpha(accent, 0.1),
     withAlpha(accent, 0.28),
@@ -176,7 +177,7 @@ function CanonicalYearHeatmap({
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { width } = useWindowDimensions();
-  const palette = heatPalette(themeMode);
+  const palette = useMemo(() => heatPalette(themeMode, t.accent), [themeMode, t.accent]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
   const activityMapSurface = themeMode === 'gold'
     ? [EXEMPT_COLOR_1, EXEMPT_COLOR_2]
     : [withAlpha(t.bgSurface2, 0.98), withAlpha(t.bgCard, 0.94)];
@@ -245,7 +246,7 @@ function CompactHistoryHeatmap({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { width } = useWindowDimensions();
-  const palette = heatPalette(themeMode);
+  const palette = useMemo(() => heatPalette(themeMode, t.accent), [themeMode, t.accent]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
   const observedDays = days.filter((day) => !day.future);
   const columns = 7;
   const gap = 5;

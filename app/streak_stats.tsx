@@ -47,7 +47,7 @@ import AchievementArt from '../components/AchievementArt';
 import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { isLightThemeMode, type ThemeMode } from '../constants/theme';
+import { type ThemeMode } from '../constants/theme';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
@@ -68,12 +68,11 @@ import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { glassTone } from '../components/dialogs/glass/glassTone'; // зачем (координатор 12.10): шеврон «Архив» — тон текста темы, виден и на светлой (был белый 45 %)
 
 const EXEMPT_COLOR_1 = '#35D07F'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 const EXEMPT_COLOR_2 = '#35D07F'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
-const EXEMPT_COLOR_4 = 'rgba(23,32,29,0.45)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
-const EXEMPT_COLOR_5 = 'rgba(255,255,255,0.45)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 const CHART_H = 110;
 const DAYS_SHOW = 14;
@@ -2521,7 +2520,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 })}
                       </Text>
                     </View>
-                    <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color={isLightThemeMode(themeMode) ? EXEMPT_COLOR_4 : EXEMPT_COLOR_5}/>
+                    <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color={glassTone(t.textPrimary, 0.45)}/>
                   </StatsCardArtSurface>
                 </TouchableOpacity>
 

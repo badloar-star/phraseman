@@ -4,6 +4,8 @@ import { Image } from 'expo-image';
 import type { ThemeMode } from '../../constants/theme';
 import { STREAK_ICON_TIERS, getStreakFireIconVariant } from '../../constants/streakIconAssets';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useTheme } from '../ThemeContext';
+import { glassTone } from '../dialogs/glass/glassTone';
 
 // зачем: макет-эталон (.motion-mockups/phraseman-hybrid.html, сцена B6 «Иконки ·
 // 8 событий») описывает огонь как ПОКАДРОВУЮ анимацию по готовым кадрам
@@ -39,7 +41,11 @@ interface LiveStreakFlameProps {
 
 function LiveStreakFlameBase({ themeMode, streakDays, size, burstToken, style }: LiveStreakFlameProps) {
   const reduceMotion = useReduceMotion();
+  const { theme: glassTheme } = useTheme();
+  const themeAccent = glassTheme.accent;
   const variant = useMemo(() => getStreakFireIconVariant(themeMode, streakDays), [themeMode, streakDays]);
+  // зачем: не пересчитывать цвет свечения на каждом тике анимации — зависит только от акцента и ступени серии
+  const glowColor = useMemo(() => glassTone(themeAccent, 0.22 + variant.intensity * 0.18), [themeAccent, variant.intensity]);
   const scale = useRef(new Animated.Value(1)).current;
   const skewDeg = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
@@ -107,7 +113,8 @@ function LiveStreakFlameBase({ themeMode, streakDays, size, burstToken, style }:
         style={[
           styles.glow,
           {
-            backgroundColor: variant.glowColor,
+            // зачем (координатор 12.10): свечение пера — акцент темы, а не FIRE_CHROME['dark'] (бирюза на любой теме); сила та же, что в variant.
+            backgroundColor: glowColor,
             opacity: glow,
             transform: [{ scale: 1.5 }],
           },

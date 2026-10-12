@@ -142,7 +142,9 @@ const intros=[
   ['OV-INTRO-PROFILE','Твоя визитка','Здесь собраны имя, монета-аватар и короткая подпись, которые видят другие игроки. Посмотри, как выглядит твоя визитка.','Посмотреть визитку','user'],
 ];
 function introPhone([id,title,body,cta,ico]){
-  return overlayPhone(id,`<div class="ov-stage">${icon(ico,'s28')}</div><div class="ov-title">${title}</div><div class="ov-body">${body}</div><button class="cta t" type="button" style="margin-top:20px">${cta}</button><button class="cta gh t" type="button" style="margin-top:10px">Позже</button>`,'sheet','Раздел','12:12');
+  // зачем (вердикт 144, overlays-041, 12.10): у «Фразы — в твою коллекцию» в приложении вместо значка арт набора карточек (v2art intro_cards_hub, одобренный набор)
+  const stage=id==='OV-INTRO-CARDS'?`<div style="display:flex;justify-content:center"><img src="assets/intro_cards_hub.webp" alt="" style="width:86%;max-height:250px;object-fit:contain"></div>`:`<div class="ov-stage">${icon(ico,'s28')}</div>`;
+  return overlayPhone(id,`${stage}<div class="ov-title">${title}</div><div class="ov-body">${body}</div><button class="cta t" type="button" style="margin-top:20px">${cta}</button><button class="cta gh t" type="button" style="margin-top:10px">Позже</button>`,'sheet','Раздел','12:12');
 }
 
 const rows=[

@@ -34,6 +34,8 @@ describe('Olive Phase 1 surfaces', () => {
       expect(source).not.toContain('OLIVE_RICH');
     }
     expect(button).toContain("const foreground = isOliveTheme && isDisabled\n    ? t.textMuted");
-    expect(button).toContain(": t.correctText;");
+    // зачем (координатор 15.10, правка 1ec91fd46): общий вид надписи — accentInk на лице кнопки (запасной correctText), correctText только в выключенном виде;
+    // проверяем смысл, а не точную строку: старый correctText на лице t.accent давал контраст 1,01–4,5.
+    expect(button).toMatch(/isDisabled\s*\?\s*t\.correctText\s*:\s*\(t\.accentInk\s*\?\?\s*t\.correctText\)/);
   });
 });

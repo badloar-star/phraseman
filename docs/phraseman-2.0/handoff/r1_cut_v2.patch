@@ -1,0 +1,195 @@
+diff --git a/app/(tabs)/lessons.tsx b/app/(tabs)/lessons.tsx
+index 4becbd5..fc00fff 100644
+--- a/app/(tabs)/lessons.tsx
++++ b/app/(tabs)/lessons.tsx
+@@ -102,7 +102,7 @@ import {
+ import { OLIVE_GRADIENTS, oliveShadow } from "../../constants/oliveTheme";
+ import { isLightThemeMode, type ThemeMode } from "../../constants/theme";
+ import GoldBevel from "../../components/GoldBevel";
+-import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG } from "../config";
++import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG, IS_STORE_RELEASE } from "../config";
+ import {
+   devStudyTargetsForUiLang,
+   emitDevStudyTargetChanged,
+@@ -1344,7 +1344,10 @@ type LessonsTabProps = {
+ // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход в курс есть, только если хоть одно
+ // занятие реально открывается (app/learning_v2_session_availability_v1.ts) — без пустых экранов и тупиков. Дев-сборка
+ // входит всегда: там проверяют невыпущенные занятия кнопкой массовой разблокировки.
+-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS;
++// зачем (решение владельца к R1, патч r1_cut_v2): Learning V2 вырезан из стор-сборки (router.ctx.js `*learning[_-]v2*`) —
++// курс не готов (выпущено 0 занятий). Вход в курс в стор-сборке закрыт, иначе чип вёл бы в «неизвестный маршрут».
++// В остальных сборках правило прежнее: столько, сколько реально выпущено (или дев-сборка).
++const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
+ 
+ /**
+  * Потолок ожидания подготовки занятия.
+diff --git a/router.ctx.js b/router.ctx.js
+index 8b113d2..fda4d80 100644
+--- a/router.ctx.js
++++ b/router.ctx.js
+@@ -2,7 +2,7 @@ export const ctx = process.env.EXPO_PUBLIC_STORE_RELEASE === '1'
+   ? require.context(
+       process.env.EXPO_ROUTER_APP_ROOT,
+       true,
+-      /^(?:\.\/)(?!(?:audio|community_packs|components|constants|error_traps|flashcards|graphify-out|quizzes|services|settings|types)(?:\/|$))(?!(?:(?:.*\+api)|(?:\+html)|(?:\+middleware))\.tsx?$)(?!(?:_learning_v2_(?:authoring_preview|modes_showcase)|learning_v2_modes_showcase_run\/[^/]+|learning-v2\/intro-reader-fixture)\.tsx?$)(?!(?:.*\/)?(?:settings_testers|admin_intro_preview|admin_review_test|admin_premium_delivery_test|admin_celebration_lab|admin_speaking_lab|admin_referral_lab|pos_analytics_audit|vip_survey_dev_auth|flashcards_market_dev|_admin_settings_testers|_admin_intro_preview|_admin_review_test|_admin_premium_delivery_test|_admin_celebration_lab|_admin_speaking_lab|_admin_referral_lab|_pos_analytics_audit|_motion_showcase|_phone_state_sqlcipher_smoke|dev_spire_preview|dev_state)\.tsx?$).*(?:\.ios|\.web)?\.tsx$/,
++      /^(?:\.\/)(?!(?:audio|community_packs|components|constants|error_traps|flashcards|graphify-out|quizzes|services|settings|types)(?:\/|$))(?!(?:(?:.*\+api)|(?:\+html)|(?:\+middleware))\.tsx?$)(?!(?:.*learning[_-]v2.*)\.tsx?$)(?!(?:.*\/)?(?:settings_testers|admin_intro_preview|admin_review_test|admin_premium_delivery_test|admin_celebration_lab|admin_speaking_lab|admin_referral_lab|pos_analytics_audit|vip_survey_dev_auth|flashcards_market_dev|_admin_settings_testers|_admin_intro_preview|_admin_review_test|_admin_premium_delivery_test|_admin_celebration_lab|_admin_speaking_lab|_admin_referral_lab|_pos_analytics_audit|_motion_showcase|_phone_state_sqlcipher_smoke|dev_spire_preview|dev_state)\.tsx?$).*(?:\.ios|\.web)?\.tsx$/,
+       process.env.EXPO_ROUTER_IMPORT_MODE,
+     )
+   : require.context(
+diff --git a/scripts/release_precheck.mjs b/scripts/release_precheck.mjs
+index 3e0de68..3ff1f1b 100644
+--- a/scripts/release_precheck.mjs
++++ b/scripts/release_precheck.mjs
+@@ -117,10 +117,12 @@ const GATES = [
+   },
+   // Сборка и OTA не должны читать выпуск, который расходится с проверенным
+   // исходником, или отставшую копию выпуска внутри приложения.
+-  { name: 'исходник = выпуск = копия приложения Learning V2', script: 'scripts/learning_v2_release_parity_gate.mjs', env: {} },
++  // зачем (патч r1_cut_v2): precheck проверяет СТОР-сборку — без EXPO_PUBLIC_STORE_RELEASE=1 ворота V2 не видят выреза курса из
++  // router.ctx.js и остаются строгими. С флагом: курс вырезан → громкий пропуск; курс в сборке → строгая сверка, как раньше.
++  { name: 'исходник = выпуск = копия приложения Learning V2', script: 'scripts/learning_v2_release_parity_gate.mjs', env: { EXPO_PUBLIC_STORE_RELEASE: '1' } },
+   // зачем (инцидент 04.10, решение координатора): контент урока 1 перегенерировали без озвучки — занятие молча не открывалось.
+   // Гейт собирает КАЖДОЕ встроенное занятие из бандла и падает, если для реплики нет записи в таблице озвучки.
+-  { name: 'озвучка встроенных занятий Learning V2', script: 'scripts/learning_v2_audio_coverage_gate.mjs', env: {} },
++  { name: 'озвучка встроенных занятий Learning V2', script: 'scripts/learning_v2_audio_coverage_gate.mjs', env: { EXPO_PUBLIC_STORE_RELEASE: '1' } },
+   // зачем (координатор 23:50, класс дефекта 52d420253): ни одной безусловной ссылки на маршрут, вырезанный из
+   // стор-сборки регуляркой router.ctx.js (тупик «неизвестный маршрут»). Отчёт: docs/work/tasks/store-route-reachability-audit-2026-10-10.md.
+   { name: 'нет ссылок на вырезанные из стор-сборки маршруты', script: 'scripts/store_route_reachability.mjs', env: {} },
+diff --git a/scripts/store_route_reachability.mjs b/scripts/store_route_reachability.mjs
+index 769dce8..38792f8 100644
+--- a/scripts/store_route_reachability.mjs
++++ b/scripts/store_route_reachability.mjs
+@@ -33,6 +33,11 @@ export const ALLOWED = Object.freeze([
+     route: null,
+     reason: 'реестр дев-витрины: рисует только app/_motion_showcase.tsx (вырезан), вход app/motion_showcase.tsx пускает лишь при __DEV__ && !IS_STORE_RELEASE',
+   },
++  {
++    file: 'app/(tabs)/lessons.tsx',
++    route: '/learning-v2/session/',
++    reason: 'запуск занятия со страницы V2; оба входа на неё (чип и кнопка «V2») закрыты LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY (= !IS_STORE_RELEASE && …), Learning V2 вырезан из стор-сборки (патч r1_cut_v2)',
++  },
+ ]);
+ 
+ function allowedReason(file, route) {
+diff --git a/tests/learning_v2_release_access_contract.test.ts b/tests/learning_v2_release_access_contract.test.ts
+index fa756b7..6381561 100644
+--- a/tests/learning_v2_release_access_contract.test.ts
++++ b/tests/learning_v2_release_access_contract.test.ts
+@@ -37,7 +37,8 @@ assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)|<Redirect/u);
+ assert.doesNotMatch(layout, /isBlockedLearningV2RoutePath/u);
+ // зачем (владелец 11.10: «LEARNING V2 ПОПАДАЕТ», курс виден всем сразу): вырез 10.10 снят — вход в курс открыт во всех сборках.
+ // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход — только если есть выпущенные занятия.
+-assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS;/u);
++// зачем (решение владельца к R1, патч r1_cut_v2): Learning V2 вырезан из стор-сборки — вход в курс только вне стора.
++assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);/u);
+ assert.doesNotMatch(
+   lessons,
+   /\{ENABLE_DEV_TOOLS \? \(\s*<TabUnderlineButton\s*\n\s*label="V2"/u,
+diff --git a/tests/learning_v2_show_only_released_contract.test.mjs b/tests/learning_v2_show_only_released_contract.test.mjs
+index d42073d..bc84c16 100644
+--- a/tests/learning_v2_show_only_released_contract.test.mjs
++++ b/tests/learning_v2_show_only_released_contract.test.mjs
+@@ -22,7 +22,8 @@ test('артефакт: целые неотрицательные числа, п
+ 
+ test('экран уроков: вход и множество занятий — по выпущенному префиксу', () => {
+   const lessons = read('app/(tabs)/lessons.tsx');
+-  assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS;/);
++  // зачем (патч r1_cut_v2): вне стор-сборки — «столько, сколько выпущено»; в стор-сборке курс вырезан.
++  assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);/);
+   assert.match(lessons, /authored\.filter\(\(session\) => isLearningV2SessionReleasedV1\(session\.lessonOrdinal, session\.sessionOrdinal\)\)/);
+   // вход в занятие, прогрев и карта пользуются одним множеством
+   assert.ok((lessons.match(/learningV2FactoryNativeSessionIds\.has\(/g) ?? []).length >= 4);
+diff --git a/tests/lessons_entry_opens_legacy_guard.test.ts b/tests/lessons_entry_opens_legacy_guard.test.ts
+index 286ffd2..bdccd42 100644
+--- a/tests/lessons_entry_opens_legacy_guard.test.ts
++++ b/tests/lessons_entry_opens_legacy_guard.test.ts
+@@ -34,7 +34,7 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
+ 
+   test('ручное открытие курса выражено одной константой (открыт с 2026-09-19)', () => {
+     // зачем (владелец 11.10: «столько, сколько доступно»): вход есть, только если хоть одно занятие реально открывается.
+-    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS);$/m);
++    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS|!IS_STORE_RELEASE|LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS|!IS_STORE_RELEASE && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\));$/m);
+     // зачем (10.10, релизный пол): в стор-сборке маршруты V2 вырезаны из роутера, чип «Новые уроки» там скрыт — иначе тупик «неизвестный маршрут».
+   });
+ 
+diff --git a/tests/store_release_gate_levers.test.mjs b/tests/store_release_gate_levers.test.mjs
+index 02ec577..9fa8e9e 100644
+--- a/tests/store_release_gate_levers.test.mjs
++++ b/tests/store_release_gate_levers.test.mjs
+@@ -66,12 +66,12 @@ test('нет router.ctx.js → пропуска нет (строго по умо
+   assert.equal(learningV2StoreSkipDecision(dir, { EXPO_PUBLIC_STORE_RELEASE: '1' }).skip, false);
+ });
+ 
+-// зачем (владелец 11.10, «LEARNING V2 ПОПАДАЕТ»): вырез снят — в стор-режиме ворота V2 строгие, пропуска нет.
+-test('настоящий проект: Learning V2 входит в стор-сборку, ворота V2 не пропускаются', () => {
++// зачем (решение владельца к R1, патч r1_cut_v2): Learning V2 вырезан из стор-сборки — ворота V2 громко пропускаются.
++test('настоящий проект: Learning V2 вырезан из стор-сборки, ворота V2 пропускаются', () => {
+   const decision = learningV2StoreSkipDecision(ROOT, { EXPO_PUBLIC_STORE_RELEASE: '1' });
+-  assert.equal(decision.skip, false, JSON.stringify(decision));
+-  assert.equal(decision.reason, 'learning_v2_route_reachable_in_store');
+-  assert.ok(decision.reachable.includes('app/learning-v2/session/[id].tsx'), JSON.stringify(decision));
++  assert.equal(decision.skip, true, JSON.stringify(decision));
++  assert.equal(decision.reason, 'learning_v2_excluded_from_store');
++  assert.deepEqual(decision.reachable, []);
+ });
+ 
+ test('сервер EAS без исходников курса: сверка паритета только локально; во всех других случаях — строго', () => {
+diff --git a/tests/store_release_learning_v2_bundle_exclusion.test.ts b/tests/store_release_learning_v2_bundle_exclusion.test.ts
+index 6219ed3..e8491d9 100644
+--- a/tests/store_release_learning_v2_bundle_exclusion.test.ts
++++ b/tests/store_release_learning_v2_bundle_exclusion.test.ts
+@@ -1,10 +1,10 @@
+ import fs from 'node:fs';
+ import path from 'node:path';
+ 
+-// зачем (владелец 11.10: «ВСЁ ПОПАДАЕТ В СБОРКУ! LEARNING V2 ПОПАДАЕТ!!!», курс виден всем сразу): вырез Learning V2 из
+-// стор-сборки (10.10, router.ctx.js `*learning[_-]v2*` + заглушка наград сессии) снят. Сторож держит обратное правило:
+-// боевые маршруты курса в стор-сборке ЕСТЬ, а дев-экраны V2 (превью автора, витрина режимов, фикстура интро) — вырезаны.
+-// Сработал — не возвращай вырез без прямой команды владельца.
++// зачем (решение владельца к R1, патч r1_cut_v2): Learning V2 не готов к первому выпуску (выпущено 0 занятий) — все маршруты
++// курса снова вырезаны из стор-сборки (router.ctx.js `*learning[_-]v2*`), как до caafa92ab. Заглушку наград сессии НЕ
++// возвращаем: занятия V2 в стор-сборке не запускаются, а настоящий модуль наград с 11.10 экспортирует больше имён, чем
++// старая заглушка. Сработал — не возвращай V2 в сборку без прямой команды владельца.
+ describe('store release Learning V2 bundle boundary', () => {
+   const root = path.join(__dirname, '..');
+   const routerContext = fs.readFileSync(path.join(root, 'router.ctx.js'), 'utf8');
+@@ -14,9 +14,9 @@ describe('store release Learning V2 bundle boundary', () => {
+   const storeRegex = new RegExp(storeRegexLiteral);
+   const inStore = (routeFile: string) => storeRegex.test(`./${routeFile}`);
+ 
+-  test('store branch no longer cuts every Learning V2 route', () => {
++  test('store branch cuts every Learning V2 route (R1)', () => {
+     expect(storeBranch).toContain("process.env.EXPO_PUBLIC_STORE_RELEASE === '1'");
+-    expect(storeBranch).not.toContain('(?!(?:.*learning[_-]v2.*)\\.tsx?$)');
++    expect(storeBranch).toContain('(?!(?:.*learning[_-]v2.*)\\.tsx?$)');
+     expect(storeRegexLiteral).not.toBe('');
+   });
+ 
+@@ -26,9 +26,9 @@ describe('store release Learning V2 bundle boundary', () => {
+     'learning_v2_direct_session_player_v1.tsx',
+     'learning_v2_session_intro.tsx',
+     'learning_v2_session_intro_check.tsx',
+-  ])('production V2 route %s is in the store router context', (routeFile) => {
++  ])('V2 route %s is OUT of the store router context in R1', (routeFile) => {
+     expect(fs.existsSync(path.join(root, 'app', routeFile))).toBe(true);
+-    expect(inStore(routeFile)).toBe(true);
++    expect(inStore(routeFile)).toBe(false);
+   });
+ 
+   test.each([
+diff --git a/tests/store_route_reachability.test.mjs b/tests/store_route_reachability.test.mjs
+index ad47374..cb8b16a 100644
+--- a/tests/store_route_reachability.test.mjs
++++ b/tests/store_route_reachability.test.mjs
+@@ -26,9 +26,9 @@ function sandbox(files) {
+ 
+ test('боевой код: ни одного безусловного перехода на маршрут, вырезанный из стор-сборки', async () => {
+   const result = await audit(ROOT);
+-  // зачем (владелец 11.10): курс V2 входит в стор-сборку — вырезаны только его дев-экраны.
++  // зачем (решение владельца к R1, патч r1_cut_v2): курс V2 вырезан из стор-сборки целиком — вместе с дев-экранами.
+   assert.ok(result.routes.includes('app/_learning_v2_authoring_preview.tsx'), 'регулярка стор-режима разобрана, дев-экраны V2 вырезаны');
+-  assert.ok(!result.routes.includes('app/learning-v2/session/[id].tsx'), 'занятие Learning V2 в стор-сборке есть');
++  assert.ok(result.routes.includes('app/learning-v2/session/[id].tsx'), 'занятие Learning V2 вырезано из стор-сборки');
+   assert.deepEqual(
+     result.holes.map((hole) => `${hole.file}:${hole.line} → ${hole.route}`),
+     [],

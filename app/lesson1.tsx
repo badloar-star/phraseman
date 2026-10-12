@@ -2668,6 +2668,26 @@ function LessonScreen() {
       lessonFirstQuestionVisible ? 'gate passed (first question visible), charging via gate' : 'lesson not ready for paid entry',
     );
   }, [lessonFirstQuestionVisible, lessonId]);
+  // зачем (координатор 12.10, energy-modes-017: «урок открылся при ⚡0, окна нет» — сначала логи): списание за урок (режим А)
+  // идёт не на «Начать», а когда виден ПЕРВЫЙ вопрос; до этого (интро, загрузка) энергия не проверяется. Видно, какое
+  // условие держит гейт, и сколько энергии видит экран. Временная трасса — убрать после диагноза.
+  useEffect(() => {
+    console.log('[ENERGY-GATE] lesson1 entry', JSON.stringify({ // guard-ok: временная трасса диагноза energy-modes-017
+      lessonId,
+      firstQuestionVisible: lessonFirstQuestionVisible,
+      energyReady,
+      lessonHydrated,
+      introGateReady,
+      introVisible: showIntroScreens,
+      hasPlayableRows: hasPlayableLessonRows,
+      remoteSourceReady: !frenchRemoteLessonRequired || remoteFrenchLessonLoadState === 'ready',
+      screenEnergy: currentEnergy,
+      screenBonus: bonusEnergy,
+      plusOrUnlimited: testerEnergyDisabled,
+      op: lessonEnergyIntent.operationId,
+    }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lessonFirstQuestionVisible, energyReady, lessonHydrated, introGateReady, showIntroScreens, hasPlayableLessonRows, remoteFrenchLessonLoadState, lessonId]);
   // зачем (D159, владелец 04.10): энергия окончательно списывается после ПЕРВОГО ОТВЕТА; вышел без ответа — возврат;
   // повторный вход в тот же раздел урока в течение 10 мин — бесплатно.
   const lessonEnergyGate = useFirstQuestionEnergyGate({

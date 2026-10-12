@@ -912,9 +912,32 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     options?: Readonly<{ mistakeCharge?: boolean }>,
   ): Promise<EnergyStartResult> => {
     const traceKey = intent.grant?.subjectId ? `spend:${intent.grant.subjectId}` : 'spend';
+    // зачем (координатор 12.10, energy-modes-017: «урок открылся при ⚡0, окна нет» — сначала логи): каждое решение старта
+    // одной строкой — режим, Plus и причина, из чего сложилась энергия (основная + бонусная + кредит возвратов журнала;
+    // dev-ссылка energy=0 обнуляет только основную), решение и причина. Логи выходов остаются навсегда.
+    const gateSnapshot = () => ({
+      activity,
+      op: intent.operationId,
+      subject: intent.grant?.subjectId ?? null,
+      mode: peekEnergyMode(),
+      plusOrUnlimited: isUnlimitedRef.current,
+      unlimitedReason: _lastUnlimitedReason,
+      base: energyRef.current,
+      bonus: bonusRef.current,
+      refundCredit: refundCreditRef.current,
+      available: energyRef.current + bonusRef.current + refundCreditRef.current,
+      energyReady: energyReadyRef.current,
+    });
+    const gateDecision = (decision: string, reason: string, extra?: Record<string, unknown>): void => {
+      console.log('[ENERGY-GATE] start decision', JSON.stringify({ decision, reason, ...gateSnapshot(), ...extra })); // guard-ok: каждый выход старта называет причину
+    };
+    console.log('[ENERGY-GATE] start enter', JSON.stringify({ ...gateSnapshot(), mistakeCharge: options?.mistakeCharge === true })); // guard-ok: вход старта
     try {
       const cost = activityEnergyCost(activity);
-      if (cost === 0) return 'unlimited';
+      if (cost === 0) {
+        gateDecision('unlimited', 'activity_cost_zero', { cost });
+        return 'unlimited';
+      }
       if (!energyReadyRef.current) {
         markEnergySpendStage(traceKey, 'waiting for load (cold context: energyReady=false)');
         await load();
@@ -932,6 +955,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
          */
         console.warn(`[ENERGY-START] отказ: энергия не прочиталась (activity=${activity}, стоимость=${activityEnergyCost(activity)}) — экран покажет «отменено»`);
         markEnergySpendStage(traceKey, 'refused: energy storage unreadable after load()');
+        gateDecision('cancelled', 'energy_storage_unreadable_after_load', { cost });
         return 'cancelled';
       }
       if (isUnlimitedRef.current) {
@@ -939,6 +963,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         const skipTrace = `spend SKIPPED (activity=${activity}, cost=${cost}):`
           + ` unlimited, reason=${_lastUnlimitedReason}`;
         traceEnergyRestore(skipTrace);
+        gateDecision('unlimited', `plus_or_unlimited:${_lastUnlimitedReason}`, { cost });
         return 'unlimited';
       }
       // зачем (владелец 11.10, режим энергии Б): старт занятия с сердечками бесплатный, энергия снимается за ошибку
@@ -946,22 +971,31 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       // зачем (координатор 11.10): в режиме Б отработка ошибок бесплатна целиком — без списания и без требования энергии.
       if (!options?.mistakeCharge && isFreeInMistakeMode(activity)) {
         traceEnergyRestore(`spend SKIPPED (activity=${activity}): mode=mistake_charge, free activity`);
+        gateDecision('unlimited', 'mode_b_free_activity', { cost });
         return 'unlimited';
       }
       if (!options?.mistakeCharge && chargesEnergyOnMistake(activity)) {
         const available = bonusRef.current + refundCreditRef.current + energyRef.current;
         if (available < 1) {
           console.warn(`[ENERGY-MODE] старт отклонён: режим Б, энергии нет (activity=${activity}, available=${available})`); // guard-ok: ранний выход логируется
+          gateDecision('insufficient', 'mode_b_no_energy_for_start', { cost });
           return 'insufficient';
         }
         traceEnergyRestore(`spend SKIPPED (activity=${activity}): mode=mistake_charge, free start, available=${available}`);
+        gateDecision('unlimited', 'mode_b_free_start_energy_present', { cost });
         return 'unlimited';
       }
-      if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) return 'insufficient';
+      if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) {
+        gateDecision('insufficient', 'mode_a_available_below_cost', { cost });
+        return 'insufficient';
+      }
 
       const accountToken = captureAccountGeneration();
       return await withAccountTransitionLock(async (accountTransitionLockLease) => {
-        if (!isCurrentAccountGeneration(accountToken)) return 'cancelled';
+        if (!isCurrentAccountGeneration(accountToken)) {
+          gateDecision('cancelled', 'account_changed_before_commit', { cost });
+          return 'cancelled';
+        }
         const before = energyRef.current + bonusRef.current + refundCreditRef.current;
         const result = await commitEnergySessionStart(
           intent,
@@ -971,8 +1005,14 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           { accountToken, accountTransitionLockLease },
         );
         markEnergySpendStage(traceKey, `ledger commit (activity=${activity}, cost=${cost}, status=${result.status})`);
-        if (result.status === 'insufficient') return 'insufficient';
-        if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
+        if (result.status === 'insufficient') {
+          gateDecision('insufficient', 'ledger_commit_insufficient', { cost, before });
+          return 'insufficient';
+        }
+        if (result.status === 'failed') {
+          gateDecision('cancelled', `ledger_commit_failed:${result.reason}`, { cost, before });
+          throw new Error(`energy_session_start_failed:${result.reason}`);
+        }
         // Финал траты: что ушло на диск. Если после перезахода число другое —
         // виновато восстановление, а не списание (логи readAndRecoverState).
         const spendTrace = `spend COMMITTED (activity=${activity}, cost=${cost}, status=${result.status}):`
@@ -995,9 +1035,15 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           soundDirector.request('pm.energy.spend', { scope: 'energy-spend' });
         }
         void syncEnergyPushRef.current?.();
+        gateDecision('spent', `ledger_${result.status}`, {
+          cost,
+          before,
+          after: result.projection.baseEnergy + result.projection.bonusEnergy + result.projection.refundCredit,
+        });
         return 'spent';
       });
     } catch (error) {
+      console.warn('[ENERGY-GATE] start decision', JSON.stringify({ decision: 'cancelled', reason: 'exception', message: error instanceof Error ? error.message : String(error), activity, op: intent.operationId })); // guard-ok: catch называет причину
       DebugLogger.error(
         'EnergyContext:confirmActivityStart',
         error instanceof Error ? error : new Error(String(error)),

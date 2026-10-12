@@ -134,9 +134,17 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
   // эффект не перезапускают в повторное списание (а даже если бы — гейт дедуплит).
   const autoTriggeredRef = useRef<string | null>(null);
   useEffect(() => {
-    if (firstQuestionVisible !== true) return;
-    if (autoTriggeredRef.current === operationId) return;
+    // зачем (координатор 12.10, energy-modes-017 — сначала логи): каждый ранний выход авто-списания и вызванный обработчик.
+    if (firstQuestionVisible !== true) {
+      console.log(`[ENERGY-GATE] auto: wait screen=${screen} op=${operationId} firstQuestionVisible=${String(firstQuestionVisible)}`); // guard-ok: ранний выход называет значение
+      return;
+    }
+    if (autoTriggeredRef.current === operationId) {
+      console.log(`[ENERGY-GATE] auto: skip screen=${screen} op=${operationId} reason=already_triggered_for_op`); // guard-ok: ранний выход называет причину
+      return;
+    }
     autoTriggeredRef.current = operationId;
+    console.log(`[ENERGY-GATE] auto: charge screen=${screen} activity=${activity} op=${operationId} finalizeOn=${finalizeOn}`);
     void charge().then((result) => {
       onResultRef.current?.(result);
       if (!mountedRef.current) {
@@ -144,15 +152,17 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
         return;
       }
       if (result === 'spent' || result === 'unlimited') {
+        console.log(`[ENERGY-GATE] auto: result=${result} screen=${screen} op=${operationId} → markShown (no modal)`);
         markShown();
         return;
       }
+      console.log(`[ENERGY-GATE] auto: result=${result} screen=${screen} op=${operationId} → ${result === 'insufficient' ? 'onInsufficient (modal)' : 'onCancelled (back)'} handler=${result === 'insufficient' ? typeof onInsufficientRef.current : typeof onCancelledRef.current}`);
       if (result === 'insufficient') onInsufficientRef.current?.();
       else onCancelledRef.current?.();
       // Не списано — разрешаем новую попытку того же входа (пополнил энергию).
       autoTriggeredRef.current = null;
     });
-  }, [charge, firstQuestionVisible, markShown, operationId]);
+  }, [activity, charge, finalizeOn, firstQuestionVisible, markShown, operationId, screen]);
 
   return useMemo(() => ({ charge, markShown, refundNotShown, markAnswered }), [charge, markShown, refundNotShown, markAnswered]);
 }

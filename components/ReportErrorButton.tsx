@@ -291,7 +291,8 @@ function ReportErrorButton({
         accessibilityLabel={a11yLabel}
       >
         {isFlag ? (
-          <Ionicons name="flag" size={17} color={t.wrong} />
+          // зачем (R1 spire-gap-001/002/004/005, Сверка 12.10): флажок «пожаловаться» в макете — контурный (kit.js: древко + волна без заливки), у нас был залитый Ionicons "flag"; контурный даёт тот же вид, что в образцах Шпиля, сессий и теории
+          <Ionicons name="flag-outline" size={17} color={t.wrong} />
         ) : (
           <Text
             style={[styles.triggerText, { color: textColor ?? glass.secondary, fontSize: f.sub }]}

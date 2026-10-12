@@ -85,3 +85,17 @@ put('dialogs-gap-014', DLG_START + [HOLD_VOICE, 'wait:800', 'tap:#dialogue-v2-se
 put('dialogs-024', DLG_START + [HOLD_VOICE], DLG_VOICE + '&speech=correct', DLG, unique=False, note='«Готовлю микрофон…» — снимать во время удержания (шаг long держит 1,5 с; снять кадр в удержании робот не умеет — нужен hold-режим Ядра)')
 put('dialogs-025', DLG_START + [HOLD_VOICE], DLG_VOICE + '&speech=correct', DLG, unique=False, note='«Говори…» — запись идёт (статус recording во время удержания; нужен hold-режим Ядра)')
 put('dialogs-027', DLG_START + [HOLD_VOICE, 'wait:800'], DLG_VOICE + '&speech=no_speech', DLG, unique=False, note='«Ошибка распознавания» (speech=no_speech; соответствие образцу проверить глазами)')
+
+# зачем (кадр cards-v2-047 7:02, «Мои наборы» вместо экрана создания): у Free лимит своих наборов 3/3 — экран создания показывает пилюлю 3/3 и «Безлимит с Plus»; cards=demo уже кладёт свои наборы, packdraft=on — черновик в форме. Соответствие пилюли «3/3» не проверено (число своих наборов в демо может быть другим)
+put('cards-v2-047', ['wait:1500'], 'cards=demo&plus=off&packdraft=on', '/community_pack_create', unique=False, note='создание набора у Free: пилюля лимита «N/3» и «Безлимит с Plus» (cards=demo + packdraft=on); число своих наборов в демо не проверено')
+
+
+# ── Ядро 12.10, c35b9f8ad: packdraft=few|full|private (создание набора), speech=hold|preparing (статус микрофона держится), cards-061, cards-gap-026/027
+put('cards-069', ['tap:#ugc-pack-save', 'wait:600'], 'plus=on&packdraft=few', '/community_pack_create', note='создание набора: «Минимум 10 карточек» (packdraft=few → тап «Сохранить»)')
+put('cards-071', ['tap:#ugc-pack-add-card', 'wait:600'], 'plus=on&packdraft=full', '/community_pack_create', note='создание набора: окно лимита «Карточек уже 50» (packdraft=full → тап «+ Карточка»)')
+put('cards-073', ['tap:#ugc-pack-save', 'wait:600'], 'plus=on&packdraft=private', '/community_pack_create', note='создание набора: «Набор сохранён» (packdraft=private, без публикации, сервер не трогается)')
+put('cards-gap-027', ['tap:#fc-pack-menu', 'tap:#fc-pack-publish'], 'cards=demo&plus=on', '/flashcards_collection?pack=local_pack_dev_demo_work', note='публикация: «не хватает данных» — у демо-набора нет описания, отказ приходит до сети (local_pack_dev_demo_* в dev не публикуется никогда)')
+put('cards-gap-026', ['tap:#fc-pack-menu', 'tap:#fc-pack-publish'], 'cards=demo&plus=on&fail=publish_daily_limit', '/flashcards_collection?pack=local_pack_dev_demo_work', note='публикация: суточный лимит (fail=publish_daily_limit)')
+put('cards-061', ['tap:#fc-editor-description', 'wait:400'], 'cards=demo&plus=on', '/flashcards_card_editor?create=1&cat=custom', note='редактор новой карточки: поле заметки в фокусе (заметка в редакторе теперь всегда открыта; «раскрыта» = фокус)')
+put('dialogs-024', DLG_START + [HOLD_VOICE, 'wait:400'], DLG_VOICE + '&speech=preparing', DLG, note='«Готовлю микрофон…» (speech=preparing держит статус после отпускания; снять — speech=off)')
+put('dialogs-025', DLG_START + [HOLD_VOICE, 'wait:400'], DLG_VOICE + '&speech=hold', DLG, note='«Говори…» (speech=hold держит запись после отпускания; снять — speech=off)')

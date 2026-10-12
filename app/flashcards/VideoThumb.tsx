@@ -41,18 +41,22 @@ export type VideoThumbProps = Readonly<{
   g: GlassTokens;
   /** Крупная плитка: запасной вид с названием; у узкой строки название рядом, поэтому только ▶. */
   showTitle: boolean;
+  /** Лента Главной: ▶ рисует сама плитка поверх картинки — в запасном виде второй значок не нужен. По умолчанию значок есть. */
+  showPlay?: boolean;
+  /** Тон подложки запасного вида; по умолчанию — тон плашки темы (opaqueControl). Лента Главной передаёт прозрачный: видна её собственная плашка. */
+  fallbackBackground?: string;
 }>;
 
-function VideoThumbFallback({ surface, id, reason, title, g, showTitle }: Readonly<{ surface: ThumbSurface; id: string; reason: string; title: string; g: GlassTokens; showTitle: boolean }>) {
+function VideoThumbFallback({ surface, id, reason, title, g, showTitle, showPlay, fallbackBackground }: Readonly<{ surface: ThumbSurface; id: string; reason: string; title: string; g: GlassTokens; showTitle: boolean; showPlay: boolean; fallbackBackground?: string }>) {
   const loggedRef = useRef(false);
   useEffect(() => {
     if (loggedRef.current) return;
     loggedRef.current = true;
-    console.warn(`[THUMB] fallback surface=${surface} id=${id} reason=${reason} → запасной вид (тон темы, ▶${showTitle ? ', название' : ''}), без повторных запросов`); // guard-ok: единичный лог на плитку
-  }, [id, reason, showTitle, surface]);
+    console.warn(`[THUMB] fallback surface=${surface} id=${id} reason=${reason} → запасной вид (тон ${fallbackBackground ?? 'темы'}${showPlay ? ', ▶' : ''}${showTitle ? ', название' : ''}), без повторных запросов`); // guard-ok: единичный лог на плитку
+  }, [fallbackBackground, id, reason, showPlay, showTitle, surface]);
   return (
-    <View testID={`video-thumb-fallback-${id}`} pointerEvents="none" style={[StyleSheet.absoluteFill, styles.fallback, { backgroundColor: g.opaqueControl }]}>
-      <Ionicons name="play-circle" size={showTitle ? 40 : 30} color={g.accentText} />
+    <View testID={`video-thumb-fallback-${id}`} pointerEvents="none" style={[StyleSheet.absoluteFill, styles.fallback, { backgroundColor: fallbackBackground ?? g.opaqueControl }]}>
+      {showPlay ? <Ionicons name="play-circle" size={showTitle ? 40 : 30} color={g.accentText} /> : null}
       {showTitle ? (
         <Text numberOfLines={2} style={[styles.fallbackTitle, { color: g.text }]} maxFontSizeMultiplier={1.2}>{title}</Text>
       ) : null}
@@ -60,7 +64,7 @@ function VideoThumbFallback({ surface, id, reason, title, g, showTitle }: Readon
   );
 }
 
-export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId, thumbUrl, title, g, showTitle }: VideoThumbProps) {
+export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId, thumbUrl, title, g, showTitle, showPlay = true, fallbackBackground }: VideoThumbProps) {
   const [failedUrl, setFailedUrl] = useState<string | null>(null);
   const local = devDemoThumbSource(videoId);
   if (local) {
@@ -69,10 +73,10 @@ export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId,
   }
   if (!thumbUrl) {
     traceThumbMissing(surface, id, `videoId пуст в наборе (${String(videoId ?? '')})`);
-    return <VideoThumbFallback surface={surface} id={id} reason="no_video_id" title={title} g={g} showTitle={showTitle} />;
+    return <VideoThumbFallback surface={surface} id={id} reason="no_video_id" title={title} g={g} showTitle={showTitle} showPlay={showPlay} fallbackBackground={fallbackBackground} />;
   }
   if (failedUrl === thumbUrl) {
-    return <VideoThumbFallback surface={surface} id={id} reason="load_error" title={title} g={g} showTitle={showTitle} />;
+    return <VideoThumbFallback surface={surface} id={id} reason="load_error" title={title} g={g} showTitle={showTitle} showPlay={showPlay} fallbackBackground={fallbackBackground} />;
   }
   const trace = thumbTrace(surface, id, thumbUrl);
   return (

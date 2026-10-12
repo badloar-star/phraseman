@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from '../../LangContext';
@@ -10,7 +9,8 @@ import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
 import { colorWithAlpha } from '../../v2/plateAlpha';
 import { HOME_PLATE_ALPHA } from './homePlate';
-import { thumbTrace, traceThumbMissing } from '../../../app/thumb_trace';
+import VideoThumb from '../../../app/flashcards/VideoThumb';
+import { useShadowGlass } from '../../v2/ShadowSurface';
 
 type Props = {
   videos: readonly LingmanYoutubeVideo[];
@@ -23,6 +23,7 @@ type Props = {
 export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll }: Props) {
   const { lang } = useLang();
   const p = useV2Palette();
+  const glass = useShadowGlass();
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const selectedVideo = videos.find((video) => video.id === activeVideoId) ?? null;
   // The WebView module is evaluated only after a deliberate tap, never on Home's first frame.
@@ -58,9 +59,9 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
               onPress={() => setActiveVideoId(video.id)}
               style={[s.card, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]}
             >
-              {/* зачем (координатор 12.10, [THUMB]): пустые плитки на кадре home-001 — журнал показывает адрес, источник (кэш/сеть), время и код ответа при ошибке */}
-              {video.thumbnailUrl ? null : traceThumbMissing('home_video_rail', video.id, 'thumbnailUrl пуст в данных ленты')}
-              <Image source={{ uri: video.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={100} accessible={false} {...thumbTrace('home_video_rail', video.id, video.thumbnailUrl)} />
+              {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
+                  ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
+              <VideoThumb surface="home_video_rail" id={video.id} videoId={video.id} thumbUrl={video.thumbnailUrl || null} title={video.title} g={glass} showTitle showPlay={false} fallbackBackground="transparent" />
               <View style={s.cardContent}>
                 <Ionicons name="play-circle" size={26} color="#FFFFFF" />
               </View>

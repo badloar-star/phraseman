@@ -67,6 +67,15 @@ describe('VideoThumb', () => {
     expect(warns.some((l) => l.includes('reason=no_video_id'))).toBe(true);
   });
 
+  it('Home rail tile: fallback on the rail plate (transparent), no second play icon, title shown', async () => {
+    await render(<VideoThumb surface="home_video_rail" id="rail1" videoId="rail1" thumbUrl="https://i.ytimg.com/vi/rail1/hqdefault.jpg" title="Видео ленты" g={g} showTitle showPlay={false} fallbackBackground="transparent" />);
+    await act(async () => { screen.getByTestId('thumb-image').props.onError({ error: 'x' }); });
+    const fallback = screen.getByTestId('video-thumb-fallback-rail1');
+    expect(JSON.stringify(fallback.props.style)).toContain('transparent');
+    expect(screen.queryByText('Видео ленты')).toBeTruthy();
+    expect(JSON.stringify(screen.toJSON())).not.toContain('Ionicons');
+  });
+
   it('the component adds no network code of its own', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards', 'VideoThumb.tsx'), 'utf8');
     expect(source).not.toMatch(/fetch\(|XMLHttpRequest|axios/);

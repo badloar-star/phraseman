@@ -62,9 +62,10 @@ describe('[THUMB] trace of video previews', () => {
   });
 
   it('both surfaces are wired (Home video rail, Cards video pack row — card and plain variants)', () => {
+    // зачем (координатор 12.10): лента Главной подключает общий VideoThumb (трассировка [THUMB] и запасной вид внутри него)
     const rail = read('components/home/v2/HomeV2VideoRail.tsx');
-    expect(rail).toMatch(/thumbTrace\('home_video_rail', video\.id, video\.thumbnailUrl\)/);
-    expect(rail).toContain('traceThumbMissing');
+    expect(rail).toMatch(/<VideoThumb surface="home_video_rail" id=\{video\.id\}/);
+    expect(rail).toContain('fallbackBackground="transparent"');
     // зачем (координатор 12.10, cards-028): превью и запасной вид живут в VideoThumb; строка набора подключает его для обеих плиток
     const row = read('app/flashcards/VideoPackRow.tsx');
     expect(row).toMatch(/<VideoThumb surface="video_pack_card" id=\{pack\.id\}/);

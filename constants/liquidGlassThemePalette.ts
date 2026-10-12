@@ -131,9 +131,25 @@ const TOKEN_REGISTRY: Readonly<Record<LiquidGlassTintThemeId, BaseGlassTokens>> 
 // Пока провайдер ничего не записал — «Спокойно» + тёмное, т.е. прежние токены байт-в-байт.
 let activeVariant: Required<LiquidGlassVariant> = normalizeVariant(DEFAULT_LIQUID_GLASS_VARIANT);
 // зачем: 23 темы × 2 оформления × 21 шаг ползунка = 966 палитр максимум — кэш ограничен сам.
+// зачем (запрос координатора 15.10, +52 МБ на экране тем): кэш рос без предела (до ~970 записей по ~150 цветов при листании тем и ползунка).
+// Теперь LRU с потолком: попадание переносит запись в конец, переполнение вытесняет самую старую. Пересчёт токена дешёвый и детерминированный.
+export const VARIANT_CACHE_LIMIT = 160;
 const variantCache = new Map<string, GlassTokens>();
 /** Размер кэша токенов (тема × оформление × шаг ползунка) — для dev-лога [THEMES-MEM]. */
 export const liquidGlassTokenCacheSize = (): number => variantCache.size;
+
+/**
+ * Освобождение при уходе с экрана тем: оставить в кэше токены только активной темы (≤ 2 оформления × 21 шаг), остальное пересчитается по требованию.
+ * Возвращает, сколько записей освобождено (для лога [THEMES-MEM]).
+ */
+export function releaseLiquidGlassTokenCacheExcept(activeThemeId: unknown): number {
+  const keep = `${resolveLiquidGlassTheme(activeThemeId)}|`;
+  let freed = 0;
+  for (const key of Array.from(variantCache.keys())) {
+    if (!key.startsWith(keep)) { variantCache.delete(key); freed += 1; }
+  }
+  return freed;
+}
 
 /** Called only by ThemeProvider: the variant that argument-less token lookups resolve to. */
 export function setActiveLiquidGlassVariant(variant: LiquidGlassVariant): void {
@@ -154,7 +170,11 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const themeId = resolveLiquidGlassTheme(id);
   const key = `${themeId}|${variant.intensity}|${variant.appearance}`;
   const cached = variantCache.get(key);
-  if (cached) return cached;
+  if (cached) {
+    variantCache.delete(key);
+    variantCache.set(key, cached);
+    return cached;
+  }
   const built = buildThemeTokens(themeId, variant);
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
@@ -174,6 +194,10 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);
+  if (variantCache.size > VARIANT_CACHE_LIMIT) {
+    const oldest = variantCache.keys().next().value;
+    if (oldest !== undefined) variantCache.delete(oldest);
+  }
   return tokens;
 }
 

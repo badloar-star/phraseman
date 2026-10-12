@@ -133,7 +133,25 @@ export type V2Palette = Readonly<{
   smokeBoost: number;
 }>;
 
+// зачем (запрос координатора 15.10, +52 МБ на экране тем): кэш палитр рос по записи на каждый вариант темы без предела; теперь LRU с потолком.
+export const V2_PALETTE_CACHE_LIMIT = 160;
 const paletteCache = new Map<string, V2Palette>();
+function paletteCacheGet(key: string): V2Palette | undefined {
+  const hit = paletteCache.get(key);
+  if (hit) {
+    paletteCache.delete(key);
+    paletteCache.set(key, hit);
+  }
+  return hit;
+}
+function paletteCacheSet(key: string, palette: V2Palette): void {
+  paletteCache.set(key, palette);
+  if (paletteCache.size > V2_PALETTE_CACHE_LIMIT) {
+    const oldest = paletteCache.keys().next().value;
+    if (oldest !== undefined) paletteCache.delete(oldest);
+  }
+}
+export const v2PaletteCacheSize = (): number => paletteCache.size;
 
 /** Палитра нового стиля для темы. Кэшируется — вызов в рендере бесплатный. */
 export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
@@ -144,16 +162,16 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   if (!source) return buildBaseV2Palette(theme, themeMode);
   const g = source.tokens;
   const key = `glass|${themeMode}|${source.calmCta}|${g.level}|${g.appearance}|${g.bg}|${g.accent}`;
-  const cached = paletteCache.get(key);
+  const cached = paletteCacheGet(key);
   if (cached) return cached;
   const palette = adaptV2PaletteToGlass(buildBaseV2Palette({ ...theme, accent: source.calmCta }, themeMode), g);
-  paletteCache.set(key, palette);
+  paletteCacheSet(key, palette);
   return palette;
 }
 
 function buildBaseV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   const key = `${themeMode}|${theme.accent}`;
-  const cached = paletteCache.get(key);
+  const cached = paletteCacheGet(key);
   if (cached) return cached;
   const tintColor = theme.accent;
   const tint = TINT_BY_THEME[themeMode] ?? 0.04;
@@ -203,7 +221,7 @@ function buildBaseV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     link: mixHex('#A6A6A8', tintColor, 0.03),
     smokeBoost: 1,
   };
-  paletteCache.set(key, palette);
+  paletteCacheSet(key, palette);
   return palette;
 }
 

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
@@ -21,6 +21,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import {
   LIQUID_GLASS_GRADIENT_THEME_IDS,
   liquidGlassTokens,
+  releaseLiquidGlassTokenCacheExcept,
   type GlassTokens,
   type LiquidGlassAppearance,
   type LiquidGlassThemeId,
@@ -199,6 +200,13 @@ export default function SettingsThemes() {
   const insets = useStableSafeAreaInsets();
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   const vivid = liquidGlassIntensity > 0;
+  // зачем (запрос координатора 15.10, +52 МБ): при уходе с экрана тем освобождаем кэш токенов всех чужих тем (они пересчитаются по требованию); активная остаётся — идентичность токенов не меняется.
+  const activeThemeRef = useRef(liquidGlassThemeId);
+  activeThemeRef.current = liquidGlassThemeId;
+  useEffect(() => () => {
+    const freed = releaseLiquidGlassTokenCacheExcept(activeThemeRef.current);
+    console.log('[THEMES-MEM] уход с экрана: освобождены токены чужих тем', JSON.stringify({ freed, active: activeThemeRef.current })); // guard-ok: итог освобождения кэша
+  }, []);
   // зачем (запрос координатора 15.10, +52 МБ за 65 с): лог памяти экрана — сколько превью смонтировано и как растут кэши и куча
   useThemesMemLog({
     themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, intensity: liquidGlassIntensity,

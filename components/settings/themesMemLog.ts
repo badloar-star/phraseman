@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { liquidGlassTokenCacheSize } from '../../constants/liquidGlassThemePalette';
 import { themedArtCacheSize } from '../theme/themed_art_registry';
+import { v2PaletteCacheSize } from '../../constants/v2Style';
 
 const mb = (bytes: unknown): number | null => (typeof bytes === 'number' ? Math.round((bytes / 1048576) * 10) / 10 : null);
 
@@ -36,7 +37,7 @@ export function useThemesMemLog(info: Info): void {
       changes: changes.current,
       theme: info.themeId, appearance: info.appearance, intensity: info.intensity,
       mounted: { swatchSvg: info.swatches, smokeSvg: info.smokes, rasterImages: 0 },
-      cacheTokens: liquidGlassTokenCacheSize(), cacheArt: themedArtCacheSize(),
+      cacheTokens: liquidGlassTokenCacheSize(), cachePalettes: v2PaletteCacheSize(), cacheArt: themedArtCacheSize(),
       heapMB: heap.heapMB, liveMB: heap.liveMB, dHeapMB: delta(heap.heapMB, b.heapMB), dLiveMB: delta(heap.liveMB, b.liveMB), gcs: heap.gcs, note: heap.note,
     }));
   }, [info.themeId, info.appearance, info.intensity, info.swatches, info.smokes]);

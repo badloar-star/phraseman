@@ -288,6 +288,9 @@ const EMPTY_OWNED_THEME_MODES: ReadonlySet<ThemeMode> = new Set<ThemeMode>();
 // уходит, чтений Firestore ноль). Три ключа читаются ОДНИМ multiGet при старте.
 // зачем: в части тестовых окружений глобального __DEV__ нет — лог [THEME-INTENSITY] не должен ронять гидратацию.
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
+// зачем (оптимизация тем, координатор 15.10; [THEMES-PERF]): сколько подписчиков useTheme перерисовалось после смены значения контекста.
+// Считаем ВЫЗОВЫ useTheme (один вызов = один рендер подписчика); только в dev, в боевой сборке счётчик не растёт.
+let themePerfConsumerCalls = 0;
 const THEME_STORAGE_KEY = 'liquid_glass_theme';
 // зачем (ползунок 2026-10-04): уровень пишется рядом с интенсивностью — прошлая сборка
 // при откате прочитает ближайший уровень и не сбросит человека в «Спокойно».
@@ -530,7 +533,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // liquidGlassTokens(id) без второго аргумента, в этом же кадре получают новый цвет
   // (без мигания старым). Вызов идемпотентен: тот же state → тот же вариант.
   setActiveLiquidGlassVariant(variant);
-  const theme = useMemo(() => makeLiquidGlassTheme(liquidGlassThemeId, DARK, variant), [liquidGlassThemeId, variant]);
+  const themeBuildMsRef = useRef(0);
+  const theme = useMemo(() => {
+    const startedAt = IS_DEV ? Date.now() : 0;
+    const built = makeLiquidGlassTheme(liquidGlassThemeId, DARK, variant);
+    if (IS_DEV) themeBuildMsRef.current = Date.now() - startedAt;
+    return built;
+  }, [liquidGlassThemeId, variant]);
   const isDark = liquidGlassAppearance === 'dark';
   const statusBarLight = isDark;
   const ds = useMemo(() => {
@@ -600,7 +609,30 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassIntensity, setLiquidGlassIntensity, setPreviewLiquidGlassIntensity, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
+  // зачем ([THEMES-PERF], dev): причина смены значения контекста, цена сборки темы и число перерисованных подписчиков за 250 мс после неё.
+  const perfPrevRef = useRef<{ id: string; level: string; appearance: string; intensity: number; fontSize: string } | null>(null);
+  useEffect(() => {
+    if (!IS_DEV) return undefined;
+    const now = { id: String(liquidGlassThemeId), level: String(liquidGlassColorLevel), appearance: String(liquidGlassAppearance), intensity: liquidGlassIntensity, fontSize: String(fontSize) };
+    const prev = perfPrevRef.current;
+    perfPrevRef.current = now;
+    if (prev === null) {
+      console.log('[THEMES-PERF] first', JSON.stringify({ ...now, buildMs: themeBuildMsRef.current })); // guard-ok: dev-замер первого значения
+      return undefined;
+    }
+    const changed = (Object.keys(now) as Array<keyof typeof now>).filter((key) => now[key] !== prev[key]);
+    const callsAtChange = themePerfConsumerCalls;
+    const changedAt = Date.now();
+    setTimeout(() => {
+      console.log('[THEMES-PERF] change', JSON.stringify({ changed, from: changed.map((key) => prev[key]), to: changed.map((key) => now[key]), buildMs: themeBuildMsRef.current, consumersRendered: themePerfConsumerCalls - callsAtChange, settleMs: Date.now() - changedAt })); // guard-ok: dev-замер смены темы/шага ползунка
+    }, 250);
+    return undefined; // зачем: таймер не отменяем — на жесте ползунка нужна строка на КАЖДЫЙ шаг, а не только последний
+  }, [liquidGlassThemeId, liquidGlassColorLevel, liquidGlassAppearance, liquidGlassIntensity, fontSize]);
+
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+  if (IS_DEV) themePerfConsumerCalls += 1; // guard-ok: счётчик [THEMES-PERF], в боевой сборке IS_DEV=false
+  return useContext(ThemeContext);
+};

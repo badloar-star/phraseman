@@ -99,3 +99,6 @@ put('community-008', _SRCH + ['type:ZZ99', 'tap:#friends-search'], _F + '&dev_fr
 put('community-013', _SRCH + ['type:DEVSLF', 'tap:#friends-search', 'wait:800'], _F, '/(tabs)/community', unique=False, note='«это твой код» (код DEVSLF; фраза выбирается случайно из 5)')
 put('community-015', _SRCH + ['type:ZZ99', 'tap:#friends-search', 'wait:800'], _F + '&dev_friends_fail=search_offline', '/(tabs)/community', note='поиск без сети (dev_friends_fail=search_offline)')
 put('community-021', ['wait:1000'], _F + '&dev_friends_fail=list', '/(tabs)/community', note='«Связь пропала»: вкладка «Друзья» не загрузилась (dev_friends_fail=list)')
+
+# ── cards-027 (владелец 12.10: п.82(2) → уточнение п.83): кнопка языка на настройке тренировки — фильтр наборов по языку (чип «EN ⌄» + меню), рядом пилюля остатка Free; у пользователя с наборами на одном языке чип без стрелки (R1_FC_LANG_FILTER.md)
+put('cards-027', [], 'cards=demo&plus=off&free=on', '/flashcards_training_setup?mode=blitz', unique=False, note='настройка тренировки: чип языка «EN» (+ стрелка и меню, если наборы на нескольких языках) и пилюля остатка (Free); образец cards-states №22 перерисован 12.10 по п.83; меню открывается тапом по чипу (в dev-демо наборы только на английском — стрелки может не быть)')

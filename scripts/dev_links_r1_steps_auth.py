@@ -7,7 +7,7 @@
 # Безопасность: все подмены — dev_state, только память процесса, в стор-сборке маршрут вырезан и геттеры = null.
 # Ни один шаг не входит в аккаунт и не стирает данные: вход подменён ошибкой ДО сети (switch=…, restore=retired), окна удаления только
 # открываются (delete=fail — страховка), подтверждение удаления роботу не даётся (auth-gap-011 — вручную).
-from dev_links_r1_steps import ACCT, CANCEL, MANAGE, PLAN_Y, SIGNIN, add
+from dev_links_r1_steps import ACCT, CANCEL, ENTRIES, MANAGE, PLAN_Y, SIGNIN, add
 
 DELETE_OPEN = ['see:#account-delete-button', 'tap:#account-delete-button']
 
@@ -32,3 +32,9 @@ add('auth-gap-011', DELETE_OPEN, 'delete=fail', ACCT, unique=False,
 # ── Управление подпиской: удержание после причины «Не хватает функций»
 add('profile-023', [CANCEL, 'tap:#manage-subscription-reason-missing_features', 'tap:#manage-subscription-reasons-continue'], PLAN_Y, MANAGE,
     note='причина «Не хватает функций» → «Продолжить» → предложение удержания; offer-decline НЕ жать')
+
+# ── profile-017 (склейка 12.10, «состояние не то»): образец — прокрученный экран месячной подписки («Восстановить покупки», «Перейти к отмене»,
+# пояснение про источник цены). Запись в общем файле снимала верх экрана; перекрываем её здесь, общий файл не трогаем.
+ENTRIES.pop('profile-017', None)
+add('profile-017', ['scroll:down'], 'plus=on&plan=monthly', MANAGE,
+    note='управление подпиской, месячная, прокручено вниз; карточки «Перейти на годовой» без магазина нет (нужен store-аккаунт)')

@@ -60,6 +60,7 @@ describe('Dialogue V2 Plus tools discovery', () => {
     expect(subscriptionSource).not.toContain('Собеседник «Компас»');
     // зачем (30.09): строки «…без ограничений» в manage_subscription не было ни в одной версии
     // (git log -S пуст) — список Plus намеренно без маркетинговых обещаний. Сторожим имя продукта.
-    expect(subscriptionSource).toContain("benefitId: 'free_conversation', icon: 'chatbubbles', ru: 'Свободный разговор'");
+    // 12.10: значок — контурный chatbubble-outline по макету manage-subscription-states.html (склейка profile-016).
+    expect(subscriptionSource).toContain("benefitId: 'free_conversation', icon: 'chatbubble-outline', ru: 'Свободный разговор'");
   });
 });

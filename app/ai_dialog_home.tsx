@@ -67,7 +67,8 @@ export default function AiDialogHome() {
       ) : null}
     </View>
   );
-  const backButton = <V2IconButton icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
+  // зачем (координатор 12.10, п.72): хаб открыт с Главной — стрелка назад остаётся, хаптик есть, testID нужен роботу съёмки
+  const backButton = <V2IconButton testID="ai-dialog-home-back" icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
     hapticTap();
     safeRouterBack(router, '/(tabs)/home' as any);
   }} />;

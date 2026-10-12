@@ -3,6 +3,7 @@
  * Источник данных — хук useTodayTasks() программы 2.0; здесь только форма,
  * чтобы вид не зависел от того, как задачи считаются.
  */
+import type { ImageSourcePropType } from 'react-native';
 // зачем 'spire_steps' (PM-280, D49 + TOWER.md): «Пройди N ступеней Шпиля» — тип
 // задачи в пуле «Сегодня». progress = ступени, ПРОЙДЕННЫЕ сегодня (локальный
 // день), target = N, route = экран Шпиля (PM-279). Счёт и выдача — useTodayTasks (PM-259).
@@ -30,4 +31,6 @@ export type HomeFeatureTile = Readonly<{
   onPress: () => void;
   // зачем: плейсхолдер-арт 2.0 (assets/images/v2), пока Codex не нарисовал финальные картинки.
   art: number;
+  /** Слой `.accent` (красится в цвет темы) из того же resolveThemedArt; нет файла — null/undefined и рисуется один слой. */
+  artAccent?: ImageSourcePropType | null;
 }>;

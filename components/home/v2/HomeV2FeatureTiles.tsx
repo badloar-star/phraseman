@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
+import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
@@ -30,7 +30,8 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           style={[s.tile, glass]}
         >
           <View pointerEvents="none" style={s.art}>
-            <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
+            {/* зачем (координатор 15.10): основа + необязательный слой .accent в цвет темы (tile.artAccent из того же resolve); без слоя — один Image, как раньше */}
+            <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.artImage} />
           </View>
           <Text style={[s.title, { color: p.text }]}>{tile.title}</Text>
         </V2Pressable>

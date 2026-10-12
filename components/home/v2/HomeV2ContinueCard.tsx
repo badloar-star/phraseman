@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
-import { Image } from 'expo-image';
+import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -15,6 +15,8 @@ type Props = {
   total: number;
   /** Реальный тематически-независимый арт продолжения либо арт состояния ошибок. */
   art: ImageSourcePropType;
+  /** Слой `.accent` (цвет темы) из того же resolveThemedArt; нет — один слой. */
+  artAccent?: ImageSourcePropType | null;
   /** зачем (ассеты 2.0, continue 1536×1024, предмет справа): заполнить блок с привязкой к правому краю, а не ужимать. */
   artWide?: boolean;
   /** «Урок 4» — плашка поверх арта справа. */
@@ -37,7 +39,7 @@ type Props = {
  * “Продолжить обучение”»): надписи-оверлайна нет, счётчик переехал в строку полосы —
  * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
-export default function HomeV2ContinueCard({ title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
+export default function HomeV2ContinueCard({ title, done, total, art, artAccent = null, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
@@ -57,7 +59,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
       style={[s.card, glass]}
     >
       <View pointerEvents="none" style={[s.art, pending ? s.artPending : null]}>
-        <Image source={art} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} accessible={false} />
+        <ThemedArtLayers source={art} accent={artAccent} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} />
         {badge && !pending ? (
           <View
             style={[s.badge, { backgroundColor: colorWithAlpha(p.control, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}

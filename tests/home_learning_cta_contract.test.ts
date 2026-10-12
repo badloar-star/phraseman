@@ -32,7 +32,9 @@ describe('home learning CTA contract', () => {
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
     // 04.10 (владелец: «ТУТ ПОСЛЕДНИЙ УРОК, А НЕ ОШИБКИ»): у карточки только арт урока — новый предмет 2.0 из реестра,
     // прежняя картинка запасная; арта «Мои ошибки» на карточке больше нет.
-    expect(source).toContain("const priorityCardImage = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage;");
+    // 15.10: слой .accent — из того же resolve (priorityCardArt), основа та же.
+    expect(source).toContain("const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);");
+    expect(source).toContain('const priorityCardImage = priorityCardArt.base ?? lastLessonImage;');
     expect(source).not.toContain("resolveThemedArt('mistakes_entry'");
     expect(cardSource).toContain('art={priorityCardImage}');
     expect(cardSource).not.toContain('menuImages.lesson');

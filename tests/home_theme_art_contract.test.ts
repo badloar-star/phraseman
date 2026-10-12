@@ -33,13 +33,15 @@ describe('Home per-theme artwork contract', () => {
     const home = readFileSync(join(ROOT, 'app/(tabs)/home.tsx'), 'utf8');
     const phrase = readFileSync(join(ROOT, 'components/DailyPhraseCard.tsx'), 'utf8');
 
-    expect(home).toContain('img: menuImages.lesson');
-    expect(home).toContain('img: menuImages.cards');
+    // зачем (15.10): иконки меню 1.0 (home_menu_icons) удалены — поле img нигде не читалось, плитки берут арт 2.0 через tileArt/реестр.
+    expect(home).not.toContain('menuImages');
+    expect(home).not.toContain('home_menu_icons');
     // зачем (координатор §46, 2026-10-01): плитка Лиги жила в Главной V1 (удалена
     // 01.10); у плиток 2.0 арт задан явно, и каждый файл обязан существовать.
     expect(home).not.toContain('RetiredRasterFallback kind="league"');
     // 04.10: плитки берут предмет 2.0 из реестра, `?? require(...)` — прежняя картинка на случай, если предмета нет.
-    const tileArts = [...home.matchAll(/art: (?:resolveThemedArt\('[a-z_]+', homeArtTone\)\.base \?\? )?require\('\.\.\/\.\.\/(assets\/images\/[^']+)'\)/g)].map((m) => m[1]!);
+    // 15.10: плитка = `...tileArt(имя, require(запасной))` — основа и слой .accent из одного resolveThemedArt.
+    const tileArts = [...home.matchAll(/tileArt\([^,]+, require\('\.\.\/\.\.\/(assets\/images\/[^']+)'\)\)/g)].map((m) => m[1]!);
     expect(tileArts.length).toBeGreaterThanOrEqual(3);
     for (const art of tileArts) expect(existsSync(join(ROOT, art))).toBe(true);
     expect(home).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
@@ -47,7 +49,8 @@ describe('Home per-theme artwork contract', () => {
     // «Мои ошибки», и в разметку арт идёт через priorityCardImage. Намерение
     // прежнее — арт последнего урока берётся из подготовленного набора темы.
     // 04.10 (D161, владелец): карточка «Продолжить» — только последний урок, арта «Мои ошибки» на ней больше нет.
-    expect(home).toContain("const priorityCardImage = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage;");
+    expect(home).toContain("const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);");
+    expect(home).toContain('const priorityCardImage = priorityCardArt.base ?? lastLessonImage;');
     expect(home).toContain('art={priorityCardImage}');
     expect(phrase).toContain('getHomeSupportingArt(themeMode).phraseOfDay');
   });

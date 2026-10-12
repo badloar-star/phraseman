@@ -2098,7 +2098,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Владелец 04.10 про today.webp: «ЭТО ДЛЯ ПОСЛЕДНЕГО УРОКА» — блокнот с галочкой, когда последний урок пройден
         // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
         const lastLessonCompleted = (lastLesson?.progress ?? 0) >= 45;
-        const priorityCardImage = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage;
+        // зачем (координатор 15.10): основа и слой .accent плитки — из ОДНОГО resolveThemedArt (кэш реестра), второго разрешения нет
+        const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; };
+        const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);
+        const priorityCardImage = priorityCardArt.base ?? lastLessonImage;
         /**
          * Единственный вход в «Мои ошибки» с Главной.
          *
@@ -2209,21 +2212,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: quickItems[0]!.label,
                 subtitle: triLang(lang, { ru: 'Грамматика шаг за шагом', uk: 'Граматика крок за кроком', en: 'Grammar step by step', es: 'Gramática paso a paso', 'pt-BR': 'Gramática passo a passo', vi: 'Ngữ pháp từng bước', id: 'Tata bahasa langkah demi langkah', tr: 'Adım adım dilbilgisi', pl: 'Gramatyka krok po kroku' }),
                 onPress: quickItems[0]!.onPress,
-                art: resolveThemedArt('lessons', homeArtTone).base ?? require('../../assets/images/v2/book_stack.png'),
+                ...tileArt('lessons', require('../../assets/images/v2/book_stack.png')),
             },
             {
                 key: 'dialogs',
                 title: quickItems[1]!.label,
                 subtitle: triLang(lang, { ru: 'Реальные ситуации', uk: 'Реальні ситуації', en: 'Real-life situations', es: 'Situaciones reales', 'pt-BR': 'Situações reais', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durumlar', pl: 'Prawdziwe sytuacje' }),
                 onPress: quickItems[1]!.onPress,
-                art: resolveThemedArt('dialogs', homeArtTone).base ?? require('../../assets/images/v2/chat_bubbles.png'),
+                ...tileArt('dialogs', require('../../assets/images/v2/chat_bubbles.png')),
             },
             {
                 key: 'cards',
                 title: quickItems[2]!.label,
                 subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, фрази й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
                 onPress: quickItems[2]!.onPress,
-                art: resolveThemedArt('cards', homeArtTone).base ?? require('../../assets/images/v2/notecard_stack.png'),
+                ...tileArt('cards', require('../../assets/images/v2/notecard_stack.png')),
             },
         ];
         const homeV2TileVisible: Record<string, boolean> = {
@@ -2245,7 +2248,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
                 // зачем (приказ владельца 15.10: «старые удалены»): вместо щита с Тауэрским мостом (1.0) — арт 2.0 «башня с флагом» (intro_arena, ASSETS_V2_BRIEF п.54), тёмный/светлый по тону Главной
                 // зачем (координатор 15.10): порядок spire_tile (арт Codex, встанет сам после сдачи файла) → intro_arena → запасной
-                art: resolveThemedArt('spire_tile', homeArtTone).base ?? resolveThemedArt('intro_arena', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'),
+                ...tileArt(resolveThemedArt('spire_tile', homeArtTone).base ? 'spire_tile' : 'intro_arena', require('../../assets/images/v2/cards_hub_saved.webp')),
             },
             {
                 key: 'video_packs',
@@ -2253,7 +2256,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Фрази з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
-                art: resolveThemedArt('cards_from_video', homeArtTone).base ?? require('../../assets/images/v2/spiral_notepad.png'), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
+                ...tileArt('cards_from_video', require('../../assets/images/v2/spiral_notepad.png')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },
             {
                 key: 'mistakes',
@@ -2262,7 +2265,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 subtitle: triLang(lang, { ru: 'Разбор и повтор', uk: 'Розбір і повтор', en: 'Review and retry', es: 'Repasa y repite', 'pt-BR': 'Revise e repita', vi: 'Xem lại và làm lại', id: 'Tinjau dan ulangi', tr: 'Gözden geçir, tekrarla', pl: 'Przegląd i powtórka' }),
                 // зачем: единая точка входа в «Мои ошибки» (лог + аналитика) — карточка «Продолжить» больше не ведёт в ошибки.
                 onPress: () => { openHomeMistakesHub('home_tile'); },
-                art: resolveThemedArt('mistakes_entry', homeArtTone).base ?? require('../../assets/images/v2/notecard_stack.png'), // зачем (координатор 15.10): арт 2.0 в обеих яркостях вместо home_mistakes 1.0
+                ...tileArt('mistakes_entry', require('../../assets/images/v2/notecard_stack.png')), // зачем (координатор 15.10): арт 2.0 в обеих яркостях вместо home_mistakes 1.0
             },
             {
                 key: 'saved',
@@ -2270,7 +2273,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardados', 'pt-BR': 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' }),
                 subtitle: triLang(lang, { ru: 'Твои карточки', uk: 'Твої картки', en: 'Your cards', es: 'Tus tarjetas', 'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartumu', tr: 'Kartların', pl: 'Twoje karty' }),
                 onPress: () => { nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'home' } } as never); },
-                art: resolveThemedArt('cards_empty_saved', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
+                ...tileArt('cards_empty_saved', require('../../assets/images/v2/cards_hub_saved.webp')), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },
         ];
         const homeV2Tiles: HomeFeatureTile[] = homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0
@@ -2348,6 +2351,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 done={Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
                 total={50}
                 art={priorityCardImage}
+                artAccent={priorityCardArt.accent}
                 artWide={!lastLessonCompleted}
                 badge={lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
                 accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}

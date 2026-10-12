@@ -32,3 +32,7 @@ Pay now: превью отличалось от боевого экрана.
 ## Rollback
 
 Откат коммита.
+
+## Дополнение (онбординг, Макеты 12.10)
+
+onboarding-011: подпись оси «Прогресс» стояла горизонтально — `transform` анимации появления (axesStyle) целиком заменял `rotate: 90deg` из styles.promiseAxisY. Поворот перенесён в тот же массив (components/CleanOnboarding.tsx, `axesYStyle`), тест `onboarding_promise_axis_rotation_contract`. onboarding-001 (позиции на 13–17 px, вес ссылки) — причина в коде не доказана: стиль ссылки (цвет #596170, вес 500) совпадает с `.osb` макета.

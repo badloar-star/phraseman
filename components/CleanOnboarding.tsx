@@ -1592,6 +1592,9 @@ function PromiseChart() {
     ],
   });
   const axesStyle = { opacity: axes, transform: [{ translateY: axes.interpolate({ inputRange: [0, 1], outputRange: [6, 0] }) }] };
+  // зачем (R1 onboarding-011, Макеты 12.10): подпись оси «Прогресс» в макете повёрнута вдоль правого края, в приложении стояла горизонтально. Причина — `transform` из axesStyle (появление: сдвиг на 6 → 0)
+  // ЦЕЛИКОМ заменял `transform: [{ rotate: '90deg' }]` из styles.promiseAxisY (в RN массив transform последнего стиля не складывается с предыдущим). Поворот переехал в тот же массив.
+  const axesYStyle = { opacity: axes, transform: [{ translateY: axes.interpolate({ inputRange: [0, 1], outputRange: [6, 0] }) }, { rotate: '90deg' }] };
   return (
     <View style={styles.promiseChartFill}>
     <View style={{ width: geom.w, height: geom.h }}>
@@ -1626,7 +1629,7 @@ function PromiseChart() {
       <Animated.View pointerEvents="none" style={[styles.promiseBadgeDown, geom.badgeDownPos, badgePop(badgeDown)]}>
         <Text style={styles.promiseBadgeDownText}>{copy.chartWithout}</Text>
       </Animated.View>
-      <Animated.Text pointerEvents="none" style={[styles.promiseAxisY, axesStyle]}>{copy.chartProgress}</Animated.Text>
+      <Animated.Text pointerEvents="none" style={[styles.promiseAxisY, axesYStyle]}>{copy.chartProgress}</Animated.Text>
       <Animated.Text pointerEvents="none" style={[styles.promiseAxisX, axesStyle]}>{copy.chartTime}</Animated.Text>
     </View>
     </View>

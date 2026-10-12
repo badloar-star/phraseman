@@ -119,8 +119,23 @@ export default function DialogueV2CompletionRoute() {
 
   const runCompletion = useCallback(() => {
     const selection = selectionRef.current;
+    // зачем (координатор 12.10, dialogs-041 «итог не грузится», «сперва логи»): вход экрана итога, источник, ответ,
+    // длительность и каждый выход. Итог — всегда сеть (кэша у итога нет); цифры «верно/ошибок» — локальный разбор ходов.
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      const localOutcome = sessionId ? readDialogueV2SessionOutcome(sessionId) : null;
+      console.log('[DIALOG-SUMMARY] enter', JSON.stringify({
+        session: sessionId ? sessionId.slice(0, 12) : null,
+        scenarioId,
+        studyTarget,
+        endedBy,
+        learnerTurnsParam: learnerTurns,
+        localOutcome: localOutcome ? { learnerTurns: localOutcome.learnerTurns, corrections: localOutcome.corrections.length } : 'missing',
+        source: 'network',
+      }));
+    }
     if (!selection) {
       console.warn('[DIALOGUE-V2] completion:run → invalid route data', { hasSession: !!sessionId, scenarioId, studyTarget });
+      console.warn(`[DIALOG-SUMMARY] → unavailable reason=invalid_route_data session=${sessionId ? 'yes' : 'no'} scenario=${scenarioId ? 'yes' : 'no'} target=${String(studyTarget)}`);
       setState({ kind: 'unavailable' });
       return;
     }
@@ -129,15 +144,32 @@ export default function DialogueV2CompletionRoute() {
     setState({ kind: 'loading' });
     const startedAt = Date.now();
     void completeDialogueV2Session(selection).then((result) => {
-      if (requestGenerationRef.current !== generation) return;
+      if (requestGenerationRef.current !== generation) {
+        console.log(`[DIALOG-SUMMARY] ответ отброшен: устарел (generation ${generation}→${requestGenerationRef.current}) ms=${Date.now() - startedAt}`);
+        return;
+      }
       if (!result) console.warn('[DIALOGUE-V2] completion:run → empty result', { scenarioId: selection.scenarioId });
+      if (typeof __DEV__ !== 'undefined' && __DEV__) {
+        const objectives = result?.review.objectiveResults ?? [];
+        console.log('[DIALOG-SUMMARY] result', JSON.stringify({
+          ms: Date.now() - startedAt,
+          shown: result ? 'ready' : 'unavailable',
+          replayed: result?.replayed ?? null,
+          objectivesMet: objectives.filter((objective) => objective.status === 'met').length,
+          objectivesTotal: objectives.length,
+          objectives: objectives.map((objective) => `${objective.objectiveId}:${objective.status}`),
+          corrections: result?.review.corrections.length ?? null,
+        }));
+      }
       setState(result ? { kind: 'ready', result } : { kind: 'unavailable' });
     }).catch((error: unknown) => {
       console.warn('[DIALOGUE-V2] completion:run → failed', {
         reason: error instanceof Error ? error.message : String(error),
         ms: Date.now() - startedAt,
       });
-      if (requestGenerationRef.current === generation) setState({ kind: 'unavailable' });
+      const current = requestGenerationRef.current === generation;
+      console.warn(`[DIALOG-SUMMARY] → ${current ? 'unavailable' : 'ошибка устаревшего запроса, экран не тронут'} reason=${error instanceof Error ? error.message : String(error)} ms=${Date.now() - startedAt}`);
+      if (current) setState({ kind: 'unavailable' });
     });
   }, [scenarioId, sessionId, studyTarget]);
 

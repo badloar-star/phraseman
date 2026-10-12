@@ -44,6 +44,7 @@ import {
   type DialogueV2SessionMessage,
 } from '../components/dialogs/DialogueV2SessionScreen';
 import { safeRouterBack } from './navigation_back';
+import { getLocalDayKey } from './local_date';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
@@ -141,6 +142,10 @@ function SessionContent() {
   const [state, setState] = useState<SessionState>(() => localSessionState(studyTarget));
   const [startAttempt, setStartAttempt] = useState(0);
   const [messages, setMessages] = useState<readonly DialogueV2SessionMessage[]>([]);
+  // зачем (координатор 12.10, dialogs-038, «сперва логи»): номер реплики ученика для [DIALOG-END] — замыкание
+  // appendReplies отстаёт на одну отрисовку, ref всегда видит текущую ленту.
+  const learnerTurnsRef = useRef(0);
+  learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [turnFailure, setTurnFailure] = useState<TurnFailureView | null>(null);
@@ -349,6 +354,25 @@ function SessionContent() {
     ]));
     coaching.applyCoaching(coached);
     coaching.applyQuota(result.quota, pending.turnId);
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      // зачем (dialogs-038: конец после 2-й реплики при невыполненных целях): что сервер сказал на этом ходе — конец ли
+      // диалога, какая цель активна и где остальные цели относительно неё (пройдена / текущая / впереди).
+      const objectives = model?.objectives ?? [];
+      const activeId = coached?.activeObjectiveId ?? coaching.activeObjectiveId ?? null;
+      const activeIndex = activeId ? objectives.findIndex((objective) => objective.id === activeId) : -1;
+      console.log('[DIALOG-END] turn', JSON.stringify({
+        session: session.sessionId.slice(0, 12),
+        scenarioId: scenario,
+        learnerTurn: learnerTurnsRef.current,
+        replies: result.replies.length,
+        coaching: coached ? 'present' : 'none',
+        dialogueEnded: coached?.dialogueEnded ?? null,
+        activeObjectiveId: activeId,
+        activeIndex,
+        objectives: objectives.map((objective, index) => `${objective.id}:${activeIndex < 0 ? 'unknown' : index < activeIndex ? 'passed' : index === activeIndex ? 'active' : 'ahead'}`),
+        endedWithGoalsAhead: coached?.dialogueEnded === true && activeIndex >= 0 && activeIndex < objectives.length - 1,
+      }));
+    }
   };
 
   const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string; learnerId: string }>) => {
@@ -464,6 +488,30 @@ function SessionContent() {
     }
     const learnerMessages = messages.filter((message) => message.author === 'learner');
     const learnerTurns = learnerMessages.length;
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      // зачем (dialogs-038 / dialogs-041, «сперва логи»): какое условие завершило диалог и что уходит в итог и серию.
+      const objectives = model?.objectives ?? [];
+      const activeIndex = coaching.activeObjectiveId ? objectives.findIndex((objective) => objective.id === coaching.activeObjectiveId) : -1;
+      console.log('[DIALOG-END] open_summary', JSON.stringify({
+        session: serverSession.sessionId.slice(0, 12),
+        scenarioId,
+        endedBy,
+        endedByServer: coaching.ended,
+        quotaExhausted: coaching.quotaExhausted,
+        learnerTurns,
+        activeObjectiveId: coaching.activeObjectiveId,
+        activeIndex,
+        objectivesTotal: objectives.length,
+        objectivesAhead: activeIndex >= 0 ? Math.max(0, objectives.length - 1 - activeIndex) : null,
+      }));
+      // Серия за диалог: rememberDialogueV2SessionOutcome → [TODAY-TASKS] → [STREAK-DAY] → [STREAK] (ключ дня, ветка).
+      console.log('[DIALOG-SUMMARY] streak_request', JSON.stringify({
+        localDay: getLocalDayKey(),
+        utcDay: new Date().toISOString().slice(0, 10),
+        learnerTurns,
+        requested: learnerTurns > 0 ? 'activity:dialog' : 'skip:no_learner_turns',
+      }));
+    }
     // зачем (D1–D5): цифры итога из разбора каждого хода, а не из одной заметки ревью.
     rememberDialogueV2SessionOutcome(serverSession.sessionId, {
       learnerTurns,

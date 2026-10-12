@@ -31,10 +31,10 @@ describe('слой .accent на Главной', () => {
     expect((out[0]!.props as { tintColor?: string }).tintColor).toBeUndefined();
   });
 
-  it('с accent — два слоя: основа и accent с tintColor = accentBright, transition 0', () => {
+  it('с accent — два слоя: основа и accent с tintColor = artAccentTint (accent в тёмном оформлении), transition 0', () => {
     const out = layers(render({ source: 1, accent: 2 }));
     expect(out).toHaveLength(2);
-    const expected = liquidGlassTokens('graphite', { level: 'calm', appearance: 'dark', intensity: 0 }).accentBright;
+    const expected = liquidGlassTokens('graphite', { level: 'calm', appearance: 'dark', intensity: 0 }).accent; // тёмное оформление → accent (artAccentTint)
     expect((out[1]!.props as { source: number }).source).toBe(2);
     expect((out[1]!.props as { tintColor: string }).tintColor).toBe(expected);
     for (const layer of out) expect((layer.props as { transition: number }).transition).toBe(0);

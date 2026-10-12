@@ -1,10 +1,11 @@
 // зачем (приказ координатора 15.10): плитки и карточка «Сегодня» Главной рисуют предмет двумя слоями — основа и необязательный слой `.accent`,
-// который красится в цвет темы (tintColor = accentBright, как в ThemedArt). Слоя нет у большинства предметов — тогда рисуется один Image, как раньше.
+// который красится в цвет темы (tintColor = artAccentTint: accent в тёмном, accentBright в светлом; см. art_tint.ts и CLAY_ACCENT_SATURATION_2026-10-12.md). Слоя нет у большинства предметов — тогда рисуется один Image, как раньше.
 import React, { memo, useEffect } from 'react';
 import { StyleSheet, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { artAccentTint } from './art_tint';
 import { liquidGlassLevelForIntensity } from '../../constants/liquidGlassThemeIntensity';
 
 // зачем (координатор 15.10, кадры clay_home: деталь рисуется, но бледно): dev-журнал реального цвета слоя .accent — тема, уровень, оттенок tint. Одна строка на смену ключа.
@@ -24,7 +25,7 @@ type Props = Readonly<{
 function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'contain', contentPosition = 'center' }: Props) {
   const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity } = useTheme();
   // Палитра уже кэширована по теме+оформлению+шагу ползунка — тот же объект, без расчётов.
-  const tint = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }).accentBright;
+  const tint = artAccentTint(liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }), liquidGlassAppearance); // зачем (координатор 15.10, предложение А): см. art_tint.ts
   const hasAccent = Boolean(accent);
   useEffect(() => {
     if (!IS_DEV || !hasAccent) return;

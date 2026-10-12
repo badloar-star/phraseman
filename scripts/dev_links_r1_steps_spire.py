@@ -69,7 +69,7 @@ add('spire-gap-014', [], '', preview('save_failed'), note='ступень не �
 
 # ── Итог недели
 add(['spire-014', 'community-005'], [], '', preview('weekresult'), note='поднимаешься (Нефрит)')
-add('spire-gap-015', [], '', preview('weekresult', 'tier=1&floor=1'), note='итог недели — поднимаешься (данные образца: Базальт, этаж 1)')
+add('spire-gap-015', [], '', preview('weekresult', 'tier=1&floor=1&steps=39'), note='итог недели — поднимаешься (данные образца: Базальт, этаж 1)')
 add(['spire-015', 'spire-gap-016'], [], '', preview('weekresult_stay'), note='остаёшься')
 add('spire-gap-017', [], '', preview('weekresult_down'), note='спускаешься')
 

@@ -331,22 +331,34 @@ export function planActiveEnergyRecovery(
   };
 }
 
+// зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): «29м 12с» показывался буквами по-русски на любом языке
+// интерфейса — в пилюле энергии, окне «Нет энергии» и подсказке. Короткие единицы по языку; неизвестный язык — латиница h/m/s.
+const RECOVERY_TIME_UNITS: Readonly<Record<string, Readonly<{ h: string; m: string; s: string }>>> = {
+  ru: { h: 'ч', m: 'м', s: 'с' },
+  uk: { h: 'год', m: 'хв', s: 'с' },
+  en: { h: 'h', m: 'm', s: 's' },
+  tr: { h: 'sa', m: 'dk', s: 'sn' },
+};
+const LATIN_RECOVERY_TIME_UNITS = { h: 'h', m: 'm', s: 's' } as const;
+
 /**
- * Форматировать время до восстановления в читаемый формат (e.g., "1ч 30м 0с", "45с").
+ * Форматировать время до восстановления в читаемый формат (e.g., "1ч 30м 0с", "45с"; en — "1h 30m 0s").
+ * lang по умолчанию 'ru' — прежнее поведение для вызовов без языка.
  */
-export function formatTimeUntilRecovery(ms: number): string {
+export function formatTimeUntilRecovery(ms: number, lang: string = 'ru'): string {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000));
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
+  const u = RECOVERY_TIME_UNITS[lang] ?? LATIN_RECOVERY_TIME_UNITS;
 
   if (hours > 0) {
-    return `${hours}ч ${minutes}м ${seconds}с`;
+    return `${hours}${u.h} ${minutes}${u.m} ${seconds}${u.s}`;
   }
   if (minutes > 0) {
-    return `${minutes}м ${seconds}с`;
+    return `${minutes}${u.m} ${seconds}${u.s}`;
   }
-  return `${seconds}с`;
+  return `${seconds}${u.s}`;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

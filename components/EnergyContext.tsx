@@ -27,6 +27,7 @@ import { withStorageLock } from '../app/storage_mutex';
 import type { Lang } from '../constants/i18n';
 import { resolveNotificationLang } from '../app/notification_lang';
 import { energyCountdownClock } from './energy_countdown_clock';
+import { useLang } from './LangContext';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { chargesEnergyOnMistake, isFreeInMistakeMode, peekEnergyMode } from '../app/energy_mode';
@@ -123,7 +124,7 @@ export interface EnergyContextValue {
   recoveryIntervalMs: number;// current +1 energy recovery interval
   recoveryEndsAtMs: number;
   timeUntilNextMs: number;   // ms until +1 energy (0 if full or unlimited)
-  formattedTime: string;     // e.g. "29м 12с" or "1ч 5м 3с" — ready to display
+  formattedTime: string;     // e.g. ru "29м 12с", en "29m 12s" (единицы языка интерфейса) — ready to display
   isUnlimited: boolean;      // premium or tester mode
   restoringPremium: boolean; // true while animating premium energy restore
   /** Start one priced activity using the canonical numeric-energy catalog. */
@@ -207,6 +208,7 @@ export function useEnergySessionIntent(
 
 export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeUntilNextMs: number; formattedTime: string } {
   const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs, recoveryEndsAtMs } = useEnergy();
+  const { lang: uiLang } = useLang();
   const activeEnergy = energy + bonusEnergy;
   const activeMaxEnergy = maxEnergy + bonusEnergyCapacity;
   const [now, setNow] = useState(() => Date.now());
@@ -238,7 +240,7 @@ export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeU
 
   return {
     timeUntilNextMs,
-    formattedTime: formatTimeUntilRecovery(timeUntilNextMs),
+    formattedTime: formatTimeUntilRecovery(timeUntilNextMs, uiLang),
   };
 }
 
@@ -543,6 +545,8 @@ async function readNotificationLang(): Promise<Lang> {
 
 // ── Provider ─────────────────────────────────────────────────────────────────
 export function EnergyProvider({ children }: { children: React.ReactNode }) {
+  // зачем (владелец 12.10, английский интерфейс в R1): время до +1 энергии — единицами языка интерфейса, не «ч/м/с» всем.
+  const { lang: uiLang } = useLang();
   const initialPeek = peekEnergy();
   const [energy, setEnergy] = useState(() => initialPeek?.energy ?? MAX_ENERGY);
   const [bonusEnergy, setBonusEnergy] = useState(0);
@@ -1194,7 +1198,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     return isCurrent();
   }, []);
 
-  const formattedTime = activeEnergy < activeMaxEnergy && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
+  const formattedTime = activeEnergy < activeMaxEnergy && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs, uiLang) : '';
   const canStartInMistakeMode = isUnlimited || energy + bonusEnergy >= 1;
 
   const value = useMemo<EnergyContextValue>(() => ({

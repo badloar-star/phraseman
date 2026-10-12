@@ -261,7 +261,7 @@ function NoEnergyModal({
   const timeToStartMs = missingToStart > 0
     ? (timeUntilNextMs || recoveryIntervalMs) + Math.max(0, missingToStart - 1) * recoveryIntervalMs
     : 0;
-  const recoveryTimeText = (timeToStartMs > 0 ? formatTimeUntilRecovery(timeToStartMs) : formattedTime) || triLang(lang, {
+  const recoveryTimeText = (timeToStartMs > 0 ? formatTimeUntilRecovery(timeToStartMs, lang) : formattedTime) || triLang(lang, {
     ru: 'несколько минут',
     uk: 'кілька хвилин',
     en: 'a few minutes',

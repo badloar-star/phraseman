@@ -122,4 +122,18 @@ describe('numeric energy system', () => {
     expect(formatTimeUntilRecovery(45 * 1000)).toBe('45с');
     expect(formatTimeUntilRecovery(90 * 1000)).toBe('1м 30с');
   });
+
+  // зачем (владелец 12.10, английский интерфейс в R1): единицы — языка интерфейса, без кириллицы вне ru/uk.
+  it('formats recovery time in the interface language', () => {
+    expect(formatTimeUntilRecovery(90 * 60 * 1000, 'en')).toBe('1h 30m 0s');
+    expect(formatTimeUntilRecovery(29 * 60 * 1000 + 12_000, 'en')).toBe('29m 12s');
+    expect(formatTimeUntilRecovery(45 * 1000, 'en')).toBe('45s');
+    expect(formatTimeUntilRecovery(90 * 1000, 'uk')).toBe('1хв 30с');
+    expect(formatTimeUntilRecovery(65 * 60 * 1000 + 3_000, 'uk')).toBe('1год 5хв 3с');
+    expect(formatTimeUntilRecovery(90 * 1000, 'tr')).toBe('1dk 30sn');
+    expect(formatTimeUntilRecovery(90 * 1000, 'pt-BR')).toBe('1m 30s');
+    for (const lang of ['en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+      expect(formatTimeUntilRecovery(3_725_000, lang)).not.toMatch(/[а-яё]/i);
+    }
+  });
 });

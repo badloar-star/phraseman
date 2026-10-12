@@ -16,6 +16,22 @@ const FILES = [
   'app/account_delete_restore_prompt.ts',
   'app/privacy_settings.tsx',
   'components/referral_code_sheet.tsx',
+  // зачем (координатор 12.10, английский в зоне Авторизации): аудит всей зоны (94 файла) — 0 пропусков; остальные экраны зоны под тем же сторожем,
+  // чтобы новый текст без en не просочился: согласия, удаление, тексты аккаунта, юридические экраны.
+  'components/AccountDeletedNotice.tsx',
+  'components/AiConsentSheetModal.tsx',
+  'components/AiConsentSheetModalHybrid.tsx',
+  'components/AiDialogConsentModal.tsx',
+  'components/AiExplainConsentModal.tsx',
+  'components/AuthProviderButtons.tsx',
+  'components/account/GlassInlineAlert.tsx',
+  'app/account_backup_blocked_copy.ts',
+  'app/account_switch_still_running_copy.ts',
+  'app/account_sync_copy.ts',
+  'app/ai_kill_switch_copy.ts',
+  'app/ai_dialog_consent_gate.tsx',
+  'app/privacy_screen.tsx',
+  'app/terms_screen.tsx',
 ];
 const CYRILLIC = /[Ѐ-ӿ]/;
 const STR = String.raw`(?:'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|\`(?:[^\`\\]|\\.)*\`)`;

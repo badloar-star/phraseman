@@ -25,7 +25,10 @@ describe('instant interaction response contract', () => {
     expect(layout).toContain('const bottomModalAnimationOptions = INSTANT_STACK_ANIMATION;');
     expect(sectionSheet).toContain("animation: 'none', animationDuration: 0");
     expect(sectionSheet).not.toContain("animation: 'slide_from_bottom'");
-    expect(paywall).toContain("presentation: 'modal', animation: 'none', animationDuration: 0, gestureEnabled: true");
+    // зачем (владелец 11.10, «Шторка»): окно Plus — transparentModal поверх прежнего экрана (раньше 'modal' с жестом); контракт про мгновенность прежний — маршрут без анимации в обеих ветках
+    expect(paywall).toContain("presentation: 'card', animation: 'none', animationDuration: 0, gestureEnabled: false");
+    expect(paywall).toContain("presentation: 'transparentModal', animation: 'none', animationDuration: 0, gestureEnabled: false");
+    expect(paywall).not.toMatch(/animation: '(?!none')/);
   });
 
   test('shared press primitives start visual feedback before native haptics', () => {

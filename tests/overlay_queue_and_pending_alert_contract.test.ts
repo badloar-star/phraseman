@@ -11,7 +11,10 @@ describe('overlay queue: the broadcast waits for a fresh install', () => {
   it('the broadcast is not even read while the install is fresh, and a payload read before the end of onboarding is dropped afterwards', () => {
     const check = layout.slice(layout.indexOf('const checkGlobalBroadcastFn = useCallback'), layout.indexOf('}, [globalBroadcastModal, studyTarget]);'));
     expect(check).toContain('const verdict = await readFreshInstallVerdict();');
-    expect(check.indexOf('verdict.fresh')).toBeLessThan(check.indexOf('fetchPendingGlobalBroadcastModal(studyTarget)'));
+    // зачем: вызов получил второй аргумент ({ premiumAudienceAccess }) — ищем по началу вызова, порядок «сперва ворота свежей установки, потом чтение» прежний; -1 (вызова нет) тест не пропустит
+    const fetchAt = check.indexOf('fetchPendingGlobalBroadcastModal(studyTarget');
+    expect(fetchAt).toBeGreaterThan(-1);
+    expect(check.indexOf('verdict.fresh')).toBeLessThan(fetchAt);
     expect(layout).toMatch(/if \(!globalBroadcastModal \|\| effectiveShowOnboarding \|\| !ready\) return undefined;/);
     expect(layout).toContain('снята после онбординга — свежая установка');
     expect(layout).toMatch(/setGlobalBroadcastModal\(null\);/);

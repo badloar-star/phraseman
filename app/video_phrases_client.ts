@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { normalizeVideoPhraseList, type VideoPhrase } from '../shared/video_phrases_contract';
 import { rnfbInstance } from './rnfb_modular';
+import { getDevVideoPhrases } from './dev_youtube_demo';
 
 export type VideoPhraseReader = { get(path: string): Promise<unknown | null> };
 
@@ -49,6 +50,9 @@ export function withVideoPhrasesTimeout<T>(work: Promise<T>, videoId: string, ti
 }
 
 export async function fetchPublishedVideoPhrases(videoId: string): Promise<readonly VideoPhrase[]> {
+  // зачем (координатор 12.10, video-011): фразы демо-ролика с таймкодами из памяти (dev `videopacks=catalog`), без Firestore; в стор-сборке null
+  const devPhrases = getDevVideoPhrases(videoId);
+  if (devPhrases) return devPhrases;
   const firestoreModule = await import('@react-native-firebase/firestore');
   // зачем (координатор §67): модульный путь — без предупреждений устаревшего API на каждое чтение.
   const firestore = rnfbInstance(firestoreModule, 'getFirestore');

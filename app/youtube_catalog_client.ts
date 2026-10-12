@@ -1,4 +1,5 @@
 import type { AccountGenerationToken } from './account_generation';
+import { getDevYoutubeCatalogReader } from './dev_youtube_demo';
 import { isCurrentAccountGeneration } from './account_generation';
 import {
   parseYoutubeCatalogManifest,
@@ -116,6 +117,10 @@ export async function fetchYoutubeChannelCatalogWithReader(
 }
 
 async function createFirestoreReader(): Promise<YoutubeCatalogReader> {
+  // зачем (координатор 12.10, video-001/004/008/009/011): dev `videopacks=catalog|catalog_upcoming` — каталог из памяти (ролики, плейлисты, премьера), Firestore не вызывается;
+  // в стор-сборке getDevYoutubeCatalogReader() всегда null.
+  const devReader = getDevYoutubeCatalogReader();
+  if (devReader) return devReader;
   const module = await import('@react-native-firebase/firestore');
   const firestore = module.default;
   const database = firestore();

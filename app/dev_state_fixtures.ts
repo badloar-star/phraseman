@@ -207,12 +207,20 @@ export type DevStateRequest = Readonly<{
   intros?: 'seen' | 'reset';
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
+  /** Баланс монет для ПОКАЗА (0..10 000 000) на «Монетах» и «Повысить ранг»; при подмене настоящее повышение отказывает до сервера (dev_coin_rank.ts). off — снять. */
+  coins?: number | 'off';
+  /** hold — тап «Повысить» держит «Проверяем повышение…», сервер не вызывается. */
+  coinUpgrade?: 'hold' | 'off';
+  /** on — корневой ErrorBoundary показывает экран ошибки без исключения и отчётов (dev_social_state.ts). */
+  errorScreen?: 'on' | 'off';
+  /** announcement — демо-сообщение в окно «сообщение команды» из памяти, без сети. */
+  appMessage?: 'announcement' | 'off';
   /** Разовая подсказка «Зажми карточку…» (dev_state_cards_demo.ts): show — вернуть (cards-033), seen — пометить увиденной; фикстуры карточек сами помечают её увиденной. Только анонимный гость. */
   hint?: 'show' | 'seen';
   /** п.83 (cards-027): наборы ДРУГИХ языков для кнопки языка на настройке тренировки — только память (dev_fc_lang_state.ts); off — снять. */
   cardsLangs?: 'on' | 'off';
-  /** п.85(2) («Из видео — Пока пусто»): empty — каталог роликов пуст (пустой ответ в памяти и локальном кэше, Firestore не трогается), demo — 5 демо-роликов. */
-  videoPacks?: 'empty' | 'demo';
+  /** п.85(2) («Из видео — Пока пусто»): empty — каталог роликов пуст (пустой ответ в памяти и локальном кэше, Firestore не трогается), demo — 5 демо-роликов; catalog / catalog_upcoming — демо-каталог YouTube («Видео»: ролики, плейлисты, премьера «сейчас» / «скоро», фразы с таймкодами) + те же 5 наборов, только память (app/dev_youtube_demo.ts). */
+  videoPacks?: 'empty' | 'demo' | 'catalog' | 'catalog_upcoming';
   /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
   aiConsent?: 'granted' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
@@ -345,7 +353,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   request.cardsLangs = pick('cardslangs', ['on', 'off'] as const);
-  request.videoPacks = pick('videopacks', ['empty', 'demo'] as const);
+  request.videoPacks = pick('videopacks', ['empty', 'demo', 'catalog', 'catalog_upcoming'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -353,6 +361,17 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else if (Number.isInteger(rankN) && rankN >= 0 && rankN <= 19) request.coinRank = rankN;
     else rejected.coinRank = `ожидалось 0..19 или off, пришло ${coinRankRaw}`;
   }
+  // зачем (Авторизация 12.10, coins-001/003/004, system-010/012): показ баланса, удержание повышения, экран ошибки, окно объявления — только память
+  const coinsRaw = one(params.coins);
+  if (coinsRaw !== undefined) {
+    const coinsN = Number(coinsRaw);
+    if (coinsRaw === 'off') request.coins = 'off';
+    else if (Number.isInteger(coinsN) && coinsN >= 0 && coinsN <= 10_000_000) request.coins = coinsN;
+    else rejected.coins = `ожидалось 0..10000000 или off, пришло ${coinsRaw}`;
+  }
+  request.coinUpgrade = pick('coinupgrade', ['hold', 'off'] as const);
+  request.errorScreen = pick('errorscreen', ['on', 'off'] as const);
+  request.appMessage = pick('appmessage', ['announcement', 'off'] as const);
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed', 'store_unreachable'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
@@ -758,6 +777,31 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       return setDevCoinRankOverride(request.coinRank === 'off' ? null : (request.coinRank as number));
     });
   }
+  if (request.coins !== undefined) {
+    // зачем (Авторизация 12.10, coins-001/003): баланс только для показа; кошелёк в хранилище и облаке не меняется, повышение при подмене отказывает
+    await step('coins', String(request.coins), async () => {
+      const { setDevCoinBalanceOverride } = await import('./dev_coin_rank');
+      return setDevCoinBalanceOverride(request.coins === 'off' ? null : (request.coins as number));
+    });
+  }
+  if (request.coinUpgrade !== undefined) {
+    await step('coinupgrade', request.coinUpgrade, async () => {
+      const { setDevCoinUpgradeHold } = await import('./dev_coin_rank');
+      return setDevCoinUpgradeHold(request.coinUpgrade === 'hold');
+    });
+  }
+  if (request.errorScreen !== undefined) {
+    await step('errorscreen', request.errorScreen, async () => {
+      const { setDevErrorScreen } = await import('./dev_social_state');
+      return setDevErrorScreen(request.errorScreen === 'on');
+    });
+  }
+  if (request.appMessage !== undefined) {
+    await step('appmessage', request.appMessage, async () => {
+      const { setDevAppMessage } = await import('./dev_social_state');
+      return setDevAppMessage(request.appMessage === 'off' ? null : request.appMessage!);
+    });
+  }
   if (request.intros) {
     await step('intros', request.intros, async () => {
       const registry = await import('./feature_intro_registry');
@@ -796,7 +840,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('videoPacks', request.videoPacks, async () => {
       const { seedVideoPhraseSetPacksForDev } = await import('./video_phrase_set_packs');
       const { demoVideoPacks } = await import('./dev_state_cards_demo');
-      return seedVideoPhraseSetPacksForDev(request.videoPacks === 'empty' ? [] : demoVideoPacks());
+      const { setDevYoutubeDemo } = await import('./dev_youtube_demo');
+      // зачем (video-001/004/008/009/011): catalog* включает каталог YouTube из памяти; empty/demo его СНИМАЮТ — кадр не наследует прошлую подмену
+      const youtubeOn = request.videoPacks === 'catalog' || request.videoPacks === 'catalog_upcoming';
+      const youtubeOk = setDevYoutubeDemo(youtubeOn ? request.videoPacks as 'catalog' | 'catalog_upcoming' : null);
+      const seeded = await seedVideoPhraseSetPacksForDev(request.videoPacks === 'empty' ? [] : demoVideoPacks());
+      return youtubeOk && seeded;
     });
   }
   if (request.hint !== undefined) {

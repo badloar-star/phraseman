@@ -3142,23 +3142,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-074.png",
+      "evidence_at": "2026-10-12T17:46:40.262Z",
+      "evidence_sha256": "b512ed7ca376868b1269d37834c30906720f9c9edea89bbb18e735b76e1aa5db",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы»; ссылка добавлена (/community_pack_create?packId=dev_missing_cloud_pack → ugc-pack-load-error) — переснять.",
+        "[образец ≠ код] Образец №23 — «Изменить набор» (40 карточек, «Сохранить»), а состояние «Недоступен для правки» (набор не найден) в макете не нарисовано — Дизайну нужен отдельный образец под ugc-pack-load-error."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:49:25.988Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C09"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:46, cards-v2 №23 «Изменить набор» против «Создание набора · Недоступен для правки»): сверка невозможна — на кадре «Мои наборы» (кадр снят до появления ссылки на служебный маршрут)."
     },
     {
       "id": "cards-075",
@@ -3226,24 +3230,28 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-076.png",
+      "evidence_at": "2026-10-12T17:47:07.037Z",
+      "evidence_sha256": "6d98cd489efc8e06113b94f6bc3514474075f00404b9b0597ae9fa7d54f6eb0e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В образце режим «Правда / ложь», заголовок «Добавь первый набор», текст «Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.» и три набора сообщества с «+»; в приложении режим «Блиц» (в ссылке mode=blitz), «Нет карточек / Сохрани пару слов», кнопка «Открыть каталог», пилюля «30/30», списка наборов нет — решение Дизайна: переделать образец под код (или показать наборы сообщества в коде).",
+        "[состояние] Режим в ссылке — blitz, образец привязан к «Правда / ложь» (mode=truefalse) — для паритета ссылку можно перевести на truefalse."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:49:25.988Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:47, cards-states №71 «Нет наборов» против «Подготовка тренировки · Нет наборов»): экран открыт верно (настройка тренировки без карточек), но образец и код расходятся по содержанию."
     },
     {
       "id": "cards-077",
@@ -3353,24 +3361,28 @@
       "anim_notes": [
         "spn 0.8s linear infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-079.png",
+      "evidence_at": "2026-10-12T17:47:39.784Z",
+      "evidence_sha256": "778d7d35aea8866864dc8bd35fd25c3778e334eac7248232a2011506c16a7f2d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт хаб «Карточки» (30/30, «Сохранённые 0», «Мои наборы 1», «Из видео 5», «Сообщество 5»); шторка DeckPickerSheet открывается кнопкой в шапке сессии «Устно», testID кнопки в шапке не найден — Дизайну нужен testID кнопки выбора наборов в сессии Устно.",
+        "[данные] В хабе «Сохранённые 0» при cards=demo_published — набор «Мой опубликованный», без сохранённых карточек."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:49:25.988Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:47, cards-states №74 «Шторка выбора наборов (Устно)» против «Подготовка тренировки · Шторка выбора наборов»): сверка невозможна — на кадре хаб «Карточки», шторка «Что говорим?» не открыта."
     },
     {
       "id": "cards-080",

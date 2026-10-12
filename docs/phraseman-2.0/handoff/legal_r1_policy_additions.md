@@ -114,6 +114,8 @@ you in the App.», дальше сразу абзац «We may review, block, re
 
 ## 4. Удаление аккаунта: сверка политики с кодом (Авторизация, 12.10)
 
+> В патче [legal_r1_policy_additions.patch](legal_r1_policy_additions.patch) (пересобран 12.10, `git apply --check` OK): три абзаца в обоих legal/privacy_policy_en*.json и два — на странице data-deletion (scripts/sync-legal-html.mjs). НЕ применён.
+
 Статус: **заготовка, НЕ опубликована и НЕ внесена в legal/*.json.** Решение и публикация — только владелец
 (после «да»: править `legal/privacy_policy_en.json` (+ `_ios`), затем `npm run legal:sync`; страницу
 `knowly-www/legal/data-deletion/index.html` — тем же коммитом).

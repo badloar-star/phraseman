@@ -49,7 +49,8 @@ DECK = 'tap:#fc-saved-view-deck'
 SEARCH = ['tap:#fc-collection-search', 'tap:#fc-search-input']
 DEMO = 'cards=demo&plus=on'
 
-add(['cards-005', 'cards-section-005'], ['tap:#fc-zoom-larger'], DEMO, SAVED, note='1 колонка (привязка образца: «Сохранённые — 1 колонка»)')
+# зачем (12.10): после увеличения плиток список оказывался прокрученным (заголовок «Сохранённые 64» уходил за экран) — возвращаем наверх перед снимком.
+add(['cards-005', 'cards-section-005'], ['tap:#fc-zoom-larger', 'wait:500', 'scroll:up'], DEMO, SAVED, note='1 колонка (привязка образца: «Сохранённые — 1 колонка»)')
 add('cards-v2-006', [], DEMO, SAVED, note='2 колонки')
 add('cards-v2-005', ['tap:#fc-zoom-larger'], DEMO, SAVED, note='1 колонка')
 add('cards-v2-007', ['tap:#fc-zoom-smaller'], DEMO, SAVED, note='3 колонки: шаг «мельче» ×1 от двух (по коду GALLERY_STEPS)')

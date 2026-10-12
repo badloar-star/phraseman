@@ -129,9 +129,12 @@ add('cards-gap-021', [TILE, TO_PACK, PACK_WORK, 'wait:1500', TO_PACK, PACK_WORK]
 add('cards-039', [], 'cards=demo&fail=saved_load', SAVED, note='«Сохранённые» — ошибка загрузки (fail=saved_load; снять fail=off)')
 add('cards-047', [], 'hold=catalog_loading', PACKS, note='каталог — загрузка (hold=catalog_loading; снять hold=off)')
 add('cards-075', [], 'cards=demo&plus=on&hold=setup_loading', '/flashcards_training_setup?mode=truefalse', note='настройка «Правда / ложь» — загрузка наборов (hold=setup_loading); режим ОБЯЗАТЕЛЕН в маршруте, без ?mode= кнопка показывает «Режим недоступен»')
-add('cards-gap-016', [], 'cards=demo_published&moderation=approved', HUB, note='окно «Нужна доработка» приходит само через задержку фикстуры')
+add('cards-gap-014', [], 'moderation=approved', HUB, note='окно «Твой набор одобрен» приходит само через 0,9 с')
+add('cards-gap-015', [], 'moderation=rejected', HUB, note='окно «Твой набор отклонён» приходит само через 0,9 с')
+add('cards-gap-016', [], 'moderation=revision', HUB, note='окно «Нужна доработка» (revision_requested) приходит само через 0,9 с')
+add('cards-gap-017', [], 'moderation=removed', HUB, note='окно «Набор снят с продажи» приходит само через 0,9 с')
 add('cards-gap-037', [], 'cards=demo&hold=voices_loading', '/flashcards_voice_picker', note='голос озвучки — загрузка (hold=voices_loading)')
-add('cards-v2-030', [TRAIN, 'tap:#fc-training-mode-blitz'], 'plus=off&cards=demo&quota=exhausted', HUB, note='Free: тренировки 30/30 в месяц — на настройке тренировки')
+add('cards-v2-030', [], 'plus=off&cards=demo&quota=exhausted', '/flashcards_training_setup?mode=blitz', note='Free: тренировки 30/30 — настройка с пилюлей и «Безлимит с Plus» (прямой маршрут; тап «Тренироваться» при исчерпанном лимите ведёт на пейвол, а не на настройку)')
 
 
 # ───────────────────────── Диалоги (/ai_dialog_home и вложенные) ─────────────────────────
@@ -251,3 +254,34 @@ DLG_START = [WORLD, ROW, 'tap:#dialogue-v2-briefing-start', 'wait:3000']
 add('dialogs-gap-015', DLG_START + ['tap:#dialogue-v2-session-more'], DLG_SEND, DLG, note='внутри сессии: меню «⋯» открыто (подставной старт dev_dialog_send=ok)')
 add('dialogs-017', DLG_START + ['tap:#dialogue-v2-session-hint'], DLG_SEND, DLG, note='внутри сессии: окно подсказки')
 add('dialogs-018', DLG_START + ['tap:#dialogue-v2-session-goals'], DLG_SEND, DLG, note='внутри сессии: шторка заданий')
+
+
+# ───────────────────────── Пейволы: состояния покупки (_dev_state) — через dev_state с plus=off ─────────────────────────
+# зачем (разбор Макетов 600aa8d35): ссылки с context=energy_empty (такого контекста нет) падали «unknown_paywall_context»; плюс прямая ссылка не сбрасывала
+# Plus прошлого кадра, и пейвол закрывался сам. Контекст — настоящий (generic), вход — через dev_state с plus=off&free=on.
+PW_GENERIC = '/premium_modal?context=generic&source=settings_premium'
+add('paywalls-011', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=loading', note='покупка: загрузка условий')
+add('paywalls-012', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=store_unreachable', note='покупка: ошибка до checkout (тост через 0,7 с)')
+add('paywalls-013', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=purchasing', note='покупка: проверяем покупку')
+add('paywalls-014', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=pending', note='покупка: ожидание банка или родителя')
+add('paywalls-016', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=status_unknown', note='покупка: статус неизвестен')
+add('paywalls-018', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=store_promo', note='покупка: промо от магазина')
+add('paywall-gap-006', [], PAYWALL_FREE, PW_GENERIC + '&_dev_state=reminder_prompt', note='после покупки: «Plus твой. Напомнить…»')
+add('paywall-gap-004', [], PAYWALL_FREE, PW_GENERIC + '&_force_trial_ui=1&_force_trial_days=3', note='лента пробного периода (образец N=3; срок в проде — из магазина)')
+
+
+# ───────────────────────── Диалоги: исправленные шаги (разбор Макетов 600aa8d35: кадры снимались на хабе / были чёрными) ─────────────────────────
+# Порядок подмен в app/dialogue_v2_turn_coaching_client.ts: dev_dialog_fail → dev_dialog_send → сеть. Старт сессии подменяется ТОЛЬКО при dev_dialog_send,
+# поэтому для кадров «отказ хода» нужны оба флага: send=ok (чтобы сессия завелась без сети) и fail=… (чтобы ход упал). dev_dialog_mood применяется
+# только в ветке настоящего ответа сервера (coaching client), при подставном ходе его нет — dialogs-023 остаётся «нет» до мини-правки файла Ядра.
+SEND_MSG = ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'wait:2500']
+SESSION_PLUS = 'plus=on&dquota=reset&energy=5'
+SESSION_FREE = 'plus=off&dquota=reset&energy=5'
+add('dialogs-031', DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=network', DLG, note='ход не дошёл: сетевая ошибка с «Повторить» (dev_dialog_send=network)')
+add('dialogs-032', DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok&dev_dialog_fail=service', DLG, note='ход отклонён: сервис недоступен (dev_dialog_fail=service поверх подставного старта)')
+add('dialogs-034', DLG_START, 'plus=off&dquota=1&energy=5&dev_dialog_send=ok', DLG, note='Free, осталась 1 реплика из 30 — пилюля «1/30» в начале сессии')
+add('dialogs-035', DLG_START + SEND_MSG, 'plus=off&dquota=1&energy=5&dev_dialog_send=quota_exhausted', DLG, note='лимит исчерпан на отправке (dev_dialog_send=quota_exhausted)')
+add('dialogs-gap-012', DLG_START + SEND_MSG, SESSION_PLUS + '&dev_dialog_send=ok&dev_dialog_fail=plus_daily_cap', DLG, note='Plus: потолок реплик на сегодня (dev_dialog_fail=plus_daily_cap)')
+add('dialogs-gap-017', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=3&dev_energy_fail=1', DLG, note='брифинг: тост «Не получилось начать диалог» (dev_energy_fail=1)')
+
+add('cards-gap-026', [f'long:#fc-my-packs-pack-{WORK}', 'tap:#fc-my-packs-action-share'], DEMO_PLUS + '&fail=publish_daily_limit', MYPACKS, note='«Открыть сообществу» при суточном лимите — тост (dev-отказ стоит ПЕРВЫМ в publishLocalAuthorPack, описание не проверяется)')

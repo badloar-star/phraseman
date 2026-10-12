@@ -11,6 +11,7 @@
  * Опции:
  *   --dry-run            печатает команды, adb не запускает (эмулятор не нужен)
  *   --status=pending     какие статусы реестра брать для --all-pending (через запятую; по умолчанию pending)
+ *   --guest              подтверждение: на устройстве вход — АНОНИМНЫЙ гость (pm clear + онбординг). Без него строки с cards=demo|empty|… пропускаются
  *   --include-nonunique  брать и строки с «уникальна: нет» (ссылка общая с соседями — кадр будет НЕ тем состоянием; по умолчанию пропускаются)
  *   --device=emulator-5554   --timeout-ms=20000   --settle-ms=1500   --blind-wait-ms=8000   --poll-ms=1000
  *   --out=<папка>        куда класть <id>.png (по умолчанию docs/phraseman-2.0/evidence/parity)
@@ -75,7 +76,11 @@ export function linkTraits(link) {
   };
 }
 
-export function selectIds({ ids, allPending, prefix, statuses, limit, includeNonUnique, rows, registryRows }) {
+// зачем (координатор 12.10, безопасность): фикстуры cards=* пишут в синхронизируемые ключи карточек/наборов; на настоящем аккаунте приложение их
+// всё равно откажется выполнить (dev_state_account_guard), но робот не должен даже пытаться без явного подтверждения, что вход — анонимный гость.
+export const GUEST_ONLY_FIXTURE_RX = /[?&]cards=(?:demo|demo_lessons|empty|custom50|demo_published|notranslation)(?:&|$|%26)/;
+
+export function selectIds({ ids, allPending, prefix, statuses, limit, includeNonUnique, guest, rows, registryRows }) {
   const skipped = [];
   let candidates = ids;
   if (allPending) {
@@ -90,6 +95,7 @@ export function selectIds({ ids, allPending, prefix, statuses, limit, includeNon
     if (row.link.includes("'")) { skipped.push({ id, reason: 'кавычка_в_ссылке' }); continue; }
     if (row.stepsError) { skipped.push({ id, reason: `шаги_не_разобраны_${row.stepsError}` }); continue; }
     // зачем (координатор 12.10): ссылка общая с соседями ⇒ слепой робот снимет чужой кадр; берём только строки «уникальна: да»
+    if (!guest && GUEST_ONLY_FIXTURE_RX.test(row.link)) { skipped.push({ id, reason: 'нужен_анонимный_гость_(--guest)' }); continue; }
     if (!row.unique && !includeNonUnique) { skipped.push({ id, reason: 'не_уникальна_(--include-nonunique)' }); continue; }
     picked.push(row);
   }
@@ -190,6 +196,7 @@ export async function main(argv) {
   const dryRun = argv.includes('--dry-run');
   const allPending = argv.includes('--all-pending');
   const includeNonUnique = argv.includes('--include-nonunique');
+  const guest = argv.includes('--guest');
   const ids = argv.filter((a) => !a.startsWith('--'));
   const device = arg(argv, '--device', 'emulator-5554');
   const opts = {
@@ -206,7 +213,7 @@ export async function main(argv) {
   const rows = parseLinksDoc(fs.readFileSync(LINKS_DOC, 'utf8'));
   const registryRows = allPending ? JSON.parse(fs.readFileSync(REGISTRY, 'utf8')).rows : [];
   const statuses = arg(argv, '--status', 'pending').split(',');
-  const { picked, skipped } = selectIds({ ids, allPending, prefix: arg(argv, '--prefix', ''), statuses, limit: Number(arg(argv, '--limit', '0')), includeNonUnique, rows, registryRows });
+  const { picked, skipped } = selectIds({ ids, allPending, prefix: arg(argv, '--prefix', ''), statuses, limit: Number(arg(argv, '--limit', '0')), includeNonUnique, guest, rows, registryRows });
   console.log(`${LOG} режим=${dryRun ? 'DRY-RUN' : 'съёмка'} устройство=${device} к съёмке=${picked.length} пропущено=${skipped.length} потолок=${opts.timeoutMs}мс пауза=${opts.settleMs}мс`); // guard-ok: итог выбора
   for (const s of skipped) console.log(`${LOG} пропуск ${s.id}: ${s.reason}`); // guard-ok: причина пропуска
   if (dryRun) {

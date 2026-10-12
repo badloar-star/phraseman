@@ -107,7 +107,7 @@ rule(C, r'хаб|режим|настройк', L(f'{COMMON}&cards=demo&plus=off'
 
 # Пейволы
 P = ['paywalls', 'paywall-gap']
-PM = 'premium_modal?context=energy_empty&source=settings_premium&_dev_state='
+PM = 'premium_modal?context=generic&source=settings_premium&_dev_state='
 import urllib.parse
 def PL(name, extra=''):
     direct = f'phraseman://{PM}{name}{extra}'
@@ -249,6 +249,8 @@ for title, secs in AREAS:
             # по умолчанию «да» только для прямых ссылок на состояние пейвола (premium_modal?…&_dev_state=…), остальное — явной записью в dev_links_r1_steps.py
             is_unique = bool(link) and 'premium_modal' in link and link_usage[link] == 1 and 'тапами' not in prep and secs is not O
         unique_count += 1 if is_unique else 0
+        if re.search(r'[?&]cards=(?:demo|demo_lessons|empty|custom50|demo_published|notranslation)(?:&|$|%26)', link or ''):
+            prep = (prep + ' · ' if prep else '') + '**только гость (pm clear + онбординг)**'
         prep = prep.replace('|', '¦')  # зачем: «|» в тексте подготовки сдвигал колонки «тапы»/«уникальна» (разбор роботом по номеру колонки)
         out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} | {steps_cell} | {'да' if is_unique else 'нет'} |")
     out.append('')

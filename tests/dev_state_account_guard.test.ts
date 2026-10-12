@@ -55,7 +55,15 @@ describe('dev_state_account_guard', () => {
     const full = await demo.applyCardsDemo();
     expect(full.applied).toEqual({});
     expect(Object.keys(full.skipped)).toEqual(['refused']);
+    const lessons = await demo.applyCardsDemo({ lessons: true });
+    expect(lessons.applied).toEqual({});
+    expect(Object.keys(lessons.skipped)).toEqual(['refused']);
     expect(mockStore.size).toBe(0);
+    // координатор 12.10: каждая из 6 фикстур (demo, demo_lessons, empty, custom50, demo_published, notranslation) пишет в лог отказ
+    const warned = (console.warn as jest.Mock).mock.calls.map((call) => String(call[0]));
+    for (const what of ['cards=custom50', 'cards=demo_published', 'cards=notranslation', 'cards=empty', 'cards=demo', 'cards=demo_lessons']) {
+      expect(warned.some((line) => line.includes(`[DEV-STATE] ${what} refused: real account`))).toBe(true);
+    }
   });
 
   it('with no auth user (state unknown) the fixtures also refuse — fail-closed', async () => {

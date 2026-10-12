@@ -542,6 +542,7 @@ export function DialogueV2SessionScreen({
                 placeholder={labels.placeholder}
                 placeholderTextColor={glass.mutedText}
                 accessibilityLabel={labels.placeholder}
+                testID="dialogue-v2-session-input" // зачем (робот съёмки, 12.10): поле нужно находить не по языковой подписи
                 maxFontSizeMultiplier={1.4}
                 multiline
                 // зачем (Сверка dialogs-022): клавиша ввода — «Отправить», а не перенос строки; Enter отправляет реплику
@@ -571,6 +572,7 @@ export function DialogueV2SessionScreen({
                 accessibilityRole="button"
                 accessibilityLabel={labels.send}
                 accessibilityState={{ disabled: sending || !canSend }}
+                testID="dialogue-v2-session-send" // зачем (робот съёмки, 12.10): кнопка «Отправить» без привязки к языку интерфейса
                 style={dialogueGlassRoundButtonStyle(glass, !sending && canSend)}
               >
                 <Ionicons name="arrow-up" size={24} color={!sending && canSend ? glass.ctaInk : glass.mutedText} />

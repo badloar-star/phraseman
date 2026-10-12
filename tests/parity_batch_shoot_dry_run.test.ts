@@ -78,7 +78,7 @@ describe('parity_batch_shoot', () => {
   });
 
   it('--dry-run prints adb commands, skips non-unique rows / rows without a link, and never touches adb', () => {
-    const result = run(['cards-005', 'cards-007', 'cards-033', 'cards-025', 'nope-001', '--dry-run'], { ADB_PATH: path.join(tmp, 'no_such_adb.js') });
+    const result = run(['cards-005', 'cards-007', 'cards-033', 'cards-025', 'nope-001', '--guest', '--dry-run'], { ADB_PATH: path.join(tmp, 'no_such_adb.js') });
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('режим=DRY-RUN');
     expect(result.stdout).toContain('adb -s emulator-5554 shell am force-stop app.phraseman');
@@ -91,19 +91,19 @@ describe('parity_batch_shoot', () => {
   });
 
   it('a unique row with steps prints its steps (cards-007: menu → select)', () => {
-    const result = run(['cards-007', '--dry-run']);
+    const result = run(['cards-007', '--guest', '--dry-run']);
     expect(result.stdout).toContain('DRY cards-007');
     expect(result.stdout).toContain('tap #fc-saved-actions');
     expect(result.stdout).toContain('tap #fc-menu-select');
   });
 
   it('--include-nonunique takes the rows that share a link with neighbours', () => {
-    const result = run(['cards-033', '--include-nonunique', '--dry-run']);
+    const result = run(['cards-033', '--include-nonunique', '--guest', '--dry-run']);
     expect(result.stdout).toContain('DRY cards-033');
   });
 
   it('--all-pending picks only registry r1 pending rows that are unique and have a ready link', () => {
-    const result = run(['--all-pending', '--dry-run']);
+    const result = run(['--all-pending', '--guest', '--dry-run']);
     expect(result.status).toBe(0);
     const picked = Number((result.stdout.match(/к съёмке=(\d+)/) ?? [])[1]);
     expect(picked).toBeGreaterThan(10);
@@ -119,7 +119,7 @@ describe('parity_batch_shoot', () => {
   it('on a fake adb: a ready marker saves <id>.png and writes an ok journal line', () => {
     const out = path.join(tmp, 'out_ok');
     const log = path.join(tmp, 'adb_ok.log');
-    const result = run(['cards-005', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log });
+    const result = run(['cards-005', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log });
     expect(result.status).toBe(0);
     expect(fs.existsSync(path.join(out, 'cards-005.png'))).toBe(true);
     const journal = fs.readdirSync(path.join(out, '_runs')).find((f) => f.endsWith('.tsv')) as string;
@@ -130,7 +130,7 @@ describe('parity_batch_shoot', () => {
   it('on a fake adb: steps tap the centre of the node found by testID and by text', () => {
     const out = path.join(tmp, 'out_steps');
     const log = path.join(tmp, 'adb_steps.log');
-    const result = run(['cards-007', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log, FAKE_XML: xmlFile });
+    const result = run(['cards-007', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log, FAKE_XML: xmlFile });
     expect(result.stderr).not.toContain('шаг не выполнен');
     expect(fs.existsSync(path.join(out, 'cards-007.png'))).toBe(true);
     const adbLog = fs.readFileSync(log, 'utf8');
@@ -146,7 +146,7 @@ describe('parity_batch_shoot', () => {
     fs.writeFileSync(path.join(out, 'cards-007.png'), 'GOOD-OLD-EVIDENCE');
     const emptyXml = path.join(tmp, 'empty.xml');
     fs.writeFileSync(emptyXml, '<hierarchy/>');
-    const result = run(['cards-007', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_XML: emptyXml });
+    const result = run(['cards-007', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_XML: emptyXml });
     expect(result.status).toBe(1);
     expect(fs.readFileSync(path.join(out, 'cards-007.png'), 'utf8')).toBe('GOOD-OLD-EVIDENCE');
     const runsDir = path.join(out, '_runs');
@@ -160,7 +160,7 @@ describe('parity_batch_shoot', () => {
     const out = path.join(tmp, 'out_timeout');
     fs.mkdirSync(out, { recursive: true });
     fs.writeFileSync(path.join(out, 'cards-005.png'), 'GOOD-OLD-EVIDENCE');
-    const result = run(['cards-005', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=600'], { ADB_PATH: fakeAdb, FAKE_MARKER: '0' });
+    const result = run(['cards-005', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=600'], { ADB_PATH: fakeAdb, FAKE_MARKER: '0' });
     expect(result.status).toBe(1);
     expect(fs.readFileSync(path.join(out, 'cards-005.png'), 'utf8')).toBe('GOOD-OLD-EVIDENCE');
     const runsDir = path.join(out, '_runs');
@@ -177,6 +177,15 @@ describe('parity_batch_shoot', () => {
     expect(result.status).toBe(0);
     const starts = fs.readFileSync(log, 'utf8').split('\n').filter((l) => l.includes('am start'));
     expect(starts.length).toBe(2);
+  });
+
+  it('rows that need card fixtures (cards=demo|empty|…) are skipped without --guest, with a clear reason', () => {
+    const skipped = run(['cards-005', 'cards-007', '--dry-run']);
+    expect(skipped.stdout).toContain('пропуск cards-005: нужен_анонимный_гость');
+    expect(skipped.stdout).toContain('пропуск cards-007: нужен_анонимный_гость');
+    expect(skipped.stdout).toContain('к съёмке=0');
+    const allowed = run(['cards-005', '--guest', '--dry-run']);
+    expect(allowed.stdout).toContain('DRY cards-005');
   });
 
   it('without ids and without --all-pending it refuses with a clear message', () => {

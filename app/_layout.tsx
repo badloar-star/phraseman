@@ -105,6 +105,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
 import { peekResolvedUiLang } from './ui_lang_resolved';
 import { resolvePushUiLang } from './push_ui_lang';
+import { installNotificationLangResync, noteNotificationsScheduledLang } from './notification_lang_resync';
 import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { PAYWALL_SHEET_STACK_OPTIONS, SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
@@ -727,6 +728,36 @@ function loadNotificationsModule(): Promise<NotificationsModule> {
 }
 
 // ── Проверки напоминаний при старте ──────────────────────────────────────────
+let lastSessionStudyTarget: RuntimeStudyTarget | undefined;
+
+/**
+ * Локальные напоминания (daily ИЛИ per-day), предупреждение серии, фраза дня, итоги недели/месяца и язык push-токена
+ * на языке `lang`. Зовут старт (runSessionChecks) и смена языка интерфейса (app/notification_lang_resync.ts).
+ * Запись языка токена в облако — только если язык/токен/пояс изменились (кэш в registerPushTokenForServerPush).
+ */
+async function scheduleRemindersForLang(lang: Lang, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const notifications = await loadNotificationsModule();
+  const notifSnap = notifications.getNotifSettingsSnapshot();
+  const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
+  if (hasPerDay) {
+    notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleNotifications'));
+  } else {
+    const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
+    const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
+    notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleDailyReminder'));
+  }
+  notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleStreakWarningIfNeeded'));
+  notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.schedulePhraseOfDayNotification'));
+  notifications.scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleWeeklyRecapNotification'));
+  notifications.scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleMonthlyRecapNotification'));
+
+  // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
+  // достучаться до пропавшего юзера. Best-effort, в фоне.
+  void import('./push_token_registration')
+    .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
+    .catch(noteSwallowedHandler('_layout:runSessionChecks.call'));
+}
+
 const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
   try {
     const today = getLocalDayKey();
@@ -765,32 +796,28 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
     // ── 3. Восстановление напоминаний: daily ИЛИ per-day (расписание), не оба
     const notifEnabled = notifEnabledRaw;
     if (notifEnabled === 'true') {
-      void loadNotificationsModule()
-        .then(async (notifications) => {
-          const notifSnap = notifications.getNotifSettingsSnapshot();
-          const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
-          if (hasPerDay) {
-            notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleNotifications'));
-          } else {
-            const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
-            const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
-            notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleDailyReminder'));
-          }
-          notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleStreakWarningIfNeeded'));
-          notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.schedulePhraseOfDayNotification'));
-          notifications.scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleWeeklyRecapNotification'));
-          notifications.scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleMonthlyRecapNotification'));
-
-          // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
-          // достучаться до пропавшего юзера. Best-effort, в фоне.
-          void import('./push_token_registration')
-            .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
-            .catch(noteSwallowedHandler('_layout:runSessionChecks.call'));
+      void scheduleRemindersForLang(lang, studyTarget)
+        .then(() => {
           // «Вместе»: раз в запуск синхронизируем в облако тумблер «Друзья» + часовой пояс.
-          notifications.syncFriendsPushPrefIfChanged().catch(noteSwallowedHandler('_layout:runSessionChecks.syncFriendsPushPrefIfChanged'));
+          void loadNotificationsModule()
+            .then((notifications) => notifications.syncFriendsPushPrefIfChanged())
+            .catch(noteSwallowedHandler('_layout:runSessionChecks.syncFriendsPushPrefIfChanged'));
         })
-        .catch(noteSwallowedHandler('_layout:runSessionChecks.loadNotificationsModule'));
+        .catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleRemindersForLang'));
     }
+    // зачем (§AUTH-0110 п.1): старт запоминает язык уведомлений, смена языка в настройках переставляет их без перезапуска.
+    noteNotificationsScheduledLang(lang);
+    lastSessionStudyTarget = studyTarget;
+    installNotificationLangResync({
+      resolveLang: async (uiLangNow) => resolvePushUiLang({
+        resolvedUiLang: uiLangNow as Lang,
+        storedAppLang: await AsyncStorage.getItem('app_lang'),
+        deviceLang: getDeviceBootstrapLocale(),
+      }).lang,
+      isEnabled: async () => (await AsyncStorage.getItem('notifications_enabled')) === 'true',
+      // resolveLang выше отдаёт результат resolvePushUiLang — это Lang; модуль пересинхронизации работает со строкой.
+      reschedule: (nextLang) => scheduleRemindersForLang(nextLang as Lang, lastSessionStudyTarget),
+    });
 
   } catch (e) {
     if (__DEV__) console.warn('[_layout]', e);

@@ -30,6 +30,8 @@ interface EnergyIconProps {
    * после успешной покупки), не на каждый ре-рендер иконки.
    */
   bloomOnRefill?: boolean;
+  /** Заливная молния (flash) вместо контурной (flash-outline): окно «Нет энергии» по образцу (R1, dialogs-011). По умолчанию контурная. */
+  solid?: boolean;
 }
 
 function EnergyIcon({
@@ -41,7 +43,9 @@ function EnergyIcon({
   shouldShake = false,
   bloomOnRefill = false,
   animateLoop = true,
+  solid = false,
 }: EnergyIconProps) {
+  const glyph = solid ? 'flash' : 'flash-outline';
   const emptyOpacity = 0.4;
   const opacityAnim = useRef(
     new Animated.Value(filled ? 1 : emptyOpacity),
@@ -158,7 +162,7 @@ function EnergyIcon({
           style={{ width: size, height: size }}
           maskElement={(
             <Ionicons
-              name="flash-outline"
+              name={glyph}
               size={size}
               color={EXEMPT_COLOR_1}
               accessible={false}
@@ -184,7 +188,7 @@ function EnergyIcon({
     </View>
   ) : (
     <Ionicons
-      name="flash-outline"
+      name={glyph}
       size={size}
       color={tintColor ?? themeColor}
       accessible={false}

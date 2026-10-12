@@ -440,6 +440,7 @@ function NoEnergyModal({
     <View style={[sx.boltCircle, { backgroundColor: glass.opaqueControl }]}>
       <EnergyIcon
         filled
+        solid // зачем (R1, dialogs-011): в круге окна «Нет энергии» молния заливная, как в образце
         themeColor={t.gold}
         size={40}
         animateChange={false}

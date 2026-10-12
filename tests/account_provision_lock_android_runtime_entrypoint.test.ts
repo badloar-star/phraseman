@@ -326,6 +326,11 @@ function createStoredZip(entries: readonly { readonly name: string; readonly byt
   return Buffer.concat([...localParts, centralDirectory, end]);
 }
 
+// зачем (12.10, красный в RED_TESTS_HEAD): на ПК нет PowerShell 7 — spawnSync('pwsh.exe') не запускался (status null), и все проверки
+// разбора отказа падали без единой строки скрипта. Скрипт разбирается и в Windows PowerShell 5.1 (Parser.ParseFile без ошибок,
+// функция Get-SanitizedRunnerFailure найдена) — берём pwsh, если он есть, иначе встроенный powershell.exe. Проверки те же.
+const POWERSHELL_EXE = spawnSync('where', ['pwsh.exe'], { encoding: 'utf8' }).status === 0 ? 'pwsh.exe' : 'powershell.exe';
+
 function launcherFailureEnvelope(child: unknown, expectedCorrelation: string): ReturnType<typeof spawnSync> {
   const command = [
     '$tokens=$null',
@@ -340,7 +345,7 @@ function launcherFailureEnvelope(child: unknown, expectedCorrelation: string): R
     '$result=Get-SanitizedRunnerFailure $child $env:ACCOUNT_LOCK_EXPECTED_CORRELATION',
     '[Console]::Out.WriteLine(($result | ConvertTo-Json -Compress))',
   ].join('; ');
-  return spawnSync('pwsh.exe', [
+  return spawnSync(POWERSHELL_EXE, [
     '-NoProfile',
     '-NonInteractive',
     '-EncodedCommand', Buffer.from(command, 'utf16le').toString('base64'),
@@ -428,7 +433,8 @@ describe('Android Account V2 provision-lock entrypoint and host runner', () => {
       path.relative(REPOSITORY_ROOT, GENERATED_ACTIVITY),
     ], { cwd: REPOSITORY_ROOT, encoding: 'utf8' });
     expect(ignored.status).toBe(0);
-    expect(String(ignored.stdout).match(/\.gitignore:64:\/android/gu)).toHaveLength(2);
+    // зачем (12.10): правило /android сдвинулось в .gitignore (64 → 66, коммиты 7de1be871/572296162) — проверяем само правило, не номер строки.
+    expect(String(ignored.stdout).match(/\.gitignore:\d+:\/android\t/gu)).toHaveLength(2);
     const fixtureIgnored = spawnSync('git', [
       'check-ignore',
       path.relative(REPOSITORY_ROOT, TRACKED_MANIFEST),

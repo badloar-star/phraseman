@@ -213,6 +213,10 @@ test('concurrent getStableId calls share one generated identity and generation',
   const generation = require('../app/account_generation');
   const first = getStableId();
   const second = getStableId();
+  // зачем (12.10, тест устарел после ebc1a860d): readOrCreateStableId теперь ждёт другое хранилище ДО SecureStore, поэтому
+  // getItemAsync вызывается не в первом такте — дожидаемся его, а не зовём ещё не назначенный release. Проверка та же: одна личность.
+  for (let tick = 0; tick < 100 && typeof release !== 'function'; tick += 1) await Promise.resolve();
+  expect(typeof release).toBe('function');
   release();
   const [a, b] = await Promise.all([first, second]);
   expect(a).toBe(b);

@@ -1317,7 +1317,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 --- a/node_modules/expo-sqlite/ios/SQLiteModule.swift
 +++ b/node_modules/expo-sqlite/ios/SQLiteModule.swift
 @@ -3,3 +3,4 @@
-+import Darwin
++import Darwin; @_silgen_name("flock") private func phrasemanSystemFlock(_ fd: Int32, _ operation: Int32) -> Int32 // зачем: struct flock из Darwin затеняет функцию flock(2) в Swift — без своего имени вызов не компилируется (EAS 9c9954c4)
  import ExpoModulesCore
  
  private typealias SQLiteColumnNames = [String]
@@ -1497,7 +1497,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +    var releaseFailed = false
 +    stateQueue.sync {
 +      guard ownsLock else { return }
-+      if Darwin.flock(fileDescriptor, LOCK_UN) != 0 {
++      if phrasemanSystemFlock(fileDescriptor, LOCK_UN) != 0 {
 +        releaseFailed = true
 +        return
 +      }
@@ -1512,7 +1512,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +  private func releaseAccountProvisionLockBestEffort() {
 +    stateQueue.sync {
 +      guard ownsLock else { return }
-+      guard Darwin.flock(fileDescriptor, LOCK_UN) == 0 else { return }
++      guard phrasemanSystemFlock(fileDescriptor, LOCK_UN) == 0 else { return }
 +      ownsLock = false
 +      _ = Darwin.close(fileDescriptor)
 +    }
@@ -1746,7 +1746,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +    guard fileDescriptor >= 0 else {
 +      throw InvalidArgumentsException("account_native_provision_lock_failed")
 +    }
-+    guard Darwin.flock(fileDescriptor, LOCK_EX) == 0 else {
++    guard phrasemanSystemFlock(fileDescriptor, LOCK_EX) == 0 else {
 +      _ = Darwin.close(fileDescriptor)
 +      throw InvalidArgumentsException("account_native_provision_lock_failed")
 +    }

@@ -166,7 +166,9 @@ describe('account v2 tails 6D (P3 of review 6C)', () => {
       const source = fs.readFileSync(path.join(ROOT, 'app', 'auth_provider.ts'), 'utf8');
       const anonStart = source.indexOf('void cloudDeleteEnqueueOperation.acknowledgment');
       const anonThen = source.slice(anonStart, source.indexOf('.catch(', anonStart));
-      expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(null, ack)');
+      // зачем (12.10, тест устарел после 91b396d6a «серверные данные гостя не удалялись»): гостю теперь пишется замок, и ключ V2
+      // создаётся с его operationId (beginAccountsV2DeletionIfEnabled(…, pendingDeleteLock?.operationId ?? null)) — снимать надо с тем же.
+      expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(pendingDeleteLock?.operationId ?? null, ack)');
       expect(anonThen).not.toMatch(/clearStoredAccountsV2DeletionCredentialIfEnabled\(null\)/);
     });
   });

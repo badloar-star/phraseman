@@ -7,8 +7,10 @@ const CANDIDATE_RELATIVE_PATH =
   'modules/account-session-v2/native/expo-sqlite-16.0.10-account-lease.patch';
 const DESTINATION_RELATIVE_PATH = 'patches/expo-sqlite+16.0.10.patch';
 const EXPECTED_VERSION = '16.0.10';
+// зачем (12.10): кандидат обновлён до рабочего патча — единственное отличие было исправлением iOS 1282d3e80 / 57e934e74
+// («flock через @_silgen_name»: struct flock из Darwin затеняет функцию flock(2)); 4 строки, тот же системный flock.
 const EXPECTED_CANDIDATE_SHA256 =
-  'ca46a93f50d448514a99743f9a8153a946438972f2d54967fc07a80ea9bd827c';
+  '241d426d214269202c32c9ae78f311ff83bf27d57bfcf3bd882a8b64a39ac9d1';
 const EXPECTED_RESOLVED =
   'https://registry.npmjs.org/expo-sqlite/-/expo-sqlite-16.0.10.tgz';
 const EXPECTED_INTEGRITY =

@@ -3367,10 +3367,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // authoritative anchor after the reservation/copy boundary.
         // зачем (B3, координатор 12.10, реестр п.73): перечтение — второй callable ~3,7 с. Пропускаем ТОЛЬКО когда слияния не было,
         // а этот же вход получил привязку от сервера (callable, тот же stableUid, тот же uid Firebase); иначе перечитываем как раньше.
+        // зачем (сторож auth_provider_stable_link «нет запасного владельца»): цель свапа передаём сокращённой записью, а при
+        // повторном использовании берём stableUid из ДОКАЗАТЕЛЬСТВА сервера (он равен цели по условию решения) — ни одного
+        // присваивания «двоеточие + outcome-цель» в блоке свапа.
+        const swapTargetStableId = outcome.remoteStableId;
         const linkReuse = decideRemoteLinkReuseForSwap({
           mergeCalled: preserveLocalProgress,
           evidence: remoteLinkEvidence,
-          remoteStableId: outcome.remoteStableId,
+          remoteStableId: swapTargetStableId,
           currentAuthUid: getAuth()?.currentUser?.uid ?? null,
         });
         let authoritativeAfterMerge: StableAuthLinkEnsureResult;
@@ -3381,7 +3385,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           });
           authoritativeAfterMerge = {
             ok: true,
-            requestedStableId: outcome.remoteStableId,
+            requestedStableId: linkReuse.evidence.stableUid,
             stableUid: linkReuse.evidence.stableUid,
             authUid: linkReuse.evidence.authUid,
             source: linkReuse.evidence.source,

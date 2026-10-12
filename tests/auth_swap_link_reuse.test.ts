@@ -39,7 +39,7 @@ describe('B3: reuse of the remote link answer during the sign-in swap', () => {
     expect(evidenceAt).toBeGreaterThan(remoteAt);
     expect(evidenceAt).toBeLessThan(localAt); // локальная ветка доказательство не выставляет
     expect(src.match(/remoteLinkEvidence = \{/g)).toHaveLength(1);
-    expect(src).toMatch(/decideRemoteLinkReuseForSwap\(\{\s*mergeCalled: preserveLocalProgress,\s*evidence: remoteLinkEvidence,\s*remoteStableId: outcome\.remoteStableId,\s*currentAuthUid: getAuth\(\)\?\.currentUser\?\.uid \?\? null,/);
+    expect(src).toMatch(/decideRemoteLinkReuseForSwap\(\{\s*mergeCalled: preserveLocalProgress,\s*evidence: remoteLinkEvidence,\s*remoteStableId: swapTargetStableId,\s*currentAuthUid: getAuth\(\)\?\.currentUser\?\.uid \?\? null,/);
     const decisionAt = src.indexOf('decideRemoteLinkReuseForSwap({');
     const rereadAt = src.indexOf('{ requireAuthoritative: true }', decisionAt);
     expect(rereadAt).toBeGreaterThan(decisionAt);

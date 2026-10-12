@@ -229,7 +229,10 @@ describe('account v2 client tails 6C', () => {
     const clearAfterEnqueue = source.indexOf('clearStoredAccountsV2DeletionCredentialIfEnabled(pendingDeleteLock.operationId)', advancedOk);
     expect(enqueued).toBeGreaterThan(0);
     expect(clearAfterEnqueue).toBeGreaterThan(advancedOk);
-    expect(clearAfterEnqueue - advancedOk).toBeLessThan(300);
+    // зачем (12.10, тест устарел после AA S4a раунд 4 L-1): между строками добавилась фиксация операции для очереди удаления
+    // (legacyDeletionServerEnqueuedOperations.add) — 372 знака. Проверяем смысл, а не длину: снятие ключа в ТОЙ ЖЕ ветке успеха.
+    expect(source.slice(advancedOk, clearAfterEnqueue)).not.toMatch(/\}\s*else/);
+    expect(clearAfterEnqueue - advancedOk).toBeLessThan(600);
     // Ветка «ответ потерян → ждём квитанцию» тоже снимает ключ — только при успехе.
     const waitAt = retry.indexOf('waitForAccountDeletionCredentialSafe(proof)');
     const waitTail = retry.slice(waitAt, waitAt + 400);
@@ -237,7 +240,8 @@ describe('account v2 client tails 6C', () => {
     // Аноним: ключ снимается только после ответа сервера, а не сразу после отправки.
     const anonStart = source.indexOf('void cloudDeleteEnqueueOperation.acknowledgment', advancedOk);
     const anonThen = source.slice(anonStart, source.indexOf('.catch(', anonStart));
-    expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(null, ack)');
+    // зачем (12.10, тест устарел после 91b396d6a): ключ гостя создаётся с operationId замка — снимается с тем же.
+    expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(pendingDeleteLock?.operationId ?? null, ack)');
     const dispatchAt = source.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled;', anonStart);
     expect(source.slice(dispatchAt, dispatchAt + 200)).not.toContain('clearStoredAccountsV2DeletionCredentialIfEnabled');
   });

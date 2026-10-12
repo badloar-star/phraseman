@@ -467,6 +467,9 @@ function assertProvisionLockSourceContract(androidModule: string, iosModule: str
   expect(iosPath).toContain('lexicalRoot == resolvedRoot');
   expect(iosPath).toContain('isCanonicalAccountDatabaseName');
   expect(iosPath).not.toContain('contains(ACCOUNT_DATABASE_PREFIX)');
+  // зачем (12.10, тест устарел после 1282d3e80 «flock через @_silgen_name»): в Swift struct flock из Darwin затеняет функцию flock(2),
+  // и патч зовёт системный flock через объявление phrasemanSystemFlock. Сторож прежний: это именно системный flock(2), не обёртка.
+  expect(iosModule).toContain('@_silgen_name("flock") private func phrasemanSystemFlock(_ fd: Int32, _ operation: Int32) -> Int32');
   const iosAcquire = balancedFunctionBody(
     iosModule,
     'private func acquireAccountProvisionLock',
@@ -476,7 +479,7 @@ function assertProvisionLockSourceContract(androidModule: string, iosModule: str
     'accountProvisionLockURL',
     'isExcludedFromBackup = true',
     'Darwin.open',
-    'Darwin.flock(fileDescriptor, LOCK_EX)',
+    'phrasemanSystemFlock(fileDescriptor, LOCK_EX)',
     'return NativeAccountProvisionLock',
   ]);
   for (const flag of ['O_CREAT', 'O_RDWR', 'O_CLOEXEC', 'O_NOFOLLOW']) {
@@ -492,7 +495,7 @@ function assertProvisionLockSourceContract(androidModule: string, iosModule: str
   );
   expectOrdered(iosRelease, [
     'guard ownsLock else',
-    'Darwin.flock(fileDescriptor, LOCK_UN)',
+    'phrasemanSystemFlock(fileDescriptor, LOCK_UN)',
     'ownsLock = false',
     'Darwin.close(fileDescriptor)',
   ]);
@@ -722,8 +725,8 @@ describe('Expo SQLite 16.0.10 account lease patch source conformance only', () =
       [iosModule, 'O_NOFOLLOW'],
       [iosModule, 'lexicalDefaultRoot == resolvedDefaultRoot'],
       [iosModule, 'databasePath == expectedLexical.path'],
-      [iosModule, 'Darwin.flock(fileDescriptor, LOCK_EX)'],
-      [iosModule, 'Darwin.flock(fileDescriptor, LOCK_UN)'],
+      [iosModule, 'phrasemanSystemFlock(fileDescriptor, LOCK_EX)'],
+      [iosModule, 'phrasemanSystemFlock(fileDescriptor, LOCK_UN)'],
     ] as const) {
       const weakened = sourceText.replace(token, 'provision_lock_guard_removed');
       expect(weakened).not.toBe(sourceText);
@@ -803,7 +806,7 @@ describe('Expo SQLite 16.0.10 account lease patch source conformance only', () =
       'func releaseAccountProvisionLock',
       (body) => swapOrderedTokens(
         body,
-        'Darwin.flock(fileDescriptor, LOCK_UN)',
+        'phrasemanSystemFlock(fileDescriptor, LOCK_UN)',
         'ownsLock = false',
       ),
     );

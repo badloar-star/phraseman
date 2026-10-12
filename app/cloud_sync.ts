@@ -4384,9 +4384,35 @@ async function applyRestoreFromUserDocTraced(
     return false;
   }) : pairs;
   if (bootDirtyKeys) console.log('[RESTORE-DIRTY]', JSON.stringify({ event: 'guard', dirtyKeys: bootDirtyKeys.size, kept: pairs.length - appliedPairs.length }));
-  if (appliedPairs.length > 0) {
+  // зачем (координатор 12.10, 🔴 streakJump, подтверждено строками [STREAK-WRITE] / readAgoMs): серию восстановление прочитало
+  // секунды назад; если за это время её записали локально — сливаем заново со свежим значением, устаревшее не пишем.
+  let finalPairs: readonly (readonly [string, string])[] = appliedPairs;
+  if (appliedPairs.some(([key]) => key === 'streak_count' || key === 'last_active_date' || key === 'streak_last_date')) {
+    const [nowStreakRaw, nowLastActiveRaw, nowStreakLastRaw] = await Promise.all([
+      AsyncStorage.getItem('streak_count'),
+      AsyncStorage.getItem('last_active_date'),
+      AsyncStorage.getItem('streak_last_date'),
+    ]);
     assertCurrent();
-    await applyPersonalPlanRestorePairs(appliedPairs);
+    const changed = nowStreakRaw !== localStreakRaw || nowLastActiveRaw !== localLastActiveRaw || nowStreakLastRaw !== localStreakLastRaw;
+    if (!changed) {
+      console.log(`[STREAK] restore_guard ok — серия не менялась с чтения (${String(localStreakRaw)}), пишем слитое ${mergedStreak.streak}`);
+    } else {
+      const fresh = mergeStreakByActivityDate(
+        { streak: nowStreakRaw, lastActive: nowLastActiveRaw, streakLast: nowStreakLastRaw },
+        { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
+      );
+      console.warn(`[STREAK] restore_guard changed_since_read read=${String(localStreakRaw)}@${String(localLastActiveRaw)} now=${String(nowStreakRaw)}@${String(nowLastActiveRaw)} staleMerged=${mergedStreak.streak} → freshMerged=${fresh.streak}@${String(fresh.lastActive)} readAgoMs=${Date.now() - streakReadAtMs}`);
+      finalPairs = appliedPairs.map(([key, value]): readonly [string, string] => {
+        if (key === 'streak_count') return [key, String(fresh.streak)];
+        if ((key === 'last_active_date' || key === 'streak_last_date') && fresh.lastActive) return [key, fresh.lastActive];
+        return [key, value];
+      });
+    }
+  }
+  if (finalPairs.length > 0) {
+    assertCurrent();
+    await applyPersonalPlanRestorePairs(finalPairs);
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }

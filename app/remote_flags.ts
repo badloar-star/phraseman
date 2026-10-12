@@ -608,7 +608,9 @@ export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boole
     streak_milestone: false,
   };
 }
-export const isSupportDiagnosticsEnabled = () => false;
+// зачем (решение владельца 12.10, журнал п.81(14)): журнал диагностики в обращении в поддержку включён в R1 — пишется на устройстве (24 ч, ≤200 записей),
+// уходит только вместе с явно отправленным обращением; политика описывает это (legal/privacy_policy_en*.json).
+export const isSupportDiagnosticsEnabled = () => true;
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
 export const isPaywallReviewsEnabled = () => true;
 // ── Force-update (минимальная версия) ───────────────────────────────────────

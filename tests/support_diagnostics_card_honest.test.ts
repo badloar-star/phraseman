@@ -21,8 +21,8 @@ describe('support report: карточка диагностики честная
     expect(screen).toContain('[SUPPORT-DIAG] карточка:');
   });
 
-  it('пока флаг выключен, запись журнала и его захват не работают (обещать нечего)', () => {
-    expect(read('app/remote_flags.ts')).toContain('export const isSupportDiagnosticsEnabled = () => false;');
+  it('журнал включён решением владельца (п.81(14)); запись и захват по-прежнему проверяют флаг первыми', () => {
+    expect(read('app/remote_flags.ts')).toContain('export const isSupportDiagnosticsEnabled = () => true;');
     const diag = read('app/support_diagnostics.ts');
     expect(diag).toMatch(/recordSupportDiagnostic[\s\S]*?if \(!isSupportDiagnosticsEnabled\(\)\) return;/);
     expect(diag).toMatch(/captureSupportDiagnosticBundle[\s\S]*?if \(!isSupportDiagnosticsEnabled\(\)\) return null;/);

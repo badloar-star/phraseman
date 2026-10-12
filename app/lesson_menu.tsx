@@ -476,7 +476,21 @@ function LessonMenu() {
 
   const showReplayCta = finishedOnce && !lessonLaunchBlocked;
   const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
-  const lessonPrepHintText = triLang(lang, {
+  // зачем (координатор 12.10, Сверка evidence/lesson_menu_lang): где пункт теории скрыт (английский — своей теории нет), совет не должен
+  // отсылать к «Theory» — только к словам урока.
+  const theoryHiddenForLang = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden';
+  const lessonPrepHintWithoutTheory = triLang(lang, {
+    ru: 'Перед уроком загляни в «Слова урока» и потренируй новые слова. Вернуться к ним можно в любой момент.',
+    uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. Повернутися до них можна будь-коли.',
+    es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. Puedes volver a ellas en cualquier momento.',
+    en: 'Before the lesson, you can open "Vocabulary" and practice new words. You can come back to them any time.',
+    'pt-BR': 'Antes da lição, você pode abrir o «Vocabulário» e treinar palavras novas. Você pode voltar a elas quando quiser.',
+    vi: 'Trước bài học, bạn có thể mở «Từ vựng» và luyện các từ mới. Bạn có thể quay lại bất cứ lúc nào.',
+    id: 'Sebelum pelajaran, kamu bisa membuka «Kosakata» dan melatih kata-kata baru. Kamu bisa kembali kapan saja.',
+    tr: 'Dersten önce «Kelimeler» bölümüne bakıp yeni kelimeleri çalışabilirsin. İstediğin zaman geri dönebilirsin.',
+    pl: 'Przed lekcją możesz zajrzeć do „Słownika” i przećwiczyć nowe słowa. Możesz do nich wrócić w każdej chwili.',
+  });
+  const lessonPrepHintText = theoryHiddenForLang ? lessonPrepHintWithoutTheory : triLang(lang, {
     ru: 'Загляни в «Слова урока» и «Теорию» — там новые слова, правила и конструкции. Вернуться можно в любой момент.',
     uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
     es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. En «Teoría» encontrarás reglas y estructuras explicadas en detalle. Puedes volver a estos materiales en cualquier momento.',

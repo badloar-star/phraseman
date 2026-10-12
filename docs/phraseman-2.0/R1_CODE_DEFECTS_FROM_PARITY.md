@@ -1,7 +1,7 @@
 <!-- TRIAGE128 -->
-# Разбор строк r1 со статусом diff (137) — три корзины (Макеты, 12.10, по заданию координатора)
+# Разбор строк r1 со статусом diff (146) — три корзины (Макеты, 12.10, по заданию координатора)
 
-**(а) дефект кода — чинит Дизайн: 13** · **(б) кадр испорчен или устарел — переснимает Сверка: 93** · **(в) образец устарел или спорный — решает владелец: 31**. Всего 137. В реестре у каждой строки поставлено `triage.bucket` (`a_code_defect` / `b_reshoot` / `c_owner_decides`) и `triage.bucket_reason`; статусы и число строк (1093) не менялись.
+**(а) дефект кода — чинит Дизайн: 14** · **(б) кадр испорчен или устарел — переснимает Сверка: 98** · **(в) образец устарел или спорный — решает владелец: 34**. Всего 146. В реестре у каждой строки поставлено `triage.bucket` (`a_code_defect` / `b_reshoot` / `c_owner_decides`) и `triage.bucket_reason`; статусы и число строк (1093) не менялись.
 
 Правило раскладки: строка идёт в (б), если на кадре нет нужного состояния, кадр пустой/закрыт окном или старше правки кода (по гейту `evidence_stale`) — пока кадр не обновлён, отличия считать дефектом нельзя. В (а) попали отличия, которые в коде не исправлены и не объяснены данными/темой/магазином. «Подтверждено» = виден на кадре, снятом после последней правки; «кандидат» = кадр старый, подтвердит пересъёмка.
 
@@ -27,16 +27,17 @@
 | id | Что не так | Файл экрана | Оценка | Проверка |
 |---|---|---|---|---|
 | cards-032 | подсказка «Зажми карточку…» висит поверх шторки меню «⋯» (подтверждено кадром 3:06) | app/flashcards/CollectionListView.tsx / CollectionGalleryView.tsx (подсказка + шторка меню) | мелко | подтверждено кадром 3:06; тот же дефект, что cards-034 |
+| overlays-campaigns-004 | окно «Промокод» онбординга: «✕» слева в плашке, по образцу — справа без плашки (решение координатора, мелко) | components/onboarding или экран промокода онбординга (кнопка закрытия) | мелко | подтверждено кадром 3:20 |
 
 ## (б) Переснять — список id одной строкой (для робота Сверки)
 
 ```
-cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-018 dialogs-019 dialogs-022 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020 cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006 cards-021 cards-023 cards-025 cards-039 cards-047 cards-075 spire-009 dialogs-006 dialogs-014 dialogs-023 dialogs-032 profile-001 profile-003 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 spire-gap-009 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019 dialogs-015 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
+cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-011 dialogs-012 dialogs-018 dialogs-019 dialogs-022 dialogs-029 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 profile-017 overlays-campaigns-005 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020 cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006 cards-021 cards-023 cards-025 cards-039 cards-047 cards-075 spire-009 dialogs-006 dialogs-014 dialogs-023 dialogs-032 profile-001 profile-003 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 spire-gap-009 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019 dialogs-015 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
 ```
 
-Разбивка по причине (93 строк):
+Разбивка по причине (98 строк):
 
-- **кадр старше правки кода или отличия уже исправлены (36):** cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-018 dialogs-019 dialogs-022 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020
+- **кадр старше правки кода или отличия уже исправлены (41):** cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-011 dialogs-012 dialogs-018 dialogs-019 dialogs-022 dialogs-029 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 profile-017 overlays-campaigns-005 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020
 - **кадр испорчен — пустой, окно поверх или не тот экран (8):** cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006. Перед съёмкой закрывать окно «Замочки ушли в отпуск!» (гасит overlays=off у Дизайна).
 - **нужное состояние не воспроизведено (32):** cards-021 cards-023 cards-025 cards-039 cards-047 cards-075 spire-009 dialogs-006 dialogs-014 dialogs-023 dialogs-032 profile-001 profile-003 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 spire-gap-009 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019
 - **кадра нет — снять на телефоне, эмулятор роняет экран (17):** dialogs-015 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
@@ -60,6 +61,9 @@ cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 
 | dialogs-002 | то же для Plus: капсула энергии, стрелка «‹», тон образца — решает владелец |
 | dialogs-003 | образец ≠ код: подзаголовок под «Диалоги», карточка «Свободный разговор», одна иконка мира на всех строках (в образце иконка у каждого сценария) — решение владельца |
 | dialogs-008 | энергия без фона по приказу владельца 01.10 (EnergyBar.tsx); в образце dialogs.html «⚡ N» в пилюле — убрать пилюлю из образца |
+| profile-016 | нужна store-сборка: дата следующего списания приходит из магазина |
+| paywalls-019 | нужна store-сборка: дата следующего списания приходит из магазина |
+| paywalls-022 | то же, что profile-024 |
 | overlays-runtime-018 | нужен привязанный тестовый аккаунт; привязывать ради снимка нельзя — решение владельца |
 | cards-section-007 | образец под замком в старой подаче (цветной, «Аврора») — копии «Тень» |
 | cards-section-009 | образец под замком в старой подаче — копии «Тень» |
@@ -80,6 +84,11 @@ cards-005 cards-007 cards-070 spire-004 spire-006 spire-007 spire-008 spire-011 
 Связанный лист решений для владельца: `OWNER_MORNING_MOCKUPS_A.md` (чип «EN ⌄», копии «Тень», образцы Карточек №54–72).
 
 <!-- /TRIAGE128 -->
+
+---
+
+# Прежний разбор Дизайна (12.10, 100 строк)
+
 
 ---
 

@@ -71,7 +71,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
-import { APP_MESSAGES_SCREEN_MIN_INTERVAL_MS, peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
+import { APP_MESSAGES_SCREEN_MIN_INTERVAL_MS, hasAppMessageCopyForLang, peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
 import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
 import { flushSettingsPollVotes } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
@@ -1011,7 +1011,7 @@ export default function SettingsMain() {
             onPress={() => setStudySheetVisible(true)}
           />
         </SettingsGlassGroup>
-        {settingsMessageSelection.top ? (
+        {settingsMessageSelection.top && hasAppMessageCopyForLang(settingsMessageSelection.top, lang) ? ( /* зачем (settings-gap-002): без текста на языке интерфейса плашку не рисуем — ни пустой, ни русской */
           <View testID="settings-message-slot-top" style={{ marginHorizontal: -16 }}>
             <SettingsMessageSlotCard
               campaign={settingsMessageSelection.top}
@@ -1286,7 +1286,7 @@ export default function SettingsMain() {
           />
         </SettingsGlassGroup>
 
-        {settingsMessageSelection.bottom ? (
+        {settingsMessageSelection.bottom && hasAppMessageCopyForLang(settingsMessageSelection.bottom, lang) ? ( /* зачем (settings-gap-002): без текста на языке интерфейса плашку не рисуем — ни пустой, ни русской */
           <View testID="settings-message-slot-bottom" style={{ marginHorizontal: -16 }}>
             <SettingsMessageSlotCard
               campaign={settingsMessageSelection.bottom}

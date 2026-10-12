@@ -45,6 +45,35 @@ describe('normalizeAppMessageCreateInput', () => {
     });
   });
 
+  // зачем (EN-проход Сверки settings-gap-002): английский интерфейс видел кампании по-русски. En пишется только
+  // настоящим переводом; пустой En остаётся пустым (клиент тогда не показывает сообщение), RU туда не подставляется.
+  test('writes English only from a real translation and never falls English back to RU', () => {
+    const withoutEn = normalizeAppMessageCreateInput(base, 'admin@example.com', 1_800_000_000_000);
+    expect(withoutEn.document).toMatchObject({ titleEn: '', messageEn: '', titleUk: 'Новый урок' });
+
+    const withEn = normalizeAppMessageCreateInput({
+      ...base,
+      kind: 'poll',
+      translations: {
+        ru: { title: 'Выберите', body: 'Помогите выбрать.', pollQuestion: 'Что добавить?', pollOptions: ['Уроки', 'Квизы'] },
+        en: { title: 'Choose', body: 'Help us choose.', pollQuestion: 'What to add?', pollOptions: ['Lessons'] },
+      },
+    }, 'admin@example.com', 1_800_000_000_000);
+    expect(withEn.document).toMatchObject({ titleEn: 'Choose', messageEn: 'Help us choose.' });
+    expect(withEn.document.poll).toMatchObject({
+      questionEn: 'What to add?',
+      options: [{ textEn: 'Lessons', textUk: 'Уроки' }, { textEn: '', textUk: 'Квизы' }],
+    });
+  });
+
+  test('an active settings message does not require English (old admin form keeps publishing)', () => {
+    const ru = { title: 'Плашка', body: 'Текст плашки.' };
+    expect(() => normalizeAppMessageCreateInput({
+      ...base, active: true, deliverySurface: 'settings', settingsSlot: 'top', audience: 'all',
+      translations: completeSettingsTranslations(ru),
+    }, 'admin@example.com', 1_800_000_000_000)).not.toThrow();
+  });
+
   test('keeps the idempotency fingerprint stable across retry time', () => {
     const first = normalizeAppMessageCreateInput(base, 'admin@example.com', 1_800_000_000_000);
     const retry = normalizeAppMessageCreateInput(base, 'admin@example.com', 1_800_060_000_000);

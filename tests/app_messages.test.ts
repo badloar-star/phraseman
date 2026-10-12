@@ -3,6 +3,7 @@ import {
   APP_MESSAGE_TTL_MS,
   buildAppMessagePreview,
   filterAppMessagesSnapshotForAudience,
+  hasAppMessageCopyForLang,
   isAppMessageVisible,
   mergeAppMessagesWithStates,
   normalizeAppMessage,
@@ -116,9 +117,41 @@ describe('app_messages', () => {
       createdAtMs: now,
     }, now);
 
-    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+    // зачем (settings-gap-002): en больше не падает на RU — у кампании свои titleEn/messageEn.
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl', 'en'] as const) {
       expect(pickAppMessageText(message, lang)).toEqual({ title: '', body: '' });
     }
+  });
+
+  it('shows English copy on the English UI and hides a campaign without it (settings-gap-002)', () => {
+    const withEn = normalizeAppMessage('m-en', {
+      active: true, createdAtMs: now, titleRu: 'Важное от Phraseman', messageRu: 'Подписка — ваша возможность',
+      titleEn: 'Important from Phraseman', messageEn: 'Your subscription is your chance',
+      poll: {
+        questionRu: 'Что улучшить?', questionEn: 'What should we improve?',
+        options: [{ id: 'a', textRu: 'Скорость', textEn: 'Speed' }, { id: 'b', textRu: 'Дизайн', textEn: 'Design' }],
+      },
+    }, now);
+    expect(pickAppMessageText(withEn, 'en')).toEqual({ title: 'Important from Phraseman', body: 'Your subscription is your chance' });
+    expect(pickAppMessagePollQuestion(withEn.poll!, 'en')).toBe('What should we improve?');
+    expect(withEn.poll!.options.map((option) => pickAppMessagePollOptionText(option, 'en'))).toEqual(['Speed', 'Design']);
+    expect(hasAppMessageCopyForLang(withEn, 'en')).toBe(true);
+
+    const ruOnly = normalizeAppMessage('m-ru', { active: true, createdAtMs: now, titleRu: 'Важное', messageRu: 'Текст' }, now);
+    expect(hasAppMessageCopyForLang(ruOnly, 'en')).toBe(false);
+    expect(hasAppMessageCopyForLang(ruOnly, 'ru')).toBe(true);
+
+    const partialPoll = normalizeAppMessage('m-poll', {
+      active: true, createdAtMs: now, titleRu: 'Опрос', titleEn: 'Poll',
+      poll: { questionRu: 'Вопрос?', questionEn: 'Question?', options: [{ id: 'a', textRu: 'Да', textEn: 'Yes' }, { id: 'b', textRu: 'Нет' }] },
+    }, now);
+    expect(hasAppMessageCopyForLang(partialPoll, 'en')).toBe(false);
+
+    const snapshot = mergeAppMessagesWithStates([withEn, ruOnly], [], now);
+    const forEn = filterAppMessagesSnapshotForAudience(snapshot, false, undefined, 'en');
+    expect(forEn.messages.map((m) => m.id)).toEqual(['m-en']);
+    expect(forEn.unreadCount).toBe(1);
+    expect(filterAppMessagesSnapshotForAudience(snapshot, false).messages).toHaveLength(2);
   });
 
   it('filters messages by free and premium audience before unread count', () => {

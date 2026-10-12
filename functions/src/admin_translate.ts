@@ -21,8 +21,11 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 // Целевые языки = языки приложения минус RU (исходник). Ключи совпадают с суффиксами
 // полей Firestore: Uk → titleUk, PtBr → titlePtBr и т.д. (см. app/app_messages.ts).
-const TARGET_LANGS: ReadonlyArray<{ key: string; name: string }> = [
+// зачем (settings-gap-002, 12.10): En — для английского интерфейса; его пустой ответ НЕ подменяется русским
+// (sourceFallback: false) — иначе русский текст уехал бы в titleEn и снова показался на английском.
+const TARGET_LANGS: ReadonlyArray<{ key: string; name: string; sourceFallback?: false }> = [
   { key: 'Uk', name: 'Ukrainian' },
+  { key: 'En', name: 'English', sourceFallback: false },
   { key: 'Es', name: 'Spanish' },
   { key: 'PtBr', name: 'Brazilian Portuguese' },
   { key: 'Vi', name: 'Vietnamese' },
@@ -71,7 +74,7 @@ function buildPrompt(fields: string[], context: string): string {
     numbered,
     '',
     'Respond with STRICT JSON only, shape:',
-    '{ "Uk": ["...", "..."], "Es": [...], "PtBr": [...], "Vi": [...], "Id": [...], "Tr": [...], "Pl": [...] }',
+    `{ ${TARGET_LANGS.map((l, i) => (i === 0 ? `"${l.key}": ["...", "..."]` : `"${l.key}": [...]`)).join(', ')} }`,
     'Each array MUST have exactly the same number of items as the source, in the same order.',
   ].join('\n');
 }
@@ -144,7 +147,7 @@ export const adminTranslateMessage = onCall({
 
   const translations: Record<string, string[]> = {};
   TARGET_LANGS.forEach((l) => {
-    translations[l.key] = coerceArray(parsed[l.key], fields.length, fields);
+    translations[l.key] = coerceArray(parsed[l.key], fields.length, l.sourceFallback === false ? [] : fields);
   });
 
   return { ok: true, translations };

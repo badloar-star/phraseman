@@ -27651,6 +27651,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const titleTr = vipSurveyVal('vs-title-tr') || 'Bir aylık Plus ister misin?';
     const messageTr = vipSurveyVal('vs-message-tr') || 'Uygulama içindeki kısa anketi tamamla ve 30 günlük Plus’ı etkinleştir.';
     const titlePl = vipSurveyVal('vs-title-pl') || 'Chcesz otrzymać miesiąc Plus?';
+    // зачем (settings-gap-002): без EN приглашение не показалось бы английскому интерфейсу (русский туда не подставляется).
+    const titleEn = vipSurveyVal('vs-title-en') || 'Want one month of Plus?';
+    const messageEn = vipSurveyVal('vs-message-en') || 'Complete a short in-app survey and activate 30 days of Plus.';
     const messagePl = vipSurveyVal('vs-message-pl') || 'Wypełnij krótką ankietę w aplikacji i aktywuj 30 dni Plus.';
     const audience = 'free';
     const priority = vipSurveyNum('vs-priority', 30, 0, 100);
@@ -27679,6 +27682,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           id: { title: titleId, body: messageId },
           tr: { title: titleTr, body: messageTr },
           pl: { title: titlePl, body: messagePl },
+          en: { title: titleEn, body: messageEn },
         },
         audience,
         targetAppVersions,
@@ -31969,8 +31973,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // здесь — необязательные переводы. Если язык пуст, приложение покажет RU (фолбэк в
   // app/app_messages.ts → pickAppMessageText). suffix — для id полей (am-title-<suffix> и т.д.)
   // и совпадает с суффиксом ключей Firestore (titleUk, titlePtBr, …).
+  // зачем (EN-проход Сверки settings-gap-002, 12.10): EN — английский интерфейс видел кампании по-русски. Для EN
+  // русский НЕ подставляется (noRuFallback): пустой EN → сообщение на английском интерфейсе просто не показывается.
   const APP_MESSAGE_TRANSLATION_LANGS = [
     { suffix: 'Uk', label: 'UK · Українська' },
+    { suffix: 'En', label: 'EN · English', noRuFallback: true },
     { suffix: 'Es', label: 'ES · Español' },
     { suffix: 'PtBr', label: 'PT-BR · Português' },
     { suffix: 'Vi', label: 'VI · Tiếng Việt' },
@@ -32056,7 +32063,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     try {
       const res = await getAdminTranslateCallable()({ fields: plan.map((p) => p.value), context: 'дружелюбное уведомление в приложении для изучения языков' });
       const translations = (res && res.data && res.data.translations) || {};
-      const langs = ['Uk','Es','PtBr','Vi','Id','Tr','Pl'];
+      // зачем (settings-gap-002): языки — из того же списка, что и форма, иначе новый язык (EN) не заполнялся бы.
+      const langs = APP_MESSAGE_TRANSLATION_LANGS.map((langDef) => langDef.suffix);
       const idPartOf = (suffix) => suffix.toLowerCase();
       let filled = 0;
       langs.forEach((suffix) => {
@@ -32187,7 +32195,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const option = { id: `opt_${index + 1}`, textRu: text };
       APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
         const translated = (translatedOptionTexts[langDef.suffix] || [])[index];
-        option[`text${langDef.suffix}`] = translated || text;
+        option[`text${langDef.suffix}`] = translated || (langDef.noRuFallback ? '' : text);
       });
       return option;
     });
@@ -32197,7 +32205,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       optionIds: options.map((option) => option.id),
     };
     APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
-      poll[`question${langDef.suffix}`] = appMessageFieldValue(`am-poll-question-${appMessageLangIdPart(langDef.suffix)}`) || questionRu;
+      poll[`question${langDef.suffix}`] = appMessageFieldValue(`am-poll-question-${appMessageLangIdPart(langDef.suffix)}`) || (langDef.noRuFallback ? '' : questionRu);
     });
     return poll;
   }
@@ -37556,6 +37564,16 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const messageRu = val('am-message-ru');
     if (!titleRu) { showToast('Введите тему RU', 'err'); return; }
     if (!messageRu) { showToast('Введите сообщение RU', 'err'); return; }
+    // зачем (settings-gap-002): без EN сообщение не увидит английский интерфейс. Если переводов нет совсем — переводим
+    // сами (ничьих ручных правок не затираем); если часть языков уже заполнена руками — только предупреждаем.
+    if (val('am-delivery-surface') !== 'settings' && (!val('am-title-en') || !val('am-message-en'))) {
+      buildAppMessageTranslationFields();
+      const noTranslationsYet = APP_MESSAGE_TRANSLATION_LANGS.every((langDef) => !val(`am-title-${appMessageLangIdPart(langDef.suffix)}`));
+      const translated = noTranslationsYet ? await window.autoTranslateAppMessage() : false;
+      if (!translated && (!val('am-title-en') || !val('am-message-en'))) {
+        showToast('EN не заполнен — на английском интерфейсе сообщение не покажется. Нажми «Перевести через ИИ».', 'warn');
+      }
+    }
     let poll = null;
     try {
       poll = appMessageBuildPollPayload(titleRu, messageRu);
@@ -37595,8 +37613,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // аудитории письмо никогда не приходит пустым (app/app_messages.ts → pickAppMessageText).
     APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
       const idPart = appMessageLangIdPart(langDef.suffix);
-      payload[`title${langDef.suffix}`] = val(`am-title-${idPart}`) || titleRu;
-      payload[`message${langDef.suffix}`] = val(`am-message-${idPart}`) || messageRu;
+      payload[`title${langDef.suffix}`] = val(`am-title-${idPart}`) || (langDef.noRuFallback ? '' : titleRu);
+      payload[`message${langDef.suffix}`] = val(`am-message-${idPart}`) || (langDef.noRuFallback ? '' : messageRu);
     });
     if (poll) {
       payload.poll = poll;

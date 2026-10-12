@@ -337,7 +337,8 @@ function AppMessagesInbox({
   const effectiveVisible = mode === 'notification-center' ? centerVisible : visible;
 
   const applyAppMessagesSnapshot = useCallback((snapshot: AppMessagesSnapshot) => {
-    const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
+    // зачем (settings-gap-002): сообщения без текста на языке интерфейса не показываем и не считаем в непрочитанных.
+    const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess, undefined, lang);
     // Modern report replies are mirrored atomically into users/{uid}/notifications
     // and rendered by NotificationCenterButton with the complete three-currency
     // claim flow. Hiding only those mirrors prevents duplicate rows/badge counts;
@@ -347,7 +348,7 @@ function AppMessagesInbox({
       : filtered;
     setMessages(visible.messages);
     setUnreadCount(visible.unreadCount);
-  }, [hasPremiumAccess, mode]);
+  }, [hasPremiumAccess, lang, mode]);
 
   useEffect(() => {
     if (!runtimeActive) return;

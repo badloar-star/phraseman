@@ -634,6 +634,8 @@ export type AppMessagePollOption = {
   textId: string;
   textTr: string;
   textPl: string;
+  /** зачем (EN-проход settings-gap-002): английский текст варианта; пустой — опрос не показывается на en, без русского. */
+  textEn: string;
 };
 
 export type AppMessagePoll = {
@@ -645,6 +647,7 @@ export type AppMessagePoll = {
   questionId: string;
   questionTr: string;
   questionPl: string;
+  questionEn: string;
   options: AppMessagePollOption[];
   optionIds: string[];
   counts: Record<string, number>;
@@ -682,6 +685,8 @@ export type AppMessage = {
   titleId: string;
   titleTr: string;
   titlePl: string;
+  /** зачем (EN-проход settings-gap-002): английский интерфейс показывал русский текст кампании — своих en-полей не было. */
+  titleEn: string;
   messageRu: string;
   messageUk: string;
   messageEs: string;
@@ -690,6 +695,7 @@ export type AppMessage = {
   messageId: string;
   messageTr: string;
   messagePl: string;
+  messageEn: string;
   createdAt: string;
   createdAtMs: number;
   updatedAt: string;
@@ -981,6 +987,7 @@ function normalizeAppMessagePoll(
       textId: cleanText(optionData.textId ?? optionData.labelId, ''),
       textTr: cleanText(optionData.textTr ?? optionData.labelTr, ''),
       textPl: cleanText(optionData.textPl ?? optionData.labelPl, ''),
+      textEn: cleanText(optionData.textEn ?? optionData.labelEn, ''),
     });
   });
 
@@ -1004,6 +1011,7 @@ function normalizeAppMessagePoll(
     questionId: cleanText(pollData.questionId ?? data.pollQuestionId, ''),
     questionTr: cleanText(pollData.questionTr ?? data.pollQuestionTr, ''),
     questionPl: cleanText(pollData.questionPl ?? data.pollQuestionPl, ''),
+    questionEn: cleanText(pollData.questionEn ?? data.pollQuestionEn, ''),
     options,
     optionIds: options.map((option) => option.id),
     counts,
@@ -1063,6 +1071,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     titleId: cleanText(data.titleId, ''),
     titleTr: cleanText(data.titleTr, ''),
     titlePl: cleanText(data.titlePl, ''),
+    titleEn: cleanText(data.titleEn, ''),
     messageRu,
     messageUk: cleanText(data.messageUk, messageRu),
     messageEs: cleanText(data.messageEs, messageRu),
@@ -1071,6 +1080,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
     messageId: cleanText(data.messageId, ''),
     messageTr: cleanText(data.messageTr, ''),
     messagePl: cleanText(data.messagePl, ''),
+    messageEn: cleanText(data.messageEn, ''),
     createdAt,
     createdAtMs,
     updatedAt,
@@ -1107,9 +1117,9 @@ export function normalizeUserAppMessage(id: string, data: Record<string, unknown
     audience: 'all',
     expiresAtMs: toMs(data.expiresAtMs, createdAtMs + REPORT_REPLY_TTL_MS),
     titleRu: title, titleUk: title, titleEs: title, titlePtBr: title,
-    titleVi: title, titleId: title, titleTr: title, titlePl: title,
+    titleVi: title, titleId: title, titleTr: title, titlePl: title, titleEn: title,
     messageRu: body, messageUk: body, messageEs: body, messagePtBr: body,
-    messageVi: body, messageId: body, messageTr: body, messagePl: body,
+    messageVi: body, messageId: body, messageTr: body, messagePl: body, messageEn: body,
   }, nowMs);
 }
 
@@ -1165,20 +1175,21 @@ export function isAppMessageAllowedForVersion(
 
 export function pickAppMessageText(
   message: Pick<AppMessage,
-    | 'titleRu' | 'titleUk' | 'titleEs' | 'titlePtBr' | 'titleVi' | 'titleId' | 'titleTr' | 'titlePl'
-    | 'messageRu' | 'messageUk' | 'messageEs' | 'messagePtBr' | 'messageVi' | 'messageId' | 'messageTr' | 'messagePl'
+    | 'titleRu' | 'titleUk' | 'titleEs' | 'titlePtBr' | 'titleVi' | 'titleId' | 'titleTr' | 'titlePl' | 'titleEn'
+    | 'messageRu' | 'messageUk' | 'messageEs' | 'messagePtBr' | 'messageVi' | 'messageId' | 'messageTr' | 'messagePl' | 'messageEn'
   >,
   lang: AppMessageLang,
 ): { title: string; body: string } {
   // Переводы заполняет админка авто-переводом (OpenAI) при отправке — для каждого языка
   // приходит настоящий текст, поэтому здесь намеренно НЕТ фолбэка на RU: «planned»-сообщения
   // на чужом языке не должны молча показываться по-русски (см. тест app_messages.test.ts).
-  // Исключение — en: поля titleEn/messageEn в AppMessage не заведены (это чисто
-  // UI-язык, контента для него нет), поэтому явный фолбэк на RU здесь оправдан.
+  // зачем (EN-проход Сверки settings-gap-002, 12.10): раньше en намеренно падал на RU — английский интерфейс видел
+  // «Важное от Phraseman» по-русски. Теперь у кампании свои titleEn/messageEn (админка переводит, сервер пишет без
+  // RU-подстановки); пустой en → сообщение для en не показывается (hasAppMessageCopyForLang), как у pt-BR/vi/…
   const byLang: Record<AppMessageLang, { title: string; body: string }> = {
     ru: { title: message.titleRu, body: message.messageRu },
     uk: { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu },
-    en: { title: message.titleRu, body: message.messageRu },
+    en: { title: message.titleEn, body: message.messageEn },
     es: { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu },
     'pt-BR': { title: message.titlePtBr, body: message.messagePtBr },
     vi: { title: message.titleVi, body: message.messageVi },
@@ -1193,7 +1204,7 @@ export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessag
   const byLang: Record<AppMessageLang, string> = {
     ru: poll.questionRu,
     uk: poll.questionUk || poll.questionRu,
-    en: poll.questionRu,
+    en: poll.questionEn,
     es: poll.questionEs || poll.questionRu,
     'pt-BR': poll.questionPtBr,
     vi: poll.questionVi,
@@ -1208,7 +1219,7 @@ export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang:
   const byLang: Record<AppMessageLang, string> = {
     ru: option.textRu,
     uk: option.textUk || option.textRu,
-    en: option.textRu,
+    en: option.textEn,
     es: option.textEs || option.textRu,
     'pt-BR': option.textPtBr,
     vi: option.textVi,
@@ -1217,6 +1228,18 @@ export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang:
     pl: option.textPl,
   };
   return byLang[lang];
+}
+
+/**
+ * Есть ли у сообщения текст на этом языке. зачем (settings-gap-002): без перевода сообщение не показываем вовсе —
+ * пустая карточка или русский текст на чужом интерфейсе хуже, чем её отсутствие. Опрос — ещё вопрос и все варианты.
+ */
+export function hasAppMessageCopyForLang(message: AppMessage, lang: AppMessageLang): boolean {
+  const text = pickAppMessageText(message, lang);
+  if (!String(text.title ?? '').trim()) return false;
+  if (!message.poll) return true;
+  if (!String(pickAppMessagePollQuestion(message.poll, lang) ?? '').trim()) return false;
+  return message.poll.options.every((option) => String(pickAppMessagePollOptionText(option, lang) ?? '').trim() !== '');
 }
 
 export function buildAppMessagePreview(body: string, maxChars = 120): string {
@@ -1324,11 +1347,14 @@ export function filterAppMessagesSnapshotForAudience(
   snapshot: AppMessagesSnapshot,
   hasPremiumAccess: boolean,
   appVersion = currentAppVersion(),
+  // зачем (settings-gap-002): язык интерфейса — сообщение без текста на нём не попадает ни в список, ни в счётчик.
+  lang?: AppMessageLang,
 ): AppMessagesSnapshot {
   const messages = snapshot.messages.filter((message) =>
     message.deliverySurface === 'inbox' &&
     isAppMessageAllowedForAudience(message, hasPremiumAccess) &&
-    isAppMessageAllowedForVersion(message, appVersion)
+    isAppMessageAllowedForVersion(message, appVersion) &&
+    (lang === undefined || hasAppMessageCopyForLang(message, lang))
   );
   return {
     messages,
@@ -2016,27 +2042,30 @@ export const DEV_SETTINGS_CAMPAIGN_PREFIX = 'dev-state-';
 export type DevSettingsSlotKind = 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
 export const DEV_SETTINGS_SLOT_KINDS: readonly DevSettingsSlotKind[] = ['poll', 'poll_voted', 'message', 'top', 'off'];
 
-type DevCampaignText = Readonly<Record<'ru' | 'uk' | 'es' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl', string>>;
+// зачем (settings-gap-002): у сидов есть en — английский интерфейс иначе не видел бы dev-плашку вовсе (пустой en скрывает сообщение).
+type DevCampaignText = Readonly<Record<'ru' | 'uk' | 'es' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl' | 'en', string>>;
 const DEV_POLL_QUESTION: DevCampaignText = {
   ru: 'Что улучшить в первую очередь?', uk: 'Що покращити насамперед?', es: '¿Qué mejoramos primero?', ptBr: 'O que melhorar primeiro?',
   vi: 'Nên cải thiện điều gì trước?', id: 'Apa yang harus diperbaiki dulu?', tr: 'Önce neyi geliştirelim?', pl: 'Co poprawić w pierwszej kolejności?',
+  en: 'What should we improve first?',
 };
 // зачем (settings-gap-008, Макеты 12.10): сид клал вопрос и в заголовок, и в текст сообщения — на кадре «Что улучшить…» стояло трижды (заголовок, абзац, вопрос).
 // Это данные сида, а не шаблон карточки (SettingsMessageSlotCard выводит title / body / question из РАЗНЫХ полей). Теперь заголовок — «Важное от Phraseman» (макет `.gs-sti`), абзаца у опроса нет.
 const DEV_POLL_TITLE: DevCampaignText = {
   ru: 'Важное от Phraseman', uk: 'Важливе від Phraseman', es: 'Importante de Phraseman', ptBr: 'Importante do Phraseman',
   vi: 'Quan trọng từ Phraseman', id: 'Penting dari Phraseman', tr: "Phraseman'dan önemli", pl: 'Ważne od Phraseman',
+  en: 'Important from Phraseman',
 };
-const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '' };
-const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '' };
+const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '', en: '' };
 const DEV_POLL_OPTIONS: ReadonlyArray<{ id: string; text: DevCampaignText; count: number }> = [
-  { id: 'speed', count: 42, text: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', ptBr: 'Velocidade', vi: 'Tốc độ', id: 'Kecepatan', tr: 'Hız', pl: 'Szybkość' } },
-  { id: 'content', count: 31, text: { ru: 'Больше заданий', uk: 'Більше завдань', es: 'Más ejercicios', ptBr: 'Mais exercícios', vi: 'Thêm bài tập', id: 'Lebih banyak latihan', tr: 'Daha fazla görev', pl: 'Więcej zadań' } },
-  { id: 'design', count: 27, text: { ru: 'Оформление', uk: 'Оформлення', es: 'Diseño', ptBr: 'Visual', vi: 'Giao diện', id: 'Tampilan', tr: 'Tasarım', pl: 'Wygląd' } },
+  { id: 'speed', count: 42, text: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', ptBr: 'Velocidade', vi: 'Tốc độ', id: 'Kecepatan', tr: 'Hız', pl: 'Szybkość', en: 'Speed' } },
+  { id: 'content', count: 31, text: { ru: 'Больше заданий', uk: 'Більше завдань', es: 'Más ejercicios', ptBr: 'Mais exercícios', vi: 'Thêm bài tập', id: 'Lebih banyak latihan', tr: 'Daha fazla görev', pl: 'Więcej zadań', en: 'More exercises' } },
+  { id: 'design', count: 27, text: { ru: 'Оформление', uk: 'Оформлення', es: 'Diseño', ptBr: 'Visual', vi: 'Giao diện', id: 'Tampilan', tr: 'Tasarım', pl: 'Wygląd', en: 'Design' } },
 ];
 const DEV_MESSAGE_TITLE: DevCampaignText = {
   ru: 'Новое в Phraseman', uk: 'Нове в Phraseman', es: 'Novedades en Phraseman', ptBr: 'Novidades no Phraseman',
   vi: 'Có gì mới trong Phraseman', id: 'Baru di Phraseman', tr: "Phraseman'da yenilikler", pl: 'Nowości w Phraseman',
+  en: "What's new in Phraseman",
 };
 const DEV_MESSAGE_BODY: DevCampaignText = {
   ru: 'Мы добавили Шпиль и обновили Карточки. Загляни и расскажи, как тебе.', uk: 'Ми додали Шпиль і оновили Картки. Зазирни та розкажи, як тобі.',
@@ -2044,12 +2073,13 @@ const DEV_MESSAGE_BODY: DevCampaignText = {
   es: 'Renovamos las Tarjetas. Échales un vistazo.', ptBr: 'Renovamos os Cartões. Dê uma olhada.',
   vi: 'Chúng tôi đã làm mới Thẻ. Hãy xem thử.', id: 'Kami memperbarui Kartu. Coba lihat.',
   tr: 'Kartlar yenilendi. Bir göz at.', pl: 'Odświeżyliśmy Karty. Zajrzyj.',
+  en: 'We refreshed Cards. Take a look.',
 };
 
 function devCampaignRow(id: string, slot: SettingsMessageSlot, kind: 'poll' | 'message', nowMs: number): Record<string, unknown> {
   const texts = (prefix: string, t: DevCampaignText): Record<string, string> => ({
     [prefix + 'Ru']: t.ru, [prefix + 'Uk']: t.uk, [prefix + 'Es']: t.es, [prefix + 'PtBr']: t.ptBr,
-    [prefix + 'Vi']: t.vi, [prefix + 'Id']: t.id, [prefix + 'Tr']: t.tr, [prefix + 'Pl']: t.pl,
+    [prefix + 'Vi']: t.vi, [prefix + 'Id']: t.id, [prefix + 'Tr']: t.tr, [prefix + 'Pl']: t.pl, [prefix + 'En']: t.en,
   });
   const row: Record<string, unknown> = {
     id, kind, active: true, audience: 'all', deliverySurface: 'settings', settingsSlot: slot, controlPercent: 0, priority: 1,

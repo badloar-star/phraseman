@@ -8,9 +8,15 @@ import { clearAppMessagePollEngagement, deleteAppMessageWithEngagement } from '.
 import { VIP_SURVEY_ID, VIP_SURVEY_REWARD_DAYS } from './vip_survey_contract';
 
 const REGION = 'us-central1';
-const LANGUAGES = ['Ru', 'Uk', 'Es', 'PtBr', 'Vi', 'Id', 'Tr', 'Pl'] as const;
+const LANGUAGES = ['Ru', 'Uk', 'Es', 'PtBr', 'Vi', 'Id', 'Tr', 'Pl', 'En'] as const;
+// зачем (EN-проход Сверки settings-gap-002, 12.10): английский интерфейс видел кампании по-русски — en-полей не было,
+// клиент падал на RU. En пишется только настоящим переводом: пустой En остаётся пустым (клиент тогда сообщение для en
+// не показывает), RU туда не подставляется. Для активной плашки настроек En не обязателен — сервер может уехать
+// раньше админки, и старая форма без EN не должна ломать публикацию.
 
 type LanguageSuffix = (typeof LANGUAGES)[number];
+const LANGUAGES_WITHOUT_RU_FALLBACK: ReadonlySet<LanguageSuffix> = new Set<LanguageSuffix>(['En']);
+const LANGUAGES_REQUIRED_FOR_SETTINGS: readonly LanguageSuffix[] = LANGUAGES.filter((item) => item !== 'Ru' && item !== 'En');
 type RecordValue = Record<string, unknown>;
 
 export interface NormalizedAppMessageCreateInput {
@@ -88,9 +94,10 @@ function requiredCommandFields(data: RecordValue): { reason: string; idempotency
   return { reason, idempotencyKey, requestId };
 }
 
-function languageContent(translations: RecordValue, suffix: LanguageSuffix, fallback: RecordValue): RecordValue {
+function languageContent(translations: RecordValue, suffix: LanguageSuffix, ruFallback: RecordValue): RecordValue {
   const key = suffix === 'PtBr' ? 'ptBr' : suffix.toLowerCase();
   const value = isRecord(translations[key]) ? translations[key] : {};
+  const fallback: RecordValue = LANGUAGES_WITHOUT_RU_FALLBACK.has(suffix) ? {} : ruFallback;
   return {
     title: text(value.title, 160) || text(fallback.title, 160),
     body: text(value.body, 2000) || text(fallback.body, 2000),
@@ -104,7 +111,7 @@ function assertCompleteSettingsTranslations(
   kind: 'message' | 'poll',
   pollOptionCount: number,
 ): void {
-  for (const suffix of LANGUAGES.filter((item) => item !== 'Ru')) {
+  for (const suffix of LANGUAGES_REQUIRED_FOR_SETTINGS) {
     const key = suffix === 'PtBr' ? 'ptBr' : suffix.toLowerCase();
     const value = isRecord(translations[key]) ? translations[key] : {};
     const hasCopy = Boolean(text(value.title, 160) && text(value.body, 2000));
@@ -198,13 +205,14 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
       for (const suffix of LANGUAGES.filter((item) => item !== 'Ru')) {
         const content = languageContent(translations, suffix, ru);
         const translated = Array.isArray(content.pollOptions) ? text(content.pollOptions[index], 160) : '';
-        option[`text${suffix}`] = translated || optionRu;
+        option[`text${suffix}`] = translated || (LANGUAGES_WITHOUT_RU_FALLBACK.has(suffix) ? '' : optionRu);
       }
       return option;
     });
     const poll: RecordValue = { questionRu, options, optionIds: options.map((option) => option.id), counts: {}, voteCount: 0 };
     for (const suffix of LANGUAGES.filter((item) => item !== 'Ru')) {
-      poll[`question${suffix}`] = languageContent(translations, suffix, ru).pollQuestion || questionRu;
+      poll[`question${suffix}`] = languageContent(translations, suffix, ru).pollQuestion
+        || (LANGUAGES_WITHOUT_RU_FALLBACK.has(suffix) ? '' : questionRu);
     }
     document.poll = poll;
     document.pollCounts = Object.fromEntries(options.map((option) => [String(option.id), 0]));

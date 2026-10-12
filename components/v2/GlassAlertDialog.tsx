@@ -67,6 +67,8 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
           {actions.map((a, i) => (
             <Pressable
               key={`${i}:${a.label}`}
+              // зачем (координатор 12.10, английский проход): нажатие по номеру кнопки, а не по тексту — работает на любом языке
+              testID={`glass-alert-action-${i}`}
               accessibilityRole="button"
               accessibilityLabel={a.label}
               onPress={() => {

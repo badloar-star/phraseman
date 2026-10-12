@@ -304,8 +304,10 @@ add('profile-030', ['see:#account-delete-button', 'tap:#account-delete-button'],
 # (форсированная попытка тоже отказывает — защёлка), вход возвращает ошибку ДО сети. В стор-сборке ссылка не действует (маршрут вырезан,
 # геттеры = null). Окно смены открывает параметр Настроек switchAccount=1 (то же, что кнопка «Сменить аккаунт» из окна входа).
 SWITCH = '/(tabs)/settings?switchAccount=1'
-SWITCH_GO = ['tap:Продолжить', 'wait:1500']
-SWITCH_FORCE = SWITCH_GO + ['tap:Сменить без сохранения', 'wait:1500']
+# зачем (координатор 12.10, английский проход): нажатия по testID, а не по русскому тексту — «Продолжить» = #settings-switch-continue,
+# «Сменить без сохранения» — вторая кнопка окна отказа («Остаться здесь», «Сменить без сохранения») = #glass-alert-action-1.
+SWITCH_GO = ['tap:#settings-switch-continue', 'wait:1500']
+SWITCH_FORCE = SWITCH_GO + ['tap:#glass-alert-action-1', 'wait:1500']
 SIGNIN = ['tap:#account-link-row', 'tap:#auth-google-button', 'wait:1500']
 add('auth-gap-004', SIGNIN, 'switch=not_uploaded', ACCT, note='окно входа: «прогресс на месте, вход отменён» (ошибка до сети); ТОЛЬКО ГОСТЬ — «Привязать аккаунт» есть у гостя')
 add('auth-gap-005', SIGNIN, 'switch=backup_blocked', ACCT, note='окно входа: «ждёт прогресс другого аккаунта»; ТОЛЬКО ГОСТЬ')
@@ -313,7 +315,7 @@ add('auth-gap-013', SWITCH_FORCE, 'switch=unsaved_cards', SWITCH, note='«Про
 add('auth-gap-014', SWITCH_GO, 'switch=pending_spend', SWITCH, note='«Покупка ещё синхронизируется»')
 add('auth-gap-015', SWITCH_GO, 'switch=quarantine', SWITCH, note='«Нужна проверка монет»')
 add('auth-gap-017', SWITCH_FORCE, 'switch=guard', SWITCH, note='«Прогресс не сохранён» → «Сменить без сохранения» → «Смена аккаунта отменена» (форсированная отклонена защитной проверкой)')
-add('auth-gap-018', ['tap:Продолжить', 'wait:47000'], 'switch=slow', SWITCH, note='смена дольше 45 с → окно «смена ещё идёт» (switch=slow держит 50 с, затем отказ)')
+add('auth-gap-018', ['tap:#settings-switch-continue', 'wait:47000'], 'switch=slow', SWITCH, note='смена дольше 45 с → окно «смена ещё идёт» (switch=slow держит 50 с, затем отказ)')
 
 
 # ───────────────────────── Карточки: прямые маршруты тренировок (вердикты Макетов 12.10) ─────────────────────────

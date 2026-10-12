@@ -106,6 +106,8 @@ function ThemedChoiceModal({
               return (
                 <TouchableOpacity
                   key={index}
+                  // зачем (координатор 12.10, английский проход): робот нажимал по русскому тексту — на любом языке тот же #glass-alert-action-N
+                  testID={`glass-alert-action-${index}`}
                   accessibilityRole="button"
                   accessibilityLabel={c.label}
                   activeOpacity={0.78}

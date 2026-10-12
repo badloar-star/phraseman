@@ -1434,6 +1434,7 @@ export default function SettingsMain() {
 
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12, marginTop: 22 }}>
               <TouchableOpacity
+                testID="settings-switch-cancel"
                 activeOpacity={0.8}
                 onPress={() => setSwitchAccountStage('idle')}
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
@@ -1444,6 +1445,7 @@ export default function SettingsMain() {
               </TouchableOpacity>
 
               <TouchableOpacity
+                testID="settings-switch-continue"
                 activeOpacity={0.8}
                 onPress={async function runAccountSwitchAttempt(): Promise<void> {
                   // зачем (8L): «Сохранить и сменить» из подтверждения повторяет эту же попытку;

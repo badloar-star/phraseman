@@ -22,7 +22,8 @@ function SpireLockedState({ lang }: Readonly<{ lang: Lang }>) {
 
 const s = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: V2.screenPad * 2 },
-  title: { ...V2_TYPE.title, textAlign: 'center' },
+  // зачем (Сверка spire-gap-011, spire-gaps-states.html `.sg-lock`): 24/30, начертание 800, межбуквенный −0,3
+  title: { ...V2_TYPE.title, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
 });
 
 export default memo(SpireLockedState);

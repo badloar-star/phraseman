@@ -89,7 +89,8 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
         onLayout={(e) => logSpireLayout('dock.cta', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height) })}
       >
         <Text style={[s.ctaText, { color: p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
-        <Ionicons name="arrow-forward" size={20} color={p.ctaText} />
+        {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки, текст остаётся по центру */}
+        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={p.ctaText} /></View>
       </V2Pressable>
     </View>
   );
@@ -98,6 +99,7 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
 const s = StyleSheet.create({
   cta: { minHeight: V2.cta.height, borderRadius: V2.cta.radius, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaText: { fontSize: 16, fontWeight: '700' },
+  arrow: { position: 'absolute', right: 22 },
   plus: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   plusText: { fontSize: 16, fontWeight: '700' },
   note: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginBottom: 10 },

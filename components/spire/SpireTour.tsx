@@ -100,12 +100,13 @@ function SpireTour({ lang, visible, onDone }: Props) {
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
         <Text style={[s.text, { color: p.textSecondary }]}>{text}</Text>
         <View style={s.dots} accessible accessibilityLabel={`${page + 1} / 3`}>
-          {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, { backgroundColor: i === page ? p.text : p.control }]} />)}
+          {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, i === page && s.dotOn, { backgroundColor: i === page ? p.text : p.control }]} />)}
         </View>
         <View style={s.spacer} />
         <V2Pressable onPress={next} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }, sh.action(p.cta)]} testID="spire-tour-next">
           <Text style={[s.ctaText, { color: p.ctaText }]}>{spireGameText(lang, last ? 'start' : 'next')}</Text>
-          <Ionicons name="arrow-forward" size={20} color={p.ctaText} />
+          {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки */}
+          <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={p.ctaText} /></View>
         </V2Pressable>
       </View>
     </Modal>
@@ -128,11 +129,14 @@ const s = StyleSheet.create({
   stoneText: { fontSize: 16, fontWeight: '700' },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 34 },
   text: { fontSize: 16, lineHeight: 23, marginTop: 12 },
-  dots: { flexDirection: 'row', gap: 8, marginTop: 22 },
-  dot: { width: 8, height: 8, borderRadius: 4 },
+  // зачем (Сверка spire-001, spire.html `.dots`): активная точка — вытянутая пилюля 22×7, прочие 7×7, зазор 7, отступ 26
+  dots: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 26 },
+  dot: { width: 7, height: 7, borderRadius: 4 },
+  dotOn: { width: 22 },
   spacer: { flex: 1 },
   cta: { minHeight: V2.cta.height, borderRadius: V2.cta.radius, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaText: { fontSize: 16, fontWeight: '700' },
+  arrow: { position: 'absolute', right: 22 },
 });
 
 export default memo(SpireTour);

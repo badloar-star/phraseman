@@ -40,12 +40,13 @@ function CoinPill({ amount, rank }: Readonly<{ amount: number; rank: number | nu
   return (
     <View style={[s.pill, { backgroundColor: p.control }, sh.nested]}>
       {rank !== null ? <AvatarView avatar="" coinRank={rank} size={22} /> : <Ionicons name="ellipse" size={18} color={p.textSecondary} />}
-      <Text style={[s.pillText, { color: p.text }]}>{`+${amount}`}</Text>
+      {/* зачем (Сверка spire-013, kit.js coins()): число без «+» */}
+      <Text style={[s.pillText, { color: p.text }]}>{String(amount)}</Text>
     </View>
   );
 }
 
-type View_ = Readonly<{ over: string; overBad: boolean; title: string; sub: string; pills: readonly number[]; cta: string; ctaUp: boolean; ghost: string | null }>;
+type View_ = Readonly<{ over: string; overBad: boolean; title: string; sub: string; pills: readonly number[]; cta: string; ctaUp: boolean; ghost: string | null; ghostPill: boolean }>;
 
 function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, place: number | null): View_ {
   const floorNow = Math.min(o.local.floor, SPIRE_FLOOR_COUNT);
@@ -58,8 +59,9 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
     const saveFailed = o.kind === 'save_failed';
     return {
       over: saveFailed ? '' : spireGameText(lang, 'stepFailed'), overBad: true, title,
-      sub: spireGameText(lang, 'failSub', { n: o.floorBefore }), pills: [],
-      cta: spireGameText(lang, saveFailed ? 'retry' : 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'),
+      // зачем (Сверка spire-gap-014, savePanel): у «не сохранилась» нет подписи про новый набор; «Позже» там — текст (.sg-ghost), а у провала — таблетка (.cta.gh, spire-011)
+      sub: saveFailed ? '' : spireGameText(lang, 'failSub', { n: o.floorBefore }), pills: [],
+      cta: spireGameText(lang, saveFailed ? 'retry' : 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'), ghostPill: !saveFailed,
     };
   }
   if (o.kind === 'summit') {
@@ -67,7 +69,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
       over: spireText(lang, 'summit'), overBad: false, title: spireGameText(lang, 'onFloorN', { n: SPIRE_FLOOR_COUNT }),
       sub: spireGameText(lang, 'summitSub', { s: o.local.stepsCleared, p: place ?? '—' }),
       pills: [spireFloorCoinsOf(SPIRE_FLOOR_COUNT, coins), coins.summitBonus],
-      cta: spireGameText(lang, 'aboveCloudsCta'), ctaUp: true, ghost: null,
+      cta: spireGameText(lang, 'aboveCloudsCta'), ctaUp: true, ghost: null, ghostPill: false,
     };
   }
   if (o.kind === 'floor') {
@@ -80,7 +82,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
         ? spireGameText(lang, 'guardSub', { n: next, m: coins.guardianMultiplier })
         : `${spireStepsCount(lang, spireStepsIn(next))} · ${spireFloorCoinsOf(next, coins)} ${spireText(lang, 'coinsPerFloor')}`,
       pills: [coins.perStep, spireFloorCoinsOf(o.floorBefore, coins)],
-      cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null,
+      cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null, ghostPill: false,
     };
   }
   const errors = o.errors === 0 ? spireGameText(lang, 'noErrors') : spireGameText(lang, 'errorsN', { n: o.errors });
@@ -88,7 +90,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
   return {
     over: spireGameText(lang, 'stepPassed'), overBad: false, title: spireGameText(lang, 'oneHigher'),
     sub: `${spireClock(o.usedMs)} / ${spireClock(o.budgetMs)} · ${errors} · ${progress}`,
-    pills: [coins.perStep], cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null,
+    pills: [coins.perStep], cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null, ghostPill: false,
   };
 }
 
@@ -101,7 +103,7 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
       <PlateFill g={g} radius={24} />
       {v.over ? <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text> : null}
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{v.title}</Text>
-      <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text>
+      {v.sub ? <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text> : null}
       {v.pills.length > 0 ? (
         <View style={s.pills}>
           {v.pills.map((amount, i) => <CoinPill key={`c${i}-${amount}`} amount={amount} rank={myCoinRank} />)}
@@ -117,10 +119,11 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
         testID="spire-result-cta"
       >
         <Text style={[s.ctaText, { color: p.ctaText }]}>{v.cta}</Text>
-        {v.ctaUp ? <Ionicons name="arrow-up" size={20} color={p.ctaText} /> : null}
+        {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края */}
+        {v.ctaUp ? <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-up" size={20} color={p.ctaText} /></View> : null}
       </V2Pressable>
       {v.ghost ? (
-        <V2Pressable onPress={onLater} accessibilityRole="button" style={s.ghost} testID="spire-result-later">
+        <V2Pressable onPress={onLater} accessibilityRole="button" style={[s.ghost, v.ghostPill && [s.ghostPill, { backgroundColor: p.control }, sh.nested]]} testID="spire-result-later">
           <Text style={[s.ctaText, { color: p.text }]}>{v.ghost}</Text>
         </V2Pressable>
       ) : null}
@@ -141,6 +144,8 @@ const s = StyleSheet.create({
   cta: { marginTop: 18, minHeight: 56, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ghost: { marginTop: 8, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, fontWeight: '700' },
+  arrow: { position: 'absolute', right: 22 },
+  ghostPill: { marginTop: 10 },
 });
 
 export default memo(SpireResultPanel);

@@ -62,12 +62,14 @@ ENTRIES['practice-003'] = {**_blitz_bad, 'unique': False, 'note': 'блиц: н�
 
 # ── Сообщество, сообщения, статистика, «Мои ошибки»
 add('community-025', ['wait:1500'], 'cards=demo&plus=on&studyTarget=en', '/flashcards_packs', note='каталог наборов сообщества (демо-каталог cards=demo, без сети)')
-add('system-015', ['wait:1500', 'tap:#home-app-messages-button', 'wait:800'], 'plus=off', '/(tabs)/home', note='входящие — пусто (у свежего гостя нет сообщений)')
+# зачем (Сверка chain21): колокольчик Главной — home-notification-center-button; home-app-messages-button рисуется внутри входящих, не на Главной
+add('system-015', ['wait:1500', 'tap:#home-notification-center-button', 'await:#notification-center-screen', 'wait:600'], 'plus=off', '/(tabs)/home', note='входящие — пусто (у свежего гостя нет сообщений)')
 add('results-007', ['wait:1500'], 'plus=on', '/streak_stats', note='серия и неделя (данные гостя — нули; цифры макета отличаются)')
-add('results-009', ['wait:1500', 'see:#stats-activity-365'], 'plus=on', '/streak_stats', note='активность за год (карточка внизу экрана)')
+# зачем (Сверка chain21): карта за год рисуется только при показателе «год» (streak_stats.tsx: metric === 'year')
+add('results-009', ['wait:1500', 'tap:#stats-primary-metric-year', 'wait:600', 'see:#stats-activity-365'], 'plus=on', '/streak_stats', note='активность за год (показатель «год»)')
 add('mistakes-panel-004', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800'], 'mistakes=demo&studyTarget=en', '/mistakes_hub', note='«Перед отработкой»: шторка старта на демо-ошибках')
 add('mistakes-panel-021', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800', 'tap:#mistakes-hub-sheet-start', 'wait:2500', 'tap:#mistake-practice-menu', 'wait:500'],
-    'mistakes=demo&studyTarget=en', '/mistakes_hub', note='меню задания в отработке ошибок (демо-ошибки)')
+    'mistakes=demo&studyTarget=en&energy=5', '/mistakes_hub', note='меню задания в отработке ошибок (демо-ошибки; energy=5 — старт идёт через ворота энергии)')
 
 # ── Монеты: баланс 12 480 и ранг 5 «Лектор» (coins.html) — только показ (app/dev_coin_rank.ts); при подменённом балансе настоящее повышение
 # отказывает до сервера, coinupgrade=hold держит «Проверяем повышение…» без сервера — монеты не списываются ни в одной из ссылок

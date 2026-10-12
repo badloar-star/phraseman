@@ -35,3 +35,11 @@ Firestore не трогается (сторож spire_dev_preview_release_guard)
 ## Rollback
 
 Откат коммита.
+
+## Дополнение: разбор сбоев chain21 (Сверка, evidence/chain21_step_errors_2026-10-13.md)
+
+- system-015: колокольчик Главной — `#home-notification-center-button` (+ await `#notification-center-screen`); `#home-app-messages-button` — внутри входящих.
+- results-009: карта за год только при показателе «год» — шаг `tap:#stats-primary-metric-year`.
+- mistakes-panel-021: старт отработки идёт через ворота энергии — `energy=5`.
+- coins-004: в app/coin_rank.tsx handleUpgrade три немых ранних выхода — теперь каждый пишет `[COIN-RANK-UPGRADE]` с причиной и значениями (логи сперва).
+- system-010: робот помечает почти однотонный экран ошибки «пустым» (>95 % одного цвета) — кадр сохранён, смотреть глазами.

@@ -239,8 +239,15 @@ export default function CoinRankScreen() {
   }, []);
 
   const handleUpgrade = useCallback(async () => {
-    if (!canUpgrade || reconciliationBlockedRef.current) return;
-    if (!rankBinding) return;
+    // зачем (Сверка chain21, coins-004: после тапа нет «Проверяем повышение»): каждый ранний выход называет причину — раньше выход был немым
+    if (!canUpgrade || reconciliationBlockedRef.current) {
+      DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап отклонён до хука canUpgrade=${String(canUpgrade)} rank=${String(rank)} balance=${String(balance)} nextPrice=${String(next?.priceToReach ?? null)} upgrading=${String(upgrading)} reconciling=${String(balanceReconciling)} blocked=${String(reconciliationBlockedRef.current)}`);
+      return;
+    }
+    if (!rankBinding) {
+      DebugLogger.info('[COIN-RANK-UPGRADE]', 'экран: тап отклонён — нет привязки ранга к владельцу (rankBinding=null)');
+      return;
+    }
     const operationBinding = Object.freeze({
       ownerStableId: rankBinding.ownerStableId,
       accountGeneration: rankBinding.accountGeneration,
@@ -253,7 +260,12 @@ export default function CoinRankScreen() {
         captureAccountGeneration(),
       )
     );
-    if (!operationStillCurrent()) return;
+    if (!operationStillCurrent()) {
+      const generation = captureAccountGeneration();
+      DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап отклонён — привязка ранга не текущая bindingGen=${String(rankBinding.accountGeneration)} gen=${String(generation.generation)} ownerMatch=${String(rankBinding.ownerStableId === generation.stableId)} phase=${String(generation.phase)}`);
+      return;
+    }
+    DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап принят rank=${String(rank)} balance=${String(balance)} → хук upgrade()`);
     const result = await upgrade();
     if (!operationStillCurrent()) return;
     if (result.ok) {
@@ -296,7 +308,7 @@ export default function CoinRankScreen() {
         showToast('error', 'Не удалось повысить ранг. Монеты не списаны.', 'Не вдалося підвищити ранг. Монети не списано.', 'Could not upgrade the rank. No coins were charged.');
         return;
     }
-  }, [canUpgrade, forceBalanceReconcile, rankBinding, showToast, upgrade]);
+  }, [balance, balanceReconciling, canUpgrade, forceBalanceReconcile, next, rank, rankBinding, showToast, upgrade, upgrading]);
 
   const goBack = useCallback(() => safeRouterBack(router), [router]);
   const missing = balance !== null && next ? Math.max(0, next.priceToReach - balance) : null;

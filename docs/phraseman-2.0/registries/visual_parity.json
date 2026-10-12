@@ -33628,22 +33628,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-029.png",
+      "evidence_at": "2026-10-12T03:22:24.156Z",
+      "evidence_sha256": "5efddae09ffc5ac1b6f1611cf1174dea47f9aa293b6e93a73c3515004c61ba29",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо «Нет карточек · Сохрани пару слов · Открыть каталог» открыта обычная настройка: «Что повторяем» с плиткой «Первые 50 слов · 50 карточек» (набор выбран), «Время · 30 с / 60 с / 90 с», светлая «Начать». Ссылка не обнулила сохранённые карточки (в приложении есть 64 демо-карточки) — переснять через путь с пустым списком (cards=empty).",
+        "[вёрстка, мелко] Шапка и пилюля «30/30» совпали с образцом по составу («24/30» в образце — данные); название режима крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:24:03.676Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "дубль cards-076: ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:22, утверждённый cards-v2 №29 «Настройка тренировки — пусто»): на кадре не пустое состояние — настройка «Блиц» с выбранным набором."
     },
     {
       "id": "cards-v2-030",
@@ -33704,22 +33708,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-031.png",
+      "evidence_at": "2026-10-12T03:22:53.760Z",
+      "evidence_sha256": "e2c18a4b1f620ec02876cfaef0d812de80e9ac119e5c9e9c196874ceba37ff1b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр пустой — пересъёмка] Шапка «‹ · Блиц · три сердца» и полоса прогресса есть, но таймер, вопрос «Выбери перевод · Layover», четыре ответа (Пересадка, Таможня, Посадка, Бронь) и счётчик монет — серые плашки-заглушки. Переснять после загрузки вопроса (подождать 1–2 с после «Начать»).",
+        "[образец ≠ код] В шапке приложения «‹» назад, в образце «✕» закрыть — проверить на загруженном кадре."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:24:03.676Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "дубль cards-section-039: записи ссылки нет — путь есть в shot list (G-C05)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:22, утверждённый cards-v2 №31 «Сессии — Блиц»): кадр снят в момент загрузки — вместо вопроса и ответов серые заглушки."
     },
     {
       "id": "cards-v2-032",

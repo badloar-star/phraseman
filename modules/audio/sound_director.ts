@@ -23,6 +23,10 @@ export interface SfxPlaybackBackend {
   dispose(): void;
 }
 
+/** Пауза между созданием прогреваемых плееров: поток успевает отдать кадр и тап (см. prewarmStep). */
+export const PREWARM_STEP_GAP_MS = 300;
+const PREWARM_SLOW_STEP_MS = 100;
+
 export class SoundDirector {
   private deferredTimer: ReturnType<typeof setTimeout> | null = null;
   private deferredPlayback: { eventId: SoundEventId; options: SoundRequestOptions } | null = null;
@@ -32,6 +36,8 @@ export class SoundDirector {
   // (setVoiceActive), и делить с ними один таймер значило бы, что голосовое
   // событие могло бы затереть уже запланированный ретрай тика таймера.
   private priorityRetryTimer: ReturnType<typeof setTimeout> | null = null;
+  private prewarmQueue: Array<{ eventId: SoundEventId; source: number }> = [];
+  private prewarmTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly backend: SfxPlaybackBackend,
@@ -85,13 +91,52 @@ export class SoundDirector {
    * первый верный ответ звучит мгновенно, а не после прогрева.
    */
   prewarm(eventIds: readonly SoundEventId[]): void {
-    if (!this.backend.prewarm) return;
-    const entries: Array<{ eventId: SoundEventId; source: number }> = [];
+    if (!this.backend.prewarm) {
+      console.log('[SFX-PREWARM] skip reason=backend_without_prewarm');
+      return;
+    }
+    let added = 0;
     for (const eventId of eventIds) {
       const source = SOUND_EVENTS[eventId].source;
-      if (source) entries.push({ eventId, source });
+      if (!source) {
+        console.log(`[SFX-PREWARM] skip event=${eventId} reason=no_source`);
+        continue;
+      }
+      if (this.prewarmQueue.some((entry) => entry.eventId === eventId)) continue;
+      this.prewarmQueue.push({ eventId, source });
+      added += 1;
     }
-    if (entries.length) this.backend.prewarm(entries);
+    console.log(`[SFX-PREWARM] enqueue added=${added} queued=${this.prewarmQueue.length} running=${this.prewarmTimer !== null}`);
+    if (this.prewarmTimer === null && this.prewarmQueue.length > 0) this.prewarmStep();
+  }
+
+  /**
+   * зачем (координатор 13.10, профиль Сверки ×3 a5d12a5e6): createAudioPlayer — синхронный нативный конструктор. Семь плееров
+   * подряд держали JS-поток 3,2–3,6 с одним куском (+7,5…+11 с холодного старта, стэк prewarm → ensure → createAudioPlayer →
+   * __native_constructor__) — человек уже видел Главную, а тапы и прокрутка стояли. Теперь один плеер за шаг, между шагами пауза:
+   * поток отпускается на кадры и тапы, а звуки всё равно прогреты задолго до урока.
+   */
+  private prewarmStep(): void {
+    this.prewarmTimer = null;
+    const next = this.prewarmQueue.shift();
+    if (!next || !this.backend.prewarm) return;
+    const startedAt = Date.now();
+    this.backend.prewarm([next]);
+    const stepMs = Date.now() - startedAt;
+    const line = `[SFX-PREWARM] step event=${next.eventId} ms=${stepMs} left=${this.prewarmQueue.length}`;
+    // console.warn переживает release (console.log там вырезается) — медленный шаг виден и в релизной цифре.
+    if (stepMs >= PREWARM_SLOW_STEP_MS) console.warn(`${line} slow`);
+    else console.log(line);
+    if (this.prewarmQueue.length > 0) {
+      this.prewarmTimer = setTimeout(() => this.prewarmStep(), PREWARM_STEP_GAP_MS);
+    }
+  }
+
+  private clearPrewarmQueue(): void {
+    if (this.prewarmTimer !== null) clearTimeout(this.prewarmTimer);
+    this.prewarmTimer = null;
+    if (this.prewarmQueue.length > 0) console.log(`[SFX-PREWARM] cancel left=${this.prewarmQueue.length} reason=dispose`);
+    this.prewarmQueue = [];
   }
 
   /**
@@ -167,6 +212,7 @@ export class SoundDirector {
   }
 
   dispose(): void {
+    this.clearPrewarmQueue();
     this.clearDeferredTimer();
     this.deferredPlayback = null;
     this.clearPriorityRetryTimer();

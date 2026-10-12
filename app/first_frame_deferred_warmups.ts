@@ -90,8 +90,12 @@ function runTask(label: string, task: () => void | Promise<unknown>): void {
   };
   try {
     const result = task();
+    // зачем (координатор 13.10, паузы JS-потока +5…+12 с, сперва логи): taskMs — это время до завершения промиса, в нём ожидание
+    // сети и хранилища. Поток держит только синхронная доля — её печатаем отдельно, чтобы видеть, какая задача стопорит кадры.
+    const syncMs = Date.now() - startedAt;
+    if (syncMs >= 50) console.warn(`[FIRST-FRAME] deferred:sync_heavy label=${label} syncMs=${syncMs} proc=${coldStartProcessMs()}ms`);
     void Promise.resolve(result).then(
-      () => console.warn(`[FIRST-FRAME] deferred:done label=${label} taskMs=${Date.now() - startedAt} proc=${coldStartProcessMs()}ms`),
+      () => console.warn(`[FIRST-FRAME] deferred:done label=${label} taskMs=${Date.now() - startedAt} syncMs=${syncMs} proc=${coldStartProcessMs()}ms`),
       fail,
     );
   } catch (error) {

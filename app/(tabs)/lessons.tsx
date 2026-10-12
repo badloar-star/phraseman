@@ -4480,14 +4480,15 @@ export default function LessonsTab({
   // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
   const openLessonPaywall = useCallback(
     (lessonNum: number) => {
-      const doneSoFar = scores.filter((score) => score > 0).length;
       openPremiumPaywall(router, {
         context: lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap),
-        lessons_done: doneSoFar,
+        // зачем (learn-014, координатор 13.10): пилюля пейвола читает «закрытый урок = lessons_done + 1» (paywallEntryFactsFromParams), поэтому тут — НОМЕР ТАПНУТОГО урока − 1, как в lesson_premium_gate.
+        // Раньше было число пройденных: у человека с 0 пройденных тап по уроку 4 давал пилюлю «Урок 1 закрыт».
+        lessons_done: Math.max(0, lessonNum - 1),
         ...lessonPurchaseContinuationParams(lessonNum),
       });
     },
-    [effectiveLegacyFreeLessonCap, router, scores],
+    [effectiveLegacyFreeLessonCap, router],
   );
   // зачем (владелец 2026-09-30, перенос списка на Liquid Glass): тот же обработчик нажатия,
   // что жил внутри LessonCard для старой ветки — вынесен наверх, чтобы стеклянная карточка

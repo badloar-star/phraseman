@@ -248,7 +248,7 @@ export default function UgcPackEditorCardPreview({
                 position: 'absolute',
                 top: 14,
                 left: 12,
-                color: t.accent,
+                color: t.accentText,
                 fontSize: 13,
                 fontWeight: '700',
                 letterSpacing: 0.6,
@@ -358,13 +358,13 @@ export default function UgcPackEditorCardPreview({
               pl: 'OPIS',
             })}
           </Text>
-          <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '600', lineHeight: 22 }}>{uk.trim()}</Text>
+          <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '600', lineHeight: 22 }}>{uk.trim()}</Text>
         </View>
       ) : null}
       {editing ? (
         <View style={[styles.toolBtn, { marginTop: 8 }]}>
-          <Ionicons name="create-outline" size={18} color={t.accent} />
-          <Text style={[styles.toolTxt, { color: t.accent }]}>
+          <Ionicons name="create-outline" size={18} color={t.accentText} />
+          <Text style={[styles.toolTxt, { color: t.accentText }]}>
             {triLang(lang, {
               uk: 'Редагується…',
               ru: 'Редактируется…',
@@ -388,8 +388,8 @@ export default function UgcPackEditorCardPreview({
               }}
               style={styles.toolBtn}
             >
-              <Ionicons name="create-outline" size={18} color={t.accent} />
-              <Text style={[styles.toolTxt, { color: t.accent }]}>
+              <Ionicons name="create-outline" size={18} color={t.accentText} />
+              <Text style={[styles.toolTxt, { color: t.accentText }]}>
                 {triLang(lang, {
                   uk: 'Редагувати',
                   ru: 'Редактировать',

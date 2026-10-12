@@ -84,7 +84,7 @@ function StatusFilterChipsBase({
           testID={`flashcards-status-chip-${key}`}
           provenance="authored"
           style={{
-            color: active ? (color ?? t.accent) : t.textSecond,
+            color: active ? (color ?? t.accentText) : t.textSecond,
             fontSize: 13,
             fontWeight: '700',
           }}

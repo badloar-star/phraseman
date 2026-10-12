@@ -171,7 +171,7 @@ export function SpeakingButton({
             style,
           ]}
         >
-          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={18} color={speechNa ? t.textMuted : t.accent} />
+          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={18} color={speechNa ? t.textMuted : t.accentText} />
           <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700' }}>{label}</Text>
           {/* В пилюле точки идут в один ряд с подписью: высота строки задана
               иконкой и текстом, поэтому ряд точек её не меняет ни в одном состоянии. */}

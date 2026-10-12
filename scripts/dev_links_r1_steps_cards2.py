@@ -33,7 +33,7 @@ add('cards-gap-024', [MENU, 'tap:Фразы', 'wait:600', 'tap:#fc-menu-filter',
 TRAVEL = 'local_pack_dev_demo_travel'
 add('cards-040', [f'tap:#fc-my-packs-pack-{TRAVEL}', 'wait:800'], DEMO, MYPACKS, note='свой набор «Путешествия», ещё не в сообществе (cards=demo)')
 add('cards-041', [f'long:#fc-my-packs-pack-{TRAVEL}', 'wait:600'], DEMO, MYPACKS, note='действия со своим набором: шторка по долгому нажатию («Отправить в сообщество»)')
-add('cards-042', [f'tap:#fc-my-packs-pack-{PUB}'], DEMO_PUB, MYPACKS, note='свой опубликованный набор открыт: «Только ты» (одобрения модерации у демо нет — бейдж «В сообществе» и «Править набор» недостижимы без серверной записи)', unique=False)
+add('cards-042', [f'tap:#fc-my-packs-pack-{PUB}', 'wait:800', 'tap:#fc-pack-edit'], DEMO_PUB, MYPACKS, note='свой опубликованный набор открыт: «Только ты» (одобрения модерации у демо нет — бейдж «В сообществе» и «Править набор» недостижимы без серверной записи)', unique=False)
 add('cards-049', [], DEMO_PUB, PACKS, note='каталог: свой опубликованный набор (карандаш, «Топ») — не проверено на кадре (пробная съёмка 12.10 пересеклась с прогоном Сверки)', unique=False)
 
 # ── Разовая подсказка «Зажми карточку…» (cards-033): фикстуры карточек помечают её увиденной, hint=show возвращает её для этого кадра

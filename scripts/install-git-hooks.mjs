@@ -128,6 +128,17 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Store-build stubs must export everything their dev module exports (see scripts/store_release_stubs_gate.mjs).
+# 2026-10-12: store_release_stubs/dev_state/dev_account_state_stub.ts lagged behind 85812a2a3 (fixed in 90dd76678) —
+# a store build would have crashed on the missing export. The gate lived only in release:precheck, so the gap was
+# found by chance. Runs only when the commit touches app/dev_* or store_release_stubs/* (~0.07s).
+if git diff --cached --name-only | grep -qE '^(app/dev_|store_release_stubs/)'; then
+  node scripts/store_release_stubs_gate.mjs
+  status=$?
+  if [ "$status" -ne 0 ]; then
+    exit "$status"
+  fi
+fi
 exit 0
 `;
 

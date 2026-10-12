@@ -1,4 +1,5 @@
 // зачем (координатор 13.10, аудит Авторизации a62d6bb0d): окно решения модерации выбирало текст только для ru/uk/es, а en/pt-BR/vi/id/tr/pl видели русский.
+// зачем (координатор 13.10, Ядро): «набор» — тем же словом, что во всём разделе Карточек: vi «bộ thẻ», pl «zestaw».
 // Тексты вынесены в чистый модуль без побочных импортов — тест проверяет все 9 языков без Firebase и AsyncStorage. Язык определяет вызывающий (resolveNotificationLang).
 import { triLang, type Lang } from '../../constants/i18n';
 
@@ -9,12 +10,12 @@ export function moderationTitle(result: ModerationResult, lang: Lang): string {
     case 'approved':
       return triLang(lang, {
         ru: 'Твой набор одобрен', uk: 'Твій набір схвалено', en: 'Your pack was approved', es: 'Tu pack fue aprobado',
-        'pt-BR': 'Seu pacote foi aprovado', vi: 'Gói của bạn đã được duyệt', id: 'Paketmu disetujui', tr: 'Paketin onaylandı', pl: 'Twój pakiet został zatwierdzony',
+        'pt-BR': 'Seu pacote foi aprovado', vi: 'Bộ thẻ của bạn đã được duyệt', id: 'Paketmu disetujui', tr: 'Paketin onaylandı', pl: 'Twój zestaw został zatwierdzony',
       });
     case 'rejected':
       return triLang(lang, {
         ru: 'Твой набор отклонён', uk: 'Твій набір відхилено', en: 'Your pack was rejected', es: 'Tu pack fue rechazado',
-        'pt-BR': 'Seu pacote foi recusado', vi: 'Gói của bạn bị từ chối', id: 'Paketmu ditolak', tr: 'Paketin reddedildi', pl: 'Twój pakiet został odrzucony',
+        'pt-BR': 'Seu pacote foi recusado', vi: 'Bộ thẻ của bạn bị từ chối', id: 'Paketmu ditolak', tr: 'Paketin reddedildi', pl: 'Twój zestaw został odrzucony',
       });
     case 'revision_requested':
       return triLang(lang, {
@@ -24,7 +25,7 @@ export function moderationTitle(result: ModerationResult, lang: Lang): string {
     case 'pack_removed':
       return triLang(lang, {
         ru: 'Набор снят с продажи', uk: 'Набір знято з продажу', en: 'Pack taken off sale', es: 'Pack retirado de la venta',
-        'pt-BR': 'Pacote retirado da venda', vi: 'Gói đã được gỡ khỏi cửa hàng', id: 'Paket diturunkan dari penjualan', tr: 'Paket satıştan kaldırıldı', pl: 'Pakiet wycofany ze sprzedaży',
+        'pt-BR': 'Pacote retirado da venda', vi: 'Bộ thẻ đã được gỡ khỏi cửa hàng', id: 'Paket diturunkan dari penjualan', tr: 'Paket satıştan kaldırıldı', pl: 'Zestaw wycofany ze sprzedaży',
       });
     default:
       return triLang(lang, {
@@ -73,10 +74,10 @@ export function moderationBody(ev: Record<string, unknown>, lang: Lang): string 
       en: 'Open Cards — you will find it in the list of your packs.',
       es: 'Abre Tarjetas: lo encontrarás en la lista de tus packs.',
       'pt-BR': 'Abra Cartões — você vai encontrá-lo na lista dos seus pacotes.',
-      vi: 'Mở Thẻ — bạn sẽ thấy gói này trong danh sách gói của mình.',
+      vi: 'Mở Thẻ — bạn sẽ thấy bộ thẻ này trong danh sách bộ thẻ của mình.',
       id: 'Buka Kartu — kamu akan menemukannya di daftar paketmu.',
       tr: 'Kartlar’ı aç — paketini kendi paketlerinin listesinde bulacaksın.',
-      pl: 'Otwórz Fiszki — znajdziesz ten pakiet na liście swoich pakietów.',
+      pl: 'Otwórz Fiszki — znajdziesz ten zestaw na liście swoich zestawów.',
     }));
   }
   const msg = ev.message != null ? String(ev.message).trim() : '';
@@ -89,7 +90,7 @@ export function moderationBody(ev: Record<string, unknown>, lang: Lang): string 
   } else if (result === 'revision_requested') {
     lines.push(triLang(lang, {
       ru: 'Доработай набор и отправь снова.', uk: 'Онови набір і надішли знову.', en: 'Update the pack and send it again.', es: 'Actualiza el pack y envíalo de nuevo.',
-      'pt-BR': 'Atualize o pacote e envie de novo.', vi: 'Hãy chỉnh sửa gói rồi gửi lại.', id: 'Perbarui paket lalu kirim lagi.', tr: 'Paketi güncelle ve yeniden gönder.', pl: 'Zaktualizuj pakiet i wyślij ponownie.',
+      'pt-BR': 'Atualize o pacote e envie de novo.', vi: 'Hãy chỉnh sửa bộ thẻ rồi gửi lại.', id: 'Perbarui paket lalu kirim lagi.', tr: 'Paketi güncelle ve yeniden gönder.', pl: 'Zaktualizuj zestaw i wyślij ponownie.',
     }));
   } else if (result === 'approved') {
     lines.push(triLang(lang, {

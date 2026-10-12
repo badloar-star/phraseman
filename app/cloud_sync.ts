@@ -840,7 +840,13 @@ async function listLearningV2AccountLocalKeys(): Promise<string[]> {
  * переживали выход и удаление, а политика (§3, §20) обещает удаление локальных данных.
  */
 const MISTAKE_RESTORE_FULL_DONE_PREFIX = 'mistake_restore_full_done_v1';
-const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX];
+// зачем (п.80, улика account_actions_2026-10-12 «осталось 2»): кэш заблокированных (friend_block.ts) и хвост баланса для проверки
+// непрерывности экономики (economy_daily_stats_reporter.ts) — ключи «константа + stableId», их не видел ни инвентарь, ни сторож.
+const FRIEND_BLOCKED_CACHE_PREFIX = 'friend_blocked_v1';
+const ECONOMY_DAILY_STATS_TAIL_PREFIX = 'economy_daily_stats_tail_v1';
+const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
+  ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX,
+];
 const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
 
 /** Префикс стирания для ключа или null (ключ — `prefix` или `prefix:<владелец>`). Экспорт — для сторожа. */
@@ -6060,6 +6066,22 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       console.warn(`[ACC-WIPE] app_messages late ${JSON.stringify(countWipeOnlyKeysByPrefix(lateWipeOnlyKeys))}`); // guard-ok: редкая строка, только префиксы
     } catch (error: unknown) {
       console.warn(`[ACC-WIPE] app_messages late_remove_failed count=${lateWipeOnlyKeys.length} code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+    }
+  }
+  // зачем (п.80): какие ключи с stableId прежнего владельца пережили стирание — по факту, а не по списку. Только префиксы (id → <owner>);
+  // намеренно сохранённые денежные очереди здесь видны и ожидаемы. Лог не меняет исход стирания.
+  if (receiptOwnerStableId) {
+    try {
+      const ownerResidue = (await listAllAccountLocalStorageKeys())
+        .filter((key) => !KEEP.has(key) && key.includes(receiptOwnerStableId));
+      const byPrefix: Record<string, number> = {};
+      for (const key of ownerResidue) {
+        const shape = key.split(receiptOwnerStableId).join('<owner>');
+        byPrefix[shape] = (byPrefix[shape] ?? 0) + 1;
+      }
+      console.log(`[ACC-WIPE] owner_residue count=${ownerResidue.length} ${JSON.stringify(byPrefix)}`); // guard-ok: одна строка на стирание, без id
+    } catch (error: unknown) {
+      console.warn(`[ACC-WIPE] owner_residue scan_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
     }
   }
   if (finalResidue.length > 0) {

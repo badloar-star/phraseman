@@ -23,6 +23,9 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
   app_messages_cache_v2: { decision: 'wiped', how: 'шаг appMessages (APP_MESSAGES_ACCOUNT_WIPE_PREFIXES)' },
   app_messages_login_forced_v1: { decision: 'wiped', how: 'шаг appMessages' },
   mistake_restore_full_done_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES)' },
+  // зачем (п.80): ключи «константа + stableId» — их прежний сторож не видел, и после удаления гостя они оставались
+  friend_blocked_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, FRIEND_BLOCKED_CACHE_PREFIX)' },
+  economy_daily_stats_tail_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, ECONOMY_DAILY_STATS_TAIL_PREFIX)' },
   paid_level_spin_envelope_v1: { decision: 'kept', how: 'деньги: конверт платного спина, владелец-scoped, досылается при возврате владельца' },
   level_spin_star_grant_outbox_v1: { decision: 'kept', how: 'деньги: очередь начислений звёзд спина' },
   level_spin_star_projection_v1: { decision: 'kept', how: 'деньги: проекция начислений' },
@@ -64,11 +67,18 @@ describe('account wipe covers every owner-keyed local key', () => {
   it('every `<prefix>:${owner}` storage key in app/** has a wipe decision', () => {
     const ownerKeyRx = /`([a-z][a-z0-9_]*_v\d+):\$\{(?:encodeURIComponent\()?(?:stableId|ownerUid|ownerStableId|owner|uid)\b/g;
     const found = new Map<string, string>();
+    // зачем (п.80): ключ, склеенный из константы-префикса и владельца (`PREFIX + uid`, `${PREFIX}${uid}`), — тот же ключ-владелец
+    const ownerVar = '(?:stableId|ownerUid|ownerStableId|owner|uid|myUid|userId)';
     for (const file of listTs('app')) {
-      for (const m of read(file).matchAll(ownerKeyRx)) found.set(m[1], file);
+      const source = read(file);
+      for (const m of source.matchAll(ownerKeyRx)) found.set(m[1], file);
+      for (const c of source.matchAll(/const (\w+) = '([a-z][a-z0-9_]*_v\d+):';/g)) {
+        const glued = new RegExp(`\\b${c[1]} *\\+ *${ownerVar}\\b|\\$\\{${c[1]}\\}\\$\\{${ownerVar}\\}`);
+        if (glued.test(source)) found.set(c[2], file);
+      }
     }
     // сторож не пустой: известные ключи-владельцы находятся
-    for (const known of ['community_pack_paid_ids_v1', 'level_spin_star_grant_outbox_v1', 'mistake_restore_full_done_v1']) {
+    for (const known of ['community_pack_paid_ids_v1', 'level_spin_star_grant_outbox_v1', 'mistake_restore_full_done_v1', 'friend_blocked_v1', 'economy_daily_stats_tail_v1']) {
       expect(found.has(known)).toBe(true);
     }
     // ключи сообщений строятся через appMessagesOwnerStorageKey — их покрывает первый тест

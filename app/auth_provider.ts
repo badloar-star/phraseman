@@ -3391,11 +3391,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         await wipeLocalAccountData(transitionLease);
         swapStage('wipe_done');
         await setStableId(canonicalStableId);
+        // зачем (прогон 12.10: wipe_done → stable_id_installed 2,2 с): разложить хвост под замком.
+        swapStage('set_stable_id_done');
         if (providerHandoffMarker) {
           await clearProviderCredentialHandoff(providerHandoffMarker);
           providerHandoffMarker = null;
+          swapStage('handoff_cleared');
         }
         beginAccountGeneration(canonicalStableId);
+        swapStage('generation_begun');
         if (presyncBackupSaved && canonicalStableId !== outcome.mergedFromStableId) {
           await settleGuestBackupAfterSwap(
             outcome.mergedFromStableId,
@@ -4089,6 +4093,8 @@ async function signOutAndWipeForAccountSwitchReserved(
           backupOptions,
         );
         if (!backedUp) throw new Error('account_switch_backup_unavailable');
+        // зачем (замер Сверки 12.10: 1,6 с между force_sync_done и lock_wait_start): это время первой аварийной копии.
+        signoutStage('emergency_backup_done', { reason: 'force_sync_failed' });
       } catch (e: any) {
         // зачем (TG-0AE4918142EE): в аналитику, журнал и detail результата — только код.
         const detail = identityErrorCode(e);
@@ -4115,6 +4121,9 @@ async function signOutAndWipeForAccountSwitchReserved(
     };
     signoutStage('lock_wait_start');
     const transitionLock = await withAccountTransitionLockWithDeadline(async (): Promise<boolean> => {
+      // зачем (замер Сверки 12.10: «lock_wait» ~1,5 с): внутри замка идут чтение очереди монет, вторая полная копия и маркер —
+      // этапы ниже показывают, ждали ли сам замок или работу под ним.
+      signoutStage('lock_acquired');
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) {
         // зачем (S2c): этот ранний выход прежде маскировался под sync_failed
         // «pending_shard_queue» — на деле сменилось поколение аккаунта.
@@ -4122,6 +4131,7 @@ async function signOutAndWipeForAccountSwitchReserved(
         return false;
       }
       const finalShardQueue = await readShardDeltaQueue(switchOwnerStableId);
+      signoutStage('shard_queue_read', { entries: finalShardQueue.length });
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       if (!discardPendingShardSpend && (await hasQuarantinedShardDeltaQueue(switchOwnerStableId))) {
         transitionFailure.quarantinedShardQueue = true;
@@ -4162,6 +4172,7 @@ async function signOutAndWipeForAccountSwitchReserved(
           transitionFailure.backupDetail = 'account_switch_backup_unavailable';
           return false;
         }
+        signoutStage('final_snapshot_done');
       } catch (e: any) {
         // зачем (TG-0AE4918142EE): backupDetail уходит в аналитику и detail — только код.
         transitionFailure.backupDetail = identityErrorCode(e);
@@ -4171,7 +4182,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       // Point of no return: the exact owner-bound marker is durably verified
       // before generation invalidation, provider sign-out, or any local wipe.
       await prepareDurableAccountSwitch(switchOwnerStableId);
+      signoutStage('marker_done');
       await beginEntitlementSafeAccountTransition();
+      signoutStage('entitlement_transition_done');
       return true;
     }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
     if (!transitionLock.completed) {

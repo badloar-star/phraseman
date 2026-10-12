@@ -8,7 +8,7 @@
 // Считаем КОММИТЫ (useEffect без зависимостей), а не вызовы render: в StrictMode разработки render зовётся дважды, коммит — один раз.
 // Только dev-сборки и не стор-релиз: в релизе хук — пустышка (три ref-операции, ни таймеров, ни логов).
 // ═════════════════════════════════════════════════════════════════════
-import { useEffect, useRef } from 'react';
+import { createElement, Profiler, useEffect, useRef, type ProfilerOnRenderCallback, type ReactNode } from 'react';
 
 import { IS_STORE_RELEASE } from './config';
 
@@ -17,7 +17,41 @@ export const PERF_R1_WINDOW_MS = 3000;
 
 type Probe = { t0: number; commits: number };
 
+// ═════════════════════════════════════════════════════════════════════
+// useMountTrace — кто и когда монтирует/размонтирует (R1, «двойной монтаж Главной», координатор 12.10: СПЕРВА ЛОГИ).
+// Цифры Сверки: у Главной в 2 из 3 холодных стартов left_early (≈1 с, 2 коммита) и ВТОРОЙ экземпляр с первым кадром через 2,5 с, т.е. дерево Главной монтируется дважды.
+// Метка ставится на нескольких ярусах (tabs_layout → tab_scaffold → home_host → probe:home); по тому, какие ярусы размонтировались вместе, видно, ЧТО именно пересоздало дерево:
+//   • размонтировались только probe:home/home_host — виновник между каркасом табов и Главной (Suspense/Freeze/TabSlider);
+//   • размонтировался и tab_scaffold — виновник в самом layout; • и tabs_layout — выше (стек/маршрут/ключ).
+// inst — порядковый номер экземпляра метки в этом запуске; at — мс от загрузки модуля; render — мс от первого рендера до эффекта (разрыв рендер→коммит).
+// Один экземпляр с mount→unmount→mount подряд за миллисекунды — это двойной вызов эффектов (StrictMode), а не повторный монтаж.
+// Только dev и не стор-релиз, как и сам замер.
+// ═════════════════════════════════════════════════════════════════════
+const MODULE_T0 = Date.now();
+const mountInstances = new Map<string, number>();
+
+function useMountTraceImpl(tag: string, note?: string): void {
+  const stateRef = useRef<{ inst: number; renderedAt: number } | null>(null);
+  if (stateRef.current === null) {
+    const inst = (mountInstances.get(tag) ?? 0) + 1;
+    mountInstances.set(tag, inst);
+    stateRef.current = { inst, renderedAt: Date.now() };
+    console.log('[PERF-R1-MOUNT]', JSON.stringify({ tag, inst, event: 'render', at: Date.now() - MODULE_T0, ...(note ? { note } : {}) })); // guard-ok: трассировка двойного монтажа, только dev
+  }
+  useEffect(() => {
+    const state = stateRef.current;
+    if (!state) return undefined;
+    const mountedAt = Date.now();
+    console.log('[PERF-R1-MOUNT]', JSON.stringify({ tag, inst: state.inst, event: 'mount', at: mountedAt - MODULE_T0, renderToEffectMs: mountedAt - state.renderedAt })); // guard-ok: трассировка двойного монтажа, только dev
+    return () => {
+      console.log('[PERF-R1-MOUNT]', JSON.stringify({ tag, inst: state.inst, event: 'unmount', at: Date.now() - MODULE_T0, aliveMs: Date.now() - mountedAt })); // guard-ok: трассировка двойного монтажа, только dev
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
 function usePerfR1ProbeImpl(screen: string): void {
+  useMountTraceImpl(`probe:${screen}`);
   const probeRef = useRef<Probe | null>(null);
   if (probeRef.current === null) probeRef.current = { t0: Date.now(), commits: 0 };
 
@@ -51,3 +85,27 @@ function usePerfR1ProbeImpl(screen: string): void {
 // зачем (владелец 22.09, «тело самого горячего экрана обязано быть чистым»): в релизе и стор-сборке хук — пустая функция БЕЗ единого React-хука и без работы
 // на рендер. Выбор сделан один раз на уровне модуля, поэтому порядок хуков между рендерами не меняется.
 export const usePerfR1Probe: (screen: string) => void = ENABLED ? usePerfR1ProbeImpl : () => undefined;
+
+// ═════════════════════════════════════════════════════════════════════
+// PerfR1Profile — сколько ЧИСТОГО времени рендера съедает экран (R1, «Уроки 3,6 с до первого кадра», координатор 12.10).
+// first_frame меряет стенное время, в которое входит ожидание очереди JS-потока (фоновая работа Главной, прогрев других вкладок). Чтобы отделить работу самого экрана
+// от ожидания, оборачиваем экран в React.Profiler: actualMs — реальное время рендера поддерева в этом коммите, baseMs — стоимость полного перерендера без мемоизации.
+// Печатаются первые 8 коммитов каждого экрана за запуск (дальше — тишина). Только dev и не стор-релиз; в релизе — детей отдаёт как есть.
+// ═════════════════════════════════════════════════════════════════════
+const PROFILE_LOG_LIMIT = 8;
+const profileLogged = new Map<string, number>();
+const onProfileRender: ProfilerOnRenderCallback = (id, phase, actualDuration, baseDuration, startTime, commitTime) => {
+  const n = (profileLogged.get(id) ?? 0) + 1;
+  profileLogged.set(id, n);
+  if (n > PROFILE_LOG_LIMIT) return;
+  console.log('[PERF-R1-PROFILE]', JSON.stringify({ id, n, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration), startedAtMs: Math.round(startTime), commitAtMs: Math.round(commitTime) })); // guard-ok: замер скорости, только dev
+};
+
+/** Обёртка-замер; в релизе и стор-сборке — просто дети. */
+export function PerfR1Profile({ id, children }: { id: string; children: ReactNode }): ReactNode {
+  if (!ENABLED) return children;
+  return createElement(Profiler, { id, onRender: onProfileRender }, children);
+}
+
+/** Метка монтирования яруса (см. выше); в релизе — пустая функция без хуков. */
+export const useMountTrace: (tag: string, note?: string) => void = ENABLED ? useMountTraceImpl : () => undefined;

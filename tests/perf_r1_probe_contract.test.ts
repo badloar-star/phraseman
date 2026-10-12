@@ -42,3 +42,25 @@ describe('хаб Карточек: Intl-работа не на каждый ре
     expect(hub).toContain('const topDictIpa = useMemo(() => (topCardEn && !topStoredIpa ? getTranscription(topCardEn) : \'\'), [topCardEn, topStoredIpa]);');
   });
 });
+
+describe('[PERF-R1-MOUNT] / [PERF-R1-PROFILE]: трассировка двойного монтажа и чистого времени рендера (только dev)', () => {
+  const probe = read('app/perf_r1_probe.ts');
+  const layout = read('app/(tabs)/_layout.tsx');
+  it('в релизе метка монтирования — пустая функция без хуков, а обёртка-замер отдаёт детей как есть', () => {
+    expect(probe).toContain('export const useMountTrace: (tag: string, note?: string) => void = ENABLED ? useMountTraceImpl : () => undefined;');
+    expect(probe).toContain('if (!ENABLED) return children;');
+  });
+  it('метка пишет render / mount / unmount с номером экземпляра, а сам замер Главной тоже помечен', () => {
+    expect(probe).toContain("event: 'render'");
+    expect(probe).toContain("event: 'mount'");
+    expect(probe).toContain("event: 'unmount'");
+    expect(probe).toContain('useMountTraceImpl(`probe:${screen}`);');
+  });
+  it('ярусы Главной помечены: tabs_layout → tab_scaffold → home_host, а Главная и Уроки обёрнуты в замер', () => {
+    expect(layout).toContain("useMountTrace('tabs_layout');");
+    expect(layout).toContain("useMountTrace('tab_scaffold');");
+    expect(layout).toContain("useMountTrace('home_host');");
+    expect(layout).toContain('<PerfR1Profile id="home">');
+    expect(layout).toContain('<PerfR1Profile id="lessons">');
+  });
+});

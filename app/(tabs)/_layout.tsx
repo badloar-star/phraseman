@@ -23,6 +23,7 @@ import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
 import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { PerfR1Profile, useMountTrace } from '../perf_r1_probe';
 // Home stays behind the tab shell until React can commit the first frame. Its
 // screen/data tree is large enough that evaluating it synchronously delays boot.
 // Starting the promise here overlaps the module fetch/evaluation with the root
@@ -31,6 +32,7 @@ const homeScreenModulePromise = import('./home');
 const HomeScreen = React.lazy(() => homeScreenModulePromise);
 
 function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
+  useMountTrace('home_host'); // зачем (R1, двойной монтаж Главной): ярус между каркасом табов и экраном Главной
   // The dynamically evaluated Home bundle has its own event-module lifetime in
   // Metro dev mode. Emit from this static tab shell as well so the root splash
   // gate cannot miss the first committed Home frame.
@@ -41,7 +43,7 @@ function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
     });
     return () => cancelAnimationFrame(frame);
   }, []);
-  return <HomeScreen onOpenDevHub={onOpenDevHub} />;
+  return <PerfR1Profile id="home"><HomeScreen onOpenDevHub={onOpenDevHub} /></PerfR1Profile>; // зачем (R1): чистое время рендера Главной отдельно от ожидания очереди
 }
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
 import { subscribeOpenDevHub } from '../dev_hub_bus';
@@ -262,12 +264,15 @@ function LessonsPaneBoundary({
       >
         <TabPane freezeWanted={freezeWanted}>
           <TabRenderProbe id="tab:lessons">
-            <DeferredTabScreen
-              key={`lessons-${privacy.epoch}`}
-              shouldLoad={shouldLoad}
-              loadScreen={loadLessonsScreen}
-              screenProps={{ overlayIdentityEpoch: privacy.epoch, presentation: 'tab' }}
-            />
+            {/* зачем (R1, «Уроки 3,6 с»): чистое время рендера экрана Уроков отдельно от ожидания очереди JS-потока */}
+            <PerfR1Profile id="lessons">
+              <DeferredTabScreen
+                key={`lessons-${privacy.epoch}`}
+                shouldLoad={shouldLoad}
+                loadScreen={loadLessonsScreen}
+                screenProps={{ overlayIdentityEpoch: privacy.epoch, presentation: 'tab' }}
+              />
+            </PerfR1Profile>
           </TabRenderProbe>
         </TabPane>
       </View>
@@ -483,6 +488,7 @@ function TabScaffold({
   onOpenDevHub,
   pageLayout,
 }: TabScaffoldProps) {
+  useMountTrace('tab_scaffold'); // зачем (R1, двойной монтаж Главной): ярус, держащий TabSlider с панелями
   const { lang } = useLang();
   const { bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
@@ -710,6 +716,7 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
 }
 
 function ReleasedTabLayout() {
+  useMountTrace('tabs_layout'); // зачем (R1, двойной монтаж Главной): верхний ярус каркаса табов
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();

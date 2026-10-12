@@ -52,7 +52,8 @@ add('mistakes-panel-002', ['wait:1500'], 'mistakes=demo&studyTarget=en', '/mista
 add('community-006', ['see:#friend-request-row-dev-demo-friend-request-1'], 'friends=demo&spire=open&plus=off&free=on', '/(tabs)/community', note='Друзья: входящая заявка (dev friends=demo: заявка от Alex и друг Maria, без подписок Firestore и записей)')
 
 # ── Диалоги: завершение вручную через меню «⋯» (нужна хотя бы одна реплика — «Завершить» иначе неактивна)
-DIALOG_PARAMS = 'plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&studyTarget=en'
+# зачем (кадр dialogs-043 7:07: итог завис на «Собеседник готовит итог…»): без dev_dialog_completion итог ждёт сервер — clean даёт готовый итог без сервера (Ядро 7a79d3519)
+DIALOG_PARAMS = 'plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&studyTarget=en&dev_dialog_completion=clean'
 DIALOG_OPEN = ['tap:#dialogue-v2-world-toggle-*', 'tap:#dialogue-v2-catalogue-row-*', 'tap:#dialogue-v2-briefing-start', 'wait:3000']
 DIALOG_FINISH = ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'wait:2500', 'tap:#dialogue-v2-session-more', 'tap:#dialogue-v2-session-menu-complete', 'wait:3000']
 add('dialogs-043', DIALOG_OPEN + DIALOG_FINISH, DIALOG_PARAMS, '/ai_dialog_home', unique=False, note='ручное завершение через меню «⋯»; шаги выведены из кода (подтверждения может не быть), не отлажены')

@@ -408,16 +408,23 @@ async function _doInit(): Promise<void> {
           const isEventAccountCurrent = () => isCurrentAccountGeneration(eventAccount);
           void (async () => {
             const currentInfo = await readCurrentRevenueCatCustomerInfo(isEventAccountCurrent);
-            if (!currentInfo || !isEventAccountCurrent()) return;
+            if (!currentInfo || !isEventAccountCurrent()) {
+              // зачем (ревью 12.10 п.7): ранний выход слушателя называет причину
+              DebugLogger.info('[RC-LISTENER]', `событие customerInfo отброшено: info=${currentInfo ? 'есть' : 'нет'} аккаунтТот=${String(isEventAccountCurrent())}`);
+              return;
+            }
             await withAccountTransitionLockWithDeadline(
               () => applyPushedCustomerInfo(currentInfo, isEventAccountCurrent),
               RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS,
             );
-          })();
+          })().catch((e: unknown) => {
+            DebugLogger.error('[RC-LISTENER] событие customerInfo: сбой обработки', e instanceof Error ? e : new Error(String(e)), 'warning');
+          });
         });
       } catch (e) {
         _customerInfoListenerAttached = false;
-        if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
+        // зачем (ревью 12.10 п.7): в проде ошибка подписки на customerInfo не логировалась (только в __DEV__) — Plus-доступ после покупки на другом устройстве молча не приходил бы
+        DebugLogger.error('[RC-LISTENER] addCustomerInfoUpdateListener failed', e instanceof Error ? e : new Error(String(e)), 'warning');
       }
     }
     // зачем (AA S2d 🔴1): перенос Plus после смены аккаунта — тихое восстановление

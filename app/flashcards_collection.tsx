@@ -231,6 +231,7 @@ export default function FlashcardsScreen() {
     const gate = packPurchaseGate(p, price);
     if (!gate.ok) {
       console.warn(`[PACK-BUY] gate:refused pack=${p.id} price=${price} packPriceRunes=${String(p.priceRunes ?? '-')} reason=${gate.reason}`); // guard-ok: отказ окна покупки называет причину
+      emitAppEvent('action_toast', packBuyFailedToast()); // зачем (ревью 12.10 п.5): отказ гейта — не только строка журнала, человек должен увидеть, что покупка не открылась
       return;
     }
     setPurchasePack(p);

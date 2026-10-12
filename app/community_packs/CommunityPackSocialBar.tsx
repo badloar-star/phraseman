@@ -310,6 +310,23 @@ export default function CommunityPackSocialBar({
       onRequestPurchase(pack, price);
       return;
     }
+    // зачем (ревью 12.10 п.5): платный набор БЕЗ обработчика покупки (плитка видео-набора и т.п.) раньше молча шёл в бесплатное добавление. Сейчас цена у них 0,
+    // но дыра закрыта: цена > 0 без обработчика — отказ, причина в журнале и тост.
+    if (price > 0 && !isAdded) {
+      console.warn(`[PACK-BUY] add:paid_refused pack=${pack.id} price=${price} reason=no_purchase_handler`); // guard-ok: отказ платного добавления называет причину
+      emitAppEvent('action_toast', actionToastTri('info', {
+        ru: 'Это платный набор. Открой его страницу, чтобы купить.',
+        uk: 'Це платний набір. Відкрий його сторінку, щоб купити.',
+        en: 'This is a paid pack. Open its page to buy it.',
+        es: 'Este paquete es de pago. Abre su página para comprarlo.',
+        'pt-BR': 'Este pacote é pago. Abra a página dele para comprar.',
+        vi: 'Đây là bộ thẻ trả phí. Hãy mở trang của bộ để mua.',
+        id: 'Ini paket berbayar. Buka halamannya untuk membeli.',
+        tr: 'Bu paket ücretli. Satın almak için sayfasını aç.',
+        pl: 'To płatny zestaw. Otwórz jego stronę, aby go kupić.',
+      }));
+      return;
+    }
     if (addInFlightRef.current) {
       console.warn(`[PACK-SOCIAL] добавление pack=${pack.id}: уже в пути — повторный тап пропущен`); // guard-ok: ранний выход называет причину
       return;

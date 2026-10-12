@@ -311,7 +311,8 @@ test('purchase flow marker: nested flows, idempotent end, wrapper ends on error'
 test('paywall and «Управление подпиской» mark their store operations as a purchase flow', () => {
   const fsMod = require('fs') as typeof import('fs');
   const read = (rel: string) => fsMod.readFileSync(require.resolve('../' + rel), 'utf8');
-  expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_purchase', () => Purchases.purchasePackage(pkg))");
+  // зачем (ревью 12.10 п.1): внутри метки потока теперь ещё ставится флаг purchaseInvoked — вызов магазина остаётся единственным return внутри метки
+  expect(read('app/paywall_purchase.ts')).toMatch(/withPurchaseFlow\('paywall_purchase', \(\) => \{\s*purchaseInvoked = true;[^\n]*\n\s*return Purchases\.purchasePackage\(pkg\);/);
   // зачем (10.10): 65(а) d677a328e — «Проверить статус» (getCustomerInfo) и «Восстановить» идут одним путём; оба внутри метки.
   expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_restore', () => (mode === 'check' ? Purchases.getCustomerInfo() : Purchases.restorePurchases()))");
   expect(read('app/manage_subscription_purchase.ts')).toContain("withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any))");

@@ -25,7 +25,7 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
 
-    expect(purchaseBody).toContain('() => Purchases.purchasePackage(pkg)');
+    expect(purchaseBody).toContain('return Purchases.purchasePackage(pkg);'); // зачем (ревью 12.10 п.1): перед вызовом внутри метки ставится флаг purchaseInvoked
     // зачем (D158-уточнение): `let`, а не `const` — после покупки customerInfo перечитывается (песочница Apple
     // отстаёт), поэтому присваивание законно; суть сторожа — брать customerInfo из результата покупки.
     expect(purchaseBody).toContain('let { customerInfo } = purchaseResult.value;');
@@ -107,7 +107,8 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
   });
 
   it('enforces the lifetime kill-switch in selection and purchase, not only in UI', () => {
-    expect(sharedHook).toContain("if (plan === 'lifetime' && !lifetimeAvailable) return;");
+    // зачем (ревью 12.10 п.7): тихий return получил строку журнала — условие то же, добавилось тело-блок
+    expect(sharedHook).toContain("if (plan === 'lifetime' && !lifetimeAvailable) {");
     // Гейт покупки усилен 2026-07-27: помимо админ-килл-свитча учитывает источник
     // пейвола (в онбординге lifetime скрыт — значит и купить его нельзя).
     // 2026-08-24 поверх встала пломба LIFETIME_SALE_RETIRED: владелец снял продажу

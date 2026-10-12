@@ -24,7 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { localLogHelperCall, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
+import { localLogHelperCall, maskMultilineLogCalls, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(ROOT, 'config', 'untranslated-ui-baseline.json');
@@ -251,7 +251,9 @@ function stripLegal(source) {
     }
     src = result;
   }
-  return maskLocaleKeyedEntries(src, source);
+  // зачем (координатор 12.10): вызов журнала маскируется целиком, с аргументами на следующих строках — stripLegal общий для полного
+  // прохода и проверки добавленных строк, поэтому трактовка одна. Правило вызова — тот же DIAGNOSTIC_LOG_CALL плюс помощники файла.
+  return maskMultilineLogCalls(maskLocaleKeyedEntries(src, source), source, DIAGNOSTIC_LOG_CALL);
 }
 
 /**

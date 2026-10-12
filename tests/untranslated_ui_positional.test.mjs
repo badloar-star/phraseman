@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import {
   isNonEmptyEnglishLiteral,
   localLogHelperCall,
+  maskMultilineLogCalls,
   maskToastEntriesWithEnglishInSameObject,
   maskPositionalTranslatorCalls,
   splitCallArgs,
@@ -57,7 +58,8 @@ test('разбор аргументов учитывает вложенные с
 test('сторож: переводчик по целому имени, помощники подключены', () => {
   const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
   const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
-  assert.match(scanner, /import \{ localLogHelperCall, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
+  assert.match(scanner, /import \{ localLogHelperCall, maskMultilineLogCalls, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
+  assert.match(scanner, /return maskMultilineLogCalls\(maskLocaleKeyedEntries\(src, source\), source, DIAGNOSTIC_LOG_CALL\);/);
   // полный проход и проверка добавленных строк трактуют помощники журнала одинаково
   assert.match(scanner, /if \(logHelperCall\?\.test\(line\)\) continue;/);
   assert.match(scanner, /logHelperCall = localLogHelperCall\(stagedSource\);/);
@@ -155,4 +157,27 @@ test('помощник журнала: тело — один вызов логг
   assert.equal(call.test("subtrace('x');"), false);
   assert.equal(call.test("obj.trace('x');"), false);
   assert.equal(localLogHelperCall("const a = trace('x');"), null);
+});
+
+// зачем (координатор 12.10; Ядро: SpireHomeScreen, premium_modal, _layout): вызов журнала маскируется целиком, с аргументами на следующих строках.
+test('журнал: многострочный вызов и псевдоним логгера маскируются целиком; экранный текст рядом остаётся находкой', () => {
+  const FIX = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(logSpireDock)\s*\(/;
+  const src = [
+    "logSpireDock('home', {",
+    "  source: preview ? 'DEV-превью (моки)' : 'живые данные',",
+    '});',
+    'console.warn(',
+    '  `[SWITCH-QUARANTINE] -> вход продолжается, стены нет`,',
+    ');',
+    "const log = decision === 'dismiss' ? console.warn : console.log;",
+    "log('[PAYWALL-OPEN] решение окна', JSON.stringify({ decision }));",
+    "const title = pick('Заголовок экрана');",
+    "obj.log('Подпись');",
+  ].join('\n');
+  const out = maskMultilineLogCalls(src, src, FIX);
+  for (const gone of ['DEV-превью', 'живые данные', 'стены нет', 'решение окна']) assert.equal(out.includes(gone), false, gone);
+  assert.equal(out.includes('Заголовок экрана'), true);
+  assert.equal(out.includes('Подпись'), true);
+  assert.equal(out.split('\n').length, src.split('\n').length);
+  assert.equal(out.length, src.length);
 });

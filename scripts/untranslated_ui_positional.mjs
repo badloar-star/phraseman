@@ -73,8 +73,36 @@ const LOCAL_LOG_HELPER = /\bfunction\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*(?::\s*v
  * (или чужой `trace` из другого файла) находкой остаётся.
  */
 export function localLogHelperCall(source) {
-  const names = [...new Set([...source.matchAll(LOCAL_LOG_HELPER)].map((m) => m[1]))];
+  const names = [...new Set([...source.matchAll(LOCAL_LOG_HELPER), ...source.matchAll(LOGGER_ALIAS)].map((m) => m[1]))];
   return names.length ? new RegExp(String.raw`(?:^|[^A-Za-z0-9_$.])(?:${names.join('|')})\s*\(`) : null;
+}
+
+// Псевдоним логгера: `const log = console.warn;` или `const log = cond ? console.warn : console.log;` (app/premium_modal.tsx).
+const LOGGER_METHOD = String.raw`(?:DebugLogger|console)\s*\.\s*(?:log|info|warn|error|debug)`;
+const LOGGER_ALIAS = new RegExp(String.raw`\bconst\s+([A-Za-z_$][\w$]*)\s*=\s*(?:[^;\n?]*\?\s*)?${LOGGER_METHOD}\s*(?::\s*${LOGGER_METHOD}\s*)?;`, 'g');
+
+/**
+ * Маскирует вызов журнала ЦЕЛИКОМ — от имени до закрывающей скобки, даже если аргументы перенесены на следующие строки.
+ * зачем (координатор 12.10; Ядро: SpireHomeScreen 5, _layout 1): построчная проверка видела вызов логгера только в строке с его
+ * именем, а русский текст на строке ниже (`logSpireDock('home', {\n source: 'DEV-превью…' })`) считался экранным. Вызов журнала
+ * распознаётся тем же правилом, что и в строке (`fixedCall` — общий список сторожа, плюс помощники и псевдонимы этого файла);
+ * скобки берутся из исходника `original` того же размера (маски сканера режут строки посреди литерала).
+ */
+export function maskMultilineLogCalls(src, original, fixedCall) {
+  const base = original.length === src.length ? original : src;
+  const closeOf = new Map(bracketPairs(base));
+  const patterns = [fixedCall, localLogHelperCall(base)].filter(Boolean).map((re) => new RegExp(re.source, 'g'));
+  const chars = src.split('');
+  let masked = false;
+  for (const re of patterns) {
+    for (const m of base.matchAll(re)) {
+      const close = closeOf.get(m.index + m[0].length - 1);
+      if (close === undefined) continue;
+      for (let i = m.index; i <= close; i += 1) if (chars[i] !== '\n' && chars[i] !== '\r') chars[i] = ' ';
+      masked = true;
+    }
+  }
+  return masked ? chars.join('') : src;
 }
 
 /** Пары скобок `{…}`, `(…)`, `[…]` кода: строки и комментарии пропускаются. [открывающая, закрывающая] по индексам. */

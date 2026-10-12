@@ -42,7 +42,8 @@ import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
-import { getStoredStudyTarget, type StudyTarget } from '../study_target';
+import { type StudyTarget } from '../study_target';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import { triLang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
@@ -539,10 +540,15 @@ export default function SettingsMain() {
     }
   }, [appSnapshot.profile, appSnapshot.settings]);
 
-  const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
-  const loadStudyTarget = useCallback(async () => {
-    setStudyTarget(await getStoredStudyTarget(lang));
-  }, [lang]);
+  // зачем (§AUTH-0110, координатор 12.10): прежде свой useState('en') — первый кадр у всех 'en' (даже у тех, кто учит es/de/…),
+  // а смена цели в шторке или в другом разделе подхватывалась только по фокусу. Теперь — общий StudyTargetContext: первый кадр
+  // из снимка (peek), смена — по событию study_target_changed; refresh по фокусу оставлен как страховка (дёшево, то же хранилище).
+  const { studyTarget, refresh: loadStudyTarget } = useStudyTarget();
+  const studyTargetLoggedRef = useRef<StudyTarget | null>(null);
+  if (studyTargetLoggedRef.current !== studyTarget) {
+    if (__DEV__) console.log(`[LANG-SWITCH] settings study_target=${studyTarget} previous=${studyTargetLoggedRef.current ?? 'none'} source=context`); // guard-ok: под __DEV__, одна строка на смену цели
+    studyTargetLoggedRef.current = studyTarget;
+  }
   useEffect(() => {
     if (!settingsRuntimeActive) return;
     void loadStudyTarget();

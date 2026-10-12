@@ -386,6 +386,11 @@ export function createDialogueV2CompletionAssessmentGenerator(
     transcript: readonly Readonly<{ messageId?: string; role: 'user' | 'assistant'; content: string }>[];
     expiresAtMs: number;
   }>): Promise<string> => {
+    // зачем (dialogs-041, Сверка: «Итог пока недоступен» через 20 054 мс): немой catch ниже превращал любую причину в одно
+    // «provider_failed» — срок модели, ошибку провайдера и протухший контекст было не различить. Шаги и код ответа — в лог.
+    const generatorStartedAtMs = Date.now();
+    let modelForLog: string | null = null;
+    let httpStatusForLog: number | null = null;
     try {
       const nowMs = runtime.nowMs();
       const transcript = safeCompletionTranscript(input.transcript);
@@ -408,6 +413,7 @@ export function createDialogueV2CompletionAssessmentGenerator(
       try {
         const apiKey = String(runtime.resolveApiKey() || '').trim();
         const model = await beforeDeadline(runtime.resolveModel());
+        modelForLog = typeof model === 'string' ? model.slice(0, 60) : null;
         if (!apiKey || apiKey.length > 300 || !(ALLOWED_DIALOG_MODELS as readonly string[]).includes(model)) {
           throw new Error('completion_provider_unavailable');
         }
@@ -437,6 +443,7 @@ export function createDialogueV2CompletionAssessmentGenerator(
           }),
           signal: abort.signal,
         }));
+        httpStatusForLog = typeof response.status === 'number' ? response.status : null;
         if (!response.ok) throw new Error('completion_provider_failed');
         const payload = await beforeDeadline(response.json());
         // зачем: PM-231 (A3) — итог занятия платил OpenAI без строки биллинга; отчёт не бросает.
@@ -448,7 +455,18 @@ export function createDialogueV2CompletionAssessmentGenerator(
         clearTimeout(timer);
         abort.abort();
       }
-    } catch {
+    } catch (error) {
+      console.warn('[DIALOGUE-V2-COMPLETE] provider_failed', JSON.stringify({
+        reason: error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120),
+        name: error instanceof Error ? error.name : null,
+        elapsedMs: Date.now() - generatorStartedAtMs,
+        deadlineMs: PROVIDER_DEADLINE_MS,
+        model: modelForLog,
+        httpStatus: httpStatusForLog,
+        turns: Array.isArray(input.transcript) ? input.transcript.length : null,
+        systemPromptChars: typeof input.systemPrompt === 'string' ? input.systemPrompt.length : null,
+        maxTokens: 900,
+      }));
       throw new Error('dialogue_v2_completion_provider_failed');
     }
   };

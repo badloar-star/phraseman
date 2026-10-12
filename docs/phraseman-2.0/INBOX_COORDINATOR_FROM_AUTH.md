@@ -666,3 +666,19 @@
 - **Сторож** `account_wipe_owner_keys_guard` 2/2. Каждый ключ-владелец `<prefix>:${owner}` в `app/**` обязан иметь решение — «стирается» или «сохраняется намеренно, с причиной»; новый ключ без решения роняет тест.
 - **Тесты:** local_account_data 23/23, roundtrip 22/22, race 3/3, customization_isolation 35/35, fingerprint_wipe 2/2, stash_tails 10/10, delete_flow 23/23, guest_server_delete 12/12, guest_offline_delete 3/3, card_resurrection 21/21, future_kept_backup 12/12, legacy_sync_switch 39/39, app_messages 10/10 + 4/4 + 3/3, login_only_force 6/6.
 - **Прошу Сверку** при следующем выходе прислать строку `[ACC-WIPE] app_messages {…}`. Ожидаю ненулевые `app_messages_cache_v2` и `app_messages_login_forced_v1`.
+
+## §AUTH-0190 — 2026-10-12: красные тесты зоны Авторизации (RED_TESTS_HEAD) — 6 из 7 наборов зелёные (**4c110b643**)
+| Набор | Было | Вердикт | Что сделано |
+|---|---|---|---|
+| stable_id (1) | `release is not a function` | тест устарел (ebc1a860d: перед SecureStore теперь ещё одно ожидание) | ждём вызова `getItemAsync`, проверка «одна личность при гонке» та же — 30/30 |
+| auth_provider_stable_link (1) | `: outcome.remoteStableId` в блоке свапа | **моя B3** (c1f1089c0) попадала под буквальный шаблон «нет запасного владельца» | правил КОД, не сторож: цель — через `swapTargetStableId`, при повторе — `stableUid` из доказательства сервера; поведение то же — 35/35, B3 5/5, behavior 124/124 |
+| account_v2_tails_6d (1), client_tails_6c (1) | ждут `…AfterAckIfEnabled(null, ack)` и расстояние < 300 | тест устарел: после 91b396d6a у гостя есть замок, ключ V2 создаётся с его `operationId`; с `null` снималась бы чужая привязка, и ключ жил бы вечно | ожидание `pendingDeleteLock?.operationId ?? null`; вместо «< 300 знаков» — «снятие в той же ветке успеха» (`} else` между ними нет) + запас 600 — 10/10, 10/10 |
+| account_sqlite_lease_patch_v2 (2) | ждут `Darwin.flock(…)` | тест устарел: 1282d3e80 (iOS, `struct flock` затеняет функцию) — вызов через `phrasemanSystemFlock` | ожидания + НОВАЯ проверка, что это именно `@_silgen_name("flock")`, то есть системный flock(2) — 13/13 |
+| account_sqlite_lease_patch_activation_v2 (1) | `activation_invalid` | рабочий `patches/…` ≠ утверждённый кандидат: отличие ровно исправление iOS (4 строки) | кандидат `modules/account-session-v2/native/…-account-lease.patch` = рабочий патч, отпечаток обновлён с пометкой — 3/3 |
+| account_provision_lock_android_runtime_entrypoint (5) | 1: `.gitignore:64:/android`; 4: `status null` | 1 — правило сдвинулось на строку 66; 4 — на ПК нет `pwsh.exe` | номер строки убран (проверяем само правило `/android`); тест берёт pwsh, иначе Windows PowerShell 5.1 (скрипт разбирается без ошибок). **4 проверки остаются красными ПО ДЕЛУ** |
+
+- ⚠️ **Вопрос владельцу запускателя** (кампания Codex, `…\Documents\Codex\2026-09-22\new-chat\outputs\ACCOUNT_ANDROID_PROVISION_LOCK_REVIEWED_LAUNCH.ps1`, внешний файл вне репозитория). Теперь, когда тест реально запускает `Get-SanitizedRunnerFailure`, видно: конверт отказа содержит лишние поля `cleanupFailures: []` и `databaseRootDiagnostic: {category:'unobserved'}`. Сторож требует ровно утверждённый набор полей («очищенный отказ без лишних данных»), и подгонять его не стал — это ослабление.
+  - Либо утвердить новые поля в тесте, если запускатель обновили сознательно;
+  - либо вернуть запускатель к утверждённому контракту.
+
+  Также тест зависит от файла в личной папке — в CI он не запустится.

@@ -8529,8 +8529,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -32420,8 +32420,8 @@
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37089,8 +37089,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37123,8 +37123,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37306,8 +37306,8 @@
       "reviewed_at": "2026-10-12T18:13:18.774Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:09, dialogs-gaps №11 «Свободный разговор — не удалось продолжить»): сверка невозможна — на кадре хаб «Диалоги» (Свободный разговор PLUS, четыре категории), а не экран ошибки свободного разговора."
     },

@@ -45,7 +45,8 @@ test('learning settings use the approved liquid-glass shell without losing setti
 test('learning settings retain all callbacks, normalized speed preview, and voice navigation', () => {
   for (const key of ['autoCheck', 'autoAdvance', 'hardMode', 'haptics']) assert.match(source, new RegExp(`key: '${key}'`));
   assert.match(source, /getUserSettingsSnapshot\(\)/);
-  assert.match(source, /void loadSettings\(\)\.then\(setS\)/);
+  // зачем (координатор 12.10, аудит Optimistic UI R1; тест устарел): поздний ответ loadSettings() применяется через setS(loaded), но не затирает уже сделанную правку (editVersionRef).
+  assert.match(source, /void loadSettings\(\)\.then\(\(loaded\) => \{[\s\S]*?editVersionRef\.current !== loadStartedAtVersion[\s\S]*?setS\(loaded\);/);
   assert.match(source, /applyUserSettingsNow\(next\)/);
   assert.match(source, /setFcSfxEnabled\(value\)/);
   assert.match(source, /setFcAutoSpeakEnabled\(value\)/);

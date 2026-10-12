@@ -8,7 +8,9 @@ test('legacy lesson list resolves the active Liquid Glass theme above its real l
   assert.ok(lessons.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
   assert.ok(lessons.includes('colors={[learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}'), 'full-bleed themed background');
   assert.ok(lessons.includes('<ScreenGradient forceFullBleed>'), 'legacy catalog inherits the themed full-bleed shell');
-  assert.ok(lessons.includes('borderColor: learnGlass.glassEdge'), 'header controls use a glass edge');
+  // зачем (стиль «Тень» 12.10, координатор: красные сторожи): круглые кнопки шапки без кромки, с малой тенью.
+  assert.ok(lessons.includes('boxShadow: nestedBoxShadow(learnGlass)'), 'header controls use the nested shadow');
+  assert.ok(!lessons.includes('borderColor: learnGlass.glassEdge'), 'header controls have no glass edge');
   assert.ok(lessons.includes('data={legacyFilteredListData}'), 'real filtered lesson data remains the list source');
   assert.ok(lessons.includes('router.push({ pathname: "/lesson_menu", params: { id: num } })'), 'real lesson route remains wired');
 });

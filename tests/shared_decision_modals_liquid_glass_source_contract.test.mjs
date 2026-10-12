@@ -51,5 +51,7 @@ test('hybrid alert shell keeps center as the compatibility default and adds bott
   assert.match(source, /bottomSheet \? styles\.bottomPanel : undefined/);
   assert.match(source, /onRequestClose=\{dismissHandler\}/);
   assert.match(source, /if \(reduceMotion\)/);
-  assert.match(source, /paddingBottom: bottomSheet \? 0 : Math\.max\(24, insets\.bottom, keyboardInset\)/);
+  // зачем (c9556310c, шторка «Изменить имя»; тест устарел, поведение по умолчанию то же): нижняя шторка при avoidKeyboard поднимается на перекрытие клавиатуры,
+  // иначе прежнее: нижняя — 0, центральная — Math.max(24, insets.bottom, keyboardInset).
+  assert.match(source, /paddingBottom: bottomSheetKeyboardLift \?\? \(bottomSheet \? 0 : Math\.max\(24, insets\.bottom, keyboardInset\)\)/);
 });

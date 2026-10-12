@@ -51,6 +51,7 @@ import {
 import { STORE_URL_IOS, STORE_URL_ANDROID } from '../app/config';
 import { DebugLogger } from '../app/debug-logger';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { noAndroidOutline } from '../constants/androidGlow';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 import { LinearGradient } from './SafeLinearGradient';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -632,7 +633,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 10 },
-    elevation: 12,
+    ...noAndroidOutline, // системная тень снята (см. androidGlow)
   },
   iconStage: {
     width: 72,
@@ -674,7 +675,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
+    ...noAndroidOutline, // системная тень снята (см. androidGlow)
   },
   primaryLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   secondaryButton: {

@@ -11,7 +11,9 @@ test('lesson intro C1–C3 uses the active Liquid Glass material while preservin
   assert.ok(intro.includes('<ScreenGradient forceFullBleed>'), 'background reaches the top safe area');
   assert.ok(intro.includes('glass={introGlass}'), 'intro cards receive the active glass material');
   assert.ok(intro.includes('const cardBg = glass.card'), 'intro cards use translucent glass surfaces');
-  assert.ok(intro.includes('borderColor: glass.glassEdge'), 'intro cards keep a glass edge');
+  // зачем (стиль «Тень» 12.10, координатор: красные сторожи): карточки интро отделены тенью плашки, без кромки (borderColor: glass.glassEdge снят).
+  assert.ok(intro.includes('boxShadow: plateBoxShadow(glass)'), 'intro cards are separated by the plate shadow');
+  assert.ok(!intro.includes('borderColor: glass.glassEdge'), 'intro cards have no glass edge');
   assert.ok(intro.includes('setRevealedCount((n) => Math.min(n + 1, totalBlocks))'), 'tap-to-reveal behavior remains real');
   assert.ok(intro.includes('onComplete();'), 'the existing start completion action remains wired');
 });
@@ -21,7 +23,8 @@ test('intro derives contrast and tangible glass layers from the rendered Liquid 
   // зачем: шапка теперь по макету C1 (заголовок + название + энергия на плоских тонах темы), пилюли уровня с цветом и блика нет.
   assert.ok(!intro.includes('isLightThemeMode(themeMode)'), 'legacy sagePorcelain mode cannot force a light-on-dark contrast branch');
   assert.ok(intro.includes('styles.glassSheen'), 'each intro card gets a static pointer-safe glass sheen');
-  assert.ok(intro.includes('borderWidth: StyleSheet.hairlineWidth'), 'glass borders have a visible positive hairline width');
+  // зачем (стиль «Тень» 12.10, координатор: красные сторожи): волосяных обводок у стекла больше нет.
+  assert.ok(!intro.includes('borderWidth: StyleSheet.hairlineWidth'), 'glass cards have no hairline border');
   assert.ok(intro.includes('<BlurView'), 'each of the bounded intro cards gets a real blur layer');
   assert.ok(intro.includes("Platform.OS === 'android' ? 'dimezisBlurView' : 'none'"), 'Android uses the approved experimental blur implementation');
   assert.ok(intro.includes("intensity={Platform.OS === 'android' ? 8 : 12}"), 'blur intensity stays low for the three animated cards');

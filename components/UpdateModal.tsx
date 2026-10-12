@@ -21,6 +21,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { noAndroidOutline } from '../constants/androidGlow';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 
@@ -304,7 +305,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 10 },
-    elevation: 12,
+    ...noAndroidOutline, // системная тень снята (см. androidGlow)
   },
   iconStage: {
     width: 72,
@@ -338,7 +339,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.22,
     shadowRadius: 8,
-    elevation: 5,
+    ...noAndroidOutline, // системная тень снята (см. androidGlow)
   },
   updateBtn: {
     minHeight: 48,

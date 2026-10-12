@@ -35,9 +35,10 @@ describe('public website global background contract', () => {
   const htmlFiles = collectHtmlFiles(WEBSITE_ROOT).sort();
   const humanFacingFiles = htmlFiles.filter((file) => !EXCLUDED_HTML.has(file));
 
-  it('classifies the complete 27-file HTML inventory with only justified shims excluded', () => {
-    expect(htmlFiles).toHaveLength(27);
-    expect(humanFacingFiles).toHaveLength(22);
+  it('classifies the complete 28-file HTML inventory with only justified shims excluded', () => {
+    // зачем (12.10, legal:sync; тест устарел): добавлена iOS-версия политики legal/privacy-ios/ — страница на общем одобренном оформлении, поэтому в инвентаре 28 файлов, из них 23 человеческих.
+    expect(htmlFiles).toHaveLength(28);
+    expect(humanFacingFiles).toHaveLength(23);
     expect([...EXCLUDED_HTML.keys()].sort()).toEqual([
       'googled573b3a1e90712e4.html',
       'links/index.html',

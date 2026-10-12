@@ -11,6 +11,7 @@ import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useEnergy } from '../components/EnergyContext';
+import { useTheme } from '../components/ThemeContext';
 import { applyDevState, isDevStateAvailable, parseDevStateParams, type DevStateResult } from './dev_state_fixtures';
 
 // зачем: потолок ожидания перечитывания энергии (см. комментарий в эффекте).
@@ -20,6 +21,8 @@ export default function DevStateRoute() {
   const params = useLocalSearchParams();
   const router = useRouter();
   const { reload } = useEnergy();
+  // зачем (храповик цветов, координатор 15.10): служебный экран робота берёт цвета у активной темы, а не хардкодом #111/#fff/#aaa.
+  const { theme: devTheme } = useTheme();
   const [result, setResult] = useState<DevStateResult | null>(null);
   const available = isDevStateAvailable();
 
@@ -78,12 +81,12 @@ export default function DevStateRoute() {
 
   if (!available) return <Redirect href="/" />;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24, backgroundColor: '#111' }}>
-      <Text testID={result ? 'dev-state-done' : 'dev-state-pending'} style={{ color: '#fff', fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24, backgroundColor: devTheme.bgPrimary }}>
+      <Text testID={result ? 'dev-state-done' : 'dev-state-pending'} style={{ color: devTheme.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
         {result ? 'DEV-STATE OK' : 'DEV-STATE…'}
       </Text>
       {result ? (
-        <Text style={{ color: '#aaa', fontSize: 13, lineHeight: 17, marginTop: 12 }}>{/* guard-ok: dev-экран робота, технический вывод, не интерфейс игрока */}
+        <Text style={{ color: devTheme.textMuted, fontSize: 13, lineHeight: 17, marginTop: 12 }}>{/* guard-ok: dev-экран робота, технический вывод, не интерфейс игрока */}
           {JSON.stringify({ applied: result.applied, skipped: result.skipped, next: result.next })}
         </Text>
       ) : null}

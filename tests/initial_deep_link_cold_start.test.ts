@@ -41,7 +41,7 @@ test('протухшая (старше минуты) или не-вкладоч�
 test('стартовый переход с корня открывает ссылку холодного старта вместо Главной', () => {
   const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
   const start = layout.indexOf("traceLessonExit('layout:rootIndex_replace_home'");
-  const block = layout.slice(Math.max(0, start - 600), start + 900);
+  const block = layout.slice(Math.max(0, start - 600), start + 2600); // зачем (R1): между трассировкой и replace встала ветка navigate без пересоздания каркаса
   expect(block).toContain('consumeInitialDeepLinkTarget()');
   expect(block).toContain("initialDeepLinkRef.current ?? '/(tabs)/home'");
   expect(block).toContain('router.replace(rootTarget as Href)');

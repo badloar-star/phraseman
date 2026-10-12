@@ -82,7 +82,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter, type Href } from 'expo-router';
+import { Stack, useGlobalSearchParams, usePathname, useRouter, useSegments, router as globalRouter, type Href } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -1195,6 +1195,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const isRootIndexRoute = !pathname || pathname === '/';
+  // зачем (R1, двойной монтаж Главной): стоим ли мы уже внутри группы (tabs) — от этого зависит, можно ли уйти с `/` на Главную без пересоздания каркаса (см. эффект root_replace ниже).
+  // useSegments типизирован union'ом всех маршрутов (TS2590 в массивах зависимостей) — сужаем до readonly string[] и держим в ref.
+  const rootSegments: readonly string[] = useSegments();
+  const rootSegmentsRef = useRef(rootSegments);
+  rootSegmentsRef.current = rootSegments;
   const insets = useStableSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);
@@ -1715,6 +1720,19 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       isBanned,
       target: rootTarget.split('?')[0],
     });
+    // зачем (R1, двойной монтаж Главной; журнал [PERF-R1-NAV] Сверки 12.10: REPLACE name="(tabs)" через ≈1,5 с после первого кадра, затем весь каркас монтируется заново): холодный старт стоит на `/` ВНУТРИ группы
+    // (tabs) — каркас табов уже показывает Главную. router.replace пересоздаёт маршрут (tabs) с новым ключом и перемонтирует весь каркас (≈1,8–2,1 с работы выбрасывается, устойчивый первый кадр откладывается).
+    // navigate на ту же вкладку маршрут не пересоздаёт — так же переключаются табы. Подстраховка: если за 600 мс путь так и остался корневым — прежний replace (с ценой перемонтажа, но экран не залипнет на `/`).
+    if (rootTarget === '/(tabs)/home' && rootSegmentsRef.current[0] === '(tabs)') {
+      traceLessonExit('layout:rootIndex_navigate_home', { segments: rootSegmentsRef.current.join('/'), target: rootTarget });
+      router.navigate(rootTarget as Href);
+      const navigateFallback = setTimeout(() => {
+        const stillRoot = !pathnameRef.current || pathnameRef.current === '/';
+        traceLessonExit('layout:rootIndex_navigate_home_check', { pathname: JSON.stringify(pathnameRef.current ?? null), stillRoot });
+        if (stillRoot) router.replace(rootTarget as Href);
+      }, 600);
+      return () => clearTimeout(navigateFallback);
+    }
     router.replace(rootTarget as Href);
     const retry = setTimeout(() => {
       traceLessonExit('layout:rootIndex_replace_home_retry', { pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname), target: rootTarget.split('?')[0] });

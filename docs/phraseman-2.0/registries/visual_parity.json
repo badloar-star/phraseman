@@ -2304,23 +2304,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-053.png",
+      "evidence_at": "2026-10-12T17:29:26.873Z",
+      "evidence_sha256": "84a68b493a604e59d10f32c1a880710b7f79fbe7cc6eb9f05eff9e378554d8fb",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Плюс: меню автора — только для автора набора."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?cards=demo_published"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №47 «Меню автора: закрепить / скрыть»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Плюс: меню автора — только для автора набора."
     },
     {
       "id": "cards-054",
@@ -2339,23 +2343,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-054.png",
+      "evidence_at": "2026-10-12T17:29:54.714Z",
+      "evidence_sha256": "ba4da39b0b90bb02a4b36b28710005a099b82952e096861bb1f840de8e837134",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "owner_prod_write",
         "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №48 «Меню своего: удалить»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
     {
       "id": "cards-055",
@@ -2374,23 +2382,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-055.png",
+      "evidence_at": "2026-10-12T17:30:25.203Z",
+      "evidence_sha256": "ade20d5e62e83d403368872d81ac8d1e8dac05ef9de48f7a35bad1347af3d763",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №49 «Меню чужого: пожаловаться»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»)."
     },
     {
       "id": "cards-056",
@@ -2411,23 +2423,27 @@
       "anim_notes": [
         "sk 1.3s linear infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-056.png",
+      "evidence_at": "2026-10-12T17:30:50.846Z",
+      "evidence_sha256": "3f8c5c72a85b90e864ab7ebd6b283d038411b7b154fc786b9026478b0bab437c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная). Состояние «не отправлено» — авиарежим при отправке."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "owner_prod_write",
         "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №50 «Отправляется · не отправлено»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная). Состояние «не отправлено» — авиарежим при отправке."
     },
     {
       "id": "cards-057",
@@ -2446,23 +2462,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-057.png",
+      "evidence_at": "2026-10-12T17:31:19.354Z",
+      "evidence_sha256": "1c777b12bcce0be520c7dbbba99049009330e6b28a6478bbceaf51f967b16bf4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Далее тап «⋯» → «Пожаловаться»."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №51 «Жалоба на комментарий»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Далее тап «⋯» → «Пожаловаться»."
     },
     {
       "id": "cards-058",
@@ -2481,23 +2501,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-058.png",
+      "evidence_at": "2026-10-12T17:31:44.566Z",
+      "evidence_sha256": "525ff77c5a2e1e9985a6ac16bde43cef11d0b3e364489c54462fc468a4e3f241",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "owner_prod_write",
         "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №52 «Жалоба на комментарий отправлена»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
     {
       "id": "cards-059",
@@ -2516,23 +2540,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-059.png",
+      "evidence_at": "2026-10-12T17:32:10.417Z",
+      "evidence_sha256": "1c6681578256e720661dd1143ee6dc1e4326549c7e70837770f9decf79105037",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "owner_prod_write",
         "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №53 «Жалоба на набор отправлена»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
     {
       "id": "cards-060",
@@ -2552,23 +2580,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-060.png",
+      "evidence_at": "2026-10-12T17:32:33.642Z",
+      "evidence_sha256": "458ac816987dd32859b7f4be4d692c549ace6869ed9217cd57b456f9e82b968d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не нужное состояние; ссылка ведёт только на список (шагов нет — «дальше тапами»).",
+        "[образец ≠ код] Строка «Проверка Plus — скелет» привязана к образцу «Новая карточка — превью живое», а в коде такого состояния нет (shouldGateCreator всегда false, fc-editor-skeleton только при мгновенном чтении карточки) — привязка образца неверна, решение за Дизайном/координатором."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:33:30.478Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "owner_by_code",
         "coverage_note": "cards-060: В коде нет: `shouldGateCreator` всегда false (creator_access.ts:31-36), `fc-editor-skeleton` показывается только на мгновенное чтение карточки при правке."
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-v2 №24 «Новая карточка — превью живое» против строки «Проверка Plus — скелет»): на кадре «Мои наборы» (загрузочные заглушки), образец — экран «Новая карточка» с живым превью."
     },
     {
       "id": "cards-061",

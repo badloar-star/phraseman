@@ -1,0 +1,129 @@
+=== cold1: сэмплов 752, длительность 14.0 с
+топ-12 функций по собственному времени (мс):
+     3631  [Host Function] __native_constructor__ @ [host]:0
+     2546  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:206
+      408  [Host Function] completeRoot @ [host]:0
+      325  [Host Function] getConstants @ [host]:0
+      323  [Host Function] send @ [host]:0
+      318  [Host Function] nativeLoggingHook @ [host]:0
+      284  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28436
+      272  [Native] functionPrototypeApply @ [native]:0
+      248  [Host Function] log @ [host]:0
+      232  [Host Function] getConstantsForViewManager @ [host]:0
+      229  [Host Function] warn @ [host]:0
+      210  [Host Function] multiGet @ [host]:0
+окна по 0,5 с (занято, мс из окна) и главная функция:
+  + 0.0 с занято  500/ 500  [Host Function] getConstants @ [host]:0 246
+  + 0.5 с занято  509/ 509  [Host Function] getConstantsForViewManager @ [host]:0 199
+  + 1.0 с занято  518/ 518  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 122
+  + 1.5 с занято  466/ 485  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 253
+  + 2.0 с занято  496/ 496  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 188
+  + 2.5 с занято  472/ 500  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 383
+  + 3.0 с занято  494/ 494  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 384
+  + 3.5 с занято  513/ 513  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 346
+  + 4.0 с занято  484/ 528  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 330
+  + 4.5 с занято  446/ 469  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28 156
+  + 5.0 с занято  419/ 497  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 73
+  + 5.5 с занято  390/ 498  [Host Function] completeRoot @ [host]:0 53
+  + 6.0 с занято  497/ 497  [Native] functionPrototypeApply @ [native]:0 63
+  + 6.5 с занято  479/ 497  [Host Function] completeRoot @ [host]:0 111
+  + 7.0 с занято  499/ 499  [Host Function] completeRoot @ [host]:0 202
+  + 7.5 с занято  524/ 524  [Host Function] __native_constructor__ @ [host]:0 423
+  + 8.0 с занято  481/ 481  [Host Function] __native_constructor__ @ [host]:0 481
+  + 8.5 с занято  496/ 496  [Host Function] __native_constructor__ @ [host]:0 496
+  + 9.0 с занято  504/ 504  [Host Function] __native_constructor__ @ [host]:0 504
+  + 9.5 с занято  496/ 496  [Host Function] __native_constructor__ @ [host]:0 496
+  +10.0 с занято  512/ 512  [Host Function] __native_constructor__ @ [host]:0 512
+  +10.5 с занято  445/ 548  [Host Function] __native_constructor__ @ [host]:0 445
+  +11.0 с занято  350/ 445  [Host Function] log @ [host]:0 71
+  +11.5 с занято  486/ 518  [Host Function] __native_constructor__ @ [host]:0 224
+  +12.0 с занято  463/ 510  [Host Function] warn @ [host]:0 72
+  +12.5 с занято  446/ 468  [Host Function] send @ [host]:0 108
+  +13.0 с занято  459/ 503  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 234
+  +13.5 с занято  390/ 513  rotateRight @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:363878 56
+=== cold2: сэмплов 795, длительность 14.0 с
+топ-12 функций по собственному времени (мс):
+     3323  [Host Function] __native_constructor__ @ [host]:0
+     2364  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:206
+      393  [Native] functionPrototypeApply @ [native]:0
+      348  [Host Function] send @ [host]:0
+      335  [Host Function] getConstants @ [host]:0
+      284  [Host Function] completeRoot @ [host]:0
+      279  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28436
+      245  [Host Function] nativeLoggingHook @ [host]:0
+      217  [Host Function] getConstantsForViewManager @ [host]:0
+      196  [Host Function] promiseFn @ [host]:0
+      171  [Host Function] log @ [host]:0
+      161  [root] @ [root]:0
+окна по 0,5 с (занято, мс из окна) и главная функция:
+  + 0.0 с занято  508/ 527  [Host Function] getConstants @ [host]:0 203
+  + 0.5 с занято  504/ 504  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 161
+  + 1.0 с занято  460/ 480  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 75
+  + 1.5 с занято  479/ 498  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 317
+  + 2.0 с занято  497/ 497  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 230
+  + 2.5 с занято  472/ 497  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 406
+  + 3.0 с занято  490/ 511  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 305
+  + 3.5 с занято  495/ 511  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 362
+  + 4.0 с занято  437/ 479  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 145
+  + 4.5 с занято  439/ 500  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28 120
+  + 5.0 с занято  440/ 511  [Native] functionPrototypeApply @ [native]:0 110
+  + 5.5 с занято  426/ 486  propagateParentContextChanges @ &platform=android&dev=true&lazy=false&minify=false&app=app 46
+  + 6.0 с занято  491/ 529  [Host Function] warn @ [host]:0 80
+  + 6.5 с занято  397/ 480  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28 75
+  + 7.0 с занято  406/ 500  [Host Function] completeRoot @ [host]:0 184
+  + 7.5 с занято  494/ 494  [Host Function] __native_constructor__ @ [host]:0 358
+  + 8.0 с занято  497/ 497  [Host Function] __native_constructor__ @ [host]:0 497
+  + 8.5 с занято  512/ 512  [Host Function] __native_constructor__ @ [host]:0 512
+  + 9.0 с занято  503/ 503  [Host Function] __native_constructor__ @ [host]:0 503
+  + 9.5 с занято  492/ 492  [Host Function] __native_constructor__ @ [host]:0 492
+  +10.0 с занято  489/ 519  [Host Function] __native_constructor__ @ [host]:0 174
+  +10.5 с занято  439/ 480  [Host Function] nativeLoggingHook @ [host]:0 78
+  +11.0 с занято  480/ 506  [Host Function] __native_constructor__ @ [host]:0 277
+  +11.5 с занято  489/ 489  [Host Function] __native_constructor__ @ [host]:0 357
+  +12.0 с занято  438/ 506  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 221
+  +12.5 с занято  442/ 497  [Host Function] __native_constructor__ @ [host]:0 60
+  +13.0 с занято  462/ 501  [Host Function] __native_constructor__ @ [host]:0 75
+  +13.5 с занято  479/ 511  [Host Function] digest @ [host]:0 58
+=== cold3: сэмплов 781, длительность 14.0 с
+топ-12 функций по собственному времени (мс):
+     3809  [Host Function] __native_constructor__ @ [host]:0
+     2331  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:206
+      450  [Native] functionPrototypeApply @ [native]:0
+      424  [Host Function] send @ [host]:0
+      362  [Host Function] multiGet @ [host]:0
+      360  [Host Function] getConstants @ [host]:0
+      294  [Host Function] getConstantsForViewManager @ [host]:0
+      250  [Host Function] nativeLoggingHook @ [host]:0
+      219  [Host Function] completeRoot @ [host]:0
+      217  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28436
+      200  [Host Function] log @ [host]:0
+      169  [Host Function] warn @ [host]:0
+окна по 0,5 с (занято, мс из окна) и главная функция:
+  + 0.0 с занято  515/ 515  [Host Function] getConstants @ [host]:0 203
+  + 0.5 с занято  496/ 496  [Host Function] getConstantsForViewManager @ [host]:0 294
+  + 1.0 с занято  492/ 514  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 227
+  + 1.5 с занято  483/ 483  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 189
+  + 2.0 с занято  494/ 494  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 207
+  + 2.5 с занято  498/ 514  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 437
+  + 3.0 с занято  463/ 484  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 351
+  + 3.5 с занято  481/ 501  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 341
+  + 4.0 с занято  460/ 501  [Native] intlDateTimeFormatConstructor @ [native]:0 109
+  + 4.5 с занято  484/ 506  react-stack-bottom-frame @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:28 102
+  + 5.0 с занято  474/ 496  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 64
+  + 5.5 с занято  398/ 515  [Host Function] multiGet @ [host]:0 41
+  + 6.0 с занято  442/ 487  [Native] functionPrototypeApply @ [native]:0 89
+  + 6.5 с занято  443/ 500  [Host Function] completeRoot @ [host]:0 141
+  + 7.0 с занято  440/ 512  [Host Function] send @ [host]:0 79
+  + 7.5 с занято  490/ 490  [Host Function] __native_constructor__ @ [host]:0 142
+  + 8.0 с занято  495/ 495  [Host Function] __native_constructor__ @ [host]:0 495
+  + 8.5 с занято  498/ 498  [Host Function] __native_constructor__ @ [host]:0 498
+  + 9.0 с занято  504/ 504  [Host Function] __native_constructor__ @ [host]:0 504
+  + 9.5 с занято  510/ 510  [Host Function] __native_constructor__ @ [host]:0 510
+  +10.0 с занято  498/ 498  [Host Function] __native_constructor__ @ [host]:0 498
+  +10.5 с занято  493/ 493  [Host Function] __native_constructor__ @ [host]:0 438
+  +11.0 с занято  415/ 506  [Host Function] nativeLoggingHook @ [host]:0 115
+  +11.5 с занято  493/ 493  [Host Function] __native_constructor__ @ [host]:0 92
+  +12.0 с занято  498/ 498  [Host Function] __native_constructor__ @ [host]:0 498
+  +12.5 с занято  526/ 526  [Host Function] __native_constructor__ @ [host]:0 121
+  +13.0 с занято  434/ 484  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 200
+  +13.5 с занято  446/ 490  loadModuleImplementation @ &platform=android&dev=true&lazy=false&minify=false&app=app.p:20 125

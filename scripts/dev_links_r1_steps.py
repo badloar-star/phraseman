@@ -246,17 +246,19 @@ add('profile-026', [], 'referral=off', '/referrals', note='приглашени�
 PROMO = '/promo_code_entry'
 PROMO_TYPE = ['tap:#promo-code-input', 'type:TESTCODE']
 PROMO_SEND = PROMO_TYPE + ['tap:#promo-code-submit']
+# зачем (координатор 12.10): кадры ответов overlays-campaigns-009…012/015 снимались с открытой клавиатурой — после ввода кода `back` закрывает её (экран остаётся: пока поле в фокусе, первый back гасит только клавиатуру), затем отправка.
+PROMO_SEND_NOKB = PROMO_TYPE + ['back', 'tap:#promo-code-submit']
 PROMO_BASE = 'plus=off&energy=3'
 add('overlays-campaigns-004', [], PROMO_BASE, PROMO, note='ввод промокода — пусто')
 add('overlays-campaigns-005', PROMO_TYPE, PROMO_BASE, PROMO, note='введён код — кнопка активна («можно применить»)')
 add('overlays-campaigns-007', PROMO_SEND, PROMO_BASE + '&promo=ok', PROMO, note='ответ «срок подтверждён» (promo=ok)')
 add('overlays-campaigns-008', PROMO_SEND, PROMO_BASE + '&promo=lifetime', PROMO, note='ответ «бессрочно» (promo=lifetime)')
-add('overlays-campaigns-009', PROMO_SEND, PROMO_BASE + '&promo=not_found', PROMO, note='ответ «не найден»')
-add('overlays-campaigns-010', PROMO_SEND, PROMO_BASE + '&promo=expired', PROMO, note='ответ «истёк»')
-add('overlays-campaigns-011', PROMO_SEND, PROMO_BASE + '&promo=limit', PROMO, note='ответ «лимит исчерпан»')
-add('overlays-campaigns-012', PROMO_SEND, PROMO_BASE + '&promo=used', PROMO, note='ответ «уже использован»')
+add('overlays-campaigns-009', PROMO_SEND_NOKB, PROMO_BASE + '&promo=not_found', PROMO, note='ответ «не найден»')
+add('overlays-campaigns-010', PROMO_SEND_NOKB, PROMO_BASE + '&promo=expired', PROMO, note='ответ «истёк»')
+add('overlays-campaigns-011', PROMO_SEND_NOKB, PROMO_BASE + '&promo=limit', PROMO, note='ответ «лимит исчерпан»')
+add('overlays-campaigns-012', PROMO_SEND_NOKB, PROMO_BASE + '&promo=used', PROMO, note='ответ «уже использован»')
 add('overlays-campaigns-014', PROMO_SEND, PROMO_BASE + '&promo=disabled', PROMO, note='ответ «промокод отключён»')
-add('overlays-campaigns-015', PROMO_SEND, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')
+add('overlays-campaigns-015', PROMO_SEND_NOKB, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')
 
 
 # ───────────────────────── Код от друга (шит на «Награда за друга», макет referral-code-states.html) ─────────────────────────
@@ -408,7 +410,8 @@ add('settings-gap-005', ['see:#settings-plus-access-details'], 'vip=referral&plu
 CACHE_CLEAR = ['see:#settings-clear-cache-row', 'tap:#settings-clear-cache-row', 'tap:Очистить', 'wait:300']
 add('settings-gap-030', [], 'plus=off&referral=off', SETTINGS, note='«Пригласить друга» скрыта (referral=off — рубильник приглашений)')
 add('settings-gap-029', ['see:#settings-message-slot-top'], 'plus=off&slot=top', SETTINGS, note='верхний слот сообщений в Настройках (slot=top)')
-add('settings-gap-008', CACHE_CLEAR, 'plus=off&slot=poll_voted', SETTINGS, note='«Очистить кеш» → подтвердить → «Готово» (итог гаснет через 2,2 с — кадр на грани) + слот: опрос после голосования')
+# зачем (координатор 12.10, Дизайн 016488a3c — сид опроса): сразу после «Готово» (оно гаснет за 2,2 с) подкручиваем нижний слот сообщения, чтобы опрос после голосования был над панелью вкладок, и снимаем без паузы (settle:0).
+add('settings-gap-008', CACHE_CLEAR + ['see:#settings-message-slot-bottom', 'settle:0'], 'plus=off&slot=poll_voted&cache=ok', SETTINGS, note='«Очистить кеш» → подтвердить → «Готово» (итог гаснет через 2,2 с — кадр на грани) + слот: опрос после голосования')
 add('settings-gap-009', CACHE_CLEAR, 'plus=off&slot=message&cache=failed', SETTINGS, note='«Очистить кеш» → подтвердить → «не удалось» (cache=failed, итог живёт 3,2 с) + слот без опроса')
 add('settings-gap-028', ['tap:#notif-time-label'], S_FREE, '/settings_notifications', note='окно выбора времени (строка «Время» активна, если ежедневное напоминание включено)')
 

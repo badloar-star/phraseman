@@ -15,7 +15,7 @@
 //
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -149,6 +149,17 @@ export default function SpireHomeScreen() {
 
   const unlocked = config !== null && config.enabled === true;
   const spireLang = asSpireLang(studyTarget);
+  // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка неделя и выбранный этаж старого языка не должны оставаться до конца чтения новой недели.
+  const prevSpireLangRef = useRef(spireLang);
+  useEffect(() => {
+    const before = prevSpireLangRef.current;
+    if (before === spireLang) return;
+    prevSpireLangRef.current = spireLang;
+    console.log('[SPIRE-TARGET] home: язык', JSON.stringify({ from: before, to: spireLang, reset: { weekFloor: week ? week.floor : null, selected } })); // guard-ok: трассировка сброса при смене изучаемого языка
+    setWeek(null);
+    setSelected(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spireLang]);
 
   useEffect(() => {
     if (!unlocked || preview) return undefined;

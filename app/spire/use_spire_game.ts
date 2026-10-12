@@ -113,6 +113,30 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const weekRef = useRef(week);
   weekRef.current = week;
 
+  // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка без перезапуска на экране оставались комната, друзья, итог недели и шаг СТАРОГО языка.
+  // Сброс по lang (кроме первого монтирования) идёт ДО загрузчиков ниже, поздние ответы старого языка отсекает их флаг alive. Идентичность и идущий старт не трогаем.
+  const prevLangRef = useRef<SpireLang | null>(lang);
+  useEffect(() => {
+    const before = prevLangRef.current;
+    if (before === lang) return;
+    prevLangRef.current = lang;
+    console.log('[SPIRE-TARGET] use_spire_game: язык', JSON.stringify({ // guard-ok: трассировка сброса при смене изучаемого языка
+      from: before, to: lang,
+      reset: { roomLoad: roomLoad?.status ?? null, friends: friends.length, weekResult: weekResult !== null, session: session !== null, pending: pending !== null, outcome: outcome?.kind ?? null, startBlock },
+      kept: { ids: ids !== null, starting: startingRef.current },
+    }));
+    setRoomLoad(null);
+    setFriends([]);
+    setWeekResult(null);
+    setSession(null);
+    setPending(null);
+    prepIdRef.current = null;
+    setOutcome(null);
+    setStartBlock(null);
+    lastReportRef.current = null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
   // ── Идентичность: только за воротами (без ворот не нужен даже uid) ──
   useEffect(() => {
     if (!gate) return undefined;

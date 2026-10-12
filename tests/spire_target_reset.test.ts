@@ -1,0 +1,37 @@
+// зачем (аудит §AUTH-0110, координатор 15.10): смена изучаемого языка без перезапуска сбрасывает комнату, друзей, итог недели, шаг и выбранный этаж старого языка; лог [SPIRE-TARGET].
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const read = (...p: string[]) => readFileSync(join(__dirname, '..', ...p), 'utf8').replace(/\r\n/g, '\n');
+
+describe('Шпиль: смена изучаемого языка', () => {
+  const game = read('app', 'spire', 'use_spire_game.ts');
+  const home = read('components', 'spire', 'SpireHomeScreen.tsx');
+
+  it('игра: сброс идёт по lang ДО загрузчиков, идентичность и идущий старт не трогаются', () => {
+    const reset = game.indexOf('const prevLangRef');
+    expect(reset).toBeGreaterThan(0);
+    expect(reset).toBeLessThan(game.indexOf('// ── Идентичность'));
+    expect(game).toMatch(/if \(before === lang\) return;/);
+    for (const s of ['setRoomLoad(null)', 'setFriends([])', 'setWeekResult(null)', 'setSession(null)', 'setPending(null)', 'setOutcome(null)', 'setStartBlock(null)']) {
+      const body = game.slice(reset, game.indexOf('// ── Идентичность'));
+      expect(body).toContain(s);
+    }
+    const body = game.slice(reset, game.indexOf('// ── Идентичность'));
+    expect(body).not.toContain('setIds(');
+    expect(body).not.toContain('startingRef.current =');
+  });
+
+  it('экран: неделя и выбранный этаж сбрасываются при смене языка, до чтения новой недели', () => {
+    const at = home.indexOf('const prevSpireLangRef');
+    expect(at).toBeGreaterThan(0);
+    expect(at).toBeLessThan(home.indexOf('readCurrentLocalWeek(spireLang)'));
+    expect(home).toMatch(/if \(before === spireLang\) return;/);
+    expect(home).toMatch(/setWeek\(null\);\s+setSelected\(null\);/);
+  });
+
+  it('оба сброса пишут [SPIRE-TARGET] с было/стало', () => {
+    expect(game).toMatch(/\[SPIRE-TARGET\] use_spire_game: язык[\s\S]*from: before, to: lang/);
+    expect(home).toMatch(/\[SPIRE-TARGET\] home: язык[\s\S]*from: before, to: spireLang/);
+  });
+});

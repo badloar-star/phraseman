@@ -266,17 +266,24 @@ export function DialogueV2SessionScreen({
   // выход идёт через подтверждение, чтобы случайный тап/жест не стирал разговор.
   const hasConversation = messages.length > 0;
   const requestBack = React.useCallback(() => {
+    // зачем (сверка dialogs-036, «сперва логи»): ссылка открыла Главную вместо «Выйти из диалога?» — окно показывается только после первой реплики; ветка и значения, которые её решили, — в журнал
+    console.log(`[DLG-EXIT] back:request hasConversation=${hasConversation} messages=${messages.length} bottom=${String(bottom)} → ${hasConversation && bottom !== 'summary' ? 'exit_sheet' : 'leave_now'}`);
     if (hasConversation && bottom !== 'summary') setExitOpen(true);
     else onBack();
-  }, [bottom, hasConversation, onBack]);
+  }, [bottom, hasConversation, messages.length, onBack]);
   React.useEffect(() => {
-    if (!hasConversation || bottom === 'summary') return undefined;
+    if (!hasConversation || bottom === 'summary') {
+      console.log(`[DLG-EXIT] backhandler:disarmed hasConversation=${hasConversation} bottom=${String(bottom)} — системная «назад» выходит сразу, окна подтверждения не будет`);
+      return undefined;
+    }
+    console.log(`[DLG-EXIT] backhandler:armed messages=${messages.length} bottom=${String(bottom)} — «назад» откроет «Выйти из диалога?»`);
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log('[DLG-EXIT] backhandler:press → exit_sheet');
       setExitOpen(true);
       return true;
     });
     return () => sub.remove();
-  }, [bottom, hasConversation]);
+  }, [bottom, hasConversation, messages.length]);
 
   const openGoals = React.useCallback(() => setGoalsOpen(true), []);
   const openHint = React.useCallback(() => setHintOpen(true), []);

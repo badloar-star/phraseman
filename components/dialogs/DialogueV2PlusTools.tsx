@@ -1,11 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { triLang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useLang } from '../LangContext';
 import { PressableScale } from '../feedback/PressableScale';
+import { LinearGradient } from '../SafeLinearGradient';
+import { glassTone } from './glass/glassTone';
 import { nestedBoxShadow, PlateFill, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../v2/ShadowSurface';
 import { useV2Palette } from '../v2/useV2Palette';
 
@@ -77,8 +79,19 @@ export function DialogueV2PlusTools({
           }}
         >
           <PlateFill g={g} radius={V2.radius.row} raised />
-          {/* зачем (координатор 12.10, dialogs-001/002; эталон «Тень» etalon.html .dc): плитка 52×52 радиус 18, значок 26 в цвете темы, как у «Свободного разговора» в утверждённом образце */}
-          <View style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
+          {/* зачем (сверка dialogs-001/002, образец dialogs.html `.fr`): плашка «Свободный разговор» окрашена акцентом темы — перелив 135° от 14% акцента к нулю на 70% (в образце мятный при «Аврора»; в «Спокойно» акцент нейтральный — тон светлее плиты).
+              Цвет — токен accentText с малой альфой, не hex: смена темы красит плашку сама. Слой не ловит нажатия. */}
+          <LinearGradient
+            pointerEvents="none"
+            testID="dialogue-v2-freeform-tint"
+            colors={[glassTone(g.accentText, 0.14), glassTone(g.accentText, 0)]}
+            locations={[0, 0.7]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[StyleSheet.absoluteFill, { borderRadius: V2.radius.row }]}
+          />
+          {/* зачем (координатор 12.10, dialogs-001/002; эталон «Тень» etalon.html .dc): плитка 52×52 радиус 18, значок 26 в цвете темы, как у «Свободного разговора» в утверждённом образце; заливка плитки — 22% акцента темы (образец `.fr .fi`, сверка dialogs-001/002) */}
+          <View testID="dialogue-v2-freeform-tile" style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: glassTone(g.accentText, 0.22), boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name={row.icon} size={26} color={g.accentText} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>

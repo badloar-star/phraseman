@@ -12,6 +12,8 @@ Governance-ID: TG-02450FFAFE94
 Governance-ID: TG-4BE9A1ABB213
 Governance-ID: TG-85112C842AA6
 Governance-ID: TG-E8FACE757646
+Governance-ID: TG-F85B08D8148A
+Governance-ID: TG-D2D0D76CF923
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» по заданию координатора (12.10, вечер)
 Related epic/enabler: docs/phraseman-2.0/R1_THEMEMODE_LEGACY_MAP.md, макеты Макетов

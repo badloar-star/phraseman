@@ -38,3 +38,20 @@
 - **Уроки (`lessons.tsx`)**: заливка карточек A1–B2 по токенам; мертвые ветки gold/olive/light.
 - **Серия/Статистика (`streak_stats.tsx`, `LiveStreakFlame`, `streakIconAssets.ts`, `ActivityHeatmap365.tsx`)**: шеврон на светлой теме; бирюзовое свечение пера; зелёная тепловая карта.
 - **Дизайн (`MedalToast.tsx`, `CardPackShardPaywallModal.tsx`, `useCollectionData.ts`)**: подключить функции «из токенов».
+
+## `accentBright` как ЗАЛИВКА под `accentInk` (задача Дизайна, 12.10)
+
+Проблема: в светлых градиентных темах (aurora, iris, magma, midnight, champagne, jade, orchid, ice, coral, lilac; уровни accent/max) `accentBright` — глубокий тон
+для ссылок/значков (`liquidGlassGradientThemes.ts`, светлая ветка: `accentBright = accentText`), текст `accentInk` на нём 1,2–2,3:1.
+Решение на уровне токенов: `constants/accentFill.ts` — `accentFillBright(t)` / `accentFillGradient(t)`: яркий конец заливки допускается, только если
+`colorContrast(accentInk, accentBright) ≥ 4,5`, иначе обе половины — `accent`. Пара `accent`/`accentInk` проверена тестом `tests/accent_fill_contrast.test.ts`
+по ВСЕМ 23 темам × тёмное/светлое × 5 оттенков ползунка (230 случаев, зелёные).
+
+Места, где `accentBright` — заливка под `accentInk` (надо перейти на `accentFillGradient(g)`):
+| Файл:строка | Что | Статус |
+|---|---|---|
+| `components/paywall/PaywallPlus.tsx:358` | главная кнопка покупки `[g.accentBright, g.accent]` + текст `g.accentInk` | **дефект на светлых градиентных темах**, пейволы — владельцу пейволов |
+| `components/paywall/PaywallTrialReminderPrompt.tsx:68` | кнопка «разрешить» `[g.accentBright, g.accent]` + `g.accentInk` | то же |
+| `app/flashcards/cardPackPaywallTokenTheme.ts:17–18` | уже закрыто локальной проверкой (Дизайн, cb7586152) | можно заменить на `accentFillGradient` (тот же результат) |
+Не заливки под текстом (правок не нужно): `ThemedArt*`/`art_tint.ts` (оттенок арта), `StreakFlameFill.tsx:74` (заливка пера без текста),
+`V2TabBar.tsx:378`, `LessonMenuGlass.tsx:27`, `StatsPremiumBlur.tsx:131`, `settings_themes.tsx:85`, `v2StyleGlassVariant.ts:58` (цвет значка/текста — глубокий тон здесь именно нужен).

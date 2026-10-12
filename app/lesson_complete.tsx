@@ -1596,7 +1596,7 @@ export default function LessonComplete() {
           <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginBottom: 14 }}>
             <DuoPressable
               testID="lesson-complete-repeat"
-              edgeColor={t.accent}
+              edgeColor={liquidGlassTokens(liquidGlassThemeId).accentBorder}
               disabled={repeatOpening}
               accessibilityState={{ busy: repeatOpening }}
               pressedExternally={repeatOpening}
@@ -1604,7 +1604,6 @@ export default function LessonComplete() {
               style={{
                 width: '100%', backgroundColor: glassFill(t.bgCard, 0.46),
                 borderRadius: 16, padding: 16,
-                borderWidth: 0, borderColor: t.accent,
                 flexDirection: 'row', justifyContent: 'center', gap: 8,
                 overflow: 'hidden',
               }}

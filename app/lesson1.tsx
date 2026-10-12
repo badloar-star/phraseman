@@ -30,6 +30,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
 import { theoryEntryFor, triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
+import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
@@ -590,6 +591,7 @@ const LessonContent = React.memo(function LessonContent({
   lessonTheorySupportBlocked,
   lessonHintSupportBlocked,
 }: LessonContentProps) {
+  const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
   const { bottomInset } = useScreen();
@@ -1230,8 +1232,8 @@ const LessonContent = React.memo(function LessonContent({
                 returnKeyType="done"
                 autoCapitalize="none"
                 autoCorrect={false}
-                cursorColor={t.accent}
-                selectionColor={`${t.accent}55`}
+                cursorColor={accentGfx.border}
+                selectionColor={`${accentGfx.border}55`}
                 blurOnSubmit={false}
                 editable={status === 'playing'}
               />

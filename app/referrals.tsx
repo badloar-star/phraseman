@@ -721,7 +721,7 @@ export default function ReferralsScreen() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 8,
-                    backgroundColor: spinCredits > 0 ? glassFill(t.bgSurface, 0.46) : t.accent,
+                    backgroundColor: spinCredits > 0 ? glassFill(t.bgSurface, 0.46) : t.accent, // light-accent-ok: кнопка с подписью textOnGold на accent (читается по подписи)
                     opacity: inviteBusy ? 0.7 : 1,
                   }}
                 >

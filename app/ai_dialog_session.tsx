@@ -20,6 +20,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { File } from 'expo-file-system';
 import { useTheme } from '../components/ThemeContext';
+import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -258,6 +259,7 @@ function dialogRetryLabel(lang: Lang): string {
 
 function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const { theme: t, f } = useTheme();
+  const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
@@ -3265,7 +3267,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   quota={speechNa ? { ...voiceInputGate.quota, limit: null } : voiceInputGate.quota}
                   size="sm"
                   spentColor={voiceInputStatus === 'listening' ? `${t.textOnGold}59` : t.textMuted}
-                  remainingColor={voiceInputStatus === 'listening' ? t.textOnGold : t.accent}
+                  remainingColor={voiceInputStatus === 'listening' ? t.textOnGold : accentGfx.border}
                   style={{ position: 'absolute', left: 0, right: 0, bottom: 6 }}
                   testID="ai-dialog-voice-quota-dots"
                 />

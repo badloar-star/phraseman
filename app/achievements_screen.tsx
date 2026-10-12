@@ -1087,7 +1087,7 @@ export default function AchievementsScreen() {
         )}
       </LinearGradient>
     );
-  }, [f.body, f.caption, f.h3, f.sub, lang, stateMap, t.accent, t.bgCard, t.bgSurface, t.bgSurface2, t.border, t.borderHighlight, t.shadowDark, t.textMuted, t.textPrimary, t.textSecond, themeMode]);
+  }, [f.body, f.caption, f.h3, f.sub, lang, stateMap, t.bgCard, t.bgSurface, t.bgSurface2, t.border, t.borderHighlight, t.shadowDark, t.textMuted, t.textPrimary, t.textSecond, themeMode]);
   // зачем: nearestAchievements (питал удалённую секцию «Ближайшие награды») больше не нужен
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {

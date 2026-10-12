@@ -26,6 +26,7 @@ import {
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
+import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
@@ -152,6 +153,7 @@ function AiCompanionPlusGate({ children }: { children: React.ReactNode }) {
 
 function AiCompanionSession() {
   const { theme: t, f } = useTheme();
+  const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   const { hasPremiumAccess, accessResolved } = usePremium();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
@@ -534,7 +536,7 @@ function AiCompanionSession() {
               <AiTypingBubble
                 bubbleColor={t.bgCard}
                 borderColor={t.border}
-                dotColor={t.accent}
+                dotColor={accentGfx.border}
                 glowColor={t.accent + '18'}
               />
             ) : null}

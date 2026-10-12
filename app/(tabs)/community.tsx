@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useAccentGraphics } from '../../hooks/use_accent_graphics';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
 import { useLang } from '../../components/LangContext';
@@ -45,6 +46,7 @@ function sectionFromParam(value: unknown): Section | null {
 export default function CommunityTabRoute() {
   const { lang } = useLang();
   const p = useV2Palette();
+  const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   const pathname = usePathname();
   const { section: sectionParam } = useLocalSearchParams<{ section?: string }>();
   const { runtimeOwnerId } = useTabNav();
@@ -141,7 +143,7 @@ export default function CommunityTabRoute() {
                 onPress={() => setSection(seg.key)}
                 hitSlop={{ top: 12, bottom: 6, left: 8, right: 8 }}
                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
-                style={[s.tab, { borderBottomColor: on ? p.accent : 'transparent' }]}
+                style={[s.tab, { borderBottomColor: on ? accentGfx.border : 'transparent' }]}
               >
                 <Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>
               </Pressable>

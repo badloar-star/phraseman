@@ -1124,7 +1124,7 @@ export default function FlashcardsRecallSession() {
                   onSubmitEditing={checkAnswer}
                   placeholder={copy.placeholder}
                   placeholderTextColor={t.textGhost}
-                  selectionColor={t.accent}
+                  selectionColor={recallGlass.accentBorder}
                   maxLength={MAX_INPUT_LENGTH}
                   multiline
                   autoCorrect={false}

@@ -168,7 +168,7 @@ export default function MotionShowcaseScreen() {
                                 : 'time-outline'
                         }
                         size={16}
-                        color={disabled ? t.textGhost : t.accent}
+                        color={disabled ? t.textGhost : t.accentText}
                       />
                     </View>
                   </TapScale>

@@ -44,6 +44,7 @@ import {
 // зачем: секция «Ближайшие награды» удалена с экрана — импорт больше не нужен здесь
 // (achievement_nearest.ts остаётся, у него свой тест-файл achievement_nearest.test.ts)
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import type { ThemeMode } from '../constants/theme';
 import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
 import { buildAchievementShareMessage } from './achievement_share';
@@ -166,41 +167,13 @@ const CAT_ICON_IMAGE: Record<string, any> = {
   combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
   special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
 };
-const CAT_LABEL_RU: Record<string, string> = {
-  streak: 'Цепочка', lessons: 'Уроки',
-  combo: 'Серии', special: 'Особые', medal: 'Медали',
-};
-const CAT_LABEL_UK: Record<string, string> = {
-  streak: 'Ланцюжок', lessons: 'Уроки',
-  combo: 'Серії', special: 'Особливі', medal: 'Медалі',
-};
-const CAT_LABEL_EN: Record<string, string> = {
-  streak: 'Streak', lessons: 'Lessons',
-  combo: 'Combos', special: 'Special', medal: 'Medals',
-};
-const CAT_LABEL_ES: Record<string, string> = {
-  streak: 'Racha', lessons: 'Lecciones',
-  combo: 'Series', special: 'Especiales', medal: 'Medallas',
-};
-const CAT_LABEL_PTBR: Record<string, string> = {
-  streak: 'Sequência', lessons: 'Lições',
-  combo: 'Séries', special: 'Especiais', medal: 'Medalhas',
-};
-const CAT_LABEL_VI: Record<string, string> = {
-  streak: 'Chuỗi ngày', lessons: 'Bài học',
-  combo: 'Chuỗi', special: 'Đặc biệt', medal: 'Huy chương',
-};
-const CAT_LABEL_ID: Record<string, string> = {
-  streak: 'Rangkaian', lessons: 'Pelajaran',
-  combo: 'Seri', special: 'Spesial', medal: 'Medali',
-};
-const CAT_LABEL_TR: Record<string, string> = {
-  streak: 'Seri', lessons: 'Dersler',
-  combo: 'Seriler', special: 'Özel', medal: 'Madalyalar',
-};
-const CAT_LABEL_PL: Record<string, string> = {
-  streak: 'Seria', lessons: 'Lekcje',
-  combo: 'Serie', special: 'Specjalne', medal: 'Medale',
+// зачем (EN_READINESS_R1, 12.10): названия категорий — через triLang по одной строке на категорию (раньше девять словарей по языкам, русский и украинский стояли вне triLang и считались непереведёнными)
+const CAT_LABELS: Record<string, Record<Lang, string>> = {
+  streak: { ru: 'Цепочка', uk: 'Ланцюжок', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi ngày', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' },
+  lessons: { ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
+  combo: { ru: 'Серии', uk: 'Серії', en: 'Combos', es: 'Series', 'pt-BR': 'Séries', vi: 'Chuỗi', id: 'Seri', tr: 'Seriler', pl: 'Serie' },
+  special: { ru: 'Особые', uk: 'Особливі', en: 'Special', es: 'Especiales', 'pt-BR': 'Especiais', vi: 'Đặc biệt', id: 'Spesial', tr: 'Özel', pl: 'Specjalne' },
+  medal: { ru: 'Медали', uk: 'Медалі', en: 'Medals', es: 'Medallas', 'pt-BR': 'Medalhas', vi: 'Huy chương', id: 'Medali', tr: 'Madalyalar', pl: 'Medale' },
 };
 
 const CATEGORIES = ['streak', 'lessons', 'combo', 'special', 'medal'] as const;
@@ -214,17 +187,7 @@ function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): str
     });
   }
 
-  return triLang(lang, {
-    ru: CAT_LABEL_RU[category],
-    uk: CAT_LABEL_UK[category],
-    en: CAT_LABEL_EN[category],
-    es: CAT_LABEL_ES[category],
-    'pt-BR': CAT_LABEL_PTBR[category],
-    vi: CAT_LABEL_VI[category],
-    id: CAT_LABEL_ID[category],
-    tr: CAT_LABEL_TR[category],
-    pl: CAT_LABEL_PL[category],
-  });
+  return triLang(lang, CAT_LABELS[category]);
 }
 const ACHIEVEMENT_DATE_LOCALES: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -253,64 +216,19 @@ type AchievementListSection = {
 
 function achievementCountLabel(count: number, lang: Lang): string {
   const n = Math.max(0, count);
-  const pluralRu = () => {
-    const mod10 = n % 10;
-    const mod100 = n % 100;
-    const word = mod10 === 1 && mod100 !== 11
-      ? 'награда'
-      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
-        ? 'награды'
-        : 'наград';
-    return `${n} ${word}`;
-  };
-  const pluralUk = () => {
-    const mod10 = n % 10;
-    const mod100 = n % 100;
-    const word = mod10 === 1 && mod100 !== 11
-      ? 'нагорода'
-      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
-        ? 'нагороди'
-        : 'нагород';
-    return `${n} ${word}`;
-  };
-  const pluralPl = () => {
-    const mod10 = n % 10;
-    const mod100 = n % 100;
-    const word = n === 1
-      ? 'nagroda'
-      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
-        ? 'nagrody'
-        : 'nagród';
-    return `${n} ${word}`;
-  };
-  const labels: Record<Lang, string> = {
-    ru: pluralRu(),
-    uk: pluralUk(),
-    en: `${n} reward${n === 1 ? '' : 's'}`,
-    es: `${n} recompensa${n === 1 ? '' : 's'}`,
-    'pt-BR': `${n} recompensa${n === 1 ? '' : 's'}`,
-    vi: `${n} phần thưởng`,
-    id: `${n} hadiah`,
-    tr: `${n} ödül`,
-    pl: pluralPl(),
-  };
-  return labels[lang];
+  // зачем (EN_READINESS_R1, 12.10): слово «награда» в нужной форме через общий помощник склонения (constants/plural.ts), каждая форма — одной строкой triLang
+  const word = pluralWord(lang, n, {
+    one: triLang(lang, { ru: 'награда', uk: 'нагорода', en: 'reward', es: 'recompensa', 'pt-BR': 'recompensa', vi: 'phần thưởng', id: 'hadiah', tr: 'ödül', pl: 'nagroda' }),
+    few: triLang(lang, { ru: 'награды', uk: 'нагороди', en: 'rewards', es: 'recompensas', 'pt-BR': 'recompensas', vi: 'phần thưởng', id: 'hadiah', tr: 'ödül', pl: 'nagrody' }),
+    many: triLang(lang, { ru: 'наград', uk: 'нагород', en: 'rewards', es: 'recompensas', 'pt-BR': 'recompensas', vi: 'phần thưởng', id: 'hadiah', tr: 'ödül', pl: 'nagród' }),
+  });
+  return `${n} ${word}`;
 }
 
 function achievementCountPairLabel(unlocked: number, total: number, lang: Lang): string {
   if (unlocked === total) return achievementCountLabel(unlocked, lang);
-  const labels: Record<Lang, string> = {
-    ru: `${unlocked}/${total} наград`,
-    uk: `${unlocked}/${total} нагород`,
-    en: `${unlocked}/${total} rewards`,
-    es: `${unlocked}/${total} recompensas`,
-    'pt-BR': `${unlocked}/${total} recompensas`,
-    vi: `${unlocked}/${total} phần thưởng`,
-    id: `${unlocked}/${total} hadiah`,
-    tr: `${unlocked}/${total} ödül`,
-    pl: `${unlocked}/${total} nagród`,
-  };
-  return labels[lang];
+  const word = triLang(lang, { ru: 'наград', uk: 'нагород', en: 'rewards', es: 'recompensas', 'pt-BR': 'recompensas', vi: 'phần thưởng', id: 'hadiah', tr: 'ödül', pl: 'nagród' });
+  return `${unlocked}/${total} ${word}`;
 }
 
 type GridCellProps = {
@@ -1176,7 +1094,7 @@ export default function AchievementsScreen() {
       const color = achievementCategoryColor(cat, themeMode);
       const catIcon = CAT_ICON[cat];
       const catIconImage = CAT_ICON_IMAGE[cat];
-      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], en: CAT_LABEL_EN[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
+      const title = triLang(lang, CAT_LABELS[cat]);
       const allCatAchs = visibleAchievementDefinitions.filter(a => a.category === cat);
       const catAchs = allCatAchs.filter(a =>
         showAllAchievements || !!stateMap.get(a.id)?.unlockedAt,
@@ -1265,7 +1183,7 @@ export default function AchievementsScreen() {
               }}
             >
               <Text numberOfLines={1} style={{ color: showAllAchievements ? t.accentText : t.accentText, fontWeight: '900', fontSize: Math.max(11, Math.min(f.sub, 14)) }}>
-                {showAllAchievements ? 'DEV: все' : 'DEV'}
+                {showAllAchievements ? 'DEV: all' : 'DEV'}
               </Text>
             </TouchableOpacity>
           )}

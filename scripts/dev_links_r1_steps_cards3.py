@@ -30,7 +30,8 @@ MORE_OTHER = 'tap:#pack-comment-more-dev_demo_cm_2'
 WAIT = 'wait:2000'
 
 # ── Чужой набор «B2 глаголы»: добавить, лайк, отклики
-put(['cards-018', 'cards-section-013', 'cards-v2-015'], [WAIT], P2, P2_ROUTE, note='чужой набор «B2 глаголы» до добавления (packcards=on, без сети)')
+# зачем (кадр cards-v2-015 7:16: приложение в 2 колонках, образец — список в 1 колонку): тап «крупнее» (fc-zoom-larger) переключает вид на строки
+put(['cards-018', 'cards-section-013', 'cards-v2-015'], [WAIT, 'tap:#fc-zoom-larger', 'wait:500'], P2, P2_ROUTE, note='чужой набор «B2 глаголы» до добавления (packcards=on, без сети)')
 put(['cards-019', 'cards-section-014', 'cards-v2-016'], [WAIT, ADD], P2, P2_ROUTE, note='чужой набор: «Добавить себе» нажато (в память, без сети)')
 put('cards-gap-032', [WAIT, LIKE], P2, P2_ROUTE, note='лайк до добавления: тост «сначала добавь»')
 put('cards-050', [WAIT, ADD, LIKE], P2, P2_ROUTE, note='набор добавлен и лайкнут')

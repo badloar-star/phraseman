@@ -28041,10 +28041,10 @@
       "id": "mistakes-panel-004",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 4,
         "label": "Перед отработкой",
-        "mapping": "by_construction"
+        "mapping": "by_construction+shadow_2026-10-12"
       },
       "screen": "Перед отработкой",
       "state": "Перед отработкой",
@@ -28075,7 +28075,13 @@
         "action": "переснять",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "код экрана менялся после склейки (2026-10-11T12:00:16.000Z)"
+        "note": "код экрана менялся после склейки (2026-10-11T12:00:16.000Z)",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -28145,10 +28151,10 @@
       "id": "mistakes-panel-007",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 7,
         "label": "Ошибка",
-        "mapping": "by_construction"
+        "mapping": "by_construction+shadow_2026-10-12"
       },
       "screen": "Ошибка",
       "state": "Ошибка",
@@ -28174,7 +28180,13 @@
         "action": "исправить",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "склейка свежее правок кода — отличия актуальны"
+        "note": "склейка свежее правок кода — отличия актуальны",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -28233,10 +28245,10 @@
       "id": "mistakes-panel-010",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 10,
         "label": "Выбери перевод",
-        "mapping": "by_construction"
+        "mapping": "by_construction+shadow_2026-10-12"
       },
       "screen": "Выбери перевод",
       "state": "Выбери перевод",
@@ -28264,7 +28276,13 @@
         "action": "исправить",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "склейка свежее правок кода — отличия актуальны"
+        "note": "склейка свежее правок кода — отличия актуальны",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -28349,10 +28367,10 @@
       "id": "mistakes-panel-014",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 15,
         "label": "Верно",
-        "mapping": "label_remap_2026-10-10b"
+        "mapping": "label_remap_2026-10-10b+shadow_2026-10-12"
       },
       "screen": "Верно",
       "state": "Верно",
@@ -28380,17 +28398,23 @@
         "action": "исправить",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "склейка свежее правок кода — отличия актуальны"
+        "note": "склейка свежее правок кода — отличия актуальны",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {
       "id": "mistakes-panel-015",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 16,
         "label": "Неверно",
-        "mapping": "label_remap_2026-10-10b"
+        "mapping": "label_remap_2026-10-10b+shadow_2026-10-12"
       },
       "screen": "Неверно",
       "state": "Неверно",
@@ -28418,7 +28442,13 @@
         "action": "исправить",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "склейка свежее правок кода — отличия актуальны"
+        "note": "склейка свежее правок кода — отличия актуальны",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {
@@ -28578,10 +28608,10 @@
       "id": "mistakes-panel-021",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-panel.html",
+        "file": "docs/design/v2-app/mistakes-panel.shadow.html",
         "phone": 14,
         "label": "Меню задания",
-        "mapping": "label_remap_2026-10-11"
+        "mapping": "label_remap_2026-10-11+shadow_2026-10-12"
       },
       "screen": "Меню задания",
       "state": "Меню задания",
@@ -28611,7 +28641,13 @@
         "action": "переснять",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "код экрана менялся после склейки (2026-10-11T12:31:27.000Z)"
+        "note": "код экрана менялся после склейки (2026-10-11T12:31:27.000Z)",
+        "final_bucket": "b_reshoot",
+        "bucket": "b_reshoot",
+        "final_who": "Сверка",
+        "final_group": "ROBOT13",
+        "final_note": "образец переведён на «Тень» (mistakes-panel.shadow.html, решение владельца 12.10): прежняя подача «градиент + светлая кромка» устарела; переснять составной кадр с новым образцом",
+        "final_at": "2026-10-12"
       }
     },
     {

@@ -4,6 +4,9 @@
 # переснимать; ещё 6 строк имели «ручной путь» без ссылки. Пути выведены из кода и shot list, подмены — только dev-память
 # (без записей в прод и без входа в аккаунты). Онбординг открывается подменой `onbstep=<шаг>` (app/dev_state_fixtures.ts), pm clear не нужен.
 # Чего в коде нет (testID / подмена) — список Дизайну в docs/phraseman-2.0/R1_ROBOT_LINKS_GAPS.md; код здесь не правится.
+# зачем (12.10, ответ Сверке по step_target_not_found): energy-modes-009/010 открывали урок 3, а при plus=off он закрыт («Входить у Plus»), и lesson_menu
+# сам уводит на список уроков — кнопок меню там нет; берём открытый урок 1. onboarding-030: экран цены проявляется ≈2 с, без паузы кнопки «Больше предложений»
+# ещё нет; community-007: кнопка «+» в «Друзьях» рисуется только при заявках/друзьях, поэтому friends=demo (у пустого списка кнопка friends-empty-add).
 from dev_links_r1_steps import add
 
 # строки без поля release в реестре (гейт их считает) — генератор берёт их по списку
@@ -23,7 +26,7 @@ add('onboarding-015', ['wait:2000'], 'onbstep=language', HOME, note='онбор�
 add('onboarding-018', ['wait:2000'], 'onbstep=notifications', HOME, note='онбординг: уведомления (шаг notifications)')
 add('onboarding-022', [], 'onbstep=trialReminder', HOME, note='онбординг: «Напомним до конца пробного» (шаг trialReminder)')
 add('onboarding-paywall-002', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus — справочная цена (paywall=reference)')
-add('onboarding-030', ['tap:#onboarding-paywall-more-offers'], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus → «Больше предложений»')
+add('onboarding-030', ['wait:2500', 'tap:#onboarding-paywall-more-offers'], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus → «Больше предложений»')
 
 # ── Карточки
 SAVED = '/flashcards_collection?cat=saved'
@@ -35,13 +38,13 @@ add('cards-section-045', ['wait:1500', 'tap:#fc-blitz-opt-target'], 'cards=demo&
 
 # ── Режим Б: занятия «Слова» и «Неправильные глаголы» (shot list G-E02 / G-E03)
 EB = 'energy=5&plus=off&free=on&mode=b'
-add('energy-modes-009', ['tap:#lesson-menu-words', 'wait:1500'], EB, '/lesson_menu?id=3', note='Режим Б: тренировка слов, пилюля попыток без сердечек (lesson-words-session-attempts)')
-add('energy-modes-010', ['tap:#lesson-menu-irregular-verbs', 'wait:1500'], EB, '/lesson_menu?id=3', note='Режим Б: неправильные глаголы, пилюля попыток (irregular-verbs-session-attempts)')
+add('energy-modes-009', ['tap:#lesson-menu-words', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: тренировка слов, пилюля попыток без сердечек (lesson-words-session-attempts)')
+add('energy-modes-010', ['tap:#lesson-menu-irregular-verbs', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: неправильные глаголы, пилюля попыток (irregular-verbs-session-attempts)')
 
 # ── Сообщество (гость без друзей; вкладка по умолчанию — «Друзья»)
 COMM = 'spire=open&plus=off&free=on&cards=demo'
 add('community-001', ['tap:#community-sections-spire', 'wait:800'], COMM, '/(tabs)/community', note='вкладка сообщества: строка сегментов, выбран «Шпиль»')
-add('community-007', ['tap:#friends-open-add', 'wait:800'], COMM, '/(tabs)/community', note='«Добавить друга» — шторка friends-add-sheet (в образце «центрированное окно», в коде нижняя шторка)')
+add('community-007', ['tap:#friends-open-add', 'wait:800'], 'friends=demo&' + COMM, '/(tabs)/community', note='«Добавить друга» — шторка friends-add-sheet (в образце «центрированное окно», в коде нижняя шторка)')
 add('community-020', ['see:#friends-empty-add'], COMM, '/(tabs)/community', note='Друзья: пустой список у гостя без друзей (friends-list-empty)')
 
 # ── Подмены Дизайна 12.10 (R1_ROBOT_LINKS_GAPS.md): «Мои ошибки» с данными и друзья со входящей заявкой — только память, только одноразовый гость

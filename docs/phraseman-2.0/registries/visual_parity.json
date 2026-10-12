@@ -32607,8 +32607,8 @@
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -32806,8 +32806,8 @@
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E05"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -32845,8 +32845,8 @@
       "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E06"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -32884,8 +32884,8 @@
       "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E06"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -33172,8 +33172,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A01)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -33274,8 +33274,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -34007,8 +34007,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -34041,8 +34041,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -34075,8 +34075,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -34109,8 +34109,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -39321,8 +39321,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -41104,8 +41104,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "`settings-gap-012` — только Android 13+ (системное окно разрешения)."
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {
@@ -42213,8 +42213,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C07)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       }
     },
     {

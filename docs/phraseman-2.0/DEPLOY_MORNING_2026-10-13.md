@@ -102,6 +102,55 @@ D=/c/Temp/phraseman_deploy/<коммит>; cmd //c rmdir "$(cygpath -w $D)\funct
 Брифинги Диалогов переписаны (ru/uk/en) и переведены на es/pt-BR/vi/id/tr/pl Ядром без вычитки носителем — только
 автопроверки генератора. Нужна ли вычитка носителем до релиза? (`DIALOG_BRIEFINGS_SAMPLE_R1.md`, раздел «Статус».)
 
+## В: английские поля сообщений («Важное от Phraseman», settings-gap-002) — только со слова владельца
+
+Коммит **9836f1880** (12.10 16:04). Без выкладки на английском интерфейсе новые кампании так и останутся без английского текста
+(клиент в сборке уже не показывает русский вместо английского — такие сообщения просто скрыты).
+
+**Функции — прицельно, 4 штуки** (по именам, НЕ весь functions):
+
+| Функция | Что меняется | Что ещё уедет вместе (с 20.09, общий код) |
+|---|---|---|
+| `adminTranslateMessage` | автоперевод добавляет EN; пустой EN не подменяется русским | 76de2317d / abec9c00a (расход ИИ по operation, PM-231) — если не выкладывались |
+| `adminCreateAppMessage` | пишет titleEn/messageEn/questionEn/textEn; пустой EN остаётся пустым; для плашки настроек EN не обязателен | 17047a3c8 (немые catch пишут причину, PM-229) — если не выкладывался |
+| `adminUpdateAppMessage` | то же при правке кампании | то же |
+| `adminLaunchVipSurveyCampaign` | приглашение в опрос Plus получает английский текст | то же |
+
+Дату прошлой выкладки каждой смотреть так же, как выше (`gcloud functions describe <имя> … --format="value(updateTime)"`).
+
+**Порядок: сначала сервер, потом админка.** Новая админка шлёт поле `en`; старый сервер его просто игнорирует, а новый
+сервер со старой админкой работает (EN для плашки настроек сервер не требует) — поэтому любой порядок безопасен, но
+«сервер → админка» даёт рабочий EN сразу после второго шага.
+
+Из того же среза (команда среза — раздел «Команда» выше; папка `$D` уже есть):
+
+```bash
+FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && firebase deploy --only functions:adminTranslateMessage,functions:adminCreateAppMessage,functions:adminUpdateAppMessage,functions:adminLaunchVipSurveyCampaign --project phraseman-ea0b3
+```
+
+Затем админка (hosting цель `admin` = папка `admin/v2`, только она):
+
+```bash
+FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && firebase deploy --only hosting:admin --project phraseman-ea0b3
+```
+
+**Проверка после:**
+- https://phraseman-ea0b3.web.app/legacy.html#control-panel → «Сообщения»: в форме переводов есть блок **EN · English**;
+  «Перевести через ИИ» заполняет EN.
+- Сохранить черновик (неактивный) → в Firestore у документа `app_messages/<id>` есть `titleEn`/`messageEn`; если EN не
+  заполнять — поля пустые (не русские).
+- `firebase functions:log --only adminCreateAppMessage -n 20 --project phraseman-ea0b3` — без ошибок.
+- Старые кампании без EN на английском интерфейсе скрыты (так задумано); показать — открыть, «Перевести через ИИ», сохранить.
+
+**Откат:** предыдущая ревизия каждой из 4 функций в Cloud Run (консоль) или выкладка тех же 4 функций из среза коммита
+до 9836f1880; админка — повторная выкладка `hosting:admin` из того же старого среза (или откат релиза в консоли Hosting).
+Данные откатывать не нужно: поля `*En` старые клиенты и старый сервер не читают.
+
+**Опрос Plus ≠ «опрос осколков».** `adminLaunchVipSurveyCampaign` (functions/src/admin_app_messages.ts, приглашение
+пройти опрос ради месяца Plus — это inbox-кампания app_messages) — НЕ «опрос осколков» из списка «не выкладывать до дня
+релиза». Опрос осколков — это отдельный модуль `functions/src/shard_survey.ts` (`getActiveShardSurvey`, `submitShardSurvey`,
+`adminWriteShardSurvey`, `adminDeleteShardSurvey`); эта выкладка его не трогает.
+
 ## Откат
 
 Предыдущая ревизия функции в Cloud Run (консоль) или повторная выкладка из среза коммита до b7c1fd1e8 / 7d9064944.

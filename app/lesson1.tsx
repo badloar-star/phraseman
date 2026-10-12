@@ -607,6 +607,9 @@ const LessonContent = React.memo(function LessonContent({
     flex: 1, alignItems: 'center' as const, justifyContent: 'center' as const, minHeight: 56,
     marginHorizontal: 3, paddingVertical: 8, borderRadius: 18, backgroundColor: glass.opaqueControl,
   };
+  // зачем (Макеты 079659ed8, energy-modes-001/002/003/004/016; D139/D145: обычный текст — только 16 и 13): подписи плиток нижней панели урока (50/50 · Теория · Устно · Отменить/Проверить) и счётчик «1/50»
+  // брали `f.label` = 12 × масштаб текста приложения и на кадре выходили ≈17 вместо 13 образца (плитки заодно ≈85 вместо ≈72). Фиксируем 13; системный масштаб шрифта ОС остаётся (без ужатия).
+  const TOOL_LABEL_FONT = 13;
   const progressCellCount = Math.max(1, totalCells);
   const linkedSliceCompact = false;
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
@@ -1515,7 +1518,7 @@ const LessonContent = React.memo(function LessonContent({
                 ))}
               </View>
             </View>
-            <Text style={{ color: glass.secondary, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{progressCellCount}</Text>
+            <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{progressCellCount}</Text>
           </View>
         </View>
 
@@ -1567,7 +1570,7 @@ const LessonContent = React.memo(function LessonContent({
                       <Text style={{ color: glass.accentInk, fontSize: 13, fontWeight: '700', lineHeight: 17 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
-                  <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>50/50</Text>
+                  <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>50/50</Text>
                 </LessonPressable>
               );
             })()
@@ -1579,7 +1582,7 @@ const LessonContent = React.memo(function LessonContent({
           {(lessonTheorySupportBlocked || theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden') && (
           <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={glass.text} />
-            <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
+            <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
                 ru: 'Теория',
                 uk: 'Теорія',
@@ -1624,7 +1627,7 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 )}
               </View>
-              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
+              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
                 {triLang(lang, {
                   ru: 'Устно',
                   uk: 'Усно',
@@ -1665,7 +1668,7 @@ const LessonContent = React.memo(function LessonContent({
                 <Ionicons name="arrow-undo-outline" size={26} color={glass.text} />
                 <View style={{ position: 'absolute', top: -3, right: -8, width: 8, height: 8, borderRadius: 4, backgroundColor: t.correct }} />
               </View>
-              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Назад',
                   uk: 'Назад',
@@ -1706,7 +1709,7 @@ const LessonContent = React.memo(function LessonContent({
               }}
             >
               <Ionicons name="bulb-outline" size={26} color={glass.text} />
-              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Объяснить',
                   uk: 'Пояснити',
@@ -1745,7 +1748,7 @@ const LessonContent = React.memo(function LessonContent({
               }}
             >
               <Ionicons name="volume-high" size={26} color={glass.text} />
-              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
+              <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
                 {triLang(lang, {
                   ru: 'Повтор',
                   uk: 'Повтор',
@@ -1778,7 +1781,7 @@ const LessonContent = React.memo(function LessonContent({
             }}
           >
             <Ionicons name="arrow-undo" size={26} color={glass.text} />
-            <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
+            <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>{s.lesson.undo}</Text>
           </LessonPressable>
           )}
 
@@ -1794,7 +1797,7 @@ const LessonContent = React.memo(function LessonContent({
               }}
             >
               <Ionicons name="checkmark-circle" size={26} color={t.correct} />
-              <Text style={{ color: t.correct, fontSize: f.label, marginTop: 4 }}>{s.lesson.check}</Text>
+              <Text style={{ color: t.correct, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>{s.lesson.check}</Text>
             </LessonPressable>
           )}
         </View>

@@ -7613,7 +7613,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "blocked",
       "reviewed_by": null,
       "reviewed_at": null,
       "precheck": {
@@ -7625,7 +7625,9 @@
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
-      }
+      },
+      "prev_status": "pending",
+      "blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · в коде нет голосовой квоты и значка PLUS на микрофоне — только в макете"
     },
     {
       "id": "dialogs-029",
@@ -15847,7 +15849,7 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "blocked",
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
@@ -15855,7 +15857,9 @@
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_friends_hold=add_request"
-      }
+      },
+      "prev_status": "pending",
+      "blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · подпись «Отправляем заявку…» мёртвая: карточка найденного скрывается в тот же тик, кадр совпадает с community-017"
     },
     {
       "id": "community-011",

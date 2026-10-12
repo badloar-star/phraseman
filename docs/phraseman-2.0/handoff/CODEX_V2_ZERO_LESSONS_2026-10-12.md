@@ -85,3 +85,20 @@ seed бандла зависит только от `interfaceLocale`. Зачем
 В светлом оформлении 10 градиентных тем сырой `accent` — пастель (1,0–1,8:1 на фоне и карточке), и всё, что им красится, пропадает: кольца, полосы, точки, значки, текст. Ваши файлы мы не трогали. Что делать у себя: графику (кольца, полосы, точки, кромки, градиент-полосы) красить `t.accentGraphic ?? t.accent` (или `g.accentGraphic`), текст и значки на карточке — `t.accentTextSafe ?? t.accent`. В тёмном оформлении оба токена равны `accent` байт-в-байт — тёмный вид не меняется. Токены закоммичены (c62e8fc70). Полный список мест — раздел 4 `docs/phraseman-2.0/LIGHT_ACCENT_GRAPHICS_AUDIT_2026-10-13.md` (`app/learning-v2/session/[id].tsx`, `components/learning-v2/horizons/*`, `LearningV2Glass.tsx`, `LearningV2ChaptersCourse.tsx`, `components/learning-v2-lab/*`, `modules/learning-v2/*`). Сторож считает их отдельно; ложные срабатывания помечайте `light-accent-ok: причина` в строке.
 
 - (координатор 13.10 00:0x) `tests/typography_two_sizes_ratchet.test.mjs` красный тоже из-за `modules/learning-v2/modes/mode_feedback_v1.tsx`: +5 нестандартных размеров шрифта вне шкалы D139 (16/13). Приведите к 16/13; если это угловой бейдж — пометка `d145-micro: причина` и файл в MICRO_FILES храповика (§129). Без этого release:precheck красный.
+
+
+## Скорость старта · посев озвучки V2 (Ядро 13.10, по поручению координатора)
+
+Замер: профили Hermes ×3 Сверки (57ecd26e6, `evidence/perf_r1_2026-10-12/cpuprofile_sfx/`), разбор `scripts/cpu_stacks.py --from 5 --to 12`.
+
+`seedLearningV2BootstrapAudioCacheV1` держит JS-поток ≈1,0–1,2 с на КАЖДОМ холодном старте, даже когда кэш давно готов. Его `taskMs` 4,8 с — в основном ожидание ввода-вывода, но шаги async-цепочки с хэшем попадали ровно в окно премаунта вкладок.
+
+Что сделано у нас (место вызова в `app/_layout.tsx`, 1627abe28): посев стартует через 8 с после кадра Главной + конец взаимодействий; логи `[V2-AUDIO-SEED] start` / `end outcome ms`. Ваших файлов мы не трогали.
+
+Что просим у себя, по выгоде:
+
+- **(а) Не перепроверять готовый кэш при каждом запуске.** Сейчас все 27 файлов на каждом старте проходят `resolvePreparedLearningV2VoiceAudioOfflineFileV1`: `exists`, `bytes`, `digest`, объекты `Directory`/`File`. Это 550–640 мс. Предложение: маркер «посев готов для набора X» в AsyncStorage, где X — хэш списка `contentHash`. Полная сверка — только при смене набора, раз в N дней или когда занятие не нашло файл.
+- **(б) `learningV2FactoryRemoteAudioFilesForContentHashesV1` — 390–490 мс.** Из них ленивая загрузка модуля ≈200–240 мс и `sha256Utf8` / `hashCanonicalBody` тела в JS на каждый файл. Хэши канонических тел можно предвычислить в `.generated` или мемоизировать на процесс.
+- **(в) `cacheDirectory`** на каждый вызов создаёт `Directory`/`File` (`__native_constructor__` 50–80 мс в окне). Вынести в модульную константу или ленивый кэш.
+
+Проверка после ваших правок — тот же профиль через Сверку: в окне +5…+15 с не должно остаться стэков `resolvePreparedLearningV2VoiceAudioOfflineFileV1` / `hashCanonicalBody` при готовом кэше.

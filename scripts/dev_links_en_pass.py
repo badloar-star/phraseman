@@ -15,6 +15,15 @@ GROUPS = [
     ('Карточки — тренировки', ['cards-v2-029', 'cards-v2-031', 'cards-v2-033', 'cards-v2-034', 'cards-section-046', 'cards-gap-010']),
     ('Пейволы', ['paywall-gap-001', 'paywall-gap-004', 'paywall-gap-005', 'paywall-gap-009', 'paywalls-011', 'paywalls-012', 'paywalls-018', 'paywalls-019', 'paywalls-023']),
     ('Настройки и профиль', ['settings-gap-002', 'profile-004', 'profile-006', 'profile-007', 'profile-008', 'profile-011', 'profile-013', 'profile-016']),
+    # зачем (координатор 12.10, Авторизация): EN-проход не покрывал вход, аккаунт, удаление, приватность. Только гость и dev-подмены:
+    # switch=required|not_uploaded|backup_blocked и restore=retired подменяют вход ошибкой ПЕРВОЙ строкой signInWithProvider (до окна
+    # Google — настоящего входа нет), delete=fail — до окна подтверждения, настоящее удаление недостижимо. Без входа в №1/№2/№3.
+    # Смена аккаунта (auth-gap-013…018) нажимает кнопки по русскому тексту — генератор помечает их ⚠️, testID — отдельная задача Дизайна.
+    ('Вход, аккаунт, удаление, приватность', ['auth-gap-001', 'profile-003', 'settings-gap-024', 'settings-gap-025', 'settings-gap-026',
+                                              'auth-gap-003', 'auth-gap-004', 'auth-gap-005', 'auth-gap-008', 'auth-gap-012',
+                                              'auth-gap-009', 'auth-gap-010', 'auth-gap-011', 'settings-gap-016', 'profile-012',
+                                              'onboarding-001', 'onboarding-007',
+                                              'auth-gap-013', 'auth-gap-014', 'auth-gap-015', 'auth-gap-017', 'auth-gap-018']),
 ]
 
 # Главная, Уроки и итог диалога строк реестра не имеют — ссылки собраны вручную.

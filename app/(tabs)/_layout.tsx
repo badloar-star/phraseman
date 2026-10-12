@@ -52,6 +52,13 @@ import {
   type AccountGenerationToken,
 } from '../account_generation';
 import {
+  applyLessonsReconcile,
+  computeLessonsCover,
+  failClosedLessons,
+  nextActivatedEpoch,
+  type LessonsPrivacyState,
+} from '../lessons_privacy_epoch';
+import {
   setExamBestPctTabActivity,
 } from '../exam_best_pct_overlay';
 import {
@@ -172,12 +179,6 @@ function TabPane({ freezeWanted, children }: { freezeWanted: boolean; children: 
   return <Freeze freeze={freezeActive}>{children}</Freeze>;
 }
 
-type LessonsPrivacyState = Readonly<{
-  epoch: number;
-  phase: AccountGenerationToken['phase'];
-  failClosed: boolean;
-}>;
-
 function LessonsPaneBoundary({
   freezeWanted,
   shouldLoad,
@@ -196,42 +197,26 @@ function LessonsPaneBoundary({
   });
 
   useLayoutEffect(() => {
-    const failClosed = () => setPrivacy((previous) => ({
-      epoch: previous.epoch + 1,
-      phase: 'transitioning',
-      failClosed: true,
-    }));
+    const failClosed = () => {
+      console.warn('[LESSONS-EPOCH] bump', JSON.stringify({ reason: 'subscription_failed', nextPhase: 'transitioning' })); // guard-ok: сбой подписки закрывает вкладку
+      setPrivacy((previous) => failClosedLessons(previous));
+    };
     const reconcile = (next: AccountGenerationToken) => {
       try {
         const previous = previousTokenRef.current;
         previousTokenRef.current = next;
-        // зачем: диагностика гонки privacy.phase снята — причина найдена и
-        // закрыта (крышка держала холодный старт, см. coverLessons ниже).
-        // зачем: первое «усыновление» владельца (uninitialized → active) — это НЕ
-        // смена аккаунта, новую эпоху заводить нельзя (иначе крышка закрылась бы
-        // поверх уже показанного списка). Но записать фазу обязаны: без этого
-        // privacy.phase навсегда оставался 'uninitialized', и любое условие,
-        // смотрящее на фазу, держало вкладку закрытой — пустой экран.
-        const initialAdoption = previous.phase === 'uninitialized' && next.phase === 'active';
-        if (initialAdoption) {
-          setPrivacy((current) => ({ ...current, phase: 'active' }));
-          return;
-        }
-        const sameActiveOwner = previous.phase === 'active'
-          && next.phase === 'active'
-          && previous.stableId === next.stableId;
-        if (sameActiveOwner) return;
-        if (
-          previous.generation === next.generation
-          && previous.phase === next.phase
-          && previous.stableId === next.stableId
-        ) return;
-        setPrivacy((current) => ({
-          epoch: current.epoch + 1,
-          phase: next.phase,
-          failClosed: current.failClosed,
-        }));
-      } catch {
+        // зачем (B1, §AUTH-0070, п.73): правило роста эпохи — в app/lessons_privacy_epoch.ts (чистая функция, проверена тестом). Эпоха растёт только при
+        // уходе из active, при новом active и при сбое подписки; «смена → смена» лишь обновляет фазу, и вкладка не пересобирается 7 раз за вход.
+        // Первое усыновление владельца (uninitialized → active) эпоху не растит, но фазу записывает (иначе вкладка навсегда оставалась закрытой).
+        setPrivacy((current) => {
+          const { state, decision } = applyLessonsReconcile(current, previous, next);
+          console.log('[LESSONS-EPOCH]', decision.bump ? 'bump' : 'skip', JSON.stringify({ // guard-ok: трассировка роста эпохи вкладки уроков
+            reason: decision.reason, prevPhase: previous.phase, nextPhase: next.phase, generation: next.generation, epoch: state.epoch,
+          }));
+          return state;
+        });
+      } catch (error) {
+        console.warn('[LESSONS-EPOCH] ошибка reconcile → fail-closed', String(error)); // guard-ok: catch логируется
         failClosed();
       }
     };
@@ -252,9 +237,7 @@ function LessonsPaneBoundary({
   // экран), пока какой-нибудь перерендер не совпал с isActive. Приватность держит
   // phase: 'active' означает, что владелец уже известен и это НЕ переходное
   // состояние между аккаунтами, поэтому смотреть на видимость таба здесь не нужно.
-  if (privacy.phase === 'active' && !privacy.failClosed) {
-    activatedEpochRef.current = privacy.epoch;
-  }
+  activatedEpochRef.current = nextActivatedEpoch(privacy, activatedEpochRef.current);
   // зачем (аудит скорости): крышка закрывала вкладку и на ХОЛОДНОМ СТАРТЕ, пока
   // phase === 'uninitialized'. Владелец видел это как «Уроки открываются долго»:
   // экран уже смонтирован и синхронно гидратирован снимком, но поверх лежала
@@ -267,9 +250,7 @@ function LessonsPaneBoundary({
   // нет: и lessons_tab_state, и сессионный кэш списка заштампованы поколением и
   // при первом старте пусты, поэтому показывать под крышкой нечего — там ровно
   // тот же фон. fail-closed на ошибке подписки тоже сохранён.
-  const coverLessons = privacy.failClosed
-    || privacy.phase === 'transitioning'
-    || activatedEpochRef.current < privacy.epoch;
+  const coverLessons = computeLessonsCover(privacy, activatedEpochRef.current);
 
   return (
     <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary }]} collapsable={false}>

@@ -208,6 +208,20 @@ async function launchAndWait(device, row, opts) {
   return waitMarker(device, opts.timeoutMs, opts.pollMs);
 }
 
+/** Строки журнала приложения, важные для разбора кадра, → _runs/<метка>/<id>.log (logcat чистится перед каждым id, поэтому иначе они теряются). */
+export const FRAME_LOG_RX = /\[(?:OVERLAY-QUEUE|APP-MESSAGE|DEV-STATE|PURCHASE-PENDING|PAYWALL[A-Z-]*)\]/;
+function saveFrameLog(device, id, runDir) {
+  try {
+    const text = adb(device, ['logcat', '-d', '-s', 'ReactNativeJS:V'], { timeout: 15_000 });
+    const lines = text.split(/\r?\n/).filter((line) => FRAME_LOG_RX.test(line));
+    fs.mkdirSync(runDir, { recursive: true });
+    fs.writeFileSync(path.join(runDir, `${id}.log`), `${lines.join('\n')}\n`);
+    console.log(`${LOG} ${id}: журнал приложения → ${lines.length} строк в _runs`); // guard-ok: итог сохранения лога
+  } catch (error) {
+    console.warn(`${LOG} ${id}: журнал приложения не сохранён:`, String(error).slice(0, 200)); // guard-ok: catch называет причину
+  }
+}
+
 async function shootOne(device, row, opts, runDir) {
   const traits = linkTraits(row.link);
   let result = await launchAndWait(device, row, opts);
@@ -231,6 +245,7 @@ async function shootOne(device, row, opts, runDir) {
   await sleep(burst ? opts.burstMs : (settleStep ? Number(settleStep.value) : opts.settleMs));
   const capture = () => adb(device, ['exec-out', 'screencap', '-p'], { timeout: 30_000, binary: true });
   const first = capture();
+  saveFrameLog(device, row.id, runDir); // зачем (координатор 12.10, cards-010): строки журнала приложения рядом с кадром — ответ «дефект или артефакт» берётся из них
   if (!isPng(first)) return { ...result, outcome: 'error', detail: `screencap_не_png_${first.length}_байт`, file: null };
   let finalPng = first;
   let blankFirst = null;

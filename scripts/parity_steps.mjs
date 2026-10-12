@@ -10,7 +10,7 @@
  *   tap:Отметить несколько       нажать элемент с таким текстом / content-desc (сначала точное совпадение, потом «содержит»)
  *   tap:#fc-gallery-tile-*       testID по префиксу (любая плитка); `@2` в конце — второй подходящий элемент: `tap:#fc-gallery-tile-*@2`
  *   see:#id | see:Текст          прокрутить так, чтобы элемент оказался на экране (без нажатия); tap/long/swipe сами подкручивают, если элемент за краем
- *   long:#id | long:Текст        долгое нажатие (900 мс)
+ *   long:#id | long:Текст        долгое нажатие (1500 мс: 900 мс не хватало — шторка «Удалить» в cards-034 не открывалась)
  *   swipe-left:Текст | swipe-right:Текст   свайп поперёк рамки элемента (удаление свайпом)
  *   type:abc                     ввести ASCII-текст в сфокусированное поле (кириллицу `input text` не умеет)
  *   back | key:ENTER             системная кнопка / клавиша
@@ -19,6 +19,7 @@
  *   settle:0                     мета-шаг строки: пауза перед снимком вместо --settle-ms (для коротких состояний вроде «ИИ печатает»); шагом не выполняется, а предыдущий шаг не ждёт afterStepMs
  *   xy:540,1200                  последнее средство: тап по координатам
  */
+export const LONG_PRESS_MS = 1500;
 const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see']);
 const OPS_NO_TARGET = new Set(['back']);
 const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy', 'settle']);
@@ -175,7 +176,7 @@ export async function runSteps(run, steps, opts = {}) {
       const [cx, cy] = centre(node);
       if (step.op === 'see') { /* только прокрутка до видимости */ }
       else if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);
-      else if (step.op === 'long') run(['shell', 'input', 'swipe', String(cx), String(cy), String(cx), String(cy), '900']);
+      else if (step.op === 'long') run(['shell', 'input', 'swipe', String(cx), String(cy), String(cx), String(cy), String(LONG_PRESS_MS)]); // зачем (координатор 12.10, cards-034): удержание 1500 мс
       else {
         const width = node.right - node.left;
         const a = Math.round(node.left + width * (step.op === 'swipe-left' ? 0.85 : 0.15));

@@ -42,6 +42,8 @@ interface SectionSheetHeaderProps {
   closeTestID?: string;
   /** Гибрид «Световод + Чекан» для крестика (PressableHybrid variant="icon"). Дефолт — боевой 'classic'. */
   motionVariant?: 'classic' | 'hybrid';
+  /** Крестик в тональном круге (по умолчанию, как referral-code-states) или плоский без плашки (как promo-code-states). */
+  closeVariant?: 'plate' | 'flat';
 }
 
 export default function SectionSheetHeader({
@@ -51,6 +53,7 @@ export default function SectionSheetHeader({
   showDivider = true,
   closeTestID,
   motionVariant = 'classic',
+  closeVariant = 'plate',
 }: SectionSheetHeaderProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
@@ -98,9 +101,10 @@ export default function SectionSheetHeader({
         </FlowText>
       </View>
       <View
+        // зачем (координатор 12.10, overlays-campaigns-004/016/017): по стандарту владельца (см. шапку файла) крестик — СПРАВА, заголовок по центру; в коде он стоял слева (left: 12) и расходился с образцами promo-code-states / referral-code-states
         style={{
           position: 'absolute',
-          left: 12,
+          right: 12,
           top: 0,
           bottom: 0,
           flexDirection: 'row',
@@ -116,7 +120,7 @@ export default function SectionSheetHeader({
             testID={closeTestID}
             variant="icon"
             onPress={onClose}
-            style={closeBtnStyle(t)}
+            style={closeBtnStyle(t, closeVariant)}
           >
             <Ionicons name="close" size={20} color={t.textPrimary} />
           </PressableHybrid>
@@ -126,7 +130,7 @@ export default function SectionSheetHeader({
             accessibilityLabel={closeLabel}
             testID={closeTestID}
             onPress={onClose}
-            style={closeBtnStyle(t)}
+            style={closeBtnStyle(t, closeVariant)}
           >
             <Ionicons name="close" size={20} color={t.textPrimary} />
           </TapScale>
@@ -137,7 +141,10 @@ export default function SectionSheetHeader({
 }
 
 /** Одинаковая геометрия крестика в classic/hybrid — меняется только прессабл-примитив. */
-function closeBtnStyle(t: ReturnType<typeof useTheme>['theme']) {
+function closeBtnStyle(t: ReturnType<typeof useTheme>['theme'], variant: 'plate' | 'flat' = 'plate') {
+  if (variant === 'flat') {
+    return { width: 40, height: 40, borderRadius: 20, alignItems: 'center' as const, justifyContent: 'center' as const, ...noAndroidOutline };
+  }
   return {
     width: 40,
     height: 40,

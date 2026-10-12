@@ -27,8 +27,10 @@ describe('tab background pre-mount contract', () => {
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400');
-    expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");
-    expect(source).toContain('setTimeout(startPremount, BACKGROUND_TAB_PREMOUNT_FALLBACK_MS)');
+    // зачем (R1, 12.10): на Главной премаунт стартует после настоящего кадра Главной; событие и запасной таймер — для старта на другой вкладке
+    expect(source).toContain("onAppEvent('app_first_content_ready', () => startPremount('content_ready_non_home_start'))");
+    expect(source).toContain("setTimeout(() => startPremount('fallback_timer_non_home_start'), BACKGROUND_TAB_PREMOUNT_FALLBACK_MS)");
+    expect(source).toContain('whenHomePainted(BACKGROUND_TAB_PREMOUNT_HOME_PAINT_CEILING_MS)');
     expect(source).toContain("AppState.currentState !== 'active'");
     expect(source).toContain('shouldLoadTabScreen(activeIdx, i, mountedTabs)');
     expect(source).not.toContain('InteractionManager');

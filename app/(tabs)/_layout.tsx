@@ -25,6 +25,7 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
 import { setTabsShellMounted } from '../tabs_shell_state';
+import { whenHomePainted } from '../home_paint_marker';
 // Home stays behind the tab shell until React can commit the first frame. Its
 // screen/data tree is large enough that evaluating it synchronously delays boot.
 // Starting the promise here overlaps the module fetch/evaluation with the root
@@ -368,6 +369,12 @@ const ENABLE_BACKGROUND_TAB_PREMOUNT = true;
 const ENABLE_TAB_FREEZE = true;
 const TAB_FREEZE_MIN_DISTANCE = 2;
 const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
+// зачем (R1, координатор 12.10, «почему Уроки монтируются заранее»; журналы Сверки with_navigate_fix3): премаунт стартовал по app_first_content_ready, а его шлёт оболочка Главной в rAF сразу после СВОЕГО
+// монтирования — ДО настоящего первого кадра Главной. Первой в очереди идёт вкладка «Уроки»: её require (3411 строк, 52 импорта) синхронно держал JS-поток ≈1,7 с (JS-STALL +3679→+5437 мс) как раз между
+// первым коммитом Главной и её [HOME-PAINT] — кадр откладывался на ≈2 с. Теперь при старте на Главной премаунт ждёт настоящий кадр Главной (whenHomePainted) и ещё короткую паузу под первые касания.
+// Потолок на случай, если кадр Главной так и не придёт. Если стартовая вкладка НЕ Главная — прежний путь (событие готовности контента + запасной таймер).
+const BACKGROUND_TAB_PREMOUNT_AFTER_PAINT_DELAY_MS = 500;
+const BACKGROUND_TAB_PREMOUNT_HOME_PAINT_CEILING_MS = 6000;
 // зачем (аудит задержки открытия «Уроки»): было 160 — Уроки, будучи первым в
 // BACKGROUND_TAB_PREMOUNT_ORDER, всё равно ждали лишний кадр раньше, чем idle-
 // очередь вообще ставила задачу. Тап часто приходит раньше, чем эти 160мс+idle
@@ -741,6 +748,8 @@ function ReleasedTabLayout() {
   const pageLayoutRef = useRef(pageLayout);
   pageLayoutRef.current = pageLayout;
   const initialTabIdx = visibleTabIdx(tabIdxFromRouter(pathname, segments) ?? 0, pageLayout);
+  // зачем (R1): ПЕРВАЯ стартовая вкладка (initialTabIdx пересчитывается по маршруту на каждом рендере) — от неё зависит, чего ждёт фоновый премаунт
+  const startTabIdxRef = useRef(initialTabIdx);
   const [activeIdx, setActiveIdx] = useState(() => initialTabIdx);
   const [visualIdx, setVisualIdx] = useState(() => initialTabIdx);
   const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(initialTabIdx, pageLayout));
@@ -933,18 +942,42 @@ function ReleasedTabLayout() {
   useEffect(() => {
     if (!ENABLE_BACKGROUND_TAB_PREMOUNT) return;
     let fallbackTimer: ReturnType<typeof setTimeout> | null = null;
-    const startPremount = () => {
+    let afterPaintTimer: ReturnType<typeof setTimeout> | null = null;
+    let cancelled = false;
+    const startPremount = (reason: string) => {
       if (fallbackTimer) {
         clearTimeout(fallbackTimer);
         fallbackTimer = null;
       }
+      if (afterPaintTimer) {
+        clearTimeout(afterPaintTimer);
+        afterPaintTimer = null;
+      }
+      console.log('[TABS-PREMOUNT] start', JSON.stringify({ reason, startTabIdx: startTabIdxRef.current, startedAlready: backgroundPremountStartedRef.current })); // guard-ok: причина старта премаунта (СПЕРВА ЛОГИ)
       scheduleBackgroundPremount();
     };
 
-    const sub = onAppEvent('app_first_content_ready', startPremount);
-    fallbackTimer = setTimeout(startPremount, BACKGROUND_TAB_PREMOUNT_FALLBACK_MS);
+    if (startTabIdxRef.current === 0) {
+      // Старт на Главной: ждём её настоящий кадр, затем короткая пауза; потолок — на случай, если кадр не придёт.
+      void whenHomePainted(BACKGROUND_TAB_PREMOUNT_HOME_PAINT_CEILING_MS).then((outcome) => {
+        if (cancelled) return;
+        afterPaintTimer = setTimeout(
+          () => startPremount(outcome === 'painted' ? 'home_painted' : 'home_paint_ceiling'),
+          outcome === 'painted' ? BACKGROUND_TAB_PREMOUNT_AFTER_PAINT_DELAY_MS : 0,
+        );
+      });
+      return () => {
+        cancelled = true;
+        if (afterPaintTimer) clearTimeout(afterPaintTimer);
+      };
+    }
+
+    const sub = onAppEvent('app_first_content_ready', () => startPremount('content_ready_non_home_start'));
+    fallbackTimer = setTimeout(() => startPremount('fallback_timer_non_home_start'), BACKGROUND_TAB_PREMOUNT_FALLBACK_MS);
     return () => {
+      cancelled = true;
       if (fallbackTimer) clearTimeout(fallbackTimer);
+      if (afterPaintTimer) clearTimeout(afterPaintTimer);
       sub.remove();
     };
   }, [scheduleBackgroundPremount]);

@@ -45,7 +45,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { glassFill } from '../components/GlassSurface';
-import { useStudyTarget } from '../components/StudyTargetContext';
+import { useTrainingStudyTarget } from './flashcards/use_training_study_target';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -1050,7 +1050,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const { lang } = useLang();
   const { theme: t, statusBarLight, f, ds, liquidGlassThemeId } = useTheme();
   const swipeGlass = liquidGlassTokens(liquidGlassThemeId);
-  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 12.10, п.83, cards-027): тренировка идёт на языке ВЫБРАННЫХ наборов (?target, проверенный хуком: только
+  // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
+  const studyTarget = useTrainingStudyTarget();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const swipeAccessGranted = accessResolved;
   const swipeAccessGrantedRef = useRef(swipeAccessGranted);

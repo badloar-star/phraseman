@@ -64,7 +64,7 @@ import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { flashcardContentLang } from './spanish_content_gate';
-import { useStudyTarget } from '../components/StudyTargetContext';
+import { useTrainingStudyTarget } from './flashcards/use_training_study_target';
 import { trackEvent } from './analytics';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
 import { speakingBand, speakingBandLabel } from './speaking_score_bands';
@@ -233,7 +233,9 @@ export default function FlashcardsSpeakingSession() {
   const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const { accessResolved, hasPremiumAccess } = usePremium();
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 12.10, п.83, cards-027): тренировка идёт на языке ВЫБРАННЫХ наборов (?target, проверенный хуком: только
+  // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
+  const studyTarget = useTrainingStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
 
   const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();

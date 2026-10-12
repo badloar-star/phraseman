@@ -31,7 +31,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { usePremium } from '../components/PremiumContext';
-import { useStudyTarget } from '../components/StudyTargetContext';
+import { useTrainingStudyTarget } from './flashcards/use_training_study_target';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -142,7 +142,9 @@ export default function FlashcardsRecallSession() {
   const answerOf = useCallback((card: { en: string; translation: string }) =>
     (direction === 'to_source' ? card.translation : card.en), [direction]);
   const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 12.10, п.83, cards-027): тренировка идёт на языке ВЫБРАННЫХ наборов (?target, проверенный хуком: только
+  // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
+  const studyTarget = useTrainingStudyTarget();
   const { theme: t, f, statusBarLight, liquidGlassThemeId } = useTheme();
   const recallGlass = liquidGlassTokens(liquidGlassThemeId);
   const { accessResolved, hasPremiumAccess } = usePremium();

@@ -60,7 +60,7 @@ import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
 import { useLineScale } from '../hooks/useLineScale';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
-import { useStudyTarget } from '../components/StudyTargetContext';
+import { useTrainingStudyTarget } from './flashcards/use_training_study_target';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import { useFcReduceMotion } from './flashcards/PhraseCard';
@@ -183,7 +183,9 @@ export default function FlashcardsBlitzSession() {
   }
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
-  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 12.10, п.83, cards-027): тренировка идёт на языке ВЫБРАННЫХ наборов (?target, проверенный хуком: только
+  // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
+  const studyTarget = useTrainingStudyTarget();
 
   const params = useLocalSearchParams<{ deck?: string; sec?: string | string[]; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
   // зачем (координатор 04.10, настройка тренировки 30/60/90 с): длительность раунда — из маршрута, один раз

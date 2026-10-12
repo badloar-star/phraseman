@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { InteractionManager } from 'react-native';
 import type { Lang } from '../../constants/i18n';
+import { getDevOtherLanguageDecks } from '../dev_fc_lang_state';
 import type { LearningLanguageTarget } from '../learning_language_contour';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import { hideDecksWithoutVoice, loadFcDeckOptions, peekFcDeckOptionsLocal } from './deck_options';
@@ -25,7 +26,15 @@ function eligibleDecks(raw: readonly DeckSheetOption[], mode: FcPresetMode): Dec
 
 function initialFromMemory(mode: FcPresetMode, lang: Lang, appTarget: LearningLanguageTarget): OtherLanguageDecks {
   const out: Partial<Record<LearningLanguageTarget, readonly DeckSheetOption[]>> = {};
+  // зачем (п.83, съёмка R1): dev-подмена списков других языков (только память, в сторе всегда null) — у гостя наборов второго языка нет
+  const devLists = getDevOtherLanguageDecks(appTarget);
   for (const code of otherLanguages(appTarget)) {
+    const devList = devLists?.[code];
+    if (devList) {
+      out[code] = eligibleDecks(devList, mode);
+      console.log(formatLangFilterLog('list', { language: code, decks: out[code]!.length, source: 'dev_fixture', ms: 0 }));
+      continue;
+    }
     const hit = peekFcDeckOptionsLocal(mode, lang, code);
     if (hit) {
       out[code] = eligibleDecks(hit, mode);

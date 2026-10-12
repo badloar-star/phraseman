@@ -61,7 +61,8 @@ describe('DEV_LINKS_R1', () => {
     const badColumns = rows.filter((line) => line.split('|').length !== 10).map((line) => line.slice(0, 60));
     expect(badColumns).toEqual([]); // «|» в тексте сдвигал колонки, а робот читает «тапы»/«уникальна» по номеру
     // зачем: `await:` (ждать появления без нажатия, scripts/parity_steps.mjs) добавлен 12.10 для кадров с задержкой загрузки (cards-gap-034) — грамматика теста отставала
-    const stepRx = /^(tap|long|swipe-left|swipe-right|see|await):\S.*$|^(back)$|^(type|key|scroll|wait|xy|settle):\S[ -~]*$/;
+    // зачем (Сверка 12.10): `hidekb` (убрать экранную клавиатуру, только если показана — scripts/parity_steps.mjs) добавлен в шаги кадров с вводом; грамматика теста отставала
+    const stepRx = /^(tap|long|swipe-left|swipe-right|see|await):\S.*$|^(back|hidekb)$|^(type|key|scroll|wait|xy|settle):\S[ -~]*$/;
     const problems: string[] = [];
     let unique = 0;
     for (const line of rows) {

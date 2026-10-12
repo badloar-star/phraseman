@@ -204,6 +204,10 @@ export type DevStateRequest = Readonly<{
   coinRank?: number | 'off';
   /** Разовая подсказка «Зажми карточку…» (dev_state_cards_demo.ts): show — вернуть (cards-033), seen — пометить увиденной; фикстуры карточек сами помечают её увиденной. Только анонимный гость. */
   hint?: 'show' | 'seen';
+  /** п.83 (cards-027): наборы ДРУГИХ языков для кнопки языка на настройке тренировки — только память (dev_fc_lang_state.ts); off — снять. */
+  cardsLangs?: 'on' | 'off';
+  /** п.85(2) («Из видео — Пока пусто»): empty — каталог роликов пуст (пустой ответ в памяти и локальном кэше, Firestore не трогается), demo — 5 демо-роликов. */
+  videoPacks?: 'empty' | 'demo';
   /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
   aiConsent?: 'granted' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
@@ -319,6 +323,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
+  request.cardsLangs = pick('cardslangs', ['on', 'off'] as const);
+  request.videoPacks = pick('videopacks', ['empty', 'demo'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -743,6 +749,21 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   // зачем (R1 «нет пути», Карточки): флаги в памяти процесса (app/dev_cards_state.ts); `off` снимает.
+  if (request.cardsLangs !== undefined) {
+    // зачем (координатор 12.10, п.83): у гостя наборы только на одном языке — подменяем СПИСКИ других языков в памяти; хранилище и Firestore не затрагиваются
+    await step('cardsLangs', request.cardsLangs, async () => {
+      const { setDevFcLangs } = await import('./dev_fc_lang_state');
+      return setDevFcLangs(request.cardsLangs === 'on');
+    });
+  }
+  if (request.videoPacks !== undefined) {
+    // зачем (координатор 12.10, п.85(2)): «Из видео» при пустом каталоге; seed кладёт ответ в память модуля и локальный кэш устройства, сеть и Firestore не вызываются
+    await step('videoPacks', request.videoPacks, async () => {
+      const { seedVideoPhraseSetPacksForDev } = await import('./video_phrase_set_packs');
+      const { demoVideoPacks } = await import('./dev_state_cards_demo');
+      return seedVideoPhraseSetPacksForDev(request.videoPacks === 'empty' ? [] : demoVideoPacks());
+    });
+  }
   if (request.hint !== undefined) {
     await step('hint', request.hint, async () => {
       const { applyDeleteHintState } = await import('./dev_state_cards_demo');

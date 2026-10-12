@@ -45,7 +45,9 @@ export function DialogueGlassMoodFace({ mood, size = 18, color }: Readonly<{
 export function dialogueMoodLabel(lang: Lang, mood: DialogueV2CoachingMood): string {
   switch (mood) {
     case 'happy':
-      return triLang(lang, { ru: 'Очень доволен', uk: 'Дуже задоволений', en: 'Delighted', es: 'Encantado', 'pt-BR': 'Muito satisfeito', vi: 'Rất hài lòng', id: 'Sangat senang', tr: 'Çok memnun', pl: 'Bardzo zadowolony', fr: 'Ravi', de: 'Sehr zufrieden' });
+      // зачем (Макеты 12.10, dialogs-023): настроение — одна строка рядом с энергией и «N/30», лимит 13 знаков;
+      // uk/pt-BR/pl/de были 14–17, id на границе — короткие слова с тем же смыслом «в восторге».
+      return triLang(lang, { ru: 'Очень доволен', uk: 'Дуже радий', en: 'Delighted', es: 'Encantado', 'pt-BR': 'Encantado', vi: 'Rất hài lòng', id: 'Gembira', tr: 'Çok memnun', pl: 'Zachwycony', fr: 'Ravi', de: 'Begeistert' });
     case 'smile':
       return triLang(lang, { ru: 'Доволен', uk: 'Задоволений', en: 'Pleased', es: 'Contento', 'pt-BR': 'Satisfeito', vi: 'Hài lòng', id: 'Senang', tr: 'Memnun', pl: 'Zadowolony', fr: 'Content', de: 'Zufrieden' });
     case 'neutral':

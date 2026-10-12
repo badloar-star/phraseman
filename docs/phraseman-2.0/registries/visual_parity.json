@@ -40065,21 +40065,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-005.png",
+      "evidence_at": "2026-10-12T04:48:21.235Z",
+      "evidence_sha256": "ee5c3201e2d45843fa04d2a60ccef72c89e7ec1c47cc508c6ca5797e43d0a3e5",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Нет второй строки «Полный доступ на 3 дня · Действует до …» (пробный доступ) — активна только «Plus за приглашения»; нужен второй источник доступа (пробный) в подмене.",
+        "[данные] Дата «26.10.2026, 04:48» против «02.11.2026, 12:00»; список прокручен по-другому: в образце виден «Очистить кеш» и «Версия 2.0.0 (118)», в приложении панель вкладок перекрывает «Оценить в Google Play»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T05:02:29.596Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&vip=referral&plus=inherit&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:48, settings-gaps-states №5 «Главная — Plus за приглашения + пробный доступ»): панель вкладок теперь как в образце; блок «PHRASEMAN PLUS» (Подписка Plus · Активна, Ввести промокод, Пригласить друга), строка «Plus за приглашения · Действует до …» и блок «ПОМОЩЬ» совпали по составу."
     },
     {
       "id": "settings-gap-006",
@@ -40169,21 +40173,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-008.png",
+      "evidence_at": "2026-10-12T04:49:04.873Z",
+      "evidence_sha256": "14c856e649125709b9525fa2daef29dd02c01e354f3c9e35fa854d90edf2e7c8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — кандидат] В карточке опроса одно и то же «Что улучшить в первую очередь?» выведено три раза подряд (заголовок, подзаголовок, вопрос) — в образце заголовок «Важное от Phraseman» и пояснение; проверить, не dev-данные ли (название=вопрос) или шаблон карточки дублирует поля.",
+        "[данные] Варианты «Скорость 42% / Больше заданий 31% / Оформление 27%» против «Больше уроков 41%…»; «Подписка Plus · Не активна» в приложении.",
+        "[состояние] Подпись «Твой выбор сохранён» и «Версия» перекрыты панелью вкладок."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T05:02:29.596Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=poll_voted&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:49, settings-gaps-states №8 «Очистить кеш — готово + опрос после голосования»): строка «Очистить кеш · Готово» и опрос с процентами после голосования («Твой выбор» выделен, проценты справа) — по составу совпали."
     },
     {
       "id": "settings-gap-009",
@@ -40204,21 +40213,22 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-009.png",
+      "evidence_at": "2026-10-12T04:49:52.100Z",
+      "evidence_sha256": "22f1b442a47f2452df48b4bf5defc4c96ae64eba7e70883d61b6aa5c6115ef6c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T05:02:29.596Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=message&cache=failed&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:49, settings-gaps-states №9 «Очистить кеш — не удалось + слот без опроса»): строка «Очистить кеш · Не удалось» и карточка сообщения без опроса (значок-рупор, заголовок, текст) совпали с образцом; нижняя панель вкладок — как в образце. Различия приняты как данные: заголовок «Новое в Phraseman» и текст сообщения другие, «Подписка Plus · Не активна» против «Активна», экран прокручен чуть выше (панель вкладок перекрывает «Версия»)."
     },
     {
       "id": "settings-gap-010",
@@ -40609,19 +40619,20 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-019.png",
-      "evidence_at": "2026-10-12T00:00:13.489Z",
-      "evidence_sha256": "427745973aacdbc76a34194fb1c07a2a3bf5d1ddefe8b4745236b8fdfaa42fbc",
+      "evidence_at": "2026-10-12T04:50:41.978Z",
+      "evidence_sha256": "3c1ea070d3f56fb7a4959a1e9399c579e59896d235bf30fdfbf56007f2634167",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не воспроизведено] Нужна шторка «Язык изучения» с пятью языками (English выбран, Español, Français / Deutsch / Italiano с замком «Новый язык · доступ уточняется») поверх «Настроек»; на кадре хаб «Диалоги» (категории 0/19)."
+        "[состояние] В образце Español доступен («Учу» без замка, цветной флаг Испании), в приложении все, кроме English, с замком «Новый язык · доступ уточняется» — состояние доступа к испанскому другое (данные подмены).",
+        "[данные] Профиль «Алекс / Лектор · аккаунт привязан · Google» против «Профиль / Стажёр · прогресс привязан к телефону · Войти»."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T00:01:16.378Z",
+      "reviewed_at": "2026-10-12T05:02:29.596Z",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (кадр 1:00 по часам экрана): снято не то — вместо шторки «Язык изучения» на «Настройках» на кадре хаб «Диалоги».",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 5:50, settings-gaps-states №19 «Шторка «Язык изучения» — 5 языков»): шторка «Язык изучения · Прогресс каждого языка хранится отдельно» с пятью языками (English выбран, Español, Français, Deutsch, Italiano) — по составу совпала.",
       "triage": {
         "bucket": "b_reshoot",
         "bucket_reason": "нужное состояние на кадре не воспроизведено",

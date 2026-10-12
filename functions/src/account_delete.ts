@@ -1265,8 +1265,12 @@ async function collectSentRequestPeerUids(
 const PEER_DOC_ID_GROUPS: readonly string[] = ['friend_requests', 'blocked'];
 /** Страница обхода группы. */
 const PEER_GROUP_SCAN_PAGE = 500;
-/** Потолок документов на группу: выше — узкий путь не доказан, честный полный перебор. */
-export const PEER_GROUP_SCAN_DOC_CAP = 20_000;
+/**
+ * Потолок документов на группу: выше — узкий путь не доказан, честный полный перебор.
+ * зачем 5 000 (координатор 12.10, замер §5.1): при 20 000 худший случай 2×20 000 чтений равнялся полному перебору
+ * users (5 802 × 4–7). При 5 000 обход в худшем случае всё ещё в ~4–8 раз дешевле; упёрлись — пора поле fromUid.
+ */
+export const PEER_GROUP_SCAN_DOC_CAP = 5_000;
 
 export type PeerGroupScanResult = {
   peers: string[];

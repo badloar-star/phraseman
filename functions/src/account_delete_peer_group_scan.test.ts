@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { collectDocIdPeerUidsByCollectionGroup } from './account_delete';
+import { collectDocIdPeerUidsByCollectionGroup, PEER_GROUP_SCAN_DOC_CAP } from './account_delete';
 
 // зачем (координатор 12.10, ACCOUNT_DELETE_INDEX_INCIDENT §5): маркер обратного индекса заявок есть лишь у тех,
 // кто открывал «Друзей», поэтому КАЖДОЕ удаление шло полным перебором `users`. Узкий путь находит peer-uid
@@ -61,6 +61,17 @@ describe('account delete: peer-uid по группам без полного п�
     const res = await collectDocIdPeerUidsByCollectionGroup(db as any, ['me'], stats() as any, ['friend_requests'], 1000);
     expect(res.complete).toBe(false);
     expect(res.reason).toBe('cap_exceeded:friend_requests');
+  });
+
+  it('потолок по умолчанию 5 000 (координатор 12.10): на нём лог и полный перебор', async () => {
+    expect(PEER_GROUP_SCAN_DOC_CAP).toBe(5_000);
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const requests = Array.from({ length: 5_001 }, (_, i) => doc(`u${i}`, `o${i}`));
+    const res = await collectDocIdPeerUidsByCollectionGroup(makeDb({ friend_requests: requests }) as any, ['me'], stats() as any, ['friend_requests']);
+    expect(res).toMatchObject({ complete: false, reason: 'cap_exceeded:friend_requests' });
+    expect(res.scanned.friend_requests).toBe(5_000);
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('account_delete_peer_group_scan_cap'));
+    warn.mockRestore();
   });
 
   it('отказ запроса — честный полный перебор, причина в ответе', async () => {

@@ -285,3 +285,11 @@ add('dialogs-gap-012', DLG_START + SEND_MSG, SESSION_PLUS + '&dev_dialog_send=ok
 add('dialogs-gap-017', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=3&dev_energy_fail=1', DLG, note='брифинг: тост «Не получилось начать диалог» (dev_energy_fail=1)')
 
 add('cards-gap-026', [f'long:#fc-my-packs-pack-{WORK}', 'tap:#fc-my-packs-action-share'], DEMO_PLUS + '&fail=publish_daily_limit', MYPACKS, note='«Открыть сообществу» при суточном лимите — тост (dev-отказ стоит ПЕРВЫМ в publishLocalAuthorPack, описание не проверяется)')
+
+
+# ───────────────────────── Главная / энергия: что выводится без ошибок внутри урока ─────────────────────────
+# Режим Б и остановки по ошибкам (energy-modes-001…008, 011…014, 016) требуют ОШИБИТЬСЯ в задании, а тип первого задания (варианты слов, сборка,
+# ввод) не фиксирован — их шаги не выведены (нужен записанный ручной путь). Здесь — только вход в урок и окно «нет энергии».
+LESSON_MENU = '/lesson_menu?id=1'
+add('energy-modes-017', ['tap:#lesson-menu-primary'], 'energy=0&plus=off&mode=a', LESSON_MENU, note='Режим А, энергии нет: «Начать» в меню урока → окно «Нет энергии» (NoEnergyModal)')
+add('energy-modes-015', ['tap:#lesson-menu-primary', 'wait:3000'], 'energy=5&plus=off&mode=a', LESSON_MENU, note='Режим А: старт занятия, энергия 5 → 4 в пилюле шапки (кадр сразу после входа в урок)', unique=False)

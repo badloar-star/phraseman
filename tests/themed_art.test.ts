@@ -87,13 +87,22 @@ describe('honest gaps', () => {
 describe('first real assets (adfaa8c34) and set choice', () => {
   const HOME = ['lessons', 'dialogs', 'cards', 'continue', 'phrase_of_day', 'mistakes_entry', 'today'] as const;
 
-  it('the 7 Home items are real files in both sets, with no accent layer yet (clean object)', () => {
+  // зачем (S2_clay, выбор владельца 15.10): «Уроки», «Диалоги» и «Шпиль» — стиль S2 с цветной деталью (.accent); остальные предметы Главной пока прежние, без accent-слоя,
+  // пока Codex не дорисует их в S2 (тогда сюда переедут из списка NO_ACCENT_YET).
+  it('the 7 Home items are real files in both sets; S2_clay items carry an accent layer, the rest do not yet', () => {
+    const WITH_ACCENT = ['lessons', 'dialogs'] as const;
     for (const name of HOME) {
       for (const brightness of ['dark', 'light'] as const) {
         const art = resolveThemedArt(name, brightness);
         expect(art.origin).toBe('v2art');
-        expect(art.accent).toBeNull();
+        if ((WITH_ACCENT as readonly string[]).includes(name)) expect(art.accent).not.toBeNull();
+        else expect(art.accent).toBeNull();
       }
+    }
+    for (const brightness of ['dark', 'light'] as const) {
+      const spire = resolveThemedArt('spire_tile', brightness);
+      expect(spire.origin).toBe('v2art');
+      expect(spire.accent).not.toBeNull();
     }
   });
 

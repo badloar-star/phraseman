@@ -394,6 +394,29 @@ export function useCollectionData(opts: {
   );
   const [loadError, setLoadError] = useState(false);
 
+  // зачем (аудит §AUTH-0110, координатор 15.10): кэш модуля при смене цели уже сбрасывается по области (collectionCacheScope), а вот состояние хука жило со старой целью до конца loadAll —
+  // экран показывал карточки, каталог и купленные наборы прежнего языка. Сброс по studyTarget (кроме первого монтирования): списки пустые, каталог — зерно новой цели, «готово» снято.
+  const prevTargetRef = useRef(storageStudyTarget(studyTarget));
+  useEffect(() => {
+    const now = storageStudyTarget(studyTarget);
+    const before = prevTargetRef.current;
+    if (before === now) return;
+    prevTargetRef.current = now;
+    console.log('[CARDS-TARGET] useCollectionData: цель', JSON.stringify({ // guard-ok: трассировка сброса при смене изучаемого языка
+      from: before, to: now,
+      reset: { saved: savedCards.length, custom: customCards.length, market: marketCards.length, catalog: marketPackCatalog.length, owned: ownedPackIdList.length, communityOwned: communityOwnedIdList.length, ready: collectionDataReady },
+      newCatalogSeed: marketCatalogSeed.length,
+    }));
+    setSavedCards([]);
+    setCustomCards([]);
+    setMarketCards([]);
+    setMarketPackCatalog(marketCatalogSeed);
+    setOwnedPackIdList([]);
+    setCommunityOwnedIdList([]);
+    setCollectionDataReady(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [studyTarget]);
+
   /** Обновление стейта + module-cache одной операцией (delete/undo из контейнера). */
   const updateSavedCards = useCallback(
     (updater: (prev: CardItem[]) => CardItem[]) => {

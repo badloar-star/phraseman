@@ -22,6 +22,28 @@
 Полный typecheck НЕ прогонялся: свободно 3,2–4,4 ГБ (порог 4), в precheck его нет. Гейт озвучки теперь сам поднимает лимит
 кучи (22767e6f4) — прежнее замечание снято.
 
+## Полный прогон тестов на HEAD `862f055c5` (12.10, 05:13–06:16) — 303 красных файла / 587 тестов
+
+**Наши зоны: 53 файла (104 теста) — настоящие красные, 12 — артефакты среза (в рабочей копии зелёные). Codex: 238 файлов
+(468 тестов), из них 132 gustav с одной причиной.** Полный список с причинами — `RED_TESTS_HEAD_2026-10-12.md`. Не чинилось.
+
+- Как: чистый срез HEAD вне репозитория, 2378 наборов раннера (17 610 тестов) частями по 80, `--maxWorkers=1`, со слотом и
+  проверкой памяти/tsc; 236 файлов `node --test`. Красные наших зон перепрогнаны в рабочей копии («настоящий / артефакт»).
+- Крупные группы наших настоящих красных (для раздачи):
+  - аккаунт и вход — `account_provision_lock_android_runtime_entrypoint` (6), `account_sqlite_lease_patch*` (3),
+    `account_v2_client_tails_6c`, `account_v2_tails_6d`, `auth_provider_stable_link`, `stable_id`;
+  - сторожа оформления «стекло»/тема — 13 файлов `*_liquid_glass*` (сверка исходника с прежним текстом/AST),
+    `theme_hardcoded_colors_ratchet` (новые цвета в `app/dev_state.tsx` и Codex `mode_feedback_v1.tsx`),
+    `android_no_square_outline_guard`, `website_global_background_contract`;
+  - `home_lesson_progress_single_pass` — 25 тестов, одна причина `gcSnapshot is not defined`;
+  - свежие (тест менялся ≤ 24 ч): `dev_links_r1_contract`, `energy_start_cost_contract`, `flashcards_recall_pending_start_behavior`,
+    `interaction_responsiveness_contract`, `overlay_queue_and_pending_alert_contract`, `use_mistake_explain_bundle_state`,
+    `video_pack_add_maps_to_community_doc`, `support_report`/`manage_subscription*` liquid-glass, `visual_parity_gate.test.mjs`.
+- Codex: gustav — 132 файла читают `docs/gustav/generated/**`, а `docs/gustav/*` в `.gitignore` и нет даже в рабочей копии →
+  красные везде; Learning V2/factory_native — 106 файлов, 336 тестов (по файлам — в списке).
+- `jest_write_guard`, `i18n_missing_en_fallback`, `phone_state_native_config_contract`, `rune_balance_snapshot_preservation`,
+  `spire_oddity_prompt` и др. — артефакты среза (нужны `.git`, `android/` или сгенерированные файлы): в рабочей копии зелёные.
+
 ## Срез на HEAD `6c8d6e6d4` (12.10, 01:30) — КРАСНЫЙ: 3 гейта из 8
 
 Каждый гейт прогнан отдельно (логи — scratchpad «Ядро», `gates/*.log`). С прошлого среза добавлен гейт стор-заглушек (54c2d90de).

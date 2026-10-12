@@ -343,3 +343,32 @@ test('настоящий router.ctx.js: стор-сборка вырезает L
   assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), true);
   assert.equal(isRouteExcludedInStore(regex, 'app/(tabs)/home.tsx'), false);
 });
+
+// зачем (координатор 12.10, решение владельца «гейт только по r1» — утром): `--release=r1` считает только строки выпуска R1;
+// по умолчанию — весь реестр, как раньше.
+test('release=r1: только строки выпуска R1; без фильтра — весь реестр', () => {
+  const rows = [
+    matchRow({ id: 'r1-ok', release: 'r1' }),
+    matchRow({ id: 'r1-pending', release: 'r1', status: 'pending' }),
+    matchRow({ id: 'later-pending', status: 'pending' }),
+    matchRow({ id: 'r1-removed', release: 'r1', status: 'removed_by_owner', removed_reason: 'владелец снял' }),
+  ];
+  const all = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0) });
+  assert.equal(all.counts.total, 4);
+  assert.deepEqual(all.violations.map((v) => v.id).sort(), ['later-pending', 'r1-pending']);
+  const r1 = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), release: 'r1' });
+  assert.equal(r1.counts.total, 3);
+  assert.equal(r1.counts.removed_by_owner, 1);
+  assert.deepEqual(r1.violations.map((v) => v.id), ['r1-pending']);
+});
+
+test('release=r1 на реальном реестре: прогон по умолчанию не изменился, r1 — подмножество', () => {
+  if (!fs.existsSync(REAL_REGISTRY)) return;
+  const gate = path.join(ROOT, 'scripts', 'visual_parity_gate.mjs');
+  const full = spawnSync(process.execPath, [gate, '--max-lines=0'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PARITY_GATE_WAIVER: '' } });
+  const r1 = spawnSync(process.execPath, [gate, '--max-lines=0', '--release=r1'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PARITY_GATE_WAIVER: '' } });
+  const total = (out) => Number(/строк=(\d+)/.exec(out)?.[1]);
+  assert.doesNotMatch(full.stdout, /фильтр выпуска/);
+  assert.match(r1.stdout, /фильтр выпуска: release=r1/);
+  assert.ok(total(r1.stdout) > 0 && total(r1.stdout) < total(full.stdout), `${total(r1.stdout)} vs ${total(full.stdout)}`);
+});

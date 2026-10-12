@@ -12,7 +12,7 @@
  *    стор-режима router.ctx.js ИЛИ флаг не выключен по умолчанию / нет теста-сторожа флага; без reviewed_by.
  * Самопроверка исполнителя не считается: статус match и reviewed_by выставляет координатор, этот гейт лишь проверяет следы.
  *
- * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check]
+ * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check] [--release=r1]
  * Логи: [PARITY-GATE]. Подключён в release:precheck и eas-build-post-install.
  */
 import crypto from 'node:crypto';
@@ -181,10 +181,21 @@ export function releaseSurfaceViolations(root, row, regex) {
   return out;
 }
 
+/**
+ * Строки реестра одного выпуска. release не задан — все строки (поведение по умолчанию).
+ * зачем (координатор 12.10, «Утром решить» владельца): гейт можно считать только по строкам выпуска R1 (`release: "r1"`);
+ * строки без поля release в такой прогон не входят. removed_by_owner внутри выпуска обрабатывается как раньше.
+ */
+export function filterRowsByRelease(rows, release) {
+  if (!release) return rows;
+  return rows.filter((row) => row && row.release === release);
+}
+
 export function evaluateRegistry(root, registry, options = {}) {
   const violations = [];
   const runGit = options.runGit ?? defaultGit;
-  const rows = Array.isArray(registry?.rows) ? registry.rows : [];
+  const allRows = Array.isArray(registry?.rows) ? registry.rows : [];
+  const rows = filterRowsByRelease(allRows, options.release);
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
   const sverkaOpen = options.sverkaOpenDiffs ?? new Map();
   const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, no_release_surface: 0, blocked: 0, other: 0 };
@@ -271,6 +282,8 @@ async function main() {
   const root = path.resolve(value('--root', SCRIPT_ROOT));
   const registryPath = path.resolve(root, value('--registry', 'docs/phraseman-2.0/registries/visual_parity.json'));
   const maxLines = Number(value('--max-lines', '40'));
+  // зачем (координатор 12.10): `--release=r1` — только строки выпуска R1; по умолчанию — весь реестр, как раньше.
+  const release = value('--release', '') || null;
 
   if (!fs.existsSync(registryPath)) {
     // зачем (10.10): на сервере EAS каталога docs/ нет (.easignore) — реестра там не бывает. Без обхода владельца это
@@ -297,7 +310,12 @@ async function main() {
   const logPath = path.join(root, 'docs/phraseman-2.0/evidence/parity/SVERKA_LOG.md');
   const sverkaLogText = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
   const sverkaOpenDiffs = new Map([...parseSverkaHeadingDiffs(sverkaLogText), ...parseSverkaOpenDiffs(sverkaLogText)]);
-  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs });
+  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs, release });
+  if (release) {
+    const all = Array.isArray(registry?.rows) ? registry.rows.length : 0;
+    const noRelease = Array.isArray(registry?.rows) ? registry.rows.filter((row) => !row?.release).length : 0;
+    console.log(`${LOG} фильтр выпуска: release=${release} — строк ${result.counts.total} из ${all} (без поля release: ${noRelease}, в этот прогон не входят)`);
+  }
   if (!flag('--no-matrix-check')) {
     const matrixPath = path.join(root, registry.matrix ?? 'docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md');
     if (fs.existsSync(matrixPath)) {
@@ -317,7 +335,7 @@ async function main() {
   console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} blocked=${counts.blocked} removed_by_owner=${counts.removed_by_owner} нарушений=${result.violations.length}`);
   // зачем (координатор 11.10: «синхронизируй гейт с тем, что Сверка отмечает match»): раньше было видно только число match, а проходит ли каждая
   // отмеченная строка сам гейт (привязка к коду, свежая склейка, анимация) — нет. Теперь явно: сколько отмечено и сколько из них проходит.
-  const matchIds = new Set(registry.rows.filter((row) => row.status === 'match').map((row) => row.id));
+  const matchIds = new Set(filterRowsByRelease(registry.rows, release).filter((row) => row.status === 'match').map((row) => row.id));
   const badMatch = new Set(result.violations.filter((violation) => matchIds.has(violation.id)).map((violation) => violation.id));
   console.log(`${LOG} match отмечено Сверкой/владельцем: ${matchIds.size}, проходят гейт: ${matchIds.size - badMatch.size}${badMatch.size ? ` · не проходят: ${[...badMatch].join(', ')} (причины — code_unmapped / evidence_stale / anim_evidence_missing, строки ниже)` : ''}`);
   if (result.ok) {

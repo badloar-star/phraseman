@@ -24158,24 +24158,27 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-005.png",
+      "evidence_at": "2026-10-12T02:21:28.425Z",
+      "evidence_sha256": "c8e27b2b91e8dd258d257cbe11913e3f9ef366d617adfdd3f79d58d092ad32f0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр испорчен — системное окно ANR] На месте экрана чёрный фон и окно «приложение не отвечает». Либо эмулятор перегружен (после ввода кода зависла съёмка), либо на вводе кода промокода приложение реально зависает — проверить журнал кадра (_runs/…/overlays-campaigns-005.log: logcat ANR, длительность блокировки главного потока) и переснять; если ANR воспроизведётся, это дефект кода (Ядро/Дизайн)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:21:59.332Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&overlays=off&next=/promo_code_entry"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:21, promo-code-states.html №2 «005 · Можно активировать»): кадр испорчен — вместо экрана промокода системное окно Android «Phraseman isn't responding» (Close app / Wait)."
     },
     {
       "id": "overlays-campaigns-006",

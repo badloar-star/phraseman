@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HybridSheetShell from '../../modal_fx/HybridSheetShell';
 import PressableHybrid from '../../PressableHybrid';
 import type { DialogueGlass } from './DialogueGlassKit';
+import { nestedBoxShadow } from '../../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30, макет dialogs.html, шторка «Диалог» за кнопкой «⋯»):
 // «Завершить» переехал из шапки в шторку, как в макете, — заголовок сцены в шапке больше
@@ -75,13 +76,15 @@ export function DialogueGlassMenuSheet({
               }}
               contentStyle={styles.item}
             >
-              <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]}>
+              <View style={[styles.tile, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
                 <Ionicons name="list-outline" size={20} color={glass.text} />
               </View>
               <Text maxFontSizeMultiplier={1.3} style={[styles.itemText, { color: glass.text }]}>{tasksLabel}</Text>
               <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
             </PressableHybrid>
           ) : null}
+          {/* зачем (R1_DIFF_ONE_FIX, dialogs-gap-015, образец dialogs.html): между пунктами меню тонкий разделитель */}
+          {tasksLabel && onOpenTasks ? <View testID="dialogue-v2-session-menu-divider" style={[styles.divider, { backgroundColor: glass.dividerTone }]} /> : null}
           <PressableHybrid
             testID="dialogue-v2-session-menu-complete"
             variant="secondary"
@@ -96,7 +99,7 @@ export function DialogueGlassMenuSheet({
             }}
             contentStyle={[styles.item, { opacity: completeDisabled ? 0.55 : 1 }]}
           >
-            <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]}>
+            <View style={[styles.tile, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
               <Ionicons name="close" size={20} color={glass.text} />
             </View>
             <Text maxFontSizeMultiplier={1.3} style={[styles.itemText, { color: glass.text }]}>{completeLabel}</Text>
@@ -115,5 +118,6 @@ const styles = StyleSheet.create({
   closeBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   item: { marginTop: 14, minHeight: 62, flexDirection: 'row', alignItems: 'center', gap: 18, paddingHorizontal: 4, paddingVertical: 8 },
   tile: { width: 46, height: 46, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  divider: { height: StyleSheet.hairlineWidth, marginTop: 14, marginHorizontal: 4 },
   itemText: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '700' },
 });

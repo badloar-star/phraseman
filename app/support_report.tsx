@@ -16,6 +16,7 @@ import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 import { captureSupportDiagnosticBundle } from './support_diagnostics';
+import { isSupportDiagnosticsEnabled } from './remote_flags';
 import { sendSupportReportInBackground } from './support_report_outbox';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -43,6 +44,12 @@ export default function SupportReportScreen() {
     ru: string, uk: string, en: string, es: string, ptBR: string,
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl }), [lang]);
+
+  // зачем (координатор 12.10, R1): интерфейс не обещает того, чего не делает — пока журнал выключен (remote_flags), «прикрепятся действия» не пишем
+  const diagnosticsEnabled = isSupportDiagnosticsEnabled();
+  useEffect(() => {
+    console.log(`[SUPPORT-DIAG] карточка: журнал ${diagnosticsEnabled ? 'включён → обещание и список' : 'выключен → нейтральный текст без обещания'}`); // guard-ok: ветвление логируется
+  }, [diagnosticsEnabled]);
 
   const canSend = useMemo(
     () => description.trim().length >= ERROR_REPORT_COMMENT_MIN_LEN,
@@ -168,13 +175,13 @@ export default function SupportReportScreen() {
               <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, boxShadow: plateBoxShadow(glass), paddingVertical: 14, paddingHorizontal: 16 }}>
                 <PlateFill g={glass} radius={14} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                  <Ionicons name="checkmark" size={20} color={glass.secondary} />
+                  <Ionicons name={diagnosticsEnabled ? 'checkmark' : 'information-circle-outline'} size={20} color={glass.secondary} />
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={{ color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
                       {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
                     </Text>
                     <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 2 /* зачем: паритет profile.html PRF-09 (13.10) */ }}>
-                      {L(
+                      {diagnosticsEnabled ? L(
                         'Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.',
                         'До цього звернення додадуться лише недавні технічні дії. Без тексту повідомлень, паролів і платіжних даних.',
                         'Only recent technical actions are attached to this request. Message text, passwords, and payment data are excluded.',
@@ -184,6 +191,16 @@ export default function SupportReportScreen() {
                         'Hanya tindakan teknis terbaru yang dilampirkan. Teks pesan, kata sandi, dan data pembayaran tidak disertakan.',
                         'Yalnızca son teknik işlemler eklenir. Mesaj metni, parolalar ve ödeme verileri dahil edilmez.',
                         'Dołączane są tylko ostatnie działania techniczne. Bez treści wiadomości, haseł i danych płatniczych.',
+                      ) : L(
+                        'Журнал технических действий сейчас выключен — вместе с обращением он не отправляется.',
+                        'Журнал технічних дій зараз вимкнено — разом зі зверненням він не надсилається.',
+                        'The technical activity log is currently off — it is not sent with your request.',
+                        'El registro de acciones técnicas está desactivado: no se envía con tu solicitud.',
+                        'O registro de ações técnicas está desativado — ele não é enviado com a solicitação.',
+                        'Nhật ký thao tác kỹ thuật hiện đang tắt — sẽ không được gửi cùng yêu cầu.',
+                        'Log tindakan teknis saat ini nonaktif — tidak dikirim bersama permintaan.',
+                        'Teknik işlem günlüğü şu anda kapalı — talebinle birlikte gönderilmez.',
+                        'Dziennik działań technicznych jest teraz wyłączony — nie jest wysyłany z Twoim zgłoszeniem.',
                       )}
                     </Text>
                     {diagnosticsPreview?.events.length ? (

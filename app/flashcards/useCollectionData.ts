@@ -459,6 +459,7 @@ export function useCollectionData(opts: {
           loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_9', swallowedError); return []; }),
         ]);
       if (!isCurrentAccountGeneration(accountToken)) return;
+      console.log(`[CARDS-HINT] loadAll: ключ=${flashcardsDeleteHintSeenKey(studyTarget)} значение=${JSON.stringify(hintSeen)} target=${String(studyTarget)}`); // guard-ok: значение из хранилища
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
       // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
       const mappedSavedQuick = saved.map((card) => savedToCard(card, studyTarget));
@@ -764,6 +765,8 @@ export function applyPostLoadNavigation(
   },
 ): void {
   const { ownedIds, activePackId, progress } = info;
+  // зачем (координатор 12.10, cards-033: hint=show «не применилась»; сперва логи): решение показать разовую подсказку — со значениями, которые его определили
+  console.log(`[CARDS-HINT] решение: hintSeen=${String(info.hintSeen)} savedCount=${info.savedCount} → ${!info.hintSeen && info.savedCount > 0 ? 'показываем' : 'не показываем'}`); // guard-ok: ветвление логируется
   if (!info.hintSeen && info.savedCount > 0) {
     ctx.setShowDeleteHint(true);
   }

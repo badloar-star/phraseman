@@ -782,6 +782,10 @@ export default function FlashcardsScreen() {
   });
   // зачем (Макеты cards-032, 12.10): подсказка «Зажми карточку…» скрыта при ЛЮБОЙ открытой шторке/окне экрана («⋯», подтверждения, фильтр, комментарии, жалоба), а не только при шторке долгого нажатия и плашке «Удалено»
   const hintCoveredByOverlay = savedActionsOpen || batchDeleteConfirmOpen || deletePackOpen || filterOpen || commentsSheetOpen || packReportOpen;
+  // зачем (координатор 12.10, cards-033; сперва логи): итог — что именно решило, видна ли подсказка на экране
+  useEffect(() => {
+    console.log(`[CARDS-HINT] экран: showDeleteHint=${String(showDeleteHint)} undoEntry=${String(!!undoEntry)} packUndo=${String(!!packUndo)} covered=${String(hintCoveredByOverlay)} → видна=${String(showDeleteHint && !undoEntry && !packUndo && !hintCoveredByOverlay)}`); // guard-ok: итог ветвления
+  }, [showDeleteHint, undoEntry, packUndo, hintCoveredByOverlay]);
 
   const confirmDeleteSelected = useCallback(() => {
     if (selectedCardIds.length === 0) return;

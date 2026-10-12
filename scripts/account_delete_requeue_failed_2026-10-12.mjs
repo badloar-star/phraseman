@@ -101,7 +101,12 @@ async function inspect(prefix) {
     log('target:ambiguous', { prefix, reason: 'prefix_matches_several_docs' });
     return null;
   }
-  if (job) return { prefix, kind: 'job', authUid: job.authUid, stableUid: job.stableUid, closure: job.identityClosure, status: job.status };
+  if (job) {
+    return {
+      prefix, kind: 'job', authUid: job.authUid, stableUid: job.stableUid, closure: job.identityClosure, status: job.status,
+      jobRef: jobs[0].ref, nextAttemptAtMs: Number(job.nextAttemptAtMs ?? 0),
+    };
+  }
   if (tombstones[0] && markers[0]) {
     return { prefix, kind: 'mine', authUid: markers[0].id, stableUid: tombstones[0].id, closure: undefined, status: 'no_job' };
   }
@@ -110,8 +115,26 @@ async function inspect(prefix) {
 }
 
 async function requeue(target) {
+  // зачем (владелец 12.10, журнал п.81: «СРАЗУ без 14 дней»): задача уже стоит в очереди (её поставил клиентский
+  // accountDeleteEnqueue), но её срок — через 14 дней grace. С --no-grace переносим срок на «сейчас»; запись документа задачи
+  // сама будит воркер (триггер на запись). Работающую/завершённую задачу не трогаем.
+  if (target.kind === 'job' && target.status === 'queued' && NO_GRACE && target.nextAttemptAtMs > Date.now()) {
+    const now = Date.now();
+    await target.jobRef.update({ nextAttemptAtMs: now, updatedAtMs: now, noGraceRequestedAtMs: now });
+    log('apply:no_grace_existing', {
+      prefix: target.prefix,
+      previousNextAttempt: new Date(target.nextAttemptAtMs).toISOString(),
+      nextAttempt: new Date(now).toISOString(),
+    });
+    return;
+  }
   if (target.kind === 'job' && target.status !== 'failed') {
-    log('apply:skip', { prefix: target.prefix, reason: `job_status_${target.status}` });
+    log('apply:skip', {
+      prefix: target.prefix,
+      reason: `job_status_${target.status}`,
+      nextAttempt: target.nextAttemptAtMs ? new Date(target.nextAttemptAtMs).toISOString() : null,
+      noGrace: NO_GRACE,
+    });
     return;
   }
   const res = await enqueueAccountDeletionJob(db, target.authUid, target.stableUid, Date.now(), undefined, target.closure);

@@ -172,6 +172,32 @@ function useNavActionTraceImpl(navigationRef: NavTraceRef): void {
   }, []);
 }
 
+// ═════════════════════════════════════════════════════════════════════
+// perfR1BodyStart / perfR1BodyMark — где внутри ТЕЛА тяжёлого экрана уходит время рендера (R1, «Уроки ≈2,4–2,6 с одним коммитом»; координатор 12.10: сперва измерение).
+// [PERF-R1-PROFILE] показывает только суммарный actualMs поддерева. Метки в теле компонента дают накопленные мс от начала тела до каждой контрольной точки
+// (разность соседних = стоимость участка хуков/вычислений, без детей): так видно, тяжела ли сама логика экрана или его дерево. Печатаются первые 2 рендера тега.
+// Только dev и не стор-релиз; в релизе — пустые функции без хуков.
+// ═════════════════════════════════════════════════════════════════════
+const bodyRenderCount = new Map<string, number>();
+const nowMs = (): number => (typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now());
+
+/** Начало тела экрана: возвращает метку времени (в релизе — 0). */
+export const perfR1BodyStart: (tag: string) => number = ENABLED
+  ? (tag) => {
+    bodyRenderCount.set(tag, (bodyRenderCount.get(tag) ?? 0) + 1);
+    return nowMs();
+  }
+  : () => 0;
+
+/** Контрольная точка тела: накопленные мс с начала (только первые 2 рендера тега). */
+export const perfR1BodyMark: (tag: string, label: string, startedAt: number) => void = ENABLED
+  ? (tag, label, startedAt) => {
+    const render = bodyRenderCount.get(tag) ?? 0;
+    if (render > 2) return;
+    console.log('[PERF-R1-BODY]', JSON.stringify({ tag, render, label, sinceBodyStartMs: Math.round((nowMs() - startedAt) * 10) / 10 })); // guard-ok: замер скорости, только dev
+  }
+  : () => undefined;
+
 /** Метка монтирования яруса (см. выше); в релизе — пустая функция без хуков. */
 export const useMountTrace: (tag: string, note?: string) => void = ENABLED ? useMountTraceImpl : () => undefined;
 

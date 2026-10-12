@@ -79,7 +79,7 @@ import { useBouncy, useBouncyStyle } from "../../components/BouncyScrollView";
 import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
-import { usePerfR1Probe } from "../perf_r1_probe";
+import { perfR1BodyMark, perfR1BodyStart, usePerfR1Probe } from "../perf_r1_probe";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
 import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
 import {
@@ -2383,6 +2383,7 @@ export default function LessonsTab({
   initialPage = "lessons",
 }: LessonsTabProps = {}) {
   void _overlayIdentityEpoch;
+  const perfBodyStart = perfR1BodyStart('lessons'); // зачем (R1): где в теле экрана уходит время — контрольные точки [PERF-R1-BODY], только dev
   // зачем (владелец 22.09, «ни один урок открыть нельзя»): этот экран
   // рендерится ДВУМЯ разными маршрутами (/lessons_list и /learning-v2/course
   // — оба ре-экспортируют LessonsTab). Если он размонтируется и монтируется
@@ -2946,6 +2947,7 @@ export default function LessonsTab({
       `${learningV2AccountGeneration}:${studyTarget}:${_overlayIdentityEpoch}`,
     [_overlayIdentityEpoch, learningV2AccountGeneration, studyTarget],
   );
+  perfR1BodyMark('lessons', 'before_v2_progress', perfBodyStart);
   const learningV2PreparedProgress = useMemo(
     () =>
       prepareLearningV2CourseAccordionProgressV1({
@@ -4055,6 +4057,7 @@ export default function LessonsTab({
     }
     void loadScores();
   }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores, page]);
+  perfR1BodyMark('lessons', 'before_lessons_memo', perfBodyStart);
   const lessons = useMemo(() => {
     const legacyTitles = lessonNamesForStudyTarget(lang, studyTarget);
     // System currently owns one exact reviewed title set. Keep it intact for
@@ -4170,6 +4173,7 @@ export default function LessonsTab({
     | {
         kind: "attestation";
       };
+  perfR1BodyMark('lessons', 'before_list_data', perfBodyStart);
   const listData: ListItem[] = useMemo(() => {
     const data: ListItem[] = [];
     if (page === "v2") {
@@ -4495,6 +4499,7 @@ export default function LessonsTab({
     const make = (lvl: string) => () => examPressImplRef.current[lvl]?.();
     return { A1: make("A1"), A2: make("A2"), B1: make("B1"), B2: make("B2") } as Record<string, () => void>;
   }, []);
+  perfR1BodyMark('lessons', 'before_render_helpers', perfBodyStart);
   // ── Exam card (Liquid Glass `.exc` макета learn.html) ──
   const renderExamCard = (lvl: string): React.ReactNode => {
     const [from, to] =
@@ -5089,6 +5094,7 @@ export default function LessonsTab({
     </View>
   );
 
+  perfR1BodyMark('lessons', 'before_return', perfBodyStart);
   return (
     <>
       <ScreenGradient forceFullBleed>

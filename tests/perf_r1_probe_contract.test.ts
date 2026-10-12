@@ -63,6 +63,15 @@ describe('[PERF-R1-MOUNT] / [PERF-R1-PROFILE]: трассировка двойн
     expect(layout).toContain('<PerfR1Profile id="home">');
     expect(layout).toContain('<PerfR1Profile id="lessons">');
   });
+  it('[PERF-R1-BODY]: контрольные точки в теле экрана «Уроки» (накопленные мс); в релизе — пустые функции', () => {
+    expect(probe).toContain('export const perfR1BodyStart: (tag: string) => number = ENABLED');
+    expect(probe).toContain('export const perfR1BodyMark: (tag: string, label: string, startedAt: number) => void = ENABLED');
+    const lessons = read('app/(tabs)/lessons.tsx');
+    expect(lessons).toContain("const perfBodyStart = perfR1BodyStart('lessons');");
+    for (const label of ['before_v2_progress', 'before_lessons_memo', 'before_list_data', 'before_render_helpers', 'before_return']) {
+      expect(lessons).toContain(`perfR1BodyMark('lessons', '${label}', perfBodyStart);`);
+    }
+  });
   it('[PERF-R1-NAV]: слушает действия навигации (кто заменил маршрут) со стеком вызова; в релизе — пустая функция, expo-router в пробе не импортируется', () => {
     expect(probe).toContain("'__unsafe_action__'");
     expect(probe).toContain('export const useNavActionTrace: (navigationRef: NavTraceRef) => void = ENABLED ? useNavActionTraceImpl : () => undefined;');

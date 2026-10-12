@@ -341,8 +341,22 @@ export async function resetCardsViewPrefs(): Promise<string> {
   // зачем: черновик нового набора переживает перезапуск — кадр «Новый набор» после кадра «Новая карточка (Test)» открылся бы с чужим текстом
   const { clearCommunityPackCreateDraft } = await import('./community_packs/communityPackDraftStorage');
   await clearCommunityPackCreateDraft(TARGET);
-  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list', packDraft: 'cleared' })); // guard-ok: единичный лог на ссылку
-  return `step=${GALLERY_DEFAULT_STEP},list,draft=cleared`;
+  // зачем (Макеты cards-section-012, 12.10): разовая подсказка «Зажми карточку…» висела поверх сетки на кадрах свежего гостя; фикстуры карточек помечают её увиденной (кадр cards-033 возвращает её параметром hint=show)
+  const { flashcardsDeleteHintSeenKey } = await import('./target_storage_keys');
+  await AsyncStorage.setItem(flashcardsDeleteHintSeenKey(TARGET), '1');
+  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list', packDraft: 'cleared', deleteHint: 'seen' })); // guard-ok: единичный лог на ссылку
+  return `step=${GALLERY_DEFAULT_STEP},list,draft=cleared,hint=seen`;
+}
+
+/** hint=show | seen: разовая подсказка «Зажми карточку…» — вернуть (кадр cards-033) или пометить увиденной. Только анонимный гость (ключ синхронизируется). */
+export async function applyDeleteHintState(mode: 'show' | 'seen'): Promise<string> {
+  await assertWritableAccount(`hint=${mode}`);
+  const { flashcardsDeleteHintSeenKey } = await import('./target_storage_keys');
+  const key = flashcardsDeleteHintSeenKey(TARGET);
+  if (mode === 'show') await AsyncStorage.removeItem(key);
+  else await AsyncStorage.setItem(key, '1');
+  console.log(`[DEV-STATE] cards: подсказка «Зажми карточку…» → ${mode}`); // guard-ok: единичный лог на ссылку
+  return mode;
 }
 
 /**

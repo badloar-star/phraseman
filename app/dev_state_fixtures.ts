@@ -146,6 +146,8 @@ export type DevStateRequest = Readonly<{
   intros?: 'seen' | 'reset';
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
+  /** Разовая подсказка «Зажми карточку…» (dev_state_cards_demo.ts): show — вернуть (cards-033), seen — пометить увиденной; фикстуры карточек сами помечают её увиденной. Только анонимный гость. */
+  hint?: 'show' | 'seen';
   /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
   aiConsent?: 'granted' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
@@ -225,6 +227,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.intros = pick('intros', ['seen', 'reset'] as const);
   request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
+  request.hint = pick('hint', ['show', 'seen'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -528,6 +531,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   // зачем (R1 «нет пути», Карточки): флаги в памяти процесса (app/dev_cards_state.ts); `off` снимает.
+  if (request.hint !== undefined) {
+    await step('hint', request.hint, async () => {
+      const { applyDeleteHintState } = await import('./dev_state_cards_demo');
+      await applyDeleteHintState(request.hint!);
+    });
+  }
   if (request.hold !== undefined) {
     await step('hold', request.hold === 'off' ? 'off' : request.hold.join(','), async () => {
       const holds = request.hold === 'off' ? [] : request.hold!;

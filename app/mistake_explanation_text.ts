@@ -12,6 +12,16 @@ const stripEdges = (value: string): string =>
 /** Языки интерфейса, где основная кавычка — «ёлочка». */
 const GUILLEMET_LANGS: ReadonlySet<string> = new Set(['ru', 'uk', 'es', 'pt-BR']);
 
+/**
+ * Парные «программистские» кавычки "…" и английские “…” → «…» для языков с ёлочкой; остальные языки — без изменений.
+ * зачем (координатор 12.10, dialogs-020): разбор «Почему так» в Диалогах приходит от модели с прямыми кавычками —
+ * та же беда, что у разбора ошибок; одна функция на оба экрана. Непарную кавычку не трогаем.
+ */
+export function localizeQuotes(text: string, lang: string): string {
+  if (!GUILLEMET_LANGS.has(lang)) return text;
+  return text.replace(/"([^"\n]+)"/g, '«$1»').replace(/“([^”\n]+)”/g, '«$1»');
+}
+
 export function cleanMistakeExplanation(
   text: string,
   options: Readonly<{ lang: string; answers: readonly string[] }>,
@@ -23,6 +33,5 @@ export function cleanMistakeExplanation(
     ? paragraphs.filter((line) => !known.has(stripEdges(line)))
     : paragraphs;
   const joined = (kept.length > 0 ? kept : paragraphs).join('\n');
-  if (!GUILLEMET_LANGS.has(options.lang)) return joined;
-  return joined.replace(/"([^"\n]+)"/g, '«$1»').replace(/“([^”\n]+)”/g, '«$1»');
+  return localizeQuotes(joined, options.lang);
 }

@@ -22,6 +22,7 @@ import PressableHybrid from '../PressableHybrid';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DialogCoachTurn } from '../../app/ai_dialog_coach';
+import { localizeQuotes } from '../../app/mistake_explanation_text';
 
 interface DialogWhySheetProps {
   visible: boolean;
@@ -250,7 +251,8 @@ export default function DialogWhySheet({
                   style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 8 }}
                   maxFontSizeMultiplier={1.2}
                 >
-                  {coach.note}
+                  {/* зачем (dialogs-020): модель присылает прямые кавычки "…" — показываем «ёлочки» языка интерфейса. */}
+                  {localizeQuotes(coach.note, lang)}
                 </Text>
               </>
             ) : null}

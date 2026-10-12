@@ -259,10 +259,10 @@
       "id": "cards-007",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 5,
-        "label": "Режим выделения",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 69,
+        "label": "Сохранённые — режим выделения",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Режим выделения",
@@ -283,27 +283,25 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[дефект кода — вёрстка] Подсказка лежит поверх нижнего ряда карточек без своей подложки: текст наезжает на «Receipt / Refund» и читается плохо — нужна плашка или отступ над кнопками.",
-        "[образец устарел — cards-states] Образец: заголовок «Отметить», карточки в одну колонку с транскрипцией, три выбранные (3 / 128), мятная «Создать набор», красноватая «Удалить»; приложение: заголовок «Сохранённые 64» с ползунком масштаба, сетка 2 колонки, ничего не выбрано (0 / 64), кнопка неактивна серая. Нужен кадр выбора с отмеченными карточками — переснять.",
-        "[тема] Серые плашки «Тень» против цветного свечения образца."
+        "[дефект кода — вёрстка] Подсказка лежит поверх нижнего ряда карточек без подложки: текст наезжает на «Receipt / Refund» и читается плохо — нужна плашка или отступ над кнопками (в образце №69 подсказка над кнопками, ряды карточек выше)."
       ],
       "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T00:38:01.379Z",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:36, после пересъёмки): режим выделения в «Сохранённых» сверен с cards-states №5 (образец устарел). Есть «Отмена», счётчик «0 / 64», кнопки «Создать набор» (неактивна) и «Удалить», подсказка «Выбери ещё 10 карточек, чтобы создать набор» (тон «ты» — совпадает с кодом CollectionGalleryView; первоначальное прочтение «Выберите» было ошибкой — слово наложено на «Receipt»)."
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:36): режим выделения сверен с новым кадром cards-v2 №69 (блок A, на подтверждение): «Отмена», «0 / 64», сетка, подсказка «Выбери ещё 10 карточек, чтобы создать набор», «Создать набор» (неактивна) и «Удалить»."
     },
     {
       "id": "cards-008",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 79,
-        "label": "Стопка",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 67,
+        "label": "Сохранённые — стопка",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Стопка",
@@ -316,24 +314,20 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-008.png",
-      "evidence_at": "2026-10-12T00:34:21.315Z",
-      "evidence_sha256": "4cbce35f9afbdbf11dd05ae3783ac98f4e1a5c4d3935687d44903cf3e724781f",
+      "evidence_at": "2026-10-12T00:37:29.433Z",
+      "evidence_sha256": "41b3bf50e92b2678e395566f2b4eeb0fa6138744d2c82b72a4c417449c65284a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец устарел — cards-states] В образце шапка с названием «Сохранённые» и чипом языка «EN ⌄», счётчик «12/128», карточка Convince с транскрипцией и озвучкой под словом, подсказка «Нажми — перевернётся. Смахни — следующая.»; в приложении шапка только «‹ · поиск · + · ⋮», «1/64 · К списку ›», карточка Layover без транскрипции, озвучка в углу, стрелки «‹ ›» внизу, подсказки нет. Нужен образец «Стопка» в cards-v2/cards-section (такого кадра там нет) — дорисовать по коду либо считать кадр cards-states устаревшим.",
-        "[тема] Цветное свечение и мятные акценты образца против серой карточки «Тень» в приложении.",
-        "[данные] 12/128 и Convince против 1/64 и Layover."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-12T00:36:02.391Z",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:53.544Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:17 по часам экрана): экран «Стопка» сверен с cards-states №79. Образец устарел (цветной, до стиля «Тень» и до п.54/55)."
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:17): «Стопка» сверена с новым кадром cards-v2 №67 (блок A, на подтверждение): «‹ · поиск · + · ⋮», «1/64 · К списку ›», крупная карточка Layover со стопкой под ней, стрелки «‹ ›». Левая половина — старый cards-states №79. Принято: данные карточки, масштаб."
     },
     {
       "id": "cards-009",
@@ -377,10 +371,10 @@
       "id": "cards-010",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 7,
-        "label": "Лимит free: первые 50",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 45,
+        "label": "Лимит — сохранённые 50/50",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые",
       "state": "Лимит free: первые 50",
@@ -398,17 +392,16 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Нужен список (режим «К списку») с двумя карточками и блоком «+78 карточек скрыто · Бесплатно доступны первые 50 сохранённых карточек · Открыть все с Plus»; на кадре стопка с пилюлей лимита «50/50» — лимит виден, но блока «скрыто» нет. Переснять в режиме списка.",
-        "[образец устарел — cards-states] Цвет, чип «EN ⌄», строка поиска и сегмент «Все / Слова / Фразы» — старая подача; актуальный образец — cards-v2 «Лимит — сохранённые 50/50»."
+        "[состояние не то] Нужен список: сетка карточек, пилюля «50/50» и внизу «Безлимит с Plus»; на кадре стопка (1/50, «К списку ›») с пилюлей «50/50». Переснять после перехода «К списку»."
       ],
       "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T00:36:02.391Z",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:18): снят не тот режим экрана — вместо списка «Сохранённые» с блоком «+78 карточек скрыто / Открыть все с Plus» на кадре режим «Стопка» (1/50, пилюля «50/50»)."
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:18): строка перепривязана на cards-v2 №45 «Лимит — сохранённые 50/50». Снят режим «Стопка» вместо списка."
     },
     {
       "id": "cards-011",
@@ -455,10 +448,10 @@
       "id": "cards-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 9,
-        "label": "Удаление набора",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 64,
+        "label": "Мои наборы — удалить набор",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Мои наборы",
       "state": "Удаление набора",
@@ -476,19 +469,15 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец устарел — cards-states] Под окном в образце «Мои наборы» с блоком «Созданные мной 2», плитками «24 карточек», «12» и кнопками правки; в приложении «Мои наборы 4» строками-плашками с кнопкой ▶ и тремя словами-чипами (cards-v2 №12). Перепривязать на cards-v2 №12 с окном удаления (такого кадра в cards-v2 нет — дорисовать по коду) либо обновить cards-states №9.",
-        "[данные] Название набора «Работа и собеседования» против «Работа».",
-        "[тема] Кнопка «Удалить набор» красная заливкой в приложении, в образце приглушённый розовый; фон окна серый «Тень» против зелёного оттенка."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": "2026-10-12T00:36:02.391Z",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:19): окно «Удалить набор» совпало по тексту и кнопкам — «Удалить набор», ««…» — набор будет убран из твоих наборов.», «Отмена» и «Удалить набор». Различия — старая подача образца и данные."
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:19): окно «Удалить набор» сверено с новым кадром cards-v2 №64 (блок A, на подтверждение): «Удалить набор», ««Работа» — набор будет убран из твоих наборов.», «Отмена» и красная «Удалить набор» поверх «Мои наборы». Левая половина — старый cards-states №9. Принято: название набора и данные под окном, цвет фона окна по теме."
     },
     {
       "id": "cards-013",
@@ -507,17 +496,17 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-013.png",
+      "evidence_at": "2026-10-12T00:40:44.473Z",
+      "evidence_sha256": "26d524879eeaafb5a107fdce03e11596215fa3457c3140356411623b8b200657",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 11) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -526,7 +515,8 @@
         "label": "Пусто",
         "mapping": "manual_rebind"
       },
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:19): «Мои наборы — пусто» совпало с cards-v2 №13 — «‹», «⋮», заголовок, плитка со значком, «Наборов нет», «Собери свой первый», «+ Создать набор». Принято: значок плитки (слои в приложении, банка в образце — векторный значок), масштаб 411 dp против 430, системная строка."
     },
     {
       "id": "cards-014",
@@ -546,29 +536,33 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-014.png",
+      "evidence_at": "2026-10-12T00:41:12.157Z",
+      "evidence_sha256": "c3185e9bf209b8cebbde5af39e99cf25d8f52b356f0ed0afc5865ca8c153f7a1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] Чип языка «EN ⌄» и тонкая линия под верхней строкой — в приложении есть, в утверждённом образце нет.",
+        "[данные] В деках приложения по одному слову-чипу, в образце по три (в данных у наборов одно слово)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:12): каталог «Новые» совпал с cards-v2 №25 по составу (поиск «Наборы и авторы», чипы, деки с автором, уровнем, словами, ♥)."
     },
     {
       "id": "cards-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 25,
-        "label": "Каталог",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 62,
+        "label": "Каталог — поиск, действия над набором",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Наборы сообщества",
       "state": "Поиск · действия долгим нажатием",
@@ -579,28 +573,32 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-015.png",
+      "evidence_at": "2026-10-12T00:34:28.974Z",
+      "evidence_sha256": "144bcf68c700fde08d658760e5cf31e09f823b5435a2336469ce35ff81d14342",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] В шапке приложения справа чип языка «EN ⌄» и тонкая линия под верхней строкой — в образце их нет (cards-v2 №25 утверждён п.54).",
+        "[состояние] На кадре приложения клавиатура ОС закрывает нижнюю часть меню («Не показывать мне» видна частично) — норма для поиска."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:21): строка перепривязана на новый кадр cards-v2 №62 «Каталог — поиск, действия над набором» (блок A, на подтверждение): поле «Fam», «Найдено 1», набор Family и меню «Добавить себе / Пожаловаться на набор / Не показывать мне»."
     },
     {
       "id": "cards-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 15,
-        "label": "Жалоба на набор",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 63,
+        "label": "Каталог — пока нет публикаций",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Наборы сообщества",
       "state": "Пока нет публикаций",
@@ -611,19 +609,23 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-016.png",
+      "evidence_at": "2026-10-12T00:34:30.615Z",
+      "evidence_sha256": "4f162dbc4fb05191b61df625e35570079e13902daee05506429ea0b6cc1dfe10",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] В приложении справа вверху чип языка «EN ⌄», линия под верхней строкой; в образце нет.",
+        "[dev] Ссылка «Нашёл ошибку?» — только в dev-сборке."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:21): строка была привязана к cards-states №15 «Жалоба на набор» (другое состояние); перепривязана на новый кадр cards-v2 №63 «Каталог — пока нет публикаций» (блок A, на подтверждение): «Сообщество», поиск, чипы «Популярные / Новые», плитка «люди», «Здесь появятся наборы после публикации.»"
     },
     {
       "id": "cards-017",
@@ -643,17 +645,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-017.png",
+      "evidence_at": "2026-10-12T00:34:32.047Z",
+      "evidence_sha256": "7c927be19b716bdddfb041222c0333994ea2c78b55def1a8c58d450df11b06b6",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] Чип языка «EN ⌄» и линия под верхней строкой — в приложении есть, в образце нет.",
+        "[состояние] На кадре приложения открыта клавиатура ОС (в образце нет); слово «zzzqq» против «xyzq» — данные."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -662,7 +667,8 @@
         "label": "Ничего не найдено",
         "mapping": "manual_rebind"
       },
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:22): «Поиск без совпадений» совпал с cards-v2 №26 по составу и тексту — «Ничего не нашли», «Попробуй другое слово», «Сбросить поиск»."
     },
     {
       "id": "cards-018",
@@ -1267,10 +1273,10 @@
       "id": "cards-034",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 29,
-        "label": "Долгое нажатие → «Удалить»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 71,
+        "label": "Сохранённые — долгое нажатие → «Удалить»",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Долгое нажатие → «Удалить»",
@@ -1280,28 +1286,29 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-034.png",
+      "evidence_at": "2026-10-12T00:34:33.453Z",
+      "evidence_sha256": "43ca6ae3b16ae86fba504315b0434a3baa9575fd18967e9669f2b68200a28f76",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:24): «Долгое нажатие → «Удалить»» сверено с новым кадром cards-v2 №71 (блок A, на подтверждение): список «Сохранённые» под затемнением, шторка с одной строкой «Удалить» (красная, значок корзины). Левая половина — старый cards-states №29. Принято: данные карточек, масштаб."
     },
     {
       "id": "cards-035",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 30,
-        "label": "Подтверждение массового удаления",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 70,
+        "label": "Сохранённые — удалить 3 карточки",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Подтверждение массового удаления",
@@ -1312,20 +1319,25 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-035.png",
+      "evidence_at": "2026-10-12T00:34:35.004Z",
+      "evidence_sha256": "9a97523bad49b20e2020455d56c9c263da7c0ea37de3b3a2b2f7161c89463826",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — склонение] Заголовок окна «Удалить 3 карточек?» — после числа 3 нужно «карточки» («Удалить 3 карточки?»); образец и старый макет написаны верно. Найти строку (CollectionListView / CollectionGalleryView, подпись окна удаления) и применить склонение (в проекте есть ruKnowledgeShardsGenitiveAfterNumber-подобный помощник).",
+        "[дефект кода — вёрстка] Под окном подсказка «Выбери ещё 7 карточек, чтобы создать набор» наезжает на нижний ряд карточек без подложки (как на cards-007).",
+        "[данные] «3 / 64» против «3 / 128»; отмечены Layover, Gate, Fare."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:25): окно массового удаления сверено с новым кадром cards-v2 №70 (блок A, на подтверждение). Состав совпал: заголовок, «Карточки исчезнут из «Сохранённых». Исходные уроки и видео не изменятся.», «Отмена» и «Удалить» поверх режима выделения."
     },
     {
       "id": "cards-036",
@@ -1362,10 +1374,10 @@
       "id": "cards-037",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 80,
-        "label": "Стопка — обратная сторона (переворот)",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 68,
+        "label": "Сохранённые — стопка, оборот",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Стопка — обратная сторона (переворот)",
@@ -1374,23 +1386,22 @@
         "app/flashcards/PhraseCard.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": true,
-      "anim_notes": [
-        "spn 0.8s linear infinite"
-      ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-037.png",
+      "evidence_at": "2026-10-12T00:34:36.529Z",
+      "evidence_sha256": "27c64f221698d1bf8381184532f19ba39eb0488d7fab06eff27a9f0aa1b90100",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:53.544Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:26): «Стопка — обратная сторона» сверена с новым кадром cards-v2 №68 (блок A, на подтверждение): та же стопка, на карточке «RU · пересадка». Левая половина — старый cards-states №80."
     },
     {
       "id": "cards-038",
@@ -1636,10 +1647,10 @@
       "id": "cards-045",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 39,
-        "label": "Набор удалён",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 65,
+        "label": "Мои наборы — набор удалён",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Мои наборы — остальные состояния",
       "state": "Набор удалён",
@@ -1650,29 +1661,30 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-045.png",
+      "evidence_at": "2026-10-12T00:34:38.550Z",
+      "evidence_sha256": "964298d97cc8c529128bfb901e09612d0525da6ad2c007804eda29e584f74fe1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:28): «Набор удалён» сверено с новым кадром cards-v2 №65 (дорисован по кадру приложения, блок A журнала — владельцу подтвердить): «Мои наборы 3», три плашки-набора, тост «ГОТОВО · Набор удалён.». Левая половина составного кадра — старый образец cards-states №39, сверка выполнена по №65. Принято: данные (наборы, слова), масштаб."
     },
     {
       "id": "cards-046",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 40,
-        "label": "Поиск — ничего не найдено",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 66,
+        "label": "Мои наборы — поиск: ничего не найдено",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Мои наборы — остальные состояния",
       "state": "Поиск — ничего не найдено",
@@ -1681,25 +1693,23 @@
         "app/flashcards/MyPacksV2.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": true,
-      "anim_notes": [
-        "lkp 0.6s cubic-bezier(0.3, 1.6, 0.5, 1)",
-        "replay-control"
-      ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-046.png",
+      "evidence_at": "2026-10-12T00:34:40.045Z",
+      "evidence_sha256": "13d6bef4812d70df5c0b1af537755360d811575bba0262d9aa5e6f62726ac09d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "match",
       "blocked_reason": null,
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T00:42:53.544Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:29): «Поиск — ничего не найдено» по своим наборам сверено с новым кадром cards-v2 №66 (блок A, на подтверждение): «Мои наборы 4», поле поиска с введённым словом, «Ничего не найдено». Левая половина — старый cards-states №40. Принято: введённое слово, клавиатура ОС на кадре приложения, масштаб."
     },
     {
       "id": "cards-047",
@@ -1745,9 +1755,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 26,
-        "label": "Ничего не найдено",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 63,
+        "label": "Каталог — пока нет публикаций",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Каталог пуст",
@@ -1758,19 +1768,24 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-048.png",
+      "evidence_at": "2026-10-12T00:34:41.547Z",
+      "evidence_sha256": "dd92f83e2f9426e409f9f0df7f1cc91020779f7cab8d82cc03864b3de6ac6cd1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] Чип языка «EN ⌄» и линия под верхней строкой есть в приложении, нет в образце.",
+        "[dev] Ссылка «Нашёл ошибку?» — только в dev-сборке.",
+        "[данные] В приложении чипы «A2 / B1 / B2…» после «Новые» — в кадре они у каталога с публикациями; у пустого каталога в приложении чипы уровней видны на этом кадре (проверить по коду, нужны ли они при пустом каталоге)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T00:42:40.758Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:29): «Каталог пуст» перепривязана с cards-v2 №26 («Ничего не найдено» — другое состояние) на новый кадр №63 «Каталог — пока нет публикаций» (блок A, на подтверждение). Состав совпал."
     },
     {
       "id": "cards-049",

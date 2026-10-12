@@ -390,6 +390,9 @@ const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 // конкурировать с реальной анимацией входа на Главную, но не оставляет
 // пользователю запаса на тап раньше прогрева.
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400;
+// зачем (13.10): пауза после коммита вкладки, прежде чем начнётся следующая, — окно для касаний и анимаций; охранный потолок шага — цепочка не зависает, если кадр не пришёл.
+const BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS = 150;
+const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = 4000;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
@@ -821,27 +824,66 @@ function ReleasedTabLayout() {
     });
   }, []);
 
+  // зачем (координатор 13.10, профиль Сверки + стеки Ядра 21d429827): после первого кадра Главной React-коммиты премаунта вкладок занимали ≈1,2–1,35 с (performWorkOnRoot), пассивные эффекты ещё 0,6–0,8 с.
+  // Четыре таймера (0/180/360/540 мс) ставили независимые idle-задачи с потолком 400 мс: пока первая вкладка держала JS-поток, остальные «выходили по потолку» и коммитились ПОДРЯД, без окна для касаний и анимаций.
+  // Теперь работа шагов выстроена в одну цепочку: следующая вкладка начинается только после коммита предыдущей и паузы BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS; каждый шаг пишет замеры в [TABS-PREMOUNT] step.
+  const premountChainRef = useRef<Promise<void>>(Promise.resolve());
+
   const scheduleMount = useCallback((idx: number) => {
     if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
 
-    const task = scheduleIdleTask(() => {
-      scheduledMountsRef.current.delete(idx);
-      if (AppState.currentState !== 'active') return;
-      // зачем: та же мина, что была в mountNow — прогрев стоял УСЛОВИЕМ премаунта.
-      // Аудит показал: это главный путь при старте (BACKGROUND_TAB_PREMOUNT_ORDER),
-      // и он срабатывает раньше тапа. Одна неудача require — mountedTabs не
-      // пополняется, а запись о задаче уже стёрта строкой выше: повторной попытки
-      // не будет никогда, вкладка навсегда остаётся пустым плейсхолдером.
-      // Прогрев — оптимизация, а не разрешение показать экран.
-      if (idx !== 0) prewarmDeferredTabScreen(idx);
-      requestAnimationFrame(() => {
-        if (AppState.currentState !== 'active') return;
-        setVisitedTabs((prev) => addVisitedTab(prev, idx));
-        setMountedTabs((prev) => addVisitedTab(prev, idx));
-      });
-    }, BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS);
+    const enqueuedAt = Date.now();
+    let cancelled = false;
+    let inner: CancelableTask | null = null;
+    let finishStep: (() => void) | null = null;
+    // запись нужна сразу: по ней mountNow отменяет шаг (тап), а повторный scheduleMount видит «уже в очереди»
+    scheduledMountsRef.current.set(idx, { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } });
 
-    scheduledMountsRef.current.set(idx, task);
+    premountChainRef.current = premountChainRef.current.then(() => new Promise<void>((resolve) => {
+      const startedAt = Date.now();
+      let done = false;
+      let guard: ReturnType<typeof setTimeout> | null = null;
+      const finish = (outcome: string, extra?: Record<string, number>) => {
+        if (done) return;
+        done = true;
+        if (guard) clearTimeout(guard);
+        console.log('[TABS-PREMOUNT] step', JSON.stringify({ idx, outcome, queuedMs: startedAt - enqueuedAt, totalMs: Date.now() - startedAt, ...extra })); // guard-ok: замер шага премаунта (СПЕРВА ЛОГИ), 4 строки за запуск
+        resolve();
+      };
+      finishStep = () => finish('cancelled');
+      // охранный таймер: цепочка не должна зависнуть, если кадр не придёт (фон, заморозка)
+      guard = setTimeout(() => finish('guard_timeout'), BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS);
+      if (cancelled || mountedTabsRef.current.has(idx)) {
+        scheduledMountsRef.current.delete(idx);
+        finish(cancelled ? 'cancelled' : 'already_mounted');
+        return;
+      }
+      inner = scheduleIdleTask(() => {
+        scheduledMountsRef.current.delete(idx);
+        if (AppState.currentState !== 'active') { finish('app_inactive'); return; }
+        const idleWaitMs = Date.now() - startedAt;
+        // зачем: та же мина, что была в mountNow — прогрев стоял УСЛОВИЕМ премаунта.
+        // Аудит показал: это главный путь при старте (BACKGROUND_TAB_PREMOUNT_ORDER),
+        // и он срабатывает раньше тапа. Одна неудача require — mountedTabs не
+        // пополняется, а запись о задаче уже стёрта строкой выше: повторной попытки
+        // не будет никогда, вкладка навсегда остаётся пустым плейсхолдером.
+        // Прогрев — оптимизация, а не разрешение показать экран.
+        const prewarmAt = Date.now();
+        if (idx !== 0) prewarmDeferredTabScreen(idx);
+        const prewarmMs = Date.now() - prewarmAt;
+        requestAnimationFrame(() => {
+          if (AppState.currentState !== 'active') { finish('app_inactive', { idleWaitMs, prewarmMs }); return; }
+          const commitAt = Date.now();
+          setVisitedTabs((prev) => addVisitedTab(prev, idx));
+          setMountedTabs((prev) => addVisitedTab(prev, idx));
+          // два кадра = коммит и первый кадр вкладки позади; затем пауза, в которой JS-поток свободен
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            const commitMs = Date.now() - commitAt;
+            setTimeout(() => finish('mounted', { idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS);
+          }));
+        });
+      }, BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS);
+    }));
   }, []);
 
   useEffect(() => () => {

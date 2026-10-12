@@ -22,4 +22,19 @@ describe('background tab pre-mount contract', () => {
     expect(source).not.toContain('const DEFERRED_TAB_PREWARM_FALLBACK_MS = 4000');
     expect(source).not.toContain("onAppEvent('app_first_content_ready', schedulePrewarm)");
   });
+
+  // зачем (координатор 13.10, профиль Сверки + стеки Ядра): премаунт четырёх вкладок шёл подряд (коммиты ≈1,2–1,35 с без окон) — теперь шаги в одной цепочке: следующий после коммита предыдущего и паузы, с замером в журнале.
+  it('serialises tab pre-mount steps: one chain, quiet gap after each commit, guard timeout, per-step log', () => {
+    const source = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8').replace(/\r\n/g, '\n');
+
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS = 150;');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = 4000;');
+    expect(source).toContain('const premountChainRef = useRef<Promise<void>>(Promise.resolve());');
+    expect(source).toContain('premountChainRef.current = premountChainRef.current.then(() => new Promise<void>((resolve) => {');
+    expect(source).toContain("setTimeout(() => finish('mounted', { idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS)");
+    expect(source).toContain("guard = setTimeout(() => finish('guard_timeout'), BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS)");
+    expect(source).toContain("console.log('[TABS-PREMOUNT] step'");
+    // отмена тапом (mountNow) и дедупликация сохранены: запись о шаге ставится сразу
+    expect(source).toContain('scheduledMountsRef.current.set(idx, { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } });');
+  });
 });

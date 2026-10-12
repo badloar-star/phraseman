@@ -26,8 +26,12 @@ Owner: сессия «1 · Ядро» (координатор 12.10: «Снач�
 ## Scope
 In: `app/mistake_explanation_text.ts`, `components/dialogs/DialogWhySheet.tsx` (одна строка показа),
 `functions/src/dialogue_v2_turn_coaching.ts` (+ тест), образец брифингов в docs.
-Out: выкладка functions (п.64, TS2352 Codex), массовая переписка ledger, `dialogue_v2_session_outcome_store.ts` и
+Out: выкладка functions (п.64, TS2352 Codex), правка одобренного ledger, `dialogue_v2_session_outcome_store.ts` и
 проекция каталога (Дизайн).
+Дополнение (координатор, реестр п.75, 22fab9b23 — стиль образца ДА): брифинги ru/uk/en всех сцен — партиями по миру
+через `content/dialogues-v2/ui-copy/dialogue_v2_ui_copy_overrides.v1.json` → `shared/generated/dialogue_v2_ui_copy.*.json`
+(генератор `scripts/dialogue_v2_ui_copy.ts --write`, сторож `--check`); после каждой партии — сверка, что показ равен
+написанному (генератор срезает предложение с названием сцены). pt-BR/vi/id/tr/pl/es — переводом с ru отдельно.
 
 ## Architecture
 Кавычки — чистая функция `localizeQuotes(text, lang)`; `cleanMistakeExplanation` её использует (поведение прежнее).

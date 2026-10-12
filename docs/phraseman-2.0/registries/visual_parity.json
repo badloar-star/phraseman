@@ -3129,9 +3129,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 23,
-        "label": "Изменить набор",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 78,
+        "label": "Создание набора — недоступен для правки",
+        "mapping": "drawn_from_code_2026-10-12"
       },
       "screen": "Создание набора — все состояния",
       "state": "Недоступен для правки",
@@ -3149,8 +3149,8 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Открыт список «Мои наборы»; ссылка добавлена (/community_pack_create?packId=dev_missing_cloud_pack → ugc-pack-load-error) — переснять.",
-        "[образец ≠ код] Образец №23 — «Изменить набор» (40 карточек, «Сохранить»), а состояние «Недоступен для правки» (набор не найден) в макете не нарисовано — Дизайну нужен отдельный образец под ugc-pack-load-error."
+        "[состояние не то] Кадр снят до появления ссылки на служебный маршрут — переснять (ссылка: /community_pack_create?packId=dev_missing_cloud_pack, ugc-pack-load-error).",
+        "[образец] Образец нарисован 12.10 (cards-v2 №78: шапка «Редактирование», плитка-замок, «Набор недоступен для редактирования», «Назад») — сверять после пересъёмки."
       ],
       "status": "diff",
       "blocked_reason": null,

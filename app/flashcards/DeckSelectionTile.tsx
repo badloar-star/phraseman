@@ -248,7 +248,7 @@ export default function DeckSelectionTile({
           style={[
             styles.checkbox,
             {
-              borderColor: selected ? gs.accentBorder : t.textGhost,
+              borderColor: selected ? gs.accentGraphic : t.textGhost,
               backgroundColor: selected ? t.accent : t.bgCard,
             },
           ]}

@@ -20,7 +20,7 @@ const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 const PROTECTED_FILES = new Map([
   // хэш обновлён 12.10 (Тень): строка без обводки (плашка raised/plate с boxShadow), обложка и бейдж счётчика — малая тень; логика и пропсы те же
-  ['app/flashcards/DeckSelectionTile.tsx', '9e896bc9a96203c91f283f0ff1f6b7a2e59c56341706d496fb981c1eac15e151'], // 11.10 (координатор): рамка плитки 1.5 → 1 pt (D145); галочка — t.textOnGold; иконка набора — t.accentText (акцент как текст) // перепин 13.10 (светлый акцент, аудит §1, координатор): кольцо отметки плитки — gs.accentBorder вместо сырого t.accent (в светлых градиентных темах accent невидим); бизнес-логика и зависимости не менялись
+  ['app/flashcards/DeckSelectionTile.tsx', '7578f86959512537d35e6b88e379fa9141a91f93addf42fcc80bd0c0a24bf0b4'], // 11.10 (координатор): рамка плитки 1.5 → 1 pt (D145); галочка — t.textOnGold; иконка набора — t.accentText (акцент как текст) // перепин 13.10 (светлый акцент, аудит §1, координатор): кольцо отметки плитки — gs.accentBorder вместо сырого t.accent (в светлых градиентных темах accent невидим); бизнес-логика и зависимости не менялись
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
   // зачем (text-integrity 01.10): сняты обрезки подписей, кнопки и плашки растут по тексту — бизнес-логика не менялась.
   // зачем (FONTSCALE2, координатор 05.10): межстрочный растёт с системным шрифтом (useScaledTextStyles), поле поиска minHeight;

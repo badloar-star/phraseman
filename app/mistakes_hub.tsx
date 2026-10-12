@@ -222,7 +222,7 @@ export default function MistakesHubScreen() {
   const legend = (
     <View style={styles.legend}>
       <Pressable testID="mistakes-hub-corrected" accessibilityRole="button" onPress={() => openList('corrected')} style={styles.legendItem}>
-        <View style={[styles.legendDot, { backgroundColor: g.accentBorder }]} />
+        <View style={[styles.legendDot, { backgroundColor: g.accentGraphic }]} />
         <Text style={[styles.legendText, { color: g.secondary }]}>{`${corrected} ${copy.fixedN}`}</Text>
       </Pressable>
       <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('all')} style={styles.legendItem}>

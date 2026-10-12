@@ -3483,7 +3483,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         <DuoPressable
           onPress={startSession}
           disabled={startBlockReason != null}
-          edgeColor={swipeGlass.accentBorder}
+          edgeColor={swipeGlass.accentGraphic}
           wrapStyle={{ width: '100%' }}
           style={[
             styles.heroStart,
@@ -3555,7 +3555,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           <View style={{ marginTop: 14, gap: 8 }}>
             <DuoPressable
               onPress={resumePendingDraft}
-              edgeColor={swipeGlass.accentBorder}
+              edgeColor={swipeGlass.accentGraphic}
               style={[styles.heroStart, { backgroundColor: t.accent }]}
             >
               <Ionicons name="play-forward" size={20} color={t.textOnGold} />
@@ -3971,7 +3971,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         </PracticeSessionHeader>
 
         <View style={[styles.progressTrack, isCompactFlashcardsTask && styles.compactProgressTrack, { backgroundColor: t.bgSurface2 }]}>
-          <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: swipeGlass.accentBorder }]} />
+          <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: swipeGlass.accentGraphic }]} />
         </View>
 
         {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}
@@ -4191,7 +4191,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         {feedback ? (
           <DuoPressable
             onPress={continueAfterFeedback}
-            edgeColor={swipeGlass.accentBorder}
+            edgeColor={swipeGlass.accentGraphic}
             style={[styles.continueButton, isCompactFlashcardsTask && styles.compactContinueButton, { backgroundColor: t.accent }]}
           >
             <Text style={[styles.continueText, { color: t.textOnGold, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>

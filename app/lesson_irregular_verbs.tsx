@@ -1070,7 +1070,7 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
       {/* Кастомный индикатор горизонтального скролла */}
       {canScroll && (
         <View style={{ height: 4, marginTop: 8, marginHorizontal: 32, backgroundColor: glass.opaqueControl, borderRadius: 2, overflow: 'hidden' }}>
-          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: glass.accentBorder, transform: [{ translateX: thumbTranslate }] }} />
+          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: glass.accentGraphic, transform: [{ translateX: thumbTranslate }] }} />
         </View>
       )}
 
@@ -1112,7 +1112,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
       {/* Полоса выученного (макет verbsDict): «6 / 18 выучено» */}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, marginTop: 22 }}>
         <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
-          <KitProgressFill ratio={allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0} style={{ backgroundColor: glass.accentBorder }} />
+          <KitProgressFill ratio={allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0} style={{ backgroundColor: glass.accentGraphic }} />
         </View>
         <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
           {`${learnedTotal} / ${allVerbs.length} ${triLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidos', 'pt-BR': 'aprendidos', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'opanowano' })}`}

@@ -1502,7 +1502,7 @@ export default function FlashcardsBlitzSession() {
               style={[
                 styles.timerFill,
                 // зачем (решение 4, cards-glass.css `.trk i`): полоса — цвет акцента темы; в последние секунды — красная.
-                { backgroundColor: danger ? BAD : blitzGlass.accentBorder, transformOrigin: 'left' },
+                { backgroundColor: danger ? BAD : blitzGlass.accentGraphic, transformOrigin: 'left' },
                 timerBarStyle,
               ]}
             />

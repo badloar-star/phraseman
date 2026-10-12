@@ -1596,7 +1596,7 @@ export default function LessonComplete() {
           <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginBottom: 14 }}>
             <DuoPressable
               testID="lesson-complete-repeat"
-              edgeColor={liquidGlassTokens(liquidGlassThemeId).accentBorder}
+              edgeColor={liquidGlassTokens(liquidGlassThemeId).accentGraphic}
               disabled={repeatOpening}
               accessibilityState={{ busy: repeatOpening }}
               pressedExternally={repeatOpening}

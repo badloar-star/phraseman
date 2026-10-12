@@ -178,7 +178,7 @@ export default function LingmanVideoWatchScreen() {
             <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay startSec={startSec} />
           ) : null}
         </View>
-        <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentBorder} />
+        <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accentGraphic} />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}

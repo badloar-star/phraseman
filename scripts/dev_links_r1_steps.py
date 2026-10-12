@@ -156,7 +156,7 @@ add('dialogs-001', [], 'plus=off&dquota=reset', DLG, note='хаб «Диалог
 add('dialogs-002', [], 'plus=on&dquota=reset', DLG, note='хаб «Диалоги», Plus')
 add('dialogs-004', [], 'plus=off&dquota=0', DLG, note='хаб — лимит исчерпан 0/30')
 add('dialogs-005', [], 'plus=off&dquota=reset&hold=dialog_language_gate', DLG, note='хаб с карточкой «Диалоги на этом языке ещё проверяются» (dev-удержание hold=dialog_language_gate; снять: hold=off)')
-add('dialogs-003', [], 'plus=off&dquota=reset', DLG, unique=False, note='НЕ ДОСТИЖИМО фикстурой: приложение не выводит статус «пройдено» — проекция каталога даёт только available|locked (app/dialogue_v2_authorized_catalogue_projection.ts), «пройдено ✓» и счётчик «N / всего» в хабе остаются нулями; это разрыв паритета с макетом, а не нехватка dev-ссылки')
+add('dialogs-003', [WORLD], 'plus=off&dquota=reset&dialogsDone=3', DLG, note='первая категория раскрыта, 3 первых диалога пройдены (dialogsDone=3: локальная запись, только гость; стереть: dialogsDone=reset) — «пройдено ✓» и счётчик «3 / всего»')
 add('dialogs-006', [WORLD], 'plus=off&dquota=reset', DLG, note='категория раскрыта (первая)')
 add('dialogs-007', [WORLD, ROW], 'plus=off&dquota=reset', DLG, note='брифинг первого диалога первой категории')
 add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'energy=0&dev_energy_fail=1', DLG, note='старт без энергии — окно «Нет энергии»')

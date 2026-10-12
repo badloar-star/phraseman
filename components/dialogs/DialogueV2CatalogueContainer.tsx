@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState, useRef, useSyncExternalStore } from 'react';
 import { InteractionManager, Text, View } from 'react-native';
 
 import {
@@ -31,6 +31,7 @@ import {
 } from './DialogueV2CatalogueSection';
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
 import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
+import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../app/dialogue_v2_done_store';
 import {
   DialogueV2HubExhaustedCard,
   DialogueV2HubLockedNote,
@@ -115,6 +116,13 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
+  // зачем (координатор 12.10, dialogs-003): «пройдено ✓» и «N / всего» — из локального хранилища прохождений (память мгновенно, диск читается один раз за процесс); Firestore не участвует.
+  // Версия хранилища будит хаб в тот же кадр, когда диалог отмечен пройденным: после возврата из итога галочка уже на месте.
+  const doneVersion = useSyncExternalStore(subscribeDialogueV2Done, getDialogueV2DoneVersion, getDialogueV2DoneVersion);
+  useEffect(() => {
+    if (!supportedTarget(studyTarget)) return;
+    void hydrateDialogueV2DoneIds(studyTarget);
+  }, [studyTarget]);
   // зачем (D111, макет A1/A5): месячный остаток ответов Free — из зеркала на телефоне
   // (0 чтений Firestore). Перечитываем при возврате на вкладку: после сессии цифра свежая.
   const [quotaRemaining, setQuotaRemaining] = useState<number | null>(null);
@@ -216,7 +224,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
 
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
-    const input = { studyTarget, localCoinRank, worldHeadings: headings };
+    const input = { studyTarget, localCoinRank, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(studyTarget) };
     const projected = projectAuthorizedDialogueV2Catalogue({ ...input, packets: state.envelope.packets });
     if (projected) return projected;
     // зачем: ответ сети/кэша не прошёл повторную проверку — показываем встроенный
@@ -228,7 +236,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     return embedded && embedded !== state.envelope
       ? projectAuthorizedDialogueV2Catalogue({ ...input, packets: embedded.packets })
       : null;
-  }, [headings, localCoinRank, state, studyTarget]);
+  }, [doneVersion, headings, localCoinRank, state, studyTarget]);
   // зачем (владелец 01.10: «диалоги в русском интерфейсе все на английском»): название сценария —
   // на языке интерфейса (данные Ядра); нет перевода — как в пакете.
   const localizedItems = useMemo(() => (projection?.items ?? []).map((item) => {

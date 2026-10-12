@@ -25,6 +25,11 @@ export type DialogueV2AuthorizedCatalogueProjectionInput = Readonly<{
   studyTarget: unknown;
   localCoinRank: unknown;
   worldHeadings: readonly unknown[];
+  /**
+   * зачем (координатор 12.10, dialogs-003): id сценариев, пройденных на этом устройстве (app/dialogue_v2_done_store.ts). Нет набора = ни один не пройден.
+   * Пройденный сценарий получает статус 'done' (доступ по рангу уже был, иначе его не прошли); сеть и Firestore не участвуют.
+   */
+  doneScenarioIds?: ReadonlySet<string>;
 }>;
 
 type PlainRecord = Record<string, unknown>;
@@ -147,6 +152,8 @@ export function projectAuthorizedDialogueV2Catalogue(
     if (!worlds) return null;
     const observed = new Set<string>();
     const items: DialogueV2CatalogueLearnerItem[] = [];
+    const doneIds = input.doneScenarioIds ?? null;
+    const statusLog: string[] = [];
     for (const entry of DIALOGUE_V2_CATALOGUE_INDEX) {
       const packet = input.packets.find((candidate) => plainRecord(candidate)?.scenario
         && plainRecord(plainRecord(candidate)?.scenario)?.id === entry.id);
@@ -154,19 +161,25 @@ export function projectAuthorizedDialogueV2Catalogue(
       const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank);
       if (!title || !rankAccess || observed.has(entry.id)) return null;
       observed.add(entry.id);
+      const unlocked = rankAccess.access.status === 'unlocked';
+      const isDone = doneIds?.has(entry.id) === true;
+      const status: DialogueV2CatalogueLearnerItem['status'] = isDone ? 'done' : unlocked ? 'available' : 'locked';
+      if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.rankRequired}_закрыт`})`);
       items.push(Object.freeze({
         id: entry.id,
         worldId: entry.worldId,
         title,
         cefr: entry.cefr,
         rankRequired: entry.rankRequired,
-        status: rankAccess.access.status === 'unlocked' ? 'available' : 'locked',
+        status,
       }));
     }
+    console.log(`[DIALOG-DONE] projection target=${String(input.studyTarget)} rank=${String(input.localCoinRank)} сценариев=${items.length} известно_пройденных=${doneIds?.size ?? 0} done=${items.filter((item) => item.status === 'done').length} locked=${items.filter((item) => item.status === 'locked').length} available=${items.filter((item) => item.status === 'available').length} решения=[${statusLog.join(' ')}]`); // guard-ok: итог проекции
     return observed.size === DIALOGUE_V2_CATALOGUE_INDEX.length
       ? Object.freeze({ worlds, items: Object.freeze(items) })
       : null;
-  } catch {
+  } catch (error: unknown) {
+    console.warn(`[DIALOG-DONE] projection → исключение, каталог не показан: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch называет причину
     return null;
   }
 }

@@ -67,6 +67,8 @@ export type DevStateRequest = Readonly<{
   quota?: number | 'exhausted' | 'reset';
   /** Лимит реплик диалогов: осталось N из 30 (0 — «На этот месяц всё»), reset — стереть. */
   dquota?: number | 'reset';
+  /** Пройденные диалоги в хабе (dialogs-003): первые N сценариев каталога отмечены пройденными (локальная запись устройства, только одноразовый гость), reset — стереть. */
+  dialogsDone?: number | 'reset';
   /** Кэш каталога сообщества: пустой (живая сеть, «Здесь появятся наборы…») или демо-наборы. */
   catalog?: 'empty' | 'demo';
   spire?: 'open' | 'closed';
@@ -189,6 +191,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   };
   request.quota = intOrWord('quota', ['exhausted', 'reset'] as const, 30);
   request.dquota = intOrWord('dquota', ['reset'] as const, 30);
+  request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   request.free = pick('free', ['on', 'off'] as const);
@@ -410,6 +413,22 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('dquota', String(request.dquota), async () => {
       const { applyDialogQuota } = await import('./dev_state_cards_demo');
       await applyDialogQuota(await getStableId(), request.dquota!);
+    });
+  }
+  if (request.dialogsDone !== undefined) {
+    // зачем (координатор 12.10, dialogs-003): кадр хаба с «пройдено ✓» и счётчиком; запись локальная (в облако не уходит), но пишем только на одноразовом госте, как остальные фикстуры прогресса
+    await step('dialogsDone', String(request.dialogsDone), async () => {
+      const { assertDisposableGuest } = await import('./dev_state_account_guard');
+      assertDisposableGuest('dialogsDone');
+      const done = await import('./dialogue_v2_done_store');
+      const { DIALOGUE_V2_CATALOGUE_INDEX } = await import('../shared/dialogue_v2_catalogue_index');
+      const { peekStudyTargetRaw } = await import('./app_snapshot_bootstrap');
+      await done.clearAllDialogueV2DoneStore();
+      if (request.dialogsDone === 'reset') return true;
+      const target = peekStudyTargetRaw() ?? 'en';
+      const ids = DIALOGUE_V2_CATALOGUE_INDEX.slice(0, request.dialogsDone as number).map((entry) => entry.id);
+      console.log(`[DIALOG-DONE] fixture dialogsDone target=${target} ids=${ids.join(',')}`); // guard-ok: единичный лог на ссылку
+      return ids.every((id) => done.markDialogueV2Done(target, id));
     });
   }
   if (request.shadows) {

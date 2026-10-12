@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { captureAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { clearAllDialogueV2DoneStore } from './dialogue_v2_done_store';
 import type { DialogueV2MemoryStudyTarget, DialogueV2MemoryView } from './dialogue_v2_memory_client';
 
 const PREFIX = 'dialogue_v2_memory_cache_v1:';
@@ -81,6 +82,8 @@ export async function clearDialogueV2MemoryDiskCache(studyTarget: DialogueV2Memo
 
 /** Выход / смена аккаунта: стираются копии ВСЕХ аккаунтов и языков. Никогда не бросает — не ломает общую чистку. */
 export async function clearAllDialogueV2MemoryDiskCache(): Promise<void> {
+  // зачем (dialogs-003): запись пройденных диалогов — такая же локальная копия аккаунта, стирается тем же вызовом при выходе/смене аккаунта
+  await clearAllDialogueV2DoneStore();
   try {
     const keys = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(PREFIX));
     if (keys.length > 0) await AsyncStorage.multiRemove(keys);

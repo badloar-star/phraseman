@@ -22,6 +22,7 @@ import {
 } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
+import { markDialogueV2Done } from './dialogue_v2_done_store';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
@@ -472,6 +473,13 @@ function SessionContent() {
           : []
       )),
     });
+    // зачем (координатор 12.10, dialogs-003): «пройден» = диалог закончил собеседник (на экране итога это «Диалог пройден») и ученик сказал хотя бы одну реплику;
+    // отметка мгновенная (память + хаб в тот же кадр), диск догоняет фоном. Остановка вручную или по лимиту прохождением не считается.
+    if (endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget)) {
+      markDialogueV2Done(studyTarget, scenarioId);
+    } else {
+      console.log(`[DIALOG-DONE] summary → не засчитан scenarioId=${scenarioId} endedBy=${endedBy} learnerTurns=${learnerTurns} studyTarget=${String(studyTarget)}`); // guard-ok: ветвление называет причину
+    }
     const route = {
       pathname: '/dialogue_v2_completion' as never,
       params: {

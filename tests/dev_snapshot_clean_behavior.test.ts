@@ -1,6 +1,23 @@
 // зачем (координатор 11.10): LogBox отключается только в dev при EXPO_PUBLIC_SNAPSHOT_CLEAN=1 и ни в каком другом случае.
 const ignoreAllLogs = jest.fn();
 jest.mock('react-native', () => ({ LogBox: { ignoreAllLogs: (value: boolean) => ignoreAllLogs(value) } }));
+// зачем (координатор 12.10): в режиме чистых кадров Fast Refresh выключен; вне режима — возвращается, только если выключали мы.
+const mockSetHot = jest.fn();
+jest.mock('react-native/Libraries/NativeModules/specs/NativeDevSettings', () => ({
+  __esModule: true,
+  default: { setHotLoadingEnabled: (value: boolean) => mockSetHot(value) },
+}));
+const mockStorage = new Map<string, string>();
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: {
+    getItem: async (key: string) => mockStorage.get(key) ?? null,
+    setItem: async (key: string, value: string) => { mockStorage.set(key, value); },
+    removeItem: async (key: string) => { mockStorage.delete(key); },
+  },
+}));
+const MARK = 'dev_snapshot_clean_fast_refresh_off_v1';
+const flush = () => new Promise((resolve) => setImmediate(resolve));
 
 const g = globalThis as { __DEV__?: boolean };
 const original = { dev: g.__DEV__, flag: process.env.EXPO_PUBLIC_SNAPSHOT_CLEAN };
@@ -15,6 +32,9 @@ function load(): boolean {
 
 beforeEach(() => {
   ignoreAllLogs.mockClear();
+  mockSetHot.mockClear();
+  mockStorage.clear();
+  jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
 });
 afterEach(() => {
@@ -42,4 +62,36 @@ test.each([
   else process.env.EXPO_PUBLIC_SNAPSHOT_CLEAN = flag;
   expect(load()).toBe(false);
   expect(ignoreAllLogs).not.toHaveBeenCalled();
+});
+
+test('snapshot-clean turns Fast Refresh off and leaves a mark', async () => {
+  g.__DEV__ = true;
+  process.env.EXPO_PUBLIC_SNAPSHOT_CLEAN = '1';
+  expect(load()).toBe(true);
+  await flush();
+  expect(mockSetHot).toHaveBeenCalledWith(false);
+  expect(mockStorage.get(MARK)).toBe('1');
+});
+
+test('plain dev restores Fast Refresh only after a snapshot-clean run', async () => {
+  g.__DEV__ = true;
+  delete process.env.EXPO_PUBLIC_SNAPSHOT_CLEAN;
+  load();
+  await flush();
+  expect(mockSetHot).not.toHaveBeenCalled();
+
+  mockStorage.set(MARK, '1');
+  load();
+  await flush();
+  expect(mockSetHot).toHaveBeenCalledWith(true);
+  expect(mockStorage.has(MARK)).toBe(false);
+});
+
+test('release never touches Fast Refresh', async () => {
+  g.__DEV__ = false;
+  process.env.EXPO_PUBLIC_SNAPSHOT_CLEAN = '1';
+  mockStorage.set(MARK, '1');
+  load();
+  await flush();
+  expect(mockSetHot).not.toHaveBeenCalled();
 });

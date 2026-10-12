@@ -4552,18 +4552,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-009.png",
+      "evidence_at": "2026-10-12T02:10:36.263Z",
+      "evidence_sha256": "3eb2a1702e4559696e0833b51cf9b21dd8289f1b75b50b6b021a82e0f663a1c4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[состояние] За шторкой на кадре заставка «Phraseman by Professor Lingman», а не экран ступени (таймер, сердца, вопрос, ответы) — шторка выхода открыта без экрана ступени; переснять поверх ступени.",
+        "[вёрстка, мелко] «Выйти» в приложении текстом без таблетки, в образце тёмная таблетка со своей тенью; шторка светлее и серее образца.",
+        "[данные] «остаёшься на 7 этаже» против «4 этаже»."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:14:07.277Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4579,8 +4581,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=step_choice%26spirePanel=of"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=step_choice%26spirePanel=of",
+        "bucket": "b_reshoot",
+        "bucket_reason": "нужное состояние на кадре не воспроизведено"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:10, spire.html №9 «Выход — подтверждение»): шторка совпала по составу и тексту — «Выйти из ступени?», «Ступень будет провалена. Энергия не вернётся, ты остаёшься на N этаже», «Продолжить ступень», «Выйти» красным."
     },
     {
       "id": "spire-010",
@@ -4602,18 +4607,20 @@
       "anim_notes": [
         "halo 2.4s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-010.png",
+      "evidence_at": "2026-10-12T02:10:52.017Z",
+      "evidence_sha256": "b072e55eecf07ac3e8034bb47a0cab5aabf0f19e8988ddc3c3e1449627dbd597",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[дефект кода — кандидат] Под панелью башня показана от вершины («НАД ОБЛАКАМИ», этажи 15, 14), маркер не на своём этаже; в образце окно башни стоит на этаже 4 с рамкой выделения и маркером. На spire-005 и spire-012 башня уже прокручена к своему этажу — при открытой панели результата прокрутка не срабатывает.",
+        "[шапка] В образце название ранга «Гранит» с «Этаж 4 · до конца недели…» и «⚡ 2» в капсуле; в приложении «Шпиль», «Нефрит · до конца недели…», «i» — решение Тем/владельца.",
+        "[данные] «Нефрит», этаж 7, время 1:11 / 1:40 против «Гранит», этаж 4, 1:12 из 2:00."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:14:07.277Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4629,8 +4636,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=passed%26spirePanel=off"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=passed%26spirePanel=off",
+        "bucket": "c_owner_decides",
+        "bucket_reason": "шапка главного экрана Шпиля: образец — название ранга + «Этаж N» + «⚡» в капсуле, приложение — «Шпиль» + «ранг · до конца недели» + «i» — решение Тем/владельца"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:10, spire.html №10 «Ступень пройдена — «Выше» двигает маркер»): панель «СТУПЕНЬ ПРОЙДЕНА · Ещё одна выше · время, ошибки, ступени на этаже · монеты 10 · «Выше ↑»» совпала."
     },
     {
       "id": "spire-011",
@@ -4705,18 +4715,20 @@
         "celeb 1.6s ease-in-out infinite",
         "halo 2.4s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-012.png",
+      "evidence_at": "2026-10-12T02:11:08.684Z",
+      "evidence_sha256": "559d5ba46920cd587d37d33c9da5142bb0cb7bc5cbe41455346b3906ff91f263",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[шапка] В образце название ранга и «Этаж 5 · до конца недели…» + «⚡ 2» в капсуле, в приложении «Шпиль» + «ранг · до конца недели…» + «i» — решение Тем/владельца.",
+        "[данные] Нефрит, имена-инициалы вместо монет рангов.",
+        "[вёрстка, мелко] Под панелью виден край пьедестала комнаты («М Алиса Д») у нижней границы — контент главной под панелью не скрыт."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:14:07.277Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4732,8 +4744,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=guard%26spirePanel=off"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=guard%26spirePanel=off",
+        "bucket": "c_owner_decides",
+        "bucket_reason": "шапка главного экрана Шпиля — как spire-010; решение Тем/владельца"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №12 «Этаж 4 пройден — впереди Страж»): башня прокручена к своему этажу и выделен этаж 5 «Страж», панель «ЭТАЖ 4 ПРОЙДЕН · Впереди Страж · 5 этаж — смешанный набор, монеты ×2 · 10 · 40 · «Выше ↑»» совпала."
     },
     {
       "id": "spire-013",
@@ -4865,18 +4880,20 @@
       "anim_notes": [
         "halo 2.4s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-015.png",
+      "evidence_at": "2026-10-12T02:11:26.787Z",
+      "evidence_sha256": "efd8211e686c37dc0a6c08f3281cefdded96a8d6d1dc2a351f82a0af7d9c04ca",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[данные] «Нефрит», 14 место, 31 ступень, «+60 монет» против «Гранит», 12 место, 25 ступеней, «новая неделя, все с 1 этажа».",
+        "[шапка] «Шпиль» + «Нефрит · до конца недели…» + «i» против названия ранга + «⚡ 3» в капсуле — решение Тем/владельца.",
+        "[вёрстка] «Подняться» серая неактивная при живой комнате (в образце светлая) — тот же дефект, что spire-005; ряд «Друзья на этой неделе» виден у нижнего края под кнопкой."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:14:07.277Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4893,8 +4910,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=weekresult_stay%26spirePane"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=weekresult_stay%26spirePane",
+        "bucket": "c_owner_decides",
+        "bucket_reason": "шапка главного экрана Шпиля — как spire-010; решение Тем/владельца"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №15 «Итог недели — остаёшься в шпиле Гранит»): карточка «ИТОГ НЕДЕЛИ · Остаёшься в шпиле … · место · ступени · монеты» с монетой-аватаром и закрытием в круге совпала; башня прокручена к своему этажу (7)."
     },
     {
       "id": "spire-016",
@@ -4915,18 +4935,20 @@
       "anim_notes": [
         "halo 2.4s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-016.png",
+      "evidence_at": "2026-10-12T02:11:45.550Z",
+      "evidence_sha256": "1ad30b648963a8cc52fe3889ffb3e2d0a4dd1f6dc23d737aa8b93f99c844c465",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[дефект кода — кандидат] На месте башни пустая серая плашка (башня не отрисована), в образце башня с выделенным этажом 4 и монетами; кадр мог быть снят до отрисовки башни — переснять.",
+        "[вёрстка, мелко] Подзаголовок «Нефрит · до конца недели / 6 д 21 ч» переносится на вторую строку (в образце в одну).",
+        "[данные] Нефрит, этаж 7, инициалы вместо монет, таймер 9м 56с против 6:40."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:14:07.277Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4942,8 +4964,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=0&overlays=off&next=/dev_spire_preview?state=room%26sp"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=0&overlays=off&next=/dev_spire_preview?state=room%26sp",
+        "bucket": "a_code_defect",
+        "bucket_reason": "Шпиль, нет энергии: на месте башни пустая серая плашка (кандидат, кадр 3:11 мог быть снят до отрисовки)"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:11, spire.html №16 «Нет энергии»): состав совпал — «⚡ 0» красным в шапке, плашка «Энергия через 9м 56с», «Поднимайся без ожидания с Plus ›»."
     },
     {
       "id": "spire-017",
@@ -6293,19 +6318,16 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-011.png",
-      "evidence_at": "2026-10-12T02:12:24.069Z",
-      "evidence_sha256": "936383a76422ecf0d10d57bd56c49d95e2e30691216f338bc024b63092b4031a",
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[состояние не то] Вместо окна «Энергия закончилась · +1 вернётся через 7 мин · Позже / Получить Plus» на кадре брифинг с тостом «ЧТО-ТО ПОШЛО НЕ ТАК · Не получилось начать диалог. Попробуй ещё раз» и «⚡ 0» красным: нехватку энергии приложение показывает тостом ошибки, а не окном — это либо дефект кода (нет окна энергии на брифинге), либо образец устарел; решить с Ядром/Дизайном.",
-        "[данные] Другая сцена («Поздороваться после знакомства» вместо «Закажи кофе»), задания 1–5."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:15:08.693Z",
+      "reviewed_at": null,
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -6315,8 +6337,7 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&dev_energy_fail=1&coinRank=6&aiConsent=granted&overlays=off&n"
-      },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:12, dialogs.html №12 «Нет энергии — окно закрытие уводит с экрана диалога»): окна «Энергия закончилась» на кадре нет."
+      }
     },
     {
       "id": "dialogs-012",
@@ -6336,20 +6357,16 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-012.png",
-      "evidence_at": "2026-10-12T02:13:07.827Z",
-      "evidence_sha256": "3bf19c1fb174ec9cfc104e943c3fa282bcc36cb04bfaf11da4d3a22fe30e2946",
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[состояние] Настроения («Доволен») и пилюли «30/30» нет (у Plus пилюли нет — ок); ряда «озвучка · Перевод · Почему так» под первой репликой нет — у dev-реплики нет разбора; в карточке цели нет лампочки «Подсказка».",
-        "[образец ≠ приказ 01.10] «⚡ 4» без капсулы.",
-        "[данные] Сцена «Поздороваться после знакомства», 6 целей против «Заказать капучино», 5."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:15:08.693Z",
+      "reviewed_at": null,
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -6361,8 +6378,7 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
-      },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:13, dialogs.html №13 «Старт диалога: энергия 5 → 4»): первый кадр сессии совпал по составу — название сцены, «⚡ 4», карточка цели «Цель 1 из N», первая реплика собеседника, поле ввода, «Или зажми и говори»."
+      }
     },
     {
       "id": "dialogs-013",
@@ -7107,19 +7123,16 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-029.png",
-      "evidence_at": "2026-10-12T02:14:01.446Z",
-      "evidence_sha256": "5fbabcd4f24a1d30b51c68186493702991b1dbf61caa3805c8269d1cde888884",
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[состояние не то] На кадре открыта клавиатура ОС, в ленте «Hello» отправлено, но индикатора «ИИ печатает» (три точки) нет — ответ ещё не пошёл или уже пришёл; переснять сразу после отправки (settle:0), клавиатуру закрыть.",
-        "[образец ≠ приказ 01.10] «⚡ 4» без капсулы."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:15:08.693Z",
+      "reviewed_at": null,
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -7129,8 +7142,7 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
-      },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:13, dialogs.html №30 «ИИ печатает»): кадр сделан в момент ввода и не показывает ожидание ответа."
+      }
     },
     {
       "id": "dialogs-030",
@@ -35674,7 +35686,8 @@
         "[дефект кода — подтверждено] «Подняться» в приложении светлая и выглядит активной; в образце серая неактивная (комнаты ещё нет). Файл: SpireClimbDock.tsx (стиль disabled).",
         "[дефект кода — подтверждено] Окно башни показывает вершину («НАД ОБЛАКАМИ», этажи 15 и 14), хотя выбран «Этаж 1 · 5 ступеней · 10 монет за этаж»; в образце окно стоит на этаже 1 с рамкой выделения. Прокрутка башни к своему этажу (4845ddd8f) в этом состоянии не срабатывает.",
         "[вёрстка] В шапке нет пилюли «⚡ N» (в образце «⚡ 3»); у шапки только «i».",
-        "[данные] «до конца недели 6 д 22 ч» против «5 д 9 ч»."
+        "[данные] «до конца недели 6 д 22 ч» против «5 д 9 ч».",
+        "[кадр старше правки aa368b106 (Темы, 02:56)] кадр 02:35: дефекты «Подняться активна без комнаты» и «башня от вершины при этаже 1» могли быть исправлены — переснять; на spire-005 (03:10) «Подняться» серая при живой комнате, башня к своему этажу прокручена"
       ],
       "status": "diff",
       "reviewed_by": null,
@@ -35682,8 +35695,8 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 2:35, spire-gaps-states №9 «комнаты ещё нет, «Подняться» неактивна»): кадр свежий, расхождения подтверждены.",
       "triage": {
-        "bucket": "a_code_defect",
-        "bucket_reason": "«Подняться» выглядит активной при «комнаты ещё нет» (при комнате из 12 — серая, spire-005: условие перевёрнуто); окно башни показывает вершину при выбранном этаже 1; в шапке нет «⚡ N»"
+        "bucket": "b_reshoot",
+        "bucket_reason": "нужное состояние на кадре не воспроизведено"
       }
     },
     {

@@ -291,6 +291,13 @@ export function DialogueV2SessionScreen({
   React.useEffect(() => {
     const show = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow', (event) => {
       console.log('[DIALOGUE-KEYBOARD] show', JSON.stringify({ height: Math.round(event.endCoordinates?.height ?? 0), os: Platform.OS }));
+      // зачем (R1 dialogs-038, Ядро 12.10: «при открытой клавиатуре лента не прокручивается к последней реплике»): лента прокручивалась только при росте содержимого (onContentSizeChange), а клавиатура
+      // не меняет содержимое — сжимается видимая область, и свежая реплика оставалась под полем ввода. На показ клавиатуры докручиваем к концу после того, как область сжалась (iOS шлёт Will* до сжатия).
+      const settleMs = Platform.OS === 'ios' ? 120 : 0;
+      setTimeout(() => {
+        console.log('[DIALOGUE-KEYBOARD] scroll_to_end after show', JSON.stringify({ settleMs })); // guard-ok: ветка решает значение
+        scrollRef.current?.scrollToEnd({ animated: true });
+      }, settleMs);
     });
     const hide = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide', () => {
       console.log('[DIALOGUE-KEYBOARD] hide', JSON.stringify({ os: Platform.OS }));

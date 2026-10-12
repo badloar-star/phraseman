@@ -8,6 +8,9 @@ describe('streak day toast', () => {
     expect(payload?.type).toBe('reward');
     expect(payload?.messageRu).toBe('День засчитан 🔥 8');
     expect(payload?.messageEn).toBe('Day counted 🔥 8');
+    // R1 dialogs-041: сквозная строка сверху, а не нижняя карточка поверх кнопки «Готово»
+    expect(payload?.layout).toBe('top_line');
+    expect(payload?.lineIcon).toBe('flame');
   });
 
   it('stays silent for the migration day (old rule counted the app open)', () => {

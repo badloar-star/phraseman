@@ -17,6 +17,10 @@ export function streakDayToastPayload(event: StreakDayCounted): ActionToastPaylo
   const days = Math.max(1, Math.floor(event.days));
   return {
     type: 'reward',
+    // зачем (R1 dialogs-041, Ядро 12.10): нижняя карточка тоста ложилась поверх кнопки «Готово» на итоге диалога (и поверх нижних кнопок в уроках). «День засчитан» — мгновенный пассивный отклик без действия,
+    // поэтому он идёт сквозной строкой СВЕРХУ (layout top_line, значок flame): не перекрывает нижний слой экрана и не ловит тапы.
+    layout: 'top_line',
+    lineIcon: 'flame',
     messageRu: `День засчитан 🔥 ${days}`,
     messageUk: `День зараховано 🔥 ${days}`,
     messageEn: `Day counted 🔥 ${days}`,

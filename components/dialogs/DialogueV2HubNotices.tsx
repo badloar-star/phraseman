@@ -125,7 +125,8 @@ export function DialogueV2HubLanguageGate({ title, text, ctaLabel, onPress, icon
       <View style={styles.cardText}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.cardTitle, { color: glass.text }]}>{title}</Text>
         <Text maxFontSizeMultiplier={1.3} style={[styles.cardBody, { color: glass.secondary }]}>{text}</Text>
-        <DialogueGlassCta glass={glass} size="small" label={ctaLabel} onPress={onPress} testID={`${testID}-cta`} style={styles.gateCta} />
+        {/* зачем (R1 dialogs-005, Ядро 12.10): в образце A6 кнопка «К урокам» со стрелкой вправо (`.cta.sm` + arrowR 18); у карточки-ошибки (значок «нет сети», «Повторить») стрелки нет */}
+        <DialogueGlassCta glass={glass} size="small" label={ctaLabel} onPress={onPress} trailingArrow={icon === 'lock-closed'} testID={`${testID}-cta`} style={styles.gateCta} />
       </View>
     </View>
   );

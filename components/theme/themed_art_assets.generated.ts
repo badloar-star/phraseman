@@ -23,5 +23,6 @@ export const THEMED_ART_GENERATED: Readonly<Partial<Record<string, ThemedArtSlot
   lessons: { dark: require('../../assets/images/v2art/dark/lessons.webp'), light: require('../../assets/images/v2art/light/lessons.webp') },
   mistakes_entry: { dark: require('../../assets/images/v2art/dark/mistakes_entry.webp'), light: require('../../assets/images/v2art/light/mistakes_entry.webp') },
   phrase_of_day: { dark: require('../../assets/images/v2art/dark/phrase_of_day.webp'), light: require('../../assets/images/v2art/light/phrase_of_day.webp') },
+  spire_tile: { dark: require('../../assets/images/v2art/dark/spire_tile.webp'), light: require('../../assets/images/v2art/light/spire_tile.webp') },
   today: { dark: require('../../assets/images/v2art/dark/today.webp'), light: require('../../assets/images/v2art/light/today.webp') },
 };

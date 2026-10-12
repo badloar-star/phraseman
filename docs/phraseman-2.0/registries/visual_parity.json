@@ -31272,16 +31272,18 @@
         "wv 0.9s ease-in-out infinite",
         "ring 1.6s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-041.png",
+      "evidence_at": "2026-10-12T17:57:07.446Z",
+      "evidence_sha256": "2a619161ec3e79cc4d4079c10b93b84805afdbb4e29647ad667b9154c518d7dc",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Ссылка с шагом tap:#fc-speak-mic отправила на хаб: сессия «Устно» не осталась открытой (на кадре cards-section-040 с той же ссылкой без шага сессия открыта) — проверить, что тап по микрофону не закрывает сессию/не возвращает назад; журнал [FLASHCARDS-SESSION]."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:59:20.017Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -31299,7 +31301,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:56, cards-v2 №32 «Устно» против «Устно — запись»): сверка невозможна — на кадре хаб «Карточки» (30/30, «Сохранённые 64», «Мои наборы 6», «Из видео 5 наборов», «Сообщество 5»), сессия «Устно» закрыта."
     },
     {
       "id": "cards-section-042",
@@ -31318,16 +31321,20 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-042.png",
+      "evidence_at": "2026-10-12T17:57:34.089Z",
+      "evidence_sha256": "2514532ddf1f6f03244a2f0c0e0793af68683f8060762d7ad12ea598793650cb",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] В приложении карточка и кнопки ниже образца (карточка ≈ y 375–650 против 297–567; кнопки y ≈ 760 против 675) и крупнее (100 px против 98), подписи прогресса «1 / 64» против «7 / 20».",
+        "[данные] Слово «Lay / неважно» вместо «Gate / таможня»; монеты 0 вместо 40; счётчик 1 / 64 вместо 7 / 20.",
+        "[кадр в момент анимации] Сессия живая (анимация карточки), без записи anim_evidence match не выставляется."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:59:20.017Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -31345,7 +31352,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:57, cards-v2 №33 «Правда / ложь»): экран и состав совпали: «×», «Правда / ложь», три сердца, пилюля монет, полоса прогресса с подписями, карточка (слово + перевод), кнопки «Ложь» и «Правда»."
     },
     {
       "id": "cards-section-043",
@@ -31366,16 +31374,19 @@
       "anim_notes": [
         "blink 1.05s steps(2) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-043.png",
+      "evidence_at": "2026-10-12T17:57:56.406Z",
+      "evidence_sha256": "1dc2b460899b112d0468f19cf5cf8611651ceadbfcd4ab22415e8bbd58900925",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр в момент загрузки] Прогресс «0 / 64», под шапкой пустое место — карточки «Напиши на изучаемом языке / <слово>» нет; поле показывает подсказку «Введи фразу целиком», «Проверить» неактивна — снято до появления первой карточки; в шаги добавлена пауза 4 с (cards-v2-034 / section-043) — переснять.",
+        "[образец ≠ код] В образце над шапкой пилюля монет «40» отдельной строкой, в шапке флажок жалобы и значок набора; в приложении монеты «0» над шапкой, значок стопки есть, флажка нет."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:59:20.017Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -31393,7 +31404,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:57, cards-v2 №34 «Вспомни и напиши»): экран «Напиши» открыт, но карточка-вопрос не отрисована."
     },
     {
       "id": "cards-section-044",

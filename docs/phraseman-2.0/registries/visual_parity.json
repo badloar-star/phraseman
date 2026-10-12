@@ -35054,21 +35054,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-002.png",
+      "evidence_at": "2026-10-12T02:43:48.591Z",
+      "evidence_sha256": "0276fe61a95128e1d6aaced5d3dc84a796cbb232e5f12f7ee09794b2ddb72f11",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — кандидат] В образце после пояснения отдельная строка «Для этого языка пока ничего не сохранено.» (пустое состояние), в приложении её нет — сразу кнопка; либо кадр снят не в пустом состоянии, либо строка не выводится. Проверить в коде экрана памяти диалогов и переснять с гарантированно пустой памятью.",
+        "[образец ≠ код] Кнопка «Очистить память этого языка»: в приложении красный текст (разрушительное действие), в образце светлый нейтральный. Решить: красный принять и обновить образец, либо в коде нейтральный.",
+        "[вёрстка, мелко] Шапка и текст в приложении крупнее (заголовок ~34 против ~28 px в масштабе образца), кнопка шире и выше."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:50.465Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&overlays=off&next=/dialogue_v2_memory"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:43, dialogs-gaps-states №2 «Память диалогов — Plus, пока пусто»): шапка («‹» и «Память диалогов»), пояснение «Здесь хранится только краткая учебная сводка и место продолжения…» и кнопка «Очистить память этого языка» совпали по тексту."
     },
     {
       "id": "dialogs-gap-003",
@@ -35088,21 +35093,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-003.png",
+      "evidence_at": "2026-10-12T02:44:04.115Z",
+      "evidence_sha256": "f090e57ba8811209dd2ab99ce2d5aa92263066556dc5fed736c77b13e8fa3c90",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Кнопка «Очистить память этого языка» красным текстом в приложении, в образце светлым (как dialogs-gap-002).",
+        "[вёрстка, мелко] Блок в приложении ниже на ~95 px (заголовок на y≈563 против 468), пояснение переносится на четыре строки (в образце три), кнопки шире и выше."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:50.465Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&overlays=off&next=/dialogue_v2_memory"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:44, dialogs-gaps-states №3 «Память диалогов — без Plus, только удаление»): состав и тексты совпали — «Память диалогов доступна в Plus», светлая «Посмотреть Plus», пояснение «Даже без Plus ты можешь удалить всю сохранённую память…», кнопка «Очистить память этого языка»."
     },
     {
       "id": "dialogs-gap-004",

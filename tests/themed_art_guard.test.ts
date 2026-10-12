@@ -1,6 +1,7 @@
 // зачем (координатор 15.10, [THEMED-ART-GUARD]): в v2art не должны попадать файлы тяжелее 400 КБ и картинки без настоящей прозрачности (нарисованная шахматка) —
 // Codex уже положил такие по 1,7 МБ. Сторож живёт в генераторе реестра; здесь он проверяется на синтетических картинках и на всех файлах репозитория.
 import { execFileSync } from 'child_process';
+import { readdirSync } from 'fs';
 import { join } from 'path';
 
 const ROOT = join(__dirname, '..');
@@ -55,6 +56,12 @@ describe('сторож арта 2.0 [THEMED-ART-GUARD]', () => {
   it('нечитаемый файл отвергается, а не роняет сторож', () => {
     expect(out.missing.ok).toBe(false);
     expect(out.missing.reason).toMatch(/не читается/);
+  });
+
+  // зачем (S2_clay 15.10): .glow.webp прежнего стиля никто не читает — они не должны оставаться в сборке и мерещиться «свечением поверх глины»
+  it('в assets/images/v2art нет файлов .glow.webp прежнего стиля', () => {
+    const found = ['dark', 'light'].flatMap((b) => readdirSync(join(ROOT, 'assets', 'images', 'v2art', b)).filter((f) => f.endsWith('.glow.webp')).map((f) => `${b}/${f}`));
+    expect(found).toEqual([]);
   });
 
   it('в репозитории (assets/images/v2art) нет ни одного отвергнутого файла', () => {

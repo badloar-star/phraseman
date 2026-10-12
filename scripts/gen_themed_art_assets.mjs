@@ -77,7 +77,11 @@ export function scan(names, exclude = new Set()) {
     if (!fs.existsSync(dir)) continue;
     for (const file of fs.readdirSync(dir).sort()) {
       const m = file.match(/^([a-z0-9_]+)(\.accent)?\.webp$/);
-      if (!m) continue; // .glow.webp и прочие черновики не подключаем
+      if (!m) {
+        // зачем (S2_clay 15.10): .glow.webp прежнего стиля генератор и экраны не читают — это мёртвый вес сборки, а не свечение; говорим вслух, а не молчим
+        if (/\.glow\.webp$/.test(file)) console.warn(`[THEMED-ART] ${brightness}/${file}: .glow не подключается ни генератором, ни экранами — удалите из assets`);
+        continue; // прочие черновики не подключаем
+      }
       const [, name, accent] = m;
       if (exclude.has(`${brightness}/${file}`)) continue; // отвергнут сторожем [THEMED-ART-GUARD]
       if (!names.has(name)) { unknown.push(`${brightness}/${file}`); continue; }

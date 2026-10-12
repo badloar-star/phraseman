@@ -75,6 +75,7 @@ import { resumeLessonAfterPremium } from './paywall_lesson_continuation';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import {
   commitRevenueCatResultForGeneration,
@@ -1019,13 +1020,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // ── покупка ────────────────────────────────────────────────────────────────
   const finishOnboardingPaywallFlow = useCallback(async (
     isCurrent: () => boolean = () => true,
+    lease?: AccountTransitionLockLease,
   ): Promise<boolean> => {
     if (!isCurrent()) return false;
     invalidatePremiumCache();
     await AsyncStorage.setItem('had_premium_ever', '1').catch(swallowError('paywall_purchase:had_premium_ever')); // зачем: PM-229-A1
     if (!isCurrent()) return false;
     emitAppEvent('premium_activated');
-    if (!(await refillToMax(isCurrent))) return false;
+    // зачем (координатор 12.10): зовётся из-под замка покупки — lease обязателен, иначе взаимная блокировка.
+    if (!(await refillToMax(isCurrent, lease))) return false;
 
     try {
       await persistPortableProgressRegister('onboarding_step', 'name');
@@ -1297,7 +1300,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
-      const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+      const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
         if (!isCommitCurrent()) return false;
         const persisted = await persistStorePremiumLocally(
           confirmedPlan,
@@ -1307,7 +1310,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           true,
         );
         if (!persisted || !isCommitCurrent()) return false;
-        if (!(await refillToMax(isCommitCurrent))) return false;
+        if (!(await refillToMax(isCommitCurrent, commitLease))) return false;
         // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
         // В онбординге после подтверждения сразу открывается приложение — без
         // дополнительного экрана празднования поверх первого домашнего кадра.
@@ -1405,7 +1408,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         }
         const activated = await commitRevenueCatResultForGeneration(
           operationAccount,
-          (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
+          (isCommitCurrent, commitLease) => finishOnboardingPaywallFlow(isCommitCurrent, commitLease),
         );
         if (activated.status !== 'ok' || !activated.value) {
           // зачем (ревью fa6648f02 п.3): Plus уже включён, а завершение онбординг-пейвола не удалось — событие завершения в нём шлётся последним шагом и НЕ ушло, экран остался бы висеть.
@@ -1618,7 +1621,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
           : 'monthly';
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
-        const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+        const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent, commitLease) => {
           if (!isCommitCurrent()) return false;
           const persisted = await persistStorePremiumLocally(
             plan,
@@ -1628,7 +1631,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             true,
           );
           if (!persisted || !isCommitCurrent()) return false;
-          if (!(await refillToMax(isCommitCurrent))) return false;
+          if (!(await refillToMax(isCommitCurrent, commitLease))) return false;
           // То же празднование, что при покупке: без него после переустановки
           // юзер не понимал, что доступ вернулся, и порой оформлял заново.
           // Исключение — онбординг: его контракт завершает восстановление сразу
@@ -1663,7 +1666,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           }
           const activated = await commitRevenueCatResultForGeneration(
             operationAccount,
-            (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
+            (isCommitCurrent, commitLease) => finishOnboardingPaywallFlow(isCommitCurrent, commitLease),
           );
           if (activated.status !== 'ok' || !activated.value) {
             // зачем (ревью fa6648f02 п.3): то же, что в покупке — Plus восстановлен, а экран онбординг-пейвола не отпустили; выходим дальше по сценарию.

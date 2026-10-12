@@ -10,7 +10,9 @@ import {
   subscribeAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from '../app/account_generation';
+import { persistPremiumEnergyRefill } from '../app/energy_premium_refill';
 import { readDevLocalPlusOverride } from '../app/dev_plus_controls';
 import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs } from '../app/energy_system';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
@@ -156,7 +158,8 @@ export interface EnergyContextValue {
   refundOne: (operationId: string, reason: string) => Promise<void>;
   acknowledgeSessionStart: (operationId: string) => Promise<boolean>;
   reload: () => Promise<void>;       // force re-read (call after tester toggle)
-  refillToMax: (isCurrent?: () => boolean) => Promise<boolean>; // immediate account-safe Premium refill
+  // lease — обязателен, если вызывающий уже держит замок аккаунта (покупка RevenueCat), иначе взаимная блокировка
+  refillToMax: (isCurrent?: () => boolean, lease?: AccountTransitionLockLease) => Promise<boolean>; // immediate account-safe Premium refill
   /** First AsyncStorage load finished — safe to gate screens on real energy+bonus (not defaults). */
   energyReady: boolean;
 }
@@ -1189,36 +1192,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // the same full state locally. No Firebase work and no animation timer is added.
   const refillToMax = useCallback(async (
     isCurrent: () => boolean = () => true,
+    lease?: AccountTransitionLockLease,
   ): Promise<boolean> => {
     if (!isCurrent()) return false;
     const accountToken = captureAccountGeneration();
-    const committed = await withAccountTransitionLock(async () => {
-      for (let attempt = 0; attempt < 2 && isCurrent(); attempt += 1) {
-        try {
-          return await withStorageLock(async () => {
-            if (!isCurrent() || !isCurrentAccountGeneration(accountToken)) return null;
-            const freshDynMax = await readDynMax();
-            const currentBonus = await readBonusEnergyForMutation(accountToken);
-            if (!isCurrent() || !isCurrentAccountGeneration(accountToken)) return null;
-            const now = Date.now();
-            const state: StoredEnergy = createFullEnergyState(now, freshDynMax);
-            const refilledBonus = currentBonus?.capacity ?? 0;
-            const writes: [string, string][] = [[ENERGY_KEY, JSON.stringify(state)]];
-            if (currentBonus) {
-              writes.push([
-                requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken),
-                JSON.stringify({ ...currentBonus, amount: refilledBonus }),
-              ]);
-            }
-            await AsyncStorage.multiSet(writes);
-            return { freshDynMax, refilledBonus, state };
-          });
-        } catch (e) {
-          DebugLogger.error('EnergyContext:refillToMax', e instanceof Error ? e : new Error(String(e)), 'warning');
-        }
-      }
-      return null;
-    });
+    // зачем (координатор 12.10, 🔴 взаимная блокировка после оплаты): запись вынесена в energy_premium_refill и получает lease
+    // держателя замка — покупка RevenueCat зовёт refill ИЗНУТРИ замка аккаунта; без lease это вечное ожидание.
+    const committed = await persistPremiumEnergyRefill({ isCurrent, accountToken, readDynMax, lease });
     if (!committed || !isCurrent() || !isCurrentAccountGeneration(accountToken)) return false;
     const { freshDynMax, refilledBonus, state } = committed;
     dynMaxRef.current = freshDynMax;

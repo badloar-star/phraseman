@@ -34,7 +34,7 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(purchaseBody).not.toContain('Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0');
     expect(purchaseBody).toContain('persistStorePremiumLocally');
     expect(purchaseBody).toContain("emitAppEvent('premium_activated')");
-    expect(purchaseBody).toContain('await refillToMax(isCommitCurrent)');
+    expect(purchaseBody).toContain('await refillToMax(isCommitCurrent, commitLease)'); // зачем (12.10): lease держателя замка покупки — без него взаимная блокировка
     expect(purchaseBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 
@@ -74,7 +74,7 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(restoreBody).toContain('inferPremiumPlanFromProductId');
     expect(restoreBody).toContain('persistStorePremiumLocally');
     expect(restoreBody).toContain("emitAppEvent('premium_activated')");
-    expect(restoreBody).toContain('await refillToMax(isCommitCurrent)');
+    expect(restoreBody).toContain('await refillToMax(isCommitCurrent, commitLease)'); // зачем (12.10): lease держателя замка покупки — без него взаимная блокировка
     expect(restoreBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 

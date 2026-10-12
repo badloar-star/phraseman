@@ -4,6 +4,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLockWithDeadline,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { reportSwallowed } from './debug-logger';
 
@@ -46,15 +47,21 @@ export async function readRevenueCatCustomerInfoForGeneration(
   return result.status === 'ok' ? result.value : null;
 }
 
-/** Revalidates exact SDK identity after lock acquisition and before the first local side effect. */
+/**
+ * Revalidates exact SDK identity after lock acquisition and before the first local side effect.
+ *
+ * зачем lease в колбэке (координатор 12.10, 🔴 взаимная блокировка после оплаты): колбэк выполняется ПОД замком аккаунта.
+ * Замок не реентерабелен — любой вложенный withAccountTransitionLock без lease ждёт конца этой же работы и вешает покупку
+ * навсегда. Всё, что внутри берёт замок (пополнение энергии), обязано получить этот lease.
+ */
 export async function commitRevenueCatResultForGeneration<T>(
   token: AccountGenerationToken,
-  commit: (isCurrent: () => boolean) => Promise<T>,
+  commit: (isCurrent: () => boolean, lease: AccountTransitionLockLease) => Promise<T>,
 ): Promise<RevenueCatAccountResult<T>> {
-  const locked = await withAccountTransitionLockWithDeadline(async (): Promise<RevenueCatAccountResult<T>> => {
+  const locked = await withAccountTransitionLockWithDeadline(async (lease): Promise<RevenueCatAccountResult<T>> => {
     if (!await exactRevenueCatIdentityMatches(token)) return { status: 'stale' };
     const isCurrent = () => generationIsCurrent(token);
-    const value = await commit(isCurrent);
+    const value = await commit(isCurrent, lease);
     return isCurrent() ? { status: 'ok', value } : { status: 'stale' };
   }, RC_ACCOUNT_COMMIT_LOCK_TIMEOUT_MS);
   return locked.completed ? locked.value : { status: 'stale' };

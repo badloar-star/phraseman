@@ -79,3 +79,7 @@ seed бандла зависит только от `interfaceLocale`. Зачем
 Форма данных и поведение не изменились: тот же замороженный объект, `source: 'bundled_factory'`, сеть для `en` не вызывается, не-en путь не тронут.
 Импорт границы `factory_native_catalog_v1` прежний (boundary gate зелёный). Сторож — `tests/learning_v2_bundled_catalog_memo.test.ts`.
 При слиянии из `.worktrees/learning-v2-spanish`: если в ветке меняли тело peek/load для `en` — сохраните вызов через `bundledEnCatalogV1`.
+
+## Тема 4 · «светлый акцент» 13.10 — для Codex (раздел 4 аудита, 34 места)
+
+В светлом оформлении 10 градиентных тем сырой `accent` — пастель (1,0–1,8:1 на фоне и карточке), и всё, что им красится, пропадает: кольца, полосы, точки, значки, текст. Ваши файлы мы не трогали. Что делать у себя: графику (кольца, полосы, точки, кромки, градиент-полосы) красить `t.accentGraphic ?? t.accent` (или `g.accentGraphic`), текст и значки на карточке — `t.accentTextSafe ?? t.accent`. В тёмном оформлении оба токена равны `accent` байт-в-байт — тёмный вид не меняется. Токены закоммичены (c62e8fc70). Полный список мест — раздел 4 `docs/phraseman-2.0/LIGHT_ACCENT_GRAPHICS_AUDIT_2026-10-13.md` (`app/learning-v2/session/[id].tsx`, `components/learning-v2/horizons/*`, `LearningV2Glass.tsx`, `LearningV2ChaptersCourse.tsx`, `components/learning-v2-lab/*`, `modules/learning-v2/*`). Сторож считает их отдельно; ложные срабатывания помечайте `light-accent-ok: причина` в строке.

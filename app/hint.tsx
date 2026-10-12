@@ -24,9 +24,9 @@ import TheoryLessonView, {
 } from '../components/theory/TheoryLessonView';
 import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
-import { legacyRuUk } from '../constants/i18n';
+import { theoryContentKey } from '../constants/i18n';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
-import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { RowDivider } from '../components/v2/RowDivider';
 
 function L(
@@ -62,12 +62,12 @@ function drillsForSection(num: string): TheoryBlock[] {
   }
 }
 
-/** Язык контента теории: es явный, остальные через legacyRuUk (ru fallback). */
+/** Язык контента теории: ru/uk/es как есть; en и pt-BR/vi/id/tr/pl → es, ru последним (theoryContentKey, constants/i18n). */
 type TheoryContentLang = 'ru' | 'uk' | 'es';
 
 function theoryContentLang(lang: Lang): TheoryContentLang {
-  if (lang === 'es') return 'es';
-  return legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  // зачем (координатор 12.10): en и pt-BR/vi/id/tr/pl получали кириллицу — общий выбор с запасным es (constants/i18n theoryContentKey).
+  return theoryContentKey(lang, 'hint');
 }
 
 /** Преобразует контент любого урока в формат движка теории по текущему языку. */

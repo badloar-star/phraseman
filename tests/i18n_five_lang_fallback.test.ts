@@ -1,4 +1,4 @@
-import { bundleLang, legacyRuUk, triLang } from '../constants/i18n';
+import { bundleLang, legacyRuUk, theoryContentKey, triLang } from '../constants/i18n';
 
 // зачем (координатор 12.10, 🔴): pt-BR/vi/id/tr/pl видимы в выпуске, а словарь без их ключа отдавал РУССКИЙ (~2400 словарей,
 // docs/phraseman-2.0/I18N_FALLBACK_5LANG_R1.md). Страховка: свой ключ → en → ru последним. ru/uk/es не меняются.
@@ -38,6 +38,35 @@ describe('triLang fallback for pt-BR/vi/id/tr/pl', () => {
     expect(calls).toHaveLength(2);
     expect(calls[0]).toContain('lang=pt-BR→en');
     expect(calls[1]).toContain('lang=vi→en');
+  });
+});
+
+// зачем (координатор 12.10, 🔴 для английского): теория уроков (hint.tsx, lesson_theory_v2.tsx) показывала кириллицу английскому интерфейсу
+// и pt-BR/vi/id/tr/pl. В данных теории только ru/uk/es → для остальных es, ru последним; ru/uk/es без изменений.
+describe('theoryContentKey', () => {
+  let warn: jest.SpyInstance;
+  beforeEach(() => { warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined); });
+  afterEach(() => { warn.mockRestore(); });
+
+  it('ru, uk and es keep their own theory', () => {
+    expect(theoryContentKey('ru', 'test')).toBe('ru');
+    expect(theoryContentKey('uk', 'test')).toBe('uk');
+    expect(theoryContentKey('es', 'test')).toBe('es');
+  });
+
+  it.each(['en', ...FIVE] as const)('%s gets Spanish theory, not Cyrillic', (lang) => {
+    expect(theoryContentKey(lang, 'test')).toBe('es');
+  });
+
+  it('logs [I18N-FALLBACK] screen=theory once per screen and language', () => {
+    let fresh!: typeof import('../constants/i18n');
+    jest.isolateModules(() => { fresh = require('../constants/i18n'); });
+    fresh.theoryContentKey('vi', 'hint');
+    fresh.theoryContentKey('vi', 'hint');
+    fresh.theoryContentKey('vi', 'lesson_theory_v2');
+    const lines = warn.mock.calls.map((c) => String(c[0])).filter((l) => l.includes('screen=theory'));
+    expect(lines).toHaveLength(2);
+    expect(lines[0]).toContain('lang=vi→es');
   });
 });
 

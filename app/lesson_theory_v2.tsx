@@ -5,7 +5,7 @@ import { safeRouterBack } from './navigation_back';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
-import { legacyRuUk, triLang } from '../constants/i18n';
+import { theoryContentKey, triLang } from '../constants/i18n';
 import TheoryLessonView, {
   type TheorySection,
   type TheoryBlock,
@@ -173,9 +173,8 @@ export default function LessonTheoryV2Screen() {
     }
   }, [hasNewTheory, lessonId, router]);
 
-  // Язык контента: es явный, остальные через legacyRuUk (ru как fallback).
-  const contentKey: ContentLang =
-    lang === 'es' ? 'es' : legacyRuUk(lang) === 'uk' ? 'uk' : 'ru';
+  // зачем (координатор 12.10): ru/uk/es как есть; en и pt-BR/vi/id/tr/pl → es (своего и en в теории нет), ru последним.
+  const contentKey: ContentLang = theoryContentKey(lang, 'lesson_theory_v2');
 
   const sections = useMemo(
     () => (hasNewTheory ? adaptLesson1Theory(contentKey) : []),

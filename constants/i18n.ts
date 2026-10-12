@@ -955,6 +955,24 @@ function legacyFiveLangToEs(helper: 'legacyRuUk' | 'bundleLang', lang: Lang): 'e
   return 'es';
 }
 
+/**
+ * Ключ языка контента теории уроков (в данных только ru/uk/es: L1Block, titleRu/Uk/Es).
+ * зачем (координатор 12.10, 🔴 для английского в R1): hint.tsx и lesson_theory_v2.tsx брали `es ? es : uk ? uk : ru` — английский
+ * интерфейс и pt-BR/vi/id/tr/pl видели КИРИЛЛИЦУ во всей теории. Порядок координатора «свой → en → es → ru»: своего и en в данных
+ * теории нет, поэтому для них — es (через legacyRuUk, при включённом испанском), ru — последним. ru/uk/es — как раньше.
+ */
+const theoryFallbackLogged = new Set<string>();
+export function theoryContentKey(lang: Lang, screen: string): 'ru' | 'uk' | 'es' {
+  if (lang === 'ru' || lang === 'uk' || lang === 'es') return lang;
+  const key = legacyRuUk(lang) === 'es' ? 'es' : 'ru';
+  const logKey = `${screen}:${lang}`;
+  if ((typeof __DEV__ === 'undefined' || __DEV__) && !theoryFallbackLogged.has(logKey)) {
+    theoryFallbackLogged.add(logKey);
+    console.warn(`[I18N-FALLBACK] screen=theory(${screen}) lang=${lang}→${key}: в теории только ru/uk/es`); // guard-ok: под __DEV__, один раз на экран и язык
+  }
+  return key;
+}
+
 /** Пакеты UI с полными строками RU / UK / ES (магазин осколков, paywall и т.д.). */
 export type UiBundleLang = 'ru' | 'uk' | 'es';
 

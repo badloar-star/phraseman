@@ -107,10 +107,11 @@ Third-party advertising, Developer's advertising — **не используют
    сообщества озвучиваются на сервере через OpenAI (`card_tts_worker.ts`) — текст карточек уходит в OpenAI. §6 говорит про проверку и
    перевод наборов, не про озвучку. Для форм это уже покрыто строкой «User-generated content / OpenAI как обработчик».
    → **Владелец:** одно предложение в §13 или §6: «Card text of published Community Packs may be sent to our AI provider to generate audio».
-5. **Строки назначения iOS без функции:** `NSPhotoLibraryUsageDescription`, `NSFaceIDUsageDescription`, `NSMotionUsageDescription` есть в
-   `app.json`, а кода выбора фото, Face ID и датчиков движения нет (SecureStore с `requireAuthentication: false`). Политика §13 объясняет
-   камеру/движение библиотеками, про фото и Face ID — нет. Ревью Apple может спросить. → **Ядро/координатор:** убрать лишние ключи
-   или подтвердить, какая библиотека их требует.
+5. ~~Строки назначения iOS без функции~~ — **ОШИБКА первой версии, исправлено 12.10: все ключи нужны, трогать не надо.**
+   `NSPhotoLibraryUsageDescription` — медиатеку линкуют expo-file-system/expo-image (Apple ITMS-90683), а react-native-view-shot сохраняет
+   картинку с результатом; `NSMotionUsageDescription` — CMMotionManager из sensor-модуля react-native-reanimated (отказ сборки 114,
+   5ab8bb9fb); `NSFaceIDUsageDescription` — его сам прописывает плагин expo-secure-store. Камера убрана 11.10 вместе с webrtc (f0be8d357).
+   Сторож — tests/website_privacy_consent_contract.test.ts. Для форм: сохранение картинки в медиатеку — не «сбор» фото.
 6. **YouTube-плеер:** ролики проигрывает YouTube в WebView, он собирает данные сам (политика §16 это раскрывает). В формах Play/Apple
    это не наш сбор; если ревью спросит — ссылка на §16.
 7. **E24 устарело в одном месте:** «токен аттестации» в Device IDs — App Check снят 01.10, в формах его НЕ указывать.

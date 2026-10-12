@@ -43,3 +43,9 @@ No architecture change: тексты и правило скрипта прове
 ## Rollback
 
 `git revert` коммита: тексты и правило возвращаются, данных не касается.
+
+## Дополнение (тот же Governance-ID)
+
+`app/dev-account-v2-ios-proof.tsx` добавлен в CONTENT_FILES сторожа: без EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF=1 файл исключён из бандла
+(blockList сборщика), внутри второй замок — игрок экран не видит, подписи фаз для владельца на тестовом iPhone. Основание то же, что у
+DevHubSheet / v2_kit_preview / dialogue_v2_visual_fixture.

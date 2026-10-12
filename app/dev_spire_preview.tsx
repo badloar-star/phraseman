@@ -18,6 +18,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import SpireExitSheet from '../components/spire/SpireExitSheet';
@@ -36,6 +37,8 @@ import {
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
 const noop = (): void => undefined;
+/** Транспорт жалобы превью: сети нет, ничего не отправляется. */
+const devPreviewReportTransport = async (): Promise<'sent'> => 'sent';
 
 function StepPreview({ state, exitOpen }: Readonly<{ state: SpirePreviewState; exitOpen: boolean }>) {
   const { lang } = useLang();
@@ -62,7 +65,13 @@ function StepPreview({ state, exitOpen }: Readonly<{ state: SpirePreviewState; e
       onTokens={noop}
       onItems={noop}
       onContinue={noop}
-      reportSlot={null}
+      // зачем (Макеты 12.10, spire-gap-001/002/004/005): боевой экран рисует красный флажок «пожаловаться» при answering && task; превью передавало null — на кадрах флажка не было.
+      // Тот же ReportErrorButton (icon-flag), но с пустым транспортом: вид как в бою, жалоба никуда не уходит.
+      reportSlot={preview.answering && preview.task ? (
+        <View style={s.reportRow}>
+          <ReportErrorButton screen="spire" dataId="dev-preview" dataText="dev-preview" variant="icon-flag" testID="spire-task-report-0" submitOverride={devPreviewReportTransport} />
+        </View>
+      ) : null}
       // зачем (R1 spire-009): шторка выхода из ступени — тот же компонент, что в бою; кнопки ничего не делают, сети нет.
       exitSlot={exitOpen ? <SpireExitSheet lang={lang} visible floor={preview.ctx.floor} onContinue={noop} onExit={noop} /> : null}
     />
@@ -126,6 +135,8 @@ export default function DevSpirePreviewRoute() {
 
 const s = StyleSheet.create({
   root: { flex: 1 },
+  // как `reportRow` боевого SpireStepScreen
+  reportRow: { minHeight: 44, marginTop: 10, alignItems: 'flex-end', justifyContent: 'center' },
   selector: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   dot: { position: 'absolute', right: 4, bottom: 4, width: 10, height: 10, borderRadius: 5, backgroundColor: 'rgba(60,130,255,0.9)' }, // theme-exempt: служебная DEV-точка, в релизе её нет
   selectorRow: { gap: 6, paddingHorizontal: 8, paddingVertical: 6 },

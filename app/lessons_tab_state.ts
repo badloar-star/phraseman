@@ -44,8 +44,10 @@ let lastSnapshotGeneration = -1;
 
 // зачем (координатор 12.10, R1 «Уроки 3,6 с до первого кадра», «сперва логи»): [LESSONS-BOOT] показывает, был ли снимок
 // списка готов к монтажу вкладки (hit/miss и его возраст), кто и когда читал хранилище (ранний прогрев _layout, сам экран,
-// Диалоги), сколько параллельных чтений шло и сколько заняли multiGet и разбор. Только dev — в релизе ни строки.
-const BOOT_TRACE = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+// Диалоги), сколько параллельных чтений шло и сколько заняли multiGet и разбор.
+// зачем (Дизайн 12.10, 🟡 №3 «релизные цифры Обучения»): строки живы и в продакшен-JS (Metro --no-dev --minify) — 3–4 на запуск,
+// стоимость ничтожна; в стор-сборке (EXPO_PUBLIC_STORE_RELEASE=1) их нет.
+const BOOT_TRACE = !IS_STORE_RELEASE;
 const MODULE_LOADED_AT_MS = Date.now();
 const loadedAtByTarget: Partial<Record<string, number>> = {};
 const inflightByTarget: Partial<Record<string, number>> = {};

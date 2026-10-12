@@ -220,7 +220,8 @@ function bundledEnCatalogV1(exact: LearningV2ActiveCourseCatalogLocatorV1): Lear
     lessons: seed.lessons,
   });
   bundledEnCatalogMemo.set(memoKey, catalog);
-  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+  // зачем (Дизайн 12.10, 🟡 №3): строка жива и в продакшен-JS для релизного замера; один раз на язык интерфейса; в стор-сборке — нет.
+  if (process.env.EXPO_PUBLIC_STORE_RELEASE !== '1') {
     console.log(`[LESSONS-BOOT] v2_catalog:materialized ${JSON.stringify({ interfaceLocale: exact.interfaceLocale, ms: Date.now() - startedAtMs, lessons: catalog.lessons.length, memoSize: bundledEnCatalogMemo.size })}`);
   }
   return catalog;

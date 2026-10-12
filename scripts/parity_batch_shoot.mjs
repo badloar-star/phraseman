@@ -13,6 +13,10 @@
  *   --status=pending     какие статусы реестра брать для --all-pending (через запятую; по умолчанию pending)
  *   --guest              подтверждение: на устройстве вход — АНОНИМНЫЙ гость (pm clear + онбординг). Без него строки с cards=demo|empty|… пропускаются
  *   --burst-ms=0..1000   кадр через N мс после «replace вызван» без паузы settle и без повторов пустого кадра (анимации, конфетти)
+ *   --stitch-only <ids> | --stitch-only-recent=<минуты>   БЕЗ эмулятора: склеить уже лежащие голые кадры (1080×2400) в evidence; голый → _runs/<метка>/<id>.bare.png
+ *   --metro-url=http://127.0.0.1:8081/status  --metro-wait-ms=120000  --no-metro-check   перед каждым id ждать Metro (status=running); иначе статус metro_down и повтор в конце
+ *   --no-screen-check    не распознавать красные экраны (uiautomator dump): «Unable to load script» → metro_down, «Render Error» и т. п. → redbox, «DEV-STATE…» висит → fixture_hang;
+ *                        такие кадры только в _runs, id повторяется один раз в конце прогона
  *   --no-stitch          НЕ клеить с образцом (в evidence — голый кадр; только для отладки). По умолчанию: составная склейка «образец | приложение» через scripts/parity_shot.mjs
  *                        (нужен сервер макетов http://127.0.0.1:8765 и playwright); голый кадр всегда в _runs/<метка>/<id>.bare.png; реестр не пишется
  *   --no-blank-check     не проверять «пустой кадр» (по умолчанию: >95 % одного цвета или <8 цветов → повтор до 6 раз через 1 с; пусто >3 с = статус blank_too_long)
@@ -31,6 +35,8 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { describeSteps, parseSteps, runSteps } from './parity_steps.mjs';
 import { analyzeFrame, blankCheckAvailable, blankCheckUnavailableReason } from './parity_blank.mjs';
+import { classifyScreenXml, waitMetro } from './parity_health.mjs';
+import { parseUiNodes } from './parity_steps.mjs';
 
 const LOG = '[BATCH-SHOOT]';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -126,6 +132,20 @@ export function commandsFor(row, device) {
   return steps;
 }
 
+/** Что на экране устройства: 'metro_down' | 'redbox' | 'fixture_hang' | null (всё нормально или дамп не снялся). */
+function classifyScreenOnDevice(device, id) {
+  try {
+    adb(device, ['shell', 'rm', '-f', '/sdcard/phm_health.xml']); // зачем: dump оставляет старый файл при пустом экране (память 2026-10-11)
+    adb(device, ['shell', 'uiautomator', 'dump', '/sdcard/phm_health.xml'], { timeout: 20_000 });
+    const xml = adb(device, ['exec-out', 'cat', '/sdcard/phm_health.xml'], { timeout: 20_000 });
+    if (parseUiNodes(xml).length === 0) return null;
+    return classifyScreenXml(xml);
+  } catch (error) {
+    console.warn(`${LOG} ${id}: экран не классифицирован (дамп не снялся): ${String(error).slice(0, 160)}`); // guard-ok: причина пропуска проверки экрана
+    return null;
+  }
+}
+
 function stitchEvidence(id, barePath, outDir) {
   const target = path.join(outDir, `${id}.png`);
   const startedAt = Date.now();
@@ -215,6 +235,17 @@ async function shootOne(device, row, opts, runDir) {
   let msToNonblank = 0;
   let outcome = result.outcome;
   let detail = burst ? `${result.detail}+burst_${opts.burstMs}мс` : result.detail;
+  // зачем (координатор 12.10): красный экран «Unable to load script» (Metro перезапускали), «Render Error» и зависшее «DEV-STATE…» — не кадры, а находки: файл только в _runs, id повторяется в конце
+  if (opts.screenCheck && (outcome === 'ok' || outcome === 'timeout' || outcome === 'error')) {
+    const verdict = classifyScreenOnDevice(device, row.id);
+    // «DEV-STATE…» на кадре с маркером «replace вызван» — это переходное состояние, а не зависание
+    if (verdict && !(verdict === 'fixture_hang' && outcome === 'ok')) {
+      const bad = path.join(runDir, `${row.id}.${verdict}.png`);
+      fs.mkdirSync(path.dirname(bad), { recursive: true });
+      fs.writeFileSync(bad, first);
+      return { ...result, outcome: verdict, detail: `${detail}+экран_${verdict}`, file: path.relative(ROOT, bad).split(path.sep).join('/'), bytes: first.length, msToNonblank: 0 };
+    }
+  }
   // зачем (координатор 12.10): пустой кадр сразу после перехода/модалки — не доказательство; ждём и снимаем снова (до N раз), фиксируем ms_to_nonblank
   if (outcome === 'ok' && !burst && opts.blankCheck) {
     let verdict = analyzeFrame(first);
@@ -271,12 +302,75 @@ async function shootOne(device, row, opts, runDir) {
   return { ...result, outcome, detail, file: rel(target), bytes: first.length, msToNonblank };
 }
 
+/** Размер PNG по заголовку IHDR (без декодирования); null — не PNG. */
+export function pngSize(buffer) {
+  if (!buffer || buffer.length < 24 || buffer[0] !== 0x89 || buffer[1] !== 0x50 || buffer[2] !== 0x4e || buffer[3] !== 0x47) return null;
+  return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+}
+
+/**
+ * --stitch-only <ids> | --stitch-only-recent=<минуты>: без эмулятора превращает уже лежащие в evidence ГОЛЫЕ кадры (размер экрана, по умолчанию 1080×2400)
+ * в составные склейки «образец | приложение». Голый кадр копируется в _runs/<метка>/<id>.bare.png, склейку строит parity_shot (PARITY_FAKE_DEVICE_PNG) и
+ * ложится на место <id>.png. Если склейка не вышла — исходный голый кадр остаётся на месте (ничего не теряем), в журнале причина.
+ * зачем (координатор 12.10): прогон Сверки шёл старым роботом без склейки — 16 голых кадров Макеты сверить не могут; повторять съёмку на эмуляторе не нужно.
+ */
+async function stitchOnlyMain(argv, ids) {
+  const outDir = path.resolve(arg(argv, '--out', path.join(ROOT, 'docs/phraseman-2.0/evidence/parity')));
+  const [bareW, bareH] = arg(argv, '--bare-size', '1080x2400').split('x').map(Number);
+  const recentRaw = arg(argv, '--stitch-only-recent', null);
+  let targets = ids;
+  if (recentRaw !== null) {
+    const since = Date.now() - Number(recentRaw) * 60_000;
+    const recent = fs.readdirSync(outDir)
+      .filter((f) => /^[a-z0-9-]+-\d{3}\.png$/.test(f) && fs.statSync(path.join(outDir, f)).mtimeMs >= since)
+      .map((f) => f.replace(/\.png$/, ''));
+    targets = [...new Set([...ids, ...recent])].sort();
+  }
+  if (targets.length === 0) {
+    console.error(`${LOG} stitch-only: нечего склеивать (нет id и нет свежих кадров)`); // guard-ok: ранний выход логируется
+    return 2;
+  }
+  const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const runDir = path.join(outDir, '_runs', stamp);
+  const journal = path.join(outDir, '_runs', `stitch_${stamp}.tsv`);
+  fs.mkdirSync(runDir, { recursive: true });
+  fs.appendFileSync(journal, 'id\ttime\tresult\tdetail\tfile\n');
+  const totals = { stitched: 0, skipped: 0, failed: 0 };
+  for (const id of targets) {
+    const target = path.join(outDir, `${id}.png`);
+    let result = 'failed';
+    let detail = '';
+    if (!fs.existsSync(target)) {
+      result = 'skipped'; detail = 'нет_файла';
+    } else {
+      const bytes = fs.readFileSync(target);
+      const size = pngSize(bytes);
+      if (!size) { result = 'skipped'; detail = 'не_PNG'; }
+      else if (size.width !== bareW || size.height !== bareH) { result = 'skipped'; detail = `уже_не_голый_${size.width}x${size.height}`; }
+      else {
+        const bare = path.join(runDir, `${id}.bare.png`);
+        fs.copyFileSync(target, bare);
+        const stitched = stitchEvidence(id, bare, outDir);
+        const after = pngSize(fs.readFileSync(target));
+        if (stitched.ok && after && !(after.width === bareW && after.height === bareH)) { result = 'stitched'; detail = `склейка_${after.width}x${after.height}`; }
+        else { result = 'failed'; detail = `склейка_не_удалась: ${stitched.reason || 'размер не изменился'} — исходный голый кадр оставлен на месте`; }
+      }
+    }
+    totals[result] += 1;
+    fs.appendFileSync(journal, `${id}\t${new Date().toISOString()}\t${result}\t${detail}\t${path.relative(ROOT, target).split(path.sep).join('/')}\n`);
+    console.log(`${LOG} stitch-only ${id}: ${result} ${detail}`); // guard-ok: итог по кадру
+  }
+  console.log(`${LOG} stitch-only готово: склеено=${totals.stitched} пропущено=${totals.skipped} не_удалось=${totals.failed}; журнал ${path.relative(ROOT, journal)}; голые кадры в ${path.relative(ROOT, runDir)}`); // guard-ok: итог пакета
+  return totals.failed > 0 ? 1 : 0;
+}
+
 export async function main(argv) {
   const dryRun = argv.includes('--dry-run');
   const allPending = argv.includes('--all-pending');
   const includeNonUnique = argv.includes('--include-nonunique');
   const guest = argv.includes('--guest');
   const ids = argv.filter((a) => !a.startsWith('--'));
+  if (argv.includes('--stitch-only') || arg(argv, '--stitch-only-recent', null) !== null) return stitchOnlyMain(argv, ids);
   const device = arg(argv, '--device', 'emulator-5554');
   const opts = {
     timeoutMs: Number(arg(argv, '--timeout-ms', '20000')),
@@ -286,6 +380,10 @@ export async function main(argv) {
     burstMs: Math.min(1000, Math.max(0, Number(arg(argv, '--burst-ms', '0')))),
     blankCheck: !argv.includes('--no-blank-check'),
     stitch: !argv.includes('--no-stitch'),
+    metroCheck: !argv.includes('--no-metro-check'),
+    metroUrl: arg(argv, '--metro-url', 'http://127.0.0.1:8081/status'),
+    metroWaitMs: Number(arg(argv, '--metro-wait-ms', '120000')),
+    screenCheck: !argv.includes('--no-screen-check'),
     blankRetries: Number(arg(argv, '--blank-retries', '6')),
     blankPollMs: Number(arg(argv, '--blank-poll-ms', '1000')),
     blankMaxMs: Number(arg(argv, '--blank-max-ms', '3000')),
@@ -321,23 +419,48 @@ export async function main(argv) {
   fs.mkdirSync(path.dirname(journal), { recursive: true });
   fs.appendFileSync(journal, 'id\ttime\tresult\tms\tdetail\tfile\tms_to_nonblank\n');
   if (opts.blankCheck && !blankCheckAvailable()) console.warn(`${LOG} проверка пустого кадра отключена: pngjs недоступен (${blankCheckUnavailableReason()})`); // guard-ok: причина отключения проверки
-  const totals = { ok: 0, timeout: 0, error: 0, blank_too_long: 0, stitch_failed: 0 };
-  for (const row of picked) {
+  const RETRYABLE = new Set(['metro_down', 'redbox', 'fixture_hang']);
+  const finalStatus = new Map();
+  const runOne = async (row, attempt) => {
     let result;
     try {
-      result = await shootOne(device, row, opts, runDir);
+      // зачем (координатор 12.10): перед каждым id Metro должен отвечать; иначе кадр попадёт на красный экран «Unable to load script»
+      const metro = opts.metroCheck ? await waitMetro(opts.metroUrl, opts.metroWaitMs, 2000, (msg) => console.log(`${LOG} ${row.id}: ${msg}`)) : { ok: true, waitedMs: 0, detail: 'проверка_выключена' }; // guard-ok: ход ожидания
+      if (!metro.ok) {
+        console.warn(`${LOG} ${row.id}: Metro не поднялся за ${metro.waitedMs} мс (${metro.detail}) — id пропущен до повтора`); // guard-ok: причина пропуска
+        result = { outcome: 'metro_down', ms: metro.waitedMs, detail: `metro_не_отвечает:${metro.detail}`, file: null };
+      } else {
+        result = await shootOne(device, row, opts, runDir);
+        if (metro.waitedMs > 0) result = { ...result, detail: `${result.detail}+ждали_metro_${metro.waitedMs}мс` };
+      }
     } catch (error) {
       console.error(`${LOG} ${row.id}: ОШИБКА`, String(error).slice(0, 300)); // guard-ok: catch логируется
       result = { outcome: 'error', ms: 0, detail: String(error).slice(0, 160), file: null };
     }
     totals[result.outcome] = (totals[result.outcome] ?? 0) + 1;
-    fs.appendFileSync(journal, `${row.id}\t${new Date().toISOString()}\t${result.outcome}\t${result.ms}\t${result.detail}\t${result.file ?? ''}\t${result.msToNonblank ?? 0}\n`);
-    console.log(`${LOG} ${row.id}: ${result.outcome} ${result.ms}мс ${result.detail} → ${result.file ?? 'без файла'}`); // guard-ok: итог кадра
+    finalStatus.set(row.id, result.outcome);
+    fs.appendFileSync(journal, `${row.id}\t${new Date().toISOString()}\t${result.outcome}\t${result.ms}\t${result.detail}${attempt > 1 ? '+повтор' : ''}\t${result.file ?? ''}\t${result.msToNonblank ?? 0}\n`);
+    console.log(`${LOG} ${row.id}: ${result.outcome} ${result.ms}мс ${result.detail}${attempt > 1 ? ' (повтор)' : ''} → ${result.file ?? 'без файла'}`); // guard-ok: итог кадра
+    return result;
+  };
+  const totals = { ok: 0, timeout: 0, error: 0, blank_too_long: 0, stitch_failed: 0, metro_down: 0, redbox: 0, fixture_hang: 0 };
+  const retryQueue = [];
+  for (const row of picked) {
+    const result = await runOne(row, 1);
+    if (RETRYABLE.has(result.outcome)) retryQueue.push(row);
   }
-  console.log(`${LOG} готово: ok=${totals.ok} timeout=${totals.timeout} error=${totals.error} blank_too_long=${totals.blank_too_long} stitch_failed=${totals.stitch_failed}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
+  // зачем (координатор 12.10): среда могла «моргнуть» (Metro, красный экран, зависшая фикстура) — каждый такой id повторяем ОДИН раз в конце прогона
+  if (retryQueue.length > 0) console.log(`${LOG} повтор в конце прогона: ${retryQueue.map((r) => r.id).join(', ')}`); // guard-ok: список повторов
+  for (const row of retryQueue) await runOne(row, 2);
+  const finalCounts = {};
+  for (const status of finalStatus.values()) finalCounts[status] = (finalCounts[status] ?? 0) + 1;
+  console.log(`${LOG} готово (все попытки): ok=${totals.ok} timeout=${totals.timeout} error=${totals.error} blank_too_long=${totals.blank_too_long} stitch_failed=${totals.stitch_failed} metro_down=${totals.metro_down} redbox=${totals.redbox} fixture_hang=${totals.fixture_hang}; ИТОГ по id: ${JSON.stringify(finalCounts)}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
+  const unresolved = [...finalStatus.entries()].filter(([, status]) => RETRYABLE.has(status)).map(([id, status]) => `${id}:${status}`);
+  if (unresolved.length > 0) console.warn(`${LOG} после повтора всё ещё нет кадра (списком координатору): ${unresolved.join(', ')}`); // guard-ok: итог нерешённых
   if (totals.blank_too_long > 0) console.warn(`${LOG} пустой экран дольше порога (находки для координатора, не кадры): см. журнал, файлы в _runs`); // guard-ok: итог находок
   if (totals.stitch_failed > 0) console.warn(`${LOG} склейка не удалась у ${totals.stitch_failed} кадров (сервер макетов http://127.0.0.1:8765 запущен? у строки есть mockup?): голые кадры в _runs, evidence не тронуты`); // guard-ok: итог отказов склейки
-  return totals.error + totals.timeout + totals.blank_too_long + totals.stitch_failed > 0 ? 1 : 0;
+  const badFinal = [...finalStatus.values()].filter((status) => status !== 'ok').length;
+  return badFinal > 0 ? 1 : 0;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

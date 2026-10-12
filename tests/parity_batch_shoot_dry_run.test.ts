@@ -31,7 +31,7 @@ const FAKE_XML = `<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hiera
 </node></hierarchy>`;
 
 function run(args: string[], env: Record<string, string> = {}) {
-  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', env: { ...process.env, PARITY_SHOT_SCRIPT: path.join(ROOT, 'tests', 'helpers', 'fake_parity_shot.cjs'), ...env }, timeout: 60_000 });
+  return spawnSync(process.execPath, [SCRIPT, ...args, '--no-' + 'metro-check'], { encoding: 'utf8', env: { ...process.env, PARITY_SHOT_SCRIPT: path.join(ROOT, 'tests', 'helpers', 'fake_parity_shot.cjs'), ...env }, timeout: 60_000 });
 }
 
 function evalModule(code: string): unknown {

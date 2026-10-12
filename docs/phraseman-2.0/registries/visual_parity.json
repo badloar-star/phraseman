@@ -39185,21 +39185,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-026.png",
+      "evidence_at": "2026-10-12T03:00:38.807Z",
+      "evidence_sha256": "45b517702c194ed86a8327d31bd1a79496bb508a9c2e296acb486bf23d85410b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — подтверждено кадрами settings-gap-025 и 026] Шторка «Изменить имя» (заголовок, поле «Delta28», красное «Имя уже занято», «Отмена / Сохранить») не поднимается над клавиатурой и остаётся скрытой под ней: пользователь не видит ни поля, ни сообщения о занятом имени, ни кнопок. Экран: components/account/NicknameEditModal.tsx (обработка клавиатуры) на app/account_details.tsx. Проверка на реальном телефоне желательна (эмулятор может вести себя иначе).",
+        "[состояние не то] Под затемнением «Аккаунт» без привязки («Не задано», «Изменить имя», «Привязать аккаунт»); в образце «Имя · Алекс», «Способ входа · Google»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:03:20.006Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=taken&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:00, settings-gaps-states №26 «Имя — занято»; образец нарисован с приложения): шторки «Изменить имя» на кадре нет — на нижней половине открытая клавиатура ОС с подсказкой «Delta28», выше затемнённый экран «Аккаунт». Тот же результат, что на settings-gap-025. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-039",
@@ -39287,21 +39291,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-028.png",
+      "evidence_at": "2026-10-12T03:01:02.439Z",
+      "evidence_sha256": "72bbedc6c19fdc6438330a0cfc6c1720803b550f09c441b2a2b215389c802e20",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Окна «Время» (барабаны часов и минут, «Отмена» / «OK») на кадре нет: уведомления выключены («Разрешить уведомления» выкл, строки приглушены, «Время 19:00» неактивно), тап по строке времени окно не открывает. Переснять после включения уведомлений (разрешение выдано), затем тап по «Время».",
+        "[вёрстка, мелко] Блок «Разрешить уведомления» в приложении выше (≈120 против 112 px); подписи крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:03:20.006Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_notifications"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:00, settings-gaps-states №28 «Уведомления — окно выбора времени»; образец нарисован с приложения): окно выбора времени на кадре не открылось — виден сам экран «Уведомления». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-029",

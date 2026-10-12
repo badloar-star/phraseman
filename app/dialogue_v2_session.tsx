@@ -749,6 +749,7 @@ function SessionContent() {
       voiceFailure={voiceFailure}
       turnError={turnFailure !== null}
       turnErrorMessage={turnErrorMessage}
+      inputLocked={failureReason === 'plus_daily_cap'}
       /* D123: на потолке Plus повтор сегодня не поможет; C19: при частоте — после остывания. */
       // зачем (кадр «На сегодня разговоров достаточно»): на потолке Plus кнопки «Повторить» нет вовсе, а не блокированной
       retryAvailable={failureReason !== 'plus_daily_cap' && (failureReason !== 'rate_limited' || !rateLimitCooling)}

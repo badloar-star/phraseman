@@ -92,7 +92,8 @@ add(['cards-section-019', 'cards-v2-022', 'cards-023'], [], EMPTY_PLUS, CREATE, 
 add('cards-section-020', ['tap:#ugc-pack-first-card'], EMPTY_PLUS, CREATE, note='шторка «Новая карточка»')
 add('cards-v2-024', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
 add('cards-067', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — меню набора)')
-add('cards-070', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — «Проверь поля»)')
+# зачем (R1_DIFF_ONE_FIX / координатор 12.10, cards-070 «Проверь поля»): состояние достижимо без подмены — «Создать набор» всегда нажимается; при пустом названии (форма пуста, cards=empty очищает черновик) сохранение не уходит и показывает тост «Укажи название и описание набора.» (в образце cards-states №65 текст «Проверь название, описание и все карточки.» — Макеты сверят по приложению). Ничего не пишется ни в облако, ни на устройство.
+add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE, note='«Проверь поля»: «Создать набор» при пустой форме → тост «Укажи название и описание набора.» (ничего не сохраняется)')
 add(['cards-065', 'cards-section-021', 'cards-v2-023'], [], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='правка своего набора «Работа»')
 add('cards-024', ['tap:#ugc-pack-add-card'], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='новая карточка в существующем наборе (шторка)')
 
@@ -160,12 +161,13 @@ add('cards-v2-030', [], 'plus=off&cards=demo&quota=exhausted', '/flashcards_trai
 DLG = '/ai_dialog_home'
 WORLD = 'tap:#dialogue-v2-world-toggle-*'
 ROW = 'tap:#dialogue-v2-catalogue-row-*'
-add('dialogs-001', [], 'plus=off&dquota=reset', DLG, note='хаб «Диалоги», Free')
+# зачем (R1_DIFF_ONE_FIX, dialogs-001): `dquota=reset` стирает зеркало остатка → хаб не знает остатка и не рисует «30/30»; у Free с полным остатком пилюля есть (dquota=30 пишет зеркало 30/30)
+add('dialogs-001', [], 'plus=off&dquota=30', DLG, note='хаб «Диалоги», Free (пилюля «30/30»: dquota=30)')
 add('dialogs-002', [], 'plus=on&dquota=reset', DLG, note='хаб «Диалоги», Plus')
 add('dialogs-004', [], 'plus=off&dquota=0', DLG, note='хаб — лимит исчерпан 0/30')
-add('dialogs-005', [], 'plus=off&dquota=reset&hold=dialog_language_gate', DLG, note='хаб с карточкой «Диалоги на этом языке ещё проверяются» (dev-удержание hold=dialog_language_gate; снять: hold=off)')
-add('dialogs-003', [WORLD], 'plus=off&dquota=reset&dialogsDone=3', DLG, note='первая категория раскрыта, 3 первых диалога пройдены (dialogsDone=3: локальная запись, только гость; стереть: dialogsDone=reset) — «пройдено ✓» и счётчик «3 / всего»')
-add('dialogs-006', [WORLD], 'plus=off&dquota=reset', DLG, note='категория раскрыта (первая)')
+add('dialogs-005', [], 'plus=off&dquota=30&hold=dialog_language_gate', DLG, note='хаб с карточкой «Диалоги на этом языке ещё проверяются» (dev-удержание hold=dialog_language_gate; снять: hold=off)')
+add('dialogs-003', [WORLD], 'plus=off&dquota=30&dialogsDone=3', DLG, note='первая категория раскрыта, 3 первых диалога пройдены (dialogsDone=3: локальная запись, только гость; стереть: dialogsDone=reset) — «пройдено ✓» и счётчик «3 / всего»')
+add('dialogs-006', [WORLD], 'plus=off&dquota=30', DLG, note='категория раскрыта (первая)')
 add('dialogs-007', [WORLD, ROW], 'plus=off&dquota=reset', DLG, note='брифинг первого диалога первой категории')
 # зачем (координатор 12.10, dialogs-011; журнал кадра: «confirmSpendOne(ai_dialog) → cancelled (dev_energy_fail)»): dev_energy_fail=1 подменяет ответ на «отказ» — это тост «Не получилось начать диалог» (dialogs-gap, строка про отказ старта),
 # а окно «Энергия закончилась» показывает настоящий ответ 'insufficient' при нулевой энергии без подмены отказа. Free (plus=off) и energy=0.

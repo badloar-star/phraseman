@@ -373,7 +373,7 @@ export default function DialogueV2FreeformRoute() {
         testID="dialogue-v2-freeform-plus"
         backLabel={labels.back}
         onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
-        icon="lock-closed-outline"
+        icon="lock-closed" // зачем (R1_DIFF_ONE_FIX, dialogs-gap-010): в образце замок заливной, не контурный
         title={labels.plus}
         action={{ label: labels.openPlus, onPress: () => router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogue_v2_freeform' } } as never) }}
       />

@@ -239,7 +239,8 @@ function MyPacksV2Inner(props: Props) {
             <SheetRow g={g} testID="fc-my-packs-action-train" icon="flash-outline" title={copy.train} onPress={() => { closeActions(); onTrain(actionsFor); }} />
             {actionsOwn ? <SheetRow g={g} testID={`fc-my-packs-pack-edit-${actionsFor.id}`} icon="create-outline" title={copy.edit} onPress={runAction(onEdit)} /> : null}
             {actionsOwn && !isPublished(actionsFor) ? <SheetRow g={g} testID="fc-my-packs-action-share" icon="share-outline" title={copy.share} onPress={runAction(onPublish)} /> : null}
-            <SheetRow g={g} testID={`fc-my-packs-pack-delete-${actionsFor.id}`} icon="trash-outline" title={copy.del} onPress={runAction(onDelete)} />
+            {/* зачем (R1_DIFF_ONE_FIX, cards-section-010): «Удалить набор» красный, как в шторке экрана набора и в макете — разрушительное действие */}
+            <SheetRow g={g} testID={`fc-my-packs-pack-delete-${actionsFor.id}`} icon="trash-outline" title={copy.del} danger onPress={runAction(onDelete)} />
           </>
         ) : null}
       </PanelSheet>

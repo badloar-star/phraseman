@@ -83,10 +83,11 @@ function ZoomBarInner({ g, step, onStep, smallerLabel, largerLabel, search }: Pr
   const thumbStyle = useAnimatedStyle(() => ({ transform: [{ translateX: p.value * trackW - THUMB / 2 }] }));
   const fillStyle = useAnimatedStyle(() => ({ width: p.value * trackW }));
 
+  // зачем (R1_DIFF_ONE_FIX, cards-005): верх залипающей полосы с ползунком был 94 % (F0) — сквозь неё просвечивал перевод прокрученной карточки; верх плотный (FF), затухание только внизу
   const bg = g.bg;
   return (
     <View style={styles.bar}>
-      <LinearGradient pointerEvents="none" colors={[withAlpha(bg, 'F0'), withAlpha(bg, 'F0'), withAlpha(bg, '00')]} locations={[0, 0.72, 1]} style={StyleSheet.absoluteFill} />
+      <LinearGradient pointerEvents="none" colors={[withAlpha(bg, 'FF'), withAlpha(bg, 'FF'), withAlpha(bg, '00')]} locations={[0, 0.72, 1]} style={StyleSheet.absoluteFill} />
       {search ? <View style={styles.search}>{search}</View> : null}
       <View style={[styles.zs, search ? styles.zsWithSearch : null]}>
         <Pressable testID="fc-zoom-smaller" accessibilityRole="button" accessibilityLabel={smallerLabel} hitSlop={6} onPress={() => onStep(Math.min(GALLERY_LAST_STEP, stepRef.current + 1))} style={styles.icon}>

@@ -172,6 +172,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   turnError: boolean;
   /** Текст плашки; по умолчанию labels.turnError. */
   turnErrorMessage?: string;
+  /** Потолок Plus на сегодня (D123): поле ввода приглушено и недоступно — повтор сегодня не поможет (кадр «На сегодня разговоров достаточно»). */
+  inputLocked?: boolean;
   retryDisabled: boolean;
   /** false — плашка без «Повторить» (C19 «слишком много сообщений»). */
   retryAvailable?: boolean;
@@ -223,6 +225,7 @@ export function DialogueV2SessionScreen({
   voiceUnavailable = false,
   turnError,
   turnErrorMessage,
+  inputLocked = false,
   retryDisabled,
   retryAvailable = true,
   onRetry,
@@ -245,7 +248,7 @@ export function DialogueV2SessionScreen({
   const voiceBusy = voiceStatus !== 'idle';
   // зачем: пока висит плашка ошибки, путь один — «Повторить» (раньше экран целиком
   // заменялся плашкой, и новое сообщение отправить было нельзя; поведение то же).
-  const canSend = draft.trim().length > 0 && !voiceBusy && !turnError;
+  const canSend = draft.trim().length > 0 && !voiceBusy && !turnError && !inputLocked;
   const completeDisabled = sending || voiceBusy || messages.length === 0;
   const voiceHint = voiceStatus === 'recording'
     ? labels.voiceRecording
@@ -538,7 +541,7 @@ export function DialogueV2SessionScreen({
               <TextInput
                 value={draft}
                 onChangeText={onChangeDraft}
-                editable={!sending && !voiceBusy}
+                editable={!sending && !voiceBusy && !inputLocked}
                 placeholder={labels.placeholder}
                 placeholderTextColor={glass.mutedText}
                 accessibilityLabel={labels.placeholder}
@@ -550,7 +553,8 @@ export function DialogueV2SessionScreen({
                 returnKeyType="send"
                 submitBehavior="submit"
                 onSubmitEditing={() => { if (!sending && canSend) onSend(); }}
-                style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
+                // зачем (R1_DIFF_ONE_FIX, dialogs-gap-012): на потолке Plus поле приглушено и закрыто (в образце приглушённое), а не выглядит обычным и активным
+                style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }, inputLocked && { opacity: 0.55 }]}
               />
               {voiceDraft ? (
                 <PressableScale

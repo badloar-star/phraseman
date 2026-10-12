@@ -129,14 +129,14 @@ export function demoVideoPacks(): FlashcardMarketPack[] {
   });
 }
 
-/** Наборы кадра «Лучшее у сообщества»: название, автор, карточек, уровень, лайки, первое слово. */
-export const DEMO_COMMUNITY: readonly (readonly [string, string, number, PackLevel, number, string])[] = [
-  ['Family', 'Лидия', 20, 'A1', 4, 'Mother'], ['B2 глаголы', 'Ирина', 49, 'B2', 3, 'Convince'], ['Антоніми дієслів', 'Natalia', 30, 'B1', 1, 'Arrive'],
-  ['Small talk', 'Олег', 26, 'A2', 7, 'How come'], ['Офис и созвоны', 'Мария', 34, 'B1', 5, 'Follow up'],
+/** Наборы кадра «Лучшее у сообщества»: название, автор, карточек, уровень, лайки, три слова превью (в образце cards-v2 №25 — три чипа в ряд). */
+export const DEMO_COMMUNITY: readonly (readonly [string, string, number, PackLevel, number, readonly string[]])[] = [
+  ['Family', 'Лидия', 20, 'A1', 4, ['Mother', 'Afford', 'Borrow']], ['B2 глаголы', 'Ирина', 49, 'B2', 3, ['Convince', 'Deserve', 'Avoid']], ['Антоніми дієслів', 'Natalia', 30, 'B1', 1, ['Arrive', 'Borrow', 'Deserve']],
+  ['Small talk', 'Олег', 26, 'A2', 7, ['How come', 'Expect', 'Improve']], ['Офис и созвоны', 'Мария', 34, 'B1', 5, ['Follow up', 'Deadline', 'Refund']],
 ];
 
 export function demoCommunityPacks(): FlashcardMarketPack[] {
-  return DEMO_COMMUNITY.map(([title, author, count, level, likes, word], i) => ({
+  return DEMO_COMMUNITY.map(([title, author, count, level, likes, words], i) => ({
     id: `dev_demo_community_${i + 1}`,
     ...demoTitles(title),
     category: 'daily',
@@ -150,7 +150,7 @@ export function demoCommunityPacks(): FlashcardMarketPack[] {
     packLanguage: 'en',
     listingStatus: 'published',
     level,
-    previewWords: [word],
+    previewWords: [...words],
     updatedAt: new Date(NOW_BASE - i * 3_600_000).toISOString(),
   } as FlashcardMarketPack));
 }

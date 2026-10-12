@@ -922,8 +922,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "d_mockup_stale",
         "final_bucket": "d_mockup_stale",
         "final_who": "Макеты",
@@ -1515,8 +1515,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "basis": "mockup_from_app"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересъёмка 4:51, cards-states №28 «Разовая подсказка» — образец старой подачи): параметр hint=show от Дизайна сработал — разовая подсказка «Зажми карточку, чтобы изменить или удалить её» теперь на кадре: плашка с корзиной и «✕» внизу над «Тренировать». [Перепривязано Макетами 12.10 на cards-v2 №76 «Сохранённые — разовая подсказка» (образец нарисован с приложения, ждёт подтверждения владельца): нужна пересъёмка роботом — склейка собрана со старым образцом.] Прежние пункты «образец ≠ код» сняты: подсказка «Зажми карточку…» теперь есть в образце."
@@ -1796,8 +1796,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:24, cards-v2 №14 «Свой набор»): снят список «Из видео 5» (ссылка вела в /flashcards_video_packs) вместо экрана набора «Путешествия» («🔒 Только ты · 40 карточек», «Тренировать», «+», ползунок, сетка карточек)."
     },
@@ -2754,8 +2754,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -2901,8 +2901,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "basis": "mockup_from_app"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (повторный кадр 4:53, привязка координатора 12.10 на cards-v2 №22 «Новый набор»): окно «Очистить черновик?» в приложении совпало по тексту и составу с кадром «Очистить черновик?» в cards-states.html (старая подача), но в утверждённом №22 такого окна нет — слева заполненная форма «Путешествия». [Перепривязано Макетами 12.10 на cards-v2 №75 «Новый набор — «Очистить черновик?»» (образец нарисован с приложения, ждёт подтверждения владельца): нужна пересъёмка роботом — склейка собрана со старым образцом.] Привязка на заполненный №22 заменена окном."
@@ -3219,8 +3219,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -3299,8 +3299,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C09",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -6682,8 +6682,8 @@
       "mockup_pinned": "Макеты 12.10: текст шторки согласия — как в AiDialogConsentModal.tsx: «Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.» + «Можно выключить в настройках в любой момент.»",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D04)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -6875,8 +6875,8 @@
       "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D05)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -7306,8 +7306,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -8180,8 +8180,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D10",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -8226,8 +8226,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -8403,8 +8403,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -8444,8 +8444,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -17542,8 +17542,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -19924,8 +19924,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -20154,8 +20154,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -29510,8 +29510,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -29637,8 +29637,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -31156,8 +31156,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -31298,8 +31298,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -31346,8 +31346,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -32147,8 +32147,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-013.)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "",
@@ -35310,8 +35310,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-076: ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -35399,8 +35399,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-039: записи ссылки нет — путь есть в shot list (G-C05)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "",
@@ -35478,8 +35478,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-042: записи ссылки нет — путь есть в shot list (G-C05)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "",
@@ -35524,8 +35524,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-043: записи ссылки нет — путь есть в shot list (G-C05)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "c_owner_decides",
         "final_bucket": "c_owner_decides",
         "final_who": "владелец",
@@ -36222,8 +36222,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -36256,8 +36256,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -36291,8 +36291,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A11)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -36498,8 +36498,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -36532,8 +36532,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -37068,8 +37068,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -37102,8 +37102,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -37300,8 +37300,8 @@
       "reviewed_at": "2026-10-12T03:31:03.986Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -37904,8 +37904,8 @@
       "reviewed_at": "2026-10-12T03:44:29.097Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S01",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -37993,8 +37993,8 @@
       "reviewed_at": "2026-10-12T03:45:09.352Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -38040,8 +38040,8 @@
       "reviewed_at": "2026-10-12T03:45:09.352Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -38374,8 +38374,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "состояние превью уже есть (&exit=1 | step_*) — записать ссылку в DEV_LINKS_R1"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -40762,8 +40762,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "переключатель уже есть (dev_state?slot=poll|poll_voted|message|top|off) — записать ссылку в DEV_LINKS_R1"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -40879,8 +40879,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -40995,8 +40995,8 @@
       "reviewed_at": "2026-10-12T03:42:10.712Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "d_mockup_stale",
         "final_bucket": "d_mockup_stale",
         "final_who": "Макеты",
@@ -41132,8 +41132,8 @@
       "reviewed_at": "2026-10-12T03:42:10.712Z",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "Сверка",
@@ -41174,8 +41174,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -41297,8 +41297,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A09"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -41410,8 +41410,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -41604,8 +41604,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {
@@ -41898,8 +41898,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
       }
     },
     {

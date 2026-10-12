@@ -55,6 +55,8 @@ add('spire-gap-003', [], '', preview('step_build'), note='собери пере�
 add('spire-gap-004', ['see:#spire-task-report-0'], '', preview('step_listen_choose'), note='послушай и выбери')
 add('spire-gap-005', ['see:#spire-task-report-0'], '', preview('step_listen_build'), note='послушай и собери')
 add('spire-gap-006', [], '', preview('step_items'), note='найди пары')
+# зачем (координатор 12.10): spire-gap-021 — задание с флажком жалобы: то же превью step_choice (флажок есть в превью, testID spire-task-report-0)
+add('spire-gap-021', ['see:#spire-task-report-0'], '', preview('step_choice', 'tier=0&floor=4'), note='ступень с флажком жалобы')
 add('spire-gap-020', [], '', preview('step_prep'), note='готовим ступень…')
 
 # ── Итоги ступени

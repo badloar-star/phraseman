@@ -10,7 +10,7 @@
 from dev_links_r1_steps import add
 
 # строки без поля release в реестре (гейт их считает) — генератор берёт их по списку
-INCLUDE_IDS = {'onboarding-030', 'mistakes-panel-002', 'learn-002', 'learn-016', 'learn-017', 'learn-018', 'video-007', 'coins-002', 'coins-005', 'home-002', 'overlays-041'}
+INCLUDE_IDS = {'onboarding-006', 'onboarding-010', 'onboarding-025', 'onboarding-paywall-001', 'community-014', 'community-016', 'onboarding-030', 'mistakes-panel-002', 'learn-002', 'learn-016', 'learn-017', 'learn-018', 'video-007', 'coins-002', 'coins-005', 'home-002', 'overlays-041'}
 
 HOME = '/(tabs)/home'
 
@@ -74,3 +74,13 @@ add('coins-002', [], 'coinRank=5', '/runes_wallet', note='кошелёк: нул
 add('coins-005', [], 'coinRank=5', '/coin_rank', note='повышение ранга: недостаточно монет (у гостя 0 монет)')
 add('home-002', [], 'plus=on', '/(tabs)/home', unique=False, note='Главная в СВЕТЛОЙ теме: подмены theme нет — перед кадром включить светлую тему в Настройки → Внешний вид (запрос Темам: dev_state?theme=light)')
 add('overlays-041', ['wait:1500'], 'intros=reset&plus=on&cards=demo', '/flashcards', unique=False, note='окно знакомства «Фразы — в твою коллекцию» = cards_hub_first_visit (feature_intro_sections_copy.ts, screenRoute /flashcards, first_visit); intros=reset вместо intros=seen')
+
+# ── core_switch / link_missing: подмены уже есть в dev_state — ссылки и шаги (координатор 12.10, «link_missing — твоя часть»)
+# зачем: у этих строк подмена Ядра существует (app/dev_state_fixtures.ts, app/dev_social_state.ts), не хватало только строки со ссылкой.
+add('onboarding-006', [], 'onbstep=privacy&auth=none', HOME, note='онбординг: вход недоступен (auth=none: Google и Apple выключены), шаг privacy')
+add('onboarding-010', [], 'onbstep=niceToMeet&greet=Alexander-Maximilian-Fitzgerald', HOME, note='онбординг: знакомство с длинным именем (greet до 24 символов)')
+add('onboarding-025', [], 'onbstep=onboardingPaywall&paywall=loading', HOME, note='онбординг: цена Plus — загрузка (paywall=loading)')
+add('onboarding-paywall-001', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=live', HOME, note='онбординг: цена Plus — «настоящая» цена (paywall=live; на эмуляторе без магазина может остаться справочной)', unique=False)
+FADD = ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input']
+add('community-014', FADD + ['type:DEVUNSYNCED', 'tap:#friends-search', 'wait:1500'], 'friends=demo&' + COMM, '/(tabs)/community', note='Друзья: профиль найден, но ещё не синхронизирован (служебный код DEVUNSYNCED, без сервера)')
+add('community-016', FADD + ['type:ZZ99', 'tap:#friends-search', 'wait:1500'], 'friends=demo&dev_friends_fail=search&' + COMM, '/(tabs)/community', note='Друзья: поиск — другая ошибка (dev_friends_fail=search)')

@@ -2832,7 +2832,8 @@ async function runSyncNow(): Promise<void> {
   if (syncInFlight) return syncInFlight;
   if (holdSyncForDeferredBootRestore()) return;
   syncInFlight = doSyncToCloud()
-    .catch((e) => { if (__DEV__) console.warn('[cloud_sync] runSyncNow: sync failed', e); })
+    // зачем (ревью 2cdc42fac п.4, «немой catch»): в релизе провал синхронизации не писал ни строки — причина идёт в журнал всегда.
+    .catch(swallowError('cloud_sync:runSyncNow.doSyncToCloud'))
     .finally(() => {
       syncInFlight = null;
       if (pendingSync) {

@@ -10,7 +10,6 @@
  * Три разные цели тапа: кадр → ролик, строка → набор, кнопка → добавить себе.
  * Поэтому кадр и кнопка — отдельные Pressable поверх строки, а не её части.
  */
-import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
@@ -31,7 +30,7 @@ import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import { DebugLogger } from '../debug-logger';
-import { thumbTrace, traceThumbMissing } from '../thumb_trace';
+import VideoThumb from './VideoThumb';
 
 const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
@@ -171,9 +170,8 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
         <KitTouchable testID={`video-pack-open-row-${pack.id}`} accessibilityRole="button" accessibilityLabel={`${title}. ${phrasesText}`} accessibilityState={{ disabled }} disabled={disabled} onPress={open}>
           <View style={[styles.largeShadow, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
             <View style={styles.largeThumb}>
-              {thumbUrl ? (
-                <Image accessible={false} source={{ uri: thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={pack.videoId} cachePolicy="memory-disk" {...thumbTrace('video_pack_card', pack.id, thumbUrl)} />
-              ) : traceThumbMissing('video_pack_card', pack.id, `videoId пуст в наборе (${String(pack.videoId ?? '')})`)}
+              {/* зачем (координатор 12.10, cards-028): превью и запасной вид при ошибке — в VideoThumb */}
+              <VideoThumb surface="video_pack_card" id={pack.id} videoId={pack.videoId} thumbUrl={thumbUrl} title={title} g={g} showTitle />
               {duration ? (
                 <View style={styles.largeDuration} pointerEvents="none">
                   <Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text>
@@ -223,22 +221,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
             }}
             style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
           >
-            {thumbUrl ? (
-              <Image
-                accessible={false}
-                source={{ uri: thumbUrl }}
-                style={StyleSheet.absoluteFill}
-                contentFit="cover"
-                transition={120}
-                /**
-                 * зачем recyclingKey: FlatList переиспользует строки, и без ключа
-                 * при быстрой прокрутке в строке на кадр-другой висит ЧУЖОЕ превью.
-                 */
-                recyclingKey={pack.videoId}
-                cachePolicy="memory-disk"
-                {...thumbTrace(plain ? 'video_pack_plain' : 'video_pack_card', pack.id, thumbUrl)}
-              />
-            ) : traceThumbMissing(plain ? 'video_pack_plain' : 'video_pack_card', pack.id, `videoId пуст в наборе (${String(pack.videoId ?? '')})`)}
+            <VideoThumb surface={plain ? 'video_pack_plain' : 'video_pack_card'} id={pack.id} videoId={pack.videoId} thumbUrl={thumbUrl} title={title} g={g} showTitle={false} />
             {/* зачем (Сверка 11.10, макет video-redesign #c1, экран 4): на обложке строки вкладки «Наборы» нет ни ▶, ни длительности. */}
             {plain ? null : (
               <View style={styles.playCircle} pointerEvents="none">

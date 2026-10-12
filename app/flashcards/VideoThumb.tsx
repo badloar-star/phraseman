@@ -1,0 +1,106 @@
+/**
+ * Превью ролика в строке набора «Из видео» (cards-028).
+ *
+ * зачем (координатор 12.10): (1) dev-фикстура роликов подставляет выдуманные id devDemoVid0…4 — i.ytimg.com на них отвечает 404, плитки на кадрах были серыми. В dev такие id берут
+ * локальные картинки из ассетов (без сети); в стор-сборке этой ветки нет. (2) Настоящий дефект UX: при ошибке загрузки превью (удалённый ролик) плитка оставалась серой пустой.
+ * Теперь — запасной вид по образцу: тон темы, значок ▶ и (на крупной плитке) название. Новых запросов и повторов нет: состояние ошибки живёт в плитке, пока не сменится ролик.
+ * Лог: [THUMB] fallback surface=… id=… reason=…
+ */
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+
+import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { thumbTrace, traceThumbMissing, type ThumbSurface } from '../thumb_trace';
+
+/** Локальные превью для dev-фикстуры роликов: уже лежат в сборке (картинки Главной), новых ассетов нет. */
+const DEV_DEMO_THUMBS: readonly ImageSourcePropType[] = [
+  require('../../assets/images/home_last_lesson/home-last-lesson-aurora.webp'),
+  require('../../assets/images/home_last_lesson/home-last-lesson-ember.webp'),
+  require('../../assets/images/home_last_lesson/home-last-lesson-forest.webp'),
+  require('../../assets/images/home_last_lesson/home-last-lesson-gold.webp'),
+  require('../../assets/images/home_last_lesson/home-last-lesson-indigo.webp'),
+];
+const DEV_DEMO_VIDEO_RE = /^devDemoVid(\d+)$/;
+
+/** Картинка dev-фикстуры по id ролика; вне dev и для настоящих id — null. */
+export function devDemoThumbSource(videoId: string | undefined | null): ImageSourcePropType | null {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return null;
+  const match = DEV_DEMO_VIDEO_RE.exec(String(videoId ?? '').trim());
+  if (!match) return null;
+  return DEV_DEMO_THUMBS[Number(match[1]) % DEV_DEMO_THUMBS.length] ?? null;
+}
+
+export type VideoThumbProps = Readonly<{
+  surface: ThumbSurface;
+  id: string;
+  videoId?: string;
+  thumbUrl: string | null;
+  title: string;
+  g: GlassTokens;
+  /** Крупная плитка: запасной вид с названием; у узкой строки название рядом, поэтому только ▶. */
+  showTitle: boolean;
+}>;
+
+function VideoThumbFallback({ surface, id, reason, title, g, showTitle }: Readonly<{ surface: ThumbSurface; id: string; reason: string; title: string; g: GlassTokens; showTitle: boolean }>) {
+  const loggedRef = useRef(false);
+  useEffect(() => {
+    if (loggedRef.current) return;
+    loggedRef.current = true;
+    console.warn(`[THUMB] fallback surface=${surface} id=${id} reason=${reason} → запасной вид (тон темы, ▶${showTitle ? ', название' : ''}), без повторных запросов`); // guard-ok: единичный лог на плитку
+  }, [id, reason, showTitle, surface]);
+  return (
+    <View testID={`video-thumb-fallback-${id}`} pointerEvents="none" style={[StyleSheet.absoluteFill, styles.fallback, { backgroundColor: g.opaqueControl }]}>
+      <Ionicons name="play-circle" size={showTitle ? 40 : 30} color={g.accentText} />
+      {showTitle ? (
+        <Text numberOfLines={2} style={[styles.fallbackTitle, { color: g.text }]} maxFontSizeMultiplier={1.2}>{title}</Text>
+      ) : null}
+    </View>
+  );
+}
+
+export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId, thumbUrl, title, g, showTitle }: VideoThumbProps) {
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const local = devDemoThumbSource(videoId);
+  if (local) {
+    // dev-фикстура: локальная картинка, сети нет
+    return <Image accessible={false} source={local} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} />;
+  }
+  if (!thumbUrl) {
+    traceThumbMissing(surface, id, `videoId пуст в наборе (${String(videoId ?? '')})`);
+    return <VideoThumbFallback surface={surface} id={id} reason="no_video_id" title={title} g={g} showTitle={showTitle} />;
+  }
+  if (failedUrl === thumbUrl) {
+    return <VideoThumbFallback surface={surface} id={id} reason="load_error" title={title} g={g} showTitle={showTitle} />;
+  }
+  const trace = thumbTrace(surface, id, thumbUrl);
+  return (
+    <Image
+      accessible={false}
+      source={{ uri: thumbUrl }}
+      style={StyleSheet.absoluteFill}
+      contentFit="cover"
+      transition={120}
+      /**
+       * зачем recyclingKey: FlatList переиспользует строки, и без ключа
+       * при быстрой прокрутке в строке на кадр-другой висит ЧУЖОЕ превью.
+       */
+      recyclingKey={videoId}
+      cachePolicy="memory-disk"
+      onLoadStart={trace.onLoadStart}
+      onLoad={trace.onLoad}
+      onError={(event) => {
+        trace.onError(event);
+        setFailedUrl(thumbUrl);
+      }}
+    />
+  );
+});
+
+const styles = StyleSheet.create({
+  fallback: { alignItems: 'center', justifyContent: 'center', gap: 6, paddingHorizontal: 10 },
+  fallbackTitle: { fontSize: 14, lineHeight: 18, fontWeight: '600', textAlign: 'center' },
+});
+
+export default VideoThumb;

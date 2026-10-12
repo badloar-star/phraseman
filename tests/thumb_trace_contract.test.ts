@@ -65,8 +65,12 @@ describe('[THUMB] trace of video previews', () => {
     const rail = read('components/home/v2/HomeV2VideoRail.tsx');
     expect(rail).toMatch(/thumbTrace\('home_video_rail', video\.id, video\.thumbnailUrl\)/);
     expect(rail).toContain('traceThumbMissing');
+    // зачем (координатор 12.10, cards-028): превью и запасной вид живут в VideoThumb; строка набора подключает его для обеих плиток
     const row = read('app/flashcards/VideoPackRow.tsx');
-    expect(row).toMatch(/thumbTrace\('video_pack_card', pack\.id, thumbUrl\)/);
-    expect(row).toMatch(/thumbTrace\(plain \? 'video_pack_plain' : 'video_pack_card', pack\.id, thumbUrl\)/);
+    expect(row).toMatch(/<VideoThumb surface="video_pack_card" id=\{pack\.id\}/);
+    expect(row).toMatch(/<VideoThumb surface=\{plain \? 'video_pack_plain' : 'video_pack_card'\} id=\{pack\.id\}/);
+    const thumb = read('app/flashcards/VideoThumb.tsx');
+    expect(thumb).toMatch(/thumbTrace\(surface, id, thumbUrl\)/);
+    expect(thumb).toContain('traceThumbMissing(surface, id,');
   });
 });

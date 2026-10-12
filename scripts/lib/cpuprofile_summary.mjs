@@ -26,12 +26,22 @@ function isIdle(node) {
   return IDLE_NAMES.has(name);
 }
 
+/**
+ * Интервалы между сэмплами (мкс). Hermes через CDP при startTime=0 кладёт в один из первых интервалов (в реальных профилях Сверки — ВТОРОЙ, [0, 30839113838, 17954, …]) время от эпохи
+ * (≈3·10^10 мкс) — оно не относится к профилю (Сверка 12.10: «всего 30 853 146 мс, один занятый участок 30 839 239 мс»). Интервал между двумя сэмплами длиннее 10 минут — не интервал: считаем нулём.
+ */
+const MAX_DELTA_US = 600_000_000;
+export function sampleDeltas(profile) {
+  return profile.timeDeltas.slice(0, profile.samples.length).map((delta) => (delta > MAX_DELTA_US ? 0 : delta));
+}
+
 /** Метки времени сэмплов (мкс от начала профиля). */
 export function sampleTimes(profile) {
+  const deltas = sampleDeltas(profile);
   const out = new Array(profile.samples.length);
   let t = 0;
   for (let i = 0; i < profile.samples.length; i += 1) {
-    t += profile.timeDeltas[i] ?? 0;
+    t += deltas[i] ?? 0;
     out[i] = t;
   }
   return out;
@@ -48,13 +58,14 @@ function topN(map, n) {
 export function findBusyRuns(profile, { minMs = 400, gapMs = 20, top = 6 } = {}) {
   const byId = new Map(profile.nodes.map((node) => [node.id, node]));
   const times = sampleTimes(profile);
+  const deltas = sampleDeltas(profile);
   const runs = [];
   let current = null;
   let lastBusyAt = 0;
   for (let i = 0; i < profile.samples.length; i += 1) {
     const node = byId.get(profile.samples[i]);
     const at = times[i];
-    const dt = profile.timeDeltas[i] ?? 0;
+    const dt = deltas[i] ?? 0;
     const busy = node && !isIdle(node);
     if (busy) {
       if (current && at - lastBusyAt > gapMs * 1000) {
@@ -85,14 +96,16 @@ export function findBusyRuns(profile, { minMs = 400, gapMs = 20, top = 6 } = {})
 /** Общий итог: сколько времени поток был занят и топ файлов за весь профиль. */
 export function summarizeProfile(profile, options = {}) {
   const byId = new Map(profile.nodes.map((node) => [node.id, node]));
+  const deltas = sampleDeltas(profile);
   let busyUs = 0;
   let totalUs = 0;
+  let idleSamples = 0;
   const byFile = new Map();
   for (let i = 0; i < profile.samples.length; i += 1) {
-    const dt = profile.timeDeltas[i] ?? 0;
+    const dt = deltas[i] ?? 0;
     totalUs += dt;
     const node = byId.get(profile.samples[i]);
-    if (!node || isIdle(node)) continue;
+    if (!node || isIdle(node)) { idleSamples += 1; continue; }
     busyUs += dt;
     const file = shortUrl(node.callFrame?.url);
     byFile.set(file, (byFile.get(file) ?? 0) + dt);
@@ -101,6 +114,7 @@ export function summarizeProfile(profile, options = {}) {
     totalMs: Math.round(totalUs / 1000),
     busyMs: Math.round(busyUs / 1000),
     samples: profile.samples.length,
+    idleSamples,
     topFiles: topN(byFile, options.top ?? 12),
     busyRuns: findBusyRuns(profile, options),
   };
@@ -109,6 +123,10 @@ export function summarizeProfile(profile, options = {}) {
 export function formatSummary(summary) {
   const lines = [];
   lines.push(`[CPU-PROFILE] всего ${summary.totalMs} мс, занят ${summary.busyMs} мс, сэмплов ${summary.samples}`);
+  if (summary.samples > 0 && summary.idleSamples === 0) {
+    // зачем (Сверка 12.10: «окна занято 500/500»): Hermes через CDP не пишет (idle)-кадры — простой может быть записан последним кадром, поэтому «занят» завышен; смотрите СОБСТВЕННОЕ время функций, а не процент занятости.
+    lines.push('[CPU-PROFILE] ⚠ в профиле нет (idle)-сэмплов: процент «занят» завышен (простой записан последним кадром) — опирайтесь на собственное время функций');
+  }
   lines.push('[CPU-PROFILE] топ файлов по собственному времени:');
   for (const f of summary.topFiles) lines.push(`  ${String(f.ms).padStart(6)} мс  ${f.label}`);
   lines.push(`[CPU-PROFILE] непрерывные занятые участки JS-потока (≥ порога): ${summary.busyRuns.length}`);

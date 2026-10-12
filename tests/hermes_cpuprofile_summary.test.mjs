@@ -62,3 +62,22 @@ test('summarizeProfile / formatSummary: занят vs всего, топ фай�
   assert.match(text, /непрерывные занятые участки JS-потока/);
   assert.match(text, /evalModule @ app\/\(tabs\)\/lessons\.tsx:42/);
 });
+
+test('интервал «от эпохи» (≈3·10^10 мкс, в реальных профилях Сверки — второй по счёту) отбрасывается: длительность профиля не раздувается', () => {
+  const profile = syntheticProfile();
+  profile.timeDeltas[0] = 0;
+  profile.timeDeltas[1] = 30_839_113_838; // как в профилях Hermes через CDP у Сверки: [0, 30839113838, 17954, …]
+  const summary = summarizeProfile(profile, { minMs: 400 });
+  assert.ok(summary.totalMs < 4000, `ожидали ≈3,7 с, получили ${summary.totalMs} мс`);
+  const runs = findBusyRuns(profile, { minMs: 400 });
+  assert.equal(runs.length, 1);
+  assert.ok(runs[0].startMs >= 98 && runs[0].startMs <= 101, `начало участка ${runs[0].startMs}`);
+  assert.ok(Math.abs(runs[0].durationMs - 3000) <= 2);
+  assert.equal(sampleTimes(profile)[0], 0);
+});
+
+test('нет (idle)-сэмплов — в выводе предупреждение, что «занят» завышен', () => {
+  const profile = { nodes: [{ id: 1, callFrame: { functionName: 'work', url: 'http://h/a.js', lineNumber: 0 } }], startTime: 0, endTime: 5000, samples: [1, 1, 1, 1, 1], timeDeltas: [1000, 1000, 1000, 1000, 1000] };
+  assert.match(formatSummary(summarizeProfile(profile)), /нет \(idle\)-сэмплов/);
+  assert.doesNotMatch(formatSummary(summarizeProfile(syntheticProfile())), /нет \(idle\)-сэмплов/);
+});

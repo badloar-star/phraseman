@@ -16863,18 +16863,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/profile-009.png",
+      "evidence_at": "2026-10-12T18:12:06.652Z",
+      "evidence_sha256": "a9e2f22799c7da7aada8463abf4d887353b7b2c22dbd82db018f436565f3f507",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
+        "[состояние не то] Открыт общий экран «Настройки» (профиль, язык интерфейса, «Важное от Phraseman», «Обучение»), а не экран «Приватность и данные»; у строки не было ссылки на /privacy_settings — добавлена, переснять."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:14:12.803Z",
       "triage": {
         "action": "переснять",
         "to": "Авторизация",
@@ -16894,7 +16894,8 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:12, profile №9 «Приватность и данные», аналитика и ИИ выключены): сверка невозможна — на кадре главный экран «Настройки»."
     },
     {
       "id": "profile-010",
@@ -16913,18 +16914,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/profile-010.png",
+      "evidence_at": "2026-10-12T18:12:25.924Z",
+      "evidence_sha256": "4320539992d6ae477e3c0fa79bd92e76753567a4d5758ebed492a197af7e36fd",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
+        "[состояние не то] Открыт общий экран «Настройки» (профиль, язык интерфейса, «Важное от Phraseman», «Обучение»), а не экран «Приватность и данные»; у строки не было ссылки на /privacy_settings — добавлена, переснять.",
+        "Для «включено» шаг: тап по privacy-analytics-consent-switch (ИИ-переключатели не нажимать)."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:14:12.803Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -16945,7 +16947,8 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:12, profile №9 «Приватность и данные», аналитика включена): сверка невозможна — на кадре главный экран «Настройки» («Войти», «Аккаунт · Не привязан»)."
     },
     {
       "id": "profile-011",

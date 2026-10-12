@@ -122,6 +122,9 @@ export default function CollectionGalleryView({
   const [scrollY, setScrollY] = useState(0);
   const [gridTop, setGridTop] = useState(260);
   const [pressedId, setPressedId] = useState<string | null>(null);
+  // зачем (координатор 12.10, cards-034): шторка действий лежит в области ПОД шапкой экрана, и затемнение не закрывало «‹ поиск + ⋮». Меряем положение корня в окне и растягиваем слой шторки вверх до края окна
+  const rootRef = useRef<View>(null);
+  const [rootWindowY, setRootWindowY] = useState(0);
   const viewedRef = useRef<string>('');
 
   const items = useMemo<GalleryCard[]>(() => cards.map((card) => ({ id: card.id, front: card.en, back: resolveFlashcardBackText(card, lang) })), [cards, lang]);
@@ -185,6 +188,13 @@ export default function CollectionGalleryView({
   }, [onOpenCard, onToggleSelection, selectionMode]);
   const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en); }, [byId, onSpeak]);
   const pressedCard = pressedId ? byId.get(pressedId) ?? null : null;
+  useEffect(() => {
+    if (pressedCard === null) return;
+    rootRef.current?.measureInWindow((_x, y, _w, h) => {
+      console.log(`[CARDS-SHEET] scrim card=${pressedCard.id} rootWindowY=${Math.round(y)} rootH=${Math.round(h)} windowH=${Math.round(screenH)} → слой шторки растянут вверх на ${Math.round(y)} dp`); // guard-ok: числа раскладки слоя шторки
+      setRootWindowY(Math.max(0, y));
+    });
+  }, [pressedCard, screenH]);
   React.useEffect(() => {
     if (showDeleteHint && pressedCard !== null) console.log(`[CARDS-HINT] gallery: подсказка скрыта — открыта шторка действий card=${pressedCard.id}`); // guard-ok: ветвление называет причину
   }, [pressedCard, showDeleteHint]);
@@ -195,7 +205,7 @@ export default function CollectionGalleryView({
   const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
 
   return (
-    <View style={styles.root}>
+    <View ref={rootRef} collapsable={false} style={styles.root}>
       <GestureDetector gesture={gesture}>
         <ScrollView
           ref={scrollRef}
@@ -299,6 +309,8 @@ export default function CollectionGalleryView({
         </View>
       ) : null}
 
+      {/* слой шторки — на всё окно: верх сдвинут на положение корня, поэтому затемнение покрывает и шапку экрана */}
+      <View pointerEvents="box-none" style={{ position: 'absolute', left: 0, right: 0, top: -rootWindowY, height: screenH }}>
       <PanelSheet visible={pressedCard !== null} onClose={() => setPressedId(null)} testID="fc-card-actions">
         {pressedCard && isEditableCustomCard(pressedCard) ? (
           <SheetRow g={g} testID="fc-card-edit" icon="create-outline" title={copy.edit} onPress={() => { const item = pressedCard; setPressedId(null); onEditCard(item); }} />
@@ -307,6 +319,7 @@ export default function CollectionGalleryView({
           <SheetRow g={g} testID="fc-card-delete" icon="trash-outline" title={copy.del} danger onPress={() => { const item = pressedCard; setPressedId(null); void onDeleteCardById(item.id, cards.indexOf(item)); }} />
         ) : null}
       </PanelSheet>
+      </View>
     </View>
   );
 }

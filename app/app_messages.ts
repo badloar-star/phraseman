@@ -95,6 +95,47 @@ function appMessagesOwnerStorageKey(prefix: string, ownerUid: string): string {
   return `${prefix}:${encodeURIComponent(ownerUid)}`;
 }
 
+/**
+ * зачем (координатор 12.10, п.70 №1, аудит FIRESTORE_BOOT_READS_R1): метка «входящие уже прочитаны принудительно»
+ * жила в памяти процесса — КАЖДЫЙ холодный старт считался входом и тянул 3 запроса до 80 документов (до 240 чтений).
+ * Теперь метка на диске по stableId: force — только при настоящем входе (метки для этого аккаунта ещё нет), дальше —
+ * общий срок жизни 6 ч (и в «Настройках»).
+ */
+export const APP_MESSAGES_SCREEN_MIN_INTERVAL_MS = 6 * 60 * 60_000;
+const APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX = 'app_messages_login_forced_v1';
+const appMessagesLoginForcedInProcess = new Set<string>();
+
+export type AppMessagesLoginForceDecision = Readonly<{
+  force: boolean;
+  source: 'memory' | 'storage' | 'first_login' | 'storage_read_failed';
+}>;
+
+/** Решить, нужен ли принудительный запрос входящих для этого аккаунта; при «да» метка ставится сразу. */
+export async function claimAppMessagesLoginForce(stableId: string): Promise<AppMessagesLoginForceDecision> {
+  if (!stableId) return { force: false, source: 'memory' };
+  if (appMessagesLoginForcedInProcess.has(stableId)) return { force: false, source: 'memory' };
+  appMessagesLoginForcedInProcess.add(stableId);
+  const key = appMessagesOwnerStorageKey(APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX, stableId);
+  let stored: string | null;
+  try {
+    stored = await AsyncStorage.getItem(key);
+  } catch (error: unknown) {
+    // Диск недоступен — читаем по сроку жизни (не форсим): лишний запрос хуже, чем входящие на 6 ч позже.
+    console.warn('[APP-MESSAGES-REFRESH] метка входа не прочитана → без force', error instanceof Error ? error.message : String(error));
+    return { force: false, source: 'storage_read_failed' };
+  }
+  if (stored) return { force: false, source: 'storage' };
+  await AsyncStorage.setItem(key, String(Date.now())).catch((error: unknown) => {
+    console.warn('[APP-MESSAGES-REFRESH] метка входа не записана (следующий старт снова форсит)', error instanceof Error ? error.message : String(error));
+  });
+  return { force: true, source: 'first_login' };
+}
+
+/** Только для тестов: сбросить память процесса. */
+export function resetAppMessagesLoginForceForTests(): void {
+  appMessagesLoginForcedInProcess.clear();
+}
+
 async function getAppMessagesOwnerUid(): Promise<string | null> {
   return String(await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getAppMessagesOwnerUid', e); return ''; })).trim() || null;
 }

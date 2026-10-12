@@ -251,6 +251,7 @@ import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
   acknowledgeAppMessageModal,
   acknowledgePersonalAdminMessageModal,
+  claimAppMessagesLoginForce,
   listPendingAppMessageModals,
   pickNextLoginPersonalMessage,
   refreshAppMessagesSnapshotOnce,
@@ -461,10 +462,9 @@ const APP_FONT_WAIT_MAX_MS = 1000;
 const FOREGROUND_FLUSH_MIN_MS = 15_000;
 const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 // зачем (PM-252 п.3, координатор 04.10): сообщения приложения читались принудительно на КАЖДОМ возврате
-// (до 240 документов). Принудительно — только при входе (первый раз за запуск для аккаунта), дальше кэш
-// и сеть не чаще раза в 6 часов.
+// (до 240 документов). Принудительно — только при входе в аккаунт (метка на диске, claimAppMessagesLoginForce), дальше
+// кэш и сеть не чаще раза в 6 часов.
 const APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS = 6 * 60 * 60_000;
-const appMessagesForcedForStableIds = new Set<string>();
 /** зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ»): 900 мс этого потолка
  * съедали почти весь бюджет входа в одиночку, а следом ещё ждал homeScreenReady.
  * Событие от Главной приходит раньше на здоровом старте — fallback нужен только
@@ -1337,15 +1337,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const token = accountGeneration;
     let cancelled = false;
     const forcedKey = token.stableId ?? '';
-    const isLoginRefresh = !appMessagesForcedForStableIds.has(forcedKey);
-    if (isLoginRefresh) appMessagesForcedForStableIds.add(forcedKey);
-    console.log('[APP-MESSAGES-REFRESH]', JSON.stringify({
-      mode: isLoginRefresh ? 'login_force' : 'foreground_interval',
-      minIntervalMs: isLoginRefresh ? 0 : APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS,
-    }));
-    void refreshAppMessagesSnapshotOnce(isLoginRefresh
-      ? { force: true }
-      : { minIntervalMs: APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS })
+    // зачем (п.70 №1): метка «уже форсили» — на диске по stableId; раньше в памяти, и каждый холодный старт тянул
+    // входящие принудительно (до 240 чтений). force — только при настоящем входе в аккаунт, иначе срок жизни 6 ч.
+    void claimAppMessagesLoginForce(forcedKey)
+      .then((decision) => {
+        const isLoginRefresh = decision.force;
+        console.log('[APP-MESSAGES-REFRESH]', JSON.stringify({ // guard-ok: одна строка на возврат в приложение — решение «сеть или кэш»
+          mode: isLoginRefresh ? 'login_force' : 'foreground_interval',
+          markSource: decision.source,
+          minIntervalMs: isLoginRefresh ? 0 : APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS,
+        }));
+        return refreshAppMessagesSnapshotOnce(isLoginRefresh
+          ? { force: true }
+          : { minIntervalMs: APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS });
+      })
       .then(async (snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));

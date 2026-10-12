@@ -70,7 +70,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
-import { peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
+import { APP_MESSAGES_SCREEN_MIN_INTERVAL_MS, peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
 import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
 import { flushSettingsPollVotes } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
@@ -345,7 +345,9 @@ export default function SettingsMain() {
     if (!settingsRuntimeActive) return;
     let cancelled = false;
     const account = captureAccountGeneration();
-    void refreshAppMessagesSnapshotOnce({ minIntervalMs: 30_000 }).then((snapshot) => {
+    // зачем (п.70 №1): было 30 с — каждый заход в «Настройки» тянул 3 запроса до 80 документов; слоты сообщений
+    // рисуются из снимка сразу, сеть — не чаще раза в 6 ч (тот же срок, что у корня).
+    void refreshAppMessagesSnapshotOnce({ minIntervalMs: APP_MESSAGES_SCREEN_MIN_INTERVAL_MS }).then((snapshot) => {
       if (cancelled || !account.stableId || !isCurrentAccountGeneration(account, account.stableId)) return;
       const next = selectSettingsMessageSlots(snapshot, {
         stableId: account.stableId,

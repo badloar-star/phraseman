@@ -28,3 +28,13 @@ describe('R1_DIFF_ONE_FIX, группа 1', () => {
     expect(screen).toContain('onTrain={listCards.length > 0 && !packSurface && !undoEntry && !packUndo ? onTrainGallery : null}');
   });
 });
+
+describe('R1_DIFF_ONE_FIX, группа 2', () => {
+  it('cards-v2-023: строка карточки в «Изменить набор» — макет .erow2 (ручка 20, текст с отступом 46, высота 70)', () => {
+    const editor = read('app/community_packs/PackEditorV2.tsx');
+    expect(editor).toContain('const REORDER_ROW_MIN_H = 70;');
+    expect(editor).toContain('<Ionicons name="reorder-three" size={20} color={g.mutedText} />');
+    expect(editor).toMatch(/erow: \{[^}]*paddingVertical: 10, paddingLeft: 8, paddingRight: 14 \}/);
+    expect(editor).toMatch(/grip: \{ width: 26, height: 44,/);
+  });
+});

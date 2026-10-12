@@ -139,7 +139,7 @@ export const EditorCardRow = memo(function EditorCardRow({ g, front, back, onPre
 export type EditorListRow = Readonly<{ key: string; front: string; back: string }>;
 
 const REORDER_GAP = 9;
-const REORDER_ROW_MIN_H = 72;
+const REORDER_ROW_MIN_H = 70; // зачем (R1_DIFF_ONE_FIX, cards-v2-023): макет `.erow2` min-height 70
 const REORDER_TAG = '[PACK-REORDER]';
 
 /** Строка «Изменить набор» (макет cards-v2 `.erow`): ручка переноса слева, слово и перевод, корзина справа. Ручка двигает строку вверх-вниз, остальные расступаются. */
@@ -202,8 +202,8 @@ const ReorderRow = memo(function ReorderRow({ g, index, count, row, step, active
       <View style={[styles.erow, { boxShadow: plateBoxShadow(g) }]}>
         <PlateFill g={g} radius={16} />
         <GestureDetector gesture={pan}>
-          <View testID={`ugc-pack-grip-${index}`} accessible accessibilityRole="adjustable" accessibilityLabel={gripLabel} style={styles.grip}>
-            <Ionicons name="reorder-three" size={24} color={g.mutedText} />
+          <View testID={`ugc-pack-grip-${index}`} accessible accessibilityRole="adjustable" accessibilityLabel={gripLabel} hitSlop={{ left: 8, right: 8 }} style={styles.grip}>
+            <Ionicons name="reorder-three" size={20} color={g.mutedText} />
           </View>
         </GestureDetector>
         <Pressable testID={`ugc-pack-card-${index}`} accessibilityRole="button" accessibilityLabel={row.back ? `${row.front}, ${row.back}` : row.front} onPress={onPress} onLongPress={onLongPress} style={styles.erowText}>
@@ -336,8 +336,9 @@ const styles = StyleSheet.create({
   segDisabled: { opacity: 0.6 },
   segText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   list: { gap: REORDER_GAP },
-  erow: { minHeight: REORDER_ROW_MIN_H, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingLeft: 8, paddingRight: 12 },
-  grip: { width: 36, height: 44, alignItems: 'center', justifyContent: 'center' },
+  // зачем (R1_DIFF_ONE_FIX, cards-v2-023): макет `.erow2` — отступы 10/14, ручка svg 20 тонкая; текст начинался на ≈10 px дальше (ручка 36 → 26: 8 + 26 + 12 = 46 как в макете), область нажатия расширена hitSlop
+  erow: { minHeight: REORDER_ROW_MIN_H, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingLeft: 8, paddingRight: 14 },
+  grip: { width: 26, height: 44, alignItems: 'center', justifyContent: 'center' },
   erowText: { flex: 1, minWidth: 0, justifyContent: 'center' },
   erowTrash: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   cardRowOuter: { minHeight: 70 },

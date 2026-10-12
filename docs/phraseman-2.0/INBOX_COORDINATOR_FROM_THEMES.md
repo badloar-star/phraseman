@@ -148,6 +148,15 @@
 - `results_coins_profile` — уже был исправлен мной (9a6801244).
 
 **Передать Codex:** `modules/learning-v2/modes/mode_feedback_v1.tsx` — 5 новых захардкоженных цветов (ratchet `theme_hardcoded_colors`); `app/learning_v2_direct_session_player_v1.tsx:3610`, `app/_learning_v2_modes_showcase.tsx:132`, `components/learning-v2/LearningV2FounderPassModal.tsx:278`, `components/learning-v2/LearningV2PulseMapSessionRow.tsx:227` — `elevation` без непрозрачного фона (заменить на `...noAndroidOutline` или дать фон; тест `android_no_square_outline_guard` ослаблять нельзя).
+## 15.10 — Шпиль при английском интерфейсе (п.76): экран подчиняется замку языка (9595bd491)
+
+**Было:** вкладка, ворота сети, задания дня, плитка Главной и вход по пушу закрыты `isSpireTabEnabled()` (SPIRE_UI_LANGS = ru/uk), но сам `SpireHomeScreen` язык не проверял: прямой маршрут `/spire` или смена языка на открытом экране показали бы английские подписи с русскими заданиями.
+
+**Сделано:** `components/spire/spire_screen_lang_lock.ts` — `spireScreenLangLock(lang)` на том же `spireUiLangDecision` (второй копии списка нет). В `SpireHomeScreen`: `unlocked` теперь `config.enabled && !langLock.locked`, а `SpireLockedState` отдаётся ДО экрана загрузки, чтобы чужой язык не мелькнул; при запретном языке не стартуют `useSpireGame` и чтение недели (ноль сетевых чтений). Журнал `[SPIRE-GATE] screen {lang, allowed, reason, locked, previous, preview, config, result}` — одна строка на смену решения.
+
+**Тест** `tests/spire_screen_lang_lock.test.ts` (5): прямой маршрут при en → заперт; смена ru→en→uk→es→pt-BR на открытом экране → заперт/открыт/заперт; язык неизвестен → заперт; unlocked и порядок возвратов в экране; формат журнала. Соседние 26 .mjs и 92 jest-теста Шпиля зелёные, срез типов — 0 ошибок.
+
+**Побочное:** dev-превью на моках (`/dev_spire_preview`) подчиняется тому же замку — съёмка en-интерфейса покажет замок. Оптимистичный интерфейс и логику Шпиля не трогал.
 undefined === null` ложно → `climbReady` ложно во ВСЕХ состояниях превью. До aa368b106 это выглядело как «светлая с прозрачностью» (opacity 0,4 на светлой кнопке), после него — «серая» `.cta.dis` даже при живой комнате (spire-005). Моя правка вида `dis` была верной, а превью врало о готовности. Лог `[SPIRE-DOCK] home … notReadyBecause: pending!=null` показал бы это сразу — но журнал кадра его не брал (ниже).
 **Правка:** в `game()` добавлены `pending: null, cancelPendingStep: noop` — форма игры в превью теперь как у настоящего хука; боевой путь и Ядро не тронуты. Тест `tests/spire_preview_ready.test.ts`: в `room/lobby/win/summit/lose/offline/weekresult/guard/passed` кнопка готова, в `empty/locked` — нет, у всех состояний `pending === null` и есть `cancelPendingStep`; рядом 24 набора Шпиля (177 проверок) зелёные; срез типов — 0 ошибок.
 **Журнал кадра робота — НЕ сделано мной:** `FRAME_LOG_RX` в `scripts/parity_batch_shoot.mjs` (стр. 213) не включает `[SPIRE-DOCK]`, `[SPIRE-SCROLL]`, `[SPIRE-LAYOUT]`, а файл сейчас с чужой незакоммиченной правкой (` MM`) — не трогаю. Для Дизайна одна правка: в альтернативу `\[(?:…|HOME-CONTINUE)\]` добавить `|SPIRE-DOCK|SPIRE-SCROLL|SPIRE-LAYOUT`.

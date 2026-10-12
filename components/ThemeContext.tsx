@@ -26,6 +26,8 @@ import {
   type LiquidGlassColorLevel,
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
+import { createThemePersister, type ThemePersister } from '../app/theme_persist';
+import { actionToastTri, emitAppEvent } from '../app/events';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
@@ -318,9 +320,44 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
   // человек успел сделать раньше (last-write-guard, как с осколками).
   const touchedRef = useRef({ theme: false, level: false, appearance: false });
+  // зачем (аудит Optimistic UI экрана тем, координатор 15.10): выбор применяется мгновенно, диск догоняет фоном; при сбое записи — один повтор, затем откат к сохранённому
+  // значению + понятное сообщение, а поздний сбой старой записи не откатывает более новый выбор (app/theme_persist.ts). Лог [THEMES-SWITCH].
+  const currentChoiceRef = useRef({ theme: peekLiquidGlassThemeId as string, appearance: '' as string, intensity: '' as string });
+  const persisterRef = useRef<ThemePersister | null>(null);
+  if (persisterRef.current === null) {
+    persisterRef.current = createThemePersister({
+      write: (kind, value) => {
+        if (kind === 'theme') return AsyncStorage.setItem(THEME_STORAGE_KEY, value);
+        if (kind === 'appearance') return AsyncStorage.setItem(APPEARANCE_STORAGE_KEY, value);
+        return AsyncStorage.multiSet([[INTENSITY_STORAGE_KEY, value], [COLOR_LEVEL_STORAGE_KEY, liquidGlassLevelForIntensity(Number(value))]]);
+      },
+      rollback: (kind, value) => {
+        if (kind === 'theme') { peekLiquidGlassThemeId = value as LiquidGlassThemeId; setAppliedLiquidGlassThemeId(value as LiquidGlassThemeId); }
+        else if (kind === 'appearance') setAppearanceState(resolveLiquidGlassAppearance(value));
+        else setIntensityState(Number(value));
+      },
+      notifyFailure: (kind) => {
+        const what = kind === 'theme' ? { ru: 'тему', uk: 'тему', es: 'el tema', en: 'the theme', ptBr: 'o tema', vi: 'chủ đề', id: 'tema', tr: 'temayı', pl: 'motyw' }
+          : kind === 'appearance' ? { ru: 'оформление', uk: 'оформлення', es: 'la apariencia', en: 'the appearance', ptBr: 'a aparência', vi: 'giao diện', id: 'tampilan', tr: 'görünümü', pl: 'wygląd' }
+            : { ru: 'насыщенность', uk: 'насиченість', es: 'la intensidad', en: 'the intensity', ptBr: 'a intensidade', vi: 'độ đậm', id: 'intensitas', tr: 'yoğunluğu', pl: 'intensywność' };
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: `Не удалось сохранить ${what.ru}. Вернули прежнюю`, uk: `Не вдалося зберегти ${what.uk}. Повернули попередню`,
+          es: `No se pudo guardar ${what.es}. Volvimos a la anterior`, en: `Couldn't save ${what.en}. Reverted`,
+          'pt-BR': `Não foi possível salvar ${what.ptBr}. Revertido`, vi: `Không lưu được ${what.vi}. Đã hoàn lại`,
+          id: `Gagal menyimpan ${what.id}. Dikembalikan`, tr: `${what.tr} kaydedemedik. Geri alındı`, pl: `Nie udało się zapisać: ${what.pl}. Przywrócono poprzedni`,
+        }));
+      },
+      log: (message, data) => {
+        const failure = message.startsWith('write_failed');
+        if (failure) console.warn('[THEMES-SWITCH]', message, JSON.stringify(data)); // guard-ok: сбой записи выбора темы всегда виден в журнале
+        else if (IS_DEV) console.log('[THEMES-SWITCH]', message, JSON.stringify(data)); // guard-ok: dev-трассировка смены темы
+      },
+    });
+  }
   const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
+  currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
 
@@ -334,10 +371,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   ), []);
 
   const commitLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
+    const previous = currentChoiceRef.current.theme;
     touchedRef.current.theme = true;
     peekLiquidGlassThemeId = id;
     setAppliedLiquidGlassThemeId(id);
-    AsyncStorage.setItem(THEME_STORAGE_KEY, id).catch(logThemeWriteError(THEME_STORAGE_KEY));
+    persisterRef.current?.commit('theme', id, previous);
   }, []);
 
   // зачем (темы 2.0): уровень и оформление меняются мгновенно (локальный state), запись
@@ -347,14 +385,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const setLiquidGlassIntensity = useCallback((intensity: number) => {
     const next = quantizeLiquidGlassIntensity(intensity);
     const level = liquidGlassLevelForIntensity(next);
+    const previous = currentChoiceRef.current.intensity;
     touchedRef.current.level = true;
     setIntensityState(next);
     setPreviewIntensityState(null);
     if (IS_DEV) console.log('[THEME-INTENSITY] commit', { requested: intensity, saved: next, level });
-    AsyncStorage.multiSet([
-      [INTENSITY_STORAGE_KEY, String(next)],
-      [COLOR_LEVEL_STORAGE_KEY, level],
-    ]).catch(logThemeWriteError(INTENSITY_STORAGE_KEY));
+    persisterRef.current?.commit('intensity', String(next), previous);
   }, []);
 
   const setPreviewLiquidGlassIntensity = useCallback((intensity: number | null) => {
@@ -367,9 +403,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setLiquidGlassAppearance = useCallback((appearance: LiquidGlassAppearance) => {
     const resolved = resolveLiquidGlassAppearance(appearance);
+    const previous = currentChoiceRef.current.appearance;
     touchedRef.current.appearance = true;
     setAppearanceState(resolved);
-    AsyncStorage.setItem(APPEARANCE_STORAGE_KEY, resolved).catch(logThemeWriteError(APPEARANCE_STORAGE_KEY));
+    persisterRef.current?.commit('appearance', resolved, previous);
   }, []);
 
   const setLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
@@ -400,6 +437,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       if (cancelled) return;
       const storedId = pairs[0]?.[1] ?? null;
       const resolved = resolveLiquidGlassTheme(storedId);
+      persisterRef.current?.setPersisted('theme', resolved);
+      persisterRef.current?.setPersisted('appearance', resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null));
       if (!touchedRef.current.theme) {
         peekLiquidGlassThemeId = resolved;
         setAppliedLiquidGlassThemeId(resolved);
@@ -412,6 +451,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const storedLevel = pairs[1]?.[1] ?? null;
       const storedIntensity = pairs[3]?.[1] ?? null;
       const migration = migrateStoredLiquidGlassIntensity(storedIntensity, storedLevel);
+      persisterRef.current?.setPersisted('intensity', String(migration.intensity));
       if (IS_DEV) {
         // зачем (паритет Learn 05.10: «кнопка “Начать” лавандовая»): у Графита cta белая на любой
         // насыщенности — лавандовая бывает только у другой темы. Лог показывает, КАКАЯ тема реально

@@ -17368,16 +17368,16 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/profile-019.png",
+      "evidence_at": "2026-10-12T18:25:33.678Z",
+      "evidence_sha256": "5fc12c25ef5fe63ddb37b1c685a64410a960816474a3ae8d264bc6c18643689b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T18:27:21.534Z",
       "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html",
       "precheck": {
         "date": "2026-10-11",
@@ -17388,7 +17388,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:25, manage-subscription-states №4 «Управление Plus · загрузка плана», ссылка manage=loading; строка — двойник paywalls-020): экран совпал по составу и раскладке: «‹», «Подписка Plus», карточка «✓ Plus активирован · Подписка Plus» и три серые заглушки. Различия приняты: фон ровный тёмный без цветного свечения образца, «✓» и «‹» без мятного оттенка — тон темы «Спокойно» (триаж theme_tone)."
     },
     {
       "id": "profile-020",

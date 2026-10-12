@@ -18825,18 +18825,21 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-019.png",
+      "evidence_at": "2026-10-12T02:18:21.311Z",
+      "evidence_sha256": "14653a1ba6735b2f732fc29931ea78b16af7646e0d8796ec1a95aad65711add0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] Нет строки «Следующее списание · 14 января 2027»: дату даёт магазин, на эмуляторе его нет — нужен store-аккаунт (группа «нельзя снять», как profile-016).",
+        "[тема] Серые значки и галочки по теме «Спокойно», в образце мятные («Аврора»)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:18:56.667Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -18847,7 +18850,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:18, manage-subscription-states.html №1 «Управление подпиской (годовая)»): тот же экран и те же отличия, что profile-016 — состав совпал: «Подписка Plus», «Plus активирован · Годовая подписка», «Что включено» с семью пунктами, «Восстановить покупки»."
     },
     {
       "id": "paywalls-020",

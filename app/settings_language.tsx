@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -15,7 +15,7 @@ import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIF
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Image } from 'expo-image';
-import { type StudyTarget } from './study_target';
+import { isStudyTargetAllowedForUi, type StudyTarget } from './study_target';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SettingsGlassEyebrow, SettingsGlassRow } from '../components/settings/SettingsGlassRows';
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
@@ -40,7 +40,14 @@ export default function SettingsLanguage() {
   // языком (снимок peek), смена языка приходит событием STUDY_TARGET_CHANGED — без своего второго источника правды.
   const { studyTarget } = useStudyTarget();
   // зачем: паритет profile.html PRF-03 (13.10): строка «Язык изучения» — кнопка с шевроном, открывает ту же шторку, что и в Настройках.
-  const [studySheetVisible, setStudySheetVisible] = useState(false);
+  // зачем (вариант А): пара «интерфейс en + изучаю en» → шторка выбора языка изучения открыта сразу (миграция и смена интерфейса на English).
+  const { chooseStudy } = useLocalSearchParams<{ chooseStudy?: string }>();
+  const [studySheetVisible, setStudySheetVisible] = useState(chooseStudy === '1');
+  useEffect(() => {
+    if (isStudyTargetAllowedForUi(studyTarget, lang as Lang)) return;
+    console.log(`[EN-UI-STUDY-TARGET] settings_language: ui=${lang} target=${studyTarget} не разрешена — открываю шторку языка изучения`);
+    setStudySheetVisible(true);
+  }, [lang, studyTarget]);
   const closeLabel = triLang(lang as Lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
   const subtitle = triLang(lang as Lang, {
     ru: 'Язык меню и подсказок приложения', uk: 'Мова меню та підказок застосунку', en: 'Language for the app menus and hints', es: 'Idioma de los menús y las pistas de la app',

@@ -86,7 +86,8 @@ test('transpiled screen uses the release-aware registry and preserves row intera
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
-    'expo-router': { useRouter: () => ({}) },
+    // D164 (вариант А): экран читает параметр chooseStudy=1 — открыть шторку «Язык изучения» сразу
+    'expo-router': { useRouter: () => ({}), useLocalSearchParams: () => ({}) },
     '../components/ThemeContext': { useTheme: () => ({ theme: { textPrimary: '#fff', textMuted: '#aaa' }, liquidGlassThemeId: 'graphite' }) },
     '../components/LangContext': { useLang: () => ({ lang: 'ru', setLang: code => calls.setLang.push(code), s: { settings: { lang: 'Язык интерфейса' } } }) },
     '../constants/i18n': {

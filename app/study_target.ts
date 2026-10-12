@@ -77,8 +77,17 @@ export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTa
   return STUDY_TARGET_META[studyTarget].ttsLocale;
 }
 
-export function studyTargetsForSourceLocale(_uiLang: Lang): readonly ProductionStudyTarget[] {
-  return STUDY_TARGETS;
+// зачем (вариант А, решение владельца — handoff/en_ui_study_target_variant_A.md): при английском интерфейсе английский не предлагается
+// как язык изучения — старые уроки RU→EN человеку, не знающему русского, бессмысленны. Остальные интерфейсы — все языки, как раньше.
+const STUDY_TARGETS_WITHOUT_EN: readonly ProductionStudyTarget[] = Object.freeze(STUDY_TARGETS.filter((target) => target !== 'en'));
+
+export function studyTargetsForSourceLocale(uiLang: Lang): readonly ProductionStudyTarget[] {
+  return uiLang === 'en' ? STUDY_TARGETS_WITHOUT_EN : STUDY_TARGETS;
+}
+
+/** Можно ли учить этот язык при этом языке интерфейса (пара «интерфейс en + изучаю en» — нельзя). */
+export function isStudyTargetAllowedForUi(target: StudyTarget, uiLang: Lang): boolean {
+  return studyTargetsForSourceLocale(uiLang).includes(target);
 }
 
 export function emitStudyTargetChanged(): void {

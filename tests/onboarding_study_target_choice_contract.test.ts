@@ -39,9 +39,10 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('const SHOW_ONBOARDING_LEVEL_STEP = false');
     expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : [])");
     expect(source).toContain("...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : [])");
-    expect(source).toContain(
-      'resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP, SHOW_ONBOARDING_LEVEL_STEP)',
-    );
+    // D164 (вариант А, владелец 12.10): при английском интерфейсе экран языка обязателен — админка его не выключит; иначе порядок прежний.
+    expect(source).toContain('languageRequired ? withRequiredLanguageStep(remoteEnabledSteps) : remoteEnabledSteps,');
+    expect(source).toContain('SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,');
+    expect(source).toContain("const languageRequired = !isStudyTargetAllowedForUi('en', lang);");
     expect(source).not.toContain("| 'goal'");
     expect(source).not.toContain("| 'minutes'");
     expect(source).not.toContain("| 'plusBenefits'");

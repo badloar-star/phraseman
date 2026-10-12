@@ -80,7 +80,7 @@ import {
 } from '../app/onboarding_notification_choice';
 import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
-import { setStoredStudyTarget } from '../app/study_target';
+import { isStudyTargetAllowedForUi, setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import { getDevGreetName, isDevConfettiHold } from '../app/dev_account_state';
@@ -310,6 +310,12 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
   { id: 'b1', title: 'I can talk about familiar topics', icon: 'bar-chart-outline' },
   { id: 'b2', title: 'I can discuss almost anything', icon: 'bar-chart-outline' },
 ];
+
+// зачем (вариант А): при интерфейсе, где английский не язык изучения, экран выбора языка обязателен — админка его не выключит,
+// иначе человек остался бы без языка изучения (тихий английский по умолчанию для него запрещён).
+function withRequiredLanguageStep(steps: readonly OnboardingStepId[]): readonly OnboardingStepId[] {
+  return steps.includes('language') ? steps : [...steps, 'language'];
+}
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
@@ -2527,8 +2533,15 @@ function CleanOnboarding({
   });
 
   const enabledOrder = useMemo(
-    () => resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP, SHOW_ONBOARDING_LEVEL_STEP),
-    [remoteEnabledSteps],
+    () => {
+      const languageRequired = !isStudyTargetAllowedForUi('en', lang);
+      return resolveEnabledOnboardingOrder(
+        languageRequired ? withRequiredLanguageStep(remoteEnabledSteps) : remoteEnabledSteps,
+        SHOW_ONBOARDING_LANGUAGE_STEP || languageRequired,
+        SHOW_ONBOARDING_LEVEL_STEP,
+      );
+    },
+    [remoteEnabledSteps, lang],
   );
 
   const persistStep = useCallback(async (next: CleanOnboardingStep) => {
@@ -3107,6 +3120,11 @@ function CleanOnboarding({
   }, [allowLeaveDuringAuth, authMode, authSlow, enabledOrder, go, step]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
+    // зачем (вариант А): при английском интерфейсе английский не язык изучения — дефолт не ставим, человек выбирает на экране языка.
+    if (!isStudyTargetAllowedForUi('en', lang)) {
+      console.log(`[ONBOARDING-LANG] ui=${lang}: английский не предлагается языком изучения — дефолт en не ставим, выбор на экране языка`);
+      return;
+    }
     setStudyTarget('en');
     await AsyncStorage.multiSet([
       [ONBOARDING_REQUESTED_STUDY_TARGET_KEY, 'en'],
@@ -3835,10 +3853,10 @@ function CleanOnboarding({
       onBack={back}
       // зачем: D126 — просим 'level', но он выключен (SHOW_ONBOARDING_LEVEL_STEP),
       // и resolve уводит на следующий включённый шаг — уведомления.
-      footer={<PrimaryButton label={oc.languagePick} onPress={() => go('level')} testID="onboarding-language-continue" />}
+      footer={<PrimaryButton label={oc.languagePick} onPress={() => go('level')} disabled={!isStudyTargetAllowedForUi(studyTarget, lang)} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
-        {LANGUAGE_OPTIONS.map((item) => (
+        {LANGUAGE_OPTIONS.filter((item) => isStudyTargetAllowedForUi(item.id, lang)).map((item) => (
           <LanguageCard
             key={item.id}
             option={{ ...item, title: languageNameOf(oc, item.id), native: languageNameOf(oc, item.id) }}

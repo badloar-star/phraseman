@@ -34,7 +34,7 @@ const PROTECTED_FILES = new Map([
 const PROTECTED_RUNTIME = {
   // зачем (D158 / PM-214, 04.10): вечный скелетон наборов запрещён — повторы 1/3/8 с, «Сейчас недоступно»,
   // автоповтор при возврате в приложение и сторож потолка загрузки (+2 useEffect).
-  count: 26,
+  count: 27,
   // зачем (владелец 01.10): без экрана ошибки — loadDecks не стирает показанные наборы при сбое, плюс тихий повтор (+1 useEffect).
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
   // зачем (координатор 02.10, вариант В): открытие набора — тихие повторы + мягкая подсказка через stage_with_retry.
@@ -44,7 +44,10 @@ const PROTECTED_RUNTIME = {
   // зачем (15.10, координатор: красные сторожи; сверено по diff d70c92fcc и e531e6408): +1 useEffect с трассировкой [TRAIN-PREP] (cards-075) и dev-подмена статуса
   // экрана (`hold=setup_loading` / `fail=setup_decks`, computedSetupStatus) — только для съёмки и журнала; выдача наборов, квота и старт без изменений (число узлов 25 → 26).
   // зачем (15.10 вечер, перепрогон красных; сверено по diff 8fd8adbab): только журнал цепочки «Начать» ([FLASHCARDS-SESSION] setup:tap и setup:push) и describeDevCardsState; выдача наборов, квота и старт без изменений.
-  hash: '5423287df10bbc3569bcc35e7fd1187d9980997ab23fc6659c1708c0af91c473',
+  // зачем (12.10 вечер, владелец п.83 «кнопка языка отфильтровывает наборы карточек по языкам»; сверено по diff): сознательная правка базовой линии — видимый список наборов зависит от выбранного языка
+  // (viewLang/viewDecks/listReady, selectLanguage), canStart ждёт готовности списка ВЫБРАННОГО языка, loadDecks не затирает отметки на чужом языке, запуск несёт ?target и не пишет пресет чужого языка.
+  // Квота, energy-гейты и логика «Начать» без изменений (число узлов 26 → 27). План: docs/phraseman-2.0/R1_FC_LANG_FILTER.md.
+  hash: 'f15ca33039274fbac2534bf536c613960bd30fc17dd1ccb3a461127f026c92d2',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -382,7 +385,7 @@ test('session size is passed to speaking, recall and truefalse routes; blitz get
   const entry = fs.readFileSync('app/flashcards/training_entry.ts', 'utf8');
   assert.match(entry, /size\?: string/);
   assert.match(entry, /size: size \|\| 'all'/);
-  assert.match(routeSource, /mode === 'speaking' \|\| mode === 'recall' \|\| mode === 'truefalse' \? sizeId : undefined, \{ sec: secId, dir: dirId \}/);
+  assert.match(routeSource, /mode === 'speaking' \|\| mode === 'recall' \|\| mode === 'truefalse' \? sizeId : undefined, \{ sec: secId, dir: dirId, target: routeTarget \}/);
   assert.match(entry, /sec: extra\?\.sec \|\| '60'/);
   assert.match(entry, /dir: extra\?\.dir \|\| 'to_target'/);
 });

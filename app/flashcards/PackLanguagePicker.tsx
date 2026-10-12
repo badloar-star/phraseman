@@ -46,6 +46,15 @@ type Props = {
    * 40 высотой, светлая полупрозрачная заливка. Остальные вызовы не меняются.
    */
   pill?: boolean;
+  /**
+   * зачем (п.83, cards-027): фильтр языка наборов на настройке тренировки показывает только языки, где есть наборы, —
+   * список пунктов сужается до этих кодов (без «Без языка»). Без параметра — все языки, как раньше.
+   */
+  languages?: readonly PackLanguage[];
+  /** Число наборов у языка — серым справа в пункте меню (п.83). */
+  counts?: Readonly<Partial<Record<PackLanguage, number>>>;
+  /** Своя кнопка вместо стандартной: окно выбора то же. open() открывает окно, visible — окно открыто (п.83: чип языка тренировки). */
+  renderTrigger?: (open: () => void, visible: boolean) => React.ReactNode;
 };
 
 const FLAG_ART: Partial<Record<PackLanguage, number>> = {
@@ -66,8 +75,8 @@ function FlagMark({ code, width, height, color }: { code: PackLanguage; width: n
   return <Text style={{ width, fontSize: 13, fontWeight: '700', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
 }
 
-export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false, pill = false }: Props) {
-  const options = allowNone ? PACK_LANGUAGE_CHOICES : PACK_LANGUAGES;
+export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false, pill = false, languages, counts, renderTrigger }: Props) {
+  const options: readonly PackLanguage[] = languages ?? (allowNone ? PACK_LANGUAGE_CHOICES : PACK_LANGUAGES);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const [visible, setVisible] = useState(false);
@@ -101,7 +110,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
 
   return (
     <>
-      <Pressable
+      {renderTrigger ? renderTrigger(open, visible) : <Pressable
         testID="pack-language-picker"
         accessibilityRole="button"
         accessibilityLabel={`${packLanguagePickerHint(lang)}: ${packLanguageLabel(value, lang)}`}
@@ -119,7 +128,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
           <Text style={[styles.code, { color: g.text }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
         )}
         <Ionicons name="chevron-down" size={pill ? 16 : 14} color={pill ? g.text : g.secondary} />
-      </Pressable>
+      </Pressable>}
 
       <Modal
         visible={mounted || visible}
@@ -161,7 +170,10 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
                 >
                   <FlagMark code={item.code} width={26} height={17} color={g.text} />
                   <Text style={[styles.optionText, { color: g.text }]}>{packLanguageLabel(item.code, lang)}</Text>
-                  {selected ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
+                  {counts && typeof counts[item.code] === 'number' ? (
+                    <Text style={[styles.optionCount, { color: g.secondary }]}>{counts[item.code]}</Text>
+                  ) : null}
+                  {selected ?<Ionicons name="checkmark" size={18} color={g.text} /> : null}
                 </Pressable>
               );
             })}
@@ -200,4 +212,5 @@ const styles = StyleSheet.create({
   },
   option: { minHeight: 48, borderRadius: 12, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, gap: 12 },
   optionText: { flex: 1, fontSize: 16, fontWeight: '600' },
+  optionCount: { fontSize: 13, fontWeight: '600', fontVariant: ['tabular-nums'] },
 });

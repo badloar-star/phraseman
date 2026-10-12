@@ -9,7 +9,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitCta, KitEmpty, KitSectionHead, KitSegment } from '../../components/cards-grid/CardsKit';
@@ -18,8 +18,12 @@ import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/Learnin
 import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useTheme } from '../../components/ThemeContext';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import type { FcDeckId } from './deck_selection';
+import type { LanguageMenuEntry } from './fc_lang_filter';
+import PackLanguagePicker from './PackLanguagePicker';
+import type { PackLanguage } from './pack_languages';
 
 export type SetupSizeOption = Readonly<{ id: string; label: string }>;
 
@@ -30,8 +34,15 @@ type Props = Readonly<{
   modeIcon: keyof typeof Ionicons.glyphMap;
   /** «24/30»; null — пилюли нет (квота ещё читается). */
   limitLabel: string | null;
-  /** Код языка тренировки («EN») — чип в верхнем ряду справа, ТОЛЬКО показывает язык (без меню и стрелки; решение владельца 12.10, cards-027, вариант а); null — чипа нет. */
+  /** Код языка наборов («EN») — чип в верхнем ряду справа; с наборами одного языка только показывает язык, с несколькими — кнопка фильтра (п.83); null — чипа нет. */
   languageLabel?: string | null;
+  /** п.83: есть куда переключиться (наборы другого языка) — чип становится кнопкой с шевроном и меню; иначе остаётся чипом без стрелки. */
+  languageSwitchable?: boolean;
+  /** Пункты меню языка: код и число наборов (только языки с наборами). */
+  languageEntries?: readonly LanguageMenuEntry[];
+  /** Код выбранного языка наборов ('en'…) — отмечается в меню. */
+  languageCode?: PackLanguage;
+  onLanguageChange?: (code: PackLanguage) => void;
   /** Лимит месяца исчерпан: настройка остаётся обычной, а вместо «Начать» — «Безлимит с Plus» (макет «Лимит Free»). */
   limitReached: boolean;
   status: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid';
@@ -115,10 +126,13 @@ const DeckPickTile = memo(function DeckPickTile({ g, title, countLabel, on, disa
 function TrainingSetupV2Inner(props: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом (при 1.0 тот же объект стилей — вид прежний)
   const styles2 = useScaledTextStyles(baseStyles);
-  const { lang, title, modeIcon, limitLabel, languageLabel = null, limitReached, status, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onUpgrade, onBack, onFindPacks, onRetry } = props;
+  const { lang, title, modeIcon, limitLabel, languageLabel = null, languageSwitchable = false, languageEntries = [], languageCode = 'en', onLanguageChange, limitReached, status, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onUpgrade, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
+  const { theme } = useTheme();
   const lh = useLineScale();
   const copy = useMemo(() => copyFor(lang), [lang]);
+  const languageCounts = useMemo(() => Object.fromEntries(languageEntries.map((entry) => [entry.code, entry.count])) as Partial<Record<PackLanguage, number>>, [languageEntries]);
+  const languageCodes = useMemo(() => languageEntries.map((entry) => entry.code as PackLanguage), [languageEntries]);
   const showList = status === 'ready' || status === 'loading';
   // зачем: плитки наборов собираются парами — обе плитки ряда одной высоты, если название одной переносится на 2 строки
   const deckRows = useMemo(() => {
@@ -132,11 +146,36 @@ function TrainingSetupV2Inner(props: Props) {
       <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles2.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
-          {/* зачем (владелец 12.10, cards-027, вариант «а»): справа в верхнем ряду — чип языка тренировки, ТОЛЬКО показывает язык (без меню и стрелки: список наборов строго по изучаемому языку приложения),
-              рядом с пилюлей остатка. Токены темы; длинный код не сжимается (без adjustsFontSizeToFit) — чип растёт по тексту, а ряд при нехватке места переносится, не режет. */}
+          {/* зачем (владелец 12.10, cards-027; п.83 «кнопка языка фильтрует наборы»): справа в верхнем ряду — чип языка наборов рядом с пилюлей остатка.
+              Наборы одного языка — чип только показывает язык (без стрелки); нескольких — кнопка фильтра с меню. Токены темы; длинный код не сжимается (шрифт не ужимаем) — чип растёт по тексту,
+              а ряд при нехватке места переносится, не режет. */}
           {languageLabel || limitLabel ? (
             <View style={styles2.topRight}>
-              {languageLabel ? (
+              {languageLabel && languageSwitchable && onLanguageChange ? (
+                // зачем (владелец 12.10, п.83, cards-027): с наборами нескольких языков чип — кнопка фильтра; меню — общий PackLanguagePicker без «Без языка», в пунктах число наборов
+                <PackLanguagePicker
+                  lang={lang}
+                  t={theme}
+                  value={languageCode}
+                  languages={languageCodes}
+                  counts={languageCounts}
+                  onChange={onLanguageChange}
+                  renderTrigger={(open, visible) => (
+                    <Pressable
+                      testID="fc-training-setup-language-chip"
+                      accessibilityRole="button"
+                      accessibilityLabel={`${copy.language}: ${languageLabel}`}
+                      accessibilityState={{ expanded: visible }}
+                      onPress={open}
+                      hitSlop={6}
+                      style={({ pressed }) => [styles2.pill, { backgroundColor: visible ? g.selected : g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.78 : 1 }]}
+                    >
+                      <Text style={[styles2.pillText, { color: g.text }]}>{languageLabel}</Text>
+                      <Ionicons name="chevron-down" size={16} color={g.text} />
+                    </Pressable>
+                  )}
+                />
+              ) : languageLabel ? (
                 <View
                   testID="fc-training-setup-language-chip"
                   accessible

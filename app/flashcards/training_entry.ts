@@ -42,7 +42,7 @@ export function buildCardsTrainingRoute(
   const deck = deckRouteParam(normalizeDeckIds(selectedDeckIds));
   if (!deck) return null;
   // зачем (п.83, cards-027): язык выбранных наборов, если он не язык приложения; без параметра маршрут прежний.
-  const targetParam = extra?.target ? { [TRAINING_TARGET_PARAM]: extra.target } : {};
+  const targetParam: Record<string, string> = extra?.target ? { [TRAINING_TARGET_PARAM]: extra.target } : {};
 
   if (mode === 'blitz') {
     return { pathname: '/flashcards_blitz_session', params: { deck, sec: extra?.sec || '60', ...targetParam } };

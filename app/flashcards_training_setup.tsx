@@ -26,6 +26,18 @@ import { hideDecksWithoutVoice, loadFcDeckOptions, peekFcDeckOptions, sameDeckOp
 import type { DeckSheetOption } from './flashcards/DeckPickerSheet';
 import DeckSelectionTile from './flashcards/DeckSelectionTile';
 import { TrainingSetupV2 } from './flashcards/TrainingSetupV2';
+import {
+  canSwitchLanguage,
+  countByLanguage,
+  formatLangFilterLog,
+  isFlashcardsReadyLanguage,
+  languageMenuEntries,
+  reconcileSelectedDeckIds,
+  trainingTargetRouteParam,
+} from './flashcards/fc_lang_filter';
+import { useOtherLanguageDecks } from './flashcards/use_other_language_decks';
+import type { LearningLanguageTarget } from './learning_language_contour';
+import type { PackLanguage } from './flashcards/pack_languages';
 import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
 import {
   deckSelectionLabel,
@@ -62,6 +74,8 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { describeDevCardsState, isDevCardsFail, isDevCardsHeld } from './dev_cards_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+
+const EMPTY_DECKS: readonly DeckSheetOption[] = [];
 
 type LoadState = 'loading' | 'ready' | 'error';
 type LoadErrorKind = 'invalid' | 'unavailable' | 'load' | null;
@@ -145,6 +159,19 @@ export default function FlashcardsTrainingSetupScreen() {
   const mode = useMemo(() => parseCardsTrainingMode(params.mode), [params.mode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  // зачем (владелец 12.10, п.83, cards-027): кнопка языка ФИЛЬТРУЕТ наборы. null — язык приложения (по умолчанию); выбор живёт, пока открыт экран, и нигде не сохраняется.
+  // studyTarget приложения НЕ меняется (D129/D130) — на выбранном языке идёт только эта тренировка (маршрут несёт ?target).
+  const [pickedLang, setPickedLang] = useState<LearningLanguageTarget | null>(null);
+  const viewLang: LearningLanguageTarget = pickedLang ?? studyTarget;
+  const viewLangRef = useRef<LearningLanguageTarget>(viewLang);
+  viewLangRef.current = viewLang;
+  useEffect(() => {
+    // язык приложения сменили, пока экран открыт, — прежний выбор неактуален
+    setPickedLang((prev) => {
+      if (prev !== null) console.log(formatLangFilterLog('reset', { reason: 'app_target_changed', appTarget: studyTarget, was: prev }));
+      return null;
+    });
+  }, [studyTarget]);
   const { theme: t, f, statusBarLight, liquidGlassThemeId, fontSize, uiScale } = useTheme();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -172,6 +199,19 @@ export default function FlashcardsTrainingSetupScreen() {
   const decksRef = useRef<DeckSheetOption[]>(decks);
   decksRef.current = decks;
   const [selectedDeckIds, setSelectedDeckIds] = useState<FcDeckId[]>([]);
+  const selectedDeckIdsRef = useRef<FcDeckId[]>(selectedDeckIds);
+  selectedDeckIdsRef.current = selectedDeckIds;
+  /** Отметки по языкам на время жизни экрана: вернулся к языку — выбор на месте (п.83). */
+  const selectionMemoryRef = useRef<Partial<Record<LearningLanguageTarget, FcDeckId[]>>>({});
+  // зачем (п.83): списки наборов ДРУГИХ языков — только с устройства (0 чтений Firestore), лениво после первого кадра, по одному языку
+  const otherDecks = useOtherLanguageDecks({
+    enabled: loadState === 'ready',
+    mode: mode ? presetModeFor(mode) : null,
+    lang,
+    appTarget: studyTarget,
+  });
+  const otherDecksRef = useRef(otherDecks);
+  otherDecksRef.current = otherDecks;
   const [loadRevision, setLoadRevision] = useState(0);
   const [starting, setStarting] = useState(false);
   // зачем (макет cards-section «Устно / Вспомни и напиши»): «Карточек 10 / 20 / Все» — по умолчанию 20, как в макете
@@ -286,12 +326,19 @@ export default function FlashcardsTrainingSetupScreen() {
       const fallback = eligible.find((deck) => deck.deckId === 'saved') ?? eligible[0];
       // Состав тот же — держим ПРЕЖНЮЮ ссылку, чтобы список не перерисовывался.
       setDecks((prev) => (sameDeckOptions(prev, eligible) ? prev : eligible));
-      setSelectedDeckIds((prev) => {
-        const next = restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
-        // Отметки человека, сделанные до ответа хранилища, важнее восстановленных.
-        if (prev.length > 0 && prev.every((id) => eligibleIds.has(id))) return prev;
-        return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
-      });
+      const nextSelection: FcDeckId[] = restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
+      if (viewLangRef.current !== studyTarget) {
+        // зачем (п.83): человек уже смотрит наборы другого языка — отметки языка приложения не затираем, а откладываем до возврата
+        if (!selectionMemoryRef.current[studyTarget]) selectionMemoryRef.current[studyTarget] = nextSelection;
+        console.log(formatLangFilterLog('app_list_loaded_while_filtered', { appTarget: studyTarget, viewing: viewLangRef.current, decks: eligible.length }));
+      } else {
+        setSelectedDeckIds((prev) => {
+          const next = nextSelection;
+          // Отметки человека, сделанные до ответа хранилища, важнее восстановленных.
+          if (prev.length > 0 && prev.every((id) => eligibleIds.has(id))) return prev;
+          return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
+        });
+      }
       setLoadErrorKind(null);
       setLoadState('ready');
     } catch (e) {
@@ -366,7 +413,7 @@ export default function FlashcardsTrainingSetupScreen() {
   }, [loadDecks, loadRevision]);
 
   /** Есть ли у человека хоть один набор с карточками. */
-  const hasNoDecks = loadState === 'ready' && decks.length === 0;
+  const hasNoDecks = loadState === 'ready' && decks.length === 0 && viewLang === studyTarget;
 
   /**
    * Витрина подгружается ТОЛЬКО когда наборов нет ни одного — иначе ни одного
@@ -416,10 +463,47 @@ export default function FlashcardsTrainingSetupScreen() {
     })();
   }, [router, studyTarget]);
 
-  const summary = useMemo(
-    () => summarizeDeckSelection(decks, selectedDeckIds),
-    [decks, selectedDeckIds],
+  // зачем (п.83): видимый список — наборы выбранного языка; null — чужой язык ещё собирается (скелетон только на месте списка)
+  const viewDecks: readonly DeckSheetOption[] | null = viewLang === studyTarget ? decks : (otherDecks[viewLang] ?? null);
+  const viewDeckList: DeckSheetOption[] = (viewDecks ?? EMPTY_DECKS) as DeckSheetOption[];
+  const listReady = viewLang === studyTarget ? loadState === 'ready' : viewDecks !== null;
+  const languageEntries = useMemo(
+    () => languageMenuEntries(countByLanguage({ ...otherDecks, [studyTarget]: loadState === 'ready' ? decks : undefined }), studyTarget),
+    [decks, loadState, otherDecks, studyTarget],
   );
+  const languageSwitchable = canSwitchLanguage(languageEntries, viewLang);
+  const summary = useMemo(
+    () => summarizeDeckSelection(viewDeckList, selectedDeckIds),
+    [viewDeckList, selectedDeckIds],
+  );
+
+  // зачем (п.83): Optimistic UI — список и отметки меняются в тот же тап из памяти (peek/уже собранное), без ожидания сети
+  const selectLanguage = useCallback((code: PackLanguage) => {
+    const from = viewLangRef.current;
+    if (!isFlashcardsReadyLanguage(code)) {
+      console.warn(formatLangFilterLog('select_rejected', { code, reason: 'flashcards_not_ready', from }));
+      return;
+    }
+    if (code === from) return;
+    selectionMemoryRef.current[from] = selectedDeckIdsRef.current;
+    const list: readonly DeckSheetOption[] | null = code === studyTarget ? decksRef.current : (otherDecksRef.current[code] ?? null);
+    const visibleIds = (list ?? EMPTY_DECKS).map((deck) => deck.deckId);
+    const remembered = reconcileSelectedDeckIds(selectionMemoryRef.current[code] ?? [], visibleIds);
+    const fallback = (list ?? EMPTY_DECKS).find((deck) => deck.deckId === 'saved') ?? (list ?? EMPTY_DECKS)[0];
+    const nextSelection: FcDeckId[] = remembered.length > 0 ? remembered : fallback ? [fallback.deckId] : [];
+    console.log(formatLangFilterLog('select', {
+      from,
+      to: code,
+      appTarget: studyTarget,
+      decks: list ? list.length : null,
+      source: code === studyTarget ? 'app_list' : list ? 'memory' : 'not_loaded',
+      selected: nextSelection.length,
+      restoredFromMemory: remembered.length > 0,
+    }));
+    setSelectedDeckIds(nextSelection);
+    setPickedLang(code === studyTarget ? null : code);
+    hapticTap();
+  }, [studyTarget]);
   const blitzHasEnoughCards = mode !== 'blitz' || canStartBlitz(summary.cardCount);
   /**
    * зачем (владелец 2026-09-13: «почему она серая и нельзя запустить»): старт
@@ -433,7 +517,7 @@ export default function FlashcardsTrainingSetupScreen() {
    */
   // зачем (владелец 2026-09-14): старт не ждёт чтения квоты — блокирует только доказанный exhausted.
   const quotaAllowsStart = quotaPreview.status !== 'exhausted';
-  const canStart = loadState === 'ready'
+  const canStart = listReady
     && quotaAllowsStart
     && summary.cardCount > 0
     && blitzHasEnoughCards
@@ -445,6 +529,8 @@ export default function FlashcardsTrainingSetupScreen() {
     console.log('[FC-TRAIN-ENTRY] setup:кнопка серая', JSON.stringify({
       mode,
       loadState,
+      viewLang,
+      listReady,
       quotaStatus: quotaPreview.status,
       quotaAllowsStart,
       cardCount: summary.cardCount,
@@ -501,27 +587,35 @@ export default function FlashcardsTrainingSetupScreen() {
     }
     pendingStartRef.current = false;
     setStartQueued(false);
-    const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId });
+    // зачем (п.83): тренировка идёт на языке ВЫБРАННЫХ наборов; для языка приложения параметра нет и маршрут прежний
+    const routeTarget = trainingTargetRouteParam(viewLang, studyTarget);
+    console.log(formatLangFilterLog('start', { viewLang, appTarget: studyTarget, targetParam: routeTarget ?? null, decks: selectedDeckIds.length, cards: summary.cardCount }));
+    const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId, target: routeTarget });
     if (!route) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_route', JSON.stringify({ mode, selectedDecks: selectedDeckIds.length })); return; }
     console.log('[BLITZ-AUTOOPEN] setup:push', JSON.stringify({ mode }));
     console.log('[FC-TRAIN-ENTRY] setup:push', JSON.stringify({ pathname: route.pathname, params: route.params }));
     console.log(`[FLASHCARDS-SESSION] setup:push ${JSON.stringify({ pathname: route.pathname, params: route.params, mode })}`); // guard-ok: журнал цепочки старта
     startInFlightRef.current = true;
     setStarting(true);
-    void setLastPreset(presetModeFor(mode), {
-      deckIds: selectedDeckIds,
-      size: FC_DEFAULT_SESSION_SIZE,
-    }).catch((e) => {
-      // Немой catch запрещён: пресет не сохранился — человек потеряет выбор наборов.
-      console.warn('[FC-TRAIN-SETUP] setLastPreset failed', String((e as Error)?.message ?? e));
-    });
+    if (viewLang === studyTarget) {
+      void setLastPreset(presetModeFor(mode), {
+        deckIds: selectedDeckIds,
+        size: FC_DEFAULT_SESSION_SIZE,
+      }).catch((e) => {
+        // Немой catch запрещён: пресет не сохранился — человек потеряет выбор наборов.
+        console.warn('[FC-TRAIN-SETUP] setLastPreset failed', String((e as Error)?.message ?? e));
+      });
+    } else {
+      // зачем (п.83): пресет хранится по режиму без языка — набор чужого языка нельзя подсунуть под язык приложения при следующем входе
+      console.log(formatLangFilterLog('preset_skipped', { viewLang, appTarget: studyTarget, reason: 'foreign_language_decks' }));
+    }
     try {
       router.push({ pathname: route.pathname, params: route.params } as never);
     } catch (pushError) {
       console.warn('[FC-TRAIN-ENTRY] setup:push-failed', pushError instanceof Error ? pushError.message : String(pushError));
       resetStartLock();
     }
-  }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, summary.cardCount]);
+  }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, studyTarget, summary.cardCount, viewLang]);
 
   useEffect(() => {
     if (!pendingStartRef.current) return;
@@ -606,8 +700,8 @@ export default function FlashcardsTrainingSetupScreen() {
         // «EN → RU» = показываем фразу, пишем перевод (to_source), «RU → EN» = показываем перевод, пишем фразу (to_target)
         title: triLang(lang, { ru: 'Показывать', uk: 'Показувати', en: 'Show', es: 'Mostrar', 'pt-BR': 'Mostrar', vi: 'Hiển thị', id: 'Tampilkan', tr: 'Göster', pl: 'Pokazuj' }),
         options: [
-          { id: 'to_source', label: `${langChip(studyTarget)} → ${langChip(lang)}` },
-          { id: 'to_target', label: `${langChip(lang)} → ${langChip(studyTarget)}` },
+          { id: 'to_source', label: `${langChip(viewLang)} → ${langChip(lang)}` },
+          { id: 'to_target', label: `${langChip(lang)} → ${langChip(viewLang)}` },
         ],
         value: dirId,
         onChange: setDirId,
@@ -619,6 +713,9 @@ export default function FlashcardsTrainingSetupScreen() {
   const startLabel = startQueued ? `${baseStartLabel}…` : baseStartLabel;
   const computedSetupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid' = !mode
     ? 'invalid'
+    : viewLang !== studyTarget
+      // зачем (п.83): на чужом языке состояние экрана — состояние ЕГО списка, а не загрузки языка приложения
+      ? (viewDecks === null ? 'loading' : viewDecks.length === 0 ? 'empty' : 'ready')
     : loadState === 'loading'
       ? 'loading'
       : loadState === 'error'
@@ -674,9 +771,13 @@ export default function FlashcardsTrainingSetupScreen() {
             limitLabel={limitLabel}
             limitReached={limitReached}
             status={setupStatus}
-            languageLabel={langChip(studyTarget)} // зачем (cards-027): язык, на котором идёт тренировка — read-only чип
+            languageLabel={langChip(viewLang)} // зачем (cards-027, п.83): язык выбранных наборов; с наборами нескольких языков чип — кнопка фильтра
+            languageSwitchable={languageSwitchable}
+            languageEntries={languageEntries}
+            languageCode={viewLang}
+            onLanguageChange={selectLanguage}
             invalidText={loadErrorMessage}
-            decks={decks}
+            decks={viewDeckList}
             countLabelFor={(count) => compactDeckCountLabel(lang, count)}
             selectedIds={selectedDeckIds}
             onToggle={(deckId) => setSelectedDeckIds((current) => toggleDeckSelection(current, deckId))}

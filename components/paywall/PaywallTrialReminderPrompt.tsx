@@ -17,6 +17,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useV2GlassStyle, V2GlassSheen } from '../v2/V2Glass';
 import type { GlassTokens } from './PaywallPlus';
+import { accentFillGradient } from '../../constants/accentFill';
 import { COPY, pick } from './PaywallPlusCopy';
 
 type Props = Readonly<{
@@ -65,7 +66,8 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         // зачем (paywall-gaps-states `.wcta`): кнопка с градиентом и свечением, как главная кнопка покупки
         style={[S.cta, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.accent}4D` }] }]}
       >
-        <LinearGradient pointerEvents="none" colors={[g.accentBright, g.accent]} style={StyleSheet.absoluteFill} />
+        {/* зачем (Дизайн 12.10): см. PaywallPlus — заливка под accentInk через accentFillGradient */}
+        <LinearGradient pointerEvents="none" colors={[...accentFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {asking
           ? <ActivityIndicator color={g.ctaInk} />
           : <Text style={[S.ctaText, { color: g.accentInk }]}>{pick(lang, COPY.afterAllow)}</Text>}

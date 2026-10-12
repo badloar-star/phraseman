@@ -16,6 +16,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { accentFillGradient } from '../../constants/accentFill';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
@@ -355,7 +356,8 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
         scaleTo={0.97}
         style={[S.cta, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.accent}4D` }] }]}
       >
-        <LinearGradient pointerEvents="none" colors={[g.accentBright, g.accent]} style={StyleSheet.absoluteFill} />
+        {/* зачем (Дизайн 12.10): заливка под accentInk — только с гарантией контраста ≥ 4,5 (accentFillGradient), accentBright в светлых градиентных темах слишком тёмный */}
+        <LinearGradient pointerEvents="none" colors={[...accentFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {purchasing
           ? <ActivityIndicator color={g.accentInk} />
           : <Text style={[S.ctaText, { color: g.accentInk }]}>{label}</Text>}

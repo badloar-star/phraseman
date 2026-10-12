@@ -57,3 +57,12 @@ describe('R1_DIFF_ONE_FIX, группа 4', () => {
     expect(header).not.toContain('<FilterChips');
   });
 });
+
+describe('R1_DIFF_ONE_FIX, корзина a2', () => {
+  it('cards-section-023 / cards-v2-025 / cards-v2-026: «назад» в каталоге — круглая плашка (PackRoundButton), а не голая стрелка', () => {
+    const src = read('app/flashcards_packs.tsx');
+    expect(src).toContain("import { PackChips, PackRoundButton } from '../components/packs/PackScreenKit';");
+    expect(src).toMatch(/<PackRoundButton\s+g=\{g\}\s+icon="arrow-back"\s+testID="flashcards-header-back"/);
+    expect(src).not.toContain('TouchableOpacity');
+  });
+});

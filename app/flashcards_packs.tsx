@@ -26,7 +26,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { useScaledTextStyles } from '../hooks/useLineScale';
@@ -40,7 +39,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { actionBoxShadow } from '../components/v2/ShadowSurface';
 import { KitSearchField } from '../components/cards-grid/CardsKit';
-import { PackChips } from '../components/packs/PackScreenKit';
+import { PackChips, PackRoundButton } from '../components/packs/PackScreenKit';
 import { packDeckLevel } from '../components/packs/packDeckModel';
 import { hapticTap } from '../hooks/use-haptics';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -450,16 +449,14 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         {embedded ? null : (
         <View style={[styles.header, { borderBottomColor: t.border }]}>
           {embedded ? null : (
-          <TouchableOpacity
+          // зачем (cards-v2 `.rb`, cards-section-022/023, cards-v2-025/026): «назад» — на круглой плашке 42, как у соседних экранов набора; голая стрелка расходилась с макетом
+          <PackRoundButton
+            g={g}
+            icon="arrow-back"
             testID="flashcards-header-back"
-            accessibilityLabel="qa-flashcards-header-back"
-            accessible
+            label="qa-flashcards-header-back"
             onPress={leavePacks}
-            style={styles.headerBack}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : g.text} />
-          </TouchableOpacity>
+          />
           )}
 
           {/* зачем (cards-v2 catalog()): заголовок 34/40 стоит в списке под панелью, как на макете; шапка — «назад» и язык наборов. */}

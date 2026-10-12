@@ -68,6 +68,13 @@ firebase deploy --only functions:progressSubmitEvent,functions:coinReconcileV1 -
 
 - **Награда за жалобу** — монеты v2: 1.6.x её забрать не сможет, 2.0 — сможет.
 - **Опрос** — белые списки маршрутов 2.0.
+- **Опрос — без русской подмены (e4f45f8e3, Ядро 12.10):** `getActiveShardSurvey` не предлагает опрос, у которого нет
+  текста на языке человека (лог `[SHARD-SURVEY] reason=no_locale`); в языки опроса добавлен `en`. Уезжает той же командой
+  выше. **Сразу после неё** — переводы uk/en: `node scripts/apply_shard_survey_translations.mjs` (план), затем
+  `--write --confirm APPLY_SURVEY_TRANSLATIONS_UK_EN` (только владелец — запись в прод). Без этого шага на uk/en опросы
+  исчезнут; на es/pt-BR/vi/id/tr/pl — исчезнут до отдельного перевода. Подробно:
+  [SHARD_SURVEY_TRANSLATIONS_DRAFT.md](SHARD_SURVEY_TRANSLATIONS_DRAFT.md). Проверка: `firebase functions:log --only
+  getActiveShardSurvey -n 20` — строки `reason=no_locale` только у языков без перевода.
 - **`progressSubmitEvent`** — серия от 2.0 (`streak_sync`). Старые события 1.6.x проверяются по-прежнему.
 - **`coinReconcileV1`** — разовая сверка монет. Выложить **до** чистки D90 (`level_spin_results`).
 - **Проверка:** `firebase functions:log --only <имя> -n 20 --project phraseman-ea0b3` по одной функции из каждой

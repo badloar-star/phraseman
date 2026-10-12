@@ -16681,10 +16681,13 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо шторки «Покупок не нашлось · Проверь, тот ли это аккаунт магазина… · Написать в поддержку · Закрыть» снизу плашка ошибки «ЧТО-ТО ПОШЛО НЕ ТАК · Сейчас не удалось проверить покупки. Попробуй ещё раз.» с кнопкой «Повторить» — приложение показало сбой проверки, а не «покупок нет» (в dev нет магазина). Либо подмена dev_state даёт сбой, либо путь «не найдено» недостижим без магазина — переснять через ссылку, которая возвращает пустой список покупок.",
+        "[данные] В карточке нет строки «Следующее списание · 14 января 2027»; пункты списка выше (≈85–100 против 78–90 px), значки на светлых плитках."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:52.586Z",
       "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html",
       "precheck": {
         "date": "2026-10-11",
@@ -16695,7 +16698,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:17, manage-subscription-states №7 «Восстановление — покупок не найдено»): экран «Подписка Plus» совпал по составу (заголовок, карточка «Plus активирован · Годовая подписка», раздел «ЧТО ВКЛЮЧЕНО» с шестью пунктами), но шторки «Покупок не нашлось» нет."
     },
     {
       "id": "profile-025",
@@ -24349,24 +24353,29 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-009.png",
+      "evidence_at": "2026-10-12T03:05:20.728Z",
+      "evidence_sha256": "3cbed193ee86d142f1e03b0d8091474c08e4903c52e03653a686bd628194c461",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[тема] Кнопка «Активировать»: в приложении светлая, в образце мятная (акцент Plus) — тот же вопрос цвета, что на overlays-campaigns-026 («Применить код»); решает Темы / владелец.",
+        "[состояние] Поле в приложении в фокусе — тонкая белая рамка по контуру и мигающий курсор, открыта клавиатура ОС с подсказками «TESTCODE / TEST CODE»; в образце поле без рамки и без клавиатуры. Введён «TESTCODE» вместо «ABC123».",
+        "[вёрстка, мелко] Текст и поля в приложении крупнее (заголовок «Есть промокод?» ≈26 против 24 px), карточка шире (≈487 против 502 px при том же отступе)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:55.763Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=not_found&overlays=off&next=/promo_code_entry"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:05, promo-code-states №6 «Не найден»; образец нарисован с приложения): состав и раскладка совпали — «Промокод» с «✕» справа, карточка «Есть промокод?», пояснение «Введи промокод, чтобы получить Plus-подписку.», поле, кнопка «Активировать» с галочкой, плашка ошибки «Такой код не найден или больше не действует.» с крестиком. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "overlays-campaigns-010",
@@ -28018,11 +28027,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[исправлено в коде, переснять] Дизайн 12.10: подсказка «Зажми карточку…» на фикстурах помечена увиденной — переснять"
+        "[состояние] Открыта клавиатура ОС, плашка «Тренировать» скрыта; запрос «lay» (Layover, Delay, Lay) против «ga» — данные. Переснять после скрытия клавиатуры.",
+        "[dev] «Нашёл ошибку?» — кнопка только в dev (решение 6); отличием не считать."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:52.586Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28040,7 +28050,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:29, утверждённый cards-v2 №9 «Сохранённые — поиск»): состав совпал (поле поиска, «✕», ползунок, плитки-результаты с подчёркнутым фрагментом, кнопки озвучки). «Нашёл ошибку?» под результатами — только dev (решение владельца 6)."
     },
     {
       "id": "cards-section-007",
@@ -28600,10 +28611,13 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] На обороте у приложения только перевод «выход на посадку», в образце «пересадка» и два примера под ним.",
+        "[вёрстка] Значок «В набор» — стопка слоёв в приложении, баночка в образце (общий вопрос владельцу); значки «Озвучить» и подписи крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:52.586Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28621,7 +28635,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:31, утверждённый cards-v2 №21 «Карточка — оборот»): шторка совпала по составу — «RU», перевод по центру, значок переворота, действия «Озвучить / В набор / Удалить». Match не выставлен: различия те же, что на cards-v2-021."
     },
     {
       "id": "cards-section-018",
@@ -28705,7 +28720,7 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:09:17.284Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28723,7 +28738,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:31, мой образец cards-v2 №74 «Новый набор — пусто» нарисован с приложения; картинка склейки собрана с №22): по прямому сравнению с приложением пустой новый набор совпал — «✕» и «⋮», «Новый набор», поле «Название» с подсказкой, «Кто видит» (Только я), «Уровень» без выбора, «Карточки 0», строка «+ Карточка», светлая «+ Первая карточка». Match не выставлен: гейт требует anim_evidence — у экрана создания набора в реестре стоит анимация. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-section-020",
@@ -39113,21 +39129,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-024.png",
+      "evidence_at": "2026-10-12T03:06:09.534Z",
+      "evidence_sha256": "60bdf0832275bd6cd9ee7e952360792721a1667c30065f0ddc501cf209a3790b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — подтверждено кадрами settings-gap-024/025/026/031/032/033] Шторка «Изменить имя» не видна при открытой клавиатуре (components/account/NicknameEditModal.tsx на app/account_details.tsx): нет поля, строки «Проверяем имя…» и кнопок «Отмена / Сохранить». Правка: Дизайн (поведение шторки и клавиатуры).",
+        "[состояние не то] Под затемнением «Аккаунт» без привязки, в образце «Имя · Алекс», «Способ входа · Google»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:55.763Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=checking&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:06, settings-gaps-states №24 «Имя — проверяем»; образец нарисован с приложения): шторки «Изменить имя» со строкой «Проверяем имя…» на кадре нет — затемнённый «Аккаунт» и открытая клавиатура с подсказкой «Alexey» (седьмое подтверждение того же дефекта: settings-gap-024, 025, 026, 031, 032, 033). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-025",
@@ -39557,21 +39577,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-035.png",
+      "evidence_at": "2026-10-12T03:04:28.411Z",
+      "evidence_sha256": "af6c907e38a9a320212e1670f537f5951ac70c6c04fff39653dcd087de822e4f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] В приложении открыта клавиатура ОС, введено «short» (в образце «Нет звука» без клавиатуры).",
+        "[дефект кода — кандидат] В карточке «Техническая диагностика» нет ссылки «Посмотреть» (в образце под пояснением); в приложении карточка заканчивается пояснением — как на settings-gap-022 (там нет «Скрыть» и списка). Либо ссылка скрыта при пустом журнале диагностики, либо её нет вовсе — проверить в коде экрана поддержки (app/support_report) и снять с наполненным журналом.",
+        "[вёрстка, мелко] Поле описания выше (155 против 150 px), подписи крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:52.586Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/support_report"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:04, settings-gaps-states №35 «Поддержка — «Отправить» неактивна (меньше 10 символов)»; образец нарисован с приложения): совпало по главному — поле с коротким текстом, карточка «Техническая диагностика», серая неактивная «Отправить». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-036",
@@ -39591,21 +39616,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-036.png",
+      "evidence_at": "2026-10-12T03:04:55.370Z",
+      "evidence_sha256": "3c7d595fea7bf4496638ba5596e1f49cc626de58528a6c828f0818422618139d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — кандидат, три кадра] В карточке «Техническая диагностика» нет ссылки «Посмотреть» (в образце под пояснением): так же на settings-gap-022 (нет «Скрыть» и списка) и settings-gap-035. Вероятно ссылка не рисуется при пустом журнале диагностики — проверить в коде экрана поддержки; снять с наполненным журналом.",
+        "[данные] Текст «Test message for the layout check» вместо «В «Карточках» нажимаю «Послушать», но звука нет.»; поле и подписи в приложении выше/крупнее (≈155 против 150 px)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:08:55.763Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&support=fail&overlays=off&next=/support_report"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:04, settings-gaps-states №36 «Поддержка — не отправилось: «Повторить»»; образец нарисован с приложения): состав совпал — «Поддержка», поле описания, карточка «Техническая диагностика», красная плашка «Не отправилось. Попробуй ещё раз» со значком, светлая «Повторить». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-v2-053",

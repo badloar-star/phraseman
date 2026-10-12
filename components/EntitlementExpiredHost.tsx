@@ -5,7 +5,7 @@
 // Слушает premium_deactivated / vip_deactivated. Показывает карточку ТОЛЬКО если
 // подписка реально была активна (флаг ставится на *_activated): события деактивации
 // эмитятся снапшотами PremiumContext и у юзеров, никогда не имевших подписки.
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -31,6 +31,7 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
+import { getDevOverlaysSnapshot, subscribeDevOverlays } from '../app/dev_overlays_off';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -144,7 +145,10 @@ function EntitlementExpiredHost() {
   pathnameRef.current = pathname;
   const [kind, setKind] = useState<Kind | null>(null);
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
-  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null);
+  // зачем (координатор 12.10, settings-gap-008: holder=entitlementExpired закрыл экран и шаг робота не нашёл строку): dev_state?overlays=off гасит и это окно — только dev, в памяти
+  const devOverlaysSnapshot = useSyncExternalStore(subscribeDevOverlays, getDevOverlaysSnapshot, getDevOverlaysSnapshot);
+  const devOverlaysOff = devOverlaysSnapshot.startsWith('1');
+  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null && !devOverlaysOff);
 
   const maybeShow = useCallback(async (k: Kind, expectedAccount: AccountGenerationToken) => {
     if (!entitlementAccountIsCurrent(expectedAccount)) return;
@@ -306,7 +310,7 @@ function EntitlementExpiredHost() {
     setKind(null);
   }, [kind]);
 
-  if (!kind || !overlayVisible) return null;
+  if (!kind || !overlayVisible || devOverlaysOff) return null;
 
   const tx = TEXTS[lang] ?? TEXTS.ru;
 

@@ -199,7 +199,7 @@ counts = collections.Counter()
 
 # зачем (координатор 12.10, cards-009/010): окна рассылок/объявлений/личных сообщений портили кадры («Замочки ушли в отпуск!» поверх «Сохранённых»). Во все ссылки dev_state добавляем overlays=off
 # (app/dev_overlays_off.ts: только память, в стор-сборке вырезано), кроме кадров самих окон. Слот сообщений Настроек (settings-gap-007/008/009/029) — не окно поверх экрана, но оставляем как есть: это и есть предмет кадра.
-OVERLAYS_KEEP = {'settings-gap-007', 'settings-gap-008', 'settings-gap-009', 'settings-gap-029'}
+OVERLAYS_KEEP = set()  # зачем (12.10): слот сообщений Настроек — не окно, исключение не нужно; окно «Plus закончился» закрывало экран кадров gap-008 (журнал: holder=entitlementExpired), overlays=off теперь гасит и его
 
 def add_overlays_off(rid, link):
     if not link or 'dev_state?' not in link or 'overlays=' in link or rid in OVERLAYS_KEEP:

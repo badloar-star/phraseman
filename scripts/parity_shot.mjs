@@ -5,7 +5,7 @@
  * зачем (CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»): сверка по коду не считается — нужен кадр макета и кадр эмулятора рядом, который смотрит координатор.
  *
  * Использование:
- *   node scripts/parity_shot.mjs shot <id> [--device=emulator-5554] [--phone=N] [--wait-ms=900] [--mockup-only] [--no-registry] [--fit=height|width] [--device-dp=411]
+ *   node scripts/parity_shot.mjs shot <id> [--device=emulator-5554] [--phone=N] [--wait-ms=900] [--mockup-only] [--no-registry] [--fit=height|width] [--device-dp=411]  (или PARITY_FIT=width / PARITY_DEVICE_DP=411 в окружении)
  *   node scripts/parity_shot.mjs anim <id> [--device=emulator-5554] [--seconds=8] [--phone=N] [--no-registry]
  *   node scripts/parity_shot.mjs list [--pending] [--page=dialogs]
  * <id> — из docs/phraseman-2.0/registries/visual_parity.json (например dialogs-032).
@@ -170,8 +170,9 @@ async function commandShot(id) {
       if (devicePng.length < 1000 || devicePng.subarray(1, 4).toString('ascii') !== 'PNG') throw new Error('screencap_not_png');
       console.log(`${LOG} device=${device} frame_bytes=${devicePng.length}`);
     }
-    const fit = arg('--fit', 'height');
-    const heights = layoutHeights({ fit, mockup: pngSize(mockupPng), device: devicePng ? pngSize(devicePng) : null, deviceDp: Number(arg('--device-dp', String(DEVICE_DP))) });
+    // зачем: пакетный робот (parity_batch_shoot.mjs) зовёт этот скрипт без флага; Сверка включает нормировку по ширине переменной окружения PARITY_FIT=width после пачки, не меняя робота
+    const fit = arg('--fit', process.env.PARITY_FIT || 'height');
+    const heights = layoutHeights({ fit, mockup: pngSize(mockupPng), device: devicePng ? pngSize(devicePng) : null, deviceDp: Number(arg('--device-dp', process.env.PARITY_DEVICE_DP || String(DEVICE_DP))) });
     console.log(`${LOG} fit=${fit} mockup_h=${heights.mockupH} device_h=${heights.deviceH}`);
     const output = await composeSideBySide(page, mockupPng, devicePng, {
       left: `макет · ${path.basename(row.mockup.file)} · телефон ${phone}/${count} · ${row.mockup.label ?? ''}`,

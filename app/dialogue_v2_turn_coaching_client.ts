@@ -27,6 +27,10 @@ const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 't
 const SCENARIO_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:_[a-z0-9]+)*$/;
 /** Подсказка подставного хода (dev_dialog_send): текст для окна «Подсказка» на кадре dialogs-017. */
 export const DEV_DIALOG_HINT_TEXT = 'Try greeting first, then ask one simple question. (dev)';
+/** Перевод и «Почему так» подставной реплики (dev_dialog_send): кадры dialogs-015/019/020. */
+export const DEV_DIALOG_REPLY_TRANSLATION = 'Понял! Расскажи чуть подробнее. (dev)';
+export const DEV_DIALOG_REPLY_TRANSLATION_END = 'Было приятно поговорить — до скорого! (dev)';
+export const DEV_DIALOG_REPLY_EXPLANATION = '«Tell me a bit more» — мягкая просьба продолжить: собеседник показывает, что слушает. (dev)';
 const OBJECTIVE_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:[_:-][a-z0-9]+)*$/;
 const CONTROL_RE = /[\u0000-\u001f\u007f]/u;
 const MOODS = new Set(['happy', 'smile', 'neutral', 'sad', 'angry']);
@@ -288,8 +292,12 @@ export async function sendDialogueV2CoachedTextTurn(
       // кадр «Настроение собеседника упало» был недостижим. В dev при заданном настроении отдаём минимальный разбор, где есть только оно.
       // зачем (координатор 12.10, dialogs-017 «Подсказка — окно»): кнопка подсказки в карточке цели рисуется только когда после хода пришёл `hint`, а подставной ход его не нёс —
       // кадр был недостижим. Теперь подставной ход всегда отдаёт разбор с подсказкой (только dev: в стор-сборке getDevDialogSend() = null); остальные поля разбора прежние.
+      // зачем (chain21 Сверки 13.10, dialogs-015/019/020 step_target_not_found): кнопки «Перевод» и «Почему так» у реплики
+      // рисуются только при переводе/объяснении в разборе, а подставной ход их не нёс — кадры были недостижимы. Теперь по одному
+      // на единственную реплику (только dev: в стор-сборке getDevDialogSend() = null).
       coaching: {
-        replyTranslations: null, replyExplanations: null,
+        replyTranslations: [devEnd ? DEV_DIALOG_REPLY_TRANSLATION_END : DEV_DIALOG_REPLY_TRANSLATION],
+        replyExplanations: [DEV_DIALOG_REPLY_EXPLANATION],
         betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: DEV_DIALOG_HINT_TEXT,
         mood: devMood, activeObjectiveId: null, dialogueEnded: devEnd,
       },

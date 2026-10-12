@@ -25,7 +25,13 @@ import {
   resolveDevDialogSend,
 } from '../app/dev_dialog_send';
 import { getDevDialogSend, resetDevDialogState, setDevDialogState } from '../app/dev_dialog_state';
-import { DEV_DIALOG_HINT_TEXT, DialogueV2TurnFailureError, sendDialogueV2CoachedTextTurn } from '../app/dialogue_v2_turn_coaching_client';
+import {
+  DEV_DIALOG_HINT_TEXT,
+  DEV_DIALOG_REPLY_EXPLANATION,
+  DEV_DIALOG_REPLY_TRANSLATION,
+  DialogueV2TurnFailureError,
+  sendDialogueV2CoachedTextTurn,
+} from '../app/dialogue_v2_turn_coaching_client';
 
 beforeAll(() => {
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
@@ -95,6 +101,15 @@ describe('клиент хода с флагом dev_dialog_send', () => {
       // зачем (координатор 12.10, dialogs-017): подставной ход всегда отдаёт разбор с подсказкой — иначе кнопка «Подсказка» в карточке цели не рисуется и кадр недостижим
       expect(res).toMatchObject({ kind: 'reply', replayed: false, coaching: { hint: DEV_DIALOG_HINT_TEXT, mood: null, dialogueEnded: false, betterPhrasing: null }, quota: { remaining: 6, resetAtMs: 999, quotaVersion: 1 } });
       expect(mockCallable).not.toHaveBeenCalled();
+      // зачем (chain21 13.10, dialogs-015/019/020): кнопки «Перевод» и «Почему так» рисуются только при переводе/объяснении реплики
+      expect(res.kind === 'reply' ? res.coaching : null).toMatchObject({
+        replyTranslations: [DEV_DIALOG_REPLY_TRANSLATION],
+        replyExplanations: [DEV_DIALOG_REPLY_EXPLANATION],
+      });
+      if (res.kind === 'reply') {
+        expect(res.coaching?.replyTranslations).toHaveLength(res.replies.length);
+        expect(res.coaching?.replyExplanations).toHaveLength(res.replies.length);
+      }
     } finally {
       jest.useRealTimers();
     }

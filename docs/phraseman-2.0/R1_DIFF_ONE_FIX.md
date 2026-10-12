@@ -7,8 +7,8 @@
 | Корзина | Строк | Что это |
 |---|---|---|
 | `a_code_defect` | 29 | есть кодовый дефект (метка «дефект кода» / решение координатора / разбор исполнителя) — **15 уникальных правок** |
-| `a2_layout_candidate` | 53 | только «вёрстка, мелко» (±px) к утверждённому образцу, причина не доказана (прокрутка, клавиатура, данные) — **не гонять в код до пересъёмки свежим кодом** |
-| `b_reshoot` | 111 | только пересъёмка (кадр старый / состояние / шаг робота / уже исправлено) |
+| `a2_layout_candidate` | 52 | только «вёрстка, мелко» (±px) к утверждённому образцу, причина не доказана (прокрутка, клавиатура, данные) — **не гонять в код до пересъёмки свежим кодом** |
+| `b_reshoot` | 112 | только пересъёмка (кадр старый / состояние / шаг робота / уже исправлено) |
 | `c_owner_decides` | 36 | решает владелец (утренний лист): значок «В набор», шапка Шпиля, цвет кнопки, срок промокода… |
 | `d_mockup_stale` | 29 | образец устарел или неточен — правят Макеты (страницы под замком — после ответа владельца) |
 
@@ -22,7 +22,7 @@
 | Авторизация | 1 | 4 |
 | **Итого** | **15** | **29** |
 
-Кандидатов «мелкая вёрстка» (Дизайн): **53** строк — отдельно, см. ниже.
+Кандидатов «мелкая вёрстка» (Дизайн): **52** строк — отдельно, см. ниже.
 
 ### Дизайн — 12
 
@@ -61,15 +61,15 @@
 
 ## Кандидаты: мелкая вёрстка (Дизайн) — после пересъёмки
 
-`cards-007 cards-047 cards-078 cards-gap-007 cards-gap-009 cards-gap-010 cards-gap-011 cards-gap-012 cards-gap-016 cards-gap-035 cards-section-008 cards-section-012 cards-section-023 cards-v2-006 cards-v2-010 cards-v2-012 cards-v2-020 cards-v2-025 cards-v2-026 cards-v2-029 cards-v2-045 cards-v2-046 dialogs-011 dialogs-gap-003 dialogs-gap-010 dialogs-gap-012 dialogs-gap-013 overlays-campaigns-004 overlays-campaigns-009 overlays-campaigns-010 overlays-campaigns-011 overlays-campaigns-012 overlays-campaigns-014 overlays-campaigns-015 overlays-campaigns-016 paywall-gap-012 profile-016 settings-gap-014 settings-gap-015 settings-gap-016 settings-gap-018 settings-gap-022 settings-gap-035 spire-002 spire-005 spire-009 spire-012 spire-015 spire-gap-007 spire-gap-009 spire-gap-010 spire-gap-012 spire-gap-013`
+`cards-007 cards-047 cards-078 cards-gap-007 cards-gap-009 cards-gap-010 cards-gap-011 cards-gap-012 cards-gap-016 cards-gap-035 cards-section-008 cards-section-012 cards-section-023 cards-v2-006 cards-v2-010 cards-v2-012 cards-v2-020 cards-v2-025 cards-v2-026 cards-v2-045 cards-v2-046 dialogs-011 dialogs-gap-003 dialogs-gap-010 dialogs-gap-012 dialogs-gap-013 overlays-campaigns-004 overlays-campaigns-009 overlays-campaigns-010 overlays-campaigns-011 overlays-campaigns-012 overlays-campaigns-014 overlays-campaigns-015 overlays-campaigns-016 paywall-gap-012 profile-016 settings-gap-014 settings-gap-015 settings-gap-016 settings-gap-018 settings-gap-022 settings-gap-035 spire-002 spire-005 spire-009 spire-012 spire-015 spire-gap-007 spire-gap-009 spire-gap-010 spire-gap-012 spire-gap-013`
 
 ## Список для ROBOT10 (одна строка)
 
 ```
-cards-009 cards-010 cards-021 cards-025 cards-032 cards-039 cards-062 cards-075 cards-081 cards-gap-003 cards-gap-021 cards-gap-026 cards-section-006 cards-section-007 cards-section-009 cards-section-015 cards-section-019 cards-section-024 cards-section-028 cards-section-032 cards-section-033 cards-section-034 cards-section-035 cards-section-036 cards-v2-001 cards-v2-005 cards-v2-008 cards-v2-009 cards-v2-011 cards-v2-013 cards-v2-022 cards-v2-023 cards-v2-024 cards-v2-027 cards-v2-028 cards-v2-030 cards-v2-031 cards-v2-033 cards-v2-048 community-003 community-004 community-005 dialogs-007 dialogs-015 dialogs-016 dialogs-017 dialogs-018 dialogs-019 dialogs-020 dialogs-022 dialogs-023 dialogs-031 dialogs-032 dialogs-034 dialogs-036 dialogs-gap-009 dialogs-gap-015 dialogs-gap-017 energy-modes-001 energy-modes-017 onboarding-019 onboarding-020 onboarding-021 overlays-campaigns-005 overlays-runtime-018 packs-simple-003 packs-simple-004 paywall-gap-001 paywall-gap-002 paywall-gap-003 paywall-gap-004 paywall-gap-005 paywall-gap-007 paywall-gap-008 paywall-gap-009 paywall-gap-010 paywall-gap-011 paywalls-022 paywalls-023 paywalls-024 profile-001 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-020 profile-021 profile-022 profile-024 profile-025 profile-028 profile-029 profile-030 settings-gap-002 settings-gap-003 settings-gap-004 settings-gap-005 settings-gap-008 settings-gap-009 settings-gap-011 settings-gap-019 settings-gap-030 settings-gap-032 settings-gap-033 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 spire-gap-003 spire-gap-006 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-018 spire-gap-020
+cards-009 cards-010 cards-021 cards-025 cards-032 cards-039 cards-062 cards-075 cards-081 cards-gap-003 cards-gap-021 cards-gap-026 cards-section-006 cards-section-007 cards-section-009 cards-section-015 cards-section-019 cards-section-024 cards-section-028 cards-section-032 cards-section-033 cards-section-034 cards-section-035 cards-section-036 cards-v2-001 cards-v2-005 cards-v2-008 cards-v2-009 cards-v2-011 cards-v2-013 cards-v2-022 cards-v2-023 cards-v2-024 cards-v2-027 cards-v2-028 cards-v2-029 cards-v2-030 cards-v2-031 cards-v2-033 cards-v2-048 community-003 community-004 community-005 dialogs-007 dialogs-015 dialogs-016 dialogs-017 dialogs-018 dialogs-019 dialogs-020 dialogs-022 dialogs-023 dialogs-031 dialogs-032 dialogs-034 dialogs-036 dialogs-gap-009 dialogs-gap-015 dialogs-gap-017 energy-modes-001 energy-modes-017 onboarding-019 onboarding-020 onboarding-021 overlays-campaigns-005 overlays-runtime-018 packs-simple-003 packs-simple-004 paywall-gap-001 paywall-gap-002 paywall-gap-003 paywall-gap-004 paywall-gap-005 paywall-gap-007 paywall-gap-008 paywall-gap-009 paywall-gap-010 paywall-gap-011 paywalls-022 paywalls-023 paywalls-024 profile-001 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-020 profile-021 profile-022 profile-024 profile-025 profile-028 profile-029 profile-030 settings-gap-002 settings-gap-003 settings-gap-004 settings-gap-005 settings-gap-008 settings-gap-009 settings-gap-011 settings-gap-019 settings-gap-030 settings-gap-032 settings-gap-033 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 spire-gap-003 spire-gap-006 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-018 spire-gap-020
 ```
 
-Всего 129 (diff с корзиной `b_reshoot` + pending с coverage=ready).
+Всего 130 (diff с корзиной `b_reshoot` + pending с coverage=ready).
 
 ## Решает владелец
 

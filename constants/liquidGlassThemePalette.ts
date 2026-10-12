@@ -191,9 +191,15 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     : selectedOver, 4.55);
   // зачем: иерархия «приглушённый не контрастнее вторичного» (tests/theme_muted_text_aa) — вторичный текст проходит ту же проверку на `selected`, иначе после подъёма mutedText он оказался бы ярче secondary
   const secondary = legibleOn(built.secondary, built.text, selectedOver, 4.55);
+  // зачем (проверка тинта плашки «Свободный разговор», Дизайн 366ae9846): значок accentText лежит на accentSoft, а тот — на карточке, подкрашенной градиентом accent·12 %;
+  // в тёмных тонированных темах на «Максимум» это 4,44–4,49. Доводим accentText до ≥ 4,55 на этих слоях (оттенок сохраняется, меняется только там, где не хватало).
+  const accentOnTint = [built.opaqueCard, built.opaqueSheet, built.bg].map((under) => flattenOver(built.accentSoft, under));
+  const plateTint = flattenOver(`${built.accent.slice(0, 7)}1F`, built.opaqueCard);
+  const accentText = legibleOn(built.accentText, built.text, [...accentOnTint, flattenOver(built.accentSoft, plateTint)], 4.55);
   const tokens: GlassTokens = Object.freeze({
     ...built,
     secondary,
+    accentText,
     mutedText,
     ...surfaceRoles,
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.

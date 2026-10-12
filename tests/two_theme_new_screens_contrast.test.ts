@@ -51,6 +51,10 @@ describe('новые экраны: текст читается в обеих т�
             // Диалоги (Сверка chain7 12.10): плашка «Свободный разговор» — значок accentText на accentSoft над карточкой, заголовок text на карточке, метка PLUS accentInk на accent; «Начать диалог» — accentInk на accent
             ['dialogs plate icon', worst(g.accentText, [over(g.accentSoft, g.opaqueCard), over(g.accentSoft, g.bg)])],
             ['dialogs plate title', colorContrast(g.text, g.opaqueCard)],
+            // тинта плашки (Дизайн 366ae9846): градиент accent·0x1F поверх карточки — заголовок, значок и подпись читаются и на тонированной поверхности
+            ['dialogs plate title/tint', colorContrast(g.text, over(`${g.accent.slice(0, 7)}1F`, g.opaqueCard))],
+            ['dialogs plate muted/tint', colorContrast(g.secondary, over(`${g.accent.slice(0, 7)}1F`, g.opaqueCard))],
+            ['dialogs plate icon/tint', colorContrast(g.accentText, over(g.accentSoft, over(`${g.accent.slice(0, 7)}1F`, g.opaqueCard)))],
             ['dialogs plus chip', colorContrast(g.accentInk, g.accent)],
             ['dialogs start button', colorContrast(g.accentInk, g.accent)],
             ['video-empty icon/tile', colorContrast(g.text, g.opaqueControl)],

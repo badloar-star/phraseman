@@ -195,6 +195,12 @@ export type DevStateRequest = Readonly<{
   upsell?: DevLessonUpsell | 'off';
   /** Карточка ИИ-разбора ошибки сразу «лимит дня» (paywalls-008). */
   aiExplain?: 'limit' | 'off';
+  /** learn-007…013 (Ядро 12.10): первые N уроков пройдены на 5 звёзд — только память, хранилище не трогается. */
+  lessonsDone?: number | 'off';
+  /** learn-007/008 (Ядро 12.10): результат экзамена A1 в памяти — «почти» (61%) или «сдан». */
+  examA1?: 'almost' | 'passed' | 'off';
+  /** dialogs-020 (Ядро 12.10): бесплатные «Почему так» на сегодня исчерпаны — только память. */
+  dialogWhy?: 'spent' | 'off';
   /** «Не удалось» при очистке кеша (settings-gap-009). */
   cache?: 'failed' | 'ok';
   /** Друзья: удержание «отправки заявки» (add_request) или off. */
@@ -423,6 +429,16 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.started = list('started', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.upsell = pick('upsell', [...DEV_LESSON_UPSELLS, 'off'] as const);
   request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
+  // зачем (координатор 12.10, разбор Авторизации d5888041c): состояния списка уроков и «Почему так» без настоящего прогресса и лимита
+  const lessonsDoneRaw = one(params.lessonsDone);
+  if (lessonsDoneRaw !== undefined) {
+    const lessonsDoneN = Number(lessonsDoneRaw);
+    if (lessonsDoneRaw === 'off') request.lessonsDone = 'off';
+    else if (Number.isInteger(lessonsDoneN) && lessonsDoneN >= 0 && lessonsDoneN <= 32) request.lessonsDone = lessonsDoneN;
+    else rejected.lessonsDone = `ожидалось 0..32 или off, пришло ${lessonsDoneRaw}`;
+  }
+  request.examA1 = pick('examA1', ['almost', 'passed', 'off'] as const);
+  request.dialogWhy = pick('dev_dialog_why', ['spent', 'off'] as const);
   request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
   request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
   request.notifPerm = pick('notifperm', ['denied', 'off'] as const);
@@ -952,6 +968,21 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.upsell !== undefined) {
     await step('upsell', request.upsell, async () => setDevLessonUpsell(request.upsell === 'off' ? null : request.upsell!));
+  }
+  if (request.lessonsDone !== undefined || request.examA1 !== undefined) {
+    // зачем (learn-007…013): прогресс уроков и экзамен A1 подменяются в памяти поверх снимка списка (lessons_tab_state), диск не трогается
+    await step('lessonsProgress', `${String(request.lessonsDone ?? '-')}/${request.examA1 ?? '-'}`, async () => {
+      const { setDevLessonsProgress } = await import('./dev_paywall_state');
+      const off = request.lessonsDone === 'off' && (request.examA1 === undefined || request.examA1 === 'off');
+      return setDevLessonsProgress(off ? null : {
+        done: typeof request.lessonsDone === 'number' ? request.lessonsDone : 0,
+        examA1: request.examA1 === 'almost' || request.examA1 === 'passed' ? request.examA1 : null,
+      });
+    });
+  }
+  if (request.dialogWhy !== undefined) {
+    // зачем (dialogs-020): «Почему так» — разборы на сегодня закончились, без трёх настоящих раскрытий
+    await step('dialogWhy', request.dialogWhy, async () => setDevDialogState({ whySpent: request.dialogWhy === 'spent' }));
   }
   if (request.aiExplain !== undefined) {
     await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit'));

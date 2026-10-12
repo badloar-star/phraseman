@@ -19,6 +19,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { parsePurchasedLessonList, purchasedLessonsKey } from './lessons_pearl_unlock_storage';
+import { getDevLessonsProgress } from './dev_paywall_state';
 
 /** Last loaded lessons list state (session memory — first paint without «zero flash»). */
 export type LessonsTabSnapshot = {
@@ -53,6 +54,35 @@ const loadedAtByTarget: Partial<Record<string, number>> = {};
 const inflightByTarget: Partial<Record<string, number>> = {};
 const initialLogged = new Set<string>();
 
+const EMPTY_LESSONS_SNAPSHOT: LessonsTabSnapshot = {
+  noLimits: false, legacyFreeLessonCap: LEGACY_FREE_LESSON_MIN, persistedUnlocked: [], purchasedLessons: [],
+  scores: new Array(32).fill(0), progCounts: new Array(32).fill(0), passCounts: new Array(32).fill(0),
+  examResults: {}, examBestPcts: {}, examPassCounts: {},
+};
+
+/**
+ * зачем (координатор 12.10, learn-007…013): dev-подмена прогресса уроков ложится ПОВЕРХ снимка при выдаче экрану и никогда не
+ * кэшируется и не пишется — настоящий прогресс человека нетронут. В стор-сборке getDevLessonsProgress() всегда null.
+ */
+function withDevLessonsProgress(snap: LessonsTabSnapshot | null): LessonsTabSnapshot | null {
+  const dev = getDevLessonsProgress();
+  if (!dev) return snap;
+  const base = snap ?? EMPTY_LESSONS_SNAPSHOT;
+  const fill = (arr: number[], value: number) => arr.map((current, i) => (i < dev.done ? value : current));
+  const unlocked = new Set(base.persistedUnlocked);
+  for (let n = 1; n <= Math.min(32, dev.done + 1); n++) unlocked.add(n);
+  const examA1 = dev.examA1 === 'passed' ? { pct: 85, passed: true } : dev.examA1 === 'almost' ? { pct: 61, passed: false } : null;
+  return {
+    ...base,
+    scores: fill(base.scores, 5),
+    progCounts: fill(base.progCounts, 50),
+    passCounts: fill(base.passCounts, 1),
+    persistedUnlocked: [...unlocked].sort((a, b) => a - b),
+    examResults: examA1 ? { ...base.examResults, A1: examA1 } : base.examResults,
+    examBestPcts: examA1 ? { ...base.examBestPcts, A1: examA1.pct } : base.examBestPcts,
+  };
+}
+
 function lessonsBootTrace(event: string, extra: Record<string, unknown>): void {
   if (!BOOT_TRACE) return;
   console.log(`[LESSONS-BOOT] ${event} ${JSON.stringify({ sinceModuleMs: Date.now() - MODULE_LOADED_AT_MS, atEpochMs: Date.now(), ...extra })}`);
@@ -84,7 +114,7 @@ export function getLessonsTabInitialState(studyTarget?: RuntimeStudyTarget): Les
       scoredLessons: snap ? snap.scores.filter((score) => score > 0).length : null,
     });
   }
-  return snap;
+  return withDevLessonsProgress(snap);
 }
 
 const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -240,7 +270,7 @@ async function readLessonsTabStateFromStorage(
     cachedResult: generationAtLoadStart === generationNow ? 'stored' : 'skipped_generation_changed',
     scoredLessons: scores.filter((score) => score > 0).length,
   });
-  return snap;
+  return withDevLessonsProgress(snap) ?? snap;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

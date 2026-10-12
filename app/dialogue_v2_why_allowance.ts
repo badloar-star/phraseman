@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { isDevDialogWhySpent } from './dev_dialog_state';
+
 // зачем (макет dialogs.html C7/C8, владелец 2026-09-18 «Почему так — 3 бесплатно в день»):
 // у Free три разбора «Почему так» в день, дальше — «Открыть Plus». Руны убраны в 2.0.
 // Разбор приходит вместе с репликой (D112) — сети здесь нет вовсе: счётчик живёт на
@@ -41,6 +43,11 @@ function parseAllowance(raw: string | null, nowMs: number): DialogueV2WhyAllowan
 }
 
 export async function readDialogueV2WhyAllowance(nowMs: number = Date.now()): Promise<DialogueV2WhyAllowance> {
+  if (isDevDialogWhySpent()) {
+    // зачем (dialogs-020): разборы на сегодня исчерпаны — подставные раскрытия только в памяти
+    console.log('[DIALOGUE-V2] why:read → dev_dialog_why=spent, бесплатных 0 (только память)');
+    return Object.freeze({ day: localDayKey(nowMs), revealedIds: Object.freeze(['dev_why_1', 'dev_why_2', 'dev_why_3']) });
+  }
   try {
     return parseAllowance(await AsyncStorage.getItem(STORAGE_KEY), nowMs);
   } catch (error: unknown) {
@@ -76,6 +83,10 @@ export function revealWhy(
 
 /** Фоновая запись; сбой хранилища не отнимает уже показанный разбор. */
 export function persistDialogueV2WhyAllowance(allowance: DialogueV2WhyAllowance): void {
+  if (isDevDialogWhySpent()) {
+    console.log('[DIALOGUE-V2] why:persist → пропущено: dev_dialog_why=spent (подставной счётчик не пишется)');
+    return;
+  }
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(allowance)).catch((error: unknown) => {
     console.warn('[DIALOGUE-V2] why:persist → storage failed', error instanceof Error ? error.message : String(error));
   });

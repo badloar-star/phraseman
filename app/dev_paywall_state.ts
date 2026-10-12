@@ -131,6 +131,28 @@ export function isDevAiExplainLimit(): boolean {
   return devPaywallAvailable() && aiExplainLimit;
 }
 
+/**
+ * `dev_state?lessonsDone=N&examA1=almost|passed` (координатор 12.10, learn-007…013 — экзамен «почти»/Free, окна «Ещё рано»/
+ * «Уровень закрыт»/«Недоступно»): первые N уроков пройдены на 5 звёзд, результат экзамена A1 — в памяти поверх снимка списка
+ * уроков (lessons_tab_state). Хранилище, облако и прогресс человека НЕ меняются; в стор-сборке — заглушка.
+ */
+export type DevLessonsProgress = Readonly<{ done: number; examA1: 'almost' | 'passed' | null }>;
+let lessonsProgress: DevLessonsProgress | null = null;
+
+export function setDevLessonsProgress(value: DevLessonsProgress | null): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} lessons: прогресс отклонён — не dev-сборка`, { value }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  lessonsProgress = value ? Object.freeze({ done: Math.max(0, Math.min(32, Math.floor(value.done))), examA1: value.examA1 }) : null;
+  console.log(`${LOG} lessons: прогресс=${JSON.stringify(lessonsProgress)} (только память)`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function getDevLessonsProgress(): DevLessonsProgress | null {
+  return devPaywallAvailable() ? lessonsProgress : null;
+}
+
 export type PaywallDevView = {
   loading: boolean;
   offeringsSettled: boolean;

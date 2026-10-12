@@ -20,3 +20,5 @@ export const DEV_DIALOG_MEMORY = [] as const;
 export function getDevDialogMemory(): null { return null; }
 // зачем (владелец 12.10, п.81, dialogs-028): подмена «голосовые попытки исчерпаны» в стор-сборке всегда выключена
 export function isDevDialogVoiceSpent(): boolean { return false; }
+// зачем (Ядро 12.10, dialogs-020): подмена «разборы на сегодня закончились» в стор-сборке выключена
+export function isDevDialogWhySpent(): boolean { return false; }

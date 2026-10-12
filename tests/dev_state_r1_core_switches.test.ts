@@ -183,6 +183,39 @@ describe('dev_state R1 (Ядро): packcards=meta и packdraft', () => {
   });
 });
 
+describe('dev_state R1 (Ядро): прогресс уроков и экзамен A1 (learn-007…013), «Почему так» исчерпаны (dialogs-020)', () => {
+  test('lessonsDone=N&examA1=almost — снимок списка уроков в памяти, хранилище не трогается; off снимает', async () => {
+    const tab = require('../app/lessons_tab_state') as typeof import('../app/lessons_tab_state');
+    const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+    expect(parseDevStateParams({ lessonsDone: '40' }).rejected).toHaveProperty('lessonsDone');
+    expect(parseDevStateParams({ examA1: 'maybe' }).rejected).toHaveProperty('examA1');
+    await applyDevState(parseDevStateParams({ lessonsDone: '8', examA1: 'almost' }).request);
+    const snap = await tab.loadLessonsTabStateFromStorage('en', 'test');
+    expect(snap.scores.slice(0, 8)).toEqual(new Array(8).fill(5));
+    expect(snap.scores[8]).toBe(0);
+    expect(snap.persistedUnlocked).toEqual(expect.arrayContaining([1, 9]));
+    expect(snap.examResults.A1).toEqual({ pct: 61, passed: false });
+    expect(tab.getLessonsTabInitialState('en')?.examResults.A1).toEqual({ pct: 61, passed: false });
+    expect(await AsyncStorage.getItem('lesson1_best_score')).toBeNull();
+    await applyDevState(parseDevStateParams({ lessonsDone: 'off', examA1: 'off' }).request);
+    expect((await tab.loadLessonsTabStateFromStorage('en', 'test')).examResults.A1).toEqual({ pct: 0, passed: false });
+  });
+
+  test('dev_dialog_why=spent — бесплатных разборов 0, запись не идёт; off возвращает обычный счётчик', async () => {
+    const why = require('../app/dialogue_v2_why_allowance') as typeof import('../app/dialogue_v2_why_allowance');
+    const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+    await applyDevState(parseDevStateParams({ dev_dialog_why: 'spent' }).request);
+    const spent = await why.readDialogueV2WhyAllowance();
+    expect(why.whyFreeLeft(spent)).toBe(0);
+    expect(why.revealWhy(spent, 'msg-new').allowed).toBe(false);
+    why.persistDialogueV2WhyAllowance(spent);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(await AsyncStorage.getItem('dialogue_v2_why_allowance:v1')).toBeNull();
+    await applyDevState(parseDevStateParams({ dev_dialog_why: 'off' }).request);
+    expect(why.whyFreeLeft(await why.readDialogueV2WhyAllowance())).toBe(why.DIALOGUE_V2_WHY_FREE_PER_DAY);
+  });
+});
+
 describe('dev_state R1 (Ядро): EN-проход — автопереход D164 на выбор языка изучения', () => {
   test('enStudyPrompt=off выключает автопереход при паре en+en (только память); on возвращает', async () => {
     const ui = require('../app/dev_ui_lang') as typeof import('../app/dev_ui_lang');

@@ -39,10 +39,13 @@ type State = {
   fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean;
   send: DevDialogSendMode | null; end: boolean; better: boolean; completion: DevDialogCompletion | null; memory: DevDialogMemory | null;
   voiceSpent: boolean;
+  // зачем (координатор 12.10, dialogs-020): бесплатные «Почему так» на сегодня исчерпаны (dev_dialog_why=spent), без записи в хранилище
+  whySpent: boolean;
 };
 const EMPTY: State = {
   fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null, memory: null,
   voiceSpent: false,
+  whySpent: false,
 };
 let state: State = EMPTY;
 
@@ -110,6 +113,11 @@ export function getDevDialogMemory(): DevDialogMemory | null {
 /** Голосовые попытки Free на сегодня исчерпаны (`dev_dialog_voice=spent`). В стор-сборке всегда false. */
 export function isDevDialogVoiceSpent(): boolean {
   return devDialogAvailable() && state.voiceSpent;
+}
+
+/** Бесплатные «Почему так» на сегодня исчерпаны (`dev_dialog_why=spent`). В стор-сборке всегда false. */
+export function isDevDialogWhySpent(): boolean {
+  return devDialogAvailable() && state.whySpent;
 }
 
 /** Только для тестов. */

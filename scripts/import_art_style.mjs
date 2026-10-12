@@ -27,7 +27,7 @@ function option(name) {
   return i >= 0 ? process.argv[i + 1] : null;
 }
 
-/** Слой .accent красится через tintColor: должен быть БЕЛЫМ силуэтом и не пустым. Пустой — отказ; не белый — предупреждение (цвет темы исказится). */
+/** Слой .accent красится через tintColor: должен быть БЕЛЫМ силуэтом и не пустым. Пустой — отказ; не белый — только справка (tintColor берёт альфу). */
 async function accentStats(file) {
   const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const total = info.width * info.height;
@@ -78,7 +78,7 @@ export async function importStyle({ style, srcRoot, destRoot, dryRun, gen }) {
       if (m[2]) {
         const stats = await accentStats(tmp);
         if (stats.visiblePct < 0.2) { problems.push(`${brightness}/${file}: слой accent пустой (видно ${stats.visiblePct.toFixed(2)} % кадра)`); continue; }
-        if (stats.whitePct < 60) notes.push(`⚠ accent не белый силуэт (белого ${stats.whitePct.toFixed(0)} % видимого) — tintColor исказит цвет темы`);
+        if (stats.whitePct < 60) notes.push(`ℹ accent не белый (белого ${stats.whitePct.toFixed(0)} % видимого) — не ошибка: tintColor берёт только альфу и красит её целиком в цвет темы`);
         if (stats.visiblePct > 45) notes.push(`⚠ accent занимает ${stats.visiblePct.toFixed(0)} % кадра — «одна деталь» превращается в заливку`);
       }
       const dest = path.join(destRoot, brightness, file);

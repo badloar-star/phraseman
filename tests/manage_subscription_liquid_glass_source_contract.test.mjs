@@ -50,7 +50,7 @@ const PROTECTED = {
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '4a4584e2dec5e41f5fbc1346fe37a7fe2343b2548b2d15d004c129b6a84abc72'],
+  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '24651baf84ebb807d5a14a5628362a43a0d0c938bd98a8d936889eef9b7a6fd5' /* перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */],
 };
 
 function protectedSnapshot(candidate) {
@@ -216,6 +216,7 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => customerInfo },
     './home_screen_hydration': { peekHomeScreenHydration: () => null },
     './manage_subscription_save_offer': { resolveSaveOffer: () => 'none' },
+    './dev_paywall_state': { isDevManageLoadingHold: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
     './debug-logger': { DebugLogger: { error: () => {} } },
     // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
     './paywall_price_cache': { peekPaywallPriceCache: () => null },

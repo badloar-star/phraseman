@@ -7,7 +7,9 @@ const source = fs.readFileSync(path.join(__dirname, '../components/SoftContextua
 
 test('live lesson-result Plus entry follows the selected glass tint', () => {
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.match(source, /borderColor: glass\.glassEdge/);
+  // зачем (владелец 12.10, стиль «Тень»; ae3bf2a7e «остаток обводок на экранах R1»): карточка без обводки — тон и тень через TonalSurface, а не borderColor/borderWidth
+  assert.doesNotMatch(source, /borderColor|borderWidth/);
+  assert.match(source, /<TonalSurface/);
   assert.match(source, /backgroundColor: glass.accent/);
   assert.match(source, /color: glass.accentInk/);
   assert.doesNotMatch(source, /color: t\.correctText/);

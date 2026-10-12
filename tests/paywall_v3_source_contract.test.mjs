@@ -118,7 +118,9 @@ test('«All N features» expands in place — no modal, no sheet', () => {
 
 test('after purchase without notification permission the reminder prompt is shown', () => {
   const purchase = read('app/paywall_purchase.ts');
-  assert.match(purchase, /const permission = await getNotificationPermissionStatus\(\);/);
+  // 12.10 (0d76a9528, ревью fa6648f02 п.4): чтение разрешения — best-effort в try/catch с записью причины в журнал (раньше — одна строка без защиты)
+  assert.match(purchase, /permission = await getNotificationPermissionStatus\(\);/);
+  assert.match(purchase, /purchase:permission_status_failed/);
   assert.match(purchase, /setTrialReminderPrompt\(\{ days: reminderDays, priceLabel: reminderPrice, trialStartMs \}\);/);
   assert.match(purchase, /const allowTrialReminder = useCallback/);
   assert.match(purchase, /requestNotificationPermissionWithFallback\(\{ openSettingsIfBlocked: true \}\)/);

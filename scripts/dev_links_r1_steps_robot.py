@@ -80,7 +80,8 @@ add('overlays-041', ['wait:1500'], 'intros=reset&plus=on&cards=demo', '/flashcar
 # зачем: у этих строк подмена Ядра существует (app/dev_state_fixtures.ts, app/dev_social_state.ts), не хватало только строки со ссылкой.
 # зачем (Ядро 12.10): текст «Вход недоступен» появляется при тапе «У меня уже есть аккаунт» на приветствии (шаг welcome) с auth=none, а не на шаге privacy.
 add('onboarding-006', ['wait:1800', 'tap:#onboarding-existing-account', 'wait:800'], 'onbstep=welcome&auth=none', HOME, note='онбординг: вход недоступен (auth=none: Google и Apple выключены), шаг privacy')
-add('onboarding-010', [], 'onbstep=niceToMeet&greet=Alexander-Maximilian-Fitzgerald', HOME, note='онбординг: знакомство с длинным именем (greet до 24 символов)')
+# зачем (координатор 12.10): приложение режет имя до 24 знаков (firstNameOf) — макет переведён на имя ≤24 знаков, ссылка тоже
+add('onboarding-010', [], 'onbstep=niceToMeet&greet=Alexandra-Wilhelmina', HOME, note='онбординг: знакомство с длинным именем (greet ≤24 символов; в макете «Александра-Вильгельмина»)')
 add('onboarding-025', [], 'onbstep=onboardingPaywall&paywall=loading', HOME, note='онбординг: цена Plus — загрузка (paywall=loading)')
 add('onboarding-paywall-001', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=live', HOME, note='онбординг: цена Plus — «настоящая» цена (paywall=live; на эмуляторе без магазина может остаться справочной)', unique=False)
 FADD = ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input']

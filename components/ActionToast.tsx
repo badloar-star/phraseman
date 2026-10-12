@@ -121,18 +121,23 @@ function actionToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
  * bloom-подложка + микро-пульс иконки SUITE.pulse. Выход всегда короче входа
  * (TOAST.exitMs < TOAST.enterMs). Полный cancelAnimation на unmount.
  */
-function ActionToastHybridCard({
+export function ActionToastHybridCard({
   type,
   toneLabel,
   message,
   icon,
   chrome,
+  actionLabel,
+  onActionPress,
 }: {
   type: ToastType;
   toneLabel: string;
   message: string;
   icon: keyof typeof Ionicons.glyphMap;
   chrome: ReturnType<typeof themedToastChrome>;
+  /** Подпись кнопки действия; null — тост без действия (карточка остаётся сквозной для тапов). */
+  actionLabel?: string | null;
+  onActionPress?: () => void;
 }) {
   const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
@@ -231,12 +236,34 @@ function ActionToastHybridCard({
             {message}
           </Text>
         </View>
+        {actionLabel && onActionPress ? (
+          // зачем (находка Макетов 7976ddef6, 12.10): гибрид — карточка по умолчанию, а действие тоста рисовалось только у classic: «Повторить» у ошибки
+          // сохранения и действие в тосте подписки были невидимы. Та же капсула `.ov-toast-action`, что у классической карточки (тон — токен «Тени», без рамки).
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={actionLabel}
+            hitSlop={8}
+            onPress={onActionPress}
+            style={({ pressed }) => [
+              styles.actionButton,
+              {
+                backgroundColor: chrome.closeBg,
+                transform: [{ scale: pressed ? 0.94 : 1 }],
+              },
+            ]}
+            testID="action-toast-action"
+          >
+            <Text style={[styles.actionLabel, { color: chrome.title }]}>{actionLabel}</Text>
+          </Pressable>
+        ) : null}
       </LinearGradient>
     </Reanimated.View>
   );
 }
 
 const AUTO_DISMISS_MS = 3200;
+/** Тост с кнопкой действия («Повторить», «Вернуть») живёт дольше обычного — 3,2 с мало, чтобы прочитать сбой и нажать. */
+const AUTO_DISMISS_WITH_ACTION_MS = 5500;
 /** Запас поверх самой длинной анимации выхода, после которого тост снимается
  *  принудительно, даже если Animated-колбэк не пришёл. */
 const HARD_DISMISS_GRACE_MS = 900;
@@ -407,7 +434,7 @@ function ActionToast() {
           Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
         ]).start(finishDismiss);
       }
-    }, AUTO_DISMISS_MS);
+    }, payload.action && payload.layout !== 'top_line' ? AUTO_DISMISS_WITH_ACTION_MS : AUTO_DISMISS_MS);
   }, [opacity, y]);
 
   const enqueue = useCallback((payload: ToastPayload) => {
@@ -522,9 +549,9 @@ function ActionToast() {
   const actionToastGlass = liquidGlassTokens(liquidGlassThemeId);
   const chrome = actionToastGlassChrome(actionToastGlass);
   const isHybrid = toast.motionVariant !== 'classic';
-  // Действие есть только у классической карточки: гибридная — чисто
-  // декоративная и отдельного места под кнопку не имеет.
-  const toastAction = !isHybrid ? toast.action : undefined;
+  // зачем (12.10, находка Макетов 7976ddef6): раньше действие было ТОЛЬКО у classic, а гибрид (вариант по умолчанию) его молча отбрасывал — человек видел
+  // ошибку без «Повторить». Теперь действие рисуют обе карточки; без кнопки остаётся только сквозная строка `top_line` (по макету overlays-runtime).
+  const toastAction = toast.layout === 'top_line' ? undefined : toast.action;
   const actionLabel = toastAction ? resolveActionToastActionLabel(toastAction, lang) : null;
 
   if (toast.layout === 'top_line') {
@@ -581,6 +608,8 @@ function ActionToast() {
           message={message}
           icon={tone.icon}
           chrome={chrome}
+          actionLabel={actionLabel}
+          onActionPress={handleActionPress}
         />
       ) : (
         <LinearGradient

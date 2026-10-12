@@ -3423,10 +3423,10 @@
       "id": "cards-081",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 76,
-        "label": "Ничего не нашли",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 81,
+        "label": "Из видео — поиск: ничего не нашли",
+        "mapping": "redrawn_2026-10-12"
       },
       "screen": "Наборы из видео — остальные состояния",
       "state": "Ничего не нашли",
@@ -3443,9 +3443,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "blocked",
-      "blocked_reason": "NO_CODE (12.10): в коде нет — у экрана «Из видео» нет поиска и состояния «Ничего не нашли» (flashcards_video_packs.tsx: пустой каталог → скелет → «Сейчас недоступно»); кадр cards-states №76 скрыт в образце (заменён cards-v2). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть поиск в код.",
+      "diffs": [
+        "[образец] Кадр cards-states №76 скрыт в образце; нарисован cards-v2 №81 по коду (поиск, «Ничего не нашли», «Попробуй другое слово.», «Показать все») — сверять после пересъёмки (шаги: открыть поиск, ввести zzzqq)."
+      ],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
@@ -3453,8 +3454,7 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_video_packs"
-      },
-      "prev_status": "pending"
+      }
     },
     {
       "id": "cards-082",

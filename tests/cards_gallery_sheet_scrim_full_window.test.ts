@@ -10,7 +10,8 @@ describe('gallery card actions sheet: scrim over the whole window', () => {
     expect(source).toContain('const rootRef = useRef<View>(null);');
     expect(source).toContain('rootRef.current?.measureInWindow(');
     expect(source).toContain('[CARDS-SHEET] scrim');
-    expect(source).toContain('<View ref={rootRef} collapsable={false} style={styles.root}>');
+    // зачем (R1 cards-034, 12.10): корень меряется ещё и при раскладке (onLayout), чтобы слой шторки с первого кадра стоял на месте
+    expect(source).toContain('<View ref={rootRef} collapsable={false} onLayout={measureRoot} style={styles.root}>');
   });
 
   it('wraps the sheet in a layer shifted up by the root offset and as tall as the window', () => {

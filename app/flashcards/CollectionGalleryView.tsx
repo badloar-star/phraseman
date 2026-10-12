@@ -202,6 +202,16 @@ export default function CollectionGalleryView({
   }, [onOpenCard, onToggleSelection, selectionMode]);
   const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en); }, [byId, onSpeak]);
   const pressedCard = pressedId ? byId.get(pressedId) ?? null : null;
+  // зачем (R1 cards-034, 12.10; журнал [CARDS-SHEET] rootWindowY=50 windowH=914): слой шторки сдвигается вверх на rootWindowY (чтобы встать в окно целиком), но значение измерялось ТОЛЬКО после тапа —
+  // первый кадр шторки стоял на 50 dp ниже (rootWindowY=0), въезд (SlideInDown) стартовал оттуда, и «Удалить» оказывалось у самого края под жестовой полоской. Теперь корень меряется при раскладке:
+  // к тапу значение уже известно, слой с первого кадра в нужном месте (замер при тапе остаётся как страховка).
+  const measureRoot = useCallback(() => {
+    rootRef.current?.measureInWindow((_x, y, _w, h) => {
+      const next = Math.max(0, Math.round(y));
+      console.log(`[CARDS-SHEET] root:layout rootWindowY=${next} rootH=${Math.round(h)} windowH=${Math.round(screenH)}`); // guard-ok: замер до тапа — главная цифра для сверки положения шторки
+      setRootWindowY((prev) => (prev === next ? prev : next));
+    });
+  }, [screenH]);
   useEffect(() => {
     if (pressedCard === null) return;
     rootRef.current?.measureInWindow((_x, y, _w, h) => {
@@ -219,7 +229,7 @@ export default function CollectionGalleryView({
   const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
 
   return (
-    <View ref={rootRef} collapsable={false} style={styles.root}>
+    <View ref={rootRef} collapsable={false} onLayout={measureRoot} style={styles.root}>
       <GestureDetector gesture={gesture}>
         <ScrollView
           ref={scrollRef}

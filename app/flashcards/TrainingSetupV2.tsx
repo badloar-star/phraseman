@@ -145,6 +145,10 @@ function TrainingSetupV2Inner(props: Props) {
           <Text testID="fc-training-setup-header-title" accessibilityRole="header" style={[styles2.title, { color: g.text, lineHeight: lh(36) }]}>{title}</Text>
         </View>
 
+        {/* зачем (R1 cards-v2-029): «Настройка — пусто» по макету — блок В ПОТОКЕ под заголовком режима (`.empty.sm`), а не по центру экрана: см. KitEmpty `inline` */}
+        {status === 'empty' ? (
+          <KitEmpty inline g={g} testID="fc-training-setup-empty" icon="albums-outline" title={copy.empty} detail={copy.emptyHint} action={copy.find} onAction={onFindPacks} actionTestID="fc-training-setup-find-packs" />
+        ) : null}
         {showList ? (
           <>
             <KitSectionHead g={g} title={copy.packs} count={0} hideCount />
@@ -196,9 +200,6 @@ function TrainingSetupV2Inner(props: Props) {
         ) : null}
       </ScrollView>
 
-      {status === 'empty' ? (
-        <KitEmpty g={g} testID="fc-training-setup-empty" icon="albums-outline" title={copy.empty} detail={copy.emptyHint} action={copy.find} onAction={onFindPacks} actionTestID="fc-training-setup-find-packs" />
-      ) : null}
       {status === 'unavailable' ? (
         <KitEmpty g={g} testID="fc-training-setup-unavailable" icon="cloud-offline-outline" title={copy.unavailable} detail={copy.checkNet} action={copy.retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-training-setup-try-again" />
       ) : null}

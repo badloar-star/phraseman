@@ -226,7 +226,7 @@ const EMPTY_CENTER_SHIFT = 0.46;
  * Блок «Пусто»: плитка 61, заголовок 24/30, подпись, кнопка — по ЦЕНТРУ ЭКРАНА (top:50%, translateY(-46%) макета),
  * а не под заголовком. Верх родителя меряем в окне, чтобы центрировать именно по экрану.
  */
-export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID, hideAction }: Readonly<{
+export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID, hideAction, inline }: Readonly<{
   g: GlassTokens;
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
@@ -238,6 +238,11 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   actionTestID?: string;
   /** Без кнопки (например, «Лимит исчерпан»). */
   hideAction?: boolean;
+  /**
+   * зачем (R1 cards-v2-029, Дизайн 12.10): макет «Настройка — пусто» рисует `.empty.sm` — блок В ПОТОКЕ под заголовком режима (margin-top 40, поля 30/0/10), а не по центру экрана;
+   * приложение центрировало его по окну (плитка на y≈630 против 395). inline — блок встаёт в обычный поток родителя (без absolute и замеров окна).
+   */
+  inline?: boolean;
 }>) {
   const { height } = useWindowDimensions();
   const lh = useLineScale();
@@ -285,6 +290,22 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
       console.log(`[CARDS-EMPTY] block testID=${String(testID)} hasAction=${String(!hideAction)} layoutH=${Math.round(measured)} windowY=${Math.round(y)} windowH=${Math.round(h)} centerOnScreen=${Math.round(y + h / 2)} centerShare=${((y + h / 2) / screenH).toFixed(3)}`); // guard-ok: положение всего блока на экране
     });
   }, [hideAction, testID]);
+  if (inline) {
+    return (
+      <View testID={testID} style={styles.emptyInline}>
+        <View style={[styles.emptyTile, { backgroundColor: g.opaqueControl }]}>
+          <Ionicons name={icon} size={28} color={g.text} />
+        </View>
+        <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text, lineHeight: lh(30) }]}>{title}</Text>
+        <Text style={[styles.emptyDetail, { color: g.secondary, lineHeight: lh(22) }]}>{detail}</Text>
+        {hideAction ? null : (
+          <View style={styles.emptyCtaWrap}>
+            <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
+          </View>
+        )}
+      </View>
+    );
+  }
   return (
     <View ref={holder} onLayout={onHolderLayout} testID={testID} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
       <View ref={block} collapsable={false} onLayout={onBlockLayout} pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - EMPTY_CENTER_SHIFT * blockH - (pageTop ?? 0)), opacity: pageTop === null || !ready ? 0 : 1 }]}>
@@ -323,6 +344,8 @@ const styles = StyleSheet.create({
   segText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   check: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
+  // `.empty.sm` макета в обёртке с margin-top 40: поля 30 / 0 / 10 → верх блока на 70 ниже заголовка режима
+  emptyInline: { alignItems: 'center', paddingHorizontal: 40, paddingTop: 70, paddingBottom: 10 },
   emptyTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 20 }, // зачем (R1_DIFF_ONE_FIX cards-v2-011): макет `.empty .et` margin-top 20, было 22
   emptyDetail: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },

@@ -3,7 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { logExpireAt } from './log_ttl';
+import { logExpireAt, supportReportExpireAt } from './log_ttl';
 import {
   commitPreparedQualityDailyAggregate,
   isQualityReportKind,
@@ -365,6 +365,8 @@ function buildReportDoc(
       copyText: text(payload.copyText, 7000),
       ...(diagnostics ? { diagnostics } : {}),
       status: 'new',
+      // зачем (решение владельца 12.10 (а)): обращение и приложенный журнал удаляются TTL через 30 дней (см. log_ttl.ts, политика).
+      expireAt: supportReportExpireAt(now),
     };
   }
 

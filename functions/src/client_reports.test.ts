@@ -184,6 +184,17 @@ afterEach(() => {
 });
 
 describe('submitClientReport', () => {
+  // зачем (решение владельца 12.10 (а)): обращение в поддержку / сообщение об ошибке с журналом хранится 30 дней — TTL по expireAt.
+  test('error_report gets expireAt = created + 30 days (TTL), matching the privacy policy', async () => {
+    await callSubmitClientReport({
+      kind: 'error_report',
+      payload: { screen: 'settings_support', dataId: 'settings_support_request', dataText: 'In-app support request', comment: 'Не работает звук в карточках' },
+    });
+    const doc = reportDocs('error_reports')[0];
+    const expireAt = doc?.expireAt as { toMillis?: () => number } | undefined;
+    expect(expireAt?.toMillis?.()).toBe(Date.parse('2026-05-24T12:00:00.000Z') + 30 * 24 * 60 * 60 * 1000);
+  });
+
   test('verifies exact published-pack membership and atomically quarantines the first reported Spire task', async () => {
     jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
     const packBody = {

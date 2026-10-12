@@ -4,7 +4,7 @@
 # строкам не хватало только ссылки и шагов. Только анонимный гость (dev_state_account_guard); все подмены — в памяти процесса, в облако ничего не пишется.
 # Файл подключается из scripts/dev_links_r1_generate.py (import), как dev_links_r1_steps_spire.py.
 from dev_links_r1_steps import (
-    DEMO, HUB, MYPACKS, PACKS, RECALL_ROUTE, SAVED, SPEAK_ROUTE, TF_ROUTE, TILE, TO_PACK, WORK, MENU, add,
+    BLITZ_ROUTE, CREATE, DEMO, DEMO_PLUS, EMPTY_PLUS, HUB, MYPACKS, PACKS, RECALL_ROUTE, SAVED, SPEAK_ROUTE, TF_ROUTE, TILE, TO_PACK, WORK, MENU, add,
 )
 
 PACK_WORK = f'tap:#fc-expanded-pack-{WORK}'
@@ -32,3 +32,15 @@ add('cards-049', [], DEMO_PUB, PACKS, note='каталог: свой опубл�
 
 # ── Разовая подсказка «Зажми карточку…» (cards-033): фикстуры карточек помечают её увиденной, hint=show возвращает её для этого кадра
 add('cards-033', [], DEMO + '&hint=show', SAVED, note='разовая подсказка «Зажми карточку, чтобы изменить или удалить её» (hint=show; остальные кадры карточек её не показывают)')
+
+# ── Группа (2а), Карточки: прямые маршруты сессий тренировок и экранов, достижимых одной ссылкой (cards=demo — Plus on, без энергии)
+add('cards-section-008', [], DEMO, SAVED, note='«Сохранённые» — 2 колонки (вид по умолчанию после фикстуры)')
+add('cards-section-010', [f'long:#fc-my-packs-pack-{WORK}'], DEMO_PLUS, MYPACKS, note='действия с набором: шторка по долгому нажатию на «Работа»')
+add(['cards-v2-031', 'cards-section-039'], [], DEMO, BLITZ_ROUTE, note='«Блиц»: сессия, первый вопрос')
+add(['cards-v2-033', 'cards-section-042'], [], DEMO, TF_ROUTE, note='«Правда / ложь»: сессия, первая карточка')
+add(['cards-v2-034', 'cards-section-043'], [], DEMO, RECALL_ROUTE, note='«Вспомни и напиши»: сессия, первая карточка')
+add(['cards-v2-029', 'cards-076'], [], EMPTY_PLUS, '/flashcards_training_setup?mode=blitz', note='настройка тренировки без карточек (cards=empty): пусто / нет наборов')
+add('cards-078', [], DEMO, '/flashcards_training_setup', note='«Режим недоступен»: маршрут настройки без параметра mode')
+add('cards-020', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report'], 'catalog=demo', PACKS, note='жалоба на набор сообщества (долгое нажатие → «Пожаловаться»)')
+add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
+add('cards-068', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Test', 'tap:#ugc-pack-draft-back', 'type:test', 'tap:#ugc-pack-draft-save', 'tap:#ugc-pack-menu', 'tap:#ugc-pack-clear-draft'], EMPTY_PLUS, CREATE, note='«Очистить черновик?»: одна карточка в черновике → меню набора → очистить')

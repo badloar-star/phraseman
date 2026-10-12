@@ -100,3 +100,7 @@ put('cards-gap-026', ['tap:#fc-pack-menu', 'tap:#fc-pack-publish'], 'cards=demo&
 put('cards-061', ['tap:#fc-editor-description', 'wait:400'], 'cards=demo&plus=on', '/flashcards_card_editor?create=1&cat=custom', note='редактор новой карточки: поле заметки в фокусе (заметка в редакторе теперь всегда открыта; «раскрыта» = фокус)')
 put('dialogs-024', DLG_START + [HOLD_VOICE, 'wait:400'], DLG_VOICE + '&speech=preparing', DLG, note='«Готовлю микрофон…» (speech=preparing держит статус после отпускания; снять — speech=off)')
 put('dialogs-025', DLG_START + [HOLD_VOICE, 'wait:400'], DLG_VOICE + '&speech=hold', DLG, note='«Говори…» (speech=hold держит запись после отпускания; снять — speech=off)')
+
+# ── cards-041 (кадр 7:59): долгое нажатие в «Моих наборах» открывало ДРУГУЮ шторку (Тренировать/Изменить/Открыть сообществу/Удалить набор) над списком;
+# зачем: образец cards-v2 №17 «Действия с набором» — меню «⋮» на экране самого набора (Отправить в сообщество / Править набор / Новая карточка / Удалить набор)
+put('cards-041', ['tap:#fc-pack-menu', 'wait:600'], 'cards=demo&plus=on', '/flashcards_collection?pack=local_pack_dev_demo_travel', note='«Действия с набором»: меню «⋮» на экране набора «Путешествия» (fc-pack-menu); прежняя ссылка открывала шторку «Моих наборов»')

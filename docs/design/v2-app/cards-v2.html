@@ -313,6 +313,14 @@
   .etoast { position: absolute; left: 14px; right: 14px; bottom: 42px; z-index: 30; min-height: 76px; padding: 12px 14px; border-radius: 20px; display: flex; align-items: center; gap: 12px; background: rgba(40,42,48,.97); box-shadow: 0 18px 19px rgba(0,0,0,.35); }
   .etoast .etr { align-self: stretch; width: 3px; border-radius: 3px; background: #E5645B; } .etoast .tl { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .etoast .tl svg { width: 22px; height: 22px; }
   .etoast .cp { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; } .etoast .lb { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; } .etoast .ms { font-size: 16px; line-height: 22px; color: var(--sec); }
+  /* зачем: «Стопка» по кадру приложения (cards-008/037) — карточка почти квадратная, под ней два слоя стопки, озвучка справа сверху, «EN/RU» по центру над словом (не флип-карточка шторки) */
+  .stk { position: relative; height: 388px; margin-top: 136px; }
+  .stk i { position: absolute; left: 14px; right: 14px; bottom: -24px; height: 70px; border-radius: 0 0 20px 20px; background: #161618; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); }
+  .stk i.b { left: 28px; right: 28px; bottom: -44px; background: #121214; }
+  .stk .sc { position: absolute; inset: 0; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.04) 100%), #17171A; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); }
+  .stk .sc .vb2 { position: absolute; right: 14px; top: 14px; }
+  .stk .skl { font-size: 14px; line-height: 18px; font-weight: 700; letter-spacing: 1.5px; color: var(--sec); }
+  .stk .skw { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.5px; margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -653,7 +661,7 @@
   const catalogOffline = () => phone(`${commHead('')}<div class="empty" style="min-height:420px"><div class="tile t61">${icon('wifiOff', 's28')}</div><div class="et">Нет сети</div></div>`, { time: '9:41' });
   // зачем (составные кадры серии Карточек 12.10, перепривязка со старого cards-states на cards-v2 по п.54): состояния, которых не было в cards-v2 — рисуем по кадрам приложения и коду, в конец страницы
   const dlg = (t, c, no, yes) => `<div class="dim on"></div><div class="mdl"><div class="mdt">${t}</div><div class="mc2">${c}</div><div class="ma"><span class="cta gh t">${no}</span><span class="cta red t">${yes}</span></div></div>`;
-  const okToast = (lb, ms) => etoast(lb, ms).replace('class="etr"', 'class="etr" style="background:#E9E9EB"');
+  const okToast = (lb, ms) => etoast(lb, ms).replace(/<svg[\s\S]*?<\/svg>/, '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor"/><path d="M8 12.4l2.9 2.9L16.2 9.6" fill="none" stroke="#1C1C1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>').replace('class="etr"', 'class="etr" style="background:#E9E9EB"');
   const comm2chips = '<div class="chips" style="margin-top:14px"><span class="chipbtn">Популярные</span><span class="chipbtn on">Новые</span></div>';
   // cards-015 — каталог, поиск «Fam»: «Найдено 1», набор Family и меню действий над ним (долгое нажатие)
   const catalogSearchMenu = () => phone(`${commHead('Fam', { caret: 1, chips: false })}<div style="margin-top:16px;font-size:17px;font-weight:600;color:var(--sec)">Найдено 1</div>
@@ -664,14 +672,14 @@
   // cards-012 — «Мои наборы» под затемнением, окно «Удалить набор»
   const mySetsDelete = () => withOverlay(mySets(), dlg('Удалить набор', '«Работа» — набор будет убран из твоих наборов.', 'Отмена', 'Удалить набор'));
   // cards-045 — после удаления: «Мои наборы 3» и тост «ГОТОВО · Набор удалён.»
-  const mySetsDeleted = () => phone(`${back(`${rbMenu()}${rbPlus}`)}${ttl('Мои наборы', 3)}
-      <div class="stack g14" style="margin-top:22px">${deck('Фразовые глаголы', '31 · B1', ['Give up', 'Run out', 'Set off'], playBtn)}${deck('B2 глаголы', '49 · B2', ['Convince', 'Claim', 'Afford'], playBtn)}${deck('Путешествия', '40 · A2', ['Layover', 'Gate', 'Customs'], playBtn)}</div>${okToast('Готово', 'Набор удалён.')}`, { time: '9:41' });
+  const mySetsDeleted = () => withOverlay(phone(`${back(`${rbMenu()}${rbPlus}`)}${ttl('Мои наборы', 3)}
+      <div class="stack g14" style="margin-top:22px">${deck('Фразовые глаголы', '31 · B1', ['Give up', 'Run out', 'Set off'], playBtn)}${deck('B2 глаголы', '49 · B2', ['Convince', 'Claim', 'Afford'], playBtn)}${deck('Путешествия', '40 · A2', ['Layover', 'Gate', 'Customs'], playBtn)}</div>`, { time: '9:41' }), okToast('Готово', 'Набор удалён.'));
   // cards-046 — поиск по своим наборам без совпадений: «Ничего не найдено»
   const mySetsSearchNone = () => phone(`${back(`${rbMenu()}${rbPlus}`)}${ttl('Мои наборы', 4)}<div style="margin-top:20px">${srch('zzzqq', { caret: 1 })}</div><div style="text-align:center;margin-top:34px;font-size:18px;color:var(--sec)">Ничего не найдено</div>`, { time: '9:41' });
   // cards-008 / cards-037 — «Сохранённые» в режиме «Стопка»: «1/64 · К списку ›», крупная карточка со стопкой под ней, стрелки ‹ ›; оборот — «RU · перевод»
-  const stackArrows = `<div class="flex" style="justify-content:center;gap:56px;position:absolute;left:0;right:0;bottom:70px"><span class="rb l t" style="opacity:.4">${icon('back', 's24')}</span><span class="rb l t">${icon('fwd', 's24')}</span></div>`;
-  const savedStack = (backSide) => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}<div class="flex" style="justify-content:space-between;margin-top:16px;font-size:20px;font-weight:700;color:var(--sec)"><span>1/64</span><span style="white-space:nowrap">К списку ${icon('fwd', 's16')}</span></div>
-      <div style="margin-top:100px">${flip('Layover', 'пересадка', { h: 360, on: backSide })}</div>`, { time: '9:41', fixed: stackArrows });
+  const stackArrows = `<div class="flex" style="justify-content:center;gap:56px;position:absolute;left:0;right:0;bottom:70px"><span class="rb l t" style="opacity:.4;width:54px;height:54px">${icon('back', 's24')}</span><span class="rb l t" style="width:54px;height:54px">${icon('fwd', 's24')}</span></div>`;
+  const savedStack = (backSide) => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}<div class="flex" style="justify-content:space-between;margin-top:16px;font-size:20px;font-weight:700;color:var(--sec)"><span>1/64</span><span style="display:inline-flex;align-items:center;gap:4px;white-space:nowrap">К списку ${icon('fwd', 's16')}</span></div>
+      <div class="stk"><i class="b"></i><i class="a"></i><div class="sc"><span class="vb2">${icon('vol', 's18')}</span><div class="skl">${backSide ? 'RU' : 'EN'}</div><div class="skw">${backSide ? 'пересадка' : 'Layover'}</div></div></div>`, { time: '9:41', fixed: stackArrows });
   // cards-007 — режим выделения: «Отмена · 0 / 64», сетка, подсказка «Выбери ещё 10 карточек…», кнопки «Создать набор» (неактивна) и «Удалить»
   const selBody = (marks) => `<div class="flex" style="justify-content:space-between;margin-top:14px;font-size:17px;font-weight:600"><span>Отмена</span><span style="color:var(--sec)">${marks} / 64</span></div>${ttl('Сохранённые', 64)}${zoomBar()}${marks ? [0, 1, 4].reduce((h, i) => h.replace(`data-wi="${i}"`, `data-wi="${i}" data-sel="1"`), zgrid(1, W.slice(0, 12), 1)) : zgrid(1, W.slice(0, 12), 1)}`;
   const selBar = `<div style="position:absolute;left:20px;right:20px;bottom:130px;text-align:center;font-size:15px;color:var(--sec)">Выбери ещё 10 карточек, чтобы создать набор</div><div class="bot"><div class="flex" style="gap:12px"><div class="cta dis grow">Создать набор</div><div class="cta gh t" style="padding:0 26px">Удалить</div></div></div>`;

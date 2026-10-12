@@ -1387,7 +1387,8 @@
       "release": "r1",
       "triage": {
         "basis": "mockup_from_app"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 1:49): состав совпал с cards-v2 №72 («3 / 64», три отмеченные карточки, подсказка «Выбери ещё 7 карточек…» на плашке, «Создать набор» неактивна, «Удалить»), но match не выставлен: кадр старше правки CollectionListView/CollectionGalleryView (вносилась в 01:50) — [кадр старше правки — пересъёмка]. После пересъёмки выставить match с тегом [образец нарисован с приложения, ждёт подтверждения владельца]."
     },
     {
       "id": "cards-037",
@@ -1408,8 +1409,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-037.png",
-      "evidence_at": "2026-10-12T00:34:36.529Z",
-      "evidence_sha256": "27c64f221698d1bf8381184532f19ba39eb0488d7fab06eff27a9f0aa1b90100",
+      "evidence_at": "2026-10-12T00:50:36.548Z",
+      "evidence_sha256": "f9412cd0e64312ff8062497761a132dde8016d1c9cb67e514c991f2ab4dcd6c8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -1684,8 +1685,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-045.png",
-      "evidence_at": "2026-10-12T00:34:38.550Z",
-      "evidence_sha256": "964298d97cc8c529128bfb901e09612d0525da6ad2c007804eda29e584f74fe1",
+      "evidence_at": "2026-10-12T00:52:26.248Z",
+      "evidence_sha256": "8ca159e55aab274220f9b79507f3bc9e6961a1d2c52c3a32861524bdd2e32bf3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -1721,8 +1722,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-046.png",
-      "evidence_at": "2026-10-12T00:34:40.045Z",
-      "evidence_sha256": "13d6bef4812d70df5c0b1af537755360d811575bba0262d9aa5e6f62726ac09d",
+      "evidence_at": "2026-10-12T00:53:13.049Z",
+      "evidence_sha256": "e6d58c24bfef6f15dfa6d77ec60b98bc35b1d4cae34c9e847dc2636163393740",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

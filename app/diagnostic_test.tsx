@@ -71,17 +71,7 @@ const makeDiagnosticAttemptId = (): string =>
   `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 
 /** Encabezado del tipo «build»: mismo texto en pantalla y en reportes. */
-const DIAGNOSTIC_BUILD_HEADER = {
-  ru: 'Собери фразу из слов',
-  uk: 'Збери фразу зі слів',
-  en: 'Build the phrase from words',
-  es: 'Arma la frase con las palabras',
-  'pt-BR': 'Monte a frase com as palavras',
-  vi: 'Sắp xếp từ thành câu',
-  id: 'Susun frasa dari kata-kata',
-  tr: 'Kelimelerden ifadeyi kur',
-  pl: 'Ułóż frazę ze słów',
-} as const;
+const DIAGNOSTIC_BUILD_HEADER = { ru: 'Собери фразу из слов', uk: 'Збери фразу зі слів', en: 'Build the phrase from words', es: 'Arma la frase con las palabras', 'pt-BR': 'Monte a frase com as palavras', vi: 'Sắp xếp từ thành câu', id: 'Susun frasa dari kata-kata', tr: 'Kelimelerden ifadeyi kur', pl: 'Ułóż frazę ze słów' } as const;
 
 /** Подписи без эмодзи — для VoiceOver / TalkBack. */
 const DIAGNOSTIC_SKILL_A11Y = {
@@ -152,116 +142,16 @@ function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11
 
 function diagnosticUiCopy(lang: Lang) {
   return {
-    back: triLang(lang, {
-      ru: 'Вернуться',
-      uk: 'Повернутися',
-      en: 'Go back',
-      es: 'Volver',
-      'pt-BR': 'Voltar',
-      vi: 'Quay lại',
-      id: 'Kembali',
-      tr: 'Geri',
-      pl: 'Wstecz',
-    }),
-    cancel: triLang(lang, {
-      ru: 'Отменить',
-      uk: 'Відмінити',
-      en: 'Cancel',
-      es: 'Cancelar',
-      'pt-BR': 'Cancelar',
-      vi: 'Hủy',
-      id: 'Batal',
-      tr: 'İptal',
-      pl: 'Anuluj',
-    }),
-    continue: triLang(lang, {
-      ru: 'Продолжить',
-      uk: 'Далі',
-      en: 'Next',
-      es: 'Siguiente',
-      'pt-BR': 'Continuar',
-      vi: 'Tiếp tục',
-      id: 'Lanjutkan',
-      tr: 'Devam et',
-      pl: 'Kontynuuj',
-    }),
-    buildPlaceholder: triLang(lang, {
-      ru: 'Тапни слово снизу...',
-      uk: 'Торкнись слова нижче...',
-      en: 'Tap a word below...',
-      es: 'Toca una palabra abajo...',
-      'pt-BR': 'Toque em uma palavra abaixo...',
-      vi: 'Chạm vào một từ bên dưới...',
-      id: 'Ketuk kata di bawah...',
-      tr: 'Aşağıdaki bir kelimeye dokun...',
-      pl: 'Dotknij słowa poniżej...',
-    }),
-    check: triLang(lang, {
-      ru: 'Проверить',
-      uk: 'Перевірити',
-      en: 'Check',
-      es: 'Comprobar',
-      'pt-BR': 'Verificar',
-      vi: 'Kiểm tra',
-      id: 'Periksa',
-      tr: 'Kontrol et',
-      pl: 'Sprawdź',
-    }),
-    typeHere: triLang(lang, {
-      ru: 'Введи ответ...',
-      uk: 'Введи відповідь...',
-      en: 'Type your answer...',
-      es: 'Escribe aquí...',
-      'pt-BR': 'Digite aqui...',
-      vi: 'Nhập câu trả lời...',
-      id: 'Ketik jawaban...',
-      tr: 'Yanıtı yaz...',
-      pl: 'Wpisz odpowiedź...',
-    }),
-    correctAnswerPrefix: triLang(lang, {
-      ru: 'Правильный ответ',
-      uk: 'Правильна відповідь',
-      en: 'Correct answer',
-      es: 'Respuesta correcta',
-      'pt-BR': 'Resposta correta',
-      vi: 'Đáp án đúng',
-      id: 'Jawaban benar',
-      tr: 'Doğru cevap',
-      pl: 'Poprawna odpowiedź',
-    }),
-    options: triLang(lang, {
-      ru: 'Варианты',
-      uk: 'Варіанти',
-      en: 'Options',
-      es: 'Opciones',
-      'pt-BR': 'Opções',
-      vi: 'Lựa chọn',
-      id: 'Pilihan',
-      tr: 'Seçenekler',
-      pl: 'Opcje',
-    }),
-    skip: triLang(lang, {
-      ru: 'Пропустить',
-      uk: 'Пропустити',
-      en: 'Skip',
-      es: 'Omitir',
-      'pt-BR': 'Pular',
-      vi: 'Bỏ qua',
-      id: 'Lewati',
-      tr: 'Atla',
-      pl: 'Pomiń',
-    }),
-    secondSuffix: triLang(lang, {
-      ru: 'с',
-      uk: 'с',
-      en: 's',
-      es: 's',
-      'pt-BR': 's',
-      vi: ' giây',
-      id: ' dtk',
-      tr: ' sn',
-      pl: ' s',
-    }),
+    back: triLang(lang, { ru: 'Вернуться', uk: 'Повернутися', en: 'Go back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+    cancel: triLang(lang, { ru: 'Отменить', uk: 'Відмінити', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' }),
+    continue: triLang(lang, { ru: 'Продолжить', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
+    buildPlaceholder: triLang(lang, { ru: 'Тапни слово снизу...', uk: 'Торкнись слова нижче...', en: 'Tap a word below...', es: 'Toca una palabra abajo...', 'pt-BR': 'Toque em uma palavra abaixo...', vi: 'Chạm vào một từ bên dưới...', id: 'Ketuk kata di bawah...', tr: 'Aşağıdaki bir kelimeye dokun...', pl: 'Dotknij słowa poniżej...' }),
+    check: triLang(lang, { ru: 'Проверить', uk: 'Перевірити', en: 'Check', es: 'Comprobar', 'pt-BR': 'Verificar', vi: 'Kiểm tra', id: 'Periksa', tr: 'Kontrol et', pl: 'Sprawdź' }),
+    typeHere: triLang(lang, { ru: 'Введи ответ...', uk: 'Введи відповідь...', en: 'Type your answer...', es: 'Escribe aquí...', 'pt-BR': 'Digite aqui...', vi: 'Nhập câu trả lời...', id: 'Ketik jawaban...', tr: 'Yanıtı yaz...', pl: 'Wpisz odpowiedź...' }),
+    correctAnswerPrefix: triLang(lang, { ru: 'Правильный ответ', uk: 'Правильна відповідь', en: 'Correct answer', es: 'Respuesta correcta', 'pt-BR': 'Resposta correta', vi: 'Đáp án đúng', id: 'Jawaban benar', tr: 'Doğru cevap', pl: 'Poprawna odpowiedź' }),
+    options: triLang(lang, { ru: 'Варианты', uk: 'Варіанти', en: 'Options', es: 'Opciones', 'pt-BR': 'Opções', vi: 'Lựa chọn', id: 'Pilihan', tr: 'Seçenekler', pl: 'Opcje' }),
+    skip: triLang(lang, { ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Omitir', 'pt-BR': 'Pular', vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń' }),
+    secondSuffix: triLang(lang, { ru: 'с', uk: 'с', en: 's', es: 's', 'pt-BR': 's', vi: ' giây', id: ' dtk', tr: ' sn', pl: ' s' }),
   };
 }
 
@@ -669,13 +559,11 @@ const POOL: Question[] = [
    words:['The','letter','was','written','by','her'], answer:'The letter was written by her'},
   // B2: choice4 — translation
   {phrase:'She has been working here for years.', hintRU:'Выбери правильный перевод:', hintUK:'Обери правильний переклад:', hintES:'Elige la traducción correcta:',
-   opts:['Она работает здесь годами','Она работала здесь годами','Она будет работать здесь','Она работала бы здесь'],
-   optsUK:['Вона працює тут роками','Вона працювала тут роками','Вона буде тут працювати','Вона б тут працювала'],
+   opts:['Она работает здесь годами','Она работала здесь годами','Она будет работать здесь','Она работала бы здесь'], optsUK:['Вона працює тут роками','Вона працювала тут роками','Вона буде тут працювати','Вона б тут працювала'],
    optsES:['Lleva años trabajando aquí','Trabajaba aquí durante años','Trabajará aquí','Trabajaría aquí'],
    correct:0, level:'B2', type:'choice4'},
   {phrase:'The report must be submitted by Friday.', hintRU:'Выбери правильный перевод:', hintUK:'Обери правильний переклад:', hintES:'Elige la traducción correcta:',
-   opts:['Отчёт можно сдать в пятницу','Отчёт должен быть сдан до пятницы','Отчёт был сдан в пятницу','Отчёт сдадут в пятницу'],
-   optsUK:["Звіт можна здати в п\'ятницю","Звіт має бути зданий до п\'ятниці","Звіт був зданий у п\'ятницю","Звіт здадуть у п\'ятницю"],
+   opts:['Отчёт можно сдать в пятницу','Отчёт должен быть сдан до пятницы','Отчёт был сдан в пятницу','Отчёт сдадут в пятницу'], optsUK:["Звіт можна здати в п\'ятницю","Звіт має бути зданий до п\'ятниці","Звіт був зданий у п\'ятницю","Звіт здадуть у п\'ятницю"],
    optsES:['Se puede entregar el informe el viernes','El informe debe entregarse antes del viernes','El informe se entregó el viernes','Entregarán el informe el viernes'],
    correct:1, level:'B2', type:'choice4'},
   // B2: Type questions
@@ -714,13 +602,11 @@ const POOL: Question[] = [
   {phrase:'___ had I left when it started raining.',hintRU:'Как только я вышел...',hintUK:'Щойно я вийшов...',             hintES:'Patrón «Hardly» + inversión + past perfect.',             opts:['Hardly','Barely','No sooner','Scarcely'],correct:0,level:'C1'},
   // C1: Choice4
   {phrase:'Hardly had she arrived when they left.', hintRU:'Выбери правильный перевод:', hintUK:'Обери правильний переклад:', hintES:'Elige la traducción correcta:',
-   opts:['Едва она прибыла, как они ушли','Она прибыла и они ушли','Она не хотела приходить','Они ушли до её прибытия'],
-   optsUK:['Ледве вона прибула, як вони пішли','Вона прибула і вони пішли','Вона не хотіла приходити','Вони пішли до її прибуття'],
+   opts:['Едва она прибыла, как они ушли','Она прибыла и они ушли','Она не хотела приходить','Они ушли до её прибытия'], optsUK:['Ледве вона прибула, як вони пішли','Вона прибула і вони пішли','Вона не хотіла приходити','Вони пішли до її прибуття'],
    optsES:['Apenas había llegado cuando se fueron','Ella llegó y ellos se fueron','No quería llegar','Se fueron antes de que llegara'],
    correct:0, level:'C1', type:'choice4'},
   {phrase:'She would rather stay home than go out.', hintRU:'Выбери правильный перевод:', hintUK:'Обери правильний переклад:', hintES:'Elige la traducción correcta:',
-   opts:['Она не может остаться дома','Ей лучше было бы остаться дома','Она не идёт домой','Она идёт гулять'],
-   optsUK:['Вона не може залишитися вдома','Їй краще залишитися вдома','Вона не йде додому','Вона йде гуляти'],
+   opts:['Она не может остаться дома','Ей лучше было бы остаться дома','Она не идёт домой','Она идёт гулять'], optsUK:['Вона не може залишитися вдома','Їй краще залишитися вдома','Вона не йде додому','Вона йде гуляти'],
    optsES:['No puede quedarse en casa','Preferiría quedarse en casa','No va a casa','Va a dar un paseo'],
    correct:1, level:'C1', type:'choice4'},
   // C1: Type
@@ -782,8 +668,7 @@ const ACTIVE_DIAGNOSTIC_POOL = STRICT_DIAGNOSTIC_POOL;
 // Result thresholds (based on 20 questions)
 const LEVEL_RESULTS = [
   {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    en:'Beginner (indicative)', es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi: 'Mức khởi đầu (tham khảo)', id: 'Level awal (orientatif)', tr: 'Başlangıç seviyesi (tahmini)', pl: 'Poziom początkowy (orientacyjnie)',
-    msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.',
-    msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
+    msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.', msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
     msgEN:'Your foundation is still forming — that’s normal. Keep going through the lessons: vocabulary, grammar and theory will give you support.',
     msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.',
     msgPTBR:'A base ainda está se formando — isso é normal. Siga pelas aulas: vocabulário, gramática e teoria vão dar apoio.',
@@ -792,8 +677,7 @@ const LEVEL_RESULTS = [
     msgTR:'Temel hâlâ oluşuyor — bu normal. Dersleri takip et: kelime, dil bilgisi ve teori sana dayanak sağlar.',
     msgPL:'Podstawy dopiero się układają — to normalne. Idź przez lekcje: słownictwo, gramatyka i teoria dadzą oparcie.'},
   {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   en:'Elementary (indicative)', es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi: 'Mức cơ bản (tham khảo)', id: 'Level dasar (orientatif)', tr: 'Temel seviye (tahmini)', pl: 'Poziom podstawowy (orientacyjnie)',
-    msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
-    msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
+    msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.', msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
     msgEN:'You recognize the patterns — deepen your vocabulary and grammar in the lesson exercises; speed comes with practice.',
     msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.',
     msgPTBR:'Você já reconhece padrões: reforce vocabulário e gramática nas aulas; a velocidade vem com a prática.',
@@ -802,8 +686,7 @@ const LEVEL_RESULTS = [
     msgTR:'Kalıpları tanıyorsun: derslerde kelime ve dil bilgisini güçlendir; hız düzenli pratikle gelir.',
     msgPL:'Rozpoznajesz już schematy: wzmacniaj słownictwo i gramatykę w lekcjach; tempo przyjdzie z praktyką.'},
   {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       en:'Intermediate (indicative)', es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi: 'Trung cấp (tham khảo)', id: 'Menengah (orientatif)', tr: 'Orta seviye (tahmini)', pl: 'Średnio zaawansowany (orientacyjnie)',
-    msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
-    msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
+    msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».', msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
     msgEN:'You’re handling the course material more confidently. Note the gaps in topics and go back to “Theory” and “Vocabulary”.',
     msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.',
     msgPTBR:'Você domina melhor o conteúdo do curso. Marque lacunas e revise “Teoria” e “Vocabulário” quando precisar.',
@@ -812,8 +695,7 @@ const LEVEL_RESULTS = [
     msgTR:'Kurs içeriğini daha sağlam tutuyorsun. Eksik konuları işaretle ve gerektiğinde “Teori” ile “Kelime” bölümlerine dön.',
     msgPL:'Coraz pewniej trzymasz materiał kursu. Zaznacz luki i wracaj do sekcji „Teoria” oraz „Słownictwo”.'},
   {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', en:'Upper-intermediate (indicative)', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi: 'Trung cấp cao (tham khảo)', id: 'Menengah atas (orientatif)', tr: 'Üst orta seviye (tahmini)', pl: 'Wyższy średni (orientacyjnie)',
-    msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.',
-    msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
+    msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.', msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
     msgEN:'A strong result in this test format is about accumulated practice, not “talent”. Reinforce your weaker topics.',
     msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.',
     msgPTBR:'Resultado forte neste formato: é prática acumulada, não “talento”. Reforce os temas mais fracos.',
@@ -822,8 +704,7 @@ const LEVEL_RESULTS = [
     msgTR:'Bu test formatında güçlü sonuç: bu “yetenek” değil, birikmiş pratik. Zayıf konuları pekiştir.',
     msgPL:'Mocny wynik w tym formacie: to efekt zebranej praktyki, nie „talentu”. Utrwal słabsze tematy.'},
   {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     en:'Advanced (indicative)', es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi: 'Nâng cao (tham khảo)', id: 'Mahir (orientatif)', tr: 'İleri seviye (tahmini)', pl: 'Zaawansowany (orientacyjnie)',
-    msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.',
-    msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
+    msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.', msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
     msgEN:'A high score on the app’s test format — keep polishing the details through lessons and review.',
     msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.',
     msgPTBR:'Pontuação alta no formato do app: continue lapidando detalhes com aulas e revisão.',
@@ -832,8 +713,7 @@ const LEVEL_RESULTS = [
     msgTR:'Uygulama formatında yüksek puan: dersler ve tekrarlarla ayrıntıları parlatmaya devam et.',
     msgPL:'Wysoki wynik w formacie aplikacji: dalej dopracowuj szczegóły przez lekcje i powtórki.'},
   {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', en:'Top score in this test', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi: 'Tối đa trong bài kiểm tra này', id: 'Maksimum di tes ini', tr: 'Bu testte maksimum', pl: 'Maksimum w tym teście',
-    msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.',
-    msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
+    msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.', msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
     msgEN:'You got everything right in this format — keep it up with regular lesson review.',
     msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.',
     msgPTBR:'Você acertou tudo neste formato: mantenha o nível com revisão regular nas aulas.',
@@ -890,17 +770,7 @@ function diagnosticResultMessage(lang: Lang, result: (typeof LEVEL_RESULTS)[numb
 }
 
 function diagnosticDateLocale(lang: Lang): string {
-  return triLang(lang, {
-    ru: 'ru-RU',
-    uk: 'uk-UA',
-    en: 'en-US',
-    es: 'es-ES',
-    'pt-BR': 'pt-BR',
-    vi: 'vi-VN',
-    id: 'id-ID',
-    tr: 'tr-TR',
-    pl: 'pl-PL',
-  });
+  return triLang(lang, { ru: 'ru-RU', uk: 'uk-UA', en: 'en-US', es: 'es-ES', 'pt-BR': 'pt-BR', vi: 'vi-VN', id: 'id-ID', tr: 'tr-TR', pl: 'pl-PL' });
 }
 
 // Pick 20 questions: 4×A1, 4×A2, 4×B1, 4×B2, 4×C1 — mix of types

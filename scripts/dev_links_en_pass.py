@@ -18,13 +18,16 @@ GROUPS = [
 ]
 
 # Главная, Уроки и итог диалога строк реестра не имеют — ссылки собраны вручную.
+# зачем (координатор 12.10, Макеты): ids en-home/en-lessons/en-dialog-completion не проходили разбор робота (parseLinksDoc требует суффикс из трёх цифр) —
+# теперь en-home-001 / en-lessons-001 / en-dialog-completion-001; колонки как в DEV_LINKS_R1 (8 штук: «тапы» шестая, «уникальна» седьмая).
 EXTRA = [
     ('Главная и Уроки', [
-        ('en-home', 'Главная', BASE + '&next=/(tabs)/home', ''),
-        ('en-lessons', 'Уроки — карта', BASE + '&next=/(tabs)/lessons', ''),
+        ('en-home-001', 'Главная', BASE + '&next=/(tabs)/home', '', 'да'),
+        ('en-lessons-001', 'Уроки — карта', BASE + '&next=/(tabs)/lessons', '', 'да'),
     ]),
+    # итог диалога: сессия + одна реплика + меню «⋯» → «Завершить» (шаги и ссылка берутся у dialogs-043 из DEV_LINKS_R1.md, не отлажены)
     ('Диалоги — итог', [
-        ('en-dialog-completion', 'Итог диалога', 'см. dialogs-013 (сессия)', 'в сессии отправить реплику и открыть «Итоги»/«Завершить» (кнопки по testID, не по тексту)'),
+        ('en-dialog-completion-001', 'Итог диалога (завершён вручную)', 'FROM:dialogs-043', '', 'нет'),
     ]),
 ]
 
@@ -33,7 +36,7 @@ for line in open(SRC, encoding='utf-8'):
     m = re.match(r'\| ([a-z0-9-]+-\d{3}) \|', line)
     if m:
         c = line.rstrip('\n').split('|')
-        rows[c[1].strip()] = {'title': c[2].strip(), 'link': c[3].strip().strip('`'), 'before': c[4].strip(), 'taps': c[6].strip().strip('`')}
+        rows[c[1].strip()] = {'title': c[2].strip(), 'link': c[3].strip().strip('`'), 'before': c[4].strip(), 'taps': c[6].strip().strip('`'), 'unique': c[7].strip() if len(c) > 7 else 'нет'}
 
 def to_en(link: str) -> str | None:
     if not link.startswith('phraseman://dev_state?'):
@@ -51,24 +54,34 @@ out = ['# DEV_LINKS_EN_PASS — ссылки «en-проход» (Дизайн, 
 missing = []
 used = 0
 for title, ids in GROUPS:
-    out += [f'## {title}', '', '| id | экран · состояние | ссылка | перед кадром | тапы |', '|---|---|---|---|---|']
+    out += [f'## {title}', '', '| id | экран · состояние | ссылка | перед кадром | shot list | тапы | уникальна | образец |', '|---|---|---|---|---|---|---|---|']
     for rid in ids:
         r = rows.get(rid)
         if not r:
             missing.append(rid); continue
         en = to_en(r['link'])
         if not en:
-            out.append(f"| {rid} | {r['title']} | ручной путь (см. DEV_LINKS_R1.md) | {r['before']} | {r['taps']} |")
+            out.append(f"| {rid} | {r['title']} | ручной путь (см. DEV_LINKS_R1.md) | {r['before']} |  | {r['taps']} | нет |  |")
             continue
         taps = r['taps']
         warn = ' ⚠️ селектор по тексту — заменить на #testID' if re.search(r'(tap|long|see|await):[^;#]*[А-Яа-яЁё]', taps) else ''
-        out.append(f"| {rid} | {r['title']} | `{en}` | {r['before']} | {taps}{warn} |")
+        out.append(f"| {rid} | {r['title']} | `{en}` | {r['before']} |  | {taps}{warn} | {r['unique']} |  |")
         used += 1
     out.append('')
 for title, items in EXTRA:
-    out += [f'## {title}', '', '| id | экран · состояние | ссылка | перед кадром | тапы |', '|---|---|---|---|---|']
-    for rid, name, link, taps in items:
-        out.append(f"| {rid} | {name} | {'`' + link + '`' if link.startswith('phraseman://') else link} |  | {taps} |")
+    out += [f'## {title}', '', '| id | экран · состояние | ссылка | перед кадром | shot list | тапы | уникальна | образец |', '|---|---|---|---|---|---|---|---|']
+    for rid, name, link, taps, uniq in items:
+        if link.startswith('FROM:'):
+            src = rows.get(link[5:])
+            en_link = to_en(src['link']) if src else None
+            if not en_link:
+                out.append(f"| {rid} | {name} | ручной путь (см. DEV_LINKS_R1.md, {link[5:]}) |  |  |  | нет |  |")
+                used += 1
+                continue
+            out.append(f"| {rid} | {name} | `{en_link}` |  |  | `{src['taps']}` | {uniq} |  |")
+            used += 1
+            continue
+        out.append(f"| {rid} | {name} | {'`' + link + '`' if link.startswith('phraseman://') else link} |  |  | {taps} | {uniq} |  |")
         used += 1
     out.append('')
 out += ['## Итог', '', f'Ссылок: {used}. Не найдено в DEV_LINKS_R1.md: {", ".join(missing) if missing else "нет"}.', '']

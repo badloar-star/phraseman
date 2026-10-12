@@ -8,6 +8,7 @@ import dev_links_r1_steps_spire  # noqa: F401  зачем (15.10): ссылки 
 import dev_links_r1_steps_cards2  # noqa: F401  зачем (12.10): ссылки и шаги Карточек для покрытия r1 (группа 2б: подмены уже есть в приложении)
 import dev_links_r1_steps_dialogs2  # noqa: F401  зачем (12.10): ссылки и шаги Диалогов для покрытия r1 (группа 2а, без сервера ИИ)
 import dev_links_r1_steps_misc2  # noqa: F401  зачем (12.10): Настройки и «Мои наборы» для покрытия r1 (группа 2а)
+import dev_links_r1_steps_robot as STEPS_ROBOT  # зачем (12.10, Макеты): строки, которые робот Сверки пропускал (онбординг через onbstep, Режим Б, сообщество, блиц)
 import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки и шаги Авторизации (auth-gap-001/002/003/008…012, profile-023) — свой модуль, общий файл шагов не трогаем
 
 R = 'C:/appsprojects/phraseman/'
@@ -23,7 +24,8 @@ def it(o):
         for v in o:
             yield from it(v)
 
-rows = [r for r in it(reg) if r.get('release') == 'r1' and r.get('status') in ('pending', 'diff')]
+# зачем (координатор 12.10, Макеты): match-строки, протухшие после правок кода, надо переснимать — им тоже нужны ссылка и шаги (20 строк Сверка пропускала как «нет в DEV_LINKS_R1»)
+rows = [r for r in it(reg) if (r.get('release') == 'r1' or r.get('id') in STEPS_ROBOT.INCLUDE_IDS) and r.get('status') in ('pending', 'diff', 'match')]
 
 # ── индекс shot-list: id → (источник, заголовок, строка таблицы или шаги группы)
 texts = {}
@@ -82,7 +84,7 @@ rule(D, r'энерги', L(f'{COMMON}&energy=0&dev_energy_fail=1', '/ai_dialog_h
 rule(D, r'хаб', L(f'{COMMON}&plus=off&dquota=reset', '/ai_dialog_home'), 'Plus: заменить `plus=on`')
 
 # Карточки
-C = ['cards', 'cards-section', 'cards-v2', 'cards-gap', 'packs-simple']
+C = ['cards', 'cards-section', 'cards-v2', 'cards-gap', 'packs-simple', 'mistakes-panel']
 rule(C, r'из видео', L(f'{COMMON}&cards=demo', '/flashcards_video_packs'), 'список роликов грузится из облака: нужна живая сеть эмулятора; превью — журнал `[THUMB]`')
 rule(C, r'подготовка тренировки.*нет наборов|нет наборов', L(COMMON, '/flashcards_training_setup'), 'чистый аккаунт: НЕ применять `cards=demo`')
 rule(C, r'хаб.*(?<!ошибка )загрузк|(?<!ошибка )загрузка.*хаб', L(f'{COMMON}&hold=hub_loading', '/flashcards'), 'снять: `hold=off`')
@@ -183,7 +185,7 @@ def match(row):
 
 out = []
 out.append('# DEV_LINKS_R1 — как добраться до состояния (Дизайн, 12.10)\n')
-out.append('Строки реестра `release=r1`, `status=pending|diff`. Для каждой — готовая ссылка (`dev_state`, `premium_modal?…&_dev_state=…`, `next=…`) или ручной путь, плюс что сделать перед кадром. Источники: реестр, `R1_SHOT_LIST*.md`, `app/dev_state_fixtures.ts`, `app/dev_paywall_state.ts`. Ссылки подобраны по названию состояния — если кадр не тот, смотри колонку «shot list» (точный путь тапами).\n')
+out.append('Строки реестра `release=r1`, `status=pending|diff|match`. Для каждой — готовая ссылка (`dev_state`, `premium_modal?…&_dev_state=…`, `next=…`) или ручной путь, плюс что сделать перед кадром. Источники: реестр, `R1_SHOT_LIST*.md`, `app/dev_state_fixtures.ts`, `app/dev_paywall_state.ts`. Ссылки подобраны по названию состояния — если кадр не тот, смотри колонку «shot list» (точный путь тапами).\n')
 out.append('## Правила перед КАЖДЫМ кадром\n')
 out.append('1. `adb shell am force-stop app.phraseman` → запуск → дождаться «DEV-STATE OK» (экран `dev-state-done`).')
 out.append('2. Ссылка начинается с `phraseman://dev_state?` и всегда содержит `onboarding=done&intros=seen` (**новое**: `intros=seen` помечает все окна знакомства с разделами показанными — не нужно жать «Позже» на каждом экране; `intros=reset` вернёт их).')
@@ -203,11 +205,20 @@ counts = collections.Counter()
 OVERLAYS_KEEP = set()  # зачем (12.10): слот сообщений Настроек — не окно, исключение не нужно; окно «Plus закончился» закрывало экран кадров gap-008 (журнал: holder=entitlementExpired), overlays=off теперь гасит и его
 
 def add_overlays_off(rid, link):
-    if not link or 'dev_state?' not in link or 'overlays=' in link or rid in OVERLAYS_KEEP:
+    if not link or 'dev_state?' not in link:
+        return link
+    extra = ''
+    if 'overlays=' not in link and rid not in OVERLAYS_KEEP:
+        extra += '&overlays=off'
+    # зачем (Сверка 12.10, cards-v2-033): у свежего гостя язык изучения es, а демо-карточки (`cards=demo*`, `custom50`, `notranslation`) английские — без `studyTarget=en`
+    # хаб/тренировка видят пустой список («Нет карточек для тренировки», [HUB-TOPCARD] result=empty_after_filter). Строки, где язык задан явно, не трогаем.
+    if re.search(r'[?&]cards=(demo|custom50|notranslation)', link) and 'studyTarget=' not in link:
+        extra += '&studyTarget=en'
+    if not extra:
         return link
     if '&next=' in link:
-        return link.replace('&next=', '&overlays=off&next=', 1)
-    return link[:-1] + '&overlays=off`' if link.endswith('`') else link + '&overlays=off'
+        return link.replace('&next=', extra + '&next=', 1)
+    return link[:-1] + extra + '`' if link.endswith('`') else link + extra
 
 # ── ссылка каждой строки ДО вывода: нужна, чтобы понять, общая ли она с соседями (признак «уникальна»)
 def final_link(row):

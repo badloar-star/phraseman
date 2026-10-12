@@ -37049,21 +37049,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-018.png",
+      "evidence_at": "2026-10-12T02:49:09.579Z",
+      "evidence_sha256": "c1ede91b2b0a6801615fd056aa687577afb1418f3c933509bf827b226e139b8d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Значок набора в строке: в образце баночка, в приложении стопка слоёв (общий вопрос владельцу, как cards-v2-013/020/046/048).",
+        "[образец ≠ код] Шапка хаба «Сохранённые» за шторкой: в приложении поиск, «+», «⋮» (как в утверждённом cards-v2 №5), в образце «···» и «+» — шапку в образце gaps-states исправить по приложению (рисую я).",
+        "[данные] В приложении четыре набора (Путешествия, B2 глаголы, Работа, Фразовые глаголы), в образце три; шторка в приложении выше (y≈725 против 825) из-за четвёртой строки, строки чуть крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:50:01.278Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:49, cards-gaps-states №18 «Шторка «В какой набор?» — список»; образец нарисован с приложения): шторка совпала по составу — ручка, «В какой набор?», строки наборов со значком слева и названием, затемнённый список «Сохранённые» за ней. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-019",
@@ -37117,21 +37122,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-020.png",
+      "evidence_at": "2026-10-12T02:49:39.947Z",
+      "evidence_sha256": "e9828f0cf0a447006f18889e0d97ff61349e242ace3c277f3bf4105165a9c528",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце шторка закрыта и поверх списка плашка «ГОТОВО · Добавлено в набор» с галочкой; в приложении шторка осталась открытой, внутри плашка «СООБЩЕНИЕ · Эта карточка уже в наборе» (карточка уже была в наборе из предыдущего шага). Переснять с карточкой, которой ещё нет в выбранном наборе (первый добавляемый тап), либо нарисовать «уже в наборе» отдельным кадром.",
+        "[вёрстка] Плашка сообщения в приложении внутри шторки с вертикальной чертой слева, значок «i» вместо галочки; значок набора — стопка слоёв против баночки (общий вопрос)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:50:01.278Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:49, cards-gaps-states №20 «Шторка «В какой набор?» — добавлено»; образец нарисован с приложения): на кадре не то состояние — вместо успеха «Готово · Добавлено в набор» сообщение «Эта карточка уже в наборе». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-021",

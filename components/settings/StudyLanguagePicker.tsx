@@ -334,7 +334,7 @@ export default function StudyLanguagePicker({
                     width: 18,
                     height: 18,
                     borderRadius: 9,
-                    backgroundColor: glass.accent,
+                    backgroundColor: glass.accent, // light-accent-ok: значок-галочка onAccent на accent читается по галочке; accentGraphic дал бы тёмное на тёмном
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}

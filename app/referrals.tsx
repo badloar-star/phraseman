@@ -695,7 +695,7 @@ export default function ReferralsScreen() {
                 activeOpacity={0.84}
                 disabled={spinning || spinCredits <= 0}
                 onPress={() => { void onSpin(); }}
-                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: spinCredits > 0 || spinning ? t.accent : t.bgSurface2, opacity: spinning ? 0.84 : 1 }}
+                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: spinCredits > 0 || spinning ? t.accent : t.bgSurface2 /* light-accent-ok: кнопка с подписью textOnGold на accent */, opacity: spinning ? 0.84 : 1 }}
               >
                 {/* зачем: владелец (2026-07-26) — никакого спиннера на «Получить приз»:
                     отклик на нажатие — мгновенное вращение дуги, кнопка лишь меняет

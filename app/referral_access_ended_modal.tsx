@@ -235,7 +235,7 @@ export function ReferralAccessEndedModal({
                 borderRadius: 24,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: glass.accent,
+                backgroundColor: glass.accent, // light-accent-ok: кнопка с подписью accentInk на accent
                 opacity: pressed ? 0.85 : 1,
               })}
               onPress={onInviteFriend ?? onOpenFullAccess}

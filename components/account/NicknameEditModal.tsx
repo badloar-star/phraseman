@@ -553,7 +553,7 @@ export default function NicknameEditModal({
               paddingHorizontal: 12,
               paddingVertical: 12,
               borderRadius: 24,
-              backgroundColor: glass.accent,
+              backgroundColor: glass.accent, // light-accent-ok: кнопка «Сохранить» с подписью accentInk на accent
               alignItems: 'center',
               justifyContent: 'center',
               opacity: saveDisabled ? 0.5 : 1,

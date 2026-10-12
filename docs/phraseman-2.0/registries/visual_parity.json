@@ -19942,18 +19942,18 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-020.png",
+      "evidence_at": "2026-10-12T18:11:00.722Z",
+      "evidence_sha256": "6c426caceadc8681da7c4d3137d36538ef22e108b72eb461f17d818e2d8fc803",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T18:13:18.774Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -19964,7 +19964,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:10, manage-subscription-states №4 «Загрузка плана», ссылка manage=loading): экран совпал по составу и раскладке: «‹», «Подписка Plus», карточка «✓ Plus активирован · Подписка Plus» и три серые заглушки (две полные и одна короче). Различия приняты: фон приложения ровный тёмный, без цветного свечения образца, значок «✓» и стрелка «‹» без мятного оттенка — тон темы «Спокойно» (триаж theme_tone)."
     },
     {
       "id": "paywalls-021",
@@ -20172,18 +20173,21 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-025.png",
+      "evidence_at": "2026-10-12T18:11:49.130Z",
+      "evidence_sha256": "d66a7d1071d68b27a2173adfe609bf22c2159b2b0c70f7918d6875f3275c9263",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр прокручен] Страница прокручена вниз: заголовок «Подписка Plus» и «‹» ушли за верх, карточка видна обрезанной («Plus активирован · Годовая подписка», строки «Следующее списание» нет), список «Что включено» длиннее (добавлены «3 заморозки серии в месяц», «Подробная статистика занятий» и ещё пункты) — снимать после возврата прокрутки наверх (шаг scroll:up перед тапом отмены не помогает — шторка открывается тапом внизу страницы).",
+        "[тон темы] Кнопка «Написать нам» белая, в образце мятная — тон темы «Спокойно»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:13:18.774Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -20194,7 +20198,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:11, manage-subscription-states №12 «Поддержка или отмена»): шторка «Расскажи, что пошло не так» совпала по тексту и кнопкам («Написать нам», «Всё равно отменить»), но страница под ней прокручена и отличается."
     },
     {
       "id": "system-001",
@@ -37282,21 +37287,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-011.png",
+      "evidence_at": "2026-10-12T18:09:07.577Z",
+      "evidence_sha256": "26a93ff404c94e1b6a8d3e3b22843d491106c0a51cc357c63df4c9bd4bdaa1ad",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Нужен экран «Не удалось продолжить разговор» (облако с чертой, «Повторить»); кадр снят до появления ссылки (/dialogue_v2_freeform + dev_dialog_send=ok + dev_dialog_fail=service + реплика) — переснять."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:13:18.774Z",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:09, dialogs-gaps №11 «Свободный разговор — не удалось продолжить»): сверка невозможна — на кадре хаб «Диалоги» (Свободный разговор PLUS, четыре категории), а не экран ошибки свободного разговора."
     },
     {
       "id": "dialogs-gap-012",
@@ -37488,21 +37496,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-016.png",
+      "evidence_at": "2026-10-12T18:10:19.653Z",
+      "evidence_sha256": "a67319288643e6136af5eac23aacbaaeae658eca2f665facd1338d1faea932e6",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В образце шапка «Закажи кофе · Доволен», пилюли «⚡ 5» и «30/30», цель «1 из 5 · Заказать капучино» с лампочкой, реплика Мии с кнопками «Перевод / Почему так», тост-пилюля «✓ Энергия возвращена», поле «Напиши или зажми микрофон» и «Или зажми и говори»; в приложении шапка «Поздороваться после знакомства / Диалог ⚡ 5», цель «1 из 6 · Начать с приветствия», реплика Милы, моя реплика «Hello», пузырь ошибки «Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.» с «Повторить», тост «СООБЩЕНИЕ · Энергия возвращена» с иконкой «i» поверх поля ввода (поле «Напиши или говори»).",
+        "[кадр: экранная клавиатура] Справа в кадре вертикальная панель клавиатуры (⌫, отправить, смайл, меню) — перед снимком убрать клавиатуру.",
+        "[данные] Диалог и собеседник другие (Мила/«Поздороваться…» вместо Мии/«Закажи кофе»)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:13:18.774Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:10, dialogs-gaps №16 «Сессия — тост «Энергия возвращена»»): сессия открыта, тост показан, но экран отличается от образца."
     },
     {
       "id": "dialogs-gap-017",

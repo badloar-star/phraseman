@@ -1022,8 +1022,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:23, cards-v2 №24 «Новая карточка — превью живое»; строка «Правка · дубликат»): снят не тот экран — «Мои наборы» в загрузке (три серые заглушки) вместо редактора карточки (крестик, «Новая карточка», живая превью-карточка «Layover», поля «Слово или фраза / Перевод / Пример», «Мои карточки ›», «Добавить»)."
     },
@@ -1210,8 +1210,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C02)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: набор с малым числом карточек для блица (cards=few)"
       }
     },
     {
@@ -1388,8 +1388,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C01"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: ошибка списка роликов «Из видео» (fail=video_list)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:24, cards-v2 №44 «Каталог без сети»; строка «Наборы из видео · Ошибка»): снят загруженный экран «Из видео 5» (карточки роликов с обложкой, длительностью, «Добавить +») вместо экрана ошибки."
     },
@@ -2836,8 +2836,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:44, cards-v2 №22 «Новый набор» против «Создание набора · Только для меня»): сверка невозможна — на кадре «Мои наборы» с одним набором, образец — экран «Новый набор» (название «Путешествия», «Кто видит: Только я», уровень A2, 2 карточки, «Создать набор»)."
     },
@@ -15826,8 +15826,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: удержание поиска друга в загрузке (dev_friends_hold=search)"
       }
     },
     {
@@ -15968,8 +15968,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -16003,8 +16003,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: поиск собственного кода (свой код меняется)"
       }
     },
     {
@@ -16076,8 +16076,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: поиск без сети (dev_friends_fail=search_offline)"
       }
     },
     {
@@ -16300,8 +16300,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: ошибка обновления / офлайн вкладки «Друзья»"
       }
     },
     {
@@ -16366,8 +16366,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02 (частично))"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: лента активности друзей и опрос дня"
       }
     },
     {
@@ -16399,8 +16399,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -30025,8 +30025,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -31721,8 +31721,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: правильный/неправильный ответ в «Правде/лжи» (порядок карточек случайный; аналог blitz_answer)"
       }
     },
     {
@@ -31767,8 +31767,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: верный ввод в «Напиши» (порядок карточек случайный; аналог blitz_answer)"
       }
     },
     {
@@ -31847,8 +31847,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -31894,8 +31894,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: экран итога тренировки (с ошибками)"
       }
     },
     {
@@ -31933,8 +31933,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "склейка свежее правок кода — отличия актуальны",
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-053: записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: экран итога тренировки (Блиц)"
       },
       "precheck": {
         "date": "2026-10-11",
@@ -31995,8 +31995,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: экран итога тренировки (без ошибок)"
       }
     },
     {
@@ -32043,8 +32043,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-v2-030.)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -35783,8 +35783,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-049: записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: правильный/неправильный ответ в «Правде/лжи» (порядок карточек случайный; аналог blitz_answer)"
       }
     },
     {
@@ -35818,8 +35818,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-050: записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: верный ввод в «Напиши» (порядок карточек случайный; аналог blitz_answer)"
       }
     },
     {
@@ -35853,8 +35853,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-052: записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -35889,8 +35889,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-053: записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: экран итога тренировки (с ошибками)"
       }
     },
     {
@@ -35925,8 +35925,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "дубль cards-section-055: записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: экран итога тренировки (без ошибок)"
       }
     },
     {
@@ -36204,8 +36204,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -36238,8 +36238,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -36272,8 +36272,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: итог «Хороший результат» 12 из 20 с плашкой баланса"
       }
     },
     {
@@ -36306,8 +36306,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужна подмена Ядра: итог «Есть куда расти» 6 из 20 с плашкой баланса"
       }
     },
     {
@@ -38435,8 +38435,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S01"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -38548,8 +38548,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-S03)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {
@@ -40665,8 +40665,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A10"
+        "coverage": "manual_conditional",
+        "coverage_note": "нужен настоящий вход (профиль привязан): ручной, в утреннем листе владельцу (Авторизация, G-A10)"
       }
     },
     {

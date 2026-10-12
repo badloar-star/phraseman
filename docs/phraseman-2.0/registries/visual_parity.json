@@ -1890,10 +1890,10 @@
       "id": "cards-043",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 37,
-        "label": "Набор из видео — превью ролика",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 19,
+        "label": "Набор из видео",
+        "mapping": "rebind_hidden_phone_2026-10-12"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Набор из видео — превью ролика",
@@ -3444,8 +3444,8 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "blocked_reason": null,
+      "status": "blocked",
+      "blocked_reason": "NO_CODE (12.10): в коде нет — у экрана «Из видео» нет поиска и состояния «Ничего не нашли» (flashcards_video_packs.tsx: пустой каталог → скелет → «Сейчас недоступно»); кадр cards-states №76 скрыт в образце (заменён cards-v2). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть поиск в код.",
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
@@ -3453,7 +3453,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_video_packs"
-      }
+      },
+      "prev_status": "pending"
     },
     {
       "id": "cards-082",

@@ -128,7 +128,9 @@ const GATES = [
   // каждый ход Диалога упал бы. Список заглушек — из metro.config.js; у каждой те же runtime-экспорты, что у настоящего модуля.
   { name: 'стор-заглушки dev-модулей совпадают по экспортам', script: 'scripts/store_release_stubs_gate.mjs', env: {} },
   // зачем (владелец 04.10, CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»): сборка в стор запрещена, пока КАЖДЫЙ экран не сверен с макетом (склейка + ревью координатора).
-  { name: 'приложение = макет (визуальная сверка)', script: 'scripts/visual_parity_gate.mjs', env: {} },
+  // зачем (вариант «А+Б» владельца, handoff/r1_parity_gate_AB.md): выпуск R1 — только строки release=r1; разобранные
+  // корзины (пересъёмка, решение владельца, новый образец, тон темы) — отдельный громкий счётчик, а не нарушение.
+  { name: 'приложение = макет (визуальная сверка)', script: 'scripts/visual_parity_gate.mjs', env: {}, args: ['--release=r1', '--defer-triage'] },
   // зачем (координатор 12.10): dev-модули в стор-режиме подменяются заглушками — проверяем готовый стор-бандл на dev-строки.
   // Работает только при наличии стор-экспорта в dist-store/ (делается в день сборки), иначе громко пропускает.
   { name: 'в стор-бандле нет dev-строк', script: 'scripts/store_bundle_dev_strings_gate.mjs', env: {} },
@@ -143,7 +145,7 @@ for (const gate of GATES) {
   console.log(`\n— ${gate.name} —`);
   // зачем перехватывать, а не 'inherit': ниже нужно отличить отсутствующий
   // секрет EAS от настоящего провала гейта — для этого требуется текст ошибки.
-  const result = spawnSync(process.execPath, [gate.script], {
+  const result = spawnSync(process.execPath, [gate.script, ...(gate.args ?? [])], {
     cwd: ROOT,
     encoding: 'utf8',
     env: { ...process.env, ...gate.env },

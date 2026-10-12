@@ -380,3 +380,34 @@ test('release=r1 на реальном реестре: прогон по умо�
   assert.match(r1.stdout, /фильтр выпуска: release=r1/);
   assert.ok(total(r1.stdout) > 0 && total(r1.stdout) < total(full.stdout), `${total(r1.stdout)} vs ${total(full.stdout)}`);
 });
+
+// зачем (вариант «А+Б», handoff/r1_parity_gate_AB.md): отложенные корзины не нарушение, но и не молчат; без флага — строго.
+test('--defer-triage: b_reshoot/c_owner_decides/d_mockup_stale/theme_tone — отдельный счётчик; без флага — нарушения', () => {
+  const rows = [
+    matchRow({ id: 'ok', release: 'r1' }),
+    matchRow({ id: 'reshoot', release: 'r1', status: 'diff', triage: { bucket: 'b_reshoot' } }),
+    matchRow({ id: 'owner', release: 'r1', status: 'pending', triage: { bucket: 'a2_layout_candidate', final_bucket: 'c_owner_decides' } }),
+    matchRow({ id: 'stale', release: 'r1', status: 'diff', triage: { final_bucket: 'd_mockup_stale' } }),
+    matchRow({ id: 'tone', release: 'r1', status: 'diff', triage: { theme_tone: true } }),
+    matchRow({ id: 'defect', release: 'r1', status: 'diff', triage: { bucket: 'a_code_defect' } }),
+    matchRow({ id: 'later', status: 'pending', triage: { bucket: 'b_reshoot' } }),
+  ];
+  const strict = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), release: 'r1' });
+  assert.deepEqual(strict.violations.map((v) => v.id).sort(), ['defect', 'owner', 'reshoot', 'stale', 'tone']);
+  assert.equal(strict.deferred.rows, 0);
+  const ab = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), release: 'r1', deferTriage: true });
+  assert.deepEqual(ab.violations.map((v) => v.id), ['defect']);
+  assert.equal(ab.ok, false);
+  assert.equal(ab.deferred.rows, 4);
+  assert.deepEqual(ab.deferred.by, { b_reshoot: 1, c_owner_decides: 1, d_mockup_stale: 1, theme_tone: 1 });
+});
+
+test('--defer-triage: precheck считает r1 с отложенными корзинами, CLI печатает счётчик', () => {
+  const precheck = fs.readFileSync(path.join(ROOT, 'scripts/release_precheck.mjs'), 'utf8');
+  assert.match(precheck, /scripts\/visual_parity_gate\.mjs', env: \{\}, args: \['--release=r1', '--defer-triage'\]/);
+  assert.match(precheck, /\[gate\.script, \.\.\.\(gate\.args \?\? \[\]\)\]/);
+  if (!fs.existsSync(REAL_REGISTRY)) return;
+  const gate = path.join(ROOT, 'scripts', 'visual_parity_gate.mjs');
+  const out = spawnSync(process.execPath, [gate, '--max-lines=0', '--release=r1', '--defer-triage'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PARITY_GATE_WAIVER: '' } });
+  assert.match(out.stderr, /ОТЛОЖЕНО по варианту «А\+Б» \(решение владельца\): строк \d+/);
+});

@@ -12,7 +12,7 @@
  *    стор-режима router.ctx.js ИЛИ флаг не выключен по умолчанию / нет теста-сторожа флага; без reviewed_by.
  * Самопроверка исполнителя не считается: статус match и reviewed_by выставляет координатор, этот гейт лишь проверяет следы.
  *
- * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check] [--release=r1]
+ * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check] [--release=r1] [--defer-triage]
  * Логи: [PARITY-GATE]. Подключён в release:precheck и eas-build-post-install.
  */
 import crypto from 'node:crypto';
@@ -191,6 +191,22 @@ export function filterRowsByRelease(rows, release) {
   return rows.filter((row) => row && row.release === release);
 }
 
+/**
+ * Вариант «А+Б» для R1 (docs/phraseman-2.0/R1_PARITY_GATE_OPTIONS.md, handoff/r1_parity_gate_AB.md).
+ * зачем (координатор 12.10, только по решению владельца): строки, чьё отличие уже разобрано и ждёт пересъёмки, решения
+ * владельца, нового образца или тона темы, — не нарушение выпуска, а отдельный громкий счётчик. Строгость по умолчанию
+ * не меняется: отложить можно только явным флагом --defer-triage.
+ */
+export const DEFERRED_TRIAGE_BUCKETS = Object.freeze(['b_reshoot', 'c_owner_decides', 'd_mockup_stale']);
+
+export function deferredTriageReason(row) {
+  const triage = row?.triage ?? {};
+  const bucket = triage.final_bucket ?? triage.bucket ?? null;
+  if (DEFERRED_TRIAGE_BUCKETS.includes(bucket)) return bucket;
+  if (triage.theme_tone === true) return 'theme_tone';
+  return null;
+}
+
 export function evaluateRegistry(root, registry, options = {}) {
   const violations = [];
   const runGit = options.runGit ?? defaultGit;
@@ -244,7 +260,26 @@ export function evaluateRegistry(root, registry, options = {}) {
       violations.push({ id: row.id, code: 'animation_unknown', detail: 'неизвестно, есть ли анимация в макете (has_animation должно быть true/false)' });
     }
   }
-  return { ok: violations.length === 0, counts, violations };
+  // зачем (вариант «А+Б»): нарушения отложенных строк уходят в deferred — числом и списком, не молча.
+  const deferred = { rows: 0, by: {}, violations: [] };
+  if (!options.deferTriage) return { ok: violations.length === 0, counts, violations, deferred };
+  const reasonById = new Map();
+  for (const row of rows) {
+    if (row.status === 'removed_by_owner' || row.status === 'no_release_surface') continue;
+    const reason = deferredTriageReason(row);
+    if (reason) reasonById.set(row.id, reason);
+  }
+  const kept = [];
+  const deferredIds = new Set();
+  for (const violation of violations) {
+    if (reasonById.has(violation.id)) {
+      deferred.violations.push(violation);
+      deferredIds.add(violation.id);
+    } else kept.push(violation);
+  }
+  for (const id of deferredIds) deferred.by[reasonById.get(id)] = (deferred.by[reasonById.get(id)] ?? 0) + 1;
+  deferred.rows = deferredIds.size;
+  return { ok: kept.length === 0, counts, violations: kept, deferred };
 }
 
 /**
@@ -284,6 +319,8 @@ async function main() {
   const maxLines = Number(value('--max-lines', '40'));
   // зачем (координатор 12.10): `--release=r1` — только строки выпуска R1; по умолчанию — весь реестр, как раньше.
   const release = value('--release', '') || null;
+  // зачем (вариант «А+Б», handoff/r1_parity_gate_AB.md): отложенные корзины — только явным флагом, по умолчанию строго.
+  const deferTriage = flag('--defer-triage');
 
   if (!fs.existsSync(registryPath)) {
     // зачем (10.10): на сервере EAS каталога docs/ нет (.easignore) — реестра там не бывает. Без обхода владельца это
@@ -310,7 +347,7 @@ async function main() {
   const logPath = path.join(root, 'docs/phraseman-2.0/evidence/parity/SVERKA_LOG.md');
   const sverkaLogText = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
   const sverkaOpenDiffs = new Map([...parseSverkaHeadingDiffs(sverkaLogText), ...parseSverkaOpenDiffs(sverkaLogText)]);
-  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs, release });
+  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs, release, deferTriage });
   if (release) {
     const all = Array.isArray(registry?.rows) ? registry.rows.length : 0;
     const noRelease = Array.isArray(registry?.rows) ? registry.rows.filter((row) => !row?.release).length : 0;
@@ -333,13 +370,20 @@ async function main() {
   }
   const { counts } = result;
   console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} blocked=${counts.blocked} removed_by_owner=${counts.removed_by_owner} нарушений=${result.violations.length}`);
+  if (deferTriage) {
+    const by = Object.entries(result.deferred.by).map(([reason, n]) => `${reason}=${n}`).join(' ') || '—';
+    console.warn(`${LOG} ОТЛОЖЕНО по варианту «А+Б» (решение владельца): строк ${result.deferred.rows}, их нарушений ${result.deferred.violations.length} · ${by}`);
+    console.warn(`${LOG}   это НЕ сверено: пересъёмка / решение владельца / новый образец / тон темы — после выхода R1 вернуть строгий прогон`);
+  }
   // зачем (координатор 11.10: «синхронизируй гейт с тем, что Сверка отмечает match»): раньше было видно только число match, а проходит ли каждая
   // отмеченная строка сам гейт (привязка к коду, свежая склейка, анимация) — нет. Теперь явно: сколько отмечено и сколько из них проходит.
   const matchIds = new Set(filterRowsByRelease(registry.rows, release).filter((row) => row.status === 'match').map((row) => row.id));
   const badMatch = new Set(result.violations.filter((violation) => matchIds.has(violation.id)).map((violation) => violation.id));
   console.log(`${LOG} match отмечено Сверкой/владельцем: ${matchIds.size}, проходят гейт: ${matchIds.size - badMatch.size}${badMatch.size ? ` · не проходят: ${[...badMatch].join(', ')} (причины — code_unmapped / evidence_stale / anim_evidence_missing, строки ниже)` : ''}`);
   if (result.ok) {
-    console.log(`${LOG} OK: приложение = макет по всем строкам реестра`);
+    console.log(deferTriage && result.deferred.rows > 0
+      ? `${LOG} OK: нарушений нет; отложено строк ${result.deferred.rows} (вариант «А+Б», см. выше)`
+      : `${LOG} OK: приложение = макет по всем строкам реестра`);
     return 0;
   }
   const byCode = {};

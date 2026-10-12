@@ -178,7 +178,8 @@ describe('смена аккаунта в онбординге — с кнопк�
       const continued = onboarding.indexOf(marker);
       expect(continued).toBeGreaterThan(0);
       expect(onboarding.indexOf("result.error === 'identity_retired'", continued)).toBeGreaterThan(continued);
-      expect(onboarding.indexOf("result.error === 'account_delete_pending' && await offerAccountRestore(lang)", continued)).toBeGreaterThan(continued);
+      // аудит Optimistic UI 12.10: онбординг получает исход восстановления (restore_failed — свой текст).
+      expect(onboarding.indexOf("const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;", continued)).toBeGreaterThan(continued);
     }
 
     const auth = read('app/auth_provider.ts');

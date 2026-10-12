@@ -101,6 +101,24 @@ describe('промпт восстановления удалённого акк�
     expect(modal.slice(branch, branch + 300)).toContain('promptAccountRestoreAfterSignInRefusal(lang)');
   });
 
+  // зачем (аудит Optimistic UI 12.10): неудачное «Восстановить» прежде показывалось как «аккаунт ещё удаляется».
+  it('неудачное восстановление — свой текст и повтор в окне входа и в онбординге; сбой статуса в онбординге не уходит в общий catch', () => {
+    const modal = read('components/RegistrationPromptModal.tsx');
+    const branch = modal.indexOf("if (restore === 'restore_failed') {");
+    expect(branch).toBeGreaterThan(modal.indexOf('promptAccountRestoreAfterSignInRefusal(lang)'));
+    expect(modal.slice(branch, branch + 260)).toContain('showInlineError(failedCopy.title, failedCopy.body)');
+    expect(modal.slice(branch, branch + 260)).toContain('setRetryProvider(provider)');
+
+    const onboarding = read('components/CleanOnboarding.tsx');
+    expect(onboarding.match(/if \(restoreOutcome === 'restore_failed'\) \{\s*const failedCopy = accountRestoreFailedCopy\(lang\);/g)).toHaveLength(2);
+    const fn = onboarding.slice(onboarding.indexOf('async function offerAccountRestore('), onboarding.indexOf('function describeAuthError('));
+    expect(fn).toMatch(/try \{\s*status = await fetchAccountDeleteStatus\(\);\s*\} catch/);
+    for (const line of ['[ACCOUNT-RESTORE] onboarding status_failed', '[ACCOUNT-RESTORE] onboarding not_restorable', '[ACCOUNT-RESTORE] onboarding declined', '[ACCOUNT-RESTORE] onboarding restore ok=']) {
+      expect(fn).toContain(line);
+    }
+    expect(fn).toContain("return outcome.ok ? 'restored' : 'restore_failed';");
+  });
+
   it('текст предложения совпадает с утверждённым в онбординге (паритет)', () => {
     const onboarding = read('components/CleanOnboarding.tsx');
     const prompt = read('app/account_delete_restore_prompt.ts');

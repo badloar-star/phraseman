@@ -59,7 +59,7 @@ import {
   resolveStartupRecoveryLinkState,
   shouldShowSavedJourneyLine,
 } from './startup_recovery_link_copy';
-import { noticeAccountDeletedForever, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
+import { accountRestoreFailedCopy, noticeAccountDeletedForever, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import {
@@ -1274,6 +1274,13 @@ function RegistrationPromptModal({
             }
             if (restore === 'declined') {
               setRetryProvider(null);
+              return;
+            }
+            // зачем (аудит Optimistic UI 12.10): «Восстановить» не сработало — свой текст и повтор, а не «аккаунт ещё удаляется».
+            if (restore === 'restore_failed') {
+              const failedCopy = accountRestoreFailedCopy(lang);
+              setRetryProvider(provider);
+              showInlineError(failedCopy.title, failedCopy.body);
               return;
             }
           }

@@ -120,7 +120,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
-import { accountRestorePromptMessage, noticeAccountDeletedForever } from '../app/account_delete_restore_prompt';
+import { accountRestoreFailedCopy, accountRestorePromptMessage, noticeAccountDeletedForever, type AccountRestorePromptOutcome } from '../app/account_delete_restore_prompt';
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
 import { identityErrorCode } from '../app/identity_trace';
@@ -360,11 +360,23 @@ function firstNameOf(displayName: string | null | undefined): string | null {
  * ещё удаляется». Теперь спрашиваем прямо — согласился, снимаем заявку на
  * сервере, и тот же провайдер пускает внутрь со всем прогрессом.
  *
- * Возвращает true, если удаление отменено и вход можно повторить.
+ * Возвращает исход: restored — удаление отменено и вход можно повторить; restore_failed — человек согласился, но сервер не
+ * ответил (свой текст ошибки); declined / not_restorable — общая ошибка входа.
  */
-async function offerAccountRestore(lang: Lang): Promise<boolean> {
-  const status = await fetchAccountDeleteStatus();
-  if (!status?.pending || !status.restorable) return false;
+async function offerAccountRestore(lang: Lang): Promise<AccountRestorePromptOutcome> {
+  // зачем (аудит Optimistic UI 12.10): прежде здесь не было ни логов, ни защиты от сбоя запроса статуса — исключение уходило
+  // в общий catch входа, а неудачное восстановление показывалось как «аккаунт ещё удаляется».
+  let status: Awaited<ReturnType<typeof fetchAccountDeleteStatus>>;
+  try {
+    status = await fetchAccountDeleteStatus();
+  } catch (error) {
+    console.warn(`[ACCOUNT-RESTORE] onboarding status_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`);
+    return 'not_restorable';
+  }
+  if (!status?.pending || !status.restorable) {
+    console.log(`[ACCOUNT-RESTORE] onboarding not_restorable pending=${status?.pending === true ? 'yes' : 'no'} restorable=${status?.restorable === true ? 'yes' : 'no'}`);
+    return 'not_restorable';
+  }
   const days = Math.max(1, Number(status.daysLeft ?? 1));
   const agreed = await new Promise<boolean>((resolve) => {
     Alert.alert(
@@ -402,9 +414,13 @@ async function offerAccountRestore(lang: Lang): Promise<boolean> {
       { cancelable: false },
     );
   });
-  if (!agreed) return false;
+  if (!agreed) {
+    console.log('[ACCOUNT-RESTORE] onboarding declined');
+    return 'declined';
+  }
   const outcome = await restoreDeletedAccount();
-  return outcome.ok;
+  console.log(`[ACCOUNT-RESTORE] onboarding restore ok=${outcome.ok ? 'yes' : 'no'}${outcome.ok ? '' : ` reason=${outcome.reason ?? 'unknown'}`}`);
+  return outcome.ok ? 'restored' : 'restore_failed';
 }
 
 function describeAuthError(raw: string, lang: Lang): string {
@@ -2786,7 +2802,13 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
+        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
+        if (restoreOutcome === 'restore_failed') {
+          const failedCopy = accountRestoreFailedCopy(lang);
+          setAuthError(`${failedCopy.title}. ${failedCopy.body}`);
+          return;
+        }
+        if (restoreOutcome === 'restored') {
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
@@ -2934,7 +2956,13 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
+        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
+        if (restoreOutcome === 'restore_failed') {
+          const failedCopy = accountRestoreFailedCopy(lang);
+          setAuthError(`${failedCopy.title}. ${failedCopy.body}`);
+          return;
+        }
+        if (restoreOutcome === 'restored') {
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',

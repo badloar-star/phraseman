@@ -71,6 +71,25 @@ export function noticeAccountDeletedForever(lang: Lang, surface: string): void {
 
 export type AccountRestorePromptOutcome = 'restored' | 'declined' | 'not_restorable' | 'restore_failed';
 
+/**
+ * Восстановление не удалось (сеть/сервер). зачем (аудит Optimistic UI 12.10): прежде этот исход сливался с текстом
+ * «аккаунт ещё удаляется» — человек не понимал, что его «Восстановить» не сработало. Заявка на удаление при этом
+ * остаётся (14 дней идут), так что повтор безопасен.
+ */
+export function accountRestoreFailedCopy(lang: Lang): { title: string; body: string } {
+  return {
+    title: triLang(lang, {
+      ru: 'Аккаунт не восстановлен', uk: 'Акаунт не відновлено', en: 'Account not restored', es: 'La cuenta no se restauró',
+      'pt-BR': 'A conta não foi restaurada', vi: 'Chưa khôi phục được tài khoản', id: 'Akun belum dipulihkan', tr: 'Hesap geri yüklenmedi', pl: 'Konto nie zostało przywrócone',
+    }),
+    body: triLang(lang, {
+      ru: 'Проверь интернет и попробуй ещё раз.', uk: 'Перевір інтернет і спробуй ще раз.', en: 'Check your connection and try again.',
+      es: 'Revisa tu conexión e inténtalo de nuevo.', 'pt-BR': 'Verifique a conexão e tente de novo.', vi: 'Hãy kiểm tra kết nối và thử lại.',
+      id: 'Periksa koneksi lalu coba lagi.', tr: 'Bağlantını kontrol et ve tekrar dene.', pl: 'Sprawdź połączenie i spróbuj ponownie.',
+    }),
+  };
+}
+
 export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promise<AccountRestorePromptOutcome> {
   console.log('[ACCOUNT-RESTORE] prompt start');
   let status: Awaited<ReturnType<typeof fetchAccountDeleteStatus>>;

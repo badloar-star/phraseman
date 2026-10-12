@@ -195,5 +195,34 @@ energy-modes: не проверено, есть ли у урока 1 перед 
 005 (шторка Plus на остановке), 006 (после покупки), 007/008 (нет энергии / восстановилась), 011 (Learning V2 — зона Codex),
 012–014 — следующей партией после первых кадров.
 
-**Осталось:** settings-gap-012 (запрет уведомлений — файл экрана правит другая сессия); cards-gap-019/040; energy-modes
-005–014; разбор кадров cards-v2-015 «0 карточек» и cards-section-041 — ждём журнал Сверки.
+**Итоги разбора журналов (12.10):** cards-v2-015 — подмена верна (49 карточек пришли через ~1,7 с; снимок был раньше) →
+`wait:2500`; cards-section-041 — дефект не подтвердился.
+
+## Партия 4 — Карточки (хвосты), энергия в уроках (12.10 поздний вечер)
+
+Коммит: d0c04fbfd (`cards=demo_nopacks`). Сторож ссылок: 69a4230ba (`tests/dev_links_r1_prod_write_guard.test.mjs`).
+
+`L` = `onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on` · урок: `next=/lesson_menu?id=1`, шаги
+входа `tap:#lesson-menu-primary; wait:2500`, ошибка — `tap:#lesson1-word-option-wrong`.
+
+| id | ссылка | шаги |
+|---|---|---|
+| cards-gap-019 | `B&cards=demo_nopacks&plus=on&next=/flashcards_collection?cat=saved` | `tap:Layover; tap:#fc-expanded-to-pack` («своих наборов пока нет»). Только гость |
+| cards-gap-040 | `B&cards=demo&plus=off&free=on&mode=a&energy=5&next=/flashcards_recall_session?deck=saved%26size=all%26dir=to_target` | — (флаг `energy_mistake_charge` выкл. = `mode=a`: пилюля энергии вместо сердец) |
+| energy-modes-005 | `L&mode=b&energy=1&next=/lesson_menu?id=1` | вход; ошибка; `wait:1500; tap:#energy-stop-plus; wait:1200` |
+| energy-modes-007 | `L&mode=b&energy=0&next=/lesson_menu?id=1` | `tap:#lesson-menu-primary; wait:1500` → `energy-needed-sheet` |
+| energy-modes-012 | `B&cards=demo&plus=off&free=on&mode=b&energy=5&blitz_answer=wrong&next=/flashcards_blitz_session?deck=saved%26sec=60` | `wait:4000; await:#fc-blitz-opt-target; tap:#fc-blitz-opt-target; wait:300` (−1 энергия, сердец нет) |
+| energy-modes-013 | `B&plus=off&mode=b&energy=5&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok&next=/ai_dialog_home` | `E; tap:#dialogue-v2-session-input; type:I goed home; tap:#dialogue-v2-session-send; wait:2500` (пилюля не меняется) |
+| energy-modes-014 | `B&plus=off&mode=b&energy=5&next=/(tabs)/home` | `tap:#home-v2-phrase-of-day; wait:800` (фраза дня энергию не тратит) |
+
+**Не сделано — нужно решение координатора:**
+- **energy-modes-006** «после покупки занятие продолжается»: покупка в dev невозможна. Вариант — dev-подмена «Plus выдан
+  по кнопке шторки остановки» (`energy_stop=plus_granted`: тап `energy-stop-plus` ставит локальный Plus в памяти и закрывает
+  шторку). Делать?
+- **energy-modes-008** «энергия восстановилась»: какой кадр — таймер `energy-needed-timer` дошёл до нуля на шторке, или пилюля
+  на Главной после восстановления? Без уточнения не подбираю.
+- **energy-modes-009/010** (слова, неправильные глаголы) — ссылки у Макетов уже есть, ошибка там в другом виде задания; при
+  нужде дам метку неверного ответа и для них.
+- **energy-modes-011** — Learning V2, зона Codex.
+
+**Осталось:** settings-gap-012 (запрет уведомлений — экран держит Авторизация).

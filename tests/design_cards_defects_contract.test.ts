@@ -2,8 +2,9 @@
 // cards-005 («Сохранённые», а не «Карточки»), cards-011 (у своего набора уровень и слова-чипы), cards-v2-001 (транскрипция верхней карточки хаба).
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 
 describe('Cards defects from the mockup parity registry', () => {
   it('cards-005: the saved list is titled «Сохранённые» in all nine languages, not the section name', () => {

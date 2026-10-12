@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (владелец 11.10: «ВСЁ ПОПАДАЕТ В СБОРКУ! LEARNING V2 ПОПАДАЕТ!!!», курс виден всем сразу): вырез Learning V2 из
 // стор-сборки (10.10, router.ctx.js `*learning[_-]v2*` + заглушка наград сессии) снят. Сторож держит обратное правило:
@@ -7,8 +8,8 @@ import path from 'node:path';
 // Сработал — не возвращай вырез без прямой команды владельца.
 describe('store release Learning V2 bundle boundary', () => {
   const root = path.join(__dirname, '..');
-  const routerContext = fs.readFileSync(path.join(root, 'router.ctx.js'), 'utf8');
-  const metroConfig = fs.readFileSync(path.join(root, 'metro.config.js'), 'utf8');
+  const routerContext = normalizeEol(fs.readFileSync(path.join(root, 'router.ctx.js'), 'utf8'));
+  const metroConfig = normalizeEol(fs.readFileSync(path.join(root, 'metro.config.js'), 'utf8'));
   const storeBranch = routerContext.split(': require.context(')[0] ?? '';
   const storeRegexLiteral = /\n\s*\/(\^[\s\S]*?)\/,\s*\n/.exec(storeBranch)?.[1] ?? '';
   const storeRegex = new RegExp(storeRegexLiteral);

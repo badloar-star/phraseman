@@ -29,6 +29,7 @@ jest.mock('../app/spire_gate_refresh', () => ({ forceRefreshSpireGatesNow: jest.
 import fs from 'node:fs';
 import path from 'node:path';
 import { applyDevState, parseDevStateParams, vipSnapshotValuesFor } from '../app/dev_state_fixtures';
+import { normalizeEol } from './helpers/read_source';
 
 describe('dev_state: разбор ссылки', () => {
   test('все поддержанные параметры', () => {
@@ -77,7 +78,7 @@ describe('dev_state: cards=demo — наполненный аккаунт Кар
 
 describe('dev_state: в стор-сборке маршрута нет', () => {
   test('router.ctx.js вырезает dev_state из стор-ветки', () => {
-    const router = fs.readFileSync(path.join(__dirname, '..', 'router.ctx.js'), 'utf8');
+    const router = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'router.ctx.js'), 'utf8'));
     const storeBranch = router.split(': require.context(')[0] ?? '';
     const literal = /\n\s*\/(\^[\s\S]*?)\/,\s*\n/.exec(storeBranch)?.[1] ?? '';
     const storeRegex = new RegExp(literal);
@@ -85,9 +86,9 @@ describe('dev_state: в стор-сборке маршрута нет', () => {
     expect(storeRegex.test('./(tabs)/home.tsx')).toBe(true);
   });
   test('маршрут сам проверяет dev-сборку', () => {
-    const route = fs.readFileSync(path.join(__dirname, '..', 'app', 'dev_state.tsx'), 'utf8');
+    const route = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'dev_state.tsx'), 'utf8'));
     expect(route).toMatch(/if \(!available\) return <Redirect href="\/" \/>;/);
-    const fixtures = fs.readFileSync(path.join(__dirname, '..', 'app', 'dev_state_fixtures.ts'), 'utf8');
+    const fixtures = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'dev_state_fixtures.ts'), 'utf8'));
     expect(fixtures).toMatch(/__DEV__ === true && !IS_STORE_RELEASE/);
     expect(fixtures).not.toMatch(/@react-native-firebase|httpsCallable\(/);
   });
@@ -193,7 +194,7 @@ describe('dev_state: в стор-сборке новые переключате�
 
   test('исходники фикстур не ходят в сеть и не пишут в Firestore', () => {
     for (const file of ['dev_state_fixtures.ts', 'dev_state_cards_demo.ts']) {
-      const source = fs.readFileSync(path.join(__dirname, '..', 'app', file), 'utf8');
+      const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', file), 'utf8'));
       expect(source).not.toMatch(/httpsCallable\(|firebase\/firestore|@react-native-firebase|\bfetch\(|\bsetDoc\(|\baddDoc\(|\bupdateDoc\(|XMLHttpRequest/);
     }
   });

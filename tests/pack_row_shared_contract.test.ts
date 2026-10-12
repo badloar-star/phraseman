@@ -8,9 +8,10 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
-const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+const read = (rel: string): string => normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
 const PACK_ROW = 'components/packs/PackRow.tsx';
 const MODEL = 'components/packs/packRowModel.ts';
@@ -288,7 +289,7 @@ describe('ClampedText — одно видимое исключение стор�
         const stat = fs.statSync(path.join(ROOT, rel));
         if (stat.isDirectory()) { walk(rel); continue; }
         if (!/\.(tsx?|jsx?)$/.test(name) || rel === 'components/text-integrity/ClampedText.tsx') continue;
-        if (/from\s+['"][^'"]*text-integrity\/ClampedText['"]/.test(fs.readFileSync(path.join(ROOT, rel), 'utf8'))) importers.push(rel);
+        if (/from\s+['"][^'"]*text-integrity\/ClampedText['"]/.test(normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')))) importers.push(rel);
       }
     };
     for (const dir of ['app', 'components', 'modules', 'hooks', 'constants', 'lib']) {

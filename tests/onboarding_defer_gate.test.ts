@@ -36,6 +36,7 @@ import {
   whenOnboardingSettled,
 } from '../app/onboarding_defer_gate';
 import { markNativeSplashHidden, runAfterHomeFirstFrame } from '../app/first_frame_deferred_warmups';
+import { normalizeEol } from './helpers/read_source';
 
 const flushPromises = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 function emitHomeReady(): void {
@@ -96,7 +97,7 @@ describe('runAfterHomeFirstFrame + holdDuringOnboarding', () => {
 });
 
 describe('_layout: что ждёт онбординг (контракт по исходнику)', () => {
-  const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+  const layout = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8'));
   const callFor = (label: string) => {
     const start = layout.indexOf(`runAfterHomeFirstFrame('${label}',`);
     expect(start).toBeGreaterThan(0);

@@ -11,8 +11,9 @@ import path from 'node:path';
 
 import { applyDevPaywallView, DEV_PAYWALL_STATES, parseDevPaywallState, type PaywallDevView } from '../app/dev_paywall_state';
 import { clearThemedBlockingAlerts, enqueueThemedBlockingInfoAlert, getThemedBlockingAlertHead } from '../app/themed_blocking_alert_queue';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 
 const BASE: PaywallDevView = {
   loading: false, offeringsSettled: true, offeringsFailed: false, storeUnavailableReason: null,

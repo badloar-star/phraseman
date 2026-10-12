@@ -2,8 +2,9 @@
 // и менял его, текст ошибки оставался на старом языке. Сторож: в состоянии — «язык → текст», текст строится при рендере на текущем языке.
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+const onboarding = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8'));
 
 describe('onboarding sign-in error follows the interface language', () => {
   it('stores a language resolver, not a finished string', () => {

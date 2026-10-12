@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const read = (relativePath: string) => normalizeEol(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 
 const loadDocumentSplitter = (source: string): ((text: string) => string[]) => {
   const implementation = source.match(

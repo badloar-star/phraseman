@@ -23,6 +23,7 @@ import {
   omitDevFixtureCardKeys,
 } from '../app/dev_fixture_upload_guard';
 import { assertDisposableGuest } from '../app/dev_state_account_guard';
+import { normalizeEol } from './helpers/read_source';
 
 beforeAll(() => {
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
@@ -91,7 +92,7 @@ describe('метка «не выгружать» — гость с фиксту�
 });
 
 describe('проводка в синхронизации (контракт по исходнику)', () => {
-  const src = fs.readFileSync(path.join(__dirname, '..', 'app/cloud_sync.ts'), 'utf8');
+  const src = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app/cloud_sync.ts'), 'utf8'));
   it('обычная и принудительная синхронизация вырезают ключи до выгрузки карточек', () => {
     expect(src).toContain("await isDevFixtureNoUploadActive(getAuthUserId()),\n      'sync',");
     expect(src).toContain("await isDevFixtureNoUploadActive(getAuthUserId()),\n      'force_sync',");
@@ -100,7 +101,7 @@ describe('проводка в синхронизации (контракт по 
   });
 
   it('стор-сборка: метка не действует (проверка __DEV__ && !IS_STORE_RELEASE)', () => {
-    const guard = fs.readFileSync(path.join(__dirname, '..', 'app/dev_fixture_upload_guard.ts'), 'utf8');
+    const guard = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app/dev_fixture_upload_guard.ts'), 'utf8'));
     expect(guard).toContain("return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;");
   });
 });

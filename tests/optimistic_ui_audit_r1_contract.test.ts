@@ -10,8 +10,9 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 /* eslint-disable import/first */
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 const section = (source: string, start: string, length = 2600): string => {
   const at = source.indexOf(start);
   if (at < 0) throw new Error(`нет ${start}`);

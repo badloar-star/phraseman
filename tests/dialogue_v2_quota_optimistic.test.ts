@@ -10,6 +10,7 @@ import {
   setDialogueV2QuotaRemaining,
   settleDialogueV2QuotaTurn,
 } from '../app/dialogue_v2_quota_optimistic';
+import { normalizeEol } from './helpers/read_source';
 
 beforeAll(() => {
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
@@ -56,8 +57,8 @@ describe('переходы квоты', () => {
 });
 
 describe('экран диалога зовёт переходы в нужных местах (контракт по исходнику)', () => {
-  const screen = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_session.tsx'), 'utf8');
-  const hook = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use_dialogue_v2_session_coaching.ts'), 'utf8');
+  const screen = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_session.tsx'), 'utf8'));
+  const hook = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use_dialogue_v2_session_coaching.ts'), 'utf8'));
 
   it('отправка, ответ, лимит, пауза и сбой', () => {
     expect(screen).toContain('coaching.beginQuotaTurn(pending.turnId);');

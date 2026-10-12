@@ -192,7 +192,7 @@ async function contrastMask(img, cfg) {
     }
   }
   out = fillHoles(out, w, h);
-  if (cfg.band && cfg.fillFromY) {
+  if (cfg.band && cfg.fillFromY && !process.argv.includes('--no-fill')) { // --no-fill: проба без достройки полосы на тёмной обложке
     // зачем: на тёмной обложке лента сливается с фоном (контраста нет) — ниже fillFromY берём полосу целиком по оси ленты
     out = Uint8Array.from(out);
     const fillHalf = cfg.fillHalf ?? cfg.band.half;

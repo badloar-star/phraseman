@@ -5,7 +5,7 @@
  * зачем (CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»): сверка по коду не считается — нужен кадр макета и кадр эмулятора рядом, который смотрит координатор.
  *
  * Использование:
- *   node scripts/parity_shot.mjs shot <id> [--device=emulator-5554] [--phone=N] [--wait-ms=900] [--mockup-only] [--no-registry]
+ *   node scripts/parity_shot.mjs shot <id> [--device=emulator-5554] [--phone=N] [--wait-ms=900] [--mockup-only] [--no-registry] [--fit=height|width] [--device-dp=411]
  *   node scripts/parity_shot.mjs anim <id> [--device=emulator-5554] [--seconds=8] [--phone=N] [--no-registry]
  *   node scripts/parity_shot.mjs list [--pending] [--page=dialogs]
  * <id> — из docs/phraseman-2.0/registries/visual_parity.json (например dialogs-032).
@@ -108,14 +108,47 @@ function findRow(id) {
   return row;
 }
 
+// зачем (координатор 12.10, ложное «+5–8 %»): склейка ставила макет и кадр устройства ОДИНАКОВОЙ ВЫСОТОЙ (1200 px), а у Pixel_8 экран 411 dp шириной и 2400 px высотой
+// (соотношение 0.45), у макета 390 × 932 (0.418) — при равной высоте приложение выходило шире макета на ≈ 7,6 % и все размеры казались больше. Флаг --fit=width приводит оба кадра
+// к равной ШИРИНЕ (390-dp эквивалент); по умолчанию поведение прежнее (--fit=height) — у Сверки идёт пачка, менять на ходу нельзя.
+export const MOCKUP_DP = 390;
+export const DEVICE_DP = 411;
+export const ROW_HEIGHT_PX = 1200;
+
+/** Размер PNG из заголовка IHDR (без библиотек изображений). */
+export function pngSize(buffer) {
+  if (!buffer || buffer.length < 24 || buffer.subarray(1, 4).toString('ascii') !== 'PNG') throw new Error('png_expected');
+  return { w: buffer.readUInt32BE(16), h: buffer.readUInt32BE(20) };
+}
+
+/** Во сколько раз уменьшить кадр устройства шириной `deviceDp` dp, чтобы он стал эквивалентен макету шириной `mockupDp` dp: 411 → 390/411, 390 → 1. */
+export function fitScale(deviceDp, mockupDp = MOCKUP_DP) {
+  if (!(deviceDp > 0) || !(mockupDp > 0)) throw new Error(`fit_dp_invalid:${deviceDp}/${mockupDp}`);
+  return mockupDp / deviceDp;
+}
+
+/**
+ * Высоты картинок в склейке. height (по умолчанию, прежнее поведение): обе по rowHeight px.
+ * width: макет остаётся rowHeight px высотой, кадр устройства масштабируется так, чтобы его ширина (в dp, приведённая через fitScale) совпала с шириной макета.
+ */
+export function layoutHeights({ fit = 'height', rowHeight = ROW_HEIGHT_PX, mockup, device, deviceDp = DEVICE_DP, mockupDp = MOCKUP_DP }) {
+  if (fit === 'height') return { mockupH: rowHeight, deviceH: rowHeight };
+  if (fit !== 'width') throw new Error(`fit_unknown:${fit} (height|width)`);
+  if (!device) return { mockupH: rowHeight, deviceH: rowHeight };
+  const mockupWidthPx = (rowHeight * mockup.w) / mockup.h;
+  const pxPerMockupDp = mockupWidthPx / mockupDp;
+  const deviceWidthPx = deviceDp * fitScale(deviceDp, mockupDp) * pxPerMockupDp;
+  return { mockupH: rowHeight, deviceH: Math.round((deviceWidthPx * device.h) / device.w) };
+}
+
 /** Склейка двух кадров рядом (макет слева, приложение справа) средствами самого браузера — без сторонних библиотек изображений. */
-async function composeSideBySide(page, mockupPng, devicePng, labels) {
+async function composeSideBySide(page, mockupPng, devicePng, labels, heights = { mockupH: ROW_HEIGHT_PX, deviceH: ROW_HEIGHT_PX }) {
   const toUrl = (buffer) => `data:image/png;base64,${buffer.toString('base64')}`;
   await page.setViewportSize({ width: 1800, height: 1290 });
   await page.setContent(`<!doctype html><meta charset="utf-8"><body style="margin:0;background:#101012;color:#e8e8ea;font:600 18px system-ui;">
     <div style="display:flex;gap:28px;padding:20px;align-items:flex-start;">
-      <figure style="margin:0"><div style="margin-bottom:10px">${labels.left}</div><img id="a" style="height:1200px;display:block" src="${toUrl(mockupPng)}"></figure>
-      <figure style="margin:0"><div style="margin-bottom:10px">${labels.right}</div>${devicePng ? `<img id="b" style="height:1200px;display:block" src="${toUrl(devicePng)}">` : '<div style="height:1200px;width:560px;display:flex;align-items:center;justify-content:center;border:1px dashed #666">нет кадра приложения (--mockup-only)</div>'}</figure>
+      <figure style="margin:0"><div style="margin-bottom:10px">${labels.left}</div><img id="a" style="height:${heights.mockupH}px;display:block" src="${toUrl(mockupPng)}"></figure>
+      <figure style="margin:0"><div style="margin-bottom:10px">${labels.right}</div>${devicePng ? `<img id="b" style="height:${heights.deviceH}px;display:block" src="${toUrl(devicePng)}">` : '<div style="height:1200px;width:560px;display:flex;align-items:center;justify-content:center;border:1px dashed #666">нет кадра приложения (--mockup-only)</div>'}</figure>
     </div></body>`);
   await page.waitForFunction(() => [...document.images].every((img) => img.complete && img.naturalWidth > 0));
   return page.screenshot({ fullPage: true, type: 'png' });
@@ -137,10 +170,13 @@ async function commandShot(id) {
       if (devicePng.length < 1000 || devicePng.subarray(1, 4).toString('ascii') !== 'PNG') throw new Error('screencap_not_png');
       console.log(`${LOG} device=${device} frame_bytes=${devicePng.length}`);
     }
+    const fit = arg('--fit', 'height');
+    const heights = layoutHeights({ fit, mockup: pngSize(mockupPng), device: devicePng ? pngSize(devicePng) : null, deviceDp: Number(arg('--device-dp', String(DEVICE_DP))) });
+    console.log(`${LOG} fit=${fit} mockup_h=${heights.mockupH} device_h=${heights.deviceH}`);
     const output = await composeSideBySide(page, mockupPng, devicePng, {
       left: `макет · ${path.basename(row.mockup.file)} · телефон ${phone}/${count} · ${row.mockup.label ?? ''}`,
       right: `приложение · ${row.id} · ${row.screen} / ${row.state}`,
-    });
+    }, heights);
     fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
     const target = path.join(EVIDENCE_DIR, `${row.id}.png`);
     fs.writeFileSync(target, output);

@@ -94,3 +94,38 @@ describe('B(2) очистка кэша Firestore SDK', () => {
     expect(mark).toBeLessThan(auth.indexOf('\nexport ', fn + 10));
   });
 });
+
+// ── Цена проверки на каждом старте (координатор 12.10): без метки Firestore НЕ загружается вовсе.
+let mockFirestoreModuleLoaded = 0;
+jest.mock('@react-native-firebase/firestore', () => {
+  mockFirestoreModuleLoaded += 1;
+  return { __esModule: true, default: () => ({ clearPersistence: async () => undefined }) };
+});
+
+describe('B(2) проверка на старте без метки', () => {
+  beforeEach(() => { for (const k of Object.keys(mockSecure)) delete mockSecure[k]; });
+
+  it('без метки модуль Firestore не загружается (рантайм), в лог — время проверки', async () => {
+    jest.isolateModules(() => {
+      const logs: string[] = [];
+      const spy = jest.spyOn(console, 'log').mockImplementation((...a: unknown[]) => { logs.push(a.join(' ')); });
+      const before = mockFirestoreModuleLoaded;
+      const { runFirestoreCacheClearOnColdStart } = require('../app/firestore_cache_clear');
+      void runFirestoreCacheClearOnColdStart();
+      expect(mockFirestoreModuleLoaded).toBe(before);
+      expect(logs.some((l) => /\[ACC-MUT\] firestore_cache_clear check ms=\d+ marker=0/.test(l))).toBe(true);
+      spy.mockRestore();
+    });
+  });
+
+  it('с меткой модуль Firestore загружается и очищает', async () => {
+    const mod = require('../app/firestore_cache_clear');
+    await mod.markFirestoreCacheClearPending('account_delete');
+    await expect(mod.runFirestoreCacheClearOnColdStart()).resolves.toBe('cleared');
+    expect(mockFirestoreModuleLoaded).toBeGreaterThan(0);
+  });
+
+  it('boot-модуль не импортирует Firestore сам', () => {
+    expect(read('app/firestore_cache_clear_boot.ts')).not.toMatch(/firestore['"]/);
+  });
+});

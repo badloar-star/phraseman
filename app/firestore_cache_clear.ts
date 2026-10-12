@@ -42,12 +42,15 @@ export function runFirestoreCacheClearOnColdStart(
   getFirestoreForClear: () => FirestoreForClear = defaultFirestoreForClear,
 ): Promise<'none' | 'cleared' | 'failed'> {
   let marker: string | null = null;
+  // зачем (координатор 12.10): чтение синхронное и идёт на холодном старте у КАЖДОГО — его цена видна в журнале на каждом старте.
+  const checkStartedAt = Date.now();
   try {
     marker = SecureStore.getItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
   } catch (error) {
-    console.warn(`${LOG} read_failed code=${errorCode(error)} — очистка отложена до следующего старта`); // guard-ok: catch логирует код
+    console.warn(`${LOG} check ms=${Date.now() - checkStartedAt} read_failed code=${errorCode(error)} — очистка отложена до следующего старта`); // guard-ok: catch логирует код
     return Promise.resolve('failed');
   }
+  console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${marker ? 1 : 0}`); // guard-ok: одна строка на холодный старт
   if (!marker) return Promise.resolve('none');
   const startedAt = Date.now();
   console.log(`${LOG} start marker=${marker.split(':')[1] ?? '?'}`); // guard-ok: только когда метка есть

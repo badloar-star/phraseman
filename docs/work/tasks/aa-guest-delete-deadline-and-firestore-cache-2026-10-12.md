@@ -1,6 +1,7 @@
 # Task packet: удаление гостя — дедлайн постановки 25 с в фоне + очистка кэша Firestore SDK на следующем старте
 
 Governance-ID: TG-AC273A0C3C3C
+Governance-ID: TG-04D305E152CD
 Status: Done (B1 52429d419, B2 этим коммитом)
 Owner: 5 · АВТОРИЗАЦИЯ (координатор 12.10: «оба ДА», порядок B(1) → B(2))
 Related epic/enabler: журнал прода 12.10 — accountDeleteEnqueue холодный старт ≈9 с > клиентские 8 с; локальный кэш Firestore
@@ -40,3 +41,9 @@ In scope: app/account_delete_timeout.ts, app/cloud_sync.ts (параметр д�
 ## Rollback
 
 Откат коммитов.
+
+## Дополнение (TG-04D305E152CD, координатор): цена проверки на каждом холодном старте
+
+Лог `[ACC-MUT] firestore_cache_clear check ms=<время синхронного чтения SecureStore> marker=0|1` на каждом старте; тест-сторож:
+без метки `@react-native-firebase/firestore` не загружается (рантайм-проверка подменённым модулем). Если на эмуляторе >5 мс — предложить
+дешевле (метка в существующем стартовом снимке, чтение которого уже есть).

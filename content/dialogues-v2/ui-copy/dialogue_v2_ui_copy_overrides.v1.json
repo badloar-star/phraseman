@@ -1073,6 +1073,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "En un hilo de trabajo hay una negociación difícil con Marina y Oleg. Fija los hechos, encuentra un marco de compromiso, responde a las objeciones y cierra el acuerdo — con acciones y un criterio de éxito."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ya estás aquí — escríbele a Lea, tu anfitriona, preséntate, di a qué hora llegaste y pregunta qué hacer ahora. Las llaves no se van a entregar solas."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sin el código, la puerta no se abre. Pídeselo a Niko, da la dirección o la reserva y pídele que repita los números — un error y te quedas en la puerta."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pregúntale a Clara a partir de qué hora puedes entrar y dile a qué hora llegarás. Si lo necesitas antes o después, pregunta — Clara sigue las normas, pero te dirá con amabilidad qué se puede hacer."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Reserva un traslado con Lea — di desde dónde, a qué hora y cuántas personas son, y pregunta el precio. No olvides preguntar cómo encontrar al conductor."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Niko te dio un consejo y funcionó. Dale las gracias, dile en qué te ayudó exactamente y hazle otra pregunta corta — a Niko le gusta responder al grano."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Necesitas saber cómo llegar. Pregúntales a Clara y Lea qué transporte conviene, dónde hay que hacer transbordo y cuánto se tarda, y luego repite la ruta — es más seguro."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Revisa la reserva con Lea — el número, las fechas, los huéspedes y qué incluye el precio. Mejor preguntar ahora que llevarse una sorpresa al llegar."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vas con retraso. Avisa a Niko, explica brevemente el motivo, da una nueva hora y acuerda qué hacer si llegas tarde."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Aún faltan horas para entrar y la maleta ya pesa. Pregúntales a Clara y Lea dónde dejar el equipaje, en qué dirección y hasta qué hora puedes recogerlo."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Queda con Lea durante el viaje — propón un lugar y dos horarios, ten en cuenta su trayecto y describe cómo reconocerte."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Algo va mal con el alojamiento. Expón el problema a Niko y Clara con hechos, da el número de reserva y la solución que quieres y consigue un plazo concreto — un «lo revisamos» no cuenta."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El grupo se ha dispersado durante el viaje y Clara te pide reunir a todos. Averigua quién está dónde y qué le frena a cada uno, propón una ruta y un punto de encuentro y reparte las tareas."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tus planes cambiaron y hay que modificar la reserva. Explícales a Lea y Niko las nuevas fechas, pregunta si hay disponibilidad y cuánto cuesta el cambio, y confirma tu elección."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El servicio falló y Niko necesita tu reclamación. Cuenta en orden qué pasó, aporta pruebas, di qué solución esperas — y no te conformes con una respuesta genérica."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "La ruta se cayó y hace falta otra. Compara opciones con Clara, ten en cuenta lo que quiere el grupo, encuentra un punto medio y reparte billetes y tareas."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El servicio dice que no hay reserva, pero tú tienes la confirmación. Explícale a Lea la discrepancia con calma, pide que revisen el registro y consigue la solución por escrito."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Un fallo del servicio te costó tiempo y dinero. Basándote en las condiciones, explícales a Niko y Clara las consecuencias, pide una compensación justa y responde a su contraoferta."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El huésped, el anfitrión y el servicio cuentan versiones distintas. Ayuda a Clara a separar hechos de emociones, encontrar un arreglo urgente y acordar una solución definitiva — confirmada por todos."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "El viaje se ha torcido y en el chat común todos esperan decisiones. Dales a Lea y Niko un estado breve, separa lo urgente de lo secundario, compara opciones y confirma la nueva logística."
       }
     },
     "pt-BR": {
@@ -1227,6 +1303,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Numa conversa de trabalho rola uma negociação difícil com a Marina e o Oleg. Registre os fatos, encontre uma base de acordo, responda às objeções e feche o resultado — com ações e um critério de sucesso."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você chegou — mande mensagem para a Lea, sua anfitriã, apresente-se, diga o horário da chegada e pergunte o que fazer agora. As chaves não vão se entregar sozinhas."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sem o código, a porta não abre. Peça ao Niko, informe o endereço ou a reserva e peça para repetir os números — um erro e você fica do lado de fora."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pergunte à Clara a partir de que horas dá para fazer o check-in e diga quando você chega. Se precisar mais cedo ou mais tarde, pergunte — a Clara segue as regras, mas vai explicar com educação o que é possível."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Reserve um transfer com a Lea — diga de onde, a que horas e quantas pessoas são, e pergunte o preço. Não esqueça de perguntar como encontrar o motorista."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O Niko te deu uma dica e funcionou. Agradeça, diga como exatamente ajudou e faça mais uma pergunta rápida — o Niko gosta de responder direto ao ponto."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você precisa descobrir como chegar. Pergunte à Clara e à Lea qual transporte é melhor, onde fazer a baldeação e quanto tempo leva, e depois repita o trajeto — é mais garantido."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Confira a reserva com a Lea — o número, as datas, os hóspedes e o que está incluído. Melhor perguntar agora do que ter surpresa na chegada."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Você vai demorar. Avise o Niko, explique rapidamente o motivo, diga um novo horário e combine o que fazer se chegar tarde."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ainda faltam horas para o check-in e a mala já está pesando. Pergunte à Clara e à Lea onde deixar a bagagem, em que endereço e até que horas dá para buscar."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Combine um encontro com a Lea na viagem — sugira um lugar e dois horários, leve em conta o trajeto dela e descreva como reconhecer você."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tem algo errado com a hospedagem. Descreva o problema ao Niko e à Clara com fatos, informe o número da reserva e a solução desejada e consiga um prazo concreto — um “vamos ver” não vale."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O grupo se espalhou na viagem e a Clara pede que você junte todo mundo. Descubra quem está onde e o que atrapalha cada um, proponha uma rota e um ponto de encontro e divida quem faz o quê."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Seus planos mudaram e a reserva precisa ser alterada. Explique para a Lea e o Niko as novas datas, pergunte se há vaga e quanto custa a mudança, e confirme sua escolha."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O serviço falhou e o Niko precisa da sua reclamação. Conte em ordem o que aconteceu, apresente provas, diga a solução que você espera — e não aceite uma resposta pronta."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O trajeto deu errado e é preciso outro. Compare as opções com a Clara, considere o que o grupo quer, encontre um meio-termo e divida passagens e tarefas."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O serviço diz que não existe reserva, mas você tem a confirmação. Explique calmamente a divergência para a Lea, peça que verifiquem o registro e consiga a solução por escrito."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Uma falha do serviço te custou tempo e dinheiro. Com base nas condições, explique ao Niko e à Clara as consequências, peça uma compensação justa e responda à contraproposta deles."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "O hóspede, o anfitrião e o serviço contam versões diferentes. Ajude a Clara a separar fatos de emoções, achar uma solução provisória urgente e combinar uma definitiva — com a confirmação de todos."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "A viagem desandou e no grupo todos esperam decisões. Dê à Lea e ao Niko um resumo rápido, separe o urgente do secundário, compare as opções e confirme a nova logística."
       }
     },
     "vi": {
@@ -1381,6 +1533,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Trong chuỗi tin nhắn công việc đang diễn ra một cuộc đàm phán khó với Marina và Oleg. Hãy chốt các sự thật, tìm khung thỏa hiệp, xử lý phản đối và chốt kết quả — kèm hành động và tiêu chí thành công."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn đã đến nơi — nhắn cho Lea, chủ nhà, giới thiệu bản thân, báo giờ bạn đến và hỏi tiếp theo cần làm gì. Chìa khóa sẽ không tự tìm đến tay bạn."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Không có mã thì cửa không mở. Hãy hỏi Niko, nêu địa chỉ hoặc mã đặt phòng và nhờ anh ấy nhắc lại các con số — sai một số là bạn phải đứng ngoài cửa."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hỏi Clara mấy giờ được nhận phòng và cho cô ấy biết bạn đến lúc nào. Nếu cần sớm hơn hoặc muộn hơn thì cứ hỏi — Clara làm đúng quy định nhưng sẽ lịch sự chỉ cho bạn cách xoay xở."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Nhờ Lea đặt giúp một chuyến xe đưa đón — nói điểm đón, giờ đi và số người, rồi hỏi giá. Đừng quên hỏi cách nhận ra tài xế."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Niko đã mách bạn một cách và nó hiệu quả. Hãy cảm ơn, nói rõ nó giúp được gì và hỏi thêm một câu ngắn — Niko thích trả lời đúng trọng tâm."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn cần biết đường đến nơi. Hỏi Clara và Lea nên đi bằng gì, chuyển tuyến ở đâu và mất bao lâu, rồi nhắc lại lộ trình — như vậy chắc chắn hơn."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kiểm tra đặt phòng với Lea — mã đặt phòng, ngày, số khách và những gì đã bao gồm trong giá. Hỏi ngay bây giờ còn hơn bất ngờ khi đến nơi."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bạn bị chậm trễ. Hãy báo cho Niko, giải thích ngắn gọn lý do, nêu giờ mới và thống nhất cách xử lý nếu bạn đến muộn."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Còn lâu mới đến giờ nhận phòng mà vali đã nặng trĩu tay. Hỏi Clara và Lea nên gửi hành lý ở đâu, địa chỉ nào và lấy lại trước mấy giờ."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hẹn gặp Lea trong chuyến đi — đề xuất địa điểm và hai khung giờ, tính đến quãng đường của cô ấy và mô tả cách nhận ra bạn."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Chỗ ở đang có vấn đề. Hãy trình bày với Niko và Clara bằng sự việc cụ thể, nêu mã đặt phòng và cách giải quyết bạn muốn, rồi đòi một thời hạn rõ ràng — câu “để chúng tôi xem” không tính."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Cả nhóm đã tản ra trong chuyến đi và Clara nhờ bạn gom mọi người lại. Tìm hiểu ai đang ở đâu và ai đang vướng gì, đề xuất lộ trình, điểm hẹn và phân công ai làm gì."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kế hoạch đã thay đổi và cần đổi đặt phòng. Giải thích với Lea và Niko ngày mới, hỏi xem còn chỗ không và chênh lệch giá bao nhiêu, rồi xác nhận lựa chọn của bạn."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Dịch vụ đã làm bạn thất vọng và Niko cần đơn khiếu nại của bạn. Trình bày theo thứ tự chuyện đã xảy ra, đưa bằng chứng, nêu cách giải quyết bạn mong muốn — và đừng chấp nhận câu trả lời rập khuôn."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Lộ trình đã đổ bể và cần một lộ trình khác. Cùng Clara so sánh các phương án, tính đến mong muốn của nhóm, tìm điểm thỏa hiệp và phân chia vé cùng công việc."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bên dịch vụ nói không có đặt phòng, nhưng bạn có xác nhận. Bình tĩnh giải thích chỗ sai lệch với Lea, nhờ kiểm tra lại hồ sơ và đề nghị có quyết định bằng văn bản."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sự cố dịch vụ khiến bạn mất thời gian và tiền bạc. Dựa vào điều khoản, giải thích hậu quả với Niko và Clara, đề nghị mức bồi thường tương xứng và xử lý đề xuất ngược lại của họ."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Khách, chủ nhà và bên dịch vụ mỗi người kể một kiểu. Giúp Clara tách sự thật khỏi cảm xúc, tìm giải pháp tạm thời cấp bách và thống nhất giải pháp lâu dài — có xác nhận của tất cả."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Chuyến đi đã đổ bể và trong nhóm chat ai cũng chờ quyết định. Cập nhật nhanh tình hình cho Lea và Niko, tách việc gấp khỏi việc phụ, so sánh phương án và xác nhận kế hoạch di chuyển mới."
       }
     },
     "id": {
@@ -1535,6 +1763,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Di utas kerja sedang berlangsung negosiasi alot dengan Marina dan Oleg. Catat faktanya, temukan kerangka kompromi, tangani keberatan, dan kunci hasilnya — lengkap dengan tindakan dan ukuran keberhasilan."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu sudah sampai — kirim pesan ke Lea, tuan rumahmu, perkenalkan diri, sebutkan jam kedatangan, dan tanyakan apa langkah berikutnya. Kuncinya tidak akan datang sendiri."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tanpa kode, pintu tidak akan terbuka. Minta ke Niko, sebutkan alamat atau nomor pemesanan, dan minta dia mengulang angkanya — salah satu angka saja, kamu tertahan di luar."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tanyakan ke Clara jam berapa bisa check-in dan beri tahu kapan kamu tiba. Kalau butuh lebih awal atau lebih larut, tanyakan saja — Clara taat aturan, tapi akan sopan menjelaskan apa yang bisa dilakukan."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pesan antar-jemput lewat Lea — sebutkan dari mana, jam berapa, dan berapa orang, lalu tanyakan harganya. Jangan lupa tanya cara menemukan sopirnya."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Niko memberimu saran dan ternyata berhasil. Ucapkan terima kasih, sebutkan bagaimana itu membantu, dan ajukan satu pertanyaan singkat lagi — Niko suka menjawab langsung ke inti."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu perlu tahu cara ke sana. Tanyakan ke Clara dan Lea naik apa yang terbaik, di mana harus transit, dan berapa lama perjalanannya, lalu ulangi rutenya — lebih aman begitu."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Cek pemesananmu dengan Lea — nomornya, tanggalnya, jumlah tamu, dan apa saja yang termasuk. Lebih baik tanya sekarang daripada kaget saat tiba."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kamu terlambat. Kabari Niko, jelaskan alasannya singkat, sebutkan waktu baru, dan sepakati apa yang dilakukan kalau kamu tiba larut."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Waktu check-in masih lama, tapi koper sudah terasa berat. Tanyakan ke Clara dan Lea di mana bisa menitipkan bagasi, di alamat mana, dan sampai jam berapa bisa diambil."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Atur pertemuan dengan Lea selama perjalanan — usulkan tempat dan dua pilihan waktu, perhitungkan perjalanannya, dan jelaskan ciri-cirimu."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Ada yang tidak beres dengan penginapan. Jelaskan masalahnya ke Niko dan Clara dengan fakta, sebutkan nomor pemesanan dan solusi yang kamu mau, lalu minta tenggat yang jelas — janji “nanti kami cek” tidak dihitung."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rombongan tercerai-berai saat perjalanan, dan Clara memintamu mengumpulkan semuanya. Cari tahu siapa di mana dan apa kendala masing-masing, usulkan rute dan titik kumpul, lalu bagi tugasnya."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rencanamu berubah dan pemesanan perlu diganti. Jelaskan ke Lea dan Niko tanggal barunya, tanyakan ketersediaan dan selisih harganya, lalu konfirmasi pilihanmu."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Layanannya mengecewakan, dan Niko butuh keluhanmu. Ceritakan urutan kejadiannya, sertakan bukti, sebutkan solusi yang kamu harapkan — dan jangan puas dengan jawaban template."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rutenya batal dan perlu rute lain. Bandingkan pilihan bersama Clara, pertimbangkan keinginan rombongan, cari jalan tengah, dan bagi tiket serta tugasnya."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Pihak layanan bilang tidak ada pemesanan, padahal kamu punya konfirmasinya. Jelaskan perbedaannya ke Lea dengan tenang, minta catatannya diperiksa, dan pastikan keputusannya tertulis."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Gangguan layanan membuatmu rugi waktu dan uang. Berdasarkan syarat dan ketentuannya, jelaskan dampaknya ke Niko dan Clara, minta kompensasi yang sepadan, dan tanggapi tawaran balik mereka."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Tamu, tuan rumah, dan layanan punya cerita berbeda. Bantu Clara memisahkan fakta dari emosi, menemukan solusi sementara yang mendesak, dan menyepakati solusi tetap — dikonfirmasi semua pihak."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Perjalanannya kacau, dan semua orang di grup menunggu keputusan. Beri Lea dan Niko kabar singkat, pisahkan yang mendesak dari yang tidak, bandingkan pilihan, dan konfirmasi logistik baru."
       }
     },
     "tr": {
@@ -1689,6 +1993,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "Bir iş yazışmasında Marina ve Oleg ile zorlu bir pazarlık sürüyor. Gerçekleri netleştir, bir uzlaşma çerçevesi bul, itirazları karşıla ve sonucu sabitle — eylemler ve başarı ölçütüyle birlikte."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Vardın — ev sahibin Lea'ya yaz, kendini tanıt, varış saatini söyle ve şimdi ne yapman gerektiğini sor. Anahtarlar kendi kendine gelmeyecek."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Kod olmadan kapı açılmaz. Niko'dan kodu iste, adresi ya da rezervasyonu söyle ve rakamları tekrarlamasını rica et — tek bir hata, kapıda kalırsın."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Clara'ya giriş saatini sor ve ne zaman varacağını söyle. Daha erken ya da geç girmen gerekirse sor — Clara kurallara bağlıdır ama neyin mümkün olduğunu kibarca anlatır."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Lea'dan transfer ayarla — nereden, saat kaçta ve kaç kişi olduğunuzu söyle, fiyatı sor. Şoförü nasıl bulacağını sormayı da unutma."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Niko sana bir ipucu verdi ve işe yaradı. Teşekkür et, tam olarak nasıl yardımcı olduğunu söyle ve kısa bir soru daha sor — Niko lafı dolandırmadan cevap vermeyi sever."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Oraya nasıl gideceğini çözmen gerek. Clara ve Lea'ya hangi ulaşımın daha iyi olduğunu, nerede aktarma yapılacağını ve ne kadar süreceğini sor, sonra rotayı tekrarla — böylesi daha garanti."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rezervasyonunu Lea ile kontrol et — numarayı, tarihleri, misafir sayısını ve fiyata nelerin dahil olduğunu. Şimdi sormak, varınca şaşırmaktan iyidir."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Gecikiyorsun. Niko'ya haber ver, nedenini kısaca açıkla, yeni bir saat söyle ve geç varırsan ne yapılacağını kararlaştır."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Girişe daha saatler var ama bavul şimdiden ağırlaştı. Clara ve Lea'ya bagajı nereye bırakabileceğini, hangi adrese ve saat kaça kadar alabileceğini sor."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Seyahatte Lea ile buluşmayı ayarla — bir yer ve iki saat öner, onun yolunu hesaba kat ve seni nasıl tanıyacağını anlat."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Konaklamada bir sorun var. Niko ve Clara'ya sorunu gerçeklerle anlat, rezervasyon numarasını ve istediğin çözümü söyle, somut bir süre al — “bakarız” sözü sayılmaz."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Seyahatte grup dağıldı ve Clara herkesi toplamanı istiyor. Kimin nerede olduğunu ve kimin neye takıldığını öğren, bir rota ve buluşma noktası öner, kimin ne yapacağını paylaştır."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Planların değişti, rezervasyonun değişmesi gerek. Lea ve Niko'ya yeni tarihleri anlat, yer olup olmadığını ve fiyat farkını sor, seçimini teyit et."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hizmet seni yarı yolda bıraktı ve Niko'nun şikâyetine ihtiyacı var. Olanları sırasıyla anlat, kanıt sun, beklediğin çözümü söyle — ve kalıp bir cevapla yetinme."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Rota suya düştü, başka bir rota gerek. Clara ile seçenekleri karşılaştırın, grubun isteklerini hesaba katın, ortak bir nokta bulun ve biletleri ve işleri paylaştırın."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hizmet rezervasyon olmadığını söylüyor ama sende onay var. Tutarsızlığı Lea'ya sakince anlat, kaydın kontrol edilmesini iste ve çözümü yazılı olarak al."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Hizmetteki aksaklık sana zaman ve paraya mal oldu. Koşullara dayanarak sonuçları Niko ve Clara'ya anlat, makul bir tazminat iste ve karşı tekliflerine yanıt ver."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Misafir, ev sahibi ve hizmet farklı şeyler anlatıyor. Clara'ya gerçekleri duygulardan ayırmasına, acil bir geçici çözüm bulmasına ve kalıcı çözümde anlaşmasına yardım et — herkesin onayıyla."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Seyahat aksadı ve ortak sohbette herkes karar bekliyor. Lea ve Niko'ya kısa bir durum özeti ver, aciliyi ikincilden ayır, seçenekleri karşılaştır ve yeni lojistiği teyit et."
       }
     },
     "pl": {
@@ -1843,6 +2223,82 @@
       "work_19": {
         "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
         "briefing": "W wątku służbowym toczą się trudne negocjacje z Mariną i Olegiem. Ustal fakty, znajdź ramy kompromisu, odpowiedz na zastrzeżenia i zamknij ustalenia — z działaniami i miarą sukcesu."
+      },
+      "travel_01": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Już jesteś na miejscu — napisz do gospodyni Lei, przedstaw się, podaj godzinę przyjazdu i zapytaj, co dalej. Klucze same się nie wydadzą."
+      },
+      "travel_02": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Bez kodu drzwi się nie otworzą. Poproś o niego Niko, podaj adres albo rezerwację i poproś o powtórzenie cyfr — jedna pomyłka i zostajesz pod drzwiami."
+      },
+      "travel_03": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zapytaj Klarę, od której można się zameldować, i powiedz, o której będziesz. Jeśli potrzebujesz wcześniej lub później, zapytaj — Klara trzyma się zasad, ale uprzejmie podpowie, co się da zrobić."
+      },
+      "travel_04": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Zamów u Lei transfer — powiedz, skąd i o której jechać i ile was jest, i zapytaj o cenę. Nie zapomnij spytać, jak znaleźć kierowcę."
+      },
+      "travel_05": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Niko podpowiedział, co zrobić, i zadziałało. Podziękuj, powiedz, w czym dokładnie pomogło, i zadaj jeszcze jedno krótkie pytanie — Niko lubi odpowiadać konkretnie."
+      },
+      "travel_06": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Musisz ustalić, jak dojechać. Zapytaj Klarę i Leę, czym najlepiej jechać, gdzie przesiadka i ile trwa podróż, a potem powtórz trasę — tak pewniej."
+      },
+      "travel_07": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Sprawdź z Leą rezerwację — numer, daty, liczbę gości i co jest w cenie. Lepiej dopytać teraz niż dziwić się na miejscu."
+      },
+      "travel_08": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Masz opóźnienie. Uprzedź Niko, krótko wyjaśnij powód, podaj nową godzinę i ustal, co zrobić, jeśli dotrzesz późno."
+      },
+      "travel_09": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Do zameldowania jeszcze daleko, a walizka już ciąży. Zapytaj Klarę i Leę, gdzie zostawić bagaż, pod jakim adresem i do której można go odebrać."
+      },
+      "travel_10": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Umów się z Leą na spotkanie w podróży — zaproponuj miejsce i dwie godziny, uwzględnij jej dojazd i opisz, jak cię rozpoznać."
+      },
+      "travel_11": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Coś jest nie tak z noclegiem. Opisz Niko i Klarze problem faktami, podaj numer rezerwacji i oczekiwane rozwiązanie i wywalcz konkretny termin — obietnica „zajmiemy się tym” się nie liczy."
+      },
+      "travel_12": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Grupa rozproszyła się w podróży, a Klara prosi, żeby wszystkich zebrać. Dowiedz się, kto gdzie jest i komu co przeszkadza, zaproponuj trasę i miejsce zbiórki i rozdziel zadania."
+      },
+      "travel_13": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Plany się zmieniły i trzeba zmienić rezerwację. Wyjaśnij Lei i Niko, na jakie daty przenosisz, sprawdź dostępność i różnicę w cenie i potwierdź wybór."
+      },
+      "travel_14": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Usługa zawiodła, a Niko potrzebuje twojej reklamacji. Opisz po kolei, co się stało, przedstaw dowody, podaj oczekiwane rozwiązanie — i nie zadowalaj się szablonową odpowiedzią."
+      },
+      "travel_15": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Trasa się posypała i potrzebna jest inna. Porównajcie z Klarą opcje, uwzględnijcie życzenia grupy, znajdźcie kompromis i rozdzielcie bilety i zadania."
+      },
+      "travel_16": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Obsługa twierdzi, że rezerwacji nie było, a ty masz potwierdzenie. Spokojnie wyjaśnij Lei rozbieżność, poproś o sprawdzenie zapisu i wywalcz decyzję na piśmie."
+      },
+      "travel_17": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Awaria usługi kosztowała cię czas i pieniądze. Powołując się na warunki, wyjaśnij Niko i Klarze skutki, poproś o adekwatną rekompensatę i odnieś się do ich kontrpropozycji."
+      },
+      "travel_18": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Gość, gospodarz i obsługa mówią co innego. Pomóż Klarze oddzielić fakty od emocji, znaleźć pilne rozwiązanie tymczasowe i uzgodnić stałe — z potwierdzeniem od wszystkich."
+      },
+      "travel_19": {
+        "reason": "dialogs-008 (координатор 12.10, п.75): шаблон «Ты переписываешься в мире …» → описание сцены по макету: действие своими словами + живая деталь про собеседника.",
+        "briefing": "Wyjazd się sypie, a na wspólnym czacie wszyscy czekają na decyzje. Daj Lei i Niko krótki status, oddziel pilne od drugorzędnego, porównaj opcje i potwierdź nową logistykę."
       }
     }
   }

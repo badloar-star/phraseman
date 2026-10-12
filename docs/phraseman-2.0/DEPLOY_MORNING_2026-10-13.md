@@ -220,6 +220,11 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 - Проверка: новое обращение из приложения → в Firestore у `error_reports/<id>` есть `expireAt` ≈ +30 дней; консоль Firestore → TTL —
   правило `error_reports.expireAt` «Serving».
 - Откат: выкладка `submitClientReport` из среза до 98ff91799; TTL-правило выключить в консоли (Firestore → TTL).
+- **Только по слову владельца — backfill старых обращений** (после выкладки `firestore:indexes`; скрипт — Авторизация fec90ac91):
+  сначала просмотр `node scripts/error_reports_ttl_backfill_2026-10-13.mjs` — печатает scanned / alreadyHasExpireAt / spireSkipped /
+  willSet / alreadyExpiredOnSet / oldestCreatedAt, ничего не пишет. Запись — `node scripts/error_reports_ttl_backfill_2026-10-13.mjs --apply --owner-yes`:
+  батчи по 400, обход по `__name__` с курсором. Вход — `gcloud auth application-default login`, ключей нет. Уже просроченные получат
+  `expireAt` в прошлом — TTL удалит их в течение ~24 ч. Жалобы Шпиля не трогаются. **Отменить нельзя.**
 
 ## Е: удаление аккаунта — строка журнала (необязательно, вместе с любой выкладкой)
 

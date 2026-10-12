@@ -227,6 +227,28 @@ add('overlays-campaigns-014', PROMO_SEND, PROMO_BASE + '&promo=disabled', PROMO,
 add('overlays-campaigns-015', PROMO_SEND, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')
 
 
+# ───────────────────────── Код от друга (шит на «Награда за друга», макет referral-code-states.html) ─────────────────────────
+# Ответ сервера подменяет фикстура refcode=<статус> (app/dev_social_state.ts, память процесса): сервер, поиск владельца кода
+# и заявка в друзья при подмене не вызываются — в прод ноль записей. referral=on снимает возможный referral=off прошлого кадра.
+# Коды — как в макете (ANNA42 / ZZZ999 / MY4CODE).
+REF = '/referrals?enter=1'
+REF_BASE = 'referral=on'
+def ref_send(code):
+    return ['tap:#referral-code-sheet-input', f'type:{code}', 'tap:#referral-code-sheet-submit']
+add('overlays-campaigns-016', [], REF_BASE + '&refcode=none', REF, note='шит открыт, поле пустое, кнопка приглушена')
+add('overlays-campaigns-017', ['tap:#referral-code-sheet-input', 'type:ANNA42'], REF_BASE + '&refcode=none', REF, note='введено 6 знаков — кнопка активна')
+add('overlays-campaigns-018', ref_send('ANNA42'), REF_BASE + '&refcode=hold', REF, note='«Применяем…» держится (refcode=hold)')
+add('overlays-campaigns-019', ref_send('ANNA42'), REF_BASE + '&refcode=applied', REF, note='«Код принят…» (без заявки в друзья)')
+add('overlays-campaigns-020', ref_send('ANNA42'), REF_BASE + '&refcode=already', REF, note='«Код уже привязан…»')
+add('overlays-campaigns-021', ref_send('ANNA'), REF_BASE + '&refcode=invalid', REF, unique=False,
+    note='текст «слишком короткий» есть, но в макете в поле AN — до 4 знаков кнопка выключена, такой кадр в коде недостижим; нужен вердикт Макетов')
+add('overlays-campaigns-022', ref_send('ZZZ999'), REF_BASE + '&refcode=unknown_code', REF, note='«Такой код не найден…»')
+add('overlays-campaigns-023', ref_send('MY4CODE'), REF_BASE + '&refcode=self', REF, note='«Это твой код…»')
+add('overlays-campaigns-024', ref_send('ANNA42'), REF_BASE + '&refcode=too_old', REF, note='«…только на новом аккаунте»')
+add('overlays-campaigns-025', ref_send('ANNA42'), REF_BASE + '&refcode=disabled', REF, note='«Приглашения сейчас недоступны…» (ответ disabled; рубильник при этом включён, иначе шит не открыть)')
+add('overlays-campaigns-026', ref_send('ANNA42'), REF_BASE + '&refcode=error', REF, note='«Не получилось применить код…»')
+
+
 # ───────────────────────── Карточки: прямые маршруты тренировок (вердикты Макетов 12.10) ─────────────────────────
 # Маршруты и параметры — из app/flashcards/training_entry.ts (deck=saved, quick=1, size=all). cards=* — только на анонимном госте (dev_state_account_guard).
 TF_ROUTE = '/flashcards_truefalse_session?deck=saved&quick=1&size=all'

@@ -19,6 +19,7 @@ import { lookupUserByFriendCode } from '../app/firestore_friends';
 import { sendFriendRequest } from '../app/firestore_friend_requests';
 import ReferralSheetShell from './referral_sheet_shell';
 import { DebugLogger } from '../app/debug-logger';
+import { getDevReferralApplyResult } from '../app/dev_social_state';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -204,6 +205,21 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
     setBusy(true);
     setFeedback(null);
     setFriendRequested(false);
+    // зачем (координатор 12.10, кадры overlays-campaigns-018…026): ответ кода решает сервер, а «Применяем…» живёт доли секунды.
+    // dev `refcode=` подменяет ответ в памяти; при подмене НЕ зовём сервер, поиск владельца кода и заявку в друзья — в прод ноль записей.
+    // Вне dev / в стор-сборке геттер всегда null.
+    const devResult = getDevReferralApplyResult();
+    if (devResult === 'hold') {
+      console.log('[REFERRAL-CODE] dev refcode=hold: держим «Применяем…», сервер не вызывается'); // замок и busy не снимаем — как в макете 018
+      return;
+    }
+    if (devResult !== null) {
+      console.log(`[REFERRAL-CODE] dev refcode=${devResult}: ответ подменён, сервер и заявка в друзья не вызываются`);
+      setFeedback(feedbackForStatus(devResult, L));
+      submitLockRef.current = false;
+      setBusy(false);
+      return;
+    }
     try {
       const status = await applyManualReferralCode(code);
       setFeedback(feedbackForStatus(status, L));

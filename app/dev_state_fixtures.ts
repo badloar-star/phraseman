@@ -23,7 +23,7 @@ import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
-import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult } from './dev_social_state';
+import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
@@ -101,6 +101,8 @@ export type DevStateRequest = Readonly<{
   referral?: 'off' | 'on';
   /** Ответ промокода фикстурой, без сети: off=«промокоды выключены», ok, lifetime, used, expired, disabled, limit, not_found, rate_limited, error, none=снять. */
   promo?: DevPromoResult;
+  /** Ответ шита «Код от друга» без сети (overlays-campaigns-016…026): hold, applied, already, invalid, unknown_code, self, too_old, disabled, error, needs_link, none=снять. */
+  refcode?: DevRefcodeResult;
   /** Вход недоступен (onboarding-006): none — Google и Apple выключены, ok — снять. */
   auth?: 'none' | 'ok';
   /** Отказы смены аккаунта (R1 auth-gap-004/005/013/014/015/017/018) без реального стирания; ok снимает. */
@@ -229,6 +231,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.support = pick('support', ['fail', 'ok'] as const);
   request.cache = pick('cache', ['failed', 'ok'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
+  request.refcode = pick('refcode', DEV_REFCODE_RESULTS);
   request.friendsHold = list('dev_friends_hold', DEV_FRIENDS_HOLDS);
   request.friendsFail = list('dev_friends_fail', DEV_FRIENDS_FAILS);
   request.friendEvent = pick('friend_event', DEV_FRIEND_EVENTS);
@@ -490,6 +493,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.promo !== undefined) {
     await step('promo', request.promo, async () => setDevSocialState({ promo: request.promo }));
+  }
+  if (request.refcode !== undefined) {
+    await step('refcode', request.refcode, async () => setDevSocialState({ refcode: request.refcode }));
   }
   if (request.friendsHold !== undefined) {
     await step('dev_friends_hold', request.friendsHold === 'off' ? 'off' : request.friendsHold.join(','), async () => setDevSocialState({ friendsHolds: request.friendsHold === 'off' ? [] : request.friendsHold }));

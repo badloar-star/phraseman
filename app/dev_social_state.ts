@@ -9,12 +9,22 @@
  */
 import { IS_STORE_RELEASE } from './config';
 import type { PromoRedeemResult } from './promo_code_client';
+import type { ReferralApplyStatus } from './referral_bootstrap';
 
 /** Результаты промокода. `off` — глобальный рубильник «промокоды выключены» (promo_disabled), `none` — снять фикстуру. */
 export const DEV_PROMO_RESULTS = [
   'off', 'ok', 'lifetime', 'used', 'expired', 'disabled', 'limit', 'not_found', 'rate_limited', 'error', 'none',
 ] as const;
 export type DevPromoResult = (typeof DEV_PROMO_RESULTS)[number];
+
+/**
+ * Ответ шита «Код от друга» (overlays-campaigns-016…026, макет referral-code-states.html): `hold` — держать «Применяем…»,
+ * остальное — статус применения кода. При подмене шит не зовёт ни сервер, ни поиск владельца кода, ни заявку в друзья.
+ */
+export const DEV_REFCODE_RESULTS = [
+  'hold', 'applied', 'already', 'invalid', 'unknown_code', 'self', 'too_old', 'disabled', 'error', 'needs_link', 'none',
+] as const;
+export type DevRefcodeResult = (typeof DEV_REFCODE_RESULTS)[number];
 
 export const DEV_FRIENDS_HOLDS = ['add_request'] as const;
 export type DevFriendsHold = (typeof DEV_FRIENDS_HOLDS)[number];
@@ -33,13 +43,14 @@ const LOG = '[DEV-STATE]';
 type State = {
   referralOff: boolean;
   promo: Exclude<DevPromoResult, 'none'> | null;
+  refcode: Exclude<DevRefcodeResult, 'none'> | null;
   friendsHolds: ReadonlySet<DevFriendsHold>;
   friendsFails: ReadonlySet<DevFriendsFail>;
   friendEvent: DevFriendEvent | null;
   /** Сбои Настроек (R1 settings-gap-009/021/036): смена языка изучения, отправка обращения, очистка кеша. */
   settingsFails: ReadonlySet<DevSettingsFail>;
 };
-const EMPTY: State = { referralOff: false, promo: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set() };
+const EMPTY: State = { referralOff: false, promo: null, refcode: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set() };
 let state: State = EMPTY;
 
 function devSocialAvailable(): boolean {
@@ -50,6 +61,7 @@ function devSocialAvailable(): boolean {
 export function setDevSocialState(patch: Partial<{
   referralOff: boolean;
   promo: DevPromoResult | null;
+  refcode: DevRefcodeResult | null;
   friendsHolds: readonly DevFriendsHold[];
   friendsFails: readonly DevFriendsFail[];
   friendEvent: DevFriendEvent | null;
@@ -62,12 +74,13 @@ export function setDevSocialState(patch: Partial<{
   state = {
     referralOff: patch.referralOff ?? state.referralOff,
     promo: patch.promo === undefined ? state.promo : patch.promo === 'none' || patch.promo === null ? null : patch.promo,
+    refcode: patch.refcode === undefined ? state.refcode : patch.refcode === 'none' || patch.refcode === null ? null : patch.refcode,
     friendsHolds: patch.friendsHolds ? new Set(patch.friendsHolds) : state.friendsHolds,
     friendsFails: patch.friendsFails ? new Set(patch.friendsFails) : state.friendsFails,
     friendEvent: patch.friendEvent === undefined ? state.friendEvent : patch.friendEvent,
     settingsFails: patch.settingsFails ? new Set(patch.settingsFails) : state.settingsFails,
   };
-  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails] })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, refcode: state.refcode, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails] })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
@@ -96,6 +109,12 @@ export function getDevPromoResult(nowMs: number = Date.now()): PromoRedeemResult
     case 'rate_limited': return { status: 'rate_limited' };
     case 'error': return { status: 'error' };
   }
+}
+
+/** Подменённый ответ шита «Код от друга» или null (вне dev — всегда null). */
+export function getDevReferralApplyResult(): 'hold' | ReferralApplyStatus | null {
+  if (!devSocialAvailable()) return null;
+  return state.refcode;
 }
 
 export function isDevFriendsHeld(hold: DevFriendsHold): boolean {

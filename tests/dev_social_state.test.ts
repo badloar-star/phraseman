@@ -24,7 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { applyDevState, parseDevStateParams } from '../app/dev_state_fixtures';
 import {
-  consumeDevFriendEvent, getDevPromoResult, isDevFriendsFail, isDevFriendsHeld, isDevReferralOff, isDevUnsyncedFriendCode, resetDevSocialStateForTests, setDevSocialState,
+  consumeDevFriendEvent, getDevPromoResult, getDevReferralApplyResult, isDevFriendsFail, isDevFriendsHeld, isDevReferralOff, isDevUnsyncedFriendCode, resetDevSocialStateForTests, setDevSocialState,
 } from '../app/dev_social_state';
 import { getDevPaywallLinkState, setDevPaywallLinkState } from '../app/dev_paywall_state';
 import { isReferralCloudEnabled } from '../app/referral_flags';
@@ -119,5 +119,23 @@ describe('dev social states', () => {
     const missing = checks.filter(([file, pattern]) => !pattern.test(read(file))).map(([file]) => file);
     expect(missing).toEqual([]);
     expect(read('app/dev_social_state.ts')).not.toMatch(/httpsCallable\(|firebase\/firestore|@react-native-firebase|\bfetch\(|\bsetDoc\(|\baddDoc\(|\bupdateDoc\(|XMLHttpRequest/);
+  });
+
+  // зачем (координатор 12.10, overlays-campaigns-016…026): ответ шита «Код от друга» — фикстурой в памяти; в стор-сборке нет.
+  it('answers the friend code sheet from refcode= and skips the server and the friend request', async () => {
+    const { request, rejected } = parseDevStateParams({ refcode: 'too_old' });
+    expect([request.refcode, rejected]).toEqual(['too_old', {}]);
+    expect(Object.keys(parseDevStateParams({ refcode: 'boom' }).rejected)).toEqual(['refcode']);
+    await applyDevState({ refcode: 'hold' });
+    expect(getDevReferralApplyResult()).toBe('hold');
+    setDevSocialState({ refcode: 'none' });
+    expect(getDevReferralApplyResult()).toBeNull();
+    setDevSocialState({ refcode: 'self' });
+    mockStoreRelease = true;
+    expect(getDevReferralApplyResult()).toBeNull();
+    // подмена стоит ДО сервера, а ранние выходы не доходят до поиска владельца кода и заявки в друзья
+    expect(read('components/referral_code_sheet.tsx')).toMatch(
+      /getDevReferralApplyResult\(\)[\s\S]*devResult === 'hold'[\s\S]*return;[\s\S]*setFeedback\(feedbackForStatus\(devResult, L\)\)[\s\S]*return;[\s\S]*applyManualReferralCode\(code\)[\s\S]*sendFriendRequest/,
+    );
   });
 });

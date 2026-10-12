@@ -9,86 +9,22 @@ import { fetchCommunityPackMeta } from './communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
 import { DebugLogger } from '../debug-logger';
 import { IS_STORE_RELEASE } from '../config';
+import type { Lang } from '../../constants/i18n';
+import { resolveNotificationLang } from '../notification_lang';
+import { moderationBody, moderationOkLabel, moderationTitle } from './community_moderation_copy';
 
 let flushRunning = false;
 
-async function readAppLang(): Promise<string> {
+// зачем (координатор 13.10, аудит Авторизации a62d6bb0d): язык окна модерации выбирался только для ru/uk/es, остальные шесть видели русский, а ошибка чтения языка глоталась молча.
+// Теперь — тот же разбор, что у пушей (resolveNotificationLang: язык интерфейса → запасной язык устройства); причина сбоя чтения пишется в журнал.
+async function readAppLang(): Promise<Lang> {
+  let stored: unknown = null;
   try {
-    const v = await AsyncStorage.getItem('app_lang');
-    return (v || 'ru').trim().toLowerCase();
-  } catch {
-    return 'ru';
+    stored = await AsyncStorage.getItem('app_lang');
+  } catch (error) {
+    console.warn('[MOD-ALERT] app_lang не прочитан — язык по устройству —', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
   }
-}
-
-function moderationTitle(result: string, lang: string): string {
-  const uk = lang.startsWith('uk');
-  const es = lang.startsWith('es');
-  switch (result) {
-    case 'approved':
-      if (es) return 'Tu pack fue aprobado';
-      return uk ? 'Твій набір схвалено' : 'Твой набор одобрен';
-    case 'rejected':
-      if (es) return 'Tu pack fue rechazado';
-      return uk ? 'Твій набір відхилено' : 'Твой набор отклонён';
-    case 'revision_requested':
-      if (es) return 'Se necesitan cambios';
-      return uk ? 'Потрібні правки' : 'Нужна доработка';
-    case 'pack_removed':
-      if (es) return 'Pack retirado de la venta';
-      return uk ? 'Набір знято з продажу' : 'Набор снят с продажи';
-    default:
-      if (es) return 'Moderación';
-      return uk ? 'Модерація' : 'Модерация';
-  }
-}
-
-// зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция, а не действие
-// (Правило 1: глагол в кнопке). Алерт модерации просто закрывается.
-function okButtonLabel(lang: string): string {
-  if (lang.startsWith('es')) return 'Cerrar';
-  return lang.startsWith('uk') ? 'Закрити' : 'Закрыть';
-}
-
-function moderationBody(ev: Record<string, unknown>, lang: string): string {
-  const uk = lang.startsWith('uk');
-  const es = lang.startsWith('es');
-  const result = String(ev.result || '');
-  const titleRu = String(ev.titleRu || '').trim();
-  const titleUk = String(ev.titleUk || '').trim();
-  const titleEs = String(ev.titleEs || '').trim();
-  const packTitle = es ? (titleEs || titleUk || titleRu) : uk ? (titleUk || titleRu || titleEs) : (titleRu || titleUk || titleEs);
-  const lines: string[] = [];
-  if (packTitle) lines.push(packTitle);
-  const sid = String(ev.submissionId || '').trim();
-  const pid = String(ev.packId || '').trim();
-  if (sid) {
-    lines.push(es ? `Solicitud: ${sid}` : uk ? `Заявка: ${sid}` : `Заявка: ${sid}`);
-  } else if (pid && !packTitle) {
-    // Немає title в inbox і не вдалось підвантажити з Firestore — не показуємо сирий id.
-    lines.push(
-      es
-        ? 'Abre Tarjetas: lo encontrarás en la lista de tus packs.'
-        : uk ? 'Відкрий «Картки» — у списку своїх наборів знайдеш цей.' : 'Открой «Карточки» — в списке своих наборов найдёшь этот.',
-    );
-  }
-  const msg = ev.message != null ? String(ev.message).trim() : '';
-  if (msg) {
-    lines.push(es ? `Comentario:\n${msg}` : uk ? `Коментар:\n${msg}` : `Комментарий:\n${msg}`);
-  } else if (result === 'revision_requested') {
-    lines.push(
-      es
-        ? 'Actualiza el pack y envíalo de nuevo.'
-        : uk
-        ? 'Онови набір і надішли знову.'
-        : 'Доработай набор и отправь снова.',
-    );
-  } else if (result === 'approved') {
-    lines.push(es ? 'Sin comentario adicional.' : uk ? 'Без додаткового коментаря.' : 'Без дополнительного комментария.');
-  } else if (result === 'rejected') {
-    lines.push(es ? 'Sin explicación del moderador.' : uk ? 'Без пояснення від модератора.' : 'Без пояснения от модератора.');
-  }
-  return lines.join('\n\n');
+  return resolveNotificationLang(stored, 'community_moderation_alert');
 }
 
 /**
@@ -139,7 +75,7 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
       const result = String(rec.result || '');
       const title = moderationTitle(result, lang);
       const body = moderationBody(rec, lang);
-      await enqueueThemedBlockingInfoAlert(title, body, okButtonLabel(lang));
+      await enqueueThemedBlockingInfoAlert(title, body, moderationOkLabel(lang));
       seenIds.push(ev.id);
     }
     if (seenIds.length) {
@@ -174,7 +110,7 @@ export async function devShowModerationAlert(result: 'approved' | 'rejected' | '
     result, titleRu: 'Путешествия', titleUk: 'Подорожі', titleEs: 'Viajes', submissionId: 'sub_dev_0001', packId: 'local_pack_dev_demo_travel', message,
   };
   console.log(`[DEV-STATE] moderation alert ${JSON.stringify({ result, lang })}`); // guard-ok: dev-ветка
-  await enqueueThemedBlockingInfoAlert(moderationTitle(result, lang), moderationBody(rec, lang), okButtonLabel(lang));
+  await enqueueThemedBlockingInfoAlert(moderationTitle(result, lang), moderationBody(rec, lang), moderationOkLabel(lang));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

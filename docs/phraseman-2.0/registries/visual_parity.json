@@ -32866,22 +32866,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-012.png",
+      "evidence_at": "2026-10-12T02:37:35.520Z",
+      "evidence_sha256": "0b5469040f45bfb46998e6e26370c599c2850d9646878a3bf325b95d6ae7537c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр пустой — пересъёмка] Список наборов не загрузился: три плашки-заглушки без названий, счётчика и кнопок «▶»; в образце четыре набора (Путешествия, B2 глаголы, Работа, Фразовые глаголы) с чипами слов и кнопкой запуска. Переснять после загрузки (подождать появления названий).",
+        "[вёрстка, мелко] Шапка: заголовок «Мои наборы» без счётчика (в образце «4»); кнопка «+» без круглой подложки (в образце круглая светлая) — сверить после пересъёмки."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:39:07.512Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:37, утверждённый cards-v2 №12 «Мои наборы»): кадр снят в момент загрузки — вместо карточек наборов три серые заглушки."
     },
     {
       "id": "cards-v2-013",
@@ -32902,22 +32906,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-013.png",
+      "evidence_at": "2026-10-12T02:37:53.431Z",
+      "evidence_sha256": "344c21e9dcc7e33252d6c9978e7db47ef5bbba245c51ded24468a52bdcc6d550",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Значок на плитке другой: в образце баночка/архив, в приложении три слоя («стопка»). Решить: значок приложения принять и обновить образец, либо поменять значок в коде.",
+        "[вёрстка, мелко] Блок пустого состояния в приложении ниже на ~70 px (плитка y≈590 против 522, кнопка y≈843 против 768) — как в cards-v2-011."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:39:07.512Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:37, утверждённый cards-v2 №13 «Мои наборы — пусто»): состав совпал — «‹», «⋮», «Мои наборы», плитка со значком, «Наборов нет», «Собери свой первый», светлая кнопка «+ Создать набор»."
     },
     {
       "id": "cards-v2-014",
@@ -32941,22 +32949,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-014.png",
+      "evidence_at": "2026-10-12T02:38:13.988Z",
+      "evidence_sha256": "b8eb0ce57eeca57462b5e021020360521a9861f7dbaebb6b63bb11e121b58223",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — кандидат] Блок шапки набора (название, строка сведений, «Тренировать», «+») в приложении сдвинут вправо от края списка: название и кнопка начинаются с x≈655, карточки списка с x≈628 (≈27 px); в образце всё выровнено по одному краю. Кнопка «+» не доходит до правого края списка (1088 против 1115).",
+        "[состав] Строка сведений: в образце «🔒 Только ты · 40 карточек» (замок слева), в приложении «B1 · 22 карточки · 🔒 Только ты» — добавлен чип уровня, другой порядок. Решить: образец устарел или порядок поменять в коде.",
+        "[вёрстка, мелко] Шапка набора в приложении выше на ~20 px; плашка перевода «выход на посадку» в Gate прижата к кнопке озвучки.",
+        "[данные] Другой набор («Работа», 22 карточки) против «Путешествия» (40)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:39:07.512Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:38, утверждённый cards-v2 №14 «Свой набор»): общий состав совпал — «‹» и «⋮», название набора, строка сведений, светлая «Тренировать» и «+», ползунок масштаба, сетка карточек в 2 колонки."
     },
     {
       "id": "cards-v2-015",

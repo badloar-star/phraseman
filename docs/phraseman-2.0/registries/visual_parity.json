@@ -837,8 +837,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:22, cards-v2 №15 «Чужой набор — до добавления»): снят не тот экран — «Мои наборы» в состоянии загрузки (три серые заглушки)."
     },
@@ -883,8 +883,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:23, cards-v2 №16 «Чужой набор — добавлен»): снят не тот экран — «Мои наборы 5» (список наборов с тремя словами и кнопкой воспроизведения), а не экран набора «B2 глаголы» с «✓ В моих наборах» и «Тренировать»."
     },
@@ -1919,8 +1919,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -1959,8 +1959,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-states №38 «Открытие набора · сеть упала»): снят список «Мои наборы 5» (5 наборов с тремя словами) вместо состояния «Добавленные из сообщества» с набором в процессе загрузки (кольцо), зелёной галочкой и тостом «Набор ещё не скачан — нужен интернет.»."
     },
@@ -2204,8 +2204,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-states №44 «Лайк после добавления»): снят список «Мои наборы 5» вместо чужого набора «B2 глаголы» с «♥ 4 · 12 · 1», «✓ В моих наборах» и карточками слов с транскрипцией."
     },
@@ -2243,8 +2243,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:28, cards-states №45 «Отклик пуст»): снят «Мои наборы» в загрузке (три серые заглушки) вместо чужого набора с шторкой «Отклик» («Пока тихо / Скажи автору, что было полезно — он увидит первым.», поле «Написать автору…»)."
     },
@@ -2282,8 +2282,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:28, cards-states №46 «Набор не добавлен — писать нельзя»): снят список «Мои наборы 5» вместо экрана чужого набора с шторкой «Отклик» (комментарии Ирины и Димы, «Писать могут те, кто добавил набор себе.»)."
     },
@@ -2321,8 +2321,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №47 «Меню автора: закрепить / скрыть»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Плюс: меню автора — только для автора набора."
     },
@@ -2399,8 +2399,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №49 «Меню чужого: пожаловаться»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»)."
     },
@@ -2479,8 +2479,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №51 «Жалоба на комментарий»): сверка невозможна — на кадре не тот экран. Нужен ЧУЖОЙ опубликованный набор с откликами и открытая шторка «Отклик»; в demo_published есть только свои наборы — подмены чужого набора и откликов нет (запрос Ядру: подмена «чужой набор + отклики»). Далее тап «⋯» → «Пожаловаться»."
     },
@@ -3379,8 +3379,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:47, cards-states №74 «Шторка выбора наборов (Устно)» против «Подготовка тренировки · Шторка выбора наборов»): сверка невозможна — на кадре хаб «Карточки», шторка «Что говорим?» не открыта."
     },
@@ -3490,8 +3490,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "cards-082: Тап `video-set-hero` вызывает `Linking.openURL` (VideoPackRow.tsx:75-99): на эмуляторе откроется браузер. Обход: `adb shell pm disable-user --user 0 "
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:49, cards-states №77 «Открытие ролика · не открылся» против «Наборы из видео · Открытие ролика · не открылся»): открыт экран «Из видео 5», но тост «Видео сейчас не открывается. Карточки набора доступны как обычно.» не показан, а сам список устроен иначе, чем образец."
     },
@@ -7921,8 +7921,8 @@
       "mockup_pinned": "Макеты 12.10: текст «Диалоги на паузе» — как в коде (dialogue_v2_session_coaching_labels.ts pausedMessage): «Собеседники сейчас недоступны. Загляни чуть позже.»",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "paused | dev_state?dialogs_paused=1"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -8117,8 +8117,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -8360,8 +8360,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -15930,8 +15930,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "error | dev_friends_fail=add|search"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -16034,8 +16034,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "lookupUserByFriendCode"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -16104,8 +16104,8 @@
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "error | dev_friends_fail=add|search"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -16322,8 +16322,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "study_invite | dev_state?friend_event=study_invite | friendsTogetherUiEnabled=false"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -17383,8 +17383,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -25360,8 +25360,8 @@
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -29842,8 +29842,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-018: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -29892,8 +29892,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-019: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -30112,8 +30112,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -30730,8 +30730,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-043: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -30779,8 +30779,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -31240,8 +31240,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -31290,8 +31290,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -33253,8 +33253,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?auth=none"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -33399,8 +33399,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?greet=<строка>"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -33918,8 +33918,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?paywall=loading|live|reference|failed"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -34719,8 +34719,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-018: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -34758,8 +34758,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-019: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -34892,8 +34892,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-043: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -35479,8 +35479,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-section-040: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37459,8 +37459,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "service | rate_limited | plus_daily_cap | dev_dialog_fail=service|rate_limited|plus_daily_cap"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -38568,8 +38568,8 @@
       "reviewed_at": "2026-10-12T03:57:17.877Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?hold=hub_loading|saved_loading|catalog_loading|setup_loading|quota_waiting|quota_failed|voices_loading",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
         "final_who": "",
@@ -39384,8 +39384,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -39564,8 +39564,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -39601,8 +39601,8 @@
       "reviewed_at": "2026-10-12T17:56:58.237Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:51, cards-gaps-states №29 «Свой набор — минимум 10 карточек»): сверка невозможна — на кадре «Мои наборы» (загрузка), образец — экран набора с тостом «В наборе должно остаться минимум 10 карточек»."
     },
@@ -39684,8 +39684,8 @@
       "reviewed_at": "2026-10-12T17:56:58.237Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:51, cards-gaps-states №31 «Свой набор — нет связи»): сверка невозможна — на кадре «Мои наборы» (5 наборов), образец — экран набора с тостом «Нет связи — карточку не удалось удалить»."
     },
@@ -39719,8 +39719,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -39753,8 +39753,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -39879,8 +39879,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -39947,8 +39947,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -40773,8 +40773,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?vip=promo|referral|survey|idea|tester|admin|admin_pro_lifetime\\&until=<ms>"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -41377,8 +41377,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?studyfail=on"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -41616,8 +41616,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -42061,8 +42061,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "дубль cards-section-031: условный путь — условия в строке shot list"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {

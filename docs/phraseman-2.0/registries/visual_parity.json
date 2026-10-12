@@ -38204,20 +38204,25 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-012.png",
-      "evidence_at": "2026-10-11T22:32:32.491Z",
-      "evidence_sha256": "03d7c4fd18327f593e82e12b47f61de10a7c60d37d774c85a59f24eb239681b6",
+      "evidence_at": "2026-10-12T02:52:48.963Z",
+      "evidence_sha256": "2328359759742df893fbf959863b5a51d71fbf3dc29c77f1ec4c116d42b169d8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр в момент анимации — пересъёмка] Тост на кадре наполовину прозрачный и наложен на строку «Уведомления» — снимок сделан во время въезда или ухода плашки; переснять через 0,5–1 с после появления, когда тост полностью виден.",
+        "[образец ≠ код] Фон под тостом: в образце шторка «Энергия закончилась» (пейвол), в приложении по ссылке next=/(tabs)/settings экран «Настройки» (там и стоит кнопка восстановления покупок); образец нарисован на другом фоне — решить, на каком экране показываем (рекомендую «Настройки»).",
+        "[вёрстка, мелко] Нижняя панель вкладок «пилюлей» перекрывает строку «Тактильный отклик» внизу — это экран настроек со сдвигом, как в settings-gap-002."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:53:58.387Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=restored&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:52, paywall-gaps-states №12 «Тост — покупки восстановлены»; образец нарисован с приложения): тост снят в момент появления — на кадре полупрозрачная плашка «Покупки восстановлены» с галочкой над списком настроек. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "paywall-gap-013",
@@ -38238,20 +38243,24 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-013.png",
-      "evidence_at": "2026-10-11T22:31:16.364Z",
-      "evidence_sha256": "0da078072810572898e79eb1b7bd3b75257e072523fb81fb9c65058fb8b03ce0",
+      "evidence_at": "2026-10-12T02:53:06.223Z",
+      "evidence_sha256": "23a82024ca12da0a503dbdeeb0056f91d84f6c782db7584e9ff4796e163c6c5f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] В образце снизу плашка «ЧТО-ТО ПОШЛО НЕ ТАК · Не удалось восстановить покупки. Попробуй позже.»; на кадре её нет — тост по ссылке toast=restore_failed успел исчезнуть или не показался. Переснять сразу после применения ссылки (задержка ≤1 с), без ожидания перехода.",
+        "[образец ≠ код] Фон в образце — шторка «Энергия закончилась», в приложении экран «Настройки» (как paywall-gap-012)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:53:58.387Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=restore_failed&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:53, paywall-gaps-states №13 «Тост — не удалось восстановить покупки»; образец нарисован с приложения): плашки с ошибкой на кадре нет, виден только экран «Настройки». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-001",
@@ -38305,21 +38314,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-002.png",
+      "evidence_at": "2026-10-12T02:53:23.296Z",
+      "evidence_sha256": "bcdb6eee54a7a1338db2979e2b94888333e2f9d49d87fe2b4dab3adee1613fd3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце экран прокручен вниз: «Тактильный отклик», «Размер шрифта» (Малый / Средний / Большой), раздел «PHRASEMAN PLUS» (Подписка Plus · Не активна, Ввести промокод, Пригласить друга), «ПОМОЩЬ» (поддержка, приватность, кеш, оценка), «Версия 2.0.0 (118)». На кадре верх: заголовок «Настройки», «Профиль · Стажёр» с «Войти», «Аккаунт», «Язык интерфейса», «Важное от Phraseman», «Обучение». Переснять с прокруткой вниз (до «Версия») либо привязать образец к верхней части.",
+        "[образец ≠ код] Нижняя панель вкладок: в образце значки слои / закладка / плей / люди / солнце, в приложении дом / книга / плей / люди / шестерёнка и панель-«пилюля» поверх списка; в верхнем правом углу приложения медаль-аватар — в образце нет. Образец настроек надо обновить по приложению (рисую я)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:53:58.387Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:53, settings-gaps-states №2 «Главная — Plus не активна»; образец нарисован с приложения): кадр показывает верх экрана «Настройки», а образец — нижнюю часть (блок «Phraseman Plus», «Помощь», версия). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-003",

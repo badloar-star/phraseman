@@ -92,6 +92,25 @@ import { setManagedAudioMode } from './audio_session_coordinator';
 import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
 import { stopAllAudioOwnersOnResume } from '../modules/audio/audio_runtime_arbiter';
 import { soundDirector } from '../modules/audio/sound_director';
+import {
+  LESSON_END_SFX_STARTUP_DELAY_MS,
+  isSessionEntryPath,
+  lessonEndPrewarmPlan,
+} from '../modules/audio/lesson_end_prewarm';
+
+/**
+ * Вторая волна прогрева — звуки конца урока. Раньше их не было вовсе, хотя они звучат в конце КАЖДОГО урока и по коду
+ * встречаются чаще прочих (pm.reward.chest_open — самое частое событие в приложении). Когда греть — lesson_end_prewarm.ts.
+ */
+function prewarmLessonEndSfx(reason: string): void {
+  console.log(`[SFX-PREWARM] lesson_end reason=${reason}`);
+  soundDirector.prewarm([
+    'pm.complete.micro',
+    'pm.reward.chest_open',
+    'pm.reward.small',
+    'pm.streak.saved',
+  ]);
+}
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
@@ -1569,19 +1588,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // причём звуков награды и счётчика опыта среди них не было вовсе, хотя они
     // звучат в конце КАЖДОГО урока и по коду встречаются чаще прочих
     // (pm.reward.chest_open — самое частое событие в приложении).
-    const prewarmTimer = setTimeout(() => {
-      soundDirector.prewarm([
-        'pm.complete.micro',
-        'pm.reward.chest_open',
-        'pm.reward.small',
-        'pm.streak.saved',
-      ]);
-    }, 3500);
+    // зачем (координатор 13.10): при DEFER_LESSON_END_SFX_PREWARM_TO_SESSION вторая волна уходит на вход в занятие (эффект ниже).
+    const lessonEndPlan = lessonEndPrewarmPlan();
+    const prewarmTimer = lessonEndPlan === 'startup_timer'
+      ? setTimeout(() => prewarmLessonEndSfx('startup_timer'), LESSON_END_SFX_STARTUP_DELAY_MS)
+      : null;
+    if (prewarmTimer === null) console.log(`[SFX-PREWARM] lesson_end plan=${lessonEndPlan} — на старте не греем`);
     return () => {
       clearTimeout(tapPrewarmTimer);
-      clearTimeout(prewarmTimer);
+      if (prewarmTimer !== null) clearTimeout(prewarmTimer);
     };
   }, []);
+
+  useEffect(() => {
+    if (lessonEndPrewarmPlan() !== 'on_session_entry' || !isSessionEntryPath(pathname)) return;
+    prewarmLessonEndSfx(`session_entry:${pathname}`);
+  }, [pathname]);
 
   useEffect(() => {
     rememberNavigationPath(navigationPathSignature);

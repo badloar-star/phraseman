@@ -33,3 +33,6 @@ twin('cards-section-029', 'cards-v2-044', 'дубль cards-v2-044: катало
 # зачем: настройки → «Приватность и данные» — отдельный маршрут; ИИ-переключатели не трогаем (согласие уходит в облако), аналитика — локальный переключатель; шаг для profile-010 не проверен на кадре
 add('profile-009', ['wait:1000'], 'plus=off&robot_no_cloud=1', '/privacy_settings', note='«Приватность и данные»: аналитика выкл, ИИ выкл (исходное состояние); robot_no_cloud=1 (ab8c2c3ad) — тумблеры меняют только экран')
 add('profile-010', ['wait:1000', 'tap:#privacy-analytics-consent-switch', 'wait:600'], 'plus=off&robot_no_cloud=1', '/privacy_settings', unique=False, note='«Приватность и данные»: аналитика ВКЛ (меняется заметка под тумблером); robot_no_cloud=1 (ab8c2c3ad) — в облако и на диск ничего не пишется, ИИ-тумблеры при необходимости тоже можно нажимать')
+
+# ── Ядро dc011a379: «Уведомления — запрет» (settings-gap-012): notifperm=denied (только память) → красная плашка notif-permission-denied-label; мастер считается включённым только в снимке, в хранилище ничего не пишется
+add('settings-gap-012', ['wait:800', 'see:#notif-permission-denied-label'], 'plus=off&notifperm=denied', '/settings_notifications', note='уведомления: системный запрет — красная плашка (notifperm=denied; снять — notifperm=off)')

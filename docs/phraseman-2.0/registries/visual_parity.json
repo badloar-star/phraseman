@@ -1250,7 +1250,7 @@
       "release": "r1",
       "triage": {
         "coverage": "owner_by_code",
-        "coverage_note": "cards-027: На экране настройки тренировки выбора языка набора нет (TrainingSetupV2.tsx). Кнопка `pack-language-picker` есть в шапке каталога сообщества: «Каталог» → тап `pack-language-picker` (PackLan"
+        "coverage_note": "в коде нет кнопки языка на экране настройки тренировки (TrainingSetupV2); закрыть может Дизайн (убрать/перерисовать образец по коду) или Ядро (вернуть кнопку)"
       }
     },
     {
@@ -1840,8 +1840,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:59, cards-v2 №17 «Действия с набором»): в приложении открыта другая шторка — долгое нажатие в «Моих наборах» (фон «Мои наборы 5»), а не меню «⋮» на экране набора. Ссылка переписана (меню fc-pack-menu на экране «Путешествия») — нужна пересъёмка."
     },
@@ -1883,8 +1883,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 8:00, cards-v2 №23 «Изменить набор»): вёрстка совпала: «×» + «Изменить набор» + «⋮», «Название», «Кто видит» (Только я / Все), «Уровень» (A1…C1), «Карточки N», строки с ручкой и красной корзиной, белая «Сохранить»."
     },
@@ -2168,8 +2168,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?cards=demo_published"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-v2 №25 «Каталог»; строка «Свой опубликованный — карандаш · «Топ»»): снят каталог «Сообщество» — данные и порядок совпали с образцом (Family / B2 глаголы / Антоніми дієслів / Small talk), чипы «Популярные · Новые · A1…»."
     },
@@ -2362,8 +2362,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №48 «Меню своего: удалить»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
@@ -2442,8 +2442,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №50 «Отправляется · не отправлено»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная). Состояние «не отправлено» — авиарежим при отправке."
     },
@@ -2520,8 +2520,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №52 «Жалоба на комментарий отправлена»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
@@ -2559,8 +2559,8 @@
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-states №53 «Жалоба на набор отправлена»): сверка невозможна — на кадре не тот экран. Состояние достигается только реальной записью в прод (публичный отклик / жалоба модераторам) — без «да» владельца не снимать; нужна подмена результата отправки (session_result-подобная)."
     },
@@ -2600,7 +2600,7 @@
       "release": "r1",
       "triage": {
         "coverage": "owner_by_code",
-        "coverage_note": "cards-060: В коде нет: `shouldGateCreator` всегда false (creator_access.ts:31-36), `fc-editor-skeleton` показывается только на мгновенное чтение карточки при правке."
+        "coverage_note": "в коде нет состояния: shouldGateCreator всегда false (creator_access.ts:31-36); закрыть: Дизайн/владелец — убрать кадр образца или вернуть гейт Plus (Ядро)"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-v2 №24 «Новая карточка — превью живое» против строки «Проверка Plus — скелет»): на кадре «Мои наборы» (загрузочные заглушки), образец — экран «Новая карточка» с живым превью."
     },
@@ -7665,7 +7665,7 @@
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
-        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+        "coverage_note": "в коде нет голосовой квоты и экрана «попытки кончились»; закрыть: владелец — делать или убрать кадр образца (Дизайн/Ядро)"
       },
       "prev_status": "pending",
       "blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · в коде нет голосовой квоты и значка PLUS на микрофоне — только в макете"
@@ -15897,7 +15897,7 @@
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
-        "coverage_note": "dev_friends_hold=add_request"
+        "coverage_note": "состояние недостижимо в коде (карточка скрывается в тот же тик, кадр совпадает с 017); закрыть: владелец/Дизайн — убрать кадр образца или Ядро — удержать карточку"
       },
       "prev_status": "pending",
       "blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · подпись «Отправляем заявку…» мёртвая: карточка найденного скрывается в тот же тик, кадр совпадает с community-017"
@@ -19461,8 +19461,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "owner_blocked",
-        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -19501,8 +19501,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "owner_blocked",
-        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -19541,8 +19541,8 @@
       },
       "release": "r1",
       "triage": {
-        "coverage": "owner_blocked",
-        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -25701,7 +25701,7 @@
       "release": "r1",
       "triage": {
         "coverage": "owner_by_code",
-        "coverage_note": "`overlays-campaigns-013` — «Неверный формат» промокода: кнопка выключена, сообщения нет."
+        "coverage_note": "состояние «неверный формат» недостижимо: кнопка выключена, сообщения нет; закрыть: Дизайн/владелец — образец под код или правка кода (Ядро/Авторизация)"
       }
     },
     {
@@ -26068,7 +26068,7 @@
       "release": "r1",
       "triage": {
         "coverage": "owner_by_code",
-        "coverage_note": "`overlays-campaigns-021` — «Неверный формат» кода друга: кнопка выключена до 4 символов, статус `invalid` недостижим.",
+        "coverage_note": "статус invalid недостижим: кнопка выключена до 4 символов; закрыть: Дизайн/владелец — образец под код или правка кода (Авторизация)",
         "theme_tone": true,
         "theme_tone_note": "тон темы «Спокойно» (графит) — решение владельца"
       }
@@ -32768,7 +32768,7 @@
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E04"
+        "coverage_note": "Learning V2 (зона Codex): нужны шаги занятия в V2-плеере; закрыть: Codex/Ядро — флаг для Learning V2 energy HUD"
       }
     },
     {
@@ -33054,8 +33054,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?paywall=loading|live|reference|failed"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -33207,8 +33207,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -33241,8 +33241,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -33378,8 +33378,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36444,8 +36444,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36479,8 +36479,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36514,8 +36514,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "owner_blocked",
-        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36548,8 +36548,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "owner_blocked",
-        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36582,8 +36582,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?restore=retired"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36684,8 +36684,8 @@
       "reviewed_at": "2026-10-12T18:54:34.987Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?delete=fail"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:53, accounts-gaps-states №11 «Удаление не завершилось»): окно совпало: плитка с замком, «Не получилось», «Удаление не завершилось. Проверь интернет и попробуй ещё раз.», тёмная «Закрыть» слева и белая «Повторить» справа, карточка по центру над затемнённым экраном «Аккаунт». Различия приняты: за окном в приложении настоящий экран «Аккаунт» (аватар, «Не задано», «Изменить имя», «Удалить аккаунт»), в образце упрощённая затемнённая заглушка с пилюлей «Аккаунт» — фон за окном (данные); размеры в приложении ≈ 4–5 % крупнее — склейка по высоте, сверить в режиме --fit=width."
     },
@@ -36720,8 +36720,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?plustransfer=on"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36757,8 +36757,8 @@
       "reviewed_at": "2026-10-12T18:54:34.987Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:53, accounts-gaps-states №13 «Смена — несохранённые карточки»): текст заголовка и три варианта совпали («Сохранить и сменить», «Сменить без сохранения», «Остаться здесь»), но оформление окна отличается."
     },
@@ -36794,8 +36794,8 @@
       "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
@@ -36831,8 +36831,8 @@
       "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
@@ -36868,8 +36868,8 @@
       "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       },
       "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
@@ -36903,8 +36903,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -36938,8 +36938,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
       }
     },
     {
@@ -39555,7 +39555,7 @@
       "release": "r1",
       "triage": {
         "coverage": "owner_prod_write",
-        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+        "coverage_note": "успешная публикация пишет в прод; закрыть: владелец — явное «да» на тестовую публикацию, либо Ядро — подмена publish=ok (без сети)"
       }
     },
     {
@@ -40666,7 +40666,7 @@
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
-        "coverage_note": "нужен настоящий вход (профиль привязан): ручной, в утреннем листе владельцу (Авторизация, G-A10)"
+        "coverage_note": "нужен настоящий вход (профиль привязан, аккаунт №3); закрыть: владелец вручную (утренний лист, Авторизация G-A10) или Авторизация — подмена account=linked"
       }
     },
     {

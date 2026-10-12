@@ -9,6 +9,10 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
+import { CardsHubAnimProbe } from './CardsHubAnimProbe';
+
+// зачем (координатор 12.10): число полуциклов «парения» стопки — конечное (было -1 = вечно). Нечётное не ставить — стопка остановилась бы смещённой.
+const FLOAT_HALF_CYCLES = 4;
 import React, { memo, useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
@@ -101,15 +105,20 @@ function CardsHubV2Inner({
   // транскрипции на тонированной заливке стопки давал контраст 1.57–5.33 (нечитаемо на всех 23 темах) — берём цвет слова, 4.10–4.49.
   const faceInkSoft = faceInk;
   const float = useSharedValue(0);
+  // зачем (координатор 12.10, «хаб крутит бесконечную анимацию»): «парение» стопки (8 dp за 5 с) не нужно постоянно — раньше withRepeat(-1) держал обновление вида
+  // каждый кадр, пока экран открыт (нагрузка на телефон; uiautomator не доходит до покоя). Теперь два полных качания (≈20 с) после каждого входа на экран и остановка на нуле.
   // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
   const runtimeActive = useRuntimeActive();
   useEffect(() => {
     if (reduceMotion || !runtimeActive) return undefined;
     noteHubSubscription('CardsHubV2.floatLoop', 'on');
-    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), -1, true);
+    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), FLOAT_HALF_CYCLES, true);
     return () => { float.value = 0; noteHubSubscription('CardsHubV2.floatLoop', 'off'); };
   }, [float, reduceMotion, runtimeActive]);
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
+  const animProbe = typeof __DEV__ !== 'undefined' && __DEV__
+    ? <CardsHubAnimProbe float={float} active={!reduceMotion && runtimeActive} halfCycles={FLOAT_HALF_CYCLES} />
+    : null;
   const [a, b] = themePair(g);
   // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
   const fixed = 4 + 44 + 8 + 46 + 6 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
@@ -127,6 +136,7 @@ function CardsHubV2Inner({
 
   const body = (
     <View style={styles.root} testID="fc-cards-hub-v2">
+      {animProbe}
       <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
         <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
           style={({ pressed }) => [styles.round, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>

@@ -964,6 +964,22 @@ export default function FlashcardsScreen() {
 
   /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
   const previewMode = previewRequested && !packOwnedByMe;
+  // зачем (координатор 12.10, Сверка cards-v2-016: «после „Добавить себе“ приложение ушло в каталог, образец остаётся на экране набора»; сперва логи):
+  // кода, который уводит с экрана набора после добавления, нет — набор должен остаться открытым и перейти из «просмотра» в «добавлен». Журнал показывает,
+  // что происходит на самом деле: смена режима просмотра, откуда пришло владение и что экран делает при уходе (размонтирование = переход на другой маршрут).
+  useEffect(() => {
+    if (!packDeeplink) return;
+    console.log('[CARDS-PACK-ADD]', JSON.stringify({ // guard-ok: журнал расследования cards-v2-016
+      stage: 'mode', pack: packDeeplink, previewRequested, packOwnedByMe, previewMode,
+      owned: ownedPackIdList.includes(packDeeplink), communityOwned: communityOwnedIdList.includes(packDeeplink),
+      hasMarketPack: !!currentMarketPack, cards: listCards.length,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [packDeeplink, previewRequested, packOwnedByMe, previewMode, !!currentMarketPack]);
+  useEffect(() => () => {
+    if (packDeeplink) console.log('[CARDS-PACK-ADD]', JSON.stringify({ stage: 'unmount', pack: packDeeplink })); // guard-ok: экран набора ушёл (переход на другой маршрут)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * «Отправить в сообщество»: своя коллекция, которая ещё живёт только на устройстве.

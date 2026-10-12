@@ -1,7 +1,7 @@
 # Task packet: сторож непереведённого текста — журналы Шпиля и bootMark в DIAGNOSTIC_LOG_CALL; база ратчета вниз
 
 Governance-ID: TG-40AE4922AAE0
-Status: In progress
+Status: Done — accd2bcf8 + база 152 по срезу HEAD
 Owner: сессия «1 · Ядро» (координатор 12.10: «Добавь logSpireLayout|logSpireDock в DIAGNOSTIC_LOG_CALL… Тест. Базу потом
 опусти ещё — только вниз»).
 

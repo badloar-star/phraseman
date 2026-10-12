@@ -1,0 +1,14 @@
+ВЫХОД №2 после фикса feb795abc (Сверка 2026-10-12 02:00): тап 02:00:43.14 → ui:logout_attempt_1 ok 02:00:52.7 ≈ 9,6 с до экрана гостя (кадр в конце: шторка «Всё в безопасности»).
+ВХОД №2: выбор аккаунта 01:58:21 → окно «Этот аккаунт уже есть» 01:58:28; confirm 01:58:40 → merged_devices 01:59:20 (tookMs 19429) → Главная 01:59:24 NAV-PAINT 1344 мс (≈45 с от подтверждения). wipe_stages дважды (01:58:51, 01:59:18).
+
+10-12 02:00:43.027 I/ReactNativeJS(16786): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-12 02:00:43.217 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":20,"t":10122724}
+10-12 02:00:43.247 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":49,"pendingSpend":0,"t":10122754}
+10-12 02:00:43.268 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":71,"t":10122776}
+10-12 02:00:46.273 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage force_sync_deadline {"sinceStartMs":3075,"deadlineMs":3000,"t":10125780}
+10-12 02:00:46.273 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3076,"synced":false,"t":10125781}
+10-12 02:00:47.912 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":4715,"t":10127419}
+10-12 02:00:49.455 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":6258,"t":10128962}
+10-12 02:00:52.713 W/ReactNativeJS(16786): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":9515,"kind":"resumed","t":10132220}
+10-12 02:00:52.714 I/ReactNativeJS(16786): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":false,"tookMs":9688}'
+10-12 02:00:52.715 I/ReactNativeJS(16786): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'

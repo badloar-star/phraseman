@@ -1,0 +1,2 @@
+streakJump=5:12 повтор на c7861cc53 (Сверка 2026-10-12 00:55–00:58)
+10-12 00:58:30.968 I/ReactNativeJS(22763): [STREAK] snapshot:personal streak=12 prev=12@storage

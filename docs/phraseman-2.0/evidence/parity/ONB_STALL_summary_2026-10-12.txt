@@ -1,0 +1,19 @@
+01:32:11.400 tap Start
+01:32:17.625 tap Later
+01:32:23.935 tap nice-continue
+01:32:26.718 promise entered (or timeout)
+01:32:57.446 end
+10-12 01:32:11.974 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] press_in testID=onboarding-start disabled=no loading=no
+10-12 01:32:12.056 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] press testID=onboarding-start
+10-12 01:32:12.058 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] go requested=privacy next=privacy
+10-12 01:32:12.458 I/ReactNativeJS( 5730): [ONB-STALL] {"step":"go_to_shown:privacy","ms":398}
+10-12 01:32:18.005 I/ReactNativeJS( 5730): [ONB-TAP] later:press step=privacy authInFlight=false authSlow=false authLoading=null
+10-12 01:32:18.010 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] go requested=niceToMeet next=niceToMeet
+10-12 01:32:18.012 I/ReactNativeJS( 5730): [ONB-TAP] later:go_called target=niceToMeet
+10-12 01:32:18.559 I/ReactNativeJS( 5730): [ONB-STALL] {"step":"go_to_shown:niceToMeet","ms":548}
+10-12 01:32:23.927 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] press_in testID=onboarding-nice-continue disabled=no loading=no
+10-12 01:32:23.930 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] press testID=onboarding-nice-continue
+10-12 01:32:23.930 I/ReactNativeJS( 5730): [ONB-STEP-WAIT] go requested=promise next=promise
+10-12 01:32:23.981 I/ReactNativeJS( 5730): [ONB-TAP] slide:start step=promise from=niceToMeet instant=false reduceMotion=false exitMs=260
+10-12 01:32:24.400 I/ReactNativeJS( 5730): [ONB-STALL] {"step":"go_to_shown:promise","ms":470}
+ALLDONE7

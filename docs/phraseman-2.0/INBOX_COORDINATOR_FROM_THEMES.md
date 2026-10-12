@@ -132,6 +132,22 @@
 **Лог (dev):** `[THEMES-PERF] first {id, level, appearance, intensity, fontSize, buildMs}` и на КАЖДУЮ смену `[THEMES-PERF] change {changed, from, to, buildMs, consumersRendered, settleMs}` (через 250 мс после смены: сколько раз вызван useTheme = сколько подписчиков перерисовалось, цена `makeLiquidGlassTheme`). Читать в `.expo/metro-console.log`.
 
 **Что нужно:** прогнать на эмуляторе Настройки → Темы: тап по теме, тумблер светлая/тёмная, жест ползунка. Пришлите строки — по `consumersRendered` и `buildMs` решу, что чинить (кандидаты: отдавать превью ползунка только экрану тем и применять глобально при отпускании; разделить контекст на «функции» и «значение»). Без цифр рискованное не трогаю.
+## 15.10 — красные тесты зоны Темы (RED_TESTS_HEAD_2026-10-12): 17 из 18 закрыты, остаток — Codex (ce410311b, 06096d151)
+
+**Итог:** из моих сторожей зелёные все, кроме двух хвостов в файлах Codex (см. «Передать Codex»). Код трогал только там, где ломался сам код.
+
+**Сломан код (чинил код):**
+- `theme_hardcoded_colors_ratchet` — `app/dev_state.tsx`: цвета #111/#fff/#aaa → токены активной темы (`bgPrimary` / `textPrimary` / `textMuted`).
+- `android_no_square_outline_guard` — `ForceUpdateGate` (2 стиля) и `UpdateModal` (2 стиля): `elevation` без непрозрачного фона в самом стиле → `...noAndroidOutline` (фон там задаётся в разметке, iOS-тень shadow* осталась).
+- `website_global_background_contract` — новая страница `knowly-www/legal/privacy-ios/index.html` (её создал legal:sync шаблоном со СТАРЫМ `knowly.css`) пересобрана на одобренную оболочку сайта (как у `legal/privacy`), текст политики iOS не менялся; инвентарь теста 27→28 файлов (23 человеческих).
+
+**Устарел тест (правил тест, у каждой правки пометка «зачем»):**
+- Кромки сняты «Тенью»: `lesson_intro`, `lessons`, `personal_admin_message` — теперь проверяют тень плашки и отсутствие `borderColor: glassEdge`.
+- Чужие законные правки: `shared_decision_modals` (клавиатурный подъём нижней шторки, c9556310c), `settings_edu` (защита от позднего loadSettings, аудит Optimistic UI), `flashcards_blitz` (радиус вопроса 20), `privacy_settings` (заголовок «Приватность», 79dc5dc4a), `survey_unavailable` (зонд кэша в account_generation, fdab41c40), `support_report` (+1 карта текста «журнал выключен», заглушка remote_flags), `manage_subscription` ×2 (заглушки dev_vip_override / dev_save_offer_progress; перепинены metadata/submitCancel/effect).
+- Перепинены хеши защищённого рантайма: `flashcards_speaking` (dev-ветки `train_gate=fail_speaking` / `speech=` и accent→accentText в панели), `flashcards_training_setup` (+1 useEffect `[TRAIN-PREP]`, dev-подмена статуса экрана) — сверено по diff, бизнес-логика квот/попыток/старта без изменений.
+- `results_coins_profile` — уже был исправлен мной (9a6801244).
+
+**Передать Codex:** `modules/learning-v2/modes/mode_feedback_v1.tsx` — 5 новых захардкоженных цветов (ratchet `theme_hardcoded_colors`); `app/learning_v2_direct_session_player_v1.tsx:3610`, `app/_learning_v2_modes_showcase.tsx:132`, `components/learning-v2/LearningV2FounderPassModal.tsx:278`, `components/learning-v2/LearningV2PulseMapSessionRow.tsx:227` — `elevation` без непрозрачного фона (заменить на `...noAndroidOutline` или дать фон; тест `android_no_square_outline_guard` ослаблять нельзя).
 undefined === null` ложно → `climbReady` ложно во ВСЕХ состояниях превью. До aa368b106 это выглядело как «светлая с прозрачностью» (opacity 0,4 на светлой кнопке), после него — «серая» `.cta.dis` даже при живой комнате (spire-005). Моя правка вида `dis` была верной, а превью врало о готовности. Лог `[SPIRE-DOCK] home … notReadyBecause: pending!=null` показал бы это сразу — но журнал кадра его не брал (ниже).
 **Правка:** в `game()` добавлены `pending: null, cancelPendingStep: noop` — форма игры в превью теперь как у настоящего хука; боевой путь и Ядро не тронуты. Тест `tests/spire_preview_ready.test.ts`: в `room/lobby/win/summit/lose/offline/weekresult/guard/passed` кнопка готова, в `empty/locked` — нет, у всех состояний `pending === null` и есть `cancelPendingStep`; рядом 24 набора Шпиля (177 проверок) зелёные; срез типов — 0 ошибок.
 **Журнал кадра робота — НЕ сделано мной:** `FRAME_LOG_RX` в `scripts/parity_batch_shoot.mjs` (стр. 213) не включает `[SPIRE-DOCK]`, `[SPIRE-SCROLL]`, `[SPIRE-LAYOUT]`, а файл сейчас с чужой незакоммиченной правкой (` MM`) — не трогаю. Для Дизайна одна правка: в альтернативу `\[(?:…|HOME-CONTINUE)\]` добавить `|SPIRE-DOCK|SPIRE-SCROLL|SPIRE-LAYOUT`.

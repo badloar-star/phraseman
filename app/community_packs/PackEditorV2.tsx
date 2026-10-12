@@ -304,7 +304,7 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
         entering={SlideInDown.duration(260).easing(Easing.bezier(0.23, 1, 0.32, 1))}
         exiting={SlideOutDown.duration(200)}
         style={[styles.sheet, { bottom: bottomInset, paddingBottom: bottomInset > 0 ? 18 : 28 }]}>
-        <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.opaqueSheet, 0.17)}EA`, `${g.opaqueSheet}E6`]} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+        <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.opaqueSheet, 0.17)}FF`, `${g.opaqueSheet}FF`]} /* зачем (R1, cards-024; правило «стекло 2.0 непрозрачное»): заливка шторки плотная — через неё не должны читаться строки списка под ней (раньше альфа 0,92/0,90) */ locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         <View style={styles.sheetHead}>
           <Text accessibilityRole="header" style={[styles.sheetTitle, { color: g.text }]}>{title}</Text>

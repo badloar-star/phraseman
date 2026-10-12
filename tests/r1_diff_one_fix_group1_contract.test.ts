@@ -38,3 +38,12 @@ describe('R1_DIFF_ONE_FIX, группа 2', () => {
     expect(editor).toMatch(/grip: \{ width: 26, height: 44,/);
   });
 });
+
+describe('R1_DIFF_ONE_FIX, группа 3', () => {
+  it('settings-gap-011: строки уведомлений ≈58 dp, переключатель 36 + hitSlop (зона нажатия не меньше 44)', () => {
+    const src = read('app/settings_notifications.tsx');
+    expect(src).toContain('const rowStyle = { minHeight: 58,');
+    expect(src).toContain('hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}');
+    expect(src).toContain("style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}");
+  });
+});

@@ -170,8 +170,10 @@ function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = fals
       withHaptic={false}
       withSound={false}
       variant="chip"
-      style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
-      contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
+      // зачем (R1_DIFF_ONE_FIX, settings-gap-011, решение координатора 12.10): переключатель 36 + hitSlop (зона нажатия ≥ 44 dp: 36 + 8 + 8 = 52 по высоте) — минимум 48 раздувал строку до 68 dp против ≈58 в макете
+      hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+      style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}
+      contentStyle={{ width: 48, minHeight: 36, justifyContent: 'center', alignItems: 'center' }}
     >
       <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
         <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
@@ -384,7 +386,7 @@ export default function SettingsNotifications() {
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
   const sectionTitleStyle = { color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
   const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }; // зачем (стиль «Тень»): плашка с тенью, без кромки и клипа
-  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
+  const rowStyle = { minHeight: 58, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
 
   return (
     <ScreenGradient>

@@ -343,6 +343,10 @@
   const MORPH_MS = 380;
   const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
   const svg = (inner, cls = 's18') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${inner}</svg>`;
+  // зачем (решение владельца п.81, 12.10): в шапке каталога справа — чип языка наборов «флаг · EN · ⌄» (PackLanguagePicker, testID pack-language-picker) и тонкая линия под верхней строкой; в образце их не было
+  const ukFlag = `<svg viewBox="0 0 24 16" width="24" height="16" aria-hidden="true" style="display:block;border-radius:3px"><rect width="24" height="16" fill="#1d3f9a"/><path d="M0 0L24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0L24 16M24 0L0 16" stroke="#c8202f" stroke-width="1.1"/><path d="M12 0V16M0 8H24" stroke="#fff" stroke-width="5.2"/><path d="M12 0V16M0 8H24" stroke="#c8202f" stroke-width="3"/></svg>`;
+  const enChip = `<span class="t" style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 10px;border-radius:17px;background:var(--control);font-size:16px;font-weight:700">${ukFlag}EN${icon('down', 's16')}</span>`;
+  const topLine = '<div style="height:1px;margin:10px calc(-1 * var(--pad)) 0;background:rgba(255,255,255,.07)"></div>';
   const X = {
     zoomS: svg('<rect x="3" y="5" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="5" width="7.5" height="3.6" rx="1.2"/><rect x="3" y="10.2" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="10.2" width="7.5" height="3.6" rx="1.2"/><rect x="3" y="15.4" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="15.4" width="7.5" height="3.6" rx="1.2"/>'),
     zoomL: svg('<rect x="2.5" y="6.5" width="19" height="11" rx="2.8"/>', 's20'),
@@ -355,7 +359,8 @@
     eye: svg('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
     lock: svg('<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/>', 's18'),
     globe: svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.7 2.7 15.3 0 18M12 3c-2.7 2.7-2.7 15.3 0 18"/>', 's18'),
-    albums: svg('<rect x="5.5" y="8.5" width="13" height="11" rx="2.5"/><path d="M8 5.5h8M10 2.8h4"/>'),
+    // зачем (решение владельца п.81, 12.10): значок «В набор» / «Показать стопкой» / «Мои наборы» в приложении — albums-outline (Ionicons): стопка из трёх слоёв, а не «баночка»; пропорции 512→24
+    albums: svg('<rect x="3" y="8.25" width="18" height="12" rx="1.4"/><path d="M6.75 3.75h10.5M4.5 6h15"/>'),
     filter: svg('<path d="M4 6h16M7 12h10M10 18h4"/>'),
     checkbox: svg('<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>'),
     retry: svg('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/>', 's20'),
@@ -466,7 +471,7 @@
       <div class="ytile t"><div class="ystk">${empty
         ? `<span class="cv" style="top:40px;background:#1E1E21;justify-content:center;align-items:center;color:var(--sec)">${icon('plus', 's20')}</span>`
         : covers.map(([t, n, bg], i) => `<span class="cv" style="top:${(2 - i) * 20}px;background:linear-gradient(160deg,${bg},#151517);z-index:${3 - i}">${t}<b>${n}</b></span>`).reverse().join('')}</div>
-        <div class="yft"><div class="grow"><div class="ytt">Мои наборы</div><div class="ysu">${empty ? 'Создать' : '4'}</div></div>${icon('layers', 's18')}</div></div>
+        <div class="yft"><div class="grow"><div class="ytt">Мои наборы</div><div class="ysu">${empty ? 'Создать' : '4'}</div></div>${X.albums}</div></div>
     </div>`;
   const videoRail = () => `<div class="sec"><div class="ti">Из видео</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
     <div class="rail">${VIDS.map(([t, d, n, k, p]) => `<div class="vcard t">${vthumb(k, d, { prog: p })}<div class="vt">${t}</div><div class="vm">${n} фраз</div></div>`).join('')}</div>`;
@@ -499,7 +504,7 @@
   // зачем (код, CollectionMenuSheet): строки-плашки с плиткой 42, без заголовка; ниже переключатель «Все / Слова / Фразы» и «Язык набора». «Фильтр» появляется, когда выбраны «Фразы» и есть группы.
   const savedMenuRows = `${prow('albums', 'Показать стопкой')}${prow('checkbox', 'Отметить несколько')}${prow('people', 'Лучшее у сообщества')}
       <div class="seg3" data-seg style="margin-top:14px"><span class="on">Все 64</span><span>Слова 52</span><span>Фразы 12</span></div>
-      <div class="langrow"><span>Язык набора</span><span class="pill s">English</span></div>`;
+      <div class="langrow"><span>Язык набора</span>${enChip}</div>`;
   const cardSheet = sheet('cd', `<div data-cdbody>${cardSheetInner(W[0][0], W[0][1], 'We have a two-hour layover.', false, 'У нас пересадка два часа.')}</div>`);
   const saved = (step) => phone(`${savedTop}${zoomBar()}${zgrid(step, W)}`, { time: '9:41', fixed: savedFab, overlay: cardSheet + sheet('smn', savedMenuRows) });
   const savedSearch = () => phone(`${savedTop}${zoomBar(srch('ga', { caret: 1 }))}
@@ -582,7 +587,7 @@
   // зачем (решение 12.10): переключатель «Кто видит» (Только я / Все) в редакторе набора остаётся — сразу под названием.
   const vis = (pub) => `<div style="margin-top:20px"><div class="flab">Кто видит</div><div class="vseg" data-seg><span${pub ? '' : ' class="on"'}>${X.lock}Только я</span><span${pub ? ' class="on"' : ''}>${X.globe}Все</span></div></div>`;
   // зачем (решение 12.10, код): пилюля лимита — реальный лимит МЕСТА, где он сработал (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц); 32 высотой, 13/600
-  const limPill = (ic, t) => `<span class="pill" style="height:32px;padding:0 12px;gap:6px;font-size:13px;font-weight:600">${ic === 'copy' ? X.copy : icon(ic, 's16')}${t}</span>`;
+  const limPill = (ic, t) => `<span class="pill" style="height:32px;padding:0 12px;gap:6px;font-size:13px;font-weight:600">${ic === 'copy' ? X.copy : ic === 'layers' ? X.albums.replace('s18', 's16') : icon(ic, 's16')}${t}</span>`;
   const lvls = (on) => `<div class="chips">${['A1', 'A2', 'B1', 'B2', 'C1'].map((l) => `<span class="chipbtn${l === on ? ' on' : ''}" data-chip style="height:40px;min-width:54px;justify-content:center;padding:0 14px;font-size:16px">${l}</span>`).join('')}</div>`;
   const secHead = (t, n) => `<div class="sechead"><span>${t}</span><span class="n2">${n}</span></div>`;
   // зачем (код, EditorCardRow / AddCardRow): строка карточки 70 — слово 16/600, перевод 16/21, справа шеврон (в редактировании — ручка переноса «три полоски» слева и корзина в плитке); «Карточка» — плитка слева и подпись слева
@@ -616,7 +621,7 @@
   // СООБЩЕСТВО
   // =====================================================================
   // зачем (код, flashcards_packs): стрелка «назад» (arrow-back), справа от заголовка круглая акцентная «+» «Создать набор»; по умолчанию выбрана плашка «Новые»; чипы уровней — по данным каталога
-  const commHead = (q, o = {}) => `<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span></div>
+  const commHead = (q, o = {}) => `<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span>${enChip}</div>${topLine}
       <div class="flex" style="justify-content:space-between;align-items:center;margin-top:14px"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Сообщество</div><span class="rb l t" style="background:var(--cta);color:var(--cta-ink)">${icon('plus', 's20')}</span></div>
       <div style="margin-top:16px">${srch(q, { ph: 'Наборы и авторы', caret: o.caret })}</div>
       <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 1 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;

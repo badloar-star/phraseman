@@ -32694,22 +32694,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-008.png",
+      "evidence_at": "2026-10-12T02:36:08.394Z",
+      "evidence_sha256": "32ea6ad2631fc859b8ed16754056ed6cf6a154f82753f00b1ba67fd90f7cc5d1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Под списком приложение показывает строку «Нашёл ошибку?» (кнопка сообщения об ошибке, components/ReportErrorButton) — в утверждённом образце её нет, ни на одном из кадров №5–9. Решить: оставить в приложении и дорисовать в образец (отдельным кадром в конец cards-v2) либо убрать из списка Сохранённых; утверждённый кадр под приложение не подгоняю.",
+        "[данные] В приложении 64 слова (до «Mother», длинные обрезаются «Fair enou…», «Never mi…», «Sounds g…»), в образце 35 слов — образец показывает начало списка."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:37:38.575Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:36, утверждённый cards-v2 №8 «Сохранённые — 5 колонок»): раскладка совпала — шапка, «Сохранённые 64», ползунок у левого края, плитки в пять колонок только со словом EN, плашка «Тренировать» внизу."
     },
     {
       "id": "cards-v2-009",
@@ -32734,22 +32738,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-009.png",
+      "evidence_at": "2026-10-12T02:36:34.681Z",
+      "evidence_sha256": "8524b43b4f1e82e1fb7711863ff32bb8da0cefede2111bb7bd31429cc040db8e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Под результатами «Нашёл ошибку?» — в утверждённом образце нет (тот же вопрос, что cards-v2-008).",
+        "[состояние] В приложении открыта клавиатура ОС и плашка «Тренировать» скрыта — в образце клавиатуры нет и плашка видна; запрос «lay» (Layover, Delay, Lay) против «ga» (Gate, Luggage, Gap year, Mega) — данные."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:37:38.575Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:36, утверждённый cards-v2 №9 «Поиск»): совпало по составу — поле поиска с лупой, введённым текстом и «✕», ползунок, плитки-результаты с подчёркнутым совпавшим фрагментом (в обоих случаях подчёркнут только фрагмент), перевод, кнопка озвучки."
     },
     {
       "id": "cards-v2-010",

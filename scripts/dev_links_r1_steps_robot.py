@@ -71,6 +71,6 @@ add('learn-017', ['tap:#combo-pick-topic-*', 'tap:#combo-pick-topic-*@2', 'tap:#
 add('learn-018', ['tap:#combo-pick-topic-*', 'tap:#combo-pick-topic-*@2', 'tap:#combo-pick-topic-*@3', 'tap:#combo-pick-topic-*@4', 'tap:#combo-pick-topic-*@5', 'tap:#combo-pick-topic-*@6'], 'plus=on', '/combined_lesson_pick', unique=False, note='«Смешать темы»: лимит 5 — шестой тап должен показать лимит; соответствие состоянию A17 проверить глазами')
 add('video-007', ['wait:3000', 'await:#lingman-video-card'], 'plus=on', '/lingman_videos', note='«Все видео и плейлисты»: вкладка «Все видео»')
 add('coins-002', [], 'coinRank=5', '/runes_wallet', note='кошелёк: нулевой баланс (у гостя 0 монет)')
-add('coins-005', [], '', '/coin_rank', note='повышение ранга: недостаточно монет (у гостя 0 монет)')
+add('coins-005', [], 'coinRank=5', '/coin_rank', note='повышение ранга: недостаточно монет (у гостя 0 монет)')
 add('home-002', [], 'plus=on', '/(tabs)/home', unique=False, note='Главная в СВЕТЛОЙ теме: подмены theme нет — перед кадром включить светлую тему в Настройки → Внешний вид (запрос Темам: dev_state?theme=light)')
-add('overlays-041', [], 'intros=reset&plus=on&cards=demo', '/flashcards_truefalse_session?deck=saved%26quick=1%26size=all', unique=False, note='окно знакомства «Карточки» (feature_intro_registry: cards_swipe_help показывает flashcards_swipe); intros=reset вместо intros=seen; путь не подтверждён')
+add('overlays-041', ['wait:1500'], 'intros=reset&plus=on&cards=demo', '/flashcards', unique=False, note='окно знакомства «Фразы — в твою коллекцию» = cards_hub_first_visit (feature_intro_sections_copy.ts, screenRoute /flashcards, first_visit); intros=reset вместо intros=seen')

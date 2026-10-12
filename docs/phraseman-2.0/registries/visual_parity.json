@@ -36919,8 +36919,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {
@@ -37045,8 +37045,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       }
     },
     {

@@ -36785,15 +36785,18 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "[состояние не то] Фоном за окном в приложении главный экран «Настройки», в образце затемнённый экран «Аккаунт» — путь до «Аккаунта» в ссылке не пройден."
+      ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
-      }
+      },
+      "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
     {
       "id": "auth-gap-015",
@@ -36819,15 +36822,18 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "[состояние не то] Фоном за окном в приложении главный экран «Настройки», в образце затемнённый экран «Аккаунт» — путь до «Аккаунта» в ссылке не пройден."
+      ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
-      }
+      },
+      "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
     {
       "id": "auth-gap-016",
@@ -36853,15 +36859,18 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "[состояние не то] Фоном за окном в приложении главный экран «Настройки», в образце затемнённый экран «Аккаунт» — путь до «Аккаунта» в ссылке не пройден."
+      ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T19:07:20.585Z",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
-      }
+      },
+      "sverka_verdict": "ОБРАЗЕЦ ПЕРЕРИСОВАН 12.10 (решение Дизайна: образец под код): двухкнопочные окна «Смена аккаунта» в коде — ThemedConfirmModal (system_23), кнопки В РЯД: серая «Остаться здесь» + приглушённо-красная «Сменить без сохранения»; accounts-gaps-states.html №14/15/16 приведены к этому виду. Нужна пересклейка кадра. Прежний вердикт (текст совпал, фон «Настройки» вместо «Аккаунта») остаётся в силе."
     },
     {
       "id": "auth-gap-017",

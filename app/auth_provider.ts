@@ -2303,7 +2303,11 @@ export async function signInWithProvider(
   if (devSignInStub) {
     console.log(`[DEV-STATE] account: вход подменён signin=${devSignInStub.mode} delayMs=${devSignInStub.delayMs} [AUTH-SIGNIN] ignored provider=${provider} reason=dev_state`); // guard-ok: dev-ветка
     if (devSignInStub.delayMs > 0) await new Promise<void>((resolve) => { setTimeout(resolve, devSignInStub.delayMs); });
-    const stubbed: SignInResult = devSignInStub.error ? { result: 'error', error: devSignInStub.error } : { result: 'cancelled' };
+    const stubbed: SignInResult = devSignInStub.error
+      ? { result: 'error', error: devSignInStub.error }
+      : devSignInStub.createdNew
+        ? { result: 'created_new', email: devSignInStub.createdNew.email, displayName: devSignInStub.createdNew.displayName }
+        : { result: 'cancelled' };
     console.log(`[DEV-STATE] account: signin=${devSignInStub.mode} → result=${stubbed.result}${devSignInStub.error ? ` error=${devSignInStub.error}` : ''}`); // guard-ok: итог dev-ветки
     return stubbed;
   }

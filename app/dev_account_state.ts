@@ -33,9 +33,16 @@ export type DevRestoreMode = (typeof DEV_RESTORE_MODES)[number];
  * (окно «Вход всё ещё выполняется…» видно после 8 с); offline — «нет связи»; generic — общая ошибка. Коды с префиксом dev_stub:
  * онбординг в dev не дописывает к тексту (кадр = макет).
  */
-export const DEV_SIGNIN_MODES = ['hold', 'offline', 'generic'] as const;
+// unknown (onboarding-005): «аккаунта у нас нет» — created_new с вымышленной почтой example.com, без настоящего входа и привязки.
+export const DEV_SIGNIN_MODES = ['hold', 'offline', 'generic', 'unknown'] as const;
 export type DevSignInMode = (typeof DEV_SIGNIN_MODES)[number];
-export type DevSignInStub = Readonly<{ mode: DevSignInMode; delayMs: number; error: string | null }>;
+export type DevSignInStub = Readonly<{
+  mode: DevSignInMode;
+  delayMs: number;
+  error: string | null;
+  /** Только для unknown: подставной результат created_new (почта вымышленная). */
+  createdNew?: Readonly<{ email: string; displayName: string }>;
+}>;
 const DEV_SIGNIN_HOLD_MS = 60_000;
 /** Сколько держать «Выходим из аккаунта» при `logout=hold` (profile-028), потом отказ — стирание недостижимо. */
 const DEV_LOGOUT_HOLD_MS = 120_000;
@@ -185,6 +192,7 @@ export function getDevSignInStub(): DevSignInStub | null {
   if (!devAccountAvailable() || state.signIn === null) return null;
   if (state.signIn === 'hold') return { mode: 'hold', delayMs: DEV_SIGNIN_HOLD_MS, error: null };
   if (state.signIn === 'offline') return { mode: 'offline', delayMs: 0, error: 'dev_stub:network-request-failed' };
+  if (state.signIn === 'unknown') return { mode: 'unknown', delayMs: 600, error: null, createdNew: { email: 'alex.demo@example.com', displayName: 'Alex Demo' } };
   return { mode: 'generic', delayMs: 0, error: 'dev_stub:generic' };
 }
 

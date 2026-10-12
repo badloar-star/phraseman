@@ -56,6 +56,7 @@ import { commitPhoneStateDurableAction } from './phone_state_recovery';
 import { DebugLogger } from './debug-logger';
 import { fill, onboardingCopy, type OnboardingCopyKey } from '../components/onboarding/clean_onboarding_copy';
 import { languageNameOf } from '../components/onboarding/clean_onboarding_options';
+import { IS_STORE_RELEASE } from './config';
 
 const EXEMPT_COLOR_1 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
 const EXEMPT_COLOR_2 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
@@ -128,16 +129,21 @@ const LEVEL_OPTIONS: ChoiceOption[] = [
 export default function LanguageWelcomeScreen() {
   const router = useRouter();
   const { lang } = useLang();
-  const params = useLocalSearchParams<{ target?: string; resolveStarted?: string }>();
+  const params = useLocalSearchParams<{ target?: string; resolveStarted?: string; devStep?: string }>();
   const rawTarget = Array.isArray(params.target) ? params.target[0] : params.target;
   const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
   const target = parsedTarget;
   const resolveStarted = params.resolveStarted === '1';
   const lc = onboardingCopy(lang);
 
-  const [step, setStep] = useState<WelcomeStep>('welcome');
-  const [goal, setGoal] = useState<string | null>(null);
-  const [level, setLevel] = useState<string | null>(null);
+  // зачем (координатор 12.10, съёмка onboarding-029): экран «Новый язык выбран» достижим только после настоящего включения языка
+  // (сохранение профиля и смена языка гостя). dev `devStep=done` открывает его сразу с целью/уровнем по умолчанию и БЕЗ сохранений;
+  // в стор-сборке параметр игнорируется.
+  const devStepRaw = Array.isArray(params.devStep) ? params.devStep[0] : params.devStep;
+  const devDonePreview = typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE && devStepRaw === 'done';
+  const [step, setStep] = useState<WelcomeStep>(devDonePreview ? 'done' : 'welcome');
+  const [goal, setGoal] = useState<string | null>(devDonePreview ? 'everyday' : null);
+  const [level, setLevel] = useState<string | null>(devDonePreview ? 'a1' : null);
   const [busy, setBusy] = useState(false);
   const [entryResolved, setEntryResolved] = useState(!resolveStarted);
 

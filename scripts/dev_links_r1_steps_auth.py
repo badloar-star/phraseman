@@ -146,3 +146,18 @@ add('profile-028', LOGOUT_TAP + ['settle:0'], 'account=support_only', ACCT,
 # Неудачу выхода настоящим выходом не воспроизвести — остаётся подмена logout=fail (отказ до действия) плюс защита №3.
 add('profile-029', LOGOUT_TAP + ['wait:1500'], 'account=support_only&logout=fail', ACCT,
     note='«Не удалось выйти» (logout=fail — выхода нет); только на №3')
+
+# ── Онбординг и вход без ссылок (координатор 12.10: link_missing onboarding-002/005/026–029).
+add('onboarding-002', ['tap:#onboarding-existing-account', 'wait:600'], 'onbstep=welcome', ONB_HOME,
+    note='«У меня есть аккаунт» → кнопки Google / Apple; вход НЕ начинать')
+# signin=unknown: created_new с вымышленной почтой example.com без настоящего входа → «Аккаунта … у нас нет». Кнопки не жать.
+add('onboarding-005', ONB_SIGNIN + ['wait:1500'], 'guest=required&onbstep=welcome&signin=unknown', ONB_HOME,
+    note='«Начнём с чистого листа · Аккаунта alex.demo@example.com у нас нет» — «Создать аккаунт» / «Войти другим способом» не жать')
+# Мини-онбординг нового языка: язык макета — «Английский». До «Начать» ничего не сохраняется.
+LW = '/language_welcome?target=en'
+add('onboarding-026', ['wait:600'], '', LW, note='новый язык: приветствие')
+add('onboarding-027', ['tap:#language-welcome-primary', 'wait:500'], '', LW, note='«Зачем тебе…» без выбора')
+add('onboarding-028', ['tap:#language-welcome-primary', 'wait:500', 'tap:#language-welcome-option-everyday',
+                       'tap:#language-welcome-primary', 'wait:500'], '', LW, note='шаг «Уровень» (цель «каждый день» выбрана)')
+# «Новый язык выбран» без настоящего включения языка: devStep=done (только dev), язык гостя не меняется. «Начать учить» не жать.
+add('onboarding-029', ['wait:600'], '', LW + '&devStep=done', note='«Новый язык выбран · Английский · План под тебя готов…» (devStep=done, без сохранений)')

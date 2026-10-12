@@ -266,3 +266,30 @@ describe('account=support_only — настоящий «Выйти» тольк�
     expect(src.slice(guard, guard + 900)).toContain('return { applied, skipped: { all: `account_support_only_refused:${support.reason}` }, next: null };');
   });
 });
+
+describe('onboarding-005 и 029: подмены без входа и без сохранений', () => {
+  it('signin=unknown → created_new с вымышленной почтой, без сети; вне dev — нет', () => {
+    const account = require('../app/dev_account_state');
+    account.resetDevAccountStateForTests();
+    account.setDevAccountState({ signIn: 'unknown' });
+    const stub = account.getDevSignInStub();
+    expect(stub).toMatchObject({ mode: 'unknown', error: null, createdNew: { email: 'alex.demo@example.com', displayName: 'Alex Demo' } });
+    expect(stub.createdNew.email.endsWith('@example.com')).toBe(true);
+    delete (globalThis as { __DEV__?: boolean }).__DEV__;
+    expect(account.getDevSignInStub()).toBeNull();
+    (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+    account.resetDevAccountStateForTests();
+    const auth = read('app/auth_provider.ts');
+    expect(auth).toContain("? { result: 'created_new', email: devSignInStub.createdNew.email, displayName: devSignInStub.createdNew.displayName }");
+  });
+
+  it('language_welcome devStep=done — только dev, сразу экран «готово» без сохранений', () => {
+    const src = read('app/language_welcome.tsx');
+    expect(src).toContain("const devDonePreview = typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE && devStepRaw === 'done';");
+    expect(src).toContain("useState<WelcomeStep>(devDonePreview ? 'done' : 'welcome')");
+    // сохранения языка — только в activateLanguage (по кнопке «Начать»), devStep их не вызывает
+    const activate = src.indexOf('const activateLanguage = useCallback(');
+    expect(src.indexOf('saveLanguageProfile(target')).toBeGreaterThan(activate);
+    expect(src.slice(0, activate)).not.toMatch(/devDonePreview[^\n]*(saveLanguageProfile|applyStudyLanguageSelection)/);
+  });
+});

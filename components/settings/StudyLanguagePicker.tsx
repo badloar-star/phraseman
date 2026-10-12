@@ -281,10 +281,12 @@ export default function StudyLanguagePicker({
           <TouchableOpacity
             key={code}
             activeOpacity={0.85}
-            disabled={busy}
+            // зачем (координатор 12.10, R1_OPTIMISTIC_UI_REST п.3): занятой во время смены остаётся только тапнутая строка; остальные не блокируются целиком —
+            // второй тап отсекает busyRef в select() с журналом select_ignored reason=busy
+            disabled={busy && code === pendingTarget}
             onPress={() => onSelect(code)}
             accessibilityRole="button"
-            accessibilityState={{ selected: active }}
+            accessibilityState={{ selected: active, busy: busy && code === pendingTarget }}
             accessibilityLabel={STUDY_TARGET_NATIVE_NAME[code]}
             testID={`study-lang-row-${code}`} // зачем (робот съёмки, 12.10): строка языка находится без привязки к языку интерфейса
             style={{

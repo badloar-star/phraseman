@@ -114,7 +114,7 @@ export type DevStateRequest = Readonly<{
   /** Блиц: пометить верный (`correct`) или неверный (`wrong`) вариант testID `fc-blitz-opt-target` для робота (app/dev_cards_state.ts). Только память. */
   blitzAnswer?: 'correct' | 'wrong' | 'off';
   /** Сообщество без сети (съёмка R1 Карточек): демо-наборы с карточками в памяти (on) или режим без карточек (off). */
-  packcards?: 'on' | 'off';
+  packcards?: 'on' | 'meta' | 'off';
   /** Список голосов озвучки (cards-gap-036/038): demo — образцовый, none — пусто. */
   voices?: 'demo' | 'none' | 'off';
   /** Ветка откликов демо-набора: три отклика (demo) или пусто (empty). */
@@ -314,7 +314,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
   request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
-  request.packcards = pick('packcards', ['on', 'off'] as const);
+  request.packcards = pick('packcards', ['on', 'meta', 'off'] as const);
   request.voices = pick('voices', [...DEV_CARDS_VOICES, 'off'] as const);
   request.comments = pick('comments', [...DEV_COMMUNITY_COMMENTS, 'off'] as const);
   request.community = pick('community', ['reset', 'added', 'off'] as const);
@@ -777,12 +777,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.packcards !== undefined || request.comments !== undefined || request.community !== undefined) {
     await step('community', [request.packcards, request.comments, request.community].filter(Boolean).join(','), async () => {
       if (request.community === 'off') return setDevCommunityState({ active: false, packs: new Map(), comments: null, reset: true });
-      if (request.packcards === 'on') {
+      if (request.packcards === 'on' || request.packcards === 'meta') {
         const { demoCommunityPackData } = await import('./dev_state_cards_demo');
         const data = demoCommunityPackData(await getStableId());
         const { seedCommunityCatalogForDev } = await import('./community_packs/communityFirestore');
         if (!seedCommunityCatalogForDev('en', data.catalog)) throw new Error('seed_refused');
-        if (!setDevCommunityState({ active: true, packs: data.packs })) return false;
+        // зачем (cards-044 «Набор ещё не скачан»): meta — мета наборов есть, карточек нет (как набор, не докачанный без сети).
+        const packs = request.packcards === 'meta'
+          ? new Map([...data.packs].map(([id, pack]) => [id, { meta: pack.meta, cards: [] }] as const))
+          : data.packs;
+        if (!setDevCommunityState({ active: true, packs })) return false;
       } else if (request.packcards === 'off' && !setDevCommunityState({ active: true, packs: new Map() })) return false;
       if (request.comments !== undefined && !setDevCommunityState({ active: true, comments: request.comments === 'off' ? null : request.comments })) return false;
       if (request.community === 'reset' && !setDevCommunityState({ reset: true })) return false;

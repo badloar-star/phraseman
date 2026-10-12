@@ -82,17 +82,32 @@ describe('dev_state: cardslangs / videopacks разбираются', () => {
   });
 });
 
-describe('DEV_LINKS_R1: кадры п.83 и «Из видео» описаны', () => {
-  const doc = read('docs/phraseman-2.0/DEV_LINKS_R1.md');
-  it('строка cards-027 с шагами меню и 7 кадров языка наборов + 3 кадра «Из видео»', () => {
-    expect(doc).toMatch(/^\| cards-027 \| Подготовка тренировки · Кнопка языка открыта \|/m);
+describe('DEV_LINKS_P83 / DEV_LINKS_R1: кадры п.83 и «Из видео» описаны', () => {
+  const p83 = read('docs/phraseman-2.0/DEV_LINKS_P83.md');
+  const r1 = read('docs/phraseman-2.0/DEV_LINKS_R1.md');
+  it('ручной документ: 7 кадров языка наборов + 3 кадра «Из видео»', () => {
     for (const id of ['cards-027·1', 'cards-027·2', 'cards-027·3', 'cards-027·4', 'cards-027·5', 'cards-027·6', 'cards-027·7', 'video-pusto', 'video-oshibka', 'video-spisok']) {
-      expect(doc).toContain(`| ${id} `);
+      expect(p83).toContain(`| ${id} `);
     }
   });
-  it('cards-030 ждёт тихие повторы (≈12 с), а не 800 мс, иначе снимается скелет', () => {
-    const line = doc.split('\n').find((l) => l.startsWith('| cards-030 |')) ?? '';
-    expect(line).toContain('| `wait:14000` | да |');
+  it('все ссылки ручного документа разбираются парсером без отказов', () => {
+    const { parseDevStateParams } = require('../app/dev_state_fixtures');
+    const links = [...p83.matchAll(/`phraseman:\/\/dev_state\?([^`]+)`/g)].map((m) => m[1]);
+    expect(links.length).toBeGreaterThanOrEqual(10);
+    for (const link of links) {
+      const params: Record<string, string> = {};
+      for (const pair of link.split('&')) {
+        const at = pair.indexOf('=');
+        params[decodeURIComponent(at < 0 ? pair : pair.slice(0, at))] = decodeURIComponent(at < 0 ? '' : pair.slice(at + 1));
+      }
+      expect(parseDevStateParams(params).rejected).toEqual({});
+    }
+  });
+  it('генерируемые строки реестра: cards-027 (меню), cards-080 («Пока пусто»), cards-030 (ждёт повторы)', () => {
+    const rowOf = (id: string) => r1.split('\n').find((l) => l.startsWith(`| ${id} |`)) ?? '';
+    expect(rowOf('cards-027')).toContain('cardslangs=on');
+    expect(rowOf('cards-080')).toContain('videopacks=empty');
+    expect(rowOf('cards-030')).toContain('| `wait:14000` | да |');
   });
   it('переключатели описаны в DEV_SWITCHES_R1_CORE', () => {
     const sw = read('docs/phraseman-2.0/DEV_SWITCHES_R1_CORE.md');

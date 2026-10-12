@@ -25,6 +25,8 @@ const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
 const SCENARIO_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:_[a-z0-9]+)*$/;
+/** Подсказка подставного хода (dev_dialog_send): текст для окна «Подсказка» на кадре dialogs-017. */
+export const DEV_DIALOG_HINT_TEXT = 'Try greeting first, then ask one simple question. (dev)';
 const OBJECTIVE_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:[_:-][a-z0-9]+)*$/;
 const CONTROL_RE = /[\u0000-\u001f\u007f]/u;
 const MOODS = new Set(['happy', 'smile', 'neutral', 'sad', 'angry']);
@@ -284,11 +286,13 @@ export async function sendDialogueV2CoachedTextTurn(
       quota: { remaining: outcome.remaining, resetAtMs: outcome.resetAtMs, quotaVersion: 1 },
       // зачем (координатор 12.10, dialogs-023): dev_dialog_mood применялся только к настоящему ответу сервера (ниже) и при подставном ходе терялся —
       // кадр «Настроение собеседника упало» был недостижим. В dev при заданном настроении отдаём минимальный разбор, где есть только оно.
-      coaching: devMood || devEnd || devBetter ? {
+      // зачем (координатор 12.10, dialogs-017 «Подсказка — окно»): кнопка подсказки в карточке цели рисуется только когда после хода пришёл `hint`, а подставной ход его не нёс —
+      // кадр был недостижим. Теперь подставной ход всегда отдаёт разбор с подсказкой (только dev: в стор-сборке getDevDialogSend() = null); остальные поля разбора прежние.
+      coaching: {
         replyTranslations: null, replyExplanations: null,
-        betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: null,
+        betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: DEV_DIALOG_HINT_TEXT,
         mood: devMood, activeObjectiveId: null, dialogueEnded: devEnd,
-      } : null,
+      },
     };
   }
   const startedAt = Date.now();

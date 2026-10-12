@@ -25,7 +25,7 @@ import {
   resolveDevDialogSend,
 } from '../app/dev_dialog_send';
 import { getDevDialogSend, resetDevDialogState, setDevDialogState } from '../app/dev_dialog_state';
-import { DialogueV2TurnFailureError, sendDialogueV2CoachedTextTurn } from '../app/dialogue_v2_turn_coaching_client';
+import { DEV_DIALOG_HINT_TEXT, DialogueV2TurnFailureError, sendDialogueV2CoachedTextTurn } from '../app/dialogue_v2_turn_coaching_client';
 
 beforeAll(() => {
   jest.spyOn(console, 'log').mockImplementation(() => undefined);
@@ -92,7 +92,8 @@ describe('клиент хода с флагом dev_dialog_send', () => {
       const pending = sendDialogueV2CoachedTextTurn(request);
       await jest.advanceTimersByTimeAsync(DEV_DIALOG_SEND_DELAY_MS);
       const res = await pending;
-      expect(res).toMatchObject({ kind: 'reply', replayed: false, coaching: null, quota: { remaining: 6, resetAtMs: 999, quotaVersion: 1 } });
+      // зачем (координатор 12.10, dialogs-017): подставной ход всегда отдаёт разбор с подсказкой — иначе кнопка «Подсказка» в карточке цели не рисуется и кадр недостижим
+      expect(res).toMatchObject({ kind: 'reply', replayed: false, coaching: { hint: DEV_DIALOG_HINT_TEXT, mood: null, dialogueEnded: false, betterPhrasing: null }, quota: { remaining: 6, resetAtMs: 999, quotaVersion: 1 } });
       expect(mockCallable).not.toHaveBeenCalled();
     } finally {
       jest.useRealTimers();

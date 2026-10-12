@@ -254,14 +254,15 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     const ui = dialogueV2UiCopy(lang, item.id);
     return ui?.title ? { ...item, title: ui.title } : item;
   }), [lang, projection]);
+  const quotaRow = showQuotaRow && freeTier && quotaRemaining !== null ? (
+    <DialogueV2HubQuotaRow
+      text={`${quotaRemaining}/${quotaTotal}`}
+      accessibilityLabel={hubCopy.quotaA11y(quotaRemaining, quotaTotal)}
+    />
+  ) : null;
   const plusTools = (
     <>
-      {showQuotaRow && freeTier && quotaRemaining !== null ? (
-        <DialogueV2HubQuotaRow
-          text={`${quotaRemaining}/${quotaTotal}`}
-          accessibilityLabel={hubCopy.quotaA11y(quotaRemaining, quotaTotal)}
-        />
-      ) : null}
+      {quotaRow}
       <DialogueV2PlusTools
         accessResolved={accessResolved}
         hasPremiumAccess={hasPremiumAccess}
@@ -278,18 +279,24 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
       onPress={openLessons}
     />
   );
+  // зачем (владелец/координатор 12.10, dialogs-005; образец dialogs.html «Хаб — язык ещё проверяется»): пока для языка нет проверенных диалогов, «Свободный разговор» скрыт —
+  // вход в разговор мимо гейта нелогичен. Остаётся только строка остатка (если она нужна) и карточка гейта. Причина скрытия — в журнал.
+  const gateHub = (reason: 'dev_hold' | 'unsupported_target' | 'zero_items') => {
+    console.log(`[DIALOGUE-V2] hub:freeform_hidden reason=language_gate source=${reason} studyTarget=${String(studyTarget)} supported=${supportedTarget(studyTarget)} items=${projection?.items.length ?? 'null'}`); // guard-ok: ветвление называет причину скрытия
+    return (
+      <>
+        {quotaRow}
+        {languageGate}
+      </>
+    );
+  };
 
   // зачем (владелец 01.10: «не должно быть состояния "диалоги загружаются"»): встроенный снимок
   // есть всегда, сюда попадаем только при поломке сборки — без строки «загрузка», лог причины.
   // зачем (координатор 12.10, dialogs-005): dev-удержание показывает карточку «язык ещё проверяется» для поддержанного языка (память процесса; в стор-сборке геттер всегда false).
   if (isDevDialogLanguageGateHeld()) {
     console.warn('[DIALOGUE-V2] hub:render → language gate (dev hold=dialog_language_gate)', { studyTarget }); // guard-ok: ветвление называет причину
-    return (
-      <>
-        {plusTools}
-        {languageGate}
-      </>
-    );
+    return gateHub('dev_hold');
   }
   if (state.kind === 'loading') {
     console.warn('[DIALOGUE-V2] hub:render → no local catalogue (embedded missing)', { studyTarget });
@@ -304,12 +311,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
 
   if (!supportedTarget(studyTarget) || (projection && projection.items.length === 0)) {
     if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] hub:render → language gate', { studyTarget, items: projection?.items.length ?? null });
-    return (
-      <>
-        {plusTools}
-        {languageGate}
-      </>
-    );
+    return gateHub(supportedTarget(studyTarget) ? 'zero_items' : 'unsupported_target');
   }
 
   if (!projection) {

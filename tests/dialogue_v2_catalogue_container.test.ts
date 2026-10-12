@@ -205,6 +205,8 @@ describe('DialogueV2CatalogueContainer', () => {
     expect(mockFetchCatalogue).not.toHaveBeenCalled();
     expect(mockProjection).not.toHaveBeenCalled();
     expect(mockSection).not.toHaveBeenCalled();
+    // зачем (координатор 12.10, dialogs-005; образец «Хаб — язык ещё проверяется»): под языковым гейтом «Свободный разговор» скрыт — вход в разговор мимо гейта нелогичен
+    expect(mockPlusTools).not.toHaveBeenCalled();
   });
 
   // зачем (владелец 01.10: «Диалоги не загрузились — ТАКОГО НИГДЕ НЕ ДОЛЖНО БЫТЬ»): ни карточки

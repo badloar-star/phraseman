@@ -16,6 +16,7 @@ import dev_links_r1_steps_design3  # noqa: F401  зачем (Дизайн 12.10)
 import dev_links_r1_steps_links3  # noqa: F401  зачем (12.10): двойники и служебные маршруты (link_missing → ready); ПОСЛЕ всех остальных модулей шагов — копирует их записи
 import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки и шаги Авторизации (auth-gap-001/002/003/008…012, profile-023) — свой модуль, общий файл шагов не трогаем
 import dev_links_r1_steps_chain7  # noqa: F401  зачем (Авторизация 12.10): пропущенные Сверкой в chain7 id — ссылки из существующих подмен; ПОСЛЕ auth (копии блица)
+import dev_links_r1_steps_p83  # noqa: F401  зачем (Дизайн 12.10 ночь): п.83 и chain7 Диалогов — исправления шагов dialogs-005/017/018/036, cards-027, cards-030; ПОСЛЕДНИМ, put() заменяет прежние записи тех же id
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))

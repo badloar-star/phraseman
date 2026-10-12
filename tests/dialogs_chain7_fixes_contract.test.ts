@@ -40,13 +40,15 @@ describe('DEV_LINKS_R1: шаги dialogs-017/018/036 ведут к реальн�
 
   it('«Подсказка» открывается кнопкой в карточке цели (`-goal-hint`), а не testID самого окна', () => {
     expect(rowOf('dialogs-017')).toContain('tap:#dialogue-v2-session-goal-hint');
+    // подсказку приносит ответ собеседника — сперва первая реплика, затем клавиатура прячется, и только потом тап по кнопке подсказки
+    expect(rowOf('dialogs-017')).toContain('type:Hello; tap:#dialogue-v2-session-send; wait:2500; hidekb; tap:#dialogue-v2-session-goal-hint');
     expect(rowOf('dialogs-017')).not.toContain('tap:#dialogue-v2-session-hint');
     expect(session).toContain('testID="dialogue-v2-session-goal"');
     expect(parts).toContain('testID={testID ? `${testID}-hint` : undefined}');
   });
 
   it('«Задания» открываются тапом по карточке цели (`-goal`), а не testID самой шторки', () => {
-    expect(rowOf('dialogs-018')).toContain('tap:#dialogue-v2-session-goal`');
+    expect(rowOf('dialogs-018')).toContain('tap:#dialogue-v2-session-goal; wait:500`');
     expect(rowOf('dialogs-018')).not.toContain('tap:#dialogue-v2-session-goals');
   });
 
@@ -61,5 +63,46 @@ describe('DEV_LINKS_R1: шаги dialogs-017/018/036 ведут к реальн�
     expect(session).toContain('[DLG-EXIT] backhandler:disarmed hasConversation=');
     expect(session).toContain('[DLG-EXIT] backhandler:armed messages=');
     expect(session).toContain('[DLG-EXIT] backhandler:press → exit_sheet');
+  });
+});
+
+describe('dialogs-005: «Свободный разговор» скрыт под языковым гейтом', () => {
+  const container = read('components/dialogs/DialogueV2CatalogueContainer.tsx');
+
+  it('обе ветки гейта (dev-удержание и язык без диалогов) идут через gateHub: остаток + карточка гейта, без плашки разговора; причина — в журнал', () => {
+    expect(container).toContain("return gateHub('dev_hold');");
+    expect(container).toContain("return gateHub(supportedTarget(studyTarget) ? 'zero_items' : 'unsupported_target');");
+    const start = container.indexOf('const gateHub = ');
+    const body = container.slice(start, container.indexOf('};', start));
+    expect(body).toContain('{quotaRow}');
+    expect(body).toContain('{languageGate}');
+    expect(body).not.toContain('plusTools');
+    expect(body).not.toContain('DialogueV2PlusTools');
+    expect(body).toContain('[DIALOGUE-V2] hub:freeform_hidden reason=language_gate source=${reason}');
+  });
+
+  it('обычные ветки (скелет, нет проекции, каталог) по-прежнему показывают плашку', () => {
+    expect(container.match(/\{plusTools\}/g)?.length).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe('генератор DEV_LINKS_R1: исправления живут в данных, а не только в документе', () => {
+  const gen = read('scripts/dev_links_r1_generate.py');
+  const steps = read('scripts/dev_links_r1_steps_p83.py');
+
+  it('модуль шагов подключён последним и заменяет прежние записи тех же id', () => {
+    expect(gen).toContain('import dev_links_r1_steps_p83');
+    expect(gen.indexOf('import dev_links_r1_steps_p83')).toBeGreaterThan(gen.indexOf('import dev_links_r1_steps_chain7'));
+    expect(steps).toContain('ENTRIES.pop(rid, None)');
+    for (const id of ['dialogs-005', 'dialogs-017', 'dialogs-018', 'dialogs-036', 'cards-027', 'cards-030', 'cards-080']) expect(steps).toContain(`'${id}'`);
+  });
+
+  it('cards-027 несёт cardslangs=on, cards-080 — videopacks=empty, cards-030 ждёт тихие повторы', () => {
+    const doc = read('docs/phraseman-2.0/DEV_LINKS_R1.md');
+    const rowOf = (id: string) => doc.split('\n').find((l) => l.startsWith(`| ${id} |`)) ?? '';
+    expect(rowOf('cards-027')).toContain('cardslangs=on');
+    expect(rowOf('cards-027')).toContain('tap:#fc-training-setup-language-chip');
+    expect(rowOf('cards-080')).toContain('videopacks=empty');
+    expect(rowOf('cards-030')).toContain('`wait:14000`');
   });
 });

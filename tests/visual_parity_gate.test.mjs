@@ -145,12 +145,14 @@ test('реестр: строки без макета в папке — no_mockup
       assert.ok(Array.isArray(row.diffs) && row.diffs.length > 0, `${row.id}: diff без списка отличий`);
       continue;
     }
-    if (row.mockup_pinned) {
-      assert.equal(row.status, 'pending', `${row.id}: переведённая строка стартует pending`);
-      continue;
-    }
+    // зачем (координатор 12.10, Макеты 70a32e6df): строку, снятую владельцем, проверяем РАНЬШЕ закрепления макета — иначе законно
+    // снятая закреплённая строка (cards-001, п.55) падала как «не pending». Причина снятия по-прежнему обязательна.
     if (row.status === 'removed_by_owner') {
       assert.ok(row.removed_reason, `${row.id}: removed_by_owner без причины`);
+      continue;
+    }
+    if (row.mockup_pinned) {
+      assert.equal(row.status, 'pending', `${row.id}: переведённая строка стартует pending`);
       continue;
     }
     assert.equal(row.status, row.mockup.file ? 'pending' : 'no_mockup', `${row.id}: статус ${row.status} при макете ${row.mockup.file}`);

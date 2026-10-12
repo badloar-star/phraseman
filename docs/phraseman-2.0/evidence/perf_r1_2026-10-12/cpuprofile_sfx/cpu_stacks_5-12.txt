@@ -1,0 +1,159 @@
+=== C:/Temp/claude/sfx1.cpuprofile: окно +5.0…+12.0 с, всего 6977 мс
+ включительное время (топ-35):
+    6977  [root]
+    3096  (anon)
+    3096  tryCallOne
+    2963  [Native] generatorPrototypeNext
+    2956  _next:98387
+    2946  asyncGeneratorStep:98373
+    2562  [Native] functionPrototypeApply
+    2398  runWithFiberInDEV:20300
+    2181  [Native] hermesBuiltinApply
+    2172  tryCallTwo
+    2172  doResolve
+    2172  Promise
+    1853  (anon):98384
+    1634  (anon):98392
+    1470  performWorkOnRoot:25627
+    1395  performWorkOnRootViaSchedulerTask:21641
+    1058  (anon):1360457
+    1043  [Host Function] __native_constructor__
+     971  (anon):873501
+     971  AudioPlayer
+     971  prewarm:873767
+     971  prewarmStep:873191
+     971  ensure:873817
+     971  createAudioPlayer:866515
+     911  performUnitOfWork:26002
+     767  workLoopConcurrentByScheduler:25998
+     767  renderRootConcurrent:25981
+     753  renderWithHooks:22132
+     740  (anon):57036
+     733  updateFunctionComponent:23766
+     703  workLoopSync:25895
+     703  renderRootSync:25879
+     700  commitHookEffectListMount:24707
+     700  react-stack-bottom-frame:28503
+     679  [Native] arrayPrototypeMap
+ стэки листьев (топ-15):
+     971  [Host Function] __native_constructor__ < [Native] hermesBuiltinApply < AudioPlayer < createAudioPlayer:866515 < (anon):873501 < ensure:873817 < prewarm:873767
+     240  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < (anon):828598 < (anon):828766 < (anon):828627 < [Native] arrayPrototypeMap
+     229  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194238 < (anon):57035
+     200  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopConcurrentByScheduler:25998
+     199  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     170  [Host Function] promiseFn < tryCallTwo < doResolve < Promise < [Host Function] bytes < ?anon_0_:825273 < [Native] generatorPrototypeNext
+     165  [Host Function] digest < (anon):113414 < tryCallTwo < doResolve < Promise < digest:113408 < ?anon_0_:825275
+     127  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply
+     123  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     116  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < updateSimpleMemoComponent:23707 < updateMemoComponent:23683 < beginWork:24316 < runWithFiberInDEV:20300
+     115  [root]
+      99  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+      96  [Host Function] uri < uriObjectToString:140007 < [Native] arrayPrototypeMap < join:140025 < [Native] hermesBuiltinApply < Directory:139886 < cacheDirectory:825293
+      93  [GC Young Gen] < [Native] stringPrototypeSlice < formatOwnerStackString:38169 < formatOwnerStack:38163 < getOwnerStackByFiberInDev:41862 < getComponentStack:44212 < _loop3:49451
+      76  [Host Function] log < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < (anon):57036 < onProfileRender:1686004 < commitProfiler:24851
+=== C:/Temp/claude/sfx2.cpuprofile: окно +5.0…+12.0 с, всего 6993 мс
+ включительное время (топ-35):
+    6993  [root]
+    2915  (anon)
+    2891  tryCallOne
+    2750  [Native] generatorPrototypeNext
+    2749  _next:98387
+    2723  asyncGeneratorStep:98373
+    2464  [Native] functionPrototypeApply
+    2011  tryCallTwo
+    2011  Promise
+    2011  doResolve
+    1821  [Native] hermesBuiltinApply
+    1705  runWithFiberInDEV:20300
+    1628  (anon):98384
+    1455  (anon):98392
+    1188  performWorkOnRoot:25627
+     991  performWorkOnRootViaSchedulerTask:21641
+     804  flushSyncWorkAcrossRoots_impl:21569
+     804  processRootScheduleInMicrotask:21588
+     789  (anon):21660
+     755  (anon):1360457
+     738  [Host Function] __native_constructor__
+     701  performUnitOfWork:26002
+     662  [GC Young Gen]
+     652  (anon):57036
+     646  workLoopSync:25895
+     646  renderRootSync:25879
+     645  (anon):826070
+     645  ?anon_0_:826025
+     632  [Native] arrayPrototypeMap
+     604  performSyncWorkOnRoot:21649
+     590  (anon):873501
+     590  AudioPlayer
+     590  prewarm:873767
+     590  prewarmStep:873191
+     590  ensure:873817
+ стэки листьев (топ-15):
+    1013  [root]
+     590  [Host Function] __native_constructor__ < [Native] hermesBuiltinApply < AudioPlayer < createAudioPlayer:866515 < (anon):873501 < ensure:873817 < prewarm:873767
+     223  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     218  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194238 < (anon):57035
+     209  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < (anon):828598 < (anon):828766 < (anon):828627 < [Native] arrayPrototypeMap
+     189  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     188  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+     144  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply
+     121  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopConcurrentByScheduler:25998
+     115  [Host Function] digest < (anon):113414 < tryCallTwo < doResolve < Promise < digest:113408 < ?anon_0_:825275
+      96  [Host Function] exists < ?anon_0_:825272 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373 < _next:98387 < (anon):98392 < tryCallTwo
+      95  [Host Function] promiseFn < tryCallTwo < doResolve < Promise < [Host Function] bytes < ?anon_0_:825273 < [Native] generatorPrototypeNext
+      90  [Host Function] warn < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply < (anon):57036
+      82  rotateRight:363969 < sha256Utf8:364000 < hashCanonicalBody:364026 < materializeHandle:825371 < ?anon_0_:825553 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373
+      78  [GC Young Gen] < rotateRight:363969 < sha256Utf8:364003 < hashCanonicalBody:364026 < materializeHandle:825371 < ?anon_0_:825553 < [Native] generatorPrototypeNext
+=== C:/Temp/claude/sfx3.cpuprofile: окно +5.0…+12.0 с, всего 7001 мс
+ включительное время (топ-35):
+    7001  [root]
+    2759  (anon)
+    2740  tryCallOne
+    2721  [Native] hermesBuiltinApply
+    2668  [Native] generatorPrototypeNext
+    2648  _next:98387
+    2640  asyncGeneratorStep:98373
+    2365  [Native] functionPrototypeApply
+    1892  tryCallTwo
+    1892  doResolve
+    1892  Promise
+    1822  runWithFiberInDEV:20300
+    1718  (anon):1360457
+    1680  [Host Function] __native_constructor__
+    1615  (anon):98384
+    1551  (anon):873501
+    1551  AudioPlayer
+    1551  prewarm:873767
+    1551  prewarmStep:873191
+    1551  ensure:873817
+    1551  createAudioPlayer:866515
+    1496  (anon):1333668
+    1496  prewarm:873175
+    1479  (anon):98392
+    1319  workLoopSync:25895
+    1319  performWorkOnRoot:25627
+    1319  renderRootSync:25879
+     896  performWorkOnRootViaSchedulerTask:21641
+     816  (anon):21660
+     816  processRootScheduleInMicrotask:21588
+     816  flushSyncWorkAcrossRoots_impl:21569
+     786  performUnitOfWork:26002
+     774  performSyncWorkOnRoot:21649
+     666  [GC Young Gen]
+     645  (anon):826070
+ стэки листьев (топ-15):
+    1551  [Host Function] __native_constructor__ < [Native] hermesBuiltinApply < AudioPlayer < createAudioPlayer:866515 < (anon):873501 < ensure:873817 < prewarm:873767
+     308  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194238 < (anon):57035
+     265  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     264  [root]
+     200  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < (anon):828598 < (anon):828766 < (anon):828627 < [Native] arrayPrototypeMap
+     183  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     126  [Host Function] digest < (anon):113414 < tryCallTwo < doResolve < Promise < digest:113408 < ?anon_0_:825275
+     108  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < getIdiomsSync:339916 < rememberPeekPhrases:338310 < ?anon_0_:338362 < [Native] generatorPrototypeNext
+     107  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+      80  [Host Function] __native_constructor__ < [Native] hermesBuiltinApply < NativeDatabase < ?anon_0_:388301 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373 < _next:98387
+      78  [Host Function] uri < uriObjectToString:140007 < [Native] arrayPrototypeMap < join:140025 < [Native] hermesBuiltinApply < File:139772 < ?anon_0_:825534
+      73  [Host Function] promiseFn < tryCallTwo < doResolve < Promise < [Host Function] bytes < ?anon_0_:825273 < [Native] generatorPrototypeNext
+      72  [Host Function] exists < ?anon_0_:825272 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373 < _next:98387 < (anon):98392 < tryCallTwo
+      72  [Host Function] warn < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply < (anon):57036
+      70  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply

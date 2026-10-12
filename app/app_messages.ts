@@ -103,6 +103,32 @@ function appMessagesOwnerStorageKey(prefix: string, ownerUid: string): string {
  */
 export const APP_MESSAGES_SCREEN_MIN_INTERVAL_MS = 6 * 60 * 60_000;
 const APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX = 'app_messages_login_forced_v1';
+
+/**
+ * Ключи сообщений аккаунта, которые стирает `wipeLocalAccountData` при выходе, смене и удалении аккаунта
+ * (`<prefix>:<stableId>` через appMessagesOwnerStorageKey, плюс устаревшие v1 без владельца).
+ * зачем (PRIVACY_DELTA_R1 п.5, координатор 12.10): эти ключи переживали выход и удаление, а политика (§3, §20) обещает удаление
+ * локальных данных. Очередь наград за отчёты (REPORT_REPLY_PENDING_CLAIMS_*) сюда НЕ входит: это незавершённые начисления монет,
+ * их досылает синхронизация — стереть их значит потерять награду.
+ */
+export const APP_MESSAGES_ACCOUNT_WIPE_PREFIXES: readonly string[] = [
+  APP_MESSAGES_CACHE_KEY_PREFIX,
+  APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX,
+  LOCAL_APP_MESSAGES_KEY_PREFIX,
+  LOCAL_APP_MESSAGE_STATES_KEY_PREFIX,
+  APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX,
+  PERSONAL_MODAL_ACK_OUTBOX_KEY_PREFIX,
+  APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX,
+  ANIMATED_MESSAGE_IDS_KEY_PREFIX,
+  APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX,
+];
+export const APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS: readonly string[] = [
+  LEGACY_APP_MESSAGES_CACHE_KEY,
+  LEGACY_APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY,
+  LEGACY_LOCAL_APP_MESSAGES_KEY,
+  LEGACY_LOCAL_APP_MESSAGE_STATES_KEY,
+  LEGACY_ANIMATED_MESSAGE_IDS_KEY,
+];
 const appMessagesLoginForcedInProcess = new Set<string>();
 
 export type AppMessagesLoginForceDecision = Readonly<{

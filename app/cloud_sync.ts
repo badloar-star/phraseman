@@ -43,6 +43,8 @@ import {
 } from './theme_ownership_merge';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
+// зачем (PRIVACY_DELTA_R1 п.5): список ключей сообщений аккаунта для шага стирания — отдельной строкой, чтобы не трогать прежний импорт.
+import { APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS, APP_MESSAGES_ACCOUNT_WIPE_PREFIXES } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
 import { peekStoredItem, readStoredItem, removeStoredItem, writeStoredItem } from './storage_snapshot';
 import {
@@ -829,6 +831,34 @@ function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
 
 async function listLearningV2AccountLocalKeys(): Promise<string[]> {
   return learningV2AccountLocalKeysFrom(await listAllAccountLocalStorageKeys());
+}
+
+/**
+ * Ключи аккаунта, которые стирание убирает ОТДЕЛЬНЫМ шагом, вне общего инвентаря (он же — аварийная копия и «проверка чистоты»:
+ * кэш сообщений есть у любого гостя, и в общем инвентаре он делал бы каждого гостя «грязным»).
+ * зачем (PRIVACY_DELTA_R1 п.5, координатор 12.10): ключи сообщений и отметка полного восстановления ошибок (в имени — stableId/uid)
+ * переживали выход и удаление, а политика (§3, §20) обещает удаление локальных данных.
+ */
+const MISTAKE_RESTORE_FULL_DONE_PREFIX = 'mistake_restore_full_done_v1';
+const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX];
+const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
+
+/** Префикс стирания для ключа или null (ключ — `prefix` или `prefix:<владелец>`). Экспорт — для сторожа. */
+export function wipeOnlyAccountKeyPrefix(key: string): string | null {
+  if (WIPE_ONLY_ACCOUNT_EXACT_KEYS.has(key)) return key;
+  for (const prefix of WIPE_ONLY_ACCOUNT_KEY_PREFIXES) {
+    if (key === prefix || key.startsWith(`${prefix}:`)) return prefix;
+  }
+  return null;
+}
+
+function countWipeOnlyKeysByPrefix(keys: readonly string[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const key of keys) {
+    const prefix = wipeOnlyAccountKeyPrefix(key) ?? 'other';
+    counts[prefix] = (counts[prefix] ?? 0) + 1;
+  }
+  return counts;
 }
 
 async function collectAccountLocalDataKeys(): Promise<string[]> {
@@ -5993,6 +6023,13 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   // аккаунта. Функция никогда не бросает — общую чистку не ломает.
   await clearAllDialogueV2MemoryDiskCache();
   markWipeStage('dialogueMemory');
+  // зачем (PRIVACY_DELTA_R1 п.5): ключи сообщений аккаунта и отметка восстановления ошибок — тем же removeExactly (с проверкой
+  // остатка), отдельным шагом после основного; порядок прежних шагов не тронут. Денежные очереди сюда не входят.
+  const wipeOnlyKeys = (await listAllAccountLocalStorageKeys())
+    .filter((key) => !KEEP.has(key) && wipeOnlyAccountKeyPrefix(key) !== null);
+  await removeExactly(wipeOnlyKeys);
+  markWipeStage('appMessages', wipeOnlyKeys.length);
+  console.log(`[ACC-WIPE] app_messages ${JSON.stringify(countWipeOnlyKeysByPrefix(wipeOnlyKeys))}`); // guard-ok: одна строка на стирание, только префиксы и числа
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
@@ -6012,6 +6049,18 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       || isVipSnapshotStorageKey(key)
     ));
   markWipeStage('finalScan');
+  // зачем (PRIVACY_DELTA_R1 п.5): живой загрузчик сообщений мог дописать кэш старого владельца во время выхода — убираем тихо,
+  // БЕЗ броска account_wipe_incomplete (новая причина отказа выхода недопустима), с логом.
+  const lateWipeOnlyKeys = (await listAllAccountLocalStorageKeys())
+    .filter((key) => !KEEP.has(key) && wipeOnlyAccountKeyPrefix(key) !== null);
+  if (lateWipeOnlyKeys.length > 0) {
+    try {
+      await AsyncStorage.multiRemove(lateWipeOnlyKeys);
+      console.warn(`[ACC-WIPE] app_messages late ${JSON.stringify(countWipeOnlyKeysByPrefix(lateWipeOnlyKeys))}`); // guard-ok: редкая строка, только префиксы
+    } catch (error: unknown) {
+      console.warn(`[ACC-WIPE] app_messages late_remove_failed count=${lateWipeOnlyKeys.length} code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+    }
+  }
   if (finalResidue.length > 0) {
     identityTrace('[ACC-SWITCH-WIPE]', 'residue', {
       stage: 'final_scan',

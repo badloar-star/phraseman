@@ -120,7 +120,7 @@
 /* ---- сборка фразы ---- */
 .task { text-align: center; margin-top: 26px; }
 .task .k { font-size: 15px; color: var(--sec); font-weight: 600; }
-.task .src { font-size: 26px; line-height: 32px; font-weight: 700; margin-top: 14px; letter-spacing: -.3px; }
+.task .src { font-size: 26px; line-height: 32px; font-weight: 400; margin-top: 14px; letter-spacing: -.3px; }
 .ansl { min-height: 60px; border-bottom: 1px solid var(--line-2); margin-top: 22px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 22px; line-height: 28px; font-weight: 600; gap: 8px; padding: 0 6px 10px; }
 .ansl .cur { width: 2px; height: 26px; background: #fff; animation: blink 1s steps(1) infinite; display: inline-block; }
 .ansl .el { color: var(--sec); }
@@ -131,6 +131,14 @@
 .wt.used { opacity: .28; }
 .wt.faint { opacity: .22; }
 .wt.hit { background: #E9E9EB; color: #0B0C0E; font-weight: 700; }
+.lvfx { padding-bottom: 34px; }
+.lvfx .tiles { margin-top: 0; row-gap: 12px; }
+.lvfx .wt { min-height: 85px; font-size: 24px; font-weight: 400; border: none; border-radius: 20px; background: #202022; }
+.lvfx .cellrow { margin-top: 18px; }
+.tools.lv { border-top: none; gap: 10px; justify-content: stretch; margin-top: 14px; padding-top: 0; }
+.tools.lv .tool { flex: 1; min-width: 0; height: 90px; border-radius: 20px; background: #1C1C1E; justify-content: center; font-size: 15px; font-weight: 500; }
+.tools.lv .tool.ck { color: #5FD28A; }
+.tools.lv .tool.ck .i { color: #5FD28A; }
 .tools { display: flex; justify-content: space-around; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
 .tool { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: var(--sec); font-weight: 600; position: relative; min-width: 54px; }
 .tool .i { width: 24px; height: 24px; }
@@ -540,11 +548,17 @@ const intro = (shown, o = {}) => phone(`${introHead(1)}<div class="stack g13" st
 // ================= D. Урок — сборка фразы =================
 const hearts = (lost = 0, shake = false) => `<span class="pill hearts${shake ? ' shake' : ''}" data-hearts>${[0, 1, 2].map((i) => `<span${i >= 3 - lost ? ' class="lost"' : ''}>${icon('heartF', 's16')}</span>`).join('')}</span>`;
 const coinP = (n) => `<span class="pill s" data-coins="${n}" style="padding:0 10px;gap:6px">${coinImg(5, 18)}<span class="num">${n.toLocaleString('ru-RU')}</span></span>`;
-const lhead = (o = {}) => `<div class="hd"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="min-width:0"><div class="tt">Урок 3</div><div class="su">A1</div></div>${o.plus ? '' : energy(o.en ?? 4, { s: true })}${o.combo ? `<span class="combo">×${o.combo}</span>` : ''}${hearts(o.lost || 0, o.shake)}${coinP(o.coins ?? 1240)}</div>`;
+const lhead = (o = {}) => `<div class="hd"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="min-width:0"><div class="tt">Урок 3</div></div>${o.plus ? '' : energy(o.en ?? 4, { s: true })}${o.combo ? `<span class="combo">×${o.combo}</span>` : ''}${hearts(o.lost || 0, o.shake)}${coinP(o.coins ?? 1240)}</div>`;
 const cellRow = (cur, ok = [], no = []) => `<div class="cellrow"><span class="cells">${Array.from({ length: 50 }, (_, i) => `<i class="${ok.includes(i) ? 'ok' : no.includes(i) ? 'no' : i === cur ? 'cur' : ''}"></i>`).join('')}</span><span>${cur + 1}/50</span></div>`;
-const TILES = ['works', 'She', 'every', 'day', 'work', 'is', 'at', 'the'];
+const TILES = ['works', 'She', 'every', 'day', 'work', 'is'];
 const tiles = (o = {}) => `<div class="tiles">${TILES.map((w, i) => `<span class="wt t${(o.used || []).includes(i) ? ' used' : ''}${(o.dim || []).includes(i) ? ' faint' : ''}${o.hit === i ? ' hit' : ''}">${w}</span>`).join('')}</div>`;
-const toolsRow = (o = {}) => `<div class="tools">
+// зачем (координатор 13.10, п.81(12) «экран урока — как есть»): панель урока в коде — 4 плитки «50/50 · Теория · Устно · Отменить» (при собранной фразе «Отменить» → «Проверить» с зелёной галочкой); слова-плитки прижаты к низу над полосой прогресса. Прежняя панель из 6 инструментов — целевой вид, вынесен в концепт-кадр вне реестра (D-концепт).
+const toolsRow = (o = {}) => `<div class="tools lv">
+  <span class="tool t${o.fifty === 0 ? ' off' : ''}">${li('cut')}<span class="bd">${o.fifty ?? 3}</span>50/50</span>
+  <span class="tool t">${li('book')}Теория</span>
+  <span class="tool t">${icon('mic')}Устно</span>
+  ${o.check ? `<span class="tool t ck">${icon('check')}Проверить</span>` : `<span class="tool t${o.undoOff ? ' off' : ''}">${li('history')}Отменить</span>`}</div>`;
+const toolsRowConcept = (o = {}) => `<div class="tools">
   <span class="tool t${o.fifty === 0 ? ' off' : ''}">${li('cut')}<span class="bd">${o.fifty ?? 3}</span>50/50</span>
   <span class="tool t">${li('book')}Теория</span>
   <span class="tool t">${icon('mic')}Устно</span>
@@ -559,11 +573,12 @@ const lesson = (o = {}) => phone(`${lhead(o)}${taskTop(o)}
   ${o.result === 'no' ? `<div class="wrongbox"><span>She</span><span class="bad">work</span><span>every</span><span>day</span></div>
     <div class="aic"><div class="k">Разбор промаха</div><div class="p">Разбираю именно твой ответ: где сбилось и как сказать правильно.</div><div class="bt"><span class="cta sm t" style="background:#262628;color:#fff">Разобрать мой ответ</span><span class="cta sm t gh">Объяснить проще</span></div></div>` : ''}
   ${o.ghint ? `<div class="ghint">${li('bulb', 's18')}С he / she / it глагол получает окончание -s: she work<b>s</b>, he live<b>s</b>. Это правило одно на весь урок.</div>` : ''}
-  ${o.result || o.hard ? '' : tiles(o)}
-  ${o.result || o.hard ? '' : cellRow(o.cell ?? 11, o.okc ?? [0, 1, 2, 3, 5, 6, 7, 8, 9, 10], o.noc ?? [4])}`,
+  `,
   // зачем: панель инструментов урока прижата к низу экрана, как футер в lesson1.
-  { time: '9:45', fixed: !o.result && !o.hard ? `<div class="fx" style="padding-bottom:34px">${toolsRow(o)}</div>` : o.result ? `<div class="fx"><div class="cta t">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.hard ? `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div><div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k ret">Проверить</span></div></div>` : '', overlay: o.overlay || '' });
+  { time: '9:45', fixed: !o.result && !o.hard ? `<div class="fx lvfx">${tiles(o)}${cellRow(o.cell ?? 0, o.okc ?? [], o.noc ?? [])}${toolsRow(o)}</div>` : o.result ? `<div class="fx"><div class="cta t">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.hard ? `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div><div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k ret">Проверить</span></div></div>` : '', overlay: o.overlay || '' });
 const wave = (live) => `<div class="wave${live ? '' : ' still'}">${Array.from({ length: 21 }, (_, i) => `<i style="--h:${8 + Math.round(26 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>`;
+// концепт-кадр (вне реестра, координатор 13.10): прежний целевой вид урока — слова под ответом, панель из 6 инструментов; в приложении по п.81(12) «как есть» (4 плитки).
+const lessonConcept = () => phone(`${lhead({ en: 4 })}${taskTop()}<div class="ansl"><span>She works</span><span class="el">…</span></div>${tiles({ used: [1, 0] })}${cellRow(11, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10], [4])}`, { time: '9:45', fixed: `<div class="fx" style="padding-bottom:34px">${toolsRowConcept({})}</div>` });
 const lessonSpeak = (o = {}) => phone(`${lhead(o)}${taskTop()}
   ${o.said ? `<div class="ansl ok">She works every day</div><div class="said ok"><div class="k">Сказано</div><div class="v">She works every day</div><div class="flex" style="margin-top:10px;gap:10px">${stars(3)}<span style="font-size:14px;color:var(--good);font-weight:600">Отлично</span></div></div>`
     : `<div class="ansl"><span class="cur"></span></div>${wave(o.live)}`}
@@ -815,6 +830,7 @@ const SPEC = [
     ['K6', 'Итог — сдан', lxResult(true)], ['K7', 'Итог — не сдан', lxResult(false)], ['K8', 'Окно «Выйти?»', lxExit()]]],
   ['L', 'Финальный экзамен', [['L1', 'Недоступен', exLocked()], ['L2', 'Интро', exIntro()], ['L3', `Отсчёт «Приготовься» ${rp('count')}`, exCount()], ['L4', 'Вопрос — «Какое предложение верное?»', exQ({ pick: 1 })], ['L5', 'Вопрос — «Исправь ошибку», таймер на исходе', exQ({ n: 47, tm: '01:12', low: true, err: true, flag: true, lesson: 12 })],
     ['L6', 'Проверка ответов', exReview()], ['L7', 'Итог', exResult()], ['L8', 'Награда B2', exCert()], ['L9', 'Окно имени на награде', exName()], ['L10', 'Окно «Выйти из экзамена?»', exExit()]]],
+  ['Z', 'Концепт (вне реестра)', [['Z1', 'Урок: панель из 6 инструментов — целевой вид, не в приложении', lessonConcept()]]],
 ];
 const REMOVED = ['XP («+N XP», «+25 XP» за теорию, «+N опыта»)', 'руны и жемчуг (пилюля рун, «Разблокировать · 100», «Восстановить за жемчуг», «Урок открыт — твой навсегда»)', 'спасение сердец подарком', 'медали и «★ 4.5» → звёзды 1–3', 'пороги «2.5+» и «4.5+» → «2★»', 'вкладки «Маршрут», «Диалоги», «V2» и чип «Новые уроки» в шапке', 'dev-кнопки', '«Куплено» на карточке урока'];
 

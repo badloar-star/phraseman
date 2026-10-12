@@ -160,13 +160,13 @@ function gateLog(step: string, data: Record<string, unknown>): void {
  * в сборке — без сети и без чтений на старте. Тексты те же, что прошли редакторскую приёмку; поля ru и uk в пакете одинаковы
  * для обоих языков источника. Отметка «активна» в принятом пакете стояла false (пакет ждал выпуска) — выпуск решён D163.
  */
-function bundledTargetDailyPhrases(
+async function bundledTargetDailyPhrases(
   studyTarget: DailyPhraseDevTarget,
   sourceLocale: DailyPhraseDevSourceLocale,
   today: string,
-): readonly DailyPhrase[] | null {
+): Promise<readonly DailyPhrase[] | null> {
   if (!hasBundledDailyPhrasePack(studyTarget)) return null;
-  const pack = loadBundledDailyPhrasePack(studyTarget);
+  const pack = await loadBundledDailyPhrasePack(studyTarget);
   if (!pack) {
     gateLog('bundled: no pack', { studyTarget, sourceLocale });
     return null;
@@ -191,7 +191,7 @@ async function loadTargetDailyPhrasePayload(
   sourceLocale: DailyPhraseDevSourceLocale,
 ): Promise<readonly DailyPhrase[]> {
   const today = new Date().toISOString().split('T')[0]!;
-  const bundled = bundledTargetDailyPhrases(studyTarget, sourceLocale, today);
+  const bundled = await bundledTargetDailyPhrases(studyTarget, sourceLocale, today);
   if (bundled) return bundled;
 
   // Запасной путь — только dev-сервер (dev-сборка): облачные пакеты не выложены (uploadPerformed: false).

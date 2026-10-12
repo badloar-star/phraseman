@@ -2,11 +2,13 @@
  * Встроенные пакеты фразы дня для es/de/it (D163).
  *
  * зачем (владелец 12.10 через координатора: «Фразы дня должны быть подключены для ВСЕХ языков… ВКЛЮЧАЙ»): принятые пакеты
- * 2026.10.04.editorial-accepted-dev-v1 раньше качались из облака только в dev-сборке. Теперь они в сборке
- * (constants/daily_phrase_packs/<цель>.json, генератор scripts/build_daily_phrase_bundled_packs.mjs) — без сети и без чтений
- * Firestore. `require` внутри функции: Metro inlineRequires исполняет JSON только при первом обращении (как каталог идиом),
- * поэтому первый кадр Главной не платит за ~0,7 МБ данных другого языка.
+ * 2026.10.04.editorial-accepted-dev-v1 раньше качались из облака только в dev-сборке. Теперь они в сборке — без сети и без
+ * чтений Firestore (генератор scripts/build_daily_phrase_bundled_packs.mjs).
+ * зачем ресурс-файл (координатор 12.10): как JS-модули (constants/*.json) пакеты давали +2,27 МБ байт-кода в бандле. Теперь это
+ * assets/daily_phrase_packs/<цель>.dpk — читается с диска при первом открытии фразы дня (app/daily_phrase_pack_assets.ts),
+ * разбирается один раз и держится в памяти процесса.
  */
+
 export type BundledDailyPhraseTarget = 'es' | 'de' | 'it';
 
 export type BundledDailyPhraseEntry = Readonly<{
@@ -40,29 +42,47 @@ export function hasBundledDailyPhrasePack(target: unknown): target is BundledDai
   return target === 'es' || target === 'de' || target === 'it';
 }
 
-const loaded = new Map<BundledDailyPhraseTarget, BundledDailyPhrasePack | null>();
+// Удачная загрузка держится до конца процесса; отказ НЕ кэшируется — следующий заход попробует снова (сбой чтения бывает разовым).
+const loaded = new Map<BundledDailyPhraseTarget, BundledDailyPhrasePack>();
+const inFlight = new Map<BundledDailyPhraseTarget, Promise<BundledDailyPhrasePack | null>>();
 
-export function loadBundledDailyPhrasePack(target: BundledDailyPhraseTarget): BundledDailyPhrasePack | null {
-  if (loaded.has(target)) return loaded.get(target) ?? null;
+export function loadBundledDailyPhrasePack(target: BundledDailyPhraseTarget): Promise<BundledDailyPhrasePack | null> {
+  const cached = loaded.get(target);
+  if (cached) return Promise.resolve(cached);
+  const pending = inFlight.get(target);
+  if (pending) return pending;
+  const run = readAndParseBundledDailyPhrasePack(target).finally(() => { inFlight.delete(target); });
+  inFlight.set(target, run);
+  return run;
+}
+
+async function readAndParseBundledDailyPhrasePack(target: BundledDailyPhraseTarget): Promise<BundledDailyPhrasePack | null> {
   const startedAt = Date.now();
   let pack: BundledDailyPhrasePack | null = null;
+  // зачем динамический импорт: модуль ресурсов тянет expo-asset/expo-file-system и ссылку на .dpk. Отдельный кусок бандла
+  // грузится только при открытии фразы дня es/de/it; а в dev, пока сборщик не перезапущен с новым типом файла, отказ
+  // ограничится фразой дня, не уронив сборку всего приложения.
+  let text: string | null = null;
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    if (target === 'es') pack = require('../constants/daily_phrase_packs/es.json') as BundledDailyPhrasePack;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    else if (target === 'de') pack = require('../constants/daily_phrase_packs/de.json') as BundledDailyPhrasePack;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    else if (target === 'it') pack = require('../constants/daily_phrase_packs/it.json') as BundledDailyPhrasePack;
+    const assets = await import('./daily_phrase_pack_assets');
+    text = await assets.readDailyPhrasePackText(target);
   } catch (error) {
-    console.warn('[DAILY-PHRASE-GATE] bundled pack require failed', JSON.stringify({ target, message: error instanceof Error ? error.message : String(error) })); // guard-ok: catch называет причину
-    pack = null;
+    console.warn('[DAILY-PHRASE-GATE] bundled pack module import failed', JSON.stringify({ target, message: error instanceof Error ? error.message : String(error) })); // guard-ok: catch называет причину
+  }
+  if (text) {
+    try {
+      pack = JSON.parse(text) as BundledDailyPhrasePack;
+    } catch (error) {
+      console.warn('[DAILY-PHRASE-GATE] bundled pack parse failed', JSON.stringify({ target, message: error instanceof Error ? error.message : String(error) })); // guard-ok: catch называет причину
+      pack = null;
+    }
   }
   if (pack && (pack.studyTarget !== target || !Array.isArray(pack.entries))) {
     console.warn('[DAILY-PHRASE-GATE] bundled pack rejected — header mismatch', JSON.stringify({ target, packTarget: pack.studyTarget, hasEntries: Array.isArray(pack.entries) })); // guard-ok: ранний выход называет причину
     pack = null;
   }
   console.log('[DAILY-PHRASE-GATE] bundled pack loaded', JSON.stringify({ target, ok: pack !== null, rows: pack?.entries.length ?? 0, version: pack?.contentVersion ?? null, ms: Date.now() - startedAt }));
-  loaded.set(target, pack);
+  if (pack) loaded.set(target, pack);
   return pack;
 }
 

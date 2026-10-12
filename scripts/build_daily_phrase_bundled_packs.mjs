@@ -6,7 +6,9 @@
  * пакеты лежали только в .artifacts/ (в .gitignore) и качались из облака лишь в dev-сборке — в стор-сборку не попадали.
  * Скрипт берёт принятые пакеты как есть (тексты НЕ правит), проверяет sha256 полезной нагрузки против manifest, 176 записей и
  * совпадение ru- и uk-пакетов одного языка по всем полям, убирает служебные поля и пишет один минифицированный JSON на язык:
- * constants/daily_phrase_packs/<цель>.json.
+ * assets/daily_phrase_packs/<цель>.dpk.
+ * зачем .dpk в assets (координатор 12.10): как JS-модуль пакеты добавляли +2,27 МБ байт-кода в бандл (замер hermesc -O);
+ * ресурс-файл лежит рядом с бандлом и читается с диска только при открытии фразы дня (app/daily_phrase_pack_assets.ts).
  *
  * Запуск: node scripts/build_daily_phrase_bundled_packs.mjs
  */
@@ -18,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VERSION = '2026.10.04.editorial-accepted-dev-v1';
 const SOURCE = path.join(ROOT, '.artifacts', 'daily-phrase-dev-server-packs', 'course-packs');
-const OUT_DIR = path.join(ROOT, 'constants', 'daily_phrase_packs');
+const OUT_DIR = path.join(ROOT, 'assets', 'daily_phrase_packs');
 const TARGETS = ['es', 'de', 'it'];
 const LOCALES = ['ru', 'uk'];
 const EXPECTED_ROWS = 176;
@@ -65,7 +67,8 @@ for (const target of TARGETS) {
     sourcePayloadSha256: { ru: ru.sha, uk: uk.sha },
     entries,
   };
-  const file = path.join(OUT_DIR, `${target}.json`);
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  const file = path.join(OUT_DIR, `${target}.dpk`);
   fs.writeFileSync(file, `${JSON.stringify(out)}\n`);
   console.log(`[DAILY-PHRASE-PACKS] ${target}: ${entries.length} фраз → ${path.relative(ROOT, file)} (${fs.statSync(file).size} байт)`);
 }

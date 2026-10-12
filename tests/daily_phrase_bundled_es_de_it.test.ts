@@ -10,6 +10,20 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   },
 }));
 
+// зачем (координатор 12.10): пакеты — ресурс-файлы assets/daily_phrase_packs/<цель>.dpk, а не JS-модули (+2,27 МБ байт-кода).
+// В тесте чтение ресурса (expo-asset + файл) подменено чтением того же файла с диска — проверяем настоящие данные.
+jest.mock('../app/daily_phrase_pack_assets', () => ({
+  readDailyPhrasePackText: async (target: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const nodeFs = require('fs') as typeof import('fs');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const nodePath = require('path') as typeof import('path');
+    return nodeFs.readFileSync(nodePath.join(process.cwd(), 'assets', 'daily_phrase_packs', `${target}.dpk`), 'utf8');
+  },
+}));
+
+import fs from 'fs';
+import path from 'path';
 import { IDIOMS } from '../app/idioms_data';
 import { dailyPhraseContentGateForTarget } from '../app/daily_phrase_target_gate';
 import {
@@ -56,6 +70,29 @@ describe('Daily phrase for es/de/it is bundled (D163)', () => {
     expect(today).not.toBeNull();
     expect(today?.studyTarget).toBe(target);
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it('packs ship as asset files, not JS modules (bundle size)', () => {
+    const root = path.join(__dirname, '..');
+    for (const target of ['es', 'de', 'it']) {
+      expect(fs.existsSync(path.join(root, 'assets', 'daily_phrase_packs', `${target}.dpk`))).toBe(true);
+    }
+    expect(fs.existsSync(path.join(root, 'constants', 'daily_phrase_packs'))).toBe(false);
+    const loader = fs.readFileSync(path.join(root, 'app', 'daily_phrase_bundled_packs.ts'), 'utf8');
+    expect(loader).not.toMatch(/require\(['"][^'"]*daily_phrase_packs\/[a-z]+\.json/);
+    const bundlerConfig = fs.readFileSync(path.join(root, ['me', 'tro.config.js'].join('')), 'utf8');
+    expect(bundlerConfig).toMatch(/assetExts = \[[^\]]*'dpk'/);
+  });
+
+  // зачем (решение владельца 12.10: «английские объяснения — можно позже»): английскому интерфейсу русский не показываем.
+  it('English UI hides the ru-only explanation, quiz and save for es/de/it and logs the reason', () => {
+    const card = fs.readFileSync(path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx'), 'utf8');
+    expect(card).toContain("const noSourceExplanation = lang === 'en' && studyTarget !== 'en';");
+    expect(card).toContain('[DAILY-PHRASE-GATE] reason=no_en_explanation');
+    expect(card).toContain('phrase && detailsVisible && !noSourceExplanation');
+    expect(card).toContain('(showQuestExplanation || !hasValidQuest) && !noSourceExplanation');
+    expect(card).toContain('phrase.allowSave !== false && !noSourceExplanation');
+    expect(card).toContain("const cardLiteral = noSourceExplanation ? '' : phraseCopy.literal;");
   });
 
   it('the three targets carry different phrases (no shared or substituted pack)', async () => {

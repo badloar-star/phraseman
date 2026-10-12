@@ -138,14 +138,22 @@ function DailyPhraseCard({
   // зачем: у «фразы дня» нет английского контента (DailyPhraseInterfaceLang =
   // SourceLocale, en не входит) — сужаем на RU, как виджет в app/_layout.tsx.
   const phraseLang: DailyPhraseInterfaceLang = lang === 'en' ? 'ru' : lang;
+  // зачем (решение владельца 12.10 через координатора: «английские объяснения — можно позже»): у пакетов es/de/it объяснения
+  // только ru/uk. Английскому интерфейсу русский не показываем: фраза и озвучка остаются, а дословный перевод, значение,
+  // пример, вопрос дня и сохранение в карточки (там русский текст) скрыты до появления английского источника.
+  const noSourceExplanation = lang === 'en' && studyTarget !== 'en';
+  useEffect(() => {
+    if (!noSourceExplanation) return;
+    console.log('[DAILY-PHRASE-GATE] reason=no_en_explanation', JSON.stringify({ studyTarget, uiLang: lang, hidden: ['literal', 'meaning', 'example', 'quiz', 'save'] })); // guard-ok: видимое сокращение карточки называет причину
+  }, [noSourceExplanation, studyTarget, lang]);
   // зачем: варианты квеста нужны только в открытой шторке деталей — не считаем
   // их (и не грузим каталог идиом) на первом кадре Главной. useMemo заодно
   // держит варианты стабильными между рендерами открытой шторки.
   const questOptions = React.useMemo(
-    () => (phrase && detailsVisible
+    () => (phrase && detailsVisible && !noSourceExplanation
       ? buildDailyPhraseQuestOptions(phrase, getDailyPhraseQuestPoolForTarget(studyTarget, phraseLang), phraseLang, studyTarget)
       : []),
-    [phrase, detailsVisible, phraseLang, studyTarget],
+    [phrase, detailsVisible, noSourceExplanation, phraseLang, studyTarget],
   );
   const hasValidQuest = questOptions.length === 3;
   const selectedQuestOption = selectedQuestOptionId
@@ -472,6 +480,7 @@ function DailyPhraseCard({
     pl: 'Fraza dnia',
   });
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
+  const cardLiteral = noSourceExplanation ? '' : phraseCopy.literal;
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
     vi: phrase.sourceLocales?.vi?.meaning,
@@ -642,7 +651,7 @@ function DailyPhraseCard({
           testID="home-v2-phrase-of-day"
           onPress={openDetails}
           accessibilityRole="button"
-          accessibilityLabel={`${title}. ${phrase.english}. ${phraseCopy.literal}`}
+          accessibilityLabel={cardLiteral ? `${title}. ${phrase.english}. ${cardLiteral}` : `${title}. ${phrase.english}.`}
           style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
           {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
@@ -651,8 +660,8 @@ function DailyPhraseCard({
           <View style={styles.v2Copy}>
             <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title.toUpperCase()}</Text>
             <Text style={[styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
-            {phraseCopy.literal ? (
-              <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{phraseCopy.literal}</Text>
+            {cardLiteral ? (
+              <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
           </View>
           {/* зачем (владелец 04.10, по скриншоту: «в два раза ниже»): кнопки из отдельной
@@ -850,7 +859,7 @@ function DailyPhraseCard({
                   Кнопки собраны в свой ряд с шагом 6: общий gap шапки (12) на
                   трёх иконках отъедал ширину у фразы. */}
               <View style={styles.sheetActions}>
-                {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && (
+                {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && !noSourceExplanation && (
                   <AddToFlashcard
                     en={phrase.english}
                     ru={phrase.meaning}
@@ -960,7 +969,7 @@ function DailyPhraseCard({
                 </View>
               )}
 
-              {(showQuestExplanation || !hasValidQuest) && (
+              {(showQuestExplanation || !hasValidQuest) && !noSourceExplanation && (
                 <Animated.View
                   style={[
                     styles.explanationWrap,

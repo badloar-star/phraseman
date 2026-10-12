@@ -387,6 +387,8 @@ config.resolver.blockList = [
 // defaults instead of replacing them so images/audio and WASM all work.
 // зачем: 'glb' убран 2026-08-24 — 3D-путь аватара закрыт владельцем навсегда
 // (2.5D whole-renders), последний GLB и его конвейер удалены вместе с three.
-config.resolver.assetExts = [...config.resolver.assetExts, 'wasm'];
+// зачем 'dpk' (координатор 12.10): пакеты фразы дня es/de/it — ресурс-файлы (JSON-текст), а не JS-модули: как модули они
+// добавляли +2,27 МБ байт-кода в бандл. Читаются с диска при открытии фразы дня (app/daily_phrase_pack_assets.ts).
+config.resolver.assetExts = [...config.resolver.assetExts, 'wasm', 'dpk'];
 
 module.exports = config;

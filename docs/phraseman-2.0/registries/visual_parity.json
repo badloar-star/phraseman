@@ -3256,8 +3256,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)",
         "basis": "mockup_from_app"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (повторный кадр 4:54, привязка cards-v2 №44 «Каталог без сети»): без изменений относительно кадра 4:13 — панель «Сейчас недоступно · Проверь интернет · Попробовать снова» совпала по тексту, но кадр приложения — подготовка «Правда / ложь», а образец №44 — каталог «Сообщество». [Перепривязано Макетами 12.10 на cards-v2 №77 «Подготовка тренировки — сеть недоступна» (образец нарисован с приложения, ждёт подтверждения владельца): нужна пересъёмка роботом — склейка собрана со старым образцом.] Образец «Каталог без сети» заменён на кадр подготовки с облаком."
@@ -31521,8 +31521,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?speech=correct|wrong"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)"
       }
     },
     {
@@ -38615,8 +38615,8 @@
       "reviewed_at": "2026-10-12T03:17:28.897Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?train_gate=fail_blitz|fail_speaking|fail_swipe_prepare|fail_swipe_quota",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)",
         "bucket": "d_mockup_stale",
         "final_bucket": "d_mockup_stale",
         "final_who": "Макеты",
@@ -38792,8 +38792,8 @@
       "reviewed_at": "2026-10-12T03:17:28.897Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)",
         "bucket": "a2_layout_candidate",
         "final_bucket": "a2_layout_candidate",
         "final_who": "Дизайн",
@@ -39301,8 +39301,8 @@
       "reviewed_at": "2026-10-12T03:20:08.679Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?fail=card_write|pack_write",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)",
         "bucket": "c_owner_decides",
         "final_bucket": "c_owner_decides",
         "final_who": "владелец",
@@ -39376,8 +39376,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "в `cards=demo` добавить карточки `source=lesson` с `sourceId` 1–3."
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)"
       }
     },
     {
@@ -39788,8 +39788,8 @@
       "reviewed_at": "2026-10-12T03:20:14.756Z",
       "release": "r1",
       "triage": {
-        "coverage": "core_switch",
-        "coverage_note": "dev_state?fail=card_write|pack_write",
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)",
         "bucket": "a2_layout_candidate",
         "final_bucket": "a2_layout_candidate",
         "final_who": "Дизайн",

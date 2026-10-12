@@ -2,6 +2,7 @@
 // `en` is a pure UI language gated by ENGLISH_UI_LOCALE_ENABLED, same pattern
 // as SPANISH_UI_LOCALE_ENABLED below.
 import { ENGLISH_UI_LOCALE_ENABLED, SPANISH_UI_LOCALE_ENABLED } from '../app/config';
+import { isDevUiLangEnOn } from '../app/dev_ui_lang';
 import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
   PLANNED_INTERFACE_SOURCE_LOCALES,
@@ -57,7 +58,8 @@ export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
   if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
-  if (lang === 'en') return ENGLISH_UI_LOCALE_ENABLED;
+  // зачем (12.10, «английский входит в R1»): dev-подмена dev_state?uiLang=en (app/dev_ui_lang.ts, только память, в сторе всегда false) открывает ворота en для прохода разделов до включения флага
+  if (lang === 'en') return ENGLISH_UI_LOCALE_ENABLED || isDevUiLangEnOn();
   return INTERFACE_LANG_READY_FOR_PROD.includes(lang);
 }
 
@@ -896,7 +898,7 @@ export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown 
   // чтобы дыры в словарях были видны в журнале, а не в глазах англоязычного человека.
   // Только при включённом английском интерфейсе: пока ENGLISH_UI_LOCALE_ENABLED=false, любой путь, передавший 'en' (язык контента и т. п.),
   // получает прежнее поведение (ru), чтобы у текущих пользователей ничего не поменялось.
-  if (lang === 'en' && ENGLISH_UI_LOCALE_ENABLED) return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
+  if (lang === 'en' && (ENGLISH_UI_LOCALE_ENABLED || isDevUiLangEnOn())) return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
   return txt.ru as WidenTriLangValue<T[keyof T]>;
 }
 

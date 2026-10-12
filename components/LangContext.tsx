@@ -6,6 +6,7 @@ import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, 
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 import { publishResolvedUiLang } from '../app/ui_lang_resolved';
+import { isDevUiLangEnOn, subscribeDevUiLang, type DevUiLangRequest } from '../app/dev_ui_lang';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { actionToastTri, emitAppEvent } from '../app/events';
@@ -1342,6 +1343,38 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
       emitDevStudyTargetChanged();
       if (__DEV__) console.log(`[LANG-SWITCH] ui_lang_dev_study_target_reset lang=${l}`);
     }
+  }, []);
+
+  // зачем (координатор 12.10, решение владельца п.76 «английский входит в R1», dev_state?uiLang=en|off): проход разделов в английском до включения глобального флага. Язык применяется ТОЛЬКО в памяти —
+  // без записи app_lang на диск/в облако (после перезапуска вернётся прежний язык). Подписка есть только в dev; в сторе setDevUiLang отклоняется и сюда ничего не приходит.
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return undefined;
+    const apply = (request: DevUiLangRequest): void => {
+      void (async () => {
+        const previous = langRef.current;
+        let storedRaw: string | null = null;
+        if (request === 'off') {
+          try {
+            const stored = await readPortablePreference('app_lang');
+            storedRaw = typeof stored === 'string' ? stored : null;
+          } catch (error: unknown) {
+            console.warn(`[DEV-STATE] uiLang: чтение сохранённого языка не удалось reason=${error instanceof Error ? error.message : String(error)} → ru`);
+          }
+        }
+        const target: Lang = request === 'en' ? 'en' : coerceInterfaceLang(storedRaw) ?? 'ru';
+        console.log(`[DEV-STATE] uiLang: применяю request=${request} previous=${previous} target=${target} stored=${String(storedRaw)} (только память, app_lang не пишется)`);
+        if (target === previous) return;
+        userChangedLangRef.current = true;
+        writePeekAppLang(request === 'en' ? 'en' : storedRaw);
+        langRef.current = target;
+        setLangState(target);
+        emitAppLangChanged(target, previous);
+      })();
+    };
+    const unsubscribe = subscribeDevUiLang(apply);
+    // ссылка могла сработать раньше, чем смонтировался провайдер: флаг уже открыт — применяем сразу
+    if (isDevUiLangEnOn()) apply('en');
+    return unsubscribe;
   }, []);
 
   const s = useMemo(() => stringsForLang(lang), [lang]);

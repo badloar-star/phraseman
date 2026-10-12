@@ -18,6 +18,7 @@ import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevSaveOfferProgress } from './dev_save_offer_progress';
+import { setDevUiLang } from './dev_ui_lang';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
 import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
@@ -158,6 +159,8 @@ export type DevStateRequest = Readonly<{
   animations?: 'on' | 'off';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
+  /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
+  uiLang?: 'en' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
   studyTarget?: 'en' | 'es' | 'de' | 'fr';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
@@ -237,6 +240,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
+  request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   const coinRankRaw = one(params.coinRank);
@@ -511,6 +515,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.animations !== undefined) {
     await step('animations', request.animations, async () => setDevAnimationsOff(request.animations === 'off'));
+  }
+  if (request.uiLang !== undefined) {
+    // зачем (координатор 12.10, п.76): проход разделов в английском до включения флага; только память
+    await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!));
   }
   if (request.offerProgress !== undefined) {
     await step('offerProgress', request.offerProgress, async () => setDevSaveOfferProgress(request.offerProgress === 'on'));

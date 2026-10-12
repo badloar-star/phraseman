@@ -34906,22 +34906,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-019.png",
+      "evidence_at": "2026-10-12T18:00:59.550Z",
+      "evidence_sha256": "4158882557c733c616af9f10ac7caecfe66743909594501a0845c9fac2b59239",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] В образце у окна ролика внизу полоска прогресса просмотра (≈ треть), в приложении её нет.",
+        "[данные] Превью ролика пустое серое (в образце картинка), лайков 9 вместо 12, фразы Receipt/Refund/Booking и таймкоды 0:12/0:23/0:34 вместо «Can I get a flat white?» и 0:14/0:42/1:05 — данные демо-набора.",
+        "[вёрстка, мелко] Окно ролика в приложении на ≈ 8 px выше (275 против 280 px по высоте — сверить в увеличении после принятия данных)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:02:00.357Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:00, cards-v2 №19 «Набор из видео», ссылка packcards=on&…video_devDemoVid0): экран открыт верно, состав и раскладка совпали: «‹», «⋯», окно ролика с ▶ и длительностью 4:12, «Заказ в кафе», «A2 · 18 фраз · ♡», «Добавить себе +», «Фразы 18», строки с ▶ таймкодом, фразой, переводом и динамиком."
     },
     {
       "id": "cards-v2-020",
@@ -35493,22 +35498,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-032.png",
+      "evidence_at": "2026-10-12T18:01:22.022Z",
+      "evidence_sha256": "a3635a2b328fd998621282ed8693d6dac7cdbf8a756b1b8ac22a1bcc8156f334",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр в момент загрузки] На кадре серые заглушки вместо карточки, подсказки, пилюль и кнопок; в шаги ссылки добавлена пауза 3 с (cards-section-040/041, cards-v2-032, cards-079) — переснять."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:02:00.357Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:01, cards-v2 №32 «Устно»): сессия «Устно» открыта, но снята в состоянии загрузки (скелетон)."
     },
     {
       "id": "cards-v2-033",

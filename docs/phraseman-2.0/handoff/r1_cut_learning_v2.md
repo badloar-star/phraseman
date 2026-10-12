@@ -21,10 +21,18 @@ content/learning-v2-course/**, плеер V2) патч НЕ трогает.
 Сегодня `LEARNING_V2_HAS_RELEASED_SESSIONS_V1 = false` (потолок сессий 0) — вход в стор-сборке и так скрыт;
 патч делает это независимым от потолка и вырезает сами экраны.
 
-**Опция, в патч не входит:** фоновые задачи V2 в `app/_layout.tsx` — посев аудио-кэша
-(`seedLearningV2BootstrapAudioCacheV1`, ~2888) и планировщик завершений (`learning_v2_completion_background_scheduler`, ~1044).
-Без экранов вреда нет (модули не маршруты, в бандле остаются), но если нужен ноль работы V2 на старте — обернуть
-оба вызова в `if (!IS_STORE_RELEASE)`. Это код вне зоны Codex, но затрагивает старт — отдельным решением.
+**Фон V2 на старте — второй патч `r1_cut_learning_v2_background.patch`** (координатор 12.10, накладывается вместе с
+основным, в любом порядке): в стор-сборке не запускается посев аудио-кэша V2 (`seedLearningV2BootstrapAudioCacheV1`,
+`app/_layout.tsx` ~2888: 27 ассетов, по замеру 04.10 — секунды JS-потока сразу после первого кадра Главной). Лог
+`[V2-AUDIO-SEED] skip — стор-сборка без Learning V2`. Дев-сборки — как раньше.
+**Планировщик отправки завершений V2 (~1044) НЕ отключаем намеренно:** до 10.10 стор-сборки 1.6.x V2 не вырезали
+(вырез появился 10.10), у людей могли остаться неотправленные завершения занятий. Выключить его = навсегда застрявшая
+очередь и потерянный прогресс. Он и так ставится после кадра Главной с паузой — стоимость старта мала.
+Сторожа текста `_layout` (`onboarding_defer_gate`, `learning_v2_session_preparation_architecture_contract`) патч не
+задевает: вызов посева и `{ holdDuringOnboarding: true }` остаются в тексте.
+
+**Заменяет старую заготовку `r1_cut_v2.patch` (90a9307fc, 01:45):** та больше не накладывается на HEAD
+(`store_release_learning_v2_bundle_exclusion.test.ts` разошёлся). Накладывать эту.
 
 **Заглушку наград сессии из `caafa92ab^` не возвращаем:** у неё 4 экспорта, у живого модуля
 `modules/learning-v2/progress/learning_session_rune_reward_composite_v1.ts` ~20 — заглушка сломала бы импортёров.
@@ -52,7 +60,7 @@ content/learning-v2-course/**, плеер V2) патч НЕ трогает.
 3. стор-заглушки dev-модулей совпадают по экспортам (`store_release_stubs_gate.mjs`) — без изменений;
 4. тесты (см. ниже) фиксируют и вырез, и закрытый вход.
 
-## 3. Содержимое патча (10 файлов)
+## 3. Содержимое патча (11 файлов)
 
 - `router.ctx.js` — вырез V2 в стор-ветке (перед дев-клаузой; дев-ветка не тронута);
 - `app/(tabs)/lessons.tsx` — импорт `IS_STORE_RELEASE`, флаг `&& !IS_STORE_RELEASE`;
@@ -62,7 +70,8 @@ content/learning-v2-course/**, плеер V2) патч НЕ трогает.
   `lessons_entry_opens_legacy_guard` — новая формула флага; `store_release_learning_v2_bundle_exclusion` — стор-ветка
   режет V2, боевые маршруты V2 НЕ в стор-сборке; `store_route_reachability.test.mjs` — занятие V2 вырезано;
   `store_release_gate_levers.test.mjs` — «настоящий проект»: в стор-режиме пропуск `learning_v2_excluded_from_store`,
-  вне стор-режима — строго.
+  вне стор-режима — строго; `visual_parity_gate.test.mjs` — плеер V2 в стор-сборке вырезан (тест сам требует
+  поменять это утверждение «в ТОМ ЖЕ коммите», что и вырез).
 
 ## 4. Проверено (12.10, выгрузка HEAD во временной папке + патч)
 
@@ -71,6 +80,9 @@ content/learning-v2-course/**, плеер V2) патч НЕ трогает.
 - Вырезано 17 маршрутов, занятие V2 среди них; сторож переходов: **0 дыр**.
 - node-тесты (3 файла): 19 pass / 2 fail — **те же 2 падают и у выгрузки без патча** (неполная копия: нет курса и
   ассетов); в настоящем репозитории эти файлы 16/0.
+- Все три патча (вырез, фон, гейт «А+Б») накладываются вместе в обоих порядках. node-тесты на выгрузке с тремя
+  патчами и `docs/phraseman-2.0` (visual_parity_gate, gate_levers, route_reachability, show_only_released): 51/1, упал
+  только `parity_shot` — в выгрузке нет пакета playwright, с патчами не связано.
 - Регулярки jest-тестов сверены с пропатченными файлами скриптом: флаг, импорт, вырез в стор-ветке — совпадают.
   Сами jest-тесты не гонялись (выгрузка без node_modules) — прогнать при наложении.
 
@@ -78,14 +90,15 @@ content/learning-v2-course/**, плеер V2) патч НЕ трогает.
 
 ```bash
 git apply docs/phraseman-2.0/handoff/r1_cut_learning_v2.patch
+git apply docs/phraseman-2.0/handoff/r1_cut_learning_v2_background.patch
 ```
 
 Затем точечно (со слотом светофора): `npm run test:one -- tests/store_release_learning_v2_bundle_exclusion.test.ts`,
 `tests/learning_v2_release_access_contract.test.ts`, `tests/lessons_entry_opens_legacy_guard.test.ts`;
-`node --test tests/store_route_reachability.test.mjs tests/store_release_gate_levers.test.mjs tests/learning_v2_show_only_released_contract.test.mjs`;
+`tests/onboarding_defer_gate.test.ts`; `node --test tests/store_route_reachability.test.mjs tests/store_release_gate_levers.test.mjs tests/learning_v2_show_only_released_contract.test.mjs tests/visual_parity_gate.test.mjs`;
 `node scripts/release_precheck.mjs` — V2-гейты должны объявить пропуск, остальное без изменений.
 Если до наложения кто-то правил `lessons.tsx`/`router.ctx.js` — пересобрать патч, а не накладывать с `--3way` вслепую.
 
 ## 6. Откат
 
-`git apply -R docs/phraseman-2.0/handoff/r1_cut_learning_v2.patch` (или revert коммита наложения). Данных не трогает.
+`git apply -R` обоих патчей (или revert коммита наложения). Данных не трогает.

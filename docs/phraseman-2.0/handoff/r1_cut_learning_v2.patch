@@ -94,6 +94,27 @@ index 02ec577..40e0b95 100644
  });
  
  test('сервер EAS без исходников курса: сверка паритета только локально; во всех других случаях — строго', () => {
+diff --git a/tests/visual_parity_gate.test.mjs b/tests/visual_parity_gate.test.mjs
+index 717a389..2b274c1 100644
+--- a/tests/visual_parity_gate.test.mjs
++++ b/tests/visual_parity_gate.test.mjs
+@@ -343,13 +343,14 @@ test('no_release_surface за флагом: нужен флаг по умолч
+ // Сторожим то, что стор-сборка вырезает сейчас (превью Шпиля на моках и dev_state — 42bfeb63c, ba16e10c5), и что Главная и Learning V2 в ней остаются.
+ // ВАЖНО: вырез Learning V2 — решение владельца на утро (handoff/r1_cut_v2.patch). Если владелец скажет «вырезать» и патч применят,
+ // последнее утверждение (learning_v2_direct_session_player_v1.tsx → false) надо вернуть в `true` в ТОМ ЖЕ коммите, что и патч.
+-test('настоящий router.ctx.js: стор-сборка вырезает dev-превью и оставляет Главную и Learning V2', () => {
++// зачем (handoff/r1_cut_learning_v2.md): вырез применён — плеер Learning V2 в стор-сборке вырезан (в том же коммите, как требует ВАЖНО выше).
++test('настоящий router.ctx.js: стор-сборка вырезает dev-превью и Learning V2, оставляет Главную', () => {
+   const regex = storeRouteRegex(ROOT);
+   assert.ok(regex, 'регулярка стор-режима не найдена в router.ctx.js');
+   assert.equal(isRouteExcludedInStore(regex, 'app/dev_spire_preview.tsx'), true);
+   assert.equal(isRouteExcludedInStore(regex, 'app/dev_state.tsx'), true);
+   assert.equal(isRouteExcludedInStore(regex, 'app/(tabs)/home.tsx'), false);
+-  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), false);
++  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), true);
+ });
+ 
+ // зачем (координатор 12.10, решение владельца «гейт только по r1» — утром): `--release=r1` считает только строки выпуска R1;
 diff --git a/tests/learning_v2_release_access_contract.test.ts b/tests/learning_v2_release_access_contract.test.ts
 index fa756b7..f34028e 100644
 --- a/tests/learning_v2_release_access_contract.test.ts

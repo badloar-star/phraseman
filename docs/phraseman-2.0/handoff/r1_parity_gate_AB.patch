@@ -1,0 +1,167 @@
+diff --git a/scripts/visual_parity_gate.mjs b/scripts/visual_parity_gate.mjs
+index 2b7cc84..95d0fb2 100644
+--- a/scripts/visual_parity_gate.mjs
++++ b/scripts/visual_parity_gate.mjs
+@@ -12,7 +12,7 @@
+  *    стор-режима router.ctx.js ИЛИ флаг не выключен по умолчанию / нет теста-сторожа флага; без reviewed_by.
+  * Самопроверка исполнителя не считается: статус match и reviewed_by выставляет координатор, этот гейт лишь проверяет следы.
+  *
+- * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check] [--release=r1]
++ * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check] [--release=r1] [--defer-triage]
+  * Логи: [PARITY-GATE]. Подключён в release:precheck и eas-build-post-install.
+  */
+ import crypto from 'node:crypto';
+@@ -191,6 +191,22 @@ export function filterRowsByRelease(rows, release) {
+   return rows.filter((row) => row && row.release === release);
+ }
+ 
++/**
++ * Вариант «А+Б» для R1 (docs/phraseman-2.0/R1_PARITY_GATE_OPTIONS.md, handoff/r1_parity_gate_AB.md).
++ * зачем (координатор 12.10, только по решению владельца): строки, чьё отличие уже разобрано и ждёт пересъёмки, решения
++ * владельца, нового образца или тона темы, — не нарушение выпуска, а отдельный громкий счётчик. Строгость по умолчанию
++ * не меняется: отложить можно только явным флагом --defer-triage.
++ */
++export const DEFERRED_TRIAGE_BUCKETS = Object.freeze(['b_reshoot', 'c_owner_decides', 'd_mockup_stale']);
++
++export function deferredTriageReason(row) {
++  const triage = row?.triage ?? {};
++  const bucket = triage.final_bucket ?? triage.bucket ?? null;
++  if (DEFERRED_TRIAGE_BUCKETS.includes(bucket)) return bucket;
++  if (triage.theme_tone === true) return 'theme_tone';
++  return null;
++}
++
+ export function evaluateRegistry(root, registry, options = {}) {
+   const violations = [];
+   const runGit = options.runGit ?? defaultGit;
+@@ -244,7 +260,26 @@ export function evaluateRegistry(root, registry, options = {}) {
+       violations.push({ id: row.id, code: 'animation_unknown', detail: 'неизвестно, есть ли анимация в макете (has_animation должно быть true/false)' });
+     }
+   }
+-  return { ok: violations.length === 0, counts, violations };
++  // зачем (вариант «А+Б»): нарушения отложенных строк уходят в deferred — числом и списком, не молча.
++  const deferred = { rows: 0, by: {}, violations: [] };
++  if (!options.deferTriage) return { ok: violations.length === 0, counts, violations, deferred };
++  const reasonById = new Map();
++  for (const row of rows) {
++    if (row.status === 'removed_by_owner' || row.status === 'no_release_surface') continue;
++    const reason = deferredTriageReason(row);
++    if (reason) reasonById.set(row.id, reason);
++  }
++  const kept = [];
++  const deferredIds = new Set();
++  for (const violation of violations) {
++    if (reasonById.has(violation.id)) {
++      deferred.violations.push(violation);
++      deferredIds.add(violation.id);
++    } else kept.push(violation);
++  }
++  for (const id of deferredIds) deferred.by[reasonById.get(id)] = (deferred.by[reasonById.get(id)] ?? 0) + 1;
++  deferred.rows = deferredIds.size;
++  return { ok: kept.length === 0, counts, violations: kept, deferred };
+ }
+ 
+ /**
+@@ -284,6 +319,8 @@ async function main() {
+   const maxLines = Number(value('--max-lines', '40'));
+   // зачем (координатор 12.10): `--release=r1` — только строки выпуска R1; по умолчанию — весь реестр, как раньше.
+   const release = value('--release', '') || null;
++  // зачем (вариант «А+Б», handoff/r1_parity_gate_AB.md): отложенные корзины — только явным флагом, по умолчанию строго.
++  const deferTriage = flag('--defer-triage');
+ 
+   if (!fs.existsSync(registryPath)) {
+     // зачем (10.10): на сервере EAS каталога docs/ нет (.easignore) — реестра там не бывает. Без обхода владельца это
+@@ -310,7 +347,7 @@ async function main() {
+   const logPath = path.join(root, 'docs/phraseman-2.0/evidence/parity/SVERKA_LOG.md');
+   const sverkaLogText = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
+   const sverkaOpenDiffs = new Map([...parseSverkaHeadingDiffs(sverkaLogText), ...parseSverkaOpenDiffs(sverkaLogText)]);
+-  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs, release });
++  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs, release, deferTriage });
+   if (release) {
+     const all = Array.isArray(registry?.rows) ? registry.rows.length : 0;
+     const noRelease = Array.isArray(registry?.rows) ? registry.rows.filter((row) => !row?.release).length : 0;
+@@ -333,13 +370,20 @@ async function main() {
+   }
+   const { counts } = result;
+   console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} blocked=${counts.blocked} removed_by_owner=${counts.removed_by_owner} нарушений=${result.violations.length}`);
++  if (deferTriage) {
++    const by = Object.entries(result.deferred.by).map(([reason, n]) => `${reason}=${n}`).join(' ') || '—';
++    console.warn(`${LOG} ОТЛОЖЕНО по варианту «А+Б» (решение владельца): строк ${result.deferred.rows}, их нарушений ${result.deferred.violations.length} · ${by}`);
++    console.warn(`${LOG}   это НЕ сверено: пересъёмка / решение владельца / новый образец / тон темы — после выхода R1 вернуть строгий прогон`);
++  }
+   // зачем (координатор 11.10: «синхронизируй гейт с тем, что Сверка отмечает match»): раньше было видно только число match, а проходит ли каждая
+   // отмеченная строка сам гейт (привязка к коду, свежая склейка, анимация) — нет. Теперь явно: сколько отмечено и сколько из них проходит.
+   const matchIds = new Set(filterRowsByRelease(registry.rows, release).filter((row) => row.status === 'match').map((row) => row.id));
+   const badMatch = new Set(result.violations.filter((violation) => matchIds.has(violation.id)).map((violation) => violation.id));
+   console.log(`${LOG} match отмечено Сверкой/владельцем: ${matchIds.size}, проходят гейт: ${matchIds.size - badMatch.size}${badMatch.size ? ` · не проходят: ${[...badMatch].join(', ')} (причины — code_unmapped / evidence_stale / anim_evidence_missing, строки ниже)` : ''}`);
+   if (result.ok) {
+-    console.log(`${LOG} OK: приложение = макет по всем строкам реестра`);
++    console.log(deferTriage && result.deferred.rows > 0
++      ? `${LOG} OK: нарушений нет; отложено строк ${result.deferred.rows} (вариант «А+Б», см. выше)`
++      : `${LOG} OK: приложение = макет по всем строкам реестра`);
+     return 0;
+   }
+   const byCode = {};
+diff --git a/scripts/release_precheck.mjs b/scripts/release_precheck.mjs
+index 1c9b681..99eb326 100644
+--- a/scripts/release_precheck.mjs
++++ b/scripts/release_precheck.mjs
+@@ -128,7 +128,9 @@ const GATES = [
+   // каждый ход Диалога упал бы. Список заглушек — из metro.config.js; у каждой те же runtime-экспорты, что у настоящего модуля.
+   { name: 'стор-заглушки dev-модулей совпадают по экспортам', script: 'scripts/store_release_stubs_gate.mjs', env: {} },
+   // зачем (владелец 04.10, CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»): сборка в стор запрещена, пока КАЖДЫЙ экран не сверен с макетом (склейка + ревью координатора).
+-  { name: 'приложение = макет (визуальная сверка)', script: 'scripts/visual_parity_gate.mjs', env: {} },
++  // зачем (вариант «А+Б» владельца, handoff/r1_parity_gate_AB.md): выпуск R1 — только строки release=r1; разобранные
++  // корзины (пересъёмка, решение владельца, новый образец, тон темы) — отдельный громкий счётчик, а не нарушение.
++  { name: 'приложение = макет (визуальная сверка)', script: 'scripts/visual_parity_gate.mjs', env: {}, args: ['--release=r1', '--defer-triage'] },
+   // зачем (координатор 12.10): dev-модули в стор-режиме подменяются заглушками — проверяем готовый стор-бандл на dev-строки.
+   // Работает только при наличии стор-экспорта в dist-store/ (делается в день сборки), иначе громко пропускает.
+   { name: 'в стор-бандле нет dev-строк', script: 'scripts/store_bundle_dev_strings_gate.mjs', env: {} },
+@@ -143,7 +145,7 @@ for (const gate of GATES) {
+   console.log(`\n— ${gate.name} —`);
+   // зачем перехватывать, а не 'inherit': ниже нужно отличить отсутствующий
+   // секрет EAS от настоящего провала гейта — для этого требуется текст ошибки.
+-  const result = spawnSync(process.execPath, [gate.script], {
++  const result = spawnSync(process.execPath, [gate.script, ...(gate.args ?? [])], {
+     cwd: ROOT,
+     encoding: 'utf8',
+     env: { ...process.env, ...gate.env },
+diff --git a/tests/visual_parity_gate.test.mjs b/tests/visual_parity_gate.test.mjs
+index 717a389..53c7e71 100644
+--- a/tests/visual_parity_gate.test.mjs
++++ b/tests/visual_parity_gate.test.mjs
+@@ -380,3 +380,34 @@ test('release=r1 на реальном реестре: прогон по умо
+   assert.match(r1.stdout, /фильтр выпуска: release=r1/);
+   assert.ok(total(r1.stdout) > 0 && total(r1.stdout) < total(full.stdout), `${total(r1.stdout)} vs ${total(full.stdout)}`);
+ });
++
++// зачем (вариант «А+Б», handoff/r1_parity_gate_AB.md): отложенные корзины не нарушение, но и не молчат; без флага — строго.
++test('--defer-triage: b_reshoot/c_owner_decides/d_mockup_stale/theme_tone — отдельный счётчик; без флага — нарушения', () => {
++  const rows = [
++    matchRow({ id: 'ok', release: 'r1' }),
++    matchRow({ id: 'reshoot', release: 'r1', status: 'diff', triage: { bucket: 'b_reshoot' } }),
++    matchRow({ id: 'owner', release: 'r1', status: 'pending', triage: { bucket: 'a2_layout_candidate', final_bucket: 'c_owner_decides' } }),
++    matchRow({ id: 'stale', release: 'r1', status: 'diff', triage: { final_bucket: 'd_mockup_stale' } }),
++    matchRow({ id: 'tone', release: 'r1', status: 'diff', triage: { theme_tone: true } }),
++    matchRow({ id: 'defect', release: 'r1', status: 'diff', triage: { bucket: 'a_code_defect' } }),
++    matchRow({ id: 'later', status: 'pending', triage: { bucket: 'b_reshoot' } }),
++  ];
++  const strict = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), release: 'r1' });
++  assert.deepEqual(strict.violations.map((v) => v.id).sort(), ['defect', 'owner', 'reshoot', 'stale', 'tone']);
++  assert.equal(strict.deferred.rows, 0);
++  const ab = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), release: 'r1', deferTriage: true });
++  assert.deepEqual(ab.violations.map((v) => v.id), ['defect']);
++  assert.equal(ab.ok, false);
++  assert.equal(ab.deferred.rows, 4);
++  assert.deepEqual(ab.deferred.by, { b_reshoot: 1, c_owner_decides: 1, d_mockup_stale: 1, theme_tone: 1 });
++});
++
++test('--defer-triage: precheck считает r1 с отложенными корзинами, CLI печатает счётчик', () => {
++  const precheck = fs.readFileSync(path.join(ROOT, 'scripts/release_precheck.mjs'), 'utf8');
++  assert.match(precheck, /scripts\/visual_parity_gate\.mjs', env: \{\}, args: \['--release=r1', '--defer-triage'\]/);
++  assert.match(precheck, /\[gate\.script, \.\.\.\(gate\.args \?\? \[\]\)\]/);
++  if (!fs.existsSync(REAL_REGISTRY)) return;
++  const gate = path.join(ROOT, 'scripts', 'visual_parity_gate.mjs');
++  const out = spawnSync(process.execPath, [gate, '--max-lines=0', '--release=r1', '--defer-triage'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PARITY_GATE_WAIVER: '' } });
++  assert.match(out.stderr, /ОТЛОЖЕНО по варианту «А\+Б» \(решение владельца\): строк \d+/);
++});

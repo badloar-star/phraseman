@@ -1,0 +1,27 @@
+diff --git a/app/_layout.tsx b/app/_layout.tsx
+index 5c7fecc..66ae316 100644
+--- a/app/_layout.tsx
++++ b/app/_layout.tsx
+@@ -142,7 +142,7 @@ import { peekResolvedUiLang } from './ui_lang_resolved';
+ import { resolvePushUiLang } from './push_ui_lang';
+ import { installNotificationLangResync, noteNotificationsScheduledLang } from './notification_lang_resync';
+ import { getInstalledAppVersion } from './app_version';
+-import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
++import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS, IS_STORE_RELEASE } from './config';
+ import { PAYWALL_SHEET_STACK_OPTIONS, SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
+ import { subscribeNetStatus } from './net_status';
+ import { resumePendingOnboardingFunnel } from './onboarding_funnel';
+@@ -2880,7 +2880,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
+       // запросу, — поэтому посев идёт после первого кадра Главной.
+       // Замер «после» (04.10): событие оболочки вкладок отпускало посев на 1–5 с РАНЬШЕ настоящего кадра ленивой
+       // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
+-      runAfterHomeFirstFrame('v2_audio_seed', () => Promise.all([
++      // зачем (handoff/r1_cut_learning_v2.md, «Learning V2 вне R1»): в стор-сборке экранов V2 нет (вырезаны router.ctx.js) —
++      // посев их озвучки (27 ассетов, секунды JS-потока после первого кадра) только тратит старт и память. Дев-сборки — как раньше.
++      // Планировщик отправки завершений V2 НЕ отключаем: у людей со сборок 1.6.x, где V2 был, могли остаться неотправленные занятия.
++      if (IS_STORE_RELEASE) {
++        console.log('[V2-AUDIO-SEED] skip — стор-сборка без Learning V2');
++      } else runAfterHomeFirstFrame('v2_audio_seed', () => Promise.all([
+         whenHomePainted(15_000),
+         whenNativeSplashHidden(15_000),
+       ]).then(([paintWait, splashWait]) => {

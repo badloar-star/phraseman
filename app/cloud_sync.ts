@@ -6188,6 +6188,7 @@ export function startCloudDeletionDirect(
       async () => { throw new Error('account_delete_direct_unavailable'); },
       async () => { throw new Error('account_delete_direct_unavailable'); },
       ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
+      'direct',
     );
   }
   return startAccountDeleteEnqueueWithDeadline(
@@ -6202,6 +6203,7 @@ export function startCloudDeletionDirect(
       return { ok: true, authDeleted: res.data.authDeleted === true };
     },
     ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
+    'direct',
   );
 }
 
@@ -6231,6 +6233,7 @@ export function startCloudDeletionEnqueue(
       async () => { throw new Error('account_delete_enqueue_unavailable'); },
       async () => { throw new Error('account_delete_enqueue_unavailable'); },
       ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
+      'enqueue',
     );
   }
   return startAccountDeleteEnqueueWithDeadline(
@@ -6260,6 +6263,7 @@ export function startCloudDeletionEnqueue(
       return res.data;
     },
     ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
+    'enqueue',
   );
 }
 
@@ -6275,7 +6279,11 @@ export async function waitForAccountDeletionCredentialSafe(
   timeoutMs = ACCOUNT_DELETE_CREDENTIAL_SAFE_WAIT_MS,
 ): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !proof.operationId || !proof.capability) return false;
-  const deadline = Date.now() + Math.max(1, timeoutMs);
+  const startedAt = Date.now();
+  const deadline = startedAt + Math.max(1, timeoutMs);
+  // зачем (координатор 12.10, «сперва логи»): после таймаута постановки — сколько попыток квитанции, сколько ждали, последний код.
+  let attempts = 0;
+  let lastCode = 'none';
   const fn = callable<AccountDeleteCredentialProof, { status: 'credential_safe' }>(
     'accountDeleteCredentialStatus',
     { timeout: Math.min(timeoutMs, ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS) },
@@ -6283,20 +6291,28 @@ export async function waitForAccountDeletionCredentialSafe(
   while (Date.now() < deadline) {
     try {
       const remaining = Math.max(1, deadline - Date.now());
+      attempts += 1;
       const response = await withTimeout(
         fn(proof),
         remaining,
         'account_delete_credential_status',
       );
-      if (response.data?.status === 'credential_safe') return true;
+      if (response.data?.status === 'credential_safe') {
+        console.log(`[ACC-MUT] receipt credential_safe=1 attempts=${attempts} waitedMs=${Date.now() - startedAt}`); // guard-ok: итог ожидания
+        return true;
+      }
+      lastCode = `status_${String(response.data?.status ?? 'none').slice(0, 40)}`;
     } catch (e) {
       // A closure may be committed while its first response is lost. Retry the // capability receipt within the bounded foreground deadline.
       DebugLogger.error('cloud_sync:response', e instanceof Error ? e : new Error(String(e)), 'warning');
+      const code = (e as { code?: unknown } | null)?.code;
+      lastCode = typeof code === 'string' && code ? code.slice(0, 80) : (e instanceof Error ? e.name : typeof e);
     }
     const remaining = deadline - Date.now();
     if (remaining <= 0) break;
     await new Promise((resolve) => setTimeout(resolve, Math.min(400, remaining)));
   }
+  console.warn(`[ACC-MUT] receipt credential_safe=0 attempts=${attempts} waitedMs=${Date.now() - startedAt} lastCode=${lastCode}`); // guard-ok: итог ожидания без квитанции
   return false;
 }
 

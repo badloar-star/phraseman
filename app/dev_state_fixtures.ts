@@ -36,7 +36,7 @@ import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
 import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevPackDraft, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
-import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
+import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MEMORY, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMemory, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
 export type DevVipKind = 'promo' | 'promo_lifetime' | 'referral' | 'survey' | 'idea' | 'tester' | 'admin' | 'admin_lifetime' | 'off';
@@ -97,6 +97,8 @@ export type DevStateRequest = Readonly<{
   dialogEnd?: 'on' | 'off';
   dialogBetter?: 'on' | 'off';
   dialogCompletion?: DevDialogCompletion | 'off';
+  /** Память диалогов без сервера (dialogs-gap-001/004/005/006). */
+  dialogMemory?: DevDialogMemory | 'off';
   /** Подставной ход Диалога без ИИ и без Firestore (координатор 12.10, «N/30»): ok / отказы; off — снять. */
   dialogSend?: DevDialogSendMode | 'off';
   dialogsPaused?: 'on' | 'off';
@@ -272,6 +274,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogEnd = pick('dev_dialog_end', ['on', 'off'] as const);
   request.dialogBetter = pick('dev_dialog_better', ['on', 'off'] as const);
   request.dialogCompletion = pick('dev_dialog_completion', [...DEV_DIALOG_COMPLETIONS, 'off'] as const);
+  request.dialogMemory = pick('dev_dialog_memory', [...DEV_DIALOG_MEMORY, 'off'] as const);
   request.dialogSend = pick('dev_dialog_send', [...DEV_DIALOG_SENDS, 'off'] as const);
   const onOff = (key: string): 'on' | 'off' | undefined => {
     const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
@@ -595,6 +598,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.dialogCompletion !== undefined) {
     await step('dialogCompletion', request.dialogCompletion, async () => setDevDialogState({ completion: request.dialogCompletion === 'off' ? null : request.dialogCompletion! }));
+  }
+  if (request.dialogMemory !== undefined) {
+    await step('dialogMemory', request.dialogMemory, async () => setDevDialogState({ memory: request.dialogMemory === 'off' ? null : request.dialogMemory! }));
   }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));

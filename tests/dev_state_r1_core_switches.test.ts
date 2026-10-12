@@ -182,3 +182,29 @@ describe('dev_state R1 (Ядро): packcards=meta и packdraft', () => {
     expect(parseDevStateParams({ speech: 'preparing' }).request.speech).toBe('preparing');
   });
 });
+
+describe('dev_state R1 (Ядро): память диалогов и свободный разговор без сервера', () => {
+  test('dev_dialog_memory=demo — сводка и прогресс; clear «успешен» в памяти; clear_fail — отказ', async () => {
+    const dialog = require('../app/dev_dialog_state') as typeof import('../app/dev_dialog_state');
+    const client = require('../app/dialogue_v2_memory_client') as typeof import('../app/dialogue_v2_memory_client');
+    expect(parseDevStateParams({ dev_dialog_memory: 'clearing' }).rejected).toEqual({});
+    await applyDevState(parseDevStateParams({ dev_dialog_memory: 'clear_fail' }).request);
+    await expect(client.clearDialogueV2Memory({ studyTarget: 'en' })).rejects.toBeTruthy();
+    await applyDevState(parseDevStateParams({ dev_dialog_memory: 'demo' }).request);
+    expect(dialog.getDevDialogMemory()).toBe('demo');
+    const view = await client.viewDialogueV2Memory({ studyTarget: 'en' });
+    expect(view?.sharedSummary?.completedObjectives).toBe(7);
+    expect(view?.scenarioCheckpoints).toHaveLength(2);
+    await expect(client.clearDialogueV2Memory({ studyTarget: 'en' })).resolves.toMatchObject({ cleared: true });
+    expect((await client.viewDialogueV2Memory({ studyTarget: 'en' }))?.sharedSummary).toBeNull();
+  });
+
+  test('свободный разговор: dev_dialog_send — сессия и ответ без сервера; dev_dialog_fail — отказ', async () => {
+    const free = require('../app/dialogue_v2_freeform_client') as typeof import('../app/dialogue_v2_freeform_client');
+    await applyDevState(parseDevStateParams({ dev_dialog_send: 'ok' }).request);
+    const started = await free.startDialogueV2FreeformSession({ studyTarget: 'en' });
+    expect(started?.sessionId).toMatch(/^d2fs_dev/);
+    await applyDevState(parseDevStateParams({ dev_dialog_fail: 'service' }).request);
+    await expect(free.startDialogueV2FreeformSession({ studyTarget: 'en' })).rejects.toBeTruthy();
+  });
+});

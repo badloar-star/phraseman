@@ -1,7 +1,8 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
-import { getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_index';
+import { DIALOGUE_V2_CATALOGUE_INDEX, getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_index';
+import { getDevDialogMemory } from './dev_dialog_state';
 
 const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -297,12 +298,35 @@ export async function resumeDialogueV2Memory(
   }
 }
 
+/**
+ * зачем (Макеты 12.10, съёмка R1 dialogs-gap-001/004/005/006): dev `dev_dialog_memory=` — память из памяти процесса, без сервера;
+ * очистка не стирает настоящую память аккаунта. `cleared` — после «успешной» очистки в этом процессе.
+ */
+let devMemoryCleared = false;
+function devMemoryView(studyTarget: DialogueV2MemoryStudyTarget): DialogueV2MemoryView {
+  const [first, second] = DIALOGUE_V2_CATALOGUE_INDEX;
+  if (devMemoryCleared || !first || !second) return { ok: true, studyTarget, sharedSummary: null, scenarioCheckpoints: [] };
+  return {
+    ok: true,
+    studyTarget,
+    sharedSummary: { scenarioId: first.id, strengths: ['Вежливые просьбы', 'Заказ в кафе'], focusAreas: ['Прошедшее время'], completedObjectives: 7 },
+    scenarioCheckpoints: [
+      { scenarioId: first.id, nextObjectiveIndex: 2, completedObjectiveIds: ['greet', 'order'], personaState: {} },
+      { scenarioId: second.id, nextObjectiveIndex: 1, completedObjectiveIds: ['greet'], personaState: {} },
+    ],
+  };
+}
+
 /** Reads the bounded Plus memory projection for exactly one language contour. */
 export async function viewDialogueV2Memory(
   selection: DialogueV2MemoryManagementSelection,
 ): Promise<DialogueV2MemoryView | null> {
   const request = safeManagementSelection(selection);
   if (!request) return null;
+  if (getDevDialogMemory()) {
+    console.warn(`[DEV-STATE] dialogs: память из памяти процесса mode=${getDevDialogMemory()} cleared=${devMemoryCleared}`); // guard-ok: dev-ветка
+    return devMemoryView(request.studyTarget);
+  }
   try {
     const callable = httpsCallable<DialogueV2MemoryManagementSelection, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
@@ -321,6 +345,14 @@ export async function clearDialogueV2Memory(
 ): Promise<DialogueV2MemoryClearReceipt | null> {
   const request = safeManagementSelection(selection);
   if (!request) return null;
+  const devMemory = getDevDialogMemory();
+  if (devMemory) {
+    console.warn(`[DEV-STATE] dialogs: очистка памяти подменена mode=${devMemory}`); // guard-ok: dev-ветка
+    if (devMemory === 'clearing') return new Promise<DialogueV2MemoryClearReceipt | null>(() => undefined);
+    if (devMemory === 'clear_fail') throw new DialogueV2MemoryManagementError();
+    devMemoryCleared = true;
+    return { ok: true, studyTarget: request.studyTarget, cleared: true, deletedDocuments: 3 };
+  }
   try {
     const callable = httpsCallable<DialogueV2MemoryManagementSelection, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),

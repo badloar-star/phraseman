@@ -1,5 +1,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { getDevDialogFail, getDevDialogSend } from './dev_dialog_state';
 
 import {
   parseDialogueV2FreeformSessionStartShape,
@@ -142,6 +143,16 @@ export async function startDialogueV2FreeformSession(
 ): Promise<DialogueV2FreeformSessionStartResponse | null> {
   const request = parseDialogueV2FreeformSessionStartShape(selection);
   if (!request) return null;
+  // зачем (координатор 12.10, съёмка R1 dialogs-045/046, gap-011): с подставным ходом (dev_dialog_send) свободный разговор не
+  // создаёт сессию на проде; dev_dialog_fail — «не удалось продолжить». В стор-сборке геттеры null.
+  if (getDevDialogFail()) {
+    console.warn(`[DEV-STATE] freeform: старт подменён отказом reason=${getDevDialogFail()}`); // guard-ok: dev-ветка
+    throw new DialogueV2FreeformUnavailableError();
+  }
+  if (getDevDialogSend()) {
+    console.warn('[DEV-STATE] freeform: сессия без сервера (dev_dialog_send)'); // guard-ok: dev-ветка
+    return { ok: true, sessionId: `d2fs_dev${'0'.repeat(32)}`, expiresAtMs: Date.now() + 3_600_000 };
+  }
   try {
     const callable = httpsCallable<DialogueV2FreeformSessionStart, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
@@ -158,6 +169,15 @@ export async function sendDialogueV2FreeformTurn(
 ): Promise<DialogueV2FreeformTurnResponse | null> {
   const request = parseDialogueV2FreeformSessionTurnShape(selection);
   if (!request) return null;
+  if (getDevDialogFail()) {
+    console.warn(`[DEV-STATE] freeform: реплика подменена отказом reason=${getDevDialogFail()}`); // guard-ok: dev-ветка
+    throw new DialogueV2FreeformUnavailableError();
+  }
+  if (getDevDialogSend()) {
+    await new Promise<void>((resolve) => { setTimeout(resolve, 900); });
+    console.warn('[DEV-STATE] freeform: ответ без сервера (dev_dialog_send)'); // guard-ok: dev-ветка
+    return { ok: true, assistantMessage: 'Sure! Ask me anything about it. (dev)', sessionId: request.sessionId, expiresAtMs: Date.now() + 3_600_000 };
+  }
   try {
     const callable = httpsCallable<DialogueV2FreeformSessionTurn, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),

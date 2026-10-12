@@ -21,6 +21,12 @@ export const DEV_DIALOG_MOODS = ['happy', 'smile', 'neutral', 'sad', 'angry'] as
  */
 export const DEV_DIALOG_COMPLETIONS = ['clean', 'errors', 'loading', 'unavailable'] as const;
 export type DevDialogCompletion = (typeof DEV_DIALOG_COMPLETIONS)[number];
+/**
+ * Память диалогов без сервера (Макеты 12.10: dialogs-gap-001/004/005/006): demo — сводка и прогресс сценариев, очистка «успешна»
+ * в памяти; clearing — очистка висит («Очищаем…»); clear_fail — очистка не удалась. Настоящая память аккаунта не читается и не стирается.
+ */
+export const DEV_DIALOG_MEMORY = ['demo', 'clearing', 'clear_fail'] as const;
+export type DevDialogMemory = (typeof DEV_DIALOG_MEMORY)[number];
 
 const LOG = '[DEV-STATE]';
 
@@ -30,10 +36,10 @@ const LOG = '[DEV-STATE]';
 // completion — итог без сервера. Всё только в памяти, работает в паре с подставным ходом dev_dialog_send.
 type State = {
   fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean;
-  send: DevDialogSendMode | null; end: boolean; better: boolean; completion: DevDialogCompletion | null;
+  send: DevDialogSendMode | null; end: boolean; better: boolean; completion: DevDialogCompletion | null; memory: DevDialogMemory | null;
 };
 const EMPTY: State = {
-  fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null,
+  fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null, memory: null,
 };
 let state: State = EMPTY;
 
@@ -91,6 +97,11 @@ export function isDevDialogBetter(): boolean {
 /** Итог диалога без сервера (`dev_dialog_completion=…`). В стор-сборке — всегда null. */
 export function getDevDialogCompletion(): DevDialogCompletion | null {
   return devDialogAvailable() ? state.completion : null;
+}
+
+/** Память диалогов без сервера (`dev_dialog_memory=…`). В стор-сборке — всегда null. */
+export function getDevDialogMemory(): DevDialogMemory | null {
+  return devDialogAvailable() ? state.memory : null;
 }
 
 /** Только для тестов. */

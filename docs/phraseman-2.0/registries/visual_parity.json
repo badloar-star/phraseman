@@ -36870,21 +36870,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-011.png",
+      "evidence_at": "2026-10-12T03:16:34.263Z",
+      "evidence_sha256": "18fc9e2a9f696547bba7320412e59e351252a930e988423759c526be5326fdfd",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Хаб «Карточки» за шторкой: в приложении под заголовком «Слова и фразы», пилюля «30/30» и стопка карточек; в образце заголовок без подписи, «Продолжить» и плашка «Тренироваться · осталось 24 из 30» (то же, что cards-gap-012; образец хаба устарел).",
+        "[вёрстка, мелко] Шторка в приложении выше на ~15 px и светлее; плитки выше (≈175 против 168 px), значки крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:20:04.142Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&hold=quota_waiting&overlays=off&next=/flashcards"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:16, cards-gaps-states №11 «Шторка режима — «Готовим тренировку…»»; образец нарисован с приложения): шторка совпала — «Режим тренировки», подпись «Готовим тренировку…», четыре приглушённые плитки режимов (Блиц · 60 секунд, Устно · Вслух, Правда / ложь · Да или нет, Напиши · По памяти). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-012",

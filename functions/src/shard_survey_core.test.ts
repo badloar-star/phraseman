@@ -7,6 +7,8 @@ import {
   incrementStats,
   validateSurveyConfigForWrite,
   resolveLocalized,
+  missingSurveyLocaleKeys,
+  SUPPORTED_SURVEY_LANGS,
   evaluateSubmitRateLimit,
   SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY,
   SHARD_SURVEY_ROTATION_SURVEY_IDS,
@@ -403,5 +405,42 @@ describe('evaluateSubmitRateLimit', () => {
     const r = evaluateSubmitRateLimit({ windowStartMs: NaN, count: undefined }, 20, DAY, now);
     expect(r.limited).toBe(false);
     expect(r.nextCount).toBe(1);
+  });
+});
+
+// зачем (координатор 12.10): на украинском интерфейсе опрос шёл русским — без текста на языке пользователя не предлагаем.
+describe('missingSurveyLocaleKeys', () => {
+  it('en поддержан и сохраняется парсером', () => {
+    expect(SUPPORTED_SURVEY_LANGS as readonly string[]).toContain('en');
+    const c = parseSurveyConfig({ ...validConfigInput, title: { ru: 'Короткий опрос', en: 'Quick survey' } });
+    expect(c!.title).toEqual({ ru: 'Короткий опрос', en: 'Quick survey' });
+  });
+
+  it('ru проходит всегда, а язык без перевода называет все недостающие тексты', () => {
+    const c = parseSurveyConfig(validConfigInput)!;
+    expect(missingSurveyLocaleKeys(c, 'ru')).toEqual([]);
+    const missing = missingSurveyLocaleKeys(c, 'uk');
+    expect(missing).toEqual(expect.arrayContaining([
+      'title', 'subtitle', 'q.most_useful.text', 'q.most_useful.o.lessons.label', 'q.most_useful.o.lessons.cta', 'q.one_thing.text',
+    ]));
+  });
+
+  it('полный перевод — опрос показывается; пустая необязательная подпись перевода не требует', () => {
+    const uk = (ru: string, ukText: string) => ({ ru, uk: ukText });
+    const c = parseSurveyConfig({
+      ...validConfigInput,
+      title: uk('Опрос', 'Опитування'),
+      subtitle: { ru: '' },
+      finalScreen: { title: uk('Спасибо', 'Дякуємо'), subtitle: { ru: '' } },
+      questions: [{
+        id: 'q', type: 'single_choice', text: uk('Что дальше?', 'Що далі?'),
+        options: [
+          { id: 'a', label: uk('Уроки', 'Уроки'), action: { kind: 'store_review', cta: uk('Оценить', 'Оцінити') } },
+          { id: 'b', label: uk('Карточки', 'Картки') },
+        ],
+      }],
+    })!;
+    expect(missingSurveyLocaleKeys(c, 'uk')).toEqual([]);
+    expect(missingSurveyLocaleKeys(c, 'en').length).toBeGreaterThan(0);
   });
 });

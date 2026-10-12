@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import * as logger from 'firebase-functions/logger';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import {
@@ -18,6 +19,7 @@ import {
   incrementStats,
   validateSurveyConfigForWrite,
   resolveLocalized,
+  missingSurveyLocaleKeys,
   evaluateSubmitRateLimit,
   shardSurveyRotationOccurrenceAt,
   shardSurveyResponseDocId,
@@ -154,6 +156,12 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     : null;
   if (rotationConfig && isShardSurveyRotationConfigForOccurrence(rotationConfig, occurrence)) {
     if (!matchesAudience(rotationConfig.audience, ctx)) return { survey: null, completion };
+    // зачем (координатор 12.10): без текста на языке пользователя опрос не предлагаем — раньше шёл русским.
+    const rotationMissing = missingSurveyLocaleKeys(rotationConfig, lang);
+    if (rotationMissing.length > 0) {
+      logger.info('[SHARD-SURVEY] reason=no_locale', { surveyId: rotationConfig.surveyId, lang, missing: rotationMissing.slice(0, 5), missingCount: rotationMissing.length, mode: 'rotation' });
+      return { survey: null, completion };
+    }
     const responseSnap = await db.collection(RESPONSES)
       .doc(shardSurveyResponseDocId(occurrence.occurrenceId, stableUid))
       .get();
@@ -177,6 +185,13 @@ export const getActiveShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request)
     .filter((c): c is ShardSurveyConfig => c != null && c.enabled)
     .filter((c) => matchesAudience(c.audience, ctx))
     .filter((c) => passesCooldown(lastSurveyAtMs, c.minDaysBetweenSurveys, nowMs))
+    // зачем (координатор 12.10): опрос без текста на языке пользователя отсеиваем в памяти — без лишних чтений.
+    .filter((c) => {
+      const missing = missingSurveyLocaleKeys(c, lang);
+      if (missing.length === 0) return true;
+      logger.info('[SHARD-SURVEY] reason=no_locale', { surveyId: c.surveyId, lang, missing: missing.slice(0, 5), missingCount: missing.length, mode: 'legacy' });
+      return false;
+    })
     .sort((a, b) => b.updatedAtMs - a.updatedAtMs)
     .slice(0, MAX_CANDIDATES);
 

@@ -7,8 +7,9 @@
 // сезонных модулей).
 // ════════════════════════════════════════════════════════════════════════════
 
+// зачем 'en' (координатор 12.10): английский интерфейс получал опрос по-русски — en-ключа не было вовсе.
 export const SUPPORTED_SURVEY_LANGS = [
-  'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
+  'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en',
 ] as const;
 export type SurveyLang = (typeof SUPPORTED_SURVEY_LANGS)[number];
 
@@ -161,6 +162,36 @@ export function parseLocalizedString(value: unknown): LocalizedString | null {
 export function resolveLocalized(str: LocalizedString, lang: string): string {
   const key = lang as SurveyLang;
   return (str as Record<string, string>)[key] || str.ru;
+}
+
+/**
+ * Какие тексты опроса не переведены на язык пользователя (пусто — опрос можно показывать).
+ *
+ * зачем (координатор 12.10, Сверка: на украинском интерфейсе в «Сегодня» русская строка «Зовёшь друга заниматься…»):
+ * resolveLocalized молча подставлял ru — человек видел опрос на чужом языке. Теперь опрос без полного перевода на язык
+ * пользователя не предлагается вовсе. Проверяется всё, что увидит человек: заголовок, подпись, финальный экран, вопросы,
+ * варианты, кнопки действий. Пустой ru (необязательная подпись) перевода не требует. ru проходит всегда.
+ */
+export function missingSurveyLocaleKeys(config: ShardSurveyConfig, lang: string): string[] {
+  if (lang === 'ru') return [];
+  const missing: string[] = [];
+  const check = (key: string, str: LocalizedString | undefined) => {
+    if (!str || !str.ru) return;
+    const value = (str as Record<string, string | undefined>)[lang];
+    if (!value || !value.trim()) missing.push(key);
+  };
+  check('title', config.title);
+  check('subtitle', config.subtitle);
+  check('finalScreen.title', config.finalScreen.title);
+  check('finalScreen.subtitle', config.finalScreen.subtitle);
+  config.questions.forEach((question) => {
+    check(`q.${question.id}.text`, question.text);
+    question.options.forEach((option) => {
+      check(`q.${question.id}.o.${option.id}.label`, option.label);
+      if (option.action) check(`q.${question.id}.o.${option.id}.cta`, option.action.cta);
+    });
+  });
+  return missing;
 }
 
 function parseAudience(value: unknown): SurveyAudience {

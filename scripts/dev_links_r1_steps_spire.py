@@ -1,0 +1,70 @@
+# Ссылки и шаги для кадров Шпиля (R1) — запись в тот же реестр ENTRIES, что и dev_links_r1_steps.py (Темы, 15.10, по поручению координатора).
+#
+# зачем: робот scripts/parity_batch_shoot.mjs снимает Шпиль сам. Состояния Шпиля берутся из dev-превью `/dev_spire_preview?state=…`
+# (components/spire/spire_preview_fixtures.ts: моки, в сеть ничего не уходит); `spirePanel=off` убирает полосу переключения состояний, которая
+# перекрывала низ кадров (Сверка, spire-gap-008). Ссылка идёт через `dev_state`, чтобы пройти онбординг и вернуть маркер готовности робота.
+#
+# Правило честности: unique=True только там, где состояние превью однозначно соответствует ярлыку строки реестра; где в превью нет нужного
+# состояния (оффлайн «все участники», причины провала «время/прервана», прокрутка правил до конца, флажок жалобы, пилюля «бета») — unique=False,
+# Сверка снимает руками. Файл подключается из scripts/dev_links_r1_generate.py (import), отдельный от общего steps-файла, чтобы не пересекаться с его правками.
+from dev_links_r1_steps import add
+
+PANEL_OFF = 'spirePanel=off'
+
+
+def preview(state, extra=''):
+    """Маршрут dev-превью Шпиля без полосы состояний. `&` экранирует link() из общего модуля."""
+    tail = f'&{extra}' if extra else ''
+    return f'/dev_spire_preview?state={state}&{PANEL_OFF}{tail}'
+
+
+NEXT_TOUR = 'tap:#spire-tour-next'
+
+# ── Тур первого входа
+add('spire-001', [], '', preview('tour'), note='тур, страница 1')
+add('spire-002', [NEXT_TOUR], '', preview('tour'), note='тур, страница 2')
+add('spire-003', [NEXT_TOUR, NEXT_TOUR], '', preview('tour'), note='тур, страница 3')
+
+# ── Главный экран
+add(['spire-004'], [], '', preview('room'), note='башня, этаж 7 (превью)')
+add('spire-005', ['scroll:down'], '', preview('room'), note='ниже башни: друзья и пьедестал')
+add('spire-gap-009', [], '', preview('empty'), note='комнаты ещё нет, «Подняться» зависит от данных превью')
+add('spire-gap-010', ['scroll:down'], '', preview('empty'), note='пьедестал и «Все участники» без комнаты — по превью «empty»', unique=False)
+add('spire-gap-007', [], '', preview('block_offline'), note='нет сети — задания недели не скачались')
+add('spire-gap-008', [], '', preview('block_missing'), note='задания недели ещё готовятся')
+add('spire-gap-011', [], '', preview('locked'), note='«Шпиль откроется чуть позже»')
+
+# ── Все участники, правила
+add('spire-006', ['tap:#spire-open-all'], '', preview('room'), note='«Все участники»', unique=False)
+add('community-003', [], '', preview('all'), note='в превью нет состояния offline-safe: плашки «Последнее обновление…» нет', unique=False)
+add(['community-004', 'spire-gap-018'], [], '', preview('rules'), note='шторка правил, начало списка')
+add('spire-gap-019', ['scroll:down'], '', preview('rules'), note='прокрутка списка внутри шторки — шаг не отлажен', unique=False)
+
+# ── Ступень
+add('spire-007', [], '', preview('step_choice'), note='задание с выбором ответа')
+add('spire-008', [], '', preview('step_wrong'), note='ошибка — правильный ответ')
+add('spire-009', [], '', preview('step_choice', 'exit=1'), note='выход — шторка подтверждения')
+add('spire-gap-001', [], '', preview('step_gap'), note='вставь слово')
+add('spire-gap-002', [], '', preview('step_odd'), note='найди лишнее')
+add('spire-gap-003', [], '', preview('step_build'), note='собери перевод')
+add('spire-gap-004', [], '', preview('step_listen_choose'), note='послушай и выбери')
+add('spire-gap-005', [], '', preview('step_listen_build'), note='послушай и собери')
+add('spire-gap-006', [], '', preview('step_items'), note='найди пары')
+add('spire-gap-020', [], '', preview('step_prep'), note='готовим ступень…')
+
+# ── Итоги ступени
+add('spire-010', [], '', preview('passed'), note='ступень пройдена')
+add('spire-011', [], '', preview('lose'), note='ступень провалена')
+add('spire-012', [], '', preview('guard'), note='этаж 4 пройден — впереди Страж')
+add('spire-013', [], '', preview('summit'), note='вершина, 15 этаж')
+add(['spire-gap-012', 'spire-gap-013'], [], '', preview('lose'), note='в превью одна причина провала; «время вышло» и «прервана» не различаются', unique=False)
+add('spire-gap-014', [], '', preview('save_failed'), note='ступень не сохранилась')
+
+# ── Итог недели
+add(['spire-014', 'spire-gap-015', 'community-005'], [], '', preview('weekresult'), note='поднимаешься (Нефрит)')
+add(['spire-015', 'spire-gap-016'], [], '', preview('weekresult_stay'), note='остаёшься')
+add('spire-gap-017', [], '', preview('weekresult_down'), note='спускаешься')
+
+# ── Энергия и сеть
+add('spire-016', [], 'plus=off&energy=0', preview('room'), note='нет энергии: кнопка неактивна, «Энергия через …» (живая энергия приложения)')
+add('spire-017', [], '', preview('offline'), note='нет сети')

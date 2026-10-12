@@ -4,6 +4,7 @@ import json, re, glob, collections, sys
 # зачем (координатор 12.10): под-состояния и шаги тапов для строк с общей ссылкой — отдельный файл данных
 sys.path.insert(0, 'C:/appsprojects/phraseman/scripts')
 import dev_links_r1_steps as STEPS_DATA
+import dev_links_r1_steps_spire  # noqa: F401  зачем (15.10): ссылки и шаги Шпиля лежат в отдельном модуле и добавляются в тот же STEPS_DATA.ENTRIES
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))

@@ -26,21 +26,23 @@ LIKE = f'tap:#pack-like-{CID}'
 COMMENTS = f'tap:#pack-comments-{CID}'
 SEND = ['tap:#pack-comment-input', 'type:Thanks', 'tap:#pack-comment-send', 'wait:600']
 MORE_OTHER = 'tap:#pack-comment-more-dev_demo_cm_2'
+# зачем (кадр cards-v2-015 6:59: «Карточки · 0 карточек», набор ещё не подгрузился): экран чужого набора читает карточки из памяти не мгновенно — ждём 2 с до первого шага/кадра
+WAIT = 'wait:2000'
 
 # ── Чужой набор «B2 глаголы»: добавить, лайк, отклики
-put(['cards-018', 'cards-section-013', 'cards-v2-015'], [], P2, P2_ROUTE, note='чужой набор «B2 глаголы» до добавления (packcards=on, без сети)')
-put(['cards-019', 'cards-section-014', 'cards-v2-016'], [ADD], P2, P2_ROUTE, note='чужой набор: «Добавить себе» нажато (в память, без сети)')
-put('cards-gap-032', [LIKE], P2, P2_ROUTE, note='лайк до добавления: тост «сначала добавь»')
-put('cards-050', [ADD, LIKE], P2, P2_ROUTE, note='набор добавлен и лайкнут')
-put('cards-gap-033', [ADD, LIKE], P2 + '&fail=pack_like', P2_ROUTE, note='лайк не прошёл: откат сердца + тост (fail=pack_like)')
-put('cards-section-018', [ADD, f'tap:#fc-gallery-tile-{CID}_c1'], P2, P2_ROUTE, note='карточка чужого набора раскрыта (после добавления)')
-put('cards-051', [ADD, COMMENTS], P2 + '&comments=empty', P2_ROUTE, note='отклики: «Пока тихо» (comments=empty)')
-put('cards-052', [COMMENTS], P2 + '&comments=demo', P2_ROUTE, note='отклики до добавления: поле закрыто (pack-comments-write-locked), comments=demo')
-put('cards-054', [ADD, COMMENTS] + SEND, P2 + '&comments=demo', P2_ROUTE, unique=False, note='отклик отправлен (в память); меню своего отклика («Удалить») открывается тапом по ⋯ нового отклика — id заранее неизвестен, шаг не добавлен')
-put('cards-056', [ADD, COMMENTS] + SEND, P2 + '&comments=demo&hold=comment_send', P2_ROUTE, unique=False, note='«Отправляется» (hold=comment_send); «не отправлено» — вариант fail=comment_send (один кадр образца №50 показывает оба)')
-put('cards-055', [ADD, COMMENTS, MORE_OTHER], P2 + '&comments=demo', P2_ROUTE, note='меню чужого отклика («Пожаловаться»)')
-put('cards-057', [ADD, COMMENTS, MORE_OTHER, 'tap:Пожаловаться', 'wait:600'], P2 + '&comments=demo', P2_ROUTE, note='окно «Пожаловаться на комментарий» (report-comment-sheet)')
-put('cards-058', [ADD, COMMENTS, MORE_OTHER, 'tap:Пожаловаться', 'tap:Спам или реклама', 'tap:Отправить жалобу', 'wait:600'], P2 + '&comments=demo', P2_ROUTE, note='жалоба на отклик отправлена (без сети); «не отправилась» — fail=report_send')
+put(['cards-018', 'cards-section-013', 'cards-v2-015'], [WAIT], P2, P2_ROUTE, note='чужой набор «B2 глаголы» до добавления (packcards=on, без сети)')
+put(['cards-019', 'cards-section-014', 'cards-v2-016'], [WAIT, ADD], P2, P2_ROUTE, note='чужой набор: «Добавить себе» нажато (в память, без сети)')
+put('cards-gap-032', [WAIT, LIKE], P2, P2_ROUTE, note='лайк до добавления: тост «сначала добавь»')
+put('cards-050', [WAIT, ADD, LIKE], P2, P2_ROUTE, note='набор добавлен и лайкнут')
+put('cards-gap-033', [WAIT, ADD, LIKE], P2 + '&fail=pack_like', P2_ROUTE, note='лайк не прошёл: откат сердца + тост (fail=pack_like)')
+put('cards-section-018', [WAIT, ADD, f'tap:#fc-gallery-tile-{CID}_c1'], P2, P2_ROUTE, note='карточка чужого набора раскрыта (после добавления)')
+put('cards-051', [WAIT, ADD, COMMENTS], P2 + '&comments=empty', P2_ROUTE, note='отклики: «Пока тихо» (comments=empty)')
+put('cards-052', [WAIT, COMMENTS], P2 + '&comments=demo', P2_ROUTE, note='отклики до добавления: поле закрыто (pack-comments-write-locked), comments=demo')
+put('cards-054', [WAIT, ADD, COMMENTS] + SEND, P2 + '&comments=demo', P2_ROUTE, unique=False, note='отклик отправлен (в память); меню своего отклика («Удалить») открывается тапом по ⋯ нового отклика — id заранее неизвестен, шаг не добавлен')
+put('cards-056', [WAIT, ADD, COMMENTS] + SEND, P2 + '&comments=demo&hold=comment_send', P2_ROUTE, unique=False, note='«Отправляется» (hold=comment_send); «не отправлено» — вариант fail=comment_send (один кадр образца №50 показывает оба)')
+put('cards-055', [WAIT, ADD, COMMENTS, MORE_OTHER], P2 + '&comments=demo', P2_ROUTE, note='меню чужого отклика («Пожаловаться»)')
+put('cards-057', [WAIT, ADD, COMMENTS, MORE_OTHER, 'tap:Пожаловаться', 'wait:600'], P2 + '&comments=demo', P2_ROUTE, note='окно «Пожаловаться на комментарий» (report-comment-sheet)')
+put('cards-058', [WAIT, ADD, COMMENTS, MORE_OTHER, 'tap:Пожаловаться', 'tap:Спам или реклама', 'tap:Отправить жалобу', 'wait:600'], P2 + '&comments=demo', P2_ROUTE, note='жалоба на отклик отправлена (без сети); «не отправилась» — fail=report_send')
 put('cards-059', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report', 'tap:Спам или реклама', 'tap:Отправить жалобу', 'wait:600'], 'catalog=demo&packcards=on&community=reset', '/flashcards_packs', unique=False, note='жалоба на набор отправлена (ReportPackModal, без сети); шаги по аналогии с cards-020, тексты кнопок не проверены на кадре')
 
 # ── Свой опубликованный набор

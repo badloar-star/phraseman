@@ -62,6 +62,21 @@ export function isNonEmptyEnglishLiteral(arg) {
   return m[2].trim().length > 0 && !CYRILLIC.test(m[2]);
 }
 
+// Объявление `function имя(…) { DebugLogger.x(…); }` / `{ console.x(…); }` — тело ровно один вызов логгера (плюс хвостовой // комментарий).
+const LOCAL_LOG_HELPER = /\bfunction\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*(?::\s*void\s*)?\{\s*(?:DebugLogger|console)\s*\.\s*(?:log|info|warn|error|debug)\s*\([^;]*?\)\s*;?[ \t]*(?:\/\/[^\n]*)?\s*\}/g;
+
+/**
+ * Вызов локального помощника журнала этого файла (`trace(`, `logTide(`, `logCta(` …) или null, если таких помощников нет.
+ * зачем (координатор 12.10, английский в R1; Ядро: 14 ложных находок в LevelUpMintCeremony/SurveySheetModal): экраны заводят свои
+ * обёртки над логгером, и сторож считал их русские сообщения экранным текстом. Журналом признаётся ТОЛЬКО функция, объявленная в этом же
+ * файле, чьё тело — один вызов DebugLogger/console: проверка по телу, а не маска имени, поэтому экранная функция с похожим именем
+ * (или чужой `trace` из другого файла) находкой остаётся.
+ */
+export function localLogHelperCall(source) {
+  const names = [...new Set([...source.matchAll(LOCAL_LOG_HELPER)].map((m) => m[1]))];
+  return names.length ? new RegExp(String.raw`(?:^|[^A-Za-z0-9_$.])(?:${names.join('|')})\s*\(`) : null;
+}
+
 /** Пары скобок `{…}`, `(…)`, `[…]` кода: строки и комментарии пропускаются. [открывающая, закрывающая] по индексам. */
 export function bracketPairs(src) {
   const pairs = [];

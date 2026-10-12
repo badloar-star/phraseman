@@ -27,6 +27,7 @@ import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import { soundDirector } from '../modules/audio/sound_director';
 import { activityEnergyCost, ENERGY_SESSION_COST, type EnergyActivityKey } from '../app/energy_contract';
 import { energyGateMessage } from '../app/energy_activity_titles';
@@ -387,7 +388,7 @@ function NoEnergyModal({
         pl: 'Jedna jednostka wróci za',
       });
   const courseNote = triLang(lang, {
-    ru: `Запас ${capacity}, каждые ${recoveryMinutes} ${ruMinutes(recoveryMinutes)} +1. Plus занимается без ограничений.`,
+    ru: `Запас ${capacity}, каждые ${recoveryMinutes} ${pluralWord('ru', recoveryMinutes, { one: 'минуту', few: 'минуты', many: 'минут' })} +1. Plus занимается без ограничений.`,
     uk: `Запас ${capacity}, кожні ${recoveryMinutes} хв +1. З Plus можна займатися без обмежень.`,
     en: `Up to ${capacity}, +1 every ${recoveryMinutes} min. Plus has no limits.`,
     es: `Máximo ${capacity}, +1 cada ${recoveryMinutes} min. Con Plus no hay límites.`,
@@ -711,14 +712,6 @@ function NoEnergyModal({
 }
 
 export default memo(NoEnergyModal);
-
-function ruMinutes(n: number): string {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return 'минуту';
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'минуты';
-  return 'минут';
-}
 
 function formatCountdown(ms: number): string {
   const total = Math.max(0, Math.ceil(ms / 1000));

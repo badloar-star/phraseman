@@ -24,7 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
+import { localLogHelperCall, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(ROOT, 'config', 'untranslated-ui-baseline.json');
@@ -295,6 +295,8 @@ function scanFile(file) {
   const source = fs.readFileSync(file, 'utf8');
   if (isTranslationDictionary(source)) return null;
   const stripped = stripLegal(source);
+  // зачем: обёртки над логгером, объявленные в этом файле (trace/logTide/logCta…), — журнал, как DebugLogger. См. localLogHelperCall.
+  const logHelperCall = localLogHelperCall(source);
   // зачем построчно: только так видно, есть ли рядом парный перевод —
   // а он превращает находку в другую проблему, не в эту.
   const hits = [];
@@ -302,6 +304,7 @@ function scanFile(file) {
     if (PAIRED_TRANSLATION.test(line)) continue;
     if (INLINE_LOCALE_MAP.test(line)) continue;
     if (DIAGNOSTIC_LOG_CALL.test(line)) continue;
+    if (logHelperCall?.test(line)) continue;
     const found = line.match(CYRILLIC_LITERAL);
     if (found) hits.push(...found);
   }
@@ -361,6 +364,7 @@ function addedUntranslatedLines() {
     });
     const hits = [];
     let maskedLines = null;
+    let logHelperCall = null;
     let newLineNumber = 0;
     for (const line of out.split('\n')) {
       const fileHeader = line.match(/^\+\+\+ b\/(.+)$/);
@@ -377,6 +381,7 @@ function addedUntranslatedLines() {
         maskedLines = isTranslationDictionary(stagedSource)
           ? null
           : stripLegal(stagedSource).split('\n');
+        logHelperCall = localLogHelperCall(stagedSource);
         continue;
       }
 
@@ -395,7 +400,8 @@ function addedUntranslatedLines() {
         // молча отказывает на строке, которую сам же считает переведённой.
         if (!PAIRED_TRANSLATION.test(added)
           && !INLINE_LOCALE_MAP.test(added)
-          && !DIAGNOSTIC_LOG_CALL.test(added)) {
+          && !DIAGNOSTIC_LOG_CALL.test(added)
+          && !logHelperCall?.test(added)) {
           const found = added.match(CYRILLIC_LITERAL);
           if (found) hits.push(...found);
         }

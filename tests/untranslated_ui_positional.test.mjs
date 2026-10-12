@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   isNonEmptyEnglishLiteral,
+  localLogHelperCall,
   maskToastEntriesWithEnglishInSameObject,
   maskPositionalTranslatorCalls,
   splitCallArgs,
@@ -56,7 +57,11 @@ test('разбор аргументов учитывает вложенные с
 test('сторож: переводчик по целому имени, помощники подключены', () => {
   const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
   const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
-  assert.match(scanner, /import \{ maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
+  assert.match(scanner, /import \{ localLogHelperCall, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject \} from '\.\/untranslated_ui_positional\.mjs';/);
+  // полный проход и проверка добавленных строк трактуют помощники журнала одинаково
+  assert.match(scanner, /if \(logHelperCall\?\.test\(line\)\) continue;/);
+  assert.match(scanner, /logHelperCall = localLogHelperCall\(stagedSource\);/);
+  assert.match(scanner, /&& !logHelperCall\?\.test\(added\)\) \{/);
   assert.match(scanner, /const lines = maskToastEntriesWithEnglishInSameObject\(source, original\)\.split\('\\n'\);/);
   assert.match(scanner, /src = maskPositionalTranslatorCalls\(src\);/);
   assert.match(scanner, /\/\[A-Za-z0-9_\$\]\/\.test\(src\[found - 1\]\)/);
@@ -127,4 +132,27 @@ test('тост: объект определяется по исходнику, �
   const cut = original.replace("L('a)", '     ');
   assert.equal(cut.length, original.length);
   assert.equal(maskToastEntriesWithEnglishInSameObject(cut, original).includes('Ошибка'), false);
+});
+
+// зачем (координатор 12.10, английский в R1): обёртка над логгером в этом же файле — журнал; признаётся по телу, а не по имени.
+test('помощник журнала: тело — один вызов логгера → журнал; иначе (или чужое имя) — находка остаётся', () => {
+  const src = [
+    'function trace(message: string, data?: Record<string, unknown>): void {',
+    '  DebugLogger.info(LOG, data ? `${message} ${JSON.stringify(data)}` : message);',
+    '}',
+    'function logTide(message: string): void {',
+    '  console.log(`[SURVEY-TIDE] ${message}`); // guard-ok: журнал',
+    '}',
+    'function title(text: string): string {',
+    '  console.log(text);',
+    '  return text;',
+    '}',
+  ].join('\n');
+  const call = localLogHelperCall(src);
+  assert.equal(call.test("trace('старт');"), true);
+  assert.equal(call.test('  logTide(`выбран вариант`);'), true);
+  assert.equal(call.test("title('Заголовок');"), false);
+  assert.equal(call.test("subtrace('x');"), false);
+  assert.equal(call.test("obj.trace('x');"), false);
+  assert.equal(localLogHelperCall("const a = trace('x');"), null);
 });

@@ -2,6 +2,14 @@
 
 Выкладывает ВЛАДЕЛЕЦ (или координатор по его «да»). Ночью ничего не выкладывалось. Ключи и секреты сессия не читала.
 
+> **Сверка 12.10 22:4x (Ядро):** `git status --short functions/` — пусто (незакоммиченного серверного кода нет). После написания
+> документа появилось: **TTL обращений в поддержку** (Авторизация 98ff91799 — раздел «Д» ниже), починка типов итога диалога
+> 351536a25 (без неё predeploy-сборка падала на 468ceebc0 — едет вместе с `dialogueV2SessionComplete`), строка журнала удаления
+> 31d16c4ac (раздел «Е»). Тесты затронутых серверных файлов (client_reports, log_ttl, dialogue_v2_session_complete) — 38/38.
+> Уже выложено координатором 12.10 вечером (повторять НЕ нужно): `firestore:indexes` (5 индексов удаления, 37e53b290) и
+> `accountDeleteMine` + `accountDeleteWorker` (с 2027e3b2b, 87efe7d3b, 351536a25). **Не выкладывать утром:** опрос осколков
+> (e4f45f8e3 и весь `shard_survey.ts`) — только в день релиза.
+
 ## Что едет
 
 | Функция | Что даёт | Коммиты (с прошлой выкладки) | Нужно «да» |
@@ -37,6 +45,7 @@ gcloud functions describe premiumExpiryReminderCron --gen2 --region us-central1 
 | Коммит | Дата | Что меняется для человека | Риск |
 |---|---|---|---|
 | 468ceebc0 | 12.10 17:10 | ничего: при отказе модели в итоге диалога в журнал пишется причина `[DIALOGUE-V2-COMPLETE] provider_failed {reason, elapsedMs, model, httpStatus, turns}` — без текста реплик и ключа | нулевой: тот же отказ, только с причиной |
+| 351536a25 | 12.10 21:28 | ничего: статус ответа модели читается без расширения типа (468ceebc0 ломал tsc в predeploy) | нулевой; без него сборка функций не проходит |
 
 Проверка после: `firebase functions:log --only dialogueV2SessionComplete -n 50 --project phraseman-ea0b3` — при «Итог пока недоступен»
 должна появиться строка `provider_failed` с `reason`.
@@ -138,7 +147,7 @@ D=/c/Temp/phraseman_deploy/<коммит>; cmd //c rmdir "$(cygpath -w $D)\funct
 FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && firebase deploy --only functions:adminTranslateMessage,functions:adminCreateAppMessage,functions:adminUpdateAppMessage,functions:adminLaunchVipSurveyCampaign --project phraseman-ea0b3
 ```
 
-Затем админка (hosting цель `admin` = папка `admin/v2`, только она):
+Затем админка (hosting цель `admin` = папка `admin/v2`, только она; вместе уедет `oauth-privacy.html` с абзацем о 30 днях — 98ff91799):
 
 ```bash
 FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && firebase deploy --only hosting:admin --project phraseman-ea0b3
@@ -194,6 +203,29 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 - главная https://knowlyapps.com/ и /start/ открываются как раньше (весь сайт выложен из коммита).
 
 **Откат:** консоль Firebase → Hosting → сайт `knowlyapps` → «Release history» → предыдущий релиз → Rollback. Данных не касается.
+
+## Д: обращения в поддержку удаляются через 30 дней (TTL) — Авторизация 98ff91799, решение владельца (а)
+
+Что едет: `submitClientReport` пишет `expireAt = создание + 30 дней` у обращений и сообщений об ошибках (`error_reports`, kind
+`error_report`); `firestore.indexes.json` — правило TTL `error_reports.expireAt`. Политика (30 дней) уже в коммите — уезжает с сайтом
+(раздел «Г»: в `legal/privacy*` абзац про 30 дней; список файлов сайта прежний — 4) и с админкой (`admin/v2/oauth-privacy.html`, раздел «В»).
+
+```bash
+FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && firebase deploy --only functions:submitClientReport,firestore:indexes --project phraseman-ea0b3
+```
+
+- На вопрос CLI об удалении индексов/правил, которых нет в файле (в проде есть чужие overrides) — **No** (как вечером 12.10).
+- TTL включается до 24 ч. Старые обращения без `expireAt` TTL не тронет — они живут до удаления аккаунта (backfill — отдельное решение).
+- Джарвис: «открытые сообщения об ошибках» после включения считаются только за последние 30 дней.
+- Проверка: новое обращение из приложения → в Firestore у `error_reports/<id>` есть `expireAt` ≈ +30 дней; консоль Firestore → TTL —
+  правило `error_reports.expireAt` «Serving».
+- Откат: выкладка `submitClientReport` из среза до 98ff91799; TTL-правило выключить в консоли (Firestore → TTL).
+
+## Е: удаление аккаунта — строка журнала (необязательно, вместе с любой выкладкой)
+
+`accountDeleteMine` + `accountDeleteWorker` — 31d16c4ac: если учётной записи входа уже нет, пишется `stage=auth_already_deleted`
+(раньше — тишина). Поведение не меняется. Выложить можно тем же срезом:
+`firebase deploy --only functions:accountDeleteMine,functions:accountDeleteWorker --project phraseman-ea0b3`.
 
 ## Откат
 

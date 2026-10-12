@@ -100,17 +100,29 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
 
   useEffect(() => {
     if (!freeTier || !studyTarget) {
+      // зачем (координатор 12.10, «сперва логи»): пилюли нет — назвать, почему (Plus или нет языка), а не молчать.
+      console.log(`[DIALOG-QUOTA-OPT] initial: skip freeTier=${String(freeTier)} studyTarget=${studyTarget ? 'yes' : 'no'}`);
       setQuotaRemaining(null);
       setQuotaExhausted(false);
       return undefined;
     }
     let alive = true;
     const stableId = captureAccountGeneration().stableId;
+    const readStartedAt = Date.now();
     void readAiDialogMonthlyQuota(studyTarget, stableId).then((state) => {
+      // зачем (координатор 12.10, Сверка: remaining=null на первой реплике): откуда взялось начальное значение пилюли —
+      // кэш (зеркало остатка) или null, сколько шло чтение и не опоздало ли оно за ответом сервера.
+      const remainingFromMirror = state.status === 'allowed' ? state.remaining : state.status === 'exhausted' ? 0 : null;
+      console.log('[DIALOG-QUOTA-OPT] initial', JSON.stringify({
+        source: remainingFromMirror === null ? 'null' : 'cache',
+        status: state.status,
+        remaining: remainingFromMirror,
+        readMs: Date.now() - readStartedAt,
+        stableId: stableId ? 'yes' : 'no',
+        applied: alive && !quotaFromServerRef.current,
+        skippedBecause: !alive ? 'unmounted' : quotaFromServerRef.current ? 'server_answered_first' : null,
+      }));
       if (!alive || quotaFromServerRef.current) return;
-      if (typeof __DEV__ !== 'undefined' && __DEV__) {
-        console.log('[DIALOGUE-V2] quota:mirror', { status: state.status });
-      }
       if (state.status === 'allowed') setQuotaRemaining(state.remaining);
       if (state.status === 'exhausted') {
         setQuotaRemaining(0);

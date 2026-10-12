@@ -150,21 +150,34 @@ export async function readAiDialogMonthlyQuota(
   nowMs: number = Date.now(),
 ): Promise<AiDialogMonthlyQuotaState> {
   const limit = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
-  if (!resolveDialogueStudyTarget(studyTarget)) return { status: 'unavailable', limit };
-  if (!stableUid) return { status: 'unknown', limit };
+  // зачем (координатор 12.10, «сперва логи»): пилюля «N/30» на первой реплике была пустой — каждый выход «unknown»
+  // называет причину, чтобы видеть, почему зеркало не дало остаток. Форма ответа прежняя.
+  const unknownBecause = (reason: string) => {
+    console.log(`[DIALOG-QUOTA-OPT] mirror:read → unknown reason=${reason}`);
+    return { status: 'unknown', limit } as const;
+  };
+  if (!resolveDialogueStudyTarget(studyTarget)) {
+    console.log('[DIALOG-QUOTA-OPT] mirror:read → unavailable reason=no_study_target');
+    return { status: 'unavailable', limit };
+  }
+  if (!stableUid) return unknownBecause('no_stable_uid');
   const storageKey = aiDialogMonthlyQuotaStorageKey(studyTarget, stableUid);
-  if (!storageKey) return { status: 'unknown', limit };
+  if (!storageKey) return unknownBecause('no_storage_key');
   try {
     return await withStorageLock(async () => {
       let mirror = parseMonthlyMirror(await AsyncStorage.getItem(storageKey));
+      let source = 'monthly';
       if (!mirror) {
         const legacyKey = legacyDailyQuotaStorageKey(studyTarget, stableUid);
         mirror = parseLegacyMonthlyCompatibleMirror(
           legacyKey ? await AsyncStorage.getItem(legacyKey) : null,
         );
+        source = 'legacy';
         if (mirror) await AsyncStorage.setItem(storageKey, JSON.stringify(mirror));
       }
-      if (!mirror || nowMs >= mirror.resetAtMs) return { status: 'unknown', limit } as const;
+      if (!mirror) return unknownBecause('no_mirror');
+      if (nowMs >= mirror.resetAtMs) return unknownBecause(`mirror_expired resetAgoMs=${nowMs - mirror.resetAtMs}`);
+      console.log(`[DIALOG-QUOTA-OPT] mirror:read → remaining=${mirror.remaining} source=${source} quotaVersion=${mirror.quotaVersion}`);
       if (mirror.remaining <= 0) {
         return {
           status: 'exhausted', remaining: 0, limit: mirror.limit,

@@ -80,3 +80,6 @@
 
 ## Сбой склейки починен (Макеты 12.10): переснять
 **profile-030, cards-043, cards-081, profile-025.** Склейка теперь раскрывает закрытые `<details>` (телефоны profile.html №16–24) и сразу пишет `phone_hidden`, если телефон скрыт. cards-043 → cards-v2 №19, cards-081 → cards-v2 №81 (новая привязка). **profile-025** привязан к profile.html №15 «опрос · пустое состояние» (образец уже был, строка числилась без телефона); ссылка `next=/survey_screen`, тексты «Сейчас опрос недоступен» / «Вернуться».
+
+## Новые ready-строки без проверки на кадре (Макеты 12.10, круг «по кадру»)
+Снять впервые (шаги вписаны, на кадре не проверены — сверять глазами): cards-022, cards-066, cards-section-016, cards-section-052, cards-section-056, cards-v2-040, cards-v2-044, cards-section-029, cards-v2-047, cards-v2-049, cards-v2-050, community-002, community-009, community-012, community-017, community-018, community-019, community-024, dialogs-010, dialogs-027, dialogs-043, spire-gap-019, spire-gap-022.

@@ -225,4 +225,26 @@ energy-modes: не проверено, есть ли у урока 1 перед 
   нужде дам метку неверного ответа и для них.
 - **energy-modes-011** — Learning V2, зона Codex.
 
-**Осталось:** settings-gap-012 (запрет уведомлений — экран держит Авторизация).
+## Партия 5 — энергия в уроках (коммит 990c22f61)
+
+| Параметр | Что делает |
+|---|---|
+| `lessonintro=skip` | вступление урока считается показанным (только память) — робот сразу на первом задании |
+| `energy_stop=plus_granted` | шторка остановки: «Продолжить с Plus» выдаёт Plus в памяти (без покупки/RevenueCat/записи) — занятие продолжается само |
+| `energy=restoring&restore_in=N` | энергия 0, следующая единица через N с (1..600) |
+
+Вход в урок — **прямой маршрут** `next=/lesson1?id=1%26from=lesson_menu` (меню урока после replace уводило на Главную — Макеты 12.10).
+`U` = `onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&lessonintro=skip&next=/lesson1?id=1%26from=lesson_menu`.
+
+| id | ссылка | шаги |
+|---|---|---|
+| energy-modes-001 | `U&mode=b&energy=5` | `wait:2500` |
+| energy-modes-002 | `U&mode=b&energy=5` | `wait:2500; tap:#lesson1-word-option-wrong; wait:300` |
+| energy-modes-003 | `U&mode=b&energy=1` | `wait:2500` |
+| energy-modes-004 | `U&mode=b&energy=1` | `wait:2500; tap:#lesson1-word-option-wrong; wait:1500` (`energy-stop-sheet`) |
+| energy-modes-005 | `U&mode=b&energy=1` | как 004 + `tap:#energy-stop-plus; wait:1200` (пейвол поверх; кнопку покупки НЕ жать) |
+| energy-modes-006 | `U&mode=b&energy=1&energy_stop=plus_granted` | как 004 + `tap:#energy-stop-plus; wait:1500` (тост «Plus активирован», занятие на том же вопросе) |
+| energy-modes-015 / 016 | `U&mode=a&energy=5` | 015: `wait:2500`; 016: `wait:2500; tap:#lesson1-word-option-wrong; wait:300` |
+| energy-modes-008 | `onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&mode=b&energy=restoring&restore_in=8&next=/lesson_menu?id=1` | `tap:#lesson-menu-primary; wait:1200` (шторка «Нужна энергия») → `tap:#energy-needed-wait; wait:7500` → тост «Энергия восстановилась» и «Начать» активна. Состав макета Б8 (список «Обучение» + тост + оживающая кнопка) — сверить по кадру; если меню снова уводит на Главную — прислать журнал `[ENERGY-NEEDED]`/`[LESSON-LOCK]` |
+
+**Осталось:** settings-gap-012 (запрет уведомлений — экран освободился, следующий).

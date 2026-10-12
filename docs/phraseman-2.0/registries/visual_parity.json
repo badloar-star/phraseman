@@ -24704,24 +24704,28 @@
         "components/referral_code_sheet.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-019.png",
+      "evidence_at": "2026-10-12T02:26:18.567Z",
+      "evidence_sha256": "5be3fcb93a77c6b85bf5338bebfc210641dec3a99af66976a8f233b1f6f8d466",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — решение координатора 12.10] «✕» слева, заголовок смещён вправо; в образце «✕» справа в круге, заголовок по центру — перенести «✕» вправо (как 016–018).",
+        "[состояние] На кадре открыта клавиатура ОС (в образце нет); тон темы: кнопка «Применить код» белая против мятной — принято."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:27:31.715Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=applied&overlays=off&next=/referrals?enter=1"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:26, referral-code-states.html №4 «019 · Принят»): состояние воспроизведено и текст совпал — «Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.» под «Применить код»."
     },
     {
       "id": "overlays-campaigns-020",
@@ -24738,24 +24742,28 @@
         "components/referral_code_sheet.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-020.png",
+      "evidence_at": "2026-10-12T02:26:42.447Z",
+      "evidence_sha256": "151eea0e3450c64531539329d34c4ac22a33d2afc741e7c2fd179fe62a5403cd",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — решение координатора 12.10] «✕» слева, заголовок смещён вправо; в образце «✕» справа в круге, заголовок по центру — перенести «✕» вправо (как 016–018).",
+        "[состояние] На кадре открыта клавиатура ОС (в образце нет); тон темы: кнопка «Применить код» белая против мятной — принято."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:27:31.715Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=already&overlays=off&next=/referrals?enter=1"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:26, referral-code-states.html №5 «020 · Уже привязан»): состояние воспроизведено и текст совпал — «Код уже привязан к твоему аккаунту.» под «Применить код»."
     },
     {
       "id": "overlays-campaigns-021",

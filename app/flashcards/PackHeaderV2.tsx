@@ -114,7 +114,8 @@ export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress
 
 const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   topWrap: { marginTop: 6, paddingHorizontal: 20 },
-  info: { paddingHorizontal: 20, paddingBottom: 14 },
+  // зачем (Макеты cards-v2-014/017, cards-gap-030, 12.10): шапка лежит внутри сетки, у которой уже есть боковой отступ 20 (CollectionGalleryView.content) — свои 20 ставили текст на 40 вместо края списка; боковой отступ здесь не нужен
+  info: { paddingBottom: 14 },
   title: { marginTop: 14, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
   authorRow: { marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 10 },
   ava: { width: 23, height: 23, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' },

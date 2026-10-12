@@ -78,14 +78,14 @@ describe('parity_batch_shoot', () => {
   });
 
   it('--dry-run prints adb commands, skips non-unique rows / rows without a link, and never touches adb', () => {
-    const result = run(['cards-005', 'cards-007', 'cards-033', 'cards-025', 'nope-001', '--guest', '--dry-run'], { ADB_PATH: path.join(tmp, 'no_such_adb.js') });
+    const result = run(['cards-005', 'cards-007', 'cards-042', 'cards-025', 'nope-001', '--guest', '--dry-run'], { ADB_PATH: path.join(tmp, 'no_such_adb.js') });
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('режим=DRY-RUN');
     expect(result.stdout).toContain('adb -s emulator-5554 shell am force-stop app.phraseman');
     expect(result.stdout).toContain('adb -s emulator-5554 logcat -c');
     expect(result.stdout).toContain('am start -a android.intent.action.VIEW -d \'phraseman://dev_state?onboarding=done');
     expect(result.stdout).toContain('screencap -p > <out>/cards-005.png');
-    expect(result.stdout).toContain('пропуск cards-033: не_уникальна');
+    expect(result.stdout).toContain('пропуск cards-042: не_уникальна');
     expect(result.stdout).toContain('пропуск cards-025: нет_готовой_ссылки');
     expect(result.stdout).toContain('пропуск nope-001: нет_в_DEV_LINKS_R1');
   });

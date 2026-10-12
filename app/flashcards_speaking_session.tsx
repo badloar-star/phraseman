@@ -460,6 +460,9 @@ export default function FlashcardsSpeakingSession() {
       console.log('[DEV-STATE] speaking: слой выдачи подменён отказом (fail_speaking)'); // guard-ok: dev-ветка
       quotaUnavailableRef.current = true;
       setQuotaUnavailable(true);
+      // зачем (Макеты cards-gap-002, 12.10): без этого экран рисовал скелет загрузки (он стоит выше панели отказа в render) — реальные пути отказа loading снимают
+      setLoading(false);
+      console.log('[DEV-STATE] speaking: loading снят, показываем панель отказа'); // guard-ok: dev-ветка
       return undefined;
     }
     setQuotaSessionAuthorized(false);

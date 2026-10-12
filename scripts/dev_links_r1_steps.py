@@ -118,7 +118,8 @@ add('cards-016', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flash
 add(['cards-017', 'cards-section-023', 'cards-048', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений («Ничего не найдено»)')
 add('cards-section-028', [], 'catalog=demo', PACKS, note='каталог (привязка образца: «Каталог»; по названию строки — «Ничего не нашли»)')
 add('cards-015', [], 'catalog=demo', PACKS, note='каталог (привязка образца cards-v2 №25 «Каталог»; по названию строки — поиск и меню по долгому нажатию)')
-add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
+# зачем (Макеты, 12.10): набор открывается на скелетах и «не скачан» объявляется после тихих повторов (1,5 + 3 с) — кадр снимали раньше; ждём тост и снимаем после
+add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2', 'wait:3500', 'await:Набор ещё не скачан'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
 
 VIDEO = '/flashcards_video_packs'
 add(['cards-028', 'cards-v2-018'], [], DEMO_PLUS, VIDEO, note='«Из видео»: 5 демо-роликов (по строкам не тапать)')

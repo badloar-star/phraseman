@@ -10,6 +10,7 @@
  *   tap:Отметить несколько       нажать элемент с таким текстом / content-desc (сначала точное совпадение, потом «содержит»)
  *   tap:#fc-gallery-tile-*       testID по префиксу (любая плитка); `@2` в конце — второй подходящий элемент: `tap:#fc-gallery-tile-*@2`
  *   see:#id | see:Текст          прокрутить так, чтобы элемент оказался на экране (без нажатия); tap/long/swipe сами подкручивают, если элемент за краем
+ *   await:Текст | await:#id     ждать появления элемента (до таймаута шага), НИЧЕГО не нажимая и не прокручивая — для тостов у нижней кромки, которые `see` бы «подкрутил» свайпом
  *   long:#id | long:Текст        долгое нажатие (1500 мс: 900 мс не хватало — шторка «Удалить» в cards-034 не открывалась)
  *   swipe-left:Текст | swipe-right:Текст   свайп поперёк рамки элемента (удаление свайпом)
  *   type:abc                     ввести ASCII-текст в сфокусированное поле (кириллицу `input text` не умеет)
@@ -20,7 +21,7 @@
  *   xy:540,1200                  последнее средство: тап по координатам
  */
 export const LONG_PRESS_MS = 1500;
-const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see']);
+const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see', 'await']);
 const OPS_NO_TARGET = new Set(['back']);
 const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy', 'settle']);
 
@@ -160,6 +161,8 @@ export async function runSteps(run, steps, opts = {}) {
     if (step.op === 'settle') continue; // мета-шаг: читает робот, а не исполнитель
     log(`шаг ${step.op}${step.value ? `:${step.value}` : ''}`);
     if (step.op === 'wait') { await sleep(Number(step.value)); continue; }
+    // зачем (Макеты cards-gap-034, 12.10): тост «не скачан» живёт у нижней кромки — `see` подкрутил бы экран свайпом; ждём только появления
+    if (step.op === 'await') { await waitNode(step.value); continue; }
     if (step.op === 'back') run(['shell', 'input', 'keyevent', '4']);
     else if (step.op === 'key') run(['shell', 'input', 'keyevent', `KEYCODE_${step.value}`]);
     else if (step.op === 'type') run(['shell', 'input', 'text', step.value.replace(/ /g, '%s')]);

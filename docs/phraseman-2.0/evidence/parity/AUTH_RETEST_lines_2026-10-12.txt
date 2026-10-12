@@ -1,0 +1,110 @@
+10-12 02:58:50.820 W/ReactNativeJS(29896): [NAV-PAINT] group=screen route=/dev_state ms=177
+10-12 02:58:57.284 W/ReactNativeJS(29896): [NAV-PAINT] group=screen route=/flashcards_collection ms=1344
+10-12 02:59:35.511 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"same_active_owner","prevPhase":"active","nextPhase":"active","generation":1,"epoch":0}'
+10-12 03:00:34.413 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:d6e420ef","localStable":"h:39de1ded","requireOwnership":false,"t":13713921}
+10-12 03:00:51.830 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":13731338}
+10-12 03:00:51.830 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:d6e420ef","preProviderStable":"h:39de1ded","t":13731338}
+10-12 03:00:52.278 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":13731785}
+10-12 03:00:52.455 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":16,"keys":"user_avatar,user_frame,legacy_free_lesson_cap_v1,legacy_free_lesson_migration_v1","t":13731962}
+10-12 03:00:52.672 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"left_active","prevPhase":"active","nextPhase":"transitioning","generation":2,"epoch":1}'
+10-12 03:00:52.683 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":13732190}
+10-12 03:00:52.686 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:39de1ded","tookMs":18277,"t":13732194}
+10-12 03:00:52.695 W/ReactNativeJS(30285): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:39de1ded","to
+10-12 03:00:54.884 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"new_active","prevPhase":"transitioning","nextPhase":"active","generation":3,"epoch":2}'
+10-12 03:00:54.886 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+10-12 03:00:54.891 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding confirm enqueued (waiting for ThemedBlockingAlertHost)
+10-12 03:00:54.892 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding ui decision_pending → spinner and busy notice hidden
+10-12 03:00:54.894 I/ReactNativeJS(30285): '[ACC-SWITCH-WIPE] prewarm', '{"source":"onboarding_switch_confirm","failed":[],"tookMs":3}'
+10-12 03:00:55.738 I/ReactNativeJS(30285): '[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":false,"arbiterActive":null}'
+10-12 03:00:57.137 I/ReactNativeJS(30285): '[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":true,"arbiterActive":"themedAlert"}'
+10-12 03:01:00.052 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding confirm answered choice=switch waitedMs=5162
+10-12 03:01:00.052 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding ui decision_made choice=switch
+10-12 03:01:00.064 I/ReactNativeJS(30285): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-12 03:01:00.201 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":66,"t":13739708}
+10-12 03:01:00.228 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":94,"pendingSpend":0,"t":13739736}
+10-12 03:01:00.263 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":129,"t":13739771}
+10-12 03:01:03.275 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage force_sync_deadline {"sinceStartMs":3141,"deadlineMs":3000,"t":13742783}
+10-12 03:01:03.276 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3141,"synced":false,"t":13742784}
+10-12 03:01:03.278 W/ReactNativeJS(30285): [ACC-SWITCH-WIPE] signout force_sync {"synced":false,"allowWipeWithoutSync":true,"t":13742784}
+10-12 03:01:03.279 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage emergency_backup_skipped {"sinceStartMs":3144,"reason":"final_snapshot_under_lock","t":13742786}
+10-12 03:01:03.279 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":3145,"t":13742787}
+10-12 03:01:03.290 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":3155,"t":13742797}
+10-12 03:01:03.296 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":3162,"entries":0,"t":13742804}
+10-12 03:01:03.826 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":3692,"t":13743333}
+10-12 03:01:03.852 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":3716,"t":13743358}
+10-12 03:01:03.853 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"left_active","prevPhase":"active","nextPhase":"transitioning","generation":4,"epoch":3}'
+10-12 03:01:03.855 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":3720,"t":13743362}
+10-12 03:01:03.856 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":3721,"t":13743363}
+10-12 03:01:04.792 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":5,"epoch":3}'
+10-12 03:01:04.794 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":6,"epoch":3}'
+10-12 03:01:06.459 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":7,"epoch":3}'
+10-12 03:01:07.074 W/ReactNativeJS(30285): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":0,"collectKeysMs":187,"collectKeysKeys":2213,"noteStashMs":4,"removeKeysMs":265,"removeKeysKeys":2210,"giftReceiptsMs":2,"customizationMs":28,"dia
+10-12 03:01:07.102 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":8,"epoch":3}'
+10-12 03:01:07.141 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":9,"epoch":3}'
+10-12 03:01:08.539 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":10,"epoch":3}'
+10-12 03:01:08.758 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":11,"epoch":3}'
+10-12 03:01:08.991 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":12,"epoch":3}'
+10-12 03:01:09.345 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"new_active","prevPhase":"transitioning","nextPhase":"active","generation":13,"epoch":4}'
+10-12 03:01:09.347 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":9213,"kind":"resumed","t":13748854}
+10-12 03:01:09.347 I/ReactNativeJS(30285): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":false,"tookMs":9284}'
+10-12 03:01:09.348 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding switched synced=no tookMs=9295
+10-12 03:01:10.080 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] resume_credential used provider=google ageMs=15195
+10-12 03:01:10.084 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:e5ceabe6","localStable":"h:329e1bc3","requireOwnership":false,"t":13749588}
+10-12 03:01:10.095 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] native skipped {"provider":"google","source":"resume_credential","t":13749602}
+10-12 03:01:10.099 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":13749603}
+10-12 03:01:10.104 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:e5ceabe6","preProviderStable":"h:329e1bc3","t":13749611}
+10-12 03:01:11.356 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":13750863}
+10-12 03:01:11.819 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] clean_proof clean {"checked":2210,"t":13751326}
+10-12 03:01:11.973 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"left_active","prevPhase":"active","nextPhase":"transitioning","generation":14,"epoch":5}'
+10-12 03:01:11.975 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":true,"postCompletionHandoff":true,"t":13751483}
+10-12 03:01:17.924 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:e5ceabe6","targetUid":"h:d9408b9b","uidChanged":true,"t":13757432}
+10-12 03:01:18.218 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:329e1bc3","remoteStable":"h:de10a251","branch":"remote","t":1375
+10-12 03:01:21.916 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":13761423}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":13761424}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":11837,"preserveLocalProgress":false,"handoff":true,"t":13761425}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":13761425}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":0,"sinceStartMs":11837,"t":13761425}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":0,"sinceStartMs":11837,"called":false,"t":13761425}
+10-12 03:01:21.917 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":13761425}
+10-12 03:01:21.919 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":2,"sinceStartMs":11839,"source":"callable","ageMs":3,"t":13761427}
+10-12 03:01:21.930 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":13761430}
+10-12 03:01:21.933 W/ReactNativeJS(30285): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:d
+10-12 03:01:21.936 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":16,"sinceStartMs":11855,"t":13761443}
+10-12 03:01:21.937 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":15,"epoch":5}'
+10-12 03:01:21.937 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":2,"sinceStartMs":11857,"t":13761445}
+10-12 03:01:21.940 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":1,"sinceStartMs":11858,"t":13761446}
+10-12 03:01:22.459 W/ReactNativeJS(30285): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":0,"collectKeysMs":211,"collectKeysKeys":2210,"noteStashMs":42,"removeKeysMs":214,"removeKeysKeys":2210,"giftReceiptsMs":1,"customizationMs":1,"dia
+10-12 03:01:22.460 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":521,"sinceStartMs":12379,"t":13761967}
+10-12 03:01:22.464 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'skip', '{"reason":"transition_step","prevPhase":"transitioning","nextPhase":"transitioning","generation":16,"epoch":5}'
+10-12 03:01:22.692 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":233,"sinceStartMs":12612,"t":13762200}
+10-12 03:01:22.799 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":106,"sinceStartMs":12718,"t":13762306}
+10-12 03:01:22.805 I/ReactNativeJS(30285): '[LESSONS-EPOCH]', 'bump', '{"reason":"new_active","prevPhase":"transitioning","nextPhase":"active","generation":17,"epoch":6}'
+10-12 03:01:22.806 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":7,"sinceStartMs":12725,"t":13762313}
+10-12 03:01:22.812 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":7,"sinceStartMs":12732,"t":13762320}
+10-12 03:01:22.826 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":6,"sinceStartMs":12738,"t":13762326}
+10-12 03:01:22.833 W/ReactNativeJS(30285): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:329e1bc3","to":"h:de10a251","tookMs":12752,"t":13762340}
+10-12 03:01:23.710 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] resume_sign_in ok provider=google result=merged_devices
+10-12 03:01:23.714 I/ReactNativeJS(30285): [AUTH-SWITCH-OFFER] onboarding resume continued provider=google source=existing_account result=merged_devices
+10-12 03:01:27.825 W/ReactNativeJS(30285): [NAV-PAINT] group=tab route=/home ms=2288
+10-12 03:02:19.862 W/ReactNativeJS(30285): [NAV-PAINT] group=tab route=/settings ms=100
+10-12 03:02:23.923 I/ReactNativeJS(30285): '[ACC-SWITCH-WIPE] prewarm', '{"source":"account_details","failed":[],"tookMs":67}'
+10-12 03:02:23.986 W/ReactNativeJS(30285): [NAV-PAINT] group=screen route=/account_details ms=128
+10-12 03:02:29.318 I/ReactNativeJS(30285): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-12 03:02:29.363 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":8,"t":13828870}
+10-12 03:02:29.384 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":29,"pendingSpend":0,"t":13828891}
+10-12 03:02:29.404 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":50,"t":13828912}
+10-12 03:02:32.423 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage force_sync_deadline {"sinceStartMs":3068,"deadlineMs":3000,"t":13831930}
+10-12 03:02:32.423 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3069,"synced":false,"t":13831931}
+10-12 03:02:32.423 W/ReactNativeJS(30285): [ACC-SWITCH-WIPE] signout force_sync {"synced":false,"allowWipeWithoutSync":true,"t":13831931}
+10-12 03:02:32.424 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage emergency_backup_skipped {"sinceStartMs":3069,"reason":"final_snapshot_under_lock","t":13831931}
+10-12 03:02:32.430 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":3073,"t":13831935}
+10-12 03:02:32.434 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":3077,"t":13831939}
+10-12 03:02:32.450 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":3091,"entries":0,"t":13831953}
+10-12 03:02:33.987 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":4633,"t":13833495}
+10-12 03:02:34.048 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":4694,"t":13833556}
+10-12 03:02:34.052 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":4697,"t":13833559}
+10-12 03:02:34.052 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":4698,"t":13833560}
+10-12 03:02:35.003 W/ReactNativeJS(30285): [ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":111,"collectKeysMs":19,"collectKeysKeys":2217,"noteStashMs":5,"removeKeysMs":199,"removeKeysKeys":2214,"giftReceiptsMs":1,"customizationMs":24,"di
+10-12 03:02:36.739 W/ReactNativeJS(30285): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":7384,"kind":"resumed","t":13836246}
+10-12 03:02:36.739 I/ReactNativeJS(30285): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":false,"tookMs":7424}'
+10-12 03:02:36.739 I/ReactNativeJS(30285): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'

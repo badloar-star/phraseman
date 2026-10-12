@@ -1,0 +1,9 @@
+03:00:50.676 tap №2
+03:00:57.609 found 'alert host.*"visible":true'
+03:01:00.090 tap confirm
+03:01:30.343 found 'NAV-PAINT\] group=tab route=/home'
+03:01:30.368 home painted
+03:02:29.288 tap logout
+03:02:37.948 found 'ui:logout_attempt'
+03:02:37.971 logout done
+ALLDONEA4

@@ -2838,7 +2838,9 @@ export default function LessonsTab({
       };
     }, [learningV2WarmupArmed, page]),
   );
-  const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2" || learningV2WarmupArmed;
+  // зачем (R1, Ядро 12.10: «прогрев каталога — после взаимодействий»): в dev-сборке прогрев стартовал СРАЗУ (ENABLE_DEV_TOOLS), и единственная сборка английского каталога (~2 с в debug) приходилась на холодный старт
+  // предмонтированной вкладки. Теперь и в dev ждём то же, что в релизе: страница v2 или взвод после первого кадра и взаимодействий (+2 с).
+  const learningV2WarmupEnabled = page === "v2" || learningV2WarmupArmed;
   useFocusEffect(
     useCallback(() => {
       if (!learningV2WarmupEnabled) return undefined;

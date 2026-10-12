@@ -97,7 +97,8 @@ describe('R1: каталог курса не собирается синхрон
 
   it('прогрев каталога остаётся: peek + load в useFocusEffect, взводится после первого кадра и взаимодействий', () => {
     const src = read('app/(tabs)/lessons.tsx');
-    expect(src).toContain('const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2" || learningV2WarmupArmed;');
+    // зачем (R1, Ядро 12.10): и в dev прогрев ждёт взвода после первого кадра и взаимодействий — dev не стартует его сразу
+    expect(src).toContain('const learningV2WarmupEnabled = page === "v2" || learningV2WarmupArmed;');
     expect(src).toContain('void loadLearningV2ActiveCourseCatalogV1(learningV2CatalogLocator)');
     expect(src).toContain('timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);');
   });

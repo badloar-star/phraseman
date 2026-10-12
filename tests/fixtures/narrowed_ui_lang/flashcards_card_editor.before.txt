@@ -1,0 +1,5 @@
+// Вырезка из app/flashcards_card_editor.tsx @ 30a24dbd5 (до починки cards-021), строки 196–197, в обёртке функции.
+function FlashcardCardEditorExcerpt(lang: Lang) {
+  const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const s = STR[strLang];
+}

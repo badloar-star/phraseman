@@ -1,0 +1,42 @@
+// Вырезка из app/flashcards/CollectionGalleryView.tsx @ 30a24dbd5 (до починки cards-007/010), строки 74–114.
+const copyFor = (lang: FlashcardContentLang) => triLang(lang, {
+  ru: { train: 'Тренировать', speak: 'Озвучить', edit: 'Изменить', del: 'Удалить', hint: 'Зажми карточку, чтобы изменить или удалить её', hidden: (n: number) => `+${n} ${pluralWord('ru', n, { one: 'карточка скрыта', few: 'карточки скрыты', many: 'карточек скрыто' })}`, free: 'Бесплатно доступны первые 50 сохранённых карточек', plus: 'Открыть все с Plus', createPack: 'Создать набор', deleteSel: 'Удалить', more: (n: number) => `Выбери ещё ${pluralWithCount('ru', n, { one: 'карточку', few: 'карточки', many: 'карточек' })}, чтобы создать набор`, add: 'Добавить карточку', close: 'Закрыть' },
+  uk: { train: 'Тренувати', speak: 'Озвучити', edit: 'Змінити', del: 'Видалити', hint: 'Затисни картку, щоб змінити або видалити її', hidden: (n: number) => `+${n} ${pluralWord('uk', n, { one: 'картка прихована', few: 'картки приховані', many: 'карток приховано' })}`, free: 'Безкоштовно доступні перші 50 збережених карток', plus: 'Відкрити все з Plus', createPack: 'Створити набір', deleteSel: 'Видалити', more: (n: number) => `Познач ще ${pluralWithCount('uk', n, { one: 'картку', few: 'картки', many: 'карток' })}, щоб створити набір`, add: 'Додати картку', close: 'Закрити' },
+  en: { train: 'Practise', speak: 'Listen', edit: 'Edit', del: 'Delete', hint: 'Hold a card to edit or delete it', hidden: (n: number) => `+${n} ${pluralWord('en', n, { one: 'card hidden', few: 'cards hidden', many: 'cards hidden' })}`, free: 'The first 50 saved cards are free', plus: 'Unlock all with Plus', createPack: 'Create a pack', deleteSel: 'Delete', more: (n: number) => `Select ${n} more ${pluralWord('en', n, { one: 'card', few: 'cards', many: 'cards' })} to create a pack`, add: 'Add a card', close: 'Close' },
+  es: { train: 'Entrenar', speak: 'Escuchar', edit: 'Editar', del: 'Eliminar', hint: 'Mantén pulsada la tarjeta para editarla o eliminarla', hidden: (n: number) => `+${n} ${pluralWord('es', n, { one: 'tarjeta oculta', few: 'tarjetas ocultas', many: 'tarjetas ocultas' })}`, free: 'Gratis: las primeras 50 tarjetas guardadas', plus: 'Desbloquear todo con Plus', createPack: 'Crear un set', deleteSel: 'Eliminar', more: (n: number) => `Elige ${n} ${pluralWord('es', n, { one: 'tarjeta', few: 'tarjetas', many: 'tarjetas' })} más para crear un pack`, add: 'Añadir tarjeta', close: 'Cerrar' },
+  'pt-BR': { train: 'Treinar', speak: 'Ouvir', edit: 'Editar', del: 'Excluir', hint: 'Segure o cartão para editar ou excluir', hidden: (n: number) => `+${n} ${pluralWord('pt-BR', n, { one: 'cartão oculto', few: 'cartões ocultos', many: 'cartões ocultos' })}`, free: 'Grátis: os primeiros 50 cartões salvos', plus: 'Desbloquear tudo com Plus', createPack: 'Criar um conjunto', deleteSel: 'Excluir', more: (n: number) => `Escolha mais ${n} ${pluralWord('pt-BR', n, { one: 'cartão', few: 'cartões', many: 'cartões' })} para criar um pacote`, add: 'Adicionar cartão', close: 'Fechar' },
+  vi: { train: 'Luyện tập', speak: 'Nghe', edit: 'Sửa', del: 'Xóa', hint: 'Giữ thẻ để sửa hoặc xóa', hidden: (n: number) => `+${n} thẻ bị ẩn`, free: 'Miễn phí: 50 thẻ đã lưu đầu tiên', plus: 'Mở tất cả với Plus', createPack: 'Tạo bộ thẻ', deleteSel: 'Xóa', more: (n: number) => `Chọn thêm ${n} thẻ để tạo bộ thẻ`, add: 'Thêm thẻ', close: 'Đóng' },
+  id: { train: 'Latihan', speak: 'Dengar', edit: 'Ubah', del: 'Hapus', hint: 'Tahan kartu untuk mengubah atau menghapusnya', hidden: (n: number) => `+${n} kartu disembunyikan`, free: 'Gratis: 50 kartu tersimpan pertama', plus: 'Buka semua dengan Plus', createPack: 'Buat set', deleteSel: 'Hapus', more: (n: number) => `Pilih ${n} kartu lagi untuk membuat paket`, add: 'Tambah kartu', close: 'Tutup' },
+  tr: { train: 'Çalış', speak: 'Dinle', edit: 'Düzenle', del: 'Sil', hint: 'Düzenlemek veya silmek için kartı basılı tut', hidden: (n: number) => `+${n} kart gizli`, free: 'Ücretsiz: kaydedilen ilk 50 kart', plus: 'Plus ile tümünü aç', createPack: 'Set oluştur', deleteSel: 'Sil', more: (n: number) => `Paket oluşturmak için ${n} kart daha seç`, add: 'Kart ekle', close: 'Kapat' },
+  pl: { train: 'Ćwicz', speak: 'Posłuchaj', edit: 'Edytuj', del: 'Usuń', hint: 'Przytrzymaj kartę, aby ją edytować lub usunąć', hidden: (n: number) => `+${n} ${pluralWord('pl', n, { one: 'karta ukryta', few: 'karty ukryte', many: 'kart ukrytych' })}`, free: 'Za darmo: pierwsze 50 zapisanych kart', plus: 'Odblokuj wszystko z Plus', createPack: 'Utwórz zestaw', deleteSel: 'Usuń', more: (n: number) => `Wybierz jeszcze ${pluralWithCount('pl', n, { one: 'kartę', few: 'karty', many: 'kart' })}, aby utworzyć zestaw`, add: 'Dodaj kartę', close: 'Zamknij' },
+});
+
+// зачем (cards-v2 `savedLimit`): подпись нижней кнопки при упёртом лимите Free — 9 языков
+const unlimitedLabelFor = (lang: FlashcardContentLang): string => triLang(lang, {
+  ru: 'Безлимит с Plus', uk: 'Безліміт з Plus', en: 'Unlimited with Plus', es: 'Sin límite con Plus', 'pt-BR': 'Sem limite com Plus',
+  vi: 'Không giới hạn với Plus', id: 'Tanpa batas dengan Plus', tr: 'Plus ile sınırsız', pl: 'Bez limitu z Plus',
+});
+
+const zoomCopyFor = (lang: FlashcardContentLang) => triLang(lang, {
+  ru: { smaller: 'Мельче', larger: 'Крупнее', more: 'Ещё' },
+  uk: { smaller: 'Дрібніше', larger: 'Крупніше', more: 'Ще' },
+  en: { smaller: 'Smaller', larger: 'Larger', more: 'More' },
+  es: { smaller: 'Más pequeño', larger: 'Más grande', more: 'Más' },
+  'pt-BR': { smaller: 'Menor', larger: 'Maior', more: 'Mais' },
+  vi: { smaller: 'Nhỏ hơn', larger: 'Lớn hơn', more: 'Thêm' },
+  id: { smaller: 'Lebih kecil', larger: 'Lebih besar', more: 'Lainnya' },
+  tr: { smaller: 'Daha küçük', larger: 'Daha büyük', more: 'Daha fazla' },
+  pl: { smaller: 'Mniejsze', larger: 'Większe', more: 'Więcej' },
+});
+
+/** Во время поиска результаты идут в две колонки (макет «Поиск», шаг 1). */
+const SEARCH_STEP = GALLERY_DEFAULT_STEP;
+const TAG = '[CARDS-ZOOM]';
+
+export default function CollectionGalleryView({
+  cards, lang, header, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
+  isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
+  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
+}: Props) {
+  const g = useLv2Glass();
+  const copy = useMemo(() => copyFor(lang), [lang]);

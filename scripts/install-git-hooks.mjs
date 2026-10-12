@@ -119,6 +119,14 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Ratchet: UI language must not be narrowed to a subset with a Russian fallback (see scripts/scan_narrowed_ui_lang.mjs).
+# EN pass 12.10: texts were translated into 9 languages, yet English showed Russian because the language choice was narrowed
+# (content language in triLang, \`'uk' ? 'uk' : 'ru'\` index into STR). The literal scanner above cannot see this class.
+node scripts/scan_narrowed_ui_lang.mjs --staged
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Ratchet: no new \`as any\` in app/components/modules (see scripts/guard_as_any_ratchet.mjs).
 # Each cast switches the type checker off; one of them left the whole RevenueCat money
 # path (premium/plan/expiry) unchecked until commit d6a3390a6. The count may only go

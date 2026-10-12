@@ -6,6 +6,7 @@ sys.path.insert(0, 'C:/appsprojects/phraseman/scripts')
 import dev_links_r1_steps as STEPS_DATA
 import dev_links_r1_steps_spire  # noqa: F401  зачем (15.10): ссылки и шаги Шпиля лежат в отдельном модуле и добавляются в тот же STEPS_DATA.ENTRIES
 import dev_links_r1_steps_cards2  # noqa: F401  зачем (12.10): ссылки и шаги Карточек для покрытия r1 (группа 2б: подмены уже есть в приложении)
+import dev_links_r1_steps_dialogs2  # noqa: F401  зачем (12.10): ссылки и шаги Диалогов для покрытия r1 (группа 2а, без сервера ИИ)
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))

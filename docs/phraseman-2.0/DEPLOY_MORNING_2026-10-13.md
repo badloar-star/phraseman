@@ -63,14 +63,20 @@ gcloud functions describe premiumExpiryReminderCron --gen2 --region us-central1 
 
 ## Команда (Git Bash, одна строка) — `dialogueV2TextTurn` + `reEngagePushCron`
 
-> Проверка «срез собирается» (сборка functions в срезе, без выкладки) — ⏳ ждёт ≥4 ГБ свободной памяти; результат
-> допишется сюда строкой «Проверено: …».
+> **Проверено 12.10 ~04:05 (Ядро):** срез коммита 5d62e7e38, выгрузка `git -c core.autocrlf=false archive`, переходы на
+> node_modules, `PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1` + полный id → `npm --prefix functions run build` **rc=0 за 35 с**:
+> support-context, gate:spire-multilingual, tsc (0 ошибок), копия ассетов, functions-runtime-parity — все шаги прошли.
+> Выкладка не запускалась. Две первые проверки нашли и закрыли две поломки пути: нет .git в срезе и CRLF при выгрузке.
 
 ```bash
-R=/c/appsprojects/phraseman; C=$(git -C $R rev-parse --short HEAD); D=/c/Temp/phraseman_deploy/$C; [ ! -e "$D" ] && mkdir -p "$D" && git -C $R archive HEAD | tar -x -C "$D" && cp $R/functions/.env $R/functions/.env.phraseman-ea0b3 "$D/functions/" && W=$(cygpath -w "$D") && powershell -NoProfile -c "New-Item -ItemType Junction -Path '$W\functions\node_modules' -Target 'C:\appsprojects\phraseman\functions\node_modules' | Out-Null; New-Item -ItemType Junction -Path '$W\node_modules' -Target 'C:\appsprojects\phraseman\node_modules' | Out-Null" && cd "$D" && npx tsx scripts/dialogue_v2_embedded_release.ts --check && firebase deploy --only functions:dialogueV2TextTurn,functions:reEngagePushCron --project phraseman-ea0b3
+R=/c/appsprojects/phraseman; FULL=$(git -C $R rev-parse HEAD); D=/c/Temp/phraseman_deploy/${FULL:0:9}; [ ! -e "$D" ] && mkdir -p "$D" && git -C $R -c core.autocrlf=false archive $FULL | tar -x -C "$D" && cp $R/functions/.env $R/functions/.env.phraseman-ea0b3 "$D/functions/" && W=$(cygpath -w "$D") && powershell -NoProfile -c "New-Item -ItemType Junction -Path '$W\functions\node_modules' -Target 'C:\appsprojects\phraseman\functions\node_modules' | Out-Null; New-Item -ItemType Junction -Path '$W\node_modules' -Target 'C:\appsprojects\phraseman\node_modules' | Out-Null" && cd "$D" && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && npx tsx scripts/dialogue_v2_embedded_release.ts --check && firebase deploy --only functions:dialogueV2TextTurn,functions:reEngagePushCron --project phraseman-ea0b3
 ```
 
-Сборку (`npm --prefix functions run build`) firebase запускает сам (predeploy). На вопрос CLI «delete functions?» — **No**.
+Сборку (`npm --prefix functions run build`) firebase запускает сам (predeploy). В срезе нет `.git`, поэтому сборка
+идёт как «архив выпуска»: `PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1` + полный id коммита (`build_support_repo_context.js` без них
+падает «requires a full Git checkout» — найдено проверкой 12.10). Выгрузка — `git -c core.autocrlf=false archive`: в
+репозитории `core.autocrlf=true`, и обычный `git archive` превращает LF в CRLF — сторож `gate:spire-multilingual` сверяет
+пул заданий побайтно и падает «es/tasks.jsonl is stale» (найдено второй проверкой 12.10). На вопрос CLI «delete functions?» — **No**.
 Если папка среза уже есть — команда остановится сразу (`[ ! -e "$D" ]`): сначала уборка ниже. `rm -rf` по папке с
 переходами НЕ запускать — он может уйти по переходу в рабочие `node_modules`.
 
@@ -79,7 +85,7 @@ R=/c/appsprojects/phraseman; C=$(git -C $R rev-parse --short HEAD); D=/c/Temp/ph
 Из того же среза (папка `$D` уже есть):
 
 ```bash
-cd /c/Temp/phraseman_deploy/$(git -C /c/appsprojects/phraseman rev-parse --short HEAD) && firebase deploy --only functions:premiumExpiryReminderCron --project phraseman-ea0b3
+FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT=$FULL && firebase deploy --only functions:premiumExpiryReminderCron --project phraseman-ea0b3
 ```
 
 ## После выкладки

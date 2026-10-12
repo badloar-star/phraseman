@@ -1,6 +1,6 @@
 import type { Theme } from './theme';
 import { alpha, oklchToHex } from './liquidGlassColor';
-import { deriveLiquidGlassSurfaceRoles, legibleOn, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
+import { deriveLiquidGlassSurfaceRoles, flattenOver, legibleOn, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
 import { deriveLiquidGlassPaletteRoles, type LiquidGlassPaletteRoles } from './liquidGlassPaletteRoles';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -179,14 +179,21 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
-  const mutedText = built.isLight
-    ? legibleOn(built.mutedText, built.text, [
+  // зачем (ночная проверка двух тем 12.10): текст на `selected` (неактивная кнопка «Применить код», нажатая строка меню, открытая пилюля) — сведённом
+  // с шторкой/карточкой/фоном — давал 4,10–4,34 в тёмных тонированных темах («Максимум») и 4,48 у iris/taupe в светлых; теперь это тоже поверхность проверки.
+  const selectedOver = [built.opaqueCard, built.opaqueSheet, built.bg].map((under) => flattenOver(built.selected, under));
+  const mutedText = legibleOn(built.mutedText, built.text, built.isLight
+    ? [
         built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet,
         surfaceRoles.plateFillFrom, surfaceRoles.plateFillTo, surfaceRoles.raisedFillFrom, surfaceRoles.raisedFillTo,
-      ], 4.55)
-    : built.mutedText;
+        ...selectedOver,
+      ]
+    : selectedOver, 4.55);
+  // зачем: иерархия «приглушённый не контрастнее вторичного» (tests/theme_muted_text_aa) — вторичный текст проходит ту же проверку на `selected`, иначе после подъёма mutedText он оказался бы ярче secondary
+  const secondary = legibleOn(built.secondary, built.text, selectedOver, 4.55);
   const tokens: GlassTokens = Object.freeze({
     ...built,
+    secondary,
     mutedText,
     ...surfaceRoles,
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.

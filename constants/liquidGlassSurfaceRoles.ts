@@ -96,6 +96,29 @@ const ratio = (a: string, b: string): number => {
 };
 
 /**
+ * Полупрозрачный цвет (`#RRGGBBAA` или `rgba()`), сведённый с непрозрачным нижним слоем, → `#RRGGBB`.
+ * зачем (ночная проверка двух тем 12.10): `selected` — полупрозрачная заливка (нажатая строка, неактивная кнопка, открытая пилюля); текст на ней читается
+ * на сведённом цвете, а не на самой заливке и не на слое под ней.
+ */
+export function flattenOver(top: string, bottom: string): string {
+  const hex = top.trim().match(/^#([0-9a-f]{6})([0-9a-f]{2})?$/i);
+  const rgba = top.trim().match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)$/i);
+  let rgb: [number, number, number];
+  let a = 1;
+  if (hex) {
+    const n = Number.parseInt(hex[1]!, 16);
+    rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    a = hex[2] ? Number.parseInt(hex[2], 16) / 255 : 1;
+  } else if (rgba) {
+    rgb = [Number(rgba[1]), Number(rgba[2]), Number(rgba[3])];
+    a = rgba[4] === undefined ? 1 : Number(rgba[4]);
+  } else return hex6(bottom);
+  const base = Number.parseInt(hex6(bottom).slice(1), 16);
+  const ch = (i: number, shift: number) => Math.round(rgb[i]! * a + ((base >> shift) & 255) * (1 - a)).toString(16).padStart(2, '0');
+  return `#${ch(0, 16)}${ch(1, 8)}${ch(2, 0)}`.toUpperCase();
+}
+
+/**
  * Цвет `color`, смешанный с `toward` шагами по 5 %, пока контраст со ВСЕМИ поверхностями не станет ≥ `min`.
  * зачем (проверка тем на новых экранах, 14.10): `mutedText` в светлом оформлении рисуют ТЕКСТОМ (счётчики, номера, подписи 13 px),
  * а замер дал 4,06 на низе плашки и 3,64 на тонированном фоне; здесь он доводится до 4,5 без смены оттенка в сторону серого.

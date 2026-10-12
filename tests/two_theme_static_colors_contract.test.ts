@@ -35,6 +35,12 @@ const FILES = [
   'app/community_packs/CommunityPackSocialBar.tsx',
   'app/flashcards/CollectionListView.tsx',
   'app/flashcards/DeckSelectionTile.tsx',
+  // ночная проверка 12.10: меню языка наборов, кнопка языка на настройке тренировки, обработка кода (форматный отказ) — только токены
+  'app/flashcards/PackLanguagePicker.tsx',
+  'app/flashcards/TrainingSetupV2.tsx',
+  'app/flashcards_training_setup.tsx',
+  'app/code_entry_format.ts',
+  'app/promo_code_client.ts',
 ];
 
 // файлы, где залитые акцентом элементы (бейдж «Топ», пилюли «Новые/Топ», «+», «Добавить», галочка выбора) обязаны брать

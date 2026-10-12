@@ -89,10 +89,12 @@ type ToastTone = {
 };
 
 const TOAST_TONES: Record<ToastType, ToastTone> = {
-  success: { icon: 'checkmark-circle', label: actionToastToneLabel('success') },
-  error: { icon: 'alert-circle', label: actionToastToneLabel('error') },
-  info: { icon: 'information-circle', label: actionToastToneLabel('info') },
-  warning: { icon: 'warning', label: actionToastToneLabel('warning') },
+  // зачем (R1_DIFF_ONE_FIX, paywall-gap-011; образец paywall-gaps-states.html `.wtoast .tb`, `IC.checkC / alertC`): значок тона — контурное кольцо с галочкой/«!» на тёмной плитке,
+  // а не белый заливной круг. Семейство контурных значков единое для всех тонов.
+  success: { icon: 'checkmark-circle-outline', label: actionToastToneLabel('success') },
+  error: { icon: 'alert-circle-outline', label: actionToastToneLabel('error') },
+  info: { icon: 'information-circle-outline', label: actionToastToneLabel('info') },
+  warning: { icon: 'warning-outline', label: actionToastToneLabel('warning') },
   reward: { icon: 'gift', label: actionToastToneLabel('reward') },
 };
 

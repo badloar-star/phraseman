@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Значок лиги — 20 вариантов «Глины»</title>
+<style>
+/* зачем (координатор 12.10): владелец выбирает значок лиги из 20 вариантов «Глины». Слой .accent красится так же, как ThemedArtLayers (tintColor = artAccentTint:
+   accent в тёмном, accentBright в светлом). Цвета — настоящие токены тем из league_tokens.json (scripts/gen_league_options_tokens.ts). Обводок нет: тон и тень. */
+:root{--top:#0e0f12;--bottom:#0e0f12;--card:#1b1c20;--control:#25262b;--text:#eceae6;--sec:#9a978f;--tint:#8fb0ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font:14px/1.4 -apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,var(--top),var(--bottom)) fixed;padding:16px 16px 56px}
+h1{font-size:22px;margin:0 0 4px}
+p.lead{margin:0 0 14px;color:var(--sec);max-width:70ch}
+.bar{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0 12px;background:linear-gradient(180deg,var(--top) 70%,transparent)}
+.seg{display:inline-flex;background:var(--control);border-radius:12px;padding:3px;gap:2px}
+.seg button{all:unset;cursor:pointer;padding:7px 12px;border-radius:9px;color:var(--sec);font-size:13px}
+.seg button.on{background:var(--text);color:var(--top)}
+select{background:var(--control);color:var(--text);border:0;border-radius:12px;padding:9px 12px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);border-radius:22px;padding:14px 14px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 10px 26px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04)}
+.pair{display:flex;align-items:flex-end;gap:18px}
+.art{position:relative}
+.art img,.art .tint{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.tint{background:var(--tint);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+.s64{width:64px;height:64px}.s96{width:96px;height:96px}
+.cap{display:flex;gap:8px;align-items:baseline}
+.num{font-weight:700;font-size:15px}
+.name{color:var(--sec);font-size:13px}
+.note{margin-top:18px;color:var(--sec);font-size:12px;max-width:80ch}
+</style></head><body>
+<h1>Значок лиги: 20 вариантов «Глины»</h1>
+<p class="lead">Выбери номер. Показаны два размера (64 и 96 px), тёмное и светлое оформление, любая тема и оттенок ползунка: цветная деталь окрашена так же, как в приложении.</p>
+<div class="bar">
+  <div class="seg" id="mode"><button data-v="dark" class="on">Тёмное</button><button data-v="light">Светлое</button></div>
+  <select id="theme" aria-label="Тема"></select>
+  <div class="seg" id="level"><button data-v="0" class="on">Спокойно</button><button data-v="0.5">Акцент</button><button data-v="1">Максимум</button></div>
+</div>
+<div class="grid" id="grid"></div>
+<p class="note" id="note"></p>
+<script>
+const VARIANTS=[['01','north'],['02','chevrons'],['03','crown'],['04','podium'],['05','marker'],['06','orbit'],['07','ribbon'],['08','progress'],['09','dart'],['10','beacon'],['11','threshold'],['12','interlock'],['13','seal'],['14','horizon'],['15','ramp'],['16','wing'],['17','vector'],['18','axis'],['19','banner'],['20','token']];
+const state={mode:'dark',theme:'graphite',level:'0'};
+let TOKENS=null;
+const $=(id)=>document.getElementById(id);
+function url(mode,n,name,accent){return `trials/S2_clay/${mode}/league_option_${n}_${name}${accent?'.accent':''}.webp`}
+function applyTokens(){
+  const t=TOKENS?.[state.theme]?.[state.mode]?.[state.level];
+  if(!t){ $('note').textContent='Токены темы не найдены: '+state.theme+'/'+state.mode+'/'+state.level; return; }
+  const r=document.documentElement.style;
+  r.setProperty('--top',t.bgTop);r.setProperty('--bottom',t.bgBottom);r.setProperty('--card',t.card);r.setProperty('--control',t.control);
+  r.setProperty('--text',t.text);r.setProperty('--sec',t.secondary);r.setProperty('--tint',t.tint);
+  $('note').textContent=`Тема «${state.theme}», ${state.mode==='dark'?'тёмное':'светлое'}, оттенок ${state.level}. Цвет детали: ${t.tint} (${state.mode==='dark'?'accent':'accentBright'}).`;
+}
+function art(size,n,name){
+  return `<div class="art s${size}"><img alt="" src="${url(state.mode,n,name,false)}" loading="lazy"><div class="tint" style="-webkit-mask-image:url(${url(state.mode,n,name,true)});mask-image:url(${url(state.mode,n,name,true)})"></div></div>`;
+}
+function render(){
+  applyTokens();
+  $('grid').innerHTML=VARIANTS.map(([n,name])=>`<div class="card"><div class="pair">${art(96,n,name)}${art(64,n,name)}</div><div class="cap"><span class="num">${n}</span><span class="name">${name}</span></div></div>`).join('');
+}
+function bindSeg(id,key){
+  $(id).addEventListener('click',(e)=>{const b=e.target.closest('button');if(!b)return;state[key]=b.dataset.v;[...$(id).children].forEach((c)=>c.classList.toggle('on',c===b));render();});
+}
+bindSeg('mode','mode');bindSeg('level','level');
+$('theme').addEventListener('change',(e)=>{state.theme=e.target.value;render();});
+fetch('league_tokens.json').then((r)=>r.json()).then((j)=>{
+  TOKENS=j;
+  $('theme').innerHTML=Object.keys(j).map((k)=>`<option value="${k}"${k===state.theme?' selected':''}>${k}</option>`).join('');
+  render();
+}).catch((e)=>{$('note').textContent='Не загрузились токены тем (league_tokens.json): '+e;render();});
+</script>
+</body></html>

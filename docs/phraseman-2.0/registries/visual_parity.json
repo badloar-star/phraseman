@@ -3471,25 +3471,29 @@
         "app/flashcards/VideoPackRow.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-082.png",
+      "evidence_at": "2026-10-12T17:49:24.779Z",
+      "evidence_sha256": "2727f1d3b12b39d2b6ba0ba6960823e635b1ba42bd07d30f9a6847e806f426c7",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Тоста об ошибке открытия ролика нет: нужна подмена fail=video_open (Ядро, ae44078f4) + тап по ролику набора (шаг) — переснять после добавления шагов.",
+        "[образец ≠ код] Образец: шапка «‹ Из видео · EN», поиск «Поиск по наборам», переключатель «Популярные / Новые», строки с превью ролика (таймкод, ▶), названием, ♥ и числом людей; приложение: заголовок «Из видео 5», крупные карточки с иллюстрацией блокнота, длительностью и кнопкой «Добавить +», без поиска, табов, языка и счётчиков — решение Дизайна/владельца: переделать образец под код или код под образец."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:50:21.684Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "cards-082: Тап `video-set-hero` вызывает `Linking.openURL` (VideoPackRow.tsx:75-99): на эмуляторе откроется браузер. Обход: `adb shell pm disable-user --user 0 "
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:49, cards-states №77 «Открытие ролика · не открылся» против «Наборы из видео · Открытие ролика · не открылся»): открыт экран «Из видео 5», но тост «Видео сейчас не открывается. Карточки набора доступны как обычно.» не показан, а сам список устроен иначе, чем образец."
     },
     {
       "id": "cards-083",

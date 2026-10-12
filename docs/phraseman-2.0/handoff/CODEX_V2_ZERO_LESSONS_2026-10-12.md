@@ -55,6 +55,8 @@
 
 - (Темы, 15.10, красные тесты) `modules/learning-v2/modes/mode_feedback_v1.tsx` — 5 новых захардкоженных цветов (ratchet `tests/theme_hardcoded_colors_ratchet.test.mjs`: берите токены темы `g.text`/`g.opaqueCard`/`g.hairlineSoft` или `// theme-exempt: причина`); `elevation` без непрозрачного фона (тест `tests/android_no_square_outline_guard.test.ts`, ослаблять нельзя — замените на `...noAndroidOutline` из `constants/androidGlow.ts` или задайте непрозрачный `backgroundColor` в самом стиле): `app/learning_v2_direct_session_player_v1.tsx:3610`, `app/_learning_v2_modes_showcase.tsx:132`, `components/learning-v2/LearningV2FounderPassModal.tsx:278`, `components/learning-v2/LearningV2PulseMapSessionRow.tsx:227`.
 
+- (12.10, 16:1x) Контраст светлых тем (п.63, e9075d177): в экранах V2 цвет `t.accent` используется как цвет ТЕКСТА/значка — в светлых темах это 1,0–1,3 контраста (нечитаемо). Заменить на `t.accentText` (≥ 4,5 во всех 23 темах) в: components/learning-v2/horizons/LearningV2Horizons.tsx (7 мест), app/learning-v2/session/[id].tsx, app/_learning_v2_authoring_preview.tsx, app/_learning_v2_modes_showcase.tsx, learning-v2-lab/*. Заливки и кнопки (accent как фон) не трогать.
+
 ## Ответ Codex
 
 _(впишите сюда: что сделано, хэши, реальный потолок занятий и срок)_

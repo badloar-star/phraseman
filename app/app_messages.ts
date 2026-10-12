@@ -2149,3 +2149,20 @@ export async function devSeedSettingsMessageSlot(kind: DevSettingsSlotKind, stab
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+/**
+ * Демо-сообщение окна «сообщение команды» (Авторизация 12.10, system-012; dev `appmessage=announcement`): та же dev-кампания, что слот Настроек,
+ * но во «Входящих» и с показом окна. Только память: ни записи в хранилище, ни сети. id с префиксом dev-state- — закрытие не подтверждается.
+ */
+export function devAnnouncementModalMessage(nowMs: number): AppMessageWithState {
+  const row: Record<string, unknown> = {
+    ...devCampaignRow(`${DEV_SETTINGS_CAMPAIGN_PREFIX}announcement`, 'bottom', 'message', nowMs),
+    deliverySurface: 'inbox',
+    showOnNextLoginModal: true,
+  };
+  const message = normalizeAppMessage(String(row.id), row, nowMs);
+  return {
+    ...message, readAtMs: null, dismissedAtMs: null, reaction: null, pollOptionId: null, unread: true,
+    personalModalAcknowledgedAtMs: null, appMessageModalAcknowledgedAtMs: null,
+  };
+}

@@ -32,3 +32,11 @@ export const DEV_DAILY_POLLS = [] as const;
 export function isDevSelfFriendCode(): boolean { return false; }
 export function getDevDailyPoll(): null { return null; }
 export function devDailyPollVote(): null { return null; }
+// зачем (Авторизация 12.10, system-010/012): экран ошибки и окно объявления в стор-сборке не подменяются
+export const DEV_APP_MESSAGES = [] as const;
+export function setDevErrorScreen(): boolean { return false; }
+export function isDevErrorScreen(): boolean { return false; }
+export function subscribeDevErrorScreen(): () => void { return () => undefined; }
+export function setDevAppMessage(): boolean { return false; }
+export function getDevAppMessage(): null { return null; }
+export function subscribeDevAppMessage(): () => void { return () => undefined; }

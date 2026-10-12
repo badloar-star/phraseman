@@ -569,11 +569,14 @@
 | spire-gap-021 | Шпиль · Ступень · Ступень с флажком жалобы | `phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=step_choice%26spirePanel=off%26tier=0%26floor=4` | ступень с флажком жалобы | phraseman-2.0\DIALOGS_SPIRE_PAYWALLS_ENERGY · Таблица строк: настоящая ступень, флажок `spire-task-report-<n>`. В превью `reportSlot=null` | `see:#spire-task-report-0` | да | spire-gaps-states.html#21 · Ступень с флажком жалобы |
 | spire-gap-022 | Шпиль · Главный · Главный — пилюля «бета» | `phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=room%26spirePanel=off` | «бета» рядом с языком (es/de/fr/it): гость по умолчанию с изучаемым es; тап не нужен | phraseman-2.0\DIALOGS_SPIRE_PAYWALLS_ENERGY · G-S03 · Шпиль — пилюля «бета» (язык изучения es/de/fr/it):  | `see:#spire-beta-pill` | нет | spire-gaps-states.html#22 · Главный — пилюля «бета» |
 
-## Обучение, монеты, видео, окна знакомства (ROBOT13; ссылки — dev_links_r1_steps_robot.py) (19)
+## Обучение, монеты, видео, окна знакомства (ROBOT13; ссылки — dev_links_r1_steps_robot.py) (24)
 
 | id | экран · состояние | ссылка / путь | перед кадром | shot list | тапы | уникальна | образец (макет#телефон · подпись) |
 |---|---|---|---|---|---|---|---|
+| coins-001 | Кошелёк и ранги · кошелёк | `phraseman://dev_state?onboarding=done&intros=seen&coinRank=5&coins=12480&overlays=off&next=/runes_wallet` | кошелёк: 12 480 монет, ранг 5 (баланс только для показа, coins=12480) |  | `wait:1500` | да | coins.html#1 · кошелёк |
 | coins-002 | Кошелёк и ранги · кошелёк · нулевой баланс | `phraseman://dev_state?onboarding=done&intros=seen&coinRank=5&overlays=off&next=/runes_wallet` | кошелёк: нулевой баланс (у гостя 0 монет) |  |  | да | coins.html#2 · кошелёк · нулевой баланс |
+| coins-003 | Кошелёк и ранги · повышение · готово к подтверждению | `phraseman://dev_state?onboarding=done&intros=seen&coinRank=5&coins=12480&overlays=off&next=/coin_rank` | повышение: готово к подтверждению (Лектор → Эксперт за 6 000; кнопку НЕ жать) |  | `wait:1500; see:#coin-rank-upgrade` | да | coins.html#3 · повышение · готово к подтверждению |
+| coins-004 | Кошелёк и ранги · повышение · ожидание | `phraseman://dev_state?onboarding=done&intros=seen&coinRank=5&coins=12480&coinupgrade=hold&overlays=off&next=/coin_rank` | повышение: ожидание «Проверяем повышение…» (coinupgrade=hold — сервер не вызывается, списания нет) |  | `wait:1500; tap:#coin-rank-upgrade; await:#coin-rank-pending-spinner; wait:400` | да | coins.html#4 · повышение · ожидание |
 | coins-005 | Кошелёк и ранги · повышение · недостаточно монет | `phraseman://dev_state?onboarding=done&intros=seen&coinRank=5&overlays=off&next=/coin_rank` | повышение ранга: недостаточно монет (у гостя 0 монет) |  |  | да | coins.html#5 · повышение · недостаточно монет |
 | learn-001 | A. Список уроков · A1 | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&studyTarget=en&overlays=off&next=/(tabs)/lessons` | список уроков у Free (A1) |  | `wait:1500` | да | learn.html#1 · A1 |
 | learn-002 | A. Список уроков · A2 | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&overlays=off&next=/(tabs)/lessons` | список уроков у Plus (SVERKA_LOG): название закрытых уроков приглушённое |  |  | да | learn.html#2 · A2 |
@@ -591,12 +594,14 @@
 | practice-003 | Блиц · Неверный ответ | `phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&studyTarget=en&blitz_answer=wrong&overlays=off&next=/flashcards_blitz_session?deck=saved%26sec=60` | блиц: неверный ответ (дубль cards-section-045) · **только гость (pm clear + онбординг)** |  | `wait:4000; await:#fc-blitz-opt-target; tap:#fc-blitz-opt-target` | нет | practice.html#3 · Неверный ответ |
 | results-007 | Серия и статистика · серия и неделя | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&overlays=off&next=/streak_stats` | серия и неделя (данные гостя — нули; цифры макета отличаются) |  | `wait:1500` | да | results.html#7 · серия и неделя |
 | results-009 | Серия и статистика · активность за год | `phraseman://dev_state?onboarding=done&intros=seen&plus=on&overlays=off&next=/streak_stats` | активность за год (карточка внизу экрана) |  | `wait:1500; see:#stats-activity-365` | да | results.html#9 · активность за год |
+| system-010 | Экраны-заглушки · Что-то пошло не так | `phraseman://dev_state?onboarding=done&intros=seen&errorscreen=on&overlays=off&next=/(tabs)/home` | экран ошибки корневой границы (errorscreen=on; снять — errorscreen=off или перезапуск) |  | `wait:2000` | да | system.html#12 · Что-то пошло не так |
+| system-012 | Сообщения · Сообщение команды | `phraseman://dev_state?onboarding=done&intros=seen&appmessage=announcement&overlays=on&next=/(tabs)/home` | окно «сообщение команды»: демо-объявление из памяти (overlays=on — окна не гасятся) |  | `wait:2500` | да | system.html#15 · Сообщение команды |
 | system-015 | Сообщения · Входящие — пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/(tabs)/home` | входящие — пусто (у свежего гостя нет сообщений) |  | `wait:1500; tap:#home-app-messages-button; wait:800` | да | system.html#18 · Входящие — пусто |
 
 ## Итог
 
-⚠️ Несовпадения «запись ↔ привязка образца» (26): подробности — DEV_LINKS_R1_BINDINGS.md.
+⚠️ Несовпадения «запись ↔ привязка образца» (27): подробности — DEV_LINKS_R1_BINDINGS.md.
 
-Строк с признаком «уникальна: да» (робот parity_batch_shoot берёт только их): 489 из 543.
+Строк с признаком «уникальна: да» (робот parity_batch_shoot берёт только их): 494 из 548.
 
-Строк в охвате: 543. Готовая ссылка: 536. Ручной путь по shot list: 4. Только ссылки по shot list (Шпиль/онбординг/аккаунт): 3. «Нужна фикстура»: 0.
+Строк в охвате: 548. Готовая ссылка: 541. Ручной путь по shot list: 4. Только ссылки по shot list (Шпиль/онбординг/аккаунт): 3. «Нужна фикстура»: 0.

@@ -291,11 +291,15 @@ import {
   acknowledgeAppMessageModal,
   acknowledgePersonalAdminMessageModal,
   claimAppMessagesLoginForce,
+  // зачем (Авторизация 12.10, system-012): демо-сообщение окна объявления (dev appmessage)
+  DEV_SETTINGS_CAMPAIGN_PREFIX,
+  devAnnouncementModalMessage,
   listPendingAppMessageModals,
   pickNextLoginPersonalMessage,
   refreshAppMessagesSnapshotOnce,
   type AppMessageWithState,
 } from './app_messages';
+import { getDevAppMessage, subscribeDevAppMessage } from './dev_social_state';
 import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
 import {
   getIntroFullAccessState,
@@ -1441,6 +1445,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         const queue = listPendingAppMessageModals(snapshot, hasPremiumAccess);
         const verdict = queue.length > 0 ? await readFreshInstallVerdict() : null;
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        // зачем (Авторизация 12.10, system-012): пока стоит dev `appmessage`, сетевое обновление не затирает демо-сообщение в окне (в сторе геттер = null)
+        if (getDevAppMessage()) {
+          console.log(`[DEV-STATE] окно объявления: сетевая очередь (${queue.length}) не применена — показано демо-сообщение`); // guard-ok: dev-ветка
+          return;
+        }
         setAppMessageModalQueue(verdict ? skipAnnouncementsForFreshInstall(queue, verdict) : queue);
       })
       .catch(noteSwallowedHandler('_layout:useEffect.refreshAppMessagesSnapshotOnce'));
@@ -1493,9 +1502,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const closeAppMessageModal = useCallback(async (messageId: string) => {
     const ownerUid = accountGeneration.stableId;
     setAppMessageModalQueue((current) => current.filter((message) => message.id !== messageId));
+    // зачем (Авторизация 12.10, system-012): демо-сообщение dev `appmessage` живёт только в памяти — подтверждение не отправляем
+    if (messageId.startsWith(DEV_SETTINGS_CAMPAIGN_PREFIX)) {
+      console.log(`[DEV-STATE] окно объявления: демо-сообщение ${messageId} закрыто — подтверждение не отправляется`); // guard-ok: dev-ветка
+      return;
+    }
     if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
     await acknowledgeAppMessageModal(messageId, ownerUid).catch(noteSwallowedHandler('_layout:useCallback.acknowledgeAppMessageModal'));
   }, [accountGeneration]);
+
+  // зачем (Авторизация 12.10, system-012): dev `appmessage=announcement` кладёт демо-сообщение в очередь окна из памяти — без сети и без
+  // отсечки «новичок < суток»; в стор-сборке подписка — заглушка (store_release_stubs/dev_state/dev_social_state_stub.ts)
+  useEffect(() => subscribeDevAppMessage((kind) => {
+    if (!kind) return;
+    console.log(`[DEV-STATE] окно объявления: демо-сообщение ${kind} в очередь`); // guard-ok: dev-ветка
+    setAppMessageModalQueue([devAnnouncementModalMessage(Date.now())]);
+  }), []);
 
   // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
   // беззвучном режиме (mute-switch) на iPhone и независимо от того, какой путь

@@ -21,6 +21,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../app/debug-logger';
+import { isDevErrorScreen, subscribeDevErrorScreen } from '../app/dev_social_state';
 import { stableInitialWindowMetrics } from '../app/stable_safe_area_metrics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -137,6 +138,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    this.devErrorScreenUnsub = subscribeDevErrorScreen(() => this.forceUpdate());
     AsyncStorage.getItem('app_lang').then(v => {
       if (v && Object.prototype.hasOwnProperty.call(TEXTS, v)) {
         this.setState({ lang: v as ErrorBoundaryLang });
@@ -151,12 +153,17 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 
   componentWillUnmount() {
     this.appStateSub?.remove();
+    this.devErrorScreenUnsub?.();
   }
+
+  // зачем (Авторизация 12.10, system-010): dev `errorscreen=on` перерисовывает границу без исключения (ни recordError, ни журнала в Firestore)
+  private devErrorScreenUnsub: (() => void) | undefined;
 
   private appStateSub: { remove: () => void } | undefined;
 
   render() {
-    if (!this.state.hasError) return this.props.children;
+    const devForced = !this.state.hasError && isDevErrorScreen();
+    if (!this.state.hasError && !devForced) return this.props.children;
 
     const tx = TEXTS[this.state.lang];
     const showStack = __DEV__ && this.state.error;

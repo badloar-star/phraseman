@@ -15,6 +15,7 @@ import { captureAccountGeneration } from '../app/account_generation';
 import { COIN_RANK_MAX, nextCoinRankRow, type CoinRankRow } from '../app/coin_rank_table_v1';
 import { upgradeCoinRank, type CoinRankUpgradeResult } from '../app/coin_rank_upgrade_v1';
 import { DebugLogger } from '../app/debug-logger';
+import { getDevCoinBalanceOverride, isDevCoinUpgradeHold } from '../app/dev_coin_rank';
 import {
   isCoinRankCeremonyBindingStale,
   isCoinRankOwnerBindingCurrent,
@@ -54,6 +55,19 @@ export function useCoinRankUpgrade(): UseCoinRankUpgrade {
     if (inFlight.current) {
       DebugLogger.info('[COIN-RANK-UPGRADE]', 'хук: повторный тап во время повышения — ждём тот же результат');
       return inFlight.current;
+    }
+    // зачем (Авторизация 12.10, coins-004 и защита денег): dev `coinupgrade=hold` держит «Проверяем повышение…» без сервера; при подменённом
+    // балансе (`coins=N`, только показ) настоящее повышение НЕ запускается — иначе тап списал бы настоящие монеты. В сторе оба геттера выключены.
+    if (isDevCoinUpgradeHold()) {
+      DebugLogger.info('[COIN-RANK-UPGRADE]', '[DEV-STATE] повышение удержано (coinupgrade=hold) — сервер не вызывается');
+      setUpgrading(true);
+      const held = new Promise<CoinRankUpgradeResult>(() => undefined);
+      inFlight.current = held;
+      return held;
+    }
+    if (getDevCoinBalanceOverride() !== null) {
+      DebugLogger.warn('[COIN-RANK-UPGRADE]', '[DEV-STATE] повышение отклонено — баланс подменён для показа (coins=N), списания нет');
+      return Promise.resolve({ ok: false, reason: 'failed' } as const);
     }
     const token = captureAccountGeneration();
     if (!binding || !isCoinRankOwnerBindingCurrent(binding, token)) {

@@ -33,6 +33,7 @@ import { coinRankRowForDisplay, coinRankTitle, nextCoinRankRow } from './coin_ra
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
+import { getDevCoinBalanceOverride } from './dev_coin_rank';
 
 const COUNT_PULSE_MS = 700;
 const COUNT_PULSE_EASE = Easing.bezier(0.2, 1.25, 0.4, 1);
@@ -110,9 +111,12 @@ export default function RunesWalletScreen() {
   const rank = rankBinding?.rank ?? null;
   const current = rank === null ? null : coinRankRowForDisplay(rank);
   const next = rank === null ? null : nextCoinRankRow(rank);
-  const isZero = wallet.balance <= 0;
-  const progress = next ? Math.max(0, Math.min(1, wallet.balance / next.priceToReach)) : 0;
-  const remaining = next ? Math.max(0, next.priceToReach - wallet.balance) : 0;
+  // зачем (Авторизация 12.10, coins-001): dev `coins=N` — баланс только для показа (кошелёк в хранилище не меняется)
+  const devBalance = getDevCoinBalanceOverride();
+  const shownWallet: RunesBalance = devBalance === null ? wallet : { ...wallet, balance: devBalance, earnedTotal: Math.max(wallet.earnedTotal, devBalance) };
+  const isZero = shownWallet.balance <= 0;
+  const progress = next ? Math.max(0, Math.min(1, shownWallet.balance / next.priceToReach)) : 0;
+  const remaining = next ? Math.max(0, next.priceToReach - shownWallet.balance) : 0;
   const coinSize = isZero ? 92 : 112; // макет: на нулевом балансе монета 92, иначе 112
 
   return (
@@ -142,7 +146,7 @@ export default function RunesWalletScreen() {
         >
           <View
             accessible
-            accessibilityLabel={`${wallet.balance} ${balanceCaption}`}
+            accessibilityLabel={`${shownWallet.balance} ${balanceCaption}`}
             style={styles.hero}
           >
             {current ? (
@@ -157,7 +161,7 @@ export default function RunesWalletScreen() {
               <View style={{ width: coinSize, height: coinSize }} />
             )}
             <Animated.Text style={[styles.balance, { color: p.text, transform: [{ scale: bumpScale }] }]}>
-              {formatCoins(wallet.balance)}
+              {formatCoins(shownWallet.balance)}
             </Animated.Text>
             <Text style={[styles.caption, { color: p.textSecondary }]}>{balanceCaption}</Text>
           </View>
@@ -203,7 +207,7 @@ export default function RunesWalletScreen() {
               <Text style={[styles.earnedTitle, { color: p.text }]}>{earnedTitle}</Text>
               <Text style={[styles.earnedNote, { color: p.textSecondary }]}>{earnedNote}</Text>
             </View>
-            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(wallet.earnedTotal)}</Text>
+            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(shownWallet.earnedTotal)}</Text>
           </View>
         </ScrollView>
       </ContentWrap>

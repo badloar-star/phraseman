@@ -282,6 +282,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_energy_stop_flag',
     // зачем (координатор 12.10): dev_state?robot_no_cloud=1 — робот съёмки не пишет согласия/уведомления; в стор-сборке заглушка
     'dev_robot_no_cloud',
+    // зачем (Авторизация 12.10): coinRank/coins/coinupgrade — показ ранга и баланса для съёмки; в стор-сборке заглушка
+    'dev_coin_rank',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

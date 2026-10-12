@@ -13,6 +13,8 @@ CHAIN7_IDS = {
     'dialogs-015', 'dialogs-016', 'dialogs-019', 'dialogs-022', 'dialogs-041',
     'practice-001', 'practice-002', 'practice-003',
     'community-025', 'system-015', 'results-007', 'results-009', 'mistakes-panel-004', 'mistakes-panel-021',
+    # Авторизация 12.10: новые подмены coins=N / coinupgrade=hold / errorscreen=on / appmessage=announcement
+    'coins-001', 'coins-003', 'coins-004', 'system-010', 'system-012',
 }
 STEPS_ROBOT.INCLUDE_IDS.update(CHAIN7_IDS)
 
@@ -62,3 +64,16 @@ add('results-009', ['wait:1500', 'see:#stats-activity-365'], 'plus=on', '/streak
 add('mistakes-panel-004', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800'], 'mistakes=demo&studyTarget=en', '/mistakes_hub', note='«Перед отработкой»: шторка старта на демо-ошибках')
 add('mistakes-panel-021', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800', 'tap:#mistakes-hub-sheet-start', 'wait:2500', 'tap:#mistake-practice-menu', 'wait:500'],
     'mistakes=demo&studyTarget=en', '/mistakes_hub', note='меню задания в отработке ошибок (демо-ошибки)')
+
+# ── Монеты: баланс 12 480 и ранг 5 «Лектор» (coins.html) — только показ (app/dev_coin_rank.ts); при подменённом балансе настоящее повышение
+# отказывает до сервера, coinupgrade=hold держит «Проверяем повышение…» без сервера — монеты не списываются ни в одной из ссылок
+COINS = 'coinRank=5&coins=12480'
+add('coins-001', ['wait:1500'], COINS, '/runes_wallet', note='кошелёк: 12 480 монет, ранг 5 (баланс только для показа, coins=12480)')
+add('coins-003', ['wait:1500', 'see:#coin-rank-upgrade'], COINS, '/coin_rank', note='повышение: готово к подтверждению (Лектор → Эксперт за 6 000; кнопку НЕ жать)')
+add('coins-004', ['wait:1500', 'tap:#coin-rank-upgrade', 'await:#coin-rank-pending-spinner', 'wait:400'], COINS + '&coinupgrade=hold', '/coin_rank',
+    note='повышение: ожидание «Проверяем повышение…» (coinupgrade=hold — сервер не вызывается, списания нет)')
+
+# ── Системное: экран ошибки без исключения и отчётов; окно «сообщение команды» из памяти (кнопки окна НЕ жать — без них подтверждение не уходит)
+add('system-010', ['wait:2000'], 'errorscreen=on', '/(tabs)/home', note='экран ошибки корневой границы (errorscreen=on; снять — errorscreen=off или перезапуск)')
+add('system-012', ['wait:2500'], 'appmessage=announcement&overlays=on', '/(tabs)/home',
+    note='окно «сообщение команды»: демо-объявление из памяти (overlays=on — окна не гасятся)')

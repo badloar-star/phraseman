@@ -245,7 +245,65 @@ export function consumeDevFriendEvent(): DevFriendEvent | null {
 /** Только для тестов. */
 export function resetDevSocialStateForTests(): void {
   state = EMPTY;
+  errorScreen = false;
+  appMessage = null;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// ───────────────────── Экран ошибки и окно объявления (Авторизация 12.10, system-010 / system-012) ─────────────────────
+// зачем: настоящий сбой рендера пишет отчёт о падении и журнал ошибок в Firestore (ErrorBoundary.componentDidCatch) — для кадра нельзя.
+// `errorscreen=on` показывает экран корневого ErrorBoundary из памяти, без исключения и записей; снять — `errorscreen=off` или перезапуск
+// («Повторить» сбрасывает только состояние границы — так требует сторож error_boundary_graphite_source_contract).
+// Окно «сообщение команды» наполняется только после сети и скрыто у новичка < суток — `appmessage=announcement` кладёт демо-сообщение
+// в очередь окна из памяти (app/_layout.tsx), подтверждение закрытия для него не отправляется.
+export const DEV_APP_MESSAGES = ['announcement'] as const;
+export type DevAppMessage = (typeof DEV_APP_MESSAGES)[number];
+let errorScreen = false;
+let appMessage: DevAppMessage | null = null;
+const errorScreenListeners = new Set<() => void>();
+const appMessageListeners = new Set<(kind: DevAppMessage | null) => void>();
+
+export function setDevErrorScreen(on: boolean): boolean {
+  if (!devSocialAvailable()) {
+    console.warn(`${LOG} errorscreen: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  errorScreen = on;
+  console.log(`${LOG} errorscreen=${on ? 'on' : 'off'} (экран ошибки без исключения и отчётов)`); // guard-ok: единичный лог на ссылку
+  errorScreenListeners.forEach((listener) => listener());
+  return true;
+}
+
+export function isDevErrorScreen(): boolean {
+  return devSocialAvailable() && errorScreen;
+}
+
+export function subscribeDevErrorScreen(listener: () => void): () => void {
+  errorScreenListeners.add(listener);
+  return () => { errorScreenListeners.delete(listener); };
+}
+
+export function setDevAppMessage(kind: DevAppMessage | null): boolean {
+  if (!devSocialAvailable()) {
+    console.warn(`${LOG} appmessage: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  appMessage = kind;
+  console.log(`${LOG} appmessage=${kind ?? 'off'} (демо-сообщение в окно объявления, без сети)`); // guard-ok: единичный лог на ссылку
+  appMessageListeners.forEach((listener) => listener(kind));
+  return true;
+}
+
+export function getDevAppMessage(): DevAppMessage | null {
+  return devSocialAvailable() ? appMessage : null;
+}
+
+/** Подписка на подмену окна объявления; если флаг уже стоит — слушатель вызывается сразу. */
+export function subscribeDevAppMessage(listener: (kind: DevAppMessage | null) => void): () => void {
+  appMessageListeners.add(listener);
+  const current = getDevAppMessage();
+  if (current) listener(current);
+  return () => { appMessageListeners.delete(listener); };
+}

@@ -15,6 +15,7 @@ import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { getRunesBalanceRead, peekRunes } from './runes_system';
+import { getDevCoinBalanceOverride } from './dev_coin_rank';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
@@ -140,7 +141,9 @@ function useCoinBalance(): CoinBalanceProjection {
     };
   }, [reconcile]);
 
-  return { balance, ownerKey, forceBalanceReconcile };
+  // зачем (Авторизация 12.10, coins-003/004): dev `coins=N` — баланс только для показа; повышение при подмене отказывает до сервера (use_coin_rank_upgrade)
+  const devBalance = getDevCoinBalanceOverride();
+  return { balance: devBalance ?? balance, ownerKey, forceBalanceReconcile };
 }
 
 function formatCoins(value: number): string {

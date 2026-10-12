@@ -7,10 +7,10 @@ import fs from 'fs';
 import { join } from 'path';
 
 const ROOT = join(__dirname, '..');
-const baseline = JSON.parse(fs.readFileSync(join(ROOT, 'config', 'light-accent-graphics-baseline.json'), 'utf8')) as { total: number; counts: Record<string, number> };
+const baseline = JSON.parse(fs.readFileSync(join(ROOT, 'config', 'light-accent-graphics-baseline.json'), 'utf8')) as { total: number; counts: Record<string, number>; deepTotal?: number; deepCounts?: Record<string, number> };
 
 const raw = execFileSync(process.execPath, [join(ROOT, 'scripts', 'light_accent_graphics_scan.mjs'), '--json'], { cwd: ROOT, encoding: 'utf8', timeout: 120000 });
-const current = JSON.parse(raw) as { total: number; counts: Record<string, number> };
+const current = JSON.parse(raw) as { total: number; counts: Record<string, number>; deepTotal: number; deepCounts: Record<string, number> };
 
 describe('графика на сыром accent в светлой теме (храповик)', () => {
   it('в файле нет новых мест сверх базовой линии', () => {
@@ -31,5 +31,21 @@ describe('графика на сыром accent в светлой теме (хр
     const doc = fs.readFileSync(join(ROOT, 'docs', 'phraseman-2.0', 'LIGHT_ACCENT_GRAPHICS_AUDIT_2026-10-13.md'), 'utf8');
     expect(doc).toContain('accentBorder');
     expect(doc).toMatch(/сейчас \*\*\d+\*\*/);
+  });
+});
+
+// зачем (координатор 13.10): в тёмном accentBorder и accentText НЕ равны accent (graphite, rose, marine, aurora…) — прямое обращение к ним из app/components/hooks сдвигает тёмный вид.
+// Для графики и текста акцента разрешены только accentGraphic / accentTextSafe (в тёмном ровно accent). Число сырых обращений — храповик: растёт нельзя, уменьшилось — подтяни базовую линию.
+describe('сырые accentBorder/accentText (храповик)', () => {
+  const baseDeep = baseline.deepCounts ?? {};
+  it('нет новых обращений сверх базовой линии', () => {
+    const grew = Object.entries(current.deepCounts)
+      .filter(([file, n]) => n > (baseDeep[file] ?? 0))
+      .map(([file, n]) => `${file}: ${n} > ${baseDeep[file] ?? 0}`);
+    expect(grew).toEqual([]);
+  });
+  it('уменьшилось — обновите deepCounts в config/light-accent-graphics-baseline.json', () => {
+    const shrank = Object.entries(baseDeep).filter(([file, n]) => (current.deepCounts[file] ?? 0) < n).map(([file, n]) => `${file}: было ${n}, стало ${current.deepCounts[file] ?? 0}`);
+    expect(shrank).toEqual([]);
   });
 });

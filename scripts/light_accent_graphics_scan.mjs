@@ -72,6 +72,29 @@ function nearestKey(lines, i) {
   return '';
 }
 
+
+// зачем (координатор 13.10): в тёмном accentBorder и accentText НЕ равны accent (graphite, rose, marine, aurora…), прямое обращение к ним для графики/текста сдвигает тёмный вид.
+// Разрешены только accentGraphic / accentTextSafe (в тёмном — ровно accent). Этот счётчик — храповик по текущему числу сырых обращений; пометка `light-accent-ok: причина` выводит строку из учёта.
+const DEEP_ROOTS = ['app', 'components', 'hooks'];
+export function scanDeep() {
+  const counts = {};
+  for (const base of DEEP_ROOTS) {
+    const dir = path.join(root, base);
+    if (!fs.existsSync(dir)) continue;
+    for (const rel of walk(dir)) {
+      if (DEFINITION_FILES.has(rel) || CODEX_PATH.test(rel)) continue;
+      for (const line of fs.readFileSync(path.join(root, rel), 'utf8').split(/\r?\n/)) {
+        const trimmed = line.trimStart();
+        if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) continue;
+        if (/light-accent-ok|theme-exempt/.test(line)) continue;
+        const n = [...line.matchAll(/\.(accentBorder|accentText)\b/g)].length;
+        if (n) counts[rel] = (counts[rel] ?? 0) + n;
+      }
+    }
+  }
+  return counts;
+}
+
 export function scan() {
   const hits = [];
   const codex = [];
@@ -120,7 +143,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     for (const h of flagged) counts[h.file] = (counts[h.file] ?? 0) + 1;
     const byKind = {};
     for (const h of hits) byKind[h.kind] = (byKind[h.kind] ?? 0) + 1;
-    process.stdout.write(JSON.stringify({ total: flagged.length, counts, byKind, codex: codex.filter((h) => FLAGGED.has(h.kind)).length }));
+    const deepCounts = scanDeep();
+    const deepTotal = Object.values(deepCounts).reduce((x, y) => x + y, 0);
+    process.stdout.write(JSON.stringify({ total: flagged.length, counts, deepTotal, deepCounts, byKind, codex: codex.filter((h) => FLAGGED.has(h.kind)).length }));
   } else {
     const rank = (k) => ['text', 'icon', 'svg', 'graphic-prop', 'border', 'fill-graphic', 'gradient-graphic', 'switch', 'fill-unknown', 'pass-prop', 'alias'].indexOf(k);
     const rows = [...flagged].sort((a, b) => rank(a.kind) - rank(b.kind) || a.file.localeCompare(b.file) || a.line - b.line);

@@ -564,6 +564,17 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     // зачем (ревью R2): канал нового языка грузится — шапка уже его (по манифесту), лента в это время скелетон.
     : pendingChannel ?? legacyChannelSnapshot();
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
+  // зачем (chain21 Сверки, video-004: `#youtube-premiere-live` не найден; правило «сперва логи»): «герой» премьеры решается значением каталога — журнал при смене значений, чтобы видеть, дошёл ли каталог и в каком состоянии событие.
+  const heroTraceRef = useRef('');
+  useEffect(() => {
+    const trace = JSON.stringify({
+      studyTarget: String(studyTarget), catalogLoaded: catalog != null, channel: catalog?.channel?.id ?? null, videos: catalog?.videos?.length ?? 0,
+      activeEvent: catalog?.activeEvent ? { id: catalog.activeEvent.id, state: catalog.activeEvent.state } : null, hero: hero ? hero.state : null, savedOnly, inTab,
+    });
+    if (heroTraceRef.current === trace) return;
+    heroTraceRef.current = trace;
+    console.log('[VIDEO-TAB] hero', trace); // guard-ok: журнал решения о премьере при смене значений (не на каждый рендер)
+  }, [catalog, hero, inTab, savedOnly, studyTarget]);
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
   const homeListAll = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
   // Страницы по 20 (allVideosPage у Ядра = page × 20): список растёт по onEndReached; снимок (20) и «Сохранённые» — целиком.

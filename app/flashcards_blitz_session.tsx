@@ -217,6 +217,19 @@ export default function FlashcardsBlitzSession() {
   /** Инкремент = рестарт раунда («Ещё разок» — §3.9). */
   const [roundId, setRoundId] = useState(0);
   const [question, setQuestion] = useState<BlitzQuestion | null>(null);
+  // зачем (chain21 Сверки, practice-001…003: `#fc-blitz-opt-target` не найден; правило «сперва логи»): при dev-подмене ответа (`blitz_answer=`) — какой вариант помечен целью на каждый новый вопрос; пустой вопрос тоже виден.
+  const devTargetTraceRef = useRef('');
+  useEffect(() => {
+    const devAnswer = getDevBlitzAnswer();
+    if (devAnswer === null) return;
+    const trace = JSON.stringify({
+      devAnswer, hasQuestion: question != null, options: question?.options?.length ?? 0, correctIndex: question?.correctIndex ?? null,
+      firstWrong: question ? question.options.findIndex((_o, idx) => idx !== question.correctIndex) : null, pool: pool.length, roundId,
+    });
+    if (devTargetTraceRef.current === trace) return;
+    devTargetTraceRef.current = trace;
+    console.log('[BLITZ-DEV] target', trace); // guard-ok: dev-подмена ответа, журнал при смене значений
+  }, [pool.length, question, roundId]);
   const [btnStates, setBtnStates] = useState<BtnState[]>(IDLE_BTNS);
   const [locked, setLocked] = useState(false);
   // зачем (аудит Optimistic UI Карточек, 12.10): `locked` — состояние, и два тапа в одном кадре видели его «ещё свободным» и писали ответ дважды

@@ -25,6 +25,9 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
     '../../../constants/v2Style': { V2: { radius: { row: 12 } }, V2_TYPE: { caption: {} } },
     '../../v2/useV2Palette': { useV2Palette: () => ({ text: '#000', textSecondary: '#111' }) },
     '../../v2/V2Glass': { V2GlassSheen: 'V2GlassSheen', useV2GlassStyle: () => ({}) },
+    // зачем (координатор 12.10): шапка с 9ffbfb41a берёт плашки из homePlate (useHomePlateStyle/useHomePlateLog) и спиннер кита; песочница теста о них не знала → красный тест с 11.10
+    './homePlate': { useHomePlateStyle: () => ({ plateFill: '#000', plateShadow: [] }), useHomePlateLog: () => undefined },
+    '../../v2/KitSpinner': { __esModule: true, default: 'KitSpinner' },
   };
   const output = ts.transpileModule(source, {
     compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },

@@ -38780,21 +38780,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-015.png",
+      "evidence_at": "2026-10-12T02:56:48.003Z",
+      "evidence_sha256": "447fb9c2c79fa87acc188c0b2e0f1b49d2f7b43bd72bf6357b45891753e4ce12",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Вид переключателей — тот же, что на settings-gap-014 (образец: белая дорожка и чёрный бегунок у включённого; приложение: тёмная дорожка и белый бегунок справа) — общий вопрос про вид переключателей.",
+        "[состояние] «Автопроверка» выключена (в образце включена), «Скорость произношения 0.9x» с бегунком левее и почти невидимой дорожкой справа против «1.0x» с видимой дорожкой по всей ширине.",
+        "[вёрстка, мелко] «Голос озвучки (EN)» в приложении переносится на две строки и уже; строки выше и текст крупнее (≈105–140 против 95–105 px)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:57:37.212Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_edu"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:56, settings-gaps-states №15 «Обучение — низ (скорость, голос)»; образец нарисован с приложения): состав и порядок совпали — переключатели раздела «ОТВЕТ», раздел «ЗВУК» (Звуковые эффекты, Автопроизношение, «Скорость произношения» с ползунком), строка «Голос озвучки (EN) · Системный ›». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-016",
@@ -38882,21 +38887,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-018.png",
+      "evidence_at": "2026-10-12T02:57:07.466Z",
+      "evidence_sha256": "c8ce998d6a778a975800170c8cc34333a45040794c30fd45894a937ae53923a2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В приложении между «Українська» и «Español» дополнительная неактивная строка «English» с замком (язык изучения совпадает с языком меню и недоступен для выбора); в образце её нет — «8 языков» в названии кадра против девяти строк. Решить: дорисовать в образец неактивную «English» с замком либо убрать строку из приложения; рекомендую оставить (понятно, почему английского нет в выборе).",
+        "[вёрстка, мелко] Строки в приложении выше (≈84 против 82 px), шевроны ярче, область под заголовком чуть ниже; раздел «ЯЗЫК ИЗУЧЕНИЯ» на кадре обрезан краем (в образце виден целиком с флагом и «Сейчас изучаешь»)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:57:37.212Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_language"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:57, settings-gaps-states №18 «Язык интерфейса — 8 языков»): состав и порядок совпали — «✕», «Язык интерфейса», подпись «Язык меню и подсказок приложения», список языков (Русский с галочкой, Українська, Español, Português (Brasil), Tiếng Việt, Bahasa Indonesia, Türkçe, Polski), раздел «ЯЗЫК ИЗУЧЕНИЯ» ниже. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-019",

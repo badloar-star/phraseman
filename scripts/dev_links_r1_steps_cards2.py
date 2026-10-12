@@ -20,10 +20,12 @@ add('cards-gap-022', [TILE, TO_PACK, PACK_WORK], DEMO + '&fail=pack_write', SAVE
 add('cards-gap-035', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-add'], 'catalog=demo&fail=pack_write', PACKS, note='каталог: «не сохранился на телефоне» («Добавить себе» при fail=pack_write)')
 
 # ── Устно: удержание микрофона подменено верным ответом (speech=correct, SpeakingPanel); подпись кнопки — «Зажми и говори» (интерфейс ru)
-add('cards-section-046', ['long:Зажми и говори'], DEMO + '&speech=correct', SPEAK_ROUTE, note='«Устно — верно»: удержание микрофона подменено верным ответом (speech=correct; только русский интерфейс)')
+# зачем (сбои ROBOT9, 12.10): кнопки «Зажми и говори» в сессии нет — это круглый микрофон `fc-speak-mic` (нажал — говорю, нажал — стоп); подмена речи срабатывает на этих двух нажатиях
+add('cards-section-046', ['tap:#fc-speak-mic', 'wait:900', 'tap:#fc-speak-mic', 'wait:1200'], DEMO + '&speech=correct', SPEAK_ROUTE, note='«Устно — верно»: удержание микрофона подменено верным ответом (speech=correct; только русский интерфейс)')
 
 # ── Фильтр по уроку: карточки с источником «урок» (cards=demo_lessons: те же 64, у части source=lesson)
-add('cards-gap-024', [MENU, 'tap:#fc-menu-filter', 'tap:Урок 3'], 'cards=demo_lessons&plus=on', SAVED, note='фильтр «Урок 3» (cards=demo_lessons)')
+# зачем (сбои ROBOT9, 12.10): строка «Фильтр» в меню «⋯» появляется только при виде «Фразы» (hasFilter: savedContentKind === 'phrase') — сперва чип «Фразы»
+add('cards-gap-024', [MENU, 'tap:Фразы', 'wait:600', 'tap:#fc-menu-filter', 'tap:Урок 3'], 'cards=demo_lessons&plus=on', SAVED, note='фильтр «Урок 3» (cards=demo_lessons)')
 
 # ── Свой ОПУБЛИКОВАННЫЙ набор автора (cards=demo_published: локальный набор «Мой опубликованный», 10 карточек, + кэш каталога от моего stableId)
 # unique=False: кадр пробной съёмки 12.10 03:24 показал «B1 · 10 карточек · Только ты» — у демо-набора нет одобрения модерации, бейдж «В сообществе» и «Править набор» не рисуются (flashcards_collection.tsx:1030-1039)
@@ -42,5 +44,6 @@ add(['cards-v2-034', 'cards-section-043'], [], DEMO, RECALL_ROUTE, note='«Вс�
 add(['cards-v2-029', 'cards-076'], [], EMPTY_PLUS, '/flashcards_training_setup?mode=blitz', note='настройка тренировки без карточек (cards=empty): пусто / нет наборов')
 add('cards-078', [], DEMO, '/flashcards_training_setup', note='«Режим недоступен»: маршрут настройки без параметра mode')
 add('cards-020', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report'], 'catalog=demo', PACKS, note='жалоба на набор сообщества (долгое нажатие → «Пожаловаться»)')
-add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
+# зачем (сбои ROBOT9, 12.10): клавиатура после ввода закрывает поле «Перевод» — `back` убирает её перед следующим тапом
+add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'back', 'tap:#fc-editor-tr', 'type:Test', 'back', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
 add('cards-068', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Test', 'tap:#ugc-pack-draft-back', 'type:test', 'tap:#ugc-pack-draft-save', 'tap:#ugc-pack-menu', 'tap:#ugc-pack-clear-draft'], EMPTY_PLUS, CREATE, note='«Очистить черновик?»: одна карточка в черновике → меню набора → очистить')

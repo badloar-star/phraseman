@@ -60,7 +60,7 @@ add('cards-038', SEARCH + ['type:zzzqq'], DEMO, SAVED, note='поиск без �
 add('cards-034', ['long:#fc-gallery-tile-*'], DEMO, SAVED, note='долгое нажатие — шторка действий «Править / Удалить»')
 add('cards-035', [MENU, SELECT, TILE, TILE2, TILE3, 'tap:#fc-delete-selected'], DEMO, SAVED, note='3 выбранных → окно подтверждения удаления')
 add('cards-036', [MENU, SELECT, TILE, TILE2, TILE3], DEMO, SAVED, note='3 выбранных — «выбери ещё» (мало для набора)')
-add('cards-006', ['tap:#fc-zoom-larger', 'swipe-left:#fc-saved-row-word-*'], DEMO, SAVED, note='список (1 колонка, как в образце): свайп влево по строке — плашка «Удалено · Вернуть»; подсказка «Зажми карточку…» при плашке скрыта (привязка образца cards-v2 №10 «Удалено — вернуть»)')
+add('cards-006', ['tap:#fc-zoom-larger', 'swipe-left:#fc-saved-row-word-*'], DEMO, SAVED, unique=False, note='список (1 колонка, как в образце): свайп влево по строке — плашка «Удалено · Вернуть»; подсказка «Зажми карточку…» при плашке скрыта (привязка образца cards-v2 №10 «Удалено — вернуть»)')
 add('cards-v2-020', [TILE], DEMO, SAVED, note='карточка открыта, лицевая сторона')
 add(['cards-v2-021', 'cards-section-017'], [TILE, 'tap:#fc-expanded-card-flip'], DEMO, SAVED, note='оборот карточки')
 add(['cards-section-015', 'cards-v2-010'], [TILE, 'tap:#fc-expanded-delete'], DEMO, SAVED, note='карточка удалена — плашка «Вернуть»')
@@ -103,14 +103,17 @@ add('cards-063', [], DEMO_PLUS, '/flashcards_card_editor?id=dev_missing_card', n
 # ───────────────────────── Карточки · хаб, режим тренировки, настройка, каталог, «Из видео», лимиты, шторка «В какой набор?» ─────────────────────────
 HUB = '/flashcards'
 HUB_FREE = 'cards=demo&plus=off'
-TRAIN = 'tap:#fc-cards-hub-train'
+# зачем (сбои ROBOT8/ROBOT9, 12.10): хаб Карточек живёт бесконечной анимацией и не отдаёт дерево интерфейса (память 11.10) — тап `#fc-cards-hub-train` не находился ни разу.
+# Окно режимов открывает сам хаб по ?train=1 (FlashcardsHubScreen: автооткрытие, та же логика лимита и пейвола), настройку режима — прямой маршрут.
+HUB_TRAIN = '/flashcards?train=1'
+SETUP = '/flashcards_training_setup?mode='
 
 add('cards-v2-001', [], HUB_FREE, HUB, note='хаб Карточек (демо-аккаунт, Free)')
-add(['cards-002', 'cards-section-032', 'cards-v2-027'], [TRAIN], HUB_FREE, HUB, note='шторка выбора режима тренировки')
-add(['cards-section-033', 'cards-v2-028'], [TRAIN, 'tap:#fc-training-mode-blitz'], HUB_FREE, HUB, note='настройка тренировки «Блиц»')
-add('cards-section-034', [TRAIN, 'tap:#fc-training-mode-speaking'], HUB_FREE, HUB, note='настройка тренировки «Устно»')
-add('cards-section-035', [TRAIN, 'tap:#fc-training-mode-truefalse'], HUB_FREE, HUB, note='настройка тренировки «Правда / ложь»')
-add('cards-section-036', [TRAIN, 'tap:#fc-training-mode-recall'], HUB_FREE, HUB, note='настройка тренировки «Вспомни и напиши»')
+add(['cards-002', 'cards-section-032', 'cards-v2-027'], [], HUB_FREE, HUB_TRAIN, note='шторка выбора режима тренировки (хаб открывает её сам по ?train=1)')
+add(['cards-section-033', 'cards-v2-028'], [], HUB_FREE, SETUP + 'blitz', note='настройка тренировки «Блиц» (прямой маршрут)')
+add('cards-section-034', [], HUB_FREE, SETUP + 'speaking', note='настройка тренировки «Устно» (прямой маршрут)')
+add('cards-section-035', [], HUB_FREE, SETUP + 'truefalse', note='настройка тренировки «Правда / ложь» (прямой маршрут)')
+add('cards-section-036', [], HUB_FREE, SETUP + 'recall', note='настройка тренировки «Вспомни и напиши» (прямой маршрут)')
 
 PACKS = '/flashcards_packs'
 add(['cards-014', 'cards-section-022', 'cards-section-024', 'cards-v2-025', 'packs-simple-001'], [], 'catalog=demo', PACKS, note='каталог сообщества, «Новые»')
@@ -135,7 +138,8 @@ TO_PACK = 'tap:#fc-expanded-to-pack'
 PACK_WORK = f'tap:#fc-expanded-pack-{WORK}'
 add('cards-gap-018', [TILE, TO_PACK], DEMO, SAVED, note='шторка «В какой набор?» — список')
 add('cards-gap-020', [TILE, TO_PACK, PACK_WORK], DEMO, SAVED, note='карточка добавлена в «Работа» — тост «Добавлено»')
-add('cards-gap-021', [TILE, TO_PACK, PACK_WORK, 'wait:1500', TO_PACK, PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
+# зачем (сбои ROBOT9, 12.10): после первого добавления шторка карточки закрывается — для второго «В набор» карточку открываем заново; паузы — анимация шторок
+add('cards-gap-021', [TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK, 'wait:1500', TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
 
 # Карточки: состояния, которые открывает сама ссылка (фикстура держит/ломает данные, тап не нужен)
 # cards-039: привязка образца — cards-v2 №44 «Каталог без сети»; запись «Сохранённые — ошибка загрузки» ей не соответствует, кадр «без сети» ссылкой не выводится → строка «нет» до перепривязки
@@ -319,8 +323,8 @@ add('cards-gap-008', [], 'cards=notranslation&plus=on', RECALL_ROUTE, note='«Н
 add('cards-gap-006', [], DEMO + '&train_gate=fail_swipe_quota', TF_ROUTE, note='«Правда / ложь»: не удалось проверить лимит (train_gate=fail_swipe_quota)')
 add('cards-gap-001', [], DEMO + '&train_gate=fail_blitz', BLITZ_ROUTE, note='«Блиц»: тренировка не открылась (train_gate=fail_blitz)')
 add('cards-gap-002', [], DEMO + '&train_gate=fail_speaking', SPEAK_ROUTE, note='«Устно»: тренировка не открылась (train_gate=fail_speaking)')
-add('cards-gap-011', [TRAIN], 'cards=demo&plus=off&hold=quota_waiting', HUB, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting)')
-add('cards-gap-012', [TRAIN], 'cards=demo&plus=off&hold=quota_failed', HUB, note='шторка режима: «Не получилось подготовить тренировку» (hold=quota_failed)')
+add('cards-gap-011', [], 'cards=demo&plus=off&hold=quota_waiting', HUB_TRAIN, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting; хаб открывает окно сам по ?train=1)')
+add('cards-gap-012', [], 'cards=demo&plus=off&hold=quota_failed', HUB_TRAIN, note='шторка режима: «Не получилось подготовить тренировку» (hold=quota_failed; хаб открывает окно сам по ?train=1)')
 
 add('cards-062', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO + '&fail=card_write', '/flashcards_card_editor?create=1&cat=custom', note='редактор: «Не удалось сохранить» (fail=card_write); создание карточки — функция Plus, поэтому plus=on')
 

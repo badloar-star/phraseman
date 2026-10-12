@@ -122,15 +122,47 @@ export async function runSteps(run, steps, opts = {}) {
       return [];
     }
   };
-  const waitNode = async (selector) => {
+  // зачем (сбои ROBOT8/ROBOT9, 12.10): uiautomator отдаёт только ВИДИМЫЕ узлы — кнопка «Отмена подписки», «Добавить карточку» в редакторе набора, переключатель сравнения на пейволе
+  // лежат ниже экрана, и шаг падал с step_target_not_found, хотя элемент есть. Если дерево пришло (nodes > 0), а элемента нет, после паузы прокручиваем вниз и ищем снова (до 8 раз);
+  // пустое дерево (хаб Карточек с бесконечной анимацией) не листаем вслепую. `scroll:false` — для шага `await` (тосты у нижней кромки не трогаем).
+  const SEARCH_SCROLLS = 8;
+  const SEARCH_AFTER_MS = 1500;
+  const waitNode = async (selector, { scroll = true } = {}) => {
     const started = Date.now();
+    let scrolls = 0;
+    let budget = stepTimeoutMs;
     for (;;) {
       const nodes = snapshot();
       const node = findNode(nodes, selector);
       if (node) return { node, screen: nodes[0] ?? null };
-      if (Date.now() - started >= stepTimeoutMs) throw new Error(`step_target_not_found:${selector}`);
+      const elapsed = Date.now() - started;
+      if (scroll && nodes.length > 0 && scrolls < SEARCH_SCROLLS && elapsed >= SEARCH_AFTER_MS) {
+        scrolls += 1;
+        budget += 2500;
+        log(`элемент ${selector} не виден — ищем прокруткой вниз (${scrolls}/${SEARCH_SCROLLS})`); // guard-ok: причина действия
+        swipeScreen(nodes[0], 'down');
+        await sleep(500);
+        continue;
+      }
+      if (elapsed >= budget) throw new Error(`step_target_not_found:${selector}`);
       await sleep(pollMs);
     }
+  };
+  // зачем (cards-gap-021, 12.10): строка шторки найдена в дереве В МОМЕНТ анимации появления — тап по устаревшим границам промахивался, шаг «проходил», а действие не случалось.
+  // Перед тапом ждём, пока границы узла перестанут меняться (до 3 перепроверок).
+  const settleNode = async (selector, first) => {
+    let current = first;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      await sleep(350);
+      const again = findNode(snapshot(), selector);
+      if (!again) return current;
+      const same = Math.abs(again.top - current.top) <= 4 && Math.abs(again.left - current.left) <= 4
+        && Math.abs(again.bottom - current.bottom) <= 4 && Math.abs(again.right - current.right) <= 4;
+      current = again;
+      if (same) return current;
+      log(`границы ${selector} ещё меняются (анимация) — перепроверка ${attempt + 1}/3`); // guard-ok: причина паузы
+    }
+    return current;
   };
   const swipeScreen = (screen, dir) => {
     const height = screen ? screen.bottom - screen.top : 2400;
@@ -162,7 +194,7 @@ export async function runSteps(run, steps, opts = {}) {
     log(`шаг ${step.op}${step.value ? `:${step.value}` : ''}`);
     if (step.op === 'wait') { await sleep(Number(step.value)); continue; }
     // зачем (Макеты cards-gap-034, 12.10): тост «не скачан» живёт у нижней кромки — `see` подкрутил бы экран свайпом; ждём только появления
-    if (step.op === 'await') { await waitNode(step.value); continue; }
+    if (step.op === 'await') { await waitNode(step.value, { scroll: false }); continue; }
     if (step.op === 'back') run(['shell', 'input', 'keyevent', '4']);
     else if (step.op === 'key') run(['shell', 'input', 'keyevent', `KEYCODE_${step.value}`]);
     else if (step.op === 'type') run(['shell', 'input', 'text', step.value.replace(/ /g, '%s')]);
@@ -175,7 +207,8 @@ export async function runSteps(run, steps, opts = {}) {
       run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
     } else {
       // see: запас снизу 320 px — над таб-баром/нижней панелью, иначе следующий tap попадает в неё, а не в строку
-      const node = await bringIntoView(step.value, step.op === 'see' ? 320 : 60);
+      const found = await bringIntoView(step.value, step.op === 'see' ? 320 : 60);
+      const node = step.op === 'see' ? found : await settleNode(step.value, found);
       const [cx, cy] = centre(node);
       if (step.op === 'see') { /* только прокрутка до видимости */ }
       else if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);

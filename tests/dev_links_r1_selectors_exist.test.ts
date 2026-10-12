@@ -40,7 +40,7 @@ describe('dev links r1: step selectors exist in the app source', () => {
   const DYNAMIC: ReadonlyArray<{ template: string; prefix: string; values: readonly string[] }> = [
     { template: 'fc-training-mode-${', prefix: 'fc-training-mode-', values: ['blitz', 'speaking', 'truefalse', 'recall'] },
     { template: 'flashcards-pack-card-${', prefix: 'flashcards-pack-card-', values: ['dev_demo_community_1', 'dev_demo_community_2'] },
-    { template: 'manage-subscription-reason-${', prefix: 'manage-subscription-reason-', values: ['too_expensive'] },
+    { template: 'manage-subscription-reason-${', prefix: 'manage-subscription-reason-', values: ['too_expensive', 'missing_features'] },
   ];
   const exists = (needle: string): boolean => corpus.includes(needle)
     || DYNAMIC.some((d) => needle.startsWith(d.prefix) && d.values.includes(needle.slice(d.prefix.length)) && corpus.includes(d.template));

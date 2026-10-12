@@ -1722,7 +1722,18 @@ function AllMetricsFoldCard({ t, f, lang, themeMode, isGoldTheme, insights, tota
                         <View style={{ flex: 1, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 12, gap: 2, backgroundColor: tileBg }}>
                             <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{seriesTileLabel}</Text>
                             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
-                                {`${totalStreak} ${pluralRu(totalStreak, 'день', 'дня', 'дней')} · ${recordWord} ${bestStreak}`}
+                                {`${totalStreak} ${triLang(lang, {
+                                    // зачем (EN_UI_READINESS шаг 3): слово «дней» шло по-русски на всех языках интерфейса
+                                    ru: pluralRu(totalStreak, 'день', 'дня', 'дней'),
+                                    uk: pluralRu(totalStreak, 'день', 'дні', 'днів'),
+                                    en: totalStreak === 1 ? 'day' : 'days',
+                                    es: totalStreak === 1 ? 'día' : 'días',
+                                    'pt-BR': totalStreak === 1 ? 'dia' : 'dias',
+                                    vi: 'ngày',
+                                    id: 'hari',
+                                    tr: 'gün',
+                                    pl: totalStreak === 1 ? 'dzień' : 'dni',
+                                })} · ${recordWord} ${bestStreak}`}
                             </Text>
                         </View>
                     </View>

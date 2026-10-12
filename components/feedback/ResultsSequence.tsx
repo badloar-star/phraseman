@@ -1046,7 +1046,7 @@ export function ResultsSequence({
               progress={runesProgress}
               valueWidth={runesWidth}
               color={t.accentText}
-              accessibilityLabel={`${runesValue} монет`}
+              accessibilityLabel={runesAccessibilityLabel ?? `${runesValue} ${runesLabel}`}
             />
             {/* guard-ok: декоративный ассет, смысл несёт accessibilityLabel выше */}
             <Image

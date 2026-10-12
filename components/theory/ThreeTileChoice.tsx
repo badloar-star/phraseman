@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import TapScale from '../TapScale';
 import { hapticSuccess, hapticError } from '../../hooks/use-haptics';
 import { introText } from './theoryI18n';
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import type { IntroChoiceInteraction } from '../../app/lesson_data_types';
 import type { ThemeMode } from '../../constants/theme';
 import type { TheoryDrillProgressState } from '../../app/theory_progress';
@@ -92,7 +92,7 @@ export default function ThreeTileChoice({
 
   return (
     <View style={[styles.wrap, { borderColor: `${accent}33` }]}>
-      <Text style={[styles.hint, { color: theme.textMuted }]}>Попробуй выбрать форму</Text>
+      <Text style={[styles.hint, { color: theme.textMuted }]}>{triLang(lang, { ru: 'Попробуй выбрать форму', uk: 'Спробуй вибрати форму', en: 'Try picking the form', es: 'Prueba a elegir la forma', 'pt-BR': 'Tente escolher a forma', vi: 'Thử chọn dạng đúng', id: 'Coba pilih bentuknya', tr: 'Doğru biçimi seçmeyi dene', pl: 'Spróbuj wybrać formę' })}</Text>
 
       <Text style={[styles.q, { color: theme.textPrimary }]}>
         {data.before}
@@ -151,7 +151,7 @@ export default function ThreeTileChoice({
           style={styles.whyBtn}
         >
           <Text style={[styles.why, { color: theme.textMuted }]}>
-            {showWhy ? why : 'почему?'}
+            {showWhy ? why : triLang(lang, { ru: 'почему?', uk: 'чому?', en: 'why?', es: '¿por qué?', 'pt-BR': 'por quê?', vi: 'tại sao?', id: 'kenapa?', tr: 'neden?', pl: 'dlaczego?' })}
           </Text>
         </TapScale>
       )}

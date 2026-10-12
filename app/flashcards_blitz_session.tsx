@@ -1381,7 +1381,7 @@ export default function FlashcardsBlitzSession() {
         durationSec={result.playedSec}
         mistakes={buildResultMistakes(pool, eventsRef.current.filter((e) => !e.correct).map((e) => e.key))}
         onRetryWrong={restart}
-        feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: 'Блиц' }}
+        feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: blitzTitle }}
         retryLabel={triLang(lang, {
           // зачем (Сверка cards-section-054, макет «Ещё раз»): без восклицания.
           ru: 'Ещё раз', uk: 'Ще раз', en: 'One more!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',

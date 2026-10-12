@@ -457,3 +457,33 @@
 - удаление: profile-030 через `delete=fail` — только открыть окно.
 
 Выход и удаление — **только у вошедшего аккаунта**. Тесты: 11/11, 6/6, 8/8, окна аккаунта 8/8.
+
+## §AUTH-0080 — 2026-10-12: ускорения по п.73 — B3 (**c1f1089c0**), A1 (**11977b584**), (а) (**41301001f**); индикатор выхода — нужен макет
+- ✅ **B3 — c1f1089c0.** Свап при входе не перечитывает привязку вторым callable (−~3,7 с), только если выполнено ВСЁ:
+  - слияние не вызывалось;
+  - `ensure_link remote` этого входа вернул ok;
+  - `source === 'callable'`;
+  - `stableUid === remoteStableId`;
+  - текущий uid Firebase === `authUid` ответа.
+
+  Иначе — перечтение, как раньше. Решение — в чистой функции `app/auth_swap_link_reuse.ts`; доказательство выставляет ТОЛЬКО удалённая ветка ensure_link. Строки: `swap stage authoritative_link_reused {source, ageMs}` / `swap authoritative_link_reread {reason}`. Тесты `auth_swap_link_reuse` 5/5:
+  - слияние было → перечтение;
+  - кэш, disabled или unavailable → перечтение;
+  - свежий callable → без перечтения;
+  - нет доказательства, другой stableUid, другой или пустой uid → перечтение;
+  - проверка подключения в исходнике.
+
+  Плюс auth_provider_behavior 122/122, double_tap 29/29.
+- ✅ **A1 — 11977b584.** Первая аварийная копия не делается только при `allowWipeWithoutSync=true`, `synced=false` и БЕЗ `allowPendingShardSpendDiscard` (−~1,6 с). Строка `emergency_backup_skipped {reason:'final_snapshot_under_lock'}`. Вторая копия под замком обязательна. Тесты:
+  - сбой второй копии → `ok:false, backup_failed`, маркера `account_switch_quarantine_v1` нет, выхода из Google и стирания нет;
+  - путь сброса трат монет — все три копии на месте;
+  - вариант Б — только вторая копия, до стирания.
+
+  auth_provider_behavior 124/124, roundtrip 22/22, error_codes 12/12, backup_restore 38/38, shard_spend_ui 1/1, double_tap 29/29.
+- ✅ **(а) — 41301001f.** `onboarding_account_switch_confirm.ts`: смена из онбординга — `{ syncDeadlineMs: 3000, allowWipeWithoutSync: true }` (константа `ONBOARDING_SWITCH_SYNC_DEADLINE_MS`). Вместе с A1 первая копия гостя пропускается, вторая — под замком до стирания. Окно «Сменить без сохранения» остаётся только для отказов, которые этим не снимаются (траты монет, карантин очереди). aa_release_floor_auth_ui 21/21 — сторож первой попытки обновлён.
+- **Ожидание после трёх правок.** Выход ~9,7 → ~8 с. Вход в №2 из онбординга: смена гостя −(до ~1 с синхронизация + ~1,6 с копия), повторный вход −3,7 с. Плюс B1 у «4 · Темы» — до −9 с.
+- ⛔ **Этапный индикатор «Выходим из аккаунта» — НЕ сделан: нет макета.** В эталоне `profile.html` PRF-20-PROGRESS — кружок, «Выходим из аккаунта» и подпись, без этапов. По гейту «приложение = макет» и правилу «нет макета → не придумывать» нужен сначала макет. Предложение для Макетов/Дизайна: под заголовком три тихих шага «Сохраняем прогресс → Закрываем аккаунт → Очищаем телефон», текущий подсвечен. Стадии уже есть в коде (`[ACC-SIGNOUT] stage …`), и подключение уложится в мои файлы (`AccountLogoutFlow.tsx` + колбэк стадий из `signOutAndWipeForAccountSwitch`). Делаю сразу после одобренного макета.
+- **Прошу Сверку повторить** вход в №2 (выбором аккаунта, №1 не трогать, пароли не вводить) и выход. Нужны строки:
+  - `[AUTH-LINK-GOOGLE]` — ждём `swap stage authoritative_link_reused` вместо `authoritative_link_read`, и `set_stable_id_done` / `handoff_cleared` / `generation_begun`;
+  - `[ACC-SIGNOUT]` — ждём `emergency_backup_skipped`, `lock_acquired`, `final_snapshot_done`, `marker_done`, `entitlement_transition_done`;
+  - `[AUTH-SWITCH-OFFER]`, `[ACC-SWITCH-WIPE]`, `[NAV-PAINT]`.

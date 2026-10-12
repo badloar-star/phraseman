@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
 import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
+import { setDevAnimationsOff } from './dev_animations_off';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
 import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
@@ -152,6 +153,8 @@ export type DevStateRequest = Readonly<{
   aiConsent?: 'granted' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
+  /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
+  animations?: 'on' | 'off';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -227,6 +230,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.intros = pick('intros', ['seen', 'reset'] as const);
   request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
+  request.animations = pick('animations', ['on', 'off'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
@@ -490,6 +494,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.overlays !== undefined) {
     // зачем (координатор 12.10): для кадров, где окна не нужны, гасим все очередные окна корня (память, без записи и без отметок «прочитано»)
     await step('overlays', request.overlays, async () => setDevOverlaysOff(request.overlays === 'off'));
+  }
+  if (request.animations !== undefined) {
+    await step('animations', request.animations, async () => setDevAnimationsOff(request.animations === 'off'));
   }
   if (request.aiConsent !== undefined) {
     // зачем (координатор 12.10): у гостя нет согласия на ИИ — «Начать» открывает шторку согласия вместо сессии; подменяем ТОЛЬКО ответ гейта (память), recordAiDialogConsent не вызывается

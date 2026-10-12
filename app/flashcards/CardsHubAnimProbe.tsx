@@ -7,7 +7,7 @@ const WINDOW_MS = 5000;
 const DEV = typeof __DEV__ !== 'undefined' && __DEV__;
 const log = (message: string): void => { if (DEV) console.log(message); };
 
-export function CardsHubAnimProbe({ float, active, halfCycles }: Readonly<{ float: SharedValue<number>; active: boolean; halfCycles: number }>) {
+export function CardsHubAnimProbe({ float, active }: Readonly<{ float: SharedValue<number>; active: boolean }>) {
   const ticks = useSharedValue(0);
   useAnimatedReaction(
     () => float.value,
@@ -17,12 +17,12 @@ export function CardsHubAnimProbe({ float, active, halfCycles }: Readonly<{ floa
   );
   useEffect(() => {
     if (!active) {
-      log('[CARDS-HUB-ANIM] анимация выключена (экран не в фокусе, приложение в фоне или «уменьшить движение»)');
+      log('[CARDS-HUB-ANIM] анимация выключена (экран не в фокусе, приложение в фоне, «уменьшить движение» или dev animations=off)');
       return undefined;
     }
     const startedAt = Date.now();
     let last = ticks.value;
-    log(`[CARDS-HUB-ANIM] старт: качаний=${halfCycles / 2} (полуциклов ${halfCycles}, по 5 с); дальше стоит на нуле`);
+    log('[CARDS-HUB-ANIM] старт: бесконечное парение (по приказу владельца 11.10), пока экран в фокусе и приложение активно');
     const timer = setInterval(() => {
       const now = ticks.value;
       const delta = now - last;
@@ -33,7 +33,7 @@ export function CardsHubAnimProbe({ float, active, halfCycles }: Readonly<{ floa
       clearInterval(timer);
       log(`[CARDS-HUB-ANIM] стоп: экран ушёл из фокуса или размонтирован, работала ${Date.now() - startedAt} мс`);
     };
-  }, [active, float, halfCycles, ticks]);
+  }, [active, float, ticks]);
   return null;
 }
 

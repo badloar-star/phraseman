@@ -10,14 +10,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { CardsHubAnimProbe } from './CardsHubAnimProbe';
-
-// зачем (координатор 12.10): число полуциклов «парения» стопки — конечное (было -1 = вечно). Нечётное не ставить — стопка остановилась бы смещённой.
-const FLOAT_HALF_CYCLES = 4;
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useSyncExternalStore } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { isDevAnimationsOff, subscribeDevAnimationsOff } from '../dev_animations_off';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 
@@ -105,19 +103,20 @@ function CardsHubV2Inner({
   // транскрипции на тонированной заливке стопки давал контраст 1.57–5.33 (нечитаемо на всех 23 темах) — берём цвет слова, 4.10–4.49.
   const faceInkSoft = faceInk;
   const float = useSharedValue(0);
-  // зачем (координатор 12.10, «хаб крутит бесконечную анимацию»): «парение» стопки (8 dp за 5 с) не нужно постоянно — раньше withRepeat(-1) держал обновление вида
-  // каждый кадр, пока экран открыт (нагрузка на телефон; uiautomator не доходит до покоя). Теперь два полных качания (≈20 с) после каждого входа на экран и остановка на нуле.
+  // зачем (координатор 12.10): «парение» стопки (8 dp за 5 с) бесконечное — по приказу владельца 11.10 («хаб утра»); по коду крутится на UI-потоке и стоит вне фокуса/в фоне/при «уменьшить движение».
+  // Для робота — dev-подмена `animations=off` (app/dev_animations_off.ts, только память, в сторе недоступна): uiautomator не доходит до покоя на вечной анимации. Замер кадров — [CARDS-HUB-ANIM].
+  const animationsOffByDev = useSyncExternalStore(subscribeDevAnimationsOff, isDevAnimationsOff, () => false);
   // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
   const runtimeActive = useRuntimeActive();
   useEffect(() => {
-    if (reduceMotion || !runtimeActive) return undefined;
+    if (reduceMotion || !runtimeActive || animationsOffByDev) return undefined;
     noteHubSubscription('CardsHubV2.floatLoop', 'on');
-    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), FLOAT_HALF_CYCLES, true);
+    float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), -1, true);
     return () => { float.value = 0; noteHubSubscription('CardsHubV2.floatLoop', 'off'); };
-  }, [float, reduceMotion, runtimeActive]);
+  }, [animationsOffByDev, float, reduceMotion, runtimeActive]);
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
   const animProbe = typeof __DEV__ !== 'undefined' && __DEV__
-    ? <CardsHubAnimProbe float={float} active={!reduceMotion && runtimeActive} halfCycles={FLOAT_HALF_CYCLES} />
+    ? <CardsHubAnimProbe float={float} active={!reduceMotion && runtimeActive && !animationsOffByDev} />
     : null;
   const [a, b] = themePair(g);
   // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.

@@ -254,7 +254,13 @@ async function getTodayTargetRemotePhrase(
     if (cached) {
       try {
         const parsed = JSON.parse(cached) as DailyPhrase;
-        if (parsed.studyTarget === studyTarget && parsed.english?.trim()) return parsed;
+        // зачем (координатор 12.10: «строк asset: read в журнале нет — откуда пакет?»): выход по кэшу дня был немым —
+        // пакет .dpk в этот день не читается вовсе. Источник фразы — в журнал.
+        if (parsed.studyTarget === studyTarget && parsed.english?.trim()) {
+          console.log('[DAILY-PHRASE-GATE] today: source=day_cache', JSON.stringify({ studyTarget, sourceLocale, date: today, id: parsed.id ?? null })); // guard-ok: источник фразы дня
+          return parsed;
+        }
+        console.log('[DAILY-PHRASE-GATE] today: day_cache_rejected', JSON.stringify({ studyTarget, cachedTarget: parsed.studyTarget ?? null, hasText: Boolean(parsed.english?.trim()) })); // guard-ok: отказ кэша называет причину
       } catch (e) {
         DebugLogger.error(
           'daily_phrase_system:target_remote_cache',
@@ -265,9 +271,14 @@ async function getTodayTargetRemotePhrase(
     }
   }
 
+  const packStartedAt = Date.now();
   await ensureTargetRemoteDailyPhrases(studyTarget, sourceLocale);
   const phrase = targetRemoteDailyPhraseForDay(studyTarget, sourceLocale);
-  if (!phrase) return null;
+  if (!phrase) {
+    console.warn('[DAILY-PHRASE-GATE] today: no_phrase', JSON.stringify({ studyTarget, sourceLocale, date: today, cachedDate, ms: Date.now() - packStartedAt })); // guard-ok: ранний выход называет причину
+    return null;
+  }
+  console.log('[DAILY-PHRASE-GATE] today: source=pack', JSON.stringify({ studyTarget, sourceLocale, date: today, id: phrase.id ?? null, ms: Date.now() - packStartedAt })); // guard-ok: источник фразы дня
   await AsyncStorage.setItem(phraseKey, JSON.stringify(phrase));
   await AsyncStorage.setItem(lastDateKey, today);
   return phrase;

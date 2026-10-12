@@ -77,6 +77,8 @@ export function postAccessFailureAction(args: { source: string; accountCurrent: 
  * поэтому при false оно НЕ ушло и экран остался бы висеть. Аккаунт сменился (stale) — не трогаем; ok+false на том же аккаунте — шлём событие сами; ok+true — делать нечего.
  */
 export function onboardingFinishFailureAction(args: { status: 'ok' | 'stale'; value: boolean; accountCurrent: boolean }): 'emit_completed' | 'skip' {
-  if (args.status !== 'ok' || !args.accountCurrent) return 'skip';
-  return args.value ? 'skip' : 'emit_completed';
+  // зачем (третье ревью 0d76a9528, 🟡1): stale бывает и на ТОМ ЖЕ аккаунте — замок перехода не взят за 1,5 с. Прежнее «stale → ничего» оставляло человека
+  // на пейволе онбординга с уже включённым Plus. Решаем по факту смены аккаунта, а не по статусу обёртки.
+  if (!args.accountCurrent) return 'skip';
+  return args.status === 'ok' && args.value ? 'skip' : 'emit_completed';
 }

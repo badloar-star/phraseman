@@ -348,7 +348,9 @@ describe('ревью fa6648f02 (3): сбой завершения онборди
   it('таблица: событие завершения шлём ТОЛЬКО при ok+false на том же аккаунте', () => {
     expect(onboardingFinishFailureAction({ status: 'ok', value: false, accountCurrent: true })).toBe('emit_completed');
     expect(onboardingFinishFailureAction({ status: 'ok', value: true, accountCurrent: true })).toBe('skip');
-    expect(onboardingFinishFailureAction({ status: 'stale', value: false, accountCurrent: true })).toBe('skip');
+    // третье ревью 0d76a9528: stale на том же аккаунте (замок не взят) — всё равно выходим дальше, Plus уже включён
+    expect(onboardingFinishFailureAction({ status: 'stale', value: false, accountCurrent: true })).toBe('emit_completed');
+    expect(onboardingFinishFailureAction({ status: 'stale', value: true, accountCurrent: true })).toBe('emit_completed');
     expect(onboardingFinishFailureAction({ status: 'ok', value: false, accountCurrent: false })).toBe('skip');
     expect(onboardingFinishFailureAction({ status: 'stale', value: false, accountCurrent: false })).toBe('skip');
   });

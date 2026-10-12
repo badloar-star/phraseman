@@ -11,7 +11,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { Dimensions, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Dimensions, InteractionManager, Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
@@ -219,6 +219,8 @@ export const KitCheck = memo(function KitCheck({ g, on }: Readonly<{ g: GlassTok
 });
 
 const EMPTY_BLOCK_H = 217;
+/** Доля высоты блока, на которую его центр лежит ниже центра экрана (translateY(-46%) макета при top:50%: центр блока = 50 % + 4 % высоты). */
+const EMPTY_CENTER_SHIFT = 0.46;
 
 /**
  * Блок «Пусто»: плитка 61, заголовок 24/30, подпись, кнопка — по ЦЕНТРУ ЭКРАНА (top:50%, translateY(-46%) макета),
@@ -240,19 +242,41 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   const { height } = useWindowDimensions();
   const lh = useLineScale();
   const holder = useRef<View>(null);
+  const block = useRef<View>(null);
   const [pageTop, setPageTop] = useState<number | null>(null);
-  const measure = useCallback(() => {
+  const [ready, setReady] = useState(false);
+  // зачем (координатор 12.10, cards-009): блок центрируется по ЭКРАНУ целиком — плитка, заголовок, подпись И кнопка; высоту меряем, а не берём константу 217 (кнопка/шрифт её меняют)
+  const [blockH, setBlockH] = useState(EMPTY_BLOCK_H);
+  // зачем (журнал [CARDS-EMPTY] 12.10: pageTop(y)=-50 при высоте родителя = высоте окна): первый замер шёл ВО ВРЕМЯ анимации входа экрана — родитель был сдвинут на 50 dp, поправка вычиталась зря,
+  // и после конца анимации блок оказывался на ≈50 dp ниже образца (центр 56–57 % вместо 50,5 %). Поэтому ненулевой замер считаем промежуточным и повторяем после анимаций (InteractionManager)
+  // и по таймеру; блок показываем, когда замер финальный или родитель стоит у верха окна (y≈0).
+  const measure = useCallback((final: boolean) => {
     holder.current?.measureInWindow((_x, y, _w, h) => {
-      // зачем (координатор 12.10, cards-009: блок «Пока пусто» ниже образца на ≈45 dp; «сперва логи»): все числа, из которых считается верх блока, — в [CARDS-EMPTY]
       const screenH = Dimensions.get('screen').height;
-      const top = Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - y);
-      console.log(`[CARDS-EMPTY] measure testID=${String(testID)} windowH=${Math.round(height)} screenH=${Math.round(screenH)} pageTop(y)=${Math.round(y)} holderH=${Math.round(h)} blockTop=${top} blockCenterOnScreen=${Math.round(y + top + EMPTY_BLOCK_H / 2)} centerShare=${((y + top + EMPTY_BLOCK_H / 2) / screenH).toFixed(3)}`); // guard-ok: числа раскладки пустого блока
+      const top = Math.round(height / 2 - EMPTY_CENTER_SHIFT * blockH - y);
+      const settled = final || Math.abs(y) < 1;
+      console.log(`[CARDS-EMPTY] holder testID=${String(testID)} pass=${final ? 'final' : 'layout'} windowH=${Math.round(height)} screenH=${Math.round(screenH)} pageTop(y)=${Math.round(y)} holderH=${Math.round(h)} blockH=${Math.round(blockH)} blockTop=${top} settled=${String(settled)}`); // guard-ok: числа раскладки пустого блока
       setPageTop((prev) => (prev === y ? prev : y));
+      if (settled) setReady(true);
     });
-  }, [height, testID]);
+  }, [blockH, height, testID]);
+  const onHolderLayout = useCallback(() => {
+    measure(false);
+    InteractionManager.runAfterInteractions(() => measure(true));
+    setTimeout(() => measure(true), 800);
+  }, [measure]);
+  const onBlockLayout = useCallback((event: { nativeEvent: { layout: { height: number } } }) => {
+    const measured = event.nativeEvent.layout.height;
+    setBlockH((prev) => (Math.abs(prev - measured) < 0.5 ? prev : measured));
+    // абсолютное положение блока на экране после раскладки — главная цифра для сверки с образцом (центр блока 50,5 % высоты экрана)
+    block.current?.measureInWindow((_x, y, _w, h) => {
+      const screenH = Dimensions.get('screen').height;
+      console.log(`[CARDS-EMPTY] block testID=${String(testID)} hasAction=${String(!hideAction)} layoutH=${Math.round(measured)} windowY=${Math.round(y)} windowH=${Math.round(h)} centerOnScreen=${Math.round(y + h / 2)} centerShare=${((y + h / 2) / screenH).toFixed(3)}`); // guard-ok: положение всего блока на экране
+    });
+  }, [hideAction, testID]);
   return (
-    <View ref={holder} onLayout={measure} testID={testID} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <View pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - (pageTop ?? 0)), opacity: pageTop === null ? 0 : 1 }]}>
+    <View ref={holder} onLayout={onHolderLayout} testID={testID} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+      <View ref={block} collapsable={false} onLayout={onBlockLayout} pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - EMPTY_CENTER_SHIFT * blockH - (pageTop ?? 0)), opacity: pageTop === null || !ready ? 0 : 1 }]}>
         <View style={[styles.emptyTile, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name={icon} size={28} color={g.text} />
         </View>

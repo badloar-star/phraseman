@@ -12,17 +12,17 @@ INCLUDE_IDS = {'onboarding-030', 'mistakes-panel-002'}
 HOME = '/(tabs)/home'
 
 # ── Онбординг: открыть с нужного шага (`onbstep` ставит onboarding=pending, общий onboarding=done его не перебивает)
-add('onboarding-001', [], 'onbstep=welcome', HOME, note='онбординг: приветствие (шаг welcome)')
+add('onboarding-001', ['wait:1800'], 'onbstep=welcome', HOME, note='онбординг: приветствие (шаг welcome)')
 add('onboarding-007', [], 'onbstep=privacy', HOME, note='онбординг: сейф «Твои данные — только твои» (шаг privacy)')
 add('onboarding-009', [], 'onbstep=niceToMeet&greet=Alex', HOME, note='онбординг: знакомство (шаг niceToMeet, имя Alex)')
 add('onboarding-011', ['wait:2500'], 'onbstep=promise', HOME, note='онбординг: «Прогресс» — график; пауза 2,5 с, пока дорисуется')
 add('onboarding-012', [], 'onbstep=improve', HOME, note='онбординг: «Помоги сделать Phraseman лучше» (шаг improve)')
 add('onboarding-013', [], 'onbstep=source', HOME, note='онбординг: «Как ты узнал о нас?» (шаг source)')
 add('onboarding-014', ['tap:#onboarding-source-tiktok'], 'onbstep=source', HOME, note='онбординг: «Как ты узнал о нас?» с выбранным вариантом TikTok')
-add('onboarding-015', [], 'onbstep=language', HOME, note='онбординг: «Какой язык учим?» (шаг language)')
-add('onboarding-018', [], 'onbstep=notifications', HOME, note='онбординг: уведомления (шаг notifications)')
+add('onboarding-015', ['wait:2000'], 'onbstep=language', HOME, note='онбординг: «Какой язык учим?» (шаг language)')
+add('onboarding-018', ['wait:2000'], 'onbstep=notifications', HOME, note='онбординг: уведомления (шаг notifications)')
 add('onboarding-022', [], 'onbstep=trialReminder', HOME, note='онбординг: «Напомним до конца пробного» (шаг trialReminder)')
-add('onboarding-paywall-002', [], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus — справочная цена (paywall=reference)')
+add('onboarding-paywall-002', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus — справочная цена (paywall=reference)')
 add('onboarding-030', ['tap:#onboarding-paywall-more-offers'], 'onbstep=onboardingPaywall&paywall=reference', HOME, note='онбординг: цена Plus → «Больше предложений»')
 
 # ── Карточки

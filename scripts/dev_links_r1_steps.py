@@ -21,6 +21,10 @@ ENTRIES = {}
 
 
 def add(ids, steps=(), params='', nxt='', unique=True, note=''):
+    # зачем (координатор 12.10): у гостя ранг 0 — все диалоги закрыты «Откроется на ранге N»; для всех ссылок через хаб Диалогов подменяем ПОКАЗЫВАЕМЫЙ ранг
+    # (dev_state?coinRank=6, app/dev_coin_rank.ts — только память, монеты и ранг не пишутся)
+    if nxt.startswith('/ai_dialog_home') and 'coinRank=' not in params:
+        params = f'{params}&coinRank=6' if params else 'coinRank=6'
     for rid in ([ids] if isinstance(ids, str) else ids):
         if rid in ENTRIES:
             raise SystemExit(f'duplicate steps entry: {rid}')
@@ -193,7 +197,7 @@ S_FREE = 'plus=off'
 add(['profile-001', 'settings-gap-002'], [], S_FREE, SETTINGS, note='главная Настроек, Plus не активна')
 add('settings-gap-003', [], PLAN_Y, SETTINGS, note='главная Настроек, Plus по подписке (годовой план читается при старте)')
 add(['profile-004', 'settings-gap-018'], [], S_FREE, '/settings_language', note='язык интерфейса — список языков')
-add(['profile-005', 'settings-gap-019'], ['tap:#settings-study-language-row'], S_FREE, SETTINGS, note='шторка «Язык изучения»')
+add(['profile-005', 'settings-gap-019'], ['see:#settings-study-language-row', 'tap:#settings-study-language-row'], S_FREE, SETTINGS, note='шторка «Язык изучения» (строка у низа экрана: сначала прокрутка, иначе тап попадает в таб-бар и открывает «Диалоги»)')
 add('profile-006', [], S_FREE, '/settings_notifications', note='уведомления — верх')
 add('settings-gap-011', ['scroll:down', 'scroll:down'], S_FREE, '/settings_notifications', note='уведомления — низ списка')
 add(['profile-007', 'settings-gap-014'], [], S_FREE, '/settings_edu', note='обучение и озвучка — верх')
@@ -315,3 +319,12 @@ add('cards-gap-026', [f'long:#fc-my-packs-pack-{WORK}', 'tap:#fc-my-packs-action
 LESSON_MENU = '/lesson_menu?id=1'
 add('energy-modes-017', ['tap:#lesson-menu-primary'], 'energy=0&plus=off&mode=a', LESSON_MENU, note='Режим А, энергии нет: «Начать» в меню урока → окно «Нет энергии» (NoEnergyModal)')
 add('energy-modes-015', ['tap:#lesson-menu-primary', 'wait:3000'], 'energy=5&plus=off&mode=a', LESSON_MENU, note='Режим А: старт занятия, энергия 5 → 4 в пилюле шапки (кадр сразу после входа в урок)', unique=False)
+
+
+# ───────────────────────── Раунд 4 (координатор 12.10) ─────────────────────────
+# Диалог внутри сессии с настроением собеседника: dev_dialog_mood теперь применяется и при подставном ходе (dialogue_v2_turn_coaching_client.ts)
+add('dialogs-023', DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok&dev_dialog_mood=sad', DLG, note='настроение собеседника упало (dev_dialog_mood=sad поверх подставного хода)')
+
+# Настройки: блок доступа Plus (vip читается при старте — робот перезапускает приложение сам)
+add('settings-gap-004', ['see:#settings-plus-access-details'], 'vip=promo&plus=inherit', SETTINGS, note='главная Настроек: Plus по промокоду (vip=promo), блок доступа прокручен в экран')
+add('settings-gap-005', ['see:#settings-plus-access-details'], 'vip=referral&plus=inherit', SETTINGS, note='главная Настроек: Plus за приглашения (vip=referral), блок доступа прокручен в экран')

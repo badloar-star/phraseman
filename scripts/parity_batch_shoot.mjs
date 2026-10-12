@@ -12,6 +12,9 @@
  *   --dry-run            печатает команды, adb не запускает (эмулятор не нужен)
  *   --status=pending     какие статусы реестра брать для --all-pending (через запятую; по умолчанию pending)
  *   --guest              подтверждение: на устройстве вход — АНОНИМНЫЙ гость (pm clear + онбординг). Без него строки с cards=demo|empty|… пропускаются
+ *   --burst-ms=0..1000   кадр через N мс после «replace вызван» без паузы settle и без повторов пустого кадра (анимации, конфетти)
+ *   --no-blank-check     не проверять «пустой кадр» (по умолчанию: >95 % одного цвета или <8 цветов → повтор до 6 раз через 1 с; пусто >3 с = статус blank_too_long)
+ *   --blank-retries=6  --blank-poll-ms=1000  --blank-max-ms=3000
  *   --include-nonunique  брать и строки с «уникальна: нет» (ссылка общая с соседями — кадр будет НЕ тем состоянием; по умолчанию пропускаются)
  *   --device=emulator-5554   --timeout-ms=20000   --settle-ms=1500   --blind-wait-ms=8000   --poll-ms=1000
  *   --out=<папка>        куда класть <id>.png (по умолчанию docs/phraseman-2.0/evidence/parity)
@@ -25,6 +28,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { describeSteps, parseSteps, runSteps } from './parity_steps.mjs';
+import { analyzeFrame, blankCheckAvailable, blankCheckUnavailableReason } from './parity_blank.mjs';
 
 const LOG = '[BATCH-SHOOT]';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -133,7 +137,7 @@ function adb(device, args, { timeout = 30_000, binary = false } = {}) {
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const isPng = (buffer) => buffer.length > 4000 && buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47;
+const isPng = (buffer) => buffer.length > 200 && buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47;
 
 async function waitMarker(device, timeoutMs, pollMs) {
   const started = Date.now();
@@ -180,16 +184,63 @@ async function shootOne(device, row, opts, runDir) {
       result = { ...result, outcome: 'error', detail: String(error.message ?? error).slice(0, 160) };
     }
   }
-  await sleep(opts.settleMs);
-  const png = adb(device, ['exec-out', 'screencap', '-p'], { timeout: 30_000, binary: true });
-  if (!isPng(png)) return { ...result, outcome: 'error', detail: `screencap_не_png_${png.length}_байт`, file: null };
-  const ok = result.outcome === 'ok';
-  const target = ok ? path.join(opts.outDir, `${row.id}.png`) : path.join(runDir, `${row.id}.${result.outcome}.png`);
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  const tmp = `${target}.tmpw`;
-  fs.writeFileSync(tmp, png);
-  fs.renameSync(tmp, target);
-  return { ...result, file: path.relative(ROOT, target).split(path.sep).join('/'), bytes: png.length };
+  // --burst-ms: кадр СРАЗУ после перехода (конфетти, вспышки) — без паузы settle и без повторов пустого кадра
+  const burst = opts.burstMs > 0 && result.outcome === 'ok';
+  await sleep(burst ? opts.burstMs : opts.settleMs);
+  const capture = () => adb(device, ['exec-out', 'screencap', '-p'], { timeout: 30_000, binary: true });
+  const first = capture();
+  if (!isPng(first)) return { ...result, outcome: 'error', detail: `screencap_не_png_${first.length}_байт`, file: null };
+  let finalPng = first;
+  let blankFirst = null;
+  let msToNonblank = 0;
+  let outcome = result.outcome;
+  let detail = burst ? `${result.detail}+burst_${opts.burstMs}мс` : result.detail;
+  // зачем (координатор 12.10): пустой кадр сразу после перехода/модалки — не доказательство; ждём и снимаем снова (до N раз), фиксируем ms_to_nonblank
+  if (outcome === 'ok' && !burst && opts.blankCheck) {
+    let verdict = analyzeFrame(first);
+    if (verdict && verdict.blank) {
+      blankFirst = first;
+      const startedBlank = Date.now();
+      console.warn(`${LOG} ${row.id}: пустой кадр (доминанта ${(verdict.dominantRatio * 100).toFixed(1)}%, цветов ${verdict.uniqueColors}) — ждём и снимаем снова`); // guard-ok: причина повтора
+      for (let attempt = 1; attempt <= opts.blankRetries; attempt += 1) {
+        await sleep(opts.blankPollMs);
+        const shot = capture();
+        if (!isPng(shot)) continue;
+        verdict = analyzeFrame(shot);
+        if (verdict && !verdict.blank) {
+          finalPng = shot;
+          msToNonblank = Date.now() - startedBlank;
+          break;
+        }
+      }
+      if (!finalPng || finalPng === first) {
+        outcome = 'blank_too_long';
+        detail = `${detail}+пусто_${opts.blankRetries}_повторов`;
+      } else if (msToNonblank > opts.blankMaxMs) {
+        outcome = 'blank_too_long';
+        detail = `${detail}+пусто_${msToNonblank}мс`;
+      } else {
+        detail = `${detail}+пусто_${msToNonblank}мс`;
+      }
+    }
+  }
+  const rel = (target) => path.relative(ROOT, target).split(path.sep).join('/');
+  const save = (target, data) => {
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    const tmp = `${target}.tmpw`;
+    fs.writeFileSync(tmp, data);
+    fs.renameSync(tmp, target);
+  };
+  if (outcome === 'ok') {
+    const target = path.join(opts.outDir, `${row.id}.png`);
+    save(target, finalPng);
+    return { ...result, outcome, detail, file: rel(target), bytes: finalPng.length, msToNonblank };
+  }
+  // не кадр, а находка: пустой экран дольше порога может быть настоящей вспышкой у человека — файлы только в _runs
+  const target = path.join(runDir, `${row.id}.${outcome}.png`);
+  save(target, blankFirst ?? first);
+  if (outcome === 'blank_too_long' && finalPng !== first) save(path.join(runDir, `${row.id}.${outcome}.late.png`), finalPng);
+  return { ...result, outcome, detail, file: rel(target), bytes: first.length, msToNonblank };
 }
 
 export async function main(argv) {
@@ -203,7 +254,12 @@ export async function main(argv) {
     timeoutMs: Number(arg(argv, '--timeout-ms', '20000')),
     settleMs: Number(arg(argv, '--settle-ms', '1500')),
     blindWaitMs: Number(arg(argv, '--blind-wait-ms', '8000')),
-    pollMs: Number(arg(argv, '--poll-ms', '1000')),
+    pollMs: Number(arg(argv, '--burst-ms', '0')) > 0 ? 250 : Number(arg(argv, '--poll-ms', '1000')),
+    burstMs: Math.min(1000, Math.max(0, Number(arg(argv, '--burst-ms', '0')))),
+    blankCheck: !argv.includes('--no-blank-check'),
+    blankRetries: Number(arg(argv, '--blank-retries', '6')),
+    blankPollMs: Number(arg(argv, '--blank-poll-ms', '1000')),
+    blankMaxMs: Number(arg(argv, '--blank-max-ms', '3000')),
     outDir: path.resolve(arg(argv, '--out', path.join(ROOT, 'docs/phraseman-2.0/evidence/parity'))),
   };
   if (!allPending && ids.length === 0) {
@@ -234,8 +290,9 @@ export async function main(argv) {
   const runDir = path.join(opts.outDir, '_runs', stamp);
   const journal = path.resolve(arg(argv, '--journal', path.join(opts.outDir, '_runs', `batch_${stamp}.tsv`)));
   fs.mkdirSync(path.dirname(journal), { recursive: true });
-  fs.appendFileSync(journal, 'id\ttime\tresult\tms\tdetail\tfile\n');
-  const totals = { ok: 0, timeout: 0, error: 0 };
+  fs.appendFileSync(journal, 'id\ttime\tresult\tms\tdetail\tfile\tms_to_nonblank\n');
+  if (opts.blankCheck && !blankCheckAvailable()) console.warn(`${LOG} проверка пустого кадра отключена: pngjs недоступен (${blankCheckUnavailableReason()})`); // guard-ok: причина отключения проверки
+  const totals = { ok: 0, timeout: 0, error: 0, blank_too_long: 0 };
   for (const row of picked) {
     let result;
     try {
@@ -244,12 +301,13 @@ export async function main(argv) {
       console.error(`${LOG} ${row.id}: ОШИБКА`, String(error).slice(0, 300)); // guard-ok: catch логируется
       result = { outcome: 'error', ms: 0, detail: String(error).slice(0, 160), file: null };
     }
-    totals[result.outcome] += 1;
-    fs.appendFileSync(journal, `${row.id}\t${new Date().toISOString()}\t${result.outcome}\t${result.ms}\t${result.detail}\t${result.file ?? ''}\n`);
+    totals[result.outcome] = (totals[result.outcome] ?? 0) + 1;
+    fs.appendFileSync(journal, `${row.id}\t${new Date().toISOString()}\t${result.outcome}\t${result.ms}\t${result.detail}\t${result.file ?? ''}\t${result.msToNonblank ?? 0}\n`);
     console.log(`${LOG} ${row.id}: ${result.outcome} ${result.ms}мс ${result.detail} → ${result.file ?? 'без файла'}`); // guard-ok: итог кадра
   }
-  console.log(`${LOG} готово: ok=${totals.ok} timeout=${totals.timeout} error=${totals.error}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
-  return totals.error + totals.timeout > 0 ? 1 : 0;
+  console.log(`${LOG} готово: ok=${totals.ok} timeout=${totals.timeout} error=${totals.error} blank_too_long=${totals.blank_too_long}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
+  if (totals.blank_too_long > 0) console.warn(`${LOG} пустой экран дольше порога (находки для координатора, не кадры): см. журнал, файлы в _runs`); // guard-ok: итог находок
+  return totals.error + totals.timeout + totals.blank_too_long > 0 ? 1 : 0;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

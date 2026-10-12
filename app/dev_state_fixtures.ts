@@ -135,6 +135,8 @@ export type DevStateRequest = Readonly<{
   friendEvent?: DevFriendEvent;
   /** Окна знакомства с разделами («Позже»): seen — пометить все показанными (не закрывать вручную на каждом кадре), reset — показать снова. */
   intros?: 'seen' | 'reset';
+  /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
+  coinRank?: number | 'off';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -195,6 +197,13 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
+  const coinRankRaw = one(params.coinRank);
+  if (coinRankRaw !== undefined) {
+    const rankN = Number(coinRankRaw);
+    if (coinRankRaw === 'off') request.coinRank = 'off';
+    else if (Number.isInteger(rankN) && rankN >= 0 && rankN <= 19) request.coinRank = rankN;
+    else rejected.coinRank = `ожидалось 0..19 или off, пришло ${coinRankRaw}`;
+  }
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed', 'store_unreachable'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
@@ -398,6 +407,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
+  }
+  if (request.coinRank !== undefined) {
+    // зачем (координатор 12.10): у гостя ранг 0 — все диалоги «Откроется на ранге 1…6»; подмена ТОЛЬКО значения хука, без записи монет и ранга (ранг синхронизируемый)
+    await step('coinRank', String(request.coinRank), async () => {
+      const { setDevCoinRankOverride } = await import('./dev_coin_rank');
+      return setDevCoinRankOverride(request.coinRank === 'off' ? null : (request.coinRank as number));
+    });
   }
   if (request.intros) {
     await step('intros', request.intros, async () => {

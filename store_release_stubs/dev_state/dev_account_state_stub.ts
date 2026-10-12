@@ -11,3 +11,5 @@ export function isDevPlusTransferNotice(): boolean { return false; }
 export function getDevGreetName(): null { return null; }
 export function resetDevAccountStateForTests(): void {}
 export default function __RouteShim() { return null; }
+// зачем (12.10, ревизия паритета заглушек): удержание конфетти онбординга (Авторизация) в стор-сборке всегда выключено
+export function isDevConfettiHold(): boolean { return false; }

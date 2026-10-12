@@ -277,7 +277,12 @@ export async function sendDialogueV2CoachedTextTurn(
       replayed: false,
       preparedBotVoiceSelection: null,
       quota: { remaining: outcome.remaining, resetAtMs: outcome.resetAtMs, quotaVersion: 1 },
-      coaching: null,
+      // зачем (координатор 12.10, dialogs-023): dev_dialog_mood применялся только к настоящему ответу сервера (ниже) и при подставном ходе терялся —
+      // кадр «Настроение собеседника упало» был недостижим. В dev при заданном настроении отдаём минимальный разбор, где есть только оно.
+      coaching: getDevDialogMood() ? {
+        replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
+        mood: getDevDialogMood(), activeObjectiveId: null, dialogueEnded: false,
+      } : null,
     };
   }
   const startedAt = Date.now();

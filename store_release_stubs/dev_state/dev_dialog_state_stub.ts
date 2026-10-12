@@ -7,3 +7,5 @@ export function getDevDialogMood(): null { return null; }
 export function isDevFreeformLoadingHeld(): boolean { return false; }
 export function isDevDialogEnergyFail(): boolean { return false; }
 export function resetDevDialogState(): void {}
+// зачем (12.10, ревизия паритета заглушек): подставной ход Диалога (dev_dialog_send, Ядро) в стор-сборке всегда выключен
+export function getDevDialogSend(): null { return null; }

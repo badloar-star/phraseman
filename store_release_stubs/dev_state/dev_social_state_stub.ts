@@ -15,3 +15,6 @@ export function isDevUnsyncedFriendCode(): boolean { return false; }
 export function consumeDevFriendEvent(): null { return null; }
 export function resetDevSocialStateForTests(): void {}
 export default function __RouteShim() { return null; }
+// зачем (12.10, ревизия паритета заглушек): результаты кода друга (Авторизация) в стор-сборке не подменяются
+export const DEV_REFCODE_RESULTS = [] as const;
+export function getDevReferralApplyResult(): null { return null; }

@@ -136,7 +136,7 @@ export async function runSteps(run, steps, opts = {}) {
     run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
   };
   // зачем: элемент ниже/выше экрана (блок «Free и Plus» на пейволе) tap-ом не достать — прокручиваем до 6 раз, каждый раз заново снимая дерево
-  const bringIntoView = async (selector) => {
+  const bringIntoView = async (selector, bottomMargin = 60) => {
     let found = await waitNode(selector);
     for (let attempt = 0; attempt < 6; attempt += 1) {
       const { node, screen } = found;
@@ -144,7 +144,7 @@ export async function runSteps(run, steps, opts = {}) {
       const bottom = screen ? screen.bottom : 2400;
       const centreY = (node.top + node.bottom) / 2;
       // зачем: прокручиваем только если ЦЕНТР за краем экрана — кнопки у нижней кромки («Начать», «Купить») трогать прокруткой нельзя
-      if (centreY > bottom - 60) swipeScreen(screen, 'down');
+      if (centreY > bottom - bottomMargin) swipeScreen(screen, 'down');
       else if (centreY < top + 60) swipeScreen(screen, 'up');
       else return node;
       await sleep(600);
@@ -167,7 +167,8 @@ export async function runSteps(run, steps, opts = {}) {
       const [from, to] = step.value === 'down' ? [Math.round(height * 0.7), Math.round(height * 0.3)] : [Math.round(height * 0.3), Math.round(height * 0.7)];
       run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
     } else {
-      const node = await bringIntoView(step.value);
+      // see: запас снизу 320 px — над таб-баром/нижней панелью, иначе следующий tap попадает в неё, а не в строку
+      const node = await bringIntoView(step.value, step.op === 'see' ? 320 : 60);
       const [cx, cy] = centre(node);
       if (step.op === 'see') { /* только прокрутка до видимости */ }
       else if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);

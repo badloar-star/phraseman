@@ -15,6 +15,7 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { peekCoinRank, readCoinRank, subscribeCoinRank } from '../app/coin_rank_state_v1';
+import { getDevCoinRankOverride } from '../app/dev_coin_rank';
 
 export type MyCoinRankBinding = Readonly<{
   ownerStableId: string;
@@ -86,5 +87,7 @@ export function useMyCoinRankBinding(): MyCoinRankBinding | null {
 }
 
 export function useMyCoinRank(): number | null {
-  return useMyCoinRankBinding()?.rank ?? null;
+  const real = useMyCoinRankBinding()?.rank ?? null;
+  // зачем (координатор 12.10): dev_state?coinRank=N подменяет ТОЛЬКО показываемое значение (память процесса); в стор-сборке геттер всегда null
+  return getDevCoinRankOverride() ?? real;
 }

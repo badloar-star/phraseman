@@ -160,6 +160,12 @@ export default function SpireHomeScreen() {
     lastLangLockKeyRef.current = key;
     console.log('[SPIRE-GATE] screen', JSON.stringify({ lang: langLock.decision.lang, allowed: langLock.decision.allowed, reason: langLock.decision.reason, locked: langLock.locked, previous: before, preview: preview !== null, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', result: langLock.locked ? 'SpireLockedState' : 'screen_allowed' })); // guard-ok: решение по языку интерфейса, одна строка на смену
   }, [langLock.decision.lang, langLock.decision.allowed, langLock.decision.reason, langLock.locked, preview, config]);
+  // зачем (Макеты, spire-gap-018: за шторкой правил на кадре пустой чёрный фон; сперва логи): что реально рисует главный экран, когда шторка правил открыта/закрыта — по строке видно, отрисован ли экран за шторкой
+  // (unlocked/langLock/config/weekFloor) или показан замок/загрузка. Только dev, одна строка на смену.
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+    console.log('[SPIRE-RULES] home', JSON.stringify({ rulesOpen, unlocked, langLocked: langLock.locked, lang, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', preview: preview !== null, weekFloor: week ? week.floor : null, tier: week ? week.tier : null, rendered: config === null ? 'spire-loading' : langLock.locked || !unlocked ? 'SpireLockedState' : 'home' })); // guard-ok: dev-журнал, что за шторкой правил
+  }, [rulesOpen, unlocked, langLock.locked, lang, config, preview, week]);
   const spireLang = asSpireLang(studyTarget);
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка неделя и выбранный этаж старого языка не должны оставаться до конца чтения новой недели.
   const prevSpireLangRef = useRef(spireLang);
@@ -321,7 +327,7 @@ export default function SpireHomeScreen() {
         style={[s.dock, { bottom: bottomPad - 24 }]}
         onLayout={(e) => logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottomOffset: roundLayout(bottomPad - 24) })}
       >
-        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={s.scrim} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
+        <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, bottomPad - 24) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome ? (
           <SpireResultPanel
             lang={lang}

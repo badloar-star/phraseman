@@ -5,6 +5,8 @@
 // НЕреентерабельный замок заново без lease → ждал хвост очереди = конец внешней работы → вечное ожидание: окно покупки
 // крутилось, замок аккаунта занят навсегда. Тест идёт по НАСТОЯЩЕМУ замку account_generation и настоящей записи энергии
 // (раньше refillToMax в тестах пейвола всегда был заглушкой — блокировку не видел никто).
+// Сама блокировка «без lease» — в отдельном файле paywall_refill_lock_hang.test.ts: она навсегда занимает замок модуля
+// и не должна вешать тесты, добавленные сюда ниже (ревью 2cdc42fac п.3).
 // ════════════════════════════════════════════════════════════════════════════
 /* eslint-disable import/first */
 const mockGetAppUserID = jest.fn(async () => 'stable-refill-1');
@@ -67,11 +69,4 @@ describe('пополнение энергии внутри замка покуп
     expect(lines.some((line) => line.startsWith('[ACCOUNT-LOCK] refillToMax:exit') && line.includes('"outcome":"written"'))).toBe(true);
   });
 
-  it('без lease внутри замка — та самая взаимная блокировка (поэтому lease обязателен держателю; ПОСЛЕДНИЙ — оставляет замок занятым)', async () => {
-    const token = beginAccountGeneration('stable-refill-1');
-    const result = await withinMs(commitRevenueCatResultForGeneration(token, async (isCurrent) => (
-      (await persistPremiumEnergyRefill({ isCurrent, accountToken: token, readDynMax: async () => 5 })) !== null
-    )), 1_000);
-    expect(result).toBe(HANG);
-  });
 });

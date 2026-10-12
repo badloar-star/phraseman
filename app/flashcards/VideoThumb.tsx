@@ -104,7 +104,8 @@ export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId,
 
 const styles = StyleSheet.create({
   fallback: { alignItems: 'center', justifyContent: 'center', gap: 6, paddingHorizontal: 10 },
-  fallbackTitle: { fontSize: 14, lineHeight: 18, fontWeight: '600', textAlign: 'center' },
+  // зачем (аудит типографики D145, координатор 15.10): подпись-заглушка превью — на шкале 13/17 (мелкий текст, межстрочный ≥ 1,25×), а не 14/18
+  fallbackTitle: { fontSize: 13, lineHeight: 17, fontWeight: '600', textAlign: 'center' },
 });
 
 export default VideoThumb;

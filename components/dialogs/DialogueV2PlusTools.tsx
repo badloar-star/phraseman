@@ -88,7 +88,7 @@ export function DialogueV2PlusTools({
               </Text>
               {/* зачем (образец dialogs.html .fp / etalon .pp): значок PLUS рядом с названием — высота 20, радиус 8, заливка цвета темы, 13/700; показан и Free, и Plus */}
               <View testID="dialogue-v2-freeform-plus-badge" style={{ height: 20, paddingHorizontal: 7, borderRadius: 8, backgroundColor: g.accent, justifyContent: 'center' }}>
-                <Text style={{ color: g.accentInk, fontSize: 13, lineHeight: 16, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>PLUS</Text>
+                <Text style={{ color: g.accentInk, fontSize: 13, lineHeight: 17, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>PLUS</Text>
               </View>
             </View>
             <Text style={{ color: p.textSecondary, ...V2_TYPE.caption, marginTop: 2 }} maxFontSizeMultiplier={1.2}>

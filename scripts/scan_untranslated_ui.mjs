@@ -24,6 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { maskPositionalTranslatorCalls } from './untranslated_ui_positional.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(ROOT, 'config', 'untranslated-ui-baseline.json');
@@ -206,6 +207,10 @@ function stripLegal(source) {
     src = src.slice(0, match.index) + mask(src.slice(match.index, end + 3)) + src.slice(end + 3);
   }
 
+  // зачем (координатор 12.10, EN_READINESS): tl(ru, uk, en, es) и showToast(type, ru[, uk], en) — перевод, только если en —
+  // непустой английский литерал (scripts/untranslated_ui_positional.mjs). Пустой/нестроковый en остаётся находкой.
+  src = maskPositionalTranslatorCalls(src);
+
   for (const name of TRANSLATORS) {
     let result = '';
     let cursor = 0;
@@ -214,6 +219,13 @@ function stripLegal(source) {
       if (found < 0) {
         result += src.slice(cursor);
         break;
+      }
+      // зачем (координатор 12.10): имя ищется подстрокой, и 't(' находилось ВНУТРИ любого имени на «t» — showToast(, alert(,
+      // Alert.alert( … — такие вызовы молча считались переводом. Переводчик — только целое имя (до него не буква/цифра/_/$).
+      if (/^[A-Za-z_$]/.test(name) && found > 0 && /[A-Za-z0-9_$]/.test(src[found - 1])) {
+        result += src.slice(cursor, found + name.length);
+        cursor = found + name.length;
+        continue;
       }
       result += src.slice(cursor, found);
       const open = src.indexOf('(', found);

@@ -79,6 +79,7 @@ import { useBouncy, useBouncyStyle } from "../../components/BouncyScrollView";
 import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
+import { usePerfR1Probe } from "../perf_r1_probe";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
 import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
 import {
@@ -2379,6 +2380,7 @@ export default function LessonsTab({
       );
     };
   }, []);
+  usePerfR1Probe("lessons"); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   const isRetainedTab = presentation === "tab";
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();

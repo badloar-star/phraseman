@@ -1,5 +1,6 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
+import { usePerfR1Probe } from '../perf_r1_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -140,6 +141,7 @@ function logHubTopCardOutcome(word: string | null, trainingLocked: boolean, ipaF
 export default function FlashcardsHubScreen() {
   // зачем (координатор 12.10, утечка памяти в хабе; сперва логи): mount/unmount хаба с размерами кэшей и слушателей — по нему видно, что растёт с каждым заходом.
   useHubLifecycle('FlashcardsHubScreen');
+  usePerfR1Probe('cards_hub'); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   useFocusEffect(useCallback(() => {
     noteHubSubscription('FlashcardsHubScreen.focus', 'on');
     return () => noteHubSubscription('FlashcardsHubScreen.focus', 'off');
@@ -687,22 +689,28 @@ export default function FlashcardsHubScreen() {
   // зачем (координатор 12.10, cards-v2-001): у верхней карточки стопки не было транскрипции — в сохранённой карточке она появляется только после открытия списка (там дозаполняется),
   // а хаб читал лишь сохранённое поле. Берём сохранённую; нет — словарь (getTranscription отвечает пустой строкой, когда не уверен, — ничего не выдумываем).
   const topStoredIpa = topCard?.transcription?.trim() ?? '';
-  const topDictIpa = topCard && !topStoredIpa ? getTranscription(topCard.en) : '';
+  // зачем (аудит скорости R1, 12.10): словарная транскрипция считалась на КАЖДЫЙ рендер хаба; слово верхней карточки меняется редко — считаем по слову
+  const topCardEn = topCard?.en ?? null;
+  const topDictIpa = useMemo(() => (topCardEn && !topStoredIpa ? getTranscription(topCardEn) : ''), [topCardEn, topStoredIpa]);
   const topIpaText = topStoredIpa || topDictIpa;
   logHubTopCardOutcome(topCard?.en ?? null, trainingLocked, topStoredIpa ? 'stored' : topDictIpa ? 'dictionary' : 'none');
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
-  const resetDate = (() => {
+  // зачем (аудит скорости R1, 12.10): toLocaleDateString создаёт Intl-форматтер на каждый вызов (десятки мс на Hermes/Android при первом использовании языка),
+  // а хаб рендерится часто (квота, фокус, сеть). Дата сброса зависит только от языка и месяца — считаем один раз на язык.
+  const resetDate = useMemo(() => {
     const now = new Date();
     try { return new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(lang, { day: 'numeric', month: 'long' }); } catch (error) { console.warn('[FC-HUB] reset date format failed —', error instanceof Error ? error.message : String(error)); return ''; } // guard-ok: лог причины, значение по умолчанию — без даты
-  })();
+  }, [lang]);
   const trainLabel = trainingLocked
     ? triLang(lang, { ru: `Осталось 0 из ${quotaPreview.limit} · до ${resetDate}`, uk: `Залишилось 0 з ${quotaPreview.limit} · до ${resetDate}`, en: `0 of ${quotaPreview.limit} left · until ${resetDate}`, es: `Quedan 0 de ${quotaPreview.limit} · hasta el ${resetDate}`, 'pt-BR': `Restam 0 de ${quotaPreview.limit} · até ${resetDate}`, vi: `Còn 0 trong ${quotaPreview.limit} · đến ${resetDate}`, id: `Sisa 0 dari ${quotaPreview.limit} · sampai ${resetDate}`, tr: `${quotaPreview.limit} çalışmadan 0 kaldı · ${resetDate} tarihine kadar`, pl: `Zostało 0 z ${quotaPreview.limit} · do ${resetDate}` })
     : quotaPreview.status === 'allowed'
       ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practise · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
       : copy.train;
   // зачем (макет: «64», «4», «3 набора», «1 240»): число целиком с разделителем тысяч, без «1,2K»; у «Из видео» — число со словом «наборов» в нужной форме.
-  const fmt = (n: number | null) => (n === null ? '' : new Intl.NumberFormat(lang).format(n));
+  // зачем (аудит скорости R1, 12.10): `new Intl.NumberFormat(lang)` стоял в КАЖДОМ вызове fmt (четыре плитки + «из видео» на каждый рендер); форматтер один на язык
+  const numberFormat = useMemo(() => new Intl.NumberFormat(lang), [lang]);
+  const fmt = (n: number | null) => (n === null ? '' : numberFormat.format(n));
   const packsWord = (n: number): string => {
     // зачем: Intl.PluralRules в Hermes на Android не даёт русских форм («4 наборов»); считаем вручную по правилам ru/uk/pl, остальные языки — «один / другие».
     const n10 = n % 10;

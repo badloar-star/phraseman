@@ -30,7 +30,8 @@ describe('Cards defects from the mockup parity registry', () => {
     const src = read('app/flashcards/FlashcardsHubScreen.tsx');
     expect(src).toMatch(/import \{ getTranscription \} from '\.\.\/transcription'/);
     expect(src).toMatch(/const topStoredIpa = topCard\?\.transcription\?\.trim\(\) \?\? ''/);
-    expect(src).toMatch(/topCard && !topStoredIpa \? getTranscription\(topCard\.en\) : ''/);
+    // зачем (аудит скорости R1, 12.10): словарь читается по слову верхней карточки (useMemo), а не на каждый рендер — смысл прежний: сохранённая, иначе словарь, иначе пусто
+    expect(src).toMatch(/topCardEn && !topStoredIpa \? getTranscription\(topCardEn\) : ''/);
     expect(src).toMatch(/topIpa=\{trainingLocked \? limitOutSub : \(topCard \? topIpaText : /);
     expect(src).toContain('ipaFrom'); // журнал [HUB-TOPCARD] называет источник транскрипции
   });

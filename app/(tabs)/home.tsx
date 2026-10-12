@@ -51,6 +51,7 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
+import { usePerfR1Probe } from '../perf_r1_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -506,6 +507,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
   // самого горячего экрана обязано быть чистым. Исключение — одна проверка числа ниже: после первого рендера
   // она ничего не делает (координатор 05.10, [HOME-RENDER]).
   if (homeFirstRenderStartedAt === 0) homeFirstRenderStartedAt = Date.now();
+  usePerfR1Probe('home'); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   // зачем ((в), пакет 07:26: фиксация +5,6 с → кадр +8,1 с): ПЕРВЫЙ объявленный пассивный эффект Главной. Пассивные
   // эффекты идут по порядку объявления, дочерние — раньше родителя; пара с последним эффектом ниже делит окно.
   useEffect(() => { if (homeFirstPassiveStartedAt === 0) homeFirstPassiveStartedAt = Date.now(); }, []);
@@ -870,8 +872,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }));
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     useEffect(() => {
+        // зачем (аудит скорости R1, 12.10): captureAccountGeneration() каждый раз отдаёт НОВЫЙ объект, поэтому вызов в эффекте ниже на монтировании
+        // менял state (тот же поколение/аккаунт/фаза, другая идентичность) → полный лишний рендер всей Главной и перезапуск эффекта счётчика ошибок
+        // (второй getMistakePracticeHomeCounts). Прежний объект остаётся, пока поколение, аккаунт и фаза те же.
         const applyMistakeAccountGeneration = (token: AccountGenerationToken) => {
-            setMistakeAccountGeneration(token);
+            setMistakeAccountGeneration((prev) => (
+                prev.generation === token.generation && prev.stableId === token.stableId && prev.phase === token.phase ? prev : token
+            ));
             setMistakeReadySnapshot(null);
             setDevMistakesCardOverride(null);
         };

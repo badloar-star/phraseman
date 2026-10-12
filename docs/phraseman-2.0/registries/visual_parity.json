@@ -39586,21 +39586,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-029.png",
+      "evidence_at": "2026-10-12T17:51:33.732Z",
+      "evidence_sha256": "bb25dd6c22d0954f6e42548d9701fa0259d07d39d807b0dd0c3628adc145a7b4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не экран своего набора «Путешествия» (40 карточек) с тостом «Что-то пошло не так»; шагов нет, подмена fail=pack_remove_min (Ядро, ae44078f4) в ссылку не вписана.",
+        "Нужны: ссылка на свой опубликованный набор (cards=demo_published, packcards=on) + fail=pack_remove_min и шаги удаления карточки — вписать по таблице Ядра (партия 2)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:56:58.237Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?cards=demo_published"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:51, cards-gaps-states №29 «Свой набор — минимум 10 карточек»): сверка невозможна — на кадре «Мои наборы» (загрузка), образец — экран набора с тостом «В наборе должно остаться минимум 10 карточек»."
     },
     {
       "id": "cards-gap-030",
@@ -39665,21 +39669,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-031.png",
+      "evidence_at": "2026-10-12T17:52:00.439Z",
+      "evidence_sha256": "7cde68e94db8796544741f82d079b0971dcfa4fc72183d14330428b668af2bea",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не экран своего набора «Путешествия» (40 карточек) с тостом «Что-то пошло не так»; шагов нет, подмена fail=pack_remove_net (Ядро, ae44078f4) в ссылку не вписана.",
+        "Нужны: ссылка на свой опубликованный набор + fail=pack_remove_net и шаги удаления карточки — вписать по таблице Ядра (партия 2)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:56:58.237Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?cards=demo_published"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:51, cards-gaps-states №31 «Свой набор — нет связи»): сверка невозможна — на кадре «Мои наборы» (5 наборов), образец — экран набора с тостом «Нет связи — карточку не удалось удалить»."
     },
     {
       "id": "cards-gap-032",

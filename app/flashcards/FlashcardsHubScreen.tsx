@@ -730,26 +730,43 @@ export default function FlashcardsHubScreen() {
     return cat === 'one' ? f[0] : cat === 'few' ? f[1] : f[2];
   };
   const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
-  const tiles = [
+  // зачем (аудит скорости R1, C2, координатор 12.10): `tiles` собирался заново на каждый рендер корня (новые объекты и inline-onPress), и memo у CardsHubV2 не срабатывал.
+  // Плитки зависят только от подписей, счётчиков, форматтера чисел и языка; `router` стабилен. fmt/packsWord читают лишь numberFormat и lang — они в deps.
+  /* eslint-disable react-hooks/exhaustive-deps */
+  const tiles = useMemo(() => [
     { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
     { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount ?? heldMineCount), onPress: () => router.push('/flashcards_my_packs' as never) },
     { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
     { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
-  ];
+  ], [copy, savedCount, myPackCount, heldMineCount, videoPackCount, communityPackCount, numberFormat, lang, router]);
+  /* eslint-enable react-hooks/exhaustive-deps */
   const limitOutTitle = triLang(lang, { ru: 'Лимит на этот месяц исчерпан', uk: 'Ліміт на цей місяць вичерпано', en: 'This month’s limit is used up', es: 'Has agotado el límite de este mes', 'pt-BR': 'O limite deste mês acabou', vi: 'Đã hết lượt của tháng này', id: 'Batas bulan ini sudah habis', tr: 'Bu ayın limiti doldu', pl: 'Limit na ten miesiąc wyczerpany' });
   const limitOutSub = triLang(lang, { ru: `Обновится ${resetDate}`, uk: `Оновиться ${resetDate}`, en: `Resets on ${resetDate}`, es: `Se renueva el ${resetDate}`, 'pt-BR': `Renova em ${resetDate}`, vi: `Làm mới vào ${resetDate}`, id: `Diperbarui ${resetDate}`, tr: `${resetDate} tarihinde yenilenir`, pl: `Odnowi się ${resetDate}` });
+  // зачем (C2): dev-подмена «hub_loading» не должна создавать новый массив плиток на каждый рендер
+  const hubLoadingHeld = isDevCardsHeld('hub_loading');
+  const hubTiles = useMemo(() => (hubLoadingHeld ? tiles.map((tile) => ({ ...tile, count: '' })) : tiles), [hubLoadingHeld, tiles]);
   const reduceMotion = useFcReduceMotion();
   const windowHeight = useWindowDimensions().height;
   // зачем (Сверка cards-section-003, hubNewS): своих карточек и наборов нет (оба числа уже известны, не «загрузка») —
   // хаб новичка: «Начните с готового» и «Выбрать набор» ведёт в каталог сообщества. Раньше показывалась выдуманная «Boarding pass».
-  const fresh = savedCount === 0 && myPackCount === 0
+  const showFresh = savedCount === 0 && myPackCount === 0;
+  // зачем (C2): объект `fresh` не должен меняться между рендерами без смены языка/показа
+  const fresh = useMemo(() => showFresh
     ? {
       title: triLang(lang, { ru: 'Начни с готового', uk: 'Почни з готового', en: 'Start with a ready pack', es: 'Empieza con algo listo', 'pt-BR': 'Comece com algo pronto', vi: 'Bắt đầu với bộ có sẵn', id: 'Mulai dari yang siap pakai', tr: 'Hazır bir setle başla', pl: 'Zacznij od gotowego' }),
       sub: triLang(lang, { ru: 'Добавь набор из сообщества или из видео', uk: 'Додай набір зі спільноти або з відео', en: 'Add a pack from the community or from a video', es: 'Añade un pack de la comunidad o de un vídeo', 'pt-BR': 'Adicione um pacote da comunidade ou de um vídeo', vi: 'Thêm bộ thẻ từ cộng đồng hoặc từ video', id: 'Tambahkan paket dari komunitas atau dari video', tr: 'Topluluktan ya da videodan bir paket ekle', pl: 'Dodaj zestaw od społeczności lub z wideo' }),
       cta: triLang(lang, { ru: 'Выбрать набор', uk: 'Обрати набір', en: 'Choose a pack', es: 'Elegir un pack', 'pt-BR': 'Escolher um pacote', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybierz zestaw' }),
       onPress: () => router.push('/flashcards_packs' as never),
     }
-    : undefined;
+    : undefined, [showFresh, lang, router]);
+
+  // зачем (C2): стабильные подписи и обработчики для memo(CardsHubV2). onTrainPress читает свежую квоту и флаги, поэтому берём её «последнюю» через ref —
+  // ссылка на пропс onTrain при этом не меняется.
+  const hubLabels = useMemo(() => ({ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }), [copy.back, copy.create, trainAccessibilityLabel]);
+  const onTrainPressRef = useRef(onTrainPress);
+  onTrainPressRef.current = onTrainPress;
+  const handleHubBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
+  const handleHubTrain = useCallback(() => { pendingDeckRef.current = null; onTrainPressRef.current(); }, []);
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
@@ -769,14 +786,14 @@ export default function FlashcardsHubScreen() {
             topIpa={trainingLocked ? limitOutSub : (topCard ? topIpaText : '/ˈbɔːdɪŋ pɑːs/')}
             trainLabel={trainLabel}
             trainLocked={trainingLocked}
-            tiles={isDevCardsHeld('hub_loading') ? tiles.map((tile) => ({ ...tile, count: '' })) : tiles}
+            tiles={hubTiles}
             reduceMotion={reduceMotion}
             availableHeight={windowHeight - insets.top - insets.bottom}
-            onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
+            onBack={handleHubBack}
             onCreate={openCreatePack}
-            onTrain={() => { pendingDeckRef.current = null; onTrainPress(); }}
+            onTrain={handleHubTrain}
             trainButtonRef={trainButtonRef}
-            labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
+            labels={hubLabels}
             fresh={fresh}
           />
         </ContentWrap>

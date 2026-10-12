@@ -1218,9 +1218,13 @@ async function collectSentRequestPeerUids(
   db: admin.firestore.Firestore,
   identities: string[],
   stats: DeleteStats,
-): Promise<{ peers: string[]; indexPresent: boolean }> {
+): Promise<{ peers: string[]; indexPresent: boolean; docCount: number; markerSeen: boolean }> {
   const peers = new Set<string>();
   let indexPresent = false;
+  // зачем (координатор 12.10, «сперва логи»): во ВСЕХ запусках collect_peers было sentIndexPresent=false —
+  // счётчики отвечают, пуст ли индекс целиком или в нём нет маркера.
+  let docCount = 0;
+  let markerSeen = false;
   for (const identity of identities) {
     if (!identity) continue;
     stats.queriesRun += 1;
@@ -1239,11 +1243,13 @@ async function collectSentRequestPeerUids(
         code: e?.code ?? 'unknown',
         message: String(e?.message ?? e).slice(0, 160),
       }));
-      return { peers: [], indexPresent: false };
+      return { peers: [], indexPresent: false, docCount, markerSeen };
     }
+    docCount += snap.size;
     for (const doc of snap.docs) {
       if (doc.id === FRIEND_REQUESTS_SENT_MARKER_ID) {
         indexPresent = true;
+        markerSeen = true;
         continue;
       }
       if (doc.id && !identities.includes(doc.id)) {
@@ -1252,7 +1258,84 @@ async function collectSentRequestPeerUids(
       }
     }
   }
-  return { peers: Array.from(peers), indexPresent };
+  return { peers: Array.from(peers), indexPresent, docCount, markerSeen };
+}
+
+/** Подколлекции ЧУЖИХ деревьев `users/{peer}/<группа>/{я}`: id документа — удаляемый человек, родитель — peer. */
+const PEER_DOC_ID_GROUPS: readonly string[] = ['friend_requests', 'blocked'];
+/** Страница обхода группы. */
+const PEER_GROUP_SCAN_PAGE = 500;
+/** Потолок документов на группу: выше — узкий путь не доказан, честный полный перебор. */
+export const PEER_GROUP_SCAN_DOC_CAP = 20_000;
+
+export type PeerGroupScanResult = {
+  peers: string[];
+  complete: boolean;
+  scanned: Record<string, number>;
+  reason: string;
+};
+
+/**
+ * Находит peer-uid по ВХОДЯЩИМ к ним записям про удаляемого человека, не трогая `users` целиком.
+ *
+ * зачем (координатор 12.10, ACCOUNT_DELETE_INDEX_INCIDENT §5): маркер обратного индекса исходящих заявок
+ * пишет клиент только при заходе на вкладку «Друзья» — у гостей и большинства аккаунтов его нет, и каждое
+ * удаление уходило в полный перебор `users.listDocuments()` (4–7 чтений на КАЖДОГО пользователя, риск
+ * таймаута 540 с). Документ входящей заявки `users/{to}/friend_requests/{from}` поля отправителя не имеет —
+ * отправитель и есть id документа, поэтому фильтром его не найти. Зато вся группа `friend_requests` — это
+ * только живые заявки (принятие/отказ их удаляют), на порядки меньше `users`. Обходим её страницами по
+ * `__name__` (без индексов, только id) и берём родителя документов с нашим id. Тем же обходом закрываем
+ * `blocked` — запись «меня заблокировали» у бывшего друга ни друзья, ни подарки, ни заявки не находили.
+ * Не уложились в потолок или запрос упал — complete=false: вызывающий честно уходит в полный перебор.
+ */
+export async function collectDocIdPeerUidsByCollectionGroup(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  stats: DeleteStats,
+  groups: readonly string[] = PEER_DOC_ID_GROUPS,
+  cap: number = PEER_GROUP_SCAN_DOC_CAP,
+): Promise<PeerGroupScanResult> {
+  const targets = new Set(identities.filter(Boolean));
+  const peers = new Set<string>();
+  const scanned: Record<string, number> = {};
+  for (const group of groups) {
+    scanned[group] = 0;
+    let last: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+    for (;;) {
+      if (scanned[group] >= cap) {
+        console.warn(JSON.stringify({ event: 'account_delete_peer_group_scan_cap', group, scanned: scanned[group], cap }));
+        return { peers: Array.from(peers), complete: false, scanned, reason: `cap_exceeded:${group}` };
+      }
+      stats.queriesRun += 1;
+      let snap: FirebaseFirestore.QuerySnapshot;
+      try {
+        // Сборка запроса тоже внутри try: любой отказ лишь понижает до полного перебора, не валит удаление.
+        const base = db.collectionGroup(group)
+          .orderBy(admin.firestore.FieldPath.documentId())
+          .select()
+          .limit(PEER_GROUP_SCAN_PAGE);
+        snap = await (last ? base.startAfter(last) : base).get();
+      } catch (e: any) {
+        console.warn(JSON.stringify({
+          event: 'account_delete_peer_group_scan_failed',
+          group,
+          scanned: scanned[group],
+          code: e?.code ?? 'unknown',
+          message: String(e?.message ?? e).slice(0, 160),
+        }));
+        return { peers: Array.from(peers), complete: false, scanned, reason: `query_failed:${group}:${e?.code ?? 'unknown'}` };
+      }
+      scanned[group] += snap.size;
+      for (const doc of snap.docs) {
+        if (!targets.has(doc.id)) continue;
+        const owner = doc.ref.parent.parent;
+        if (owner && owner.parent.id === 'users' && !targets.has(owner.id)) peers.add(owner.id);
+      }
+      if (snap.size < PEER_GROUP_SCAN_PAGE) break;
+      last = snap.docs[snap.docs.length - 1];
+    }
+  }
+  return { peers: Array.from(peers), complete: true, scanned, reason: 'ok' };
 }
 
 async function deleteCrossUserDocumentIdMatches(
@@ -1747,16 +1830,35 @@ export async function executeAccountDeletion(
       // Подарки переживают разрыв дружбы — история закрывает эту дыру.
       const giftPeers = await collectGiftPeerUids(db, identities, stats);
       const sent = await collectSentRequestPeerUids(db, identities, stats);
-      const hasIndex = sent.indexPresent || await hasFriendRequestsSentIndexMarker(db, identities, stats);
+      const markerFound = sent.markerSeen || await hasFriendRequestsSentIndexMarker(db, identities, stats);
+      const hasIndex = sent.indexPresent || markerFound;
       const merged = Array.from(new Set([...friendPeers, ...giftPeers, ...sent.peers]));
+      // зачем (координатор 12.10): без маркера индекса удаление шло полным перебором `users`. Обход групп
+      // заявок/блокировок находит тех, у кого лежат записи про нас; при живом индексе заявок обходим
+      // только `blocked` — экономия чтений.
+      const groupScan = await collectDocIdPeerUidsByCollectionGroup(
+        db, identities, stats, hasIndex ? ['blocked'] : PEER_DOC_ID_GROUPS,
+      );
+      const peers = Array.from(new Set([...merged, ...groupScan.peers]));
+      const narrow = groupScan.complete || hasIndex;
+      const decision = groupScan.complete ? 'collection_group_scan' : hasIndex ? 'sent_index' : 'full_scan_fallback';
       accountDeleteLog(ctx, 'collect_peers', stats, {
-        peerCount: merged.length,
+        peerCount: narrow ? peers.length : 0,
+        friendPeers: friendPeers.length,
+        giftPeers: giftPeers.length,
+        sentPeers: sent.peers.length,
+        sentDocs: sent.docCount,
+        markerFound,
+        groupPeers: groupScan.peers.length,
+        groupScanned: groupScan.scanned,
+        groupScanReason: groupScan.reason,
         sentIndexPresent: hasIndex,
-        fallbackFullScan: !hasIndex,
+        decision,
+        fallbackFullScan: !narrow,
       });
-      // Без индекса исходящих заявок узкий путь может пропустить чужие
-      // friend_requests — честнее один раз заплатить за полный перебор.
-      return hasIndex ? merged : null;
+      // Ни индекса заявок, ни полного обхода групп — узкий путь может пропустить
+      // чужие friend_requests, честнее заплатить за полный перебор.
+      return narrow ? peers : null;
     });
     await runDeleteStage(ctx, stats, 'direct_docs', async () => {
       for (const identity of identities) await deleteDirectDocs(db, identity, authUid, ctx);

@@ -380,3 +380,63 @@
 - `tests/website_global_background_contract.test.ts` — настоящий — красный и в рабочей копии
   - public website global background contract classifies the complete 27-file HTML inventory with only justified shims exclu — expect(received).toHaveLength(expected) — Expected length: 27 / Received length: 28
   - public website global background contract legal/privacy-ios/index.html links the shared approved stylesheet exactly once — expect(received).toHaveLength(expected) — Expected length: 2 / Received length: 1
+
+
+## Перепрогон 12.10 вечер (Ядро)
+
+Все 65 файлов раздела «Наши зоны» перепрогнаны в рабочей копии HEAD ≈ `9898b202d` (12.10, 17:30–17:50): jest — `--runInBand`
+пачками по 10 через светофор при свободной памяти ≥ 1,5 ГБ, `*.test.mjs` — `node --test` по одному файлу.
+
+**Итог: 65 → зелёных 38 + починено Ядром 9 = 47 зелёных; красных осталось 18 (Codex 6, Дизайн 7, Темы 4, Авторизация 1).**
+
+### Уже зелёные (38) — починены раньше другими коммитами или были артефактом среза
+
+Зелёные: `account_sqlite_lease_patch_activation_v2`, `account_sqlite_lease_patch_v2`,
+`account_v2_client_tails_6c_v2`, `account_v2_tails_6d_v2`, `auth_provider_stable_link`, `community_pack_like_owner_fix`,
+`dev_links_r1_contract`, `energy_start_cost_contract`, `feedback_outbox`, `flashcards_recall_pending_start_behavior`,
+`heisenberg_review_gate`, `home_lesson_progress_single_pass`, `i18n_missing_en_fallback`, `interaction_responsiveness_contract`,
+`jest_write_guard`, `olive_phase1_surface_contract`, `overlay_queue_and_pending_alert_contract`, `phone_state_native_config_contract`,
+`rune_balance_snapshot_preservation_contract`, `stable_id`, `use_mistake_explain_bundle_state`, `video_pack_add_maps_to_community_doc`,
+`website_global_background_contract` (23 jest); `flashcards_blitz_liquid_glass_source_contract`,
+`flashcards_deck_picker_liquid_glass_source_contract`, `lesson_intro_liquid_glass_source_contract`, `lessons_liquid_glass_source_contract`,
+`manage_subscription_overlays_liquid_glass`, `personal_admin_message_liquid_glass_source_contract`,
+`privacy_settings_liquid_glass_source_contract`, `release_guard_staged_source`, `results_coins_profile_liquid_glass_source_contract`,
+`settings_edu_liquid_glass`, `shared_decision_modals_liquid_glass_source_contract`, `single_workspace_runtime_contract`,
+`spire_local_release_packet_evidence`, `survey_unavailable_liquid_glass_source_contract`, `visual_parity_gate` (15 node --test).
+
+### Починено Ядром — `9898b202d` (9 файлов, 39/39)
+
+| Файл | Причина | Что сделано |
+|---|---|---|
+| `firestore_reserved_document_id_guard` | **настоящая находка**: dev-зонд `app/mem_tick.ts` брал зарезервированные имена `__mem_tick_probe__` / `__probe__` | имена → `mem_tick_probe` / `probe` (по ссылке не читаем и не пишем) |
+| `spire_oddity_prompt` | моя регрессия из `41443be48` («вислів» по указанию владельца) | ожидание uk «Знайди вислів, який треба виправити.» |
+| `late_listener_adoption_contract` | поток `subscribeUserAppMessages` удалён как мёртвый (`b59868b5b`) | проверки app_messages сняты, notifications/_layout остаются |
+| `startup_settings_boot_integration` | перед `closeStartupSettingsReadScope?.()` появился комментарий — окно 250 символов мало | проверяется вся функция очистки |
+| `settings_promo_startup_stability` | импорт расширен `readRemoteConfigCacheRaw` | импорт проверяется регуляркой |
+| `tab_freeze_handoff_contract` | тип `LessonsPrivacyState` удалён — граница TabPane не находилась | граница — `function LessonsPaneBoundary(` |
+| `course_pack_download_idempotent_contract` | поверхность `plan_content` убрана из `COURSE_PACK_SURFACES` | фикстура на `lesson` |
+| `course_pack_runtime_contract` | `de` стал поддерживаемым языком изучения | «неизвестный» язык — `xx` |
+| `lingman_youtube_cache` | маска снимка строже (`!pendingChannel`) | ожидание по текущему коду |
+
+### Красные — чужие зоны (строкой владельцу)
+
+| Файл | Зона | Причина | Что поправить |
+|---|---|---|---|
+| `flashcards_blitz_access_behavior` (4 теста) | Дизайн (Карточки) | мок `../app/dev_cards_state` без новой `getDevBlitzAnswer` → `is not a function` | в мок строки 44 добавить `getDevBlitzAnswer: () => null` |
+| `scroll_inertia_contract` | Дизайн (Карточки) | `app/flashcards/ExpandedCardV2.tsx:226` — прокрутка без явного `decelerationRate="fast"` | добавить `decelerationRate="fast"` |
+| `ai_dialog_home_compact_header_contract.mjs` | Дизайн (Диалоги) | в шапке хаба нет `<V2IconButton icon="chevron-back"` | шапка переделана — обновить контракт или вернуть кнопку |
+| `paywall_store_promo_price_contract` | Дизайн (пейвол) | нет `yearlyPromo?.promoPriceString \|\| yearlyPrice` (PaywallPlus/PaywallPlusScreen) | сверить промо-цену с текущим кодом |
+| `premium_modal_locale` | Дизайн (пейвол) | нет `<ActivityIndicator color={g.ctaInk} />` в подвале Plus | состояния «покупка/восстановление идёт» |
+| `premium_modal_admin_grant_contract` | Дизайн (пейвол) | нет `await initRevenueCat(isOperationAccountCurrent);` в общем хуке покупки | проверить, куда переехала инициализация |
+| `support_report_liquid_glass_source_contract.mjs` | Дизайн (поддержка) | массивы текстов на 9 языков изменились относительно снимка | обновить снимок после проверки текстов |
+| `midnight_flashcards_mode_icon_assets` | Темы | нет иконок режимов `saved`, `custom`, `training` (и др.) | вернуть ассеты или обновить список |
+| `flashcards_speaking_liquid_glass_source_contract.mjs` | Темы | AST «квота/попытка/удержание/TTS» отличается от базы | пересверить базу AST после правок экрана |
+| `flashcards_training_setup_liquid_glass_source_contract.mjs` | Темы | AST и общие зависимости отличаются от базы | то же |
+| `manage_subscription_liquid_glass_source_contract.mjs` | Темы | 21 объявление оплаты/аккаунта отличается от базы | то же |
+| `account_provision_lock_android_runtime_entrypoint` (4 теста) | Авторизация | разбор вывода дочернего процесса блокировки — ожидаемые обобщённые отказы не совпадают | — |
+| `lesson1_release_parity` | Codex (Learning V2) | подпись занятия: `interactionProfile` стал `voice_heavy` вместо `standard` | — |
+| `kimi_voice_capture_session_lifecycle` | Codex (`components/learning-v2-lab`) | после перезапуска сессии статус `idle` вместо `listening` | — |
+| `android_no_square_outline_guard` | Codex | все 4 места — Learning V2 (`learning_v2_direct_session_player_v1.tsx:3610`, `_learning_v2_modes_showcase.tsx:132`, `LearningV2FounderPassModal.tsx:278`, `LearningV2PulseMapSessionRow.tsx:227`) | — |
+| `android_clipping_crash_guard` | Codex | `components/learning-v2/horizons/LearningV2Horizons.tsx: FlatList` | — |
+| `theme_hardcoded_colors_ratchet.mjs` | Codex | +5 цветов в `modules/learning-v2/modes/mode_feedback_v1.tsx` (`app/dev_state.tsx` уже чист) | — |
+| `render_daily_phrase_content_preview.mjs` | контент фразы дня (конвейер `content/daily-phrases`) | сгенерированное превью ≠ закоммиченный `content/daily-phrases/es/REVIEW_PREVIEW.md` | перегенерировать превью владельцем конвейера |

@@ -252,8 +252,11 @@ export default function PrivacySettings() {
               {/* зачем: паритет с макетом profile.html PRF-07 — в шапке «назад» (шеврон), не крестик */}
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
-            <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5, marginTop: 10, flexShrink: 1 }}>
-              {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', en: "Privacy and data", es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
+            {/* зачем (координатор 12.10, кадр settings-gap-016): «Приватность и данные» в Inter Bold 34 = 384 dp, vi = 402 dp — больше места на
+                Pixel 8 (372 dp между полями 20), заголовок переносился. Вёрсткой не решается (он уже на всю ширину), сжимать шрифт нельзя
+                (правило владельца) — короткий заголовок на 9 языках (vi 240 dp, запас и на 360 dp). «Данные» несёт подпись ниже. */}
+            <Text testID="privacy-settings-title" style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5, marginTop: 10, flexShrink: 1 }}>
+              {L({ ru: 'Приватность', uk: 'Приватність', en: 'Privacy', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}
             </Text>
             <Text style={{ color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '400', marginTop: 7, flexShrink: 1 }}>
               {L({ ru: 'Необязательные данные и документы', uk: 'Необов’язкові дані та документи', en: "Optional data and documents", es: 'Datos y documentos opcionales', 'pt-BR': 'Dados e documentos opcionais', vi: 'Dữ liệu và tài liệu không bắt buộc', id: 'Data dan dokumen opsional', tr: 'İsteğe bağlı veriler ve belgeler', pl: 'Opcjonalne dane i dokumenty' })}

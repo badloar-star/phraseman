@@ -33,8 +33,11 @@ describe('списки уроков: цвета уровней A1–B2 из то
   });
 
   it('экран передаёт токены ТЕМНОГО оформления той же темы и шага ползунка (карточка урока всегда тёмная с белым текстом)', () => {
-    expect(src).toContain('appearance: "dark", intensity: learnGlass.intensity');
-    expect(src.match(/bookPalette\(num, themeMode, levelInkGlass\)/g)?.length).toBe(3);
+    // зачем (решение владельца 12.10, п.81 (11)): при светлом оформлении плашка светлая и чернила берутся из токенов светлого оформления; при тёмном — как раньше
+    expect(src).toContain('appearance: lightLessonCards ? "light" : "dark", intensity: learnGlass.intensity');
+    expect(src).toContain('const lightLessonCards = learnGlass.isLight;');
+    // 3 прежних вызова + светлая поверхность плашки (п.81 (11))
+    expect(src.match(/bookPalette\(num, themeMode, levelInkGlass\)/g)?.length).toBe(4);
   });
 
   it('акцент уровня читается на тёмной карточке, а белый текст — на карточке: все темы × 3 шага ползунка', () => {
@@ -89,5 +92,28 @@ describe('MedalToast: стиль из токенов активной темы',
     }
     expect(checked).toBeGreaterThan(100);
     expect(failures).toEqual([]);
+  });
+});
+
+describe('плашка урока: светлая ветка подключена по токенам, а не по названию темы', () => {
+  const src = read('app/(tabs)/lessons.tsx');
+  it('экран строит светлую поверхность из токенов только при светлом оформлении и странице курса; тексты и подложка закрытой плашки — из неё', () => {
+    expect(src).toContain('const lightSurface = lightLessonCards && page === "v2" ? lessonCardLightSurface(bookPalette(num, themeMode, levelInkGlass), learnGlass) : null;');
+    expect(src).toContain('lightSurface={lightSurface}');
+    expect(src).toContain('? lightSurface.lockedFill[1]');
+    expect(src).toContain('const lessonTextColor = lightSurface');
+    expect(src).toContain('const lessonMetaColor = lightSurface');
+  });
+  it('внутри плашки светлая ветка включает светлые градиенты и мелкий текст из токенов (без константы тёмного текста там, где светлая заливка)', () => {
+    const start = src.indexOf('const LessonCard = React.memo(');
+    const end = src.indexOf('const LearningV2InlineMapRow');
+    const card = src.slice(start, end);
+    expect(card).toContain('const isSagePorcelainCard = isLightThemeMode(_themeMode) || lightCard !== null;');
+    expect(card).toContain('lightCard.fill[0], lightCard.fill[1], lightCard.fill[2]');
+    expect(card).toContain('lightCard.lockedFill[0], lightCard.lockedFill[1], lightCard.lockedFill[2]');
+    expect(card).toContain('lightCard.progress[0], lightCard.progress[1]');
+    expect(card).toContain('const metaInk = lightCard ?');
+    // константа тёмного текста осталась только в объявлении metaInk
+    expect(card.match(/LESSON_CARD_OPEN_META_TEXT/g)?.length).toBe(1);
   });
 });

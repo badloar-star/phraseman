@@ -80,6 +80,7 @@ import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
 import { perfR1BodyMark, perfR1BodyStart, usePerfR1Probe } from "../perf_r1_probe";
+import { lessonCardLightSurface, type LessonCardLightSurface } from "../../components/lessons/lessonCardLightSurface";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
 import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
 import {
@@ -804,6 +805,8 @@ interface LessonCardProps {
   learningV2InProgress?: boolean;
   onLearningV2PressIn?: (lessonOrdinal: number) => void;
   onLearningV2Press?: (lessonOrdinal: number) => void;
+  /** Светлая плашка (решение владельца 12.10, п.81 (11)): цвета из токенов светлого оформления; null — прежняя тёмная. */
+  lightSurface?: LessonCardLightSurface | null;
 }
 
 // зачем (R1 L1, координатор 12.10): renderLessonCard собирал для каждой плашки НОВЫЙ объект стиля слоя и новую стрелку нажатия — React.memo у LessonCard
@@ -877,10 +880,14 @@ const LessonCard = React.memo(function LessonCard({
   learningV2InProgress = false,
   onLearningV2PressIn,
   onLearningV2Press,
+  lightSurface = null,
 }: LessonCardProps) {
-  const isSagePorcelainCard = isLightThemeMode(_themeMode);
+  // зачем (решение владельца 12.10, п.81 (11), «карточки уроков при светлом оформлении — светлые»): themeMode всегда 'dark', поэтому прежняя светлая ветка (по themeMode) была мертва.
+  // Светлая плашка включается пропом `lightSurface` (токены светлого оформления активной темы), а не названием темы.
+  const lightCard = lightSurface;
+  const isSagePorcelainCard = isLightThemeMode(_themeMode) || lightCard !== null;
   const isOliveTheme = _themeMode === "olive";
-  const lockedCardHasLightFill = isLightThemeMode(_themeMode);
+  const lockedCardHasLightFill = isLightThemeMode(_themeMode) || lightCard !== null;
   // зачем: 100% прогресс заливает ВСЮ ширину карточки градиентом [bg, lightenHex(bg,1.28)] —
   // текст «УРОК N» стоит у левого края (start x:0), т.е. фактически на САМОМ bg без lighten.
   // Аудит нашёл пограничный случай: midnight B2 (тон 0.92, bg #9B54EB) даёт тёмному тексту
@@ -905,6 +912,8 @@ const LessonCard = React.memo(function LessonCard({
   // остальные темы получают тёмный текст лишь когда прогресс-фон под ним
   // гарантированно светлый (100%, см. useFilledMetaText выше).
   const useDarkMetaText = isSagePorcelainCard || useFilledMetaText;
+  // Цвет мелкого текста плашки на светлой заливке: из токенов (открытая — text, закрытая — приглушённый ≥ 4,5); прежняя тёмная ветка — константа.
+  const metaInk = lightCard ? (isUnlocked ? lightCard.text : lightCard.lockedText) : LESSON_CARD_OPEN_META_TEXT;
   // зачем: карточка раскрывалась «телепортом» — на тап не было НИКАКОГО отклика
   // (scaleAnim приходит null), экран просто подменялся. Отклик живёт на
   // UI-потоке (Reanimated): палец получает реакцию в том же кадре, до любой
@@ -1049,6 +1058,8 @@ const LessonCard = React.memo(function LessonCard({
                     ? isCurrent
                       ? OLIVE_GRADIENTS.selectedPanel
                       : OLIVE_GRADIENTS.raisedPanel
+                    : lightCard
+                      ? [lightCard.fill[0], lightCard.fill[1], lightCard.fill[2]]
                     : isSagePorcelainCard
                       ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
                       : [
@@ -1069,6 +1080,8 @@ const LessonCard = React.memo(function LessonCard({
                   ? goldCardGradient("muted")
                   : isOliveTheme
                     ? OLIVE_GRADIENTS.quietPanel
+                    : lightCard
+                      ? [lightCard.lockedFill[0], lightCard.lockedFill[1], lightCard.lockedFill[2]]
                     : isSagePorcelainCard
                       ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
                       : [
@@ -1087,6 +1100,8 @@ const LessonCard = React.memo(function LessonCard({
               colors={
                 isGoldTheme
                   ? GOLD_GRADIENTS.mutedPanel
+                  : lightCard
+                    ? [lightCard.lockedFill[0], lightCard.lockedFill[1], lightCard.lockedFill[2]]
                   : isSagePorcelainCard
                     ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)]
                     : [
@@ -1129,7 +1144,9 @@ const LessonCard = React.memo(function LessonCard({
                       string,
                       string,
                     ])
-                  : [bg, lightenHex(bg, 1.28)]
+                  : lightCard
+                    ? [lightCard.progress[0], lightCard.progress[1]]
+                    : [bg, lightenHex(bg, 1.28)]
               }
               locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
@@ -1167,6 +1184,8 @@ const LessonCard = React.memo(function LessonCard({
                 // тонируем акцентом урока, как границу карточки выше.
                 backgroundColor: isGoldTheme
                   ? GOLD_RICH.hairlineStrong
+                  : lightCard
+                    ? lightCard.edge
                   : isSagePorcelainCard
                     ? rgbaHexCached(lessonAccent, 0.38)
                     : useSketchLessonVisual
@@ -1194,7 +1213,7 @@ const LessonCard = React.memo(function LessonCard({
               <Text
                 style={{
                   color: useDarkMetaText
-                    ? LESSON_CARD_OPEN_META_TEXT
+                    ? metaInk
                     : lessonMetaColor,
                   fontSize: f.label,
                   fontWeight: "700",
@@ -1234,7 +1253,7 @@ const LessonCard = React.memo(function LessonCard({
                           cy={17}
                           r={14}
                           fill="none"
-                          stroke={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
+                          stroke={useDarkMetaText ? metaInk : lessonMetaColor}
                           strokeWidth={4}
                           strokeLinecap="round"
                           strokeDasharray={`${(progPct / 100) * 87.96} 87.96`}
@@ -1247,18 +1266,18 @@ const LessonCard = React.memo(function LessonCard({
                       <Ionicons
                         name="construct-outline"
                         size={15}
-                        color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
+                        color={useDarkMetaText ? metaInk : lessonMetaColor}
                       />
                     ) : isComplete ? (
-                      <Ionicons name="checkmark" size={15} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
+                      <Ionicons name="checkmark" size={15} color={useDarkMetaText ? metaInk : lessonMetaColor} />
                     ) : (
-                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 13, fontWeight: "700" }}>{progPct}%</Text>
+                      <Text style={{ color: useDarkMetaText ? metaInk : lessonMetaColor, fontSize: 13, fontWeight: "700" }}>{progPct}%</Text>
                     )}
                   </View>
                 ) : purchasedLesson ? (
                   <Text
                     style={{
-                      color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor,
+                      color: useDarkMetaText ? metaInk : lessonMetaColor,
                       fontSize: f.label,
                       fontWeight: "800",
                       ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
@@ -1319,7 +1338,7 @@ const LessonCard = React.memo(function LessonCard({
                       // под глифом («размыто» на всех темах). Берём тот же контрастный цвет,
                       // что и метка «УРОК N» слева, и тень оставляем лишь светлому тексту.
                       color: useDarkMetaText
-                        ? LESSON_CARD_OPEN_META_TEXT
+                        ? metaInk
                         : lessonMetaColor,
                       fontSize: f.label,
                       fontWeight: "800",
@@ -2415,9 +2434,11 @@ export default function LessonsTab({
   // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): карточка урока «Обучения» по замыслу ВСЕГДА тёмная с белым текстом (lessonTextColor),
   // а цвет уровня A1–B2 — светлый акцент на ней (кольцо, процент, заливка прогресса). Поэтому цвета уровней берём из токенов ТЕМНОГО оформления
   // той же темы и того же шага ползунка: тон следует теме, читаемость акцента на тёмной карточке сохраняется и при светлом оформлении приложения.
+  // зачем (решение владельца 12.10, п.81 (11)): при СВЕТЛОМ оформлении плашка урока светлая (lessonCardLightSurface) и чернила уровня берутся из токенов светлого оформления; при тёмном — как раньше.
+  const lightLessonCards = learnGlass.isLight;
   const levelInkGlass = useMemo(
-    () => liquidGlassTokens(liquidGlassThemeId, { level: learnGlass.level, appearance: "dark", intensity: learnGlass.intensity }),
-    [liquidGlassThemeId, learnGlass.level, learnGlass.intensity],
+    () => liquidGlassTokens(liquidGlassThemeId, { level: learnGlass.level, appearance: lightLessonCards ? "light" : "dark", intensity: learnGlass.intensity }),
+    [liquidGlassThemeId, learnGlass.level, learnGlass.intensity, lightLessonCards],
   );
   perfR1BodyMark('lessons', 'b_energy', perfBodyStart);
   const { energyReady: legacyEnergyReady } = useEnergy();
@@ -4768,6 +4789,7 @@ export default function LessonsTab({
         ? darkenHexCached(bookPalette(num, themeMode, levelInkGlass), 0.1)
         : bookPalette(num, themeMode, levelInkGlass);
     const darkBg = darkenHexCached(bg, 0.42);
+    const lightSurface = lightLessonCards && page === "v2" ? lessonCardLightSurface(bookPalette(num, themeMode, levelInkGlass), learnGlass) : null;
     const progPct =
       page === "v2"
         ? Math.min(100, Math.round(((learningV2ProgressCount ?? 0) / 56) * 100))
@@ -4793,9 +4815,13 @@ export default function LessonsTab({
     const cardRadius = isGoldTheme || isOliveTheme ? 14 : 16;
     const lockedCardBaseColor = isGoldTheme
       ? goldSurface
-      : darkenHexCached(bg, 0.28);
+      : lightSurface
+        ? lightSurface.lockedFill[1] // зачем (п.81 (11)): под светлым градиентом закрытой плашки — светлая подложка, а не тёмная (иначе тёмная кайма на скруглении)
+        : darkenHexCached(bg, 0.28);
     const cardLayerStyle = lessonCardLayerStyle(cardRadius); // зачем (R1 L1): стабильная ссылка на стиль, иначе memo плашки не срабатывает
-    const lessonTextColor = isSagePorcelainTheme
+    const lessonTextColor = lightSurface
+      ? isUnlocked ? lightSurface.text : lightSurface.lockedText
+      : isSagePorcelainTheme
       ? t.textPrimary
       : isGoldTheme
         ? isUnlocked
@@ -4806,7 +4832,9 @@ export default function LessonsTab({
             ? EXEMPT_COLOR_24
             : EXEMPT_COLOR_25
           : "rgba(255,255,255,0.97)"; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
-    const lessonMetaColor = isSagePorcelainTheme
+    const lessonMetaColor = lightSurface
+      ? isUnlocked ? lightSurface.text : lightSurface.lockedText
+      : isSagePorcelainTheme
       ? t.textPrimary
       : isGoldTheme
         ? isUnlocked
@@ -4869,6 +4897,7 @@ export default function LessonsTab({
         learningV2InProgress={learningV2InProgress}
         onLearningV2PressIn={learningV2Available ? prepareLearningV2Lesson : undefined}
         onLearningV2Press={onLearningV2PressOverride ? lessonCardPressWrapper(onLearningV2PressOverride) : toggleLearningV2Lesson}
+        lightSurface={lightSurface}
       />
     );
   };

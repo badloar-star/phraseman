@@ -27,6 +27,7 @@ import {
 } from '../modules/audio/audio_runtime_arbiter';
 import { useRuntimeActive } from './use_runtime_active';
 import { useSpeechUnavailableOnDevice } from '../app/speech_device_availability';
+import { getDevSpeechMode } from '../app/dev_cards_state';
 import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DialogueV2VoiceStatus = 'idle' | 'starting' | 'recording';
@@ -207,14 +208,46 @@ export function useDialogueV2VoiceMessage({
     cleanupPendingVoiceRecordings();
   }, [cleanupPendingVoiceRecordings, invalidateCapture]);
 
+  // зачем (координатор 12.10, съёмка R1 dialogs-026/028, gap-014): dev `speech=correct|wrong|denied|no_speech` — микрофона у робота нет.
+  // Подмена держит «запись», на отпускании выдаёт транскрипт и черновик голосового (file:///dev-voice.m4a — файла нет, удаление безопасно).
+  const devSpeechActiveRef = useRef(false);
   const stop = useCallback(() => {
+    if (devSpeechActiveRef.current) {
+      devSpeechActiveRef.current = false;
+      voiceHoldActiveRef.current = false;
+      const mode = getDevSpeechMode();
+      const transcript = mode === 'wrong' ? 'banana window river' : 'Hello, nice to meet you.';
+      console.warn('[DEV-STATE] dialogue voice: распознано (подмена)', JSON.stringify({ mode, transcript })); // guard-ok: dev-ветка
+      voiceCaptureTranscriptRef.current = transcript;
+      onTranscriptRef.current(transcript);
+      updateVoiceDraft(Object.freeze({ uri: 'file:///dev-voice.m4a', transcript }));
+      updateStatus('idle');
+      return;
+    }
     voiceHoldActiveRef.current = false;
     voiceStartGenerationRef.current += 1;
     try { speechModule?.stop(); } catch (swallowedError) { /* recognizer did not start */ noteSwallowed('use_dialogue_v2_voice_message:catch_5', swallowedError); }
     releaseVoiceRecording();
-  }, [releaseVoiceRecording, speechModule]);
+  }, [releaseVoiceRecording, speechModule, updateStatus, updateVoiceDraft]);
 
   const start = useCallback(async () => {
+    const devMode = getDevSpeechMode();
+    if (devMode && devMode !== 'unavailable') {
+      if (disabledRef.current || !runtimeActiveRef.current) {
+        console.warn('[DEV-STATE] dialogue voice: старт пропущен', JSON.stringify({ disabled: disabledRef.current, runtimeActive: runtimeActiveRef.current })); // guard-ok: ранний выход
+        return;
+      }
+      invalidateCapture();
+      cleanupPendingVoiceRecordings();
+      clearFailure();
+      if (devMode === 'denied') { reportFailure('permission_denied', 'dev_speech_denied'); return; }
+      if (devMode === 'no_speech') { reportFailure('not_heard', 'dev_speech_no_speech'); return; }
+      devSpeechActiveRef.current = true;
+      voiceHoldActiveRef.current = true;
+      console.warn('[DEV-STATE] dialogue voice: «запись» без микрофона', JSON.stringify({ mode: devMode })); // guard-ok: dev-ветка
+      updateStatus('recording');
+      return;
+    }
     // зачем (§SPEECH-NA): раньше при отсутствии модуля старт молча выходил — на
     // Huawei без Google тап по микрофону не давал НИКАКОГО отклика. Теперь
     // устройство без распознавателя получает понятный отказ 'unavailable'.

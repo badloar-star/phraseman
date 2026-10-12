@@ -222,6 +222,9 @@ function devForcedUnavailable(): boolean {
 function resolveOnce(): SpeechDeviceAvailabilityState {
   // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `speech=unavailable` — экран «Распознавание речи не работает на этом устройстве»; в стор-сборке геттер выключен.
   if (getDevSpeechMode() === 'unavailable') return 'unavailable';
+  // зачем (координатор 12.10, страховка съёмки «Устно»/голоса Диалогов): при подменённой речи распознаватель эмулятора не нужен —
+  // иначе вместо сессии робот видел бы «не работает на этом устройстве».
+  if (getDevSpeechMode() !== null) return 'available';
   if (memoryState !== null) return memoryState;
   const startedAt = Date.now();
   const speechModule = devForcedUnavailable() ? null : loadSpeechRecognitionModule();

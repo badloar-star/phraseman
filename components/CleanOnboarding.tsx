@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { isAccountDeleteIdentityQuarantinedFromKnownState } from '../app/account_delete_quarantine';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   AccessibilityInfo,
@@ -515,6 +515,24 @@ function trackOnboardingStepView(tags: OnboardingAnalyticsTags) {
   trackOnboardingActivity('onboarding_step_view', tags);
 }
 
+// зачем (координатор 12.10, R1 «первое впечатление»): «Продолжить» на «Приятно познакомиться» → ~15 с до следующего экрана,
+// с confetti=hold — 65 с и белый экран без строк JS. СПЕРВА ЛОГИ: меряем каждый синхронный кусок перехода
+// (кнопка → go → звук шага → уход старого экрана → рендер нового) и печатаем [ONB-STALL] {step, ms} при > 200 мс.
+// Строки выйдут, когда JS оживёт; если JS стоял не на этих кусках — их не будет, и это тоже ответ.
+const ONB_STALL_MS = 200;
+const onbNowMs = (): number => (typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now());
+function onbStall<T>(step: string, work: () => T): T {
+  const startedAt = onbNowMs();
+  try {
+    return work();
+  } finally {
+    const ms = Math.round(onbNowMs() - startedAt);
+    if (ms > ONB_STALL_MS) console.warn(`[ONB-STALL] ${JSON.stringify({ step, ms })}`); // guard-ok: только выше порога
+  }
+}
+/** Когда и куда звали go(): переход меряется «go → новый шаг на экране» (эффект displayStep в CleanOnboarding). */
+const onbGoMark: { target: string | null; atMs: number } = { target: null, atMs: 0 };
+
 function trackOnboardingPlanPaywallView(tags: OnboardingAnalyticsTags) {
   void trackEvent('onboarding_plan_paywall_view', {
     feature: 'onboarding',
@@ -676,7 +694,7 @@ function useStepSlide(step: CleanOnboardingStep): {
     // калимба. Единая точка на все шаги: сюда сходятся и кнопки, и
     // автопереходы; dedupe по имени шага не даёт повтора при возврате.
     if (step !== 'onboardingPaywall') {
-      soundDirector.request('pm.onboarding.step', { scope: 'onboarding', dedupeKey: `step-${step}` });
+      onbStall('slide:sound', () => soundDirector.request('pm.onboarding.step', { scope: 'onboarding', dedupeKey: `step-${step}` }));
     }
     if (reduceMotion) {
       opacity.setValue(1);
@@ -691,7 +709,10 @@ function useStepSlide(step: CleanOnboardingStep): {
       Animated.timing(translateX, { toValue: -20, duration: LUM.exitMs, useNativeDriver: true }),
     ]);
     out.start(({ finished }) => {
-      console.log(`[ONB-TAP] slide:exit_done step=${step} finished=${finished} afterMs=${Date.now() - slideStartedAt}`);
+      const exitAfterMs = Date.now() - slideStartedAt;
+      console.log(`[ONB-TAP] slide:exit_done step=${step} finished=${finished} afterMs=${exitAfterMs}`);
+      // зачем: колбэк конца анимации приходит с нативного потока — если он запоздал, экран ждал UI-поток, а не JS.
+      if (exitAfterMs - LUM.exitMs > ONB_STALL_MS) console.warn(`[ONB-STALL] ${JSON.stringify({ step: `slide:exit_late:${step}`, ms: exitAfterMs, expectedMs: LUM.exitMs })}`); // guard-ok: только выше порога
       if (finished) setDisplayStep(step);
     });
     return () => {
@@ -852,7 +873,7 @@ function PrimaryButton({
       }}
       onPress={() => {
         console.log(`[ONB-STEP-WAIT] press testID=${testID ?? 'none'}`);
-        onPress();
+        onbStall(`button:${testID ?? 'none'}`, onPress);
       }}
       disabled={disabled || loading}
       style={({ pressed }) => [styles.primaryButtonOuter, (pressed || loading) && styles.pressed, loading && styles.disabled]}
@@ -2484,14 +2505,26 @@ function CleanOnboarding({
   }, []);
 
   const go = useCallback((requested: CleanOnboardingStep) => {
-    const next = resolveOnboardingStep(enabledOrder, requested, 'current-or-forward');
+    const next = onbStall('go:resolve', () => resolveOnboardingStep(enabledOrder, requested, 'current-or-forward'));
     console.log(`[ONB-STEP-WAIT] go requested=${requested} next=${next}`);
-    setStep(next);
-    void persistStep(next);
-    trackOnboardingStepView({ step: next });
+    onbGoMark.target = next;
+    onbGoMark.atMs = onbNowMs();
+    onbStall('go:setStep', () => setStep(next));
+    onbStall('go:persistStep', () => { void persistStep(next); });
+    onbStall('go:trackStepView', () => trackOnboardingStepView({ step: next }));
   }, [enabledOrder, persistStep]);
 
   const { displayStep, slideStyle } = useStepSlide(step);
+  // зачем ([ONB-STALL], координатор 12.10): полное время «go() → новый шаг на экране» и рендер шага (React Profiler — в dev-сборке).
+  useEffect(() => {
+    if (onbGoMark.target !== displayStep) return;
+    const ms = Math.round(onbNowMs() - onbGoMark.atMs);
+    onbGoMark.target = null;
+    if (__DEV__ || ms > ONB_STALL_MS) console.log(`[ONB-STALL] ${JSON.stringify({ step: `go_to_shown:${displayStep}`, ms })}`); // guard-ok: одна строка на шаг
+  }, [displayStep]);
+  const onStepProfile = useCallback<React.ProfilerOnRenderCallback>((id, phase, actualMs) => {
+    if (actualMs > ONB_STALL_MS) console.warn(`[ONB-STALL] ${JSON.stringify({ step: `render:${id}:${phase}`, ms: Math.round(actualMs) })}`); // guard-ok: только выше порога
+  }, []);
   // зачем (координатор 11.10, «Позже» через минуту; СПЕРВА ЛОГИ): [JS-STALL] — стоял ли JS-поток, пока открыт
   // онбординг (сторож старта в _layout снимается через 3 с после сплеша). Тик 100 мс, печатает разрывы > 250 мс
   // с шагом, на котором стояли. Только dev; снимается при размонтировании.
@@ -4294,11 +4327,13 @@ function CleanOnboarding({
     <OnboardingSkipContext.Provider value={skipHandler}>
     <View style={styles.root}>
       <Background />
-      {bare ? (
-        renderStep(displayStep)
-      ) : (
-        <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
-      )}
+      <Profiler id={`step-${displayStep}`} onRender={onStepProfile}>
+        {bare ? (
+          renderStep(displayStep)
+        ) : (
+          <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
+        )}
+      </Profiler>
       {/* зачем (правило владельца 22.09, координатор 12.10): плашки «Ты удалил(а) все свои данные» здесь больше нет —
           уведомлений об удалении не показываем никогда. Вид онбординга не тронут. */}
     </View>

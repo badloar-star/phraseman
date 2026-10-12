@@ -1,7 +1,7 @@
 <!-- TRIAGE128 -->
-# Разбор 128 строк r1 со статусом diff — три корзины (Макеты, 12.10, по заданию координатора)
+# Разбор строк r1 со статусом diff (130) — три корзины (Макеты, 12.10, по заданию координатора)
 
-**(а) дефект кода — чинит Дизайн: 17** · **(б) кадр испорчен или устарел — переснимает Сверка: 90** · **(в) образец устарел или спорный — решает владелец: 21**. Всего 128. В реестре у каждой строки поставлено `triage.bucket` (`a_code_defect` / `b_reshoot` / `c_owner_decides`) и `triage.bucket_reason`; статусы и число строк (1093) не менялись.
+**(а) дефект кода — чинит Дизайн: 17** · **(б) кадр испорчен или устарел — переснимает Сверка: 91** · **(в) образец устарел или спорный — решает владелец: 22**. Всего 130. В реестре у каждой строки поставлено `triage.bucket` (`a_code_defect` / `b_reshoot` / `c_owner_decides`) и `triage.bucket_reason`; статусы и число строк (1093) не менялись.
 
 Правило раскладки: строка идёт в (б), если на кадре нет нужного состояния, кадр пустой/закрыт окном или старше правки кода (по гейту `evidence_stale`) — пока кадр не обновлён, отличия считать дефектом нельзя. В (а) попали отличия, которые в коде не исправлены и не объяснены данными/темой/магазином. «Подтверждено» = виден на кадре, снятом после последней правки; «кандидат» = кадр старый, подтвердит пересъёмка.
 
@@ -10,16 +10,16 @@
 | № | id | Что не так | Файл экрана | Оценка | Проверка |
 |---|---|---|---|---|---|
 | 1 | dialogs-041 | итог не загрузился (completion_unavailable, 20 с); серия не выросла после полуночи (sameDay=true); тост лёг поверх «Готово» | app/dialogue_v2_completion.tsx; расчёт серии (STREAK) — Ядро | средне | кандидат: кадр 05.10; исполнитель — Ядро |
-| 2 | dialogs-030 | после отправки клавиатура скрыта, а поле ввода осталось приподнятым — пустая полоса ~150 px; плейсхолдер обрезан | components/dialogs/DialogueV2SessionScreen.tsx (подъём поля ввода после отправки) | средне | кандидат: кадр 05.10, в сессии есть слушатель keyboardDidHide — проверить |
-| 3 | dialogs-038 | диалог завершился после 2-й реплики при невыполненных целях; карточка цели пропала; при открытой клавиатуре лента не прокручивается к последнему сообщению | components/dialogs/DialogueV2SessionScreen.tsx + движок реплик (Ядро) | средне | кандидат: кадр 05.10; исполнитель — Ядро |
+| 2 | dialogs-038 | диалог завершился после 2-й реплики при невыполненных целях; карточка цели пропала; при открытой клавиатуре лента не прокручивается к последнему сообщению | components/dialogs/DialogueV2SessionScreen.tsx + движок реплик (Ядро) | средне | кандидат: кадр 05.10; исполнитель — Ядро |
+| 3 | cards-034 | подсказка «Зажми карточку…» висит поверх шторки «Удалить»; у шторки нет ручки (подтверждено кадром 2:19) | app/flashcards/CollectionListView.tsx / CollectionGalleryView.tsx (подсказка + шторка) | мелко | подтверждено кадром 2:19; то же на cards-006 |
 | 4 | dialogs-001 | хаб «Диалоги»: «Свободный разговор» компактная серая строка, карточки категорий выше и светлее — «Тень» для Диалогов не применена | components/dialogs/DialogueV2CatalogueContainer.tsx, DialogueV2CatalogueSection.tsx, DialogueV2PlusTools.tsx | средне | кандидат: кадр от 04.10, ждёт «Тень» для Диалогов |
-| 5 | cards-006 | две плашки у нижнего края: подсказка «Зажми карточку…» висит над «Удалено · Вернуть» | app/flashcards/CollectionListView.tsx (подсказка + плашка «Удалено») | мелко | подтверждено кадром 12.10 (+ нужен кадр в режиме списка) |
-| 6 | dialogs-003 | раскрытая категория: полосы зелёного градиента сверху и снизу экрана (зона системных отступов) | components/dialogs/DialogueV2CatalogueContainer.tsx (фон корня, ScreenGradient + SafeAreaView) | мелко | кандидат: проверить на свежем кадре |
-| 7 | dialogs-014 | сессия: ключевые слова реплики без жирного и подчёркивания, нет настроения «Доволен», стеклянная кромка карточки цели | components/dialogs/glass/DialogueGlassChat.tsx, DialogueV2SessionScreen.tsx | мелко | кандидат: кадр 04.10 (в шапке «⚡ / 💬» уже есть) |
-| 8 | dialogs-008 | брифинг: шаблонное описание «Ты переписываешься в мире…», лишний блок под заданиями, номера без кружков | components/dialogs/DialogueV2BriefingScreen.tsx | мелко | кандидат: кадр 04.10 |
-| 9 | dialogs-017 | окно «Подсказка»: нет кнопки закрытия, окно без кромки и тени; текст повторяет цель | components/dialogs/DialogHintModal.tsx | мелко | кандидат: кадр 04.10; текст подсказки — с сервера |
-| 10 | dialogs-016 | реплика: нет кнопки озвучки перед «Скрыть перевод» | components/dialogs/DialogBubbleActions.tsx, DialogueV2SessionScreen.tsx | мелко | кандидат: кадр 04.10 |
-| 11 | cards-011 | Мои наборы: кнопки «⋮» и «+» плоские (в образце круглые с тенью), у набора нет автора | app/flashcards/MyPacksV2.tsx (PackRoundButton, строка набора) | мелко | кандидат: уровень и слова-чипы исправлены в 19d6c1908 уже после кадра; плашки и автор не проверены |
+| 5 | dialogs-030 | карточка цели: название с маленькой буквы («начать с приветствия»), плейсхолдер «Напиши или зажми микрофон» переносится на 2 строки (подтверждено кадром 2:31; пустая полоса после отправки устранена) | app/dialogue_v2_session.tsx:620 (goal.label = currentObjective.label без formatDialogObjectiveLabel); плейсхолдер поля ввода — components/dialogs/glass/DialogueGlassChat.tsx | мелко | подтверждено кадром 2:31 (старый дефект «пустая полоса после отправки» устранён) |
+| 6 | dialogs-014 | карточка цели: название с маленькой буквы; плейсхолдер поля ввода переносится (подтверждено кадром 2:33); ключевые слова реплики без жирного — не проверено (у dev-реплики их нет) | app/dialogue_v2_session.tsx:620 (название цели), DialogueGlassChat.tsx (плейсхолдер) | мелко | подтверждено кадром 2:33; тот же дефект, что dialogs-030 |
+| 7 | dialogs-008 | брифинг: шаблонное описание «Ты переписываешься в мире…», лишний блок под заданиями, номера без кружков | components/dialogs/DialogueV2BriefingScreen.tsx | мелко | кандидат: кадр 04.10 |
+| 8 | dialogs-017 | окно «Подсказка»: нет кнопки закрытия, окно без кромки и тени; текст повторяет цель | components/dialogs/DialogHintModal.tsx | мелко | кандидат: кадр 04.10; текст подсказки — с сервера |
+| 9 | dialogs-016 | реплика: нет кнопки озвучки перед «Скрыть перевод» | components/dialogs/DialogBubbleActions.tsx, DialogueV2SessionScreen.tsx | мелко | кандидат: кадр 04.10 |
+| 10 | cards-011 | Мои наборы: кнопки «⋮» и «+» плоские (в образце круглые с тенью), у набора нет автора | app/flashcards/MyPacksV2.tsx (PackRoundButton, строка набора) | мелко | кандидат: уровень и слова-чипы исправлены в 19d6c1908 уже после кадра; плашки и автор не проверены |
+| 11 | cards-009 | пустые «Сохранённые»: блок «Пока пусто» ниже образца на ≈45 dp (центр на 56 % высоты против 50 %) | app/flashcards/SavedCollectionStates.tsx (центровка пустого состояния) | мелко | подтверждено кадром 2:18 |
 | 12 | spire-gap-009 | «Подняться» выглядит активной при «комнаты ещё нет» (в образце серая неактивная) | components/spire/SpireClimbDock.tsx | мелко | кандидат: проверить, что без комнаты кнопка серая |
 | 13 | cards-028 | Из видео: «⋮» без квадратной плашки; превью роликов серые (не загрузились) | app/flashcards/VideoPackRow.tsx, flashcards_video_packs.tsx (PackSquareButton) | мелко | кандидат: превью — журнал [THUMB] 40f96c292 |
 | 14 | profile-001 | Настройки: заголовок крупнее и ниже образца (≈ +55 px) — проверить в увеличении | app/(tabs)/settings.tsx (заголовок «Настройки») | мелко | кандидат: проверить ×3 |
@@ -29,21 +29,21 @@
 
 | id | Что не так | Файл экрана | Оценка | Проверка |
 |---|---|---|---|---|
+| cards-006 | две плашки у нижнего края: подсказка «Зажми карточку…» висит над «Удалено · Вернуть» | app/flashcards/CollectionListView.tsx (подсказка + плашка «Удалено») | мелко | подтверждено кадром 12.10 (+ нужен кадр в режиме списка) |
 | dialogs-002 | то же для Plus: «Свободный разговор» без значка PLUS, категории светлее | те же файлы | средне | кандидат, как dialogs-001 |
-| dialogs-006 | то же (полосы градиента при раскрытии категории) | то же | мелко | кандидат, как dialogs-003 |
 
 ## (б) Переснять — список id одной строкой (для робота Сверки)
 
 ```
-cards-005 cards-007 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-018 dialogs-019 dialogs-022 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020 cards-009 cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006 cards-021 cards-023 cards-025 cards-034 cards-039 cards-047 cards-075 dialogs-023 dialogs-032 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019 dialogs-015 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
+cards-005 cards-007 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-018 dialogs-019 dialogs-022 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020 cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006 cards-021 cards-023 cards-025 cards-035 cards-036 cards-039 cards-047 cards-075 dialogs-006 dialogs-023 dialogs-032 profile-003 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019 dialogs-015 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
 ```
 
-Разбивка по причине (90 строк):
+Разбивка по причине (91 строк):
 
 - **кадр старше правки кода или отличия уже исправлены (36):** cards-005 cards-007 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 dialogs-004 dialogs-005 dialogs-007 dialogs-018 dialogs-019 dialogs-022 dialogs-035 dialogs-036 community-003 community-004 community-005 community-006 community-007 community-020 community-025 packs-simple-001 spire-gap-003 spire-gap-006 spire-gap-008 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-017 spire-gap-018 spire-gap-020
-- **кадр испорчен — пустой, окно поверх или не тот экран (9):** cards-009 cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006. Перед съёмкой закрывать окно «Замочки ушли в отпуск!» (гасит overlays=off у Дизайна).
-- **нужное состояние не воспроизведено (27):** cards-021 cards-023 cards-025 cards-034 cards-039 cards-047 cards-075 dialogs-023 dialogs-032 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019
-- **кадра нет — снять на телефоне, эмулятор роняет экран (18):** dialogs-015 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
+- **кадр испорчен — пустой, окно поверх или не тот экран (8):** cards-010 cards-062 dialogs-031 dialogs-034 community-001 profile-026 cards-gap-026 paywall-gap-006. Перед съёмкой закрывать окно «Замочки ушли в отпуск!» (гасит overlays=off у Дизайна).
+- **нужное состояние не воспроизведено (30):** cards-021 cards-023 cards-025 cards-035 cards-036 cards-039 cards-047 cards-075 dialogs-006 dialogs-023 dialogs-032 profile-003 paywalls-011 paywalls-012 paywalls-013 paywalls-016 paywalls-018 energy-modes-001 onboarding-019 onboarding-020 onboarding-021 cards-v2-030 dialogs-gap-017 cards-gap-004 cards-gap-006 cards-gap-010 cards-gap-016 paywall-gap-004 settings-gap-004 settings-gap-019
+- **кадра нет — снять на телефоне, эмулятор роняет экран (17):** dialogs-015 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-025 profile-028 profile-029 profile-030
 
 ## (в) Образец устарел или спорный — решает владелец
 
@@ -54,6 +54,7 @@ cards-005 cards-007 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 
 | cards-016 | чип «EN ⌄» в каталоге — вопрос владельцу |
 | cards-017 | чип «EN ⌄» в каталоге — вопрос владельцу |
 | cards-048 | чип «EN ⌄» в каталоге — вопрос владельцу (+ проверить чипы уровней при пустом каталоге) |
+| dialogs-003 | образец ≠ код: подзаголовок под «Диалоги», карточка «Свободный разговор», одна иконка мира на всех строках (в образце иконка у каждого сценария) — решение владельца |
 | overlays-runtime-018 | нужен привязанный тестовый аккаунт; привязывать ради снимка нельзя — решение владельца |
 | cards-section-007 | образец под замком в старой подаче (цветной, «Аврора») — копии «Тень» |
 | cards-section-009 | образец под замком в старой подаче — копии «Тень» |
@@ -74,6 +75,21 @@ cards-005 cards-007 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 
 Связанный лист решений для владельца: `OWNER_MORNING_MOCKUPS_A.md` (чип «EN ⌄», копии «Тень», образцы Карточек №54–72).
 
 <!-- /TRIAGE128 -->
+
+---
+
+# Прежний разбор Дизайна (12.10, 100 строк)
+
+
+---
+
+# Прежний разбор Дизайна (12.10, 100 строк)
+
+
+---
+
+# Прежний разбор Дизайна (12.10, 100 строк)
+
 
 ---
 

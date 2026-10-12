@@ -28322,16 +28322,20 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-012.png",
+      "evidence_at": "2026-10-12T02:30:13.528Z",
+      "evidence_sha256": "e8266c38401bc58f4c87a17a2ef1237c1a518f6d2a3b6cb3d9b42184d0b19e0f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — подтверждено] Подсказка «Зажми карточку, чтобы изменить или удалить её» висит поверх сетки (плашка по центру внизу), а над ней плавающая «Тренировать» — две плашки закрывают нижние ряды; в образце ничего поверх сетки нет. Тот же дефект, что cards-006/032/034 — проверить на экране «Свой набор» после правки Дизайна d99356919 (она закрывала только экран «Сохранённые»).",
+        "[вёрстка] Подпись под названием: в приложении «B1 · 22 карточки · 🔒 Только ты» (чип уровня, порядок «карточки, потом доступ»), в образце «🔒 Только ты · 40 карточек» без чипа уровня; название крупнее.",
+        "[данные] «Работа» против «Путешествия», 22 карточки против 40."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:31:06.962Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28349,7 +28353,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:30, образец cards-v2 №14 «Свой набор» утверждён): состав совпал — «‹ · ⋮», название набора, строка «Только ты · N карточек», «Тренировать» и «+», ползунок масштаба, сетка в две колонки."
     },
     {
       "id": "cards-section-013",
@@ -28473,16 +28478,18 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-015.png",
+      "evidence_at": "2026-10-12T02:30:39.815Z",
+      "evidence_sha256": "8e57978c6b19d6ad9c6e571d02e231f542f0a1d974fd00e70bac4b777bcc9e66",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце список с крупными карточками (ползунок до упора вправо), в приложении сетка в две колонки (ползунок на 3-й позиции); счётчик «63» против «64» после удаления. Переснять в режиме списка после свайп-удаления."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:31:06.962Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28500,7 +28507,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:30, образец cards-v2 №10 «Удалено — вернуть» утверждён): плашка «Удалено · Вернуть» у нижнего края совпала по виду и месту; подсказка «Зажми карточку…» над ней теперь не висит — правка Дизайна d99356919 подтверждена на кадре (прежний дефект cards-006 для плашки «Удалено» закрыт)."
     },
     {
       "id": "cards-section-016",

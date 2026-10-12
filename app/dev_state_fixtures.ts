@@ -183,6 +183,8 @@ export type DevStateRequest = Readonly<{
   animations?: 'on' | 'off';
   /** `robot_no_cloud=1`: тумблеры Уведомлений и Приватности меняют только экран — без сохранения и облака (только память). */
   robotNoCloud?: '1' | '0';
+  /** `guest=required`: ссылка не применяет НИЧЕГО и не переходит на next, если на устройстве не анонимный гость (№1/№2/№3, Google/Apple). */
+  guest?: 'required';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
@@ -270,6 +272,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
+  request.guest = pick('guest', ['required'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -355,6 +358,19 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (!isDevStateAvailable()) {
     console.warn('[DEV-STATE] refused: not a dev build'); // guard-ok: ранний выход логируется
     return { applied, skipped: { all: 'not_dev_build' }, next: null };
+  }
+  // зачем (владелец 12.10 через координатора: настоящие «Выйти», смена аккаунта, код приглашения, тумблеры роботом — ТОЛЬКО на анонимном
+  // госте): упавший шаг не прерывает ссылку, поэтому проверка стоит ДО всех шагов и обрывает её целиком — без флагов и без перехода на next
+  // робот остаётся на экране DEV-STATE и дальше не находит элементов. Проверка чистая (без пометки «не выгружать» у гостя).
+  if (request.guest === 'required') {
+    const { checkDisposableGuestNow } = await import('./dev_state_account_guard');
+    const verdict = checkDisposableGuestNow();
+    if (verdict.ok === false) {
+      console.warn(`[DEV-STATE] guest=required refused: ${verdict.reason} — ссылка не применена, переход отменён`); // guard-ok: ранний выход логируется
+      return { applied, skipped: { all: `guest_required_refused:${verdict.reason}` }, next: null };
+    }
+    console.log(`[DEV-STATE] guest=required ok — анонимный гость ${verdict.uid.slice(0, 6)}…`); // guard-ok: единичный лог на ссылку
+    applied.guest = 'required';
   }
   // зачем (первый прогон робота 12.10: cards-002/008/009/013 — 40 с на «DEV-STATE…» без перехода): шаг фикстуры мог зависнуть (замок записи карточек, переход
   // аккаунта) и держать ВЕСЬ экран; логов по шагам не было. Теперь каждый шаг пишет старт/итог с длительностью, а зависший снимается потолком

@@ -34,6 +34,14 @@ function readCurrentUser(): GuardUser {
 }
 
 /**
+ * Та же проверка БЕЗ побочных эффектов (без пометки «не выгружать»): для `dev_state?guest=required` — ссылка съёмки отказывает
+ * целиком на настоящем аккаунте. `readUser` подменяется в тестах.
+ */
+export function checkDisposableGuestNow(readUser: () => GuardUser = readCurrentUser): GuestCheck {
+  return classifyGuestUser(readUser());
+}
+
+/**
  * Бросает, если текущий аккаунт — не одноразовый гость. Вызывать ПЕРЕД первой записью фикстуры.
  * `readUser` подменяется в тестах.
  */

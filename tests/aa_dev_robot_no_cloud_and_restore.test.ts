@@ -125,3 +125,26 @@ describe('restore=offer|restored', () => {
     expect(statusMock).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('guest=required', () => {
+  it('чистая проверка: только анонимный гость без провайдеров проходит, без побочных эффектов', () => {
+    const { checkDisposableGuestNow } = require('../app/dev_state_account_guard');
+    expect(checkDisposableGuestNow(() => ({ isAnonymous: true, uid: 'guest123', providerData: [] }))).toEqual({ ok: true, uid: 'guest123' });
+    expect(checkDisposableGuestNow(() => ({ isAnonymous: false, uid: 'acc1', providerData: [{}] }))).toMatchObject({ ok: false, reason: 'not_anonymous' });
+    expect(checkDisposableGuestNow(() => ({ isAnonymous: true, uid: 'x', providerData: [{}] }))).toMatchObject({ ok: false, reason: 'linked_providers_1' });
+    expect(checkDisposableGuestNow(() => null)).toMatchObject({ ok: false, reason: 'no_auth_user' });
+    expect(read('app/dev_state_account_guard.ts')).toMatch(/export function checkDisposableGuestNow[\s\S]{0,200}return classifyGuestUser\(readUser\(\)\);\n\}/);
+  });
+
+  it('applyDevState: проверка гостя стоит ДО первого шага и обрывает ссылку без перехода', () => {
+    const src = read('app/dev_state_fixtures.ts');
+    const start = src.indexOf('export async function applyDevState(');
+    const guard = src.indexOf("if (request.guest === 'required') {", start);
+    const firstStep = src.indexOf('await step(', start);
+    expect(guard).toBeGreaterThan(start);
+    expect(guard).toBeLessThan(firstStep);
+    const block = src.slice(guard, guard + 900);
+    expect(block).toContain('return { applied, skipped: { all: `guest_required_refused:${verdict.reason}` }, next: null };');
+    expect(block).not.toContain('assertDisposableGuest');
+  });
+});

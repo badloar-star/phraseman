@@ -29514,16 +29514,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-036.png",
+      "evidence_at": "2026-10-12T02:34:07.843Z",
+      "evidence_sha256": "5f5e04b2355cdf6430170b36690e364dd7739180cbcb9f4f98ee97d718627137",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце «Блиц» (молния, «Время · 30 с / 60 с / 90 с»), на кадре «Напиши» (значок пера, «Сколько · 10 / 20 / Все» и новый блок «Показывать · EN → RU / RU → EN»). Образца настройки для «Напиши» (и «Устно», см. cards-section-034) в cards-v2 нет — дорисовать кадры в конец страницы по приложению (решение координатора по п.54) либо принять «Блиц» за образец раскладки.",
+        "[данные] Пилюля «30/30» против «24/30»; пять наборов в приложении (Все сохранённые, Путешествия, B2 глаголы, Работа, Фразовые глаголы) против четырёх в образце; выбран один набор, в образце два."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:36:24.937Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -29541,7 +29544,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:34, образец cards-v2 №28 «Настройка тренировки» утверждён, но только для режима «Блиц»): раскладка настройки та же — «‹» и пилюля лимита, плитка режима, «Что повторяем» с плитками наборов, переключатель, «Начать»."
     },
     {
       "id": "cards-section-037",
@@ -31368,18 +31372,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-017.png",
+      "evidence_at": "2026-10-12T02:34:42.219Z",
+      "evidence_sha256": "be8955a387a9e0dd7669701b242359ba25b8bce4c2b29ab74917d56e491d3ca2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+        "[состояние не то] В образце список «Обучение» с окном «Энергия закончилась · +1 вернётся через 7 минут · Открыть Plus / Позже»; на кадре открыт «Урок 1 · Местоимения и глагол To Be» с разбором «Почему нужен am / is / are», «⚡ 0» в шапке и красным флажком, окна нет. Либо кадр снят не на старте урока, либо окно энергии при нуле не показывается (кандидат в дефект кода — тот же класс, что dialogs-011) — переснять на входе в урок при нулевой энергии.",
+        "[образец ≠ код] В образце «⚡ 0» бледный в шапке списка, в приложении шапка урока другая (название урока, «‹», флажок).",
+        "[данные] Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:36:24.937Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). Текст окна — одна из фраз lesson1_energy.ts (случайно), «+1 ⚡ вернётся через {время}»; кнопки «Открыть Plus» и «Позже» (NoEnergyModal.tsx). Серии монет «×N» в коде уроков нет — из кадров убрана (12.10).",
@@ -31387,7 +31393,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&plus=off&mode=a&overlays=off&next=/lesson_menu?id=1"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:34, energy-modes-states №25 «Режим А · нет энергии при старте»): окна «Энергия закончилась» на кадре нет."
     },
     {
       "id": "onboarding-paywall-001",
@@ -32558,22 +32565,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-005.png",
+      "evidence_at": "2026-10-12T02:35:03.920Z",
+      "evidence_sha256": "1b51146d3d065710d475512749e0534c74f81b22203df5d04f554f7d61230e20",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Список на кадре прокручен вниз: большого заголовка «Сохранённые 64» нет, карточки Layover и Gate выше края (под шапкой виден обрезок «выход на посадку»); в образце список в самом верху — переснять без прокрутки.",
+        "[вёрстка, мелко] Плашка «Тренировать» в приложении перекрывает слово «Customs» на другой строке, чем в образце (из-за прокрутки); фон карточек в приложении плоский, в образце заметны блик и тень стиля «Тень» — сверить после пересъёмки.",
+        "[данные] Другие слова на экране из-за прокрутки (Delay, Visa, Luggage, Boarding, Check in, Customs)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:36:24.937Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:34, cards-v2 №5 «Сохранённые — 1 колонка»): раскладка совпала — «‹», поиск, «+», «⋮», ползунок масштаба с ручкой у правого края, карточки в одну колонку (звук слева, «EN», слово, перевод, «···»), плашка «Тренировать»."
     },
     {
       "id": "cards-v2-006",

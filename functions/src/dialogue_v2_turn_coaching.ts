@@ -130,6 +130,21 @@ export function dialogueV2CoachingResponseFormat(): Readonly<Record<string, unkn
   });
 }
 
+/** Кавычки для цитаты фразы в «Почему так» — по норме языка интерфейса (dialogs-020). */
+export const DIALOGUE_V2_EXPLANATION_QUOTES: Readonly<Record<DialogueV2CoachingInterfaceLang, string>> = Object.freeze({
+  ru: '«…»',
+  uk: '«…»',
+  es: '«…»',
+  'pt-BR': '«…»',
+  fr: '« … »',
+  de: '„…“',
+  pl: '„…”',
+  en: '“…”',
+  vi: '“…”',
+  id: '“…”',
+  tr: '“…”',
+});
+
 /** Строки промпта, которые добавляются только в расширенном режиме. */
 export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingInterfaceLang): readonly string[] {
   const language = LANGUAGE_NAMES[interfaceLang];
@@ -143,7 +158,10 @@ export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingI
     'Earlier assistant messages in this conversation are stored shortened to {"replies":…} only. That is storage, not the format: every response you write MUST include the full "coaching" object.',
     `"coaching" is learner help written in ${language} unless stated otherwise, with exactly these fields:`,
     `- "replyTranslations": array with one faithful ${language} translation of each reply, same order.`,
-    `- "replyExplanations": array with one short ${language} note (max 2 sentences) per reply explaining why it is phrased that way: the useful phrase or pattern in it. No grammar terminology.`,
+    // зачем (координатор 12.10, dialogs-020, макет «Почему так»): разбор приходил от лица персонажа («Я использую … для
+    // ясности») и общими словами («простая и прямая фраза»), с прямыми кавычками. Разбор пишет наставник О реплике:
+    // называет конкретную фразу в кавычках языка интерфейса и что она делает в этой ситуации.
+    `- "replyExplanations": array with one short ${language} note (max 2 sentences) per reply, written by a tutor ABOUT the reply: never in the persona's voice, never "I" or "me". Name the concrete study-language phrase from the reply in ${DIALOGUE_V2_EXPLANATION_QUOTES[interfaceLang]} quotes and say what it does in this situation (for example, how it softens a request or keeps the chat going). No generic praise such as "simple and clear", no grammar terminology.`,
     '- "betterPhrasing": a more natural version of the learner\'s last message in the study language, or null when it is already natural and correct.',
     `- "hint": one short ${language} suggestion of the learner's next step toward the current objective. Describe the step; never write the ready-made sentence.`,
     '- "mood": the selected persona\'s current mood caused by the learner\'s behaviour: one of "happy", "smile", "neutral", "sad", "angry".',

@@ -31,6 +31,16 @@ describe('ход диалога V2: разбор обязателен на ка�
     const lines = dialogueV2CoachingPromptLines('ru').join('\n');
     expect(lines).toMatch(/every response you write MUST include the full "coaching" object/);
   });
+
+  // зачем (координатор 12.10, dialogs-020): «Почему так» приходил от лица персонажа и общими словами, с прямыми кавычками.
+  it('«Почему так»: наставник о реплике, не «я»; конкретная фраза в кавычках языка интерфейса', () => {
+    const ru = dialogueV2CoachingPromptLines('ru').join('\n');
+    expect(ru).toContain('written by a tutor ABOUT the reply: never in the persona\'s voice, never "I" or "me"');
+    expect(ru).toContain('in «…» quotes');
+    expect(ru).toContain('No generic praise such as "simple and clear", no grammar terminology.');
+    expect(dialogueV2CoachingPromptLines('en').join('\n')).toContain('in “…” quotes');
+    expect(dialogueV2CoachingPromptLines('pl').join('\n')).toContain('in „…” quotes');
+  });
 });
 
 // зачем (баг 02.10, прод-лог: модель пропускала «coaching» на ходах 1–3 и после инструкции):

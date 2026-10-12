@@ -151,6 +151,31 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 релиза». Опрос осколков — это отдельный модуль `functions/src/shard_survey.ts` (`getActiveShardSurvey`, `submitShardSurvey`,
 `adminWriteShardSurvey`, `adminDeleteShardSurvey`); эта выкладка его не трогает.
 
+## Г: сайт (политика, условия, удаление) — knowlyapps.com
+
+Зачем: опубликованный сайт отстаёт — политика `October 10`, условия `September 1`, страница удаления без 14 дней на восстановление и
+без правила для гостя. Google Play читает именно https://knowlyapps.com/legal/data-deletion/, ссылки в формах сторов ведут на политику
+(STORE_PRIVACY_FORMS_R1.md §3, §4.2, §4.8). В репозитории всё готово: `knowly-www/legal/{privacy,privacy-ios,terms,data-deletion}` =
+`legal/*.json` (October 12, 2026; `npm run legal:sync` изменений не даёт), на странице удаления добавлен блок «14-day recovery window»
+ровно по политике §20 и коду (`functions/src/account_delete_grace.ts`, 14 дней).
+
+Цель hosting — `knowlywww` (.firebaserc → сайт `knowlyapps`, папка `knowly-www`, без predeploy). Выкладывается ВЕСЬ `knowly-www`
+из коммита — тем же чистым срезом, что выше (папка `$D` уже есть):
+
+```bash
+FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && firebase deploy --only hosting:knowlywww --project phraseman-ea0b3
+```
+
+**Проверка после** (в браузере, без кэша — Ctrl+F5):
+- https://knowlyapps.com/legal/privacy/ — «Last updated: October 12, 2026»;
+- https://knowlyapps.com/legal/privacy-ios/ — «Last updated: October 12, 2026»;
+- https://knowlyapps.com/legal/terms/ — «Last updated October 12, 2026»;
+- https://knowlyapps.com/legal/data-deletion/ — «Last updated October 12, 2026» и раздел **«14-day recovery window»** (два абзаца:
+  восстановление при входе Google/Apple; гость не восстанавливается, серверные данные — не позднее конца 14 дней);
+- главная https://knowlyapps.com/ и /start/ открываются как раньше (весь сайт выложен из коммита).
+
+**Откат:** консоль Firebase → Hosting → сайт `knowlyapps` → «Release history» → предыдущий релиз → Rollback. Данных не касается.
+
 ## Откат
 
 Предыдущая ревизия функции в Cloud Run (консоль) или повторная выкладка из среза коммита до b7c1fd1e8 / 7d9064944.

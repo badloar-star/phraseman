@@ -257,7 +257,8 @@ add('overlays-campaigns-009', PROMO_SEND_NOKB, PROMO_BASE + '&promo=not_found', 
 add('overlays-campaigns-010', PROMO_SEND_NOKB, PROMO_BASE + '&promo=expired', PROMO, note='ответ «истёк»')
 add('overlays-campaigns-011', PROMO_SEND_NOKB, PROMO_BASE + '&promo=limit', PROMO, note='ответ «лимит исчерпан»')
 add('overlays-campaigns-012', PROMO_SEND_NOKB, PROMO_BASE + '&promo=used', PROMO, note='ответ «уже использован»')
-add('overlays-campaigns-014', PROMO_SEND, PROMO_BASE + '&promo=disabled', PROMO, note='ответ «промокод отключён»')
+# зачем (Ядро 12.10): макет №11 promo-code-states — ОБЩИЙ рубильник «Промокоды сейчас временно выключены» (promo=off); promo=disabled — «этот код отключён» и показывает тот же текст, что «не найден».
+add('overlays-campaigns-014', PROMO_SEND_NOKB, PROMO_BASE + '&promo=off', PROMO, note='«Промокоды сейчас временно выключены» — общий рубильник (promo=off), без клавиатуры')
 add('overlays-campaigns-015', PROMO_SEND_NOKB, PROMO_BASE + '&promo=error', PROMO, note='ответ «ошибка проверки»')
 
 

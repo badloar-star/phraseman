@@ -39678,8 +39678,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "owner_prod_write",
-        "coverage_note": "успешная публикация пишет в прод; закрыть: владелец — явное «да» на тестовую публикацию, либо Ядро — подмена publish=ok (без сети)"
+        "coverage": "ready",
+        "coverage_note": "ссылка publish=ok (Авторизация c35e491dd): без прод-записи; снять впервые"
       }
     },
     {

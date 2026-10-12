@@ -163,6 +163,9 @@ const GRAMMAR_HINTS = [
     textUk: 'Артиклі a, an, the зустрічаються тут раніше уроку 20, де ми вивчимо їх докладно. Поки просто використовуй як показано — без них речення не побудувати.',
     textEs:
       'Los artículos a, an y the aparecen aquí antes de la lección 20, donde los veremos en detalle. Por ahora úsalos como en el ejemplo; sin ellos la frase no encaja.',
+    // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): en раньше читал textRu — английский интерфейс видел русский.
+    textEn:
+      'The articles a, an and the show up here before lesson 20, where we cover them in detail. For now, just use them as shown — the sentence doesn’t work without them.',
   },
   {
     key: 'grammar_hint_some_any',
@@ -172,6 +175,8 @@ const GRAMMAR_HINTS = [
     textUk: 'Слова some і any зустрічаються тут раніше уроку 21, де ми розберемо їх докладно. Поки просто використовуй як показано.',
     textEs:
       'Some y any salen aquí antes de la lección 21, donde las explicamos a fondo. Por ahora empléalas tal como ves en la frase.',
+    textEn:
+      'The words some and any show up here before lesson 21, where we go through them in detail. For now, just use them as shown.',
   },
 ];
 

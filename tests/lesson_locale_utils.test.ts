@@ -30,6 +30,11 @@ describe('lesson_locale_utils', () => {
     it('returns Russian for ru', () => {
       expect(grammarHintLine('ru', hint)).toBe('RU_ART');
     });
+    // зачем (владелец 12.10, английский интерфейс в R1): en больше не читает русское поле.
+    it('returns English for en, and no hint (not Russian) when English text is missing', () => {
+      expect(grammarHintLine('en', { ...hint, textEn: 'EN_ART' })).toBe('EN_ART');
+      expect(grammarHintLine('en', hint)).toBe('');
+    });
     it('returns planned locale text without borrowing RU / UK / ES', () => {
       expect(grammarHintLine('pt-BR', hint)).toBe('PT_ART');
       expect(grammarHintLine('vi', hint)).toBe('VI_ART');
@@ -47,6 +52,7 @@ describe('lesson_locale_utils', () => {
     });
     it('pools have equal length', () => {
       const n = lessonEnergyMessages('ru').length;
+      expect(lessonEnergyMessages('en').length).toBe(n);
       expect(lessonEnergyMessages('uk').length).toBe(n);
       expect(lessonEnergyMessages('es', 'en').length).toBe(n);
       expect(lessonEnergyMessages('es', 'es').length).toBe(n);
@@ -63,6 +69,13 @@ describe('lesson_locale_utils', () => {
         expect(pool.every((message) => !legacy.has(message))).toBe(true);
         expect(pool.some((message) => message.includes('{time}'))).toBe(true);
       }
+    });
+    it('English pool is its own copy: no Cyrillic, no RU/UK/ES reuse, every message keeps {time}', () => {
+      const legacy = new Set([...lessonEnergyMessages('ru'), ...lessonEnergyMessages('uk'), ...lessonEnergyMessages('es', 'en')]);
+      const pool = lessonEnergyMessages('en');
+      expect(pool.every((message) => !legacy.has(message))).toBe(true);
+      expect(pool.every((message) => !/[а-яёіїєґ]/i.test(message))).toBe(true);
+      expect(pool.every((message) => message.includes('{time}'))).toBe(true);
     });
     it('includes time placeholder for interpolation', () => {
       const pool = lessonEnergyMessages('es', 'es');

@@ -50,6 +50,31 @@ const ENERGY_MESSAGES_UK = [
   '+1 ⚡ поповниться через {time}. Не терпиться продовжити? Жми на Плюс.',
 ];
 
+// зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): у en был русский пул (en: ENERGY_MESSAGES_RU в
+// lesson_locale_utils) — окно «Нет энергии» на английском интерфейсе показывало русский текст. Тот же смысл и тон, {time} на месте.
+const ENERGY_MESSAGES_EN = [
+  'Give what you learned a moment to settle. +1 ⚡ is back in {time}. Or skip the breaks with Plus right now.',
+  'Great work! +1 ⚡ recharges in {time}. With Plus, energy never runs out.',
+  'Your brain has earned a short rest. +1 ⚡ is back in {time}. Want to keep going without stops? Plus is waiting.',
+  'Energy is at zero, but you’re on a roll. +1 ⚡ recharges in {time}, or switch to Plus and skip the wait.',
+  'Let’s take a short break. +1 ⚡ is back in {time}. With Plus, you decide when to rest.',
+  'Your results are impressive. +1 ⚡ recharges in {time}, or go unlimited with Plus.',
+  'Your progress is inspiring! +1 ⚡ is back in {time}. Don’t want to stop? Plus keeps the road open.',
+  'Even superheroes need a recharge. +1 ⚡ is back in {time}. Ready to carry on now? Choose Plus.',
+  'It’s already sinking in! +1 ⚡ recharges in {time}, or remove every limit with one tap in Plus.',
+  'Breathe in, breathe out. +1 ⚡ is back in {time}. Or forget about timers for good with Plus.',
+  'Give yourself {time} to lock it in (+1 ⚡). Or switch to Plus and learn without limits.',
+  '+1 ⚡ recharges in {time}. Rather not pause? With Plus you won’t need to.',
+  'You’re doing great. +1 ⚡ is back in {time}. With Plus you can keep going right now.',
+  'A short pause: +1 ⚡ is back in {time}. Or lift every limit with Plus.',
+  'Your neurons are working at full power. +1 ⚡ recharges in {time}, or keep the spark going with Plus.',
+  'You’ve picked up real speed! +1 ⚡ is back in {time}. Want it unlimited? Plus is for you.',
+  '+1 ⚡ recharges in {time}. With Plus, nothing stands between you and learning.',
+  'Your wins are adding up. +1 ⚡ is back in {time}. With Plus, you rest only when you want to.',
+  'Give us {time} to recharge (+1 ⚡). Or open every door with Plus right now.',
+  '+1 ⚡ refills in {time}. Can’t wait to continue? Tap Plus.',
+];
+
 // ── «Нужно N энергии сразу» (экзамен и т.п.) — в том же духе, что и обычные messages ──
 const ENERGY_GATE_MESSAGES_RU: ((r: { required: string; have: string }) => string)[] = [
   ({ required, have }) => `Для старта нужно ${required} ⚡ сразу, а у тебя ${have}. Пополни заряд или в Плюс — без этой арифметики.`,
@@ -106,6 +131,7 @@ const ENERGY_GATE_MESSAGES_ES: ((r: { required: string; have: string }) => strin
 export {
   ENERGY_MESSAGES_RU,
   ENERGY_MESSAGES_UK,
+  ENERGY_MESSAGES_EN,
   ENERGY_MESSAGES_ES,
   ENERGY_GATE_MESSAGES_RU,
   ENERGY_GATE_MESSAGES_UK,

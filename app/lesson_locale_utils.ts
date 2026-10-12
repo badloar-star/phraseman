@@ -1,5 +1,6 @@
 import type { Lang } from '../constants/i18n';
 import {
+  ENERGY_MESSAGES_EN,
   ENERGY_MESSAGES_ES,
   ENERGY_MESSAGES_RU,
   ENERGY_MESSAGES_UK,
@@ -12,6 +13,7 @@ export type GrammarHintTrilingual = {
   textRu: string;
   textUk: string;
   textEs: string;
+  textEn?: string;
   textPtBr?: string;
   textVi?: string;
   textId?: string;
@@ -22,9 +24,9 @@ export type GrammarHintTrilingual = {
 const GRAMMAR_HINT_TEXT_FIELD_BY_LANG = {
   ru: 'textRu',
   uk: 'textUk',
-  // зачем: en — чисто UI-язык, грамматических подсказок на нём нет
-  // (см. app/source_locales.ts) — читаем RU-поле, как остальные фолбэки.
-  en: 'textRu',
+  // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): раньше en читал RU-поле — английский интерфейс видел
+  // русскую подсказку. Своё поле; нет текста — подсказки нет (пустая строка), а не чужой язык.
+  en: 'textEn',
   es: 'textEs',
   'pt-BR': 'textPtBr',
   vi: 'textVi',
@@ -76,7 +78,7 @@ const ENERGY_MESSAGES_PL = [
 const ENERGY_MESSAGES_BY_LANG = {
   ru: ENERGY_MESSAGES_RU,
   uk: ENERGY_MESSAGES_UK,
-  en: ENERGY_MESSAGES_RU,
+  en: ENERGY_MESSAGES_EN,
   es: ENERGY_MESSAGES_ES,
   'pt-BR': ENERGY_MESSAGES_PT_BR,
   vi: ENERGY_MESSAGES_VI,

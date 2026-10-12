@@ -45,11 +45,15 @@ describe('premium modal dispatcher contract', () => {
     const purchaseBody = purchase.slice(purchaseStart, restoreStart);
     const restoreBody = purchase.slice(restoreStart, purchase.indexOf('const handleClose = useCallback', restoreStart));
 
-    expect(purchaseBody).toContain('await initRevenueCat(isOperationAccountCurrent);');
+    // зачем (D158, M4): старт магазина идёт под потолком (withLoadTimeout / awaitWithinInitCap) — «зависший старт» не крутит спиннер вечно; смысл прежний: магазин поднят ДО оплаты.
+    expect(purchaseBody).toContain('initRevenueCat(isOperationAccountCurrent)');
+    expect(purchaseBody.indexOf('initRevenueCat(isOperationAccountCurrent)')).toBeLessThan(purchaseBody.indexOf('Purchases.purchasePackage(pkg)'));
     // зачем (D158, d33ab1b66): личность сверяется до оплаты с потолком (withLoadTimeout) — смысл тот же:
     // нет подтверждённой личности RevenueCat → оплата не начинается.
     expect(purchaseBody).toContain('withLoadTimeout(syncRevenueCatIdentity(isOperationAccountCurrent)');
-    expect(purchaseBody).toContain('identityReady = await syncRevenueCatIdentity(isOperationAccountCurrent);');
+    // зачем (D158, M4): вторая ветка — под потолком awaitWithinInitCap; результат идёт в тот же identityReady, и оплата без него не начинается (проверка ниже)
+    expect(purchaseBody).toContain("awaitWithinInitCap('syncRevenueCatIdentity', syncRevenueCatIdentity(isOperationAccountCurrent)");
+    expect(purchaseBody).toContain('identityReady = capped.value;');
     expect(purchaseBody.indexOf('if (!identityReady) {')).toBeLessThan(purchaseBody.indexOf('Purchases.purchasePackage(pkg)'));
     expect(purchaseBody).toContain('Purchases.purchasePackage(pkg)');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');

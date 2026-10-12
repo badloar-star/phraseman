@@ -10,7 +10,8 @@ test('dialogue hub keeps back, title and live energy in one safe-area header row
   assert.match(source, /<SafeAreaView[^>]*style=\{\{ flex: 1 \}\}/);
   assert.match(source, /testID="ai-dialog-home-header-row"/);
   assert.match(source, /flexDirection: 'row', alignItems: 'flex-start'/);
-  assert.match(source, /<V2IconButton icon="chevron-back"/);
+  // зачем (12.10, п.72): на кнопке теперь testID для робота съёмки — перед icon допускаем другие свойства
+  assert.match(source, /<V2IconButton[^>]*icon="chevron-back"/);
   assert.match(source, /safeRouterBack\(router, '\/\(tabs\)\/home'/);
   // 30.09: пилюля энергии стеклянная (glass) — старая тёмная капсула выбивалась из тем 2.0.
   // 30.09 (макет hubHead): справа столбик — энергия и пилюля остатка «N/30» (у Plus её нет).

@@ -59,11 +59,12 @@ describe('скидка стора доезжает до пейвола чест�
     const plus = read('components', 'paywall', 'PaywallPlus.tsx');
     expect(screen).toContain('p.storePromo.yearly');
     expect(screen).toContain('p.storePromo.monthly');
-    expect(plus).toContain('yearlyPromo?.promoPriceString || yearlyPrice');
+    // зачем (D158, 11.10): промо-цена стора всегда первая; обычная цена получает «≈ », если она справочная, — поэтому в запасной ветке шаблон, а не голая переменная
+    expect(plus).toContain('yearlyPromo?.promoPriceString || `${yearApprox}${yearlyPrice}`');
     expect(plus).toContain('standardPriceString');
     expect(plus).toContain("textDecorationLine: 'line-through'");
     // CTA называет первую реальную платную фазу, подпись — обычную цену после неё.
-    expect(plus).toContain('args.yearlyPromo?.promoPriceString || args.yearlyPrice');
+    expect(plus).toContain('args.yearlyPromo?.promoPriceString || `${args.yearlyApprox ?')
     expect(plus).toContain('fineAfterTrial(lang, args.yearlyPromo.standardPriceString)');
   });
 

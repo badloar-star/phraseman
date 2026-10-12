@@ -223,7 +223,7 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
               {onCreatePack ? <SheetRow g={g} testID="fc-expanded-create-pack" icon="add" title={copy.createPack} onPress={onCreatePack} /> : null}
             </View>
           ) : (
-            <ScrollView style={styles.pickList} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+            <ScrollView style={styles.pickList} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" decelerationRate="fast">
               {packs.map((pack) => (
                 <SheetRow key={pack.id} g={g} testID={`fc-expanded-pack-${pack.id}`} icon="albums-outline" title={pack.title} onPress={() => addTo(pack.id)} />
               ))}

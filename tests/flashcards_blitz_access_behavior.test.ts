@@ -41,7 +41,7 @@ jest.mock('../app/swallow_log', () => ({
   noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
 }));
 // зачем (12.10, dev-состояния Карточек): экран читает getDevTrainGate из dev_cards_state, а тот тянет app/config → Platform.OS, которого нет в моке RN («Cannot read properties of undefined (reading 'OS')»). Dev-подмен здесь нет.
-jest.mock('../app/dev_cards_state', () => ({ getDevTrainGate: () => null, isDevCardsHeld: () => false, isDevCardsFail: () => false }));
+jest.mock('../app/dev_cards_state', () => ({ getDevTrainGate: () => null, isDevCardsHeld: () => false, isDevCardsFail: () => false, getDevBlitzAnswer: () => null })); // зачем: блиц читает getDevBlitzAnswer (подмена ответа для съёмки) — в тесте подмен нет
 jest.mock('react-native', () => ({
   // зачем (05.10): экран берёт межстрочный через useLineScale → useWindowDimensions (системный шрифт 1.0).
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 2, fontScale: 1 }),

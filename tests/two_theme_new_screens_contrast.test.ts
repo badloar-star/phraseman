@@ -60,6 +60,15 @@ describe('новые экраны: текст читается в обеих т�
             ['video-empty icon/tile', colorContrast(g.text, g.opaqueControl)],
             ['video-empty title/bg', worst(g.text, [g.bg, g.bgTop, g.bgBottom])],
             ['video-empty detail/bg', worst(g.secondary, [g.bg, g.bgTop, g.bgBottom])],
+            // капсула энергии в стеклянной шапке (Дизайн 7b252fa06): цифра lg.text и значок (accentText на «Акценте/Максимуме», иначе text; низкий заряд — bad) на заливке opaqueControl
+            ['energy capsule number', colorContrast(g.text, g.opaqueControl)],
+            ['energy capsule icon', colorContrast(g.level === 'accent' || g.level === 'max' ? g.accentText : g.text, g.opaqueControl)],
+            ['energy capsule low icon', colorContrast(g.bad, g.opaqueControl)],
+            // карточка языкового гейта в Диалогах (DialogueV2HubLanguageGate): заголовок, текст и значок на плашке plateFillFrom, значок-плитка opaqueControl, кнопка «К урокам →»
+            ['gate title/plate', worst(g.text, [over(g.plateFillFrom, g.bg), over(g.plateFillFrom, g.bgTop), over(g.plateFillFrom, g.bgBottom)])],
+            ['gate text/plate', worst(g.secondary, [over(g.plateFillFrom, g.bg), over(g.plateFillFrom, g.bgTop), over(g.plateFillFrom, g.bgBottom)])],
+            ['gate icon/tile', colorContrast(g.secondary, g.opaqueControl)],
+            ['gate cta', g.level === 'accent' || g.level === 'max' ? colorContrast(g.accentInk, g.accent) : colorContrast(g.text, g.opaqueControl)],
           ];
           const bad = checks.filter(([, ratio]) => ratio < MIN).map(([name, ratio]) => `${name} ${ratio.toFixed(2)}`);
           expect(bad).toEqual([]);

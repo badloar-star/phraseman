@@ -1032,9 +1032,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (homeRailTargetRef.current === studyTarget) return;
         homeRailTargetRef.current = studyTarget;
-        const peek = homeVideoRailUsesCatalog(studyTarget) ? peekHomeVideoRailForTarget(studyTarget) : null;
-        setHomeV2Videos(peek?.videos ?? []);
-        setHomeV2VideoStatus(peek ? 'ready' : 'loading');
+        // зачем (Ядро 13.10, аудит языка Авторизации; сценарий en → es → en в одном запуске: лента стояла скелетонами до перезапуска): для не-каталожной цели (en) peek всегда null, а эффект ленты en
+        // при возврате ничего не эмитит — кэш в homeVideoSnapshotMemo уже заполнен (не читается), сеть уже обновляла ленту в этом запуске (video:network_skip). Снимок из памяти в стейт клал только эффект при монтировании.
+        // Поэтому для не-каталожной цели берём memo сами; пустой memo не в счёт.
+        const catalog = homeVideoRailUsesCatalog(studyTarget);
+        const peek = catalog ? peekHomeVideoRailForTarget(studyTarget) : null;
+        const memo = !catalog && homeVideoSnapshotMemo && homeVideoSnapshotMemo.videos.length > 0 ? homeVideoSnapshotMemo : null;
+        console.warn('[LANG-SURFACE] home_rail:reset', JSON.stringify({ target: String(studyTarget), catalog, source: peek ? 'catalog' : memo ? 'memo' : 'none', videos: peek?.videos.length ?? memo?.videos.length ?? 0 })); // guard-ok: ветка сброса ленты логируется со значениями
+        setHomeV2Videos(peek?.videos ?? memo?.videos ?? []);
+        setHomeV2VideoStatus(peek || memo ? 'ready' : 'loading');
         setHomeV2VideoNoChannel(peek?.source === 'no_channel_for_target');
     }, [studyTarget]);
     // зачем (владелец 01.10: «никаких недоступно»): сбой ленты — тихий повтор (до 5 раз по 20 с), плитки-скелетоны держат место.

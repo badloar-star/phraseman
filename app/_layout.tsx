@@ -244,7 +244,7 @@ import { hydrateStatsCacheFromStorage } from './statsCache';
 import { primeRemoteConfigCacheFromStorage, readRemoteConfigCacheRaw } from './remote_config_client';
 import { isMutationTrackingActive } from './storage_mutation_bus';
 import { isDeferredBootRestoreActive, requestDeferredBootRestoreStart } from './boot_restore_dirty_keys';
-import { inspectAccountDeletePendingAuth, readAccountDeletePendingAuthRaw } from './account_delete_quarantine';
+import { ACCOUNT_DELETE_PENDING_AUTH_KEY, inspectAccountDeletePendingAuth, readAccountDeletePendingAuthRaw } from './account_delete_quarantine';
 import {
   BOOT_RESTORE_OWNER_KEY,
   bootRestoreDeferFlagFromCacheRaw,
@@ -2651,15 +2651,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // чтобы первый кадр не ждал дополнительный дисковый round-trip.
       // зачем (координатор 12.10): метка очистки кэша Firestore после удаления аккаунта читается этим же чтением — ни одного
       // отдельного нативного вызова на старте (было ~20 мс SecureStore у каждого).
-      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY];
+      // + зеркало замка удаления: процесс могли убить между стиранием и записью метки (координатор 12.10) — тем же чтением.
+      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
       // Обработчик метки вешается РАНЬШЕ всех остальных потребителей этого чтения (восстановление из облака ниже) — clearPersistence
       // уходит до обращений бутстрапа к Firestore. Без метки — только проверка значения в памяти.
       if (!forceOnboardingForQA) {
-        void startupIdentityPairsPromise.then((pairs) => runFirestoreCacheClearFromStartupRead(
-          new Map(pairs).get(FIRESTORE_CACHE_CLEAR_MARKER_KEY) ?? null,
-        ));
+        void startupIdentityPairsPromise.then((pairs) => {
+          const startupValues = new Map(pairs);
+          return runFirestoreCacheClearFromStartupRead(
+            startupValues.get(FIRESTORE_CACHE_CLEAR_MARKER_KEY) ?? null,
+            startupValues.get(ACCOUNT_DELETE_PENDING_AUTH_KEY) ?? null,
+          );
+        });
       }
 
       // Start cloud hydration early, but do not hold the first app frame on network.

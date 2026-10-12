@@ -70,7 +70,7 @@ describe('B(2) очистка кэша Firestore SDK', () => {
     expect(mockFirestoreModuleLoaded).toBe(before);
     expect(mockSecureCalls).toBe(0);
     const line = logs.find((l) => l.includes('firestore_cache_clear check'));
-    expect(line).toMatch(/check ms=(\d+) marker=0 source=startup_multiget/);
+    expect(line).toMatch(/check ms=(\d+) marker=0 lock=0 reason=none source=startup_multiget/);
     expect(Number(/ms=(\d+)/.exec(line!)![1])).toBeLessThanOrEqual(2);
     spy.mockRestore();
   });
@@ -81,7 +81,7 @@ describe('B(2) очистка кэша Firestore SDK', () => {
     const marker = mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY];
     expect(marker).toMatch(/:account_delete$/);
     const clearPersistence = jest.fn(async () => undefined);
-    await expect(mod.runFirestoreCacheClearFromStartupRead(marker, () => ({ clearPersistence }))).resolves.toBe('cleared');
+    await expect(mod.runFirestoreCacheClearFromStartupRead(marker, null, () => ({ clearPersistence }))).resolves.toBe('cleared');
     expect(clearPersistence).toHaveBeenCalledTimes(1);
     expect(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeUndefined();
     expect(mockSecureCalls).toBe(0);
@@ -91,7 +91,7 @@ describe('B(2) очистка кэша Firestore SDK', () => {
     const mod = require('../app/firestore_cache_clear');
     await mod.markFirestoreCacheClearPending('account_delete');
     const err = Object.assign(new Error('x'), { code: 'firestore/failed-precondition' });
-    await expect(mod.runFirestoreCacheClearFromStartupRead(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY], () => ({ clearPersistence: async () => { throw err; } })))
+    await expect(mod.runFirestoreCacheClearFromStartupRead(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY], null, () => ({ clearPersistence: async () => { throw err; } })))
       .resolves.toBe('failed');
     expect(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBeDefined();
   });
@@ -106,9 +106,10 @@ describe('B(2) очистка кэша Firestore SDK', () => {
 
   it('СТОРОЖ порядка: метка — ключ уже существующего стартового multiGet; обработчик раньше восстановления из облака', () => {
     const layout = read('app/_layout.tsx');
-    expect(layout).toContain("const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY];");
-    const handler = layout.indexOf('void startupIdentityPairsPromise.then((pairs) => runFirestoreCacheClearFromStartupRead(');
+    expect(layout).toContain("const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY];");
+    const handler = layout.indexOf('void startupIdentityPairsPromise.then((pairs) => {\n          const startupValues = new Map(pairs);\n          return runFirestoreCacheClearFromStartupRead(');
     expect(handler).toBeGreaterThan(layout.indexOf('const startupIdentityPairsPromise'));
+    expect(layout.slice(handler, handler + 400)).toContain('startupValues.get(ACCOUNT_DELETE_PENDING_AUTH_KEY) ?? null');
     expect(handler).toBeLessThan(layout.indexOf('cloudHydratePromise = liveDeferred ?? (async () => {'));
     // отдельного чтения метки нет
     expect((layout.match(/FIRESTORE_CACHE_CLEAR_MARKER_KEY/g) ?? []).length).toBe(3); // импорт, ключ, разбор
@@ -125,5 +126,35 @@ describe('B(2) очистка кэша Firestore SDK', () => {
     const begin = auth.indexOf('export async function beginAccountDeletion()');
     const beginBody = auth.slice(begin, auth.indexOf('\nexport ', begin + 10));
     expect(beginBody).not.toContain('markFirestoreCacheClearPending');
+  });
+});
+
+// ── Процесс убили между AsyncStorage.clear и записью метки (координатор 12.10): решаем по зеркалу замка удаления.
+describe('B(2) замок удаления без метки', () => {
+  beforeEach(() => { for (const k of Object.keys(mockStore)) delete mockStore[k]; });
+  const lock = JSON.stringify({ operationId: 'op-123', providerUid: 'p', createdAt: 1 });
+
+  it('решение: метка → очистка; замок без метки → очистка; замок + cleared:<тот же op> → пропуск; ничего → нет', () => {
+    const { decideStartupCacheClear } = require('../app/firestore_cache_clear');
+    expect(decideStartupCacheClear('1:account_delete', null)).toMatchObject({ run: true, reason: 'marker' });
+    expect(decideStartupCacheClear(null, lock)).toMatchObject({ run: true, reason: 'lock_without_marker', lockOperationId: 'op-123' });
+    expect(decideStartupCacheClear('cleared:op-123', lock)).toMatchObject({ run: false, reason: 'already_cleared_for_lock' });
+    expect(decideStartupCacheClear('cleared:op-OLD', lock)).toMatchObject({ run: true, reason: 'lock_without_marker' });
+    expect(decideStartupCacheClear('cleared:op-123', null)).toMatchObject({ run: false, reason: 'none' });
+    expect(decideStartupCacheClear(null, null)).toMatchObject({ run: false, reason: 'none' });
+    expect(decideStartupCacheClear(null, '{битый')).toMatchObject({ run: false, reason: 'none' });
+  });
+
+  it('замок без метки: ставим метку, очищаем, после успеха — cleared:<op> (а не удаление, чтобы не чистить каждый старт)', async () => {
+    const mod = require('../app/firestore_cache_clear');
+    const clearPersistence = jest.fn(async () => undefined);
+    await expect(mod.runFirestoreCacheClearFromStartupRead(null, lock, () => ({ clearPersistence }))).resolves.toBe('cleared');
+    expect(clearPersistence).toHaveBeenCalledTimes(1);
+    expect(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY]).toBe('cleared:op-123');
+    // следующий старт при живом замке — без очистки
+    const second = jest.fn(async () => undefined);
+    await expect(mod.runFirestoreCacheClearFromStartupRead(mockStore[mod.FIRESTORE_CACHE_CLEAR_MARKER_KEY], lock, () => ({ clearPersistence: second })))
+      .resolves.toBe('none');
+    expect(second).not.toHaveBeenCalled();
   });
 });

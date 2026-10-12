@@ -36,20 +36,57 @@ export async function markFirestoreCacheClearPending(reason: string): Promise<bo
 
 type FirestoreForClear = { clearPersistence(): Promise<void> };
 
+// зачем (координатор 12.10): после успешной очистки при живом замке удаления (до 7 дней) метка становится `cleared:<operationId>` —
+// иначе правило «замок есть, метки нет» стирало бы кэш новой личности на каждом старте всю неделю.
+const CLEARED_PREFIX = 'cleared:';
+
+/** operationId из зеркала замка удаления (JSON); без разбора остального — только для сравнения. */
+export function lockOperationIdFromMirror(raw: string | null): string | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as { operationId?: unknown; providerUid?: unknown; createdAt?: unknown };
+    if (typeof parsed.operationId === 'string' && parsed.operationId) return parsed.operationId.slice(0, 200);
+    // старые замки без operationId — свой устойчивый идентификатор (нужен только для сравнения с `cleared:<…>` здесь же)
+    if (typeof parsed.providerUid === 'string' && parsed.createdAt != null) return `legacy:${parsed.providerUid}:${String(parsed.createdAt)}`.slice(0, 200);
+    return null;
+  } catch (error) {
+    console.warn(`${LOG} lock_mirror_unreadable code=${errorCode(error)} — замок не учитывается`); // guard-ok: catch логирует код
+    return null;
+  }
+}
+
+/** Решение на старте по уже прочитанным значениям (чистая функция). */
+export function decideStartupCacheClear(
+  markerValue: string | null,
+  lockMirrorRaw: string | null,
+): Readonly<{ run: boolean; reason: 'marker' | 'lock_without_marker' | 'none' | 'already_cleared_for_lock'; lockOperationId: string | null }> {
+  const lockOperationId = lockOperationIdFromMirror(lockMirrorRaw);
+  const cleared = markerValue?.startsWith(CLEARED_PREFIX) ? markerValue.slice(CLEARED_PREFIX.length) : null;
+  if (markerValue && cleared === null) return { run: true, reason: 'marker', lockOperationId };
+  if (lockOperationId && cleared !== lockOperationId) return { run: true, reason: 'lock_without_marker', lockOperationId };
+  if (lockOperationId) return { run: false, reason: 'already_cleared_for_lock', lockOperationId };
+  return { run: false, reason: 'none', lockOperationId };
+}
+
 /**
  * Холодный старт: значение метки уже прочитано стартовым multiGet. Нет метки — ничего (ни нативных вызовов, ни Firestore).
  * Есть — clearPersistence(); успех снимает метку, отказ оставляет. Возвращает промис итога (для тестов); бутстрап его не ждёт.
  */
 export function runFirestoreCacheClearFromStartupRead(
   markerValue: string | null,
+  lockMirrorRaw: string | null = null,
   getFirestoreForClear: () => FirestoreForClear = defaultFirestoreForClear,
 ): Promise<'none' | 'cleared' | 'failed'> {
   const checkStartedAt = Date.now();
-  // Проверка — только значение из уже сделанного чтения: стоимость ~0 мс, нативного вызова нет.
-  console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${markerValue ? 1 : 0} source=startup_multiget`); // guard-ok: одна строка на холодный старт
-  if (!markerValue) return Promise.resolve('none');
+  // Проверка — только значения из уже сделанного чтения: стоимость ~0 мс, нативного вызова нет.
+  const decision = decideStartupCacheClear(markerValue, lockMirrorRaw);
+  console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${markerValue && !markerValue.startsWith(CLEARED_PREFIX) ? 1 : 0} lock=${decision.lockOperationId ? 1 : 0} reason=${decision.reason} source=startup_multiget`); // guard-ok: одна строка на холодный старт
+  if (!decision.run) return Promise.resolve('none');
   const startedAt = Date.now();
-  console.log(`${LOG} start marker=${markerValue.split(':')[1] ?? '?'}`); // guard-ok: только когда метка есть
+  // зачем (координатор 12.10): процесс убили между AsyncStorage.clear и записью метки — замок удаления есть, метки нет. Ставим её сейчас,
+  // чтобы при отказе очистки повтор был и на следующем старте.
+  if (decision.reason === 'lock_without_marker') void markFirestoreCacheClearPending('lock_without_marker');
+  console.log(`${LOG} start reason=${decision.reason}`); // guard-ok: только когда очистка нужна
   let firestore: FirestoreForClear;
   try {
     firestore = getFirestoreForClear();
@@ -60,7 +97,8 @@ export function runFirestoreCacheClearFromStartupRead(
   return firestore.clearPersistence().then(
     async () => {
       try {
-        await AsyncStorage.removeItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
+        if (decision.lockOperationId) await AsyncStorage.setItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY, `${CLEARED_PREFIX}${decision.lockOperationId}`);
+        else await AsyncStorage.removeItem(FIRESTORE_CACHE_CLEAR_MARKER_KEY);
       } catch (error) {
         console.warn(`${LOG} unmark_failed code=${errorCode(error)} — на следующем старте очистка повторится (безвредно)`); // guard-ok
       }

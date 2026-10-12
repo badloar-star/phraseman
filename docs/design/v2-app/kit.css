@@ -122,6 +122,7 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 35px; padding: 0 17px; border-radius: 18px; background: var(--control); font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; flex: none; }
 .pill.ol { background: transparent; border: 1px solid var(--line-2); }
 .pill.s { height: 30px; padding: 0 13px; font-size: 15px; gap: 7px; }
+.pill.encap { height: 28px; min-width: 60px; padding: 0 12px; gap: 6px; font-size: 16px; line-height: 1; border-radius: 14px; }
 .pill .coin { width: 20px; height: 20px; border-radius: 50%; display: block; }
 .pill .num { display: inline-block; }
 .pill .num.dn { animation: numdn 650ms cubic-bezier(.3,1.4,.5,1); }

@@ -56,7 +56,8 @@
   const col = (label, html) => `<div class="col"><div class="lbl">${label}</div>${html}</div>`;
   const block = (id, title, lead, cols) => `<section class="block" id="${id}"><h2>${title}</h2>${lead ? `<p>${lead}</p>` : ''}<div class="phones">${cols.join('')}</div></section>`;
   const sheet = (id, inner, open = false) => `<div class="dim${open ? ' on' : ''}" data-dim="${id}"></div><div class="sheet${open ? ' on' : ''}" data-sheet="${id}"><div class="grab"></div>${inner}</div>`;
-  const energy = (n, o = {}) => `<span class="pill${o.ol ? ' ol' : ''}${o.s ? ' s' : ''}" data-energy="${n}">${icon('boltF', o.s ? 's16' : 's18')}<span class="num">${n}</span></span>`;
+  // зачем (Дизайн 7b252fa06, координатор 12.10): капсула энергии в шапках = 60×28, цифра 16 (проба владельца 24.09 старше образца 35/17/17) — один размер для всех вариантов; значок 16
+  const energy = (n, o = {}) => `<span class="pill encap${o.ol ? ' ol' : ''}" data-energy="${n}">${icon('boltF', 's16')}<span class="num">${n}</span></span>`;
   const coins = (n, o = {}) => `<span class="pill${o.ol ? ' ol' : ''}${o.s ? ' s' : ''}" data-coins="${n}">${coinImg(o.rank ?? 5, o.s ? 18 : 20)}<span class="num">${n.toLocaleString('ru-RU')}</span></span>`;
 
   // ---------- поведение ----------

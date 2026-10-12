@@ -50,6 +50,7 @@ import {
 } from './ai_explain_consent';
 import { AI_EXPLAIN_AUTO_RETRIES, AI_EXPLAIN_RETRY_PAUSE_MS } from './load_gate_config';
 import { buildMistakeExplainFallbackText } from './mistake_explain_fallback';
+import { isDevAiExplainLimit } from './dev_paywall_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
@@ -551,6 +552,14 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       const limitShown = await hasShownAiMistakeLimitNoticeToday().catch(noteSwallowedAs('use_mistake_explain:promise_1', false));
       if (!isCurrentRequest()) {
         console.log(`[MISTAKE-EXPLAIN] explain:stale_before_call phrase=${phraseId}`); // guard-ok: ранний выход
+        releaseInFlight();
+        return;
+      }
+      // зачем (Авторизация 12.10, paywalls-008): dev `ai_explain=limit` — карточка «лимит дня» без вызова сервера и без отметки в хранилище.
+      if (isDevAiExplainLimit()) {
+        console.warn(`[DEV-STATE] explain: лимит дня подменён (ai_explain=limit) phrase=${phraseId}`); // guard-ok: dev-ветка
+        setAiMistakeText(null);
+        setAiMistakeState('limit');
         releaseInFlight();
         return;
       }

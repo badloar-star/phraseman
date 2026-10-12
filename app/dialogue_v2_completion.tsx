@@ -9,6 +9,7 @@ import {
   type DialogueV2CompletionResult,
 } from './dialogue_v2_completion_client';
 import { shouldPromptFeedback } from './feedback_prompt_throttle';
+import { getDevDialogCompletion } from './dev_dialog_state';
 import { readDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { useLang } from '../components/LangContext';
@@ -185,6 +186,12 @@ export default function DialogueV2CompletionRoute() {
 
   useEffect(() => {
     let alive = true;
+    // зачем (Макеты 12.10, dialogs-042): при подставном итоге блок отзыва виден всегда — троттлинг отзывов не мешает кадру.
+    if (getDevDialogCompletion()) {
+      console.warn('[DEV-STATE] dialogs: блок отзыва открыт без троттлинга (dev_dialog_completion)'); // guard-ok: dev-ветка
+      setFeedbackAllowed(true);
+      return () => { alive = false; };
+    }
     void shouldPromptFeedback('dialogue').then((allowed) => {
       if (alive) setFeedbackAllowed(allowed);
     }).catch((error: unknown) => {

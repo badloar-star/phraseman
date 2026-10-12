@@ -51,7 +51,8 @@ import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } fro
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
-import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
+import type { SoftUpsellCandidate, SoftUpsellOpportunity, SoftUpsellStudyTarget } from './soft_upsell_core';
+import { getDevLessonUpsell } from './dev_paywall_state';
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
@@ -654,7 +655,25 @@ export default function LessonComplete() {
     studyTarget: softUpsellStudyTarget,
     hasPremiumAccess,
   });
-  const softUpsellCopy = softUpsell.opportunity?.trigger === 'free_lessons_complete'
+  // зачем (Авторизация 12.10, paywalls-009/010): dev `upsell=first_lesson|three_lessons` — предложение Plus на итоге урока
+  // без кулдаунов; подставное предложение живёт только в памяти, его показ/закрытие НЕ пишут отметок (обработчики пустые).
+  const devUpsellOpportunity = useMemo<SoftUpsellOpportunity | null>(() => {
+    const kind = getDevLessonUpsell();
+    if (!kind) return null;
+    const firstLesson = kind === 'first_lesson';
+    console.warn('[DEV-STATE] lesson_complete: предложение Plus подменено', JSON.stringify({ kind, lessonId })); // guard-ok: dev-ветка
+    return {
+      trigger: firstLesson ? 'first_lesson' : 'free_lessons_complete',
+      value: firstLesson ? 1 : FREE_LESSON_LIMIT,
+      studyTarget: softUpsellStudyTarget,
+      context: firstLesson ? 'first_lesson_success' : 'free_lessons_complete',
+      destination: 'paywall',
+      milestoneId: `dev_${kind}`,
+    };
+  }, [lessonId, softUpsellStudyTarget]);
+  const upsellOpportunity = devUpsellOpportunity ?? softUpsell.opportunity;
+  const devUpsellNoop = useCallback(async () => { console.warn('[DEV-STATE] lesson_complete: действие с подставным предложением — без записи'); }, []); // guard-ok: dev-ветка
+  const softUpsellCopy = upsellOpportunity?.trigger === 'free_lessons_complete'
     ? FREE_LIMIT_SOFT_UPSELL_COPY[lang]
     : LESSON_SOFT_UPSELL_COPY[lang];
 
@@ -1460,7 +1479,7 @@ export default function LessonComplete() {
           </View>
 
           {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
-          {shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity) && softUpsell.opportunity && (
+          {shouldRenderLessonSoftUpsell(seqDone, upsellOpportunity) && upsellOpportunity && (
             <View style={{ width: '100%', marginBottom: 20 }}>
               <SoftContextualUpsellCard
                 title={softUpsellCopy.title}
@@ -1471,10 +1490,10 @@ export default function LessonComplete() {
                 dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
                 ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
                 ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
-                opportunity={softUpsell.opportunity}
-                onImpression={softUpsell.onImpression}
-                onDismiss={softUpsell.onDismiss}
-                onCta={handleSoftUpsellCta}
+                opportunity={upsellOpportunity}
+                onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}
+                onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}
+                onCta={devUpsellOpportunity ? devUpsellNoop : handleSoftUpsellCta}
               />
             </View>
           )}

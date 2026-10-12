@@ -73,6 +73,64 @@ export function getDevPaywallLinkState(): DevPaywallState | null {
   return devPaywallAvailable() ? linkState : null;
 }
 
+/**
+ * `dev_state?manage=loading` (Авторизация 12.10, paywalls-020 = profile-019): «Управление подпиской» держит скелетон
+ * `manage-subscription-loading` — загрузка данных магазина не начинается. Без подмены скелетон живёт доли секунды. Только память.
+ */
+let manageLoadingHold = false;
+
+export function setDevManageLoadingHold(on: boolean): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: manage= отклонён — не dev-сборка`, { on }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  manageLoadingHold = on;
+  console.log(`${LOG} paywall: manage=${on ? 'loading' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevManageLoadingHold(): boolean {
+  return devPaywallAvailable() && manageLoadingHold;
+}
+
+/**
+ * `dev_state?upsell=first_lesson|three_lessons` (Авторизация 12.10, paywalls-009/010): мягкое предложение Plus на итоге урока
+ * без кулдаунов и отметок показа — экран рисует подставное предложение, отметка «показано» в хранилище НЕ пишется.
+ * `dev_state?ai_explain=limit` (paywalls-008): карточка ИИ-разбора ошибки сразу в состоянии «лимит дня», без вызова сервера.
+ */
+export const DEV_LESSON_UPSELLS = ['first_lesson', 'three_lessons'] as const;
+export type DevLessonUpsell = (typeof DEV_LESSON_UPSELLS)[number];
+let lessonUpsell: DevLessonUpsell | null = null;
+let aiExplainLimit = false;
+
+export function setDevLessonUpsell(value: DevLessonUpsell | null): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: upsell= отклонён — не dev-сборка`, { value }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  lessonUpsell = value;
+  console.log(`${LOG} paywall: upsell=${value ?? 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function getDevLessonUpsell(): DevLessonUpsell | null {
+  return devPaywallAvailable() ? lessonUpsell : null;
+}
+
+export function setDevAiExplainLimit(on: boolean): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: ai_explain= отклонён — не dev-сборка`, { on }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  aiExplainLimit = on;
+  console.log(`${LOG} paywall: ai_explain=${on ? 'limit' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevAiExplainLimit(): boolean {
+  return devPaywallAvailable() && aiExplainLimit;
+}
+
 export type PaywallDevView = {
   loading: boolean;
   offeringsSettled: boolean;

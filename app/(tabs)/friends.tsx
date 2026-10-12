@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { consumeDevFriendEvent, isDevFriendsFail, isDevFriendsHeld, isDevUnsyncedFriendCode } from '../dev_social_state';
+import { consumeDevFriendEvent, DEV_FOUND_FRIEND_UID, isDevFoundFriendCode, isDevFoundFriendUid, isDevFriendsFail, isDevFriendsHeld, isDevUnsyncedFriendCode } from '../dev_social_state';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput,
@@ -1586,6 +1586,13 @@ export default function FriendsTabScreen() {
       }
       // зачем (координатор 12.10, R1 «нет пути», друзья): dev `dev_friends_fail=search` — «Сейчас не получилось» (не транзиентный отказ); служебный код DEVUNSYNCED — «профиль найден, но не синхронизирован» без сервера; в стор-сборке геттеры выключены.
       if (isDevFriendsFail('search')) throw new Error('dev_friends_search_failed');
+      // зачем (координатор 12.10, съёмка R1 community-009/010/011/017…019): служебный код DEVFND — найденный профиль без сервера
+      // и без входа; заявка такому другу дальше тоже не уходит в сеть (handleAddFound). В стор-сборке геттер выключен.
+      if (isCode && isDevFoundFriendCode(codeUpper)) {
+        console.warn('[DEV-STATE] friends: найден подставной друг (DEVFND) — без сервера'); // guard-ok: dev-ветка
+        setFoundUser(placeholderFriendProfile(DEV_FOUND_FRIEND_UID, 'Алиса'));
+        return;
+      }
       const devUnsynced = isCode && isDevUnsyncedFriendCode(codeUpper);
       const result = devUnsynced
         ? ({ uid: 'dev_unsynced_friend', name: '', source: 'friend_code' } as unknown as Awaited<ReturnType<typeof lookupUserByFriendCode>>)
@@ -1718,7 +1725,10 @@ export default function FriendsTabScreen() {
       // зачем (координатор 12.10, R1 «нет пути», друзья): dev `dev_friends_hold=add_request` держит «отправку заявки»; `dev_friends_fail=add` — отказ отправки (результат error); в стор-сборке геттеры выключены.
       const result: Awaited<ReturnType<typeof sendFriendRequest>> = isDevFriendsHeld('add_request')
         ? await new Promise<never>(() => undefined)
-        : isDevFriendsFail('add') ? 'error' : await sendFriendRequest(targetUser.uid);
+        : isDevFriendsFail('add') ? 'error'
+          // зачем (съёмка R1): подставному другу DEVFND заявка не уходит в сеть — сразу «отправлена».
+          : isDevFoundFriendUid(targetUser.uid) ? 'sent'
+          : await sendFriendRequest(targetUser.uid);
       await trackActivity('friends:add_request_result', {
         feature: 'friends',
         screen: 'friends',

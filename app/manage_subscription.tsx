@@ -18,6 +18,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getDevPlanOverride } from './dev_vip_override';
+import { isDevManageLoadingHold } from './dev_paywall_state';
 import {
   View, Text, ScrollView, StyleSheet, ActivityIndicator,
   KeyboardAvoidingView, Linking, Platform, TextInput, type LayoutChangeEvent,
@@ -283,7 +284,8 @@ export default function ManageSubscription() {
     : null;
   const [info, setInfo] = useState<CustomerInfo | null>(null);
   const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(routeParamPlan);
-  const [loading, setLoading] = useState(routeParamPlan === null);
+  // зачем (Авторизация 12.10, paywalls-020): dev `manage=loading` держит скелетон с первого кадра, даже если план пришёл в маршруте.
+  const [loading, setLoading] = useState(() => routeParamPlan === null || isDevManageLoadingHold());
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
   // зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d): живая цена магазина → последняя настоящая из кэша → справочная
   // (с «≈»). Смена плана идёт по живому пакету магазина — справочная в покупку не уходит; это только подпись на карточке.
@@ -355,6 +357,12 @@ export default function ManageSubscription() {
       && isCurrentAccountGeneration(generation, generation.stableId)
     );
     void (async () => {
+      // зачем (Авторизация 12.10, paywalls-020 = profile-019): dev `manage=loading` — загрузку не начинаем, скелетон остаётся
+      // (ранний выход стоит ДО try, чтобы finally не погасил его). В стор-сборке геттер всегда false.
+      if (isDevManageLoadingHold()) {
+        console.warn('[DEV-STATE] manage_subscription: загрузка удержана (manage=loading) — скелетон остаётся'); // guard-ok: dev-ветка
+        return;
+      }
       try {
         // Локальный AsyncStorage-кэш (записан persistStorePremiumLocally при покупке/смене
         // плана) читаем ПЕРВЫМ и отдельно от RevenueCat — он не требует сети и обычно уже

@@ -11,3 +11,8 @@ export function isDevDialogLanguageGateHeld(): boolean { return false; }
 export function resetDevDialogState(): void {}
 // зачем (12.10, ревизия паритета заглушек): подставной ход Диалога (dev_dialog_send, Ядро) в стор-сборке всегда выключен
 export function getDevDialogSend(): null { return null; }
+// зачем (Макеты 12.10, съёмка R1): конец диалога, «Лучше так» и итог без сервера в стор-сборке всегда выключены
+export const DEV_DIALOG_COMPLETIONS = [] as const;
+export function isDevDialogEnd(): boolean { return false; }
+export function isDevDialogBetter(): boolean { return false; }
+export function getDevDialogCompletion(): null { return null; }

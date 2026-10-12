@@ -6,7 +6,7 @@ import {
   parseDialogueV2PreparedBotVoiceSelection,
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
-import { getDevDialogFail, getDevDialogMood, getDevDialogSend } from './dev_dialog_state';
+import { getDevDialogFail, getDevDialogMood, getDevDialogSend, isDevDialogBetter, isDevDialogEnd } from './dev_dialog_state';
 import { resolveDevDialogSend } from './dev_dialog_send';
 import { readAiDialogMonthlyQuota } from './ai_dialog_daily_quota';
 import { captureAccountGeneration } from './account_generation';
@@ -271,17 +271,23 @@ export async function sendDialogueV2CoachedTextTurn(
       nowMs: () => Date.now(),
     });
     if (outcome.kind === 'fail') throw new DialogueV2TurnFailureError(outcome.reason);
+    // зачем (Макеты 12.10, dialogs-037/021): dev_dialog_end — подставной ход завершает диалог; dev_dialog_better — в разборе «Лучше так».
+    const devEnd = isDevDialogEnd();
+    const devBetter = isDevDialogBetter();
+    const devMood = getDevDialogMood();
+    console.log(`[DEV-STATE] dialogs: подставной ход ${JSON.stringify({ end: devEnd, better: devBetter, mood: devMood })}`); // guard-ok: dev-ветка
     return {
       kind: 'reply',
-      replies: [{ personaId: 'dev', text: 'Got it! Tell me a bit more. (dev)' }],
+      replies: [{ personaId: 'dev', text: devEnd ? 'Great talking to you — see you soon! (dev)' : 'Got it! Tell me a bit more. (dev)' }],
       replayed: false,
       preparedBotVoiceSelection: null,
       quota: { remaining: outcome.remaining, resetAtMs: outcome.resetAtMs, quotaVersion: 1 },
       // зачем (координатор 12.10, dialogs-023): dev_dialog_mood применялся только к настоящему ответу сервера (ниже) и при подставном ходе терялся —
       // кадр «Настроение собеседника упало» был недостижим. В dev при заданном настроении отдаём минимальный разбор, где есть только оно.
-      coaching: getDevDialogMood() ? {
-        replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
-        mood: getDevDialogMood(), activeObjectiveId: null, dialogueEnded: false,
+      coaching: devMood || devEnd || devBetter ? {
+        replyTranslations: null, replyExplanations: null,
+        betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: null,
+        mood: devMood, activeObjectiveId: null, dialogueEnded: devEnd,
       } : null,
     };
   }

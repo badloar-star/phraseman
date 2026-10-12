@@ -4,14 +4,21 @@ export const DEV_FRIENDS_HOLDS = [] as const;
 export const DEV_FRIENDS_FAILS = [] as const;
 export const DEV_SETTINGS_FAILS = [] as const;
 export const DEV_FRIEND_EVENTS = [] as const;
-export const DEV_UNSYNCED_FRIEND_CODE = 'DEVUNSYNCED';
+export const DEV_UNSYNCED_FRIEND_CODE = 'DEVUNS';
+export const DEV_FOUND_FRIEND_CODE = 'DEVFND';
+export const DEV_FOUND_FRIEND_UID = 'dev_found_friend';
 export function setDevSocialState(): boolean { return false; }
 export function isDevSettingsFail(): boolean { return false; }
+export function isDevSupportFakeSent(): boolean { return false; }
+export function getDevStartedLanguages(): null { return null; }
 export function isDevReferralOff(): boolean { return false; }
 export function getDevPromoResult(): null { return null; }
+export function isDevPromoHold(): boolean { return false; }
 export function isDevFriendsHeld(): boolean { return false; }
 export function isDevFriendsFail(): boolean { return false; }
 export function isDevUnsyncedFriendCode(): boolean { return false; }
+export function isDevFoundFriendCode(): boolean { return false; }
+export function isDevFoundFriendUid(): boolean { return false; }
 export function consumeDevFriendEvent(): null { return null; }
 export function resetDevSocialStateForTests(): void {}
 export default function __RouteShim() { return null; }

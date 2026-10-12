@@ -5,6 +5,7 @@ import {
   buildDialogueV2CompletionReview,
   type DialogueV2CompletionReview,
 } from './dialogue_v2_completion_review_adapter';
+import { getDevDialogCompletion, type DevDialogCompletion } from './dev_dialog_state';
 
 const REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -121,9 +122,45 @@ function describeCompletionResponseShape(value: unknown): Record<string, unknown
   };
 }
 
+/**
+ * зачем (Макеты 12.10, съёмка R1 dialogs-037/040/042/044, gap-007/008): итог подставной сессии без сервера — у сессии
+ * dev_dialog_send сервер всё равно ответил бы отказом. Только память, в стор-сборке геттеры null.
+ */
+function devCompletionResult(kind: Extract<DevDialogCompletion, 'clean' | 'errors'>): DialogueV2CompletionResult {
+  const errors = kind === 'errors';
+  return {
+    review: {
+      ok: true,
+      assessment: errors ? 'Ты справился с разговором, есть пара мест, где можно сказать точнее. (dev)' : 'Отличный разговор — все цели выполнены. (dev)',
+      tip: 'В следующий раз попробуй задать встречный вопрос. (dev)',
+      speakerPersonaId: 'dev',
+      speakerName: 'Dev',
+      evidence: [{ learnerTurn: 'Hello', note: 'Хорошее начало. (dev)' }],
+      objectiveResults: [
+        { objectiveId: 'dev_greet', label: 'Поздороваться', status: 'met', evidence: ['Hello'] },
+        { objectiveId: 'dev_order', label: 'Сделать заказ', status: errors ? 'not_met' : 'met', evidence: [] },
+      ],
+      corrections: errors ? [
+        { original: 'I want table', corrected: 'I would like a table', note: 'Так вежливее. (dev)', kind: 'polish' },
+        { original: 'for two person', corrected: 'for two people', note: 'Множественное число. (dev)', kind: 'polish' },
+      ] : [],
+    },
+    memory: { sharedMemoryStored: true, scenarioCheckpointStored: false },
+    replayed: false,
+  };
+}
+
 export async function completeDialogueV2Session(
   input: DialogueV2CompletionSelection,
 ): Promise<DialogueV2CompletionResult | null> {
+  // Только при явном параметре: кадры, снятые со «старым» поведением подставной сессии (итог недоступен), не меняются.
+  const devCompletion = getDevDialogCompletion();
+  if (devCompletion) {
+    console.warn(`[DEV-STATE] dialogs: итог подменён без сервера kind=${devCompletion}`); // guard-ok: dev-ветка
+    if (devCompletion === 'loading') return new Promise<DialogueV2CompletionResult | null>(() => undefined);
+    if (devCompletion === 'unavailable') throw new DialogueV2CompletionUnavailableError();
+    return devCompletionResult(devCompletion);
+  }
   const selection = safeSelection(input);
   if (!selection) {
     console.warn('[DIALOGUE-V2] completion:client invalid_selection', JSON.stringify({

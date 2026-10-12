@@ -15,13 +15,27 @@ export type DevDialogMood = 'happy' | 'smile' | 'neutral' | 'sad' | 'angry';
 
 export const DEV_DIALOG_FAILS = ['service', 'rate_limited', 'plus_daily_cap', 'paused'] as const;
 export const DEV_DIALOG_MOODS = ['happy', 'smile', 'neutral', 'sad', 'angry'] as const;
+/**
+ * Итог диалога без сервера (Макеты 12.10: dialogs-037/040/042/044, dialogs-gap-007/008): clean — все цели, без исправлений;
+ * errors — одна цель не выполнена и два исправления; loading — итог готовится вечно; unavailable — «итог недоступен».
+ */
+export const DEV_DIALOG_COMPLETIONS = ['clean', 'errors', 'loading', 'unavailable'] as const;
+export type DevDialogCompletion = (typeof DEV_DIALOG_COMPLETIONS)[number];
 
 const LOG = '[DEV-STATE]';
 
 // зачем (координатор 12.10): send — подставной ход без ИИ и без Firestore (dev_dialog_send), см. dev_dialog_send.ts.
 // зачем (координатор 12.10, dialogs-005): holdLanguageGate — хаб рисует карточку «Диалоги на этом языке ещё проверяются», хотя язык поддержан (таблицу готовности правит только владелец, D129/D130).
-type State = { fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean; send: DevDialogSendMode | null };
-let state: State = { fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null };
+// зачем (Макеты 12.10, съёмка R1): end — подставной ход завершает диалог (dialogs-037); better — в разборе хода «Лучше так» (dialogs-021);
+// completion — итог без сервера. Всё только в памяти, работает в паре с подставным ходом dev_dialog_send.
+type State = {
+  fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean;
+  send: DevDialogSendMode | null; end: boolean; better: boolean; completion: DevDialogCompletion | null;
+};
+const EMPTY: State = {
+  fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null,
+};
+let state: State = EMPTY;
 
 function devDialogAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -64,7 +78,22 @@ export function getDevDialogSend(): DevDialogSendMode | null {
   return devDialogAvailable() ? state.send : null;
 }
 
+/** Подставной ход завершает диалог (`dev_dialog_end=on`). В стор-сборке всегда false. */
+export function isDevDialogEnd(): boolean {
+  return devDialogAvailable() && state.end;
+}
+
+/** В разборе подставного хода есть «Лучше так» (`dev_dialog_better=on`). В стор-сборке всегда false. */
+export function isDevDialogBetter(): boolean {
+  return devDialogAvailable() && state.better;
+}
+
+/** Итог диалога без сервера (`dev_dialog_completion=…`). В стор-сборке — всегда null. */
+export function getDevDialogCompletion(): DevDialogCompletion | null {
+  return devDialogAvailable() ? state.completion : null;
+}
+
 /** Только для тестов. */
 export function resetDevDialogState(): void {
-  state = { fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null };
+  state = EMPTY;
 }

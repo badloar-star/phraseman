@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isDevSettingsFail } from './dev_social_state';
+import { isDevSettingsFail, isDevSupportFakeSent } from './dev_social_state';
 
 import type { Lang } from '../constants/i18n';
 import {
@@ -329,6 +329,11 @@ export async function sendSupportReportInBackground(
   if (isDevSettingsFail('support_send')) {
     console.warn(`${SEND_LOG} dev: отправка подменена отказом (support=fail)`); // guard-ok: dev-ветка
     return 'failed';
+  }
+  // зачем (Авторизация 12.10, settings-gap-023): dev `support=sent` — кадр «Обращение отправлено» без настоящей отправки и очереди.
+  if (isDevSupportFakeSent()) {
+    console.warn(`${SEND_LOG} dev: отправка подменена успехом без сети (support=sent)`); // guard-ok: dev-ветка
+    return 'sent';
   }
   console.log(`${SEND_LOG} старт`, { lang, commentLen: payload.comment.length, hasDiagnostics: Boolean(payload.diagnostics) }); // guard-ok: единичный лог на жест человека
   const prepared = await withAccountTransitionLock(async () => {

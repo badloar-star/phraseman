@@ -33,10 +33,10 @@ import { setDevAppearance } from './dev_appearance_override';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
-import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
+import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
 import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
-import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
+import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
 export type DevVipKind = 'promo' | 'promo_lifetime' | 'referral' | 'survey' | 'idea' | 'tester' | 'admin' | 'admin_lifetime' | 'off';
@@ -93,6 +93,10 @@ export type DevStateRequest = Readonly<{
   /** Диалоги (R1 dialogs-*): отказ сервера, настроение, рубильник, удержание загрузки свободного разговора, отказ энергии. off — снять. */
   dialogFail?: DevDialogFail | 'off';
   dialogMood?: DevDialogMood | 'off';
+  /** Подставной ход завершает диалог (dialogs-037) / даёт «Лучше так» (dialogs-021); итог без сервера (dialogs-040/042/044, gap-007/008). */
+  dialogEnd?: 'on' | 'off';
+  dialogBetter?: 'on' | 'off';
+  dialogCompletion?: DevDialogCompletion | 'off';
   /** Подставной ход Диалога без ИИ и без Firestore (координатор 12.10, «N/30»): ok / отказы; off — снять. */
   dialogSend?: DevDialogSendMode | 'off';
   dialogsPaused?: 'on' | 'off';
@@ -147,8 +151,16 @@ export type DevStateRequest = Readonly<{
   plan?: 'yearly' | 'monthly' | 'lifetime' | 'off';
   /** Сбой смены языка изучения (settings-gap-021). */
   studyfail?: 'on' | 'off';
-  /** «Не отправилось» у обращения в поддержку (settings-gap-036). */
-  support?: 'fail' | 'ok';
+  /** «Не отправилось» у обращения в поддержку (settings-gap-036); sent — «Обращение отправлено» без сети (settings-gap-023). */
+  support?: 'fail' | 'ok' | 'sent';
+  /** «Управление подпиской»: скелетон загрузки магазина держится (paywalls-020 = profile-019). */
+  manage?: 'loading' | 'off';
+  /** Начатые языки изучения поверх хранилища, только память (settings-gap-020/021). */
+  started?: readonly ('en' | 'es' | 'de' | 'fr' | 'it')[] | 'off';
+  /** Мягкое предложение Plus на итоге урока без кулдаунов (paywalls-009/010). */
+  upsell?: DevLessonUpsell | 'off';
+  /** Карточка ИИ-разбора ошибки сразу «лимит дня» (paywalls-008). */
+  aiExplain?: 'limit' | 'off';
   /** «Не удалось» при очистке кеша (settings-gap-009). */
   cache?: 'failed' | 'ok';
   /** Друзья: удержание «отправки заявки» (add_request) или off. */
@@ -242,6 +254,9 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
+  request.dialogEnd = pick('dev_dialog_end', ['on', 'off'] as const);
+  request.dialogBetter = pick('dev_dialog_better', ['on', 'off'] as const);
+  request.dialogCompletion = pick('dev_dialog_completion', [...DEV_DIALOG_COMPLETIONS, 'off'] as const);
   request.dialogSend = pick('dev_dialog_send', [...DEV_DIALOG_SENDS, 'off'] as const);
   const onOff = (key: string): 'on' | 'off' | undefined => {
     const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
@@ -303,7 +318,12 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   if (typeof greetRaw === 'string') request.greet = greetRaw.trim().slice(0, 24);
   request.plan = pick('plan', ['yearly', 'monthly', 'lifetime', 'off'] as const);
   request.studyfail = pick('studyfail', ['on', 'off'] as const);
-  request.support = pick('support', ['fail', 'ok'] as const);
+  request.support = pick('support', ['fail', 'ok', 'sent'] as const);
+  // зачем (Авторизация 12.10, съёмка R1): подмены только в памяти — manage/started/upsell/ai_explain.
+  request.manage = pick('manage', ['loading', 'off'] as const);
+  request.started = list('started', ['en', 'es', 'de', 'fr', 'it'] as const);
+  request.upsell = pick('upsell', [...DEV_LESSON_UPSELLS, 'off'] as const);
+  request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
   request.cache = pick('cache', ['failed', 'ok'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
   request.refcode = pick('refcode', DEV_REFCODE_RESULTS);
@@ -532,6 +552,15 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.dialogMood !== undefined) {
     await step('dialogMood', request.dialogMood, async () => setDevDialogState({ mood: request.dialogMood === 'off' ? null : request.dialogMood! }));
   }
+  if (request.dialogEnd !== undefined) {
+    await step('dialogEnd', request.dialogEnd, async () => setDevDialogState({ end: request.dialogEnd === 'on' }));
+  }
+  if (request.dialogBetter !== undefined) {
+    await step('dialogBetter', request.dialogBetter, async () => setDevDialogState({ better: request.dialogBetter === 'on' }));
+  }
+  if (request.dialogCompletion !== undefined) {
+    await step('dialogCompletion', request.dialogCompletion, async () => setDevDialogState({ completion: request.dialogCompletion === 'off' ? null : request.dialogCompletion! }));
+  }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
   }
@@ -672,8 +701,20 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         const touched = (fail === 'study_language' && request.studyfail !== undefined) || (fail === 'support_send' && request.support !== undefined) || (fail === 'cache_clear' && request.cache !== undefined);
         return !touched && isDevSettingsFail(fail);
       });
-      return setDevSocialState({ settingsFails: [...kept, ...fails] });
+      return setDevSocialState({ settingsFails: [...kept, ...fails], ...(request.support !== undefined ? { supportSent: request.support === 'sent' } : {}) });
     });
+  }
+  if (request.manage !== undefined) {
+    await step('manage', request.manage, async () => setDevManageLoadingHold(request.manage === 'loading'));
+  }
+  if (request.started !== undefined) {
+    await step('started', request.started === 'off' ? 'off' : request.started.join(','), async () => setDevSocialState({ startedLanguages: request.started === 'off' ? null : request.started! }));
+  }
+  if (request.upsell !== undefined) {
+    await step('upsell', request.upsell, async () => setDevLessonUpsell(request.upsell === 'off' ? null : request.upsell!));
+  }
+  if (request.aiExplain !== undefined) {
+    await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit'));
   }
   if (request.referral !== undefined) {
     await step('referral', request.referral, async () => setDevSocialState({ referralOff: request.referral === 'off' }));

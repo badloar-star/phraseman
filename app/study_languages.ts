@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isDevSettingsFail } from './dev_social_state';
+import { getDevStartedLanguages, isDevSettingsFail } from './dev_social_state';
 import type { Lang } from '../constants/i18n';
 import { isStudyTarget, setStoredStudyTarget, type StudyTarget } from './study_target';
 import { DebugLogger } from './debug-logger';
@@ -27,7 +27,20 @@ function rememberStarted(list: StudyTargetLang[]): StudyTargetLang[] {
 }
 export function peekStartedStudyLanguages(): StudyTargetLang[] | null {
   const owner = peekStableId();
-  return owner && startedMemory?.owner === owner ? startedMemory.list : null;
+  const known = owner && startedMemory?.owner === owner ? startedMemory.list : null;
+  return known ? withDevStarted(known) : known;
+}
+
+/**
+ * зачем (Авторизация 12.10, settings-gap-020/021): dev `started=en,es` — языки считаются начатыми только в памяти процесса,
+ * поверх сохранённого списка; хранилище и облачная синхронизация не трогаются. В стор-сборке геттер null — список как есть.
+ */
+function withDevStarted(list: StudyTargetLang[]): StudyTargetLang[] {
+  const extra = getDevStartedLanguages();
+  if (!extra) return list;
+  const merged = normalizeStartedList([...list, ...extra]);
+  console.log('[DEV-STATE] study_languages: начатые языки дополнены в памяти', JSON.stringify({ stored: list, extra, merged })); // guard-ok: dev-ветка
+  return merged;
 }
 
 export type StudyTargetLang = StudyTarget;
@@ -67,12 +80,15 @@ function normalizeStartedList(raw: unknown): StudyTargetLang[] {
  * (старые установки до фичи), он считается первым начатым языком, чтобы
  * существующие пользователи не упёрлись в пейвол на своём же языке.
  */
-export async function getStartedStudyLanguages(seed?: StudyTargetLang): Promise<StudyTargetLang[]> {
+/** Сохранённый список (без dev-наложения) — только он пишется обратно в хранилище. */
+async function readStoredStartedStudyLanguages(seed?: StudyTargetLang): Promise<StudyTargetLang[]> {
   let stored: StudyTargetLang[] = [];
   try {
     const raw = await AsyncStorage.getItem(STUDY_LANGUAGES_STARTED_KEY);
     stored = raw ? normalizeStartedList(JSON.parse(raw)) : [];
-  } catch {
+  } catch (e) {
+    // зачем: немой catch прятал битый JSON/сбой чтения — список молча становился пустым.
+    console.warn('[STUDY-LANGS] список начатых языков не прочитан — считаем пустым', String(e));
     stored = [];
   }
   if (stored.length === 0 && seed && isKnownStudyLanguage(seed)) {
@@ -87,17 +103,22 @@ export async function getStartedStudyLanguages(seed?: StudyTargetLang): Promise<
   return rememberStarted(stored);
 }
 
+export async function getStartedStudyLanguages(seed?: StudyTargetLang): Promise<StudyTargetLang[]> {
+  return withDevStarted(await readStoredStartedStudyLanguages(seed));
+}
+
 /** Отметить язык начатым (идемпотентно). Возвращает актуальный список. */
 export async function markStudyLanguageStarted(target: StudyTargetLang): Promise<StudyTargetLang[]> {
-  const current = await getStartedStudyLanguages();
-  if (current.includes(target)) return current;
+  // зачем: читаем сохранённый список без dev-наложения `started=`, иначе языки из памяти записались бы в хранилище и облако.
+  const current = await readStoredStartedStudyLanguages();
+  if (current.includes(target)) return withDevStarted(current);
   const next = [...current, target];
   try {
     await AsyncStorage.setItem(STUDY_LANGUAGES_STARTED_KEY, JSON.stringify(next));
   } catch (e) {
       DebugLogger.error('study_languages:next', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  return rememberStarted(next);
+  return withDevStarted(rememberStarted(next));
 }
 
 export async function saveLanguageProfile(

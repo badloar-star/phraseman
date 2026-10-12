@@ -35,6 +35,7 @@ import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId, peekStableId, readExistingStableId } from './stable_id';
 import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs } from './identity_trace';
+import { decideRemoteLinkReuseForSwap, type RemoteLinkEvidence } from './auth_swap_link_reuse';
 
 type AuthSwallowPrefix = '[AUTH-SIGNIN]' | '[AUTH-SIGNOUT]' | '[AUTH-DELETE]' | '[AUTH-LINK-GOOGLE]' | '[AUTH-RC]' | '[AUTH-BG-REFRESH]';
 
@@ -2976,6 +2977,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     | { kind: 'merged_swap_to_remote'; remoteStableId: string; mergedFromStableId: string };
 
   let outcome: Outcome;
+  let remoteLinkEvidence: RemoteLinkEvidence | null = null;
   const authLinkMetadata: StableAuthLinkMetadata = {
     provider,
     email: firebaseEmail,
@@ -3062,6 +3064,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       identityTrace('[AUTH-LINK-GOOGLE]', 'result error', { provider, error: remoteFailureCode, branch: 'remote', tookMs: identityTraceClockMs() - traceStartedAt }, { persist: true });
       return { result: 'error', error: remoteFailureCode };
     }
+    // зачем (B3, координатор 12.10): авторитетный ответ этого входа — свап может не перечитывать ту же привязку вторым callable.
+    remoteLinkEvidence = {
+      stableUid: linkedRemote.stableUid,
+      authUid: linkedRemote.authUid ?? null,
+      source: linkedRemote.source,
+      atMs: identityTraceClockMs(),
+    };
     outcome = {
       kind: 'merged_swap_to_remote',
       remoteStableId: linkedRemote.stableUid,
@@ -3356,12 +3365,36 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // A HOT callable timeout does not cancel the server merge. Never turn a
         // null/pending response into a destructive inferred swap: re-read the
         // authoritative anchor after the reservation/copy boundary.
-        const authoritativeAfterMerge = await ensureStableAuthLinkForStableIdDetailed(
-          outcome.remoteStableId,
-          authLinkMetadata,
-          { requireAuthoritative: true },
-        );
-        swapStage('authoritative_link_read');
+        // зачем (B3, координатор 12.10, реестр п.73): перечтение — второй callable ~3,7 с. Пропускаем ТОЛЬКО когда слияния не было,
+        // а этот же вход получил привязку от сервера (callable, тот же stableUid, тот же uid Firebase); иначе перечитываем как раньше.
+        const linkReuse = decideRemoteLinkReuseForSwap({
+          mergeCalled: preserveLocalProgress,
+          evidence: remoteLinkEvidence,
+          remoteStableId: outcome.remoteStableId,
+          currentAuthUid: getAuth()?.currentUser?.uid ?? null,
+        });
+        let authoritativeAfterMerge: StableAuthLinkEnsureResult;
+        if (linkReuse.reuse) {
+          swapStage('authoritative_link_reused', {
+            source: linkReuse.evidence.source,
+            ageMs: identityTraceClockMs() - linkReuse.evidence.atMs,
+          });
+          authoritativeAfterMerge = {
+            ok: true,
+            requestedStableId: outcome.remoteStableId,
+            stableUid: linkReuse.evidence.stableUid,
+            authUid: linkReuse.evidence.authUid,
+            source: linkReuse.evidence.source,
+          };
+        } else {
+          identityTrace('[AUTH-LINK-GOOGLE]', 'swap authoritative_link_reread', { provider, reason: linkReuse.reason });
+          authoritativeAfterMerge = await ensureStableAuthLinkForStableIdDetailed(
+            outcome.remoteStableId,
+            authLinkMetadata,
+            { requireAuthoritative: true },
+          );
+          swapStage('authoritative_link_read');
+        }
         // 🔴 для координатора (Plus): сюда попадаем, когда слияние не выполнено
         // (null) — свап на remote БЕЗ переноса premium-блока локального аккаунта.
         identityTrace('[AUTH-LINK-GOOGLE]', 'swap merge_skipped_fallback', {

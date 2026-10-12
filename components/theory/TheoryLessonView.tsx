@@ -31,6 +31,7 @@ import {
   type TheoryDrillProgressState,
 } from '../../app/theory_progress';
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { pluralWithCount } from '../../constants/plural';
 
 /**
  * TheoryLessonView — рендер-движок раздела «Теория» в стиле «дорогой минимализм».
@@ -159,17 +160,19 @@ function AccordionSection({ section, index, total, open, onToggle, renderBlock }
 
   const metaText =
     typeof section.exampleCount === 'number' && section.exampleCount > 0
-      ? triLang(lang, {
-          ru: `${section.exampleCount} примеров`,
-          uk: `${section.exampleCount} прикладів`,
-          en: `${section.exampleCount} examples`,
-          es: `${section.exampleCount} ejemplos`,
-          'pt-BR': `${section.exampleCount} exemplos`,
-          vi: `${section.exampleCount} ví dụ`,
-          id: `${section.exampleCount} contoh`,
-          tr: `${section.exampleCount} örnek`,
-          pl: `${section.exampleCount} przykładów`,
-        })
+      // зачем (R1 diff learn-059, Макеты: «в приложении «4 примеров», склонение: «4 примера»): число подставлялось в фиксированную форму множественного числа — «1 примеров», «4 примеров», en «1 examples».
+      // Теперь форма по числу (constants/plural.ts): ru 1 пример / 4 примера / 5 примеров, uk приклад/приклади/прикладів, pl przykład/przykłady/przykładów, en/es/pt-BR — единственное при 1; vi/id/tr без склонения.
+      ? pluralWithCount(lang, section.exampleCount, triLang(lang, {
+          ru: { one: 'пример', few: 'примера', many: 'примеров' },
+          uk: { one: 'приклад', few: 'приклади', many: 'прикладів' },
+          en: { one: 'example', few: 'examples', many: 'examples' },
+          es: { one: 'ejemplo', few: 'ejemplos', many: 'ejemplos' },
+          'pt-BR': { one: 'exemplo', few: 'exemplos', many: 'exemplos' },
+          vi: { one: 'ví dụ', few: 'ví dụ', many: 'ví dụ' },
+          id: { one: 'contoh', few: 'contoh', many: 'contoh' },
+          tr: { one: 'örnek', few: 'örnek', many: 'örnek' },
+          pl: { one: 'przykład', few: 'przykłady', many: 'przykładów' },
+        }))
       : '';
 
   return (

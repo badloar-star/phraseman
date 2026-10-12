@@ -29,6 +29,7 @@ import {
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
 import { getDevAppearance, getDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
 import { actionToastTri, emitAppEvent } from '../app/events';
+import { decideFirstRunTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
@@ -444,10 +445,25 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       if (!cancelled) setLiquidGlassChoiceReady(true);
     };
     void (async () => {
-      const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY, INTENSITY_STORAGE_KEY]);
+      // зачем (DEFAULT_THEME_OPTIONS_R1): onboarding_done — в ТОМ ЖЕ чтении (без лишнего await до кадра), чтобы отличить новичка от старого
+      const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY, INTENSITY_STORAGE_KEY, 'onboarding_done']);
       if (cancelled) return;
       const storedId = pairs[0]?.[1] ?? null;
-      const resolved = resolveLiquidGlassTheme(storedId);
+      const firstRun = decideFirstRunTheme({
+        storedThemeId: storedId,
+        storedLevel: pairs[1]?.[1] ?? null,
+        storedIntensity: pairs[3]?.[1] ?? null,
+        onboardingDone: pairs[4]?.[1] ?? null,
+      });
+      console.log(`[THEME-DEFAULT] ${firstRun.kind} ${JSON.stringify({ reason: firstRun.reason, apply: firstRun.apply, ...(firstRun.kind === 'new_user' ? { themeId: firstRun.themeId, intensity: firstRun.intensity } : {}) })}`);
+      const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
+      const storedResolved = resolveLiquidGlassTheme(storedId);
+      const resolved = newUserApply ? resolveLiquidGlassTheme(newUserApply.themeId) : storedResolved;
+      if (newUserApply) {
+        // новичок: тема из конфига пишется один раз — дальше это обычный «выбор», старые пользователи сюда не попадают
+        AsyncStorage.multiSet([[THEME_STORAGE_KEY, resolved], [INTENSITY_STORAGE_KEY, String(newUserApply.intensity)]])
+          .catch(logThemeWriteError(THEME_STORAGE_KEY));
+      }
       persisterRef.current?.setPersisted('theme', resolved);
       persisterRef.current?.setPersisted('appearance', resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null));
       if (!touchedRef.current.theme) {
@@ -460,7 +476,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       // зачем (ползунок 2026-10-04): «Спокойно / Акцент / Максимум» → 0 / 0.5 / 1, на этих
       // точках палитра прежняя байт-в-байт; новый ключ дописывается один раз.
       const storedLevel = pairs[1]?.[1] ?? null;
-      const storedIntensity = pairs[3]?.[1] ?? null;
+      const storedIntensity = newUserApply ? String(newUserApply.intensity) : (pairs[3]?.[1] ?? null);
       const migration = migrateStoredLiquidGlassIntensity(storedIntensity, storedLevel);
       persisterRef.current?.setPersisted('intensity', String(migration.intensity));
       if (IS_DEV) {

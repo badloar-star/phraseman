@@ -20,6 +20,7 @@ import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getUtcDayKey } from './local_date';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
+import { isDevFixtureNoUploadActive, omitDevFixtureCardKeys } from './dev_fixture_upload_guard';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
@@ -3357,7 +3358,12 @@ async function doSyncToCloud(): Promise<void> {
     for (const [key, value] of pairs) {
       storedData[key] = value;
     }
-    const data = omitAccountsV2LegacyDomains(storedData, 'write', legacyV2SkipOnWrite);
+    // зачем (координатор 12.10): карточки/наборы из dev-фикстур на госте в облако не выгружаются (только dev, uid гостя).
+    const data = omitDevFixtureCardKeys(
+      omitAccountsV2LegacyDomains(storedData, 'write', legacyV2SkipOnWrite),
+      await isDevFixtureNoUploadActive(getAuthUserId()),
+      'sync',
+    );
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (!isSyncGenerationCurrent()) return;
@@ -4990,8 +4996,12 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
     // зачем (Account V2, Пакет 7A): как в doSyncToCloud — при активном выключателе
     // V2-домены (карточки/свайпы/библиотека) в старое облако не переносятся; их
     // outbox V2 живёт в области uid и уйдёт сам. Неактивно → тот же объект.
-    const forceData = omitAccountsV2LegacyDomains(data, 'write', isAccountsV2LegacySwitchFlagOn()
-      && await resolveAccountsV2LegacySkip('write', getAuthUserId()));
+    const forceData = omitDevFixtureCardKeys(
+      omitAccountsV2LegacyDomains(data, 'write', isAccountsV2LegacySwitchFlagOn()
+        && await resolveAccountsV2LegacySkip('write', getAuthUserId())),
+      await isDevFixtureNoUploadActive(getAuthUserId()),
+      'force_sync',
+    );
     if (!isForceGenerationCurrent()) {
       console.log('[LEGACY-V2-SYNC] force_sync aborted reason=stale_generation stage=before_flashcards');
       pendingSync = false;

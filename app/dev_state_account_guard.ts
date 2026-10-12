@@ -7,6 +7,7 @@
  * наборов — записи в модерации. Проверка — fail-closed: если вход определить не удалось, считаем аккаунт настоящим и отказываем.
  * Лог: [DEV-STATE] guard.
  */
+import { markDevFixtureNoUpload } from './dev_fixture_upload_guard';
 
 export type GuardUser = Readonly<{ isAnonymous?: boolean; uid?: string; providerData?: readonly unknown[] }> | null | undefined;
 
@@ -43,4 +44,6 @@ export function assertDisposableGuest(what: string, readUser: () => GuardUser = 
     throw new Error(`dev_state: ${what} refused: not a disposable guest (${verdict.reason})`);
   }
   console.log(`[DEV-STATE] ${what}: guard ok — анонимный гость ${verdict.uid.slice(0, 6)}…`); // guard-ok: единичный лог на ссылку
+  // зачем (координатор 12.10, Ядро): с этого момента карточки/наборы этого гостя не выгружаются в облако (мусор в проде).
+  markDevFixtureNoUpload(verdict.uid, what);
 }

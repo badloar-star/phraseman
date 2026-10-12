@@ -270,7 +270,10 @@ describe('8K — встройка в cloud_sync (единый путь выгр�
 
   test('forceSyncToCloud: выгрузка карточек ДО записи документа, документ без списка, снимок по плану', () => {
     const body = bodyOf('forceSyncToCloud');
-    const omitAt = body.indexOf("const forceData = omitAccountsV2LegacyDomains(data, 'write'");
+    // зачем (Ядро 12.10): вырезание V2-доменов теперь обёрнуто dev-пропуском карточек фикстур (omitDevFixtureCardKeys);
+    // порядок «вырезать → выгрузить карточки → записать документ» прежний.
+    expect(body).toContain('const forceData = omitDevFixtureCardKeys(');
+    const omitAt = body.indexOf("omitAccountsV2LegacyDomains(data, 'write'");
     const uploadAt = body.indexOf('await runForceFlashcardUpload({');
     const writeAt = body.indexOf('writeUserDocWithNestedProgress(');
     expect(omitAt).toBeGreaterThan(0);

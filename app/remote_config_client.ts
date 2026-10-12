@@ -16,7 +16,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
 import { withBackgroundNetworkLease } from './interactive_network_quiet';
-import { applyRemoteConfigSnapshot } from './remote_flags';
+import { applyRemoteConfigSnapshot, getRemoteBool } from './remote_flags';
+
+// зачем (координатор 12.10): по журналам нельзя было сказать, включён ли Account V2 на клиенте. Одна строка на источник
+// (кэш / сеть) за процесс: значение и откуда оно.
+const accountsV2FlagLogged = new Set<string>();
+function logAccountsV2ClientFlag(source: 'cache' | 'network'): void {
+  const value = getRemoteBool('accounts_v2_client_enabled') === true;
+  const key = `${source}:${String(value)}`;
+  if (accountsV2FlagLogged.has(key)) return;
+  accountsV2FlagLogged.add(key);
+  console.log(`[ACCOUNT-V2] client_flag accounts_v2_client_enabled=${String(value)} source=${source}`);
+}
 import { DebugLogger, reportSwallowed } from './debug-logger';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
@@ -183,6 +194,7 @@ function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.no
     return;
   }
   applyRemoteConfigSnapshot(clean);
+  logAccountsV2ClientFlag('network');
   // зачем (11.10, «Шпиль не виден»): зеркало кэша обновляется ДО события. Раньше событие уходило первым, и слушатели,
   // читающие кэш (флаг вкладки Шпиля, «Вместе»), синхронно получали из зеркала СТАРОЕ значение — вкладка не появлялась
   // до перезапуска, а при свежем кэше на диске — до 6 часов.
@@ -239,6 +251,7 @@ async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
     boundedUtf8Bytes(raw, REMOTE_CONFIG_MAX_CACHE_BYTES);
     const parsed = JSON.parse(raw) as RawConfig;
     applyRemoteConfigSnapshot(sanitizeRaw(parsed));
+    logAccountsV2ClientFlag('cache');
     emitAppEvent('remote_config_changed');
     return true;
   } catch (e) {

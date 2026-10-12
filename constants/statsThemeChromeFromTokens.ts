@@ -12,7 +12,8 @@ const BORDER_ALPHA = { soft: 0.35, medium: 0.48, strong: 0.72 } as const;
 
 /** Акцент статистики: заливка/линия — accent, а не текстовый accentText. */
 export function statsAccentFromTokens(t: GlassTokens): string {
-  return t.accent;
+  // зачем (светлый акцент 13.10): заливка/линия статистики — графика, accentGraphic (в тёмном и там, где accent виден, равен accent)
+  return t.accentGraphic;
 }
 
 /** Фон страницы статистики: на тон отличается от общего фона, чтобы карточки без обводок читались. */

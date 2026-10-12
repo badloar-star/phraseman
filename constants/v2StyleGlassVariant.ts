@@ -48,7 +48,8 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
   const accentRoles = {
     accent: g.accent,
     accentSoft: g.accentSoft,
-    progressFill: g.accent,
+    // зачем (светлый акцент, кадр Главной «Аврора/1» 13.10): полоса прогресса — графика; на светлых градиентных темах сырой accent бледный, accentGraphic там глубже, в тёмном равен accent
+    progressFill: g.accentGraphic,
     cta: g.accent,
     ctaText: g.accentInk,
     accentFill: g.accent,

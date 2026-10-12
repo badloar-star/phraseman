@@ -23,7 +23,8 @@ describe('цвета тем из токенов', () => {
   for (const id of IDS) for (const appearance of APPEARANCES) for (const intensity of INTENSITIES) {
     it(`${id}/${appearance}/${intensity}`, () => {
       const t = liquidGlassTokens(id, variant(appearance, intensity));
-      expect(statsAccentFromTokens(t)).toBe(t.accent);
+      expect(statsAccentFromTokens(t)).toBe(t.accentGraphic);
+      if (appearance === 'dark') expect(statsAccentFromTokens(t)).toBe(t.accent); // тёмный вид не меняется
       expect(statsPageFieldFromTokens(t)).toBe(t.opaqueSheet);
       for (const v of [statsSoftBgFromTokens(t), statsSoftBgFromTokens(t, 'strong'), statsBorderFromTokens(t), statsHairlineFromTokens(t)]) {
         expect(v).toMatch(rgba);

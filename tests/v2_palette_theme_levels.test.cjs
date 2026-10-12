@@ -38,7 +38,7 @@ test('accent keeps the calm background and glass, colours CTA and progress', () 
     const g = liquidGlassTokens(id, v('accent'));
     assert.equal(acc.cta, g.accent);
     assert.equal(acc.ctaText, g.accentInk);
-    assert.equal(acc.progressFill, g.accent);
+    assert.equal(acc.progressFill, g.accentGraphic);
     assert.equal(acc.accentText, g.accentText);
   }
 });

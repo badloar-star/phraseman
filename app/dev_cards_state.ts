@@ -25,6 +25,8 @@ export const DEV_CARDS_FAILS = [
   'pack_like', 'publish_error', 'pack_remove_min', 'pack_remove_net', 'comment_send', 'report_send',
   // зачем (cards-082): ролик не открылся — без браузера на эмуляторе.
   'video_open',
+  // зачем (Макеты 12.10, cards-v2-044): каталог сообщества «без сети» (с catalog=empty).
+  'catalog_load',
 ] as const;
 export type DevCardsFail = (typeof DEV_CARDS_FAILS)[number];
 

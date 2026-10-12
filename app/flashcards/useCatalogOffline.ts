@@ -3,6 +3,7 @@
 // Запросов в сеть не добавляет: NetInfo.fetch() читает состояние системы. Лог [CATALOG-OFFLINE] — вход, значения, причина, итог.
 import NetInfo, { type NetInfoState } from '@react-native-community/netinfo';
 import { useEffect, useState } from 'react';
+import { isDevCardsFail } from '../dev_cards_state';
 
 type CatalogOfflineInput = Readonly<{
   /** Облачный каталог вообще включён (не Expo Go / не локальный режим). */
@@ -26,6 +27,12 @@ export function useCatalogOffline({ enabled, loaded, hasCloudPacks }: CatalogOff
     if (!enabled || !loaded || hasCloudPacks) {
       console.log(`[CATALOG-OFFLINE] skip enabled=${String(enabled)} loaded=${String(loaded)} hasCloudPacks=${String(hasCloudPacks)}`);
       setOffline(false);
+      return undefined;
+    }
+    // зачем (Макеты 12.10, cards-v2-044 / section-029): dev `fail=catalog_load` — «Нет сети» без авиарежима (вместе с catalog=empty).
+    if (isDevCardsFail('catalog_load')) {
+      console.log('[CATALOG-OFFLINE] probe offline=true reason=dev_fail_catalog_load'); // guard-ok: dev-ветка
+      setOffline(true);
       return undefined;
     }
     let cancelled = false;

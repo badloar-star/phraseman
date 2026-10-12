@@ -209,6 +209,8 @@ const G = {
   infoCirc: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.2M12 7.8h.01" stroke-width="2.2"/>',
   alertCirc: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/>',
   cloudOff: '<path d="M7 18.5h10a3.5 3.5 0 00.6-6.95A5.5 5.5 0 007.2 10.4 4 4 0 007 18.5z"/><path d="M3.5 3.5l17 17"/>',
+  cog: '<path d="M12 8.6a3.4 3.4 0 100 6.8 3.4 3.4 0 000-6.8z"/><path d="M10.4 3.5h3.2l.5 2.3 1.5.9 2.2-.8 1.6 2.8-1.7 1.6v1.8l1.7 1.6-1.6 2.8-2.2-.8-1.5.9-.5 2.3h-3.2l-.5-2.3-1.5-.9-2.2.8-1.6-2.8 1.7-1.6v-1.8L4.6 9.7l1.6-2.8 2.2.8 1.5-.9z"/>',
+  home: '<path d="M4 11.2L12 4l8 7.2V19a1 1 0 01-1 1h-4.5v-5h-5v5H5a1 1 0 01-1-1z"/>',
   gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>',
 };
 const I = (n, c = '') => G[n]
@@ -224,7 +226,7 @@ const grp = (rows) => `<div class="gs-grp">${rows.join('')}</div>`;
 const ey = (t, a = '') => `<div class="gs-ey"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
 const ey2 = (t, a = '') => `<div class="gs-ey2"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
 const pl2 = (n, title, o = {}) => `<div class="gs-pl2${o.dim ? ' gs-dimrow' : ''}">${o.lead || tile(n)}<div class="gs-tx"><div class="gs-pt">${title}</div>${o.sub ? `<div class="gs-st">${o.sub}</div>` : ''}</div>${o.right || ''}</div>`;
-const nav = (on) => `<div class="gs-fade"></div><div class="gs-nav">${['layers', 'bookmark', 'play', 'people', 'gear'].map((n, i) => `<span class="it${i === on ? ' on' : ''}">${n === 'play' ? '<svg class="i" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>' : I(n)}</span>`).join('')}</div>`;
+const nav = (on) => `<div class="gs-fade"></div><div class="gs-nav">${['home', 'book', 'play', 'people', 'cog'].map((n, i) => `<span class="it${i === on ? ' on' : ''}">${n === 'play' ? '<svg class="i" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>' : I(n)}</span>`).join('')}</div>`;
 const backRow = (right = '') => `<div class="gs-brow"><span class="gs-back">${K.icon('back')}</span>${right}</div>`;
 
 /* зачем: прокрутка кадра к нужному месту — data-gs-anchor на телефоне (метка data-gs-a или «end»); без этого длинные экраны были бы видны только сверху */

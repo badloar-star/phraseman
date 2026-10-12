@@ -47,6 +47,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { isDevCardsFail } from './dev_cards_state';
+import { initialVideoCatalogLoadState, videoCatalogBranch, videoCatalogWaiting } from './video_packs_catalog_branch';
 // зачем (владелец 01.10): «Из видео» берёт ГОТОВЫЕ наборы фраз роликов
 // (video_phrase_sets) — те же, что открываются по тапу на фразу под роликом.
 import {
@@ -86,6 +87,8 @@ function VideoGlass({ tint, edge }: { tint: string; edge: string }) {
 }
 
 const LOG = '[VIDEO-PACK]';
+/** зачем (журнал п.85(2)): одна цепочка «какая ветка экрана и почему» — пусто / загрузка / ошибка — одним поиском. */
+const VIDEO_EMPTY_LOG = '[VIDEO-EMPTY]';
 
 /**
  * Предел ожидания карточек при открытии набора.
@@ -183,9 +186,14 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
    * иначе первый кадр рисует спиннер, а следующий — готовый список, и человек
    * видит моргание. Кэш есть — решение известно сразу, ждать нечего.
    */
+  // зачем (владелец, журнал п.85(2)): память модуля знает ответ — в том числе ПУСТОЙ — значит «Пока пусто» показываем в первом же кадре, без скелета и без сети;
+  // скелет — только когда ответа ещё не было вовсе (первая загрузка без кэша).
   const [catalogState, setCatalogState] = useState<VideoCatalogState>(() => {
-    const packs = filterVideoPacks(peekVideoPhraseSetPacks() ?? []);
-    return { targetKey, packs, loadState: packs.length > 0 ? 'ready' : 'loading' };
+    const peeked = peekVideoPhraseSetPacks();
+    const packs = filterVideoPacks(peeked ?? []);
+    const initial = initialVideoCatalogLoadState(peeked);
+    DebugLogger.info(VIDEO_EMPTY_LOG, `старт: ответ в памяти=${peeked === null ? 'нет' : `да, наборов ${peeked.length}, из видео ${packs.length}`} → loadState=${initial.loadState} (источник=${initial.source})`);
+    return { targetKey, packs, loadState: initial.loadState };
   });
   const activeCatalogState = transitionVideoCatalogState(catalogState, targetKey, 'target');
   const { packs, loadState } = activeCatalogState;
@@ -438,7 +446,9 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   // и потолок одной загрузки 12 с (app/load_gate_config.ts), затем спокойное «Сейчас недоступно» +
   // тихая «Попробовать снова»; при возврате в приложение повтор идёт сам.
   // «Ничего не нашли» остаётся только как ответ на поиск пользователя.
-  const waitingForCatalog = !searching && packs.length === 0 && (loadState === 'error' || loadState === 'ready' || loadState === 'loading');
+  // зачем (журнал п.85(2)): тихие повторы нужны ТОЛЬКО пока идёт загрузка или после сбоя. Пустой ответ (loadState='ready') — это ответ, а не ожидание:
+  // раньше он гонял до трёх принудительных чтений Firestore и заканчивался «Сейчас недоступно».
+  const waitingForCatalog = videoCatalogWaiting(loadState, packs.length, searching);
   const silentRetryRef = useRef(0);
   const [catalogExhausted, setCatalogExhausted] = useState(false);
   useEffect(() => {
@@ -491,8 +501,22 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     });
     return () => sub.remove();
   }, [catalogExhausted, retryCatalog]);
-  const showEmpty = searching && visible.length === 0;
+  const { branch, reason: branchReason } = videoCatalogBranch({
+    loadState,
+    packsCount: packs.length,
+    visibleCount: visible.length,
+    searching,
+    exhausted: catalogExhausted,
+  });
   const showSearch = searchOpen || searching;
+  // зачем (сперва логи): каждый переход ветки называет значения, которые её решили, — чтобы «пусто вместо списка» или «скелет вместо пусто» читались из журнала
+  const lastBranchRef = useRef<string>('');
+  useEffect(() => {
+    const signature = `${branch}|${branchReason}|${loadState}|${packs.length}|${visible.length}|${packLanguage}`;
+    if (lastBranchRef.current === signature) return;
+    lastBranchRef.current = signature;
+    DebugLogger.info(VIDEO_EMPTY_LOG, `ветка=${branch} причина=${branchReason} loadState=${loadState} наборов=${packs.length} видимых=${visible.length} поиск=${searching ? 'да' : 'нет'} язык=${packLanguage} исчерпано=${catalogExhausted ? 'да' : 'нет'} embedded=${embedded ? 'да' : 'нет'}`);
+  }, [branch, branchReason, catalogExhausted, embedded, loadState, packLanguage, packs.length, searching, visible.length]);
 
   // зачем (video-redesign #c1, `.row + .row`): во вкладке строки разделяет тонкая линия, без карточек и зазоров.
   const rowSeparator = useMemo(
@@ -501,7 +525,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   );
   const content = (
     <>
-      {waitingForCatalog && catalogExhausted ? (
+      {branch === 'error' ? (
                 <KitEmpty
                   g={kg}
                   testID="fc-video-packs-unavailable"
@@ -513,7 +537,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                   onAction={() => retryCatalog('tap')}
                   actionTestID="fc-video-packs-try-again"
                 />
-              ) : waitingForCatalog ? (
+              ) : branch === 'loading' ? (
                 /**
                  * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
                  * геометрии с готовым списком, иначе экран «прыгает», когда данные
@@ -530,7 +554,19 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                     </View>
                   ))}
                 </View>
-              ) : showEmpty ? (
+              ) : branch === 'empty' ? (
+                // зачем (владелец, журнал п.85(2); макет cards-states «Наборы из видео — Пока пусто»): наборов из видео нет — спокойное «Пока пусто» вместо скелета и «Сейчас недоступно»; кнопки в макете нет
+                <KitEmpty
+                  g={kg}
+                  testID="fc-video-packs-nothing-yet"
+                  icon="play"
+                  title={copy.emptyTitle}
+                  detail={copy.emptyBody}
+                  action=""
+                  onAction={noop}
+                  hideAction
+                />
+              ) : branch === 'not_found' ? (
                 <KitEmpty
                   g={kg}
                   testID="fc-video-packs-empty"
@@ -609,6 +645,8 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     </View>
   );
 }
+
+function noop() {}
 
 function RowGap() {
   // зачем: зазор между карточками задаёт contentContainerStyle.gap (макет cards-section «Из видео»).

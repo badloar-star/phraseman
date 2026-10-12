@@ -29,7 +29,11 @@ test('Video list and row use current translucent theme material with native diff
 // «Ничего не нашли» остаётся только для поиска.
 test('Video shows rows or row placeholders with silent retry, never an error or empty card', () => {
   assert.doesNotMatch(screen, /fc-video-packs-retry/);
-  assert.doesNotMatch(screen, /copy.errorTitle|copy.emptyTitle/);
+  // зачем (владелец, журнал п.85(2)): прежнее правило 01.10 «никогда не пустой» уточнено — «Пока пусто» (copy.emptyTitle) показывается ТОЛЬКО когда ответ получен и наборов из видео ноль
+  // (ветка empty из video_packs_catalog_branch); экрана ошибки по-прежнему нет, «Сейчас недоступно» — только после исчерпания тихих повторов настоящего сбоя.
+  assert.doesNotMatch(screen, /copy.errorTitle/);
+  assert.match(screen, /branch === 'empty'/);
+  assert.match(screen, /title=\{copy\.emptyTitle\}/);
   assert.match(screen, /silentRetryRef/);
   assert.match(screen, /fc-video-packs-title/);
   for (const token of ["'loading' | 'ready' | 'error'", 'fc-video-packs-clear-search', 'THUMB_W = 112', 'THUMB_H = 63']) {

@@ -2,6 +2,14 @@
 // холодном старте между этим секунды. Изменилась ли серия после чтения — перед записью проверяется; изменилась —
 // слияние заново со свежим локальным по дате активности (не max). Не менялась — путь прежний.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// зачем: ветка «локальное главнее» пишет серию только при неотправленных событиях прогресса — включаем их флагом теста.
+let mockPendingProgress = false;
+jest.mock('../app/progress_events_client', () => ({
+  ...jest.requireActual('../app/progress_events_client'),
+  hasPendingProgressServerEvents: async () => mockPendingProgress,
+}));
+
 import { __cloudSyncTestHooks } from '../app/cloud_sync';
 
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
@@ -72,5 +80,40 @@ describe('защита серии при восстановлении (restore_g
     const merged = /merged=(\d+)@/.exec(restoreLine)?.[1];
     expect(restoreLine).toContain('restore=true');
     expect(await AsyncStorage.getItem('streak_count')).toBe(merged);
+  });
+
+  it('ветка «локальное главнее» (неотправленные события): серия изменилась после чтения → свежее слияние', async () => {
+    mockPendingProgress = true;
+    await AsyncStorage.multiSet([['streak_count', '5'], ['last_active_date', '2026-10-10'], ['streak_last_date', '2026-10-10']]);
+    const getMock = AsyncStorage.getItem as unknown as jest.Mock;
+    const realGetImpl = getMock.getMockImplementation() as (key: string) => Promise<string | null>;
+    let mutated = false;
+    getMock.mockImplementation(async (key: string) => {
+      const value = await realGetImpl(key);
+      // Восстановление только что прочитало серию (последний ключ тройки) — человек закрывает новый день.
+      if (key === 'streak_last_date' && !mutated && (await realGetImpl('streak_count')) === '5') {
+        mutated = true;
+        await AsyncStorage.setItem('streak_count', '6');
+        await AsyncStorage.setItem('last_active_date', '2026-10-12');
+        await AsyncStorage.setItem('streak_last_date', '2026-10-12');
+      }
+      return value;
+    });
+    try {
+      // облако новее по дате, но с меньшей серией: облако не главнее (3 < 5), слитое по дате = 3@11.10 ≠ локальному.
+      await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+        streak_count: '3',
+        last_active_date: '2026-10-11',
+        streak_last_date: '2026-10-11',
+      }));
+    } finally {
+      getMock.mockImplementation(realGetImpl);
+      mockPendingProgress = false;
+    }
+    const restoreLine = logs.find((l) => l.includes('[STREAK] cloud_restore')) ?? '';
+    expect(restoreLine).toContain('restore=false');
+    expect(restoreLine).toContain('pending=true');
+    expect(logs.some((l) => l.includes('restore_guard changed_since_read branch=local_sticky'))).toBe(true);
+    expect(await realGetImpl('streak_count')).toBe('6');
   });
 });

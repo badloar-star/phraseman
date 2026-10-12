@@ -97,7 +97,9 @@ describe('8I — хук restore', () => {
 
   it('проводка: restore зовёт хук после применения документа и не падает от его ошибки', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8').replace(/\r\n/g, '\n');
-    const body = source.slice(source.indexOf('async function restoreAndMigrateFromCloudResult('));
+    // зачем (Ядро 12.10): f2b7a8334 перенёс тело в restoreAndMigrateFromCloudResultTraced (обёртка лишь зовёт его) — с тех пор
+    // якорь искал хук не в той функции и контракт был красным. Проверка прежняя: хук после применения документа, в try.
+    const body = source.slice(source.indexOf('async function restoreAndMigrateFromCloudResultTraced('));
     const applyAt = body.indexOf('applyRestoreFromUserDoc(doc, isCurrent');
     const hookAt = body.indexOf('await maybeReseedWipedProgressAfterRestore(doc.data() ?? {}, uid, isCurrent);');
     expect(applyAt).toBeGreaterThan(-1);

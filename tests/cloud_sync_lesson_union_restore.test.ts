@@ -151,7 +151,8 @@ describe('sticky-ветка restore подмешивает уроковые кл
 
   it('sticky-ветка (localXP ≥ cloudXP) содержит монотонный уроковый merge', () => {
     const gateIdx = source.indexOf('if (!shouldRestoreCloudProgress)');
-    const writeIdx = source.indexOf('await applyPersonalPlanRestorePairs(stickyPairs)');
+    // зачем (Ядро 12.10): запись sticky-пар идёт через защиту серии guardStreakPairs; граница ветки — та же точка записи.
+    const writeIdx = source.indexOf("await applyPersonalPlanRestorePairs(await guardStreakPairs(stickyPairs, 'local_sticky'))");
     expect(gateIdx).toBeGreaterThan(-1);
     expect(writeIdx).toBeGreaterThan(gateIdx);
     const stickyBranch = source.slice(gateIdx, writeIdx);

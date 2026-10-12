@@ -4000,6 +4000,37 @@ async function applyRestoreFromUserDocTraced(
   // зачем (баг 01.10, серия 1 при 6 днях): временная трассировка слияния облака.
   console.log(`[STREAK] cloud_restore local=${localStreak}@${String(localLastActiveRaw)} cloud=${cloudStreak}@${String(cloudData['last_active_date'])} merged=${mergedStreak.streak}@${String(mergedStreak.lastActive)} restore=${shouldRestoreCloudProgress} phoneOwns=${phoneStateOwnsCore} serverAuth=${progressServerAuthoritative} pending=${hasPendingProgressEvents}`);
 
+  // зачем (координатор 12.10, 🔴 streakJump; c1a051ae6 + ветка «локальное главнее»): серию восстановление прочитало выше, а
+  // пишет слитое значение в конце — на холодном старте это секунды. Если за это время серию записали локально, сливаем
+  // заново со свежим значением по дате активности (не max), устаревшее не пишем. Обе ветки записи идут через этот помощник.
+  const guardStreakPairs = async (
+    pairsIn: readonly (readonly [string, string])[],
+    branch: 'cloud_main' | 'local_sticky',
+  ): Promise<readonly (readonly [string, string])[]> => {
+    if (!pairsIn.some(([key]) => key === 'streak_count' || key === 'last_active_date' || key === 'streak_last_date')) return pairsIn;
+    const [nowStreakRaw, nowLastActiveRaw, nowStreakLastRaw] = await Promise.all([
+      AsyncStorage.getItem('streak_count'),
+      AsyncStorage.getItem('last_active_date'),
+      AsyncStorage.getItem('streak_last_date'),
+    ]);
+    assertCurrent();
+    const changed = nowStreakRaw !== localStreakRaw || nowLastActiveRaw !== localLastActiveRaw || nowStreakLastRaw !== localStreakLastRaw;
+    if (!changed) {
+      console.log(`[STREAK] restore_guard ok branch=${branch} — серия не менялась с чтения (${String(localStreakRaw)}), пишем слитое ${mergedStreak.streak}`);
+      return pairsIn;
+    }
+    const fresh = mergeStreakByActivityDate(
+      { streak: nowStreakRaw, lastActive: nowLastActiveRaw, streakLast: nowStreakLastRaw },
+      { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
+    );
+    console.warn(`[STREAK] restore_guard changed_since_read branch=${branch} read=${String(localStreakRaw)}@${String(localLastActiveRaw)} now=${String(nowStreakRaw)}@${String(nowLastActiveRaw)} staleMerged=${mergedStreak.streak} → freshMerged=${fresh.streak}@${String(fresh.lastActive)} readAgoMs=${Date.now() - streakReadAtMs}`);
+    return pairsIn.map(([key, value]): readonly [string, string] => {
+      if (key === 'streak_count') return [key, String(fresh.streak)];
+      if ((key === 'last_active_date' || key === 'streak_last_date') && fresh.lastActive) return [key, fresh.lastActive];
+      return [key, value];
+    });
+  };
+
   // Откат прогресса назад — потеря данных, и он обязан оставлять след НАВСЕГДА.
   //
   // зачем (жалоба «Издевательство», 2026-09-01): человек сообщил «после урока
@@ -4204,7 +4235,7 @@ async function applyRestoreFromUserDocTraced(
     if (stickyPairs.length > 0) {
       assertCurrent();
       applyMark('at:personal_plan');
-      await applyPersonalPlanRestorePairs(stickyPairs);
+      await applyPersonalPlanRestorePairs(await guardStreakPairs(stickyPairs, 'local_sticky'));
       assertCurrent();
       appliedStickyState = true;
     }
@@ -4390,32 +4421,7 @@ async function applyRestoreFromUserDocTraced(
     return false;
   }) : pairs;
   if (bootDirtyKeys) console.log('[RESTORE-DIRTY]', JSON.stringify({ event: 'guard', dirtyKeys: bootDirtyKeys.size, kept: pairs.length - appliedPairs.length }));
-  // зачем (координатор 12.10, 🔴 streakJump, подтверждено строками [STREAK-WRITE] / readAgoMs): серию восстановление прочитало
-  // секунды назад; если за это время её записали локально — сливаем заново со свежим значением, устаревшее не пишем.
-  let finalPairs: readonly (readonly [string, string])[] = appliedPairs;
-  if (appliedPairs.some(([key]) => key === 'streak_count' || key === 'last_active_date' || key === 'streak_last_date')) {
-    const [nowStreakRaw, nowLastActiveRaw, nowStreakLastRaw] = await Promise.all([
-      AsyncStorage.getItem('streak_count'),
-      AsyncStorage.getItem('last_active_date'),
-      AsyncStorage.getItem('streak_last_date'),
-    ]);
-    assertCurrent();
-    const changed = nowStreakRaw !== localStreakRaw || nowLastActiveRaw !== localLastActiveRaw || nowStreakLastRaw !== localStreakLastRaw;
-    if (!changed) {
-      console.log(`[STREAK] restore_guard ok — серия не менялась с чтения (${String(localStreakRaw)}), пишем слитое ${mergedStreak.streak}`);
-    } else {
-      const fresh = mergeStreakByActivityDate(
-        { streak: nowStreakRaw, lastActive: nowLastActiveRaw, streakLast: nowStreakLastRaw },
-        { streak: cloudData['streak_count'], lastActive: cloudData['last_active_date'], streakLast: cloudData['streak_last_date'] },
-      );
-      console.warn(`[STREAK] restore_guard changed_since_read read=${String(localStreakRaw)}@${String(localLastActiveRaw)} now=${String(nowStreakRaw)}@${String(nowLastActiveRaw)} staleMerged=${mergedStreak.streak} → freshMerged=${fresh.streak}@${String(fresh.lastActive)} readAgoMs=${Date.now() - streakReadAtMs}`);
-      finalPairs = appliedPairs.map(([key, value]): readonly [string, string] => {
-        if (key === 'streak_count') return [key, String(fresh.streak)];
-        if ((key === 'last_active_date' || key === 'streak_last_date') && fresh.lastActive) return [key, fresh.lastActive];
-        return [key, value];
-      });
-    }
-  }
+  const finalPairs = await guardStreakPairs(appliedPairs, 'cloud_main');
   if (finalPairs.length > 0) {
     assertCurrent();
     await applyPersonalPlanRestorePairs(finalPairs);

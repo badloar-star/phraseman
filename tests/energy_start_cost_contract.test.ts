@@ -79,10 +79,16 @@ describe('numeric energy v2 contract', () => {
   it('keeps the vector energy icon without an image asset', () => {
     const icon = read('components/EnergyIcon.tsx');
     expect(fs.existsSync(path.join(process.cwd(), 'components/EnergyCostBadge.tsx'))).toBe(false);
-    expect(icon).toContain('name="flash-outline"');
+    // зачем (координатор 12.10, полный прогон): 601d85844 добавил «заливную» молнию для окна «Нет энергии» —
+    // имя иконки выбирается (glyph), по умолчанию контурная; литерала name="flash-outline" больше нет.
+    expect(icon).toContain("const glyph = solid ? 'flash' : 'flash-outline';");
+    expect(icon).toMatch(/solid = false,/);
+    expect(icon).toContain('name={glyph}');
     expect(icon).not.toContain('expo-image');
     expect(icon).not.toContain('require(');
-    expect(fs.readdirSync(path.join(process.cwd(), 'assets/images/energy'))).toEqual([]);
+    // Пустую папку git не хранит: отсутствующая папка — тоже «картинок энергии нет».
+    const energyAssets = path.join(process.cwd(), 'assets/images/energy');
+    expect(fs.existsSync(energyAssets) ? fs.readdirSync(energyAssets) : []).toEqual([]);
   });
 
   it('uses one compact fixed-size energy pill in every header', () => {

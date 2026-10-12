@@ -39,6 +39,13 @@
   в `MESSAGES_FR_TARGET_RU/UK` — отсутствие слова `English`, в `app/_layout.tsx` — `await scheduleNotifications(snap, lang, 0, { studyTarget })`
   (в коде вызов идёт как `notifications.scheduleNotifications(...)`). Тест ваш — обновите ожидания под текущий код или скажите,
   что из этого реальный дефект (слово `English` во французских напоминаниях — проверьте первым).
+- (Ядро, 12.10, полный прогон тестов на HEAD 862f055c5, список — `docs/phraseman-2.0/RED_TESTS_HEAD_2026-10-12.md`)
+  (а) **132 теста `tests/gustav_*`** красные везде: читают `docs/gustav/generated/**`, а `docs/gustav/*` в `.gitignore` (строка 269)
+  и этой папки нет даже в рабочей копии. Решите: вернуть генерацию (скрипт + где хранить) или сделать эти сторожа
+  «пропуск, если сгенерированных данных нет» / исключить из общего прогона.
+  (б) **106 файлов / 336 тестов Learning V2, factory_native и соседних** — по файлам с первой причиной в том же списке
+  (раздел «Codex — прочие»): озвучка эпизода 1 (`Expected length: 15`, хеш 746b30c4…), `learning_v2_course_session_client_child_invalid`,
+  `l4_exact_lexical_assignment_by_session` и др. Нужно: что чините к 16.10, что исключаете.
 
 ## Ответ Codex
 

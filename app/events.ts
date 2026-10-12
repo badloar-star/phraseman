@@ -296,7 +296,8 @@ export function emitAppEvent<K extends keyof AppEventMap>(
     const now = Date.now();
     if (k === _lastActionToastKey && now - _lastActionToastEmitAt < ACTION_TOAST_EMIT_BURST_MS) {
       // зачем (координатор 12.10, «сперва логи»: dev_state?toast=… не показывает тост на Главной): повтор того же тоста в окне анти-всплеска молча отбрасывался.
-      if (__DEV__) console.log(`[DEV-STATE] toast: emit отброшен как повтор type=${p.type} за ${now - _lastActionToastEmitAt}мс (окно ${ACTION_TOAST_EMIT_BURST_MS}мс) текст="${p.messageRu.slice(0, 60)}"`); // guard-ok: ранний выход называет причину
+      // зачем (координатор 12.10, полный прогон): голый __DEV__ вне React Native (тесты, node) — ReferenceError, тост терялся с исключением; та же форма, что в строке 263.
+      if ((globalThis as { __DEV__?: boolean }).__DEV__) console.log(`[DEV-STATE] toast: emit отброшен как повтор type=${p.type} за ${now - _lastActionToastEmitAt}мс (окно ${ACTION_TOAST_EMIT_BURST_MS}мс) текст="${p.messageRu.slice(0, 60)}"`); // guard-ok: ранний выход называет причину
       return;
     }
     _lastActionToastKey = k;

@@ -90,6 +90,10 @@ function createRun(options: Options = {}) {
     setContinueResolved: () => {},
     animateNextLayoutTransition: () => {},
     console: { log: () => {}, warn: () => {}, error: () => {} },
+    // зачем (координатор 12.10, полный прогон): блок получил диагностику сборок мусора [HOME-LOADDATA-PARTS] (f3b742cc5,
+    // 6b5a03a25) — это журнал, не логика подсчёта; без двойников все 25 тестов падали на ReferenceError.
+    gcSnapshot: () => null,
+    gcDelta: () => null,
     __DEV__: false,
     setLessonsCompleted: (value: number) => { calls.completed.push(value); },
     setLastLesson: (value: LastLesson | null) => { calls.last.push(value); },

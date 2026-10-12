@@ -572,6 +572,7 @@ function LessonMenu() {
         // точные покупки проверяются следующим шагом единой access-логики.
         const noLimits = isAlwaysOpenLesson(lessonId) || await isTesterNoLimitsActive();
         if (noLimits) {
+          console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: false, by: isAlwaysOpenLesson(lessonId) ? 'always_open_lesson' : 'tester_no_limits' })}`);
           setIsLessonLocked(false);
           setLockReason('progress');
           setLockInfoQuiet(null);
@@ -582,6 +583,7 @@ function LessonMenu() {
         // consulting subscription or any legacy unlock projection.
         const freeOrPurchased = await isLessonUnlockedByEarnedProgress(lessonId, studyTarget);
         if (freeOrPurchased) {
+          console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: false, by: 'free_or_purchased' })}`);
           setIsLessonLocked(false);
           setLockReason('progress');
           setLockInfoQuiet(null);
@@ -591,6 +593,7 @@ function LessonMenu() {
         const premiumNow = await getVerifiedPremiumStatus();
 
         if (!premiumNow && requiresPremiumForLesson(lessonId)) {
+          console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'premium_required', premiumNow })}`);
           setIsLessonLocked(true);
           setLockReason('premium');
           setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
@@ -599,6 +602,7 @@ function LessonMenu() {
 
         if (premiumNow) {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
+          console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !premiumUnlocked, by: 'premium_course', premiumNow })}`);
           setIsLessonLocked(!premiumUnlocked);
           setLockReason('progress');
           setLockInfoQuiet(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
@@ -629,6 +633,7 @@ function LessonMenu() {
           }
         }
 
+        console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !unlocked, by: 'earned_progress' })}`);
         setIsLessonLocked(!unlocked);
         if (!unlocked) {
           setLockReason('progress');
@@ -639,6 +644,7 @@ function LessonMenu() {
         }
       } catch (error) {
         // Ошибка AsyncStorage/entitlement-проверки не является разрешением.
+        console.warn(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: true, by: 'error_fail_closed', error: error instanceof Error ? error.message : String(error) })}`);
         setIsLessonLocked(true);
         setLockReason('progress');
         setLockInfoQuiet(null);
@@ -776,27 +782,42 @@ function LessonMenu() {
     return () => task.cancel();
   }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);
 
+  // зачем (координатор 12.10, «сперва логи»: кадры energy-modes ушли на Главную, а после тапа «Начать» в журнале не было НИ ОДНОЙ
+  // строки): каждый обработчик старта пишет вход, каждое решение со значениями, каждый ранний выход и итог навигации.
+  const lessonMenuTrace = useCallback((event: string, extra: Record<string, unknown> = {}) => {
+    console.log(`[LESSON-MENU] ${event} ${JSON.stringify({
+      lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked, frenchLessonSourceGated,
+      energy, bonusEnergy, energyReady: menuEnergyReady, energyUnlimited: menuEnergyUnlimited, ...extra,
+    })}`);
+  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked, lockReason, lessonLaunchBlocked, frenchLessonSourceGated, energy, bonusEnergy, menuEnergyReady, menuEnergyUnlimited]);
+
   const openLessonFromMenu = useCallback(() => {
-    if (lessonLaunchBlocked) return;
+    lessonMenuTrace('primary:continue');
+    if (lessonLaunchBlocked) { lessonMenuTrace('primary:exit', { reason: 'launch_blocked' }); return; }
     if (frenchLessonSourceGated) {
+      lessonMenuTrace('primary:exit', { reason: 'french_source_gated', shown: 'soon_sheet' });
       setSoonOpen('frenchLesson');
       return;
     }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage'));
+    lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'continue', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
+  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
 
   const handleStartLesson = useCallback(() => {
-    if (lessonLaunchBlocked) return;
+    lessonMenuTrace('primary:start');
+    if (lessonLaunchBlocked) { lessonMenuTrace('primary:exit', { reason: 'launch_blocked' }); return; }
     if (frenchLessonSourceGated) {
+      lessonMenuTrace('primary:exit', { reason: 'french_source_gated', shown: 'soon_sheet' });
       setSoonOpen('frenchLesson');
       return;
     }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_2'));
     // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
     // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
+    lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'start', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
+  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
 
   const handleContinueLesson = openLessonFromMenu;
 
@@ -1292,7 +1313,11 @@ function LessonMenu() {
             dimmed={item.unavailable}
             disabled={item.disabled}
             onPress={() => {
-              if (item.disabled) return;
+              if (item.disabled) {
+                lessonMenuTrace('row:tap_ignored', { row: item.testID, reason: 'disabled' });
+                return;
+              }
+              lessonMenuTrace('row:tap', { row: item.testID });
               fk.tap();
               item.onPress();
             }}

@@ -49,3 +49,7 @@ DIALOG_PARAMS = 'plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&ai
 DIALOG_OPEN = ['tap:#dialogue-v2-world-toggle-*', 'tap:#dialogue-v2-catalogue-row-*', 'tap:#dialogue-v2-briefing-start', 'wait:3000']
 DIALOG_FINISH = ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'wait:2500', 'tap:#dialogue-v2-session-more', 'tap:#dialogue-v2-session-menu-complete', 'wait:3000']
 add('dialogs-043', DIALOG_OPEN + DIALOG_FINISH, DIALOG_PARAMS, '/ai_dialog_home', unique=False, note='ручное завершение через меню «⋯»; шаги выведены из кода (подтверждения может не быть), не отлажены')
+
+# ── Главная по языкам: фраза дня включена для es/de/it (bf776a432); язык изучения — dev-подмена studyTarget (только память)
+for _rid, _lang in (('home-004', 'es'), ('home-005', 'de'), ('home-006', 'it')):
+    add(_rid, ['wait:1500'], f'plus=off&studyTarget={_lang}', HOME, note=f'Главная с языком изучения {_lang}: плитка «Фраза дня»')

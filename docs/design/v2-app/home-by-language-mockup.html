@@ -97,12 +97,13 @@ const tabbar = (tabs) => `<div class="tb"><div class="cap" style="width:calc((10
 const coin = img('coin_rank_00.webp');
 
 // Готовность по таблице (дата 30.09): lessons / dialogues / daily_phrase / videos / flashcards / spire
+// зачем (координатор 12.10, bf776a432): фраза дня включена для es, de, it — плитка «Фраза дня» теперь есть у всех языков с готовыми пакетами; образец приведён к коду
 const LANGS = {
   en: { name: 'Английский', flag: 'language_en', lessons: 1, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
-  es: { name: 'Испанский', flag: 'language_es_dev', lessons: 0, dialogues: 1, phrase: 0, videos: 1, cards: 1, spire: 1 },
-  de: { name: 'Немецкий', flag: 'language_de', lessons: 0, dialogues: 1, phrase: 0, videos: 1, cards: 1, spire: 1 },
+  es: { name: 'Испанский', flag: 'language_es_dev', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
+  de: { name: 'Немецкий', flag: 'language_de', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
   fr: { name: 'Французский', flag: 'language_fr_dev', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
-  it: { name: 'Итальянский', flag: 'language_it', lessons: 0, dialogues: 0, phrase: 0, videos: 1, cards: 1, spire: 0 },
+  it: { name: 'Итальянский', flag: 'language_it', lessons: 0, dialogues: 0, phrase: 1, videos: 1, cards: 1, spire: 0 },
 };
 const TILE = {
   lessons: ['book_stack', 'Уроки', 'Грамматика шаг за шагом'],
@@ -122,7 +123,8 @@ const today = (L) => {
   const keys = ['lessons', 'dialogues', 'cards', 'phrase', 'spire', 'videos'].filter((k) => L[k]).slice(0, 4);
   return `<div class="today"><div style="font-size:18px;font-weight:700;padding:2px 2px 6px">Сегодня</div>${keys.map((k) => `<div class="row"><span class="ck"></span><span style="font-size:15px;font-weight:600">${TODAY[k][0]}</span><span class="rw"><img src="${coin}" alt="">${TODAY[k][1]}</span></div>`).join('')}</div>`;
 };
-const phrase = `<div class="phrase"><img src="${img("mug_quote.png")}" alt=""><div><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ФРАЗА ДНЯ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Ça marche !</div><div style="font-size:14px;color:var(--sec)">Договорились!</div></div></div>`;
+const PHRASE_EX = { en: ['No worries!', 'Не переживай!'], fr: ['Ça marche !', 'Договорились!'], es: ['¡Vale!', 'Хорошо!'], de: ['Alles klar!', 'Договорились!'], it: ["D'accordo!", 'Договорились!'] };
+const phraseOf = (code) => { const [p, tr] = PHRASE_EX[code]; return `<div class="phrase"><img src="${img("mug_quote.png")}" alt=""><div><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ФРАЗА ДНЯ</div><div style="font-size:17px;font-weight:700;margin-top:3px">${p}</div><div style="font-size:14px;color:var(--sec)">${tr}</div></div></div>`; };
 
 const TAB_OF = { lessons: ['book', 'Обучение'], dialogues: ['chat', 'Диалоги'], cards: ['cards', 'Карточки'] };
 const home = (code) => {
@@ -133,15 +135,15 @@ const home = (code) => {
   const second = L.lessons ? TAB_OF.lessons : solo ? TAB_OF[solo] : null;
   const tabs = [ALL_TABS[0], ...(second ? [second] : []), ...ALL_TABS.slice(2)];
   const tilesRow = tiles.length >= 2 ? `<div class="tiles">${tiles.map((k) => tile(k, tiles.length)).join('')}</div>` : '';
-  return phone(`${header(L)}${L.lessons ? cont : ''}${tilesRow}${L.videos ? rail(L) : ''}${today(L)}${L.phrase ? phrase : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(tabs) });
+  return phone(`${header(L)}${L.lessons ? cont : ''}${tilesRow}${L.videos ? rail(L) : ''}${today(L)}${L.phrase ? phraseOf(code) : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(tabs) });
 };
 
 document.getElementById('cov').innerHTML = `<tr><th>Язык</th><th>Уроки + «Обучение»</th><th>Диалоги</th><th>Карточки</th><th>Видео</th><th>Фраза дня</th><th>Шпиль</th></tr>` +
   Object.values(LANGS).map((L) => `<tr><td>${L.name}</td>${['lessons', 'dialogues', 'cards', 'videos', 'phrase', 'spire'].map((k) => `<td class="${L[k] ? 'yes' : 'no'}">${L[k] ? 'есть' : 'нет'}</td>`).join('')}</tr>`).join('');
 
 document.getElementById('root').innerHTML =
-  block('langs', 'Главная по языкам (D136)', 'Готовы все три раздела — три плитки. Одного нет — две, по ширине экрана, арт слева. Готов только один — на Главной плиток нет, раздел стоит вкладкой в таббаре (итальянский: «Карточки»). Плитки ниже прежних, стрелок нет.', [
-    col('Английский · 3 плитки', home('en')), col('Испанский / Немецкий · 2 плитки', home('es')), col('Французский · 2 плитки + фраза дня', home('fr')), col('Итальянский · 1 раздел → таббар', home('it')),
+  block('langs', 'Главная по языкам (D136)', 'Готовы все три раздела — три плитки. Одного нет — две, по ширине экрана, арт слева. Готов только один — на Главной плиток нет, раздел стоит вкладкой в таббаре (итальянский: «Карточки»). Плитки ниже прежних, стрелок нет. Фраза дня — у всех языков (en, fr, es, de, it).', [
+    col('Английский · 3 плитки + фраза дня', home('en')), col('Испанский · 2 плитки + фраза дня', home('es')), col('Немецкий · 2 плитки + фраза дня', home('de')), col('Французский · 2 плитки + фраза дня', home('fr')), col('Итальянский · 1 раздел → таббар + фраза дня', home('it')),
   ]);
 </script>
 </body>

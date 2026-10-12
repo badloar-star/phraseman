@@ -154,7 +154,7 @@ rule(S, r'друз', L(f'{COMMON}&dev_friends_fail=add', '/(tabs)/community?sect
 rule(S, r'.', L(f'{COMMON}&plus=off', '/(tabs)/settings'), 'дальше тапами по группе Настроек (см. shot list)')
 
 # Энергия / Главная / рассылки
-E = ['energy-modes', 'overlays-campaigns']
+E = ['energy-modes', 'overlays-campaigns', 'home']
 rule(E, r'энерги', L(f'{COMMON}&energy=0&plus=off&mode=b', '/(tabs)/home'), 'режимы энергии `mode=a|b|server`, `energy=0..5`')
 rule(E, r'рассылк|кампани|сообщени', L(f'{COMMON}', '/(tabs)/home'), 'рассылки новичку 24 ч не показываются: нужен «не новичок» (не проходить онбординг заново)')
 rule(E, r'.', L(f'{COMMON}&plus=off&energy=3', '/(tabs)/home'), '')

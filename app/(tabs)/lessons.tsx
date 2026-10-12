@@ -78,7 +78,7 @@ import { useTopFadeScroll } from "../../components/TopFadeScrollContext";
 import { useBouncy, useBouncyStyle } from "../../components/BouncyScrollView";
 import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
-import { liquidGlassTokens } from "../../constants/liquidGlassThemePalette";
+import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
 import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
 import {
@@ -492,7 +492,19 @@ function lessonToneFactor(num: number): number {
   const [firstLesson] = COURSE_LEVEL_RANGES[level];
   return LESSON_TONE_STEPS[(num - firstLesson) % LESSON_TONE_STEPS.length] ?? 1;
 }
-function bookPalette(num: number, themeMode = "indigo"): string {
+/** Токены, нужные палитре уровней: чернила уровня (читаются на плашке ≥ 4,5) и признак светлой темы. */
+type LevelInkTokens = Pick<GlassTokens, "levelA1" | "levelA2" | "levelB1" | "levelB2" | "isLight">;
+function bookPalette(num: number, themeMode = "indigo", glass?: LevelInkTokens): string {
+  // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): themeMode всегда 'dark', и карточки уровней A1–B2 были зелёными пастелями на любой
+  // теме. Цвет уровня берём из токенов активной темы (любой оттенок ползунка, тёмная и светлая): `levelXX` — тон темы со сдвигом оттенка
+  // по ступени и контрастом ≥ 4,5 к поверхности. Ступень тона урока (LESSON_TONE_STEPS) применяем только в сторону БОЛЬШЕГО контраста:
+  // для тёмных токенов чернила светлые — только светлее (для светлых — только темнее); порог 4,5 от токена не теряется.
+  // Экран передаёт токены ТЕМНОГО оформления: карточка урока всегда тёмная (см. levelInkGlass).
+  if (glass) {
+    const ink = glass[`level${cefrKey(num)}` as "levelA1" | "levelA2" | "levelB1" | "levelB2"];
+    const step = lessonToneFactor(num);
+    return scaleHex(ink, glass.isLight ? Math.min(1, step) : Math.max(1, step));
+  }
   const palette = LESSON_LEVEL_PALETTES[themeMode] ?? PALETTE_SKETCH;
   const base = palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
   return scaleHex(base, lessonToneFactor(num));
@@ -2374,6 +2386,13 @@ export default function LessonsTab({
   const { goHome, focusTick, runtimeOwnerId } = useTabNav();
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const learnGlass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): карточка урока «Обучения» по замыслу ВСЕГДА тёмная с белым текстом (lessonTextColor),
+  // а цвет уровня A1–B2 — светлый акцент на ней (кольцо, процент, заливка прогресса). Поэтому цвета уровней берём из токенов ТЕМНОГО оформления
+  // той же темы и того же шага ползунка: тон следует теме, читаемость акцента на тёмной карточке сохраняется и при светлом оформлении приложения.
+  const levelInkGlass = useMemo(
+    () => liquidGlassTokens(liquidGlassThemeId, { level: learnGlass.level, appearance: "dark", intensity: learnGlass.intensity }),
+    [liquidGlassThemeId, learnGlass.level, learnGlass.intensity],
+  );
   const { energyReady: legacyEnergyReady } = useEnergy();
   const learningV2ReduceMotionPreference = useReduceMotionPreference();
   const insets = useStableSafeAreaInsets();
@@ -4150,7 +4169,7 @@ export default function LessonsTab({
         data.push({
           kind: "header",
           label: header[1],
-          color: bookPalette(num, themeMode),
+          color: bookPalette(num, themeMode, levelInkGlass),
         });
       data.push({ kind: "lesson", index, name });
       if (num === 8 || num === 18 || num === 28) {
@@ -4162,7 +4181,7 @@ export default function LessonsTab({
       if (num === 32) data.push({ kind: "attestation" });
     });
     return data;
-  }, [lang, lessons, page, themeMode]);
+  }, [lang, lessons, page, themeMode, levelInkGlass]);
   const currentLessonNum = useMemo(() => {
     const idx = unlockedLessons.findIndex(
       (unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50,
@@ -4685,8 +4704,8 @@ export default function LessonsTab({
     const bg = page === "v2" && !learningV2Available
       ? isLightThemeMode(themeMode) ? EXEMPT_COLOR_21 : EXEMPT_COLOR_22
       : page === "v2" && learningV2InProgress
-        ? darkenHexCached(bookPalette(num, themeMode), 0.1)
-        : bookPalette(num, themeMode);
+        ? darkenHexCached(bookPalette(num, themeMode, levelInkGlass), 0.1)
+        : bookPalette(num, themeMode, levelInkGlass);
     const darkBg = darkenHexCached(bg, 0.42);
     const progPct =
       page === "v2"

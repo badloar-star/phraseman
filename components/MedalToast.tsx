@@ -14,6 +14,9 @@ import type { MedalTier } from '../app/medal_utils';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { getMedalToastThemeStyle } from './medalToastThemeStyles';
+import { medalToastStyleFromTokens } from './medalToastThemeStylesFromTokens';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -244,6 +247,10 @@ function MedalToast({
 }: MedalToastProps) {
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
+  // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): без явного themeMode тост берёт стиль из токенов активной темы Liquid Glass
+  // (любой оттенок ползунка, тёмная и светлая), а не строку 'indigo' прежней таблицы. Явный themeMode оставлен для витрины движения (превью старых тем).
+  const { liquidGlassThemeId } = useTheme();
+  const glassTokens = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   // зачем: гибрид «Световод» (закон Motion DNA) — вход из света БЕЗ отскока
   // (LUM.settle), в отличие от боевой пружины anim с перелётом scale 0.92→1.
   // Каждый sharedValue живёт независимо от boевого `anim`, поэтому классика
@@ -327,7 +334,7 @@ function MedalToast({
   const palette = TIER_PALETTES[tier];
 
   // Цвета фона/текста под тему
-  const visualTheme = getMedalToastThemeStyle(themeMode ?? 'indigo');
+  const visualTheme = themeMode ? getMedalToastThemeStyle(themeMode) : medalToastStyleFromTokens(glassTokens);
   const tierAccent = visualTheme.tierAccents[tier] ?? palette.primary;
   const accent = promoted ? tierAccent : visualTheme.badgeDownColor;
 

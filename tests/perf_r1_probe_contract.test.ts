@@ -68,7 +68,8 @@ describe('[PERF-R1-MOUNT] / [PERF-R1-PROFILE]: трассировка двойн
     expect(probe).toContain('export const perfR1BodyMark: (tag: string, label: string, startedAt: number) => void = ENABLED');
     const lessons = read('app/(tabs)/lessons.tsx');
     expect(lessons).toContain("const perfBodyStart = perfR1BodyStart('lessons');");
-    for (const label of ['before_v2_progress', 'before_lessons_memo', 'before_list_data', 'before_render_helpers', 'before_return']) {
+    // зачем (журнал Сверки with_lessons_body: ≈2 с тела уходят ДО before_v2_progress): точки между хуками верхней части тела
+    for (const label of ['a_tab_pad', 'b_energy', 'c_lang', 'd_boot_read_before', 'e_boot_read_after', 'f_feature_access', 'g_bouncy', 'h_coin_bindings', 'i_v2_callbacks', 'j_v2_scope', 'k_v2_warmup', 'l_v2_generation', 'before_v2_progress', 'before_lessons_memo', 'before_list_data', 'before_render_helpers', 'before_return']) {
       expect(lessons).toContain(`perfR1BodyMark('lessons', '${label}', perfBodyStart);`);
     }
   });

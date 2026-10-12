@@ -6,6 +6,7 @@ Governance-ID: TG-4A8EB14C6874
 Governance-ID: TG-6C2566ED4C9C
 Governance-ID: TG-74C25639E7B2
 Governance-ID: TG-17A83C977FD9
+Governance-ID: TG-A7B148B10BB8
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» по заданию координатора (12.10, вечер)
 Related epic/enabler: docs/phraseman-2.0/R1_PERF_FIRST_FRAME.md

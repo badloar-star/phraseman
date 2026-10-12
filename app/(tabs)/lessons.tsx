@@ -2405,6 +2405,7 @@ export default function LessonsTab({
   }, []);
   usePerfR1Probe("lessons"); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   const isRetainedTab = presentation === "tab";
+  perfR1BodyMark('lessons', 'a_tab_pad', perfBodyStart);
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const topFadeScroll = useTopFadeScroll();
@@ -2418,6 +2419,7 @@ export default function LessonsTab({
     () => liquidGlassTokens(liquidGlassThemeId, { level: learnGlass.level, appearance: "dark", intensity: learnGlass.intensity }),
     [liquidGlassThemeId, learnGlass.level, learnGlass.intensity],
   );
+  perfR1BodyMark('lessons', 'b_energy', perfBodyStart);
   const { energyReady: legacyEnergyReady } = useEnergy();
   const learningV2ReduceMotionPreference = useReduceMotionPreference();
   const insets = useStableSafeAreaInsets();
@@ -2433,6 +2435,7 @@ export default function LessonsTab({
   const goldHairline = GOLD_RICH.hairline;
   const goldSurface = GOLD_RICH.blackPiano;
   const screenTitleColor = t.textPrimary;
+  perfR1BodyMark('lessons', 'c_lang', perfBodyStart);
   const { lang, s } = useLang();
   const learningV2SnapshotNickname = useAppSnapshotSelector(
     (snapshot) => snapshot.profile?.name ?? "",
@@ -2442,9 +2445,11 @@ export default function LessonsTab({
   const lessonCacheTarget = storageStudyTarget(studyTarget);
   const lessonCacheTargetRef = useRef(lessonCacheTarget);
   lessonCacheTargetRef.current = lessonCacheTarget;
+  perfR1BodyMark('lessons', 'd_boot_read_before', perfBodyStart);
   const boot =
     readLessonsUiSessionCache(lessonCacheTarget) ??
     getLessonsTabInitialState(studyTarget);
+  perfR1BodyMark('lessons', 'e_boot_read_after', perfBodyStart);
   const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
   const [legacyFreeLessonCap, setLegacyFreeLessonCap] = useState(
     () => boot?.legacyFreeLessonCap ?? FREE_LESSON_LIMIT,
@@ -2466,6 +2471,7 @@ export default function LessonsTab({
     },
     devLocalPlusOverride,
   );
+  perfR1BodyMark('lessons', 'f_feature_access', perfBodyStart);
   const dialogAccess = useFeatureAccess("ai_dialog");
   const [scores, setScores] = useState<number[]>(
     () => boot?.scores ?? new Array(32).fill(0),
@@ -2513,6 +2519,7 @@ export default function LessonsTab({
     stretch: bouncyStretch,
     onBouncyScroll,
   } = useBouncy();
+  perfR1BodyMark('lessons', 'g_bouncy', perfBodyStart);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const lessonsTabVisible = isRetainedTab && runtimeOwnerId === "lessons";
   const lessonsRuntimeActive = useRuntimeActive(
@@ -2543,6 +2550,7 @@ export default function LessonsTab({
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
   useHideTabBar(page === "v2");
+  perfR1BodyMark('lessons', 'h_coin_bindings', perfBodyStart);
   const legacyCoinRankBinding = useMyCoinRankBinding();
   const legacyCoinBalanceBinding = useLegacyCoinBalanceBinding(
     lessonsRuntimeActive && page === "lessons",
@@ -2650,6 +2658,7 @@ export default function LessonsTab({
     };
   }, [focusTick, learningV2SnapshotNickname, lessonsRuntimeActive, page]);
 
+  perfR1BodyMark('lessons', 'i_v2_callbacks', perfBodyStart);
   const dismissLearningV2FounderPass = useCallback(() => {
     const accountScopeHash = learningV2FounderReceipt.accountScopeHash;
     if (!accountScopeHash) {
@@ -2720,6 +2729,7 @@ export default function LessonsTab({
   // вовсе — и словарь молча умирал вместе с кнопкой (класс бага «механизм
   // есть, а данных не дали»). Уроков 32, все ключи локальные: ни одного
   // чтения Firestore здесь нет и не появляется.
+  perfR1BodyMark('lessons', 'j_v2_scope', perfBodyStart);
   const learningV2DictionaryScope = useMemo(
     () =>
       page === "v2"
@@ -2786,6 +2796,7 @@ export default function LessonsTab({
   // зачем (аудит «каждый раздел открывается мгновенно», 04.10): комментарий выше обещал прогрев «пока человек смотрит на список», но условие осталось
   // только page === "v2" — первый заход в V2 в продакшене ждал диск. Прогрев взводим ПОСЛЕ первого кадра вкладки «Обучение»: фокус на вкладке
   // → runAfterInteractions → ещё 2 с паузы (не тормозим холодный старт), только пока открыт список уроков. Стоимость — локальный диск, без сети.
+  perfR1BodyMark('lessons', 'k_v2_warmup', perfBodyStart);
   const [learningV2WarmupArmed, setLearningV2WarmupArmed] = useState(false);
   useFocusEffect(
     useCallback(() => {
@@ -2931,6 +2942,7 @@ export default function LessonsTab({
   // scopeKey сбрасывает выбранный уровень (setSelectedLevel) и пересобирает
   // проекцию — карта прыгала на другую секцию прямо на глазах.
   // Генерацию фиксируем и меняем ТОЛЬКО когда аккаунт действительно другой.
+  perfR1BodyMark('lessons', 'l_v2_generation', perfBodyStart);
   const learningV2AccountGenerationRef = useRef(
     captureAccountGeneration().generation,
   );

@@ -38,6 +38,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
+import { isDevDeleteConfirmBypass } from '../app/dev_account_state';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
 // зачем (аудит 11.10): запасной toUpperCase в рендере — причину пишем один раз за процесс, а не на каждую букву.
@@ -154,7 +155,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     },
     [lang],
   );
-  const deleteConfirmMatches = normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
+  // зачем (координатор 12.10, auth-gap-011): робот не вводит кириллицу — без ввода слова кнопка доступна ТОЛЬКО при dev-флаге удаления
+  // (delete=fail|throw, настоящее удаление недостижимо). В стор-сборке геттер — заглушка false: ввод обязателен всегда.
+  const deleteConfirmMatches = isDevDeleteConfirmBypass() || normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
 
   // зачем (живой прогон 10.10, 21:35): шаг «закрыть хранилище телефона» в удалении грузит модуль
   // phone_state_bootstrap; холодная загрузка заняла 1923 мс против 163 мс тёплой — и весь полёт

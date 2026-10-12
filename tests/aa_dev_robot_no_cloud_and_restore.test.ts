@@ -196,3 +196,42 @@ describe('signin=hold|offline|generic', () => {
     expect(stub.DEV_SIGNIN_MODES).toEqual([]);
   });
 });
+
+describe('delete=throw и обход ввода «УДАЛИТЬ» — только dev', () => {
+  it('обход ввода слова есть ТОЛЬКО при флаге удаления и только в dev', () => {
+    const account = require('../app/dev_account_state');
+    account.resetDevAccountStateForTests();
+    expect(account.isDevDeleteConfirmBypass()).toBe(false);
+    account.setDevAccountState({ deleteThrow: true });
+    expect(account.isDevDeleteThrow()).toBe(true);
+    expect(account.isDevDeleteConfirmBypass()).toBe(true);
+    expect(account.getDevSignOutOutcome(true)).toMatchObject({ reason: 'unknown' });
+    delete (globalThis as { __DEV__?: boolean }).__DEV__;
+    expect(account.isDevDeleteThrow()).toBe(false);
+    expect(account.isDevDeleteConfirmBypass()).toBe(false);
+    (globalThis as { __DEV__?: boolean }).__DEV__ = true;
+    account.resetDevAccountStateForTests();
+    account.setDevAccountState({ deleteFail: true });
+    expect(account.isDevDeleteConfirmBypass()).toBe(true);
+    account.resetDevAccountStateForTests();
+  });
+
+  it('СТОРОЖ: в стор-сборке ввод «УДАЛИТЬ» обязателен всегда (заглушка false, другого обхода в окне нет)', () => {
+    const stub = require('../store_release_stubs/dev_state/dev_account_state_stub');
+    expect(stub.isDevDeleteConfirmBypass()).toBe(false);
+    expect(stub.isDevDeleteThrow()).toBe(false);
+    const modal = read('components/DeleteAccountConfirmModal.tsx');
+    const line = modal.split(/\r?\n/).find((l) => l.includes('const deleteConfirmMatches ='));
+    expect(line).toBe('  const deleteConfirmMatches = isDevDeleteConfirmBypass() || normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);');
+    expect(modal.match(/isDevDeleteConfirmBypass\(\)/g)?.length).toBe(1);
+  });
+
+  it('исключение — первая проверка beginAccountDeletion, до отмены входа и замков', () => {
+    const src = read('app/auth_provider.ts');
+    const fn = src.indexOf('export async function beginAccountDeletion()');
+    const thrown = src.indexOf("throw new Error('dev_delete_throw');", fn);
+    expect(thrown).toBeGreaterThan(fn);
+    expect(thrown).toBeLessThan(src.indexOf('if (isDevDeleteFail())', fn));
+    expect(thrown).toBeLessThan(src.indexOf("discardAccountSwitchResumeCredential('account_delete');", fn));
+  });
+});

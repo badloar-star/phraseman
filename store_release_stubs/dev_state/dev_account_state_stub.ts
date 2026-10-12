@@ -22,3 +22,6 @@ export function getDevAccountRestoreMode(): null { return null; }
 // зачем (координатор 12.10, onboarding-003/004/008): подмена результата входа в стор-сборке недоступна — всегда «нет подмены».
 export const DEV_SIGNIN_MODES = [] as const;
 export function getDevSignInStub(): null { return null; }
+// зачем (координатор 12.10, auth-gap-011): в стор-сборке удаление не подменяется и ввод «УДАЛИТЬ» обязателен ВСЕГДА.
+export function isDevDeleteThrow(): boolean { return false; }
+export function isDevDeleteConfirmBypass(): boolean { return false; }

@@ -48,6 +48,8 @@ type State = {
   switchMode: DevSwitchMode | null;
   logoutMode: DevLogoutMode | null;
   deleteFail: boolean;
+  /** `delete=throw`: beginAccountDeletion бросает до любого шага — окно «Удаление не завершилось» (auth-gap-011). */
+  deleteThrow: boolean;
   restoreRetired: boolean;
   restoreMode: DevRestoreMode | null;
   signIn: DevSignInMode | null;
@@ -59,7 +61,7 @@ type State = {
   /** `namecheck=`: подменённый ответ проверки имени, только в памяти; сервер при подмене не вызывается. */
   nameCheck: DevNameCheck | null;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, restoreMode: null, signIn: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, deleteThrow: false, restoreRetired: false, restoreMode: null, signIn: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -77,6 +79,7 @@ export function setDevAccountState(patch: Partial<{
   switchMode: DevSwitchMode | null;
   logoutMode: DevLogoutMode | null;
   deleteFail: boolean;
+  deleteThrow: boolean;
   restoreRetired: boolean;
   restoreMode: DevRestoreMode | null;
   signIn: DevSignInMode | null;
@@ -94,6 +97,7 @@ export function setDevAccountState(patch: Partial<{
     switchMode: patch.switchMode === undefined ? state.switchMode : patch.switchMode,
     logoutMode: patch.logoutMode === undefined ? state.logoutMode : patch.logoutMode,
     deleteFail: patch.deleteFail ?? state.deleteFail,
+    deleteThrow: patch.deleteThrow ?? state.deleteThrow,
     restoreRetired: patch.restoreRetired ?? state.restoreRetired,
     restoreMode: patch.restoreMode === undefined ? state.restoreMode : patch.restoreMode,
     signIn: patch.signIn === undefined ? state.signIn : patch.signIn,
@@ -131,7 +135,7 @@ function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   const mode = state.switchMode;
   // зачем (ревью безопасности 12.10, R-1): при ЛЮБОМ включённом флаге зоны аккаунта (не только switch=/logout=) выход тоже отказывает — иначе тап «Сменить» в окне
   // plustransfer=on / restore=retired / auth=none / delete=fail запускал бы настоящее стирание.
-  if (mode === null && (state.authNone || state.restoreRetired || state.restoreMode !== null || state.signIn !== null || state.deleteFail || state.plusTransfer)) {
+  if (mode === null && (state.authNone || state.restoreRetired || state.restoreMode !== null || state.signIn !== null || state.deleteFail || state.deleteThrow || state.plusTransfer)) {
     return forced ? { reason: 'unknown', detail: 'dev_guard', delayMs: 0 } : { reason: 'sync_failed', delayMs: 0 };
   }
   if (mode === null) {
@@ -187,6 +191,19 @@ export function getDevSignInStub(): DevSignInStub | null {
 /** `restore=offer|restored`: подставной режим окна восстановления (null — нет подмены; вне dev всегда null). */
 export function getDevAccountRestoreMode(): DevRestoreMode | null {
   return devAccountAvailable() ? state.restoreMode : null;
+}
+
+/** `delete=throw`: beginAccountDeletion бросает `dev_delete_throw` первой строкой (вне dev / в стор-сборке всегда false). */
+export function isDevDeleteThrow(): boolean {
+  return devAccountAvailable() && state.deleteThrow;
+}
+
+/**
+ * Кнопка «Удалить» без ввода слова подтверждения (робот не вводит кириллицу) — ТОЛЬКО при dev-флаге удаления delete=fail|throw,
+ * когда настоящее удаление недостижимо. В стор-сборке заглушка всегда false: ввод «УДАЛИТЬ» обязателен всегда (сторож в тестах).
+ */
+export function isDevDeleteConfirmBypass(): boolean {
+  return devAccountAvailable() && (state.deleteFail || state.deleteThrow);
 }
 
 /** `delete=fail`: локальная фаза удаления отказывает ДО любого побочного эффекта (auth-gap-011). */

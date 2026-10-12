@@ -23,7 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail } from './dev_account_state';
+import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
@@ -4375,6 +4375,12 @@ export type DeleteAccountHandoff =
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  // зачем (координатор 12.10, auth-gap-011): dev `delete=throw` — исключение ПЕРВОЙ строкой, до отмены входа, замков, записи и сети;
+  // окно ловит его в catch и показывает «Удаление не завершилось» (текст макета). В стор-сборке геттер всегда false.
+  if (isDevDeleteThrow()) {
+    console.log('[DEV-STATE] account: удаление подменено исключением dev_delete_throw (ничего не удаляется)'); // guard-ok: dev-ветка
+    throw new Error('dev_delete_throw');
+  }
   // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `delete=fail` — только ИМИТАЦИЯ отказа локальной фазы, ДО любого побочного эффекта: удаление не вызывается и не начинается; в стор-сборке геттер выключен.
   if (isDevDeleteFail()) {
     console.log('[DEV-STATE] account: удаление подменено отказом pending_guard_persist_failed (ничего не удаляется)'); // guard-ok: dev-ветка

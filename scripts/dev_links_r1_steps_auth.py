@@ -128,3 +128,9 @@ add('onboarding-004', ONB_SIGNIN + ['wait:1200'], 'guest=required&onbstep=welcom
     note='ошибка «Связь пропала. Попробуй ещё раз.» без кода dev_stub в тексте')
 add('onboarding-008', ['tap:#auth-google-button', 'wait:1200'], 'guest=required&onbstep=privacy&signin=generic', ONB_HOME,
     note='общая ошибка входа на шаге «Твои данные» (без кода dev_stub в тексте)')
+
+# ── auth-gap-011 «Удаление не завершилось» по макету: delete=throw (координатор 12.10, п.3). Исключение первой строкой beginAccountDeletion —
+# ничего не удаляется; кнопка «Удалить» доступна без ввода слова ТОЛЬКО при dev-флаге удаления (в стор-сборке ввод обязателен всегда).
+ENTRIES.pop('auth-gap-011', None)
+add('auth-gap-011', ['see:#account-delete-button', 'tap:#account-delete-button', 'wait:600', 'tap:#delete-account-confirm', 'wait:2500'],
+    'guest=required&delete=throw', ACCT, note='окно «Не получилось · Удаление не завершилось. Проверь интернет…» (исключение dev_delete_throw, ничего не удалено)')

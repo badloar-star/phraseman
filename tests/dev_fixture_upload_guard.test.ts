@@ -60,6 +60,13 @@ describe('ключи карточек и наборов', () => {
   });
 });
 
+describe('язык изучения, поставленный фикстурой studyTarget=', () => {
+  it('ключ study_target_v1 не выгружается, пока на госте применена фикстура', () => {
+    expect(isDevFixtureCardSyncKey('study_target_v1')).toBe(true);
+    expect(isDevFixtureCardSyncKey('app_lang')).toBe(false);
+  });
+});
+
 describe('метка «не выгружать» — гость с фикстурой', () => {
   it('фикстура на госте → 0 ключей карточек в выгрузке, [SYNC-SKIP] на каждый', async () => {
     assertDisposableGuest('cards=demo', () => ({ isAnonymous: true, uid: 'guest_uid_1', providerData: [] }));

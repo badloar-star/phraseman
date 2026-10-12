@@ -155,6 +155,8 @@ export type DevStateRequest = Readonly<{
   overlays?: 'on' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
   animations?: 'on' | 'off';
+  /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
+  studyTarget?: 'en' | 'es' | 'de' | 'fr';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -231,6 +233,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
+  request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
@@ -388,6 +391,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         }
         emitAppEvent('dev_onboarding_restart');
       }
+    });
+  }
+  if (request.studyTarget !== undefined) {
+    // зачем (координатор 12.10, cards-v2-029): до карточных фикстур — они и экран читают язык изучения из этого ключа
+    await step('studyTarget', request.studyTarget, async () => {
+      const { applyDevStudyTarget } = await import('./dev_state_study_target');
+      await applyDevStudyTarget(request.studyTarget!);
     });
   }
   if (request.cards === 'demo' || request.cards === 'demo_lessons') {

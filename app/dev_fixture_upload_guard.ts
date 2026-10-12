@@ -61,6 +61,8 @@ export async function isDevFixtureNoUploadActive(authUid: string | null | undefi
 /** Ключи карточек и наборов, которые фикстуры пишут и синхронизация выгружает. */
 export function isDevFixtureCardSyncKey(key: string): boolean {
   if (key.startsWith('achievement_')) return false;
+  // зачем (координатор 12.10): язык изучения, поставленный фикстурой studyTarget= на госте, тоже не выгружается
+  if (key === 'study_target_v1') return true;
   return key.includes('flashcard')
     || key.includes('community_owned')
     || key.includes('owned_packs')

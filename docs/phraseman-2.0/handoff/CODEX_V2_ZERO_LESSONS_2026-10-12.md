@@ -59,6 +59,9 @@
 
 - (12.10, 17:4x) Проверка типов по зонам (docs/phraseman-2.0/TSC_FULL_2026-10-12.md): наши зоны — 0 ошибок; зона Codex — 14 ошибок в 4 файлах modules/learning-v2/curriculum/de/ (task6c_l01_direct_source_capture_de_v1, task6c_l01_einladung_admission_candidate_de_v1, task6c_l01_seven_formulaic_candidate_de_v1, task6c_l02_capture_producer_de_v3: unknown→string, {}.article/singular/plural, URL). Они ломают стор-сборку при строгом tsc — просьба починить до 15.10.
 
+- (12.10, 18:0x) Android provision-lock: запускатель Documents\Codex6-09-22
+ew-chat\outputs\ACCOUNT_ANDROID_PROVISION_LOCK_REVIEWED_LAUNCH.ps1 изменён 28.09 08:15 ПОСЛЕ проверенного пакета (06:09): в обезличенный отказ добавлены cleanupFailures и databaseRootDiagnostic, расширенный отказ не сводится к общему. Контракт-тест account_provision_lock_android_runtime_entrypoint (4) красный по делу. Просьба: (а) вернуть запускатель к контракту и провести ревью SHA-256, или (б) новый пакет с ревью — тогда Авторизация обновит тест. Также: тест читает файл из личной папки — в CI не запустится.
+
 ## Ответ Codex
 
 _(впишите сюда: что сделано, хэши, реальный потолок занятий и срок)_

@@ -219,6 +219,7 @@ async function loadPackDeckCards(
   packId: string,
   lang: FlashcardContentLang,
   studyTarget?: RuntimeStudyTarget,
+  localOnly = false,
 ): Promise<DeckCard[]> {
   /**
    * Свой набор с устройства (сохранён в редакторе) — карточки лежат локально.
@@ -279,9 +280,21 @@ async function loadPackDeckCards(
   const persisted = await readPersistedCommunityPackCards(packId);
   packTrace('persisted_read:done', { cards: persisted?.length ?? 0 });
   if (persisted && persisted.length > 0) {
+    if (localOnly) {
+      console.log(`[FC-DECKS] pack:${packId} из локальной копии (${persisted.length} карт.), localOnly — без фонового обновления`);
+      return deckCardsFromCardItems(persisted, lang);
+    }
     console.log(`[FC-DECKS] pack:${packId} из локальной копии (${persisted.length} карт.), сеть догоняет фоном`);
     void refreshPersistedCommunityPackCards(packId, fetchCommunityPackCards);
     return deckCardsFromCardItems(persisted, lang);
+  }
+  if (localOnly) {
+    packTrace('local_only:skip_network', { persisted: persisted?.length ?? 0 });
+    const offline = await loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((error: unknown) => {
+      console.warn(`[FC-DECKS] pack:${packId} localOnly: офлайн-кэш маркета не прочитался —`, error instanceof Error ? error.message : String(error));
+      return null;
+    });
+    return offline ? deckCardsFromCardItems(offline.cards.filter((c) => c.sourceId === `DEV:${packId}`), lang) : [];
   }
   const startedAtMs = Date.now();
   const communityCards = await withTimeout(
@@ -370,6 +383,9 @@ export async function loadDeckCards(
   // зачем: без языка все три источника молча падали в английское хранилище —
   // во французском режиме колоды показывали английские карточки (2026-09-05).
   studyTarget?: RuntimeStudyTarget,
+  // зачем (п.83, фильтр языка на настройке тренировки): списки наборов ЧУЖИХ языков собираются без сети —
+  // localOnly запрещает запрос карточек набора сообщества и его фоновое обновление (только копия на устройстве / офлайн-кэш).
+  opts: Readonly<{ localOnly?: boolean }> = {},
 ): Promise<DeckCard[]> {
   if (deck.kind === 'saved') {
     const saved = await loadSelectedSavedContour(studyTarget).catch((swallowedError: unknown): Flashcard[] => { noteSwallowed('deck_sources:promise_2', swallowedError); return []; });
@@ -379,7 +395,7 @@ export async function loadDeckCards(
     const custom = await listCustomCards(studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('deck_sources:promise_3', swallowedError); return []; });
     return deckCardsFromCardItems(custom, lang);
   }
-  return loadPackDeckCards(deck.packId, lang, studyTarget).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:promise_4', swallowedError); return []; });
+  return loadPackDeckCards(deck.packId, lang, studyTarget, opts.localOnly === true).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:promise_4', swallowedError); return []; });
 }
 
 /**

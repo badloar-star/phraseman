@@ -145,6 +145,9 @@ function splitLocalAuthorPacks(
  * Ключ включает язык: заголовки наборов локализованы.
  */
 let _warmDeckOptions: { key: string; options: DeckSheetOption[] } | null = null;
+// зачем (п.83): списки наборов ЧУЖИХ языков (localOnly) — отдельная память по ключу «аккаунт+цель+язык+режим»: не трогают
+// снимок текущего языка и диск; повторный выбор языка на настройке тренировки — 0 мс. Живёт до конца процесса.
+const _localOnlyDeckOptions = new Map<string, DeckSheetOption[]>();
 /**
  * Когда список наборов собирался последний раз. Нужен, чтобы прогрев из хаба не
  * поднимал семь источников заново на каждое открытие вкладки.
@@ -308,7 +311,11 @@ export async function loadFcDeckOptions(
   // зачем: без языка меню выбора колоды показывало английские купленные наборы
   // в режиме French — язык обязан доходить до КАЖДОГО источника (2026-09-05).
   studyTarget?: RuntimeStudyTarget,
+  // зачем (п.83, Дизайн: кнопка языка фильтрует наборы на настройке тренировки): списки ЧУЖИХ языков собираются только из
+  // того, что уже на устройстве — 0 новых чтений Firestore — и не перетирают тёплый снимок текущего языка (у них своя память).
+  opts: Readonly<{ localOnly?: boolean }> = {},
 ): Promise<DeckSheetOption[]> {
+  const localOnly = opts.localOnly === true;
   const cl = contentLang(lang);
   /**
    * зачем (владелец 2026-09-13, «должно открываться молниеносно»): экран ждёт
@@ -332,6 +339,10 @@ export async function loadFcDeckOptions(
    * и купленный набор обязан появиться при следующем заходе, а не «когда-нибудь».
    */
   const reuseKey = deckOptionsCacheKey(mode, lang, studyTarget);
+  if (localOnly && reuseKey && _localOnlyDeckOptions.has(reuseKey)) {
+    console.log(`[FC-DECKS] build:skip localOnly=yes — список языка уже собран, отдаём из памяти`);
+    return _localOnlyDeckOptions.get(reuseKey)!;
+  }
   if (reuseKey && _warmDeckOptions?.key === reuseKey
     && Date.now() - _warmDeckOptionsBuiltAtMs < DECK_OPTIONS_REBUILD_MIN_GAP_MS) {
     console.log(`[FC-DECKS] build:skip — тот же ключ собран ${Date.now() - _warmDeckOptionsBuiltAtMs}мс назад, отдаём готовое`);
@@ -369,6 +380,10 @@ export async function loadFcDeckOptions(
       if (warmCatalog) {
         console.log(`[FC-DECKS] source:publishedCatalog warm наборов=${warmCatalog.length}`);
         return warmCatalog;
+      }
+      if (localOnly) {
+        console.log('[FC-DECKS] source:publishedCatalog miss — localOnly, сеть не трогаем');
+        return [] as FlashcardMarketPack[];
       }
       console.log('[FC-DECKS] source:publishedCatalog miss — греем фоном, список не ждёт');
       void loadPublishedCommunityMarketPacks(studyTarget).catch((error: unknown) => {
@@ -445,7 +460,7 @@ export async function loadFcDeckOptions(
   }
   const packDecks = await Promise.all(
     packIds.map(async (packId) => {
-      const loadedCards = await loadDeckCards({ kind: 'pack', packId }, cl, studyTarget).catch((error: unknown) => {
+      const loadedCards = await loadDeckCards({ kind: 'pack', packId }, cl, studyTarget, { localOnly }).catch((error: unknown) => {
         console.warn(`[FC-DECKS] pack:${packId} карточки не загрузились —`, error instanceof Error ? error.message : String(error));
         return [] as DeckCard[];
       });
@@ -498,6 +513,11 @@ export async function loadFcDeckOptions(
 
   // Снимок для мгновенного первого кадра следующего открытия экрана.
   const key = deckOptionsCacheKey(mode, lang, studyTarget);
+  if (localOnly) {
+    console.log(`[FC-DECKS] build:done localOnly=yes наборов=${out.length} за ${Date.now() - startedAtMs}мс, снимок не трогаем, память=${key ? 'пишем' : 'НЕТ КЛЮЧА'}`);
+    if (key) _localOnlyDeckOptions.set(key, out);
+    return out;
+  }
   console.log(`[FC-DECKS] build:done наборов=${out.length} всего за ${Date.now() - startedAtMs}мс, снимок=${key ? 'пишем' : 'НЕТ КЛЮЧА (аккаунт не готов)'}`);
   if (!key) return out;
   const warm = _warmDeckOptions?.key === key ? _warmDeckOptions.options : null;
@@ -596,7 +616,22 @@ export async function countAvailableFcCards(
  * чужом packId. Из-за этого сторож своих наборов не мог отработать ни разу.
  * В проде сбрасывать нечего: снимок там и должен переживать переходы между экранами.
  */
+/**
+ * Синхронно: последний список наборов языка `studyTarget`, собранный в режиме localOnly; для текущего языка — обычный тёплый снимок.
+ * null — этот язык ещё не собирали (экран показывает скелетон только на месте списка и зовёт loadFcDeckOptions(..., { localOnly: true })).
+ */
+export function peekFcDeckOptionsLocal(
+  mode: FcPresetMode,
+  lang: Lang,
+  studyTarget?: RuntimeStudyTarget,
+): DeckSheetOption[] | null {
+  const key = deckOptionsCacheKey(mode, lang, studyTarget);
+  if (!key) return null;
+  return _localOnlyDeckOptions.get(key) ?? (_warmDeckOptions?.key === key ? _warmDeckOptions.options : null);
+}
+
 export function __resetDeckOptionsWarmCacheForTests(): void {
+  _localOnlyDeckOptions.clear();
   _warmDeckOptions = null;
   _warmDeckOptionsBuiltAtMs = 0;
 }

@@ -103,8 +103,12 @@ add('learn-013', ['wait:1500', 'tap:#legacy-lessons-exam-A1', 'wait:600'], LP + 
 # ── Урок 1: верное слово метит lesson1-word-option-correct (во всех сборках)
 add('learn-029', ['wait:2500', 'tap:#lesson1-word-option-correct', 'wait:300'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
     note='фраза собирается (D2): одно верное слово')
-add('learn-031', ['wait:2500'] + ['tap:#lesson1-word-option-correct'] * 8 + ['wait:800'], LESSON_BASE + '&mode=a&energy=5', LESSON1, unique=False,
-    note='«Верно + монеты» (D4): верные слова до конца фразы; длина фразы не из кода — если кнопки кончились раньше, лишние тапы не нужны, кадр смотреть глазами')
+add('learn-031', ['wait:2500'] + ['tap:#lesson1-word-option-correct'] * 3 + ['wait:600'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
+    note='«Верно + монеты» (D4): все фразы урока 1 — по 3 слова (Ядро 12.10), 3 верных тапа завершают первую фразу')
 
 # ── Диалог: «Почему так» — разборы на сегодня закончились (dev_dialog_why=spent, только память)
 add('dialogs-020', DLG_START + SEND + ['tap:#dialogue-v2-why-*', 'wait:800'], DLG_BASE + '&dev_dialog_why=spent', DLG, note='шторка «Почему так»: бесплатные разборы на сегодня закончились')
+
+# ── Карточки: публикация набора — «отправлено» (Макеты 12.10, подмена publish=ok: ответ в памяти, без записи)
+add('cards-gap-025', ['tap:#fc-pack-menu', 'tap:#fc-pack-publish', 'wait:400'], 'cards=demo&plus=on&publish=ok', '/flashcards_collection?pack=local_pack_dev_demo_work',
+    note='«Набор отправлен на публикацию» (publish=ok, без сети)')

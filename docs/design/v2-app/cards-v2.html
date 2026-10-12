@@ -536,21 +536,21 @@
   const setHead = (o) => `${back(`<span class="rb sq t" data-open="sa">${icon('dotsV', 's18')}</span>`)}
       <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:14px;letter-spacing:-.5px">${o.t}</div>
       ${o.author ? `<div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px"><span class="av" style="width:23px;height:23px">${icon('user', 's16')}</span>${o.author}</div>` : ''}
-      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px">${o.l ? `<span class="lvl">${o.l}</span>` : ''}${o.status || ''}<span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
+      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px">${o.l ? `<span class="lvl">${o.l}</span>` : ''}<span>${o.n} карточек</span>${o.status || ''}${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
-  // зачем (код, PackHeaderV2): у своего набора в строке мета — статус «Только ты» / «В сообществе»; уровня в шапке своего и добавленного набора код не рисует (данные есть — пропуск в коде)
+  // зачем (код, PackHeaderV2; кадр cards-040 12.10): строка мета своего набора — чип уровня, «N карточек», затем статус «Только ты» / «В сообществе»; у добавленного набора уровень не рисуется
   const OWN_STATUS = `<span style="display:inline-flex;align-items:center;gap:6px">${X.lock}Только ты</span>`;
   // зачем (код, CollectionMenuSheet): шторка своего набора — название, «Отправить в сообщество» (пока не опубликован), «Править набор», «Новая карточка», «Удалить набор»; «Показать стопкой» — только у «Сохранённых»
   const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('edit', 'Править набор')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
   const setActions = sheet('sa', packRows);
-  const setOwn = () => phone(`${setHead({ t: 'Путешествия', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
+  const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });
   // зачем (код, CommunityPackSocialBar): до добавления сердце приглушено наполовину; после — «✓ В моих наборах» (кнопка неактивна) и «Тренировать»; лайк добавлением не ставится
   const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: added ? '' : 'B2', n: 49, likes: 3, liked: false,
         btns: added ? `<div class="cta gh t grow" style="opacity:.7">${icon('check', 's18')}В моих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
           : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div><span class="rb l t" style="opacity:.5">${icon('heart', 's20')}</span>` })}
       ${zoomBar()}${zgrid(0, W.slice(13, 28))}`, { time: '9:41', overlay: cardSheet });
-  const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}${zoomBar()}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', packRows, true) });
+  const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}${zoomBar()}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', packRows, true) });
 
 
   // =====================================================================

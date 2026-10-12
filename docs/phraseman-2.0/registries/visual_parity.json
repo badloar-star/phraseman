@@ -32621,18 +32621,18 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-008.png",
+      "evidence_at": "2026-10-12T18:36:07.259Z",
+      "evidence_sha256": "24891c124b3220de78694a2e7cd5d01236c83249d2ae5ad3f9499836361aa6ef",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Реализовано (Дизайн 750314a24, ec6e3b471); снять кадры и анимацию Эмулятору: Dev Hub → «Режим энергии (проверка)» (Режим Б, Энергия 5/1/0, Plus). Тост «Энергия восстановилась» приходит и после «Подожду»."
+        "[состояние не то] У строки нет ссылки и подмены (энергия 0 → восстановилась), на кадре главная — как на energy-modes-002…006: ждём от Ядра маршрут занятия и подмену восстановления энергии."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:37:41.937Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
@@ -32640,7 +32640,8 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01 (гипотеза)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:35, energy-modes-states №8 «Режим Б · энергия восстановилась»): сверка невозможна — на кадре главная «Главная»; образец — экран «Обучение» со списком уроков (1 «Местоимения и глагол To Be», 2 «Отрицание и вопросы (To Be)», 3 «Present Simple: Утверждение»), пилюлей «⚡ 0» и кнопкой «Начать занятие»."
     },
     {
       "id": "energy-modes-009",

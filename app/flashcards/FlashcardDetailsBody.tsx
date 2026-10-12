@@ -148,7 +148,8 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
             {LITERAL_LABEL[labelLang]}:
           </Text>
           <View style={ss.blockRail}>
-            <RowDivider edge="left" color={`${t.accent}99`} />
+            {/* зачем (контракт accent_text_on_light_card, 12.10): боковая рейка цитаты красится accentText — в светлом оформлении он темнее и держит контраст, accent там бледный */}
+            <RowDivider edge="left" color={`${t.accentText}99`} />
             <Text
               maxFontSizeMultiplier={1.35}
               style={{

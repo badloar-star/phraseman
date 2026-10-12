@@ -24123,24 +24123,29 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-004.png",
+      "evidence_at": "2026-10-12T02:20:56.429Z",
+      "evidence_sha256": "5dba27d8e2c21297adf3abd6c5efd1526ddaf26b3cd1df6b1acc992628eef20e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Кнопка закрытия «✕» в приложении слева в круглой плашке, в образце справа без плашки — решить, где она должна быть (приложение следует общему виду окон 2.0 — ✕ слева); если верно приложение, исправить образец promo-code-states.html.",
+        "[тема] Фон: в образце цветные блики «Авроры» (зелёный и фиолетовый), в приложении ровный графит «Спокойно» — тон темы, принято.",
+        "[вёрстка, мелко] Поле и кнопка в приложении чуть выше (≈ +6 px склейки), отступы внутри карточки немного больше."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:21:42.081Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&overlays=off&next=/promo_code_entry"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:20, promo-code-states.html №1 «004 · Пусто»): состав и тексты совпали — «Промокод», карточка «Есть промокод?» со значком подарка, «Введи промокод, чтобы получить Plus-подписку.», поле «Введи промокод», неактивная «Активировать»."
     },
     {
       "id": "overlays-campaigns-005",

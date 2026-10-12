@@ -39,7 +39,8 @@ add('cards-033', [], DEMO + '&hint=show', SAVED, note='разовая подск
 add('cards-section-008', [], DEMO, SAVED, note='«Сохранённые» — 2 колонки (вид по умолчанию после фикстуры)')
 add('cards-section-010', [f'long:#fc-my-packs-pack-{WORK}'], DEMO_PLUS, MYPACKS, note='действия с набором: шторка по долгому нажатию на «Работа»')
 add(['cards-v2-031', 'cards-section-039'], [], DEMO, BLITZ_ROUTE, note='«Блиц»: сессия, первый вопрос')
-add(['cards-v2-033', 'cards-section-042'], [], DEMO, TF_ROUTE, note='«Правда / ложь»: сессия, первая карточка')
+# зачем (12.10): кадр cards-v2-033 снимали на экране «Готовим тренировку…» (подготовка ещё идёт) — ждём 4 с до первой карточки; если и после паузы «Готовим…», это висящая подготовка (нужен журнал [FLASHCARDS-SESSION]).
+add(['cards-v2-033', 'cards-section-042'], ['wait:4000'], DEMO, TF_ROUTE, note='«Правда / ложь»: сессия, первая карточка')
 add(['cards-v2-034', 'cards-section-043'], [], DEMO, RECALL_ROUTE, note='«Вспомни и напиши»: сессия, первая карточка')
 # зачем (координатор 12.10): у en всегда есть стартовая колода «Первые 50» (deck_options.ts) — «Нет карточек» недостижимо; у es колоды нет. studyTarget=es — dev-подмена языка изучения (только гость, локально, без выгрузки)
 add(['cards-v2-029', 'cards-076'], [], EMPTY_PLUS + '&studyTarget=es', '/flashcards_training_setup?mode=blitz', note='настройка тренировки без карточек: гость с языком изучения es + cards=empty → «Нет карточек» (studyTarget=es)')

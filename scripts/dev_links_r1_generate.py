@@ -163,6 +163,10 @@ rule(E, r'.', L(f'{COMMON}&plus=off&energy=3', '/(tabs)/home'), '')
 O = ['spire', 'spire-gap', 'community', 'onboarding', 'onboarding-paywall', 'auth-gap', 'overlays-runtime']
 rule(O, r'.', '', '')  # заглушка: только текст из shot list
 
+# зачем (Сверка 12.10, ROBOT13): learn/coins/video/overlays не входили ни в одну область — 11 id оставались «нет_в_DEV_LINKS_R1»; ссылки и шаги — scripts/dev_links_r1_steps_robot.py
+LV = ['learn', 'coins', 'video', 'overlays']
+rule(LV, r'.', '', '')
+
 def section_of(rid):
     return rid.rsplit('-', 1)[0]
 
@@ -173,6 +177,7 @@ AREAS = [
     ('Настройки и профиль', S),
     ('Главная, энергия, рассылки', E),
     ('Шпиль, сообщество, онбординг, аккаунт (только ссылки; фикстуры у Тем и Авторизации)', O),
+    ('Обучение, монеты, видео, окна знакомства (ROBOT13; ссылки — dev_links_r1_steps_robot.py)', LV),
 ]
 
 def match(row):

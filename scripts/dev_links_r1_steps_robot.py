@@ -10,7 +10,7 @@
 from dev_links_r1_steps import add
 
 # строки без поля release в реестре (гейт их считает) — генератор берёт их по списку
-INCLUDE_IDS = {'onboarding-030', 'mistakes-panel-002'}
+INCLUDE_IDS = {'onboarding-030', 'mistakes-panel-002', 'learn-002', 'learn-016', 'learn-017', 'learn-018', 'video-007', 'coins-002', 'coins-005', 'home-002', 'overlays-041'}
 
 HOME = '/(tabs)/home'
 
@@ -33,8 +33,8 @@ SAVED = '/flashcards_collection?cat=saved'
 add('cards-031', [], 'cards=demo&hold=saved_loading&studyTarget=en', SAVED, note='«Сохранённые»: загрузка (удержание hold=saved_loading)')
 # «Блиц — верно / неверно»: какой из четырёх вариантов верный, шаг заранее не знает (слово в вопросе случайное) — unique=False, пока у Дизайна нет подсказки
 BLITZ = '/flashcards_blitz_session?deck=saved&sec=60'
-add('cards-section-044', ['wait:1500', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=correct', BLITZ, note='Блиц: ответ «верно» — dev blitz_answer=correct помечает верный вариант testID fc-blitz-opt-target (12.10)')
-add('cards-section-045', ['wait:1500', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=wrong', BLITZ, note='Блиц: ответ «неверно, минус жизнь» — dev blitz_answer=wrong помечает неверный вариант testID fc-blitz-opt-target (12.10)')
+add('cards-section-044', ['wait:4000', 'await:#fc-blitz-opt-target', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=correct', BLITZ, note='Блиц: ответ «верно» — dev blitz_answer=correct помечает верный вариант testID fc-blitz-opt-target (12.10)')
+add('cards-section-045', ['wait:4000', 'await:#fc-blitz-opt-target', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=wrong', BLITZ, note='Блиц: ответ «неверно, минус жизнь» — dev blitz_answer=wrong помечает неверный вариант testID fc-blitz-opt-target (12.10)')
 
 # ── Режим Б: занятия «Слова» и «Неправильные глаголы» (shot list G-E02 / G-E03)
 EB = 'energy=5&plus=off&free=on&mode=b'
@@ -60,3 +60,17 @@ add('dialogs-043', DIALOG_OPEN + DIALOG_FINISH, DIALOG_PARAMS, '/ai_dialog_home'
 # ── Главная по языкам: фраза дня включена для es/de/it (bf776a432); язык изучения — dev-подмена studyTarget (только память)
 for _rid, _lang in (('home-004', 'es'), ('home-005', 'de'), ('home-006', 'it')):
     add(_rid, ['wait:1500'], f'plus=off&studyTarget={_lang}', HOME, note=f'Главная с языком изучения {_lang}: плитка «Фраза дня»')
+
+# ── ROBOT13: строки без ссылки (Сверка 12.10, «нет_в_DEV_LINKS_R1») ──────────────────────────────────────────────────────────
+# зачем: Сверка не смогла снять 11 id без строки в DEV_LINKS_R1; маршруты выведены из кода, прежние ручные сценарии — в evidence/parity/SVERKA_LOG.md.
+# cards-section-044/045: «#fc-blitz-opt-target не найден» — после ссылки идёт подготовка тренировки (как у cards-v2-033), вопрос блица появляется позже 1,5 с;
+# теперь пауза 4 с и await по testID до тапа.
+add('learn-002', [], 'plus=on', '/(tabs)/lessons', note='список уроков у Plus (SVERKA_LOG): название закрытых уроков приглушённое')
+add('learn-016', [], 'plus=on', '/combined_lesson_pick', note='«Смешать темы»: пусто (Free получает пейвол — поэтому plus=on)')
+add('learn-017', ['tap:#combo-pick-topic-*', 'tap:#combo-pick-topic-*@2', 'tap:#combo-pick-topic-*@3'], 'plus=on', '/combined_lesson_pick', note='«Смешать темы»: выбрано 3 темы')
+add('learn-018', ['tap:#combo-pick-topic-*', 'tap:#combo-pick-topic-*@2', 'tap:#combo-pick-topic-*@3', 'tap:#combo-pick-topic-*@4', 'tap:#combo-pick-topic-*@5', 'tap:#combo-pick-topic-*@6'], 'plus=on', '/combined_lesson_pick', unique=False, note='«Смешать темы»: лимит 5 — шестой тап должен показать лимит; соответствие состоянию A17 проверить глазами')
+add('video-007', [], 'plus=on', '/lingman_videos', note='«Все видео и плейлисты»: вкладка «Все видео»')
+add('coins-002', [], '', '/runes_wallet', note='кошелёк: нулевой баланс (у гостя 0 монет)')
+add('coins-005', [], '', '/coin_rank', note='повышение ранга: недостаточно монет (у гостя 0 монет)')
+add('home-002', [], 'plus=on', '/(tabs)/home', unique=False, note='Главная в СВЕТЛОЙ теме: подмены theme нет — перед кадром включить светлую тему в Настройки → Внешний вид (запрос Темам: dev_state?theme=light)')
+add('overlays-041', [], 'intros=reset&plus=on&cards=demo', '/flashcards_truefalse_session?deck=saved%26quick=1%26size=all', unique=False, note='окно знакомства «Карточки» (feature_intro_registry: cards_swipe_help показывает flashcards_swipe); intros=reset вместо intros=seen; путь не подтверждён')

@@ -14,7 +14,10 @@ COMMON = 'onboarding=done&intros=seen'
 def link(params, nxt):
     """Полная dev-ссылка. `&` внутри next экранируется (как L() в генераторе)."""
     middle = f'&{params}' if params else ''
-    return f"phraseman://dev_state?{COMMON}{middle}&next={nxt.replace('&', '%26')}"
+    # зачем (Сверка 12.10, overlays-041): parse берёт ПЕРВОЕ значение параметра, а COMMON всегда ставит intros=seen — окно знакомства фичи
+    # иначе не показать; строка с intros=reset получает префикс без intros=seen.
+    common = 'onboarding=done' if 'intros=reset' in (params or '') else COMMON
+    return f"phraseman://dev_state?{common}{middle}&next={nxt.replace('&', '%26')}"
 
 
 ENTRIES = {}

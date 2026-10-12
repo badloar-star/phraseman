@@ -25,3 +25,6 @@ twin('cards-v2-037', 'cards-section-046', '«Устно — верно» = cards
 add('cards-074', ['see:#ugc-pack-load-error'], 'cards=demo&plus=on', '/community_pack_create?packId=dev_missing_cloud_pack', note='создание набора: набор недоступен для правки (packId несуществующего облачного набора → ugc-pack-load-error)')
 
 # cards-061 — теперь в dev_links_r1_steps_cards3.py (Ядро c35b9f8ad: заметка всегда открыта, «раскрыта» = фокус)
+
+# ── Каталог без сети: cards-section-029 «Сейчас недоступно» — тот же экран каталога сообщества (плитка «Сообщество» на хабе в авиарежиме → /flashcards_packs), что cards-v2-044
+twin('cards-section-029', 'cards-v2-044', 'дубль cards-v2-044: каталог без сети (catalog=empty + fail=catalog_load)')

@@ -23,6 +23,7 @@ import {
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done } from './dialogue_v2_done_store';
+import { createDialogueEnergySettler, type DialogueEnergySettler } from './dialogue_v2_energy_settle';
 import { formatDialogObjectiveLabel } from '../components/dialogs/dialog_objective_label';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
@@ -162,29 +163,29 @@ function SessionContent() {
   const pendingTurnRef = useRef<Readonly<{ turnId: string; userMessage: string; learnerId: string }> | null>(null);
   // зачем (баг 01.10, D87): энергия за диалог закрепляется после первого ответа собеседника;
   // отказ сервиса на первом ходе — энергия возвращается. Одно решение на сессию.
-  const energyOpRef = useRef<string | null>(typeof params.energyOp === 'string' ? params.energyOp : null);
   const energyActionsRef = useRef<Readonly<{
     acknowledge: (operationId: string) => Promise<boolean>;
     refund: (operationId: string, reason: string) => Promise<void>;
   }> | null>(null);
-  const settleEnergy = (outcome: 'acknowledge' | 'refund', reason: string) => {
-    const operationId = energyOpRef.current;
-    const actions = energyActionsRef.current;
-    if (!operationId || !actions) return;
-    energyOpRef.current = null;
-    console.log('[DIALOGUE-V2] energy:settle', { outcome, reason, operationId, scenarioId: params.scenarioId });
-    const work = outcome === 'acknowledge'
-      ? actions.acknowledge(operationId).then(() => undefined)
-      : actions.refund(operationId, reason).then(() => {
+  // зачем (E10, координатор 12.10): одно решение «закрепить / вернуть» на попытку, ключ — energyOp; двойной вызов и гонка
+  // возврата с первым ответом дают ровно одно действие (dialogue_v2_energy_settle.ts).
+  const energySettlerRef = useRef<DialogueEnergySettler | null>(null);
+  if (!energySettlerRef.current) {
+    energySettlerRef.current = createDialogueEnergySettler(typeof params.energyOp === 'string' ? params.energyOp : null, {
+      getActions: () => energyActionsRef.current,
+      scenarioId: typeof params.scenarioId === 'string' ? params.scenarioId : null,
+      onRefunded: () => {
         emitAppEvent('action_toast', actionToastTri('info', {
           ru: 'Энергия возвращена', uk: 'Енергію повернено', en: 'Energy returned', es: 'Energía devuelta',
           'pt-BR': 'Energia devolvida', vi: 'Đã hoàn lại năng lượng', id: 'Energi dikembalikan',
           tr: 'Enerji iade edildi', pl: 'Energia zwrócona',
         }));
-      });
-    work.catch((error: unknown) => {
-      console.warn('[DIALOGUE-V2] energy:settle failed', { outcome, reason, message: error instanceof Error ? error.message : String(error) });
+      },
     });
+  }
+  const settleEnergy = (outcome: 'acknowledge' | 'refund', reason: string) => {
+    console.log('[DIALOGUE-V2] energy:settle', { outcome, reason, scenarioId: params.scenarioId });
+    void energySettlerRef.current?.settle(outcome, reason);
   };
   const turnStartingRef = useRef(false);
   // зачем (аудит Optimistic UI Диалогов, 12.10): ход, отправленный до готовности серверной сессии, ждёт в очереди. Раньше очередь означала `sending=true`, а эффект
@@ -318,6 +319,16 @@ function SessionContent() {
     console.warn('[DIALOGUE-V2] turn:queued → session start unavailable, showing error', { scenarioId, startAttempt }); // guard-ok: ветвление называет причину
     setSending(false);
     setTurnFailure(Object.freeze({ reason: 'network' }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serverSessionState]);
+
+  // зачем (E10, координатор 12.10): все 5 тихих стартов провалились — диалог не состоялся, человек ничего не получил,
+  // энергию возвращаем. Если первый ответ уже закрепил её — расчёт пропустит (одно решение на попытку). Поздний старт
+  // по «Повторить» после возврата не списывает повторно (как после service-сбоя).
+  useEffect(() => {
+    if (serverSessionState !== 'unavailable') return;
+    console.warn('[ENERGY-REFUND] dialogue:session start unavailable → refund', JSON.stringify({ scenarioId, startAttempt })); // guard-ok: ветвление называет причину
+    settleEnergy('refund', 'dialogue_session_start_failed');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [serverSessionState]);
 

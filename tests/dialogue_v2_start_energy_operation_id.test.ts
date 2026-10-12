@@ -49,7 +49,11 @@ describe('диалог V2: энергия за несостоявшийся ди
   it('сессия: первый ответ — подтверждение, отказ сервиса — возврат с сообщением', () => {
     expect(session).toMatch(/settleEnergy\('acknowledge', 'first_turn_ok'\)/);
     expect(session).toMatch(/if \(reason === 'service'\) settleEnergy\('refund', 'dialogue_first_turn_service_failed'\)/);
-    expect(session).toMatch(/energyOpRef\.current = null;/);
+    // зачем (E10, 12.10): одно решение на попытку вынесено в dialogue_v2_energy_settle.ts — id забирается до await.
+    expect(session).toMatch(/createDialogueEnergySettler\(/);
+    const settle = fs.readFileSync(path.join(__dirname, '..', 'app/dialogue_v2_energy_settle.ts'), 'utf8');
+    expect(settle.indexOf('operationId = null;')).toBeGreaterThan(-1);
+    expect(settle.indexOf('operationId = null;')).toBeLessThan(settle.indexOf('await actions.'));
     expect(session).toMatch(/'Энергия возвращена'/);
   });
 });

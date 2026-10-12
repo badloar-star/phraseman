@@ -1041,7 +1041,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
     const accountToken = captureAccountGeneration();
     await withAccountTransitionLock(async (accountTransitionLockLease) => {
-      if (!isCurrentAccountGeneration(accountToken)) return;
+      if (!isCurrentAccountGeneration(accountToken)) {
+        console.warn('[ENERGY-REFUND] skipped: account changed before refund', JSON.stringify({ operationId, reason })); // guard-ok: редкое событие возврата, ранний выход пишет причину навсегда
+        return;
+      }
       const before = energyRef.current + bonusRef.current + refundCreditRef.current;
       let result = await refundEnergySessionStart(
         operationId, reason, currentSessionProjection(), energySessionBootIdRef.current,
@@ -1055,6 +1058,14 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           { accountToken, accountTransitionLockLease },
         );
       }
+      // зачем (E10, координатор 12.10): каждый возврат виден одной строкой — причина, статус журнала и энергия до/после.
+      const after = result.status === 'failed'
+        ? null
+        : result.projection.baseEnergy + result.projection.bonusEnergy + result.projection.refundCredit;
+      // guard-ok: возврат энергии — редкое событие, строка журнала остаётся навсегда
+      console.log('[ENERGY-REFUND] ledger', JSON.stringify({
+        operationId, reason, status: result.status, failReason: result.status === 'failed' ? result.reason : null, before, after,
+      }));
       if (result.status === 'failed') throw new Error(`energy_session_refund_failed:${result.reason}`);
       if (result.status === 'applied' || result.status === 'already-applied') {
         applySessionProjection(result.projection);

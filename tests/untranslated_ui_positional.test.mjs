@@ -59,3 +59,18 @@ test('сторож: переводчик по целому имени, помо�
   assert.match(scanner, /src = maskPositionalTranslatorCalls\(src\);/);
   assert.match(scanner, /\/\[A-Za-z0-9_\$\]\/\.test\(src\[found - 1\]\)/);
 });
+
+test('журналы, а не экран: logSpireLayout / logSpireDock / bootMark в явном списке помощников логов', () => {
+  const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const scanner = fs.readFileSync(path.join(root, 'scripts/scan_untranslated_ui.mjs'), 'utf8');
+  const line = scanner.split('\n').find((l) => l.startsWith('const DIAGNOSTIC_LOG_CALL ='));
+  assert.ok(line, 'DIAGNOSTIC_LOG_CALL на месте');
+  const re = new Function(`${line.replace('const DIAGNOSTIC_LOG_CALL =', 'return')}`)();
+  for (const call of ["logSpireLayout('scroll-req', { a: 1 })", "logSpireDock('х', {})", "bootMark('сплеш отпущен')", "traceThumbMissing('х')"]) {
+    assert.ok(re.test(call), call);
+  }
+  // похожие имена — не журналы: имя явное, не маска
+  for (const call of ["showSpireLayout('Текст')", "bootMarker('Текст')", "Alert.alert('Ошибка')"]) {
+    assert.equal(re.test(call), false, call);
+  }
+});

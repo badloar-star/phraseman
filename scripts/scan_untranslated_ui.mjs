@@ -115,7 +115,9 @@ const INLINE_LOCALE_MAP = /(^\s*|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s
 // зачем (координатор 12.10): помощники логов проекта, которые сами зовут console и ничего не показывают на экране —
 // причина в их вызове такой же лог (traceThumbMissing, app/thumb_trace.ts → console.warn, возвращает null). Имена явные,
 // не маской: иначе UI-строка в похожей функции просочилась бы мимо сторожа. Новый помощник логов — дописать в альтернативу.
-const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\btraceThumbMissing\s*\(/;
+// зачем (координатор 12.10, после ужесточения fe1bc0d65): logSpireLayout/logSpireDock (components/spire/spire_layout_log.ts —
+// только console.log в dev) и bootMark (app/_layout.tsx — только console.warn трассировки старта) — журналы, не экран.
+const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(traceThumbMissing|logSpireLayout|logSpireDock|bootMark)\s*\(/;
 
 /**
  * Файл — сам словарь переводов: русский в нём и есть перевод.
